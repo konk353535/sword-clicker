@@ -1,0 +1,10 @@
+<template name="mineSpace">
+  <div
+    class="d-flex align-items-center justify-content-center p-1 m-1 ore-box flex-column"
+    style="border: 1px solid black">
+    {{#if mineSpace.oreId}}
+      <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+      {{mineSpace.health}} / {{mineSpace.maxHealth}}
+    {{/if}}
+  </div><br />
+</template>

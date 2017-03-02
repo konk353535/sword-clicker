@@ -1,0 +1,13 @@
+/* CSS declarations go here */
+@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+
+.ore-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.ore-box {
+  width: 96px;
+  height: 96px;
+  flex: 1 1 20%;
+}

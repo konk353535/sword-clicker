@@ -1,0 +1,19 @@
+<template name="miningPage">
+
+  <h1>Mining</h1>
+  <p>Level: {{miningSkill.level}}</p>
+  <p>XP: {{miningSkill.xp}} / {{miningSkill.xpToLevel}}</p>
+
+  <div class="d-flex flex-row flex-wrap" style="max-width: 400px">
+    {{#each mining.oreMatrix}}
+      <div
+        class="d-flex align-items-center justify-content-center p-1 m-1 ore-box flex-column"
+        style="border: 1px solid black">
+        {{#unless this.empty}}
+          <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+          {{this.health}} / {{this.maxHealth}}
+        {{/unless}}
+      </div><br />
+    {{/each}}
+  </div>
+</template>

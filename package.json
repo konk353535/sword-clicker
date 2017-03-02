@@ -1,0 +1,13 @@
+{
+  "name": "sword-art-online-clicker",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "angular-ui-router": "^0.4.2",
+    "babel-runtime": "^6.20.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "meteor-node-stubs": "~0.2.4"
+  }
+}

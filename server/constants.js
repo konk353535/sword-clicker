@@ -10,7 +10,8 @@ export const ITEMS = {
   ore_stone: {
     id: 'ore_stone',
     icon: 'stone',
-    category: 'mining'
+    category: 'mining',
+    name: 'stone'
   }
 }
 
@@ -24,6 +25,7 @@ export const MINING = {
       maxHealth: 10,
       id: 'stone',
       icon: 'stone',
+      name: 'stone',
       itemId: 'ore_stone'
     }
   }

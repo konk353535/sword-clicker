@@ -8,6 +8,7 @@ import { Items } from '/imports/api/items/items.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
+import '../components/itemIcon/itemIcon.js';
 
 import './mining.html';
 

@@ -74,6 +74,7 @@ Meteor.publish('miningSpace', function() {
       const currentOreConstants = MINING.ores[doc.oreId];
       doc.requiredLevel = currentOreConstants.requiredLevel;
       doc.maxHealth = currentOreConstants.maxHealth;
+      doc.name = currentOreConstants.name;
       doc.icon = currentOreConstants.icon;
     }
     return doc;

@@ -4,14 +4,17 @@
   <p>Level: {{miningSkill.level}}</p>
   <p>XP: {{miningSkill.xp}} / {{miningSkill.xpToLevel}}</p>
 
+  <h2>Collected Ores</h2>
+  {{#each miningItems}}
+    {{> itemIcon item=this}}
+  {{else}}
+    No ores mines yet. Click on ores below to mine them.
+  {{/each}}
+
+  <h2>Mine Shaft</h2>
   <div class="d-flex flex-row flex-wrap" style="max-width: 400px">
     {{#each miningSpaces}}
       {{> mineSpace mineSpace=this}}
     {{/each}}
   </div>
-
-  {{#each miningItems}}
-    Mining Item!
-    {{this.amount}}
-  {{/each}}
 </template>

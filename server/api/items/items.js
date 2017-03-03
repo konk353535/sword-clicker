@@ -30,6 +30,9 @@ Meteor.publish('items', function() {
 
   //Transform function
   var transform = function(doc) {
+    const itemConstants = ITEMS[doc.itemId];
+    doc.icon = itemConstants.icon;
+    doc.name = itemConstants.name;
     return doc;
   }
 

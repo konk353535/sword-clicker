@@ -7,8 +7,13 @@
   pointer-events: none;
 }
 
+.icon-border {
+  border: 1px solid black;
+}
+
 .ore-box {
   width: 96px;
   height: 96px;
   flex: 1 1 20%;
 }
+

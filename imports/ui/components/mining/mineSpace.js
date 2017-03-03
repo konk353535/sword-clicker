@@ -15,3 +15,11 @@ Template.mineSpace.events({
     }
   }
 });
+
+Template.mineSpace.rendered = function () {
+  $(function () {
+    $('[data-toggle="popover"]').popover({
+      trigger: 'hover'
+    });
+  });
+};

@@ -12,7 +12,8 @@ AccountsTemplates.configure({
     });
 
     Mining.insert({
-      owner: userId
+      owner: userId,
+      lastGameUpdated: new Date()
     });
 
     MiningSpace.insert({

@@ -10,6 +10,8 @@ Template.mineSpace.onCreated(function bodyOnCreated() {
 
 Template.mineSpace.events({
   'click'(event, instance) {
-    Meteor.call('mining.clickedMineSpace', instance.id);
+    if (instance.data.mineSpace.oreId) {
+      Meteor.call('mining.clickedMineSpace', instance.data.mineSpace._id);
+    }
   }
 });

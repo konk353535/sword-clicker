@@ -11,7 +11,7 @@ export const MINING = {
 
       return 10 + ((currentMinersCount * 50) * currentMinersCount);
     },
-    damagePerSecond: 0.1 // 1 damage every 10 seconds, should be 0.1
+    damagePerSecond: 0.1 // Should be 0.1
   },
   ores: {
     stone: {

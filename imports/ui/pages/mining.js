@@ -28,7 +28,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
   gameUpdateTimer = Meteor.setInterval(function () {
     Meteor.call('mining.gameUpdate');
-  }, 1000); // Should be 5000
+  }, 5000); // Should be 5000
 });
 
 Template.miningPage.onDestroyed(function bodyOnDestroyed() {
@@ -54,7 +54,15 @@ Template.miningPage.helpers({
   },
 
   mining() {
-    return Mining.findOne();
+    const mining = Mining.findOne();
+    if (mining) {
+      Template.instance().state.set('nextMinerCost', mining.nextMinerCost);
+    }
+    return mining;
+  },
+
+  nextMinerCost() {
+    return Template.instance().state.get('nextMinerCost');
   },
 
   miningItems() {

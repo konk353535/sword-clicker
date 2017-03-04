@@ -28,4 +28,4 @@ seba:minifiers-autoprefixer
 fourseven:scss
 aldeed:simple-schema
 aldeed:collection2
-lookback:tooltips
+lookback:tooltips@0.5.2

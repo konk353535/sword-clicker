@@ -3,7 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { SKILLS } from '/server/constants/skills.js';
 
 export const addXp = function (skillType, xp) {
-
+  console.log(`Addxp ${skillType} - #${xp}`);
   const skill = Skills.findOne({ owner: Meteor.userId(), type: skillType });
   const skillConstants = SKILLS[skill.type];
 

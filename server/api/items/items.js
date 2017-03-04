@@ -4,14 +4,14 @@ import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items.js';
 
 export const addItem = function (itemId, amount) {
-
+  console.log(`Add item called ${itemId} - #${amount}`);
   const currentItem = Items.findOne({ owner: Meteor.userId(), itemId });
   const itemConstants = ITEMS[itemId];
 
   if (currentItem) {
     // Update
     Items.update({ _id: currentItem._id }, {
-      $inc: { amount: 1 }
+      $inc: { amount: amount }
     });
   } else {
     // Insert

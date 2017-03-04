@@ -65,16 +65,17 @@ Meteor.methods({
   },
 
   'mining.gameUpdate'() {
-    // Fetch current users mine space
+    // Fetch all db data we need
     const mining = Mining.findOne({ owner: this.userId });
     const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
-    const miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
-    const emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
+    let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
+    let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
     // Determine time since last update
     const now = moment();
     const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
 
+    // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
       const rollDice = Math.random();
       let newOre;
@@ -88,10 +89,48 @@ Meteor.methods({
       return newOre;
     }
 
+    // Modifies the miningSpaces array
+    // gainedItems is added to if a mine space is cleared of an ore
+    // Returns the exp gained
+    const damageMiningSpaces = function ({ miningSpaces, damage, gainedItems }) {
+      let gainedXp = 0;
+      // Do damage
+      for (let i = 0; i < miningSpaces.length; i++) {
+        const miningSpace = miningSpaces[i];
+        if (!miningSpace.oreId) {
+          continue;
+        }
+        const oreConstants = MINING.ores[miningSpace.oreId];
+        miningSpace.isDirty = true;
+
+        if (miningSpace.health <= damage) {
+          damage -= miningSpace.health;
+          miningSpace.oreId = null;
+
+          if (gainedItems[oreConstants.itemId]) {
+            gainedItems[oreConstants.itemId].amount += 1
+          } else {
+            gainedItems[oreConstants.itemId] = { amount: 1 };
+          }
+
+          gainedXp += oreConstants.xp;
+        } else {
+          miningSpace.health -= damage;
+          damage = 0;
+          break;
+        }
+      }
+
+      return gainedXp;
+    }
+
+    // Tick count = How many ticks to step through
+    // Tick strength = How strong to make each tick, 1 = seconds
     const simulateMining = function (tickCount, tickStrength) {
-      console.log(`Simulating Mining: ${tickCount} Strength ${tickStrength}`);
-      // Tick count = How many ticks to step through
-      // Tick strength = How strong to make each tick, 1 = seconds, 60 = minutes, ect
+
+      // Store gained exp and items, so we can save mongo db queries
+      let gainedXp = 0;
+      let gainedItems = {};
 
       // Prepare easy arrays for which ore is about to spawn
       const availableOres = rawOresArray.filter((ore) => ore.requiredLevel <= miningSkill.level);
@@ -105,44 +144,29 @@ Meteor.methods({
         newOresCount = Math.floor(newOresCount);
       }
 
-      console.log(`Generating ${newOresCount} new ores`);
-
       // Determine how much damage your miners do
       const damagePerTick = mining.miners * MINING.miners.damagePerSecond * tickStrength;
       let totalRemainingDamage = damagePerTick * tickCount;
 
-      console.log(`Applying ${totalRemainingDamage} damage from miners`);
-
-      console.log(`Empty spaces - ${emptyMiningSpaces.length} - New Ores - ${newOresCount}`);
-      if (emptyMiningSpaces.length >= newOresCount) {
-        console.log('Ping');
+      if (emptyMiningSpaces.length >= newOresCount || (tickCount * tickStrength < 60)) {
         // Add Ores
-        _.shuffle(emptyMiningSpaces).forEach((emptyMiningSpace) => {
-          if (newOresCount > 0) {
+        miningSpaces.forEach((miningSpace, index) => {
+          // Make sure this is an empty mining space
+          if (newOresCount > 0 && !miningSpace.oreId) {
             newOresCount--;
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
-            emptyMiningSpace.health = newOre.maxHealth;
-            emptyMiningSpace.oreId = newOre.id;
-            emptyMiningSpace.isDirty = true; // So we know to save this later
+            miningSpace.health = newOre.maxHealth;
+            miningSpace.oreId = newOre.id;
+            miningSpace.isDirty = true; // So we know to save this later
           }
         });
 
-        // Do damage
-        for (let i = 0; i < miningSpaces.length; i++) {
-          const miningSpace = miningSpaces[i];
-          const oreConstants = MINING.ores[miningSpace.oreId];
-          miningSpace.isDirty = true;
-          if (miningSpace.health <= totalRemainingDamage) {
-            totalRemainingDamage -= miningSpace.health;
-            miningSpace.oreId = null;
-            addItem(oreConstants.itemId, 1);
-          } else {
-            miningSpace.health -= totalRemainingDamage;
-            totalRemainingDamage = 0;
-            break;
-          }
-        }
+        gainedXp += damageMiningSpaces({
+          miningSpaces,
+          damage: totalRemainingDamage,
+          gainedItems
+        });
 
         // Save modified miningSpaces
         miningSpaces.forEach((miningSpace) => {
@@ -152,16 +176,65 @@ Meteor.methods({
             });
           }
         });
-      } else {
-        // Step through
 
+        if (gainedXp > 0) {
+          addXp('mining', gainedXp);
+        }
+        Object.keys(gainedItems).forEach((key) => {
+          addItem(key, gainedItems[key].amount);
+        });
+      } else {
+        // Evenly distribute when ores spawn
+        const genOreEvery = Math.floor(tickCount / newOresCount)
+
+        // Step through
+        for (let tick = 0; tick < tickCount; tick++) {
+          if (tick % genOreEvery === 0 && emptyMiningSpaces.length > 0) {
+            const emptyMiningSpaces = miningSpaces.filter((space) => !space.oreId);
+            if (emptyMiningSpaces.length > 0) {
+              // Generate ore
+              const emptySpace = emptyMiningSpaces[0];
+              // Spawn ore
+              const newOre = spawnOre(sortedChanceOres);
+              emptySpace.health = newOre.maxHealth;
+              emptySpace.oreId = newOre.id;
+              emptySpace.isDirty = true; // So we know to save this later
+            }
+          }
+
+          if (tick % 10) {
+            miningSpaces =_.shuffle(miningSpaces);
+          }
+
+          // Deal damage to ore
+          gainedXp += damageMiningSpaces({
+            damage: damagePerTick,
+            miningSpaces,
+            gainedItems
+          });
+        }
+
+        if (gainedXp > 0) {
+          addXp('mining', gainedXp);
+        }
+        Object.keys(gainedItems).forEach((key) => {
+          addItem(key, gainedItems[key].amount);
+        });
+
+        // Save modified miningSpaces
+        miningSpaces.forEach((miningSpace) => {
+          if (miningSpace.isDirty) {
+            MiningSpace.update(miningSpace._id, {
+              $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+            });
+          }
+        });
       }
     }
 
     if (secondsElapsed > 300) {
-      // To save CPU, use minute based ticks
-      const minuteTicks = Math.floor(secondsElapsed / 60);
-      simulateMining(minuteTicks, 60);
+      // To save CPU, use slightly longer ticks
+      simulateMining(secondsElapsed / 5, 5);
     } else {
       // Less then 5 minutes, use second based ticks
       simulateMining(secondsElapsed, 1);

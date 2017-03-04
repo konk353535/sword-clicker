@@ -4,6 +4,7 @@ import moment from 'moment';
 import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills';
+import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 import { addItem } from '/server/api/items/items';
@@ -40,58 +41,130 @@ Meteor.methods({
   },
 
   'mining.buyMiner'() {
+    const mining = Mining.findOne({ owner: Meteor.userId() });
     // Maximum # of miners?
+    if (mining.miners >= MINING.miners.max) {
+      return;
+    }
 
     // Enough gold?
+    const newMinersCost = MINING.miners.cost(mining.miners);
+    if (Meteor.user().gold < newMinersCost) {
+      return;
+    }
 
     // Take gold
+    Users.update(Meteor.userId(), {
+      $inc: { gold: (newMinersCost * -1) }
+    });
 
     // Up miners
+    Mining.update(mining._id, {
+      $inc: { miners: 1 }
+    });
   },
 
   'mining.gameUpdate'() {
     // Fetch current users mine space
     const mining = Mining.findOne({ owner: this.userId });
     const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
-    const miningSpaces = MiningSpace.find({ owner: this.userId }).map((doc) => doc);
+    const miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
     const emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
     // Determine time since last update
     const now = moment();
     const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
 
-    // Determine what mining resources have spawned since
-    const possibleNewResources = secondsElapsed * MINING.prospecting.chance;
-    let newResources = Math.floor(possibleNewResources);
+    const spawnOre = function (sortedChanceOres) {
+      const rollDice = Math.random();
+      let newOre;
+      for (let i = 0; i < sortedChanceOres.length; i++) {
+        if (rollDice <= sortedChanceOres[i].chance) {
+          newOre = sortedChanceOres[i];
+          break;
+        }
+      }
 
-    if ((possibleNewResources - newResources) > Math.random()) {
-      newResources += 1;
+      return newOre;
     }
 
-    if (newResources > 0) {
+    const simulateMining = function (tickCount, tickStrength) {
+      console.log(`Simulating Mining: ${tickCount} Strength ${tickStrength}`);
+      // Tick count = How many ticks to step through
+      // Tick strength = How strong to make each tick, 1 = seconds, 60 = minutes, ect
+
       // Prepare easy arrays for which ore is about to spawn
       const availableOres = rawOresArray.filter((ore) => ore.requiredLevel <= miningSkill.level);
       const sortedChanceOres = _.sortBy(availableOres, 'chance');
 
-      // Fill up empty mining spaces
-      _.shuffle(emptyMiningSpaces).forEach((emptyMiningSpace) => {
-        if (newResources > 0) {
-          // Determine which ore is about to spawn
-          const rollDice = Math.random();
-          let newOre;
-          for (let i = 0; i < sortedChanceOres.length; i++) {
-            if (rollDice <= sortedChanceOres[i].chance) {
-              newOre = sortedChanceOres[i];
-              break;
-            }
+      // Determine how many new ores to spawn
+      let newOresCount = tickCount * (MINING.prospecting.chance * tickStrength);
+      if ((newOresCount % 1) > Math.random()) {
+        newOresCount = Math.ceil(newOresCount);
+      } else {
+        newOresCount = Math.floor(newOresCount);
+      }
+
+      console.log(`Generating ${newOresCount} new ores`);
+
+      // Determine how much damage your miners do
+      const damagePerTick = mining.miners * MINING.miners.damagePerSecond * tickStrength;
+      let totalRemainingDamage = damagePerTick * tickCount;
+
+      console.log(`Applying ${totalRemainingDamage} damage from miners`);
+
+      console.log(`Empty spaces - ${emptyMiningSpaces.length} - New Ores - ${newOresCount}`);
+      if (emptyMiningSpaces.length >= newOresCount) {
+        console.log('Ping');
+        // Add Ores
+        _.shuffle(emptyMiningSpaces).forEach((emptyMiningSpace) => {
+          if (newOresCount > 0) {
+            newOresCount--;
+            // Spawn ore
+            const newOre = spawnOre(sortedChanceOres);
+            emptyMiningSpace.health = newOre.maxHealth;
+            emptyMiningSpace.oreId = newOre.id;
+            emptyMiningSpace.isDirty = true; // So we know to save this later
           }
-          newResources--;
-          // Save mining space
-          MiningSpace.update(emptyMiningSpace._id, {
-            $set: { oreId: newOre.id, health: newOre.maxHealth }
-          });
+        });
+
+        // Do damage
+        for (let i = 0; i < miningSpaces.length; i++) {
+          const miningSpace = miningSpaces[i];
+          const oreConstants = MINING.ores[miningSpace.oreId];
+          miningSpace.isDirty = true;
+          if (miningSpace.health <= totalRemainingDamage) {
+            totalRemainingDamage -= miningSpace.health;
+            miningSpace.oreId = null;
+            addItem(oreConstants.itemId, 1);
+          } else {
+            miningSpace.health -= totalRemainingDamage;
+            totalRemainingDamage = 0;
+            break;
+          }
         }
-      });
+
+        // Save modified miningSpaces
+        miningSpaces.forEach((miningSpace) => {
+          if (miningSpace.isDirty) {
+            MiningSpace.update(miningSpace._id, {
+              $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+            });
+          }
+        });
+      } else {
+        // Step through
+
+      }
+    }
+
+    if (secondsElapsed > 300) {
+      // To save CPU, use minute based ticks
+      const minuteTicks = Math.floor(secondsElapsed / 60);
+      simulateMining(minuteTicks, 60);
+    } else {
+      // Less then 5 minutes, use second based ticks
+      simulateMining(secondsElapsed, 1);
     }
 
     Mining.update(mining._id, {
@@ -144,6 +217,7 @@ Meteor.publish('mining', function() {
   //Transform function
   var transform = function(doc) {
     doc.nextMinerCost = MINING.miners.cost(doc.miners);
+    doc.maxMiners = MINING.miners.max;
     return doc;
   }
 

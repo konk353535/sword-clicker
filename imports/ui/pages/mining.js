@@ -9,6 +9,7 @@ import { Items } from '/imports/api/items/items.js';
 // Component used in the template
 import '../components/mining/mineSpace.js';
 import '../components/itemIcon/itemIcon.js';
+import '../components/formatNumber/formatNumber.js';
 
 import './mining.html';
 
@@ -27,12 +28,20 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
   gameUpdateTimer = Meteor.setInterval(function () {
     Meteor.call('mining.gameUpdate');
-  }, 5000);
+  }, 1000); // Should be 5000
 });
 
 Template.miningPage.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(gameUpdateTimer);
 });
+
+Template.miningPage.events({
+  'click .buy-miner'(event, instance) {
+    if (Meteor.user().gold >= Mining.findOne().nextMinerCost) {
+      Meteor.call('mining.buyMiner');
+    }
+  }
+})
 
 Template.miningPage.helpers({
   miningSkill() {

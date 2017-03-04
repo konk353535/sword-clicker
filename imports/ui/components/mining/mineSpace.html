@@ -14,7 +14,7 @@
       "
       class="d-flex align-items-center justify-content-center p-1 m-1 icon-box flex-column icon-border">
         <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
-        {{mineSpace.health}} / {{mineSpace.maxHealth}}
+        {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.maxHealth}}
     </div><br />
   {{/if}}
 </template>

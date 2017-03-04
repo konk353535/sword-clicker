@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
-import { ITEMS } from '/server/constants';
+import { ITEMS } from '/server/constants/items.js';
 
 export const addItem = function (itemId, amount) {
 
@@ -33,6 +33,7 @@ Meteor.publish('items', function() {
     const itemConstants = ITEMS[doc.itemId];
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
+    doc.sellPrice = itemConstants.sellPrice;
     return doc;
   }
 

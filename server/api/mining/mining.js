@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import { MINING } from '../../../server/constants.js';
+import { MINING } from '/server/constants/mining.js';
 import moment from 'moment';
 import _ from 'underscore';
 
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 import { addItem } from '/server/api/items/items';
+import { addXp } from '/server/api/skills/skills';
 
 const attackMineSpace = function (id, damage) {
   const mineSpace = MiningSpace.findOne({ _id: id, owner: Meteor.userId() });
@@ -18,6 +19,7 @@ const attackMineSpace = function (id, damage) {
       $set: { oreId: null }
     });
 
+    addXp('mining', oreConstants.xp);
     addItem(oreConstants.itemId, 1);
   } else {
     MiningSpace.update(mineSpace._id, {
@@ -75,6 +77,7 @@ Meteor.publish('miningSpace', function() {
       doc.requiredLevel = currentOreConstants.requiredLevel;
       doc.maxHealth = currentOreConstants.maxHealth;
       doc.name = currentOreConstants.name;
+      doc.xp = currentOreConstants.xp;
       doc.icon = currentOreConstants.icon;
     }
     return doc;

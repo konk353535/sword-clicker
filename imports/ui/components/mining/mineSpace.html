@@ -1,12 +1,20 @@
 <template name="mineSpace">
-  <div
-    data-toggle="popover"
-    title="{{mineSpace.name}}"
-    data-content="{{mineSpace.name}}"
-    class="d-flex align-items-center justify-content-center p-1 m-1 ore-box flex-column icon-border">
-    {{#if mineSpace.oreId}}
-      <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
-      {{mineSpace.health}} / {{mineSpace.maxHealth}}
-    {{/if}}
-  </div><br />
+  {{#if isEmpty}}
+    <div data-tooltip="" class="p-1 m-1 ore-box flex-column icon-border">
+    </div><br />
+  {{else}}
+    <div
+      data-tooltip="
+        <h3 class='popover-title text-capitalize'>{{mineSpace.name}}</h3>
+        <div class='popover-content'>
+          XP: {{mineSpace.xp}}
+          <br /><br />
+          <b>Click</b> to mine
+        </div>
+      "
+      class="d-flex align-items-center justify-content-center p-1 m-1 ore-box flex-column icon-border">
+        <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+        {{mineSpace.health}} / {{mineSpace.maxHealth}}
+    </div><br />
+  {{/if}}
 </template>

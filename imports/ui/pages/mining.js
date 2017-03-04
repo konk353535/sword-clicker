@@ -3,7 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Skills } from '/imports/api/skills/skills.js';
-import { MiningSpace } from '/imports/api/mining/mining.js';
+import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
 
 // Component used in the template
@@ -42,6 +42,10 @@ Template.miningPage.helpers({
 
   miningSpaces() {
     return MiningSpace.find();
+  },
+
+  mining() {
+    return Mining.findOne();
   },
 
   miningItems() {

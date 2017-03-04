@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
+import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items.js';
 
 export const addItem = function (itemId, amount) {
@@ -24,6 +25,39 @@ export const addItem = function (itemId, amount) {
 }
 
 Meteor.methods({
+  'items.sellItem'(itemId, amount) {
+    if (amount <= 0) {
+      return;
+    }
+
+    const currentItem = Items.findOne({ owner: Meteor.userId(), itemId: itemId });
+
+    if (!currentItem) {
+      return;
+    }
+
+    const itemConstants = ITEMS[currentItem.itemId]
+    let amountToSell = amount;
+
+    if (amountToSell >= currentItem.amount) {
+      // Force amount to sell to actual item count;
+      amountToSell = currentItem.amount;
+      // Remove item
+      Items.remove(currentItem._id);
+    } else {
+      // Update item quantity
+      Items.update(currentItem._id, {
+        $inc: { amount: (amountToSell * -1) }
+      });
+    }
+
+    // Add gold to users account
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $inc: { gold: amountToSell * itemConstants.sellPrice }
+    });
+  }
 });
 
 Meteor.publish('items', function() {

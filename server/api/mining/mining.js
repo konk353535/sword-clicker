@@ -3,10 +3,16 @@ import { MINING } from '/server/constants/mining.js';
 import moment from 'moment';
 import _ from 'underscore';
 
+import { Skills } from '/imports/api/skills/skills';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+
+// Store array of sorted ores
+const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
+  return MINING.ores[oreKey];
+});
 
 const attackMineSpace = function (id, damage) {
   const mineSpace = MiningSpace.findOne({ _id: id, owner: Meteor.userId() });
@@ -33,9 +39,20 @@ Meteor.methods({
     attackMineSpace(mineSpaceId, 1);
   },
 
+  'mining.buyMiner'() {
+    // Maximum # of miners?
+
+    // Enough gold?
+
+    // Take gold
+
+    // Up miners
+  },
+
   'mining.gameUpdate'() {
     // Fetch current users mine space
     const mining = Mining.findOne({ owner: this.userId });
+    const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
     const miningSpaces = MiningSpace.find({ owner: this.userId }).map((doc) => doc);
     const emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
@@ -51,16 +68,31 @@ Meteor.methods({
       newResources += 1;
     }
 
-    // Fill up empty mining spaces
-    _.shuffle(emptyMiningSpaces).forEach((emptyMiningSpace) => {
-      if (newResources > 0) {
-        newResources--;
-        // Save mining space
-        MiningSpace.update(emptyMiningSpace._id, {
-          $set: { oreId: MINING.ores.stone.id, health: MINING.ores.stone.maxHealth }
-        });
-      }
-    });
+    if (newResources > 0) {
+      // Prepare easy arrays for which ore is about to spawn
+      const availableOres = rawOresArray.filter((ore) => ore.requiredLevel <= miningSkill.level);
+      const sortedChanceOres = _.sortBy(availableOres, 'chance');
+
+      // Fill up empty mining spaces
+      _.shuffle(emptyMiningSpaces).forEach((emptyMiningSpace) => {
+        if (newResources > 0) {
+          // Determine which ore is about to spawn
+          const rollDice = Math.random();
+          let newOre;
+          for (let i = 0; i < sortedChanceOres.length; i++) {
+            if (rollDice <= sortedChanceOres[i].chance) {
+              newOre = sortedChanceOres[i];
+              break;
+            }
+          }
+          newResources--;
+          // Save mining space
+          MiningSpace.update(emptyMiningSpace._id, {
+            $set: { oreId: newOre.id, health: newOre.maxHealth }
+          });
+        }
+      });
+    }
 
     Mining.update(mining._id, {
       $set: { lastGameUpdated: new Date() }
@@ -111,6 +143,7 @@ Meteor.publish('mining', function() {
 
   //Transform function
   var transform = function(doc) {
+    doc.nextMinerCost = MINING.miners.cost(doc.miners);
     return doc;
   }
 

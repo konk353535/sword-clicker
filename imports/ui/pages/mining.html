@@ -4,15 +4,29 @@
   <p>Level: {{miningSkill.level}}</p>
   <p>XP: {{miningSkill.xp}} / {{miningSkill.xpToLevel}}</p>
 
-  <h2>Collected Ores</h2>
-  {{#each miningItems}}
-    {{> itemIcon item=this}}
-  {{else}}
-    No ores mines yet. Click on ores below to mine them.
-  {{/each}}
+  <h2>Items</h2>
+  <div class="d-flex">
+    <div
+      data-tooltip="
+        <h3 class='popover-title text-capitalize'>Miners</h3>
+        <div class='popover-content'>
+          Cost: {{mining.nextMinerCost}}
+          <br /><br />
+          <b>Click</b> to buy
+        </div>
+      "
+      class="d-flex align-items-center justify-content-center p-1 m-1 icon-box flex-column icon-border">
+        <object data="/icons/miner.svg" class="ore-icon" type="image/svg+xml"></object>
+        0 / 10
+    </div>
+
+    {{#each miningItems}}
+      {{> itemIcon item=this}}
+    {{/each}}
+  </div>
 
   <h2>Mine Shaft</h2>
-  <div class="d-flex flex-row flex-wrap" style="max-width: 400px">
+  <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
     {{#each miningSpaces}}
       {{> mineSpace mineSpace=this}}
     {{/each}}

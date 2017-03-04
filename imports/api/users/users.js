@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+export const Users = Meteor.users;
+
 UserSchema = new SimpleSchema({
   _id: { type: String },
   createdAt: { type: Date },

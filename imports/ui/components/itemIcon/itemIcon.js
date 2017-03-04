@@ -20,9 +20,9 @@ Template.itemIcon.helpers({
 })
 
 Template.itemIcon.events({
-  'click .item-box'(event, instance) {
+  'click .icon-box'(event, instance) {
     instance.state.set('sellAmount', instance.data.item.amount);
-    $('#sellModal').modal('show');
+    Template.instance().$('#sellModal').modal('show');
   },
 
   'keyup .sell-amount-input'(event, instance) {
@@ -36,6 +36,7 @@ Template.itemIcon.events({
   },
 
   'click .sell-btn'(event, instance) {
-    Meteor.call('items.sellItem', instance.data.item._id, instance.state.get('sellAmount'));
+    Template.instance().$('#sellModal').modal('hide');
+    Meteor.call('items.sellItem', instance.data.item.itemId, instance.state.get('sellAmount'));
   }
 })

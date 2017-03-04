@@ -3,6 +3,7 @@ import { Skills } from '../../api/skills/skills.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { MINING } from '/server/constants/mining.js';
 import '/imports/api/users/users.js';
+import '/server/api/users/users.js';
 
 AccountsTemplates.configure({
   postSignUpHook: function (userId, info) {

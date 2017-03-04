@@ -13,5 +13,13 @@ export const ITEMS = {
     category: 'mining',
     name: 'copper',
     sellPrice: 2
+  },
+
+  ore_coal: {
+    id: 'ore_coal',
+    icon: 'coal',
+    category: 'mining',
+    name: 'coal',
+    sellPrice: 10
   }
 }

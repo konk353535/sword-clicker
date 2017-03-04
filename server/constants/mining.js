@@ -1,6 +1,6 @@
 export const MINING = {
   prospecting: {
-    chance: (1 / 60)
+    chance: (1 / 30)
   },
   miners: {
     max: 10,
@@ -33,7 +33,18 @@ export const MINING = {
       icon: 'copper',
       name: 'copper',
       itemId: 'ore_copper',
-      chance: 0.5
+      chance: 0.3
+    },
+
+    coal: {
+      requiredLevel: 2,
+      maxHealth: 50,
+      xp: 10,
+      id: 'coal',
+      icon: 'coal',
+      name: 'coal',
+      itemId: 'ore_coal',
+      chance: 0.1
     }
   }
 }

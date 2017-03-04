@@ -19,6 +19,16 @@ Template.itemIcon.helpers({
   }
 })
 
+Template.itemIcon.rendered = function () {
+  const minerTooltip = new Drop({
+    target: Template.instance().$('.item-icon-container')[0],
+    content: Template.instance().$('.item-tooltip-content')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+}
+
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
     instance.state.set('sellAmount', instance.data.item.amount);

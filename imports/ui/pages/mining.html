@@ -6,20 +6,19 @@
 
   <h2>Items</h2>
   <div class="d-flex">
-    <div
-      data-tooltip-direction="e"
-      data-tooltip="
-        <h3 class='popover-title text-capitalize'>Miners</h3>
-        <div class='popover-content'>
-          Automatically mines ores ( 1 damage every 10 seconds )
-          <br /><br />
-          Cost: {{nextMinerCost}} Gold<br />
-          <b>Click</b> to buy
-        </div>
-      "
-      class="d-flex align-items-center justify-content-center p-1 m-1 icon-box buy-miner flex-column icon-border">
+    <div class="icon-box buy-miner">
         <object data="/icons/miner.svg" class="ore-icon" type="image/svg+xml"></object>
         {{mining.miners}} / {{mining.maxMiners}}
+    </div>
+    <!-- Tooltip for buy miner icon -->
+    <div class="miners-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Miners</h3>
+      <div class='popover-content'>
+        Automatically mines ores ( 1 damage every 10 seconds )
+        <br /><br />
+        Cost: {{nextMinerCost}} Gold<br />
+        <b>Click</b> to buy
+      </div>
     </div>
 
     {{#each miningItems}}

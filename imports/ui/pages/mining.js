@@ -41,7 +41,16 @@ Template.miningPage.events({
       Meteor.call('mining.buyMiner');
     }
   }
-})
+});
+
+Template.miningPage.rendered = function () {
+  const minerTooltip = new Drop({
+    target: Template.instance().$('.buy-miner')[0],
+    content: Template.instance().$('.miners-tooltip-content')[0],
+    openOn: 'hover',
+    remove: true
+  });
+}
 
 Template.miningPage.helpers({
   miningSkill() {

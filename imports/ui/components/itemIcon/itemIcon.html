@@ -1,16 +1,16 @@
 <template name="itemIcon">
-  <div
-    data-tooltip="
-      <h3 class='popover-title text-capitalize'>{{item.name}}</h3>
-      <div class='popover-content'>
-        <b>Sells for</b> {{item.sellPrice}} Gold<br />
-        <b>Click</b> to sell
-      </div>
-    "
-    class="d-flex align-items-center justify-content-center p-1 m-1 icon-box icon-border"
-    style="position: relative">
+  <div class="item-icon-container icon-box" style="position: relative">
     <object data="/icons/{{item.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
     <div style="position: absolute; bottom: 2px; right: 5px">{{item.amount}}</div>
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="item-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>{{item.name}}</h3>
+    <div class='popover-content'>
+      <b>Sells for</b> {{item.sellPrice}} Gold<br />
+      <b>Click</b> to sell
+    </div>
   </div>
 
   <!-- Modal -->

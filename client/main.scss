@@ -7,16 +7,19 @@
   pointer-events: none;
 }
 
-.icon-border {
-  border: 1px solid black;
-}
-
 .icon-box {
   width: 96px;
   height: 96px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $spacer / 4;
+  padding: $spacer / 4;
 }
 
-.tooltip .inner {
+.my-tooltip-inner {
   min-width: 150px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;

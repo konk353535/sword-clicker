@@ -1,20 +1,25 @@
 <template name="mineSpace">
-  {{#if isEmpty}}
-    <div data-tooltip="" class="p-1 m-1 icon-box flex-column icon-border">
-    </div><br />
-  {{else}}
-    <div
-      data-tooltip="
-        <h3 class='popover-title text-capitalize'>{{mineSpace.name}}</h3>
-        <div class='popover-content'>
-          XP: {{mineSpace.xp}}
-          <br /><br />
-          <b>Click</b> to mine
-        </div>
-      "
-      class="d-flex align-items-center justify-content-center p-1 m-1 icon-box flex-column icon-border">
-        <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
-        {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.maxHealth}}
-    </div><br />
-  {{/if}}
+  <div class="icon-box mine-space-container">
+    {{#unless isEmpty}}
+      <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+      {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.maxHealth}}
+    {{/unless}}
+  </div><br />
+  
+  <div class="mine-space-tooltip-content my-tooltip-inner">
+    {{#if isEmpty}}
+      <h3 class='popover-title text-capitalize'>Nothing!</h3>
+      <div class='popover-content'>
+        Ores will spawn here over time.<br />
+        Come back in a few minutes.
+      </div>
+    {{else}}
+      <h3 class='popover-title text-capitalize'>{{mineSpace.name}}</h3>
+      <div class='popover-content'>
+        XP: {{mineSpace.xp}}
+        <br /><br />
+        <b>Click</b> to mine
+      </div>
+    {{/if}}
+  </div>
 </template>

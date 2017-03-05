@@ -38,13 +38,14 @@ const craftItem = function (recipeId, amountToCraft) {
   let canCraft = true;
   recipeConstants.requiredItems.forEach((requiredItem) => {
     const myItem = myItemsMap[requiredItem.itemId];
-
-    if (!myItem || myItem.amount < (requiredItem.amount * amountToCraft)) {
-      canCraft = false;
-    } else {
-      myItem.amount -= (requiredItem.amount * amountToCraft);
-      if (myItem.amount === 0) {
-        myItem.deleteMe = true;
+    if (myItem.consumes) {
+      if (!myItem || myItem.amount < (requiredItem.amount * amountToCraft)) {
+        canCraft = false;
+      } else {
+        myItem.amount -= (requiredItem.amount * amountToCraft);
+        if (myItem.amount === 0) {
+          myItem.deleteMe = true;
+        }
       }
     }
   });

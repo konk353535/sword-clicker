@@ -1,7 +1,7 @@
 <template name="requiredItems">
   <div class="d-flex align-items-center justify-content-center required-items-container">
     {{#each computedRequiredItems}}
-      <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+      <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
       <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
     {{/each}}
   </div>

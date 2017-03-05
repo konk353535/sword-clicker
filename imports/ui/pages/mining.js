@@ -8,9 +8,6 @@ import { Items } from '/imports/api/items/items.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
-import '../components/itemIcon/itemIcon.js';
-import '../components/formatNumber/formatNumber.js';
-
 import './mining.html';
 
 let gameUpdateTimer;
@@ -55,7 +52,7 @@ Template.miningPage.rendered = function () {
 Template.miningPage.helpers({
   miningSkill() {
     // Otherwise, return all of the tasks
-    return Skills.findOne({});
+    return Skills.findOne({ type: 'mining' });
   },
 
   miningSpaces() {

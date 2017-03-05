@@ -21,3 +21,15 @@ Router.route('/mining', {
     'footer': { to: 'footer' }
   }
 });
+
+Router.route('/crafting', {
+
+  name: 'crafting',
+
+  template: 'craftingPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});

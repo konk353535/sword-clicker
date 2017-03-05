@@ -21,5 +21,14 @@ export const ITEMS = {
     category: 'mining',
     name: 'coal',
     sellPrice: 10
+  },
+
+  stone_furnace: {
+    id: 'stone_furnace',
+    icon: 'stoneFurnace',
+    category: 'crafting',
+    name: 'stone furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
   }
 }

@@ -24,6 +24,22 @@ export const addXp = function (skillType, xp) {
 }
 
 Meteor.methods({
+  'skills.learnSkill'(skillName) {
+    // Make sure this is a valid skillName
+    if (!_.contains(Object.keys(SKILLS), skillName)) {
+      return;
+    }
+
+    const existingSkill = Skills.findOne({ owner: Meteor.userId(), type: skillName });
+
+    if (!existingSkill) {
+      Skills.insert({
+        type: skillName,
+        createdAt: new Date(),
+        owner: Meteor.userId()
+      });
+    }
+  }
 });
 
 Meteor.publish('skills', function() {

@@ -33,7 +33,7 @@ export const MINING = {
       icon: 'copper',
       name: 'copper',
       itemId: 'ore_copper',
-      chance: 0.3
+      chance: 0.2
     },
 
     coal: {

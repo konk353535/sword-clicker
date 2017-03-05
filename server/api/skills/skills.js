@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
+import { Crafting } from '/imports/api/crafting/crafting';
 import { SKILLS } from '/server/constants/skills.js';
 
 export const addXp = function (skillType, xp) {
@@ -38,6 +39,12 @@ Meteor.methods({
         createdAt: new Date(),
         owner: Meteor.userId()
       });
+
+      if (skillName === 'crafting') {
+        Crafting.insert({
+          owner: Meteor.userId()
+        });
+      }
     }
   }
 });

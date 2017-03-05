@@ -1,17 +1,17 @@
 <template name="requiredItems">
   <div class="d-flex align-items-center justify-content-center required-items-container">
-    {{#each requiredItems}}
-      <span class="mr-1">{{this.amount}}</span>
+    {{#each computedRequiredItems}}
+      <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
       <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
     {{/each}}
   </div>
 
   <div class="required-items-tooltip my-tooltip-inner">
-    <h3 class='popover-title'>Requiremenets</h3>
+    <h3 class='popover-title'>Requirements</h3>
     <div class='popover-content'>
-      {{#each requiredItems}}
+      {{#each computedRequiredItems}}
         <div class="d-flex align-items-center">
-          <span class="mr-1">{{this.amount}}</span>
+          <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
           <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
           <span class="ml-1 text-capitalize">{{this.name}}</span><br />
         </div>

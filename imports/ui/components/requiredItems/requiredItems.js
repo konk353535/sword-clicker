@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Items } from '/imports/api/items/items.js';
 
 import './requiredItems.html';
 
@@ -17,3 +18,26 @@ Template.requiredItems.rendered = function () {
     remove: true
   });
 }
+
+Template.requiredItems.helpers({
+  computedRequiredItems() {
+    const instance = Template.instance();
+    const requiredItems = instance.data.requiredItems;
+
+    if (!requiredItems) {
+      return;
+    }
+
+    return requiredItems.map((requiredItem) => {
+      const hasItem = Items.findOne({ itemId: requiredItem.itemId });
+
+      if (!hasItem) {
+        requiredItem.notMet = true;
+      } else if (hasItem.amount < requiredItem.amount) {
+        requiredItem.notMet = true;
+      }
+
+      return requiredItem;
+    });
+  }
+})

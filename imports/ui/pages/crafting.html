@@ -13,24 +13,28 @@
     </div>
 
     <h2>Recipes</h2>
-    <table class="table table-striped table-bordered">
+    <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th class="align-middle text-center">Name</th>
           <th class="align-middle text-center">Icon</th>
           <th class="align-middle text-center">Level Reqs</th>
+          <th class="align-middle text-center">Craft Time</th>          
           <th class="align-middle text-center">Item Reqs</th>
           <th class="align-middle text-center">Description</th>
         </tr>  
       </thead>
       <tbody>
         {{#each recipes}}
-          <tr class="text-center">
+          <tr class="craft-row text-center" style="cursor: pointer" data-recipe={{this.id}}>
             <td class="align-middle text-capitalize">{{this.name}}</td>
             <td class="align-middle">
               <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
             </td>
-            <td class="align-middle">{{this.requiredCraftingLevel}}</td>
+            <td class="align-middle {{#if this.notMetLevelReq}}text-danger{{/if}}">
+              {{this.requiredCraftingLevel}}
+            </td>
+            <td class="align-middle">{{this.timeToCraft}}s</td>
             <td class="align-middle">{{ > requiredItems requiredItems=this.requiredItems}}</td>
             <td class="align-middle">{{this.description}}</td>
           </tr>

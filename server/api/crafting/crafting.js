@@ -7,6 +7,8 @@ import moment from 'moment';
 
 import { CRAFTING } from '/server/constants/crafting.js';
 import { ITEMS } from '/server/constants/items.js';
+import { addItem } from '/server/api/items/items.js';
+import { addXp } from '/server/api/skills/skills.js';
 
 const craftItem = function (recipeId, amountToCraft) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
@@ -72,8 +74,10 @@ const craftItem = function (recipeId, amountToCraft) {
     $push: {
       currentlyCrafting: {
         itemId: recipeConstants.produces,
-        startedDate: new Date(),
-        endDate: moment().add(recipeConstants.timeToCraft, 'seconds').toDate()
+        startDate: new Date(),
+        recipeId,
+        amount: amountToCraft,
+        endDate: moment().add(recipeConstants.timeToCraft * amountToCraft, 'seconds').toDate()
       }
     }
   });
@@ -106,5 +110,81 @@ Meteor.methods({
     });
 
     return recipesArray;
+  },
+
+  'crafting.updateGame'() {
+    // If existing crafts done, remove from crafting table
+    const crafting = Crafting.findOne({ owner: Meteor.userId() });
+
+    let craftingXp = 0;
+    const newItems = [];
+    const popValues = []; // Store array of currentCrafting endDates
+
+    crafting.currentlyCrafting.forEach((currentCraft) => {
+      if (moment().isAfter(currentCraft.endDate)) {
+        popValues.push(currentCraft.endDate);
+        newItems.push({
+          itemId: JSON.parse(JSON.stringify(currentCraft.itemId)),
+          amount: JSON.parse(JSON.stringify(currentCraft.amount))
+        });
+        craftingXp += (CRAFTING.recipes[currentCraft.recipeId].xp * currentCraft.amount);
+      }
+    });
+
+    Crafting.update(crafting._id, {
+      $pull: {
+        currentlyCrafting: {
+          endDate: {
+            $in: popValues
+          }
+        }
+      }
+    });
+
+    // Add new items to user
+    newItems.forEach((item) => {
+      addItem(item.itemId, item.amount);
+    })
+
+    // Add crafting exp
+    if (_.isNumber(craftingXp)) {
+      addXp('crafting', craftingXp);
+    }
   }
+});
+
+Meteor.publish('crafting', function() {
+
+  //Transform function
+  var transform = function(doc) {
+    doc.currentlyCrafting.forEach((item) => {
+      const itemConstants = ITEMS[item.itemId];
+      item.icon = itemConstants.icon;
+      item.name = itemConstants.name;
+    });
+    return doc;
+  }
+
+  var self = this;
+
+  var observer = Crafting.find({
+    owner: this.userId
+  }).observe({
+      added: function (document) {
+      self.added('crafting', document._id, transform(document));
+    },
+    changed: function (newDocument, oldDocument) {
+      self.changed('crafting', oldDocument._id, transform(newDocument));
+    },
+    removed: function (oldDocument) {
+      self.removed('crafting', oldDocument._id);
+    }
+  });
+
+  self.onStop(function () {
+    observer.stop();
+  });
+
+  self.ready();
+
 });

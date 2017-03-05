@@ -1,12 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 
+import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 
 // Component used in the template
 import './crafting.html';
+import '../components/craftingDuration/craftingDuration.js';
 
 let gameUpdateTimer;
 
@@ -16,6 +19,8 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('skills');
   // Show items
   Meteor.subscribe('items');
+  // Show currently crafting items
+  Meteor.subscribe('crafting');
 });
 
 Template.craftingPage.events({
@@ -33,6 +38,10 @@ Template.craftingPage.helpers({
   craftingSkill() {
     // Otherwise, return all of the tasks
     return Skills.findOne({ type: 'crafting' });
+  },
+
+  crafting() {
+    return Crafting.findOne();
   },
 
   recipes() {

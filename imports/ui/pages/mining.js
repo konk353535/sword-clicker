@@ -45,6 +45,7 @@ Template.miningPage.rendered = function () {
     target: Template.instance().$('.buy-miner')[0],
     content: Template.instance().$('.miners-tooltip-content')[0],
     openOn: 'hover',
+    position: 'top left',
     remove: true
   });
 }

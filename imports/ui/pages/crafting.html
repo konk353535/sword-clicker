@@ -1,6 +1,12 @@
 <template name="craftingPage">
 
   {{#if craftingSkill}}
+    <div class="my-3">
+      {{#each crafting.currentlyCrafting}}
+        {{> craftingDuration craftingProcess=this}}
+      {{/each}}
+    </div>
+
     <h1>Crafting</h1>
     <p>Level: {{craftingSkill.level}}</p>
     <p>XP: {{craftingSkill.xp}} / {{craftingSkill.xpToLevel}}</p>

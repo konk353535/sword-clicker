@@ -8,8 +8,10 @@ CraftingSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   currentlyCrafting: { type: [Object], optional: true },
   'currentlyCrafting.$.itemId': { type: String },
-  'currentlyCrafting.$.startedDate': { type: Date },
-  'currentlyCrafting.$.endDate': { type: Date }
+  'currentlyCrafting.$.recipeId': { type: String },
+  'currentlyCrafting.$.startDate': { type: Date },
+  'currentlyCrafting.$.endDate': { type: Date },
+  'currentlyCrafting.$.amount': { type: Number }
 });
 
 Crafting.attachSchema(CraftingSchema);

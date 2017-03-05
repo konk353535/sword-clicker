@@ -1,0 +1,21 @@
+<template name="craftingDuration">
+  <div class="d-flex justify-content-center flex-column" style="max-width: 450px"> 
+    <div class="progress">
+      <div
+        class="progress-bar d-flex align-items-center justify-content-center"
+        role="progressbar"
+        style="height: 40px; width: {{computedCraftingProcess.percentage}}%; min-width: 75px;"
+        aria-valuenow="{{computedCraftingProcess.percentage}}"
+        aria-valuemin="0"
+        aria-valuemax="100">
+        <object
+          style="background-color: white; border-radius: 2px"
+          data="/icons/{{computedCraftingProcess.icon}}.svg"
+          class="small-icon mr-1"
+          type="image/svg+xml">
+        </object>
+        {{> formatNumber computedCraftingProcess.percentage}}%
+      </div>
+    </div>
+  </div>
+</template>

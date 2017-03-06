@@ -14,18 +14,21 @@ let gameUpdateTimer;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  // Show mining exp
-  Meteor.subscribe('skills');
-  // Show mining spaces
-  Meteor.subscribe('miningSpace');
-  // Do I even need this?
-  Meteor.subscribe('mining');
-  // Show items
-  Meteor.subscribe('items');
 
-  gameUpdateTimer = Meteor.setInterval(function () {
-    Meteor.call('mining.gameUpdate');
-  }, 5000); // Should be 5000
+  Meteor.call('mining.gameUpdate', (err, res) => {
+    // Show mining exp
+    Meteor.subscribe('skills');
+    // Show mining spaces
+    Meteor.subscribe('miningSpace');
+    // Do I even need this?
+    Meteor.subscribe('mining');
+    // Show items
+    Meteor.subscribe('items');
+
+    gameUpdateTimer = Meteor.setInterval(function () {
+      Meteor.call('mining.gameUpdate');
+    }, 5000); // Should be 5000
+  });
 });
 
 Template.miningPage.onDestroyed(function bodyOnDestroyed() {

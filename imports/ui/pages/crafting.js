@@ -28,9 +28,35 @@ Template.craftingPage.events({
     Meteor.call('skills.learnSkill', 'crafting');
   },
 
+  'keyup .craft-amount-input'(event, instance) {
+    let newValue = parseInt($(event.target).val());
+    if (newValue && !isNaN(newValue)) {
+      instance.state.set('craftAmount', newValue);
+    }
+  },
+
   'click .craft-row'(event, instance) {
-    const recipeId = Template.instance().$(event.target).closest('.craft-row').data('recipe');
-    Meteor.call('crafting.craftItem', recipeId, 1);
+    const recipeId = instance.$(event.target).closest('.craft-row').data('recipe');
+    const recipeListMap = instance.state.get('recipeListMap');
+
+    const recipeConstants = recipeListMap[recipeId];
+
+    if (recipeConstants.maxToCraft > 1) {
+      instance.state.set('maxCraftAmount', recipeConstants.maxToCraft);
+      instance.state.set('craftAmount', 1);
+      instance.state.set('multiCraftRecipeId', recipeId);
+      instance.$('.multiCraftModal').modal('show');
+    } else {
+      Meteor.call('crafting.craftItem', recipeId, 1);
+    }
+  },
+
+  'click .craft-btn'(event, instance) {
+    const recipeId = instance.state.get('multiCraftRecipeId');
+    const amountToCraft = parseInt(instance.state.get('craftAmount'));
+
+    instance.$('.multiCraftModal').modal('hide');
+    Meteor.call('crafting.craftItem', recipeId, amountToCraft);
   }
 })
 
@@ -44,12 +70,27 @@ Template.craftingPage.helpers({
     return Crafting.findOne();
   },
 
+  maxCraftAmount() {
+    return Template.instance().state.get('maxCraftAmount');
+  },
+
+  craftAmount() {
+    return Template.instance().state.get('craftAmount');
+  },
+
   recipes() {
     const craftingSkill = Skills.findOne({ type: 'crafting' });
     const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
     if (!results) {
       return [];
     }
+
+    const resultsMap = {};
+    results.forEach((result) => {
+      resultsMap[result.id] = result;
+    });
+    Template.instance().state.set('recipeListMap', resultsMap);
+
     return results.map((result) => {
       if (craftingSkill.level < result.requiredCraftingLevel) {
         result.notMetLevelReq = true;

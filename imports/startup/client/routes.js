@@ -33,3 +33,16 @@ Router.route('/crafting', {
     'footer': { to: 'footer' }
   }
 });
+
+Router.route('/combat', {
+
+  name: 'combat',
+
+  template: 'combatPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+

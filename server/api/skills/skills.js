@@ -1,10 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
+import { Items } from '/imports/api/items/items';
+
 import { Crafting } from '/imports/api/crafting/crafting';
 import { SKILLS } from '/server/constants/skills.js';
+import _ from 'underscore';
 
 export const addXp = function (skillType, xp) {
-  console.log(`Addxp ${skillType} - #${xp}`);
   const skill = Skills.findOne({ owner: Meteor.userId(), type: skillType });
   const skillConstants = SKILLS[skill.type];
 
@@ -33,6 +35,32 @@ Meteor.methods({
 
     const existingSkill = Skills.findOne({ owner: Meteor.userId(), type: skillName });
 
+    // Make sure you have the requirements for this skill
+    if (SKILLS[skillName].requirementsToLearn) {
+      const requiredItemList = SKILLS[skillName].requirementsToLearn.map((item) => item.itemId);
+      // Ensure we have the requirements
+      const usersItems = Items.find({
+        owner: Meteor.userId(),
+        itemId: {
+          $in: requiredItemList
+        }
+      }).fetch();
+
+      let canLearn = true;
+      SKILLS[skillName].requirementsToLearn.forEach((requiredItem) => {
+        const hasItem = _.findWhere(usersItems, {itemId: requiredItem.itemId});
+        if (hasItem && hasItem.amount >= requiredItem.amount) {
+          // All good
+        } else {
+          canLearn = false;
+        }
+      });
+
+      if (!canLearn) {
+        return;
+      }
+    }
+
     if (!existingSkill) {
       Skills.insert({
         type: skillName,
@@ -45,6 +73,17 @@ Meteor.methods({
           owner: Meteor.userId()
         });
       }
+    }
+  },
+
+  'skills.requirements'(skillName) {
+    // Make sure this is a valid skillName
+    if (!_.contains(Object.keys(SKILLS), skillName)) {
+      return;
+    }
+
+    if (skillName === 'attack') {
+      return SKILLS.attack.requirementsToLearn;
     }
   }
 });

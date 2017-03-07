@@ -28,16 +28,25 @@ Template.requiredItems.helpers({
       return;
     }
 
-    return requiredItems.map((requiredItem) => {
+    let notMet = false;
+    const result = requiredItems.map((requiredItem) => {
       const hasItem = Items.findOne({ itemId: requiredItem.itemId });
 
       if (!hasItem) {
         requiredItem.notMet = true;
+        notMet = true;
       } else if (hasItem.amount < requiredItem.amount) {
         requiredItem.notMet = true;
+        notMet = true;
       }
 
       return requiredItem;
     });
+
+    if (instance.data.requirementsMet) {
+      instance.data.requirementsMet(!notMet);
+    }
+
+    return result;
   }
 })

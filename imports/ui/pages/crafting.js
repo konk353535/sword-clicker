@@ -14,6 +14,8 @@ import '../components/craftingDuration/craftingDuration.js';
 let gameUpdateTimer;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
+  // const subsManager = Session.get('subsManager');
+
   this.state = new ReactiveDict();
   // Show crafting exp
   Meteor.subscribe('skills');

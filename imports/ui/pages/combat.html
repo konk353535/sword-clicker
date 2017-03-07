@@ -7,8 +7,14 @@
       class="d-flex justify-content-center align-items-center flex-column"
       style="height: 200px; margin-top: 100px;">
       <div class="mb-1">You haven't learnt the attack or defense skill yet</div>
-      <div class="mb-3">Requires: Copper Dagger</div>
-      <button class="btn btn-primary learn-now">Learn Now</button>
+      <div class="mb-3 d-flex">Requires:
+        {{> requiredItems requiredItems=learnRequirements requirementsMet=learnRequirementsMet}}
+      </div>
+      {{#if hasLearnRequirements}}
+        <button class="btn btn-primary learn-now">Learn Now</button>
+      {{else}}
+        <button class="btn btn-primary learn-now" disabled>Learn Now</button>
+      {{/if}}        
     </div>
   {{/if}}
 

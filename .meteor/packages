@@ -29,3 +29,5 @@ fourseven:scss
 aldeed:simple-schema
 aldeed:collection2
 simple:reactive-method
+meteorhacks:subs-manager
+session

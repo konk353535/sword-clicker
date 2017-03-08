@@ -45,6 +45,7 @@ export const ITEMS = {
     id: 'copper_dagger',
     icon: 'copperDagger',
     category: 'combat',
+    slot: 'mainHand',
     name: 'copper dagger',
     sellPrice: 100,
     description: 'A poorly made dagger.'

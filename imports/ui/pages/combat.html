@@ -1,7 +1,18 @@
 <template name="combatPage">
-
   {{#if attackSkill}}
-    Lets Fight!
+    <ul class="nav nav-tabs mt-3">
+      <li class="nav-item battleTabLink">
+        <a class="nav-link {{#if showBattleTab}}active{{/if}}" href="#">Battle</a>
+      </li>
+      <li class="nav-item equipmentTabLink">
+        <a class="nav-link {{#if showEquipmentTab}}active{{/if}}" href="#">Equipment & Stats</a>
+      </li>
+    </ul>
+    {{#if showBattleTab}}
+      {{> battleTab}}
+    {{else if showEquipmentTab}}
+      {{> equipmentTab}}
+    {{/if}}
   {{else}}
     <div 
       class="d-flex justify-content-center align-items-center flex-column"
@@ -17,5 +28,4 @@
       {{/if}}        
     </div>
   {{/if}}
-
 </template>

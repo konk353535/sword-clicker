@@ -1,0 +1,62 @@
+<template name="equipmentTab">
+  <div class="p-1">
+    <h1>Combat Items</h1>
+    <p>Click on items below to equip them</p>
+    <div class="d-flex">
+      {{#each combatItems}}
+        {{> itemIcon item=this}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="d-flex flex-row p-1">
+    <div class="equipment-row col col-8 p-0">
+      <h1>Equipment</h1>
+    </div>
+    <div class="stats-row col p-0">
+      <h1>Stats</h1>
+
+      <div class="d-flex">
+        <div class="col">
+          {{#each offenseStats}}
+            <div class="d-flex flex-row mb-1">
+              <div class="d-flex align-items-center">
+                <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              </div>
+              <div class="d-flex align-items-center ml-1">
+                {{this.value}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+
+        <div class="col">
+          {{#each defenseStats}}
+            <div class="d-flex flex-row mb-1">
+              <div class="d-flex align-items-center">
+                <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              </div>
+              <div class="d-flex align-items-center ml-1">
+                {{this.value}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <br />
+      <div>Attack Level: 1</div>
+      <div>Defense Level: 1</div>
+      <div>Health Level: 1</div>
+
+      <!--
+      <p>Accuracy: 0</p> (Every level of attack adds 1 to attack)
+      <p>Speed: 0</p>
+      <p>Attack: 0</p> (Every level of attack adds 1 to damage)
+      <p>Defense: 0</p> (Every level of defense adds 1 to defense)
+      <p>Armor: 0</p> (Every level of defense adds 1 to armor)
+      <p>Health: 10</p> (Every level of health increases health by 10)
+      -->
+    </div>
+  </div>
+</template>

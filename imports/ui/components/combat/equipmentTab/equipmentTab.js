@@ -6,8 +6,41 @@ import { Items } from '/imports/api/items/items.js';
 import './equipmentTab.html';
 
 Template.equipmentTab.helpers({
-  combatItems() {
-    return Items.find({ category: 'combat' })
+  unequippedCombatItems() {
+    return Items.find({ category: 'combat', equipped: false }).map((item) => {
+      item.primaryAction = {
+        description: 'equip',
+        item,
+        method() {
+          Meteor.call('items.equip', this.item.itemId);
+        }
+      }
+      return item;
+    });
+  },
+
+  equippedItemsMap() {
+    const equippedItems = Items.find({
+      category: 'combat',
+      equipped: true
+    }).map((item) => {
+      item.hideCount = true;
+      item.primaryAction = {
+        description: 'unequip',
+        item,
+        method() {
+          Meteor.call('items.unequip', this.item.itemId);
+        }
+      }
+      return item;
+    });
+
+    const equippedMap = {};
+    equippedItems.forEach((item) => {
+      equippedMap[item.slot] = item;
+    });
+
+    return equippedMap;
   },
 
   defenseStats() {
@@ -30,7 +63,8 @@ Template.equipmentTab.helpers({
     return [{
       name: 'attack',
       icon: 'attack',
-      value: 10
+      value: 10,
+      maxValue: 15
     }, {
       name: 'attack speed',
       icon: 'attackSpeed',

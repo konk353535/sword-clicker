@@ -4,7 +4,6 @@ import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items.js';
 
 export const addItem = function (itemId, amount) {
-  console.log(`Add item called ${itemId} - #${amount}`);
   const currentItem = Items.findOne({ owner: Meteor.userId(), itemId });
   const itemConstants = ITEMS[itemId];
 
@@ -25,6 +24,53 @@ export const addItem = function (itemId, amount) {
 }
 
 Meteor.methods({
+
+  'items.unequip'(itemId) {
+    const itemConstants = ITEMS[itemId];
+    const itemSlot = itemConstants.slot;
+    const itemCategory = itemConstants.category;
+
+    // Unequip existing items
+    Items.update({
+      owner: Meteor.userId(),
+      category: itemCategory,
+      slot: itemSlot
+    }, {
+      $set: {
+        equipped: false
+      }
+    });
+  },
+
+  'items.equip'(itemId) {
+    const itemConstants = ITEMS[itemId];
+    const itemSlot = itemConstants.slot;
+    const itemCategory = itemConstants.category;
+
+    // Unequip existing items
+    Items.update({
+      owner: Meteor.userId(),
+      category: itemCategory,
+      slot: itemSlot
+    }, {
+      $set: {
+        equipped: false
+      }
+    });
+
+    // Equip specified item
+    Items.update({
+      owner: Meteor.userId(),
+      itemId
+    }, {
+      $set: {
+        equipped: true,
+        slot: itemSlot,
+        category: itemCategory
+      }
+    });
+  },
+
   'items.sellItem'(itemId, amount) {
     if (amount <= 0) {
       return;
@@ -68,6 +114,10 @@ Meteor.publish('items', function() {
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
     doc.sellPrice = itemConstants.sellPrice;
+    if (itemConstants.category === 'combat') {
+      doc.stats = itemConstants.stats;
+      doc.isWeapon = itemConstants.isWeapon;
+    }
     return doc;
   }
 

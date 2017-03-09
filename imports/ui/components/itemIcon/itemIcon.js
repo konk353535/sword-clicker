@@ -31,8 +31,13 @@ Template.itemIcon.rendered = function () {
 
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
-    instance.state.set('sellAmount', instance.data.item.amount);
-    Template.instance().$('.sellModal').modal('show');
+    const primaryAction = instance.data.item.primaryAction;
+    if (primaryAction) {
+      primaryAction.method();
+    } else {
+      instance.state.set('sellAmount', instance.data.item.amount);
+      Template.instance().$('.sellModal').modal('show');      
+    }
   },
 
   'keyup .sell-amount-input'(event, instance) {

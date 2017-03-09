@@ -1,9 +1,13 @@
 <template name="equipmentTab">
   <div class="p-1">
     <h1>Combat Items</h1>
-    <p>Click on items below to equip them</p>
+    {{#if unequippedCombatItems}}
+      <p>Click on items below to equip them.</p>
+    {{else}}
+      <p>You have no items to equip.</p>
+    {{/if}}
     <div class="d-flex">
-      {{#each combatItems}}
+      {{#each unequippedCombatItems}}
         {{> itemIcon item=this}}
       {{/each}}
     </div>
@@ -12,6 +16,18 @@
   <div class="d-flex flex-row p-1">
     <div class="equipment-row col col-8 p-0">
       <h1>Equipment</h1>
+      <div class="d-flex flex-column">
+        <div class="icon-box" style="border: none">
+          <object data="/icons/character.svg" type="image/svg+xml"></object>
+        </div>
+        {{#if equippedItemsMap.mainHand}}
+          {{> itemIcon item=equippedItemsMap.mainHand}}
+        {{else}}
+          <div class="icon-box">
+            Main Hand
+          </div>
+        {{/if}}
+      </div>
     </div>
     <div class="stats-row col p-0">
       <h1>Stats</h1>
@@ -25,6 +41,9 @@
               </div>
               <div class="d-flex align-items-center ml-1">
                 {{this.value}}
+                {{#if this.maxValue}}
+                  - {{this.maxValue}}
+                {{/if}}
               </div>
             </div>
           {{/each}}

@@ -48,6 +48,13 @@ export const ITEMS = {
     slot: 'mainHand',
     name: 'copper dagger',
     sellPrice: 100,
-    description: 'A poorly made dagger.'
+    description: 'A poorly made dagger.',
+    isWeapon: true,
+    stats: {
+      attack: 1, // Deal a min of 1 damage
+      attackMax: 3, // Deal a max of 3 damage
+      attackSpeed: 1, // Attacks per second
+      accuracy: 1 // Chance for weapon to hit
+    }
   }
 }

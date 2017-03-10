@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items.js';
+import { updateCombatStats } from '/server/api/combat/combat.js';
 
 export const addItem = function (itemId, amount) {
   const currentItem = Items.findOne({ owner: Meteor.userId(), itemId });
@@ -40,6 +41,10 @@ Meteor.methods({
         equipped: false
       }
     });
+
+    if (itemCategory === 'combat') {
+      updateCombatStats();
+    }
   },
 
   'items.equip'(itemId) {
@@ -69,6 +74,10 @@ Meteor.methods({
         category: itemCategory
       }
     });
+
+    if (itemCategory === 'combat') {
+      updateCombatStats();
+    }
   },
 
   'items.sellItem'(itemId, amount) {

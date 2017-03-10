@@ -13,6 +13,11 @@ import { addXp } from '/server/api/skills/skills.js';
 const craftItem = function (recipeId, amountToCraft) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
+  // Are we crafting atleast one item
+  if (amountToCraft <= 0) {
+    return;
+  }
+
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length > 0) {
     return;
@@ -36,9 +41,10 @@ const craftItem = function (recipeId, amountToCraft) {
     myItemsMap[item.itemId] = item;
   });
   let canCraft = true;
+
   recipeConstants.requiredItems.forEach((requiredItem) => {
     const myItem = myItemsMap[requiredItem.itemId];
-    if (myItem.consumes) {
+    if (requiredItem.consumes) {
       if (!myItem || myItem.amount < (requiredItem.amount * amountToCraft)) {
         canCraft = false;
       } else {

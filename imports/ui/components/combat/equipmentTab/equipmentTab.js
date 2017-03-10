@@ -2,8 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Items } from '/imports/api/items/items.js';
+import { Combat } from '/imports/api/combat/combat.js';
+import { Skills } from '/imports/api/skills/skills.js';
 
 import './equipmentTab.html';
+
+Template.equipmentTab.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('combat');
+});
 
 Template.equipmentTab.helpers({
   unequippedCombatItems() {
@@ -43,36 +49,62 @@ Template.equipmentTab.helpers({
     return equippedMap;
   },
 
+  defenseSkill() {
+    return Skills.findOne({
+      type: 'defense'
+    });
+  },
+
+  attackSkill() {
+    return Skills.findOne({
+      type: 'attack'
+    });
+  },
+
+  healthSkill() {
+    return Skills.findOne({
+      type: 'defense'
+    });
+  },
+
   defenseStats() {
+    const combat = Combat.findOne();
+    if (!combat) {
+      return [];
+    }
     return [{
       name: 'health',
       icon: 'health',
-      value: 10
+      value: combat.maxHealth
     }, {
       name: 'defense',
       icon: 'defense',
-      value: 10
+      value: combat.defense
     }, {
       name: 'armor',
       icon: 'armor',
-      value: 10
+      value: combat.armor
     }]
   },
 
   offenseStats() {
+    const combat = Combat.findOne();
+    if (!combat) {
+      return [];
+    }
     return [{
       name: 'attack',
       icon: 'attack',
-      value: 10,
-      maxValue: 15
+      value: combat.attack,
+      maxValue: combat.attackMax
     }, {
       name: 'attack speed',
       icon: 'attackSpeed',
-      value: 10
+      value: combat.attackSpeed
     }, {
       name: 'accuracy',
       icon: 'accuracy',
-      value: 10
+      value: combat.accuracy
     }];
   }
 });

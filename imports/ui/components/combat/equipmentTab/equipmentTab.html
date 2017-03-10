@@ -64,18 +64,19 @@
       </div>
 
       <br />
-      <div>Attack Level: 1</div>
-      <div>Defense Level: 1</div>
-      <div>Health Level: 1</div>
-
-      <!--
-      <p>Accuracy: 0</p> (Every level of attack adds 1 to attack)
-      <p>Speed: 0</p>
-      <p>Attack: 0</p> (Every level of attack adds 1 to damage)
-      <p>Defense: 0</p> (Every level of defense adds 1 to defense)
-      <p>Armor: 0</p> (Every level of defense adds 1 to armor)
-      <p>Health: 10</p> (Every level of health increases health by 10)
-      -->
+      <h1>Skill Levels</h1>
+      <div>
+        <h3>Attack</h3>
+        Level {{attackSkill.level}} ( {{attackSkill.xp}} / {{attackSkill.xpToLevel}}XP )
+      </div>
+      <div>
+        <h3>Defense</h3>
+        Level {{defenseSkill.level}} ( {{defenseSkill.xp}} / {{defenseSkill.xpToLevel}}XP )
+      </div>
+      <div>
+        <h3>Health</h3>
+        Level {{healthSkill.level}} ( {{healthSkill.xp}} / {{healthSkill.xpToLevel}}XP )
+      </div>
     </div>
   </div>
 </template>

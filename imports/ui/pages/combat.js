@@ -19,10 +19,21 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     // Only called when skills have loaded
     if (Skills.findOne()) {
       const attackSkill = Skills.findOne({ type: 'attack' });
+      const defenseSkill = Skills.findOne({ type: 'defense' });
+      const healthSkill = Skills.findOne({ type: 'health' });
+
       if (!attackSkill) {
         Meteor.call('skills.requirements', 'attack', (err, res) => {
           this.state.set('learnRequirements', res);
         });
+      }
+
+      if (!defenseSkill) {
+        Meteor.call('skills.learnSkill', 'defense');
+      }
+
+      if (!healthSkill) {
+        Meteor.call('skills.learnSkill', 'health');
       }
     }
   });
@@ -31,7 +42,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 Template.combatPage.events({
   'click .learn-now'(event, instance) {
     Meteor.call('skills.learnSkill', 'attack');
-    Meteor.call('skills.learnSkill', 'defense');
   },
 
   'click .battleTabLink'(event, instance) {

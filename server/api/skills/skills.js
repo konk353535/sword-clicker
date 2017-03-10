@@ -62,10 +62,17 @@ Meteor.methods({
     }
 
     if (!existingSkill) {
+      let baseLevel = 1;
+      // Base level for this skill ( 10 for hitpoints )
+      if (SKILLS[skillName].baseLevel) {
+        baseLevel = SKILLS[skillName].baseLevel;
+      }
+
       Skills.insert({
         type: skillName,
         createdAt: new Date(),
-        owner: Meteor.userId()
+        owner: Meteor.userId(),
+        level: baseLevel
       });
 
       if (skillName === 'crafting') {

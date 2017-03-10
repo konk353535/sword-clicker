@@ -7,4 +7,4 @@ Template.body.onCreated(function () {
   Meteor.subscribe('items');
   // Show skills
   Meteor.subscribe('skills');
-})
+});

@@ -36,8 +36,12 @@
         <div class="col">
           {{#each offenseStats}}
             <div class="d-flex flex-row mb-1">
-              <div class="d-flex align-items-center">
-                <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
+                <object
+                  data="/icons/{{this.icon}}.svg"
+                  class="small-icon"
+                  type="image/svg+xml">
+                </object>
               </div>
               <div class="d-flex align-items-center ml-1">
                 {{this.value}}
@@ -52,8 +56,12 @@
         <div class="col">
           {{#each defenseStats}}
             <div class="d-flex flex-row mb-1">
-              <div class="d-flex align-items-center">
-                <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
+                <object
+                  data="/icons/{{this.icon}}.svg"
+                  class="small-icon"
+                  type="image/svg+xml">
+                </object>
               </div>
               <div class="d-flex align-items-center ml-1">
                 {{this.value}}
@@ -65,17 +73,75 @@
 
       <br />
       <h1>Skill Levels</h1>
-      <div>
+      <div class="attackSkill-tooltip-container">
         <h3>Attack</h3>
         Level {{attackSkill.level}} ( {{attackSkill.xp}} / {{attackSkill.xpToLevel}}XP )
       </div>
-      <div>
+      <div class="defenseSkill-tooltip-container">
         <h3>Defense</h3>
         Level {{defenseSkill.level}} ( {{defenseSkill.xp}} / {{defenseSkill.xpToLevel}}XP )
       </div>
-      <div>
+      <div class="healthSkill-tooltip-container">
         <h3>Health</h3>
         Level {{healthSkill.level}} ( {{healthSkill.xp}} / {{healthSkill.xpToLevel}}XP )
+      </div>
+    </div>
+  </div>
+
+  <div class="tooltips-container" style="display: none">
+    <div class="attack-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Attack</h3>
+      <div class='popover-content'>
+        Determines how much physical damage you deal.
+      </div>
+    </div>
+    <div class="attackSpeed-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Attack Speed</h3>
+      <div class='popover-content'>
+        How many times you will attack per second.
+      </div>
+    </div>
+    <div class="accuracy-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Accuracy</h3>
+      <div class='popover-content'>
+        How likely you are to hit your enemy.
+      </div>
+    </div>
+    <div class="health-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Health</h3>
+      <div class='popover-content'>
+        Your health.
+      </div>
+    </div>
+    <div class="defense-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Defense</h3>
+      <div class='popover-content'>
+        Chance to dodge attacks.
+      </div>
+    </div>
+    <div class="armor-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Armor</h3>
+      <div class='popover-content'>
+        Reduces damage taken.
+      </div>
+    </div>
+
+    <div class="attackSkill-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Attack</h3>
+      <div class='popover-content'>
+        Gain +1 attack and +1 accuracy for each attack level.
+      </div>
+    </div>
+    <div class="defenseSkill-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Defense</h3>
+      <div class='popover-content'>
+        Gain +1 defense and +1 armor for each defense level.
+      </div>
+    </div>
+    <div class="healthSkill-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Health</h3>
+      <div class='popover-content'>
+        Gain +1 health for each health level.
       </div>
     </div>
   </div>

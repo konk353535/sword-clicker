@@ -4,12 +4,42 @@ import { Template } from 'meteor/templating';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './equipmentTab.html';
 
+const updateTooltips = function (instance, tooltipNames) {
+  setTimeout(() => {
+    tooltipNames.forEach((tooltipName) => {
+      new Drop({
+        target: instance.$(`.${tooltipName}-tooltip-container`)[0],
+        content: instance.$(`.${tooltipName}-tooltip-content`)[0],
+        openOn: 'hover',
+        position: 'top left',
+        remove: true
+      });
+    });
+  }, 1000);
+}
+
 Template.equipmentTab.onCreated(function bodyOnCreated() {
   Meteor.subscribe('combat');
+  this.state = new ReactiveDict();
+  this.state.set('tooltipsLoaded', false);
+
+  Tracker.autorun(() => {
+    if (this.state.get('offenseStats') && this.state.get('defenseStats')) {
+      if (!this.state.get('tooltipsLoaded')) {
+        this.state.set('tooltipsLoaded', true);
+        updateTooltips(this, ['attack', 'attackSpeed', 'accuracy', 'defense', 'health', 'armor']);
+      }
+    }
+  });
 });
+
+Template.equipmentTab.rendered = function () {
+  updateTooltips(Template.instance(), ['attackSkill', 'defenseSkill', 'healthSkill']);
+}
 
 Template.equipmentTab.helpers({
   unequippedCombatItems() {
@@ -70,41 +100,47 @@ Template.equipmentTab.helpers({
   defenseStats() {
     const combat = Combat.findOne();
     if (!combat) {
-      return [];
+      Template.instance().state.set('defenseStats', []);
+    } else {
+      Template.instance().state.set('defenseStats', [{
+        name: 'health',
+        icon: 'health',
+        value: combat.maxHealth
+      }, {
+        name: 'defense',
+        icon: 'defense',
+        value: combat.defense
+      }, {
+        name: 'armor',
+        icon: 'armor',
+        value: combat.armor
+      }]);
     }
-    return [{
-      name: 'health',
-      icon: 'health',
-      value: combat.maxHealth
-    }, {
-      name: 'defense',
-      icon: 'defense',
-      value: combat.defense
-    }, {
-      name: 'armor',
-      icon: 'armor',
-      value: combat.armor
-    }]
+
+    return Template.instance().state.get('defenseStats');
   },
 
   offenseStats() {
     const combat = Combat.findOne();
     if (!combat) {
-      return [];
+      Template.instance().state.set('offenseStats', []);
+    } else {
+      Template.instance().state.set('offenseStats', [{
+        name: 'attack',
+        icon: 'attack',
+        value: combat.attack,
+        maxValue: combat.attackMax
+      }, {
+        name: 'attack speed',
+        icon: 'attackSpeed',
+        value: combat.attackSpeed
+      }, {
+        name: 'accuracy',
+        icon: 'accuracy',
+        value: combat.accuracy
+      }]);   
     }
-    return [{
-      name: 'attack',
-      icon: 'attack',
-      value: combat.attack,
-      maxValue: combat.attackMax
-    }, {
-      name: 'attack speed',
-      icon: 'attackSpeed',
-      value: combat.attackSpeed
-    }, {
-      name: 'accuracy',
-      icon: 'accuracy',
-      value: combat.accuracy
-    }];
+
+    return Template.instance().state.get('offenseStats');
   }
 });

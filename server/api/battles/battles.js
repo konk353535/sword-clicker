@@ -3,6 +3,7 @@ import { Random } from 'meteor/random'
 
 import { Battles } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
+import { updateCombatStats } from '/server/api/combat/combat';
 
 import { BATTLES } from '/server/constants/battles'; // List of encounters
 import { ENEMIES } from '/server/constants/enemies'; // List of enemies
@@ -15,20 +16,54 @@ const completeBattle = function (actualBattle) {
 
 const progressBattle = function (actualBattle, battleIntervalId) {
   const currentTick = actualBattle.tick;
+  const tickEvents = [];
+
+  const dealDamage = function(attackerStats, defenderStats) {
+    const hitChance = (50 + (defenderStats.defense - attackerStats.attack)) / 100;
+
+    if (hitChance >= Math.random()) {
+      // Determine how much damage we will deal
+      const extraRawDamage = Math.round(Math.random() * (attackerStats.attackMax - attackerStats.attack));
+      const rawDamage = attackerStats.attack + extraRawDamage;
+
+      // Determine damage reduction from armor
+      const dmgReduction = defenderStats.armor / (defenderStats.armor + 100);
+
+      return rawDamage * (1 - dmgReduction);
+    } else {
+      return 0;
+    }
+  }
 
   // Apply enemy attacks
   actualBattle.enemies.forEach((enemy) => {
     if (currentTick % enemy.stats.attackSpeedTicks === 0) {
+      const defender = actualBattle.units[0];
       // Attack
-      actualBattle.units[0].stats.health -= enemy.stats.attack;
+      const damageToDeal = dealDamage(enemy.stats, defender.stats);
+      tickEvents.push({
+        from: enemy.id,
+        to: defender.id,
+        eventType: 'damage',
+        label: Math.round(damageToDeal)
+      });
+      defender.stats.health -= damageToDeal;
     }
   });
 
   // Apply player attacks
   actualBattle.units.forEach((unit) => {
     if (currentTick % unit.stats.attackSpeedTicks === 0) {
+      const defender = actualBattle.enemies[0];
       // Attack
-      actualBattle.enemies[0].stats.health -= unit.stats.attack;
+      const damageToDeal = dealDamage(unit.stats, defender.stats);
+      tickEvents.push({
+        from: unit.id,
+        to: defender.id,
+        eventType: 'damage',
+        label: Math.round(damageToDeal)
+      });
+      defender.stats.health -= damageToDeal;
     }
   });
 
@@ -38,7 +73,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     $set: {
       tick: actualBattle.tick,
       units: actualBattle.units,
-      enemies: actualBattle.enemies
+      enemies: actualBattle.enemies,
+      tickEvents
     }
   });
 
@@ -64,6 +100,8 @@ const startBattle = function (battleId) {
   if (!battleConstants) {
     return;
   }
+
+  updateCombatStats();
 
   const newBattle = {
     createdAt: new Date(),

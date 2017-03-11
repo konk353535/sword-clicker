@@ -5,14 +5,14 @@
     </div>
     <div class="d-flex">
       <div
-        class="col d-flex flex-column justify-content-center align-items-center"
+        class="col d-flex flex-column justify-content-end align-items-center"
         style="border-right: 1px solid #dfdfdf">
         <h1>My Units</h1>
         {{#each currentBattle.units}}
           {{> battleUnit unit=this}}
         {{/each}}
       </div>
-      <div class="col d-flex flex-column justify-content-center align-items-center">
+      <div class="col d-flex flex-column justify-content-start align-items-center">
         <h1>Enemy Units</h1>
         {{#each currentBattle.enemies}}
           {{> battleUnit unit=this}}
@@ -20,7 +20,7 @@
       </div>
     </div>
   {{else}}
-    <button class="btn btn-danger battle-btn">
+    <button class="btn btn-danger battle-btn mt-3">
       Find Battle
     </button>
   {{/if}}

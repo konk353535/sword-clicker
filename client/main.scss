@@ -1,5 +1,19 @@
 /* CSS declarations go here */
 @import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import "iconFont.scss";
+
+.floating-text {
+  pointer-events: none;
+  position: absolute;
+  cursor: pointer;
+  text-decoration: bold;
+  font-size: 24px;
+  user-select: none;
+  background-color: white;
+  padding: $spacer / 2;
+  border: 1px solid $gray;
+  border-radius: 4px;
+}
 
 .small-icon {
   width: 24px;

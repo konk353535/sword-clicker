@@ -6,7 +6,7 @@ export const ENEMIES = {
     stats: {
       attack: 1,
       attackMax: 2,
-      attackSpeed: 1,
+      attackSpeed: 0.2,
       accuracy: 1,
       health: 50,
       maxHealth: 50,

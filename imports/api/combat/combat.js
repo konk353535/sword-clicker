@@ -8,7 +8,7 @@ CombatSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   attack: { type: Number, defaultValue: 0 },
   attackMax: { type: Number, defaultValue: 0 },
-  attackSpeed: { type: Number, defaultValue: 0 },
+  attackSpeed: { type: Number, decimal: true, defaultValue: 0 },
   accuracy: { type: Number, defaultValue: 0 },
   health: { type: Number, defaultValue: 10 },
   maxHealth: { type: Number, defaultValue: 10 },

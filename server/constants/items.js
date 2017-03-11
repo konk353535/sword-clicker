@@ -53,7 +53,7 @@ export const ITEMS = {
     stats: {
       attack: 1, // Deal a min of 1 damage
       attackMax: 3, // Deal a max of 3 damage
-      attackSpeed: 1, // Attacks per second
+      attackSpeed: 0.2, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
     }
   }

@@ -11,7 +11,6 @@ Template.battleTab.onCreated(function bodyOnCreated() {
 
 Template.battleTab.events({
   'click .battle-btn'(event, instance) {
-    console.log('here');
     Meteor.call('battles.randomBattle');
   }
 })

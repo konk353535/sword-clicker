@@ -25,6 +25,10 @@
   padding: $spacer / 4;
 }
 
+.health-bar {
+  width: 96px;
+}
+
 .my-tooltip-inner {
   min-width: 150px;
   border: 1px solid rgba(0, 0, 0, 0.2);

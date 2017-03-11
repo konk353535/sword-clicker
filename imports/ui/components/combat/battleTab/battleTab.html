@@ -1,6 +1,24 @@
 <template name="battleTab">
   {{#if currentBattle}}
-    Battle Details...
+    <div class="d-flex justify-content-center my-3">
+      Game Timer - {{currentBattle.tick}}
+    </div>
+    <div class="d-flex">
+      <div
+        class="col d-flex flex-column justify-content-center align-items-center"
+        style="border-right: 1px solid #dfdfdf">
+        <h1>My Units</h1>
+        {{#each currentBattle.units}}
+          {{> battleUnit unit=this}}
+        {{/each}}
+      </div>
+      <div class="col d-flex flex-column justify-content-center align-items-center">
+        <h1>Enemy Units</h1>
+        {{#each currentBattle.enemies}}
+          {{> battleUnit unit=this}}
+        {{/each}}
+      </div>
+    </div>
   {{else}}
     <button class="btn btn-danger battle-btn">
       Find Battle

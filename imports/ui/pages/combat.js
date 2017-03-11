@@ -13,7 +13,7 @@ import './combat.html';
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
-  this.state.set('currentTab', 'equipment');
+  this.state.set('currentTab', 'battle');
 
   Tracker.autorun(() => {
     // Only called when skills have loaded

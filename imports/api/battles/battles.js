@@ -12,10 +12,14 @@ BattlesSchema = new SimpleSchema({
   tick: { type: Number, defaultValue: 0 },
   units: { type: [Object] }, // Usually just your player, but leave options open for pets
   'units.$.stats': { type: Object, blackbox: true },
+  'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
   enemies: { type: [Object] }, // Usually just one enemy, but leave option for groups of enemies
   'enemies.$.stats': { type: Object, blackbox: true},
+  'enemies.$.icon': { type: String },
+  'enemies.$.enemyId': { type: String },
+  'enemies.$.name': { type: String },
   'enemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
   tickEvents: { type: [Object] }, // List of things that occured in the most recent tick
   'tickEvents.$.eventType': { type: String }, // Eg: Damage

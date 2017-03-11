@@ -9,6 +9,7 @@ import '/imports/ui/components/itemIcon/itemIcon.js';
 import '/imports/ui/components/formatNumber/formatNumber.js';
 import '/imports/ui/components/requiredItems/requiredItems.js';
 import '/imports/ui/components/displayCombatStats/displayCombatStats.js';
+import '/imports/ui/components/battleUnit/battleUnit.js';
 
 // Pages / Core
 import '../imports/ui/body.js';

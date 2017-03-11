@@ -32,3 +32,4 @@ simple:reactive-method
 meteorhacks:subs-manager
 session
 raix:handlebar-helpers
+percolate:synced-cron

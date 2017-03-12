@@ -8,16 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link {{#if $eq currentRoute 'home'}}active{{/if}}" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mining">Mining</a>
+          <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">Mining</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/crafting">Crafting</a>
+          <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/combat">Combat</a>
+          <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

@@ -93,7 +93,7 @@ Template.equipmentTab.helpers({
 
   healthSkill() {
     return Skills.findOne({
-      type: 'defense'
+      type: 'health'
     });
   },
 

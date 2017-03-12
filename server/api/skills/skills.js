@@ -6,18 +6,32 @@ import { Crafting } from '/imports/api/crafting/crafting';
 import { SKILLS } from '/server/constants/skills.js';
 import _ from 'underscore';
 
-export const addXp = function (skillType, xp) {
-  const skill = Skills.findOne({ owner: Meteor.userId(), type: skillType });
+export const addXp = function (skillType, xp, specificUserId) {
+  let owner;
+  if (specificUserId) {
+    owner = specificUserId
+  } else {
+    owner = Meteor.userId();
+  }
+  const skill = Skills.findOne({ owner , type: skillType });
   const skillConstants = SKILLS[skill.type];
 
   skill.xp += xp;
   const xpToNextLevel = skillConstants.xpToLevel(skill.level);
   if (skill.xp > xpToNextLevel) {
-    // Update Level
-    Skills.update(skill._id, {
-      $inc: { level: 1 },
-      $set: { xp: (skill.xp % xpToNextLevel) }
-    })
+    if (xpToNextLevel === 0) {
+      // Update Level
+      Skills.update(skill._id, {
+        $inc: { level: 1 },
+        $set: { xp: skill.xp }
+      });
+    } else {
+      // Update Level
+      Skills.update(skill._id, {
+        $inc: { level: 1 },
+        $set: { xp: (skill.xp % xpToNextLevel) }
+      });      
+    }
   } else {
     // Just update exp
     Skills.update(skill._id, {
@@ -99,7 +113,7 @@ Meteor.publish('skills', function() {
 
   //Transform function
   var transform = function(doc) {
-    doc.xpToLevel = SKILLS.mining.xpToLevel(doc.level);
+    doc.xpToLevel = SKILLS[doc.type].xpToLevel(doc.level);
     return doc;
   }
 

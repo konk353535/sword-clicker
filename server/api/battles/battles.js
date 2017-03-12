@@ -1,17 +1,89 @@
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random'
+import _ from 'underscore';
 
 import { Battles } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
+import { addXp } from '/server/api/skills/skills';
+import { addItem } from '/server/api/items/items';
 
+import { ITEMS } from '/server/constants/items'; // List of items
 import { BATTLES } from '/server/constants/battles'; // List of encounters
 import { ENEMIES } from '/server/constants/enemies'; // List of enemies
 import { COMBAT } from '/server/constants/combat'; // List of available combat stats
 
 const completeBattle = function (actualBattle) {
+  const finalTickEvents = [];
+
+  if (actualBattle.units.length > 0) {
+    // Won
+
+    // Apply xp gains
+    const totalXpGain = actualBattle.totalXpGain;
+    const units = actualBattle.units.concat(actualBattle.deadUnits);
+    units.forEach((unit) => {
+      // Distribute xp gained evenly across units
+      const xpPortion = totalXpGain / units.length;
+      Object.keys(unit.xpDistribution).forEach((skillName) => {
+        // Distribute xp gained per player, per skill
+        // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
+        const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
+
+        addXp(skillName, skillXpPortion, unit.id);
+        finalTickEvents.push({
+          type: 'xp',
+          amount: skillXpPortion,
+          skill: skillName,
+          owner: unit.owner
+        })
+      });
+    });
+
+    // Apply rewards for killing monsters
+    const rewardsGained = [];
+    actualBattle.deadEnemies.forEach((deadEnemy) => {
+      const rewards = ENEMIES[deadEnemy.enemyId].rewards;
+      const diceRoll = Math.random();
+      for (let i = 0; i < rewards.length; i++) {
+        const reward = rewards[i];
+        if (reward.chance >= diceRoll) {
+          rewardsGained.push(reward);
+          break;          
+        }
+      }
+    });
+
+    // Process rewards to peeps
+    const owners = _.uniq(units.map((unit) => unit.owner));
+    rewardsGained.forEach((rewardGained) => {
+      if (rewardGained.type === 'item') {
+        const luckyOwner = owners[_.random(0, owners.length - 1)];
+        addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
+        finalTickEvents.push({
+          type: 'item',
+          amount: rewardGained.amount,
+          itemId: rewardGained.itemId,
+          icon: ITEMS[rewardGained.itemId].icon,
+          owner: luckyOwner
+        });
+      }
+    })
+  } else {
+    // Lost
+  }
+
+  Battles.update(actualBattle._id, {
+    $set: {
+      finished: true,
+      win: true,
+      finalTickEvents,
+      updatedAt: new Date()   
+    }
+  });
+
   // Delete battle as it is over
-  Battles.remove(actualBattle._id);
+  // Battles.remove(actualBattle._id);
 }
 
 const progressBattle = function (actualBattle, battleIntervalId) {
@@ -27,7 +99,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       const rawDamage = attackerStats.attack + extraRawDamage;
 
       // Determine damage reduction from armor
-      const dmgReduction = defenderStats.armor / (defenderStats.armor + 100);
+      const dmgReduction = BATTLES.dmgReduction(defenderStats.armor);
 
       return rawDamage * (1 - dmgReduction);
     } else {
@@ -69,16 +141,37 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   actualBattle.tick += 1;
 
+  // Remove any dead enemies
+  for (let i = actualBattle.enemies.length - 1; i >= 0; i--) {
+    const enemy = actualBattle.enemies[i];
+    if (enemy.stats.health <= 0) {
+      actualBattle.deadEnemies.push(enemy);
+      actualBattle.enemies.splice(i, 1);
+    }
+  }
+
+  // Remove any dead units
+  for (let i = actualBattle.units.length - 1; i >= 0; i--) {
+    const unit = actualBattle.units[i];
+    if (unit.stats.health <= 0) {
+      actualBattle.deadUnits.push(unit);
+      actualBattle.unit.splice(i, 1);
+    }
+  }
+
   Battles.update(actualBattle._id, {
     $set: {
       tick: actualBattle.tick,
       units: actualBattle.units,
+      deadUnits: actualBattle.deadUnits,
+      deadEnemies: actualBattle.deadEnemies,
       enemies: actualBattle.enemies,
-      tickEvents
+      tickEvents,
+      updatedAt: new Date()
     }
   });
 
-  if (actualBattle.enemies[0].stats.health <= 0) {
+  if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);
     completeBattle(actualBattle);
   }
@@ -88,7 +181,7 @@ const startBattle = function (battleId) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   // Ensure user isn't already in a battle
-  const currentBattle = Battles.findOne({ owners: Meteor.userId() });
+  const currentBattle = Battles.findOne({ owners: Meteor.userId(), finished: false });
   if (currentBattle) {
     return;
   }
@@ -130,8 +223,11 @@ const startBattle = function (battleId) {
     id: Meteor.userId(),
     owner: Meteor.userId(),
     stats: userCombatStats,
+    xpDistribution: userCombat.xpDistribution,
     icon: 'character'
   });
+
+  let totalXpGain = 0;
 
   // Inject enemies into the fight
   battleConstants.enemies.forEach((enemy) => {
@@ -139,6 +235,7 @@ const startBattle = function (battleId) {
     const enemyStats = enemyConstants.stats;
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
     for (let i = 0; i < enemy.amount; i++) {
+      totalXpGain += BATTLES.xpGain(enemyStats);
       newBattle.enemies.push({
         id: Random.id(),
         stats: enemyStats,
@@ -148,6 +245,10 @@ const startBattle = function (battleId) {
       });
     }
   });
+
+  newBattle.totalXpGain = totalXpGain;
+  newBattle.deadUnits = [];
+  newBattle.deadEnemies = [];
 
   // Save battle
   const actualBattleId = Battles.insert(newBattle);

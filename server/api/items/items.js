@@ -4,8 +4,14 @@ import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 
-export const addItem = function (itemId, amount) {
-  const currentItem = Items.findOne({ owner: Meteor.userId(), itemId });
+export const addItem = function (itemId, amount, specificUserId) {
+  let owner;
+  if (specificUserId) {
+    owner = specificUserId;
+  } else {
+    owner = this.userId;
+  }
+  const currentItem = Items.findOne({ owner, itemId });
   const itemConstants = ITEMS[itemId];
 
   if (currentItem) {
@@ -18,7 +24,7 @@ export const addItem = function (itemId, amount) {
     Items.insert({
       category: 'mining',
       itemId,
-      owner: Meteor.userId(),
+      owner,
       category: itemConstants.category
     });
   }

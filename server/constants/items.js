@@ -45,6 +45,7 @@ export const ITEMS = {
     id: 'copper_dagger',
     icon: 'copperDagger',
     category: 'combat',
+    weaponType: 'dagger',
     slot: 'mainHand',
     name: 'copper dagger',
     sellPrice: 100,
@@ -53,8 +54,17 @@ export const ITEMS = {
     stats: {
       attack: 1, // Deal a min of 1 damage
       attackMax: 3, // Deal a max of 3 damage
-      attackSpeed: 0.2, // Attacks per second
+      attackSpeed: 2.0, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
     }
+  },
+
+  rat_head: {
+    id: 'rat_head',
+    icon: 'ratHead',
+    category: 'misc',
+    name: 'rat head',
+    sellPrice: 15,
+    description: 'Not very useful'
   }
 }

@@ -8,10 +8,16 @@ export const ENEMIES = {
       attackMax: 2,
       attackSpeed: 0.2,
       accuracy: 1,
-      health: 50,
-      maxHealth: 50,
+      health: 10,
+      maxHealth: 10,
       defense: 1,
       armor: 1
-    }
+    },
+    rewards: [{
+      type: 'item',
+      itemId: 'rat_head',
+      amount: 1,
+      chance: 1 / 1
+    }]
   }
 }

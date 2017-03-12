@@ -24,4 +24,41 @@
       Find Battle
     </button>
   {{/if}}
+
+  <!-- Modal -->
+  <div class="modal battleTabModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">
+            {{#if finishedBattle.win}}
+              <span class="text-success">Victory</span>
+            {{else}}
+              <span class="text-danger">Defeat</span>
+            {{/if}}
+          </h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{#each finishedBattle.finalTickEvents}}
+            {{#if $eq this.type 'xp'}}
+              +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i> xp<br />
+            {{/if}}
+
+            {{#if $eq this.type 'item'}}
+              <div class="d-flex align-items-center">
+                +{{this.amount}}
+                <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

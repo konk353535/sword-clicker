@@ -5,6 +5,7 @@ import { Combat } from '/imports/api/combat/combat';
 
 import { ITEMS } from '/server/constants/items.js';
 import { SKILLS } from '/server/constants/skills.js';
+import { BATTLES } from '/server/constants/battles.js';
 
 export const updateCombatStats = function () {
   // Build up our object of skills
@@ -16,7 +17,8 @@ export const updateCombatStats = function () {
     health: 0,
     maxHealth: 0,
     defense: 0,
-    armor: 0
+    armor: 0,
+    xpDistribution: {}
   };
 
   // Fetch all equipped combat items
@@ -36,6 +38,10 @@ export const updateCombatStats = function () {
           playerStats[statKey] += itemStats[statKey];
         }
       });
+
+      if (combatItem.constants.slot === 'mainHand') {
+        playerStats.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
+      }
     }
   });
 
@@ -65,6 +71,8 @@ export const updateCombatStats = function () {
   if (playerStats.attackSpeed === 0) {
     playerStats.attackSpeed = 0.5;
   }
+
+  console.log(playerStats);
 
   // Set player stats
   Combat.update({

@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?nea1bl');
-  src:  url('fonts/icomoon.eot?nea1bl#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?nea1bl') format('truetype'),
-    url('fonts/icomoon.woff?nea1bl') format('woff'),
-    url('fonts/icomoon.svg?nea1bl#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?fancdm');
+  src:  url('fonts/icomoon.eot?fancdm#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?fancdm') format('truetype'),
+    url('fonts/icomoon.woff?fancdm') format('woff'),
+    url('fonts/icomoon.svg?fancdm#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="lilIcon-"], [class*=" lilIcon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -24,25 +24,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-accuracy:before {
+.lilIcon-crafting:before {
+  content: "\e907";
+}
+.lilIcon-mining:before {
+  content: "\e908";
+}
+.lilIcon-woodcutting:before {
+  content: "\e909";
+}
+.lilIcon-accuracy:before {
   content: "\e900";
 }
-.icon-armor:before {
+.lilIcon-armor:before {
   content: "\e901";
 }
-.icon-attack:before {
+.lilIcon-attack:before {
   content: "\e902";
 }
-.icon-attackSpeed:before {
+.lilIcon-attackSpeed:before {
   content: "\e903";
 }
-.icon-defense:before {
+.lilIcon-defense:before {
   content: "\e904";
 }
-.icon-gold:before {
+.lilIcon-gold:before {
   content: "\e905";
 }
-.icon-health:before {
+.lilIcon-health:before {
   content: "\e906";
 }
 

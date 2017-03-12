@@ -1,8 +1,6 @@
 <template name="miningPage">
 
-  <h1>Mining</h1>
-  <p>Level: {{miningSkill.level}}</p>
-  <p>XP: {{miningSkill.xp}} / {{miningSkill.xpToLevel}}</p>
+  {{> skillHeader skill=miningSkill}}
 
   <h2>Items</h2>
   <div class="d-flex">

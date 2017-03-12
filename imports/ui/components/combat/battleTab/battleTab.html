@@ -8,15 +8,23 @@
         class="col d-flex flex-column justify-content-end align-items-center"
         style="border-right: 1px solid #dfdfdf">
         <h1>My Units</h1>
-        {{#each currentBattle.units}}
-          {{> battleUnit unit=this}}
-        {{/each}}
+        <div class="d-flex flex-row flex-wrap">
+          {{#each currentBattle.units}}
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              {{> battleUnit unit=this}}
+            </div>
+          {{/each}}
+        </div>
       </div>
       <div class="col d-flex flex-column justify-content-start align-items-center">
         <h1>Enemy Units</h1>
-        {{#each currentBattle.enemies}}
-          {{> battleUnit unit=this}}
-        {{/each}}
+        <div class="d-flex flex-row flex-wrap">
+          {{#each currentBattle.enemies}}
+            <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+              {{> battleUnit unit=this}}
+            </div>
+          {{/each}}
+        </div>
       </div>
     </div>
   {{else}}

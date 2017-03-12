@@ -1,0 +1,12 @@
+<template name="skillHeader"> 
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="d-flex my-3 align-items-center">
+    <i class="lilIcon-{{skill.type}} medium-icon"></i>
+    <h1 class="ml-1 mb-0">
+      Level {{skill.level}}
+    </h1>
+    <small class="ml-3">{{skill.xp}} / {{skill.xpToLevel}}XP</small>
+  </div>
+</template>

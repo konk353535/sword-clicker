@@ -8,7 +8,7 @@ export const Skills = new Mongo.Collection('skills');
 SkillsSchema = new SimpleSchema({
   type: { type: String },
   createdAt: { type: Date },
-  xp: { type: Number, defaultValue: 0 },
+  xp: { type: Number, defaultValue: 0, decimal: true },
   level: { type: Number, defaultValue: 1 },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
 });

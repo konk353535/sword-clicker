@@ -264,7 +264,7 @@ const startBattle = function (battleId) {
 Meteor.methods({
   'battles.randomBattle'() {
     // Eventually select a random battle appropriate to users level
-    startBattle('rat');
+    startBattle('rat_pack');
   }
 });
 

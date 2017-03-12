@@ -19,12 +19,11 @@ Template.battleTab.onCreated(function bodyOnCreated() {
       var y = $(this).position().top;
       var count = $(this).data('count');
 
-      if (count > 75) {
+      if (count > 50) {
         $(this).css('opacity', $(this).css('opacity') - 0.01);
       }
 
-      $(this).css('top', y - 0.5);
-
+      $(this).css('top', y - 1.0);
       if(count > 100){
         $(this).remove();
       } else {
@@ -46,7 +45,7 @@ Template.battleTab.onCreated(function bodyOnCreated() {
           color = 'red';
         }
 
-        offset.left += 75
+        offset.left += (-10 + Math.round(Math.random() * 60));
         let element = `
           <p
             class='floating-text'

@@ -10,6 +10,7 @@ import '/imports/ui/components/formatNumber/formatNumber.js';
 import '/imports/ui/components/requiredItems/requiredItems.js';
 import '/imports/ui/components/displayCombatStats/displayCombatStats.js';
 import '/imports/ui/components/battleUnit/battleUnit.js';
+import '/imports/ui/components/skillHeader/skillHeader.js';
 
 // Pages / Core
 import '../imports/ui/body.js';

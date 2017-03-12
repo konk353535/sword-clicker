@@ -9,7 +9,7 @@ export const addItem = function (itemId, amount, specificUserId) {
   if (specificUserId) {
     owner = specificUserId;
   } else {
-    owner = this.userId;
+    owner = Meteor.userId();
   }
   const currentItem = Items.findOne({ owner, itemId });
   const itemConstants = ITEMS[itemId];

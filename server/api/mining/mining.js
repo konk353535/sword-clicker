@@ -71,6 +71,13 @@ Meteor.methods({
     let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
     let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
+    // Update last updated immeditely
+    // incase an error occurs further on in the code, the users updated will not get set
+    // Giving them a lot of extra XP!
+    Mining.update(mining._id, {
+      $set: { lastGameUpdated: new Date() }
+    });
+
     // Determine time since last update
     const now = moment();
     const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
@@ -127,7 +134,6 @@ Meteor.methods({
     // Tick count = How many ticks to step through
     // Tick strength = How strong to make each tick, 1 = seconds
     const simulateMining = function (tickCount, tickStrength) {
-
       // Store gained exp and items, so we can save mongo db queries
       let gainedXp = 0;
       let gainedItems = {};
@@ -239,10 +245,6 @@ Meteor.methods({
       // Less then 5 minutes, use second based ticks
       simulateMining(secondsElapsed, 1);
     }
-
-    Mining.update(mining._id, {
-      $set: { lastGameUpdated: new Date() }
-    });
   }
 });
 

@@ -4,9 +4,9 @@ export const MINING = {
 
   baseMaxWoodcutters: 10,
 
+  // Woodcutters inherit stats from there associated axes
   woodcutters: {
     farmBoy: {
-      rate: 2, // Base rate is two woods per minute
       required: [{
         type: 'item',
         itemId: 'primitive_axe',
@@ -30,7 +30,7 @@ export const MINING = {
       icon: 'normalLog',
       name: 'normal log',
       itemId: 'normal_log',
-      chance: 1
+      chance: 1 // Base chance to chop this log
     }
   }
 }

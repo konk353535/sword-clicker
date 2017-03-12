@@ -66,7 +66,16 @@ export const ITEMS = {
     slot: 'axe',
     name: 'primitive axe',
     sellPrice: 25,
-    description: 'A sharpened rock. Used for woodcutting'
+    description: 'A sharpened rock. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      powerMin: 1, // Determines what logs you can cut
+      powerMax: 3,
+      speedMin: 1, // How often you cut ( 1 per minute )
+      speedMax: 3,
+      accuracyMin: 1, // Determines extra chance of getting a log ( 1% extra chance )
+      accuracyMax: 50
+    }
   },
 
   rat_head: {

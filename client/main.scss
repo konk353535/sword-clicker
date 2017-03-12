@@ -7,10 +7,10 @@
   position: absolute;
   cursor: pointer;
   text-decoration: bold;
-  font-size: 20px;
+  font-size: 18px;
   user-select: none;
   background-color: white;
-  padding: 2 * ($spacer / 4);
+  padding: ($spacer / 4);
   border: 1px solid $gray;
   border-radius: 4px;
 }

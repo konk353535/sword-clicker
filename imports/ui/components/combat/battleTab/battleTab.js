@@ -8,11 +8,13 @@ import { Battles } from '/imports/api/battles/battles.js';
 
 import './battleTab.html';
 
+let floatingTextInterval;
+
 Template.battleTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   Meteor.subscribe('battles');
 
-  Meteor.setInterval(() => {
+  floatingTextInterval = Meteor.setInterval(() => {
     // Increase height and decrease opacity
     $(".floating-text").each(function(i) {      
 
@@ -76,6 +78,10 @@ Template.battleTab.onCreated(function bodyOnCreated() {
       this.state.set('finishedBattle', finishedBattle);
     }
   });
+});
+
+Template.battleTab.onDestroyed(function () {
+  Meteor.clearInterval(floatingTextInterval);
 });
 
 Template.battleTab.events({

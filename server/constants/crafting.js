@@ -101,6 +101,7 @@ export const CRAFTING = {
         amount: 5,
         consumes: true
       }, {
+        type: 'item',
         itemId: 'copper_bar',
         icon: ITEMS['copper_bar'].icon,
         name: ITEMS['copper_bar'].name,

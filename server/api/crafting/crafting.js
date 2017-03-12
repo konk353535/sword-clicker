@@ -14,6 +14,25 @@ import { addXp } from '/server/api/skills/skills.js';
 // If met will return true and take items
 // If not met, will return false and take no items
 export const requirementsUtility = function (requirements, amountToCraft) {
+
+  const requiredSkillList = requirements.filter((requirement) => {
+    return requirement.type === 'skill';
+  }).map((skill) => {
+    return skill.name;
+  });
+
+  const mySkills = Skills.find({
+    owner: Meteor.userId(),
+    type: {
+      $in: requiredSkillList
+    }
+  }).fetch();
+
+  const mySkillsMap = {};
+  mySkills.forEach((mySkill) => {
+    mySkillsMap[mySkill.type] = mySkill;
+  });
+
   const requiredItemList = requirements.filter((requirement) => {
     return requirement.type === 'item';
   }).map((item) => {
@@ -38,8 +57,8 @@ export const requirementsUtility = function (requirements, amountToCraft) {
   let canCraft = true;
 
   requirements.forEach((requirement) => {
-    const myItem = myItemsMap[requirement.itemId];
     if (requirement.type === 'item') {
+      const myItem = myItemsMap[requirement.itemId];
       if (!myItem || myItem.amount < (requirement.amount * amountToCraft)) {
         canCraft = false;
       } else {
@@ -58,6 +77,11 @@ export const requirementsUtility = function (requirements, amountToCraft) {
           myUser.gold -= requirement.amount;
           myUser.isDirty = true;
         }
+      }
+    } else if (requirement.type === 'skill') {
+      const mySkill = mySkillsMap[requirement.name];
+      if (mySkill.level < requirement.level) {
+        canCraft = false;
       }
     }
   });
@@ -103,12 +127,6 @@ const craftItem = function (recipeId, amountToCraft) {
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants) {
-    return;
-  }
-
-  // Have required level?
-  const craftingSkill = Skills.findOne({ owner: Meteor.userId(), type: 'crafting' });
-  if (craftingSkill.level < recipeConstants.requiredCraftingLevel) {
     return;
   }
 

@@ -74,16 +74,13 @@
       <br />
       <h1>Skill Levels</h1>
       <div class="attackSkill-tooltip-container">
-        <h3>Attack</h3>
-        Level {{attackSkill.level}} ( {{attackSkill.xp}} / {{attackSkill.xpToLevel}}XP )
+        {{> skillHeader skill=attackSkill}}
       </div>
       <div class="defenseSkill-tooltip-container">
-        <h3>Defense</h3>
-        Level {{defenseSkill.level}} ( {{defenseSkill.xp}} / {{defenseSkill.xpToLevel}}XP )
+        {{> skillHeader skill=defenseSkill color='bg-success'}}
       </div>
       <div class="healthSkill-tooltip-container">
-        <h3>Health</h3>
-        Level {{healthSkill.level}} ( {{healthSkill.xp}} / {{healthSkill.xpToLevel}}XP )
+        {{> skillHeader skill=healthSkill color='bg-danger'}}
       </div>
     </div>
   </div>

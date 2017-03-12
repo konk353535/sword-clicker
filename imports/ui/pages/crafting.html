@@ -22,9 +22,8 @@
         <tr>
           <th class="align-middle text-center">Name</th>
           <th class="align-middle text-center">Icon</th>
-          <th class="align-middle text-center">Level Reqs</th>
           <th class="align-middle text-center">Craft Time</th>          
-          <th class="align-middle text-center">Item Reqs</th>
+          <th class="align-middle text-center">Requirements</th>
           <th class="align-middle text-center">Description</th>
         </tr>  
       </thead>
@@ -35,11 +34,8 @@
             <td class="align-middle">
               <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
             </td>
-            <td class="align-middle {{#if this.notMetLevelReq}}text-danger{{/if}}">
-              {{this.requiredCraftingLevel}}
-            </td>
             <td class="align-middle">{{this.timeToCraft}}s</td>
-            <td class="align-middle">{{ > requiredItems requiredItems=this.requiredItems}}</td>
+            <td class="align-middle">{{ > requiredItems requiredItems=this.required}}</td>
             <td class="align-middle">{{this.description}}</td>
           </tr>
         {{/each}}

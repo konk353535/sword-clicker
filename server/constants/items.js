@@ -59,6 +59,16 @@ export const ITEMS = {
     }
   },
 
+  primitive_axe: {
+    id: 'primitive_axe',
+    icon: 'primitiveAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'primitive axe',
+    sellPrice: 25,
+    description: 'A sharpened rock. Used for woodcutting'
+  },
+
   rat_head: {
     id: 'rat_head',
     icon: 'ratHead',

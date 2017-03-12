@@ -1,20 +1,69 @@
 <template name="requiredItems">
   <div class="d-flex align-items-center justify-content-center required-items-container">
     {{#each computedRequiredItems}}
-      <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-      <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+      {{#if $eq this.type 'gold'}}
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+        <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+      {{else if $eq this.type 'skill'}}
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
+        <object data="/icons/{{this.name}}.svg" class="small-icon" type="image/svg+xml"></object>      
+      {{else}}
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+        <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+      {{/if}}
     {{/each}}
   </div>
 
   <div class="required-items-tooltip my-tooltip-inner">
     <h3 class='popover-title'>Requirements</h3>
     <div class='popover-content'>
+      {{#if hasConsumeItemRequirements}}
+        <b>Ingredients</b><br />
+      {{/if}}
       {{#each computedRequiredItems}}
-        <div class="d-flex align-items-center">
-          <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-          <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
-          <span class="ml-1 text-capitalize">{{this.name}}</span><br />
-        </div>
+        {{#if this.consumes}}
+          <div class="d-flex align-items-center">
+            {{#if $eq this.type 'gold'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+              <span class="ml-1 text-capitalize">Gold</span><br />            
+            {{else if $eq this.type 'item'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+            {{/if}}
+          </div>
+        {{/if}}
+      {{/each}}
+      {{#if hasItemRequirements}}
+        <b>Required Items</b><br />
+      {{/if}}
+      {{#each computedRequiredItems}}
+        {{#unless this.consumes}}
+          <div class="d-flex align-items-center">
+            {{#if $eq this.type 'gold'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+              <span class="ml-1 text-capitalize">Gold</span><br />            
+            {{else if $eq this.type 'item'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+            {{/if}}
+          </div>
+        {{/unless}}
+      {{/each}}
+      {{#if hasSkillRequirements}}
+        <b>Required Skills</b><br />
+      {{/if}}
+      {{#each computedRequiredItems}}
+        {{#if $eq this.type 'skill'}}
+          <div class="d-flex align-items-center">
+            <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">Level {{this.level}}</span>
+            <object data="/icons/{{this.name}}.svg" class="small-icon" type="image/svg+xml"></object>
+            <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+          </div>
+        {{/if}}
       {{/each}}
     </div>
   </div>

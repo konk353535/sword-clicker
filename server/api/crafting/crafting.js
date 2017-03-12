@@ -10,6 +10,83 @@ import { ITEMS } from '/server/constants/items.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 
+// Take a list of requirements
+// If met will return true and take items
+// If not met, will return false and take no items
+export const requirementsUtility = function (requirements, amountToCraft) {
+  const requiredItemList = requirements.filter((requirement) => {
+    return requirement.type === 'item';
+  }).map((item) => {
+    return item.itemId;
+  });
+
+  const myItems = Items.find({
+    owner: Meteor.userId(),
+    itemId: {
+      $in: requiredItemList
+    }
+  }).fetch();
+
+  const myUser = {
+    gold: Meteor.user().gold
+  }
+
+  const myItemsMap = {};
+  myItems.forEach((item) => {
+    myItemsMap[item.itemId] = item;
+  });
+  let canCraft = true;
+
+  requirements.forEach((requirement) => {
+    const myItem = myItemsMap[requirement.itemId];
+    if (requirement.type === 'item') {
+      if (!myItem || myItem.amount < (requirement.amount * amountToCraft)) {
+        canCraft = false;
+      } else {
+        if (requirement.consumes) {
+          myItem.amount -= (requirement.amount * amountToCraft);
+          if (myItem.amount === 0) {
+            myItem.deleteMe = true;
+          }
+        }
+      }
+    } else if (requirement.type === 'gold') {
+      if (myUser.gold < requirement.amount) {
+        canCraft = false;
+      } else {
+        if (requirement.consumes) {
+          myUser.gold -= requirement.amount;
+          myUser.isDirty = true;
+        }
+      }
+    }
+  });
+
+  if (!canCraft) {
+    return false;
+  }
+
+  // Take resources
+  myItems.forEach((item) => {
+    if (item.deleteMe) {
+      Items.remove(item._id);
+    } else {
+      Items.update(item._id, {
+        $set: { amount: item.amount }
+      });
+    }
+  });
+
+  // Take gold
+  if (myUser.isDirty) {
+    Users.update(Meteor.userId(), {
+      $set: { gold: myUser.gold }
+    });
+  }
+
+  return true;
+}
+
 const craftItem = function (recipeId, amountToCraft) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
@@ -23,39 +100,9 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
-  // Have required resources?
+  // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants) {
-    return;
-  }
-  const requiredItemList = recipeConstants.requiredItems.map((item) => item.itemId);
-  const searchMyItems = Items.find({
-    owner: Meteor.userId(),
-    itemId: {
-      $in: requiredItemList
-    }
-  });
-  const myItems = searchMyItems.fetch();
-  const myItemsMap = {};
-  myItems.forEach((item) => {
-    myItemsMap[item.itemId] = item;
-  });
-  let canCraft = true;
-
-  recipeConstants.requiredItems.forEach((requiredItem) => {
-    const myItem = myItemsMap[requiredItem.itemId];
-    if (requiredItem.consumes) {
-      if (!myItem || myItem.amount < (requiredItem.amount * amountToCraft)) {
-        canCraft = false;
-      } else {
-        myItem.amount -= (requiredItem.amount * amountToCraft);
-        if (myItem.amount === 0) {
-          myItem.deleteMe = true;
-        }
-      }
-    }
-  });
-  if (!canCraft) {
     return;
   }
 
@@ -65,16 +112,10 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
-  // Take resources
-  myItems.forEach((item) => {
-    if (item.deleteMe) {
-      Items.remove(item._id);
-    } else {
-      Items.update(item._id, {
-        $set: { amount: item.amount }
-      });
-    }
-  });
+  // Do we have the requirements for this craft (items / levels / gold)
+  if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
+    return;
+  }
 
   // Add to currently crafting...
   Crafting.update(crafting._id, {

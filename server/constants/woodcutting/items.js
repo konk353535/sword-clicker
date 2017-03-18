@@ -15,8 +15,28 @@ export const WOODCUTTING_ITEMS = {
     },
     extraStats: {
       attack: 2,
+      accuracy: 25
+    }
+  },
+
+  copper_axe: {
+    id: 'copper_axe',
+    icon: 'copperAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'copper axe',
+    sellPrice: 200,
+    description: 'An axe forged from copper. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 3, // Determines what logs you can cut
+      attackSpeed: 2, // How often you cut ( 1 per minute )
+      accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
+    },
+    extraStats: {
+      attack: 3,
       attackSpeed: 2,
-      accuracy: 24
+      accuracy: 50
     }
   },
 

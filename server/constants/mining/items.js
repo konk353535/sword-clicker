@@ -21,5 +21,13 @@ export const MINING_ITEMS = {
     category: 'mining',
     name: 'coal',
     sellPrice: 10
+  },
+
+  ore_iron: {
+    id: 'ore_iron',
+    icon: 'iron',
+    category: 'mining',
+    name: 'iron',
+    sellPrice: 75
   }
 }

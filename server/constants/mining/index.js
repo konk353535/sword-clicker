@@ -30,7 +30,7 @@ export const MINING = {
     },
 
     copper: {
-      requiredLevel: 1,
+      requiredLevel: 2,
       maxHealth: 10,
       xp: 2,
       id: 'copper',
@@ -41,7 +41,7 @@ export const MINING = {
     },
 
     coal: {
-      requiredLevel: 2,
+      requiredLevel: 3,
       maxHealth: 50,
       xp: 10,
       id: 'coal',
@@ -49,6 +49,17 @@ export const MINING = {
       name: 'coal',
       itemId: 'ore_coal',
       chance: 0.1
+    },
+
+    iron: {
+      requiredLevel: 5,
+      maxHealth: 500,
+      xp: 75,
+      id: 'iron',
+      icon: 'iron',
+      name: 'iron',
+      itemId: 'ore_iron',
+      chance: 0.05
     }
   }
 }

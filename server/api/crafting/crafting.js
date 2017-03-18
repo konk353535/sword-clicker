@@ -10,8 +10,6 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 
-console.log(ITEMS);
-
 // Take a list of requirements
 // If met will return true and take items
 // If not met, will return false and take no items
@@ -172,6 +170,7 @@ Meteor.methods({
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
       const recipeConstant = CRAFTING.recipes[craftingKey];
       const itemConstant = ITEMS[recipeConstant.produces];
+
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
       return recipeConstant;
@@ -184,7 +183,7 @@ Meteor.methods({
       return false;
     });
 
-    return recipesArray;
+    return _.sortBy(recipesArray, 'requiredCraftingLevel');
   },
 
   'crafting.updateGame'() {

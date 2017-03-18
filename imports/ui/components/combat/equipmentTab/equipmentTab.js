@@ -48,7 +48,7 @@ Template.equipmentTab.helpers({
         description: 'equip',
         item,
         method() {
-          Meteor.call('items.equip', this.item.itemId);
+          Meteor.call('items.equip', this.item._id, this.item.itemId);
         }
       }
       return item;
@@ -65,7 +65,7 @@ Template.equipmentTab.helpers({
         description: 'unequip',
         item,
         method() {
-          Meteor.call('items.unequip', this.item.itemId);
+          Meteor.call('items.unequip', this.item._id, this.item.itemId);
         }
       }
       return item;

@@ -9,10 +9,17 @@ Template.displayCombatStats.helpers({
     const statsArr = [];
 
     if (statsMap.attack) {
-      statsArr.push({
-        label: `${statsMap.attack} - ${statsMap.attackMax}`,
-        icon: 'attack'
-      });
+      if (statsMap.attackMax) {
+        statsArr.push({
+          label: `${statsMap.attack} - ${statsMap.attackMax}`,
+          key: 'attack'
+        });        
+      } else {
+        statsArr.push({
+          label: `${statsMap.attack}`,
+          key: 'attack'
+        });
+      }
     }
 
     Object.keys(statsMap).forEach((key) => {
@@ -22,7 +29,7 @@ Template.displayCombatStats.helpers({
 
       statsArr.push({
         label: statsMap[key],
-        icon: key
+        key
       });
     });
 

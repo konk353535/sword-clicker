@@ -53,9 +53,14 @@ export const ITEMS = {
     isWeapon: true,
     stats: {
       attack: 1, // Deal a min of 1 damage
-      attackMax: 3, // Deal a max of 3 damage
-      attackSpeed: 2.0, // Attacks per second
+      attackMax: 2, // Deal a max of 2 damage
+      attackSpeed: 2, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
+    },
+    extraStats: {
+      attack: 1, // Up to 1 extra attack
+      attackMax: 1, // Up to 1 extra max attack
+      accuracy: 2 // Up to 1 extra accuracy
     }
   },
 
@@ -69,12 +74,14 @@ export const ITEMS = {
     description: 'A sharpened rock. Used for woodcutting',
     isAxe: true,
     stats: {
-      powerMin: 1, // Determines what logs you can cut
-      powerMax: 3,
-      speedMin: 1, // How often you cut ( 1 per minute )
-      speedMax: 3,
-      accuracyMin: 1, // Determines extra chance of getting a log ( 1% extra chance )
-      accuracyMax: 50
+      attack: 1, // Determines what logs you can cut
+      attackSpeed: 1, // How often you cut ( 1 per minute )
+      accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
+    },
+    extraStats: {
+      attack: 1,
+      attackSpeed: 1,
+      accuracy: 24
     }
   },
 
@@ -83,7 +90,7 @@ export const ITEMS = {
     icon: 'ratHead',
     category: 'misc',
     name: 'rat head',
-    sellPrice: 15,
+    sellPrice: 5,
     description: 'Not very useful'
   }
 }

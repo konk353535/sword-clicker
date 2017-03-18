@@ -10,7 +10,7 @@
   <div class="item-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>{{item.name}}</h3>
     <div class='popover-content'>
-      {{#if $eq item.category 'combat'}}
+      {{#if item.stats}}
         {{> displayCombatStats stats=item.stats}}
       {{/if}}
       {{#if item.primaryAction}}

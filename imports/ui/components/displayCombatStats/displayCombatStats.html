@@ -1,7 +1,7 @@
 <template name="displayCombatStats">
   {{#each stats}}
     <div class="d-flex align-items-center">
-      <object data="/icons/{{this.icon}}.svg" class="small-icon mr-1" type="image/svg+xml"></object>
+      <i class="lilIcon-{{this.key}} small-icon mr-1"></i>
       {{this.label}}
     </div>
   {{/each}}

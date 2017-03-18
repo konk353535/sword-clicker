@@ -33,6 +33,15 @@ export const updateCombatStats = function () {
     combatItem.constants = ITEMS[combatItem.itemId];
     if (combatItem.constants.stats) {
       const itemStats = JSON.parse(JSON.stringify(combatItem.constants.stats));
+      if (combatItem.extraStats) {
+        Object.keys(combatItem.extraStats).forEach((extraStatName) => {
+          console.log(extraStatName);
+          console.log(combatItem.extraStats[extraStatName]);
+          if (itemStats[extraStatName]) {
+            itemStats[extraStatName] += combatItem.extraStats[extraStatName];
+          }
+        });
+      }
       Object.keys(itemStats).forEach((statKey) => {
         if (playerStats[statKey] !== undefined) {
           playerStats[statKey] += itemStats[statKey];

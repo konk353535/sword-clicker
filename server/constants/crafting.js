@@ -82,7 +82,7 @@ export const CRAFTING = {
       produces: 'copper_dagger',
       name: 'copper dagger',
       id: 'copper_dagger',
-      timeToCraft: 300,
+      timeToCraft: 1,
       xp: 40,
       maxToCraft: 1,
       requiredCraftingLevel: 2,

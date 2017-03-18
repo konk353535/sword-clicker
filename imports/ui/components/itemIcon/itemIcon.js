@@ -52,6 +52,7 @@ Template.itemIcon.events({
 
   'click .sell-btn'(event, instance) {
     Template.instance().$('.sellModal').modal('hide');
-    Meteor.call('items.sellItem', instance.data.item.itemId, instance.state.get('sellAmount'));
+    const itemData = instance.data.item;
+    Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
   }
 })

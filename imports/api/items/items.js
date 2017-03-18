@@ -10,7 +10,8 @@ ItemsSchema = new SimpleSchema({
   amount: { type: Number, defaultValue: 1 },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   equipped: { type: Boolean, defaultValue: false },
-  slot: { type: String, optional: true }
+  slot: { type: String, optional: true },
+  extraStats: { type: Object, blackbox: true, optional: true }
 });
 
 Items.attachSchema(ItemsSchema);

@@ -11,8 +11,22 @@ export const addItem = function (itemId, amount, specificUserId) {
   } else {
     owner = Meteor.userId();
   }
-  const currentItem = Items.findOne({ owner, itemId });
-  const itemConstants = ITEMS[itemId];
+
+  // Roll stats if we have to
+  let extraStats;
+  const itemConstants = ITEMS[itemId];  
+  if (itemConstants.extraStats) {
+    extraStats = {};
+    // Roll for each of the stats
+    Object.keys(itemConstants.extraStats).forEach((statName) => {
+      const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
+      if (extra > 0) {
+        extraStats[statName] = extra;
+      }
+    });
+  }
+
+  const currentItem = Items.findOne({ owner, itemId, extraStats });
 
   if (currentItem) {
     // Update
@@ -20,19 +34,24 @@ export const addItem = function (itemId, amount, specificUserId) {
       $inc: { amount: amount }
     });
   } else {
-    // Insert
-    Items.insert({
-      category: 'mining',
+    const newItem = {
+      category: itemConstants.category,
       itemId,
-      owner,
-      category: itemConstants.category
-    });
+      owner
+    }
+
+    if (extraStats) {
+      newItem.extraStats = extraStats;
+    }
+
+    // Insert
+    Items.insert(newItem);
   }
 }
 
 Meteor.methods({
 
-  'items.unequip'(itemId) {
+  'items.unequip'(_id, itemId) {
     const itemConstants = ITEMS[itemId];
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
@@ -41,7 +60,8 @@ Meteor.methods({
     Items.update({
       owner: Meteor.userId(),
       category: itemCategory,
-      slot: itemSlot
+      slot: itemSlot,
+      _id
     }, {
       $set: {
         equipped: false
@@ -53,7 +73,7 @@ Meteor.methods({
     }
   },
 
-  'items.equip'(itemId) {
+  'items.equip'(_id, itemId) {
     const itemConstants = ITEMS[itemId];
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
@@ -72,7 +92,8 @@ Meteor.methods({
     // Equip specified item
     Items.update({
       owner: Meteor.userId(),
-      itemId
+      itemId,
+      _id,
     }, {
       $set: {
         equipped: true,
@@ -86,12 +107,12 @@ Meteor.methods({
     }
   },
 
-  'items.sellItem'(itemId, amount) {
+  'items.sellItem'(_id, itemId, amount) {
     if (amount <= 0) {
       return;
     }
 
-    const currentItem = Items.findOne({ owner: Meteor.userId(), itemId: itemId });
+    const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId });
 
     if (!currentItem) {
       return;
@@ -129,9 +150,16 @@ Meteor.publish('items', function() {
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
     doc.sellPrice = itemConstants.sellPrice;
-    if (itemConstants.category === 'combat') {
-      doc.stats = itemConstants.stats;
+    if (itemConstants.stats) {
+      doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
       doc.isWeapon = itemConstants.isWeapon;
+      if (doc.extraStats) {
+        Object.keys(doc.extraStats).forEach((statName) => {
+          if (doc.stats[statName]) {
+            doc.stats[statName] += doc.extraStats[statName];
+          }
+        });
+      }
     }
     return doc;
   }

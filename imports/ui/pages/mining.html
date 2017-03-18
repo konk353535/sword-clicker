@@ -19,11 +19,59 @@
       </div>
     </div>
 
+    <div class="icon-box buy-prospector">
+        <object data="/icons/prospector.svg" class="ore-icon" type="image/svg+xml"></object>
+        {{mining.prospectors}} / {{mining.maxProspectors}}
+    </div>
+    <!-- Tooltip for buy prospector icon -->
+    <div class="prospectors-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Prospectors</h3>
+      <div class='popover-content'>
+        Increase the chance of finding ores
+        <br />
+        Cost: {{nextProspectorCost}} Gold<br />
+        <b>Click</b> to buy
+      </div>
+    </div>
+
+
     {{#each miningItems}}
       {{> itemIcon item=this}}
-    {{else}}
-      You have no mining items!
     {{/each}}
+  </div>
+
+  <h2>Equipped Pickaxe</h2>
+  <div class="d-flex flex-row">
+    {{#if equippedItemsMap.pickaxe}}
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        {{> itemIcon item=equippedItemsMap.pickaxe}}
+        <div class="d-flex">
+          {{> formatNumber mining.stats.energy}} / {{mining.stats.energyStorage}}
+        </div>
+      </div>
+      <div class="d-flex flex-column ml-3">
+        <div class="d-flex align-items-center">
+          {{mining.stats.attack}}<i class="lilIcon-attack mx-1"></i> Damage your pick does per click
+        </div>
+        <div class="d-flex align-items-center">
+          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Maximum energy your pickaxe can store
+        </div>
+        <div class="d-flex align-items-center">
+          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy used per click
+        </div>
+        <div class="d-flex align-items-center">
+          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Amount of energy regenerated per minute
+        </div>
+        <div class="d-flex align-items-center">
+          {{mining.stats.miner}}%<i class="lilIcon-miner mx-1"></i> Percentage increase of all your miners damage
+        </div>
+
+      </div>
+    {{else}}
+      <div class="icon-box">
+        Pickaxe
+      </div>
+    {{/if}}
   </div>
 
   <h2>Mine Shaft</h2>

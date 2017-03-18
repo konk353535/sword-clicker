@@ -3,6 +3,7 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { ITEMS } from '/server/constants/items/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
+import { updateMiningStats } from '/server/api/mining/mining.js';
 
 export const addItem = function (itemId, amount, specificUserId) {
   let owner;
@@ -70,6 +71,8 @@ Meteor.methods({
 
     if (itemCategory === 'combat') {
       updateCombatStats();
+    } else if (itemCategory === 'mining') {
+      updateMiningStats();
     }
   },
 
@@ -81,7 +84,7 @@ Meteor.methods({
     // Unequip existing items
     Items.update({
       owner: Meteor.userId(),
-      category: itemCategory,
+      equipped: true,
       slot: itemSlot
     }, {
       $set: {
@@ -92,7 +95,6 @@ Meteor.methods({
     // Equip specified item
     Items.update({
       owner: Meteor.userId(),
-      itemId,
       _id,
     }, {
       $set: {
@@ -104,6 +106,8 @@ Meteor.methods({
 
     if (itemCategory === 'combat') {
       updateCombatStats();
+    } else if (itemCategory === 'mining') {
+      updateMiningStats();
     }
   },
 
@@ -126,6 +130,12 @@ Meteor.methods({
       amountToSell = currentItem.amount;
       // Remove item
       Items.remove(currentItem._id);
+
+      if (itemConstants.category === 'combat') {
+        updateCombatStats();
+      } else if (itemConstants.category === 'mining') {
+        updateMiningStats();
+      }
     } else {
       // Update item quantity
       Items.update(currentItem._id, {
@@ -153,6 +163,7 @@ Meteor.publish('items', function() {
     if (itemConstants.stats) {
       doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
       doc.isWeapon = itemConstants.isWeapon;
+      doc.isEquippable = itemConstants.isEquippable;
       if (doc.extraStats) {
         Object.keys(doc.extraStats).forEach((statName) => {
           if (doc.stats[statName]) {

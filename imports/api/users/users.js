@@ -8,7 +8,7 @@ UserSchema = new SimpleSchema({
   createdAt: { type: Date },
   services: { type: Object, blackbox: true },
   emails: { type: [Object], blackbox: true },
-  gold: { type: Number, defaultValue: 0 }
+  gold: { type: Number, defaultValue: 100 }
 })
 
 Meteor.users.attachSchema(UserSchema);

@@ -1,14 +1,52 @@
 import { Meteor } from 'meteor/meteor';
 import { MINING } from '/server/constants/mining/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import moment from 'moment';
 import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills';
+import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+
+export const updateMiningStats = function () {
+  // Fetch equipped pick axe
+  const pickaxe = Items.findOne({
+    owner: Meteor.userId(),
+    slot: 'pickaxe',
+    equipped: true
+  });
+
+  let pickaxeStats = {};
+  if (pickaxe) {
+    // Apply pickaxe stats
+    pickaxe.constants = ITEMS[pickaxe.itemId];
+    if (pickaxe.constants && pickaxe.constants.stats) {
+      pickaxeStats = JSON.parse(JSON.stringify(pickaxe.constants.stats));
+      if (pickaxe.extraStats) {
+        Object.keys(pickaxe.extraStats).forEach((extraStatName) => {
+          if (pickaxeStats[extraStatName]) {
+            pickaxeStats[extraStatName] += pickaxe.extraStats[extraStatName];
+          }
+        });
+      }
+    }
+  }
+
+  pickaxeStats.energy = 0;
+
+  // Set player stats
+  Mining.update({
+    owner: Meteor.userId()
+  }, {
+    $set: {
+      stats: pickaxeStats
+    }
+  });
+};
 
 // Store array of sorted ores
 const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
@@ -37,7 +75,18 @@ const attackMineSpace = function (id, damage) {
 
 Meteor.methods({
   'mining.clickedMineSpace'(mineSpaceId) {
-    attackMineSpace(mineSpaceId, 1);
+    const mining = Mining.findOne({ owner: this.userId });
+    if (mining.stats.energy < mining.stats.energyPerHit) {
+      return;
+    }
+
+    Mining.update(mining._id, {
+      $inc: {
+        'stats.energy': (mining.stats.energyPerHit * -1)
+      }
+    });
+
+    attackMineSpace(mineSpaceId, mining.stats.attack);
   },
 
   'mining.buyMiner'() {
@@ -64,6 +113,30 @@ Meteor.methods({
     });
   },
 
+  'mining.buyProspector'() {
+    const mining = Mining.findOne({ owner: Meteor.userId() });
+    // Maximum # of prospectors?
+    if (mining.prospectors >= MINING.prospecting.max) {
+      return;
+    }
+
+    // Enough gold?
+    const newProspectorsCost = MINING.prospecting.cost(mining.prospectors);
+    if (Meteor.user().gold < newProspectorsCost) {
+      return;
+    }
+
+    // Take gold
+    Users.update(Meteor.userId(), {
+      $inc: { gold: (newProspectorsCost * -1) }
+    });
+
+    // Up prospectors
+    Mining.update(mining._id, {
+      $inc: { prospectors: 1 }
+    });
+  },
+
   'mining.gameUpdate'() {
     // Fetch all db data we need
     const mining = Mining.findOne({ owner: this.userId });
@@ -71,16 +144,27 @@ Meteor.methods({
     let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
     let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
+    // Determine time since last update
+    const now = moment();
+    const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
+    const minutesElapsed = secondsElapsed / 60;
+
+    if (mining.stats.energy < mining.stats.energyStorage) {
+      mining.stats.energy += (minutesElapsed * mining.stats.energyRegen);
+      if (mining.stats.energy > mining.stats.energyStorage) {
+        mining.stats.energy = mining.stats.energyStorage;
+      }
+    }
+
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
     Mining.update(mining._id, {
-      $set: { lastGameUpdated: new Date() }
+      $set: {
+        lastGameUpdated: new Date(),
+        'stats.energy': mining.stats.energy
+      }
     });
-
-    // Determine time since last update
-    const now = moment();
-    const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
@@ -144,6 +228,9 @@ Meteor.methods({
 
       // Determine how many new ores to spawn
       let newOresCount = tickCount * (MINING.prospecting.chance * tickStrength);
+      if (mining.prospectors) {
+        newOresCount *= mining.prospectors;
+      }
       if ((newOresCount % 1) > Math.random()) {
         newOresCount = Math.ceil(newOresCount);
       } else {
@@ -151,7 +238,12 @@ Meteor.methods({
       }
 
       // Determine how much damage your miners do
-      const damagePerTick = mining.miners * MINING.miners.damagePerSecond * tickStrength;
+      let damagePerTick = mining.miners * MINING.miners.damagePerSecond * tickStrength;
+
+      if (mining.stats.miner) {
+        damagePerTick *=  (1 + (mining.stats.miner / 100));
+      }
+
       let totalRemainingDamage = damagePerTick * tickCount;
 
       if (emptyMiningSpaces.length >= newOresCount || (tickCount * tickStrength < 60)) {
@@ -293,6 +385,8 @@ Meteor.publish('mining', function() {
   var transform = function(doc) {
     doc.nextMinerCost = MINING.miners.cost(doc.miners);
     doc.maxMiners = MINING.miners.max;
+    doc.nextProspectorCost = MINING.prospecting.cost(doc.prospectors);
+    doc.maxProspectors = MINING.prospecting.max;
     return doc;
   }
 

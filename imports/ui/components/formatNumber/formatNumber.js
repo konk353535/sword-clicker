@@ -9,7 +9,7 @@ Template.formatNumber.helpers({
   formattedNumber() {
     const number = Template.instance().data;
     if (number < 1000) {
-      return Numeral(Math.ceil(number)).format('0 a');
+      return Numeral(Math.floor(number)).format('0 a');
     }
 
     return Numeral(number).format('0.00 a');

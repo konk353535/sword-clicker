@@ -231,11 +231,13 @@ Meteor.publish('crafting', function() {
 
   //Transform function
   var transform = function(doc) {
-    doc.currentlyCrafting.forEach((item) => {
-      const itemConstants = ITEMS[item.itemId];
-      item.icon = itemConstants.icon;
-      item.name = itemConstants.name;
-    });
+    if (doc.currentlyCrafting) {
+      doc.currentlyCrafting.forEach((item) => {
+        const itemConstants = ITEMS[item.itemId];
+        item.icon = itemConstants.icon;
+        item.name = itemConstants.name;
+      });
+    }
     return doc;
   }
 

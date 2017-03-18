@@ -75,6 +75,28 @@ export const CRAFTING = {
       }]
     },
 
+    primitive_pickaxe: {
+      produces: 'primitive_pickaxe',
+      name: 'primitive pickaxe',
+      id: 'primitive_pickaxe',
+      timeToCraft: 5, // 60
+      xp: 0,
+      maxToCraft: 1,
+      requiredCraftingLevel: 1,
+      required: [{
+        type: 'item',
+        itemId: 'ore_stone',
+        icon: ITEMS['ore_stone'].icon,
+        name: ITEMS['ore_stone'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'crafting',
+        level: 1
+      }]
+    },
+
     copper_axe: {
       produces: 'copper_axe',
       name: 'copper axe',
@@ -180,6 +202,42 @@ export const CRAFTING = {
       produces: 'copper_dagger',
       name: 'copper dagger',
       id: 'copper_dagger',
+      timeToCraft: 60, // 60
+      xp: 40,
+      maxToCraft: 1,
+      requiredCraftingLevel: 2,
+      required: [{
+        type: 'item',
+        itemId: 'stone_furnace',
+        icon: ITEMS['stone_furnace'].icon,
+        name: ITEMS['stone_furnace'].name,
+        amount: 1,
+        consumes: false
+      }, {
+        type: 'item',
+        itemId: 'ore_coal',
+        icon: ITEMS['ore_coal'].icon,
+        name: ITEMS['ore_coal'].name,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'copper_bar',
+        icon: ITEMS['copper_bar'].icon,
+        name: ITEMS['copper_bar'].name,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'crafting',
+        level: 2
+      }]
+    },
+
+    copper_pickaxe: {
+      produces: 'copper_pickaxe',
+      name: 'copper pickaxe',
+      id: 'copper_pickaxe',
       timeToCraft: 60, // 60
       xp: 40,
       maxToCraft: 1,

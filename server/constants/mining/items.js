@@ -29,5 +29,55 @@ export const MINING_ITEMS = {
     category: 'mining',
     name: 'iron',
     sellPrice: 75
+  },
+
+  primitive_pickaxe: {
+    id: 'primitive_pickaxe',
+    icon: 'primitivePickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'primitive pickaxe',
+    sellPrice: 10,
+    description: 'A basic pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 10, // Maximum energy stored
+      attack: 1, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 15, // Energy regen per minute
+      miner: 1 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 1,
+      energyRegen: 15,
+      miner: 24
+    }
+  },
+
+  copper_pickaxe: {
+    id: 'copper_pickaxe',
+    icon: 'copperPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'copper pickaxe',
+    sellPrice: 200,
+    description: 'A pickaxe forged from copper. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 10, // Maximum energy stored
+      attack: 3, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 10, // Energy regen per minute
+      miner: 1 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 40,
+      attack: 3,
+      miner: 74,
+      energyRegen: 20
+    }
   }
 }

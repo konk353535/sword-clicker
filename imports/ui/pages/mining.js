@@ -23,7 +23,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
     gameUpdateTimer = Meteor.setInterval(function () {
       Meteor.call('mining.gameUpdate');
-    }, 5000); // Should be 5000
+    }, 7000); // Should be 7000
   });
 });
 
@@ -36,6 +36,12 @@ Template.miningPage.events({
     if (Meteor.user().gold >= Mining.findOne().nextMinerCost) {
       Meteor.call('mining.buyMiner');
     }
+  },
+
+  'click .buy-prospector'(event, instance) {
+    if (Meteor.user().gold >= Mining.findOne().nextProspectorCost) {
+      Meteor.call('mining.buyProspector');
+    }
   }
 });
 
@@ -43,6 +49,14 @@ Template.miningPage.rendered = function () {
   const minerTooltip = new Drop({
     target: Template.instance().$('.buy-miner')[0],
     content: Template.instance().$('.miners-tooltip-content')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+
+  const prospectorTooltip = new Drop({
+    target: Template.instance().$('.buy-prospector')[0],
+    content: Template.instance().$('.prospectors-tooltip-content')[0],
     openOn: 'hover',
     position: 'top left',
     remove: true
@@ -63,6 +77,7 @@ Template.miningPage.helpers({
     const mining = Mining.findOne();
     if (mining) {
       Template.instance().state.set('nextMinerCost', mining.nextMinerCost);
+      Template.instance().state.set('nextProspectorCost', mining.nextProspectorCost);
     }
     return mining;
   },
@@ -71,7 +86,46 @@ Template.miningPage.helpers({
     return Template.instance().state.get('nextMinerCost');
   },
 
+  nextProspectorCost() {
+    return Template.instance().state.get('nextProspectorCost');
+  },
+
   miningItems() {
-    return Items.find({ category: 'mining' });
-  }
+    return Items.find({ category: 'mining', equipped: false }).map((item) => {
+      if (item.isEquippable) {
+        item.primaryAction = {
+          description: 'equip',
+          item,
+          method() {
+            Meteor.call('items.equip', this.item._id, this.item.itemId);
+          }
+        }        
+      }
+      return item;
+    });
+  },
+
+  equippedItemsMap() {
+    const equippedItems = Items.find({
+      category: 'mining',
+      equipped: true
+    }).map((item) => {
+      item.hideCount = true;
+      item.primaryAction = {
+        description: 'unequip',
+        item,
+        method() {
+          Meteor.call('items.unequip', this.item._id, this.item.itemId);
+        }
+      }
+      return item;
+    });
+
+    const equippedMap = {};
+    equippedItems.forEach((item) => {
+      equippedMap[item.slot] = item;
+    });
+
+    return equippedMap;
+  },
 });

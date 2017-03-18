@@ -1,10 +1,9 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?fancdm');
-  src:  url('fonts/icomoon.eot?fancdm#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?fancdm') format('truetype'),
-    url('fonts/icomoon.woff?fancdm') format('woff'),
-    url('fonts/icomoon.svg?fancdm#icomoon') format('svg');
+  src:
+    url('fonts/icomoon.ttf?qdregp') format('truetype'),
+    url('fonts/icomoon.woff?qdregp') format('woff'),
+    url('fonts/icomoon.svg?qdregp#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,15 +23,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.lilIcon-crafting:before {
-  content: "\e907";
-}
-.lilIcon-mining:before {
-  content: "\e908";
-}
-.lilIcon-woodcutting:before {
-  content: "\e909";
-}
 .lilIcon-accuracy:before {
   content: "\e900";
 }
@@ -45,13 +35,34 @@
 .lilIcon-attackSpeed:before {
   content: "\e903";
 }
-.lilIcon-defense:before {
+.lilIcon-crafting:before {
   content: "\e904";
 }
-.lilIcon-gold:before {
+.lilIcon-defense:before {
   content: "\e905";
 }
-.lilIcon-health:before {
+.lilIcon-energyPerHit:before {
   content: "\e906";
+}
+.lilIcon-energyRegen:before {
+  content: "\e907";
+}
+.lilIcon-energyStorage:before {
+  content: "\e908";
+}
+.lilIcon-gold:before {
+  content: "\e909";
+}
+.lilIcon-health:before {
+  content: "\e90a";
+}
+.lilIcon-miner:before {
+  content: "\e90b";
+}
+.lilIcon-mining:before {
+  content: "\e90c";
+}
+.lilIcon-woodcutting:before {
+  content: "\e90d";
 }
 

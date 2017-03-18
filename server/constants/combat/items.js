@@ -9,6 +9,7 @@ export const COMBAT_ITEMS = {
     sellPrice: 100,
     description: 'A poorly made dagger.',
     isWeapon: true,
+    isEquippable: true,
     stats: {
       attack: 1, // Deal a min of 1 damage
       attackMax: 2, // Deal a max of 2 damage

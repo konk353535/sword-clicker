@@ -14,7 +14,7 @@ CombatSchema = new SimpleSchema({
   maxHealth: { type: Number, defaultValue: 10 },
   defense: { type: Number, defaultValue: 0 },
   armor: { type: Number, defaultValue: 0 },
-  xpDistribution: { type: Object, blackbox: true }
+  xpDistribution: { type: Object, blackbox: true, defaultValue: { attack: 0.5, health: 0.5 } }
 });
 
 Combat.attachSchema(CombatSchema);

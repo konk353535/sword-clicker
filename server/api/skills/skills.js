@@ -3,7 +3,8 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 
 import { Crafting } from '/imports/api/crafting/crafting';
-import { SKILLS } from '/server/constants/skills.js';
+import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { SKILLS } from '/server/constants/skills/index.js';
 import _ from 'underscore';
 
 export const addXp = function (skillType, xp, specificUserId) {
@@ -93,6 +94,12 @@ Meteor.methods({
         Crafting.insert({
           owner: Meteor.userId()
         });
+      } else if (skillName === 'woodcutting') {
+        Woodcutting.insert({
+          owner: Meteor.userId(),
+          woodcutters: [],
+          lastGameUpdated: new Date()
+        });
       }
     }
   },
@@ -103,8 +110,8 @@ Meteor.methods({
       return;
     }
 
-    if (skillName === 'attack') {
-      return SKILLS.attack.requirementsToLearn;
+    if (SKILLS[skillName].requirementsToLearn) {
+      return SKILLS[skillName].requirementsToLearn;
     }
   }
 });

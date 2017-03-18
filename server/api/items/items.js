@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
-import { ITEMS } from '/server/constants/items.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 
 export const addItem = function (itemId, amount, specificUserId) {

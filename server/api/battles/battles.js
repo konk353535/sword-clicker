@@ -8,10 +8,10 @@ import { updateCombatStats } from '/server/api/combat/combat';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
 
-import { ITEMS } from '/server/constants/items'; // List of items
-import { BATTLES } from '/server/constants/battles'; // List of encounters
-import { ENEMIES } from '/server/constants/enemies'; // List of enemies
-import { COMBAT } from '/server/constants/combat'; // List of available combat stats
+import { ITEMS } from '/server/constants/items/index.js'; // List of items
+import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
+import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
 
 const completeBattle = function (actualBattle) {
   const finalTickEvents = [];

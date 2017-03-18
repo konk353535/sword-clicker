@@ -1,4 +1,7 @@
-import { ITEMS } from './items';
+import { CRAFTING_ITEMS as craftingItems } from './items';
+import { ITEMS } from '/server/constants/items/index.js'; 
+
+export const CRAFTING_ITEMS = craftingItems;
 
 export const CRAFTING = {
   recipes: {
@@ -24,7 +27,7 @@ export const CRAFTING = {
       produces: 'primitive_axe',
       name: 'primitive axe',
       id: 'primitive_axe',
-      timeToCraft: 60,
+      timeToCraft: 60, // 60
       xp: 10,
       maxToCraft: 1,
       requiredCraftingLevel: 2,
@@ -82,7 +85,7 @@ export const CRAFTING = {
       produces: 'copper_dagger',
       name: 'copper dagger',
       id: 'copper_dagger',
-      timeToCraft: 1,
+      timeToCraft: 60, // 60
       xp: 40,
       maxToCraft: 1,
       requiredCraftingLevel: 2,

@@ -1,3 +1,7 @@
+import { MINING_ITEMS as miningItems } from './items';
+
+export const MINING_ITEMS = miningItems;
+
 export const MINING = {
   prospecting: {
     chance: (1 / 30)

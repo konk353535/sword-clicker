@@ -1,4 +1,4 @@
-import { ITEMS } from './items'; 
+import { ITEMS } from '/server/constants/items/index'; 
 
 export const SKILLS = {
   mining: {
@@ -13,6 +13,20 @@ export const SKILLS = {
     }
   },
 
+  woodcutting: {
+    xpToLevel(level) {
+      return level * 50 * (1 + (level / 5));
+    },
+
+    requirementsToLearn: [{
+      itemId: 'primitive_axe',
+      icon: ITEMS['primitive_axe'].icon,
+      name: ITEMS['primitive_axe'].name,
+      amount: 1,
+      type: 'item'
+    }]
+  },
+
   attack: {
     xpToLevel(level) {
       return level * 50 * (1 + (level / 5));
@@ -22,7 +36,8 @@ export const SKILLS = {
       itemId: 'copper_dagger',
       icon: ITEMS['copper_dagger'].icon,
       name: ITEMS['copper_dagger'].name,
-      amount: 1
+      amount: 1,
+      type: 'item'
     }],
 
     statsPerLevel: {

@@ -36,6 +36,11 @@
   pointer-events: none;
 }
 
+.drop {
+  // So we can show tooltips on modals
+  z-index: 1050;
+}
+
 .icon-box {
   width: 96px;
   height: 96px;

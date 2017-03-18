@@ -5,10 +5,12 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import moment from 'moment';
 
-import { CRAFTING } from '/server/constants/crafting.js';
-import { ITEMS } from '/server/constants/items.js';
+import { CRAFTING } from '/server/constants/crafting/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
+
+console.log(ITEMS);
 
 // Take a list of requirements
 // If met will return true and take items
@@ -44,6 +46,10 @@ export const requirementsUtility = function (requirements, amountToCraft) {
     itemId: {
       $in: requiredItemList
     }
+  }, {
+    sort: [
+      ['_id', 'asc']
+    ]
   }).fetch();
 
   const myUser = {
@@ -52,7 +58,10 @@ export const requirementsUtility = function (requirements, amountToCraft) {
 
   const myItemsMap = {};
   myItems.forEach((item) => {
-    myItemsMap[item.itemId] = item;
+    // If there is multiple versions of this item use the first one
+    if (!myItemsMap[item.itemId]) {
+      myItemsMap[item.itemId] = item;
+    }
   });
   let canCraft = true;
 
@@ -154,7 +163,7 @@ Meteor.methods({
     craftItem(recipeId, amount);
   },
 
-  'crafting.fetchRecipes'(craftingLevel) {
+  'crafting.fetchRecipes'() {
     const craftingSkill = Skills.findOne({
       owner: Meteor.userId(),
       type: 'crafting'

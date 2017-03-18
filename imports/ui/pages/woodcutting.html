@@ -1,0 +1,87 @@
+<template name="woodcuttingPage">
+
+  {{#if woodcuttingSkill}}
+    {{> skillHeader skill=woodcuttingSkill}}
+
+    <h2>Woodcutting Items</h2>
+    <div class="d-flex flex-wrap">
+      {{#each items}}
+        {{> itemIcon item=this}}
+      {{else}}
+        You have no woodcutting items!
+      {{/each}}
+    </div>
+
+    <div class="d-flex align-items-center mb-3">
+      <h2 class="mb-0">
+        Woodcutters
+      </h2>
+      <small class="ml-3 mt-1">{{woodcutting.woodcutters.length}} / {{woodcutting.maxWoodcutters}}</small>
+    </div>
+
+    <div class="d-flex flex-wrap">
+      <!-- List of my woodcutters here -->
+      {{#each woodcutting.woodcutters}}
+        {{> itemIcon item=this}}
+      {{/each}}
+
+      <!-- Click to buy a woodcutter -->
+      <div class="icon-box buy-woodcutter" style="cursor: pointer">
+        <object data="/icons/woodcutter.svg" class="ore-icon" type="image/svg+xml"></object>
+        Buy
+      </div>
+    </div>
+  {{else}}
+    <div 
+      class="d-flex justify-content-center align-items-center flex-column"
+      style="height: 200px; margin-top: 100px;">
+      <div class="mb-1">You haven't learnt the woodcutting skill yet</div>
+      <div class="mb-3 d-flex">Requires:
+        {{> requiredItems requiredItems=learnRequirements requirementsMet=learnRequirementsMet}}
+      </div>
+      {{#if hasLearnRequirements}}
+        <button class="btn btn-primary learn-now">Learn Now</button>
+      {{else}}
+        <button class="btn btn-primary learn-now" disabled>Learn Now</button>
+      {{/if}}        
+    </div>
+  {{/if}}
+
+  <!-- Modal -->
+  <div class="modal woodcuttersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Woodcutters</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="align-middle text-center">Name</th>
+                <th class="align-middle text-center">Icon</th>         
+                <th class="align-middle text-center">Requirements</th>
+                <th class="align-middle text-center">Description</th>
+              </tr>  
+            </thead>
+            <tbody>
+              {{#each buyableWoodcutters}}
+                <tr class="craft-row text-center" style="cursor: pointer" data-recipe={{this.id}}>
+                  <td class="align-middle text-capitalize">{{this.name}}</td>
+                  <td class="align-middle">
+                    <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+                  </td>
+                  <td class="align-middle">{{ > requiredItems requiredItems=this.required}}</td>
+                  <td class="align-middle">Woodcutters inherit the stats from the axe given to them.</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

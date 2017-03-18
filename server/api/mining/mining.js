@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { MINING } from '/server/constants/mining.js';
+import { MINING } from '/server/constants/mining/index.js';
 import moment from 'moment';
 import _ from 'underscore';
 

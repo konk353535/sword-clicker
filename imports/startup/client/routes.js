@@ -22,6 +22,18 @@ Router.route('/mining', {
   }
 });
 
+Router.route('/woodcutting', {
+
+  name: 'woodcutting',
+
+  template: 'woodcuttingPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/crafting', {
 
   name: 'crafting',

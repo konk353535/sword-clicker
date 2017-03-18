@@ -3,9 +3,9 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 
-import { ITEMS } from '/server/constants/items.js';
-import { SKILLS } from '/server/constants/skills.js';
-import { BATTLES } from '/server/constants/battles.js';
+import { ITEMS } from '/server/constants/items/index.js';
+import { SKILLS } from '/server/constants/skills/index.js';
+import { BATTLES } from '/server/constants/battles/index.js';
 
 export const updateCombatStats = function () {
   // Build up our object of skills

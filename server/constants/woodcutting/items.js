@@ -45,7 +45,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'pineLog',
     category: 'woodcutting',
     name: 'pine log',
-    sellPrice: 5
+    sellPrice: 1
   },
 
   beech_log: {
@@ -53,7 +53,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'beechLog',
     category: 'woodcutting',
     name: 'beech log',
-    sellPrice: 25
+    sellPrice: 5
   },
 
   ash_log: {
@@ -61,6 +61,6 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ashLog',
     category: 'woodcutting',
     name: 'ash log',
-    sellPrice: 100
+    sellPrice: 50
   }
 }

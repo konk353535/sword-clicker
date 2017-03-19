@@ -105,7 +105,8 @@ Template.equipmentTab.helpers({
       Template.instance().state.set('defenseStats', [{
         name: 'health',
         icon: 'health',
-        value: combat.maxHealth
+        value: combat.health,
+        maxValue: combat.maxHealth
       }, {
         name: 'defense',
         icon: 'defense',

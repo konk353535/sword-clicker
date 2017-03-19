@@ -4,7 +4,7 @@ import { ITEMS } from '/server/constants/items/index';
 export const WOODCUTTING_ITEMS = woodcuttingItems;
 export const WOODCUTTING = {
 
-  baseMaxWoodcutters: 5,
+  baseMaxWoodcutters: 3,
 
   // Woodcutters inherit stats from there associated axes
   woodcutters: {
@@ -70,7 +70,7 @@ export const WOODCUTTING = {
 
     beech_log: {
       requiredAttack: 3,
-      xp: 5,
+      xp: 3,
       id: 'beech_log',
       icon: 'beechLog',
       name: 'beech log',
@@ -80,7 +80,7 @@ export const WOODCUTTING = {
 
     ash_log: {
       requiredAttack: 6,
-      xp: 20,
+      xp: 15,
       id: 'ash_log',
       icon: 'ashLog',
       name: 'ash log',

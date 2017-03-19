@@ -3,19 +3,19 @@ import { ITEMS } from '/server/constants/items/index';
 export const SKILLS = {
   mining: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5));
+      return level * 50 * (1 + (level / 5)) - 40;
     }
   },
 
   crafting: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5));
+      return level * 50 * (1 + (level / 5)) - 40;
     }
   },
 
   woodcutting: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5));
+      return level * 50 * (1 + (level / 5)) - 40;
     },
 
     requirementsToLearn: [{
@@ -29,7 +29,7 @@ export const SKILLS = {
 
   attack: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5));
+      return level * 50 * (1 + (level / 5)) - 40;
     },
 
     requirementsToLearn: [{
@@ -49,7 +49,7 @@ export const SKILLS = {
 
   defense: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5));
+      return level * 50 * (1 + (level / 5)) - 40;
     },
 
     statsPerLevel: {
@@ -60,7 +60,7 @@ export const SKILLS = {
 
   health: {
     xpToLevel(level) {
-      return (level - 9) * 50 * (1 + ((level - 9) / 5 ));
+      return (level - 9) * 50 * (1 + ((level - 9) / 5 )) - 40;
     },
 
     baseLevel: 10,

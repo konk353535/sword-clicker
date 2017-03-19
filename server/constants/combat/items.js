@@ -13,7 +13,7 @@ export const COMBAT_ITEMS = {
     stats: {
       attack: 1, // Deal a min of 1 damage
       attackMax: 2, // Deal a max of 2 damage
-      attackSpeed: 2, // Attacks per second
+      attackSpeed: 0.6, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
     },
     extraStats: {

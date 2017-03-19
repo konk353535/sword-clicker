@@ -8,12 +8,7 @@
         aria-valuenow="{{computedCraftingProcess.percentage}}"
         aria-valuemin="0"
         aria-valuemax="100">
-        <object
-          style="background-color: white; border-radius: 2px"
-          data="/icons/{{computedCraftingProcess.icon}}.svg"
-          class="small-icon mr-1"
-          type="image/svg+xml">
-        </object>
+        <img style="background-color: white; border-radius: 2px" src="/icons/{{computedCraftingProcess.icon}}.svg" class="small-icon mr-1">
         {{> formatNumber computedCraftingProcess.percentage}}%
       </div>
     </div>

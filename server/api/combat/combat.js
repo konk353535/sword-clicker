@@ -35,8 +35,6 @@ export const updateCombatStats = function () {
       const itemStats = JSON.parse(JSON.stringify(combatItem.constants.stats));
       if (combatItem.extraStats) {
         Object.keys(combatItem.extraStats).forEach((extraStatName) => {
-          console.log(extraStatName);
-          console.log(combatItem.extraStats[extraStatName]);
           if (itemStats[extraStatName]) {
             itemStats[extraStatName] += combatItem.extraStats[extraStatName];
           }
@@ -81,7 +79,6 @@ export const updateCombatStats = function () {
     playerStats.attackSpeed = 0.5;
   }
 
-  console.log(playerStats);
 
   // Set player stats
   Combat.update({

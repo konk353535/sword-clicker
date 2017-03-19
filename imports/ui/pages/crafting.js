@@ -52,6 +52,8 @@ Template.craftingPage.events({
     const amountToCraft = parseInt(instance.state.get('craftAmount'));
 
     instance.$('.multiCraftModal').modal('hide');
+    console.log(recipeId);
+    console.log(amountToCraft);
     Meteor.call('crafting.craftItem', recipeId, amountToCraft);
   }
 })
@@ -98,6 +100,6 @@ Template.craftingPage.helpers({
   },
 
   items() {
-    return Items.find();
+    return Items.find({ equipped: false });
   }
 });

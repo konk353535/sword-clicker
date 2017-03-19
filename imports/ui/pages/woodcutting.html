@@ -27,7 +27,7 @@
 
       <!-- Click to buy a woodcutter -->
       <div class="icon-box buy-woodcutter" style="cursor: pointer">
-        <object data="/icons/woodcutter.svg" class="ore-icon" type="image/svg+xml"></object>
+        <img src="/icons/woodcutter.svg" class="ore-icon">
         Buy
       </div>
     </div>
@@ -72,7 +72,7 @@
                 <tr class="craft-row text-center" style="cursor: pointer" data-recipe={{this.id}}>
                   <td class="align-middle text-capitalize">{{this.name}}</td>
                   <td class="align-middle">
-                    <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
                   </td>
                   <td class="align-middle">{{ > requiredItems requiredItems=this.required}}</td>
                   <td class="align-middle">Woodcutters inherit the stats from the axe given to them.</td>

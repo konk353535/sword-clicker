@@ -15,15 +15,15 @@ export const CRAFTING = {
         itemId: 'ore_stone',
         icon: ITEMS['ore_stone'].icon,
         name: ITEMS['ore_stone'].name,
-        amount: 5,
+        amount: 20,
         consumes: true // If true, this required item will dissapear once the item is crafted
       }, {
         type: 'skill',
         name: 'crafting',
         level: 1
       }],
-      timeToCraft: 15, // Time to craft item in seconds
-      xp: 1, // Xp earned once crafted
+      timeToCraft: 60, // Time to craft item in seconds
+      xp: 20, // Xp earned once crafted
       maxToCraft: 1 // Maximum number of this that can be crafted together
     },
 
@@ -53,34 +53,8 @@ export const CRAFTING = {
       produces: 'primitive_axe',
       name: 'primitive axe',
       id: 'primitive_axe',
-      timeToCraft: 60, // 60
-      xp: 10,
-      maxToCraft: 1,
-      requiredCraftingLevel: 2,
-      required: [{
-        type: 'item',
-        itemId: 'ore_stone',
-        icon: ITEMS['ore_stone'].icon,
-        name: ITEMS['ore_stone'].name,
-        amount: 25,
-        consumes: true
-      }, {
-        type: 'gold',
-        amount: 10,
-        consumes: true
-      }, {
-        type: 'skill',
-        name: 'crafting',
-        level: 2
-      }]
-    },
-
-    primitive_pickaxe: {
-      produces: 'primitive_pickaxe',
-      name: 'primitive pickaxe',
-      id: 'primitive_pickaxe',
-      timeToCraft: 5, // 60
-      xp: 0,
+      timeToCraft: 15,
+      xp: 5,
       maxToCraft: 1,
       requiredCraftingLevel: 1,
       required: [{
@@ -88,7 +62,29 @@ export const CRAFTING = {
         itemId: 'ore_stone',
         icon: ITEMS['ore_stone'].icon,
         name: ITEMS['ore_stone'].name,
-        amount: 1,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'crafting',
+        level: 1
+      }]
+    },
+
+    primitive_pickaxe: {
+      produces: 'primitive_pickaxe',
+      name: 'primitive pickaxe',
+      id: 'primitive_pickaxe',
+      timeToCraft: 15,
+      xp: 3,
+      maxToCraft: 1,
+      requiredCraftingLevel: 1,
+      required: [{
+        type: 'item',
+        itemId: 'ore_stone',
+        icon: ITEMS['ore_stone'].icon,
+        name: ITEMS['ore_stone'].name,
+        amount: 3,
         consumes: true
       }, {
         type: 'skill',
@@ -110,14 +106,14 @@ export const CRAFTING = {
         itemId: 'copper_bar',
         icon: ITEMS['copper_bar'].icon,
         name: ITEMS['copper_bar'].name,
-        amount: 20,
+        amount: 10,
         consumes: true
       }, {
         type: 'item',
         itemId: 'pine_log',
         icon: ITEMS['pine_log'].icon,
         name: ITEMS['pine_log'].name,
-        amount: 30,
+        amount: 10,
         consumes: true
       }, {
         type: 'skill',
@@ -133,7 +129,7 @@ export const CRAFTING = {
       timeToCraft: 3,
       xp: 3,
       maxToCraft: 100,
-      requiredCraftingLevel: 1,
+      requiredCraftingLevel: 2,
       required: [{
         type: 'item',
         itemId: 'stone_furnace',
@@ -158,7 +154,7 @@ export const CRAFTING = {
       }, {
         type: 'skill',
         name: 'crafting',
-        level: 1
+        level: 2
       }]
     },
 
@@ -218,14 +214,21 @@ export const CRAFTING = {
         itemId: 'ore_coal',
         icon: ITEMS['ore_coal'].icon,
         name: ITEMS['ore_coal'].name,
-        amount: 5,
+        amount: 3,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'pine_log',
+        icon: ITEMS['pine_log'].icon,
+        name: ITEMS['pine_log'].name,
+        amount: 3,
         consumes: true
       }, {
         type: 'item',
         itemId: 'copper_bar',
         icon: ITEMS['copper_bar'].icon,
         name: ITEMS['copper_bar'].name,
-        amount: 5,
+        amount: 3,
         consumes: true
       }, {
         type: 'skill',
@@ -241,7 +244,7 @@ export const CRAFTING = {
       timeToCraft: 60, // 60
       xp: 40,
       maxToCraft: 1,
-      requiredCraftingLevel: 2,
+      requiredCraftingLevel: 3,
       required: [{
         type: 'item',
         itemId: 'stone_furnace',
@@ -261,12 +264,12 @@ export const CRAFTING = {
         itemId: 'copper_bar',
         icon: ITEMS['copper_bar'].icon,
         name: ITEMS['copper_bar'].name,
-        amount: 5,
+        amount: 10,
         consumes: true
       }, {
         type: 'skill',
         name: 'crafting',
-        level: 2
+        level: 3
       }]
     },
   }

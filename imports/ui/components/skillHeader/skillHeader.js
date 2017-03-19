@@ -12,7 +12,6 @@ Template.skillHeader.onCreated(function bodyOnCreated() {
 Template.skillHeader.helpers({
   xpPercentage() {
     const instance = Template.instance();
-    console.log(instance);
     return (instance.data.skill.xp / instance.data.skill.xpToLevel) * 100;
   }
 })

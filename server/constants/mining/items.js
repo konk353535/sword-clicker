@@ -42,14 +42,14 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 10, // Maximum energy stored
-      attack: 1, // Damage per hit
-      energyPerHit: 1, // Energy used per hit
+      energyStorage: 25, // Maximum energy stored
+      attack: 2, // Damage per hit
+      energyPerHit: 2, // Energy used per hit
       energyRegen: 15, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
     },
     extraStats: {
-      energyStorage: 10,
+      energyStorage: 25,
       attack: 1,
       energyRegen: 15,
       miner: 24
@@ -67,17 +67,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 10, // Maximum energy stored
-      attack: 3, // Damage per hit
-      energyPerHit: 1, // Energy used per hit
-      energyRegen: 10, // Energy regen per minute
+      energyStorage: 50, // Maximum energy stored
+      attack: 6, // Damage per hit
+      energyPerHit: 3, // Energy used per hit
+      energyRegen: 15, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
     },
     extraStats: {
-      energyStorage: 40,
-      attack: 3,
+      energyStorage: 50,
+      attack: 4,
       miner: 74,
-      energyRegen: 20
+      energyRegen: 15
     }
   }
 }

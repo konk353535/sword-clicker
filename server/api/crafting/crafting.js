@@ -66,18 +66,23 @@ export const requirementsUtility = function (requirements, amountToCraft) {
   requirements.forEach((requirement) => {
     if (requirement.type === 'item') {
       const myItem = myItemsMap[requirement.itemId];
-      if (!myItem || myItem.amount < (requirement.amount * amountToCraft)) {
-        canCraft = false;
-      } else {
-        if (requirement.consumes) {
+      if (requirement.consumes) {
+        if (!myItem || myItem.amount < (requirement.amount * amountToCraft)) {
+          canCraft = false;
+        } else {
           myItem.amount -= (requirement.amount * amountToCraft);
           if (myItem.amount === 0) {
             myItem.deleteMe = true;
           }
         }
+      } else {
+        if (!myItem || myItem.amount < requirement.amount) {
+          canCraft = false;
+        }
       }
     } else if (requirement.type === 'gold') {
       if (myUser.gold < requirement.amount) {
+        console.log(`cant craft because no gold`);
         canCraft = false;
       } else {
         if (requirement.consumes) {
@@ -88,6 +93,7 @@ export const requirementsUtility = function (requirements, amountToCraft) {
     } else if (requirement.type === 'skill') {
       const mySkill = mySkillsMap[requirement.name];
       if (mySkill.level < requirement.level) {
+        console.log(`cant craft because level not met`);
         canCraft = false;
       }
     }
@@ -128,17 +134,21 @@ const craftItem = function (recipeId, amountToCraft) {
 
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length > 0) {
+    console.log('Already crafting');
     return;
   }
 
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants) {
+    console.log('Invalid recipe');
     return;
   }
 
   // Do we have the requirements for this craft (items / levels / gold)
+  // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
+    console.log('doesnt meet reqs');
     return;
   }
 

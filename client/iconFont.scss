@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?qdregp') format('truetype'),
-    url('fonts/icomoon.woff?qdregp') format('woff'),
-    url('fonts/icomoon.svg?qdregp#icomoon') format('svg');
+    url('fonts/icomoon.ttf?vf1mh2') format('truetype'),
+    url('fonts/icomoon.woff?vf1mh2') format('woff'),
+    url('fonts/icomoon.svg?vf1mh2#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,75 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.lilIcon-ashWood:before {
+  content: "\e90e";
+}
+.lilIcon-beechLog:before {
+  content: "\e90f";
+}
+.lilIcon-character:before {
+  content: "\e910";
+}
+.lilIcon-coal:before {
+  content: "\e911";
+}
+.lilIcon-copper:before {
+  content: "\e912";
+}
+.lilIcon-copperAxe:before {
+  content: "\e913";
+}
+.lilIcon-copperBar:before {
+  content: "\e914";
+}
+.lilIcon-copperDagger:before {
+  content: "\e915";
+}
+.lilIcon-copperFurnace:before {
+  content: "\e916";
+}
+.lilIcon-copperPickaxe:before {
+  content: "\e917";
+}
+.lilIcon-farmer:before {
+  content: "\e918";
+}
+.lilIcon-iron:before {
+  content: "\e919";
+}
+.lilIcon-ironBar:before {
+  content: "\e91a";
+}
+.lilIcon-pineLog:before {
+  content: "\e91b";
+}
+.lilIcon-primitiveAxe:before {
+  content: "\e91c";
+}
+.lilIcon-primitivePickaxe:before {
+  content: "\e91d";
+}
+.lilIcon-prospector:before {
+  content: "\e91e";
+}
+.lilIcon-rat:before {
+  content: "\e91f";
+}
+.lilIcon-ratHead:before {
+  content: "\e920";
+}
+.lilIcon-stone:before {
+  content: "\e921";
+}
+.lilIcon-stoneFurnace:before {
+  content: "\e922";
+}
+.lilIcon-wiseFarmer:before {
+  content: "\e923";
+}
+.lilIcon-woodcutter:before {
+  content: "\e924";
+}
 .lilIcon-accuracy:before {
   content: "\e900";
 }

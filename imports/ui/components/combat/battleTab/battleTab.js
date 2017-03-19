@@ -39,7 +39,7 @@ Template.battleTab.onCreated(function bodyOnCreated() {
 
     if (currentBattle) {
       currentBattle.tickEvents.forEach((tickEvent) => {
-        const offset = this.$(`#${tickEvent.to}`).offset();
+        const offset = $(`#${tickEvent.to}`).offset();
         let color;
         if (tickEvent.label == 0) {
           color = 'blue';

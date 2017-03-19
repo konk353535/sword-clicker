@@ -2,8 +2,10 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Skills } from '../../api/skills/skills.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Combat } from '../../api/combat/combat.js';
+import { addItem } from '/server/api/items/items.js';
 
 import { MINING } from '/server/constants/mining/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
@@ -35,9 +37,12 @@ AccountsTemplates.configure({
     for (let i = 1; i < 16; i++) {
       MiningSpace.insert({
         owner: userId,
-        oreId: null,
+        oreId: MINING.ores.stone.id,
+        health: MINING.ores.stone.maxHealth,
         index: i
       });
     }
+
+    addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
   }
 });

@@ -17,6 +17,10 @@ Meteor.methods({
     // Fetch all db data we need
     const woodcutting = Woodcutting.findOne({ owner: this.userId });
 
+    if (!woodcutting) {
+      return;
+    }
+
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!

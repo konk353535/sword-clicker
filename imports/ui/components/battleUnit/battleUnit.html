@@ -1,10 +1,5 @@
 <template name="battleUnit">
-  <object
-    data="/icons/{{unit.icon}}.svg"
-    id={{unit.id}}
-    class="icon-box"
-    type="image/svg+xml">
-  </object>
+  <img src="/icons/{{unit.icon}}.svg" id={{unit.id}} class="icon-box">
   <div class="health-bar d-flex justify-content-center">
     {{> formatNumber unit.stats.health}} / {{unit.stats.maxHealth}}
   </div>

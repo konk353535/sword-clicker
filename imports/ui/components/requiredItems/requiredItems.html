@@ -3,13 +3,13 @@
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-        <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+        <img src="/icons/gold.svg" class="small-icon">
       {{else if $eq this.type 'skill'}}
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
-        <object data="/icons/{{this.name}}.svg" class="small-icon" type="image/svg+xml"></object>      
+        <img src="/icons/{{this.name}}.svg" class="small-icon">      
       {{else}}
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-        <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+        <img src="/icons/{{this.icon}}.svg" class="small-icon">
       {{/if}}
     {{/each}}
   </div>
@@ -25,11 +25,11 @@
           <div class="d-flex align-items-center">
             {{#if $eq this.type 'gold'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+              <img src="/icons/gold.svg" class="small-icon">
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <img src="/icons/{{this.icon}}.svg" class="small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>
@@ -43,11 +43,11 @@
           <div class="d-flex align-items-center">
             {{#if $eq this.type 'gold'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <object data="/icons/gold.svg" class="small-icon" type="image/svg+xml"></object>
+              <img src="/icons/gold.svg" class="small-icon">
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <object data="/icons/{{this.icon}}.svg" class="small-icon" type="image/svg+xml"></object>
+              <img src="/icons/{{this.icon}}.svg" class="small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>
@@ -60,7 +60,7 @@
         {{#if $eq this.type 'skill'}}
           <div class="d-flex align-items-center">
             <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">Level {{this.level}}</span>
-            <object data="/icons/{{this.name}}.svg" class="small-icon" type="image/svg+xml"></object>
+            <img src="/icons/{{this.name}}.svg" class="small-icon">
             <span class="ml-1 text-capitalize">{{this.name}}</span><br />
           </div>
         {{/if}}

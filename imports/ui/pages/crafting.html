@@ -32,7 +32,7 @@
           <tr class="craft-row text-center" style="cursor: pointer" data-recipe={{this.id}}>
             <td class="align-middle text-capitalize">{{this.name}}</td>
             <td class="align-middle">
-              <object data="/icons/{{this.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+              <img src="/icons/{{this.icon}}.svg" class="ore-icon">
             </td>
             <td class="align-middle">{{this.timeToCraft}}s</td>
             <td class="align-middle">{{ > requiredItems requiredItems=this.required}}</td>

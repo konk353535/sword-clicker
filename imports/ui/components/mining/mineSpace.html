@@ -1,7 +1,7 @@
 <template name="mineSpace">
   <div class="icon-box mine-space-container">
     {{#unless isEmpty}}
-      <object data="/icons/{{mineSpace.icon}}.svg" class="ore-icon" type="image/svg+xml"></object>
+      <img src="/icons/{{mineSpace.icon}}.svg" class="ore-icon">
       {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.maxHealth}}
     {{/unless}}
   </div><br />

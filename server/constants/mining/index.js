@@ -7,13 +7,13 @@ export const MINING = {
     chance: (1 / 20), // Should be 1 / 20
     max: 10,
     cost(currentProspectorsCount) {
-      return 10 + ((currentProspectorsCount * 60) * currentProspectorsCount);
+      return 10 + ((currentProspectorsCount - 1) * 60) * (currentProspectorsCount - 1);
     }
   },
   miners: {
     max: 10,
     cost(currentMinersCount) {
-      return 10 + ((currentMinersCount * 40) * currentMinersCount);
+      return 10 + ((currentMinersCount - 1) * 40) * (currentMinersCount - 1);
     },
     damagePerSecond: 0.1 // Should be 0.1
   },

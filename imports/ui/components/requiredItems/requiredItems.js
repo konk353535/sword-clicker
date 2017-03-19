@@ -49,11 +49,9 @@ Template.requiredItems.helpers({
         const hasItem = Items.findOne({ itemId: requiredItem.itemId });
 
         if (!hasItem) {
-          console.log('Doesnt have');
           requiredItem.notMet = true;
           notMet = true;
         } else if (hasItem.amount < requiredItem.amount) {
-          console.log('doesnt have amount');
           requiredItem.notMet = true;
           notMet = true;
         }

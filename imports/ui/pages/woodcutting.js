@@ -8,8 +8,6 @@ import { Items } from '/imports/api/items/items.js';
 
 import './woodcutting.html';
 
-let gameUpdateTimer;
-
 Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
@@ -29,15 +27,7 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
         }
       }
     });
-
-    gameUpdateTimer = Meteor.setInterval(function () {
-      Meteor.call('woodcutting.gameUpdate');
-    }, 5000); // Should be 5000
   });
-});
-
-Template.woodcuttingPage.onDestroyed(function bodyOnDestroyed() {
-  Meteor.clearInterval(gameUpdateTimer);
 });
 
 Template.woodcuttingPage.events({

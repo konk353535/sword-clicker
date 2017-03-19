@@ -5,7 +5,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'primitive axe',
-    sellPrice: 25,
+    sellPrice: 10,
     description: 'A sharpened rock. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -25,7 +25,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'copper axe',
-    sellPrice: 200,
+    sellPrice: 100,
     description: 'An axe forged from copper. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -45,7 +45,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'pineLog',
     category: 'woodcutting',
     name: 'pine log',
-    sellPrice: 1
+    sellPrice: 5
   },
 
   beech_log: {
@@ -53,7 +53,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'beechLog',
     category: 'woodcutting',
     name: 'beech log',
-    sellPrice: 5
+    sellPrice: 25
   },
 
   ash_log: {
@@ -61,6 +61,6 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ashLog',
     category: 'woodcutting',
     name: 'ash log',
-    sellPrice: 20
+    sellPrice: 100
   }
 }

@@ -20,15 +20,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     Meteor.subscribe('miningSpace');
     // Do I even need this?
     Meteor.subscribe('mining');
-
-    gameUpdateTimer = Meteor.setInterval(function () {
-      Meteor.call('mining.gameUpdate');
-    }, 7000); // Should be 7000
   });
-});
-
-Template.miningPage.onDestroyed(function bodyOnDestroyed() {
-  Meteor.clearInterval(gameUpdateTimer);
 });
 
 Template.miningPage.events({

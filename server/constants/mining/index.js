@@ -48,18 +48,18 @@ export const MINING = {
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.1
+      chance: 0.2
     },
 
     iron: {
-      requiredLevel: 5,
+      requiredLevel: 6,
       maxHealth: 250,
       xp: 80,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
       itemId: 'ore_iron',
-      chance: 0.03
+      chance: 0.01
     }
   }
 }

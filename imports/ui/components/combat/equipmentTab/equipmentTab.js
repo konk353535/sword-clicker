@@ -27,7 +27,7 @@ Template.equipmentTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('tooltipsLoaded', false);
 
-  Tracker.autorun(() => {
+  this.autorun(() => {
     if (this.state.get('offenseStats') && this.state.get('defenseStats')) {
       if (!this.state.get('tooltipsLoaded')) {
         this.state.set('tooltipsLoaded', true);

@@ -17,7 +17,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('recipeFilter', 'all');
 
-  Tracker.autorun(() => {
+  this.autorun(() => {
     if (Skills.findOne()) {
       const craftingSkill = Skills.findOne({ type: 'crafting' });
       // Pass level so that this is recalled when we get up a level

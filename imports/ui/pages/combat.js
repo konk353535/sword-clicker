@@ -15,7 +15,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   this.state.set('hasLearnRequirements', false);
   this.state.set('currentTab', 'battle');
 
-  Tracker.autorun(() => {
+  this.autorun(() => {
     // Only called when skills have loaded
     if (Skills.findOne()) {
       const attackSkill = Skills.findOne({ type: 'attack' });

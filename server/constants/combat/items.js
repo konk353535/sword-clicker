@@ -20,11 +20,6 @@ export const COMBAT_ITEMS = {
       attackMax: 2, // Deal a max of 2 damage
       attackSpeed: FAST_SPEED, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
-    },
-    extraStats: {
-      attack: 1, // Up to 1 extra attack
-      attackMax: 1, // Up to 1 extra max attack
-      accuracy: 2 // Up to 1 extra accuracy
     }
   },
 
@@ -40,16 +35,17 @@ export const COMBAT_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 1,
-      attackMax: 2,
+      attack: 2,
+      attackMax: 4,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 1,
+      accuracy: 2,
       defense: 2
     },
     extraStats: {
-      attack: 1,
-      attackMax: 1,
-      accuracy: 2
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2,
+      defense: 2
     }
   },
 }

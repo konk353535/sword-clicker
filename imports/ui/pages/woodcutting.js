@@ -15,7 +15,7 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   Meteor.call('woodcutting.gameUpdate', (err, res) => {
     this.subscribe('woodcutting');
 
-    Tracker.autorun(() => {
+    this.autorun(() => {
       // Only called when skills have loaded
       if (Skills.findOne()) {
         const woodcuttingSkill = Skills.findOne({ type: 'woodcutting' });

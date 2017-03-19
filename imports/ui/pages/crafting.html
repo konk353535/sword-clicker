@@ -17,6 +17,23 @@
     </div>
 
     <h2>Recipes</h2>
+    <ul class="nav nav-tabs my-3">
+      <li class="nav-item crafting-filter" data-filter="all">
+        <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
+      </li>
+      <li class="nav-item crafting-filter" data-filter="crafting">
+        <a class="nav-link {{#if $eq recipeFilter 'crafting'}}active{{/if}}" href="#">Crafting</a>
+      </li>
+      <li class="nav-item crafting-filter" data-filter="mining">
+        <a class="nav-link {{#if $eq recipeFilter 'mining'}}active{{/if}}" href="#">Mining</a>
+      </li>
+      <li class="nav-item crafting-filter" data-filter="woodcutting">
+        <a class="nav-link {{#if $eq recipeFilter 'woodcutting'}}active{{/if}}" href="#">Woodcutting</a>
+      </li>
+      <li class="nav-item crafting-filter" data-filter="combat">
+        <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
+      </li>
+    </ul>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>

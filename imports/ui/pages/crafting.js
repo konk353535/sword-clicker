@@ -15,6 +15,35 @@ let gameUpdateTimer;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('recipeFilter', 'all');
+
+  Tracker.autorun(() => {
+    if (Skills.findOne()) {
+      console.log('here');
+      const craftingSkill = Skills.findOne({ type: 'crafting' });
+      console.log(craftingSkill);
+      // Pass level so that this is recalled when we get up a level
+      const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
+      console.log(results);
+      if (results) {
+        const resultsMap = {};
+        results.forEach((result) => {
+          resultsMap[result.id] = result;
+        });
+        this.state.set('recipeListMap', resultsMap);
+
+        // Store recipes
+        this.state.set('recipes', results.map((result) => {
+          if (craftingSkill.level < result.requiredCraftingLevel) {
+            result.notMetLevelReq = true;
+          }
+
+          return result;
+        }));
+      }
+    }
+  })
+
   // Show currently crafting items
   Meteor.subscribe('crafting');
 });
@@ -22,6 +51,11 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 Template.craftingPage.events({
   'click .learn-now'(event, instance) {
     Meteor.call('skills.learnSkill', 'crafting');
+  },
+
+  'click .crafting-filter'(event, instance) {
+    const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
+    instance.state.set('recipeFilter', filter);
   },
 
   'keyup .craft-amount-input'(event, instance) {
@@ -52,8 +86,6 @@ Template.craftingPage.events({
     const amountToCraft = parseInt(instance.state.get('craftAmount'));
 
     instance.$('.multiCraftModal').modal('hide');
-    console.log(recipeId);
-    console.log(amountToCraft);
     Meteor.call('crafting.craftItem', recipeId, amountToCraft);
   }
 })
@@ -76,27 +108,21 @@ Template.craftingPage.helpers({
     return Template.instance().state.get('craftAmount');
   },
 
+  recipeFilter() {
+    return Template.instance().state.get('recipeFilter');
+  },
+
   recipes() {
-    const craftingSkill = Skills.findOne({ type: 'crafting' });
-    // Pass level so that this is recalled when we get up a level
-    const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
-    if (!results) {
-      return [];
+    const instance = Template.instance();
+    const recipeFilter = instance.state.get('recipeFilter');
+
+    if (recipeFilter === 'all') {
+      return instance.state.get('recipes');
+    } else {
+      return instance.state.get('recipes').filter((item) => {
+        return item.category === recipeFilter;
+      });
     }
-
-    const resultsMap = {};
-    results.forEach((result) => {
-      resultsMap[result.id] = result;
-    });
-    Template.instance().state.set('recipeListMap', resultsMap);
-
-    return results.map((result) => {
-      if (craftingSkill.level < result.requiredCraftingLevel) {
-        result.notMetLevelReq = true;
-      }
-
-      return result;
-    });
   },
 
   items() {

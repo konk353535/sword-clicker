@@ -4,6 +4,7 @@ export const CRAFTING_CRAFTS = {
   stone_furnace: {
     produces: 'stone_furnace',
     name: 'stone furnace',
+    category: 'crafting',
     id: 'stone_furnace',
     requiredCraftingLevel: 1,
     required: [{
@@ -27,6 +28,7 @@ export const CRAFTING_CRAFTS = {
     produces: 'copper_furnace',
     name: 'copper furnace',
     id: 'copper_furnace',
+    category: 'crafting',
     requiredCraftingLevel: 5,
     required: [{
       type: 'item',
@@ -48,6 +50,7 @@ export const CRAFTING_CRAFTS = {
   copper_bar: {
     produces: 'copper_bar',
     name: 'copper bar',
+    category: 'crafting',
     id: 'copper_bar',
     timeToCraft: 3,
     xp: 3,
@@ -85,6 +88,7 @@ export const CRAFTING_CRAFTS = {
     produces: 'iron_bar',
     name: 'iron bar',
     id: 'iron_bar',
+    category: 'crafting',
     timeToCraft: 3,
     xp: 21,
     maxToCraft: 100,

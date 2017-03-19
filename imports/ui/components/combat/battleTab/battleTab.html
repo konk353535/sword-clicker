@@ -28,9 +28,80 @@
       </div>
     </div>
   {{else}}
-    <button class="btn btn-danger battle-btn mt-3">
-      Find Battle
-    </button>
+
+    {{#if waveDetails}}
+      <h2>The Tower</h2>
+      <p>
+        All players must work together to climb the tower.<br />
+        Once all waves have been cleared the floor boss will be unlocked.<br />
+        Once the boss is defeated the next floor is unlocked for all players.<br />
+      </p>
+    {{/if}}
+
+    <!-- List stuff! -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="align-middle text-center">Name</th>
+          <th class="align-middle text-center">Image</th>
+          {{#if waveDetails}}
+            <th class="align-middle text-center">
+              Remaining Waves 
+            </th>
+          {{/if}}
+          <th class="align-middle text-center">Difficulty</th>
+          <th class="align-middle text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td class="align-middle">{{floorDetails.easy.name}}</td>
+          <td class="align-middle"><img src="images/{{floorDetails.easy.image}}" class="floor-image"></td>
+          {{#if waveDetails}}
+            <th class="align-middle text-center">
+              {{waveDetails.easyWaves}} / {{waveDetails.easyWavesTotal}}
+            </th>
+          {{/if}}
+          <td class="align-middle">Easy</td>
+          <td class="align-middle">
+            <button class="btn btn-danger battle-easy-btn mt-3">
+              Find Battle
+            </button>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td class="align-middle">{{floorDetails.hard.name}}</td>
+          <td class="align-middle"><img src="images/{{floorDetails.hard.image}}" class="floor-image"></td>
+          {{#if waveDetails}}
+            <th class="align-middle text-center">
+              {{waveDetails.hardWaves}} / {{waveDetails.hardWavesTotal}}
+            </th>
+          {{/if}}
+          <td class="align-middle">Hard</td>
+          <td class="align-middle">
+            <button class="btn btn-danger battle-hard-btn mt-3">
+              Find Battle
+            </button>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td class="align-middle">{{floorDetails.veryHard.name}}</td>
+          <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
+          {{#if waveDetails}}
+            <th class="align-middle text-center">
+              {{waveDetails.veryHardWaves}} / {{waveDetails.veryHardWavesTotal}}
+            </th>
+          {{/if}}
+          <td class="align-middle">Very Hard</td>
+          <td class="align-middle">
+            <button class="btn btn-danger battle-veryHard-btn mt-3">
+              Find Battle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   {{/if}}
 
   <!-- Modal -->

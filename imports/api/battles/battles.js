@@ -10,6 +10,9 @@ BattlesSchema = new SimpleSchema({
   createdAt: { type: Date },
   updatedAt: { type: Date },
 
+  floor: { type: Number },
+  difficulty: { type: String },
+
   win: { type: Boolean, optional: true },
   finished: { type: Boolean, defaultValue: false },
 

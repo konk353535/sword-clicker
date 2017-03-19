@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random'
 import _ from 'underscore';
 
+import { Floors } from '/imports/api/floors/floors';
 import { Battles } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -10,14 +11,27 @@ import { addItem } from '/server/api/items/items';
 
 import { ITEMS } from '/server/constants/items/index.js'; // List of items
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
 
 const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
+  let win;
 
   if (actualBattle.units.length > 0) {
+    const incrementData = {};
+    incrementData[`${actualBattle.difficulty}Waves`] = -1
+    // Decrement floor
+    Floors.update({
+      floor: actualBattle.floor,
+      floorComplete: false
+    }, {
+      $inc: incrementData
+    });
+
     // Won
+    win = true;
 
     // Apply xp gains
     const totalXpGain = actualBattle.totalXpGain;
@@ -71,12 +85,13 @@ const completeBattle = function (actualBattle) {
     })
   } else {
     // Lost
+    win = false;
   }
 
   Battles.update(actualBattle._id, {
     $set: {
       finished: true,
-      win: true,
+      win,
       finalTickEvents,
       updatedAt: new Date()   
     }
@@ -91,7 +106,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   const tickEvents = [];
 
   const dealDamage = function(attackerStats, defenderStats) {
-    const hitChance = (50 + (defenderStats.defense - attackerStats.attack)) / 100;
+    const hitChance = (100 + (attackerStats.accuracy - defenderStats.defense)) / 200;
 
     if (hitChance >= Math.random()) {
       // Determine how much damage we will deal
@@ -125,7 +140,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   // Apply player attacks
   actualBattle.units.forEach((unit) => {
-    if (currentTick % unit.stats.attackSpeedTicks === 0) {
+    if (unit && currentTick % unit.stats.attackSpeedTicks === 0) {
       const defender = actualBattle.enemies[0];
       // Attack
       const damageToDeal = dealDamage(unit.stats, defender.stats);
@@ -155,7 +170,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     const unit = actualBattle.units[i];
     if (unit.stats.health <= 0) {
       actualBattle.deadUnits.push(unit);
-      actualBattle.unit.splice(i, 1);
+      actualBattle.units.splice(i, 1);
     }
   }
 
@@ -177,7 +192,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   }
 }
 
-const startBattle = function (battleId) {
+const startBattle = function (battleId, floor, difficulty) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   // Ensure user isn't already in a battle
@@ -187,11 +202,21 @@ const startBattle = function (battleId) {
   }
 
   // Find specified battleId
-  const battleConstants = BATTLES[battleId];
+  let battleConstants = BATTLES[battleId];
 
   // Ensure valid battle id
   if (!battleConstants) {
-    return;
+    // Fallback to check if this is a single enemy battle
+    if (ENEMIES[battleId]) {
+      battleConstants = {
+        enemies: [{
+          id: battleId,
+          amount: 1
+        }]
+      }
+    } else {
+      return;
+    }
   }
 
   updateCombatStats();
@@ -200,6 +225,8 @@ const startBattle = function (battleId) {
     createdAt: new Date(),
     updatedAt: new Date(),
     owners: [Meteor.userId()],
+    floor,
+    difficulty,
     tickEvents: [],
     units: [],
     enemies: []
@@ -262,9 +289,65 @@ const startBattle = function (battleId) {
 
 
 Meteor.methods({
-  'battles.randomBattle'() {
+  'battles.findBattle'(floor, difficulty) {
+    if (!_.contains(['easy', 'hard', 'veryHard'], difficulty)) {
+      return;
+    }
+
+    // Ensure the floor specified is currently open
+    const currentFloor = Floors.findOne({ floorComplete: false });
+
+    if (floor > currentFloor) {
+      return;
+    }
+
+    const possibleBattles = FLOORS[floor][difficulty].possibleBattles;
+
     // Eventually select a random battle appropriate to users level
-    startBattle('rat');
+    startBattle(_.sample(possibleBattles), floor, difficulty);
+  },
+
+  'battles.getWaveDetails'() {
+    const currentFloor = Floors.findOne({ floorComplete: false });
+
+    return {
+      easyWaves: currentFloor.easyWaves,
+      easyWavesTotal: currentFloor.easyWavesTotal,
+      hardWaves: currentFloor.hardWaves,
+      hardWavesTotal: currentFloor.hardWavesTotal,
+      veryHardWaves: currentFloor.veryHardWaves,
+      veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+    }
+  },
+
+  'battles.getFloorDetails'(floorNumber = 1) {
+    // Fetch specified floor details ( constants + current floor details )
+    const currentFloor = Floors.findOne({ floorComplete: false });
+
+    // Can't access floors the community hasn't got to yet
+    if (currentFloor.floor < floorNumber) {
+      return;
+    }
+
+    const specifiedFloorConstants = FLOORS[floorNumber];
+
+    if (currentFloor.floor === floorNumber) {
+      return {
+        waveDetails: {
+          easyWaves: currentFloor.easyWaves,
+          easyWavesTotal: currentFloor.easyWavesTotal,
+          hardWaves: currentFloor.hardWaves,
+          hardWavesTotal: currentFloor.hardWavesTotal,
+          veryHardWaves: currentFloor.veryHardWaves,
+          veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+        },
+        floorDetails: specifiedFloorConstants
+      }
+    }
+
+    return {
+      floorDetails: specifiedFloorConstants
+    }
   }
 });
 

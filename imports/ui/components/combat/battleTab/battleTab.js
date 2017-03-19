@@ -34,6 +34,17 @@ Template.battleTab.onCreated(function bodyOnCreated() {
     });
   }, 20);
 
+  // Fetch details for floor 1
+  Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
+    if (err) {
+      console.log(err);
+    } else {
+      this.state.set('floorDetails', floorDetailsRaw.floorDetails);
+      this.state.set('waveDetails', floorDetailsRaw.waveDetails);
+      this.state.set('usersCurrentFloor', 1);
+    }
+  });
+
   this.autorun(() => {
     const currentBattle = Battles.findOne({ finished: false });
 
@@ -76,6 +87,15 @@ Template.battleTab.onCreated(function bodyOnCreated() {
         return tickEvent.owner === Meteor.userId();
       });
       this.state.set('finishedBattle', finishedBattle);
+      if (this.state.get('waveDetails') && finishedBattle.win) {
+        if (this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0) {
+          Meteor.call('battles.getWaveDetails', (err, res) => {
+            if (res) {
+              this.state.set('waveDetails', res);
+            }
+          });
+        }
+      }
     }
   });
 });
@@ -85,8 +105,16 @@ Template.battleTab.onDestroyed(function () {
 });
 
 Template.battleTab.events({
-  'click .battle-btn'(event, instance) {
-    Meteor.call('battles.randomBattle');
+  'click .battle-easy-btn'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy');
+  },
+
+  'click .battle-hard-btn'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard');
+  },
+
+  'click .battle-veryHard-btn'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard');
   }
 })
 
@@ -99,5 +127,13 @@ Template.battleTab.helpers({
 
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');
+  },
+
+  floorDetails() {
+    return Template.instance().state.get('floorDetails');
+  },
+
+  waveDetails() {
+    return Template.instance().state.get('waveDetails');
   }
 })

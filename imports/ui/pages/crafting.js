@@ -19,12 +19,9 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     if (Skills.findOne()) {
-      console.log('here');
       const craftingSkill = Skills.findOne({ type: 'crafting' });
-      console.log(craftingSkill);
       // Pass level so that this is recalled when we get up a level
       const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
-      console.log(results);
       if (results) {
         const resultsMap = {};
         results.forEach((result) => {

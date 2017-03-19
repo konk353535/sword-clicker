@@ -34,7 +34,7 @@ Template.battleTab.onCreated(function bodyOnCreated() {
     });
   }, 20);
 
-  Tracker.autorun(() => {
+  this.autorun(() => {
     const currentBattle = Battles.findOne({ finished: false });
 
     if (currentBattle) {
@@ -66,7 +66,7 @@ Template.battleTab.onCreated(function bodyOnCreated() {
       finished: true,
       updatedAt: {
         $lte: moment().toDate(),
-        $gte: moment().subtract(5, 'second').toDate()
+        $gte: moment().subtract(1, 'second').toDate()
       }
     });
 

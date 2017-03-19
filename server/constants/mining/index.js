@@ -42,13 +42,13 @@ export const MINING = {
 
     coal: {
       requiredLevel: 3,
-      maxHealth: 50,
+      maxHealth: 40,
       xp: 18,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.2
+      chance: 0.1
     },
 
     iron: {

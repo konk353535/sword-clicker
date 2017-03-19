@@ -13,6 +13,21 @@ import { addXp } from '/server/api/skills/skills';
 
 Meteor.methods({
 
+  'woodcutting.fireWoodcutter'(index) {
+    const woodcutting = Woodcutting.findOne({ owner: this.userId });
+
+    if (woodcutting && woodcutting.woodcutters[index]) {
+      woodcutting.woodcutters.splice(index, 1);
+      Woodcutting.update({
+        owner: this.userId
+      }, {
+        $set: {
+          woodcutters: woodcutting.woodcutters
+        }
+      });
+    }
+  },
+
   'woodcutting.gameUpdate'() {
     // Fetch all db data we need
     const woodcutting = Woodcutting.findOne({ owner: this.userId });

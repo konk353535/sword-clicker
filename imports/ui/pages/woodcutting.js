@@ -53,11 +53,15 @@ Template.woodcuttingPage.helpers({
 
   woodcutting() {
     const woodcutting = Woodcutting.findOne();
+    if (!woodcutting) {
+      return;
+    }
+
     woodcutting.woodcutters.forEach((woodcutter, woodcutterIndex) => {
       woodcutter.primaryAction = {
         description: 'Fire woodcutter',
         method() {
-          console.log(`Firing woodcutter ${woodcutterIndex}`);
+          Meteor.call('woodcutting.fireWoodcutter', woodcutterIndex);
         }
       }
     });
@@ -81,6 +85,9 @@ Template.woodcuttingPage.helpers({
 
   buyableWoodcutters() {
     const woodcuttingSkill = Skills.findOne({ type: 'woodcutting' });
+    if (!woodcuttingSkill) {
+      return;
+    }
     // Pass level so that this is recalled when we get up a level
     const results = ReactiveMethod.call('woodcutting.fetchWoodcutters', woodcuttingSkill.level);
 

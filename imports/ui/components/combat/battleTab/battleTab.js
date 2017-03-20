@@ -34,7 +34,6 @@ Template.battleTab.onCreated(function bodyOnCreated() {
     });
   }, 20);
 
-  // Fetch details for floor 1
   Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
     if (err) {
       console.log(err);
@@ -135,5 +134,9 @@ Template.battleTab.helpers({
 
   waveDetails() {
     return Template.instance().state.get('waveDetails');
+  },
+
+  usersCurrentFloor() {
+    return Template.instance().state.get('usersCurrentFloor');
   }
 })

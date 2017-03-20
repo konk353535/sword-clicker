@@ -63,7 +63,7 @@ Template.craftingPage.events({
   },
 
   'click .craft-row'(event, instance) {
-    const recipeId = instance.$(event.target).closest('.craft-row').data('recipe');
+    const recipeId = $(event.target).closest('.craft-row')[0].getAttribute('data-recipe');
     const recipeListMap = instance.state.get('recipeListMap');
 
     const recipeConstants = recipeListMap[recipeId];

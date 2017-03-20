@@ -15,14 +15,19 @@ export const addItem = function (itemId, amount, specificUserId) {
 
   // Roll stats if we have to
   let extraStats;
+  let myRoll = 0;
+  let maxRoll = 0;
   const itemConstants = ITEMS[itemId];  
   if (itemConstants.extraStats) {
     extraStats = {};
     // Roll for each of the stats
     Object.keys(itemConstants.extraStats).forEach((statName) => {
       const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
+      // Determine how good this roll was
+      maxRoll += 1;
       if (extra > 0) {
         extraStats[statName] = extra;
+        myRoll += (extra / itemConstants.extraStats[statName]);
       }
     });
   }
@@ -39,6 +44,14 @@ export const addItem = function (itemId, amount, specificUserId) {
       category: itemConstants.category,
       itemId,
       owner
+    }
+
+    if (maxRoll > 0) {
+      if (myRoll === 0) {
+        newItem.quality = 0;
+      } else {
+        newItem.quality = Math.round((myRoll / maxRoll) * 100);
+      }
     }
 
     if (extraStats) {

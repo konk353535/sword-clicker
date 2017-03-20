@@ -2,20 +2,16 @@ import { Meteor } from 'meteor/meteor';
 import '/imports/startup/both';
 import '/imports/startup/server';
 
-/*
-SyncedCron.add({
-  name: 'Crunch some important numbers for the marketing department',
-  schedule: function(parser) {
-    // parser is a later.parse object
-    return parser.text('every 2 seconds');
-  },
-  job: function() {
-    console.log('running');
-    return 1;
-  }
-});
-*/
+import { resumeBattle } from '/server/api/battles/battles';
+import { Battles } from '/imports/api/battles/battles';
+
 Meteor.startup(() => {
-  // code to run on server at startup
-   // SyncedCron.start();
+  // Start processing abandoned battles
+  Battles.find({
+    finished: false
+  }).fetch().forEach((existingBattle, battleIndex) => {
+    Meteor.setTimeout(() => {
+      resumeBattle(existingBattle);
+    }, Math.random() * 1000 * battleIndex);
+  });
 });

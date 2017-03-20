@@ -1,8 +1,5 @@
 <template name="battleTab">
   {{#if currentBattle}}
-    <div class="d-flex justify-content-center my-3">
-      Game Timer - {{currentBattle.tick}}
-    </div>
     <div class="d-flex">
       <div
         class="col d-flex flex-column justify-content-end align-items-center"
@@ -28,15 +25,13 @@
       </div>
     </div>
   {{else}}
-
-    {{#if waveDetails}}
-      <h2>The Tower</h2>
-      <p>
-        All players must work together to climb the tower.<br />
-        Once all waves have been cleared the floor boss will be unlocked.<br />
-        Once the boss is defeated the next floor is unlocked for all players.<br />
-      </p>
-    {{/if}}
+    <h1>The Tower - Floor {{usersCurrentFloor}}</h1>
+    <!-- Make this a tooltip -->
+    <p>
+      The community works together to make progress in the tower.<br />
+      When the community clears all the waves associated to a floor a boss becomes fightable.<br />
+      Once the boss is defeated the next floor is unlocked for the entire community.<br />
+    </p>
 
     <!-- List stuff! -->
     <table class="table">
@@ -58,9 +53,9 @@
           <td class="align-middle">{{floorDetails.easy.name}}</td>
           <td class="align-middle"><img src="images/{{floorDetails.easy.image}}" class="floor-image"></td>
           {{#if waveDetails}}
-            <th class="align-middle text-center">
+            <td class="align-middle text-center">
               {{waveDetails.easyWaves}} / {{waveDetails.easyWavesTotal}}
-            </th>
+            </td>
           {{/if}}
           <td class="align-middle">Easy</td>
           <td class="align-middle">
@@ -73,9 +68,9 @@
           <td class="align-middle">{{floorDetails.hard.name}}</td>
           <td class="align-middle"><img src="images/{{floorDetails.hard.image}}" class="floor-image"></td>
           {{#if waveDetails}}
-            <th class="align-middle text-center">
+            <td class="align-middle text-center">
               {{waveDetails.hardWaves}} / {{waveDetails.hardWavesTotal}}
-            </th>
+            </td>
           {{/if}}
           <td class="align-middle">Hard</td>
           <td class="align-middle">
@@ -88,9 +83,9 @@
           <td class="align-middle">{{floorDetails.veryHard.name}}</td>
           <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
           {{#if waveDetails}}
-            <th class="align-middle text-center">
+            <td class="align-middle text-center">
               {{waveDetails.veryHardWaves}} / {{waveDetails.veryHardWavesTotal}}
-            </th>
+            </td>
           {{/if}}
           <td class="align-middle">Very Hard</td>
           <td class="align-middle">

@@ -183,6 +183,12 @@ Meteor.methods({
 
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
+
+      if (itemConstant.stats) {
+        recipeConstant.baseStats = itemConstant.stats;
+        recipeConstant.extraStats = itemConstant.extraStats;
+      }
+
       return recipeConstant;
     }).filter((recipe) => {
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )

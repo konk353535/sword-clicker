@@ -1,7 +1,7 @@
-const VERY_FAST_SPEED = 1.8;
-const FAST_SPEED = 1.2;
-const MEDIUM_SPEED = 0.8;
-const SLOW_SPEED = 0.6;
+const VERY_FAST_SPEED = 0.9;
+const FAST_SPEED = 0.7;
+const MEDIUM_SPEED = 0.5;
+const SLOW_SPEED = 0.3;
 
 export const ENEMIES = {
   // Floor 1 - Easy - 1
@@ -59,7 +59,7 @@ export const ENEMIES = {
       accuracy: 0,
       health: 7,
       maxHealth: 7,
-      defense: 40,
+      defense: 30,
       armor: 300
     },
     rewards: []
@@ -179,7 +179,7 @@ export const ENEMIES = {
       accuracy: 30,
       health: 25,
       maxHealth: 25,
-      defense: 100,
+      defense: 40,
       armor: 350
     },
     rewards: []

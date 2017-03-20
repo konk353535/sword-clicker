@@ -11,7 +11,8 @@ ItemsSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   equipped: { type: Boolean, defaultValue: false },
   slot: { type: String, optional: true },
-  extraStats: { type: Object, blackbox: true, optional: true }
+  extraStats: { type: Object, blackbox: true, optional: true },
+  quality: { type: Number, optional: true }
 });
 
 Items.attachSchema(ItemsSchema);

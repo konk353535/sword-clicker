@@ -1,5 +1,8 @@
 <template name="itemIcon">
   <div class="item-icon-container icon-box" style="position: relative">
+    {{#if item.quality}}
+      <div class="text-muted" style="position: absolute; top: 2px; right: 5px; font-size: 12px;">{{item.quality}}%</div>    
+    {{/if}}
     <img src="/icons/{{item.icon}}.svg" class="ore-icon">
     {{#unless item.hideCount}}
       <div style="position: absolute; bottom: 2px; right: 5px">{{item.amount}}</div>
@@ -8,7 +11,9 @@
 
   <!-- Icon Tooltip -->
   <div class="item-tooltip-content my-tooltip-inner">
-    <h3 class='popover-title text-capitalize'>{{item.name}}</h3>
+    <h3 class='popover-title text-capitalize'>
+      {{item.name}}
+    </h3>
     <div class='popover-content'>
       {{#if item.stats}}
         {{> displayCombatStats stats=item.stats}}

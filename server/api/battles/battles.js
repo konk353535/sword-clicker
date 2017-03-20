@@ -21,14 +21,17 @@ const completeBattle = function (actualBattle) {
 
   if (actualBattle.units.length > 0) {
     const incrementData = {};
-    incrementData[`${actualBattle.difficulty}Waves`] = -1
-    // Decrement floor
-    Floors.update({
-      floor: actualBattle.floor,
-      floorComplete: false
-    }, {
-      $inc: incrementData
-    });
+    incrementData[`${actualBattle.difficulty}Waves`] = -1;
+
+    if (actualBattle.floor && actualBattle.difficulty) {
+      // Decrement floor
+      Floors.update({
+        floor: actualBattle.floor,
+        floorComplete: false
+      }, {
+        $inc: incrementData
+      });
+    }
 
     // Won
     win = true;
@@ -106,7 +109,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   const tickEvents = [];
 
   const dealDamage = function(attackerStats, defenderStats) {
-    const hitChance = (100 + (attackerStats.accuracy - defenderStats.defense)) / 200;
+    const hitChance = 0.4 + ((attackerStats.accuracy - defenderStats.defense) / 200);
 
     if (hitChance >= Math.random()) {
       // Determine how much damage we will deal
@@ -280,6 +283,16 @@ const startBattle = function (battleId, floor, difficulty) {
   // Save battle
   const actualBattleId = Battles.insert(newBattle);
   const actualBattle = Battles.findOne(actualBattleId);
+
+  // Progress battle
+  const battleIntervalId = Meteor.setInterval(() => {
+    progressBattle(actualBattle, battleIntervalId);
+  }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
+}
+
+export const resumeBattle = function(id) {
+  // Find the battle
+  const actualBattle = Battles.findOne(id);
 
   // Progress battle
   const battleIntervalId = Meteor.setInterval(() => {

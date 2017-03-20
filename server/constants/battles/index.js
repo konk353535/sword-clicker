@@ -24,9 +24,9 @@ export const BATTLES = {
     const defense = stats.defense || 0;
     const dmgReduction = this.dmgReduction(armor);
 
-    const effectiveDefense = health * (1 + dmgReduction) * (1 + (defense / 100));
-    const effectiveOffense = ((attack + attackMax) / 2) * (1 + attackSpeed) * (1 + (accuracy / 100));
-    return Math.round(5 + effectiveOffense + effectiveDefense);
+    const effectiveDefense = health * (1 + dmgReduction) * (1 + (defense / 50));
+    const effectiveOffense = ((attack + attackMax) / 2) * (1 + attackSpeed) * (1 + (accuracy / 50));
+    return Math.round((effectiveOffense * 1.5) + (effectiveDefense * 1.5));
   },
 
   dmgReduction(armor) {

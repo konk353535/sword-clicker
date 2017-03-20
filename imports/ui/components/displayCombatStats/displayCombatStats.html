@@ -1,8 +1,17 @@
 <template name="displayCombatStats">
-  {{#each stats}}
-    <div class="d-flex align-items-center">
-      <i class="lilIcon-{{this.key}} small-icon mr-1"></i>
-      {{this.label}}
-    </div>
-  {{/each}}
+  {{#if hasExtraStats}}
+    {{#each withExtraStats}}
+      <div class="d-flex align-items-center">
+        <i class="lilIcon-{{this.key}} small-icon mr-1"></i>
+        {{this.label}}
+      </div>
+    {{/each}}
+  {{else}}
+    {{#each stats}}
+      <div class="d-flex align-items-center">
+        <i class="lilIcon-{{this.key}} small-icon mr-1"></i>
+        {{this.label}}
+      </div>
+    {{/each}}
+  {{/if}}
 </template>

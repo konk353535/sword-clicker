@@ -1,7 +1,7 @@
-const VERY_FAST_SPEED = 1.8;
-const FAST_SPEED = 1.2;
-const MEDIUM_SPEED = 0.8;
-const SLOW_SPEED = 0.6;
+const VERY_FAST_SPEED = 0.9;
+const FAST_SPEED = 0.7;
+const MEDIUM_SPEED = 0.5;
+const SLOW_SPEED = 0.3;
 
 export const COMBAT_ITEMS = {
   copper_dagger: {

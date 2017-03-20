@@ -48,4 +48,77 @@ export const COMBAT_ITEMS = {
       defense: 2
     }
   },
+
+  copper_short_sword: {
+    id: 'copper_short_sword',
+    icon: 'copperShortSword',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'copper short sword',
+    sellPrice: 150,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 2,
+      attackMax: 4,
+      attackSpeed: FAST_SPEED,
+      accuracy: 5,
+    },
+    extraStats: {
+      attack: 2,
+      attackMax: 3,
+      accuracy: 5
+    }
+  },
+
+  copper_long_sword: {
+    id: 'copper_long_sword',
+    icon: 'copperLongSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'copper long sword',
+    sellPrice: 150,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 5,
+      attackMax: 10,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 10,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 7,
+      accuracy: 5
+    }
+  },
+
+  copper_battle_axe: {
+    id: 'copper_battle_axe',
+    icon: 'copperBattleAxe',
+    category: 'combat',
+    weaponType: 'battleAxe',
+    slot: 'mainHand',
+    name: 'copper battle axe',
+    sellPrice: 150,
+    description: 'A slow pure offensive weapon.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 5,
+      attackMax: 20,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 5,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 15
+    }
+  },
 }

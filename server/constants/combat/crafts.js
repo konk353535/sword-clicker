@@ -87,5 +87,137 @@ export const COMBAT_CRAFTS = {
       name: 'crafting',
       level: 3
     }]
+  },
+
+  copper_short_sword: {
+    produces: 'copper_short_sword',
+    name: 'copper short sword',
+    category: 'combat',
+    id: 'copper_short_sword',
+    timeToCraft: 120, // 60
+    xp: 80,
+    maxToCraft: 1,
+    requiredCraftingLevel: 3,
+    required: [{
+      type: 'item',
+      itemId: 'stone_furnace',
+      icon: ITEMS['stone_furnace'].icon,
+      name: ITEMS['stone_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'copper_bar',
+      icon: ITEMS['copper_bar'].icon,
+      name: ITEMS['copper_bar'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 3
+    }]
+  },
+
+  copper_long_sword: {
+    produces: 'copper_long_sword',
+    name: 'copper long sword',
+    category: 'combat',
+    id: 'copper_long_sword',
+    timeToCraft: 120, // 60
+    xp: 80,
+    maxToCraft: 1,
+    requiredCraftingLevel: 3,
+    required: [{
+      type: 'item',
+      itemId: 'stone_furnace',
+      icon: ITEMS['stone_furnace'].icon,
+      name: ITEMS['stone_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'copper_bar',
+      icon: ITEMS['copper_bar'].icon,
+      name: ITEMS['copper_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 3
+    }]
+  },
+
+  copper_battle_axe: {
+    produces: 'copper_battle_axe',
+    name: 'copper battle axe',
+    category: 'combat',
+    id: 'copper_battle_axe',
+    timeToCraft: 120, // 60
+    xp: 80,
+    maxToCraft: 1,
+    requiredCraftingLevel: 3,
+    required: [{
+      type: 'item',
+      itemId: 'stone_furnace',
+      icon: ITEMS['stone_furnace'].icon,
+      name: ITEMS['stone_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'copper_bar',
+      icon: ITEMS['copper_bar'].icon,
+      name: ITEMS['copper_bar'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 3
+    }]
   }
 }

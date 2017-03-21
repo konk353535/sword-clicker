@@ -1,5 +1,43 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
+AccountsTemplates.configure({
+  confirmPassword: true,
+  enablePasswordChange: true,
+  forbidClientAccountCreation: false,
+  overrideLoginErrors: true,
+  sendVerificationEmail: false,
+  lowercaseUsername: false,
+
+  // Appearance
+  showAddRemoveServices: false,
+  // Email field required for this to work
+  showForgotPasswordLink: false,
+  showLabels: true,
+  showPlaceholders: true,
+  showResendVerificationEmailLink: false,
+
+  // Client-side Validation
+  continuousValidation: false,
+  negativeFeedback: false,
+  negativeValidation: true,
+  positiveValidation: true,
+  positiveFeedback: true,
+  showValidating: true
+})
+
+var pwd = AccountsTemplates.removeField('password');
+AccountsTemplates.removeField('email');
+AccountsTemplates.addFields([
+  {
+      _id: "username",
+      type: "text",
+      displayName: "username",
+      required: true,
+      minLength: 5,
+  },
+  pwd
+]);
+
 Router.configure({
   layoutTemplate: 'myLayout',
   yieldTemplates: {
@@ -24,16 +62,13 @@ AccountsTemplates.configureRoute('signUp', {
   path: '/join',
 });
 
-AccountsTemplates.configureRoute('forgotPwd', {
-  name: 'forgotPwd',
-  path: '/forgot-password',
-});
-
 AccountsTemplates.configureRoute('resetPwd', {
   name: 'resetPwd',
   path: '/reset-password',
 });
 
+AccountsTemplates.configureRoute('changePwd')
+
 Router.plugin('ensureSignedIn', {
-    except: ['signIn', 'signUp', 'forgotPwd', 'resetPwd']
+    except: ['signIn', 'signUp', 'changePwd', 'resetPwd']
 });

@@ -23,20 +23,21 @@ export const addXp = function (skillType, xp, specificUserId) {
     if (xpToNextLevel === 0) {
       // Update Level
       Skills.update(skill._id, {
-        $inc: { level: 1 },
+        $inc: { level: 1, totalXp: xp },
         $set: { xp: skill.xp }
       });
     } else {
       // Update Level
       Skills.update(skill._id, {
-        $inc: { level: 1 },
+        $inc: { level: 1, totalXp: xp },
         $set: { xp: (skill.xp % xpToNextLevel) }
       });      
     }
   } else {
     // Just update exp
     Skills.update(skill._id, {
-      $set: { xp: skill.xp }
+      $set: { xp: skill.xp },
+      $inc: { totalXp: xp }
     });
   }
 }
@@ -87,7 +88,8 @@ Meteor.methods({
         type: skillName,
         createdAt: new Date(),
         owner: Meteor.userId(),
-        level: baseLevel
+        level: baseLevel,
+        username: Meteor.user().name
       });
 
       if (skillName === 'crafting') {
@@ -113,6 +115,17 @@ Meteor.methods({
     if (SKILLS[skillName].requirementsToLearn) {
       return SKILLS[skillName].requirementsToLearn;
     }
+  },
+
+  'skills.highscores'(skillName) {
+    return Skills.find({
+      type: skillName
+    }, {
+      sort: {
+        totalXp: -1
+      },
+      limit: 10
+    }).fetch();
   }
 });
 

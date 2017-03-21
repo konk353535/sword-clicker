@@ -1,0 +1,51 @@
+<template name="skillsPage">
+  <div class="d-flex p-3">
+    <!-- Your Skills -->
+    <div class="d-flex flex-column mr-3" style="width: 50%">
+      <h1>Skills</h1>
+      {{#each skills}}
+        <div class="d-flex align-items-center my-1">
+          <i class="lilIcon-{{this.type}} small-icon mr-3"></i>
+          <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
+          <div class="progress" style="flex: 1 1 auto; height: 16px;">
+            <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
+              {{this.percentage}}%
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Skill Highscores -->
+    <div class="d-flex flex-column ml-3" style="width: 50%">
+      <h1>Highscores</h1>
+      <div class="d-flex flex-wrap">
+        {{#each skills}}
+          <div class="icon-border p-2 m-1">
+            <img src="icons/{{this.type}}.svg" class="small-icon">
+          </div>
+        {{/each}}
+      </div>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>XP</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <thead>
+          {{#each highscores}}
+            <tr>
+              <td>{{@index}}</td>
+              <td>{{this.username}}</td>
+              <td>{{this.totalXp}}</td>
+              <td>{{this.level}}</td>
+            </tr>
+          {{/each}}
+        </thead>
+      </table>
+    </div>
+  </div>
+</template>

@@ -9,6 +9,8 @@ SkillsSchema = new SimpleSchema({
   type: { type: String },
   createdAt: { type: Date },
   xp: { type: Number, defaultValue: 0, decimal: true },
+  totalXp: { type: Number, defaultValue: 0, decimal: true },
+  username: { type: String },
   level: { type: Number, defaultValue: 1 },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
 });

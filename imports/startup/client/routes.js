@@ -34,6 +34,19 @@ Router.route('/woodcutting', {
   }
 });
 
+
+Router.route('/skills', {
+
+  name: 'skills',
+
+  template: 'skillsPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/crafting', {
 
   name: 'crafting',

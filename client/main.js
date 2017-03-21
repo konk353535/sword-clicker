@@ -20,6 +20,7 @@ import '../imports/ui/pages/home.js';
 import '../imports/ui/pages/mining.js';
 import '../imports/ui/pages/crafting.js';
 import '../imports/ui/pages/woodcutting.js';
+import '../imports/ui/pages/skills.js';
 import '../imports/ui/pages/combat.js';
 
 // Start Up

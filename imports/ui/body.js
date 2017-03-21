@@ -10,11 +10,15 @@ let floatingTextTimer;
 Template.body.onCreated(function () {
 
   miningTimer = Meteor.setInterval(function () {
-    Meteor.call('mining.gameUpdate');
+    if (Meteor.user()) {
+      Meteor.call('mining.gameUpdate');
+    }
   }, 11111);
 
   woodcuttingTimer = Meteor.setInterval(function () {
-    Meteor.call('woodcutting.gameUpdate');
+    if (Meteor.user()) {
+      Meteor.call('woodcutting.gameUpdate');
+    }
   }, 8888);
 
   floatingTextTimer = Meteor.setInterval(() => {

@@ -7,6 +7,8 @@
     <h1 class="ml-1 mb-0">
       Level {{skill.level}}
     </h1>
-    <small class="ml-3">{{skill.xp}} / {{skill.xpToLevel}}XP</small>
+    {{#if skill}}
+      <small class="ml-3">{{ > formatNumber skill.xp}} / {{ > formatNumber skill.xpToLevel}}XP</small>
+    {{/if}}
   </div>
 </template>

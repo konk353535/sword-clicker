@@ -14,26 +14,6 @@ Template.battleTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   Meteor.subscribe('battles');
 
-  floatingTextInterval = Meteor.setInterval(() => {
-    // Increase height and decrease opacity
-    $(".floating-text").each(function(i) {      
-
-      var y = $(this).position().top;
-      var count = $(this).data('count');
-
-      if (count > 50) {
-        $(this).css('opacity', $(this).css('opacity') - 0.01);
-      }
-
-      $(this).css('top', y - 1.0);
-      if(count > 100){
-        $(this).remove();
-      } else {
-        $(this).data('count', count + 1);
-      }
-    });
-  }, 20);
-
   Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
     if (err) {
       console.log(err);
@@ -81,7 +61,6 @@ Template.battleTab.onCreated(function bodyOnCreated() {
     });
 
     if (finishedBattle) {
-      this.$('.battleTabModal').modal('show');
       finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
         return tickEvent.owner === Meteor.userId();
       });
@@ -114,6 +93,10 @@ Template.battleTab.events({
 
   'click .battle-veryHard-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard');
+  },
+
+  'click .btn-close-finishedBattle'(event, instance) {
+    instance.state.set('finishedBattle', null);
   }
 })
 

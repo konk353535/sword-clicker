@@ -26,12 +26,42 @@
     </div>
   {{else}}
     <h1>The Tower - Floor {{usersCurrentFloor}}</h1>
-    <!-- Make this a tooltip -->
+    <!-- Make this a tooltip
     <p>
       The community works together to make progress in the tower.<br />
       When the community clears all the waves associated to a floor a boss becomes fightable.<br />
       Once the boss is defeated the next floor is unlocked for the entire community.<br />
     </p>
+    -->
+
+    <!-- Post fight banner -->
+    {{#if finishedBattle}}
+      <div class="d-flex alert alert-secondary" role="alert">
+        {{#if finishedBattle.win}}
+          <strong class="text-success d-flex align-items-center mr-1">Victory</strong>
+        {{else}}
+          <strong class="text-danger d-flex align-items-center mr-1">Defeat</strong>
+        {{/if}}
+
+        <div class="d-flex align-items-center" style="flex: 1 1 auto">
+          {{#each finishedBattle.finalTickEvents}}
+            {{#if $eq this.type 'xp'}}
+              <div class="ml-1">
+                +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
+              </div>
+            {{/if}}
+
+            {{#if $eq this.type 'item'}}
+              <div class="ml-1 d-flex align-items-center">
+                +{{this.amount}}
+                <img src="/icons/{{this.icon}}.svg" class="small-icon">
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+        <button type="button" class="btn btn-sm btn-secondary btn-close-finishedBattle">Close</button>
+      </div>
+    {{/if}}
 
     <!-- List stuff! -->
     <table class="table">
@@ -96,43 +126,7 @@
         </tr>
       </tbody>
     </table>
-
   {{/if}}
 
-  <!-- Modal -->
-  <div class="modal battleTabModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLabel">
-            {{#if finishedBattle.win}}
-              <span class="text-success">Victory</span>
-            {{else}}
-              <span class="text-danger">Defeat</span>
-            {{/if}}
-          </h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{#each finishedBattle.finalTickEvents}}
-            {{#if $eq this.type 'xp'}}
-              +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i> xp<br />
-            {{/if}}
 
-            {{#if $eq this.type 'item'}}
-              <div class="d-flex align-items-center">
-                +{{this.amount}}
-                <img src="/icons/{{this.icon}}.svg" class="small-icon">
-              </div>
-            {{/if}}
-          {{/each}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>

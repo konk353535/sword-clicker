@@ -26,17 +26,39 @@ export const addXp = function (skillType, xp, specificUserId) {
         $inc: { level: 1, totalXp: xp },
         $set: { xp: skill.xp }
       });
+      // Can probably be optimized
+      Skills.update({
+        owner,
+        type: 'total'
+      }, {
+        $inc: { level: 1, totalXp: xp }
+      })
     } else {
       // Update Level
       Skills.update(skill._id, {
         $inc: { level: 1, totalXp: xp },
         $set: { xp: (skill.xp % xpToNextLevel) }
-      });      
+      });
+      // Can probably be optimized
+      Skills.update({
+        owner,
+        type: 'total'
+      }, {
+        $inc: { level: 1, totalXp: xp }
+      })
     }
   } else {
     // Just update exp
     Skills.update(skill._id, {
       $set: { xp: skill.xp },
+      $inc: { totalXp: xp }
+    });
+    
+    // This can probably be optimized
+    Skills.update({
+      type: 'total',
+      owner
+    }, {
       $inc: { totalXp: xp }
     });
   }
@@ -89,7 +111,16 @@ Meteor.methods({
         createdAt: new Date(),
         owner: Meteor.userId(),
         level: baseLevel,
-        username: Meteor.user().name
+        username: Meteor.user().username
+      });
+
+      Skills.update({
+        type: 'total',
+        owner: Meteor.userId()
+      }, {
+        $inc: {
+          level: baseLevel
+        }
       });
 
       if (skillName === 'crafting') {

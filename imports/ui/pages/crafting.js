@@ -18,7 +18,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state.set('recipeFilter', 'all');
 
   this.autorun(() => {
-    if (Skills.findOne()) {
+    if (Skills.findOne({ type: 'crafting' })) {
       const craftingSkill = Skills.findOne({ type: 'crafting' });
       // Pass level so that this is recalled when we get up a level
       const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);

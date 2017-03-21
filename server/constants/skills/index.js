@@ -7,6 +7,12 @@ export const SKILLS = {
     }
   },
 
+  total: {
+    xpToLevel() {
+      return -1;
+    }
+  },
+
   crafting: {
     xpToLevel(level) {
       return level * 50 * (1 + (level / 5)) - 40;

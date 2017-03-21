@@ -14,9 +14,15 @@ import '/server/api/users/users.js';
 
 AccountsTemplates.configure({
   postSignUpHook: function (userId, info) {
-    console.log(info);
     Skills.insert({
       type: 'mining',
+      createdAt: new Date(),
+      owner: userId,
+      username: info.username
+    });
+
+    Skills.insert({
+      type: 'total',
       createdAt: new Date(),
       owner: userId,
       username: info.username

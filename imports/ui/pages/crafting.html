@@ -34,26 +34,26 @@
         <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
       </li>
     </ul>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover table-centered ">
       <thead>
         <tr>
-          <th class="align-middle text-center">Name</th>
-          <th class="align-middle text-center">Icon</th>
-          <th class="align-middle text-center">Craft Time</th>          
-          <th class="align-middle text-center">Requirements</th>
-          <th class="align-middle text-center">Description</th>
+          <th>Name</th>
+          <th>Icon</th>
+          <th>Craft Time</th>          
+          <th>Requirements</th>
+          <th>Description</th>
         </tr>  
       </thead>
       <tbody>
         {{#each recipes}}
-          <tr class="craft-row text-center" style="cursor: pointer" data-recipe={{this.id}}>
-            <td class="align-middle text-capitalize">{{this.name}}</td>
-            <td class="align-middle">
+          <tr class="craft-row" style="cursor: pointer" data-recipe={{this.id}}>
+            <td class="text-capitalize">{{this.name}}</td>
+            <td>
               {{ > recipeIcon recipe=this}}
             </td>
-            <td class="align-middle">{{this.timeToCraft}}s</td>
-            <td class="align-middle">{{ > requiredItems requiredItems=this.required}}</td>
-            <td class="align-middle">{{this.description}}</td>
+            <td>{{this.timeToCraft}}s</td>
+            <td>{{ > requiredItems requiredItems=this.required}}</td>
+            <td>{{this.description}}</td>
           </tr>
         {{/each}}
       </tbody>

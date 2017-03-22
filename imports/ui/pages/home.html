@@ -1,3 +1,31 @@
 <template name="homePage">
-  Home
+  <div class="p-3">
+    <div class="d-flex align-items-center">
+      <h1 class="mr-3">Join the fight!</h1>
+      <span>The frontline awaits at floor {{currentFloor}}</span>
+    </div>
+    <h3 class="my-3">Top Contributors</h3>
+    <table class="table table-centered">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th># Very Hard Waves</th>
+          <th># Hard Waves</th>
+          <th># Easy Waves</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each currentFloorHighscores}}
+          <tr>
+            <td>{{this.rank}}</td>
+            <td>{{this.username}}</td>
+            <td>{{this.veryHardWaves}}</td>
+            <td>{{this.hardWaves}}</td>
+            <td>{{this.easyWaves}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </template>

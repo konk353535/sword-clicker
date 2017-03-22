@@ -10,12 +10,12 @@ export const ENEMIES = {
     icon: 'rat',
     name: 'rat',
     stats: {
-      attack: 2,
-      attackMax: 4,
-      attackSpeed: 0.7,
+      attack: 3,
+      attackMax: 5,
+      attackSpeed: FAST_SPEED,
       accuracy: 5,
-      health: 14,
-      maxHealth: 14,
+      health: 35,
+      maxHealth: 35,
       defense: 5,
       armor: 5
     },
@@ -40,8 +40,8 @@ export const ENEMIES = {
       attackMax: 1,
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 80,
-      health: 14,
-      maxHealth: 14,
+      health: 20,
+      maxHealth: 20,
       defense: 2,
       armor: 2
     },
@@ -55,7 +55,7 @@ export const ENEMIES = {
     stats: {
       attack: 1,
       attackMax: 4,
-      attackSpeed: 0.4,
+      attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
       health: 7,
       maxHealth: 7,
@@ -70,12 +70,12 @@ export const ENEMIES = {
     icon: 'snail',
     name: 'snail',
     stats: {
-      attack: 1,
-      attackMax: 10,
-      attackSpeed: 0.3,
+      attack: 3,
+      attackMax: 25,
+      attackSpeed: SLOW_SPEED,
       accuracy: 0,
-      health: 10,
-      maxHealth: 10,
+      health: 25,
+      maxHealth: 25,
       defense: 10,
       armor: 150
     },
@@ -87,12 +87,12 @@ export const ENEMIES = {
     icon: 'skunk',
     name: 'skunk',
     stats: {
-      attack: 2,
-      attackMax: 3,
-      attackSpeed: 0.7,
+      attack: 4,
+      attackMax: 7,
+      attackSpeed: FAST_SPEED,
       accuracy: 80,
-      health: 13,
-      maxHealth: 13,
+      health: 25,
+      maxHealth: 25,
       defense: 0,
       armor: 0
     },
@@ -105,12 +105,12 @@ export const ENEMIES = {
     icon: 'fox',
     name: 'fox',
     stats: {
-      attack: 4,
-      attackMax: 6,
-      attackSpeed: 0.5,
+      attack: 8,
+      attackMax: 16,
+      attackSpeed: MEDIUM_SPEED,
       accuracy: 25,
-      health: 20,
-      maxHealth: 20,
+      health: 70,
+      maxHealth: 70,
       defense: 7,
       armor: 7
     },
@@ -122,12 +122,12 @@ export const ENEMIES = {
     icon: 'cat',
     name: 'cat',
     stats: {
-      attack: 4,
-      attackMax: 6,
+      attack: 10,
+      attackMax: 15,
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 80,
-      health: 10,
-      maxHealth: 10,
+      health: 70,
+      maxHealth: 70,
       defense: 100,
       armor: 0
     },
@@ -139,12 +139,12 @@ export const ENEMIES = {
     icon: 'cuteGoat',
     name: 'cuteGoat',
     stats: {
-      attack: 4,
-      attackMax: 6,
-      attackSpeed: 0.5,
+      attack: 6,
+      attackMax: 8,
+      attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
-      health: 30,
-      maxHealth: 30,
+      health: 100,
+      maxHealth: 100,
       defense: 3,
       armor: 3
     },
@@ -156,12 +156,12 @@ export const ENEMIES = {
     icon: 'cutePig',
     name: 'cutePig',
     stats: {
-      attack: 2,
-      attackMax: 5,
-      attackSpeed: 0.5,
+      attack: 4,
+      attackMax: 10,
+      attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
-      health: 50,
-      maxHealth: 50,
+      health: 120,
+      maxHealth: 120,
       defense: 0,
       armor: 0
     },
@@ -173,14 +173,66 @@ export const ENEMIES = {
     icon: 'cuteTurtle',
     name: 'cuteTurtle',
     stats: {
-      attack: 4,
-      attackMax: 7,
-      attackSpeed: 0.3,
+      attack: 10,
+      attackMax: 20,
+      attackSpeed: SLOW_SPEED,
       accuracy: 30,
-      health: 25,
-      maxHealth: 25,
+      health: 110,
+      maxHealth: 110,
       defense: 40,
       armor: 350
+    },
+    rewards: []
+  },
+
+  // Floor 1 - Very Hard - 1
+  puma: {
+    id: 'puma',
+    icon: 'puma',
+    name: 'puma',
+    stats: {
+      attack: 25,
+      attackMax: 35,
+      attackSpeed: FAST_SPEED,
+      accuracy: 70,
+      health: 500,
+      maxHealth: 500,
+      defense: 50,
+      armor: 100
+    },
+    rewards: []
+  },
+
+  angryRooster: {
+    id: 'angryRooster',
+    icon: 'angryRooster',
+    name: 'angry rooster',
+    stats: {
+      attack: 35,
+      attackMax: 50,
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 80,
+      health: 300,
+      maxHealth: 300,
+      defense: 25,
+      armor: 50
+    },
+    rewards: []
+  },
+
+  elephant: {
+    id: 'elephant',
+    icon: 'elephant',
+    name: 'elephant',
+    stats: {
+      attack: 40,
+      attackMax: 100,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 35,
+      health: 600,
+      maxHealth: 600,
+      defense: 100,
+      armor: 200
     },
     rewards: []
   },

@@ -66,14 +66,14 @@ export const SKILLS = {
 
   health: {
     xpToLevel(level) {
-      return (level - 9) * 50 * (1 + ((level - 9) / 5 )) - 40;
+      return (level - 4) * 50 * (1 + ((level - 4) / 5)) - 40;
     },
 
-    baseLevel: 10,
+    baseLevel: 5,
 
     statsPerLevel: {
-      health: 1,
-      maxHealth: 1
+      health: 10,
+      maxHealth: 10
     }
   }
 }

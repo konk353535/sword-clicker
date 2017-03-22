@@ -32,7 +32,7 @@ export const FLOORS = {
       name: 'Misty Ruins',
       image: 'mistyRuins.jpeg',
       floor: 1,
-      possibleBattles: ['rat', 'rabbit', 'skunk', 'crab', 'snail']
+      possibleBattles: ['elephant', 'puma', 'angryRooster']
     }
   }
 }

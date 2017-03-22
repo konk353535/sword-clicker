@@ -36,16 +36,16 @@ export const COMBAT_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 2,
-      attackMax: 4,
+      attackMax: 3,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 2,
-      defense: 2
+      defense: 4
     },
     extraStats: {
       attack: 2,
       attackMax: 2,
       accuracy: 2,
-      defense: 2
+      defense: 4
     }
   },
 
@@ -64,12 +64,12 @@ export const COMBAT_ITEMS = {
       attack: 2,
       attackMax: 4,
       attackSpeed: FAST_SPEED,
-      accuracy: 5,
+      accuracy: 3,
     },
     extraStats: {
       attack: 2,
-      attackMax: 3,
-      accuracy: 5
+      attackMax: 2,
+      accuracy: 3
     }
   },
 
@@ -86,15 +86,15 @@ export const COMBAT_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 5,
-      attackMax: 10,
+      attack: 4,
+      attackMax: 7,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 10,
+      accuracy: 7,
     },
     extraStats: {
-      attack: 5,
-      attackMax: 7,
-      accuracy: 5
+      attack: 3,
+      attackMax: 5,
+      accuracy: 4
     }
   },
 
@@ -112,13 +112,13 @@ export const COMBAT_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 5,
-      attackMax: 20,
+      attackMax: 15,
       attackSpeed: SLOW_SPEED,
       accuracy: 5,
     },
     extraStats: {
-      attack: 5,
-      attackMax: 15
+      attack: 2,
+      attackMax: 10
     }
   },
 }

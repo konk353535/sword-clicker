@@ -3,6 +3,8 @@ import { Random } from 'meteor/random'
 import _ from 'underscore';
 
 import { Floors } from '/imports/api/floors/floors';
+import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+
 import { Battles } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -22,16 +24,6 @@ const completeBattle = function (actualBattle) {
   if (actualBattle.units.length > 0) {
     const incrementData = {};
     incrementData[`${actualBattle.difficulty}Waves`] = -1;
-
-    if (actualBattle.floor && actualBattle.difficulty) {
-      // Decrement floor
-      Floors.update({
-        floor: actualBattle.floor,
-        floorComplete: false
-      }, {
-        $inc: incrementData
-      });
-    }
 
     // Won
     win = true;
@@ -85,7 +77,39 @@ const completeBattle = function (actualBattle) {
           owner: luckyOwner
         });
       }
-    })
+    });
+
+    if (actualBattle.floor && actualBattle.difficulty) {
+      // Decrement floor
+      Floors.update({
+        floor: actualBattle.floor,
+        floorComplete: false
+      }, {
+        $inc: incrementData
+      });
+
+      // Update all participants contributions
+      owners.forEach((owner) => {
+        // Find owner object
+        const ownerObject = _.findWhere(units, { owner });
+        const updateSelector = { owner, floor: actualBattle.floor };
+
+        const updateModifier = {
+          $inc: {},
+          $setOnInsert: {
+            easyWaves: 0,
+            hardWaves: 0,
+            veryHardWaves: 0,
+            username: ownerObject.ownerUsername
+          }
+        };
+        updateModifier['$inc'][`${actualBattle.difficulty}Waves`] = 1;
+        updateModifier['$setOnInsert'][`${actualBattle.difficulty}Waves`] = 1;
+
+        FloorWaveScores.upsert(updateSelector, updateModifier)
+      });
+    }
+
   } else {
     // Lost
     win = false;
@@ -145,15 +169,17 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.units.forEach((unit) => {
     if (unit && currentTick % unit.stats.attackSpeedTicks === 0) {
       const defender = actualBattle.enemies[0];
-      // Attack
-      const damageToDeal = dealDamage(unit.stats, defender.stats);
-      tickEvents.push({
-        from: unit.id,
-        to: defender.id,
-        eventType: 'damage',
-        label: Math.round(damageToDeal)
-      });
-      defender.stats.health -= damageToDeal;
+      if (defender) {
+        // Attack
+        const damageToDeal = dealDamage(unit.stats, defender.stats);
+        tickEvents.push({
+          from: unit.id,
+          to: defender.id,
+          eventType: 'damage',
+          label: Math.round(damageToDeal)
+        });
+        defender.stats.health -= damageToDeal;
+      }
     }
   });
 
@@ -191,7 +217,9 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);
-    completeBattle(actualBattle);
+    Meteor.setTimeout(() => {
+      completeBattle(actualBattle);
+    }, 2000);
   }
 }
 
@@ -252,6 +280,7 @@ const startBattle = function (battleId, floor, difficulty) {
   newBattle.units.push({
     id: Meteor.userId(),
     owner: Meteor.userId(),
+    ownerUsername: Meteor.user().username,
     stats: userCombatStats,
     xpDistribution: userCombat.xpDistribution,
     icon: 'character'
@@ -361,6 +390,23 @@ Meteor.methods({
     return {
       floorDetails: specifiedFloorConstants
     }
+  },
+
+  'battles.currentFloorHighscores'() {
+    // Fetch current active floor
+    const currentFloor = Floors.findOne({ floorComplete: false });
+
+    // Fetch top 10 for each difficulty
+    return FloorWaveScores.find({
+      floor: currentFloor.floor
+    }, {
+      sort: {
+        veryHardWaves: -1,
+        hardWaves: -1,
+        easyWaves: -1
+      },
+      limit: 10
+    }).fetch()
   }
 });
 
@@ -369,3 +415,4 @@ Meteor.publish('battles', function() {
     owners: this.userId
   });
 });
+

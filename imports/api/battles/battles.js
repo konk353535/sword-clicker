@@ -24,6 +24,7 @@ BattlesSchema = new SimpleSchema({
   'units.$.xpDistribution': { type: Object, blackbox: true},
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
+  'units.$.ownerUsername': { type: String },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
   deadUnits: { type: [Object] },
   'deadUnits.$.stats': { type: Object, blackbox: true },

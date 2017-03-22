@@ -1,17 +1,35 @@
 export const BATTLES = {
 
   xpDistribution(weaponType) {
-    if (weaponType === 'dagger') {
-      return {
+    const weaponDistributions = {
+      'dagger': {
+        attack: 0.5,
+        health: 0.5
+      },
+
+      'spear': {
+        defense: 0.5,
+        health: 0.5
+      },
+
+      'longSword': {
+        attack: 0.5,
+        health: 0.5
+      },
+
+      'shortSword': {
+        attack: 0.25,
+        defense: 0.25,
+        health: 0.5
+      },
+
+      'battleAxe': {
         attack: 0.5,
         health: 0.5
       }
-    } else if (weaponType === 'spear' ){
-      return {
-        defense: 0.5,
-        health: 0.5
-      }
     }
+
+    return weaponDistributions[weaponType]
   },
 
   xpGain(stats) {
@@ -26,7 +44,7 @@ export const BATTLES = {
 
     const effectiveDefense = health * (1 + dmgReduction) * (1 + (defense / 50));
     const effectiveOffense = ((attack + attackMax) / 2) * (1 + attackSpeed) * (1 + (accuracy / 50));
-    return Math.round((effectiveOffense * 1.5) + (effectiveDefense * 1.5));
+    return Math.round((effectiveOffense * 1) + (effectiveDefense * 0.5));
   },
 
   dmgReduction(armor) {

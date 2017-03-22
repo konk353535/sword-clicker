@@ -29,7 +29,7 @@ export const CRAFTING_CRAFTS = {
     name: 'copper furnace',
     id: 'copper_furnace',
     category: 'crafting',
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 4,
     required: [{
       type: 'item',
       itemId: 'copper_bar',
@@ -40,7 +40,7 @@ export const CRAFTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 4
     }],
     timeToCraft: 120, // Time to craft item in seconds
     xp: 50, // Xp earned once crafted
@@ -92,7 +92,7 @@ export const CRAFTING_CRAFTS = {
     timeToCraft: 3,
     xp: 21,
     maxToCraft: 100,
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -117,7 +117,7 @@ export const CRAFTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 6
+      level: 5
     }]
   }
 }

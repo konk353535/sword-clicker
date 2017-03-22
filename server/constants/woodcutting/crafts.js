@@ -52,5 +52,35 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 3
     }]
+  },
+
+  iron_axe: {
+    produces: 'iron_axe',
+    name: 'iron axe',
+    id: 'iron_axe',
+    category: 'woodcutting',
+    timeToCraft: 120, // 60
+    xp: 150,
+    maxToCraft: 1,
+    requiredCraftingLevel: 6,
+    required: [{
+      type: 'item',
+      itemId: 'iron_bar',
+      icon: ITEMS['iron_bar'].icon,
+      name: ITEMS['iron_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'beech_log',
+      icon: ITEMS['beech_log'].icon,
+      name: ITEMS['beech_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 6
+    }]
   }
 }

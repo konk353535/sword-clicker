@@ -54,6 +54,30 @@ export const WOODCUTTING = {
         name: 'woodcutting',
         level: 2
       }]
+    },
+
+    wise_man: {
+      requiredWoodcuttingLevel: 3,
+      icon: 'wiseMan',
+      name: 'wise man',
+      id: 'wise_man',
+      axeId: 'iron_axe',
+      required: [{
+        type: 'item',
+        itemId: 'iron_axe',
+        icon: ITEMS['iron_axe'].icon,
+        name: ITEMS['iron_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 5000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 10
+      }]
     }
   },
 

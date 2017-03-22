@@ -59,5 +59,42 @@ export const MINING_CRAFTS = {
       name: 'crafting',
       level: 3
     }]
+  },
+
+  iron_pickaxe: {
+    produces: 'iron_pickaxe',
+    name: 'iron pickaxe',
+    id: 'iron_pickaxe',
+    category: 'mining',
+    timeToCraft: 120, // 60
+    xp: 120,
+    maxToCraft: 1,
+    requiredCraftingLevel: 6,
+    required: [{
+      type: 'item',
+      itemId: 'copper_furnace',
+      icon: ITEMS['copper_furnace'].icon,
+      name: ITEMS['copper_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'iron_bar',
+      icon: ITEMS['iron_bar'].icon,
+      name: ITEMS['iron_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 6
+    }]
   }
 }

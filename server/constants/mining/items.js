@@ -79,5 +79,30 @@ export const MINING_ITEMS = {
       miner: 74,
       energyRegen: 15
     }
+  },
+
+  iron_pickaxe: {
+    id: 'iron_pickaxe',
+    icon: 'ironPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'iron pickaxe',
+    sellPrice: 1000,
+    description: 'A pickaxe forged from iron. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 75, // Maximum energy stored
+      attack: 15, // Damage per hit
+      energyPerHit: 5, // Energy used per hit
+      energyRegen: 15, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 75,
+      attack: 10,
+      miner: 125,
+      energyRegen: 15
+    }
   }
 }

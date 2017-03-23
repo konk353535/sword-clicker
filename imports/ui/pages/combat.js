@@ -7,13 +7,14 @@ import { Skills } from '/imports/api/skills/skills.js';
 // Component used in the template
 import '/imports/ui/components/combat/battleTab/battleTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
+import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
 
 import './combat.html';
 
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
-  this.state.set('currentTab', 'battle');
+  this.state.set('currentTab', 'group');
 
   this.autorun(() => {
     // Only called when skills have loaded
@@ -50,6 +51,10 @@ Template.combatPage.events({
 
   'click .equipmentTabLink'(event, instance) {
     instance.state.set('currentTab', 'equipment');
+  },
+
+  'click .groupTabLink'(event, instance) {
+    instance.state.set('currentTab', 'group');
   }
 })
 
@@ -68,6 +73,10 @@ Template.combatPage.helpers({
 
   showBattleTab() {
     return Template.instance().state.get('currentTab') === 'battle';
+  },
+
+  showCombatGroupTab() {
+    return Template.instance().state.get('currentTab') === 'group';
   },
 
   learnRequirements() {

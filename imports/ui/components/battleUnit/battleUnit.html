@@ -1,4 +1,7 @@
 <template name="battleUnit">
+  {{#if unit.name}}
+    {{unit.name}}
+  {{/if}}
   <img src="/icons/{{unit.icon}}.svg" id={{unit.id}} class="icon-box">
   <div class="health-bar d-flex justify-content-center">
     {{> formatNumber unit.stats.health}} / {{unit.stats.maxHealth}}

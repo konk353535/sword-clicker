@@ -42,16 +42,16 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 25, // Maximum energy stored
-      attack: 2, // Damage per hit
-      energyPerHit: 2, // Energy used per hit
-      energyRegen: 15, // Energy regen per minute
+      energyStorage: 75, // Maximum energy stored
+      attack: 4, // Damage per hit
+      energyPerHit: 3, // Energy used per hit
+      energyRegen: 30, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 25,
       attack: 1,
-      energyRegen: 15,
+      energyRegen: 30,
       miner: 24
     }
   },
@@ -67,17 +67,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 50, // Maximum energy stored
-      attack: 6, // Damage per hit
+      energyStorage: 75, // Maximum energy stored
+      attack: 10, // Damage per hit
       energyPerHit: 3, // Energy used per hit
-      energyRegen: 15, // Energy regen per minute
-      miner: 1 // Increases effeciency of miners
+      energyRegen: 30, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 50,
       attack: 4,
-      miner: 74,
-      energyRegen: 15
+      miner: 75,
+      energyRegen: 30
     }
   },
 
@@ -92,17 +92,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 75, // Maximum energy stored
-      attack: 15, // Damage per hit
-      energyPerHit: 5, // Energy used per hit
-      energyRegen: 15, // Energy regen per minute
-      miner: 25 // Increases effeciency of miners
+      energyStorage: 100, // Maximum energy stored
+      attack: 20, // Damage per hit
+      energyPerHit: 4, // Energy used per hit
+      energyRegen: 30, // Energy regen per minute
+      miner: 50 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 75,
-      attack: 10,
-      miner: 125,
-      energyRegen: 15
+      attack: 8,
+      miner: 100,
+      energyRegen: 30
     }
   }
 }

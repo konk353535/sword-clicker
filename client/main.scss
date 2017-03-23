@@ -16,7 +16,7 @@
 }
 
 .floor-image {
-  width: 192px;
+  width: 96px;
 }
 
 .alert-secondary {
@@ -67,6 +67,7 @@
 }
 
 .icon-box {
+  user-select: none;
   width: 96px;
   height: 96px;
   border: 1px solid black;

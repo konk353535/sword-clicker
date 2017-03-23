@@ -24,12 +24,15 @@ BattlesSchema = new SimpleSchema({
   'units.$.xpDistribution': { type: Object, blackbox: true},
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
-  'units.$.ownerUsername': { type: String },
+  'units.$.name': { type: String },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
+
   deadUnits: { type: [Object] },
+  'deadUnits.$.xpDistribution': { type: Object, blackbox: true},
   'deadUnits.$.stats': { type: Object, blackbox: true },
   'deadUnits.$.icon': { type: String },
   'deadUnits.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
+  'deadUnits.$.name': { type: String },
   'deadUnits.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
   enemies: { type: [Object] }, // Usually just one enemy, but leave option for groups of enemies

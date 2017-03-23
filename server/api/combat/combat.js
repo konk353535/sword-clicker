@@ -18,7 +18,8 @@ export const updateCombatStats = function () {
     maxHealth: 0,
     defense: 0,
     armor: 0,
-    xpDistribution: {}
+    xpDistribution: {},
+    username: Meteor.user().username
   };
 
   // Fetch all equipped combat items

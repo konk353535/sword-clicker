@@ -4,7 +4,7 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: (1 / 20), // Should be 1 / 20
+    chance: (50000 / 20), // Should be 1 / 20
     max: 10,
     cost(currentProspectorsCount) {
       return 10 + ((currentProspectorsCount - 1) * 60) * (currentProspectorsCount - 1);
@@ -15,13 +15,13 @@ export const MINING = {
     cost(currentMinersCount) {
       return 10 + ((currentMinersCount - 1) * 40) * (currentMinersCount - 1);
     },
-    damagePerSecond: 0.1 // Should be 0.1
+    damagePerSecond: 100000.1 // Should be 0.1
   },
   ores: {
     stone: {
       requiredLevel: 1,
-      maxHealth: 5,
-      xp: 2,
+      maxHealth: 6,
+      xp: 3,
       id: 'stone',
       icon: 'stone',
       name: 'stone',
@@ -32,7 +32,7 @@ export const MINING = {
     copper: {
       requiredLevel: 2,
       maxHealth: 15,
-      xp: 4,
+      xp: 6,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
@@ -48,7 +48,7 @@ export const MINING = {
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.07
+      chance: 0.10
     },
 
     iron: {

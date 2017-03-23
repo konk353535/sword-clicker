@@ -5,6 +5,7 @@ import _ from 'underscore';
 import { Floors } from '/imports/api/floors/floors';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
+import { Groups } from '/imports/api/groups/groups';
 import { Battles } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -100,7 +101,7 @@ const completeBattle = function (actualBattle) {
             easyWaves: 0,
             hardWaves: 0,
             veryHardWaves: 0,
-            username: ownerObject.ownerUsername
+            username: ownerObject.name // To do: Make this work when users have multiple units
           }
         };
         updateModifier['$inc'][`${actualBattle.difficulty}Waves`] = 1;
@@ -226,9 +227,24 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 const startBattle = function (battleId, floor, difficulty) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
-  // Ensure user isn't already in a battle
-  const currentBattle = Battles.findOne({ owners: Meteor.userId(), finished: false });
+  // Is user in a group? If so this is a group battle
+  const currentGroup = Groups.findOne({
+    members: Meteor.userId()
+  });
+
+  let battleParticipants = [Meteor.userId()];
+  if (currentGroup && currentGroup.leader !== Meteor.userId()) {
+    // To do: Show this error to users
+    console.log('You must be the leader to start a battle in a group');
+    return;
+  } else if (currentGroup) {
+    battleParticipants = currentGroup.members;
+  }
+
+  // Ensure battle particiapnts aren't already in a battle
+  const currentBattle = Battles.findOne({ owners: battleParticipants, finished: false });
   if (currentBattle) {
+    // All members of the group must not be in a battle, to start one
     return;
   }
 
@@ -250,12 +266,14 @@ const startBattle = function (battleId, floor, difficulty) {
     }
   }
 
-  updateCombatStats();
+  // This seems overkill? Can we just do this on equip / level up?
+  // To do: Ensure this is no longer required
+  // updateCombatStats();
 
   const newBattle = {
     createdAt: new Date(),
     updatedAt: new Date(),
-    owners: [Meteor.userId()],
+    owners: battleParticipants,
     floor,
     difficulty,
     tickEvents: [],
@@ -263,27 +281,33 @@ const startBattle = function (battleId, floor, difficulty) {
     enemies: []
   }
 
-  // Current users combat stats
-  const userCombat = Combat.findOne({ owner: Meteor.userId() });
-  
-  // Inject user into fights units
-  const userCombatStats = {};
-  COMBAT.statsArr.forEach((statName) => {
-    if (userCombat[statName]) {
-      userCombatStats[statName] = userCombat[statName];
+  // Battle participants combat stats
+  const usersCombatStats = Combat.find({
+    owner: {
+      $in: battleParticipants
     }
-  });
-  // Convert attack speed seconds to attack speed ticks
-  if (userCombatStats.attackSpeed !== undefined) {
-    userCombatStats.attackSpeedTicks = Math.round(ticksPerSecond / userCombatStats.attackSpeed);
-  }
-  newBattle.units.push({
-    id: Meteor.userId(),
-    owner: Meteor.userId(),
-    ownerUsername: Meteor.user().username,
-    stats: userCombatStats,
-    xpDistribution: userCombat.xpDistribution,
-    icon: 'character'
+  }).fetch();
+  
+  // Inject users into fights units
+  usersCombatStats.forEach((userCombat) => {
+    const userCombatStats = {};
+    COMBAT.statsArr.forEach((statName) => {
+      if (userCombat[statName]) {
+        userCombatStats[statName] = userCombat[statName];
+      }
+    });
+    // Convert attack speed seconds to attack speed ticks
+    if (userCombatStats.attackSpeed !== undefined) {
+      userCombatStats.attackSpeedTicks = Math.round(ticksPerSecond / userCombatStats.attackSpeed);
+    }
+    newBattle.units.push({
+      id: userCombat.owner,
+      owner: userCombat.owner,
+      name: userCombat.username || 'Unnamed',
+      stats: userCombatStats,
+      xpDistribution: userCombat.xpDistribution,
+      icon: 'character'
+    });
   });
 
   let totalXpGain = 0;

@@ -3,6 +3,16 @@ const FAST_SPEED = 0.7;
 const MEDIUM_SPEED = 0.5;
 const SLOW_SPEED = 0.3;
 
+const baseLootTable = [{
+  type: 'gold',
+  chance: 1 / 64,
+  amount: 200
+}, {
+  type: 'gold',
+  chance: 1 / 4,
+  amount: 50
+}];
+
 export const ENEMIES = {
   // Floor 1 - Easy - 1
   rat: {
@@ -16,19 +26,15 @@ export const ENEMIES = {
       accuracy: 5,
       health: 35,
       maxHealth: 35,
-      defense: 5,
-      armor: 5
+      defense: 4,
+      armor: 4
     },
-    rewards: [{
+    rewards: baseLootTable.concat([{
       type: 'item',
       itemId: 'rat_head',
       amount: 1,
       chance: 1 / 2
-    }, {
-      type: 'gold',
-      amount: 3,
-      chance: 1 / 2
-    }]
+    }])
   },
   // Floor 1 - Easy - 2
   rabbit: {
@@ -39,13 +45,13 @@ export const ENEMIES = {
       attack: 1,
       attackMax: 1,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 80,
+      accuracy: 70,
       health: 20,
       maxHealth: 20,
       defense: 2,
       armor: 2
     },
-    rewards: []
+    rewards: baseLootTable
   },
   // Floor 1 - Easy - 3
   crab: {
@@ -54,15 +60,15 @@ export const ENEMIES = {
     name: 'crab',
     stats: {
       attack: 1,
-      attackMax: 4,
+      attackMax: 3,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
       health: 7,
       maxHealth: 7,
-      defense: 30,
-      armor: 300
+      defense: 25,
+      armor: 250
     },
-    rewards: []
+    rewards: baseLootTable
   },
   // Floor 1 - Easy - 4
   snail: {
@@ -71,15 +77,15 @@ export const ENEMIES = {
     name: 'snail',
     stats: {
       attack: 3,
-      attackMax: 25,
+      attackMax: 20,
       attackSpeed: SLOW_SPEED,
       accuracy: 0,
-      health: 25,
-      maxHealth: 25,
+      health: 22,
+      maxHealth: 22,
       defense: 10,
       armor: 150
     },
-    rewards: []
+    rewards: baseLootTable
   },
   // Floor 1 - Easy - 5
   skunk: {
@@ -87,16 +93,16 @@ export const ENEMIES = {
     icon: 'skunk',
     name: 'skunk',
     stats: {
-      attack: 4,
-      attackMax: 7,
+      attack: 3,
+      attackMax: 5,
       attackSpeed: FAST_SPEED,
-      accuracy: 80,
+      accuracy: 60,
       health: 25,
       maxHealth: 25,
       defense: 0,
       armor: 0
     },
-    rewards: []
+    rewards: baseLootTable
   },
 
   // Floor 1 - Hard - 1

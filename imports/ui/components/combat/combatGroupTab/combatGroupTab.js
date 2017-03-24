@@ -12,6 +12,20 @@ Template.combatGroupTab.onCreated(function bodyOnCreated() {
 });
 
 Template.combatGroupTab.events({
+  'click .btn-invite'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+ 
+    // Get value from form element
+    const text = Template.instance().$('.group-user-input').val();
+ 
+    // Send invite request
+    Meteor.call('groups.invite', text);
+ 
+    // Clear input
+    Template.instance().$('.group-user-input').val('');
+  },
+
   'submit .invite-user'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -34,6 +48,17 @@ Template.combatGroupTab.events({
     Meteor.call('groups.acceptInvite', inviteId, true);
   },
 
+  'click .btn-kick'(event) {
+    // Fetch value
+    const username = Template.instance().$('.group-user-input').val();
+    Meteor.call('groups.kick', username);
+    Template.instance().$('.group-user-input').val('');
+  },
+
+  'click .leave-group'(event) {
+    Meteor.call('groups.leave');
+  },
+
   'click .decline-btn'(event) {
     // Get target data
     const $target = Template.instance().$(event.target);
@@ -45,9 +70,29 @@ Template.combatGroupTab.events({
 Template.combatGroupTab.helpers({
 
   currentGroup() {
-    return Groups.findOne({
+    const currentGroup = Groups.findOne({
       members: Meteor.userId()
-    })
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+    const memberTransform = function (member) {
+      member.name = member.username;
+      member.icon = "character";
+      member.stats = {
+        health: member.health,
+        maxHealth: member.maxHealth
+      }
+      return member;
+    }
+
+    // Modify members and invites objects as fake 'battle units for display'?
+    currentGroup.membersDetails = currentGroup.membersDetails.map(memberTransform);
+    currentGroup.invitesDetails = currentGroup.invitesDetails.map(memberTransform);
+
+    return currentGroup;
   },
 
   pendingInvites() {

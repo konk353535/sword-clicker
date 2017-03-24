@@ -1,10 +1,62 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 
+import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 
 Meteor.methods({
+
+  'groups.leave'() {
+    const currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+    currentGroup.members = currentGroup.members.filter((member) => {
+      return member !== this.userId;
+    });
+
+    Groups.update(currentGroup._id, {
+      $set :{
+        members: currentGroup.members
+      }
+    });
+  },
+
+  'groups.kick'(username) {
+    // Fetch your current group
+    const currentGroup = Groups.findOne({
+      leader: this.userId
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+    // Find specified username id
+    const targetUser = Users.findOne({
+      username
+    });
+
+    const memberFilter = function (member) {
+      return member !== targetUser._id;
+    }
+
+    // Remove from current group (invites + users)
+    currentGroup.members = currentGroup.members.filter(memberFilter);
+    currentGroup.invites = currentGroup.invites.filter(memberFilter);
+
+    Groups.update(currentGroup._id, {
+      $set: {
+        members: currentGroup.members,
+        invites: currentGroup.invites
+      }
+    });
+  },
 
   'groups.acceptInvite'(id, accept) {
     const targetGroup = Groups.findOne({
@@ -57,6 +109,12 @@ Meteor.methods({
       return;
     }
 
+    // Can't invite / add already added / invited users
+    if (currentGroup && (_.contains(currentGroup.invites, targetUser._id) ||
+      _.contains(currentGroup.members, targetUser._id))) {
+      return;
+    }
+
     if (currentGroup) {
       // Add target user to group
       Groups.update(currentGroup._id, {
@@ -80,25 +138,29 @@ Meteor.publish('groups', function() {
   //Transform function
   var transform = function(doc) {
     // Transfer member ids to names
-    const membersObjects = Users.find({
-      _id: {
+    const membersObjects = Combat.find({
+      owner: {
         $in: doc.members
       }
     }, {
       fields: {
         username: 1,
-        _id: 1
+        _id: 1,
+        health: 1,
+        maxHealth: 1
       }
     }).fetch();
 
-    const invitesObjects = Users.find({
-      _id: {
+    const invitesObjects = Combat.find({
+      owner: {
         $in: doc.invites
       }
     }, {
       fields: {
         username: 1,
-        _id: 1
+        _id: 1,
+        health: 1,
+        maxHealth: 1
       }
     }).fetch();
 

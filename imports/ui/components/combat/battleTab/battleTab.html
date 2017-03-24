@@ -7,9 +7,7 @@
         <h1>My Units</h1>
         <div class="d-flex flex-row flex-wrap">
           {{#each currentBattle.units}}
-            <div class="d-flex flex-column align-items-center justify-content-center">
-              {{> battleUnit unit=this}}
-            </div>
+            {{> battleUnit unit=this}}
           {{/each}}
         </div>
       </div>
@@ -17,9 +15,7 @@
         <h1>Enemy Units</h1>
         <div class="d-flex flex-row flex-wrap">
           {{#each currentBattle.enemies}}
-            <div class="d-flex flex-column align-items-center justify-content-center mx-2">
-              {{> battleUnit unit=this}}
-            </div>
+            {{> battleUnit unit=this}}
           {{/each}}
         </div>
       </div>

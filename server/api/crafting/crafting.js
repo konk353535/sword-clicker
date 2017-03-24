@@ -188,7 +188,7 @@ Meteor.methods({
     });
 
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
-      const recipeConstant = CRAFTING.recipes[craftingKey];
+      const recipeConstant = JSON.parse(JSON.stringify(CRAFTING.recipes[craftingKey]));
       const itemConstant = ITEMS[recipeConstant.produces];
 
       recipeConstant.icon = itemConstant.icon;
@@ -197,6 +197,10 @@ Meteor.methods({
       if (itemConstant.stats) {
         recipeConstant.baseStats = itemConstant.stats;
         recipeConstant.extraStats = itemConstant.extraStats;
+      }
+
+      if (itemConstant.requiredEquip) {
+        recipeConstant.requiredEquip = itemConstant.requiredEquip;
       }
 
       return recipeConstant;

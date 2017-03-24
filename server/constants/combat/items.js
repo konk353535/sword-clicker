@@ -70,7 +70,12 @@ export const COMBAT_ITEMS = {
       attack: 2,
       attackMax: 2,
       accuracy: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 2
+    }]
   },
 
   copper_long_sword: {
@@ -95,7 +100,12 @@ export const COMBAT_ITEMS = {
       attack: 3,
       attackMax: 5,
       accuracy: 4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 2
+    }]
   },
 
   copper_battle_axe: {
@@ -119,6 +129,11 @@ export const COMBAT_ITEMS = {
     extraStats: {
       attack: 2,
       attackMax: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 2
+    }]
   },
 }

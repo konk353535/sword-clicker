@@ -6,11 +6,20 @@
 
   <!-- Icon Tooltip -->
   <div class="recipe-tooltip-content">
-    {{#if recipe.extraStats}}
+    {{#if recipe.baseStats}}
       <div class="my-tooltip-inner">
         <h3 class='popover-title text-capitalize'>{{recipe.name}}</h3>
         <div class='popover-content'>
             {{> displayCombatStats stats=recipe.baseStats extraStats=recipe.extraStats}}
+            {{#if recipe.requiredEquip}}
+              <b>Equip Requirements</b>
+              <div class="d-flex flex-wrap">
+                {{#each recipe.requiredEquip}}
+                  <i class="lilIcon-{{this.name}} small-icon mx-1"></i>
+                  {{this.level}}
+                {{/each}}
+              </div>
+            {{/if}}
         </div>
       </div>
     {{/if}}

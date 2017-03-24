@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
+import { Skills } from '/imports/api/skills/skills';
 import { ITEMS } from '/server/constants/items/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
@@ -101,6 +102,39 @@ Meteor.methods({
     const itemConstants = ITEMS[itemId];
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
+
+    // Can we equip the specified item?
+    if (itemConstants.requiredEquip) {
+      // Make sure we have the correct stats
+      const statNames = itemConstants.requiredEquip.map((skill) => skill.name);
+      const usersStats = Skills.find({
+        owner: Meteor.userId(),
+        type: {
+          $in: statNames
+        }
+      }).fetch();
+
+      let hasEquipRequirements = true;
+      let requirementString;
+      itemConstants.requiredEquip.forEach((requirement) => {
+        const mySkill = _.findWhere(usersStats, { type: requirement.name });
+
+        if (!mySkill) {
+          hasEquipRequirements = false;
+          requirementString = 'You must have atleast level ';
+          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+        } else if (mySkill.level < requirement.level) {
+          hasEquipRequirements = false;
+          requirementString = 'You must have atleast level ';
+          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+        }
+      });
+
+      if (!hasEquipRequirements) {
+        throw new Meteor.Error("equip-requirement", requirementString);
+      }
+    }
+
 
     // Unequip existing items
     Items.update({

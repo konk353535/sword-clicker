@@ -14,7 +14,7 @@ import './combat.html';
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
-  this.state.set('currentTab', 'group');
+  this.state.set('currentTab', 'battle');
 
   this.autorun(() => {
     // Only called when skills have loaded

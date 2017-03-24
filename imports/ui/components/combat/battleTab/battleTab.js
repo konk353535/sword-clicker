@@ -28,7 +28,7 @@ Template.battleTab.onCreated(function bodyOnCreated() {
     const currentBattle = Battles.findOne({ finished: false });
 
     if (currentBattle) {
-      currentBattle.tickEvents.forEach((tickEvent) => {
+      currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
         const offset = $(`#${tickEvent.to}`).offset();
         let color;
         if (tickEvent.label == 0) {
@@ -37,7 +37,14 @@ Template.battleTab.onCreated(function bodyOnCreated() {
           color = 'red';
         }
 
-        offset.left += (-10 + Math.round(Math.random() * 60));
+        // Determine left based on tick # + tickEventIndex
+        offset.left += -20 + ((tickEventIndex % 3) * 45); // -10 to 50
+
+        // Attempt to push floating text down when more then 3
+        if (tickEventIndex % 6 >= 3) {
+          offset.top += 40;
+        }
+
         let element = `
           <p
             class='floating-text'

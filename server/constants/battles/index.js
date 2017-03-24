@@ -53,7 +53,7 @@ export const BATTLES = {
 
   tickDuration: 200, // How long each tick lasts
 
-  rat_pack: {
+  small_rat_pack: {
     enemies: [{
       id: 'rat',
       amount: 3

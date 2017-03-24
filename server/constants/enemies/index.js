@@ -20,12 +20,12 @@ export const ENEMIES = {
     icon: 'rat',
     name: 'rat',
     stats: {
-      attack: 3,
-      attackMax: 5,
+      attack: 2,
+      attackMax: 3,
       attackSpeed: FAST_SPEED,
       accuracy: 5,
-      health: 35,
-      maxHealth: 35,
+      health: 10,
+      maxHealth: 10,
       defense: 4,
       armor: 4
     },
@@ -33,7 +33,7 @@ export const ENEMIES = {
       type: 'item',
       itemId: 'rat_head',
       amount: 1,
-      chance: 1 / 2
+      chance: 1 / 4
     }])
   },
   // Floor 1 - Easy - 2

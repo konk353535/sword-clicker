@@ -369,6 +369,11 @@ Meteor.methods({
 
     const possibleBattles = FLOORS[floor][difficulty].possibleBattles;
 
+    if (currentFloor[`${difficulty}Waves`] <= 0) {
+      floor = null;
+      difficulty = null;
+    }
+
     // Eventually select a random battle appropriate to users level
     startBattle(_.sample(possibleBattles), floor, difficulty);
   },

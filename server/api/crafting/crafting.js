@@ -132,8 +132,10 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
+  const maxConcurrentCrafts = CRAFTING.baseMaxCrafts;
+
   // Are we already crafting?
-  if (crafting.currentlyCrafting && crafting.currentlyCrafting.length > 0) {
+  if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
     console.log('Already crafting');
     return;
   }
@@ -152,15 +154,23 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
+  let startDate = new Date();
+
+  if (crafting.currentlyCrafting.length > 0) {
+    // Get latest crafting time and use that for next items crafting start time
+    // This will make crafting sequential
+    startDate = _.sortBy(crafting.currentlyCrafting, 'endDate')[0].endDate;
+  }
+
   // Add to currently crafting...
   Crafting.update(crafting._id, {
     $push: {
       currentlyCrafting: {
         itemId: recipeConstants.produces,
-        startDate: new Date(),
+        startDate,
         recipeId,
         amount: amountToCraft,
-        endDate: moment().add(recipeConstants.timeToCraft * amountToCraft, 'seconds').toDate()
+        endDate: moment(startDate).add(recipeConstants.timeToCraft * amountToCraft, 'seconds').toDate()
       }
     }
   });

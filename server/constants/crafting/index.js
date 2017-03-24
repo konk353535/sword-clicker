@@ -14,5 +14,7 @@ export const CRAFTING = {
     COMBAT_CRAFTS,
     MINING_CRAFTS,
     WOODCUTTING_CRAFTS
-  )
+  ),
+
+  baseMaxCrafts: 2
 }

@@ -13,53 +13,61 @@ export const addItem = function (itemId, amount, specificUserId) {
     owner = Meteor.userId();
   }
 
-  // Roll stats if we have to
-  let extraStats;
-  let myRoll = 0;
-  let maxRoll = 0;
+  const newItemsList = [];
   const itemConstants = ITEMS[itemId];  
+
+  // Roll for stats if required
   if (itemConstants.extraStats) {
-    extraStats = {};
-    // Roll for each of the stats
-    Object.keys(itemConstants.extraStats).forEach((statName) => {
-      const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
-      // Determine how good this roll was
-      maxRoll += 1;
-      if (extra > 0) {
-        extraStats[statName] = extra;
-        myRoll += (extra / itemConstants.extraStats[statName]);
+    for (let i = 0; i < amount; i++) {
+      // Generate unique stats for each item
+      const extraStats = {};
+      let myRoll = 0;
+      let maxRoll = 0;
+
+      // Roll for each of the stats
+      Object.keys(itemConstants.extraStats).forEach((statName) => {
+        const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
+        // Determine how good this roll was
+        maxRoll += 1;
+        if (extra > 0) {
+          extraStats[statName] = extra;
+          myRoll += (extra / itemConstants.extraStats[statName]);
+        }
+      });
+
+      let quality = 0;
+      if (myRoll === 0 || maxRoll === 0) {
+        quality = 0;
+      } else {
+        quality = Math.round((myRoll / maxRoll) * 100);
       }
-    });
+
+      newItemsList.push({
+        category: itemConstants.category,
+        itemId,
+        owner,
+        extraStats,
+        quality
+      });
+    }
   }
 
-  const currentItem = Items.findOne({ owner, itemId, extraStats });
-
-  if (currentItem) {
-    // Update
-    Items.update({ _id: currentItem._id }, {
-      $inc: { amount: amount }
-    });
+  if (newItemsList.length === 1) {
+    const extraStats = newItemsList[0].extraStats;
+    const currentItem = Items.findOne({ owner, itemId, extraStats });
+    if (currentItem) {
+      // Update
+      Items.update({ _id: currentItem._id }, {
+        $inc: { amount: amount }
+      });
+    } else {
+      Items.insert(newItemsList[0]);
+    }
   } else {
-    const newItem = {
-      category: itemConstants.category,
-      itemId,
-      owner
-    }
-
-    if (maxRoll > 0) {
-      if (myRoll === 0) {
-        newItem.quality = 0;
-      } else {
-        newItem.quality = Math.round((myRoll / maxRoll) * 100);
-      }
-    }
-
-    if (extraStats) {
-      newItem.extraStats = extraStats;
-    }
-
-    // Insert
-    Items.insert(newItem);
+    newItemsList.forEach((newItem) => {
+      // Insert
+      Items.insert(newItem);
+    });
   }
 }
 

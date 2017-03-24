@@ -19,7 +19,7 @@ export const addXp = function (skillType, xp, specificUserId) {
 
   skill.xp += xp;
   const xpToNextLevel = skillConstants.xpToLevel(skill.level);
-  if (skill.xp > xpToNextLevel) {
+  if (skill.xp >= xpToNextLevel) {
     if (xpToNextLevel === 0) {
       // Update Level
       Skills.update(skill._id, {

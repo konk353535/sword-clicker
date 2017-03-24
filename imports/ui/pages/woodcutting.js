@@ -39,6 +39,11 @@ Template.woodcuttingPage.events({
     Template.instance().$('.woodcuttersModal').modal('show');      
   },
 
+  'click .confirm-fire-btn'(event, instance) {
+    Meteor.call('woodcutting.fireWoodcutter', instance.state.get('firingWoodcutterIndex'));
+    instance.$('.fireModal').modal('hide');
+  },
+
   'click .craft-row'(event, instance) {
     const woodcutterId = instance.$(event.target).closest('.craft-row').data('recipe');
 
@@ -53,6 +58,7 @@ Template.woodcuttingPage.helpers({
 
   woodcutting() {
     const woodcutting = Woodcutting.findOne();
+    const instance = Template.instance();
     if (!woodcutting) {
       return;
     }
@@ -61,7 +67,8 @@ Template.woodcuttingPage.helpers({
       woodcutter.primaryAction = {
         description: 'Fire woodcutter',
         method() {
-          Meteor.call('woodcutting.fireWoodcutter', woodcutterIndex);
+          instance.state.set('firingWoodcutterIndex', woodcutterIndex);
+          instance.$('.fireModal').modal('show');
         }
       }
     });

@@ -12,12 +12,14 @@
       {{/each}}
     </div>
 
-    <div class="d-flex align-items-center mb-3">
-      <h2 class="mb-0">
+    <div class="d-flex align-items-center mt-3">
+      <h2>
         Woodcutters
       </h2>
       <small class="ml-3 mt-1">{{woodcutting.woodcutters.length}} / {{woodcutting.maxWoodcutters}}</small>
     </div>
+
+    <p>Woodcutters collect wood over time</p>
 
     <div class="d-flex flex-wrap">
       <!-- List of my woodcutters here -->
@@ -47,7 +49,29 @@
     </div>
   {{/if}}
 
+  <!-- Fire woodcutters modal -->
   <!-- Modal -->
+  <div class="modal fireModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm firing woodcutter</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Confirm you want to fire this woodcutter?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger confirm-fire-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy Woodcutters Modal -->
   <div class="modal woodcuttersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">

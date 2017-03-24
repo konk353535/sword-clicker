@@ -8,7 +8,6 @@ import './combatGroupTab.html';
 
 Template.combatGroupTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.subscribe('groups');
 });
 
 Template.combatGroupTab.events({
@@ -70,29 +69,9 @@ Template.combatGroupTab.events({
 Template.combatGroupTab.helpers({
 
   currentGroup() {
-    const currentGroup = Groups.findOne({
+    return Groups.findOne({
       members: Meteor.userId()
     });
-
-    if (!currentGroup) {
-      return;
-    }
-
-    const memberTransform = function (member) {
-      member.name = member.username;
-      member.icon = "character";
-      member.stats = {
-        health: member.health,
-        maxHealth: member.maxHealth
-      }
-      return member;
-    }
-
-    // Modify members and invites objects as fake 'battle units for display'?
-    currentGroup.membersDetails = currentGroup.membersDetails.map(memberTransform);
-    currentGroup.invitesDetails = currentGroup.invitesDetails.map(memberTransform);
-
-    return currentGroup;
   },
 
   pendingInvites() {

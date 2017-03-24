@@ -164,8 +164,20 @@ Meteor.publish('groups', function() {
       }
     }).fetch();
 
-    doc.membersDetails = membersObjects;
-    doc.invitesDetails = invitesObjects;
+    const memberTransform = function (member) {
+      member.name = member.username;
+      member.icon = "character";
+      member.stats = {
+        health: member.health,
+        maxHealth: member.maxHealth
+      }
+      return member;
+    }
+
+    // Modify members and invites objects as fake 'battle units for display'?
+    doc.membersDetails = membersObjects.map(memberTransform);
+    doc.invitesDetails = invitesObjects.map(memberTransform);
+
     return doc;
   }
 

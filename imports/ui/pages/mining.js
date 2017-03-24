@@ -89,7 +89,7 @@ Template.miningPage.helpers({
           description: 'equip',
           item,
           method() {
-            Meteor.call('items.equip', this.item._id, this.item.itemId, , (err, res) => {
+            Meteor.call('items.equip', this.item._id, this.item.itemId, (err, res) => {
               if (err) {
                 toastr.warning(err.reason);
               }

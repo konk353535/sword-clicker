@@ -116,6 +116,19 @@ const completeBattle = function (actualBattle) {
     win = false;
   }
 
+  // Update all player units healths
+  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits);
+  allFriendlyUnits.forEach((unit) => {
+    // Update relevant stuff
+    Combat.update({
+      owner: unit.owner
+    }, {
+      $set: {
+        health: (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+      }
+    });
+  });
+
   Battles.update(actualBattle._id, {
     $set: {
       finished: true,

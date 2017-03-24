@@ -2,10 +2,12 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
+import moment from 'moment';
 
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
+import { COMBAT } from '/server/constants/combat/index.js';
 
 export const updateCombatStats = function () {
   // Build up our object of skills
@@ -14,8 +16,8 @@ export const updateCombatStats = function () {
     attackMax: 0,
     attackSpeed: 0,
     accuracy: 0,
-    health: 0,
     maxHealth: 0,
+    maxEnergy: COMBAT.baseMaxEnergy,
     defense: 0,
     armor: 0,
     xpDistribution: {},
@@ -88,6 +90,42 @@ export const updateCombatStats = function () {
     $set: playerStats
   });
 };
+
+Meteor.methods({
+  'combat.gameUpdate'() {
+    // Update health and energy
+    const currentCombat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+
+    // Time since last update
+    const now = moment();
+    const minutesElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asMinutes();
+
+    let isDirty = false;
+    if (currentCombat.energy <= currentCombat.maxEnergy) {
+      currentCombat.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
+      if (currentCombat.energy > currentCombat.maxEnergy) {
+        currentCombat.energy = currentCombat.maxEnergy;
+      }
+    }
+
+    if (currentCombat.health <= currentCombat.maxHealth) {
+      currentCombat.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
+      if (currentCombat.health > currentCombat.maxHealth) {
+        currentCombat.health = currentCombat.maxHealth;
+      }
+    }
+
+    Combat.update(currentCombat._id, {
+      $set: {
+        lastGameUpdated: new Date(),
+        health: currentCombat.health,
+        energy: currentCombat.energy
+      }
+    });
+  }
+})
 
 Meteor.publish('combat', function() {
   return Combat.find({

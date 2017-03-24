@@ -42,7 +42,7 @@
               <div class="d-flex align-items-center ml-1">
                 {{this.value}}
                 {{#if this.maxValue}}
-                  - {{this.maxValue}}
+                  - {{> formatNumber this.maxValue}}
                 {{/if}}
               </div>
             </div>
@@ -56,7 +56,7 @@
                 <img src="/icons/{{this.icon}}.svg" class="small-icon">
               </div>
               <div class="d-flex align-items-center ml-1">
-                {{this.value}}
+                {{> formatNumber this.value}}
                 {{#if this.maxValue}}
                   / {{this.maxValue}}
                 {{/if}}

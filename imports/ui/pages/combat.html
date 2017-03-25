@@ -1,11 +1,21 @@
 <template name="combatPage">
   {{#if attackSkill}}
-    <div class="d-flex flex-column my-3" style="max-width: 300px">
-      <div class="d-flex align-items-center">
-        <i class="lilIcon-energyPerHit small-icon mr-1"></i> {{> formatNumber combat.energy}} / {{combat.maxEnergy}}
+    <div class="d-flex">
+      <div class="d-flex flex-column my-3" style="width: 200px">
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-energyPerHit small-icon mr-1"></i> {{> formatNumber combat.energy}} / {{combat.maxEnergy}}
+        </div>
+        <div class="progress mt-1" style="width: 100%">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.energyPercentage}}%" aria-valuenow="{{combat.energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       </div>
-      <div class="progress mt-1" style="width: 100%">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.energyPercentage}}%" aria-valuenow="{{combat.energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="d-flex flex-column ml-3 my-3" style="width: 200px">
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-health small-icon mr-1"></i> {{> formatNumber combat.health}} / {{combat.maxHealth}}
+        </div>
+        <div class="progress mt-1" style="width: 100%">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       </div>
     </div>
     <ul class="nav nav-tabs my-3">

@@ -4,6 +4,8 @@ import { Items } from '/imports/api/items/items';
 
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { updateCombatStats } from '/server/api/combat/combat';
+
 import { SKILLS } from '/server/constants/skills/index.js';
 import _ from 'underscore';
 
@@ -133,6 +135,8 @@ Meteor.methods({
           woodcutters: [],
           lastGameUpdated: new Date()
         });
+      } else if (skillName === 'attack') {
+        updateCombatStats();
       }
     }
   },

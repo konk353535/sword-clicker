@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Groups } from '/imports/api/groups/groups.js';
+import { Combat } from '/imports/api/combat/combat.js';
 
 import './combatGroupTab.html';
 
@@ -71,6 +72,35 @@ Template.combatGroupTab.helpers({
   currentGroup() {
     return Groups.findOne({
       members: Meteor.userId()
+    });
+  },
+
+  currentGroupMembers() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (!currentGroup) {
+      return [];
+    }
+
+    const combats = Combat.find({
+      owner: {
+        $in: currentGroup.members
+      }
+    });
+
+    return combats.fetch().map((userCombat) => {
+      // Map stuff we want to read into stats
+      userCombat.stats = {
+        health: userCombat.health,
+        maxHealth: userCombat.maxHealth,
+        energy: userCombat.energy,
+        maxEnergy: userCombat.maxEnergy
+      }
+      userCombat.name = userCombat.username;
+      userCombat.icon = 'character';
+      return userCombat;
     });
   },
 

@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
+import { Groups } from '/imports/api/groups/groups';
+
 import moment from 'moment';
 
 import { ITEMS } from '/server/constants/items/index.js';
@@ -128,7 +130,20 @@ Meteor.methods({
 })
 
 Meteor.publish('combat', function() {
-  return Combat.find({
-    owner: this.userId
+  const currentGroup = Groups.findOne({
+    members: this.userId
   });
+
+  if (!currentGroup) {
+    return Combat.find({
+      owner: this.userId
+    });
+  }
+
+  return Combat.find({
+    owner: {
+      $in: currentGroup.members
+    }
+  });
+
 });

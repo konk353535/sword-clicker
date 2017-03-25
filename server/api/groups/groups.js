@@ -137,20 +137,7 @@ Meteor.publish('groups', function() {
 
   //Transform function
   var transform = function(doc) {
-    // Transfer member ids to names
-    const membersObjects = Combat.find({
-      owner: {
-        $in: doc.members
-      }
-    }, {
-      fields: {
-        username: 1,
-        _id: 1,
-        health: 1,
-        maxHealth: 1
-      }
-    }).fetch();
-
+    // Transfer invite id to invite names
     const invitesObjects = Combat.find({
       owner: {
         $in: doc.invites
@@ -175,7 +162,6 @@ Meteor.publish('groups', function() {
     }
 
     // Modify members and invites objects as fake 'battle units for display'?
-    doc.membersDetails = membersObjects.map(memberTransform);
     doc.invitesDetails = invitesObjects.map(memberTransform);
 
     return doc;

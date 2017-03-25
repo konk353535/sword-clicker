@@ -80,6 +80,7 @@ Template.combatPage.helpers({
   combat() {
     const currentCombat = Combat.findOne({});
     currentCombat.energyPercentage = currentCombat.energy / currentCombat.maxEnergy * 100;
+    currentCombat.healthPercentage = currentCombat.health / currentCombat.maxHealth * 100;
     return currentCombat;
   },
 

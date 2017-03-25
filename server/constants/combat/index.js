@@ -10,6 +10,13 @@ export const COMBAT = {
 
   baseHealthRegenPerMinute: 1,
 
+  energyConsumption: {
+    easy: 1,
+    hard: 2,
+    veryHard: 3,
+    boss: 10
+  },
+
   statsArr: [
     'attack',
     'attackMax',

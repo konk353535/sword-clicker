@@ -23,7 +23,6 @@ const updateTooltips = function (instance, tooltipNames) {
 }
 
 Template.equipmentTab.onCreated(function bodyOnCreated() {
-  Meteor.subscribe('combat');
   this.state = new ReactiveDict();
   this.state.set('tooltipsLoaded', false);
 

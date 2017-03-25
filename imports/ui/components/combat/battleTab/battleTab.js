@@ -89,17 +89,23 @@ Template.battleTab.onDestroyed(function () {
   Meteor.clearInterval(floatingTextInterval);
 });
 
+const findBattleHandler = function (err, res) {
+  if (err) {
+    toastr.warning(err.reason);
+  }
+}
+
 Template.battleTab.events({
   'click .battle-easy-btn'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy');
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
   },
 
   'click .battle-hard-btn'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard');
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard', findBattleHandler);
   },
 
   'click .battle-veryHard-btn'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard');
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
   },
 
   'click .btn-close-finishedBattle'(event, instance) {

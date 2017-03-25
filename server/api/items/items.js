@@ -89,7 +89,7 @@ Meteor.methods({
       $set: {
         equipped: false
       }
-    });
+    }, { multi: true });
 
     if (itemCategory === 'combat') {
       updateCombatStats();
@@ -145,7 +145,7 @@ Meteor.methods({
       $set: {
         equipped: false
       }
-    });
+    }, { multi: true });
 
     // Equip specified item
     Items.update({

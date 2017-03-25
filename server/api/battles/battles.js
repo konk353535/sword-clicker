@@ -300,9 +300,17 @@ const startBattle = function (battleId, floor, difficulty) {
       $in: battleParticipants
     }
   }).fetch();
-  
-  // Inject users into fights units
+
+  let hasEnergy = true;
+  let battleEnergyCost = COMBAT.energyConsumption[difficulty] || 1;
+
+  // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
+    if (userCombat.energy < battleEnergyCost) {
+      const requirementString = `${userCombat.username} does not have enough energy to start this battle`;
+      throw new Meteor.Error("not-enough-energy", requirementString);
+      hasEnergy = false;
+    }
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
       if (userCombat[statName]) {
@@ -323,9 +331,13 @@ const startBattle = function (battleId, floor, difficulty) {
     });
   });
 
+  if (!hasEnergy) {
+    return;
+  }
+
   let totalXpGain = 0;
 
-  // Inject enemies into the fight
+  // Inject enemies into the battle
   battleConstants.enemies.forEach((enemy) => {
     const enemyConstants = ENEMIES[enemy.id];
     const enemyStats = enemyConstants.stats;
@@ -349,6 +361,17 @@ const startBattle = function (battleId, floor, difficulty) {
   // Save battle
   const actualBattleId = Battles.insert(newBattle);
   const actualBattle = Battles.findOne(actualBattleId);
+
+  // Take energy from all members
+  Combat.update({
+    owner: {
+      $in: battleParticipants
+    }
+  }, {
+    $inc: {
+      energy: (battleEnergyCost * -1)
+    }
+  }, { multi: true });
 
   // Progress battle
   const battleIntervalId = Meteor.setInterval(() => {

@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
@@ -17,6 +18,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   this.state.set('hasLearnRequirements', false);
   this.state.set('currentTab', 'battle');
   this.subscribe('groups');
+  this.subscribe('combat');
 
   this.autorun(() => {
     // Only called when skills have loaded
@@ -73,6 +75,12 @@ Template.combatPage.helpers({
     return Groups.findOne({
       members: Meteor.userId()
     });
+  },
+
+  combat() {
+    const currentCombat = Combat.findOne({});
+    currentCombat.energyPercentage = currentCombat.energy / currentCombat.maxEnergy * 100;
+    return currentCombat;
   },
 
   showEquipmentTab() {

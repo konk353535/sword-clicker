@@ -1,5 +1,36 @@
 <template name="battleTab">
   {{#if currentBattle}}
+    <!-- Ability List -->
+    <div class="d-flex my-3">
+      <div class="ability-icon-container">
+        <div class="ability-icon disabled">
+          <img src="icons/doubleStab.svg">
+        </div>
+        <div class="cooldown-text">
+          <span>9</span>
+        </div>
+      </div>
+      <div class="ability-icon-container">
+        <div class="ability-icon">
+          <img src="icons/doubleStab.svg">
+        </div>
+      </div>
+      <div class="ability-icon-container">
+        <div class="ability-icon">
+          <img src="icons/doubleStab.svg">
+        </div>
+      </div>
+      <div class="ability-icon-container">
+        <div class="ability-icon disabled">
+          <img src="icons/doubleStab.svg">
+        </div>
+        <div class="cooldown-text">
+          <span>9</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Battle Area -->
     <div class="d-flex">
       <div
         class="col d-flex flex-column justify-content-end align-items-center"

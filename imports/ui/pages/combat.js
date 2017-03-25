@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
+import { Battles } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
 // Component used in the template
@@ -15,10 +16,13 @@ import './combat.html';
 
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
   this.state.set('hasLearnRequirements', false);
   this.state.set('currentTab', 'battle');
+
   this.subscribe('groups');
   this.subscribe('combat');
+  this.subscribe('battles');
 
   this.autorun(() => {
     // Only called when skills have loaded
@@ -94,6 +98,12 @@ Template.combatPage.helpers({
 
   showCombatGroupTab() {
     return Template.instance().state.get('currentTab') === 'group';
+  },
+
+  currentBattle() {
+    return Battles.findOne({
+      finished: false
+    });
   },
 
   learnRequirements() {

@@ -1,45 +1,49 @@
 <template name="combatPage">
   {{#if attackSkill}}
-    <div class="d-flex">
-      <div class="d-flex flex-column my-3" style="width: 200px">
-        <div class="d-flex align-items-center">
-          <i class="lilIcon-energyPerHit small-icon mr-1"></i> {{> formatNumber combat.energy}} / {{combat.maxEnergy}}
-        </div>
-        <div class="progress mt-1" style="width: 100%">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.energyPercentage}}%" aria-valuenow="{{combat.energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-      <div class="d-flex flex-column ml-3 my-3" style="width: 200px">
-        <div class="d-flex align-items-center">
-          <i class="lilIcon-health small-icon mr-1"></i> {{> formatNumber combat.health}} / {{combat.maxHealth}}
-        </div>
-        <div class="progress mt-1" style="width: 100%">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-    <ul class="nav nav-tabs my-3">
-      <li class="nav-item battleTabLink">
-        <a class="nav-link {{#if showBattleTab}}active{{/if}}" href="#">Battle</a>
-      </li>
-      <li class="nav-item equipmentTabLink">
-        <a class="nav-link {{#if showEquipmentTab}}active{{/if}}" href="#">Equipment & Stats</a>
-      </li>
-      <li class="nav-item groupTabLink">
-        <a class="nav-link {{#if showCombatGroupTab}}active{{/if}}" href="#">
-          Group
-          {{#if currentGroup}}
-            ({{currentGroup.members.length}})
-          {{/if}}
-        </a>
-      </li>
-    </ul>
-    {{#if showBattleTab}}
+    {{#if currentBattle}}
       {{> battleTab}}
-    {{else if showEquipmentTab}}
-      {{> equipmentTab}}
-    {{else if showCombatGroupTab}}
-      {{> combatGroupTab}}
+    {{else}}
+      <div class="d-flex">
+        <div class="d-flex flex-column my-3" style="width: 200px">
+          <div class="d-flex align-items-center">
+            <i class="lilIcon-energyPerHit small-icon mr-1"></i> {{> formatNumber combat.energy}} / {{combat.maxEnergy}}
+          </div>
+          <div class="progress mt-1" style="width: 100%">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.energyPercentage}}%" aria-valuenow="{{combat.energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <div class="d-flex flex-column ml-3 my-3" style="width: 200px">
+          <div class="d-flex align-items-center">
+            <i class="lilIcon-health small-icon mr-1"></i> {{> formatNumber combat.health}} / {{combat.maxHealth}}
+          </div>
+          <div class="progress mt-1" style="width: 100%">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+      <ul class="nav nav-tabs my-3">
+        <li class="nav-item battleTabLink">
+          <a class="nav-link {{#if showBattleTab}}active{{/if}}" href="#">Battle</a>
+        </li>
+        <li class="nav-item equipmentTabLink">
+          <a class="nav-link {{#if showEquipmentTab}}active{{/if}}" href="#">Equipment & Stats</a>
+        </li>
+        <li class="nav-item groupTabLink">
+          <a class="nav-link {{#if showCombatGroupTab}}active{{/if}}" href="#">
+            Group
+            {{#if currentGroup}}
+              ({{currentGroup.members.length}})
+            {{/if}}
+          </a>
+        </li>
+      </ul>
+      {{#if showBattleTab}}
+        {{> battleTab}}
+      {{else if showEquipmentTab}}
+        {{> equipmentTab}}
+      {{else if showCombatGroupTab}}
+        {{> combatGroupTab}}
+      {{/if}}
     {{/if}}
   {{else}}
     <div 

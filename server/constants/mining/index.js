@@ -15,7 +15,7 @@ export const MINING = {
     cost(currentMinersCount) {
       return 10 + ((currentMinersCount - 1) * 40) * (currentMinersCount - 1);
     },
-    damagePerSecond: 0.1 // Should be 0.1
+    damagePerSecond: 0.08 // Should be 0.1
   },
   ores: {
     stone: {
@@ -42,13 +42,13 @@ export const MINING = {
 
     coal: {
       requiredLevel: 3,
-      maxHealth: 40,
+      maxHealth: 50,
       xp: 18,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.10
+      chance: 0.08
     },
 
     iron: {

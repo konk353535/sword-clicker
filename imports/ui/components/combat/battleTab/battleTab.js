@@ -12,7 +12,6 @@ let floatingTextInterval;
 
 Template.battleTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  Meteor.subscribe('battles');
 
   Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
     if (err) {

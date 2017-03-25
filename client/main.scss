@@ -10,7 +10,7 @@
   font-size: 18px;
   user-select: none;
   background-color: white;
-  padding: ($spacer / 4);
+  padding: $spacer * 0.25;
   border: 1px solid $gray;
   border-radius: 4px;
 }
@@ -35,24 +35,43 @@
   }
 }
 
-.small-icon {
-  width: 24px;
-  height: 24px;
-  font-size: 24px;
-  line-height: 24px;
-  pointer-events: none;
-}
-
 .select-skill-active {
   background-color: $blue;
   color: white;
 }
 
-.medium-icon {
-  width: 48px;
-  height: 48px;
-  font-size: 48px;
-  line-height: 48px;
+.ability-icon-container {
+  position: relative;
+  margin-left: $spacer * 0.25;
+  margin-right: $spacer * 0.25;
+
+  .ability-icon {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: $spacer * 0.5;
+  }
+
+  .cooldown-text {
+    position: absolute;
+    opacity: 1.0;
+    color: white;
+    top: 0px;
+    left: 0px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ability-icon.disabled {
+    background-color: $gray-light;
+    img {
+      opacity: 0.5;
+    }
+  }
 }
 
 .ore-icon {
@@ -75,8 +94,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: $spacer / 4;
-  padding: $spacer / 4;
+  margin: $spacer * 0.25;
+  padding: $spacer * 0.25;
+}
+
+.small-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  pointer-events: none;
+}
+
+.medium-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  line-height: 48px;
 }
 
 .icon-border {

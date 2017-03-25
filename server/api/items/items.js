@@ -7,6 +7,8 @@ import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 
 export const addItem = function (itemId, amount, specificUserId) {
+  console.log(`Add item - ${itemId} - ${amount} - ${specificUserId}`);
+
   let owner;
   if (specificUserId) {
     owner = specificUserId;
@@ -51,6 +53,12 @@ export const addItem = function (itemId, amount, specificUserId) {
         quality
       });
     }
+  } else {
+    newItemsList.push({
+      category: itemConstants.category,
+      itemId,
+      owner
+    });
   }
 
   if (newItemsList.length === 1) {

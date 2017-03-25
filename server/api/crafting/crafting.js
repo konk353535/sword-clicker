@@ -156,7 +156,7 @@ const craftItem = function (recipeId, amountToCraft) {
 
   let startDate = new Date();
 
-  if (crafting.currentlyCrafting.length > 0) {
+  if (crafting.currentlyCrafting && crafting.currentlyCrafting.length > 0) {
     // Get latest crafting time and use that for next items crafting start time
     // This will make crafting sequential
     startDate = _.sortBy(crafting.currentlyCrafting, 'endDate')[0].endDate;

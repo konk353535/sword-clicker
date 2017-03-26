@@ -1,0 +1,26 @@
+<template name="farmSpace">
+  <div class="icon-box farm-space-container">
+    {{#if isEmpty}}
+      <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
+    {{else}}
+      <img src="/icons/{{farmSpace.icon}}.svg" class="ore-icon">
+    {{/if}}
+  </div>
+  
+  <div class="farm-space-tooltip-content my-tooltip-inner">
+    {{#if isEmpty}}
+      <h3 class='popover-title text-capitalize'>Empty Plot</h3>
+      <div class='popover-content'>
+        You can plant seeds here<br />
+      </div>
+    {{else}}
+      <h3 class='popover-title text-capitalize'>{{farmSpace.name}}</h3>
+      <div class='popover-content'>
+        Water Remaining: {{farmSpace.water}}
+        Time Remaining: {{farmSpace.maturityDate}}
+        <br />
+        <b>Click</b> to water
+      </div>
+    {{/if}}
+  </div>
+</template>

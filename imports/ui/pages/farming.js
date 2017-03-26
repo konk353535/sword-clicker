@@ -3,12 +3,15 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+import { FarmingSpace } from '/imports/api/farming/farming.js';
 
+import '../components/farming/farmSpace.js';
 import './farming.html';
 
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('tooltipsLoaded', false);
+  this.subscribe('farmingSpace');
 
   this.autorun(() => {
     if (Skills.findOne({ type: 'farming' })) {
@@ -48,6 +51,10 @@ Template.farmingPage.helpers({
         $in: ['seed', 'herb', 'farming']
       }
     });
+  },
+
+  farmingSpaces() {
+    return FarmingSpace.find({});
   },
 
   buyableSeeds() {

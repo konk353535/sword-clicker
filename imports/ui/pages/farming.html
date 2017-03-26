@@ -19,6 +19,13 @@
         {{> itemIcon item=this}}
       {{/each}}
     </div>
+
+    <h2>Farming Plots</h2>
+    <div class="d-flex flex-column flex-wrap" style="max-height: 210px; max-width: 310px;">
+      {{#each farmingSpaces}}
+        {{> farmSpace farmSpace=this}}
+      {{/each}}
+    </div>
   {{else}}
     <div 
       class="d-flex justify-content-center align-items-center flex-column"

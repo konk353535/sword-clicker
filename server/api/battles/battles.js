@@ -147,6 +147,22 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   const currentTick = actualBattle.tick;
   const tickEvents = [];
 
+  // Fetch actions related to this battle
+  const battleActions = BattleActions.find({
+    battleId: actualBattle._id
+  }).fetch();
+
+  // Apply misc actions ( not damage related )
+  battleActions.forEach((action) => {
+    if (action.abilityId === 'changeTarget') {
+      // Modify casters preferred target
+      const targetUnit = _.findWhere(actualBattle.units, { id: action.caster });
+      if (targetUnit) {
+        targetUnit.target = action.target;
+      }
+    }
+  });
+
   const dealDamage = function(attackerStats, defenderStats) {
     return 0; // Temporary to cause infinite battles for developing
     const hitChance = 0.4 + ((attackerStats.accuracy - defenderStats.defense) / 200);
@@ -181,10 +197,28 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     }
   });
 
+  // Remove any dead units
+  for (let i = actualBattle.units.length - 1; i >= 0; i--) {
+    const unit = actualBattle.units[i];
+    if (unit.stats.health <= 0) {
+      actualBattle.deadUnits.push(unit);
+      actualBattle.units.splice(i, 1);
+    }
+  }
+
   // Apply player attacks
   actualBattle.units.forEach((unit) => {
     if (unit && currentTick % unit.stats.attackSpeedTicks === 0) {
-      const defender = actualBattle.enemies[0];
+      let defender = actualBattle.enemies[0];
+      // Do we have a preferred target
+      if (unit.target) {
+        const targetEnemy = _.findWhere(actualBattle.enemies, { id: unit.target });
+        if (targetEnemy) {
+          defender = targetEnemy;
+        } else {
+          delete unit.target;
+        }
+      }
       if (defender) {
         // Attack
         const damageToDeal = dealDamage(unit.stats, defender.stats);
@@ -210,14 +244,12 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     }
   }
 
-  // Remove any dead units
-  for (let i = actualBattle.units.length - 1; i >= 0; i--) {
-    const unit = actualBattle.units[i];
-    if (unit.stats.health <= 0) {
-      actualBattle.deadUnits.push(unit);
-      actualBattle.units.splice(i, 1);
+  // Remove all battle actions as we've got them for this tick
+  BattleActions.remove({
+    _id: {
+      $in: battleActions.map((item) => item._id)
     }
-  }
+  });
 
   Battles.update(actualBattle._id, {
     $set: {
@@ -230,6 +262,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       updatedAt: new Date()
     }
   });
+
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);
@@ -485,6 +518,10 @@ Meteor.methods({
 
     if (!targetBattle) {
       throw new Meteor.Error("battle-not-found", "Ability cannot be cast on battle that doesnt exist");
+    }
+
+    if (options.caster && options.caster !== Meteor.userId()) {
+      throw new Meteor.Error("access-denied", "You do not have control of that caster");
     }
 
     BattleActions.insert({

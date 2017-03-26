@@ -22,6 +22,7 @@ BattlesSchema = new SimpleSchema({
   units: { type: [Object] }, // Usually just your player, but leave options open for pets
   'units.$.stats': { type: Object, blackbox: true },
   'units.$.xpDistribution': { type: Object, blackbox: true},
+  'units.$.target': { type: String, optional: true },
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
   'units.$.name': { type: String },

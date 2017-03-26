@@ -4,6 +4,7 @@ import { Items } from '/imports/api/items/items';
 
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
 
 import { SKILLS } from '/server/constants/skills/index.js';
@@ -137,6 +138,20 @@ Meteor.methods({
         });
       } else if (skillName === 'attack') {
         updateCombatStats();
+      } else if (skillName === 'farming') {
+        // Inject farming
+        Farming.insert({
+          owner: Meteor.userId()
+        });
+        // Inject farming spaces (4 active, 2 inactive)
+        for (let i = 0; i < 6; i++) {
+          const isActive = i < 4;
+          FarmingSpace.insert({
+            owner: Meteor.userId(),
+            active: isActive,
+            index: i
+          });
+        }
       }
     }
   },
@@ -148,7 +163,7 @@ Meteor.methods({
     }
 
     if (SKILLS[skillName].requirementsToLearn) {
-      return SKILLS[skillName].requirementsToLearn;
+      return SKILLS[skillName].requirementsToLearn || [];
     }
   },
 

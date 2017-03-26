@@ -1,0 +1,80 @@
+<template name="farmingPage">
+  {{#if farmingSkill}}
+    {{> skillHeader skill=farmingSkill}}
+
+    <div class="my-3">
+      <div class="d-flex flex-row">
+        {{#each crafting.currentlyCrafting}}
+          {{> craftingDuration craftingProcess=this}}
+        {{/each}}
+      </div>
+    </div>
+
+    <h2>Farming Items</h2>
+    <div class="d-flex flex-wrap">
+      <div class="icon-box seed-shop seed-shop-tooltip-container" style="cursor: pointer;">
+        <img src="/icons/shop.svg" class="ore-icon">
+      </div>
+      {{#each items}}
+        {{> itemIcon item=this}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div 
+      class="d-flex justify-content-center align-items-center flex-column"
+      style="height: 200px; margin-top: 100px;">
+      <div class="mb-3">You haven't learning the farming skill yet</div>
+      <button class="btn btn-primary learn-now">Learn Now</button>
+    </div>
+  {{/if}}
+
+  <div style="display: none">
+    <!-- Tooltip for seed shop icon -->
+    <div class="seed-shop-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Seed Shop</h3>
+      <div class='popover-content'>
+        Stocks a variety of seeds<br />
+
+        <b>Click</b> to access shop
+      </div>
+    </div>
+  </div>
+
+  <!-- Seed Shop Modal -->
+  <div class="modal seedShopModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seed Shop</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-hover table-centered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Icon</th>         
+                <th>Cost</th>
+                <th>Description</th>
+              </tr>  
+            </thead>
+            <tbody>
+              {{#each buyableSeeds}}
+                <tr class="craft-row text-center" style="cursor: pointer" data-shop-item-id={{this.id}}>
+                  <td class="text-capitalize">{{this.name}}</td>
+                  <td>
+                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+                  </td>
+                  <td>{{ > requiredItems requiredItems=this.required}}</td>
+                  <td>{{this.description}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

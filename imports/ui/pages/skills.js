@@ -50,6 +50,7 @@ Template.skillsPage.helpers({
       { type: 'attack' },
       { type: 'defense' },
       { type: 'mining' },
+      { type: 'farming' },
       { type: 'crafting' },
       { type: 'woodcutting' },
       { type: 'health' }

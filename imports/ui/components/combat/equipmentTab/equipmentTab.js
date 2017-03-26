@@ -19,7 +19,7 @@ const updateTooltips = function (instance, tooltipNames) {
         remove: true
       });
     });
-  }, 1000);
+  }, 100);
 }
 
 Template.equipmentTab.onCreated(function bodyOnCreated() {

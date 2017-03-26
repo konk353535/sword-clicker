@@ -24,7 +24,14 @@
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
             </li>
-          {{/if}} 
+            {{#if hasAttackSkill}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
+                  Farming
+                </a>
+              </li>
+            {{/if}}
+          {{/if}}
           <li class="nav-item">
             <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">Skills</a>
           </li>

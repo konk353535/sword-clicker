@@ -18,5 +18,13 @@ Template.nav.helpers({
     } else {
       return true;
     }
+  },
+
+  hasAttackSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'attack' });
+    } else {
+      return true;
+    }
   }
 });

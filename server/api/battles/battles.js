@@ -184,7 +184,15 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Apply enemy attacks
   actualBattle.enemies.forEach((enemy) => {
     if (currentTick % enemy.stats.attackSpeedTicks === 0) {
-      const defender = actualBattle.units[0];
+      let defender = actualBattle.units[0];
+      if (enemy.target) {
+        const targetUnit = _.findWhere(actualBattle.units, { id: enemy.target });
+        if (targetUnit) {
+          defender = targetUnit;
+        } else {
+          delete enemy.target;
+        }
+      }
       // Attack
       const damageToDeal = dealDamage(enemy.stats, defender.stats);
       tickEvents.push({

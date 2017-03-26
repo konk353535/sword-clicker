@@ -2,6 +2,18 @@
 @import "{}/node_modules/bootstrap/scss/bootstrap.scss";
 @import "iconFont.scss";
 
+body.targetting-enemies {
+  cursor: crosshair;
+
+  .ability-icon {
+    cursor: crosshair;
+  }
+}
+
+.targetting-enemies .enemy-icon:hover {
+  border-color: $red;
+}
+
 .floating-text {
   pointer-events: none;
   position: absolute;

@@ -2,32 +2,7 @@
   {{#if currentBattle}}
     <!-- Ability List -->
     <div class="d-flex my-3">
-      <div class="ability-icon-container">
-        <div class="ability-icon disabled">
-          <img src="icons/doubleStab.svg">
-        </div>
-        <div class="cooldown-text">
-          <span>9</span>
-        </div>
-      </div>
-      <div class="ability-icon-container">
-        <div class="ability-icon">
-          <img src="icons/doubleStab.svg">
-        </div>
-      </div>
-      <div class="ability-icon-container">
-        <div class="ability-icon">
-          <img src="icons/doubleStab.svg">
-        </div>
-      </div>
-      <div class="ability-icon-container">
-        <div class="ability-icon disabled">
-          <img src="icons/doubleStab.svg">
-        </div>
-        <div class="cooldown-text">
-          <span>9</span>
-        </div>
-      </div>
+      {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
     </div>
 
     <!-- Battle Area -->
@@ -38,7 +13,7 @@
         <h1>My Units</h1>
         <div class="d-flex flex-row flex-wrap">
           {{#each currentBattle.units}}
-            {{> battleUnit unit=this}}
+            {{> battleUnit unit=this isFriendly="true"}}
           {{/each}}
         </div>
       </div>
@@ -46,7 +21,7 @@
         <h1>Enemy Units</h1>
         <div class="d-flex flex-row flex-wrap">
           {{#each currentBattle.enemies}}
-            {{> battleUnit unit=this}}
+            {{> battleUnit unit=this isEnemy="true"}}
           {{/each}}
         </div>
       </div>

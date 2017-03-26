@@ -7,6 +7,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Battles } from '/imports/api/battles/battles';
+import { BattleActions } from '/imports/api/battles/battleActions';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
 import { addXp } from '/server/api/skills/skills';
@@ -473,6 +474,25 @@ Meteor.methods({
       },
       limit: 10
     }).fetch()
+  },
+
+  'battles.castAbility'(battleId, abilityId, options) {
+    // Fetch the battle
+    const targetBattle = Battles.findOne({
+      _id: battleId,
+      owners: Meteor.userId()
+    });
+
+    if (!targetBattle) {
+      throw new Meteor.Error("battle-not-found", "Ability cannot be cast on battle that doesnt exist");
+    }
+
+    BattleActions.insert({
+      battleId,
+      abilityId,
+      caster: options.caster,
+      target: options.target
+    });
   }
 });
 

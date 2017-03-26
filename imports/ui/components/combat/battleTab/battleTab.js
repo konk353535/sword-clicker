@@ -119,6 +119,17 @@ Template.battleTab.helpers({
     });
   },
 
+  changeTargetAbility() {
+    return {
+      id: 'changeTarget',
+      icon: 'changeTarget',
+      description: 'Select a target to attack',
+      name: 'Attack Target',
+      cooldown: 0,
+      targettable: true
+    }
+  },
+
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');
   },

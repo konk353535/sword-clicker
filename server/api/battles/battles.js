@@ -164,7 +164,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   });
 
   const dealDamage = function(attackerStats, defenderStats) {
-    return 0; // Temporary to cause infinite battles for developing
+    // return 0; // Temporary to cause infinite battles for developing
     const hitChance = 0.4 + ((attackerStats.accuracy - defenderStats.defense) / 200);
 
     if (hitChance >= Math.random()) {

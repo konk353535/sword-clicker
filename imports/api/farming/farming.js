@@ -10,7 +10,7 @@ FarmingSpaceSchema = new SimpleSchema({
   active: { type: Boolean }, // Active means usable, can be turned off for donator spaces
   index: { type: Number },
   plantId: { type: String, optional: true },
-  water: { type: Number, optional: true },
+  water: { type: Number, decimal: true, optional: true },
   maturityDate: { type: Date, optional: true }, // When this plant will finish growing
   plantDate: { type: Date, optional: true }
 });

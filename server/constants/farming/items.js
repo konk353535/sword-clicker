@@ -17,6 +17,14 @@ export const FARMING_ITEMS = {
     sellPrice: 2
   },
 
+  dead_plant: {
+    id: 'dead_plant',
+    icon: 'deadPlant',
+    category: 'farming',
+    name: 'dead plant',
+    sellPrice: 0
+  },
+
   rubia_flower_seed: {
     id: 'rubia_flower_seed',
     icon: 'rubiaFlowerSeed',

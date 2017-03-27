@@ -26,6 +26,15 @@ export const PLANTS = {
     }]
   },
 
+  dead_plant: {
+    produces: 'dead_plant',
+    name: 'dead plant',
+    id: 'dead_plant',
+    category: 'farming',
+    icon: ITEMS['dead_plant'].icon,
+    xp: 0
+  },
+
   rubia_flower: {
     produces: 'rubia_flower',
     name: 'rubia flower',
@@ -34,7 +43,7 @@ export const PLANTS = {
     icon: ITEMS['rubia_flower'].icon,
     waterStorage: 100,
     initialWater: 100,
-    requiredWater: 50,
+    requiredWater: 200,
     growthTime: 120,
     xp: 8,
     required: [{

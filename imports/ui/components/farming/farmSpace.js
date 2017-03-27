@@ -43,7 +43,12 @@ Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
 Template.farmSpace.events({
   'click'(event, instance) {
     if (instance.state.get('finishedGrowing')) {
-      Meteor.call('farming.pick', instance.data.farmSpace.index);
+      Meteor.call('farming.pick', instance.data.farmSpace.index, (err, res) => {
+        if (!err) {
+          instance.state.set('finishedGrowing', false);
+        }
+      });
+      // Set finished growing to false now that this is picked
     } else {
       Meteor.call('farming.water', instance.data.farmSpace.index);      
     }

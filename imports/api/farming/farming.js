@@ -12,6 +12,7 @@ FarmingSpaceSchema = new SimpleSchema({
   plantId: { type: String, optional: true },
   water: { type: Number, decimal: true, optional: true },
   maturityDate: { type: Date, optional: true }, // When this plant will finish growing
+  growing: { type: Boolean, optional: true },
   plantDate: { type: Date, optional: true }
 });
 

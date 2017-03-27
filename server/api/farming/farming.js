@@ -13,15 +13,25 @@ import { FARMING } from '/server/constants/farming';
 import { ITEMS } from '/server/constants/items';
 
 // Given a farm space, will return it modified based on
-const farmSpaceModifier = function (farmSpace, secondsElapsed) {
-  if (farmSpace.plantId && farmSpace.plantId !== 'dead_plant') {
+const farmSpaceModifier = function (farmSpace, farming) {
+  if (farmSpace.plantId && farmSpace.plantId !== 'dead_plant' && farmSpace.growing) {
     const plantConstants = FARMING.plants[farmSpace.plantId];
-    const now = moment();
 
-    // Cap secondsElapsed to time till maturity
-    const secondsTillMaturity = moment.duration(moment(farmSpace.maturityDate).diff(now)).asSeconds();
-    if (secondsElapsed > secondsTillMaturity) {
-      secondsElapsed = secondsTillMaturity;
+    const now = moment();
+    const plantDate = moment(farmSpace.plantDate);
+    const maturityDate = moment(farmSpace.maturityDate);
+    let secondsElapsed = moment.duration(now.diff(farming.lastGameUpdated)).asSeconds();
+
+    // Cap secondsElapsed to plants entire growth time - last updated time
+    const timeSincePlanted = moment.duration(now.diff(farmSpace.plantDate)).asSeconds();
+    const timeTotal = moment.duration(maturityDate.diff(plantDate)).asSeconds();
+
+    if (secondsElapsed > timeSincePlanted) {
+      secondsElapsed = timeSincePlanted;
+    }
+
+    if (secondsElapsed > timeTotal) {
+      secondsElapsed = timeTotal;
     }
 
     // Percentage of total growth time
@@ -29,11 +39,14 @@ const farmSpaceModifier = function (farmSpace, secondsElapsed) {
 
     // Update me farm space water usage
     farmSpace.water -= (growthTimeDecimal * plantConstants.requiredWater);
+
     farmSpace.isDirty = true;
     if (farmSpace.water <= 0) {
       // This plant has died!
       farmSpace.plantId = 'dead_plant';
       farmSpace.maturityDate = new Date();
+    } else if (now.isAfter(maturityDate)) {
+      farmSpace.growing = false;
     }
   }
 
@@ -56,21 +69,14 @@ Meteor.methods({
       }
     });
 
-    // Time since last update
-    const now = moment();
-    let secondsElapsed = moment.duration(now.diff(farming.lastGameUpdated)).asSeconds();
-
     // Fetch all in use farming spaces
     const farmingSpaces = FarmingSpace.find({
       owner: Meteor.userId(),
       plantId: {
         $exists: true
-      },
-      maturityDate: {
-        $gt: new Date
       }
     }).map((farmSpace) => {
-      return farmSpaceModifier(farmSpace, secondsElapsed);
+      return farmSpaceModifier(farmSpace, farming);
     });
 
     // Save any changes to farm space
@@ -80,7 +86,8 @@ Meteor.methods({
           $set: {
             water: farmSpace.water,
             plantId: farmSpace.plantId,
-            maturityDate: farmSpace.maturityDate
+            maturityDate: farmSpace.maturityDate,
+            growing: farmSpace.growing
           }
         });
       }
@@ -95,6 +102,14 @@ Meteor.methods({
     });
 
     if (targetToWater.plantId) {
+      const farming = Farming.findOne({ owner: Meteor.userId() });
+
+      // Is this plant already dead?
+      let updatedTargetToWater = farmSpaceModifier(targetToWater, farming);
+      if (updatedTargetToWater.water <= 0 && updatedTargetToWater.isDirty) {
+        throw new Meteor.Error("woops", "This is dead. So cannot be picked. Sorry!");
+      }
+
       const plantConstants = FARMING.plants[targetToWater.plantId];
       if (targetToWater.water < plantConstants.waterStorage) {
         FarmingSpace.update(targetToWater._id, {
@@ -122,11 +137,8 @@ Meteor.methods({
         owner: Meteor.userId()
       });
 
-      const now = moment();
-      let secondsElapsed = moment.duration(now.diff(farming.lastGameUpdated)).asSeconds();
-
-      let updatedTargetToPick = farmSpaceModifier(targetToPick, secondsElapsed);
-      if (updatedTargetToPick.water <= 0 && updatedTargetToPick.plantId !== 'dead_plant') {
+      let updatedTargetToPick = farmSpaceModifier(targetToPick, farming);
+      if (updatedTargetToPick.water <= 0 && updatedTargetToPick.isDirty) {
         throw new Meteor.Error("woops", "This is dead. So cannot be picked. Sorry!");
       }
 
@@ -138,7 +150,8 @@ Meteor.methods({
           plantId: null,
           water: null,
           maturityDate: null,
-          plantDate: null
+          plantDate: null,
+          growing: null
         }
       });
 
@@ -183,7 +196,8 @@ Meteor.methods({
         plantId: plantConstants.id,
         water: plantConstants.initialWater,
         maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
-        plantDate: new Date()
+        plantDate: new Date(),
+        growing: true
       }
     });
   },
@@ -254,7 +268,6 @@ Meteor.publish('farmingSpace', function() {
       self.added('farmingSpace', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {
-      console.log('Changed');
       self.changed('farmingSpace', oldDocument._id, transform(newDocument));
     },
     removed: function (oldDocument) {

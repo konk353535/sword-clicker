@@ -5,7 +5,8 @@ export const FARMING_ITEMS = {
     category: 'seed',
     name: 'Lettice Seed',
     description: 'Used to grow lettice. Useful for eating.',
-    sellPrice: 1
+    sellPrice: 1,
+    produces: 'lettice'
   },
 
   lettice: {
@@ -22,7 +23,8 @@ export const FARMING_ITEMS = {
     category: 'seed',
     name: 'Rubia Flower Seed',
     description: 'Used to grow rubia flower. Useful for inscription.',
-    sellPrice: 5
+    sellPrice: 5,
+    produces: 'rubia_flower'
   },
 
   rubia_flower: {

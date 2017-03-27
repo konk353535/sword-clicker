@@ -50,6 +50,23 @@ Template.farmingPage.helpers({
       category: {
         $in: ['seed', 'herb', 'farming']
       }
+    }).map((item) => {
+      if (item.category === 'seed') {
+        item.required = item.plantingDetails.required;
+        item.primaryAction = {
+          description: 'plant',
+          item,
+          method() {
+            // Planting
+            Meteor.call('farming.plant', item.plantingDetails.produces, (err, res) => {
+              if (err) {
+                toastr.warning(err.reason);
+              }
+            });
+          }
+        }        
+      }
+      return item;
     });
   },
 

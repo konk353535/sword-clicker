@@ -18,6 +18,10 @@
       {{#if item.stats}}
         {{> displayCombatStats stats=item.stats}}
       {{/if}}
+      {{#if item.required}}
+        <b>Requires</b><br />
+        {{> requiredItems requiredItems=item.required}}
+      {{/if}}
       {{#if item.primaryAction}}
         <b>Left Click</b> to {{item.primaryAction.description}}
       {{else}}

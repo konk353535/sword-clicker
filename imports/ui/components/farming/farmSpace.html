@@ -1,9 +1,18 @@
 <template name="farmSpace">
-  <div class="icon-box farm-space-container">
+  <div class="icon-box farm-space-container align-items-center">
     {{#if isEmpty}}
       <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
-    {{else}}
+    {{else if finishedGrowing}}
       <img src="/icons/{{farmSpace.icon}}.svg" class="ore-icon">
+    {{else}}
+      <img src="/icons/sapling.svg" class="ore-icon">
+
+      <div class="progress mt-3" style="width: 100%">
+        <div class="progress-bar bg-info" role="progressbar" style="width: {{waterPercentage}}%; height: 5px;" aria-valuenow="{{waterPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="progress mt-1" style="width: 100%">
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{growthPercentage}}%; height: 5px;" aria-valuenow="{{growthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
     {{/if}}
   </div>
   
@@ -16,10 +25,17 @@
     {{else}}
       <h3 class='popover-title text-capitalize'>{{farmSpace.name}}</h3>
       <div class='popover-content'>
-        Water Remaining: {{farmSpace.water}}
-        Time Remaining: {{farmSpace.maturityDate}}
-        <br />
-        <b>Click</b> to water
+        {{#unless finishedGrowing}}
+          Your plant is still growing<br />
+          {{timeRemaining}} remaining
+          <br /><br />
+        {{/unless}}
+
+        {{#if finishedGrowing}}
+          <b>Click</b> to pick
+        {{else}}
+          <b>Click</b> to water
+        {{/if}}
       </div>
     {{/if}}
   </div>

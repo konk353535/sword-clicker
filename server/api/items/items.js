@@ -3,6 +3,7 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { ITEMS } from '/server/constants/items/index.js';
+import { FARMING } from '/server/constants/farming/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 
@@ -233,6 +234,8 @@ Meteor.publish('items', function() {
           }
         });
       }
+    } else if (itemConstants.category === 'seed') {
+      doc.plantingDetails = FARMING.plants[itemConstants.produces];
     }
     return doc;
   }

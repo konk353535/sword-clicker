@@ -34,3 +34,4 @@ session
 raix:handlebar-helpers
 percolate:synced-cron
 chrismbeckett:toastr
+oaf:moment-duration-format

@@ -1,5 +1,5 @@
 <template name="requiredItems">
-  <div class="d-flex align-items-center justify-content-center required-items-container">
+  <div class="d-flex align-items-center required-items-container">
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>

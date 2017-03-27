@@ -12,7 +12,8 @@ FarmingSpaceSchema = new SimpleSchema({
   plantId: { type: String, optional: true },
   water: { type: Number, optional: true },
   growing: { type: Boolean, optional: true }, // Once growing is false, we don't care about this cell
-  maturityDate: { type: Date, optional: true } // When this plant will finish growing
+  maturityDate: { type: Date, optional: true }, // When this plant will finish growing
+  plantDate: { type: Date, optional: true }
 });
 
 FarmingSpace.attachSchema(FarmingSpaceSchema);

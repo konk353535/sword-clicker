@@ -14,14 +14,96 @@ import { ITEMS } from '/server/constants/items';
 
 Meteor.methods({
 
+  'farming.gameUpdate'() {
+    // Fetch farming for last game updated
+    const farming = Farming.findOne({ owner: Meteor.userId() });
+
+    if (!farming) {
+      return;
+    }
+
+    // Time since last update
+    const now = moment();
+    const secondsElapsed = moment.duration(now.diff(farming.lastGameUpdated)).asSeconds();
+
+    // Fetch all in use farming spaces
+    const farmingSpaces = FarmingSpace.find({
+      owner: Meteor.userId(),
+      plantId: {
+        $exists: true
+      }
+    }).forEach((farmSpace) => {
+      if (farmSpace.plantId) {
+        // Update me farm space water usage
+
+      } else {
+        console.log('Shouldnt be here...?');
+      }
+    });
+  },
+
+  'farming.water'(index) {
+    // Water whatever is in the specified index
+    const targetToWater = FarmingSpace.findOne({
+      owner: Meteor.userId(),
+      index
+    });
+
+    if (targetToWater.plantId) {
+      const plantConstants = FARMING.plants[targetToWater.plantId];
+      if (targetToWater.water < plantConstants.waterStorage) {
+        FarmingSpace.update(targetToWater._id, {
+          $set: {
+            water: plantConstants.waterStorage
+          }
+        });
+      }
+    }
+  },
+
+  'farming.pick'(index) {
+    // Pick whatever is in the specified index
+    const targetToPick = FarmingSpace.findOne({
+      owner: Meteor.userId(),
+      index
+    });
+
+    if (moment().isAfter(targetToPick.maturityDate)) {
+      // Good to pick
+      const plantConstants = FARMING.plants[targetToPick.plantId];
+
+      // Update patch
+      FarmingSpace.update({
+        _id: targetToPick._id
+      }, {
+        $set: {
+          plantId: null,
+          water: null,
+          maturityDate: null,
+          plantDate: null
+        }
+      });
+
+      // Add item
+      addItem(plantConstants.produces);
+    } else {
+      // Not ready to pick
+      throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
+    }
+  },
+
   'farming.plant'(plantId) {
     // Does the user have a spare planting space?
     const emptySpace = FarmingSpace.findOne({
       owner: Meteor.userId(),
       active: true,
-      plantId: {
-        $exists: false
-      }
+      $or: [{
+        plantId: {
+          $exists: false
+        }
+      }, {
+        plantId: null
+      }]
     });
 
     if (!emptySpace) {
@@ -40,7 +122,6 @@ Meteor.methods({
       $set: {
         plantId: plantConstants.id,
         water: plantConstants.initialWater,
-        growing: true,
         maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
         plantDate: new Date()
       }
@@ -100,6 +181,7 @@ Meteor.publish('farmingSpace', function() {
       doc.name = currentPlantConstants.name;
       doc.waterStorage = currentPlantConstants.waterStorage;
     }
+
     return doc;
   }
 
@@ -112,6 +194,7 @@ Meteor.publish('farmingSpace', function() {
       self.added('farmingSpace', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {
+      console.log('Changed');
       self.changed('farmingSpace', oldDocument._id, transform(newDocument));
     },
     removed: function (oldDocument) {

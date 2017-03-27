@@ -8,19 +8,33 @@ import { FarmingSpace } from '/imports/api/farming/farming.js';
 import '../components/farming/farmSpace.js';
 import './farming.html';
 
+let farmingTimer;
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.state.set('tooltipsLoaded', false);
-  this.subscribe('farmingSpace');
 
-  this.autorun(() => {
-    if (Skills.findOne({ type: 'farming' })) {
-      if (!this.state.get('tooltipsLoaded')) {
-        this.state.set('tooltipsLoaded', true);
-        updateTooltips(this, ['seed-shop']);
+  Meteor.call('farming.gameUpdate', (err) => {
+    this.state.set('tooltipsLoaded', false);
+    this.subscribe('farmingSpace');
+
+    farmingTimer = Meteor.setInterval(function () {
+      if (Meteor.user()) {
+        Meteor.call('farming.gameUpdate');
       }
-    }
+    }, 7777);
+
+    this.autorun(() => {
+      if (Skills.findOne({ type: 'farming' })) {
+        if (!this.state.get('tooltipsLoaded')) {
+          this.state.set('tooltipsLoaded', true);
+          updateTooltips(this, ['seed-shop']);
+        }
+      }
+    });
   });
+});
+
+Template.farmingPage.onDestroyed(function () {
+  Meteor.clearInterval(farmingTimer);
 });
 
 Template.farmingPage.events({
@@ -48,7 +62,7 @@ Template.farmingPage.helpers({
   items() {
     return Items.find({
       category: {
-        $in: ['seed', 'herb', 'farming']
+        $in: ['seed', 'herb', 'farming', 'food']
       }
     }).map((item) => {
       if (item.category === 'seed') {
@@ -71,7 +85,10 @@ Template.farmingPage.helpers({
   },
 
   farmingSpaces() {
-    return FarmingSpace.find({});
+    return FarmingSpace.find().map((item) => {
+      item.waterPercentage = (item.water / item.waterStorage) * 100;
+      return item;
+    });
   },
 
   buyableSeeds() {

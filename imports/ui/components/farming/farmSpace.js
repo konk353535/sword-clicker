@@ -18,25 +18,22 @@ Template.farmSpace.onCreated(function bodyOnCreated() {
 });
 
 const updateFarmSpaceUI = function (self) {
-  if (self.data.farmSpace && self.data.farmSpace.plantId && !self.state.get('finishedGrowing')) {
     const farmSpace = self.data.farmSpace;
-
-    const now = moment();
-    const targetDate = moment(farmSpace.maturityDate);
-    // Update time remaining
-    self.state.set('timeRemaining', moment.utc(targetDate.diff(now)).format("HH[h] mm[m] ss[s]"));
 
     // Update if this is finished growing
     self.state.set('finishedGrowing', moment().isAfter(farmSpace.maturityDate));
 
-    // Update water %
-    self.state.set('waterPercentage', (farmSpace.water / farmSpace.waterStorage) * 100);
+    if (!self.state.get('finishedGrowing')) {
+      const now = moment();
+      const targetDate = moment(farmSpace.maturityDate);
+      // Update time remaining
+      self.state.set('timeRemaining', moment.utc(targetDate.diff(now)).format("HH[h] mm[m] ss[s]"));
 
-    // Update water %
-    const totalDiff = moment(farmSpace.plantDate).diff(farmSpace.maturityDate);
-    const currentDiff = moment(farmSpace.plantDate).diff(moment());
-    self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
-  }  
+      // Update water %
+      const totalDiff = moment(farmSpace.plantDate).diff(farmSpace.maturityDate);
+      const currentDiff = moment(farmSpace.plantDate).diff(moment());
+      self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
+    }
 }
 
 Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
@@ -45,10 +42,11 @@ Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
 
 Template.farmSpace.events({
   'click'(event, instance) {
-    /*
-    if (instance.data.farmSpace.oreId) {
-      Meteor.call('mining.clickedfarmSpace', instance.data.farmSpace._id);
-    }*/
+    if (instance.state.get('finishedGrowing')) {
+      Meteor.call('farming.pick', instance.data.farmSpace.index);
+    } else {
+      Meteor.call('farming.water', instance.data.farmSpace.index);      
+    }
   }
 });
 
@@ -72,7 +70,7 @@ Template.farmSpace.helpers({
   },
 
   waterPercentage() {
-    return Template.instance().state.get('waterPercentage');
+    return Template.instance().data.farmSpace.waterPercentage;
   },
 
   growthPercentage() {

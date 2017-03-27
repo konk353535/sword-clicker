@@ -7,8 +7,7 @@ import { FARMING } from '/server/constants/farming/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 
-export const addItem = function (itemId, amount, specificUserId) {
-
+export const addItem = function (itemId, amount = 1, specificUserId) {
   let owner;
   if (specificUserId) {
     owner = specificUserId;

@@ -93,10 +93,10 @@ Template.combatGroupTab.helpers({
     return combats.fetch().map((userCombat) => {
       // Map stuff we want to read into stats
       userCombat.stats = {
-        health: userCombat.health,
-        maxHealth: userCombat.maxHealth,
-        energy: userCombat.energy,
-        maxEnergy: userCombat.maxEnergy
+        health: userCombat.stats.health,
+        maxHealth: userCombat.stats.maxHealth,
+        energy: userCombat.stats.energy,
+        maxEnergy: userCombat.stats.maxEnergy
       }
       userCombat.name = userCombat.username;
       userCombat.icon = 'character';

@@ -1,13 +1,16 @@
 <template name="equipmentTab">
   <div class="p-1">
     <h1>Combat Items</h1>
-    {{#if unequippedCombatItems}}
-      <p>Click on items below to equip them.</p>
+    {{#if $or unequippedCombatItems foodItems}}
+      <p>Click on combat items to equip them. Click on food to eat it.</p>
     {{else}}
       <p>You have no items to equip.</p>
     {{/if}}
     <div class="d-flex">
       {{#each unequippedCombatItems}}
+        {{> itemIcon item=this}}
+      {{/each}}
+      {{#each foodItems}}
         {{> itemIcon item=this}}
       {{/each}}
     </div>

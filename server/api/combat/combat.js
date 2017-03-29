@@ -4,6 +4,7 @@ import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
 
+import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 
 import { ITEMS } from '/server/constants/items/index.js';
@@ -12,16 +13,19 @@ import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT } from '/server/constants/combat/index.js';
 
 export const updateCombatStats = function () {
+
   // Build up our object of skills
-  const playerStats = {
-    attack: 0,
-    attackMax: 0,
-    attackSpeed: 0,
-    accuracy: 0,
-    maxHealth: 0,
-    maxEnergy: COMBAT.baseMaxEnergy,
-    defense: 0,
-    armor: 0,
+  const playerData = {
+    stats: {
+      attack: 0,
+      attackMax: 0,
+      attackSpeed: 0,
+      accuracy: 0,
+      maxHealth: 0,
+      maxEnergy: COMBAT.baseMaxEnergy,
+      defense: 0,
+      armor: 0
+    },
     xpDistribution: {},
     username: Meteor.user().username
   };
@@ -46,13 +50,13 @@ export const updateCombatStats = function () {
         });
       }
       Object.keys(itemStats).forEach((statKey) => {
-        if (playerStats[statKey] !== undefined) {
-          playerStats[statKey] += itemStats[statKey];
+        if (playerData.stats[statKey] !== undefined) {
+          playerData.stats[statKey] += itemStats[statKey];
         }
       });
 
       if (combatItem.constants.slot === 'mainHand') {
-        playerStats.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
+        playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
       }
     }
   });
@@ -72,24 +76,23 @@ export const updateCombatStats = function () {
     if (combatSkill.constants.statsPerLevel) {
       const skillStatsPerLevel = JSON.parse(JSON.stringify(combatSkill.constants.statsPerLevel));
       Object.keys(skillStatsPerLevel).forEach((statKey) => {
-        if (playerStats[statKey] !== undefined) {
-          playerStats[statKey] += (skillStatsPerLevel[statKey] * skillLevel);
+        if (playerData.stats[statKey] !== undefined) {
+          playerData.stats[statKey] += (skillStatsPerLevel[statKey] * skillLevel);
         }
       });
     }
   });
 
   // If no weapon default to 0.5 attackspeed
-  if (playerStats.attackSpeed === 0) {
-    playerStats.attackSpeed = 0.5;
+  if (playerData.stats.attackSpeed === 0) {
+    playerData.stats.attackSpeed = 0.5;
   }
-
 
   // Set player stats
   Combat.update({
     owner: Meteor.userId()
   }, {
-    $set: playerStats
+    $set: flattenObjectForMongo(playerData)
   });
 };
 
@@ -102,28 +105,33 @@ Meteor.methods({
 
     // Time since last update
     const now = moment();
+    const secondsElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asSeconds();
     const minutesElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asMinutes();
 
     let isDirty = false;
-    if (currentCombat.energy <= currentCombat.maxEnergy) {
-      currentCombat.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
-      if (currentCombat.energy > currentCombat.maxEnergy) {
-        currentCombat.energy = currentCombat.maxEnergy;
+    if (currentCombat.stats.energy <= currentCombat.stats.maxEnergy) {
+      currentCombat.stats.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
+      if (currentCombat.stats.energy > currentCombat.stats.maxEnergy) {
+        currentCombat.stats.energy = currentCombat.stats.maxEnergy;
       }
     }
 
-    if (currentCombat.health <= currentCombat.maxHealth) {
-      currentCombat.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
-      if (currentCombat.health > currentCombat.maxHealth) {
-        currentCombat.health = currentCombat.maxHealth;
+    if (currentCombat.stats.health <= currentCombat.stats.maxHealth) {
+      currentCombat.stats.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
+      if (currentCombat.stats.health > currentCombat.stats.maxHealth) {
+        currentCombat.stats.health = currentCombat.stats.maxHealth;
       }
+    }
+
+    if (currentCombat.stats.health > currentCombat.stats.maxHealth) {
+      currentCombat.stats.health = currentCombat.stats.maxHealth;
     }
 
     Combat.update(currentCombat._id, {
       $set: {
         lastGameUpdated: new Date(),
-        health: currentCombat.health,
-        energy: currentCombat.energy
+        'stats.health': currentCombat.stats.health,
+        'stats.energy': currentCombat.stats.energy
       }
     });
   }

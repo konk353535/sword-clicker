@@ -15,13 +15,19 @@
       {{item.name}}
     </h3>
     <div class='popover-content'>
-      {{#if item.stats}}
-        {{> displayCombatStats stats=item.stats}}
+      {{#if $eq item.category 'food'}}
+        <div>Heals for <b>{{item.stats.health}}hp</b> over <b>{{item.stats.duration}}s</b></div><br />
+      {{else}}
+        {{#if item.stats}}
+          {{> displayCombatStats stats=item.stats}}
+        {{/if}}
       {{/if}}
+
       {{#if item.required}}
         <b>Requires</b><br />
         {{> requiredItems requiredItems=item.required}}
       {{/if}}
+
       {{#if item.primaryAction}}
         <b>Left Click</b> to {{item.primaryAction.description}}
       {{else}}

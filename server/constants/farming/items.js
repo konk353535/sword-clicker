@@ -14,6 +14,9 @@ export const FARMING_ITEMS = {
     icon: 'lettice',
     category: 'food',
     name: 'Lettice',
+    buffs: [{
+      id: 'food_lettice'
+    }],
     sellPrice: 2
   },
 

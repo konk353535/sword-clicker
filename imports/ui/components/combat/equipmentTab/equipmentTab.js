@@ -58,6 +58,19 @@ Template.equipmentTab.helpers({
     });
   },
 
+  foodItems() {
+    return Items.find({ category: 'food' }).map((item) => {
+      item.primaryAction = {
+        description: 'eat',
+        item,
+        method() {
+          Meteor.call('items.eat', this.item._id, this.item.itemId);
+        }
+      }
+      return item;
+    });
+  },
+
   equippedItemsMap() {
     const equippedItems = Items.find({
       category: 'combat',
@@ -108,16 +121,16 @@ Template.equipmentTab.helpers({
       Template.instance().state.set('defenseStats', [{
         name: 'health',
         icon: 'health',
-        value: combat.health,
-        maxValue: combat.maxHealth
+        value: combat.stats.health,
+        maxValue: combat.stats.maxHealth
       }, {
         name: 'defense',
         icon: 'defense',
-        value: combat.defense
+        value: combat.stats.defense
       }, {
         name: 'armor',
         icon: 'armor',
-        value: combat.armor
+        value: combat.stats.armor
       }]);
     }
 
@@ -132,16 +145,16 @@ Template.equipmentTab.helpers({
       Template.instance().state.set('offenseStats', [{
         name: 'attack',
         icon: 'attack',
-        value: combat.attack,
-        maxValue: combat.attackMax
+        value: combat.stats.attack,
+        maxValue: combat.stats.attackMax
       }, {
         name: 'attack speed',
         icon: 'attackSpeed',
-        value: combat.attackSpeed
+        value: combat.stats.attackSpeed
       }, {
         name: 'accuracy',
         icon: 'accuracy',
-        value: combat.accuracy
+        value: combat.stats.accuracy
       }]);   
     }
 

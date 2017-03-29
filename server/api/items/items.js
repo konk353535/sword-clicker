@@ -2,8 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
+import { Combat } from '/imports/api/combat/combat';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
+import { BUFFS } from '/server/constants/combat/index.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 
@@ -82,6 +84,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
 Meteor.methods({
 
   'items.unequip'(_id, itemId) {
+    // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fix
     const itemConstants = ITEMS[itemId];
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
@@ -105,8 +108,91 @@ Meteor.methods({
     }
   },
 
+  /*
+  'items.eat'(_id, itemId) {
+    // Check we have the nom
+    const targetItem = Items.findOne({
+      _id,
+      itemId
+    });
+
+    if (!targetItem || targetItem.amount < 1) {
+      return;
+    }
+
+    // Use up item
+    if (targetItem.amount === 1) {
+      Items.remove(targetItem._id);
+    } else {
+      Items.update(targetItem._id, {
+        $inc: { amount: -1 }
+      });
+    }
+
+    // Todo: Remove existing food buffs
+
+    // Add food buff
+    const itemConstants = ITEMS[itemId];
+    if (itemConstants.category !== 'food') {
+      return;
+    }
+
+    const buffs = JSON.parse(JSON.stringify(itemConstants.buffs));
+    buffs.forEach((buff) => {
+      // Store constants
+      buff.constants = BUFFS[buff.id];
+
+      // Save things we actually want to store
+      buff.data = Object.assign({
+        description: buff.constants.description(buff),
+        name: buff.constants.name,
+        icon: buff.constants.icon,
+        duplicateTag: buff.constants.duplicateTag
+      }, buff.constants.data);
+    });
+
+    const buffEvents = [];
+
+    // Apply events returned by the buff itself
+    buffs.forEach((buff) => {
+      if (buff.constants.events.onApply) {
+        buffEvents.push(...buff.constants.events.onApply(buff));
+      }
+    });
+
+    // Fetch combat
+    const currentCombat = Combat.findOne({ owner: Meteor.userId() });
+
+    const updateModifier = {
+      $push: buffs.map((buff) => {
+        return {
+          id: buff.id,
+          data: buff.data
+        }
+      });
+    }
+
+    // Process buffEvents, only handle self target events here
+    buffEvents.forEach((buffEvent) => {
+      if (buffEvent.target === 'self') {
+        const buffTarget = currentCombat;
+        if (buffEvent.type === 'healing') {
+          buffTarget.health += buffEvent.amount;
+          if (buffTarget.health > buffTarget.maxHealth) {
+            buffTarget.health = buffTarget.maxHealth;
+          }
+        }
+      }
+    })
+
+    // Add buff to combat
+    Combat.update(currentCombat._id, updateModifier);
+
+  },*/
+
   'items.equip'(_id, itemId) {
     const itemConstants = ITEMS[itemId];
+    // SECURITY ISSUE: We're trust the user to send the correct itemId here, needs to be fix
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
 

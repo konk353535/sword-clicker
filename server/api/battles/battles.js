@@ -125,7 +125,7 @@ const completeBattle = function (actualBattle) {
       owner: unit.owner
     }, {
       $set: {
-        health: (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
       }
     });
   });
@@ -349,15 +349,15 @@ const startBattle = function (battleId, floor, difficulty) {
 
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
-    if (userCombat.energy < battleEnergyCost) {
+    if (userCombat.stats.energy < battleEnergyCost) {
       const requirementString = `${userCombat.username} does not have enough energy to start this battle`;
       throw new Meteor.Error("not-enough-energy", requirementString);
       hasEnergy = false;
     }
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
-      if (userCombat[statName]) {
-        userCombatStats[statName] = userCombat[statName];
+      if (userCombat.stats[statName]) {
+        userCombatStats[statName] = userCombat.stats[statName];
       }
     });
     // Convert attack speed seconds to attack speed ticks
@@ -412,7 +412,7 @@ const startBattle = function (battleId, floor, difficulty) {
     }
   }, {
     $inc: {
-      energy: (battleEnergyCost * -1)
+      'stats.energy': (battleEnergyCost * -1)
     }
   }, { multi: true });
 

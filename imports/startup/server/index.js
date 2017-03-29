@@ -34,7 +34,11 @@ AccountsTemplates.configure({
     });
 
     Combat.insert({
-      owner: userId
+      owner: userId,
+      stats: {
+        health: 50,
+        energy: 25
+      }
     });
 
     MiningSpace.insert({

@@ -46,8 +46,8 @@ export const ENEMIES = {
       attackMax: 1,
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 70,
-      health: 20,
-      maxHealth: 20,
+      health: 17,
+      maxHealth: 17,
       defense: 2,
       armor: 2
     },
@@ -97,8 +97,8 @@ export const ENEMIES = {
       attackMax: 5,
       attackSpeed: FAST_SPEED,
       accuracy: 60,
-      health: 25,
-      maxHealth: 25,
+      health: 15,
+      maxHealth: 15,
       defense: 0,
       armor: 0
     },

@@ -94,9 +94,9 @@ Template.combatGroupTab.helpers({
       // Map stuff we want to read into stats
       userCombat.stats = {
         health: userCombat.stats.health,
-        maxHealth: userCombat.stats.maxHealth,
+        healthMax: userCombat.stats.healthMax,
         energy: userCombat.stats.energy,
-        maxEnergy: userCombat.stats.maxEnergy
+        energyMax: userCombat.stats.energyMax
       }
       userCombat.name = userCombat.username;
       userCombat.icon = 'character';

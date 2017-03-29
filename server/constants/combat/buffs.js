@@ -2,7 +2,7 @@ export const BUFFS = {
 
   // Id of the buff
   food_lettice: {
-    duplicateTag: ['eatingFood'], // Used to stop duplicate buffs
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'lettice',
     name: 'eating lettice',
     description(buff) {
@@ -18,8 +18,10 @@ export const BUFFS = {
       onApply() {
         return [{
           target: 'self',
-          event: 'healing',
-          amount: 1
+          type: 'instantStatModifier',
+          stats: {
+            health: 1
+          }
         }]
       },
 

@@ -25,7 +25,7 @@ export const ENEMIES = {
       attackSpeed: FAST_SPEED,
       accuracy: 5,
       health: 10,
-      maxHealth: 10,
+      healthMax: 10,
       defense: 4,
       armor: 4
     },
@@ -47,7 +47,7 @@ export const ENEMIES = {
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 70,
       health: 17,
-      maxHealth: 17,
+      healthMax: 17,
       defense: 2,
       armor: 2
     },
@@ -64,7 +64,7 @@ export const ENEMIES = {
       attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
       health: 7,
-      maxHealth: 7,
+      healthMax: 7,
       defense: 25,
       armor: 250
     },
@@ -81,7 +81,7 @@ export const ENEMIES = {
       attackSpeed: SLOW_SPEED,
       accuracy: 0,
       health: 22,
-      maxHealth: 22,
+      healthMax: 22,
       defense: 10,
       armor: 150
     },
@@ -98,7 +98,7 @@ export const ENEMIES = {
       attackSpeed: FAST_SPEED,
       accuracy: 60,
       health: 15,
-      maxHealth: 15,
+      healthMax: 15,
       defense: 0,
       armor: 0
     },
@@ -116,7 +116,7 @@ export const ENEMIES = {
       attackSpeed: MEDIUM_SPEED,
       accuracy: 25,
       health: 70,
-      maxHealth: 70,
+      healthMax: 70,
       defense: 7,
       armor: 7
     },
@@ -133,7 +133,7 @@ export const ENEMIES = {
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 80,
       health: 70,
-      maxHealth: 70,
+      healthMax: 70,
       defense: 100,
       armor: 0
     },
@@ -150,7 +150,7 @@ export const ENEMIES = {
       attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
       health: 100,
-      maxHealth: 100,
+      healthMax: 100,
       defense: 3,
       armor: 3
     },
@@ -167,7 +167,7 @@ export const ENEMIES = {
       attackSpeed: MEDIUM_SPEED,
       accuracy: 0,
       health: 120,
-      maxHealth: 120,
+      healthMax: 120,
       defense: 0,
       armor: 0
     },
@@ -184,7 +184,7 @@ export const ENEMIES = {
       attackSpeed: SLOW_SPEED,
       accuracy: 30,
       health: 110,
-      maxHealth: 110,
+      healthMax: 110,
       defense: 40,
       armor: 350
     },
@@ -202,7 +202,7 @@ export const ENEMIES = {
       attackSpeed: FAST_SPEED,
       accuracy: 70,
       health: 500,
-      maxHealth: 500,
+      healthMax: 500,
       defense: 50,
       armor: 100
     },
@@ -219,7 +219,7 @@ export const ENEMIES = {
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 80,
       health: 300,
-      maxHealth: 300,
+      healthMax: 300,
       defense: 25,
       armor: 50
     },
@@ -236,7 +236,7 @@ export const ENEMIES = {
       attackSpeed: SLOW_SPEED,
       accuracy: 35,
       health: 600,
-      maxHealth: 600,
+      healthMax: 600,
       defense: 100,
       armor: 200
     },

@@ -79,7 +79,7 @@ export const SKILLS = {
 
     statsPerLevel: {
       health: 10,
-      maxHealth: 10
+      healthMax: 10
     }
   }
 }

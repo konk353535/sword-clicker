@@ -147,7 +147,7 @@ Meteor.publish('groups', function() {
         username: 1,
         _id: 1,
         health: 1,
-        maxHealth: 1
+        healthMax: 1
       }
     }).fetch();
 
@@ -156,7 +156,7 @@ Meteor.publish('groups', function() {
       member.icon = "character";
       member.stats = {
         health: member.health,
-        maxHealth: member.maxHealth
+        healthMax: member.healthMax
       }
       return member;
     }

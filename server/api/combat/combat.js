@@ -21,8 +21,8 @@ export const updateCombatStats = function () {
       attackMax: 0,
       attackSpeed: 0,
       accuracy: 0,
-      maxHealth: 0,
-      maxEnergy: COMBAT.baseMaxEnergy,
+      healthMax: 0,
+      energyMax: COMBAT.baseenergyMax,
       defense: 0,
       armor: 0
     },
@@ -109,22 +109,22 @@ Meteor.methods({
     const minutesElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asMinutes();
 
     let isDirty = false;
-    if (currentCombat.stats.energy <= currentCombat.stats.maxEnergy) {
+    if (currentCombat.stats.energy <= currentCombat.stats.energyMax) {
       currentCombat.stats.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
-      if (currentCombat.stats.energy > currentCombat.stats.maxEnergy) {
-        currentCombat.stats.energy = currentCombat.stats.maxEnergy;
+      if (currentCombat.stats.energy > currentCombat.stats.energyMax) {
+        currentCombat.stats.energy = currentCombat.stats.energyMax;
       }
     }
 
-    if (currentCombat.stats.health <= currentCombat.stats.maxHealth) {
+    if (currentCombat.stats.health <= currentCombat.stats.healthMax) {
       currentCombat.stats.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
-      if (currentCombat.stats.health > currentCombat.stats.maxHealth) {
-        currentCombat.stats.health = currentCombat.stats.maxHealth;
+      if (currentCombat.stats.health > currentCombat.stats.healthMax) {
+        currentCombat.stats.health = currentCombat.stats.healthMax;
       }
     }
 
-    if (currentCombat.stats.health > currentCombat.stats.maxHealth) {
-      currentCombat.stats.health = currentCombat.stats.maxHealth;
+    if (currentCombat.stats.health > currentCombat.stats.healthMax) {
+      currentCombat.stats.health = currentCombat.stats.healthMax;
     }
 
     Combat.update(currentCombat._id, {

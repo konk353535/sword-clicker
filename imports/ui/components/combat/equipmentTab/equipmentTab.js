@@ -122,7 +122,7 @@ Template.equipmentTab.helpers({
         name: 'health',
         icon: 'health',
         value: combat.stats.health,
-        maxValue: combat.stats.maxHealth
+        maxValue: combat.stats.healthMax
       }, {
         name: 'defense',
         icon: 'defense',

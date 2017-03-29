@@ -44,7 +44,7 @@ AccountsTemplates.configure({
     MiningSpace.insert({
       owner: userId,
       oreId: MINING.ores.stone.id,
-      health: MINING.ores.stone.maxHealth,
+      health: MINING.ores.stone.healthMax,
       index: 0
     });
 
@@ -52,7 +52,7 @@ AccountsTemplates.configure({
       MiningSpace.insert({
         owner: userId,
         oreId: MINING.ores.stone.id,
-        health: MINING.ores.stone.maxHealth,
+        health: MINING.ores.stone.healthMax,
         index: i
       });
     }

@@ -7,7 +7,7 @@ import './battleUnit.html';
 Template.battleUnit.helpers({
   healthPercentage() {
     const stats = Template.instance().data.unit.stats;
-    const healthPercentage = (stats.health / stats.maxHealth) * 100;
+    const healthPercentage = (stats.health / stats.healthMax) * 100;
 
     return healthPercentage;
   }

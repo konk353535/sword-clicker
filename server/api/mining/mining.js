@@ -254,7 +254,7 @@ Meteor.methods({
             newOresCount--;
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
-            miningSpace.health = newOre.maxHealth;
+            miningSpace.health = newOre.healthMax;
             miningSpace.oreId = newOre.id;
             miningSpace.isDirty = true; // So we know to save this later
           }
@@ -294,7 +294,7 @@ Meteor.methods({
               const emptySpace = emptyMiningSpaces[0];
               // Spawn ore
               const newOre = spawnOre(sortedChanceOres);
-              emptySpace.health = newOre.maxHealth;
+              emptySpace.health = newOre.healthMax;
               emptySpace.oreId = newOre.id;
               emptySpace.isDirty = true; // So we know to save this later
             }
@@ -347,7 +347,7 @@ Meteor.publish('miningSpace', function() {
     if (doc.oreId) {
       const currentOreConstants = MINING.ores[doc.oreId];
       doc.requiredLevel = currentOreConstants.requiredLevel;
-      doc.maxHealth = currentOreConstants.maxHealth;
+      doc.healthMax = currentOreConstants.healthMax;
       doc.name = currentOreConstants.name;
       doc.xp = currentOreConstants.xp;
       doc.icon = currentOreConstants.icon;

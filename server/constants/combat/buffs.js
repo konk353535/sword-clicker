@@ -6,13 +6,13 @@ export const BUFFS = {
     icon: 'lettice',
     name: 'eating lettice',
     description(buff) {
-      const totalHeal = buff.data.totalDuration * buff.data.healthPerSecond;
-      return `Heals for ${totalHeal} over ${buff.data.totalDuration}s`;
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
       duration: 60, // How long the buff will last
       totalDuration: 60,
-      healthPerSecond: 0.33 // Healing it will do per second
+      healthPerSecond: 0.333 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply() {

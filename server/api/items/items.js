@@ -82,6 +82,17 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   }
 }
 
+export const consumeItem = function (itemObject, amount) {
+  // Use up item
+  if (itemObject.amount === amount) {
+    Items.remove(itemObject._id);
+  } else {
+    Items.update(itemObject._id, {
+      $inc: { amount: (-1 * amount) }
+    });
+  }
+}
+
 Meteor.methods({
 
   'items.unequip'(_id, itemId) {
@@ -111,38 +122,30 @@ Meteor.methods({
 
   'items.eat'(_id, itemId) {
     // Check we have the nom
-    const targetItem = Items.findOne({
-      _id,
-      itemId
-    });
-
+    const targetItem = Items.findOne({ _id, itemId });
     if (!targetItem || targetItem.amount < 1) {
       return;
     }
 
-    // Use up item
-    if (targetItem.amount === 1) {
-      Items.remove(targetItem._id);
-    } else {
-      Items.update(targetItem._id, {
-        $inc: { amount: -1 }
-      });
-    }
-
-    // Todo: Remove existing food buffs
-
-    // Add food buff
+    // Check this is a nom
     const itemConstants = ITEMS[itemId];
     if (itemConstants.category !== 'food') {
       return;
     }
 
+    // Remove the nom
+    consumeItem(targetItem, 1);
+
+    // Apply nom specific properties
     const buffs = JSON.parse(JSON.stringify(itemConstants.buffs));
+
+    // Builds up the buffs, we store basic info and persistent info in the data
+    // All other info such as events can be loaded using the buff.id when required
     buffs.forEach((buff) => {
       // Store constants
       buff.constants = BUFFS[buff.id];
 
-      // Save things we actually want to store
+      // Save things we actually want to store in the data property
       buff.data = Object.assign({
         description: buff.constants.description(buff.constants),
         name: buff.constants.name,
@@ -151,49 +154,64 @@ Meteor.methods({
       }, buff.constants.data);
     });
 
-    const buffEvents = [];
-
-    // Apply events returned by the buff itself
+    const combatEvents = [];
+    // Buffs can do things when applied, will collect them in the form of combatEvents
     buffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
-        buffEvents.push(...buff.constants.events.onApply(buff));
+        combatEvents.push(...buff.constants.events.onApply(buff));
       }
     });
 
     // Fetch combat
     const currentCombat = Combat.findOne({ owner: Meteor.userId() });
 
-    // Process buffEvents, only handle self target events here
-    buffEvents.forEach((buffEvent) => {
+    // Generic handler for instantStatModifier combat events
+    const instantStatModifierMethod = function (target, event) {
+      Object.keys(event.stats).forEach((statKey) => {
+        if (target.stats[statKey]) {
+          target.stats[statKey] += event.stats[statKey];
+          const statMax = target.stats[`${statKey}Max`];
+          if (statMax !== undefined && statMax !== null) {
+            if (target.stats[statKey] > statMax) {
+              target.stats[statKey] = statMax;
+            }
+          }
+        }
+      });
+    }
+
+    // Generic manager of handlers for each combat event type
+    const processCombatEvent = function (targets, event) {
+      // Apply event to each target
+      targets.forEach((target) => {
+        // Handler for instant stat modifiers
+        if (event.type === 'instantStatModifier') {
+          instantStatModifierMethod(target, event);
+        }
+      });
+    }
+
+    // Process combatEvents
+    combatEvents.forEach((buffEvent) => {
+      // Only handle self target events here, as we only have access to the current user
       if (buffEvent.target === 'self') {
         const buffTarget = currentCombat;
-        if (buffEvent.type === 'instantStatModifier') {
-          Object.keys(buffEvent.stats).forEach((statKey) => {
-            if (buffTarget.stats[statKey]) {
-              buffTarget.stats[statKey] += buffEvent.stats[statKey];
-              const statMax = buffTarget.stats[`${statKey}Max`];
-              if (statMax !== undefined && statMax !== null) {
-                if (buffTarget.stats[statKey] > statMax) {
-                  buffTarget.stats[statKey] = statMax;
-                }
-              }
-            }
-          });
-        }
+        processCombatEvent([buffTarget], buffEvent);
       }
     });
 
-    // To Do: Make this stuff more reusable for in battles ect
-
+    // Unique buffs based on the duplicate tag
     currentCombat.buffs.push(...buffs);
     currentCombat.buffs = _.uniq(currentCombat.buffs, function (item) {
       return item.duplicateTag
     });
 
-    // Add buff to combat
+    // Save buff and stat changes
     Combat.update(currentCombat._id, {
-      // Update combat stats
-      $set: flattenObjectForMongo({ stats: currentCombat.stats, buffs: currentCombat.buffs })
+      $set: flattenObjectForMongo({
+        stats: currentCombat.stats,
+        buffs: currentCombat.buffs
+      })
     });
 
   },

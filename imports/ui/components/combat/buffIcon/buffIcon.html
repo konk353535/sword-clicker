@@ -1,0 +1,16 @@
+<template name="buffIcon">
+  <div class="buff-icon-container icon-box medium-icon" style="position: relative">
+    <img src="/icons/{{buff.data.icon}}.svg" class="small-icon">
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="buff-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+      {{buff.data.name}}
+    </h3>
+    <div class='popover-content'>
+      {{buff.data.description}}
+    </div>
+  </div>
+
+</template>

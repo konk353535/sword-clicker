@@ -8,6 +8,7 @@ import { Battles } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
 // Component used in the template
+import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/battleTab/battleTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
 import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';

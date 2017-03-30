@@ -175,7 +175,6 @@ Meteor.methods({
       }
     });
 
-
     // To Do: Optimize this to only save changes (isDirty on buffs?)
     Combat.update(currentCombat._id, {
       $set: Object.assign(flattenObjectForMongo({ stats: currentCombat.stats }), {

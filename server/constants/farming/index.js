@@ -11,7 +11,8 @@ export const FARMING = {
       requiredFarmingLevel: 1,
       required: [{
         type: 'gold',
-        amount: 20
+        amount: 20,
+        consumes: true
       }, {
         type: 'skill',
         name: 'farming',
@@ -25,7 +26,8 @@ export const FARMING = {
       requiredFarmingLevel: 1,
       required: [{
         type: 'gold',
-        amount: 100
+        amount: 100,
+        consumes: true
       }, {
         type: 'skill',
         name: 'farming',

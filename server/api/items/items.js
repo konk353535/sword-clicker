@@ -59,7 +59,8 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
     newItemsList.push({
       category: itemConstants.category,
       itemId,
-      owner
+      owner,
+      amount
     });
   }
 

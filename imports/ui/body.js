@@ -26,7 +26,7 @@ Template.body.onCreated(function () {
     if (Meteor.user()) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 7777);
+  }, 9999);
 
   floatingTextTimer = Meteor.setInterval(() => {
     // Increase height and decrease opacity

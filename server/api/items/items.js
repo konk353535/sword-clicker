@@ -6,7 +6,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
 import { BUFFS } from '/server/constants/combat/index.js';
-import { updateCombatStats } from '/server/api/combat/combat.js';
+import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
@@ -136,6 +136,9 @@ Meteor.methods({
     // Remove the nom
     consumeItem(targetItem, 1);
 
+    // Fetch users combat
+    const currentCombat = Combat.findOne({ owner: Meteor.userId() });
+
     // Apply nom specific properties
     const buffs = JSON.parse(JSON.stringify(itemConstants.buffs));
 
@@ -161,35 +164,6 @@ Meteor.methods({
         combatEvents.push(...buff.constants.events.onApply(buff));
       }
     });
-
-    // Fetch combat
-    const currentCombat = Combat.findOne({ owner: Meteor.userId() });
-
-    // Generic handler for instantStatModifier combat events
-    const instantStatModifierMethod = function (target, event) {
-      Object.keys(event.stats).forEach((statKey) => {
-        if (target.stats[statKey]) {
-          target.stats[statKey] += event.stats[statKey];
-          const statMax = target.stats[`${statKey}Max`];
-          if (statMax !== undefined && statMax !== null) {
-            if (target.stats[statKey] > statMax) {
-              target.stats[statKey] = statMax;
-            }
-          }
-        }
-      });
-    }
-
-    // Generic manager of handlers for each combat event type
-    const processCombatEvent = function (targets, event) {
-      // Apply event to each target
-      targets.forEach((target) => {
-        // Handler for instant stat modifiers
-        if (event.type === 'instantStatModifier') {
-          instantStatModifierMethod(target, event);
-        }
-      });
-    }
 
     // Process combatEvents
     combatEvents.forEach((buffEvent) => {

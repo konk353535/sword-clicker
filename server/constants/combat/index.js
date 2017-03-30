@@ -11,7 +11,7 @@ export const COMBAT = {
 
   baseEnergyRegenPerMinute: 0.2, // 1 every 5 minutes
 
-  baseHealthRegenPerMinute: 1,
+  baseHealthRegenPerMinute: 0,
 
   energyConsumption: {
     easy: 1,

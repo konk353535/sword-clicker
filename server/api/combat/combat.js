@@ -10,7 +10,7 @@ import moment from 'moment';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
-import { COMBAT } from '/server/constants/combat/index.js';
+import { COMBAT, BUFFS } from '/server/constants/combat/index.js';
 
 export const updateCombatStats = function () {
 
@@ -96,9 +96,43 @@ export const updateCombatStats = function () {
   });
 };
 
+// Generic handler for instantStatModifier combat events
+export const instantStatModifierMethod = function (target, event) {
+  Object.keys(event.stats).forEach((statKey) => {
+    if (target.stats[statKey] !== undefined && target.stats[statKey] !== null) {
+      target.stats[statKey] += event.stats[statKey];
+      const statMax = target.stats[`${statKey}Max`];
+      if (statMax !== undefined && statMax !== null) {
+        if (target.stats[statKey] > statMax) {
+          target.stats[statKey] = statMax;
+        }
+      }
+    }
+  });
+}
+
+export const removeBuffMethod = function removeBuffMethod(target, event) {
+  target.buffs = target.buffs.filter((buff) => {
+    return buff.id !== event.target;
+  });
+}
+
+// Generic manager of handlers for each combat event type
+export const processCombatEvent = function (targets, event) {
+  // Apply event to each target
+  targets.forEach((target) => {
+    // Handler for instant stat modifiers
+    if (event.type === 'instantStatModifier') {
+      instantStatModifierMethod(target, event);
+    } else if (event.type === 'removeBuff') {
+      removeBuffMethod(target, event);
+    }
+  });
+}
+
 Meteor.methods({
   'combat.gameUpdate'() {
-    // Update health and energy
+
     const currentCombat = Combat.findOne({
       owner: Meteor.userId()
     });
@@ -108,7 +142,7 @@ Meteor.methods({
     const secondsElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asSeconds();
     const minutesElapsed = moment.duration(now.diff(currentCombat.lastGameUpdated)).asMinutes();
 
-    let isDirty = false;
+    // Energy Regen
     if (currentCombat.stats.energy <= currentCombat.stats.energyMax) {
       currentCombat.stats.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
       if (currentCombat.stats.energy > currentCombat.stats.energyMax) {
@@ -116,6 +150,7 @@ Meteor.methods({
       }
     }
 
+    // Health Regen
     if (currentCombat.stats.health <= currentCombat.stats.healthMax) {
       currentCombat.stats.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
       if (currentCombat.stats.health > currentCombat.stats.healthMax) {
@@ -123,16 +158,30 @@ Meteor.methods({
       }
     }
 
-    if (currentCombat.stats.health > currentCombat.stats.healthMax) {
-      currentCombat.stats.health = currentCombat.stats.healthMax;
-    }
-
-    Combat.update(currentCombat._id, {
-      $set: {
-        lastGameUpdated: new Date(),
-        'stats.health': currentCombat.stats.health,
-        'stats.energy': currentCombat.stats.energy
+    // Process buffs
+    const combatEvents = [];
+    currentCombat.buffs.forEach((buff) => {
+      buff.constants = BUFFS[buff.id];
+      if (buff.constants.events.onTick) {
+        combatEvents.push(...buff.constants.events.onTick({ secondsElapsed, buff }));
       }
+    });
+
+    // Process combatEvents
+    combatEvents.forEach((buffEvent) => {
+      if (buffEvent.target === 'self' || buffEvent.type === 'removeBuff') {
+        const buffTarget = currentCombat;
+        processCombatEvent([buffTarget], buffEvent);
+      }
+    });
+
+
+    // To Do: Optimize this to only save changes (isDirty on buffs?)
+    Combat.update(currentCombat._id, {
+      $set: Object.assign(flattenObjectForMongo({ stats: currentCombat.stats }), {
+        buffs: currentCombat.buffs,
+        lastGameUpdated: new Date()
+      })
     });
   }
 })

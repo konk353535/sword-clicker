@@ -25,23 +25,45 @@ export const BUFFS = {
         }]
       },
 
-      tick({ secondsElapsed, buff }) {
-        // Set variables
-        buff.data.duration -= secondsElapsed;
+      onTick({ secondsElapsed, buff }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
 
         // Return modifiers
-        return [{
+        const allModifiers = [{
           target: 'self',
-          event: 'healing',
-          amount: secondsElapsed * buff.data.healthPerSecond
+          type: 'instantStatModifier',
+          stats: {
+            health: (localSecondsElapsed * buff.data.healthPerSecond)
+          }
         }];
+
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          allModifiers.push(...buff.constants.events.onRemove());
+          // Add the delete modifier
+          allModifiers.push({
+            target: buff.id,
+            type: 'removeBuff'
+          });
+        }
+        return allModifiers
       },
 
       onRemove() {
         return [{
           target: 'self',
-          event: 'healing',
-          amount: 1
+          type: 'instantStatModifier',
+          stats: {
+            health: 1
+          }
         }];
       }
     }

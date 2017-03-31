@@ -3,6 +3,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const MINING_CRAFTS = {
   primitive_pickaxe: {
     produces: 'primitive_pickaxe',
+    recipeFor: 'crafting',
     name: 'primitive pickaxe',
     id: 'primitive_pickaxe',
     category: 'mining',
@@ -26,6 +27,7 @@ export const MINING_CRAFTS = {
 
   copper_pickaxe: {
     produces: 'copper_pickaxe',
+    recipeFor: 'crafting',
     name: 'copper pickaxe',
     id: 'copper_pickaxe',
     category: 'mining',
@@ -63,6 +65,7 @@ export const MINING_CRAFTS = {
 
   iron_pickaxe: {
     produces: 'iron_pickaxe',
+    recipeFor: 'crafting',
     name: 'iron pickaxe',
     id: 'iron_pickaxe',
     category: 'mining',

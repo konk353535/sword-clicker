@@ -142,7 +142,7 @@ const craftItem = function (recipeId, amountToCraft) {
 
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
-  if (!recipeConstants) {
+  if (!recipeConstants || recipeConstants.recipeFor !== 'crafting') {
     console.log('Invalid recipe');
     return;
   }
@@ -205,6 +205,10 @@ Meteor.methods({
 
       return recipeConstant;
     }).filter((recipe) => {
+      if (recipe.recipeFor !== 'crafting') {
+        return false;
+      }
+
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
       if (craftingSkill.level + 1 >= recipe.requiredCraftingLevel) {
         return true;

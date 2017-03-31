@@ -3,6 +3,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const CRAFTING_CRAFTS = {
   stone_furnace: {
     produces: 'stone_furnace',
+    recipeFor: 'crafting',
     name: 'stone furnace',
     category: 'crafting',
     id: 'stone_furnace',
@@ -26,6 +27,7 @@ export const CRAFTING_CRAFTS = {
 
   copper_furnace: {
     produces: 'copper_furnace',
+    recipeFor: 'crafting',
     name: 'copper furnace',
     id: 'copper_furnace',
     category: 'crafting',
@@ -49,6 +51,7 @@ export const CRAFTING_CRAFTS = {
 
   copper_bar: {
     produces: 'copper_bar',
+    recipeFor: 'crafting',
     name: 'copper bar',
     category: 'crafting',
     id: 'copper_bar',
@@ -86,6 +89,7 @@ export const CRAFTING_CRAFTS = {
 
   iron_bar: {
     produces: 'iron_bar',
+    recipeFor: 'crafting',
     name: 'iron bar',
     id: 'iron_bar',
     category: 'crafting',

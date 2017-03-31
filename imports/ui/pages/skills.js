@@ -51,6 +51,7 @@ Template.skillsPage.helpers({
       { type: 'defense' },
       { type: 'mining' },
       { type: 'farming' },
+      { type: 'inscription' },
       { type: 'crafting' },
       { type: 'woodcutting' },
       { type: 'health' }

@@ -13,6 +13,20 @@ export const SKILLS = {
     }
   },
 
+  inscription: {
+    xpToLevel(level) {
+      return level * 50 * (1 + (level / 5)) - 40;
+    },
+
+    requirementsToLearn: [{
+      itemId: 'rubia_flower',
+      icon: ITEMS['rubia_flower'].icon,
+      name: ITEMS['rubia_flower'].name,
+      amount: 1,
+      type: 'item'
+    }]
+  },
+
   farming: {
     xpToLevel(level) {
       return level * 50 * (1 + (level / 5)) - 40;

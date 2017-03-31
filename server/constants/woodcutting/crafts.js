@@ -3,6 +3,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const WOODCUTTING_CRAFTS = {
   primitive_axe: {
     produces: 'primitive_axe',
+    recipeFor: 'crafting',
     name: 'primitive axe',
     id: 'primitive_axe',
     category: 'woodcutting',
@@ -26,6 +27,7 @@ export const WOODCUTTING_CRAFTS = {
 
   copper_axe: {
     produces: 'copper_axe',
+    recipeFor: 'crafting',
     name: 'copper axe',
     id: 'copper_axe',
     category: 'woodcutting',
@@ -56,6 +58,7 @@ export const WOODCUTTING_CRAFTS = {
 
   iron_axe: {
     produces: 'iron_axe',
+    recipeFor: 'crafting',
     name: 'iron axe',
     id: 'iron_axe',
     category: 'woodcutting',

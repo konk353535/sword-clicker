@@ -20,6 +20,14 @@ Template.nav.helpers({
     }
   },
 
+  hasFarmingSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'farming' });
+    } else {
+      return true;
+    }
+  },
+
   hasAttackSkill() {
     if (Skills.findOne()) {
       return Skills.findOne({ type: 'attack' });

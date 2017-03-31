@@ -26,7 +26,11 @@ const updateComputedCraftingProcess = function (instance) {
   craftingProcess.percentage = percentage;
 
   if (moment().isAfter(endDate)) {
-    Meteor.call('crafting.updateGame');
+    if (instance.data.isCrafting) {
+      Meteor.call('crafting.updateGame');
+    } else {
+      Meteor.call('inscription.updateGame');      
+    }
     craftingProcess.percentage = 100;
   }
 

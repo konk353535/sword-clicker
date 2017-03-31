@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 
+import { Inscription } from '/imports/api/inscription/inscription';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
@@ -128,6 +129,10 @@ Meteor.methods({
 
       if (skillName === 'crafting') {
         Crafting.insert({
+          owner: Meteor.userId()
+        });
+      } else if (skillName === 'inscription') {
+        Inscription.insert({
           owner: Meteor.userId()
         });
       } else if (skillName === 'woodcutting') {

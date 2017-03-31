@@ -34,6 +34,18 @@ Router.route('/farming', {
   }
 });
 
+Router.route('/inscription', {
+
+  name: 'inscription',
+
+  template: 'inscriptionPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/woodcutting', {
 
   name: 'woodcutting',

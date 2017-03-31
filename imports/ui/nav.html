@@ -30,6 +30,13 @@
                   Farming
                 </a>
               </li>
+              {{#if hasFarmingSkill}}
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
+                    Inscription
+                  </a>
+                </li>
+              {{/if}}
             {{/if}}
           {{/if}}
           <li class="nav-item">

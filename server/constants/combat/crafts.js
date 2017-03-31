@@ -4,6 +4,7 @@ export const COMBAT_CRAFTS = {
   copper_dagger: {
     produces: 'copper_dagger',
     name: 'copper dagger',
+    recipeFor: 'crafting',
     category: 'combat',
     id: 'copper_dagger',
     timeToCraft: 60, // 60
@@ -48,6 +49,7 @@ export const COMBAT_CRAFTS = {
   copper_spear: {
     produces: 'copper_spear',
     name: 'copper spear',
+    recipeFor: 'crafting',
     category: 'combat',
     id: 'copper_spear',
     timeToCraft: 120, // 60
@@ -93,6 +95,7 @@ export const COMBAT_CRAFTS = {
     produces: 'copper_short_sword',
     name: 'copper short sword',
     category: 'combat',
+    recipeFor: 'crafting',
     id: 'copper_short_sword',
     timeToCraft: 120, // 60
     xp: 80,
@@ -137,6 +140,7 @@ export const COMBAT_CRAFTS = {
     produces: 'copper_long_sword',
     name: 'copper long sword',
     category: 'combat',
+    recipeFor: 'crafting',
     id: 'copper_long_sword',
     timeToCraft: 120, // 60
     xp: 80,
@@ -178,6 +182,7 @@ export const COMBAT_CRAFTS = {
   },
 
   copper_battle_axe: {
+    recipeFor: 'crafting',
     produces: 'copper_battle_axe',
     name: 'copper battle axe',
     category: 'combat',

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Combat } from '/imports/api/combat/combat.js';
@@ -27,7 +28,11 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   }, 2000);
 
   this.state.set('hasLearnRequirements', false);
-  this.state.set('currentTab', 'battle');
+  if (Session.get('combatTab')) {
+    this.state.set('currentTab', Session.get('combatTab'));
+  } else {
+    this.state.set('currentTab', 'battle');
+  }
 
   this.subscribe('groups');
   this.subscribe('combat');
@@ -67,14 +72,17 @@ Template.combatPage.events({
   },
 
   'click .battleTabLink'(event, instance) {
+    Session.set('combatTab', 'battle');
     instance.state.set('currentTab', 'battle');
   },
 
   'click .equipmentTabLink'(event, instance) {
+    Session.set('combatTab', 'equipment');
     instance.state.set('currentTab', 'equipment');
   },
 
   'click .groupTabLink'(event, instance) {
+    Session.set('combatTab', 'group');
     instance.state.set('currentTab', 'group');
   }
 })
@@ -96,6 +104,10 @@ Template.combatPage.helpers({
 
   combat() {
     const currentCombat = Combat.findOne({});
+    if (!currentCombat) {
+      return;
+    }
+
     currentCombat.energyPercentage = currentCombat.stats.energy / currentCombat.stats.energyMax * 100;
     currentCombat.healthPercentage = currentCombat.stats.health / currentCombat.stats.healthMax * 100;
     return currentCombat;

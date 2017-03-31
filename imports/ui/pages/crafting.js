@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
@@ -15,7 +16,11 @@ let gameUpdateTimer;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.state.set('recipeFilter', 'all');
+  if (Session.get('craftingFilter')) {
+    this.state.set('recipeFilter', Session.get('craftingFilter'));
+  } else {
+    this.state.set('recipeFilter', 'all');
+  }
 
   this.autorun(() => {
     if (Skills.findOne({ type: 'crafting' })) {
@@ -52,6 +57,7 @@ Template.craftingPage.events({
 
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
+    Session.set('craftingFilter', filter)
     instance.state.set('recipeFilter', filter);
   },
 
@@ -112,6 +118,10 @@ Template.craftingPage.helpers({
   recipes() {
     const instance = Template.instance();
     const recipeFilter = instance.state.get('recipeFilter');
+
+    if (!instance.state.get('recipes')) {
+      return [];
+    }
 
     if (recipeFilter === 'all') {
       return instance.state.get('recipes');

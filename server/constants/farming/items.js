@@ -1,3 +1,5 @@
+import { BUFFS } from '/server/constants/combat';
+
 export const FARMING_ITEMS = {
   lettice_seed: {
     id: 'lettice_seed',
@@ -14,6 +16,10 @@ export const FARMING_ITEMS = {
     icon: 'lettice',
     category: 'food',
     name: 'Lettice',
+    description() {
+      const BUFF = BUFFS.food_lettice;
+      return BUFF.description(BUFF);
+    },
     buffs: [{
       id: 'food_lettice'
     }],

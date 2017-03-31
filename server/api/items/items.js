@@ -162,7 +162,7 @@ Meteor.methods({
     // Buffs can do things when applied, will collect them in the form of combatEvents
     buffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
-        combatEvents.push(...buff.constants.events.onApply(buff));
+        combatEvents.push(...buff.constants.events.onApply({ buff }));
       }
     });
 
@@ -180,6 +180,11 @@ Meteor.methods({
     currentCombat.buffs = _.uniq(currentCombat.buffs, function (item) {
       return item.duplicateTag
     });
+
+    console.log(flattenObjectForMongo({
+        stats: currentCombat.stats,
+        buffs: currentCombat.buffs
+      }));
 
     // Save buff and stat changes
     Combat.update(currentCombat._id, {
@@ -320,9 +325,16 @@ Meteor.publish('items', function() {
           }
         });
       }
-    } else if (itemConstants.category === 'seed') {
+    }
+
+    if (itemConstants.category === 'seed') {
       doc.plantingDetails = FARMING.plants[itemConstants.produces];
     }
+
+    if (_.isFunction(itemConstants.description)) {
+      doc.description = itemConstants.description();
+    }
+
     return doc;
   }
 

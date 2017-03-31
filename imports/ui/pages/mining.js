@@ -10,10 +10,16 @@ import { Items } from '/imports/api/items/items.js';
 import '../components/mining/mineSpace.js';
 import './mining.html';
 
-let gameUpdateTimer;
+let miningPageTimer;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  miningPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('mining.gameUpdate');
+    }
+  }, 2000);
 
   Meteor.call('mining.gameUpdate', (err, res) => {
     // Show mining spaces
@@ -35,6 +41,10 @@ Template.miningPage.events({
       Meteor.call('mining.buyProspector');
     }
   }
+});
+
+Template.miningPage.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(miningPageTimer);
 });
 
 Template.miningPage.rendered = function () {

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const BUFFS = {
 
   // Id of the buff
@@ -15,7 +17,9 @@ export const BUFFS = {
       healthPerSecond: 0.333 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply() {
+      onApply({ buff }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
         return [{
           target: 'self',
           type: 'instantStatModifier',

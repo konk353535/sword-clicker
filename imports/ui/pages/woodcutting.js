@@ -8,9 +8,17 @@ import { Items } from '/imports/api/items/items.js';
 
 import './woodcutting.html';
 
+let woodcuttingPageTimer;
+
 Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
+
+  woodcuttingPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('woodcutting.gameUpdate');
+    }
+  }, 2000);
 
   Meteor.call('woodcutting.gameUpdate', (err, res) => {
     this.subscribe('woodcutting');
@@ -28,6 +36,10 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
       }
     });
   });
+});
+
+Template.woodcuttingPage.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(woodcuttingPageTimer);
 });
 
 Template.woodcuttingPage.events({

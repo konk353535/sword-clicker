@@ -15,8 +15,16 @@ import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
 
 import './combat.html';
 
+let combatPageTimer;
+
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  combatPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('combat.gameUpdate');
+    }
+  }, 2000);
 
   this.state.set('hasLearnRequirements', false);
   this.state.set('currentTab', 'battle');
@@ -47,6 +55,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
       }
     }
   });
+});
+
+Template.combatPage.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(combatPageTimer);
 });
 
 Template.combatPage.events({

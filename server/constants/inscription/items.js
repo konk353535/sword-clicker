@@ -59,5 +59,36 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 5000,
     description: 'Can be consumed to learn the berserk ability.'
-  }
+  },
+
+  execute_level_1_page_1: {
+    id: 'execute_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'execute Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is berserk.'
+  },
+
+  execute_level_1_page_2: {
+    id: 'execute_level_1_page_2',
+    icon: 'page',
+    category: 'page',
+    name: 'execute Lv 1 Pg 2',
+    sellPrice: 250,
+    description: 'The second half of what is berserk.'
+  },
+
+  execute_level_1_tome: {
+    id: 'execute_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'execute Lv 1',
+    teaches: {
+      abilityId: 'execute',
+      level: 1
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to learn the execute ability.'
+  },
 }

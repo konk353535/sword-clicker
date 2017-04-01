@@ -195,119 +195,32 @@ export const BUFFS = {
     }
   },
 
-  /* To do tomorrow
   execute: {
     duplicateTag: 'execute', // Used to stop duplicate buffs
     icon: 'execute',
     name: 'execute',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
-      if (!localLevel) {
-        localLevel = 1;
-      }
-      const damageIncrease = buff.constants.damagePercentageIncreaseBase + (buff.constants.damagePercentageIncreasePerLevel * localLevel);
-      const damageTakenIncrease = buff.constants.damageTakenPercentageIncreaseBase + (buff.constants.damageTakenPercentageIncreasePerLevel * localLevel);
-      const healthLostPerSecond = buff.constants.healthLostPerSecondBase + (buff.constants.healthLostPerSecondPerLevel * localLevel);
-      const duration = buff.data.totalDuration;
-
-      return `
-        <b>+${damageIncrease}%</b> damage and attack speed.<br />
-        <b>+${damageTakenIncrease}%</b> damage taken.<br />
-        You lose <b>${healthLostPerSecond}hp</b> per second.<br />
-        Duration <b>${duration}s</b><br />`;
+      return `To Do`;
     },
     constants: {
-      damagePercentageIncreaseBase: 45,
-      damagePercentageIncreasePerLevel: 5,
-      damageTakenPercentageIncreaseBase: 20,
-      damageTakenPercentageIncreasePerLevel: 5,
-      healthLostPerSecondBase: 0.5,
-      healthLostPerSecondPerLevel: 0.5
+      damage: 10
     },
     data: {
-      duration: 10,
-      totalDuration: 10,
+      duration: 0,
+      totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff }) {
-        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
-        // Increases damage and attack speed
-        const damageIncrease = buff.constants.constants.damagePercentageIncreaseBase + (buff.constants.constants.damagePercentageIncreasePerLevel * buff.data.level);
-        // Damage taken 
-        const damageTaken = buff.constants.constants.damageTakenPercentageIncreaseBase + (buff.constants.constants.damageTakenPercentageIncreasePerLevel * buff.data.level);
-        // Health lost
-        const healthLost = buff.constants.constants.healthLostPerSecondBase + (buff.constants.constants.healthLostPerSecondPerLevel * buff.data.level);
-
-        buff.data.damageIncrease = damageIncrease;
-        buff.data.damageTakenIncrease = damageTaken;
-        buff.data.healthLost = (-1 * healthLost);
-
-        return [{
-          target: 'self',
-          type: 'instantPercentStatModifier',
-          stats: {
-            attackMax: buff.data.damageIncrease
-          }
-        },{
-          target: 'self',
-          type: 'instantPercentStatModifier',
-          stats: {
-            attack: buff.data.damageIncrease,
-            attackSpeed: buff.data.damageIncrease,
-            damageTaken: buff.data.damageTakenIncrease
-          }
-        }]
+      onApply({ buff, target, caster }) {
+        console.log(target);
+        buff.data.endDate = moment().add(0, 'seconds').toDate();
+        target.stats.health -= 5;
       },
 
-      onTick({ secondsElapsed, buff }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.data.duration -= localSecondsElapsed;
-
-        if (buff.data.duration < 0) {
-          localSecondsElapsed += buff.data.duration;
-          if (localSecondsElapsed < 0) {
-            localSecondsElapsed = 0;
-          }
-        }
-
-        // Return modifiers
-        const allModifiers = [{
-          target: 'self',
-          type: 'instantStatModifier',
-          stats: {
-            health: (localSecondsElapsed * buff.data.healthLost)
-          }
-        }];
-
-        if (buff.data.duration < 0) {
-          // Call the onremove event
-          allModifiers.push(...buff.constants.events.onRemove({ buff }));
-          // Add the delete modifier
-          allModifiers.push({
-            target: buff.id,
-            type: 'removeBuff'
-          });
-        }
-        return allModifiers
-      },
-
-      onRemove({ buff }) {
-        return [{
-          target: 'self',
-          type: 'instantPercentStatModifier',
-          stats: {
-            attackMax: buff.data.damageIncrease * -1
-          }
-        }, {
-          target: 'self',
-          type: 'instantPercentStatModifier',
-          stats: {
-            attack: buff.data.damageIncrease * -1,
-            attackSpeed: buff.data.damageIncrease * -1,
-            damageTaken: buff.data.damageTakenIncrease * -1
-          }
-        }];
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          targetBuff.id !== buff.id
+        });
       }
     }
-  } */
+  }
 }

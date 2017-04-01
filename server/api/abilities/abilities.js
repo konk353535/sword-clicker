@@ -92,7 +92,8 @@ Meteor.methods({
         $push: {
           learntAbilities: {
             abilityId: tomeConstants.teaches.abilityId,
-            level: 1
+            level: 1,
+            equipped: false
           }
         }
       })

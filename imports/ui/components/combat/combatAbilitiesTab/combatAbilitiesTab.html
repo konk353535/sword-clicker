@@ -11,6 +11,14 @@
           Main Hand
         </div>
       {{/if}}
+      <!-- Off Hand -->
+      {{#if equippedAbilitiesMap.offHand}}
+        {{> itemIcon item=equippedAbilitiesMap.offHand}}
+      {{else}}
+        <div class="icon-box">
+          Off Hand
+        </div>
+      {{/if}}
       <!-- Head -->
       {{#if equippedAbilitiesMap.head}}
         {{> itemIcon item=equippedAbilitiesMap.head}}

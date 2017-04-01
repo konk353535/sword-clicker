@@ -17,7 +17,6 @@ export const ABILITIES = {
     }
   },
 
-  /*
   execute: {
     icon: 'execute',
     name: 'execute',
@@ -26,9 +25,10 @@ export const ABILITIES = {
     cooldown: 20,
     slot: 'offHand',
     isHidden: false,
+    target: 'currentEnemy', // The curreny enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.execute;
       return BUFF.description({ buff: BUFF, level });
     }
-  }*/
+  }
 }

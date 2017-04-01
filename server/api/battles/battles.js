@@ -155,7 +155,23 @@ export const attackSpeedTicks = function(attackSpeed) {
   }
 }
 
-const castAbility = function(ability, caster, targets) {
+const castAbility = function(ability, caster, targets, allAliveUnits, allAliveEnemies) {
+  console.log(ability.id);
+  console.log(caster);
+  if (ability.target === 'currentEnemy') {
+    // Is current target alive
+    const currentEnemy = _.findWhere(allAliveUnits, { id: caster.target });
+    if (currentEnemy) {
+      targets = [currentEnemy];
+    } else {
+      const firstEnemy = allAliveEnemies[0];
+      if (firstEnemy) {
+        targets = [firstEnemy];
+      }
+    }
+  }
+
+
   // Apply ability buffs to targets
   targets.forEach((target) => {
     const newBuffs = ability.buffs.map((buffId) => {
@@ -197,6 +213,7 @@ const castAbility = function(ability, caster, targets) {
 const progressBattle = function (actualBattle, battleIntervalId) {
   const currentTick = actualBattle.tick;
   const tickEvents = [];
+  const allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
   // Fetch actions related to this battle
   const battleActions = BattleActions.find({
@@ -345,7 +362,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
         abilityToCast.level = unitAbility.level;
         // Fetch who we are are targetting with this ability
 
-        castAbility(abilityToCast, actionCaster, actionTargets)
+        castAbility(abilityToCast, actionCaster, actionTargets, allAliveUnits, actualBattle.enemies);
 
         unitAbility.currentCooldown = abilityToCast.cooldown;
       }

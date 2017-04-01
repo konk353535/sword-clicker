@@ -143,7 +143,6 @@ export const INSCRIPTION_CRAFTS = {
     }]
   },
 
-  /*
   execute_level_1_page_1: {
     recipeFor: 'inscription',
     produces: 'execute_level_1_page_1',
@@ -236,5 +235,5 @@ export const INSCRIPTION_CRAFTS = {
       name: 'inscription',
       level: 1
     }]
-  }*/
+  }
 }

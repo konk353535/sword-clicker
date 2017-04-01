@@ -359,5 +359,50 @@ export const COMBAT_CRAFTS = {
       name: 'crafting',
       level: 3
     }]
+  },
+
+  copper_shield: {
+    recipeFor: 'crafting',
+    produces: 'copper_shield',
+    name: 'copper shield',
+    category: 'combat',
+    id: 'copper_shield',
+    timeToCraft: 120, // 60
+    xp: 60,
+    maxToCraft: 1,
+    requiredCraftingLevel: 3,
+    required: [{
+      type: 'item',
+      itemId: 'stone_furnace',
+      icon: ITEMS['stone_furnace'].icon,
+      name: ITEMS['stone_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'copper_bar',
+      icon: ITEMS['copper_bar'].icon,
+      name: ITEMS['copper_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 3
+    }]
   }
 }

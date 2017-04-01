@@ -214,4 +214,30 @@ export const COMBAT_ITEMS = {
       level: 1
     }]
   },
+
+  copper_shield: {
+    id: 'copper_shield',
+    icon: 'copperShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'copper shield',
+    sellPrice: 150,
+    description: 'Provides large defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 1,
+      defense: 3,
+      armor: 10
+    },
+    extraStats: {
+      healthMax: 2,
+      defense: 3,
+      armor: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
+  },
 }

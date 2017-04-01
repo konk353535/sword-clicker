@@ -182,11 +182,6 @@ Meteor.methods({
       return item.duplicateTag
     });
 
-    console.log(flattenObjectForMongo({
-        stats: currentCombat.stats,
-        buffs: currentCombat.buffs
-      }));
-
     // Save buff and stat changes
     Combat.update(currentCombat._id, {
       $set: flattenObjectForMongo({
@@ -235,12 +230,34 @@ Meteor.methods({
       }
     }
 
+    const affectedSlots = [itemSlot];
+    // When equipped 2h weapon, clear offHand slot
+    if (itemConstants.isTwoHanded) {
+      affectedSlots.push('offHand');
+    }
+
+    // When equipping off hand, make sure mainHand isn't a 2h weapon
+    if (itemConstants.slot === 'offHand') {
+      const mainHandEquipped = Items.findOne({
+        owner: Meteor.userId(),
+        equipped: true,
+        slot: 'mainHand'
+      });
+
+      if (mainHandEquipped) {
+        if (ITEMS[mainHandEquipped.itemId].isTwoHanded) {
+          affectedSlots.push('mainHand');
+        }
+      }
+    }
 
     // Unequip existing items
     Items.update({
       owner: Meteor.userId(),
       equipped: true,
-      slot: itemSlot
+      slot: {
+        $in: affectedSlots
+      }
     }, {
       $set: {
         equipped: false

@@ -1,7 +1,12 @@
 <template name="ability">
   <div class="ability-icon-container">
-    <div class="ability-icon">
+    <div class="ability-icon {{#if $gt ability.currentCooldown 0}}disabled{{/if}}">
       <img src="icons/{{ability.icon}}.svg">
     </div>
+    {{#if $gt ability.currentCooldown 0}}
+      <span class="cooldown-text">
+        {{> formatNumber ability.currentCooldown}}
+      </span>
+    {{/if}}
   </div>
 </template>

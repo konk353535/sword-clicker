@@ -1,10 +1,9 @@
 <template name="battleTab">
   {{#if currentBattle}}
-    <!-- Ability List -->
-    <div class="d-flex my-3">
-      {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
-      {{#each equippedAbilities}}
-        {{> ability ability=this battleId=currentBattle._id}}
+    <!-- Buffs list -->
+    <div class="d-flex my-1" style="min-height: 58px">
+      {{#each myUnitsBuffs}}
+        {{> buffIcon buff=this}}
       {{/each}}
     </div>
 
@@ -27,6 +26,16 @@
             {{> battleUnit unit=this isEnemy="true"}}
           {{/each}}
         </div>
+      </div>
+    </div>
+
+    <!-- Ability List -->
+    <div style="position: absolute; bottom: 0px; left: 0px; right: 0px; padding: 0 20px;">
+      <div class="d-flex my-3">
+        {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
+        {{#each equippedAbilities}}
+          {{> ability ability=this battleId=currentBattle._id}}
+        {{/each}}
       </div>
     </div>
   {{else}}

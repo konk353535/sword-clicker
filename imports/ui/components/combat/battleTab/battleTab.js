@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import moment from 'moment';
+import _ from 'underscore';
 
 import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
@@ -141,11 +142,46 @@ Template.battleTab.helpers({
       return;
     }
 
+    const currentBattle = Battles.findOne({
+      finished: false
+    });
+    if (!currentBattle) {
+      return;
+    }
+    const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
+    const abilityMap = {};
+
+    myUnit.abilities.forEach((ability) => {
+      abilityMap[ability.id] = {
+        currentCooldown: ability.currentCooldown,
+        id: ability.id
+      }
+    });
+
     const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+      if (abilityMap[ability.abilityId]) {
+        ability.currentCooldown = abilityMap[ability.abilityId].currentCooldown;
+      }
       return ability.equipped;
     });
 
     return equippedAbilities;
+  },
+
+  myUnitsBuffs() {
+    const currentBattle = Battles.findOne({
+      finished: false
+    });
+    if (!currentBattle) {
+      return [];
+    }
+
+    const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
+    if (!myUnit) {
+      return [];
+    }
+
+    return myUnit.buffs;
   },
 
   floorDetails() {

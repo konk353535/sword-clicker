@@ -1,5 +1,5 @@
 <template name="itemIcon">
-  <div class="item-icon-container icon-box" style="position: relative">
+  <div class="item-icon-container icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative">
     {{#if item.quality}}
       <div class="text-muted" style="position: absolute; top: 2px; right: 5px; font-size: 12px;">{{item.quality}}%</div>    
     {{/if}}
@@ -16,7 +16,11 @@
     </h3>
     <div class='popover-content'>
       {{#if item.description}}
-        {{item.description}}<br />
+        {{{item.description}}}<br />
+      {{/if}}
+
+      {{#if item.cooldown}}
+        Cooldown <b>{{item.cooldown}}s</b>
       {{/if}}
 
       {{#if item.stats}}
@@ -29,7 +33,9 @@
       {{/if}}
 
       {{#if item.primaryAction}}
-        <b>Left Click</b> to {{item.primaryAction.description}}
+        {{#if item.primaryAction.description}}
+          <b>Left Click</b> to {{item.primaryAction.description}}
+        {{/if}}
       {{else}}
         <b>Sells for</b> {{item.sellPrice}} Gold<br />
         <b>Left Click</b> to sell

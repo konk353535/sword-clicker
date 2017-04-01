@@ -6,7 +6,10 @@ export const ABILITIES = {
   berserk: {
     icon: 'berserk',
     name: 'Berserk',
+    id: 'berserk',
     buffs: ['berserk'],
+    cooldown: 120,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.berserk;
       return BUFF.description({ buff: BUFF, level });

@@ -110,6 +110,13 @@ body.targetting-enemies {
   padding: $spacer * 0.25;
 }
 
+.icon-box.not-learnt {
+  background-color: $gray-lighter;
+  img {
+    opacity: 0.2;
+  }
+}
+
 .small-icon {
   width: 24px;
   height: 24px;

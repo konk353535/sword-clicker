@@ -4,7 +4,7 @@ import { ABILITIES as abilities } from './abilities';
 
 import { ITEMS } from './items';
 
-export const ABILITES = abilities;
+export const ABILITIES = abilities;
 export const BUFFS = buffs;
 export const COMBAT_ITEMS = combatItems;
 export const COMBAT = {

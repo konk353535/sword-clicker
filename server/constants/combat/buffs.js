@@ -81,14 +81,16 @@ export const BUFFS = {
       if (!localLevel) {
         localLevel = 1;
       }
-      const damageIncrease = buff.data.damagePercentageIncreaseBase + (buff.data.damagePercentageIncreasePerLevel * localLevel);
-      const damageTakenIncrease = buff.data.damageTakenPercentageIncreaseBase + (buff.data.damageTakenPercentageIncreasePerLevel * localLevel);
-      const healthLostPerSecond = buff.data.healthLostPerSecondBase + (buff.data.healthLostPerSecondPerLevel * localLevel);
+      const damageIncrease = buff.constants.damagePercentageIncreaseBase + (buff.constants.damagePercentageIncreasePerLevel * localLevel);
+      const damageTakenIncrease = buff.constants.damageTakenPercentageIncreaseBase + (buff.constants.damageTakenPercentageIncreasePerLevel * localLevel);
+      const healthLostPerSecond = buff.constants.healthLostPerSecondBase + (buff.constants.healthLostPerSecondPerLevel * localLevel);
       const duration = buff.data.totalDuration;
 
-      return 'Increases damage and attack speed by ' + `${damageIncrease}%.` +
-        `But increases damage taken by ${damageTakenIncrease} and bleeds you for ${healthLostPerSecond}.` +
-        `Last for ${duration}`;
+      return `
+        <b>+${damageIncrease}%</b> damage and attack speed.<br />
+        <b>+${damageTakenIncrease}%</b> damage taken.<br />
+        You lose <b>${healthLostPerSecond}hp</b> per second.<br />
+        Duration <b>${duration}s</b><br />`;
     },
     constants: {
       damagePercentageIncreaseBase: 5,

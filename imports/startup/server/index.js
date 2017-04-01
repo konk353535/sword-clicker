@@ -3,6 +3,7 @@ import { Skills } from '../../api/skills/skills.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Combat } from '../../api/combat/combat.js';
+import { Abilities } from '../../api/abilities/abilities.js';
 import { addItem } from '/server/api/items/items.js';
 
 import { MINING } from '/server/constants/mining/index.js';

@@ -41,10 +41,23 @@ export const INSCRIPTION_ITEMS = {
     category: 'tome',
     name: 'Berserk Lv 1',
     teaches: {
-      ability: 'berserk',
+      abilityId: 'berserk',
       level: 1
     },
     sellPrice: 500,
+    description: 'Can be consumed to learn the berserk ability.'
+  },
+
+  berserk_level_2_tome: {
+    id: 'berserk_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Berserk Lv 2',
+    teaches: {
+      abilityId: 'berserk',
+      level: 2
+    },
+    sellPrice: 5000,
     description: 'Can be consumed to learn the berserk ability.'
   }
 }

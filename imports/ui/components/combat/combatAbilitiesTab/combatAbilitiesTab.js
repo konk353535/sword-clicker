@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
+import _ from 'underscore';
 
 import './combatAbilitiesTab.html';
 
@@ -39,7 +40,11 @@ Template.combatAbilitiesTab.helpers({
         description: 'learn',
         item,
         method() {
-          Meteor.call('abilities.learn', this.item._id, this.item.itemId);
+          Meteor.call('abilities.learn', this.item._id, this.item.itemId, (err, res) => {
+            if (err) {
+              toastr.warning(err.reason);
+            }
+          });
         }
       }
       return item;
@@ -48,24 +53,28 @@ Template.combatAbilitiesTab.helpers({
 
   abilityLibrary() {
     const instance = Template.instance();
+    const myAbilities = Abilities.findOne({});
 
-    if (!instance.state.get('abilityLibrary')) {
+    if (!instance.state.get('abilityLibrary') || !myAbilities) {
       return [];
     }
 
-    console.log(instance.state.get('abilityLibrary'));
-
     return instance.state.get('abilityLibrary').map((ability) => {
-      ability.notLearnt = true;
-      // Show equip if we have learnt this
-      ability.primaryAction = {}
-      /*
-        description: 'unequip',
-        item,
-        method() {
-          Meteor.call('items.unequip', this.item._id, this.item.itemId);
+      ability.primaryAction = {};
+
+      if (_.findWhere(myAbilities.learntAbilities, { abilityId: ability.id })) {
+        ability.notLearnt = false;
+        ability.primaryAction = {
+          description: 'equip',
+          ability,
+          method() {
+            Meteor.call('abilites.equip', this.ability.id);
+          }
         }
-      */
+      } else {
+        ability.notLearnt = true;
+      }
+
       return ability;
     });
   }

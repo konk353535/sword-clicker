@@ -8,7 +8,8 @@ AbilitiesSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   learntAbilities: { type: [Object] },
   'learntAbilities.$.abilityId': { type: String },
-  'learntAbilities.$.level': { type: Number }
+  'learntAbilities.$.equipped': { type: Boolean, defaultValue: false },
+  'learntAbilities.$.level': { type: Number },
 });
 
 Abilities.attachSchema(AbilitiesSchema);

@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Combat } from '/imports/api/combat/combat.js';
 import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
@@ -51,6 +52,27 @@ Template.combatAbilitiesTab.helpers({
     });
   },
 
+  equippedAbilitiesMap() {
+    const myAbilities = Abilities.findOne();
+    if (!myAbilities) {
+      return;
+    }
+
+    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+      // To do add unequipping for abilities
+      ability.primaryAction = {};
+
+      return ability.equipped;
+    });
+
+    const equippedMap = {};
+    equippedAbilities.forEach((item) => {
+      equippedMap[item.slot] = item;
+    });
+
+    return equippedMap;
+  },
+
   abilityLibrary() {
     const instance = Template.instance();
     const myAbilities = Abilities.findOne({});
@@ -68,7 +90,7 @@ Template.combatAbilitiesTab.helpers({
           description: 'equip',
           ability,
           method() {
-            Meteor.call('abilites.equip', this.ability.id);
+            Meteor.call('abilities.equip', this.ability.id);
           }
         }
       } else {

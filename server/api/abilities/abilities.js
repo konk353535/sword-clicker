@@ -13,6 +13,36 @@ import { consumeItem } from '/server/api/items/items';
 
 Meteor.methods({
 
+  'abilities.equip'(abilityId) {
+    // Make sure the user actually has the specified ability
+    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const targetEquip = _.findWhere(myAbilities.learntAbilities, { abilityId });
+
+    if (!targetEquip) {
+      throw new Meteor.Error("not-learnt", "You haven't learnt this ability.");
+    }
+
+    const targetEquipConstants = ABILITIES[targetEquip.abilityId];
+
+    // Uneqip abilities on the same slot
+    myAbilities.learntAbilities.forEach((ability) => {
+      if (ability.equipped) {
+        if (ABILITIES[ability.abilityId].slot === targetEquipConstants.slot) {
+          ability.equipped = false;
+        }
+      }
+    });
+
+    // Equip specified ability
+    targetEquip.equipped = true;
+
+    Abilities.update(myAbilities._id, {
+      $set: {
+        learntAbilities: myAbilities.learntAbilities
+      }
+    });
+  },
+
   'abilities.learn'(_id, itemId) {
     // Make sure we have this item
     const tome = Items.findOne({ owner: Meteor.userId(), itemId });
@@ -100,6 +130,19 @@ Meteor.publish('abilities', function() {
 
   //Transform function
   var transform = function(doc) {
+    doc.learntAbilities.forEach((ability) => {
+      const abilityConstant = ABILITIES[ability.abilityId];
+
+      ability.description = ABILITIES[ability.abilityId].description(ability.level);
+      ability.name = `${abilityConstant.name} (${ability.level})`;
+      ability.icon = abilityConstant.icon;
+      ability.cooldown = abilityConstant.cooldown;
+      ability.slot = abilityConstant.slot;
+      ability.level = ability.level;
+      ability.id = abilityConstant.id;
+
+      return ability;
+    });
     return doc;
   }
 

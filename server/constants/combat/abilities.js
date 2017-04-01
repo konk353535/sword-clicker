@@ -9,6 +9,7 @@ export const ABILITIES = {
     id: 'berserk',
     buffs: ['berserk'],
     cooldown: 120,
+    slot: 'mainHand',
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.berserk;

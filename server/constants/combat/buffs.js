@@ -93,7 +93,7 @@ export const BUFFS = {
         Duration <b>${duration}s</b><br />`;
     },
     constants: {
-      damagePercentageIncreaseBase: 5,
+      damagePercentageIncreaseBase: 45,
       damagePercentageIncreasePerLevel: 5,
       damageTakenPercentageIncreaseBase: 20,
       damageTakenPercentageIncreasePerLevel: 5,
@@ -105,14 +105,14 @@ export const BUFFS = {
       totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, buffLevel }) {
+      onApply({ buff }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
         // Increases damage and attack speed
-        const damageIncrease = buff.constants.damagePercentageIncreaseBase + (buff.constants.damagePercentageIncreasePerLevel * buffLevel);
+        const damageIncrease = buff.constants.constants.damagePercentageIncreaseBase + (buff.constants.constants.damagePercentageIncreasePerLevel * buff.data.level);
         // Damage taken 
-        const damageTaken = buff.constants.damageTakenPercentageIncreaseBase + (buff.constants.damageTakenPercentageIncreasePerLevel * buffLevel);
+        const damageTaken = buff.constants.constants.damageTakenPercentageIncreaseBase + (buff.constants.constants.damageTakenPercentageIncreasePerLevel * buff.data.level);
         // Health lost
-        const healthLost = buff.data.healthLostPerSecondBase + (buff.data.healthLostPerSecondPerLevel * buffLevel);
+        const healthLost = buff.constants.constants.healthLostPerSecondBase + (buff.constants.constants.healthLostPerSecondPerLevel * buff.data.level);
 
         buff.data.damageIncrease = damageIncrease;
         buff.data.damageTakenIncrease = damageTaken;
@@ -122,10 +122,15 @@ export const BUFFS = {
           target: 'self',
           type: 'instantPercentStatModifier',
           stats: {
-            damage: damageIncrease,
-            damageMax: damageIncrease,
-            attackSpeed: damageIncrease,
-            damageTaken: damageTakenIncrease
+            attackMax: buff.data.damageIncrease
+          }
+        },{
+          target: 'self',
+          type: 'instantPercentStatModifier',
+          stats: {
+            attack: buff.data.damageIncrease,
+            attackSpeed: buff.data.damageIncrease,
+            damageTaken: buff.data.damageTakenIncrease
           }
         }]
       },

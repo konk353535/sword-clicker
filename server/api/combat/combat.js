@@ -7,6 +7,7 @@ import { Groups } from '/imports/api/groups/groups';
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 
+import { attackSpeedTicks } from '/server/api/battles/battles';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
@@ -118,9 +119,9 @@ export const instantPercentStatModifier = function instantPercentStatModifier(ta
     if (target.stats[statKey] !== undefined && target.stats[statKey] !== null) {
       const increase = event.stats[statKey];
       // Will calculate differently depending on whether it is a % increase of % decrease
-      if (incrase > 0) {
+      if (increase > 0) {
         target.stats[statKey] *= (1 + (increase / 100));
-      } else {
+      } else if (increase < 0) {
         target.stats[statKey] /= (1 + (Math.abs(increase) / 100));
       }
 
@@ -129,6 +130,11 @@ export const instantPercentStatModifier = function instantPercentStatModifier(ta
         if (target.stats[statKey] > statMax) {
           target.stats[statKey] = statMax;
         }
+      }
+
+      if (statKey === 'attackSpeed') {
+        // Need to update attack speed in ticks as well
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   });

@@ -10,7 +10,7 @@ import { Battles } from '/imports/api/battles/battles';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Combat } from '/imports/api/combat/combat';
-import { updateCombatStats } from '/server/api/combat/combat';
+import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
 
@@ -144,13 +144,54 @@ const completeBattle = function (actualBattle) {
   // Battles.remove(actualBattle._id);
 }
 
+export const attackSpeedTicks = function(attackSpeed) {
+  const ticksPerSecond = 1000 / BATTLES.tickDuration;
+
+  // Convert attack speed seconds to attack speed ticks
+  if (attackSpeed !== undefined) {
+    return Math.round(ticksPerSecond / attackSpeed);
+  } else {
+    return 0;
+  }
+}
+
 const castAbility = function(ability, caster, targets) {
-  console.log('Casting ability');
-  console.log(ability);
-  console.log('Caster');
-  console.log(caster);
-  console.log('Targets');
-  console.log(targets);
+  // Apply ability buffs to targets
+  targets.forEach((target) => {
+    const newBuffs = ability.buffs.map((buffId) => {
+      const buffObj = {};
+      // Store constants
+      buffObj.constants = BUFFS[buffId];
+
+      // Save things we actually want to store in the data property
+      buffObj.data = Object.assign({
+        description: buffObj.constants.description({ buff: buffObj.constants, level: ability.level }),
+        name: buffObj.constants.name,
+        icon: buffObj.constants.icon,
+        duplicateTag: buffObj.constants.duplicateTag,
+        level: ability.level
+      }, buffObj.constants.data);
+
+      return buffObj;
+    });
+
+    const combatEvents = [];
+    // Buffs can do things when applied, will collect them in the form of combatEvents
+    newBuffs.forEach((buff) => {
+      if (buff.constants.events.onApply) {
+        combatEvents.push(...buff.constants.events.onApply({ buff }));
+      }
+    });
+
+    // Process combatEvents
+    combatEvents.forEach((buffEvent) => {
+      // Only handle self target events here, as we only have access to the current user
+      if (buffEvent.target === 'self') {
+        const buffTarget = target;
+        processCombatEvent([buffTarget], buffEvent);
+      }
+    });
+  });
 }
 
 const progressBattle = function (actualBattle, battleIntervalId) {
@@ -403,10 +444,8 @@ const startBattle = function (battleId, floor, difficulty) {
         userCombatStats[statName] = userCombat.stats[statName];
       }
     });
-    // Convert attack speed seconds to attack speed ticks
-    if (userCombatStats.attackSpeed !== undefined) {
-      userCombatStats.attackSpeedTicks = Math.round(ticksPerSecond / userCombatStats.attackSpeed);
-    }
+
+    userCombatStats.attackSpeedTicks = attackSpeedTicks(userCombatStats.attackSpeed);
 
     // Fetch this users currently equipped abilities
     const usersEquippedAbilities = Abilities.findOne({

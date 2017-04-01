@@ -141,5 +141,100 @@ export const INSCRIPTION_CRAFTS = {
       name: 'inscription',
       level: 1
     }]
-  }
+  },
+
+  /*
+  execute_level_1_page_1: {
+    recipeFor: 'inscription',
+    produces: 'execute_level_1_page_1',
+    name: 'execute Lv 1 Pg 1',
+    id: 'execute_level_1_page_1',
+    category: 'page',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'pigment_red_255',
+      icon: ITEMS['pigment_red_255'].icon,
+      name: ITEMS['pigment_red_255'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    }]
+  },
+
+  execute_level_1_page_2: {
+    recipeFor: 'inscription',
+    produces: 'execute_level_1_page_2',
+    name: 'execute Lv 1. Pg. 2',
+    id: 'execute_level_1_page_2',
+    category: 'page',
+    timeToCraft: 60,
+    xp: 10,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'pigment_red_255',
+      icon: ITEMS['pigment_red_255'].icon,
+      name: ITEMS['pigment_red_255'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    }]
+  },
+
+  execute_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'execute_level_1_tome',
+    name: 'execute tome Lv 1.',
+    id: 'execute_level_1_tome',
+    category: 'tome',
+    timeToCraft: 120,
+    xp: 20,
+    maxToCraft: 1,
+    level: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'execute_level_1_page_1',
+      icon: ITEMS['execute_level_1_page_1'].icon,
+      name: ITEMS['execute_level_1_page_1'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'execute_level_1_page_2',
+      icon: ITEMS['execute_level_1_page_2'].icon,
+      name: ITEMS['execute_level_1_page_2'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    }]
+  }*/
 }

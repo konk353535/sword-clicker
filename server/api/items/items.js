@@ -151,27 +151,20 @@ Meteor.methods({
 
       // Save things we actually want to store in the data property
       buff.data = Object.assign({
-        description: buff.constants.description(buff.constants),
         name: buff.constants.name,
         icon: buff.constants.icon,
         duplicateTag: buff.constants.duplicateTag
       }, buff.constants.data);
+
+      buff.data.description = buff.constants.description({ buff: buff, level: 1 });
     });
 
-    const combatEvents = [];
     // Buffs can do things when applied, will collect them in the form of combatEvents
     buffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
-        combatEvents.push(...buff.constants.events.onApply({ buff }));
-      }
-    });
-
-    // Process combatEvents
-    combatEvents.forEach((buffEvent) => {
-      // Only handle self target events here, as we only have access to the current user
-      if (buffEvent.target === 'self') {
         const buffTarget = currentCombat;
-        processCombatEvent([buffTarget], buffEvent);
+        const buffCaster = currentCombat;
+        buff.constants.events.onApply({ buff, caster: buffCaster, target: buffTarget });
       }
     });
 

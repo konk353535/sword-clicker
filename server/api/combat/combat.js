@@ -98,71 +98,6 @@ export const updateCombatStats = function () {
   });
 };
 
-// Generic handler for instantStatModifier combat events
-export const instantStatModifierMethod = function (target, event) {
-  Object.keys(event.stats).forEach((statKey) => {
-    if (target.stats[statKey] !== undefined && target.stats[statKey] !== null) {
-      target.stats[statKey] += event.stats[statKey];
-      const statMax = target.stats[`${statKey}Max`];
-      if (statMax !== undefined && statMax !== null) {
-        if (target.stats[statKey] > statMax) {
-          target.stats[statKey] = statMax;
-        }
-      }
-    }
-  });
-}
-
-// Generic handler for instantPercentStatModifier combat events
-export const instantPercentStatModifier = function instantPercentStatModifier(target, event) {
-  Object.keys(event.stats).forEach((statKey) => {
-    if (target.stats[statKey] !== undefined && target.stats[statKey] !== null) {
-      const increase = event.stats[statKey];
-      // Will calculate differently depending on whether it is a % increase of % decrease
-      if (increase > 0) {
-        target.stats[statKey] *= (1 + (increase / 100));
-      } else if (increase < 0) {
-        target.stats[statKey] /= (1 + (Math.abs(increase) / 100));
-      }
-
-      const statMax = target.stats[`${statKey}Max`];
-      if (statMax !== undefined && statMax !== null) {
-        if (target.stats[statKey] > statMax) {
-          target.stats[statKey] = statMax;
-        }
-      }
-
-      if (statKey === 'attackSpeed') {
-        // Need to update attack speed in ticks as well
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
-      }
-    }
-  });
-}
-
-
-
-export const removeBuffMethod = function removeBuffMethod(target, event) {
-  target.buffs = target.buffs.filter((buff) => {
-    return buff.id !== event.target;
-  });
-}
-
-// Generic manager of handlers for each combat event type
-export const processCombatEvent = function (targets, event) {
-  // Apply event to each target
-  targets.forEach((target) => {
-    // Handler for instant stat modifiers
-    if (event.type === 'instantStatModifier') {
-      instantStatModifierMethod(target, event);
-    } else if (event.type === 'instantPercentStatModifier') {
-      instantPercentStatModifier(target, event);
-    } else if (event.type === 'removeBuff') {
-      removeBuffMethod(target, event);
-    }
-  });
-}
-
 Meteor.methods({
   'combat.gameUpdate'() {
 
@@ -192,19 +127,17 @@ Meteor.methods({
     }
 
     // Process buffs
-    const combatEvents = [];
     currentCombat.buffs.forEach((buff) => {
       buff.constants = BUFFS[buff.id];
       if (buff.constants.events.onTick) {
-        combatEvents.push(...buff.constants.events.onTick({ secondsElapsed, buff }));
-      }
-    });
-
-    // Process combatEvents
-    combatEvents.forEach((buffEvent) => {
-      if (buffEvent.target === 'self' || buffEvent.type === 'removeBuff') {
         const buffTarget = currentCombat;
-        processCombatEvent([buffTarget], buffEvent);
+        const buffCaster = currentCombat;
+        buff.constants.events.onTick({
+          secondsElapsed,
+          buff,
+          target: buffTarget,
+          caster: buffCaster
+        });
       }
     });
 

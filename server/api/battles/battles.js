@@ -177,29 +177,20 @@ const castAbility = function(ability, caster, targets) {
       return buffObj;
     });
 
-    const combatEvents = [];
     // Buffs can do things when applied, will collect them in the form of combatEvents
     newBuffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
-        combatEvents.push(...buff.constants.events.onApply({ buff }));
+        buff.constants.events.onApply({ buff, target, caster });
       }
     });
 
-    // Add buffs to target
+    // Add buffs to target ( Need to unique this ? )
     if (target.buffs) {
       target.buffs.push(...newBuffs);
     } else {
       target.buffs = newBuffs;
     }
 
-    // Process combatEvents
-    combatEvents.forEach((buffEvent) => {
-      // Only handle self target events here, as we only have access to the current user
-      if (buffEvent.target === 'self') {
-        const buffTarget = target;
-        processCombatEvent([buffTarget], buffEvent);
-      }
-    });
   });
 }
 
@@ -235,24 +226,14 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Tick buffs on all units
   actualBattle.enemies.concat(actualBattle.units).forEach((aliveUnit) => {
     if (aliveUnit.buffs) {
-      // Iterate on there active buffs
-      const combatEvents = [];
       // Buffs can do things on tick, will collect them in the form of combatEvents
       aliveUnit.buffs.forEach((buff) => {
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTick) {
-          combatEvents.push(...buff.constants.events.onTick({ secondsElapsed, buff }));
+          buff.constants.events.onTick({ secondsElapsed, buff, target: aliveUnit });
         }
       });
 
-      // Process combatEvents
-      combatEvents.forEach((buffEvent) => {
-        // Only handle self target events here, as we only have access to the current user
-        if (buffEvent.target === 'self' || buffEvent.type === 'removeBuff') {
-          const buffTarget = aliveUnit;
-          processCombatEvent([buffTarget], buffEvent);
-        }
-      });
     }
   });
 

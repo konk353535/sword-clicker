@@ -15,5 +15,20 @@ export const ABILITIES = {
       const BUFF = BUFFS.berserk;
       return BUFF.description({ buff: BUFF, level });
     }
-  }
+  },
+
+  /*
+  execute: {
+    icon: 'execute',
+    name: 'execute',
+    id: 'execute',
+    buffs: ['execute'],
+    cooldown: 20,
+    slot: 'offHand',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.execute;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  }*/
 }

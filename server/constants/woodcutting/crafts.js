@@ -85,5 +85,36 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 6
     }]
+  },
+
+  steel_axe: {
+    produces: 'steel_axe',
+    recipeFor: 'crafting',
+    name: 'steel axe',
+    id: 'steel_axe',
+    category: 'woodcutting',
+    timeToCraft: 120, // 60
+    xp: 300,
+    maxToCraft: 1,
+    requiredCraftingLevel: 9,
+    required: [{
+      type: 'item',
+      itemId: 'steel_bar',
+      icon: ITEMS['steel_bar'].icon,
+      name: ITEMS['steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 9
+    }]
   }
 }

@@ -17,6 +17,15 @@ export const CRAFTING_ITEMS = {
     description: 'Used to melt ores into bars'
   },
 
+  iron_furnace: {
+    id: 'iron_furnace',
+    icon: 'ironFurnace',
+    category: 'crafting',
+    name: 'iron furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
   copper_bar: {
     id: 'copper_bar',
     icon: 'copperBar',
@@ -33,5 +42,14 @@ export const CRAFTING_ITEMS = {
     name: 'iron bar',
     sellPrice: 140,
     description: 'Used to craft iron tools and weapons'
+  },
+
+  steel_bar: {
+    id: 'steel_bar',
+    icon: 'steelBar',
+    category: 'crafting',
+    name: 'steel bar',
+    sellPrice: 200,
+    description: 'Used to craft steel tools and weapons'
   }
 }

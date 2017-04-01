@@ -3,7 +3,7 @@ import { ITEMS } from '/server/constants/items/index';
 export const SKILLS = {
   mining: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     }
   },
 
@@ -15,7 +15,7 @@ export const SKILLS = {
 
   inscription: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     },
 
     requirementsToLearn: [{
@@ -29,19 +29,19 @@ export const SKILLS = {
 
   farming: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     }
   },
 
   crafting: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     }
   },
 
   woodcutting: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     },
 
     requirementsToLearn: [{
@@ -55,7 +55,7 @@ export const SKILLS = {
 
   attack: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     },
 
     requirementsToLearn: [{
@@ -75,7 +75,7 @@ export const SKILLS = {
 
   defense: {
     xpToLevel(level) {
-      return level * 50 * (1 + (level / 5)) - 40;
+      return level * 35 * (1 + (level / 4)) - 26;
     },
 
     statsPerLevel: {
@@ -86,7 +86,7 @@ export const SKILLS = {
 
   health: {
     xpToLevel(level) {
-      return (level - 4) * 50 * (1 + ((level - 4) / 5)) - 40;
+      return (level - 4) * 35 * (1 + ((level - 4) / 4)) - 26;
     },
 
     baseLevel: 5,

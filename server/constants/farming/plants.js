@@ -11,7 +11,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 50,
     growthTime: 60,
-    xp: 4,
+    xp: 5,
     required: [{
       type: 'item',
       itemId: 'lettice_seed',
@@ -23,6 +23,31 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 1
+    }]
+  },
+
+  grape_fruit: {
+    produces: 'grape_fruit',
+    name: 'grapefruit',
+    id: 'grape_fruit',
+    category: 'farming',
+    icon: ITEMS['grape_fruit'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 120,
+    growthTime: 300,
+    xp: 12,
+    required: [{
+      type: 'item',
+      itemId: 'grape_fruit_seed',
+      icon: ITEMS['grape_fruit_seed'].icon,
+      name: ITEMS['grape_fruit_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 3
     }]
   },
 
@@ -45,7 +70,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 200,
     growthTime: 120,
-    xp: 8,
+    xp: 10,
     required: [{
       type: 'item',
       itemId: 'rubia_flower_seed',

@@ -31,6 +31,14 @@ export const MINING_ITEMS = {
     sellPrice: 75
   },
 
+  ore_steel: {
+    id: 'ore_steel',
+    icon: 'steel',
+    category: 'mining',
+    name: 'steel',
+    sellPrice: 150
+  },
+
   primitive_pickaxe: {
     id: 'primitive_pickaxe',
     icon: 'primitivePickaxe',
@@ -70,14 +78,14 @@ export const MINING_ITEMS = {
       energyStorage: 75, // Maximum energy stored
       attack: 10, // Damage per hit
       energyPerHit: 3, // Energy used per hit
-      energyRegen: 30, // Energy regen per minute
+      energyRegen: 25, // Energy regen per minute
       miner: 25 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 50,
       attack: 4,
       miner: 75,
-      energyRegen: 30
+      energyRegen: 25
     }
   },
 
@@ -87,7 +95,7 @@ export const MINING_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'iron pickaxe',
-    sellPrice: 1000,
+    sellPrice: 600,
     description: 'A pickaxe forged from iron. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -95,14 +103,39 @@ export const MINING_ITEMS = {
       energyStorage: 100, // Maximum energy stored
       attack: 20, // Damage per hit
       energyPerHit: 4, // Energy used per hit
-      energyRegen: 30, // Energy regen per minute
+      energyRegen: 20, // Energy regen per minute
       miner: 50 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 75,
-      attack: 8,
+      attack: 10,
       miner: 100,
-      energyRegen: 30
+      energyRegen: 20
+    }
+  },
+
+  steel_pickaxe: {
+    id: 'steel_pickaxe',
+    icon: 'steelPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'steel pickaxe',
+    sellPrice: 1200,
+    description: 'A pickaxe forged from steel. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 100, // Maximum energy stored
+      attack: 30, // Damage per hit
+      energyPerHit: 4, // Energy used per hit
+      energyRegen: 20, // Energy regen per minute
+      miner: 75 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 75,
+      attack: 15,
+      miner: 125,
+      energyRegen: 10
     }
   }
 }

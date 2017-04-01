@@ -1,255 +1,255 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
 
-export const IRON_ITEMS = {
-  iron_dagger: {
-    id: 'iron_dagger',
-    icon: 'ironDagger',
+export const STEEL_ITEMS = {
+  steel_dagger: {
+    id: 'steel_dagger',
+    icon: 'steelDagger',
     category: 'combat',
     weaponType: 'dagger',
     slot: 'mainHand',
-    name: 'iron dagger',
-    sellPrice: 200,
+    name: 'steel dagger',
+    sellPrice: 500,
     description: 'An okay dagger.',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 3,
-      attackMax: 4,
-      attackSpeed: FAST_SPEED,
-      accuracy: 4
-    },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 5
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 5
-    }]
-  },
-
-  iron_spear: {
-    id: 'iron_spear',
-    icon: 'ironSpear',
-    category: 'combat',
-    weaponType: 'spear',
-    slot: 'mainHand',
-    name: 'iron spear',
-    sellPrice: 300,
-    description: 'Often used for defense',
     isWeapon: true,
     isEquippable: true,
     stats: {
       attack: 4,
       attackMax: 6,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 3,
-      defense: 15
+      attackSpeed: FAST_SPEED,
+      accuracy: 5
     },
     extraStats: {
       attack: 3,
       attackMax: 3,
-      accuracy: 4,
-      defense: 8
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 5
-    }]
-  },
-
-  iron_short_sword: {
-    id: 'iron_short_sword',
-    icon: 'ironShortSword',
-    category: 'combat',
-    weaponType: 'shortSword',
-    slot: 'mainHand',
-    name: 'iron short sword',
-    sellPrice: 300,
-    description: 'A good balance between offense and defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 4,
-      attackMax: 8,
-      attackSpeed: FAST_SPEED,
-      accuracy: 6,
-    },
-    extraStats: {
-      attack: 4,
-      attackMax: 4,
-      accuracy: 6
+      accuracy: 7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_long_sword: {
-    id: 'iron_long_sword',
-    icon: 'ironLongSword',
+  steel_spear: {
+    id: 'steel_spear',
+    icon: 'steelSpear',
     category: 'combat',
-    weaponType: 'longSword',
+    weaponType: 'spear',
     slot: 'mainHand',
-    name: 'iron long sword',
-    sellPrice: 300,
-    description: 'A pure offensive weapon',
-    isTwoHanded: true,
+    name: 'steel spear',
+    sellPrice: 600,
+    description: 'Often used for defense',
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 8,
-      attackMax: 14,
+      attack: 5,
+      attackMax: 8,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 14,
+      accuracy: 5,
+      defense: 20
     },
     extraStats: {
-      attack: 6,
-      attackMax: 8,
+      attack: 3,
+      attackMax: 4,
+      accuracy: 6,
+      defense: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 8
+    }]
+  },
+
+  steel_short_sword: {
+    id: 'steel_short_sword',
+    icon: 'steelShortSword',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'steel short sword',
+    sellPrice: 600,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 5,
+      attackMax: 10,
+      attackSpeed: FAST_SPEED,
+      accuracy: 8,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 5,
       accuracy: 8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_battle_axe: {
-    id: 'iron_battle_axe',
-    icon: 'ironBattleAxe',
+  steel_long_sword: {
+    id: 'steel_long_sword',
+    icon: 'steelLongSword',
     category: 'combat',
-    weaponType: 'battleAxe',
+    weaponType: 'longSword',
     slot: 'mainHand',
-    name: 'iron battle axe',
-    sellPrice: 150,
-    description: 'A slow pure offensive weapon.',
+    name: 'steel long sword',
+    sellPrice: 600,
+    description: 'A pure offensive weapon',
     isTwoHanded: true,
     isWeapon: true,
     isEquippable: true,
     stats: {
       attack: 10,
-      attackMax: 30,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 10,
+      attackMax: 17,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 17,
     },
     extraStats: {
-      attack: 4,
-      attackMax: 20
+      attack: 7,
+      attackMax: 10,
+      accuracy: 10
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_helmet: {
-    id: 'iron_helmet',
-    icon: 'ironHelmet',
+  steel_battle_axe: {
+    id: 'steel_battle_axe',
+    icon: 'steelBattleAxe',
+    category: 'combat',
+    weaponType: 'battleAxe',
+    slot: 'mainHand',
+    name: 'steel battle axe',
+    sellPrice: 300,
+    description: 'A slow pure offensive weapon.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 12,
+      attackMax: 35,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 13,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 24
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 8
+    }]
+  },
+
+  steel_helmet: {
+    id: 'steel_helmet',
+    icon: 'steelHelmet',
     category: 'combat',
     slot: 'head',
-    name: 'iron helmet',
-    sellPrice: 300,
+    name: 'steel helmet',
+    sellPrice: 400,
     description: 'Protect your head',
     isEquippable: true,
     stats: {
-      healthMax: 3,
-      defense: 3,
-      armor: 10
+      healthMax: 4,
+      defense: 5,
+      armor: 13
     },
     extraStats: {
-      healthMax: 4,
-      defense: 3,
-      armor: 5
+      healthMax: 5,
+      defense: 4,
+      armor: 7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_chest_plate: {
-    id: 'iron_chest_plate',
-    icon: 'ironChestPlate',
+  steel_chest_plate: {
+    id: 'steel_chest_plate',
+    icon: 'steelChestPlate',
     category: 'combat',
     slot: 'chest',
-    name: 'iron chestplate',
-    sellPrice: 300,
+    name: 'steel chestplate',
+    sellPrice: 600,
     description: 'Protect your heart',
     isEquippable: true,
     stats: {
-      healthMax: 3,
-      defense: 3,
-      armor: 10
+      healthMax: 4,
+      defense: 4,
+      armor: 13
     },
     extraStats: {
-      healthMax: 4,
-      defense: 5,
-      armor: 10
+      healthMax: 5,
+      defense: 7,
+      armor: 13
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_plate_legs: {
-    id: 'iron_plate_legs',
-    icon: 'ironPlateLegs',
+  steel_plate_legs: {
+    id: 'steel_plate_legs',
+    icon: 'steelPlateLegs',
     category: 'combat',
     slot: 'legs',
-    name: 'iron platelegs',
+    name: 'steel platelegs',
     sellPrice: 300,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 3,
-      defense: 3,
-      armor: 10
-    },
-    extraStats: {
       healthMax: 4,
       defense: 4,
-      armor: 10
+      armor: 12
+    },
+    extraStats: {
+      healthMax: 5,
+      defense: 5,
+      armor: 13
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 5
+      level: 8
     }]
   },
 
-  iron_shield: {
-    id: 'iron_shield',
-    icon: 'ironShield',
+  steel_shield: {
+    id: 'steel_shield',
+    icon: 'steelShield',
     category: 'combat',
     slot: 'offHand',
-    name: 'iron shield',
+    name: 'steel shield',
     sellPrice: 150,
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 3,
-      defense: 3,
-      armor: 20
+      healthMax: 4,
+      defense: 4,
+      armor: 25
     },
     extraStats: {
-      healthMax: 4,
-      defense: 5,
-      armor: 10
+      healthMax: 5,
+      defense: 7,
+      armor: 13
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 5
+      level: 8
     }]
   }
 }

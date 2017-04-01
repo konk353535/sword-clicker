@@ -33,6 +33,21 @@ export const FARMING = {
         name: 'farming',
         level: 1
       }]
-    }
+    },
+
+    grape_fruit_seed: {
+      id: 'grape_fruit_seed',
+      itemId: 'grape_fruit_seed',
+      requiredFarmingLevel: 3,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 3
+      }]
+    },
   }
 }

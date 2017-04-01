@@ -49,6 +49,30 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
+  iron_furnace: {
+    produces: 'iron_furnace',
+    recipeFor: 'crafting',
+    name: 'iron furnace',
+    id: 'iron_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 6,
+    required: [{
+      type: 'item',
+      itemId: 'iron_bar',
+      icon: ITEMS['iron_bar'].icon,
+      name: ITEMS['iron_bar'].name,
+      amount: 15,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 6
+    }],
+    timeToCraft: 120, // Time to craft item in seconds
+    xp: 100, // Xp earned once crafted
+    maxToCraft: 1 // Maximum number of this that can be crafted together
+  },
+
   copper_bar: {
     produces: 'copper_bar',
     recipeFor: 'crafting',
@@ -93,7 +117,7 @@ export const CRAFTING_CRAFTS = {
     name: 'iron bar',
     id: 'iron_bar',
     category: 'crafting',
-    timeToCraft: 3,
+    timeToCraft: 6,
     xp: 21,
     maxToCraft: 100,
     requiredCraftingLevel: 5,
@@ -122,6 +146,44 @@ export const CRAFTING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 5
+    }]
+  },
+
+  steel_bar: {
+    produces: 'steel_bar',
+    recipeFor: 'crafting',
+    name: 'steel bar',
+    id: 'steel_bar',
+    category: 'crafting',
+    timeToCraft: 10,
+    xp: 30,
+    maxToCraft: 100,
+    requiredCraftingLevel: 8,
+    required: [{
+      type: 'item',
+      itemId: 'iron_furnace',
+      icon: ITEMS['iron_furnace'].icon,
+      name: ITEMS['iron_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ore_steel',
+      icon: ITEMS['ore_steel'].icon,
+      name: ITEMS['ore_steel'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 8
     }]
   }
 }

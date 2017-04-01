@@ -99,5 +99,43 @@ export const MINING_CRAFTS = {
       name: 'crafting',
       level: 6
     }]
+  },
+
+  steel_pickaxe: {
+    produces: 'steel_pickaxe',
+    recipeFor: 'crafting',
+    name: 'steel pickaxe',
+    id: 'steel_pickaxe',
+    category: 'mining',
+    timeToCraft: 120, // 60
+    xp: 240,
+    maxToCraft: 1,
+    requiredCraftingLevel: 9,
+    required: [{
+      type: 'item',
+      itemId: 'iron_furnace',
+      icon: ITEMS['iron_furnace'].icon,
+      name: ITEMS['iron_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'steel_bar',
+      icon: ITEMS['steel_bar'].icon,
+      name: ITEMS['steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 9
+    }]
   }
 }

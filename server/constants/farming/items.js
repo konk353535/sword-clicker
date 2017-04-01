@@ -34,6 +34,31 @@ export const FARMING_ITEMS = {
     sellPrice: 0
   },
 
+  grape_fruit_seed: {
+    id: 'grape_fruit_seed',
+    icon: 'grapeFruitSeed',
+    category: 'seed',
+    name: 'grape fruit seed',
+    description: 'Used to grow grape fruit. Yum!',
+    sellPrice: 10,
+    produces: 'grape_fruit'
+  },
+
+  grape_fruit: {
+    id: 'grape_fruit',
+    icon: 'grapeFruit',
+    category: 'food',
+    name: 'grape fruit',
+    description() {
+      const buff = BUFFS.food_grape_fruit;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_grape_fruit'
+    }],
+    sellPrice: 20
+  },
+
   rubia_flower_seed: {
     id: 'rubia_flower_seed',
     icon: 'rubiaFlowerSeed',

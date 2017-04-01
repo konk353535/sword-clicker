@@ -61,6 +61,28 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
+
+  steel_axe: {
+    id: 'steel_axe',
+    icon: 'steelAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'steel axe',
+    sellPrice: 1000,
+    description: 'An axe forged from steel. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 7, // Determines what logs you can cut
+      attackSpeed: 3, // How often you cut ( 1 per minute )
+      accuracy: 50 // Extra chance of getting a log ( 1% extra chance )
+    },
+    extraStats: {
+      attack: 5,
+      attackSpeed: 3,
+      accuracy: 75
+    }
+  },
+
   pine_log: {
     id: 'pine_log',
     icon: 'pineLog',

@@ -28,6 +28,10 @@ BattlesSchema = new SimpleSchema({
   'units.$.name': { type: String },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
+  'units.$.buffs': { type: [Object], defaultValue: [] },
+  'units.$.buffs.$.id': { type: String },
+  'units.$.buffs.$.data': { type: Object, blackbox: true },
+
   'units.$.abilities': { type: [Object] },
   'units.$.abilities.$.id': { type: String },
   'units.$.abilities.$.level': { type: Number, defaultValue: 1 },

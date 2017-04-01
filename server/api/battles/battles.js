@@ -172,6 +172,8 @@ const castAbility = function(ability, caster, targets) {
         level: ability.level
       }, buffObj.constants.data);
 
+      buffObj.id = buffId;
+
       return buffObj;
     });
 
@@ -182,6 +184,13 @@ const castAbility = function(ability, caster, targets) {
         combatEvents.push(...buff.constants.events.onApply({ buff }));
       }
     });
+
+    // Add buffs to target
+    if (target.buffs) {
+      target.buffs.push(...newBuffs);
+    } else {
+      target.buffs = newBuffs;
+    }
 
     // Process combatEvents
     combatEvents.forEach((buffEvent) => {
@@ -203,50 +212,6 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     battleId: actualBattle._id
   }).fetch();
 
-  // Apply actions
-  battleActions.forEach((action) => {
-    if (action.abilityId === 'changeTarget') {
-      // Modify casters preferred target
-      const targetUnit = _.findWhere(actualBattle.units, { id: action.caster });
-      if (targetUnit) {
-        targetUnit.target = action.target;
-      }
-    } else {
-      // Ensure the specified ability is able to be casted for the specified caster
-      const castersUnits = actualBattle.units.filter((unit) => {
-        return unit.owner === action.caster;
-      });
-
-      // Check if the ability exists
-      let unitAbility;
-      let actionCaster;
-      for (let i = 0; i < castersUnits.length; i++) {
-        unitAbility = _.findWhere(castersUnits[i].abilities, { id: action.abilityId });
-        if (unitAbility && unitAbility.currentCooldown <= 0) {
-          actionCaster = castersUnits[i];
-          break;
-        } else {
-          unitAbility = undefined;
-        }
-      }
-
-      if (unitAbility) {
-        // Cast it! and put it on cooldown
-        const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
-        const unitsAndEnemies = actualBattle.units.concat(actualBattle.enemies);
-        const actionTargets = unitsAndEnemies.filter((unit) => {
-          return _.contains(action.targets, unit.id);
-        });
-        abilityToCast.level = unitAbility.level;
-        // Fetch who we are are targetting with this ability
-
-        castAbility(abilityToCast, actionCaster, actionTargets)
-
-        unitAbility.currentCooldown = abilityToCast.cooldown;
-      }
-    }
-  });
-
   const dealDamage = function(attackerStats, defenderStats) {
     // return 0; // Temporary to cause infinite battles for developing
     const hitChance = 0.4 + ((attackerStats.accuracy - defenderStats.defense) / 200);
@@ -264,6 +229,32 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       return 0;
     }
   }
+
+  const secondsElapsed = (BATTLES.tickDuration / 1000);
+
+  // Tick buffs on all units
+  actualBattle.enemies.concat(actualBattle.units).forEach((aliveUnit) => {
+    if (aliveUnit.buffs) {
+      // Iterate on there active buffs
+      const combatEvents = [];
+      // Buffs can do things on tick, will collect them in the form of combatEvents
+      aliveUnit.buffs.forEach((buff) => {
+        buff.constants = BUFFS[buff.id];
+        if (buff.constants.events.onTick) {
+          combatEvents.push(...buff.constants.events.onTick({ secondsElapsed, buff }));
+        }
+      });
+
+      // Process combatEvents
+      combatEvents.forEach((buffEvent) => {
+        // Only handle self target events here, as we only have access to the current user
+        if (buffEvent.target === 'self' || buffEvent.type === 'removeBuff') {
+          const buffTarget = aliveUnit;
+          processCombatEvent([buffTarget], buffEvent);
+        }
+      });
+    }
+  });
 
   // Apply enemy attacks
   actualBattle.enemies.forEach((enemy) => {
@@ -336,12 +327,85 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     }
   }
 
+  // Apply actions
+  battleActions.forEach((action) => {
+    if (action.abilityId === 'changeTarget') {
+      // Modify casters preferred target
+      const targetUnit = _.findWhere(actualBattle.units, { id: action.caster });
+      if (targetUnit) {
+        targetUnit.target = action.target;
+      }
+    } else {
+      // Ensure the specified ability is able to be casted for the specified caster
+      const castersUnits = actualBattle.units.filter((unit) => {
+        return unit.owner === action.caster;
+      });
+
+      // Check if the ability exists
+      let unitAbility;
+      let actionCaster;
+      for (let i = 0; i < castersUnits.length; i++) {
+        unitAbility = _.findWhere(castersUnits[i].abilities, { id: action.abilityId });
+        if (unitAbility && unitAbility.currentCooldown <= 0) {
+          actionCaster = castersUnits[i];
+          break;
+        } else {
+          unitAbility = undefined;
+        }
+      }
+
+      if (unitAbility) {
+        // Cast it! and put it on cooldown
+        const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
+        const unitsAndEnemies = actualBattle.units.concat(actualBattle.enemies);
+        const actionTargets = unitsAndEnemies.filter((unit) => {
+          return _.contains(action.targets, unit.id);
+        });
+        abilityToCast.level = unitAbility.level;
+        // Fetch who we are are targetting with this ability
+
+        castAbility(abilityToCast, actionCaster, actionTargets)
+
+        unitAbility.currentCooldown = abilityToCast.cooldown;
+      }
+    }
+  });
+
+  // Remove any dead enemies
+  for (let i = actualBattle.enemies.length - 1; i >= 0; i--) {
+    const enemy = actualBattle.enemies[i];
+    if (enemy.stats.health <= 0) {
+      actualBattle.deadEnemies.push(enemy);
+      actualBattle.enemies.splice(i, 1);
+    }
+  }
+
+  // Remove any dead units
+  for (let i = actualBattle.units.length - 1; i >= 0; i--) {
+    const unit = actualBattle.units[i];
+    if (unit.stats.health <= 0) {
+      actualBattle.deadUnits.push(unit);
+      actualBattle.units.splice(i, 1);
+    }
+  }
+
   // Remove all battle actions as we've got them for this tick
   BattleActions.remove({
     _id: {
       $in: battleActions.map((item) => item._id)
     }
   });
+
+  // Update ability cooldowns
+  actualBattle.enemies.concat(actualBattle.units).forEach((aliveUnit) => {
+    if (aliveUnit.abilities) {
+      aliveUnit.abilities.forEach((ability) => {
+        if (ability.currentCooldown > 0) {
+          ability.currentCooldown -= secondsElapsed;
+        }
+      });
+    }
+  })
 
   Battles.update(actualBattle._id, {
     $set: {

@@ -116,7 +116,7 @@ export const BUFFS = {
 
         buff.data.damageIncrease = damageIncrease;
         buff.data.damageTakenIncrease = damageTaken;
-        buff.data.healthLost = healthLost;
+        buff.data.healthLost = (-1 * healthLost);
 
         return [{
           target: 'self',
@@ -135,7 +135,6 @@ export const BUFFS = {
         }]
       },
 
-      /*
       onTick({ secondsElapsed, buff }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
         buff.data.duration -= localSecondsElapsed;
@@ -152,13 +151,13 @@ export const BUFFS = {
           target: 'self',
           type: 'instantStatModifier',
           stats: {
-            health: (localSecondsElapsed * buff.data.healthPerSecond)
+            health: (localSecondsElapsed * buff.data.healthLost)
           }
         }];
 
         if (buff.data.duration < 0) {
           // Call the onremove event
-          allModifiers.push(...buff.constants.events.onRemove());
+          allModifiers.push(...buff.constants.events.onRemove({ buff }));
           // Add the delete modifier
           allModifiers.push({
             target: buff.id,
@@ -168,15 +167,23 @@ export const BUFFS = {
         return allModifiers
       },
 
-      onRemove() {
+      onRemove({ buff }) {
         return [{
           target: 'self',
-          type: 'instantStatModifier',
+          type: 'instantPercentStatModifier',
           stats: {
-            health: 1
+            attackMax: buff.data.damageIncrease * -1
+          }
+        }, {
+          target: 'self',
+          type: 'instantPercentStatModifier',
+          stats: {
+            attack: buff.data.damageIncrease * -1,
+            attackSpeed: buff.data.damageIncrease * -1,
+            damageTaken: buff.data.damageTakenIncrease * -1
           }
         }];
-      }*/
+      }
     }
   }
 }

@@ -2,13 +2,40 @@
   <div class="p-1">
     <h1>Equipped Abilities</h1>
     <p>Click on learnt abilities in your library below to equip them.</p>
-    {{#if equippedAbilitiesMap.mainHand}}
-      {{> itemIcon item=equippedAbilitiesMap.mainHand}}
-    {{else}}
-      <div class="icon-box">
-        Main Hand
-      </div>
-    {{/if}}
+    <div class="d-flex">
+      <!-- Main Hand -->
+      {{#if equippedAbilitiesMap.mainHand}}
+        {{> itemIcon item=equippedAbilitiesMap.mainHand}}
+      {{else}}
+        <div class="icon-box">
+          Main Hand
+        </div>
+      {{/if}}
+      <!-- Head -->
+      {{#if equippedAbilitiesMap.head}}
+        {{> itemIcon item=equippedAbilitiesMap.head}}
+      {{else}}
+        <div class="icon-box">
+          Head
+        </div>
+      {{/if}}
+      <!-- Chest -->
+      {{#if equippedAbilitiesMap.chest}}
+        {{> itemIcon item=equippedAbilitiesMap.chest}}
+      {{else}}
+        <div class="icon-box">
+          Chest
+        </div>
+      {{/if}}
+      <!-- Legs -->
+      {{#if equippedAbilitiesMap.legs}}
+        {{> itemIcon item=equippedAbilitiesMap.legs}}
+      {{else}}
+        <div class="icon-box">
+          Legs
+        </div>
+      {{/if}}
+    </div>
   </div>
   <div class="p-1">
     {{#if availableTomes}}

@@ -136,4 +136,82 @@ export const COMBAT_ITEMS = {
       level: 2
     }]
   },
+
+  copper_helmet: {
+    id: 'copper_helmet',
+    icon: 'copperHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'copper helmet',
+    sellPrice: 150,
+    description: 'Protect your head',
+    isEquippable: true,
+    stats: {
+      healthMax: 1,
+      defense: 1,
+      armor: 5
+    },
+    extraStats: {
+      healthMax: 2,
+      defense: 1,
+      armor: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
+  },
+
+  copper_chest_plate: {
+    id: 'copper_chest_plate',
+    icon: 'copperChestPlate',
+    category: 'combat',
+    slot: 'chest',
+    name: 'copper chestplate',
+    sellPrice: 150,
+    description: 'Protect your heart',
+    isEquippable: true,
+    stats: {
+      healthMax: 1,
+      defense: 1,
+      armor: 5
+    },
+    extraStats: {
+      healthMax: 2,
+      defense: 1,
+      armor: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
+  },
+
+  copper_plate_legs: {
+    id: 'copper_plate_legs',
+    icon: 'copperPlateLegs',
+    category: 'combat',
+    slot: 'legs',
+    name: 'copper platelegs',
+    sellPrice: 150,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 1,
+      defense: 1,
+      armor: 5
+    },
+    extraStats: {
+      healthMax: 2,
+      defense: 1,
+      armor: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
+  },
 }

@@ -11,7 +11,6 @@ import './combatAbilitiesTab.html';
 
 Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.subscribe('abilities');
 
   this.autorun(() => {
     const anAbility = Abilities.findOne();

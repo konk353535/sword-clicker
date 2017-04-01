@@ -9,7 +9,8 @@ BattleActionsSchema = new SimpleSchema({
   battleId: { type: String, regEx: SimpleSchema.RegEx.Id }, // Which battle this action relates to
   abilityId: { type: String }, // Constant id for casted ability
   caster: { type: String, regEx: SimpleSchema.RegEx.Id }, // Who is casting this
-  target: { type: String, optional: true } // Optional, if self casted ability will not be specified
+  targets: { type: [String], optional: true },
+  target: { type: String, optional: true } // Specified for the change target ability
 });
 
 BattleActions.attachSchema(BattleActionsSchema);

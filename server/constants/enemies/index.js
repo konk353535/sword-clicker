@@ -37,6 +37,30 @@ export const ENEMIES = {
       chance: 1 / 4
     }])
   },
+
+  dummy: {
+    id: 'dummy',
+    icon: 'rat',
+    name: 'dummy',
+    stats: {
+      attack: 1,
+      attackMax: 1,
+      attackSpeed: FAST_SPEED,
+      accuracy: 5,
+      health: 10000,
+      healthMax: 10000,
+      defense: 4,
+      armor: 4,
+      damageTaken: 1
+    },
+    rewards: baseLootTable.concat([{
+      type: 'item',
+      itemId: 'rat_head',
+      amount: 1,
+      chance: 1 / 4
+    }])
+  },
+
   // Floor 1 - Easy - 2
   rabbit: {
     id: 'rabbit',

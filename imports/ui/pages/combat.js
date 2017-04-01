@@ -38,6 +38,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   this.subscribe('groups');
   this.subscribe('combat');
   this.subscribe('battles');
+  this.subscribe('abilities');
 
   this.autorun(() => {
     // Only called when skills have loaded

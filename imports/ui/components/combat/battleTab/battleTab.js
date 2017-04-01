@@ -5,6 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
 import { Battles } from '/imports/api/battles/battles.js';
+import { Abilities } from '/imports/api/abilities/abilities.js';
 
 import './battleTab.html';
 
@@ -125,13 +126,26 @@ Template.battleTab.helpers({
       icon: 'changeTarget',
       description: 'Select a target to attack',
       name: 'Attack Target',
-      cooldown: 0,
+      currentCooldown: 0,
       targettable: true
     }
   },
 
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');
+  },
+
+  equippedAbilities() {
+    const myAbilities = Abilities.findOne();
+    if (!myAbilities) {
+      return;
+    }
+
+    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+      return ability.equipped;
+    });
+
+    return equippedAbilities;
   },
 
   floorDetails() {

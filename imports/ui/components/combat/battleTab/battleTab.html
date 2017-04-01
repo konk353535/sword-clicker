@@ -3,6 +3,9 @@
     <!-- Ability List -->
     <div class="d-flex my-3">
       {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
+      {{#each equippedAbilities}}
+        {{> ability ability=this battleId=currentBattle._id}}
+      {{/each}}
     </div>
 
     <!-- Battle Area -->

@@ -7,6 +7,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Battles } from '/imports/api/battles/battles';
+import { Abilities } from '/imports/api/abilities/abilities';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -17,7 +18,7 @@ import { ITEMS } from '/server/constants/items/index.js'; // List of items
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
-import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
+import { COMBAT, ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
 
 const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
@@ -143,6 +144,15 @@ const completeBattle = function (actualBattle) {
   // Battles.remove(actualBattle._id);
 }
 
+const castAbility = function(ability, caster, targets) {
+  console.log('Casting ability');
+  console.log(ability);
+  console.log('Caster');
+  console.log(caster);
+  console.log('Targets');
+  console.log(targets);
+}
+
 const progressBattle = function (actualBattle, battleIntervalId) {
   const currentTick = actualBattle.tick;
   const tickEvents = [];
@@ -152,13 +162,46 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     battleId: actualBattle._id
   }).fetch();
 
-  // Apply misc actions ( not damage related )
+  // Apply actions
   battleActions.forEach((action) => {
     if (action.abilityId === 'changeTarget') {
       // Modify casters preferred target
       const targetUnit = _.findWhere(actualBattle.units, { id: action.caster });
       if (targetUnit) {
         targetUnit.target = action.target;
+      }
+    } else {
+      // Ensure the specified ability is able to be casted for the specified caster
+      const castersUnits = actualBattle.units.filter((unit) => {
+        return unit.owner === action.caster;
+      });
+
+      // Check if the ability exists
+      let unitAbility;
+      let actionCaster;
+      for (let i = 0; i < castersUnits.length; i++) {
+        unitAbility = _.findWhere(castersUnits[i].abilities, { id: action.abilityId });
+        if (unitAbility && unitAbility.currentCooldown <= 0) {
+          actionCaster = castersUnits[i];
+          break;
+        } else {
+          unitAbility = undefined;
+        }
+      }
+
+      if (unitAbility) {
+        // Cast it! and put it on cooldown
+        const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
+        const unitsAndEnemies = actualBattle.units.concat(actualBattle.enemies);
+        const actionTargets = unitsAndEnemies.filter((unit) => {
+          return _.contains(action.targets, unit.id);
+        });
+        abilityToCast.level = unitAbility.level;
+        // Fetch who we are are targetting with this ability
+
+        castAbility(abilityToCast, actionCaster, actionTargets)
+
+        unitAbility.currentCooldown = abilityToCast.cooldown;
       }
     }
   });
@@ -364,9 +407,23 @@ const startBattle = function (battleId, floor, difficulty) {
     if (userCombatStats.attackSpeed !== undefined) {
       userCombatStats.attackSpeedTicks = Math.round(ticksPerSecond / userCombatStats.attackSpeed);
     }
+
+    // Fetch this users currently equipped abilities
+    const usersEquippedAbilities = Abilities.findOne({
+      owner: userCombat.owner
+    }).learntAbilities.filter((ability) => {
+      return ability.equipped;
+    }).map((ability) => {
+      return {
+        id: ability.abilityId,
+        level: ability.level
+      }
+    });
+
     newBattle.units.push({
       id: userCombat.owner,
       owner: userCombat.owner,
+      abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
@@ -536,7 +593,8 @@ Meteor.methods({
       battleId,
       abilityId,
       caster: options.caster,
-      target: options.target
+      target: options.target,
+      targets: options.targets
     });
   }
 });

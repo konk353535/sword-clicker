@@ -176,6 +176,7 @@ Meteor.methods({
     });
 
     // Unique buffs based on the duplicate tag
+    // To Do: If something is removed here we need to call the onRemove event
     currentCombat.buffs.push(...buffs);
     currentCombat.buffs = _.uniq(currentCombat.buffs, function (item) {
       return item.duplicateTag

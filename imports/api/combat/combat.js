@@ -18,6 +18,7 @@ CombatSchema = new SimpleSchema({
   'stats.energyMax': { type: Number, defaultValue: 25 },
   'stats.defense': { type: Number, defaultValue: 0 },
   'stats.armor': { type: Number, defaultValue: 0 },
+  'stats.damageTaken': { type: Number, defaultValue: 1 },
   buffs: { type: [Object], optional: true, defaultValue: [] },
   'buffs.$.id': { type: String },
   'buffs.$.data': { type: Object, blackbox: true },

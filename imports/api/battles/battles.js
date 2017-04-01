@@ -28,6 +28,11 @@ BattlesSchema = new SimpleSchema({
   'units.$.name': { type: String },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
+  'units.$.abilities': { type: [Object] },
+  'units.$.abilities.$.id': { type: String },
+  'units.$.abilities.$.level': { type: Number, defaultValue: 1 },
+  'units.$.abilities.$.currentCooldown': { type: Number, decimal: true, defaultValue: 0 },
+
   deadUnits: { type: [Object] },
   'deadUnits.$.xpDistribution': { type: Object, blackbox: true},
   'deadUnits.$.stats': { type: Object, blackbox: true },
@@ -43,6 +48,7 @@ BattlesSchema = new SimpleSchema({
   'enemies.$.name': { type: String },
   'enemies.$.target': { type: String, optional: true },
   'enemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
+
   deadEnemies: { type: [Object] },
   'deadEnemies.$.stats': { type: Object, blackbox: true},
   'deadEnemies.$.icon': { type: String },

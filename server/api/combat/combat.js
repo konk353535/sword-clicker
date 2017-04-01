@@ -22,7 +22,8 @@ export const updateCombatStats = function () {
       attackSpeed: 0,
       accuracy: 0,
       healthMax: 0,
-      energyMax: COMBAT.baseenergyMax,
+      damageTaken: 1,
+      energyMax: COMBAT.baseEnergyMax,
       defense: 0,
       armor: 0
     },
@@ -111,6 +112,30 @@ export const instantStatModifierMethod = function (target, event) {
   });
 }
 
+// Generic handler for instantPercentStatModifier combat events
+export const instantPercentStatModifier = function instantPercentStatModifier(target, event) {
+  Object.keys(event.stats).forEach((statKey) => {
+    if (target.stats[statKey] !== undefined && target.stats[statKey] !== null) {
+      const increase = event.stats[statKey];
+      // Will calculate differently depending on whether it is a % increase of % decrease
+      if (incrase > 0) {
+        target.stats[statKey] *= (1 + (increase / 100));
+      } else {
+        target.stats[statKey] /= (1 + (Math.abs(increase) / 100));
+      }
+
+      const statMax = target.stats[`${statKey}Max`];
+      if (statMax !== undefined && statMax !== null) {
+        if (target.stats[statKey] > statMax) {
+          target.stats[statKey] = statMax;
+        }
+      }
+    }
+  });
+}
+
+
+
 export const removeBuffMethod = function removeBuffMethod(target, event) {
   target.buffs = target.buffs.filter((buff) => {
     return buff.id !== event.target;
@@ -124,6 +149,8 @@ export const processCombatEvent = function (targets, event) {
     // Handler for instant stat modifiers
     if (event.type === 'instantStatModifier') {
       instantStatModifierMethod(target, event);
+    } else if (event.type === 'instantPercentStatModifier') {
+      instantPercentStatModifier(target, event);
     } else if (event.type === 'removeBuff') {
       removeBuffMethod(target, event);
     }

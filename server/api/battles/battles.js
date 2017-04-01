@@ -175,7 +175,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       // Determine damage reduction from armor
       const dmgReduction = BATTLES.dmgReduction(defenderStats.armor);
 
-      return rawDamage * (1 - dmgReduction);
+      return (rawDamage * (1 - dmgReduction)) * defenderStats.damageTaken;
     } else {
       return 0;
     }

@@ -1,0 +1,30 @@
+<template name="combatAbilitiesTab">
+  <div class="p-1">
+    <h1>Equipped Abilities</h1>
+    {{#if $or unequippedCombatItems foodItems}}
+      <p>Click on learnt abilities in your library below to equip them.</p>
+    {{/if}}
+    <div class="d-flex">
+      {{#each equppedAbilities}}
+        {{> itemIcon item=this}}
+      {{/each}}
+    </div>
+
+    {{#if availableTomes}}
+      <h1>Available Tomes</h1>
+      <div class="d-flex">
+        {{#each availableTomes}}
+          {{> itemIcon item=this}}
+        {{/each}}
+      </div>
+    {{/if}}
+
+    <h1>Ability Library</h1>
+    <p>You can learn abilities by crafting tomes in inscription, then come back to this page and read it.</p>
+    <div class="d-flex">
+      {{#each abilityLibrary}}
+        {{> itemIcon item=this}}
+      {{/each}}
+    </div>
+  </div>
+</template>

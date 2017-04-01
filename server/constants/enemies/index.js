@@ -27,7 +27,8 @@ export const ENEMIES = {
       health: 10,
       healthMax: 10,
       defense: 4,
-      armor: 4
+      armor: 4,
+      damageTaken: 1
     },
     rewards: baseLootTable.concat([{
       type: 'item',

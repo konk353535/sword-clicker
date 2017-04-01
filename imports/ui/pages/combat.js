@@ -10,6 +10,7 @@ import { Groups } from '/imports/api/groups/groups.js';
 
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
+import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
 import '/imports/ui/components/combat/battleTab/battleTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
 import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
@@ -81,6 +82,11 @@ Template.combatPage.events({
     instance.state.set('currentTab', 'equipment');
   },
 
+  'click .abilitiesTabLink'(event, instance) {
+    Session.set('combatTab', 'abilities');
+    instance.state.set('currentTab', 'abilities');
+  },
+
   'click .groupTabLink'(event, instance) {
     Session.set('combatTab', 'group');
     instance.state.set('currentTab', 'group');
@@ -123,6 +129,10 @@ Template.combatPage.helpers({
 
   showCombatGroupTab() {
     return Template.instance().state.get('currentTab') === 'group';
+  },
+
+  showAbilitiesTab() {
+    return Template.instance().state.get('currentTab') === 'abilities';
   },
 
   currentBattle() {

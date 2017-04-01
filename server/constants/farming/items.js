@@ -17,8 +17,8 @@ export const FARMING_ITEMS = {
     category: 'food',
     name: 'Lettice',
     description() {
-      const BUFF = BUFFS.food_lettice;
-      return BUFF.description(BUFF);
+      const buff = BUFFS.food_lettice;
+      return buff.description({ buff });
     },
     buffs: [{
       id: 'food_lettice'

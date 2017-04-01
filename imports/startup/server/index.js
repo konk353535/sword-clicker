@@ -41,6 +41,11 @@ AccountsTemplates.configure({
       }
     });
 
+    Abilities.insert({
+      owner: userId,
+      learntAbilities: []
+    });
+
     MiningSpace.insert({
       owner: userId,
       oreId: MINING.ores.stone.id,

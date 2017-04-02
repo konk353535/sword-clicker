@@ -10,7 +10,7 @@ import { Battles } from '/imports/api/battles/battles';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Combat } from '/imports/api/combat/combat';
-import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat';
+import { updateCombatStats } from '/server/api/combat/combat';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
 
@@ -155,16 +155,14 @@ export const attackSpeedTicks = function(attackSpeed) {
   }
 }
 
-const castAbility = function(ability, caster, targets, allAliveUnits, allAliveEnemies) {
-  console.log(ability.id);
-  console.log(caster);
+const castAbility = function({ ability, caster, targets, actualBattle }) {
   if (ability.target === 'currentEnemy') {
     // Is current target alive
-    const currentEnemy = _.findWhere(allAliveUnits, { id: caster.target });
+    const currentEnemy = _.findWhere(actualBattle.allAliveUnits, { id: caster.target });
     if (currentEnemy) {
       targets = [currentEnemy];
     } else {
-      const firstEnemy = allAliveEnemies[0];
+      const firstEnemy = actualBattle.enemies[0];
       if (firstEnemy) {
         targets = [firstEnemy];
       }
@@ -196,7 +194,7 @@ const castAbility = function(ability, caster, targets, allAliveUnits, allAliveEn
     // Buffs can do things when applied, will collect them in the form of combatEvents
     newBuffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
-        buff.constants.events.onApply({ buff, target, caster });
+        buff.constants.events.onApply({ buff, target, caster, actualBattle });
       }
     });
 
@@ -211,31 +209,47 @@ const castAbility = function(ability, caster, targets, allAliveUnits, allAliveEn
 }
 
 const progressBattle = function (actualBattle, battleIntervalId) {
-  const currentTick = actualBattle.tick;
-  const tickEvents = [];
-  const allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
+  actualBattle.tickEvents = [];
+  actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
   // Fetch actions related to this battle
   const battleActions = BattleActions.find({
     battleId: actualBattle._id
   }).fetch();
 
-  const dealDamage = function(attackerStats, defenderStats) {
-    // return 0; // Temporary to cause infinite battles for developing
-    const hitChance = 0.4 + ((attackerStats.accuracy - defenderStats.defense) / 200);
-
-    if (hitChance >= Math.random()) {
-      // Determine how much damage we will deal
-      const extraRawDamage = Math.round(Math.random() * (attackerStats.attackMax - attackerStats.attack));
-      const rawDamage = attackerStats.attack + extraRawDamage;
-
-      // Determine damage reduction from armor
-      const dmgReduction = BATTLES.dmgReduction(defenderStats.armor);
-
-      return (rawDamage * (1 - dmgReduction)) * defenderStats.damageTaken;
-    } else {
-      return 0;
+  const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
+    let damage = rawDamage;
+    if (damage > 0) {
+      const dmgReduction = BATTLES.dmgReduction(defender.stats.armor);
+      damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
+      defender.stats.health -= damage;
     }
+
+    tickEvents.push({
+      from: attacker.id,
+      to: defender.id,
+      eventType: 'damage',
+      label: Math.round(damage)
+    });
+  }
+
+  const autoAttack = function({ attacker, defender, tickEvents }) {
+    // Do we hit?
+    const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    if (hitChance >= Math.random()) {
+      // How much do we hit for
+      const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
+      const rawDamage = attacker.stats.attack + extraRawDamage;
+
+      dealDamage(rawDamage, { attacker, defender, tickEvents });
+    } else {
+      dealDamage(0, { attacker, defender, tickEvents });
+    }
+  }
+
+  actualBattle.utils = {
+    autoAttack,
+    dealDamage
   }
 
   const secondsElapsed = (BATTLES.tickDuration / 1000);
@@ -256,7 +270,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   // Apply enemy attacks
   actualBattle.enemies.forEach((enemy) => {
-    if (currentTick % enemy.stats.attackSpeedTicks === 0) {
+    if (actualBattle.tick % enemy.stats.attackSpeedTicks === 0) {
       let defender = actualBattle.units[0];
       if (enemy.target) {
         const targetUnit = _.findWhere(actualBattle.units, { id: enemy.target });
@@ -266,15 +280,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
           delete enemy.target;
         }
       }
-      // Attack
-      const damageToDeal = dealDamage(enemy.stats, defender.stats);
-      tickEvents.push({
-        from: enemy.id,
-        to: defender.id,
-        eventType: 'damage',
-        label: Math.round(damageToDeal)
-      });
-      defender.stats.health -= damageToDeal;
+      autoAttack({ attacker: enemy, defender, tickEvents: actualBattle.tickEvents });
     }
   });
 
@@ -289,7 +295,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   // Apply player attacks
   actualBattle.units.forEach((unit) => {
-    if (unit && currentTick % unit.stats.attackSpeedTicks === 0) {
+    if (unit && actualBattle.tick % unit.stats.attackSpeedTicks === 0) {
       let defender = actualBattle.enemies[0];
       // Do we have a preferred target
       if (unit.target) {
@@ -301,15 +307,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
         }
       }
       if (defender) {
-        // Attack
-        const damageToDeal = dealDamage(unit.stats, defender.stats);
-        tickEvents.push({
-          from: unit.id,
-          to: defender.id,
-          eventType: 'damage',
-          label: Math.round(damageToDeal)
-        });
-        defender.stats.health -= damageToDeal;
+        autoAttack({ attacker: unit, defender, tickEvents: actualBattle.tickEvents });
       }
     }
   });
@@ -362,7 +360,12 @@ const progressBattle = function (actualBattle, battleIntervalId) {
         abilityToCast.level = unitAbility.level;
         // Fetch who we are are targetting with this ability
 
-        castAbility(abilityToCast, actionCaster, actionTargets, allAliveUnits, actualBattle.enemies);
+        castAbility({
+          ability: abilityToCast,
+          caster: actionCaster,
+          targets: actionTargets,
+          actualBattle
+        });
 
         unitAbility.currentCooldown = abilityToCast.cooldown;
       }
@@ -412,7 +415,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       deadUnits: actualBattle.deadUnits,
       deadEnemies: actualBattle.deadEnemies,
       enemies: actualBattle.enemies,
-      tickEvents,
+      tickEvents: actualBattle.tickEvents,
       updatedAt: new Date()
     }
   });

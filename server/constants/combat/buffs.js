@@ -200,20 +200,32 @@ export const BUFFS = {
     icon: 'execute',
     name: 'execute',
     description({ buff, level }) {
-      return `To Do`;
+      const damageIncreasePerPercentage = buff.constants.damageBase + (buff.constants.damagePerLevel * level);
+      return `Auto attack for up to <b>${damageIncreasePerPercentage * 100}%</b> bonus damage.<br />Based on your targets missing health`;
     },
     constants: {
-      damage: 10
+      damageBase: 1, // % Increase of damage for each % of health enemy is missing
+      damagePerLevel: 1
     },
     data: {
       duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
-        console.log(target);
+      onApply({ buff, target, caster, actualBattle }) {
+        const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
+        // Targets missing health %
+        const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
+        const baseDamage = caster.stats.attack;
+        const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
+        const totalDamage = (baseDamage + extraDamage) * (1 + (missingHealthPercentage / 100));
+
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        target.stats.health -= 5;
+        actualBattle.utils.dealDamage(totalDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

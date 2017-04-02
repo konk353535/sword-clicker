@@ -47,8 +47,8 @@ export const ENEMIES = {
       attackMax: 1,
       attackSpeed: FAST_SPEED,
       accuracy: 5,
-      health: 10000,
-      healthMax: 10000,
+      health: 100,
+      healthMax: 100,
       defense: 4,
       armor: 4,
       damageTaken: 1

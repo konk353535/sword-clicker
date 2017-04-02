@@ -116,4 +116,56 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  armor_up: {
+    duplicateTag: 'armorUp',
+    icon: 'armorUp',
+    name: 'armor up',
+    description({ buff, level }) {
+      const totalArmor = buff.constants.baseArmor + (buff.constants.armorPerLevel * level)
+      return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.`;
+    },
+    constants: {
+      baseArmor: 100,
+      armorPerLevel: 50,
+    },
+    data: {
+      duration: 30,
+      totalDuration: 30,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        const totalArmor = buff.constants.constants.baseArmor + (buff.constants.constants.armorPerLevel * buff.data.level)
+
+        buff.data.totalArmor = totalArmor;
+        target.stats.armor += totalArmor;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.armor -= buff.data.totalArmor;
+      }
+    }
+  },
+
 }

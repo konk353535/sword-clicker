@@ -200,5 +200,27 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the evasive maneuvers ability.'
+  },
+
+  armor_up_level_1_page_1: {
+    id: 'armor_up_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'armor up Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is armor up.'
+  },
+
+  armor_up_level_1_tome: {
+    id: 'armor_up_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'armor up Lv 1',
+    teaches: {
+      abilityId: 'armor_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the armor up ability.'
   }
 }

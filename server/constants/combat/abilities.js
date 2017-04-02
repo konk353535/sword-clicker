@@ -93,6 +93,21 @@ export const ABILITIES = {
     }
   },
 
+  armor_up: {
+    icon: 'armorUp',
+    name: 'armor up',
+    id: 'armor_up',
+    buffs: ['armor_up'],
+    cooldown: 180,
+    slot: 'chest',
+    isHidden: false,
+    target: 'self', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.armor_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   bleed: {
     icon: 'bleed',
     name: 'bleed',

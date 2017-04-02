@@ -156,5 +156,27 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the blade frenzy ability.'
+  },
+
+  defensive_stance_level_1_page_1: {
+    id: 'defensive_stance_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'defensive stance Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is berserk.'
+  },
+
+  defensive_stance_level_1_tome: {
+    id: 'defensive_stance_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'defensive stance Lv 1',
+    teaches: {
+      abilityId: 'defensive_stance',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the defensive stance ability.'
   }
 }

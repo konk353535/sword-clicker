@@ -43,8 +43,8 @@ export const ENEMIES = {
     icon: 'rat',
     name: 'dummy',
     stats: {
-      attack: 1,
-      attackMax: 1,
+      attack: 5,
+      attackMax: 5,
       attackSpeed: FAST_SPEED,
       accuracy: 5,
       health: 100,

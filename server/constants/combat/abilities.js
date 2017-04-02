@@ -48,6 +48,21 @@ export const ABILITIES = {
     }
   },
 
+  defensive_stance: {
+    icon: 'defensiveStance',
+    name: 'defensive stance',
+    id: 'defensive_stance',
+    buffs: ['defensive_stance'],
+    cooldown: 300,
+    slot: 'chest',
+    isHidden: false,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.defensive_stance;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   blade_frenzy: {
     icon: 'bladeFrenzy',
     name: 'blade frenzy',

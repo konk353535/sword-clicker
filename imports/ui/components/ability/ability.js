@@ -6,6 +6,7 @@ import './ability.html';
 
 Template.ability.events({
   'click'(event, instance) {
+    console.log(instance.data);
     if (instance.data.ability.targettable) {
       if (!$('body').hasClass('targetting-enemies')) {
         $('body').addClass('targetting-enemies');
@@ -18,7 +19,7 @@ Template.ability.events({
               const abilityId = instance.data.ability.id;
               // Fire this ability from = us, to = 
               Meteor.call('battles.castAbility', battleId, abilityId, {
-                target: targetId, caster: Meteor.userId()
+                targets: [targetId], caster: Meteor.userId()
               });
             }
             

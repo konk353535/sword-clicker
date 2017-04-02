@@ -161,6 +161,16 @@ const castAbility = function({ ability, caster, targets, actualBattle }) {
     targets = actualBattle.enemies;
   } else if (ability.target === 'self') {
     targets = [caster];
+  } else if (ability.target === 'singleEnemy') {
+    console.log(targets);
+    // Make sure specified target is an enemy
+    if (targets[0] && targets.length === 1) {
+      if (!_.findWhere(actualBattle.enemies, { id: targets[0].id })) {
+        targets = [];
+      }
+    } else {
+      targets = [];
+    }
   }
 
 
@@ -323,7 +333,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       // Modify casters preferred target
       const targetUnit = _.findWhere(actualBattle.units, { id: action.caster });
       if (targetUnit) {
-        targetUnit.target = action.target;
+        targetUnit.target = action.targets[0];
       }
     } else {
       // Ensure the specified ability is able to be casted for the specified caster

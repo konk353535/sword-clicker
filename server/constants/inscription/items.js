@@ -244,5 +244,27 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the iron will ability.'
+  },
+
+  taunt_level_1_page_1: {
+    id: 'taunt_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'taunt Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is taunt.'
+  },
+
+  taunt_level_1_tome: {
+    id: 'taunt_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'taunt Lv 1',
+    teaches: {
+      abilityId: 'taunt',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the taunt ability.'
   }
 }

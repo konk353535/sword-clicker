@@ -3,6 +3,34 @@ import { attackSpeedTicks } from '/server/utils';
 
 export const DEFENSE_BUFFS = {
 
+  taunt: {
+    duplicateTag: 'taunt', // Used to stop duplicate buffs
+    icon: 'taunt',
+    name: 'taunt',
+    description({ buff, level }) {
+      return 'Force the target to attack you';
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.target = caster.id;
+
+        buff.data.endDate = moment().add(0, 'seconds').toDate();
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   defensive_stance: {
     duplicateTag: 'defensiveStance', // Used to stop duplicate buffs
     icon: 'defensiveStance',

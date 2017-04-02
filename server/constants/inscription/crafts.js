@@ -627,5 +627,61 @@ export const INSCRIPTION_CRAFTS = {
       name: 'inscription',
       level: 1
     }]
+  },
+
+  taunt_level_1_page_1: {
+    recipeFor: 'inscription',
+    produces: 'taunt_level_1_page_1',
+    name: 'taunt Lv 1 Pg 1',
+    id: 'taunt_level_1_page_1',
+    category: 'page',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'pigment_red_255',
+      icon: ITEMS['pigment_red_255'].icon,
+      name: ITEMS['pigment_red_255'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    }]
+  },
+
+  taunt_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'taunt_level_1_tome',
+    name: 'taunt tome Lv 1.',
+    id: 'taunt_level_1_tome',
+    category: 'tome',
+    timeToCraft: 120,
+    xp: 20,
+    maxToCraft: 1,
+    level: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'taunt_level_1_page_1',
+      icon: ITEMS['taunt_level_1_page_1'].icon,
+      name: ITEMS['taunt_level_1_page_1'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    }]
   }
 }

@@ -141,6 +141,7 @@ Meteor.publish('abilities', function() {
       ability.slot = abilityConstant.slot;
       ability.level = ability.level;
       ability.id = abilityConstant.id;
+      ability.targettable = abilityConstant.targettable;
 
       return ability;
     });

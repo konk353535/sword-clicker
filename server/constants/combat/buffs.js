@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { attackSpeedTicks } from '/server/utils';
 
 export const BUFFS = {
 
@@ -162,6 +163,7 @@ export const BUFFS = {
         target.stats.attack *= (1 + (buff.data.damageIncrease / 100));
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -191,6 +193,7 @@ export const BUFFS = {
         target.stats.attack /= (1 + (buff.data.damageIncrease / 100));
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -236,12 +239,105 @@ export const BUFFS = {
     }
   },
 
+  blade_spin: {
+    duplicateTag: 'blade_spin', // Used to stop duplicate buffs
+    icon: 'bladeSpin',
+    name: 'blade spin',
+    description({ buff, level }) {
+      const damagePercentage = buff.constants.damagePercentage;
+      return `Deals ${damagePercentage}% weapon damage to all enemies`;
+    },
+    constants: {
+      damagePercentage: 30
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const baseDamage = caster.stats.attack;
+        const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
+        const totalDamage = (baseDamage + extraDamage) * (buff.constants.constants.damagePercentage / 100);
+
+        buff.data.endDate = moment().add(0, 'seconds').toDate();
+        actualBattle.utils.dealDamage(totalDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
+  blade_frenzy: {
+    duplicateTag: 'blade_frenzy', // Used to stop duplicate buffs
+    icon: 'bladeFrenzy',
+    name: 'blade frenzy',
+    description({ buff, level }) {
+      const duration = buff.data.totalDuration;
+      const attackSpeedGain = buff.constants.attackSpeedBase + (buff.constants.attackSpeedPerLevel * level);
+      return `Increases attack speed by ${attackSpeedGain}% for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      attackSpeedBase: 100,
+      attackSpeedPerLevel: 50,
+    },
+    data: {
+      duration: 4,
+      totalDuration: 4,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        const attackSpeedGain = buff.constants.constants.attackSpeedBase + (buff.constants.constants.attackSpeedPerLevel * buff.data.level);
+
+        buff.data.attackSpeedGain = attackSpeedGain;
+
+        target.stats.attackSpeed *= (1 + (buff.data.attackSpeedGain / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.attackSpeed /= (1 + (buff.data.attackSpeedGain / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      }
+    }
+  },
+
   bleed: {
     duplicateTag: 'bleed', // Used to stop duplicate buffs
     icon: 'bleed',
     name: 'bleed',
     description({ buff, level }) {
-      return 'todo';
+      const dps = buff.constants.damagePerSecondBase + (buff.constants.damagePerSecondPerLevel * level);
+      return `Deals ${dps.toFixed(1)} damage every second. For ${buff.data.totalDuration}s`;
     },
     constants: {
       damagePerSecondBase: 0.5,

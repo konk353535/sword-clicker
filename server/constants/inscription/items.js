@@ -113,4 +113,48 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 250,
     description: 'Can be consumed to learn the bleed ability.'
   },
+
+  blade_spin_level_1_page_1: {
+    id: 'blade_spin_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'blade spin Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is berserk.'
+  },
+
+  blade_spin_level_1_tome: {
+    id: 'blade_spin_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade spin Lv 1',
+    teaches: {
+      abilityId: 'blade_spin',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the bladeSpin ability.'
+  },
+
+  blade_frenzy_level_1_page_1: {
+    id: 'blade_frenzy_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'blade frenzy Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is berserk.'
+  },
+
+  blade_frenzy_level_1_tome: {
+    id: 'blade_frenzy_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade frenzy Lv 1',
+    teaches: {
+      abilityId: 'blade_frenzy',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the blade frenzy ability.'
+  }
 }

@@ -13,6 +13,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { updateCombatStats } from '/server/api/combat/combat';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
+import { attackSpeedTicks } from '/server/utils';
 
 import { ITEMS } from '/server/constants/items/index.js'; // List of items
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
@@ -144,17 +145,6 @@ const completeBattle = function (actualBattle) {
   // Battles.remove(actualBattle._id);
 }
 
-export const attackSpeedTicks = function(attackSpeed) {
-  const ticksPerSecond = 1000 / BATTLES.tickDuration;
-
-  // Convert attack speed seconds to attack speed ticks
-  if (attackSpeed !== undefined) {
-    return Math.round(ticksPerSecond / attackSpeed);
-  } else {
-    return 0;
-  }
-}
-
 const castAbility = function({ ability, caster, targets, actualBattle }) {
   if (ability.target === 'currentEnemy') {
     // Is current target alive
@@ -167,6 +157,10 @@ const castAbility = function({ ability, caster, targets, actualBattle }) {
         targets = [firstEnemy];
       }
     }
+  } else if (ability.target === 'allEnemies') {
+    targets = actualBattle.enemies;
+  } else if (ability.target === 'self') {
+    targets = [caster];
   }
 
 

@@ -10,6 +10,7 @@ export const ABILITIES = {
     buffs: ['berserk'],
     cooldown: 120,
     slot: 'mainHand',
+    target: 'self',
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.berserk;
@@ -28,6 +29,36 @@ export const ABILITIES = {
     target: 'currentEnemy', // The curreny enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.execute;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  blade_spin: {
+    icon: 'bladeSpin',
+    name: 'blade spin',
+    id: 'blade_spin',
+    buffs: ['blade_spin'],
+    cooldown: 20,
+    slot: 'chest',
+    isHidden: false,
+    target: 'allEnemies', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.blade_spin;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  blade_frenzy: {
+    icon: 'bladeFrenzy',
+    name: 'blade frenzy',
+    id: 'blade_frenzy',
+    buffs: ['blade_frenzy'],
+    cooldown: 20,
+    slot: 'legs',
+    isHidden: false,
+    target: 'self', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.blade_frenzy;
       return BUFF.description({ buff: BUFF, level });
     }
   },

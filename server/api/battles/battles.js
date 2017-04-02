@@ -57,9 +57,10 @@ const completeBattle = function (actualBattle) {
     const rewardsGained = [];
     actualBattle.deadEnemies.forEach((deadEnemy) => {
       const rewards = ENEMIES[deadEnemy.enemyId].rewards;
-      const diceRoll = Math.random();
       for (let i = 0; i < rewards.length; i++) {
         const reward = rewards[i];
+        const diceRoll = Math.random();
+
         if (reward.chance >= diceRoll) {
           rewardsGained.push(reward);
           break;          
@@ -162,7 +163,6 @@ const castAbility = function({ ability, caster, targets, actualBattle }) {
   } else if (ability.target === 'self') {
     targets = [caster];
   } else if (ability.target === 'singleEnemy') {
-    console.log(targets);
     // Make sure specified target is an enemy
     if (targets[0] && targets.length === 1) {
       if (!_.findWhere(actualBattle.enemies, { id: targets[0].id })) {

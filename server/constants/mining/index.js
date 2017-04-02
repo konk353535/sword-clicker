@@ -53,24 +53,24 @@ export const MINING = {
 
     iron: {
       requiredLevel: 6,
-      healthMax: 250,
+      healthMax: 100,
       xp: 80,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
       itemId: 'ore_iron',
-      chance: 0.04
+      chance: 0.05
     },
 
     steel: {
       requiredLevel: 8,
-      healthMax: 750,
-      xp: 140,
+      healthMax: 200,
+      xp: 100,
       id: 'steel',
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.04
+      chance: 0.05
     }
   }
 }

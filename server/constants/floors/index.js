@@ -18,7 +18,7 @@ export const FLOORS = {
       name: 'Grass Fields',
       image: 'grassField.jpeg',
       floor: 1,
-      possibleBattles: ['dummy']
+      possibleBattles: ['small_rat_pack', 'rabbit', 'skunk', 'crab', 'snail']
     },
 
     hard: {

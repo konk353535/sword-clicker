@@ -4,9 +4,44 @@ const MEDIUM_SPEED = 0.5;
 const SLOW_SPEED = 0.3;
 
 const baseLootTable = [{
+  type: 'item',
+  itemId: 'copper_pickaxe',
+  amount: 1,
+  chance: 1 / 64
+}, {
+  type: 'item',
+  itemId: 'copper_axe',
+  amount: 1,
+  chance: 1 / 64
+}, {
   type: 'gold',
   chance: 1 / 64,
-  amount: 200
+  amount: 400
+}, {
+  type: 'item',
+  itemId: 'copper_bar',
+  amount: 1,
+  chance: 1 / 16
+}, {
+  type: 'item',
+  itemId: 'ore_stone',
+  amount: 3,
+  chance: 1 / 8
+}, {
+  type: 'item',
+  itemId: 'ore_copper',
+  amount: 2,
+  chance: 1 / 8
+}, {
+  type: 'item',
+  itemId: 'pine_log',
+  amount: 1,
+  chance: 1 / 8
+}, {
+  type: 'item',
+  itemId: 'lettice',
+  amount: 5,
+  chance: 1 / 8
 }, {
   type: 'gold',
   chance: 1 / 4,
@@ -74,7 +109,8 @@ export const ENEMIES = {
       health: 17,
       healthMax: 17,
       defense: 2,
-      armor: 2
+      armor: 2,
+      damageTaken: 1
     },
     rewards: baseLootTable
   },
@@ -91,7 +127,8 @@ export const ENEMIES = {
       health: 7,
       healthMax: 7,
       defense: 25,
-      armor: 250
+      armor: 250,
+      damageTaken: 1
     },
     rewards: baseLootTable
   },
@@ -108,7 +145,8 @@ export const ENEMIES = {
       health: 22,
       healthMax: 22,
       defense: 10,
-      armor: 150
+      armor: 150,
+      damageTaken: 1
     },
     rewards: baseLootTable
   },
@@ -125,7 +163,8 @@ export const ENEMIES = {
       health: 15,
       healthMax: 15,
       defense: 0,
-      armor: 0
+      armor: 0,
+      damageTaken: 1
     },
     rewards: baseLootTable
   },
@@ -143,7 +182,8 @@ export const ENEMIES = {
       health: 70,
       healthMax: 70,
       defense: 7,
-      armor: 7
+      armor: 7,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -160,7 +200,8 @@ export const ENEMIES = {
       health: 70,
       healthMax: 70,
       defense: 100,
-      armor: 0
+      armor: 0,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -177,7 +218,8 @@ export const ENEMIES = {
       health: 100,
       healthMax: 100,
       defense: 3,
-      armor: 3
+      armor: 3,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -194,7 +236,8 @@ export const ENEMIES = {
       health: 120,
       healthMax: 120,
       defense: 0,
-      armor: 0
+      armor: 0,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -211,7 +254,8 @@ export const ENEMIES = {
       health: 110,
       healthMax: 110,
       defense: 40,
-      armor: 350
+      armor: 350,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -229,7 +273,8 @@ export const ENEMIES = {
       health: 500,
       healthMax: 500,
       defense: 50,
-      armor: 100
+      armor: 100,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -246,7 +291,8 @@ export const ENEMIES = {
       health: 300,
       healthMax: 300,
       defense: 25,
-      armor: 50
+      armor: 50,
+      damageTaken: 1
     },
     rewards: []
   },
@@ -263,7 +309,8 @@ export const ENEMIES = {
       health: 600,
       healthMax: 600,
       defense: 100,
-      armor: 200
+      armor: 200,
+      damageTaken: 1
     },
     rewards: []
   },

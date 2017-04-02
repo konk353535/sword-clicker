@@ -53,6 +53,10 @@ BattlesSchema = new SimpleSchema({
   'enemies.$.target': { type: String, optional: true },
   'enemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
+  'enemies.$.buffs': { type: [Object], defaultValue: [] },
+  'enemies.$.buffs.$.id': { type: String },
+  'enemies.$.buffs.$.data': { type: Object, blackbox: true },
+
   deadEnemies: { type: [Object] },
   'deadEnemies.$.stats': { type: Object, blackbox: true},
   'deadEnemies.$.icon': { type: String },

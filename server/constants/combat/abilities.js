@@ -30,5 +30,20 @@ export const ABILITIES = {
       const BUFF = BUFFS.execute;
       return BUFF.description({ buff: BUFF, level });
     }
+  },
+
+  bleed: {
+    icon: 'bleed',
+    name: 'bleed',
+    id: 'bleed',
+    buffs: ['bleed'],
+    cooldown: 20,
+    slot: 'head',
+    isHidden: false,
+    target: 'currentEnemy', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.bleed;
+      return BUFF.description({ buff: BUFF, level });
+    }
   }
 }

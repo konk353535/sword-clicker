@@ -261,7 +261,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       aliveUnit.buffs.forEach((buff) => {
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTick) {
-          buff.constants.events.onTick({ secondsElapsed, buff, target: aliveUnit });
+          buff.constants.events.onTick({ secondsElapsed, buff, target: aliveUnit, actualBattle });
         }
       });
 
@@ -552,6 +552,7 @@ const startBattle = function (battleId, floor, difficulty) {
         id: Random.id(),
         stats: enemyStats,
         icon: enemyConstants.icon,
+        buffs: [],
         enemyId: enemyConstants.id,
         name: enemyConstants.name
       });

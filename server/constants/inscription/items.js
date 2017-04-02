@@ -91,4 +91,26 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 500,
     description: 'Can be consumed to learn the execute ability.'
   },
+
+  bleed_level_1_page_1: {
+    id: 'bleed_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'bleed Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is berserk.'
+  },
+
+  bleed_level_1_tome: {
+    id: 'bleed_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'bleed Lv 1',
+    teaches: {
+      abilityId: 'bleed',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the bleed ability.'
+  },
 }

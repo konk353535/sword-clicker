@@ -58,6 +58,13 @@ export const BATTLES = {
       id: 'rat',
       amount: 3
     }]
+  },
+
+  dummy: {
+    enemies: [{
+      id: 'dummy',
+      amount: 2
+    }]
   }
 
 }

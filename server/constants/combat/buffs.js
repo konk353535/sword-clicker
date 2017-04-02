@@ -234,5 +234,60 @@ export const BUFFS = {
         });
       }
     }
-  }
+  },
+
+  bleed: {
+    duplicateTag: 'bleed', // Used to stop duplicate buffs
+    icon: 'bleed',
+    name: 'bleed',
+    description({ buff, level }) {
+      return 'todo';
+    },
+    constants: {
+      damagePerSecondBase: 0.5,
+      damagePerSecondPerLevel : 0.5
+    },
+    data: {
+      duration: 10,
+      totalDuration: 10,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
+        buff.data.timeTillDamage = 1;
+        buff.data.caster = caster.id;
+      },
+
+      onTick({ secondsElapsed, buff, target, actualBattle }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+        buff.data.timeTillDamage -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        if (buff.data.timeTillDamage < 0) {
+          const allUnits = actualBattle.units.concat(actualBattle.enemies, actualBattle.deadEnemies, actualBattle.deadUnits);
+          const caster = _.findWhere(allUnits, { id: buff.data.caster });
+          buff.data.timeTillDamage = 1;
+          actualBattle.utils.dealDamage(buff.data.dps, { 
+            attacker: caster,
+            defender: target,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+
+        if (buff.data.duration < 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            targetBuff.id !== buff.id
+          });
+        }
+      }
+    }
+  },
 }

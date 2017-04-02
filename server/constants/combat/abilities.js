@@ -108,6 +108,21 @@ export const ABILITIES = {
     }
   },
 
+  iron_will: {
+    icon: 'ironWill',
+    name: 'iron will',
+    id: 'iron_will',
+    buffs: ['iron_will'],
+    cooldown: 180,
+    slot: 'head',
+    isHidden: false,
+    target: 'self', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.iron_will;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   bleed: {
     icon: 'bleed',
     name: 'bleed',

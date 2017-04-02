@@ -222,5 +222,27 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the armor up ability.'
+  },
+
+  iron_will_level_1_page_1: {
+    id: 'iron_will_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'iron will Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is armor up.'
+  },
+
+  iron_will_level_1_tome: {
+    id: 'iron_will_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'iron will Lv 1',
+    teaches: {
+      abilityId: 'iron_will',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the iron will ability.'
   }
 }

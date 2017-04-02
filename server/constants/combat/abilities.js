@@ -63,6 +63,21 @@ export const ABILITIES = {
     }
   },
 
+  evasive_maneuvers: {
+    icon: 'evasiveManeuvers',
+    name: 'evasive maneuvers',
+    id: 'evasive_maneuvers',
+    buffs: ['evasive_maneuvers'],
+    cooldown: 10,
+    slot: 'chest',
+    isHidden: false,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.evasive_maneuvers;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   blade_frenzy: {
     icon: 'bladeFrenzy',
     name: 'blade frenzy',

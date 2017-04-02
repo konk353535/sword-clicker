@@ -178,5 +178,27 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the defensive stance ability.'
+  },
+
+  evasive_maneuvers_level_1_page_1: {
+    id: 'evasive_maneuvers_level_1_page_1',
+    icon: 'page',
+    category: 'page',
+    name: 'evasive maneuvers Lv 1 Pg 1',
+    sellPrice: 250,
+    description: 'The first half of what is evasive.'
+  },
+
+  evasive_maneuvers_level_1_tome: {
+    id: 'evasive_maneuvers_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'evasive maneuvers Lv 1',
+    teaches: {
+      abilityId: 'evasive_maneuvers',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the evasive maneuvers ability.'
   }
 }

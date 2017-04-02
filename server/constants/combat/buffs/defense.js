@@ -68,4 +68,52 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  evasive_maneuvers: {
+    duplicateTag: 'evasiveManeuvers', // Used to stop duplicate buffs
+    icon: 'evasiveManeuvers',
+    name: 'evasive maneuvers',
+    description({ buff, level }) {
+      return `Dodges all attacks for ${buff.constants.durationBase + (buff.constants.durationPerLevel * level)}s.`;
+    },
+    constants: {
+      durationBase: 1,
+      durationPerLevel: 0.5
+    },
+    data: {
+      duration: 1,
+      totalDuration: 1,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.damageTaken *= (1 - (99.9 / 100));
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.damageTaken /= (1 - (99.9 / 100));
+      }
+    }
+  },
+
 }

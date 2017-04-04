@@ -54,7 +54,7 @@ export const MINING_CRAFTS = {
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 10,
+      amount: 5,
       consumes: true
     }, {
       type: 'skill',

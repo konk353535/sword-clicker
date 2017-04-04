@@ -29,6 +29,7 @@ Meteor.methods({
   },
 
   'woodcutting.gameUpdate'() {
+    this.unblock();
     // Fetch all db data we need
     const woodcutting = Woodcutting.findOne({ owner: this.userId });
 

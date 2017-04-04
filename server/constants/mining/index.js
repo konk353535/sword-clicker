@@ -21,7 +21,7 @@ export const MINING = {
     stone: {
       requiredLevel: 1,
       healthMax: 6,
-      xp: 3,
+      xp: 2,
       id: 'stone',
       icon: 'stone',
       name: 'stone',
@@ -32,7 +32,7 @@ export const MINING = {
     copper: {
       requiredLevel: 2,
       healthMax: 15,
-      xp: 6,
+      xp: 4,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
@@ -43,34 +43,34 @@ export const MINING = {
     coal: {
       requiredLevel: 3,
       healthMax: 50,
-      xp: 18,
+      xp: 10,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.09
+      chance: 0.13
     },
 
     iron: {
       requiredLevel: 6,
-      healthMax: 100,
-      xp: 80,
+      healthMax: 125,
+      xp: 25,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
       itemId: 'ore_iron',
-      chance: 0.05
+      chance: 0.07
     },
 
     steel: {
       requiredLevel: 8,
-      healthMax: 200,
-      xp: 100,
+      healthMax: 250,
+      xp: 50,
       id: 'steel',
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.05
+      chance: 0.07
     }
   }
 }

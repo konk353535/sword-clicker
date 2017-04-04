@@ -138,6 +138,7 @@ Meteor.methods({
   },
 
   'mining.gameUpdate'() {
+    this.unblock();
     // Fetch all db data we need
     const mining = Mining.findOne({ owner: this.userId });
     const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
@@ -168,9 +169,9 @@ Meteor.methods({
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
-      const rollDice = Math.random();
       let newOre;
       for (let i = 0; i < sortedChanceOres.length; i++) {
+        const rollDice = Math.random();
         if (rollDice <= sortedChanceOres[i].chance) {
           newOre = sortedChanceOres[i];
           break;

@@ -43,8 +43,7 @@ Router.configure({
   yieldTemplates: {
     nav: { to: 'nav' },
     footer: { to: 'footer' },
-  },
-  homeRoutePath: '/mining'
+  }
 });
 
 AccountsTemplates.configure({

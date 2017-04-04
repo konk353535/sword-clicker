@@ -24,7 +24,7 @@ Template.body.onCreated(function () {
 
   combatTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
-      // Meteor.call('combat.gameUpdate');
+      Meteor.call('combat.gameUpdate');
     }
   }, 23000);
 

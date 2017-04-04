@@ -56,6 +56,7 @@ const farmSpaceModifier = function (farmSpace, farming) {
 Meteor.methods({
 
   'farming.gameUpdate'() {
+    this.unblock();
     // Fetch farming for last game updated
     const farming = Farming.findOne({ owner: Meteor.userId() });
 

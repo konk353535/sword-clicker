@@ -100,6 +100,7 @@ export const updateCombatStats = function () {
 
 Meteor.methods({
   'combat.gameUpdate'() {
+    this.unblock();
 
     const currentCombat = Combat.findOne({
       owner: Meteor.userId()

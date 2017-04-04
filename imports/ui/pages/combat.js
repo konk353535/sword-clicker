@@ -26,7 +26,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 2000);
+  }, 5000);
 
   this.state.set('hasLearnRequirements', false);
   if (Session.get('combatTab')) {

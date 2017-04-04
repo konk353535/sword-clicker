@@ -13,6 +13,7 @@ export const FLOORS = {
     }
   },
 
+  // Jungle themed
   1: {
     easy: {
       name: 'Grass Fields',
@@ -33,6 +34,14 @@ export const FLOORS = {
       image: 'mistyRuins.jpeg',
       floor: 1,
       possibleBattles: ['elephant', 'puma', 'angryRooster']
+    },
+
+    boss: {
+      possibleBattles: ['floorOneBoss']
     }
-  }
+  },
+
+  // Swamp Themed
+
+  // Water Themed
 }

@@ -11,7 +11,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 50,
     growthTime: 60,
-    xp: 5,
+    xp: 3,
     required: [{
       type: 'item',
       itemId: 'lettice_seed',
@@ -70,7 +70,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 200,
     growthTime: 120,
-    xp: 10,
+    xp: 15,
     required: [{
       type: 'item',
       itemId: 'rubia_flower_seed',

@@ -55,14 +55,14 @@ export const ENEMIES = {
     icon: 'rat',
     name: 'rat',
     stats: {
-      attack: 2,
-      attackMax: 3,
+      attack: 1,
+      attackMax: 2,
       attackSpeed: FAST_SPEED,
-      accuracy: 5,
-      health: 10,
-      healthMax: 10,
-      defense: 4,
-      armor: 4,
+      accuracy: 0,
+      health: 5,
+      healthMax: 5,
+      defense: 3,
+      armor: 3,
       damageTaken: 1
     },
     rewards: baseLootTable.concat([{
@@ -105,9 +105,9 @@ export const ENEMIES = {
       attack: 1,
       attackMax: 1,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 70,
-      health: 17,
-      healthMax: 17,
+      accuracy: 50,
+      health: 13,
+      healthMax: 13,
       defense: 2,
       armor: 2,
       damageTaken: 1
@@ -139,13 +139,13 @@ export const ENEMIES = {
     name: 'snail',
     stats: {
       attack: 3,
-      attackMax: 20,
+      attackMax: 12,
       attackSpeed: SLOW_SPEED,
       accuracy: 0,
-      health: 22,
-      healthMax: 22,
-      defense: 10,
-      armor: 150,
+      health: 10,
+      healthMax: 10,
+      defense: 8,
+      armor: 120,
       damageTaken: 1
     },
     rewards: baseLootTable
@@ -156,10 +156,10 @@ export const ENEMIES = {
     icon: 'skunk',
     name: 'skunk',
     stats: {
-      attack: 3,
-      attackMax: 5,
+      attack: 2,
+      attackMax: 4,
       attackSpeed: FAST_SPEED,
-      accuracy: 60,
+      accuracy: 30,
       health: 15,
       healthMax: 15,
       defense: 0,
@@ -314,4 +314,21 @@ export const ENEMIES = {
     },
     rewards: []
   },
+
+  lionBoss: {
+    id: 'lionBoss',
+    icon: 'lionBoss',
+    name: 'Jungle King',
+    stats: {
+      attack: 30,
+      attackMax: 50,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 35,
+      health: 3000,
+      healthMax: 3000,
+      defense: 100,
+      armor: 250,
+      damageTaken: 1
+    }
+  }
 }

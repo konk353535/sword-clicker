@@ -6,6 +6,8 @@ import moment from 'moment';
 import './craftingDuration.html';
 
 let durationUpdateTimer;
+let updateGameCalled = false;
+
 const updateComputedCraftingProcess = function (instance) {
   if (!instance) {
     return;
@@ -25,7 +27,8 @@ const updateComputedCraftingProcess = function (instance) {
 
   craftingProcess.percentage = percentage;
 
-  if (moment().isAfter(endDate)) {
+  if (moment().isAfter(endDate) && !updateGameCalled) {
+    updateGameCalled = true;
     if (instance.data.isCrafting) {
       Meteor.call('crafting.updateGame');
     } else {
@@ -48,7 +51,7 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
 
   durationUpdateTimer = Meteor.setInterval(function () {
     updateComputedCraftingProcess(this);
-  }.bind(this), 1000);
+  }.bind(this), 50);
 });
 
 Template.craftingDuration.onDestroyed(function bodyOnDestroyed() {

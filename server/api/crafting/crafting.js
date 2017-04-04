@@ -221,6 +221,7 @@ Meteor.methods({
   },
 
   'crafting.updateGame'() {
+    this.unblock();
     // If existing crafts done, remove from crafting table
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
 

@@ -601,14 +601,14 @@ export const resumeBattle = function(id) {
 
 Meteor.methods({
   'battles.findBattle'(floor, difficulty) {
-    if (!_.contains(['easy', 'hard', 'veryHard'], difficulty)) {
+    if (!_.contains(['easy', 'hard', 'veryHard', 'boss'], difficulty)) {
       return;
     }
 
     // Ensure the floor specified is currently open
     const currentFloor = Floors.findOne({ floorComplete: false });
 
-    if (floor > currentFloor) {
+    if (floor > currentFloor.floor) {
       return;
     }
 
@@ -617,6 +617,21 @@ Meteor.methods({
     if (currentFloor[`${difficulty}Waves`] <= 0) {
       floor = null;
       difficulty = null;
+    }
+
+    if (difficulty === 'boss' && currentFloor.floor === floor) {
+      let canBossBattle = false;
+      if (currentFloor.easyWaves <= 0) {
+        if (currentFloor.hardWaves <= 0) {
+          if (currentFloor.veryHardWaves <= 0) {
+            canBossBattle = true;
+          }
+        }
+      }
+
+      if (!canBossBattle) {
+        throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
+      }
     }
 
     // Eventually select a random battle appropriate to users level

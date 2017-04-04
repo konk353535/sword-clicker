@@ -23,7 +23,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_lettice'
     }],
-    sellPrice: 2
+    sellPrice: 1
   },
 
   dead_plant: {

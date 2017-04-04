@@ -18,7 +18,7 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('woodcutting.gameUpdate');
     }
-  }, 2000);
+  }, 5000);
 
   Meteor.call('woodcutting.gameUpdate', (err, res) => {
     this.subscribe('woodcutting');

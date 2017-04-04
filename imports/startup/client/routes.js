@@ -1,4 +1,4 @@
-Router.route('/', {
+Router.route('/home', {
 
   name: 'home',
 
@@ -10,7 +10,7 @@ Router.route('/', {
   }
 });
 
-Router.route('/mining', {
+Router.route('/', {
 
   name: 'mining',
 

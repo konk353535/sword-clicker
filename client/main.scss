@@ -14,6 +14,11 @@ body.targetting-enemies {
   border-color: $red;
 }
 
+.disabled-row {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .floating-text {
   pointer-events: none;
   position: absolute;

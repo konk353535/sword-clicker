@@ -109,6 +109,10 @@ Template.battleTab.events({
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
   },
 
+  'click .battle-boss-btn'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
+  },
+
   'click .btn-close-finishedBattle'(event, instance) {
     instance.state.set('finishedBattle', null);
   }
@@ -134,6 +138,18 @@ Template.battleTab.helpers({
 
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');
+  },
+
+  cantBossBattle() {
+    const waveDetails = Template.instance().state.get('waveDetails');
+    if (waveDetails.easyWaves <= 0) {
+      if (waveDetails.hardWaves <= 0) {
+        if (waveDetails.veryHardWaves <= 0) {
+          return false;
+        }
+      }
+    }
+    return true;
   },
 
   equippedAbilities() {

@@ -65,6 +65,7 @@ meteorhacks:subs-manager@1.6.4
 minifier-css@1.2.16
 minifier-js@1.2.17
 minimongo@1.0.20
+mizzao:timesync@0.5.0
 mobile-experience@1.0.4
 mobile-status-bar@1.0.14
 modules@0.7.9

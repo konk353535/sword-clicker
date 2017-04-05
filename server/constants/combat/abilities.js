@@ -99,7 +99,7 @@ export const ABILITIES = {
     name: 'blade frenzy',
     id: 'blade_frenzy',
     buffs: ['blade_frenzy'],
-    cooldown: 20,
+    cooldown: 300,
     slot: 'legs',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking

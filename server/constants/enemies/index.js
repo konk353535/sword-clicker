@@ -210,8 +210,8 @@ export const ENEMIES = {
     icon: 'cat',
     name: 'cat',
     stats: {
-      attack: 10,
-      attackMax: 15,
+      attack: 5,
+      attackMax: 10,
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 80,
       health: 70,
@@ -283,14 +283,14 @@ export const ENEMIES = {
     icon: 'puma',
     name: 'puma',
     stats: {
-      attack: 25,
-      attackMax: 35,
+      attack: 15,
+      attackMax: 20,
       attackSpeed: FAST_SPEED,
       accuracy: 70,
-      health: 500,
-      healthMax: 500,
-      defense: 50,
-      armor: 100,
+      health: 300,
+      healthMax: 300,
+      defense: 25,
+      armor: 50,
       damageTaken: 1
     },
     rewards: []
@@ -301,14 +301,14 @@ export const ENEMIES = {
     icon: 'angryRooster',
     name: 'angry rooster',
     stats: {
-      attack: 35,
-      attackMax: 50,
+      attack: 25,
+      attackMax: 25,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 80,
+      accuracy: 70,
       health: 300,
       healthMax: 300,
-      defense: 25,
-      armor: 50,
+      defense: 0,
+      armor: 0,
       damageTaken: 1
     },
     rewards: []
@@ -319,14 +319,14 @@ export const ENEMIES = {
     icon: 'elephant',
     name: 'elephant',
     stats: {
-      attack: 40,
-      attackMax: 100,
+      attack: 20,
+      attackMax: 40,
       attackSpeed: SLOW_SPEED,
       accuracy: 35,
       health: 600,
       healthMax: 600,
-      defense: 100,
-      armor: 200,
+      defense: 0,
+      armor: 50,
       damageTaken: 1
     },
     rewards: []
@@ -343,8 +343,8 @@ export const ENEMIES = {
       accuracy: 35,
       health: 3000,
       healthMax: 3000,
-      defense: 100,
-      armor: 250,
+      defense: 60,
+      armor: 150,
       damageTaken: 1
     }
   }

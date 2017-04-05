@@ -43,7 +43,7 @@ export const DEFENSE_BUFFS = {
         Last for ${buff.data.totalDuration}s.`;
     },
     constants: {
-      damageDealtPercentageBase: 47,
+      damageDealtPercentageBase: 37,
       damageDealtPercentagePerLevel: 3,
       damageTakenPercentageBase: 47,
       damageTakenPercentagePerLevel: 3,
@@ -157,8 +157,8 @@ export const DEFENSE_BUFFS = {
       armorPerLevel: 50,
     },
     data: {
-      duration: 30,
-      totalDuration: 30,
+      duration: 10,
+      totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

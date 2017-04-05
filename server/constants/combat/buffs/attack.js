@@ -176,12 +176,12 @@ export const ATTACK_BUFFS = {
       return `Increases attack speed by ${attackSpeedGain}% for ${buff.data.totalDuration}s`;
     },
     constants: {
-      attackSpeedBase: 100,
+      attackSpeedBase: 50,
       attackSpeedPerLevel: 50,
     },
     data: {
-      duration: 4,
-      totalDuration: 4,
+      duration: 3,
+      totalDuration: 3,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

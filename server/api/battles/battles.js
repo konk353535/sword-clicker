@@ -291,7 +291,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Remove any dead units
   for (let i = actualBattle.units.length - 1; i >= 0; i--) {
     const unit = actualBattle.units[i];
-    if (unit.stats.health <= 0) {
+    if (unit.stats.health <= 0 || !unit.stats.health) {
+      unit.stats.health = 0;
       actualBattle.deadUnits.push(unit);
       actualBattle.units.splice(i, 1);
     }
@@ -321,7 +322,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Remove any dead enemies
   for (let i = actualBattle.enemies.length - 1; i >= 0; i--) {
     const enemy = actualBattle.enemies[i];
-    if (enemy.stats.health <= 0) {
+    if (enemy.stats.health <= 0 || !enemy.stats.health) {
+      enemy.stats.health = 0;
       actualBattle.deadEnemies.push(enemy);
       actualBattle.enemies.splice(i, 1);
     }
@@ -379,7 +381,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Remove any dead enemies
   for (let i = actualBattle.enemies.length - 1; i >= 0; i--) {
     const enemy = actualBattle.enemies[i];
-    if (enemy.stats.health <= 0) {
+    if (enemy.stats.health <= 0 || !enemy.stats.health) {
+      enemy.stats.health = 0;
       actualBattle.deadEnemies.push(enemy);
       actualBattle.enemies.splice(i, 1);
     }
@@ -388,7 +391,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   // Remove any dead units
   for (let i = actualBattle.units.length - 1; i >= 0; i--) {
     const unit = actualBattle.units[i];
-    if (unit.stats.health <= 0) {
+    if (unit.stats.health <= 0 || !unit.stats.health) {
+      unit.stats.health = 0;
       actualBattle.deadUnits.push(unit);
       actualBattle.units.splice(i, 1);
     }
@@ -443,9 +447,7 @@ const startBattle = function (battleId, floor, difficulty) {
 
   let battleParticipants = [Meteor.userId()];
   if (currentGroup && currentGroup.leader !== Meteor.userId()) {
-    // To do: Show this error to users
-    console.log('You must be the leader to start a battle in a group');
-    return;
+    throw new Meteor.Error('not-leader', 'You must be the leader to start a battle in a group');
   } else if (currentGroup) {
     battleParticipants = currentGroup.members;
   }

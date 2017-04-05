@@ -1,6 +1,7 @@
 /* CSS declarations go here */
 @import "{}/node_modules/bootstrap/scss/bootstrap.scss";
 @import "iconFont.scss";
+@import "styles/chat.scss";
 
 body.targetting-enemies {
   cursor: crosshair;

@@ -5,6 +5,7 @@ import 'bootstrap';
 import './main.html';
 
 // Components
+import '/imports/ui/components/chatWindow/chatWindow.js';
 import '/imports/ui/components/ability/ability.js';
 import '/imports/ui/components/itemIcon/itemIcon.js';
 import '/imports/ui/components/recipeIcon/recipeIcon.js';

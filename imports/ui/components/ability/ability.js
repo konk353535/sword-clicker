@@ -6,7 +6,6 @@ import './ability.html';
 
 Template.ability.events({
   'click'(event, instance) {
-    console.log(instance.data);
     if (instance.data.ability.targettable) {
       if (!$('body').hasClass('targetting-enemies')) {
         $('body').addClass('targetting-enemies');

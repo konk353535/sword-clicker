@@ -1,0 +1,15 @@
+<template name="chatWindow">
+
+  {{#if minimized}}
+    <div class="chat-minimized">
+      Chat <img src="icons/maximize.svg" class="maximize-icon small-icon">
+    </div>
+  {{else}}
+    <div class="chat-container">
+      <div style="position: relative;">
+        <img src="icons/minimize.svg" class="minimize-icon small-icon">
+      </div>
+      {{>SimpleChatWindow roomId="General" username=currentUser.username limit=10}}
+    </div>
+  {{/if}}
+</template>

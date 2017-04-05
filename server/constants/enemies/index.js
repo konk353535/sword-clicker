@@ -48,6 +48,23 @@ const baseLootTable = [{
   amount: 50
 }];
 
+const floorOneHardLootTable = [{
+  type: 'item',
+  itemId: 'iron_pickaxe',
+  amount: 1,
+  chance: 1 / 64
+}, {
+  type: 'item',
+  itemId: 'iron_axe',
+  amount: 1,
+  chance: 1 / 64
+}, {
+  type: 'item',
+  itemId: 'holy_pickaxe',
+  amount: 1,
+  chance: 1 / 256
+}]
+
 export const ENEMIES = {
   // Floor 1 - Easy - 1
   rat: {
@@ -185,7 +202,7 @@ export const ENEMIES = {
       armor: 7,
       damageTaken: 1
     },
-    rewards: []
+    rewards: baseLootTable.concat(floorOneHardLootTable)
   },
   // Floor 1 - Hard - 2
   cat: {
@@ -203,7 +220,7 @@ export const ENEMIES = {
       armor: 0,
       damageTaken: 1
     },
-    rewards: []
+    rewards: baseLootTable.concat(floorOneHardLootTable)
   },
   // Floor 1 - Hard - 3
   cuteGoat: {
@@ -221,7 +238,7 @@ export const ENEMIES = {
       armor: 3,
       damageTaken: 1
     },
-    rewards: []
+    rewards: baseLootTable.concat(floorOneHardLootTable)
   },
   // Floor 1 - Hard - 4
   cutePig: {
@@ -239,7 +256,7 @@ export const ENEMIES = {
       armor: 0,
       damageTaken: 1
     },
-    rewards: []
+    rewards: baseLootTable.concat(floorOneHardLootTable)
   },
   // Floor 1 - Hard - 5
   cuteTurtle: {
@@ -257,7 +274,7 @@ export const ENEMIES = {
       armor: 350,
       damageTaken: 1
     },
-    rewards: []
+    rewards: baseLootTable.concat(floorOneHardLootTable)
   },
 
   // Floor 1 - Very Hard - 1

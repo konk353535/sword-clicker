@@ -114,6 +114,28 @@ export const MINING_ITEMS = {
     }
   },
 
+  holy_pickaxe: {
+    id: 'holy_pickaxe',
+    icon: 'holyPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'holy pickaxe',
+    sellPrice: 0,
+    description: 'A pickaxe dropped from heaven. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 1, // Maximum energy stored
+      attack: 1, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 1, // Energy regen per minute
+      miner: 200 // Increases effeciency of miners
+    },
+    extraStats: {
+      miner: 200
+    }
+  },
+
   steel_pickaxe: {
     id: 'steel_pickaxe',
     icon: 'steelPickaxe',

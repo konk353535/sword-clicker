@@ -110,7 +110,9 @@ Template.combatPage.helpers({
   },
 
   combat() {
-    const currentCombat = Combat.findOne({});
+    const currentCombat = Combat.findOne({
+      owner: Meteor.userId()
+    });
     if (!currentCombat) {
       return;
     }

@@ -125,13 +125,13 @@
         </tr>
         <tr class="text-center">
           <td class="align-middle">{{floorDetails.veryHard.name}}</td>
+          <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
           {{#if waveDetails}}
             <td class="align-middle text-center">
               {{waveDetails.veryHardWaves}} / {{waveDetails.veryHardWavesTotal}}
             </td>
           {{/if}}
           <td class="align-middle">Very Hard</td>
-          <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
           <td class="align-middle">
             <button class="btn btn-secondary battle-veryHard-btn">
               Find Battle
@@ -140,12 +140,13 @@
         </tr>
         <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}}">
           <td class="align-middle">Final Room</td>
+          <td class="align-middle"></td>
           {{#if waveDetails}}
             <td class="align-middle text-center">
               1 / 1
             </td>
           {{/if}}
-          <td class="align-middle">!!Danger!!</td>
+          <td class="align-middle">Recommend Players: 25</td>
           <td class="align-middle">
             <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
               Boss Battle

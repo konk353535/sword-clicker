@@ -59,7 +59,13 @@ Template.combatAbilitiesTab.helpers({
 
     const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
       // To do add unequipping for abilities
-      ability.primaryAction = {};
+      ability.primaryAction = {
+        description: 'unequip',
+        ability,
+        method() {
+          Meteor.call('abilities.unequip', this.ability.slot);
+        }
+      };
 
       return ability.equipped;
     });

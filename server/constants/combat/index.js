@@ -1,10 +1,11 @@
 import { COMBAT_ITEMS as combatItems} from './items';
 import { BUFFS as buffs } from './buffs';
-import { ABILITIES as abilities } from './abilities';
+import { ABILITIES as abilities, ABILITY as ability } from './abilities';
 
 import { ITEMS } from './items';
 
 export const ABILITIES = abilities;
+export const ABILITY = ability;
 export const BUFFS = buffs;
 export const COMBAT_ITEMS = combatItems;
 export const COMBAT = {

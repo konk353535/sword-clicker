@@ -6,12 +6,27 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
 
-import { ABILITIES } from '/server/constants/combat/index';
+import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
 
 import { consumeItem } from '/server/api/items/items';
 
 Meteor.methods({
+
+  'abilities.unequip'(slot) {
+    // Make sure this is a valid slot
+    if (_.contains(ABILITY.slots, slot)) {
+      // Unequip specified slot
+      Abilities.update({
+        owner: Meteor.userId(),
+        'learntAbilities.slot': slot
+      }, {
+        $set: {
+          'learntAbilities.$.equipped': false
+        }
+      });
+    }
+  },
 
   'abilities.equip'(abilityId) {
     // Make sure the user actually has the specified ability
@@ -24,17 +39,38 @@ Meteor.methods({
 
     const targetEquipConstants = ABILITIES[targetEquip.abilityId];
 
-    // Uneqip abilities on the same slot
-    myAbilities.learntAbilities.forEach((ability) => {
-      if (ability.equipped) {
-        if (ABILITIES[ability.abilityId].slot === targetEquipConstants.slot) {
-          ability.equipped = false;
-        }
-      }
-    });
+    if (targetEquipConstants.slot === 'any') {
+      // Look for first empty slot
+      let availableSlots = JSON.parse(JSON.stringify(ABILITY.slots));
 
-    // Equip specified ability
-    targetEquip.equipped = true;
+      // Remove from available slots any equipped abilities
+      myAbilities.learntAbilities.forEach((ability) => {
+        if (ability.equipped) {
+          availableSlots = availableSlots.filter((slot) => {
+            return slot !== ability.slot;
+          });
+        }
+      });
+
+      if (availableSlots.length > 0) {
+        const slotToUse = availableSlots[0];
+        targetEquip.equipped = true;
+        targetEquip.slot = slotToUse;
+      }
+    } else {
+      // Unequip abilities on the same slot
+      myAbilities.learntAbilities.forEach((ability) => {
+        if (ability.equipped) {
+          if (ability.slot === targetEquipConstants.slot) {
+            ability.equipped = false;
+          }
+        }
+      });
+
+      // Equip specified ability
+      targetEquip.equipped = true;
+      targetEquip.slot = targetEquipConstants.slot;
+    }
 
     Abilities.update(myAbilities._id, {
       $set: {
@@ -138,7 +174,6 @@ Meteor.publish('abilities', function() {
       ability.name = `${abilityConstant.name} (${ability.level})`;
       ability.icon = abilityConstant.icon;
       ability.cooldown = abilityConstant.cooldown;
-      ability.slot = abilityConstant.slot;
       ability.level = ability.level;
       ability.id = abilityConstant.id;
       ability.targettable = abilityConstant.targettable;

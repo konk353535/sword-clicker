@@ -9,6 +9,7 @@ AbilitiesSchema = new SimpleSchema({
   learntAbilities: { type: [Object] },
   'learntAbilities.$.abilityId': { type: String },
   'learntAbilities.$.equipped': { type: Boolean, defaultValue: false },
+  'learntAbilities.$.slot': { type: String, optional: true },
   'learntAbilities.$.level': { type: Number },
 });
 

@@ -142,7 +142,7 @@ Template.battleTab.helpers({
 
   cantBossBattle() {
     const waveDetails = Template.instance().state.get('waveDetails');
-    if (waveDetails.easyWaves <= 0) {
+    if (waveDetails && waveDetails.easyWaves <= 0) {
       if (waveDetails.hardWaves <= 0) {
         if (waveDetails.veryHardWaves <= 0) {
           return false;

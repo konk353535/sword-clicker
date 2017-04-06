@@ -6,7 +6,12 @@ import './chatWindow.html';
 
 Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.state.set('minimized', false);
+  this.state.set('minimized', true);
+
+  // Hide chat for first second, so that it doesn't block up more important subscriptions
+  Meteor.setTimeout(() => {
+    this.state.set('minimized', false);
+  }, 500);
 });
 
 Template.chatWindow.events({

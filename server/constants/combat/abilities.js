@@ -1,6 +1,10 @@
 import moment from 'moment';
 import { BUFFS } from '/server/constants/combat/index';
 
+export const ABILITY = {
+  slots: ['mainHand', 'offHand', 'head', 'chest', 'legs']
+}
+
 export const ABILITIES = {
 
   berserk: {
@@ -9,7 +13,7 @@ export const ABILITIES = {
     id: 'berserk',
     buffs: ['berserk'],
     cooldown: 120,
-    slot: 'mainHand',
+    slot: 'any',
     target: 'self',
     isHidden: false,
     description(level) {
@@ -24,7 +28,7 @@ export const ABILITIES = {
     id: 'taunt',
     buffs: ['taunt'],
     cooldown: 10,
-    slot: 'offHand',
+    slot: 'any',
     target: 'singleEnemy',
     targettable: true,
     isHidden: false,
@@ -40,7 +44,7 @@ export const ABILITIES = {
     id: 'execute',
     buffs: ['execute'],
     cooldown: 20,
-    slot: 'offHand',
+    slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking
     description(level) {
@@ -55,7 +59,7 @@ export const ABILITIES = {
     id: 'blade_spin',
     buffs: ['blade_spin'],
     cooldown: 20,
-    slot: 'chest',
+    slot: 'any',
     isHidden: false,
     target: 'allEnemies', // The curreny enemy who we are auto attacking
     description(level) {
@@ -70,7 +74,7 @@ export const ABILITIES = {
     id: 'defensive_stance',
     buffs: ['defensive_stance'],
     cooldown: 300,
-    slot: 'chest',
+    slot: 'any',
     isHidden: false,
     target: 'self',
     description(level) {
@@ -85,7 +89,7 @@ export const ABILITIES = {
     id: 'evasive_maneuvers',
     buffs: ['evasive_maneuvers'],
     cooldown: 10,
-    slot: 'chest',
+    slot: 'any',
     isHidden: false,
     target: 'self',
     description(level) {
@@ -100,7 +104,7 @@ export const ABILITIES = {
     id: 'blade_frenzy',
     buffs: ['blade_frenzy'],
     cooldown: 300,
-    slot: 'legs',
+    slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking
     description(level) {
@@ -115,7 +119,7 @@ export const ABILITIES = {
     id: 'armor_up',
     buffs: ['armor_up'],
     cooldown: 180,
-    slot: 'chest',
+    slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking
     description(level) {
@@ -130,7 +134,7 @@ export const ABILITIES = {
     id: 'iron_will',
     buffs: ['iron_will'],
     cooldown: 180,
-    slot: 'head',
+    slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking
     description(level) {
@@ -145,7 +149,7 @@ export const ABILITIES = {
     id: 'bleed',
     buffs: ['bleed'],
     cooldown: 20,
-    slot: 'head',
+    slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking
     description(level) {

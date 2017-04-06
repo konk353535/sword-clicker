@@ -138,12 +138,8 @@ Meteor.methods({
   },
 
   'mining.gameUpdate'() {
-    this.unblock();
     // Fetch all db data we need
     const mining = Mining.findOne({ owner: this.userId });
-    const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
-    let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
-    let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
     // Determine time since last update
     const now = moment();
@@ -166,6 +162,12 @@ Meteor.methods({
         'stats.energy': mining.stats.energy
       }
     });
+
+    this.unblock();
+
+    const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
+    let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
+    let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
@@ -228,10 +230,9 @@ Meteor.methods({
       const sortedChanceOres = _.sortBy(availableOres, 'chance');
 
       // Determine how many new ores to spawn
-      let newOresCount = tickCount * (MINING.prospecting.chance * tickStrength);
-      if (mining.prospectors) {
-        newOresCount *= mining.prospectors;
-      }
+      let totalChance = MINING.prospecting.chance + (MINING.prospecting.chancePerProspector * mining.prospectors);
+      let newOresCount = tickCount * tickStrength * totalChance;
+
       if ((newOresCount % 1) > Math.random()) {
         newOresCount = Math.ceil(newOresCount);
       } else {
@@ -284,21 +285,22 @@ Meteor.methods({
         });
       } else {
         // Evenly distribute when ores spawn
-        const genOreEvery = Math.floor(tickCount / newOresCount)
+        let genOreEvery = Math.ceil(tickCount / newOresCount);
+
+        let oresGenerated = 0;
 
         // Step through
         for (let tick = 0; tick < tickCount; tick++) {
+          emptyMiningSpaces = miningSpaces.filter((space) => !space.oreId);
           if (tick % genOreEvery === 0 && emptyMiningSpaces.length > 0) {
-            const emptyMiningSpaces = miningSpaces.filter((space) => !space.oreId);
-            if (emptyMiningSpaces.length > 0) {
-              // Generate ore
-              const emptySpace = emptyMiningSpaces[0];
-              // Spawn ore
-              const newOre = spawnOre(sortedChanceOres);
-              emptySpace.health = newOre.healthMax;
-              emptySpace.oreId = newOre.id;
-              emptySpace.isDirty = true; // So we know to save this later
-            }
+            oresGenerated++;
+            // Generate ore
+            const emptySpace = emptyMiningSpaces[0];
+            // Spawn ore
+            const newOre = spawnOre(sortedChanceOres);
+            emptySpace.health = newOre.healthMax;
+            emptySpace.oreId = newOre.id;
+            emptySpace.isDirty = true; // So we know to save this later
           }
 
           if (tick % 10) {

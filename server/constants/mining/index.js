@@ -4,7 +4,8 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: (1 / 20), // Should be 1 / 20
+    chance: 1 / 15,
+    chancePerProspector: 1 / 200,
     max: 10,
     cost(currentProspectorsCount) {
       return 10 + ((currentProspectorsCount - 1) * 60) * (currentProspectorsCount - 1);

@@ -8,25 +8,13 @@ import './requiredItems.html';
 
 Template.requiredItems.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-});
 
-Template.requiredItems.rendered = function () {
-  const mineSpaceTooltip = new Drop({
-    target: Template.instance().$('.required-items-container')[0],
-    content: Template.instance().$('.required-items-tooltip')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
-}
+  this.autorun(() => {
+    let hasSkillRequirements = false;
+    let hasItemRequirements = false;
+    let hasConsumeItemRequirements = false;
 
-Template.requiredItems.helpers({
-  computedRequiredItems() {
-    const instance = Template.instance();
-    const requiredItems = instance.data.requiredItems;
-    instance.state.set('hasSkillRequirements', false);
-    instance.state.set('hasItemRequirements', false);
-    instance.state.set('hasConsumeItemRequirements', false);
+    const requiredItems = this.data.requiredItems;
 
     if (!requiredItems) {
       return;
@@ -34,6 +22,8 @@ Template.requiredItems.helpers({
 
     let notMet = false;
     const result = requiredItems.map((requiredItem) => {
+      requiredItem.notMet = false;
+
       if (requiredItem.type === 'gold') {
         if (Meteor.user().gold < requiredItem.amount) {
           requiredItem.notMet = true;
@@ -58,23 +48,42 @@ Template.requiredItems.helpers({
       }
 
       if (requiredItem.type === 'skill') {
-        instance.state.set('hasSkillRequirements', true);
+        hasSkillRequirements = true;
       } else {
         if (requiredItem.consumes) {
-          instance.state.set('hasConsumeItemRequirements', true);
+          hasConsumeItemRequirements = true;
         } else {
-          instance.state.set('hasItemRequirements', true);          
+          hasItemRequirements = true;          
         }
       }
 
       return requiredItem;
     });
 
-    if (instance.data.requirementsMet) {
-      instance.data.requirementsMet(!notMet);
-    }
+    this.state.set('hasSkillRequirements', hasSkillRequirements);
+    this.state.set('hasItemRequirements', hasItemRequirements);
+    this.state.set('hasConsumeItemRequirements', hasConsumeItemRequirements);
+    this.state.set('computedRequiredItems', result);
 
-    return result;
+    if (this.data.requirementsMet) {
+      this.data.requirementsMet(!notMet);
+    }
+  });
+});
+
+Template.requiredItems.rendered = function () {
+  const mineSpaceTooltip = new Drop({
+    target: Template.instance().$('.required-items-container')[0],
+    content: Template.instance().$('.required-items-tooltip')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+}
+
+Template.requiredItems.helpers({
+  computedRequiredItems() {
+    return Template.instance().state.get('computedRequiredItems');
   },
 
   hasConsumeItemRequirements() {

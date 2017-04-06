@@ -1,6 +1,6 @@
 body {
   .direct-chat-info {
-    display: inline-block;
+    display: block;
     margin-bottom: 0px;
     margin-right: $spacer / 2;
   }
@@ -23,7 +23,7 @@ body {
     padding: 0;
     background: none;
     border: none;
-    display: inline-block;
+    display: block;
 
     &::after, &::before {
       display: none;

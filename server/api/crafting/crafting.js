@@ -124,7 +124,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   return true;
 }
 
-const craftItem = function (recipeId, amountToCraft) {
+const craftItem = function (recipeId, amountToCraft = 1) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
   // Are we crafting atleast one item
@@ -144,6 +144,12 @@ const craftItem = function (recipeId, amountToCraft) {
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants || recipeConstants.recipeFor !== 'crafting') {
     console.log('Invalid recipe');
+    return;
+  }
+
+  // Make sure amountToCraft doesn't exceed recipe limit
+  if (amountToCraft > recipeConstants.maxToCraft) {
+    console.log('Beyond max to craft');
     return;
   }
 
@@ -251,6 +257,7 @@ Meteor.methods({
 
     // Add new items to user
     newItems.forEach((item) => {
+      console.log(`Calling add item from crafting updategame - ${item.itemId} - ${item.amount}`);
       addItem(item.itemId, item.amount);
     })
 

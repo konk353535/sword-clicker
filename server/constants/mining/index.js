@@ -16,7 +16,7 @@ export const MINING = {
     cost(currentMinersCount) {
       return 10 + ((currentMinersCount - 1) * 40) * (currentMinersCount - 1);
     },
-    damagePerSecond: 0.08 // Should be 0.1
+    damagePerSecond: 0.08
   },
   ores: {
     stone: {
@@ -60,7 +60,7 @@ export const MINING = {
       icon: 'iron',
       name: 'iron',
       itemId: 'ore_iron',
-      chance: 0.07
+      chance: 0.05
     },
 
     steel: {
@@ -71,7 +71,7 @@ export const MINING = {
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.07
+      chance: 0.05
     }
   }
 }

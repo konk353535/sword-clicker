@@ -36,11 +36,15 @@ export const DEFENSE_BUFFS = {
     icon: 'defensiveStance',
     name: 'defensive stance',
     description({ buff, level }) {
-      const damageDecrease = buff.constants.damageDealtPercentageBase + (buff.constants.damageDealtPercentagePerLevel * level);
-      const damageTakenDecrease = buff.constants.damageTakenPercentageBase + (buff.constants.damageTakenPercentagePerLevel * level);
+      const damageDecreasePerLevel = buff.constants.damageDealtPercentagePerLevel;
+      const damageTakenPerLevel = buff.constants.damageTakenPercentagePerLevel;
 
-      return `Reduce damage taken by ${damageTakenDecrease}%, damage dealt by ${damageDecrease}%.<br />
-        Last for ${buff.data.totalDuration}s.`;
+      const damageDecrease = buff.constants.damageDealtPercentageBase + (damageDecreasePerLevel * level);
+      const damageTakenDecrease = buff.constants.damageTakenPercentageBase + (damageTakenPerLevel * level);
+
+      return `
+        Reduce damage taken by ${damageTakenDecrease}%, damage dealt by ${damageDecrease}%.<br />
+        Last for ${buff.data.totalDuration}s. (+${damageDecreasePerLevel}% per lvl), (+${damageTakenPerLevel}% per lvl)`;
     },
     constants: {
       damageDealtPercentageBase: 37,
@@ -101,7 +105,10 @@ export const DEFENSE_BUFFS = {
     icon: 'evasiveManeuvers',
     name: 'evasive maneuvers',
     description({ buff, level }) {
-      return `Dodges all attacks for ${buff.constants.durationBase + (buff.constants.durationPerLevel * level)}s.`;
+      const durationPerLevel = buff.constants.durationPerLevel;
+      return `
+        Dodges all attacks for ${buff.constants.durationBase + (durationPerLevel * level)}s.
+         (+${durationPerLevel}s per lvl)`;
     },
     constants: {
       durationBase: 1,
@@ -149,8 +156,10 @@ export const DEFENSE_BUFFS = {
     icon: 'armorUp',
     name: 'armor up',
     description({ buff, level }) {
-      const totalArmor = buff.constants.baseArmor + (buff.constants.armorPerLevel * level)
-      return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.`;
+      const armorPerLevel = buff.constants.armorPerLevel;
+      const totalArmor = buff.constants.baseArmor + (armorPerLevel * level)
+      return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.
+       (+${armorPerLevel} per lvl)`;
     },
     constants: {
       baseArmor: 100,
@@ -201,8 +210,11 @@ export const DEFENSE_BUFFS = {
     icon: 'ironWill',
     name: 'iron will',
     description({ buff, level }) {
-      const maxDefense = buff.constants.baseDefense + (buff.constants.defensePerLevel * level);
-      return `Increase defense by up to ${maxDefense}.<br /> Based on your missing health. Lasts for ${buff.data.totalDuration}s`;
+      const defensePerLevel = buff.constants.defensePerLevel;
+      const maxDefense = buff.constants.baseDefense + (defensePerLevel * level);
+      return `
+        Increase defense by up to ${maxDefense}. (+${defensePerLevel} per lvl)<br />
+        Based on your missing health. Lasts for ${buff.data.totalDuration}s. <br />`;
     },
     constants: {
       baseDefense: 35,

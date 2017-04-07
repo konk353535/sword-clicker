@@ -12,15 +12,20 @@ export const ATTACK_BUFFS = {
       if (!localLevel) {
         localLevel = 1;
       }
-      const damageIncrease = buff.constants.damagePercentageIncreaseBase + (buff.constants.damagePercentageIncreasePerLevel * localLevel);
-      const damageTakenIncrease = buff.constants.damageTakenPercentageIncreaseBase + (buff.constants.damageTakenPercentageIncreasePerLevel * localLevel);
-      const healthLostPerSecond = buff.constants.healthLostPerSecondBase + (buff.constants.healthLostPerSecondPerLevel * localLevel);
+
+      const damagePerLevel = buff.constants.damagePercentageIncreasePerLevel;
+      const damageTakenPerLevel = buff.constants.damageTakenPercentageIncreasePerLevel;
+      const healthLostPerLevel = buff.constants.healthLostPerSecondPerLevel;
+
+      const damageIncrease = buff.constants.damagePercentageIncreaseBase + (damagePerLevel * localLevel);
+      const damageTakenIncrease = buff.constants.damageTakenPercentageIncreaseBase + (damageTakenPerLevel * localLevel);
+      const healthLostPerSecond = buff.constants.healthLostPerSecondBase + (healthLostPerLevel * localLevel);
       const duration = buff.data.totalDuration;
 
       return `
-        <b>+${damageIncrease}%</b> damage and attack speed.<br />
-        <b>+${damageTakenIncrease}%</b> damage taken.<br />
-        You lose <b>${healthLostPerSecond}hp</b> per second.<br />
+        <b>+${damageIncrease}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
+        <b>+${damageTakenIncrease}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
+        You lose <b>${healthLostPerSecond}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
         Duration <b>${duration}s</b><br />`;
     },
     constants: {
@@ -93,8 +98,11 @@ export const ATTACK_BUFFS = {
     icon: 'execute',
     name: 'execute',
     description({ buff, level }) {
-      const damageIncreasePerPercentage = buff.constants.damageBase + (buff.constants.damagePerLevel * level);
-      return `Auto attack for up to <b>${damageIncreasePerPercentage * 100}%</b> bonus damage.<br />Based on your targets missing health`;
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
+      return `
+        Auto attack for up to <b>${damageIncreasePerPercentage * 100}%</b> bonus damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Based on your targets missing health.`;
     },
     constants: {
       damageBase: 1, // % Increase of damage for each % of health enemy is missing
@@ -134,11 +142,13 @@ export const ATTACK_BUFFS = {
     icon: 'bladeSpin',
     name: 'blade spin',
     description({ buff, level }) {
-      const damagePercentage = buff.constants.damagePercentage;
-      return `Deals ${damagePercentage}% weapon damage to all enemies`;
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damagePercentage = buff.constants.damagePercentage + (damagePerLevel * level);
+      return `Deals ${damagePercentage}% weapon damage to all enemies. (+${damagePerLevel}% per lvl)`;
     },
     constants: {
-      damagePercentage: 30
+      damagePercentage: 15,
+      damagePerLevel: 5
     },
     data: {
       duration: 0,
@@ -172,12 +182,15 @@ export const ATTACK_BUFFS = {
     name: 'blade frenzy',
     description({ buff, level }) {
       const duration = buff.data.totalDuration;
-      const attackSpeedGain = buff.constants.attackSpeedBase + (buff.constants.attackSpeedPerLevel * level);
-      return `Increases attack speed by ${attackSpeedGain}% for ${buff.data.totalDuration}s`;
+      const attackSpeedPerLevel = buff.constants.attackSpeedPerLevel;
+      const attackSpeedGain = buff.constants.attackSpeedBase + (attackSpeedPerLevel * level);
+      return `
+        Increases attack speed by ${attackSpeedGain}% for ${buff.data.totalDuration}s.
+         (+${attackSpeedPerLevel}% per lvl)`;
     },
     constants: {
-      attackSpeedBase: 50,
-      attackSpeedPerLevel: 50,
+      attackSpeedBase: 75,
+      attackSpeedPerLevel: 25,
     },
     data: {
       duration: 3,
@@ -226,8 +239,10 @@ export const ATTACK_BUFFS = {
     icon: 'bleed',
     name: 'bleed',
     description({ buff, level }) {
-      const dps = buff.constants.damagePerSecondBase + (buff.constants.damagePerSecondPerLevel * level);
-      return `Deals ${dps.toFixed(1)} damage every second. For ${buff.data.totalDuration}s`;
+      const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
+      const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
+      return `Deals ${dps.toFixed(1)} damage every second. For ${buff.data.totalDuration}s.
+       (+${damagePerSecondPerLevel} damage per lvl)`;
     },
     constants: {
       damagePerSecondBase: 0.5,

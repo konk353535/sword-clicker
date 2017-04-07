@@ -30,6 +30,38 @@
         <a class="nav-link {{#if $eq recipeFilter 'paper'}}active{{/if}}" href="#">Paper</a>
       </li>
     </ul>
+
+    {{#if $eq recipeFilter 'abilities'}}
+      <div class="mb-3">
+        <b>Levels: </b>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 1}}primary{{else}}default{{/if}}"
+          data-filter="1">
+            1
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 2}}primary{{else}}default{{/if}}"
+          data-filter="2">
+            2
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 3}}primary{{else}}default{{/if}}"
+          data-filter="3">
+            3
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 4}}primary{{else}}default{{/if}}"
+          data-filter="4">
+            4
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 5}}primary{{else}}default{{/if}}"
+          data-filter="5">
+            5
+        </span>
+      </div>
+    {{/if}}
+
     <table class="table table-bordered table-hover table-centered ">
       <thead>
         <tr>

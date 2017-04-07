@@ -25,6 +25,12 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
     this.state.set('recipeFilter', 'abilities');
   }
 
+  if (Session.get('inscriptionLevelFilter')) {
+    this.state.set('levelFilter', Session.get('inscriptionLevelFilter'));
+  } else {
+    this.state.set('levelFilter', 1);
+  }
+
   Meteor.call('abilities.fetchLibrary', (err, abilityResults) => {
     if (abilityResults) {
       const abilityResultsMap = {};
@@ -76,6 +82,12 @@ Template.inscriptionPage.events({
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
     Session.set('inscriptionFilter', filter)
     instance.state.set('recipeFilter', filter);
+  },
+
+  'click .level-filter'(event, instance) {
+    const filter = instance.$(event.target).closest('.level-filter').data('filter');
+    Session.set('inscriptionLevelFilter', filter)
+    instance.state.set('levelFilter', filter);
   },
 
   'keyup .craft-amount-input'(event, instance) {
@@ -132,9 +144,14 @@ Template.inscriptionPage.helpers({
     return Template.instance().state.get('recipeFilter');
   },
 
+  levelFilter() {
+    return Template.instance().state.get('levelFilter');
+  },  
+
   recipes() {
     const instance = Template.instance();
     const recipeFilter = instance.state.get('recipeFilter');
+    const levelFilter = instance.state.get('levelFilter');
 
     if (!instance.state.get('recipes')) {
       return [];
@@ -144,7 +161,7 @@ Template.inscriptionPage.helpers({
 
     if (recipeFilter === 'abilities') {
       return instance.state.get('recipes').filter((item) => {
-        return item.category === 'tome';
+        return item.category === 'tome' && item.teaches.level === parseInt(levelFilter);
       }).map((recipe) => {
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;

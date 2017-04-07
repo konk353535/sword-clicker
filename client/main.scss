@@ -20,6 +20,11 @@ body.targetting-enemies {
   cursor: not-allowed;
 }
 
+// Inscription level filter badges
+.level-filter {
+  cursor: pointer;
+}
+
 .floating-text {
   pointer-events: none;
   position: absolute;

@@ -111,7 +111,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'berserk',
       level: 2
     },
-    sellPrice: 5000,
+    sellPrice: 1000,
     description: 'Can be consumed to learn the berserk ability.'
   },
 

@@ -138,9 +138,22 @@ Meteor.methods({
   },
 
   'abilities.fetchLibrary'() {
+    const userAbilities = Abilities.findOne({
+      owner: Meteor.userId()
+    });
+
+    // Build up abilities id to level map
+    const abilitiesMap = {};
+    userAbilities.learntAbilities.forEach((ability) => {
+      abilitiesMap[ability.abilityId] = ability.level;
+    });
+
     const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
       const abilityConstant = JSON.parse(JSON.stringify(ABILITIES[abilityKey]));
-      const abilityLevel = 1;
+      let abilityLevel = 1;
+      if (abilitiesMap[abilityKey]) {
+        abilityLevel = abilitiesMap[abilityKey];
+      }
       const abilityData = {
         description: ABILITIES[abilityKey].description(abilityLevel),
         name: `${abilityConstant.name} (${abilityLevel})`,

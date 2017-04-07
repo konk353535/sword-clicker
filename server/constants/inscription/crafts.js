@@ -336,6 +336,19 @@ export const INSCRIPTION_CRAFTS = {
     required: [MANY_RED_255, PINE_PAPER, LEVEL_1]
   },
 
+  berserk_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'berserk_level_2_tome',
+    name: 'Berserk Lv 2.',
+    id: 'berserk_level_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 4,
+    required: [MANY_RED_255, GREEN_200, BEECH_PAPER, LEVEL_4]
+  },
+
   execute_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'execute_level_1_tome',

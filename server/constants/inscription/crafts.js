@@ -32,7 +32,7 @@ export const INSCRIPTION_CRAFTS = {
     id: 'pigment_red_255',
     category: 'pigment',
     timeToCraft: 60,
-    xp: 3,
+    xp: 5,
     maxToCraft: 5,
     requiredInscriptionLevel: 1,
     required: [{
@@ -46,6 +46,30 @@ export const INSCRIPTION_CRAFTS = {
       type: 'skill',
       name: 'inscription',
       level: 1
+    }]
+  },
+
+  pigment_green_255: {
+    recipeFor: 'inscription',
+    produces: 'pigment_green_255',
+    name: 'pigment green(255)',
+    id: 'pigment_green_255',
+    category: 'pigment',
+    timeToCraft: 60,
+    xp: 10,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 2,
+    required: [{
+      type: 'item',
+      itemId: 'basil',
+      icon: ITEMS['basil'].icon,
+      name: ITEMS['basil'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 2
     }]
   },
 
@@ -80,37 +104,6 @@ export const INSCRIPTION_CRAFTS = {
     }]
   },
 
-  berserk_level_1_page_2: {
-    recipeFor: 'inscription',
-    produces: 'berserk_level_1_page_2',
-    name: 'Berserk Lv 1. Pg. 2',
-    id: 'berserk_level_1_page_2',
-    category: 'page',
-    timeToCraft: 60,
-    xp: 10,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
   berserk_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_1_tome',
@@ -127,13 +120,6 @@ export const INSCRIPTION_CRAFTS = {
       itemId: 'berserk_level_1_page_1',
       icon: ITEMS['berserk_level_1_page_1'].icon,
       name: ITEMS['berserk_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'berserk_level_1_page_2',
-      icon: ITEMS['berserk_level_1_page_2'].icon,
-      name: ITEMS['berserk_level_1_page_2'].name,
       amount: 1,
       consumes: true
     }, {
@@ -308,7 +294,14 @@ export const INSCRIPTION_CRAFTS = {
       itemId: 'pigment_red_255',
       icon: ITEMS['pigment_red_255'].icon,
       name: ITEMS['pigment_red_255'].name,
-      amount: 3,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pigment_green_255',
+      icon: ITEMS['pigment_green_255'].icon,
+      name: ITEMS['pigment_green_255'].name,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
@@ -580,7 +573,7 @@ export const INSCRIPTION_CRAFTS = {
     id: 'iron_will_level_1_page_1',
     category: 'page',
     timeToCraft: 180,
-    xp: 30,
+    xp: 20,
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
     required: [{
@@ -588,7 +581,14 @@ export const INSCRIPTION_CRAFTS = {
       itemId: 'pigment_red_255',
       icon: ITEMS['pigment_red_255'].icon,
       name: ITEMS['pigment_red_255'].name,
-      amount: 3,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pigment_green_255',
+      icon: ITEMS['pigment_green_255'].icon,
+      name: ITEMS['pigment_green_255'].name,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',

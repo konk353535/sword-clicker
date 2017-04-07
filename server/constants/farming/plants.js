@@ -81,7 +81,33 @@ export const PLANTS = {
     }, {
       type: 'skill',
       name: 'farming',
-      level: 1
+      level: 2
+    }]
+  },
+
+  basil: {
+    produces: 'basil',
+    name: 'basil',
+    id: 'basil',
+    category: 'farming',
+    icon: ITEMS['basil'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 110,
+    growthTime: 300,
+    xp: 15,
+    required: [{
+      type: 'item',
+      itemId: 'basil_seed',
+      icon: ITEMS['basil_seed'].icon,
+      name: ITEMS['basil_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 4
     }]
   }
+
 }

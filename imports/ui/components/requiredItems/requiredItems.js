@@ -6,68 +6,73 @@ import { Skills } from '/imports/api/skills/skills.js';
 
 import './requiredItems.html';
 
+const fetchRequiredItems = function (instance) {
+  let hasSkillRequirements = false;
+  let hasItemRequirements = false;
+  let hasConsumeItemRequirements = false;
+  let recipeName = instance.data.recipeName;
+
+  const requiredItems = instance.data.requiredItems;
+
+  if (!requiredItems && !recipeName) {
+    return;
+  }
+
+  let notMet = false;
+  const result = requiredItems.map((requiredItem) => {
+    requiredItem.notMet = false;
+
+    if (requiredItem.type === 'gold') {
+      if (Meteor.user().gold < requiredItem.amount) {
+        requiredItem.notMet = true;
+        notMet = true;
+      }
+    } else if (requiredItem.type === 'skill') {
+      const requiredSkill = Skills.findOne({ type: requiredItem.name });
+      if (!requiredSkill || requiredSkill.level < requiredItem.level) {
+        requiredItem.notMet = true;
+        notMet = true;
+      }
+    } else {
+      const hasItem = Items.findOne({ itemId: requiredItem.itemId });
+
+      if (!hasItem) {
+        requiredItem.notMet = true;
+        notMet = true;
+      } else if (hasItem.amount < requiredItem.amount) {
+        requiredItem.notMet = true;
+        notMet = true;
+      }
+    }
+
+    if (requiredItem.type === 'skill') {
+      hasSkillRequirements = true;
+    } else {
+      if (requiredItem.consumes) {
+        hasConsumeItemRequirements = true;
+      } else {
+        hasItemRequirements = true;          
+      }
+    }
+
+    return requiredItem;
+  });
+
+  instance.state.set('hasSkillRequirements', hasSkillRequirements);
+  instance.state.set('hasItemRequirements', hasItemRequirements);
+  instance.state.set('hasConsumeItemRequirements', hasConsumeItemRequirements);
+  instance.state.set('computedRequiredItems', result);
+
+  if (instance.data.requirementsMet) {
+    instance.data.requirementsMet(!notMet);
+  }
+}
+
 Template.requiredItems.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    let hasSkillRequirements = false;
-    let hasItemRequirements = false;
-    let hasConsumeItemRequirements = false;
-
-    const requiredItems = this.data.requiredItems;
-
-    if (!requiredItems) {
-      return;
-    }
-
-    let notMet = false;
-    const result = requiredItems.map((requiredItem) => {
-      requiredItem.notMet = false;
-
-      if (requiredItem.type === 'gold') {
-        if (Meteor.user().gold < requiredItem.amount) {
-          requiredItem.notMet = true;
-          notMet = true;
-        }
-      } else if (requiredItem.type === 'skill') {
-        const requiredSkill = Skills.findOne({ type: requiredItem.name });
-        if (!requiredSkill || requiredSkill.level < requiredItem.level) {
-          requiredItem.notMet = true;
-          notMet = true;
-        }
-      } else {
-        const hasItem = Items.findOne({ itemId: requiredItem.itemId });
-
-        if (!hasItem) {
-          requiredItem.notMet = true;
-          notMet = true;
-        } else if (hasItem.amount < requiredItem.amount) {
-          requiredItem.notMet = true;
-          notMet = true;
-        }
-      }
-
-      if (requiredItem.type === 'skill') {
-        hasSkillRequirements = true;
-      } else {
-        if (requiredItem.consumes) {
-          hasConsumeItemRequirements = true;
-        } else {
-          hasItemRequirements = true;          
-        }
-      }
-
-      return requiredItem;
-    });
-
-    this.state.set('hasSkillRequirements', hasSkillRequirements);
-    this.state.set('hasItemRequirements', hasItemRequirements);
-    this.state.set('hasConsumeItemRequirements', hasConsumeItemRequirements);
-    this.state.set('computedRequiredItems', result);
-
-    if (this.data.requirementsMet) {
-      this.data.requirementsMet(!notMet);
-    }
+    fetchRequiredItems(this);
   });
 });
 
@@ -83,6 +88,7 @@ Template.requiredItems.rendered = function () {
 
 Template.requiredItems.helpers({
   computedRequiredItems() {
+    fetchRequiredItems(Template.instance());
     return Template.instance().state.get('computedRequiredItems');
   },
 

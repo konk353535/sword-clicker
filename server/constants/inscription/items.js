@@ -8,6 +8,15 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription for marking pages'
   },
 
+  pigment_green_255: {
+    id: 'pigment_green_255',
+    icon: 'pigmentGreen255',
+    category: 'pigment',
+    name: 'pigment green 255',
+    sellPrice: 100,
+    description: 'Used in inscription for marking pages'
+  },
+
   pine_paper: {
     id: 'pine_paper',
     icon: 'pinePaper',
@@ -24,15 +33,6 @@ export const INSCRIPTION_ITEMS = {
     name: 'Berserk Lv 1 Pg 1',
     sellPrice: 250,
     description: 'The first half of what is berserk.'
-  },
-
-  berserk_level_1_page_2: {
-    id: 'berserk_level_1_page_2',
-    icon: 'page',
-    category: 'page',
-    name: 'Berserk Lv 1 Pg 2',
-    sellPrice: 250,
-    description: 'The second half of what is berserk.'
   },
 
   berserk_level_1_tome: {

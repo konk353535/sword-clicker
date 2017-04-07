@@ -54,7 +54,9 @@
               {{ > recipeIcon recipe=this}}
             </td>
             <td>{{this.timeToCraft}}s</td>
-            <td>{{ > requiredItems requiredItems=this.required}}</td>
+            <td>
+              {{ > requiredItems requiredItems=this.required recipeName=this.name}}
+            </td>
             <td>{{this.description}}</td>
           </tr>
         {{/each}}

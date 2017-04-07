@@ -41,7 +41,7 @@ export const FARMING = {
       requiredFarmingLevel: 3,
       required: [{
         type: 'gold',
-        amount: 50,
+        amount: 25,
         consumes: true
       }, {
         type: 'skill',
@@ -49,5 +49,20 @@ export const FARMING = {
         level: 3
       }]
     },
+
+    basil_seed: {
+      id: 'basil_seed',
+      itemId: 'basil_seed',
+      requiredFarmingLevel: 4,
+      required: [{
+        type: 'gold',
+        amount: 500,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 4
+      }]
+    }
   }
 }

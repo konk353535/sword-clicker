@@ -26,6 +26,24 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  basil_seed: {
+    id: 'basil_seed',
+    icon: 'basilSeed',
+    category: 'seed',
+    name: 'Basil Seed',
+    description: 'Used to grow basil. Useful for inscription',
+    sellPrice: 100,
+    produces: 'basil'
+  },
+
+  basil: {
+    id: 'basil',
+    icon: 'basil',
+    category: 'herb',
+    name: 'basil',
+    sellPrice: 100
+  },
+
   dead_plant: {
     id: 'dead_plant',
     icon: 'deadPlant',

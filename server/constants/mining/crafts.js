@@ -44,10 +44,10 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 50,
       consumes: true
     }, {
       type: 'item',
@@ -82,10 +82,10 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
+      itemId: 'beech_log',
+      icon: ITEMS['beech_log'].icon,
+      name: ITEMS['beech_log'].name,
+      amount: 25,
       consumes: true
     }, {
       type: 'item',
@@ -120,10 +120,10 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
+      amount: 25,
       consumes: true
     }, {
       type: 'item',

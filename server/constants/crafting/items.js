@@ -40,7 +40,7 @@ export const CRAFTING_ITEMS = {
     icon: 'ironBar',
     category: 'crafting',
     name: 'iron bar',
-    sellPrice: 140,
+    sellPrice: 75,
     description: 'Used to craft iron tools and weapons'
   },
 
@@ -49,7 +49,7 @@ export const CRAFTING_ITEMS = {
     icon: 'steelBar',
     category: 'crafting',
     name: 'steel bar',
-    sellPrice: 200,
+    sellPrice: 150,
     description: 'Used to craft steel tools and weapons'
   }
 }

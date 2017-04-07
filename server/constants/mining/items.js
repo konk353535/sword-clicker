@@ -20,7 +20,7 @@ export const MINING_ITEMS = {
     icon: 'coal',
     category: 'mining',
     name: 'coal',
-    sellPrice: 10
+    sellPrice: 5
   },
 
   ore_iron: {
@@ -28,7 +28,7 @@ export const MINING_ITEMS = {
     icon: 'iron',
     category: 'mining',
     name: 'iron',
-    sellPrice: 100
+    sellPrice: 10
   },
 
   ore_steel: {
@@ -36,7 +36,7 @@ export const MINING_ITEMS = {
     icon: 'steel',
     category: 'mining',
     name: 'steel',
-    sellPrice: 175
+    sellPrice: 20
   },
 
   primitive_pickaxe: {

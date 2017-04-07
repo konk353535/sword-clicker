@@ -118,12 +118,19 @@ body.targetting-enemies {
   width: 96px;
   height: 96px;
   border: 1px solid black;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: $spacer * 0.25;
   padding: $spacer * 0.25;
+}
+
+// Used in inscription to stop icon box having a border
+.no-box-border {
+  .icon-box {
+    border: none;
+  }
 }
 
 .icon-box.not-learnt {

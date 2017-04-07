@@ -73,68 +73,12 @@ export const INSCRIPTION_CRAFTS = {
     }]
   },
 
-  berserk_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'berserk_level_1_page_1',
-    name: 'Berserk Lv 1 Pg 1',
-    id: 'berserk_level_1_page_1',
-    category: 'page',
-    timeToCraft: 180,
-    xp: 30,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 3,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
   berserk_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_1_tome',
-    name: 'Berserk tome Lv 1.',
+    name: 'Berserk Lv 1.',
     id: 'berserk_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'berserk_level_1_page_1',
-      icon: ITEMS['berserk_level_1_page_1'].icon,
-      name: ITEMS['berserk_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  execute_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'execute_level_1_page_1',
-    name: 'execute Lv 1 Pg 1',
-    id: 'execute_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
@@ -145,37 +89,6 @@ export const INSCRIPTION_CRAFTS = {
       icon: ITEMS['pigment_red_255'].icon,
       name: ITEMS['pigment_red_255'].name,
       amount: 3,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  execute_level_1_page_2: {
-    recipeFor: 'inscription',
-    produces: 'execute_level_1_page_2',
-    name: 'execute Lv 1. Pg. 2',
-    id: 'execute_level_1_page_2',
-    category: 'page',
-    timeToCraft: 60,
-    xp: 10,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
       consumes: true
     }, {
       type: 'item',
@@ -194,45 +107,13 @@ export const INSCRIPTION_CRAFTS = {
   execute_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'execute_level_1_tome',
-    name: 'execute tome Lv 1.',
+    name: 'execute Lv 1.',
     id: 'execute_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'execute_level_1_page_1',
-      icon: ITEMS['execute_level_1_page_1'].icon,
-      name: ITEMS['execute_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'execute_level_1_page_2',
-      icon: ITEMS['execute_level_1_page_2'].icon,
-      name: ITEMS['execute_level_1_page_2'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  bleed_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'bleed_level_1_page_1',
-    name: 'bleed Lv 1 Pg 1',
-    id: 'bleed_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 4,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -250,45 +131,51 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 4
     }]
   },
 
   bleed_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'bleed_level_1_tome',
-    name: 'bleed tome Lv 1.',
+    name: 'bleed Lv 1.',
     id: 'bleed_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
+    timeToCraft: 180,
+    xp: 30,
     maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 4,
     required: [{
       type: 'item',
-      itemId: 'bleed_level_1_page_1',
-      icon: ITEMS['bleed_level_1_page_1'].icon,
-      name: ITEMS['bleed_level_1_page_1'].name,
+      itemId: 'pigment_red_255',
+      icon: ITEMS['pigment_red_255'].icon,
+      name: ITEMS['pigment_red_255'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
       amount: 1,
       consumes: true
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 4
     }]
   },
 
-  blade_spin_level_1_page_1: {
+  blade_spin_level_1_tome: {
     recipeFor: 'inscription',
-    produces: 'blade_spin_level_1_page_1',
-    name: 'blade spin Lv 1 Pg 1',
-    id: 'blade_spin_level_1_page_1',
-    category: 'page',
+    produces: 'blade_spin_level_1_tome',
+    name: 'blade spin Lv 1.',
+    id: 'blade_spin_level_1_tome',
+    category: 'tome',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 2,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -313,101 +200,20 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
-    }]
-  },
-
-  blade_spin_level_1_tome: {
-    recipeFor: 'inscription',
-    produces: 'blade_spin_level_1_tome',
-    name: 'blade spin tome Lv 1.',
-    id: 'blade_spin_level_1_tome',
-    category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'blade_spin_level_1_page_1',
-      icon: ITEMS['blade_spin_level_1_page_1'].icon,
-      name: ITEMS['blade_spin_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  blade_frenzy_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'blade_frenzy_level_1_page_1',
-    name: 'blade frenzy Lv 1 Pg 1',
-    id: 'blade_frenzy_level_1_page_1',
-    category: 'page',
-    timeToCraft: 180,
-    xp: 30,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 3,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
+      level: 2
     }]
   },
 
   blade_frenzy_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'blade_frenzy_level_1_tome',
-    name: 'blade frenzy tome Lv 1.',
+    name: 'blade frenzy Lv 1.',
     id: 'blade_frenzy_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'blade_frenzy_level_1_page_1',
-      icon: ITEMS['blade_frenzy_level_1_page_1'].icon,
-      name: ITEMS['blade_frenzy_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  defensive_stance_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'defensive_stance_level_1_page_1',
-    name: 'defensive stance Lv 1 Pg 1',
-    id: 'defensive_stance_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 6,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -425,45 +231,20 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 6
     }]
   },
 
   defensive_stance_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'defensive_stance_level_1_tome',
-    name: 'defensive stance tome Lv 1.',
+    name: 'defensive stance Lv 1.',
     id: 'defensive_stance_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'defensive_stance_level_1_page_1',
-      icon: ITEMS['defensive_stance_level_1_page_1'].icon,
-      name: ITEMS['defensive_stance_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  evasive_maneuvers_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'evasive_maneuvers_level_1_page_1',
-    name: 'evasive maneuvers Lv 1 Pg 1',
-    id: 'evasive_maneuvers_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 5,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -481,45 +262,20 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 5
     }]
   },
 
   evasive_maneuvers_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'evasive_maneuvers_level_1_tome',
-    name: 'evasive maneuvers tome Lv 1.',
+    name: 'evasive maneuvers Lv 1.',
     id: 'evasive_maneuvers_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'evasive_maneuvers_level_1_page_1',
-      icon: ITEMS['evasive_maneuvers_level_1_page_1'].icon,
-      name: ITEMS['evasive_maneuvers_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  armor_up_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'armor_up_level_1_page_1',
-    name: 'armor up Lv 1 Pg 1',
-    id: 'armor_up_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 5,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -537,41 +293,47 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 5
     }]
   },
 
   armor_up_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_1_tome',
-    name: 'armor up tome Lv 1.',
+    name: 'armor up Lv 1',
     id: 'armor_up_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
+    timeToCraft: 180,
+    xp: 30,
     maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 3,
     required: [{
       type: 'item',
-      itemId: 'armor_up_level_1_page_1',
-      icon: ITEMS['armor_up_level_1_page_1'].icon,
-      name: ITEMS['armor_up_level_1_page_1'].name,
+      itemId: 'pigment_red_255',
+      icon: ITEMS['pigment_red_255'].icon,
+      name: ITEMS['pigment_red_255'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
       amount: 1,
       consumes: true
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
+      level: 3
     }]
   },
 
-  iron_will_level_1_page_1: {
+  iron_will_level_1_tome: {
     recipeFor: 'inscription',
-    produces: 'iron_will_level_1_page_1',
-    name: 'iron will Lv 1 Pg 1',
-    id: 'iron_will_level_1_page_1',
-    category: 'page',
+    produces: 'iron_will_level_1_tome',
+    name: 'iron will Lv 1.',
+    id: 'iron_will_level_1_tome',
+    category: 'tome',
     timeToCraft: 180,
     xp: 20,
     maxToCraft: 1,
@@ -604,41 +366,16 @@ export const INSCRIPTION_CRAFTS = {
     }]
   },
 
-  iron_will_level_1_tome: {
+  taunt_level_1_tome: {
     recipeFor: 'inscription',
-    produces: 'iron_will_level_1_tome',
-    name: 'iron will tome Lv 1.',
-    id: 'iron_will_level_1_tome',
+    produces: 'taunt_level_1_tome',
+    name: 'taunt Lv 1.',
+    id: 'taunt_level_1_tome',
     category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'iron_will_level_1_page_1',
-      icon: ITEMS['iron_will_level_1_page_1'].icon,
-      name: ITEMS['iron_will_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
-  },
-
-  taunt_level_1_page_1: {
-    recipeFor: 'inscription',
-    produces: 'taunt_level_1_page_1',
-    name: 'taunt Lv 1 Pg 1',
-    id: 'taunt_level_1_page_1',
-    category: 'page',
     timeToCraft: 180,
     xp: 30,
     maxToCraft: 1,
-    requiredInscriptionLevel: 1,
+    requiredInscriptionLevel: 3,
     required: [{
       type: 'item',
       itemId: 'pigment_red_255',
@@ -656,32 +393,7 @@ export const INSCRIPTION_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 1
-    }]
-  },
-
-  taunt_level_1_tome: {
-    recipeFor: 'inscription',
-    produces: 'taunt_level_1_tome',
-    name: 'taunt tome Lv 1.',
-    id: 'taunt_level_1_tome',
-    category: 'tome',
-    timeToCraft: 120,
-    xp: 20,
-    maxToCraft: 1,
-    level: 1,
-    requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'taunt_level_1_page_1',
-      icon: ITEMS['taunt_level_1_page_1'].icon,
-      name: ITEMS['taunt_level_1_page_1'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
+      level: 3
     }]
   }
 }

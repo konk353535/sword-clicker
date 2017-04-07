@@ -20,8 +20,8 @@
 
     <h2>Recipes</h2>
     <ul class="nav nav-tabs my-3">
-      <li class="nav-item crafting-filter" data-filter="all">
-        <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
+      <li class="nav-item crafting-filter" data-filter="abilities">
+        <a class="nav-link {{#if $eq recipeFilter 'abilities'}}active{{/if}}" href="#">Abilities</a>
       </li>
       <li class="nav-item crafting-filter" data-filter="pigment">
         <a class="nav-link {{#if $eq recipeFilter 'pigment'}}active{{/if}}" href="#">Pigments</a>
@@ -29,18 +29,15 @@
       <li class="nav-item crafting-filter" data-filter="paper">
         <a class="nav-link {{#if $eq recipeFilter 'paper'}}active{{/if}}" href="#">Paper</a>
       </li>
-      <li class="nav-item crafting-filter" data-filter="page">
-        <a class="nav-link {{#if $eq recipeFilter 'page'}}active{{/if}}" href="#">Pages</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="tome">
-        <a class="nav-link {{#if $eq recipeFilter 'tome'}}active{{/if}}" href="#">tomes</a>
-      </li>
     </ul>
     <table class="table table-bordered table-hover table-centered ">
       <thead>
         <tr>
           <th>Name</th>
           <th>Icon</th>
+          {{#if $eq recipeFilter 'abilities'}}
+            <th>Teaches</th>
+          {{/if}}
           <th>Craft Time</th>          
           <th>Requirements</th>
           <th>Description</th>
@@ -53,6 +50,11 @@
             <td>
               {{ > recipeIcon recipe=this}}
             </td>
+            {{#if $eq recipeFilter 'abilities'}}
+              <td class="no-box-border">
+                {{> itemIcon item=this.ability}}
+              </td>
+            {{/if}}
             <td>{{this.timeToCraft}}s</td>
             <td>{{ > requiredItems requiredItems=this.required}}</td>
             <td>{{this.description}}</td>

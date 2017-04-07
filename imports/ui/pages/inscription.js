@@ -22,8 +22,18 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
   if (Session.get('inscriptionFilter')) {
     this.state.set('recipeFilter', Session.get('inscriptionFilter'));
   } else {
-    this.state.set('recipeFilter', 'all');
+    this.state.set('recipeFilter', 'abilities');
   }
+
+  Meteor.call('abilities.fetchLibrary', (err, abilityResults) => {
+    if (abilityResults) {
+      const abilityResultsMap = {};
+      abilityResults.forEach((ability) => {
+        abilityResultsMap[ability.id] = ability;
+      });
+      this.state.set('abilityMap', abilityResultsMap);
+    }
+  });
 
   this.autorun(() => {
     if (Skills.findOne({ type: 'inscription' })) {
@@ -130,8 +140,21 @@ Template.inscriptionPage.helpers({
       return [];
     }
 
-    if (recipeFilter === 'all') {
-      return instance.state.get('recipes');
+    const abilityMap = instance.state.get('abilityMap');
+
+    if (recipeFilter === 'abilities') {
+      return instance.state.get('recipes').filter((item) => {
+        return item.category === 'tome';
+      }).map((recipe) => {
+        if (recipe.teaches) {
+          const recipeTeaches = recipe.teaches.abilityId;
+          if (abilityMap[recipeTeaches]) {
+            recipe.ability = abilityMap[recipeTeaches];
+            recipe.ability.primaryAction = {};
+          }
+        }
+        return recipe;
+      });
     } else {
       return instance.state.get('recipes').filter((item) => {
         return item.category === recipeFilter;

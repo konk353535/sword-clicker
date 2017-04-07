@@ -81,6 +81,7 @@ Meteor.methods({
 
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
+      recipeConstant.teaches = itemConstant.teaches;
 
       if (itemConstant.stats) {
         recipeConstant.baseStats = itemConstant.stats;

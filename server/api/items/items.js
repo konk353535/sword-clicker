@@ -115,7 +115,7 @@ Meteor.methods({
     }, { multi: true });
 
     if (itemCategory === 'combat') {
-      updateCombatStats();
+      updateCombatStats(Meteor.userId(), Meteor.user().username);
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -270,7 +270,7 @@ Meteor.methods({
     });
 
     if (itemCategory === 'combat') {
-      updateCombatStats();
+      updateCombatStats(Meteor.userId(), Meteor.user().username);
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -297,7 +297,7 @@ Meteor.methods({
       Items.remove(currentItem._id);
 
       if (itemConstants.category === 'combat') {
-        updateCombatStats();
+        updateCombatStats(Meteor.userId(), Meteor.user().username);
       } else if (itemConstants.category === 'mining') {
         updateMiningStats();
       }

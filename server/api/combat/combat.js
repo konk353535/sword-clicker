@@ -13,7 +13,7 @@ import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT, BUFFS } from '/server/constants/combat/index.js';
 
-export const updateCombatStats = function () {
+export const updateCombatStats = function (userId, username) {
 
   // Build up our object of skills
   const playerData = {
@@ -28,13 +28,16 @@ export const updateCombatStats = function () {
       defense: 0,
       armor: 0
     },
-    xpDistribution: {},
-    username: Meteor.user().username
+    xpDistribution: {}
   };
+
+  if (username) {
+    playerData.username = username;
+  }
 
   // Fetch all equipped combat items
   const combatItems = Items.find({
-    owner: Meteor.userId(),
+    owner: userId,
     category: 'combat',
     equipped: true
   }).fetch();
@@ -65,7 +68,7 @@ export const updateCombatStats = function () {
 
   // Fetch all users skill levels
   const combatSkills = Skills.find({
-    owner: Meteor.userId(),
+    owner: userId,
     type: {
       $in: ['attack', 'health', 'defense']
     }
@@ -92,7 +95,7 @@ export const updateCombatStats = function () {
 
   // Set player stats
   Combat.update({
-    owner: Meteor.userId()
+    owner: userId
   }, {
     $set: flattenObjectForMongo(playerData)
   });

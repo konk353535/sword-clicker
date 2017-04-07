@@ -46,7 +46,7 @@ export const addXp = function (skillType, xp, specificUserId) {
 
       // If this is attack / Defense / Health recompute combat
       if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health') {
-        updateCombatStats();
+        updateCombatStats(owner);
       }
 
       // Can probably be optimized
@@ -148,7 +148,7 @@ Meteor.methods({
           lastGameUpdated: new Date()
         });
       } else if (skillName === 'attack') {
-        updateCombatStats();
+        updateCombatStats(Meteor.userId());
       } else if (skillName === 'farming') {
         // Inject farming
         Farming.insert({

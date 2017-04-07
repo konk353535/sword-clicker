@@ -1,5 +1,111 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
+const RED_255 = {
+  type: 'item',
+  itemId: 'pigment_red_255',
+  icon: ITEMS['pigment_red_255'].icon,
+  name: ITEMS['pigment_red_255'].name,
+  amount: 1,
+  consumes: true
+}
+
+const MANY_RED_255 = {
+  type: 'item',
+  itemId: 'pigment_red_255',
+  icon: ITEMS['pigment_red_255'].icon,
+  name: ITEMS['pigment_red_255'].name,
+  amount: 3,
+  consumes: true
+}
+
+const RED_200 = {
+  type: 'item',
+  itemId: 'pigment_red_200',
+  icon: ITEMS['pigment_red_200'].icon,
+  name: ITEMS['pigment_red_200'].name,
+  amount: 1,
+  consumes: true
+}
+
+const GREEN_255 = {
+  type: 'item',
+  itemId: 'pigment_green_255',
+  icon: ITEMS['pigment_green_255'].icon,
+  name: ITEMS['pigment_green_255'].name,
+  amount: 1,
+  consumes: true
+}
+
+const GREEN_200 = {
+  type: 'item',
+  itemId: 'pigment_green_200',
+  icon: ITEMS['pigment_green_200'].icon,
+  name: ITEMS['pigment_green_200'].name,
+  amount: 1,
+  consumes: true
+}
+
+const BLUE_255 = {
+  type: 'item',
+  itemId: 'pigment_blue_255',
+  icon: ITEMS['pigment_blue_255'].icon,
+  name: ITEMS['pigment_blue_255'].name,
+  amount: 1,
+  consumes: true
+}
+
+const PURPLE_255 = {
+  type: 'item',
+  itemId: 'pigment_purple_255',
+  icon: ITEMS['pigment_purple_255'].icon,
+  name: ITEMS['pigment_purple_255'].name,
+  amount: 1,
+  consumes: true
+}
+
+const PINE_PAPER = {
+  type: 'item',
+  itemId: 'pine_paper',
+  icon: ITEMS['pine_paper'].icon,
+  name: ITEMS['pine_paper'].name,
+  amount: 1,
+  consumes: true
+}
+
+const MANY_PINE_PAPER = {
+  type: 'item',
+  itemId: 'pine_paper',
+  icon: ITEMS['pine_paper'].icon,
+  name: ITEMS['pine_paper'].name,
+  amount: 3,
+  consumes: true 
+}
+
+const BEECH_PAPER = {
+  type: 'item',
+  itemId: 'beech_paper',
+  icon: ITEMS['beech_paper'].icon,
+  name: ITEMS['beech_paper'].name,
+  amount: 1,
+  consumes: true
+}
+
+const ASH_PAPER = {
+  type: 'item',
+  itemId: 'ash_paper',
+  icon: ITEMS['ash_paper'].icon,
+  name: ITEMS['ash_paper'].name,
+  amount: 1,
+  consumes: true
+}
+
+const LEVEL_1 = { type: 'skill', name: 'inscription', level: 1 };
+const LEVEL_2 = { type: 'skill', name: 'inscription', level: 2 };
+const LEVEL_3 = { type: 'skill', name: 'inscription', level: 3 };
+const LEVEL_4 = { type: 'skill', name: 'inscription', level: 4 };
+const LEVEL_5 = { type: 'skill', name: 'inscription', level: 5 };
+const LEVEL_6 = { type: 'skill', name: 'inscription', level: 6 };
+
 export const INSCRIPTION_CRAFTS = {
   pine_paper: {
     recipeFor: 'inscription',
@@ -227,25 +333,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 3,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
+    required: [MANY_RED_255, PINE_PAPER, LEVEL_1]
   },
 
   execute_level_1_tome: {
@@ -258,32 +346,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_green_255',
-      icon: ITEMS['pigment_green_255'].icon,
-      name: ITEMS['pigment_green_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_200',
-      icon: ITEMS['pigment_green_200'].icon,
-      name: ITEMS['pigment_green_200'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'beech_paper',
-      icon: ITEMS['beech_paper'].icon,
-      name: ITEMS['beech_paper'].name,
-      amount: 2,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 4
-    }]
+    required: [GREEN_255, GREEN_200, BEECH_PAPER, LEVEL_4]
   },
 
   bleed_level_1_tome: {
@@ -296,39 +359,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_red_200',
-      icon: ITEMS['pigment_red_200'].icon,
-      name: ITEMS['pigment_red_200'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_255',
-      icon: ITEMS['pigment_green_255'].icon,
-      name: ITEMS['pigment_green_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'beech_paper',
-      icon: ITEMS['beech_paper'].icon,
-      name: ITEMS['beech_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 4
-    }]
+    required: [RED_255, RED_200, GREEN_255, BEECH_PAPER, LEVEL_4]
   },
 
   blade_spin_level_1_tome: {
@@ -341,32 +372,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 2,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 2,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_255',
-      icon: ITEMS['pigment_green_255'].icon,
-      name: ITEMS['pigment_green_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 2
-    }]
+    required: [MANY_RED_255, GREEN_255, PINE_PAPER, LEVEL_2]
   },
 
   blade_frenzy_level_1_tome: {
@@ -379,25 +385,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_purple_255',
-      icon: ITEMS['pigment_purple_255'].icon,
-      name: ITEMS['pigment_purple_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'ash_paper',
-      icon: ITEMS['ash_paper'].icon,
-      name: ITEMS['ash_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 6
-    }]
+    required: [PURPLE_255, ASH_PAPER, LEVEL_6]
   },
 
   defensive_stance_level_1_tome: {
@@ -410,32 +398,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_blue_255',
-      icon: ITEMS['pigment_blue_255'].icon,
-      name: ITEMS['pigment_blue_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_200',
-      icon: ITEMS['pigment_green_200'].icon,
-      name: ITEMS['pigment_green_200'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'ash_paper',
-      icon: ITEMS['ash_paper'].icon,
-      name: ITEMS['ash_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 5
-    }]
+    required: [BLUE_255, GREEN_200, ASH_PAPER, LEVEL_5]
   },
 
   evasive_maneuvers_level_1_tome: {
@@ -448,32 +411,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_blue_255',
-      icon: ITEMS['pigment_blue_255'].icon,
-      name: ITEMS['pigment_blue_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'ash_paper',
-      icon: ITEMS['ash_paper'].icon,
-      name: ITEMS['ash_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 5
-    }]
+    required: [RED_255, BLUE_255, ASH_PAPER, LEVEL_5]
   },
 
   armor_up_level_1_tome: {
@@ -486,32 +424,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 3,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_200',
-      icon: ITEMS['pigment_red_200'].icon,
-      name: ITEMS['pigment_red_200'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_255',
-      icon: ITEMS['pigment_green_255'].icon,
-      name: ITEMS['pigment_green_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 4,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 3
-    }]
+    required: [RED_200, GREEN_255, MANY_PINE_PAPER, LEVEL_3]
   },
 
   iron_will_level_1_tome: {
@@ -524,32 +437,7 @@ export const INSCRIPTION_CRAFTS = {
     xp: 20,
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_green_255',
-      icon: ITEMS['pigment_green_255'].icon,
-      name: ITEMS['pigment_green_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pine_paper',
-      icon: ITEMS['pine_paper'].icon,
-      name: ITEMS['pine_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 1
-    }]
+    required: [RED_255, GREEN_255, PINE_PAPER, LEVEL_1]
   },
 
   taunt_level_1_tome: {
@@ -562,31 +450,6 @@ export const INSCRIPTION_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 3,
-    required: [{
-      type: 'item',
-      itemId: 'pigment_green_200',
-      icon: ITEMS['pigment_green_200'].icon,
-      name: ITEMS['pigment_green_200'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'pigment_red_255',
-      icon: ITEMS['pigment_red_255'].icon,
-      name: ITEMS['pigment_red_255'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'beech_paper',
-      icon: ITEMS['beech_paper'].icon,
-      name: ITEMS['beech_paper'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'inscription',
-      level: 3
-    }]
+    required: [GREEN_200, RED_255, BEECH_PAPER, LEVEL_3]
   }
 }

@@ -241,8 +241,8 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
       const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
-      return `Deals ${dps.toFixed(1)} damage every second. For ${buff.data.totalDuration}s.
-       (+${damagePerSecondPerLevel} damage per lvl)`;
+      return `Deals ${dps.toFixed(1)} damage every second. (+${damagePerSecondPerLevel} per lvl) <br />
+      For ${buff.data.totalDuration}s.`;
     },
     constants: {
       damagePerSecondBase: 0.5,

@@ -112,7 +112,20 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 1000,
-    description: 'Can be consumed to learn the berserk ability.'
+    description: 'Can be consumed to upgrade the berserk ability.'
+  },
+
+  berserk_level_3_tome: {
+    id: 'berserk_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Berserk Lv 3',
+    teaches: {
+      abilityId: 'berserk',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the berserk ability.'
   },
 
   execute_level_1_tome: {
@@ -128,6 +141,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the execute ability.'
   },
 
+  execute_level_2_tome: {
+    id: 'execute_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'execute Lv 2',
+    teaches: {
+      abilityId: 'execute',
+      level: 2
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the execute ability.'
+  },
+
+  execute_level_3_tome: {
+    id: 'execute_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'execute Lv 3',
+    teaches: {
+      abilityId: 'execute',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the execute ability.'
+  },
+
   bleed_level_1_tome: {
     id: 'bleed_level_1_tome',
     icon: 'tome',
@@ -139,6 +178,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the bleed ability.'
+  },
+
+  bleed_level_2_tome: {
+    id: 'bleed_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'bleed Lv 2',
+    teaches: {
+      abilityId: 'bleed',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the bleed ability.'
+  },
+
+  bleed_level_3_tome: {
+    id: 'bleed_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'bleed Lv 3',
+    teaches: {
+      abilityId: 'bleed',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the bleed ability.'
   },
 
   blade_spin_level_1_tome: {
@@ -154,6 +219,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the bladeSpin ability.'
   },
 
+  blade_spin_level_2_tome: {
+    id: 'blade_spin_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade spin Lv 2',
+    teaches: {
+      abilityId: 'blade_spin',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the bladeSpin ability.'
+  },
+
+  blade_spin_level_3_tome: {
+    id: 'blade_spin_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade spin Lv 3',
+    teaches: {
+      abilityId: 'blade_spin',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the bladeSpin ability.'
+  },
+
   blade_frenzy_level_1_tome: {
     id: 'blade_frenzy_level_1_tome',
     icon: 'tome',
@@ -165,6 +256,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the blade frenzy ability.'
+  },
+
+  blade_frenzy_level_2_tome: {
+    id: 'blade_frenzy_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade frenzy Lv 2',
+    teaches: {
+      abilityId: 'blade_frenzy',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the blade frenzy ability.'
+  },
+
+  blade_frenzy_level_3_tome: {
+    id: 'blade_frenzy_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'blade frenzy Lv 3',
+    teaches: {
+      abilityId: 'blade_frenzy',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the blade frenzy ability.'
   },
 
   defensive_stance_level_1_tome: {
@@ -180,6 +297,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the defensive stance ability.'
   },
 
+  defensive_stance_level_2_tome: {
+    id: 'defensive_stance_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'defensive stance Lv 2',
+    teaches: {
+      abilityId: 'defensive_stance',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the defensive stance ability.'
+  },
+
+  defensive_stance_level_3_tome: {
+    id: 'defensive_stance_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'defensive stance Lv 3',
+    teaches: {
+      abilityId: 'defensive_stance',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the defensive stance ability.'
+  },
+
   evasive_maneuvers_level_1_tome: {
     id: 'evasive_maneuvers_level_1_tome',
     icon: 'tome',
@@ -191,6 +334,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the evasive maneuvers ability.'
+  },
+
+  evasive_maneuvers_level_2_tome: {
+    id: 'evasive_maneuvers_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'evasive maneuvers Lv 2',
+    teaches: {
+      abilityId: 'evasive_maneuvers',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the evasive maneuvers ability.'
+  },
+
+  evasive_maneuvers_level_3_tome: {
+    id: 'evasive_maneuvers_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'evasive maneuvers Lv 3',
+    teaches: {
+      abilityId: 'evasive_maneuvers',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the evasive maneuvers ability.'
   },
 
   armor_up_level_1_tome: {
@@ -206,6 +375,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the armor up ability.'
   },
 
+  armor_up_level_2_tome: {
+    id: 'armor_up_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'armor up Lv 2',
+    teaches: {
+      abilityId: 'armor_up',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the armor up ability.'
+  },
+
+  armor_up_level_3_tome: {
+    id: 'armor_up_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'armor up Lv 3',
+    teaches: {
+      abilityId: 'armor_up',
+      level: 3
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the armor up ability.'
+  },
+
   iron_will_level_1_tome: {
     id: 'iron_will_level_1_tome',
     icon: 'tome',
@@ -217,6 +412,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the iron will ability.'
+  },
+
+  iron_will_level_2_tome: {
+    id: 'iron_will_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'iron will Lv 2',
+    teaches: {
+      abilityId: 'iron_will',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the iron will ability.'
+  },
+
+  iron_will_level_3_tome: {
+    id: 'iron_will_level_3_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'iron will Lv 3',
+    teaches: {
+      abilityId: 'iron_will',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the iron will ability.'
   },
 
   taunt_level_1_tome: {

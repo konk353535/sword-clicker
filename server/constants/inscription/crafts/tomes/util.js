@@ -19,12 +19,30 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_RED_200: {
+    type: 'item',
+    itemId: 'pigment_red_200',
+    icon: ITEMS['pigment_red_200'].icon,
+    name: ITEMS['pigment_red_200'].name,
+    amount: 3,
+    consumes: true
+  },
+
   RED_200: {
     type: 'item',
     itemId: 'pigment_red_200',
     icon: ITEMS['pigment_red_200'].icon,
     name: ITEMS['pigment_red_200'].name,
     amount: 1,
+    consumes: true
+  },
+
+  MANY_GREEN_255: {
+    type: 'item',
+    itemId: 'pigment_green_255',
+    icon: ITEMS['pigment_green_255'].icon,
+    name: ITEMS['pigment_green_255'].name,
+    amount: 3,
     consumes: true
   },
 
@@ -37,6 +55,15 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_GREEN_200: {
+    type: 'item',
+    itemId: 'pigment_green_200',
+    icon: ITEMS['pigment_green_200'].icon,
+    name: ITEMS['pigment_green_200'].name,
+    amount: 3,
+    consumes: true
+  },
+
   GREEN_200: {
     type: 'item',
     itemId: 'pigment_green_200',
@@ -46,12 +73,30 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_BLUE_255: {
+    type: 'item',
+    itemId: 'pigment_blue_255',
+    icon: ITEMS['pigment_blue_255'].icon,
+    name: ITEMS['pigment_blue_255'].name,
+    amount: 3,
+    consumes: true
+  },
+
   BLUE_255: {
     type: 'item',
     itemId: 'pigment_blue_255',
     icon: ITEMS['pigment_blue_255'].icon,
     name: ITEMS['pigment_blue_255'].name,
     amount: 1,
+    consumes: true
+  },
+
+  MANY_PURPLE_255: {
+    type: 'item',
+    itemId: 'pigment_purple_255',
+    icon: ITEMS['pigment_purple_255'].icon,
+    name: ITEMS['pigment_purple_255'].name,
+    amount: 3,
     consumes: true
   },
 
@@ -91,6 +136,15 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_ASH_PAPER: {
+    type: 'item',
+    itemId: 'ash_paper',
+    icon: ITEMS['ash_paper'].icon,
+    name: ITEMS['ash_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
   ASH_PAPER: {
     type: 'item',
     itemId: 'ash_paper',
@@ -105,5 +159,10 @@ export const UTIL = {
   LEVEL_3: { type: 'skill', name: 'inscription', level: 3 },
   LEVEL_4: { type: 'skill', name: 'inscription', level: 4 },
   LEVEL_5: { type: 'skill', name: 'inscription', level: 5 },
-  LEVEL_6: { type: 'skill', name: 'inscription', level: 6 }
+  LEVEL_6: { type: 'skill', name: 'inscription', level: 6 },
+  LEVEL_7: { type: 'skill', name: 'inscription', level: 7 },
+  LEVEL_8: { type: 'skill', name: 'inscription', level: 8 },
+  LEVEL_9: { type: 'skill', name: 'inscription', level: 9 },
+  LEVEL_10: { type: 'skill', name: 'inscription', level: 10 },
+  LEVEL_11: { type: 'skill', name: 'inscription', level: 11 }
 }

@@ -114,7 +114,6 @@ const completeBattle = function (actualBattle) {
         FloorWaveScores.upsert(updateSelector, updateModifier)
       });
     }
-
   } else {
     // Lost
     win = false;
@@ -414,7 +413,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
         }
       });
     }
-  })
+  });
 
   Battles.update(actualBattle._id, {
     $set: {
@@ -427,7 +426,6 @@ const progressBattle = function (actualBattle, battleIntervalId) {
       updatedAt: new Date()
     }
   });
-
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);

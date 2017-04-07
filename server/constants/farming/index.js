@@ -63,6 +63,51 @@ export const FARMING = {
         name: 'farming',
         level: 4
       }]
+    },
+
+    pink_rose_seed: {
+      id: 'pink_rose_seed',
+      itemId: 'pink_rose_seed',
+      requiredFarmingLevel: 5,
+      required: [{
+        type: 'gold',
+        amount: 1000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 5
+      }]
+    },
+
+    endive_seed: {
+      id: 'endive_seed',
+      itemId: 'endive_seed',
+      requiredFarmingLevel: 6,
+      required: [{
+        type: 'gold',
+        amount: 2000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 6
+      }]
+    },
+
+    juniper_seed: {
+      id: 'juniper_seed',
+      itemId: 'juniper_seed',
+      requiredFarmingLevel: 7,
+      required: [{
+        type: 'gold',
+        amount: 3000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 7
+      }]
     }
   }
 }

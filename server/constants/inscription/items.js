@@ -8,6 +8,15 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription for marking pages'
   },
 
+  pigment_red_200: {
+    id: 'pigment_red_200',
+    icon: 'pigmentRed200',
+    category: 'pigment',
+    name: 'pigment red 200',
+    sellPrice: 50,
+    description: 'Used in inscription for marking pages'
+  },
+
   pigment_green_255: {
     id: 'pigment_green_255',
     icon: 'pigmentGreen255',
@@ -17,12 +26,66 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription for marking pages'
   },
 
+  pigment_green_200: {
+    id: 'pigment_green_200',
+    icon: 'pigmentGreen200',
+    category: 'pigment',
+    name: 'pigment green 200',
+    sellPrice: 100,
+    description: 'Used in inscription for marking pages'
+  },
+
+  pigment_blue_255: {
+    id: 'pigment_blue_255',
+    icon: 'pigmentBlue255',
+    category: 'pigment',
+    name: 'pigment blue 255',
+    sellPrice: 500,
+    description: 'Used in inscription for marking pages'
+  },
+
+  pigment_purple_255: {
+    id: 'pigment_purple_255',
+    icon: 'pigmentPurple255',
+    category: 'pigment',
+    name: 'pigment purple 255',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  lavender: {
+    id: 'lavender',
+    icon: 'lavender',
+    category: 'herb',
+    name: 'lavender',
+    sellPrice: 1500,
+    description: 'Used to make a purple pigment.'
+  },
+
   pine_paper: {
     id: 'pine_paper',
     icon: 'pinePaper',
     category: 'paper',
     name: 'pine paper',
+    sellPrice: 125,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  beech_paper: {
+    id: 'beech_paper',
+    icon: 'beechPaper',
+    category: 'paper',
+    name: 'beech paper',
     sellPrice: 250,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  ash_paper: {
+    id: 'ash_paper',
+    icon: 'ashPaper',
+    category: 'paper',
+    name: 'ash paper',
+    sellPrice: 500,
     description: 'Used in inscription with pigments to make ability books'
   },
 

@@ -108,6 +108,81 @@ export const PLANTS = {
       name: 'farming',
       level: 4
     }]
+  },
+
+  pink_rose: {
+    produces: 'pink_rose',
+    name: 'pink rose',
+    id: 'pink_rose',
+    category: 'farming',
+    icon: ITEMS['pink_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 110,
+    growthTime: 300,
+    xp: 30,
+    required: [{
+      type: 'item',
+      itemId: 'pink_rose_seed',
+      icon: ITEMS['pink_rose_seed'].icon,
+      name: ITEMS['pink_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 5
+    }]
+  },
+
+  endive: {
+    produces: 'endive',
+    name: 'endive',
+    id: 'endive',
+    category: 'farming',
+    icon: ITEMS['endive'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 110,
+    growthTime: 300,
+    xp: 30,
+    required: [{
+      type: 'item',
+      itemId: 'endive_seed',
+      icon: ITEMS['endive_seed'].icon,
+      name: ITEMS['endive_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 6
+    }]
+  },
+
+  juniper: {
+    produces: 'juniper',
+    name: 'juniper',
+    id: 'juniper',
+    category: 'farming',
+    icon: ITEMS['juniper'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 200,
+    growthTime: 600,
+    xp: 50,
+    required: [{
+      type: 'item',
+      itemId: 'juniper_seed',
+      icon: ITEMS['juniper_seed'].icon,
+      name: ITEMS['juniper_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 7
+    }]
   }
 
 }

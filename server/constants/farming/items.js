@@ -44,6 +44,60 @@ export const FARMING_ITEMS = {
     sellPrice: 100
   },
 
+  pink_rose_seed: {
+    id: 'pink_rose_seed',
+    icon: 'pinkRoseSeed',
+    category: 'seed',
+    name: 'pink rose seed',
+    description: 'Used to grow a pinkish rose. Useful for inscription',
+    sellPrice: 200,
+    produces: 'pink_rose'
+  },
+
+  pink_rose: {
+    id: 'pink_rose',
+    icon: 'pinkRose',
+    category: 'herb',
+    name: 'pink rose',
+    sellPrice: 200
+  },
+
+  endive_seed: {
+    id: 'endive_seed',
+    icon: 'endiveSeed',
+    category: 'seed',
+    name: 'endive seed',
+    description: 'Used to grow a endive. Useful for inscription',
+    sellPrice: 200,
+    produces: 'endive'
+  },
+
+  endive: {
+    id: 'endive',
+    icon: 'endive',
+    category: 'herb',
+    name: 'endive',
+    sellPrice: 200
+  },
+
+  juniper_seed: {
+    id: 'juniper_seed',
+    icon: 'juniperSeed',
+    category: 'seed',
+    name: 'juniper seed',
+    description: 'Used to grow a juniper. Useful for inscription',
+    sellPrice: 300,
+    produces: 'juniper'
+  },
+
+  juniper: {
+    id: 'juniper',
+    icon: 'juniper',
+    category: 'herb',
+    name: 'juniper',
+    sellPrice: 300
+  },
+
   dead_plant: {
     id: 'dead_plant',
     icon: 'deadPlant',

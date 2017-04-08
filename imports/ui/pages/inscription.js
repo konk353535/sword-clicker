@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+import { Users } from '/imports/api/users/users.js';
 
 // Component used in the template
 import './inscription.html';
@@ -19,18 +19,6 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
 
   this.state.set('hasLearnRequirements', false);
 
-  if (Session.get('inscriptionFilter')) {
-    this.state.set('recipeFilter', Session.get('inscriptionFilter'));
-  } else {
-    this.state.set('recipeFilter', 'abilities');
-  }
-
-  if (Session.get('inscriptionLevelFilter')) {
-    this.state.set('levelFilter', Session.get('inscriptionLevelFilter'));
-  } else {
-    this.state.set('levelFilter', 1);
-  }
-
   Meteor.call('abilities.fetchLibrary', (err, abilityResults) => {
     if (abilityResults) {
       const abilityResultsMap = {};
@@ -38,6 +26,23 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         abilityResultsMap[ability.id] = ability;
       });
       this.state.set('abilityMap', abilityResultsMap);
+    }
+  });
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.inscriptionFilter !== undefined) {
+        this.state.set('recipeFilter', myUser.uiState.inscriptionFilter);
+      } else {
+        this.state.set('recipeFilter', 'abilities');
+      }
+
+      if (myUser.uiState && myUser.uiState.inscriptionLevelFilter !== undefined) {
+        this.state.set('levelFilter', myUser.uiState.inscriptionLevelFilter);
+      } else {
+        this.state.set('levelFilter', 1);
+      }
     }
   });
 
@@ -80,14 +85,12 @@ Template.inscriptionPage.events({
 
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
-    Session.set('inscriptionFilter', filter)
-    instance.state.set('recipeFilter', filter);
+    Meteor.call('users.setUiState', 'inscriptionFilter', filter);
   },
 
   'click .level-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.level-filter').data('filter');
-    Session.set('inscriptionLevelFilter', filter)
-    instance.state.set('levelFilter', filter);
+    Meteor.call('users.setUiState', 'inscriptionLevelFilter', filter);
   },
 
   'keyup .craft-amount-input'(event, instance) {

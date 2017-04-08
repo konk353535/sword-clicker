@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+import { Users } from '/imports/api/users/users';
 
 // Component used in the template
 import './crafting.html';
@@ -16,11 +17,17 @@ let gameUpdateTimer;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  if (Session.get('craftingFilter')) {
-    this.state.set('recipeFilter', Session.get('craftingFilter'));
-  } else {
-    this.state.set('recipeFilter', 'all');
-  }
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.craftingFilter !== undefined) {
+        this.state.set('recipeFilter', myUser.uiState.craftingFilter);
+      } else {
+        this.state.set('recipeFilter', 'all');
+      }
+    }
+  });
 
   this.autorun(() => {
     if (Skills.findOne({ type: 'crafting' })) {
@@ -57,8 +64,7 @@ Template.craftingPage.events({
 
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
-    Session.set('craftingFilter', filter)
-    instance.state.set('recipeFilter', filter);
+    Meteor.call('users.setUiState', 'craftingFilter', filter);
   },
 
   'keyup .craft-amount-input'(event, instance) {

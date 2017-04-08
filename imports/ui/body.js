@@ -10,6 +10,14 @@ let floatingTextTimer;
 
 Template.body.onCreated(function () {
 
+  this.autorun(() => {
+    // Check for gold to make sure we have the full user doc
+    if (Meteor.user() && Meteor.user().gold && !Meteor.user().uiState) {
+      Meteor.call('users.initUiState');
+    }
+  })
+
+
   miningTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');

@@ -88,27 +88,27 @@ body.targetting-enemies {
 
   &.small {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
 
     .item-icon {
-      width: 24px;
-      height: 24px;
+      width: 36px;
+      height: 36px;
     }
 
     .item-amount {
       position: absolute;
-      bottom: -1px;
+      bottom: 0px;
       right: 3px;
-      font-size: 9px;
+      font-size: 10px;
     }
 
     .item-quality {
       position: absolute;
-      top: -1px;
-      right: 2px;
-      font-size: 9px;
-      color: $blue;
+      top: 0px;
+      right: 3px;
+      font-size: 10px;
+      color: $gray-light;
     }
   }
 }

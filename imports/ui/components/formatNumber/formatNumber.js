@@ -8,10 +8,10 @@ import './formatNumber.html';
 Template.formatNumber.helpers({
   formattedNumber() {
     const number = Template.instance().data;
-    if (number < 100000) {
+    if (number < 10000) {
       return Math.floor(number);
     }
 
-    return Numeral(number).format('0.00 a');
+    return Numeral(number).format('0.0a');
   }
 });

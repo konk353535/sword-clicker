@@ -1,11 +1,11 @@
 <template name="itemIcon">
-  <div class="item-icon-container icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative">
+  <div class="item-icon-container {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative">
     {{#if item.quality}}
-      <div class="text-muted" style="position: absolute; top: 2px; right: 5px; font-size: 12px;">{{item.quality}}%</div>    
+      <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
-    <img src="/icons/{{item.icon}}.svg" class="ore-icon">
+    <img src="/icons/{{item.icon}}.svg" class="item-icon">
     {{#unless item.hideCount}}
-      <div style="position: absolute; bottom: 2px; right: 5px">{{item.amount}}</div>
+      <div class="item-amount">{{> formatNumber item.amount}}</div>
     {{/unless}}
   </div>
 

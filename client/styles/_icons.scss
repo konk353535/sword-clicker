@@ -1,0 +1,154 @@
+body.targetting-enemies {
+  cursor: crosshair;
+
+  .ability-icon {
+    cursor: crosshair;
+  }
+}
+
+.targetting-enemies .enemy-icon:hover {
+  border-color: $red;
+}
+
+.icon-box {
+  user-select: none;
+  width: 96px;
+  height: 96px;
+  border: 1px solid black;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $spacer * 0.25;
+  padding: $spacer * 0.25;
+}
+
+// Used in inscription to stop icon box having a border
+.no-box-border {
+  .icon-box {
+    border: none;
+  }
+}
+
+.icon-box.not-learnt {
+  background-color: $gray-lighter;
+  img {
+    opacity: 0.2;
+  }
+}
+
+.small-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  pointer-events: none;
+}
+
+.medium-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.icon-border {
+  border: 1px solid black;
+}
+
+.mine-space-container {
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+.item-icon-container {
+  position: relative;
+  width: 96px;
+  height: 96px;
+
+  .item-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .item-amount {
+    position: absolute;
+    bottom: -1px;
+    right: 3px;
+  }
+
+  .item-quality {
+    position: absolute;
+    top: -1px;
+    right: 4px;
+    color: $blue;
+  }
+
+  &.small {
+    position: relative;
+    width: 48px;
+    height: 48px;
+
+    .item-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .item-amount {
+      position: absolute;
+      bottom: -1px;
+      right: 3px;
+      font-size: 9px;
+    }
+
+    .item-quality {
+      position: absolute;
+      top: -1px;
+      right: 2px;
+      font-size: 9px;
+      color: $blue;
+    }
+  }
+}
+
+.ability-icon-container {
+  position: relative;
+  margin-left: $spacer * 0.25;
+  margin-right: $spacer * 0.25;
+
+  .ability-icon {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: $spacer * 0.5;
+  }
+
+  .cooldown-text {
+    position: absolute;
+    opacity: 1.0;
+    color: white;
+    top: 0px;
+    left: 0px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ability-icon.disabled {
+    background-color: $gray-light;
+    img {
+      opacity: 0.5;
+    }
+  }
+}
+
+.ore-icon {
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+}

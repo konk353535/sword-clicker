@@ -4,6 +4,13 @@
 
   <h2>Items</h2>
   <div class="d-flex flex-wrap">
+    {{#each miningItems}}
+      {{> itemIcon item=this classes="small"}}
+    {{/each}}
+  </div>
+
+  <h2>Mining Upgrades</h2>
+  <div class="d-flex flex-row">
     <div class="icon-box buy-miner">
         <img src="/icons/miner.svg" class="ore-icon">
         {{mining.miners}} / {{mining.maxMiners}}
@@ -33,15 +40,6 @@
         <b>Click</b> to buy
       </div>
     </div>
-
-
-    {{#each miningItems}}
-      {{> itemIcon item=this}}
-    {{/each}}
-  </div>
-
-  <h2>Equipped Pickaxe</h2>
-  <div class="d-flex flex-row">
     {{#if equippedItemsMap.pickaxe}}
       <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
         {{> itemIcon item=equippedItemsMap.pickaxe}}

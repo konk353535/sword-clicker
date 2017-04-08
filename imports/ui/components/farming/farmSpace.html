@@ -1,12 +1,11 @@
 <template name="farmSpace">
-  <div class="icon-box farm-space-container align-items-center">
+  <div class="icon-box farm-space-container align-items-center {{#if farmSpace.active}}{{else}}inactive{{/if}}">
     {{#if isEmpty}}
       <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
     {{else if finishedGrowing}}
       <img src="/icons/{{farmSpace.icon}}.svg" class="ore-icon">
     {{else}}
       <img src="/icons/sapling.svg" class="ore-icon">
-
       <div class="progress mt-3" style="width: 100%">
         <div class="progress-bar bg-info" role="progressbar" style="width: {{waterPercentage}}%; height: 5px;" aria-valuenow="{{waterPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
@@ -18,10 +17,17 @@
   
   <div class="farm-space-tooltip-content my-tooltip-inner">
     {{#if isEmpty}}
-      <h3 class='popover-title text-capitalize'>Empty Plot</h3>
-      <div class='popover-content'>
-        You can plant seeds here<br />
-      </div>
+      {{#if farmSpace.active}}
+        <h3 class='popover-title text-capitalize'>Empty Plot</h3>
+        <div class='popover-content'>
+          You can plant seeds here<br />
+        </div>
+      {{else}}
+        <h3 class='popover-title text-capitalize'>Locked Plot</h3>
+        <div class='popover-content'>
+          Unlock this plot by becoming a member.<br />
+        </div>
+      {{/if}}
     {{else}}
       <h3 class='popover-title text-capitalize'>{{farmSpace.name}}</h3>
       <div class='popover-content'>

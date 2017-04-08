@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Skills } from '/imports/api/skills/skills';
 import { Farming } from '/imports/api/farming/farming';
 import { FarmingSpace } from '/imports/api/farming/farming';
+import { Users } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
@@ -51,6 +52,22 @@ const farmSpaceModifier = function (farmSpace, farming) {
   }
 
   return farmSpace;
+}
+
+export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
+  // Make sure the user is currently a member
+  const userDoc = Users.findOne({ _id: userId });
+
+  if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
+    // Update there farming spaces and make them active
+    FarmingSpace.update({
+      owner: userId
+    }, {
+      $set: {
+        active: true
+      }
+    }, { multi: true });
+  }
 }
 
 Meteor.methods({

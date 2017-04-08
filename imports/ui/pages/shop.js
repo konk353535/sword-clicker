@@ -10,6 +10,9 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 
 Template.shopPage.events({
   'click .buy-15'() {
+    if (Meteor.user().gems < 5) {
+      return;
+    }
     Meteor.call('shop.buyMembership', 15, (err, res) => {
       if (err) {
         toastr.error('An unexpected error occured when buying membership.');
@@ -19,6 +22,9 @@ Template.shopPage.events({
   },
 
   'click .buy-30'() {
+    if (Meteor.user().gems < 10) {
+      return;
+    }
     Meteor.call('shop.buyMembership', 30, (err, res) => {
       if (err) {
         toastr.error('An unexpected error occured when buying membership.');

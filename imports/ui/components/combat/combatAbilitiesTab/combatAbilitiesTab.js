@@ -43,6 +43,8 @@ Template.combatAbilitiesTab.helpers({
           Meteor.call('abilities.learn', this.item._id, this.item.itemId, (err, res) => {
             if (err) {
               toastr.warning(err.reason);
+            } else {
+              toastr.success(`Successfully learnt ${item.name}`)
             }
           });
         }

@@ -26,6 +26,7 @@ import '../imports/ui/pages/woodcutting.js';
 import '../imports/ui/pages/skills.js';
 import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
+import '../imports/ui/pages/shop.js';
 
 // Start Up
 import '../imports/startup/both';

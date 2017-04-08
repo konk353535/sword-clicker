@@ -42,10 +42,23 @@
         {{/if}}
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <div class="p-2 d-flex align-items-center">
-          <img src="/icons/gold.svg" class="small-icon">
-          {{currentUser.gold}}
-        </div>
+        {{#if currentUser}}
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'shop'}}active{{/if}}" href="/shop">Shop</a>
+            </li>
+          </ul>
+          <div class="p-2 d-flex align-items-center">
+            <span class="mr-1">
+              <img src="/icons/gold.svg" class="small-icon">
+              {{currentUser.gold}}
+            </span>
+            <span>
+              <img src="/icons/gems.svg" class="small-icon">
+              {{currentUser.gems}}
+            </span>
+          </div>
+        {{/if}}
         {{> atNavButton}}
       </form>
     </div>

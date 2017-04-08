@@ -5,7 +5,9 @@
     {{/if}}
     <img src="/icons/{{item.icon}}.svg" class="item-icon">
     {{#unless item.hideCount}}
-      <div class="item-amount">{{> formatNumber item.amount}}</div>
+      {{#if item.amount}}
+        <div class="item-amount">{{> formatNumber item.amount}}</div>
+      {{/if}}
     {{/unless}}
   </div>
 

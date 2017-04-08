@@ -8,6 +8,8 @@ UserSchema = new SimpleSchema({
   createdAt: { type: Date },
   services: { type: Object, blackbox: true },
   gold: { type: Number, defaultValue: 100 },
+  membershipTo: { type: Date, optional: true },
+  gems: { type: Number, defaultValue: 0 },
   uiState: { type: Object, blackbox: true }, // used to save ui state, eg: hide / show chat
   username: { type: String }
 })

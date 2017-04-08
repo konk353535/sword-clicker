@@ -10,6 +10,18 @@ Router.route('/home', {
   }
 });
 
+Router.route('/shop', {
+
+  name: 'shop',
+
+  template: 'shopPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/', {
 
   name: 'mining',

@@ -1,0 +1,84 @@
+<template name="shopPage">
+  <div class="container">
+    <div class="mt-3">
+      {{#if $gt (moDiff currentUser.membershipTo moNow 'seconds') 0}}
+        You currently have membership until {{moFormat currentUser.membershipTo}}.
+      {{else}}
+        You do not currently have membership.
+      {{/if}}
+    </div>
+    <h2 class="my-2">Shop</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-center mt-3 p-3">
+          <h4>Membership</h4>
+          <div class="d-flex flex-column justify-content-start align-items-start mb-3">
+            <li>+20% Passive mining damage</li>
+            <li>+20% Woodcutting speed</li>
+            <li>+20% Crafting speed</li>
+            <li>+20% Inscription crafting speed</li>
+            <li>Unlock 5th and 6th farming spaces</li>
+            <li>+20% Energy regen</li>
+          </div>
+          <button class="buy-15 btn btn-secondary {{#if $gte currentUser.gems 5}}{{else}}disabled{{/if}}">
+            15 days ( 5<img src="icons/gems.svg" class="small-icon"> )
+          </button>
+          <button class="buy-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 9}}{{else}}disabled{{/if}}">
+            30 days ( 9<img src="icons/gems.svg" class="small-icon"> )
+          </button>
+        </div>
+      </div>
+    </div>
+    <h2 class="my-2">Buy Gems</h2>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <div class="card text-center mt-3 p-3">
+          <h4>Bunch Of Gems</h4>
+          <p class="mb-1">+5 <img src="icons/gems.svg" class="small-icon"></p>
+          <div class="d-flex justify-content-center">
+            <img src="/icons/goldSack.svg" class="large-icon my-3">
+          </div>
+          <button class="btn btn-primary {{#if processing}}disabled{{/if}}" id="purchaseButton">
+            {{#if processing}}
+              Processing
+            {{else}}
+              $4.99
+            {{/if}}
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center mt-3 p-3">
+          <h4>Bags Of Gems</h4>
+          <p class="mb-1">+10 <img src="icons/gems.svg" class="small-icon"></p>
+          <div class="d-flex justify-content-center">
+            <img src="/icons/goldSack.svg" class="large-icon my-3">
+          </div>
+          <button class="btn btn-primary {{#if processing}}disabled{{/if}}" id="purchaseButton">
+            {{#if processing}}
+              Processing
+            {{else}}
+              $9.99
+            {{/if}}
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center mt-3 p-3">
+          <h4>Box Of Gems</h4>
+          <p class="mb-1">+25 <img src="icons/gems.svg" class="small-icon"></p>
+          <div class="d-flex justify-content-center">
+            <img src="/icons/goldSack.svg" class="large-icon my-3">
+          </div>
+          <button class="btn btn-primary {{#if processing}}disabled{{/if}}" id="purchaseButton">
+            {{#if processing}}
+              Processing
+            {{else}}
+              $19.99
+            {{/if}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

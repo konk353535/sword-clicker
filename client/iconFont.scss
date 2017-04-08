@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?mnxwkw') format('truetype'),
-    url('fonts/icomoon.woff?mnxwkw') format('woff'),
-    url('fonts/icomoon.svg?mnxwkw#icomoon') format('svg');
+    url('fonts/icomoon.ttf?1yhltt') format('truetype'),
+    url('fonts/icomoon.woff?1yhltt') format('woff'),
+    url('fonts/icomoon.svg?1yhltt#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.lilIcon-gems:before {
+  content: "\e92b";
+}
 .lilIcon-healthMax:before {
   content: "\e92a";
 }

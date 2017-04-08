@@ -41,7 +41,9 @@ Meteor.publish("userData", function () {
     }, {
       fields: {
         'gold': 1,
-        'uiState': 1
+        'uiState': 1,
+        'gems': 1,
+        'membershipTo': 1
       }
     });
   } else {

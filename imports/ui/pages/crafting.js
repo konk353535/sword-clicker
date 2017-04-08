@@ -80,7 +80,13 @@ Template.craftingPage.events({
       instance.state.set('multiCraftRecipeId', recipeId);
       instance.$('.multiCraftModal').modal('show');
     } else {
-      Meteor.call('crafting.craftItem', recipeId, 1);
+      Meteor.call('crafting.craftItem', recipeId, 1, (err) => {
+        if (err) {
+          toastr.warning('Failed to craft item');
+        } else {
+          toastr.success(`Started crafting ${recipeConstants.name}`)
+        }
+      });
     }
   },
 
@@ -89,7 +95,13 @@ Template.craftingPage.events({
     const amountToCraft = parseInt(instance.state.get('craftAmount'));
 
     instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('crafting.craftItem', recipeId, amountToCraft);
+    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
+      if (err) {
+        toastr.warning('Failed to craft item');
+      } else {
+        toastr.success(`Started crafting ${recipeConstants.name}`)
+      }
+    });
   }
 })
 

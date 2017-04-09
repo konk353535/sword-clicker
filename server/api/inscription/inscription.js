@@ -50,6 +50,13 @@ const craftItem = function (recipeId, amountToCraft) {
     startDate = _.sortBy(inscription.currentlyCrafting, 'endDate')[0].endDate;
   }
 
+  let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
+
+  // Apply membership benefits
+  if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+    timeToCraft *= (1 - (DONATORS_BENEFITS.inscriptionBonus / 100));
+  }
+
   // Add to currently crafting...
   Inscription.update(inscription._id, {
     $push: {
@@ -58,7 +65,7 @@ const craftItem = function (recipeId, amountToCraft) {
         startDate,
         recipeId,
         amount: amountToCraft,
-        endDate: moment(startDate).add(recipeConstants.timeToCraft * amountToCraft, 'seconds').toDate()
+        endDate: moment(startDate).add(timeToCraft, 'seconds').toDate()
       }
     }
   });

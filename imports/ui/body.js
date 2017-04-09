@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+import moment from 'moment';
 
 import './body.html';
 
@@ -15,8 +17,20 @@ Template.body.onCreated(function () {
     if (Meteor.user() && Meteor.user().gold && !Meteor.user().uiState) {
       Meteor.call('users.initUiState');
     }
-  })
+  });
 
+  // Store if the user is an active membership in session
+  Tracker.autorun(() => {
+    if (Meteor.user()) {
+      if (moment().isBefore(Meteor.user().membershipTo)) {
+        console.log('true');
+        Session.set('isMember', true);
+      } else {
+        console.log('false');
+        Session.set('isMember', false);
+      }
+    }
+  })
 
   miningTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
@@ -60,6 +74,10 @@ Template.body.onCreated(function () {
   Meteor.subscribe('items');
   // Show skills
   Meteor.subscribe('skills');
+});
+
+Handlebars.registerHelper('isMember', function (id) {
+  return Session.get('isMember');
 });
 
 Template.body.onDestroyed(function bodyOnDestroyed() {

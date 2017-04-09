@@ -25,9 +25,11 @@
         Cooldown <b>{{item.cooldown}}s</b><br />
       {{/if}}
 
-      {{#if item.stats}}
-        {{> displayCombatStats stats=item.stats}}
-      {{/if}}
+      {{#unless item.hideStats}}
+        {{#if item.stats}}
+          {{> displayCombatStats stats=item.stats}}
+        {{/if}}
+      {{/unless}}
 
       {{#if item.required}}
         <b>Requires</b><br />

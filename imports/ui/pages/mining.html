@@ -61,7 +61,13 @@
           {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Amount of energy regenerated per minute
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.miner}}%<i class="lilIcon-miner mx-1"></i> Percentage increase of all your miners damage
+          {{#if isMember}}
+            ({{mining.stats.miner}}
+            {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
+          {{else}}
+            {{mining.stats.miner}}%
+          {{/if}}
+          <i class="lilIcon-miner mx-1"></i> Percentage increase of all your miners damage
         </div>
 
       </div>

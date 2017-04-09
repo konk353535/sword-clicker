@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+
 import moment from 'moment';
 import _ from 'underscore';
 
@@ -244,6 +246,11 @@ Meteor.methods({
 
       if (mining.stats.miner) {
         damagePerTick *=  (1 + (mining.stats.miner / 100));
+      }
+
+      // Apply membership benefits
+      if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+        damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
       }
 
       let totalRemainingDamage = damagePerTick * tickCount;

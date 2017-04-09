@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { WOODCUTTING } from '/server/constants/woodcutting/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 
@@ -73,7 +74,16 @@ Meteor.methods({
 
       const sortedLogs = _.sortBy(possibleLogs, 'chance');
       sortedLogs.forEach((log) => {
-        const rawGeneratedLogs = log.chance * (1 + (currentWoodcutter.stats.accuracy / 100)) * definiteSwingCount;
+        let rawGeneratedLogs = log.chance * definiteSwingCount;
+        if (currentWoodcutter.stats.accuracy) {
+          rawGeneratedLogs *= (1 + (currentWoodcutter.stats.accuracy / 100));
+        }
+
+        // Apply membership benefits
+        if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+          rawGeneratedLogs *= (1 + (DONATORS_BENEFITS.woodcuttingBonus / 100));
+        }
+
         let definiteGenerateLogs = Math.floor(rawGeneratedLogs);
         if (rawGeneratedLogs % 1 >= Math.random()) {
           definiteGenerateLogs += 1;

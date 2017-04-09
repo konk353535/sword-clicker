@@ -1,0 +1,17 @@
+<template name="memberBenefit">
+  <span class="benefit-container">
+    {{#if $eq bonusKey 'miningBonus'}}
+      &nbsp;+&nbsp;
+      <span class="text-primary benefit-container">
+        {{calculatedBonus}}
+      </span>
+    {{/if}}
+  </span>
+
+  <!-- Icon Tooltip -->
+  <div class="benefit-tooltip-content">
+    <div class="my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>Membership bonus</h3>
+    </div>
+  </div>
+</template>

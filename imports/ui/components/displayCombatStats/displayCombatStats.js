@@ -56,6 +56,7 @@ Template.displayCombatStats.helpers({
 
       statsArr.push({
         label: statLabel,
+        value: statsMap[key] + extraStatsMap[key],
         key
       });
     });

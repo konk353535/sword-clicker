@@ -5,6 +5,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import moment from 'moment';
 
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { CRAFTING } from '/server/constants/crafting/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
@@ -168,6 +169,13 @@ const craftItem = function (recipeId, amountToCraft = 1) {
     startDate = _.sortBy(crafting.currentlyCrafting, 'endDate')[0].endDate;
   }
 
+  let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
+
+  // Apply membership benefits
+  if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+    timeToCraft *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
+  }
+
   // Add to currently crafting...
   Crafting.update(crafting._id, {
     $push: {
@@ -176,7 +184,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
         startDate,
         recipeId,
         amount: amountToCraft,
-        endDate: moment(startDate).add(recipeConstants.timeToCraft * amountToCraft, 'seconds').toDate()
+        endDate: moment(startDate).add(timeToCraft, 'seconds').toDate()
       }
     }
   });

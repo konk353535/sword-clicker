@@ -3,6 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
@@ -62,6 +64,13 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         this.state.set('recipes', results.map((result) => {
           if (inscriptionSkill.level < result.inscriptionSkill) {
             result.notMetLevelReq = true;
+          }
+
+          if (Session.get('isMember')) {
+            const bonusPercentage = DONATORS_BENEFITS.inscriptionBonus;
+            result.calculatedTimeToCraft = (result.timeToCraft * (1 - (bonusPercentage / 100))).toFixed(0);
+          } else {
+            result.calculatedTimeToCraft = result.timeToCraft;
           }
 
           return result;

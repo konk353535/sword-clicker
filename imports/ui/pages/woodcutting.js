@@ -1,10 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './woodcutting.html';
 
@@ -76,6 +79,40 @@ Template.woodcuttingPage.helpers({
     }
 
     woodcutting.woodcutters.forEach((woodcutter, woodcutterIndex) => {
+      // Incoming hacks!
+      woodcutter.description = `
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-attack small-icon mr-1"></i>
+          ${woodcutter.stats.attack}
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-attackSpeed small-icon mr-1"></i>
+          ${woodcutter.stats.attackSpeed}
+        </div>
+      `;
+
+      // Append to description based on if the user is currently a member
+      if (Session.get('isMember')) {
+        let computedBonus = DONATORS_BENEFITS.woodcuttingBonus;
+        computedBonus += Math.floor(woodcutter.stats.accuracy * ( 1 + (DONATORS_BENEFITS.woodcuttingBonus / 100)));
+        woodcutter.description += `
+          <div class="d-flex align-items-center">
+            <i class="lilIcon-accuracy small-icon mr-1"></i>
+            ${woodcutter.stats.accuracy}&nbsp;+&nbsp;
+            <span class='text-primary'>${computedBonus}</span>
+          </div>
+        `
+      } else {
+        woodcutter.description += `
+          <div class="d-flex align-items-center">
+            <i class="lilIcon-accuracy small-icon mr-1"></i>
+            ${woodcutter.stats.accuracy}
+          </div>
+        `
+      }
+
+      woodcutter.hideStats = true;
+
       woodcutter.primaryAction = {
         description: 'Fire woodcutter',
         method() {

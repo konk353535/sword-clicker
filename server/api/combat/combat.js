@@ -8,6 +8,7 @@ import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 
 import { attackSpeedTicks } from '/server/api/battles/battles';
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
@@ -116,7 +117,15 @@ Meteor.methods({
 
     // Energy Regen
     if (currentCombat.stats.energy <= currentCombat.stats.energyMax) {
-      currentCombat.stats.energy += (COMBAT.baseEnergyRegenPerMinute * minutesElapsed);
+      let baseEnergyRegen = COMBAT.baseEnergyRegenPerMinute * minutesElapsed;
+
+      // Apply membership benefits
+      if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+        baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
+      }
+
+      currentCombat.stats.energy += baseEnergyRegen;
+
       if (currentCombat.stats.energy > currentCombat.stats.energyMax) {
         currentCombat.stats.energy = currentCombat.stats.energyMax;
       }

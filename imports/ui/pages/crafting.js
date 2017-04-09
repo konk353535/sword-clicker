@@ -4,6 +4,8 @@ import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
@@ -45,6 +47,13 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
         this.state.set('recipes', results.map((result) => {
           if (craftingSkill.level < result.requiredCraftingLevel) {
             result.notMetLevelReq = true;
+          }
+
+          if (Session.get('isMember')) {
+            const bonusPercentage = DONATORS_BENEFITS.craftingBonus;
+            result.calculatedTimeToCraft = (result.timeToCraft * (1 - (bonusPercentage / 100))).toFixed(0);
+          } else {
+            result.calculatedTimeToCraft = result.timeToCraft;
           }
 
           return result;

@@ -435,7 +435,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   }
 }
 
-const startBattle = function (battleId, floor, difficulty) {
+const startBattle = function (battleData, floor, difficulty) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   // Is user in a group? If so this is a group battle
@@ -457,20 +457,21 @@ const startBattle = function (battleId, floor, difficulty) {
     return;
   }
 
-  // Find specified battleId
-  let battleConstants = BATTLES[battleId];
+  // Create clone of battle objects
+  let battleConstants = JSON.parse(JSON.stringify(battleData));
 
   // Ensure valid battle id
-  if (!battleConstants) {
+  if (!_.isObject(battleConstants)) {
     // Fallback to check if this is a single enemy battle
-    if (ENEMIES[battleId]) {
+    if (ENEMIES[battleData]) {
       battleConstants = {
         enemies: [{
-          id: battleId,
+          id: battleData,
           amount: 1
         }]
       }
     } else {
+      console.log('Unknown battle format');
       return;
     }
   }
@@ -509,7 +510,7 @@ const startBattle = function (battleId, floor, difficulty) {
     }
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
-      if (userCombat.stats[statName]) {
+      if (userCombat.stats[statName] !== undefined) {
         userCombatStats[statName] = userCombat.stats[statName];
       }
     });

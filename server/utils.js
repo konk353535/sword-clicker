@@ -25,6 +25,17 @@ export const flattenObjectForMongo = function(ob) {
   return toReturn;
 };
 
+export const enemyStatSetter = function(constants, baseStats) {
+  Object.keys(constants).forEach((enemyKey) => {
+    const currentEnemy = constants[enemyKey];
+    // Mutate stats accordingly
+    Object.keys(currentEnemy.stats).forEach((statKey) => {
+      const currentStatValue = currentEnemy.stats[statKey];
+      currentEnemy.stats[statKey] = currentStatValue * baseStats[statKey];
+    });
+  })
+}
+
 export const attackSpeedTicks = function(attackSpeed) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 

@@ -32,7 +32,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   if (Session.get('combatTab')) {
     this.state.set('currentTab', Session.get('combatTab'));
   } else {
-    this.state.set('currentTab', 'personalQuestTab');
+    this.state.set('currentTab', 'personalQuest');
   }
 
   this.subscribe('groups');

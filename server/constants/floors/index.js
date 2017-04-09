@@ -1,4 +1,7 @@
-export const FLOORS = {
+import { TOWER_FLOORS } from './tower/index';
+import { PERSONAL_QUEST_LEVELS } from './personalQuest/index';
+
+export const FLOORS = Object.assign({
 
   getWaveCounts() {
     const activePlayers = 1;
@@ -13,35 +16,6 @@ export const FLOORS = {
     }
   },
 
-  // Jungle themed
-  1: {
-    easy: {
-      name: 'Grass Fields',
-      image: 'grassField.jpeg',
-      floor: 1,
-      possibleBattles: ['small_rat_pack', 'rabbit', 'skunk', 'crab', 'snail']
-    },
+  personalQuest: PERSONAL_QUEST_LEVELS
 
-    hard: {
-      name: 'Woods',
-      image: 'woods.jpg',
-      floor: 1,
-      possibleBattles: ['fox', 'cat', 'cuteGoat', 'cutePig', 'cuteTurtle']
-    },
-
-    veryHard: {
-      name: 'Misty Ruins',
-      image: 'mistyRuins.jpeg',
-      floor: 1,
-      possibleBattles: ['elephant', 'puma', 'angryRooster']
-    },
-
-    boss: {
-      possibleBattles: ['floorOneBoss']
-    }
-  },
-
-  // Swamp Themed
-
-  // Water Themed
-}
+}, TOWER_FLOORS);

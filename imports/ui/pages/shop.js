@@ -41,7 +41,8 @@ Template.shopPage.rendered = function () {
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
     token: function(token) {
-      Meteor.call('shop.purchase', { token: token.id }, (err, res) => {
+      const currentPack = instance.state.get('currentPack');
+      Meteor.call('shop.purchase', { token: token.id, currentPack }, (err, res) => {
         if (err) {
           toastr.error('An error occured while purchasing gems');
         } else {
@@ -57,15 +58,41 @@ Template.shopPage.rendered = function () {
     }
   });
 
-  document.getElementById('purchaseButton').addEventListener('click', function(e) {
+  document.getElementById('purchaseButtonBunch').addEventListener('click', function(e) {
     // Open Checkout with further options:
     handler.open({
       name: 'Clicker',
-      description: 'Small Coin Pack',
-      zipCode: true,
+      description: 'Bunch Of Gems',
       currency: 'usd',
       amount: 499
     });
+    instance.state.set('currentPack', 'bunch')
+    instance.state.set('processing', true);
+    e.preventDefault();
+  });
+
+  document.getElementById('purchaseButtonBag').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handler.open({
+      name: 'Clicker',
+      description: 'Bag Of Gems',
+      currency: 'usd',
+      amount: 999
+    });
+    instance.state.set('currentPack', 'bag')
+    instance.state.set('processing', true);
+    e.preventDefault();
+  });
+
+  document.getElementById('purchaseButtonBox').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handler.open({
+      name: 'Clicker',
+      description: 'Box Of Gems',
+      currency: 'usd',
+      amount: 1999
+    });
+    instance.state.set('currentPack', 'box')
     instance.state.set('processing', true);
     e.preventDefault();
   });

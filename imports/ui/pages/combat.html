@@ -1,7 +1,7 @@
 <template name="combatPage">
   {{#if attackSkill}}
-    {{#if currentBattle}}
-      {{> battleTab}}
+    {{#if inCurrentBattle}}
+      {{> currentBattleUi}}
     {{else}}
       <div class="d-flex align-items-center">
         <div class="d-flex flex-column my-3" style="width: 200px">
@@ -25,8 +25,11 @@
         {{/each}}
       </div>
       <ul class="nav nav-tabs my-3">
-        <li class="nav-item battleTabLink">
-          <a class="nav-link {{#if showBattleTab}}active{{/if}}" href="#">Battle</a>
+        <li class="nav-item personalQuestTabLink">
+          <a class="nav-link {{#if showPersonalQuestTab}}active{{/if}}" href="#">Personal Quest</a>
+        </li>
+        <li class="nav-item towerTabLink">
+          <a class="nav-link {{#if showTowerTab}}active{{/if}}" href="#">The Tower</a>
         </li>
         <li class="nav-item equipmentTabLink">
           <a class="nav-link {{#if showEquipmentTab}}active{{/if}}" href="#">Equipment & Stats</a>
@@ -43,8 +46,10 @@
           </a>
         </li>
       </ul>
-      {{#if showBattleTab}}
-        {{> battleTab}}
+      {{#if showTowerTab}}
+        {{> towerTab}}
+      {{else if showPersonalQuestTab}}
+        Personal Quest
       {{else if showEquipmentTab}}
         {{> equipmentTab}}
       {{else if showCombatGroupTab}}

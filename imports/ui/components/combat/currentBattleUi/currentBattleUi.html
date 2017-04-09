@@ -1,0 +1,40 @@
+<template name="currentBattleUi">
+  <!-- Buffs list -->
+  <div class="d-flex my-1" style="min-height: 58px">
+    {{#each myUnitsBuffs}}
+      {{> buffIcon buff=this}}
+    {{/each}}
+  </div>
+
+  <!-- Battle Area -->
+  <div class="d-flex">
+    <div
+      class="col d-flex flex-column justify-content-end align-items-center"
+      style="border-right: 1px solid #dfdfdf">
+      <h1>My Units</h1>
+      <div class="d-flex flex-row flex-wrap">
+        {{#each currentBattle.units}}
+          {{> battleUnit unit=this isFriendly="true"}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="col d-flex flex-column justify-content-start align-items-center">
+      <h1>Enemy Units</h1>
+      <div class="d-flex flex-row flex-wrap">
+        {{#each currentBattle.enemies}}
+          {{> battleUnit unit=this isEnemy="true"}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Ability List -->
+  <div style="position: absolute; bottom: 0px; left: 0px; right: 0px; padding: 0 20px;">
+    <div class="d-flex my-3">
+      {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
+      {{#each equippedAbilities}}
+        {{> ability ability=this battleId=currentBattle._id}}
+      {{/each}}
+    </div>
+  </div>
+</template>

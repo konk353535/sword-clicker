@@ -10,9 +10,9 @@ export const BUFFS = buffs;
 export const COMBAT_ITEMS = combatItems;
 export const COMBAT = {
 
-  baseEnergyMax: 25,
+  baseEnergyMax: 20,
 
-  baseEnergyRegenPerMinute: 0.2, // 1 every 5 minutes
+  baseEnergyRegenPerMinute: 0.15, // 1 every 7 minutes
 
   baseHealthRegenPerMinute: 1,
 

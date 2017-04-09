@@ -11,7 +11,7 @@ import { Groups } from '/imports/api/groups/groups.js';
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
-import '/imports/ui/components/combat/battleTab/battleTab.js';
+import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
 import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
 
@@ -32,7 +32,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   if (Session.get('combatTab')) {
     this.state.set('currentTab', Session.get('combatTab'));
   } else {
-    this.state.set('currentTab', 'battle');
+    this.state.set('currentTab', 'personalQuestTab');
   }
 
   this.subscribe('groups');
@@ -73,9 +73,14 @@ Template.combatPage.events({
     Meteor.call('skills.learnSkill', 'attack');
   },
 
-  'click .battleTabLink'(event, instance) {
-    Session.set('combatTab', 'battle');
-    instance.state.set('currentTab', 'battle');
+  'click .personalQuestTabLink'(event, instance) {
+    Session.set('combatTab', 'personalQuest');
+    instance.state.set('currentTab', 'personalQuest');
+  },
+
+  'click .towerTabLink'(event, instance) {
+    Session.set('combatTab', 'tower');
+    instance.state.set('currentTab', 'tower');
   },
 
   'click .equipmentTabLink'(event, instance) {
@@ -126,8 +131,12 @@ Template.combatPage.helpers({
     return Template.instance().state.get('currentTab') === 'equipment';
   },
 
-  showBattleTab() {
-    return Template.instance().state.get('currentTab') === 'battle';
+  showPersonalQuestTab() {
+    return Template.instance().state.get('currentTab') === 'personalQuest';
+  },
+
+  showTowerTab() {
+    return Template.instance().state.get('currentTab') === 'tower';
   },
 
   showCombatGroupTab() {
@@ -138,7 +147,7 @@ Template.combatPage.helpers({
     return Template.instance().state.get('currentTab') === 'abilities';
   },
 
-  currentBattle() {
+  inCurrentBattle() {
     return Battles.findOne({
       finished: false
     });

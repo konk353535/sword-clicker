@@ -8,11 +8,10 @@ import _ from 'underscore';
 import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 
-import './battleTab.html';
+import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
+import './towerTab.html';
 
-let floatingTextInterval;
-
-Template.battleTab.onCreated(function bodyOnCreated() {
+Template.towerTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
@@ -26,39 +25,6 @@ Template.battleTab.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
-    const currentBattle = Battles.findOne({ finished: false });
-
-    if (currentBattle) {
-      currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
-        const offset = $(`#${tickEvent.to}`).offset();
-        let color;
-        if (tickEvent.label == 0) {
-          color = 'blue';
-        } else {
-          color = 'red';
-        }
-
-        // Determine left based on tick # + tickEventIndex
-        offset.left += -20 + ((tickEventIndex % 3) * 45); // -10 to 50
-
-        // Attempt to push floating text down when more then 3
-        if (tickEventIndex % 6 >= 3) {
-          offset.top += 40;
-        }
-
-        let element = `
-          <p
-            class='floating-text'
-            data-count=1
-            style='top: ${offset.top}px; left: ${offset.left}px; opacity: 1.0; color: ${color}'>
-            <i class="lilIcon-attack"></i>
-            ${tickEvent.label}
-          </p>
-        `;
-
-        $('body').append(element);
-      });
-    }
 
     const finishedBattle = Battles.findOne({
       finished: true,
@@ -86,17 +52,13 @@ Template.battleTab.onCreated(function bodyOnCreated() {
   });
 });
 
-Template.battleTab.onDestroyed(function () {
-  Meteor.clearInterval(floatingTextInterval);
-});
-
 const findBattleHandler = function (err, res) {
   if (err) {
     toastr.warning(err.reason);
   }
 }
 
-Template.battleTab.events({
+Template.towerTab.events({
   'click .battle-easy-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
   },
@@ -118,23 +80,7 @@ Template.battleTab.events({
   }
 })
 
-Template.battleTab.helpers({
-  currentBattle() {
-    return Battles.findOne({
-      finished: false
-    });
-  },
-
-  changeTargetAbility() {
-    return {
-      id: 'changeTarget',
-      icon: 'changeTarget',
-      description: 'Select a target to attack',
-      name: 'Attack Target',
-      currentCooldown: 0,
-      targettable: true
-    }
-  },
+Template.towerTab.helpers({
 
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');
@@ -152,52 +98,14 @@ Template.battleTab.helpers({
     return true;
   },
 
-  equippedAbilities() {
-    const myAbilities = Abilities.findOne();
-    if (!myAbilities) {
-      return;
-    }
-
-    const currentBattle = Battles.findOne({
+  inCurrentBattle() {
+    console.log('here');
+    console.log(Battles.findOne({
+      finished: false
+    }));
+    return Battles.findOne({
       finished: false
     });
-    if (!currentBattle) {
-      return;
-    }
-    const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
-    const abilityMap = {};
-
-    myUnit.abilities.forEach((ability) => {
-      abilityMap[ability.id] = {
-        currentCooldown: ability.currentCooldown,
-        id: ability.id
-      }
-    });
-
-    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
-      if (abilityMap[ability.abilityId]) {
-        ability.currentCooldown = abilityMap[ability.abilityId].currentCooldown;
-      }
-      return ability.equipped;
-    });
-
-    return equippedAbilities;
-  },
-
-  myUnitsBuffs() {
-    const currentBattle = Battles.findOne({
-      finished: false
-    });
-    if (!currentBattle) {
-      return [];
-    }
-
-    const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
-    if (!myUnit) {
-      return [];
-    }
-
-    return myUnit.buffs;
   },
 
   floorDetails() {

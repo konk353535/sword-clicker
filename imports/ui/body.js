@@ -23,10 +23,8 @@ Template.body.onCreated(function () {
   Tracker.autorun(() => {
     if (Meteor.user()) {
       if (moment().isBefore(Meteor.user().membershipTo)) {
-        console.log('true');
         Session.set('isMember', true);
       } else {
-        console.log('false');
         Session.set('isMember', false);
       }
     }

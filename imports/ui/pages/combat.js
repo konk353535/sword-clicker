@@ -14,6 +14,7 @@ import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
 import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
+import '/imports/ui/components/combat/personalQuestTab/personalQuestTab.js';
 
 import './combat.html';
 

@@ -12,7 +12,10 @@ UserSchema = new SimpleSchema({
   membershipTo: { type: Date, optional: true },
   gems: { type: Number, defaultValue: 0 },
   uiState: { type: Object, blackbox: true }, // used to save ui state, eg: hide / show chat
-  username: { type: String }
+  username: { type: String },
+  personalQuest: { type: Object },
+  'personalQuest.level': { type: Number, defaultValue: 1 },
+  'personalQuest.wave': { type: Number, defaultValue: 1 }
 })
 
 Meteor.users.attachSchema(UserSchema);

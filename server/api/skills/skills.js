@@ -41,7 +41,7 @@ export const addXp = function (skillType, xp, specificUserId) {
       // Update Level
       Skills.update(skill._id, {
         $inc: { level: 1, totalXp: xp },
-        $set: { xp: (skill.xp % xpToNextLevel) }
+        $set: { xp: (skill.xp - xpToNextLevel) }
       });
 
       // If this is attack / Defense / Health recompute combat

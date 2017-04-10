@@ -10,7 +10,7 @@
   </div>
 
   <h2>Mining Upgrades</h2>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row flex-wrap">
     <div class="icon-box buy-miner">
         <img src="/icons/miner.svg" class="ore-icon">
         {{mining.miners}} / {{mining.maxMiners}}
@@ -49,16 +49,16 @@
       </div>
       <div class="d-flex flex-column ml-3">
         <div class="d-flex align-items-center">
-          {{mining.stats.attack}}<i class="lilIcon-attack mx-1"></i> Damage your pick does per click
+          {{mining.stats.attack}}<i class="lilIcon-attack mx-1"></i> Damage per click.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Maximum energy your pickaxe can store
+          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy used per click
+          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Amount of energy regenerated per minute
+          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
         </div>
         <div class="d-flex align-items-center">
           {{#if isMember}}
@@ -67,7 +67,7 @@
           {{else}}
             {{mining.stats.miner}}%
           {{/if}}
-          <i class="lilIcon-miner mx-1"></i> Percentage increase of all your miners damage
+          <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
         </div>
 
       </div>

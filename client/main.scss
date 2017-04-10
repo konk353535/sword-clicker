@@ -4,6 +4,56 @@
 @import "styles/chat.scss";
 @import "styles/icons.scss";
 
+
+
+.body-content {
+  margin-left: $spacer / 2;
+  margin-right: $spacer / 2;
+}
+
+@media (min-width: 768px) {
+
+  // Fix so tables are full width on pc
+  .table-responsive {
+    display: table;
+  }
+
+  // General fix so more content is visible on mobile
+  .body-content {
+    margin-left: $spacer;
+    margin-right: $spacer;
+  }
+
+  // Desktop specific optimization for the equipment screen
+  .stats-row {
+    width: 50%;
+  }
+
+  .equipment-row {
+    width: 50%;
+    margin-right: $spacer;
+  }
+
+  .skills-page {
+    .player-skills-container {
+      width: 50%;
+      margin-right: $spacer;
+    }
+
+    .highscore-skills-container {
+      width: 50%;
+      margin-left: $spacer;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  // So nav tabs don't expand too far on mobile
+  .nav-tabs {
+    overflow-x: scroll;
+  }
+}
+
 .disabled-row {
   opacity: 0.5;
   cursor: not-allowed;

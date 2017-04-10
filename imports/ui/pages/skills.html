@@ -1,7 +1,7 @@
 <template name="skillsPage">
-  <div class="d-flex p-3">
+  <div class="d-flex p-3 flex-column flex-md-row skills-page">
     <!-- Your Skills -->
-    <div class="d-flex flex-column mr-3" style="width: 50%">
+    <div class="d-flex player-skills-container flex-column">
       <h1>Skills</h1>
       {{#each skills}}
         <div class="d-flex align-items-center my-1">
@@ -19,9 +19,9 @@
     </div>
 
     <!-- Skill Highscores -->
-    <div class="d-flex flex-column ml-3" style="width: 50%">
+    <div class="d-flex highscore-skills-container flex-column">
       <h1>Highscores</h1>
-      <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap mb-3">
         {{#each possibleSkills}}
           <div
             class="icon-border p-2 m-1 select-skill
@@ -32,7 +32,7 @@
           </div>
         {{/each}}
       </div>
-      <table class="table table-sm table-centered">
+      <table class="table table-sm table-centered table-responsive">
         <thead>
           <tr>
             <th>Rank</th>

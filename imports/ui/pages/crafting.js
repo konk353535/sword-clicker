@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { determineRequiredItems } from '/imports/ui/utils.js';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -79,6 +80,9 @@ Template.craftingPage.events({
   'keyup .craft-amount-input'(event, instance) {
     let newValue = parseInt($(event.target).val());
     if (newValue && !isNaN(newValue)) {
+      if (newValue > instance.state.get('maxCraftableAmount')) {
+        newValue = instance.state.get('maxCraftableAmount');
+      }
       instance.state.set('craftAmount', newValue);
     }
   },
@@ -89,9 +93,20 @@ Template.craftingPage.events({
 
     const recipeConstants = recipeListMap[recipeId];
 
+    let { maxCraftable, notMet } = determineRequiredItems(recipeConstants);
+
+    if (notMet) {
+      return toastr.warning('Not enough resources to craft');
+    }
+
+    if (maxCraftable > recipeConstants.maxToCraft) {
+      maxCraftable = JSON.parse(JSON.stringify(recipeConstants.maxToCraft));
+    }
+
     if (recipeConstants.maxToCraft > 1) {
+      instance.state.set('maxCraftableAmount', maxCraftable);
       instance.state.set('maxCraftAmount', recipeConstants.maxToCraft);
-      instance.state.set('craftAmount', 1);
+      instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
       instance.state.set('multiCraftRecipeId', recipeId);
       instance.$('.multiCraftModal').modal('show');
     } else {
@@ -107,7 +122,10 @@ Template.craftingPage.events({
 
   'click .craft-btn'(event, instance) {
     const recipeId = instance.state.get('multiCraftRecipeId');
-    const amountToCraft = parseInt(instance.state.get('craftAmount'));
+    const amountToCraft = parseInt($(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
+    
+    const recipeListMap = instance.state.get('recipeListMap');
+    const recipeConstants = recipeListMap[recipeId];
 
     instance.$('.multiCraftModal').modal('hide');
     Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
@@ -136,6 +154,10 @@ Template.craftingPage.helpers({
 
   craftAmount() {
     return Template.instance().state.get('craftAmount');
+  },
+
+  maxCraftableAmount() {
+    return Template.instance().state.get('maxCraftableAmount');
   },
 
   recipeFilter() {

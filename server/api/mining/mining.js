@@ -30,8 +30,6 @@ export const updateMiningStats = function (userId, isNewUser = false) {
     equipped: true
   });
 
-  console.log(pickaxe);
-
   let pickaxeStats = {};
   if (pickaxe) {
     // Apply pickaxe stats

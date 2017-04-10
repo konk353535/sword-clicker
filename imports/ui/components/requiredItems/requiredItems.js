@@ -3,65 +3,26 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Items } from '/imports/api/items/items.js';
 import { Skills } from '/imports/api/skills/skills.js';
+import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './requiredItems.html';
 
 const fetchRequiredItems = function (instance) {
-  let hasSkillRequirements = false;
-  let hasItemRequirements = false;
-  let hasConsumeItemRequirements = false;
   let recipeName = instance.data.recipeName;
-
   const requiredItems = instance.data.requiredItems;
 
   if (!requiredItems && !recipeName) {
     return;
   }
 
-  let notMet = false;
-  const result = requiredItems.map((requiredItem) => {
-    requiredItem.notMet = false;
-
-    if (requiredItem.type === 'gold') {
-      if (Meteor.user().gold < requiredItem.amount) {
-        requiredItem.notMet = true;
-        notMet = true;
-      }
-    } else if (requiredItem.type === 'skill') {
-      const requiredSkill = Skills.findOne({ type: requiredItem.name });
-      if (!requiredSkill || requiredSkill.level < requiredItem.level) {
-        requiredItem.notMet = true;
-        notMet = true;
-      }
-    } else {
-      const hasItem = Items.findOne({ itemId: requiredItem.itemId });
-
-      if (!hasItem) {
-        requiredItem.notMet = true;
-        notMet = true;
-      } else if (hasItem.amount < requiredItem.amount) {
-        requiredItem.notMet = true;
-        notMet = true;
-      }
-    }
-
-    if (requiredItem.type === 'skill') {
-      hasSkillRequirements = true;
-    } else {
-      if (requiredItem.consumes) {
-        hasConsumeItemRequirements = true;
-      } else {
-        hasItemRequirements = true;          
-      }
-    }
-
-    return requiredItem;
+  const result = determineRequiredItems({
+    required: requiredItems
   });
 
-  instance.state.set('hasSkillRequirements', hasSkillRequirements);
-  instance.state.set('hasItemRequirements', hasItemRequirements);
-  instance.state.set('hasConsumeItemRequirements', hasConsumeItemRequirements);
-  instance.state.set('computedRequiredItems', result);
+  instance.state.set('hasSkillRequirements', result.hasSkillRequirements);
+  instance.state.set('hasItemRequirements', result.hasItemRequirements);
+  instance.state.set('hasConsumeItemRequirements', result.hasConsumeItemRequirements);
+  instance.state.set('computedRequiredItems', result.recipeItems);
 
   if (instance.data.requirementsMet) {
     instance.data.requirementsMet(!notMet);

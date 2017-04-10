@@ -14,13 +14,23 @@ import { MiningSpace } from '/imports/api/mining/mining';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
-export const updateMiningStats = function () {
+export const updateMiningStats = function (userId, isNewUser = false) {
+
+  let owner;
+  if (userId) {
+    owner = userId;
+  } else {
+    owner = Meteor.userId();
+  }
+
   // Fetch equipped pick axe
   const pickaxe = Items.findOne({
-    owner: Meteor.userId(),
+    owner,
     slot: 'pickaxe',
     equipped: true
   });
+
+  console.log(pickaxe);
 
   let pickaxeStats = {};
   if (pickaxe) {
@@ -38,11 +48,17 @@ export const updateMiningStats = function () {
     }
   }
 
+
   pickaxeStats.energy = 0;
+
+  // New users get full energy on there pick instantly.
+  if (isNewUser) {
+    pickaxeStats.energy = pickaxeStats.energyStorage;
+  }
 
   // Set player stats
   Mining.update({
-    owner: Meteor.userId()
+    owner
   }, {
     $set: {
       stats: pickaxeStats

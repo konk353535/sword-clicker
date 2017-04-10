@@ -5,6 +5,8 @@ import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Combat } from '../../api/combat/combat.js';
 import { Abilities } from '../../api/abilities/abilities.js';
 import { addItem } from '/server/api/items/items.js';
+import { Items } from '/imports/api/items/items.js';
+import { updateMiningStats } from '/server/api/mining/mining.js';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -64,6 +66,20 @@ AccountsTemplates.configure({
     }
 
     addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
+
+    // Equip the pick axe
+    Items.update({
+      owner: userId,
+      itemId: ITEMS['primitive_pickaxe'].id
+    }, {
+      $set: {
+        equipped: true,
+        slot: ITEMS['primitive_pickaxe'].slot
+      }
+    });
+
+    // Update mining stats
+    updateMiningStats(userId, true);
   }
 });
 

@@ -122,12 +122,40 @@ const completeBattle = function (actualBattle) {
   // Update all player units healths
   const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits);
   allFriendlyUnits.forEach((unit) => {
-    // Update relevant stuff
+    // Update relevant stuff, use callback so this is non blocking
     Combat.update({
       owner: unit.owner
     }, {
       $set: {
         'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+      }
+    }, (err, res) => {
+      // This is intentionally empty
+      // As providing a callback means this will not block the loop from continuing
+
+      // Update ability cooldowns ect
+      const userAbilities = Abilities.findOne({
+        owner: unit.owner
+      });
+
+      console.log('a');
+      if (userAbilities) {
+        console.log('b');
+        // Modify relevant abiltiy id cooldowns and update
+        userAbilities.learntAbilities.forEach((ability) => {
+          console.log('c');
+          const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
+          if (abilityToUpdate) {
+            console.log('d');
+            ability.currentCooldown = abilityToUpdate.currentCooldown;
+          }
+        });
+
+        Abilities.update(userAbilities._id, {
+          $set: {
+            learntAbilities: userAbilities.learntAbilities
+          }
+        });
       }
     });
   });
@@ -534,7 +562,8 @@ const startBattle = function (battleData, floor, difficulty) {
     }).map((ability) => {
       return {
         id: ability.abilityId,
-        level: ability.level
+        level: ability.level,
+        currentCooldown: ability.currentCooldown || 0
       }
     });
 

@@ -28,7 +28,7 @@ export const MINING_ITEMS = {
     icon: 'iron',
     category: 'mining',
     name: 'iron',
-    sellPrice: 10
+    sellPrice: 50
   },
 
   ore_steel: {
@@ -36,7 +36,7 @@ export const MINING_ITEMS = {
     icon: 'steel',
     category: 'mining',
     name: 'steel',
-    sellPrice: 20
+    sellPrice: 150
   },
 
   primitive_pickaxe: {
@@ -51,15 +51,15 @@ export const MINING_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 20, // Maximum energy stored
-      attack: 4, // Damage per hit
+      attack: 10, // Damage per hit
       energyPerHit: 1, // Energy used per hit
-      energyRegen: 15, // Energy regen per minute
+      energyRegen: 7, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 20,
-      attack: 2,
-      energyRegen: 5,
+      attack: 5,
+      energyRegen: 3,
       miner: 24
     }
   },
@@ -75,17 +75,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 40, // Maximum energy stored
-      attack: 10, // Damage per hit
-      energyPerHit: 2, // Energy used per hit
-      energyRegen: 20, // Energy regen per minute
+      energyStorage: 20, // Maximum energy stored
+      attack: 20, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 5, // Energy regen per minute
       miner: 25 // Increases effeciency of miners
     },
     extraStats: {
-      energyStorage: 40,
-      attack: 5,
+      energyStorage: 20,
+      attack: 10,
       miner: 75,
-      energyRegen: 15
+      energyRegen: 2
     }
   },
 
@@ -100,17 +100,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 60, // Maximum energy stored
-      attack: 17, // Damage per hit
-      energyPerHit: 3, // Energy used per hit
-      energyRegen: 17, // Energy regen per minute
+      energyStorage: 20, // Maximum energy stored
+      attack: 30, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 4, // Energy regen per minute
       miner: 50 // Increases effeciency of miners
     },
     extraStats: {
-      energyStorage: 60,
-      attack: 8,
+      energyStorage: 20,
+      attack: 20,
       miner: 100,
-      energyRegen: 17
+      energyRegen: 2
     }
   },
 
@@ -147,17 +147,17 @@ export const MINING_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 100, // Maximum energy stored
-      attack: 25, // Damage per hit
-      energyPerHit: 4, // Energy used per hit
-      energyRegen: 20, // Energy regen per minute
+      energyStorage: 20, // Maximum energy stored
+      attack: 50, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 4, // Energy regen per minute
       miner: 125 // Increases effeciency of miners
     },
     extraStats: {
-      energyStorage: 100,
-      attack: 15,
+      energyStorage: 20,
+      attack: 25,
       miner: 125,
-      energyRegen: 20
+      energyRegen: 2
     }
   }
 }

@@ -14,15 +14,15 @@ export const MINING = {
   miners: {
     max: 10,
     cost(currentMinersCount) {
-      return 10 + ((currentMinersCount - 1) * 40) * (currentMinersCount - 1);
+      return 10 + ((currentMinersCount - 1) * 30) * (currentMinersCount - 1) * (currentMinersCount - 1);
     },
-    damagePerSecond: 0.08
+    damagePerSecond: 0.07
   },
   ores: {
     stone: {
       requiredLevel: 1,
-      healthMax: 6,
-      xp: 2,
+      healthMax: 10,
+      xp: 1,
       id: 'stone',
       icon: 'stone',
       name: 'stone',
@@ -32,19 +32,19 @@ export const MINING = {
 
     copper: {
       requiredLevel: 2,
-      healthMax: 15,
+      healthMax: 30,
       xp: 3,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
       itemId: 'ore_copper',
-      chance: 0.35
+      chance: 0.3
     },
 
     coal: {
       requiredLevel: 2,
-      healthMax: 50,
-      xp: 5,
+      healthMax: 100,
+      xp: 10,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
@@ -54,8 +54,8 @@ export const MINING = {
 
     iron: {
       requiredLevel: 5,
-      healthMax: 200,
-      xp: 10,
+      healthMax: 500,
+      xp: 40,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
@@ -65,8 +65,8 @@ export const MINING = {
 
     steel: {
       requiredLevel: 10,
-      healthMax: 400,
-      xp: 25,
+      healthMax: 2000,
+      xp: 100,
       id: 'steel',
       icon: 'steel',
       name: 'steel',

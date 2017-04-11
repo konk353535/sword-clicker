@@ -37,6 +37,12 @@
     </div>
   {{/if}}
 
+  {{#unless equippedItemsMap.mainHand}}
+    <div class="alert alert-danger">
+      Warning you don't have a weapon equipped! You can equip one in the 'Equipments and Stats' tab.
+    </div>
+  {{/unless}}
+
   <!-- List stuff! -->
   <table class="table table-responsive">
     <thead>

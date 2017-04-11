@@ -7,6 +7,7 @@ import _ from 'underscore';
 
 import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Items } from '/imports/api/items/items.js';
 
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import './towerTab.html';
@@ -106,6 +107,20 @@ Template.towerTab.helpers({
     return Battles.findOne({
       finished: false
     });
+  },
+
+  equippedItemsMap() {
+    const equippedItems = Items.find({
+      category: 'combat',
+      equipped: true
+    });
+
+    const equippedMap = {};
+    equippedItems.forEach((item) => {
+      equippedMap[item.slot] = item;
+    });
+
+    return equippedMap;
   },
 
   floorDetails() {

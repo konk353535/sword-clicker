@@ -12,7 +12,7 @@ export const ABILITIES = {
     name: 'Berserk',
     id: 'berserk',
     buffs: ['berserk'],
-    cooldown: 1,
+    cooldown: 120,
     slot: 'any',
     target: 'self',
     isHidden: false,

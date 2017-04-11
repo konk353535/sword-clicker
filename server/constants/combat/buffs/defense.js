@@ -25,7 +25,7 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         target.buffs = target.buffs.filter((targetBuff) => {
-          targetBuff.id !== buff.id
+          return targetBuff.id !== buff.id;
         });
       }
     }
@@ -87,7 +87,7 @@ export const DEFENSE_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id;
           });
         }
       },
@@ -140,7 +140,7 @@ export const DEFENSE_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id;
           });
         }
       },
@@ -194,7 +194,7 @@ export const DEFENSE_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id;
           });
         }
       },
@@ -249,7 +249,7 @@ export const DEFENSE_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id;
           });
         }
       },

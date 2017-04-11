@@ -15,7 +15,7 @@ export const TOWER_FLOOR_1 = {
     name: 'Woods',
     image: 'woods.jpg',
     floor: 1,
-    possibleBattles: ['fox', 'cat', 'cuteGoat', 'cutePig', 'cuteTurtle']
+    possibleBattles: ['fox', 'cat']
   },
 
   veryHard: {

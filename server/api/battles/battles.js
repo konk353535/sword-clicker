@@ -198,6 +198,15 @@ const castAbility = function({ ability, caster, targets, actualBattle }) {
     newBuffs.forEach((buff) => {
       if (buff.constants.events.onApply) {
         buff.constants.events.onApply({ buff, target, caster, actualBattle });
+
+        // Remove existing buffs that match
+        if (target.buffs && target.buffs.length > 0) {
+          let existingBuff = _.findWhere(target.buffs, { id: buff.id });
+          if (existingBuff) {
+            existingBuff.data.duration = -1;
+            buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle });
+          }
+        }
       }
     });
 

@@ -165,6 +165,16 @@ Meteor.methods({
         const buffTarget = currentCombat;
         const buffCaster = currentCombat;
         buff.constants.events.onApply({ buff, caster: buffCaster, target: buffTarget });
+
+        // Remove existing buffs that match
+        if (currentCombat.buffs && currentCombat.buffs.length > 0) {
+          let existingBuff = _.findWhere(currentCombat.buffs, { id: buff.id });
+          if (existingBuff) {
+            existingBuff.data.duration = -1;
+            existingBuff.constants = buff.constants;
+            buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target: currentCombat });
+          }
+        }
       }
     });
 

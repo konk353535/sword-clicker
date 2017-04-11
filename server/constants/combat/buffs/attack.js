@@ -78,7 +78,7 @@ export const ATTACK_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id
           });
         }
       },
@@ -131,7 +131,7 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         target.buffs = target.buffs.filter((targetBuff) => {
-          targetBuff.id !== buff.id
+          return targetBuff.id !== buff.id
         });
       }
     }
@@ -170,7 +170,7 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         target.buffs = target.buffs.filter((targetBuff) => {
-          targetBuff.id !== buff.id
+          return targetBuff.id !== buff.id
         });
       }
     }
@@ -222,7 +222,7 @@ export const ATTACK_BUFFS = {
           // Call the onremove event
           buff.constants.events.onRemove({ buff, target, caster });
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id
           });
         }
       },
@@ -285,7 +285,7 @@ export const ATTACK_BUFFS = {
 
         if (buff.data.duration < 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
-            targetBuff.id !== buff.id
+            return targetBuff.id !== buff.id
           });
         }
       }

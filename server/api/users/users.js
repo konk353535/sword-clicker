@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
+import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
+import { Mining } from '/imports/api/mining/mining';
 
 Meteor.methods({
 
@@ -16,6 +18,14 @@ Meteor.methods({
         uiState: {}
       }
     });
+  },
+
+  'users.activeUsers'() {
+    return Mining.find({
+      lastGameUpdated: {
+        $gte: moment().subtract(5, 'minutes').toDate()
+      }
+    }).count();
   },
 
   'users.setUiState'(id, value) {

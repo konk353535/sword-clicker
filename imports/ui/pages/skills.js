@@ -10,6 +10,11 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('selectedSkill', 'total');
 
+  // Fetch active users count
+  Meteor.call('users.activeUsers', (err, res) => {
+    this.state.set('activeUsers', res);
+  });
+
   this.autorun(() => {
     const skillName = this.state.get('selectedSkill');
     Meteor.call('skills.highscores', skillName, (err, res) => {
@@ -56,6 +61,10 @@ Template.skillsPage.helpers({
       { type: 'woodcutting' },
       { type: 'health' }
     ];
+  },
+
+  activeUsers() {
+    return Template.instance().state.get('activeUsers');
   },
 
   highscores() {

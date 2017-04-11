@@ -24,10 +24,12 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
 Template.chatWindow.events({
   'click .chat-minimized'(event, instance) {
+    this.state.set('minimized', false); // Do instantly in UI to avoid delay
     Meteor.call('users.setUiState', 'showChat', true)
   },
 
   'click .minimize-icon'(event, instance) {
+    this.state.set('minimized', true); // Do instantly in UI to avoid delay
     Meteor.call('users.setUiState', 'showChat', false)
   }
 })

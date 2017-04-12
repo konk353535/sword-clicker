@@ -9,7 +9,7 @@ CombatSchema = new SimpleSchema({
   username: { type: String, optional: true },
   stats: { type: Object },
   'stats.attack': { type: Number, defaultValue: 0 },
-  'stats.attackMax': { type: Number, defaultValue: 0 },
+  'stats.attackMax': { type: Number, decimal: true, defaultValue: 0 },
   'stats.attackSpeed': { type: Number, decimal: true, defaultValue: 0 },
   'stats.accuracy': { type: Number, defaultValue: 0 },
   'stats.health': { type: Number, defaultValue: 10, decimal: true },

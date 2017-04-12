@@ -12,19 +12,6 @@ import { Skills } from '/imports/api/skills/skills';
 
 Meteor.startup(() => {
 
-  // Remove battles that are over 10 minutes old
-  Battles.update({
-    finished: false,
-    createdAt: {
-      $lte: moment().subtract(10, 'minutes').toDate()
-    }
-  }, {
-    $set: {
-      finished: true,
-      win: false
-    }
-  });
-
   // Start processing abandoned battles
   Battles.find({
     finished: false

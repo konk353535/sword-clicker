@@ -138,15 +138,11 @@ const completeBattle = function (actualBattle) {
         owner: unit.owner
       });
 
-      console.log('a');
       if (userAbilities) {
-        console.log('b');
         // Modify relevant abiltiy id cooldowns and update
         userAbilities.learntAbilities.forEach((ability) => {
-          console.log('c');
           const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
           if (abilityToUpdate) {
-            console.log('d');
             ability.currentCooldown = abilityToUpdate.currentCooldown;
           }
         });
@@ -252,6 +248,21 @@ const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.tickEvents = [];
   actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
+  let isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(30, 'seconds'));
+  let isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
+
+  // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
+  if (isUpdatedStale || isCreatedStale) {
+    Battles.update(actualBattle._id, {
+      $set: {
+        finished: true,
+        win: false
+      }
+    });
+    Meteor.clearInterval(battleIntervalId);
+    return;
+  }
+
   // Fetch actions related to this battle
   const battleActions = BattleActions.find({
     battleId: actualBattle._id
@@ -275,7 +286,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    const hitChance = 0.4 + ((attacker.stas.accuracy - defender.stats.defense) / 200);
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));

@@ -149,7 +149,8 @@ const completeBattle = function (actualBattle) {
 
         Abilities.update(userAbilities._id, {
           $set: {
-            learntAbilities: userAbilities.learntAbilities
+            learntAbilities: userAbilities.learntAbilities,
+            lastGameUpdated: new Date()
           }
         });
       }
@@ -286,7 +287,7 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    const hitChance = 0.4 + ((attacker.stas.accuracy - defender.stats.defense) / 200);
+    const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
@@ -566,11 +567,20 @@ const startBattle = function (battleData, floor, difficulty) {
     userCombatStats.attackSpeedTicks = attackSpeedTicks(userCombatStats.attackSpeed);
 
     // Fetch this users currently equipped abilities
-    const usersEquippedAbilities = Abilities.findOne({
+    const usersAbilities = Abilities.findOne({
       owner: userCombat.owner
-    }).learntAbilities.filter((ability) => {
+    });
+
+    const now = moment();
+    const secondsElapsed = moment.duration(now.diff(usersAbilities.lastGameUpdated)).asSeconds();
+
+    const usersEquippedAbilities = usersAbilities.learntAbilities.filter((ability) => {
       return ability.equipped;
     }).map((ability) => {
+      if (ability.currentCooldown > 0) {
+        ability.currentCooldown -= secondsElapsed;
+      }
+
       return {
         id: ability.abilityId,
         level: ability.level,

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import _ from 'underscore';
+import moment from 'moment';
 
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
@@ -10,6 +11,29 @@ import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
 
 import { consumeItem } from '/server/api/items/items';
+
+export const updateAbilityCooldowns = function updateAbilityCooldowns(userId) {
+  let owner = userId;
+  if (!owner) {
+    owner = this.userId;
+  }
+
+  const myAbilities = Abilities.findOne({ owner });
+  const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
+
+  myAbilities.learntAbilities.forEach((ability) => {
+    if (ability.currentCooldown > 0) {
+      ability.currentCooldown -= secondsElapsed;
+    }
+  });
+
+  Ability.update(myAbilities._id, {
+    $set: {
+      learntAbilities: myAbilities.learntAbilities,
+      lastGameUpdated: new Date()
+    }
+  });
+}
 
 Meteor.methods({
 

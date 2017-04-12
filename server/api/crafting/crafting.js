@@ -137,7 +137,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
-    console.log('Already crafting');
+    throw new Meteor.Error("already-crafting", "Already crafting too many items.");
     return;
   }
 

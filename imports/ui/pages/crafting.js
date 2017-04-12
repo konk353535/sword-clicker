@@ -112,7 +112,7 @@ Template.craftingPage.events({
     } else {
       Meteor.call('crafting.craftItem', recipeId, 1, (err) => {
         if (err) {
-          toastr.warning('Failed to craft item');
+          toastr.warning(err.reason);
         } else {
           toastr.success(`Started crafting ${recipeConstants.name}`)
         }

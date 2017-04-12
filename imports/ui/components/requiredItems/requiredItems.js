@@ -25,7 +25,7 @@ const fetchRequiredItems = function (instance) {
   instance.state.set('computedRequiredItems', result.recipeItems);
 
   if (instance.data.requirementsMet) {
-    instance.data.requirementsMet(!notMet);
+    instance.data.requirementsMet(!result.notMet);
   }
 }
 

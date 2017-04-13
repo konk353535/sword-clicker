@@ -3,18 +3,22 @@
     Personal Quest
     <div class="dropdown ml-2">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Level 1
+        Level {{usersCurrentLevel}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Level 2</a>
-        <a class="dropdown-item" href="#">Level 3</a>
-        <a class="dropdown-item" href="#">Level 4</a>
+        {{#each levelsList}}
+          <a class="dropdown-item select-level" href="#" data-level={{this}}>Level {{this}}</a>
+        {{/each}}
       </div>
     </div>
   </h1>
   <div class="d-flex justify-content-center flex-column align-items-center" style="height: 300px">
-    <h2>Waves Remaining</h2>
-    <h4>9 / 10</h4>
-    <button class="btn btn-primary mt-1">Battle</button>
+    {{#if $eq usersCurrentLevel maxLevel}}
+      <h4>Wave {{maxLevelCurrentWave}} / 5</h4>
+      <button class="btn btn-primary mt-1 find-battle">Battle</button>
+    {{else}}
+      <h4>Already Completed All Waves</h4>  
+      <button class="btn btn-primary mt-1 random-battle">Battle Random Wave</button>
+    {{/if}}
   </div>
 </template>

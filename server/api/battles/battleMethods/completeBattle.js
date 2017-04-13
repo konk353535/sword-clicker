@@ -6,6 +6,7 @@ import { addItem } from '/server/api/items/items';
 
 import { Battles } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
+import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
@@ -131,6 +132,27 @@ export const completeBattle = function (actualBattle) {
         updateModifier['$setOnInsert'][`${actualBattle.difficulty}Waves`] = 1;
 
         FloorWaveScores.upsert(updateSelector, updateModifier)
+      });
+    } else if (actualBattle.level && actualBattle.wave) {
+      // Should only be for one person? but a good habit I guess?
+      owners.forEach((owner) => {
+        const userObject = Users.findOne({ _id: owner });
+        if (userObject.personalQuest.level === actualBattle.level) {
+          if (actualBattle.wave + 1 > 5) {
+            Users.update(owner, {
+              $set: {
+                'personalQuest.level': actualBattle.level + 1,
+                'personalQuest.wave': 1
+              }
+            })
+          } else {
+            Users.update(owner, {
+              $set: {
+                'personalQuest.wave': actualBattle.wave + 1
+              }
+            });
+          }
+        }
       });
     }
   } else {

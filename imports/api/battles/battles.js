@@ -12,6 +12,8 @@ BattlesSchema = new SimpleSchema({
 
   floor: { type: Number, optional: true },
   difficulty: { type: String, optional: true },
+  level: { type: Number, optional: true },
+  wave: { type: Number, optional: true },
 
   win: { type: Boolean, optional: true },
   finished: { type: Boolean, defaultValue: false },

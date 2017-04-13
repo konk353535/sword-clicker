@@ -14,7 +14,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 
 import { progressBattle } from './progressBattle.js';
 
-export const startBattle = function (battleData, floor, difficulty) {
+export const startBattle = function (battleData, { floor, difficulty, level, wave }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   // Is user in a group? If so this is a group battle
@@ -32,8 +32,7 @@ export const startBattle = function (battleData, floor, difficulty) {
   // Ensure battle particiapnts aren't already in a battle
   const currentBattle = Battles.findOne({ owners: battleParticipants, finished: false });
   if (currentBattle) {
-    // All members of the group must not be in a battle, to start one
-    return;
+    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is still in one.');
   }
 
   // Create clone of battle objects
@@ -65,6 +64,8 @@ export const startBattle = function (battleData, floor, difficulty) {
     owners: battleParticipants,
     floor,
     difficulty,
+    wave,
+    level,
     tickEvents: [],
     units: [],
     enemies: []

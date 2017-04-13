@@ -25,6 +25,32 @@ export const resumeBattle = function(id) {
 
 
 Meteor.methods({
+
+  'battles.findPersonalBattle'(level, wave) {
+    // Ensure user has access to specified wave
+    const maxLevel = Meteor.user().personalQuest.level;
+    const maxWave = Meteor.user().personalQuest.wave;
+
+    if (level === maxLevel && wave !== maxWave) {
+      throw new Meteor.Error("no-sir", "Can only fight the current wave, for levels you have not completed");
+    } else if (level > maxLevel) {
+      throw new Meteor.Error("no-sir", "You are not up to the specified level");
+    } else if (level <= 0) {
+      throw new Meteor.Error("no-sir", "Cannot select a level below 1");      
+    }
+
+    if (!wave) {
+      wave = _.random(1, 5);
+    }
+
+    const targetBattle = FLOORS.personalQuest[level].waves[wave - 1];
+    if (targetBattle) {
+      startBattle(targetBattle, { level, wave });
+    } else {
+      throw new Meteor.Error("oh... sorry!", "Couldnt find the specified battle for that level and wave combo");
+    }
+  },
+
   'battles.findBattle'(floor, difficulty) {
     if (!_.contains(['easy', 'hard', 'veryHard', 'boss'], difficulty)) {
       return;
@@ -60,7 +86,7 @@ Meteor.methods({
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle(_.sample(possibleBattles), floor, difficulty);
+    startBattle(_.sample(possibleBattles), { floor, difficulty });
   },
 
   'battles.getWaveDetails'() {

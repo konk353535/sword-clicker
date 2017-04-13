@@ -159,16 +159,24 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
     const enemyStats = enemyConstants.stats;
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
     for (let i = 0; i < enemy.amount; i++) {
+      const randomUnitTarget = _.sample(newBattle.units);
       totalXpGain += BATTLES.xpGain(enemyStats);
       newBattle.enemies.push({
         id: Random.id(),
         stats: enemyStats,
         icon: enemyConstants.icon,
         buffs: [],
+        target: randomUnitTarget.id,
         enemyId: enemyConstants.id,
         name: enemyConstants.name
       });
     }
+  });
+
+  // Make random targets for units
+  newBattle.units.forEach((unit) => {
+    const randomEnemyTarget = _.sample(newBattle.enemies);
+    unit.target = randomEnemyTarget.id;
   });
 
   newBattle.totalXpGain = totalXpGain;

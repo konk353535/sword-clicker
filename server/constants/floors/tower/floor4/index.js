@@ -1,7 +1,7 @@
 export const TOWER_FLOOR_4 = {
   easy: {
-    name: 'Greek Garden',
-    image: 'greekGarden.jpeg',
+    name: 'Jungle Bridge',
+    image: 'jungleBridge.jpeg',
     floor: 4,
     possibleBattles: [
       { enemies: [{ id: 'e_cat', amount: 1 }] },
@@ -13,8 +13,8 @@ export const TOWER_FLOOR_4 = {
   },
 
   hard: {
-    name: 'Rocky Mountain',
-    image: 'rockyMountain.jpeg',
+    name: 'Lone Island',
+    image: 'loneIsland.jpeg',
     floor: 4,
     possibleBattles: [
       { enemies: [{ id: 'wolf', amount: 1 }, { id: 'e_cat', amount: 1}] },
@@ -26,8 +26,8 @@ export const TOWER_FLOOR_4 = {
   },
 
   veryHard: {
-    name: 'Desert',
-    image: 'desertLandscape.jpeg',
+    name: 'Quartz Lake',
+    image: 'quartzLake.jpeg',
     floor: 4,
     possibleBattles: [
       { enemies: [{ id: 'e_cat', amount: 1 }, { id: 'e_wolf', amount: 1}] },

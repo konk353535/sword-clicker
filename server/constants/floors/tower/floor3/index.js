@@ -1,7 +1,7 @@
 export const TOWER_FLOOR_3 = {
   easy: {
-    name: 'Greek Garden',
-    image: 'greekGarden.jpeg',
+    name: 'Poppy Field',
+    image: 'poppyField.jpg',
     floor: 3,
     possibleBattles: [
       { enemies: [{ id: 'e_spider', amount: 1 }] },
@@ -13,8 +13,8 @@ export const TOWER_FLOOR_3 = {
   },
 
   hard: {
-    name: 'Rocky Mountain',
-    image: 'rockyMountain.jpeg',
+    name: 'Mysterious Woods',
+    image: 'mysteriousWoods.jpeg',
     floor: 3,
     possibleBattles: [
       { enemies: [{ id: 'cat', amount: 1 }, { id: 'e_spider', amount: 1}] },
@@ -26,8 +26,8 @@ export const TOWER_FLOOR_3 = {
   },
 
   veryHard: {
-    name: 'Desert',
-    image: 'desertLandscape.jpeg',
+    name: 'Green Lake',
+    image: 'greenLake.jpeg',
     floor: 3,
     possibleBattles: [
       { enemies: [{ id: 'e_cat', amount: 1 }, { id: 'e_spider', amount: 1}] },

@@ -29,7 +29,15 @@ Meteor.methods({
   },
 
   'users.setUiState'(id, value) {
-    const validIds = ['showChat', 'inscriptionFilter', 'inscriptionLevelFilter', 'craftingFilter'];
+    const validIds = [
+      'showChat',
+      'inscriptionFilter',
+      'inscriptionLevelFilter',
+      'craftingFilter',
+      'combatTab',
+      'towerFloor',
+      'questLevel'
+    ];
 
     if (_.contains(validIds, id)) {
       const setObject = {}

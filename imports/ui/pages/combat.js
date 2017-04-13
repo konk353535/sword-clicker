@@ -7,6 +7,7 @@ import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Battles } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
+import { Users } from '/imports/api/users/users.js';
 
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
@@ -30,11 +31,17 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   }, 5000);
 
   this.state.set('hasLearnRequirements', false);
-  if (Session.get('combatTab')) {
-    this.state.set('currentTab', Session.get('combatTab'));
-  } else {
-    this.state.set('currentTab', 'personalQuest');
-  }
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.combatTab !== undefined) {
+        this.state.set('currentTab', myUser.uiState.combatTab);
+      } else {
+        this.state.set('currentTab', 'equipment');
+      }
+    }
+  });
 
   this.subscribe('groups');
   this.subscribe('combat');
@@ -75,28 +82,28 @@ Template.combatPage.events({
   },
 
   'click .personalQuestTabLink'(event, instance) {
-    Session.set('combatTab', 'personalQuest');
     instance.state.set('currentTab', 'personalQuest');
+    Meteor.call('users.setUiState', 'combatTab', 'personalQuest');
   },
 
   'click .towerTabLink'(event, instance) {
-    Session.set('combatTab', 'tower');
     instance.state.set('currentTab', 'tower');
+    Meteor.call('users.setUiState', 'combatTab', 'tower');
   },
 
   'click .equipmentTabLink'(event, instance) {
-    Session.set('combatTab', 'equipment');
     instance.state.set('currentTab', 'equipment');
+    Meteor.call('users.setUiState', 'combatTab', 'equipment');
   },
 
   'click .abilitiesTabLink'(event, instance) {
-    Session.set('combatTab', 'abilities');
     instance.state.set('currentTab', 'abilities');
+    Meteor.call('users.setUiState', 'combatTab', 'abilities');
   },
 
   'click .groupTabLink'(event, instance) {
-    Session.set('combatTab', 'group');
     instance.state.set('currentTab', 'group');
+    Meteor.call('users.setUiState', 'combatTab', 'group');
   }
 })
 

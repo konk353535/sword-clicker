@@ -10,14 +10,22 @@ import './personalQuestTab.html';
 Template.personalQuestTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
+        this.state.set('currentLevel', myUser.uiState.questLevel);
+      } else {
+        this.state.set('currentLevel', myUser.personalQuest.level);
+      }
+    }
+  });
+
   this.autorun(() => {
     const userDoc = Users.findOne({});
     if (userDoc && userDoc.personalQuest) {
       this.state.set('maxLevel', userDoc.personalQuest.level);
       this.state.set('maxLevelCurrentWave', userDoc.personalQuest.wave);
-      if (!this.state.get('currentLevel')) {
-        this.state.set('currentLevel', userDoc.personalQuest.level);
-      }
     }
   });
 });
@@ -36,7 +44,8 @@ Template.personalQuestTab.events({
 
   'click .select-level'(event, instance) {
     const selectedLevel = $(event.target).closest('.select-level')[0].getAttribute('data-level');
-    instance.state.set('currentLevel', selectedLevel);
+    instance.state.set('currentLevel', parseInt(selectedLevel));
+    Meteor.call('users.setUiState', 'questLevel', parseInt(selectedLevel));
   },
 
   'click .random-battle'(event, instance) {

@@ -8,12 +8,24 @@ import _ from 'underscore';
 import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
+import { Users } from '/imports/api/users/users.js';
 
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import './towerTab.html';
 
 Template.towerTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.towerFloor !== undefined) {
+        this.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
+      } else {
+        this.state.set('usersCurrentFloor', 1);
+      }
+    }
+  });
 
   Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
     if (err) {
@@ -22,7 +34,6 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       this.state.set('floorDetails', floorDetailsRaw.floorDetails);
       this.state.set('waveDetails', floorDetailsRaw.waveDetails);
       this.state.set('maxFloor', floorDetailsRaw.maxFloor);
-      this.state.set('usersCurrentFloor', 1);
     }
   });
 
@@ -76,6 +87,7 @@ Template.towerTab.events({
         instance.state.set('waveDetails', floorDetailsRaw.waveDetails);
         instance.state.set('maxFloor', floorDetailsRaw.maxFloor);
         instance.state.set('usersCurrentFloor', selectedFloor);
+        Meteor.call('users.setUiState', 'towerFloor', selectedFloor);
       }
     });
   },

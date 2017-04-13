@@ -1,5 +1,6 @@
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
+import { FLOORS } from '/server/constants/floors/index.js';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
@@ -10,6 +11,7 @@ import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
@@ -95,6 +97,16 @@ export const completeBattle = function (actualBattle) {
         });
 
         if (updatedCount === 1) {
+          // Notify general chat
+          Chats.insert({
+            message: `The boss on floor ${actualBattle.floor} has been defeated!
+              Floor ${actualBattle.floor + 1} is now unlocked.`,
+            username: 'SERVER',
+            name: 'SERVER',
+            date: new Date(),
+            roomId: 'General'
+          });
+
           // Insert the next floor
           const floorCounts = FLOORS.getWaveCounts();
 

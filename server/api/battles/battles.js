@@ -6,6 +6,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Battles } from '/imports/api/battles/battles';
 import { BattleActions } from '/imports/api/battles/battleActions';
+import { Groups } from '/imports/api/groups/groups';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
@@ -37,6 +38,14 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "You are not up to the specified level");
     } else if (level <= 0) {
       throw new Meteor.Error("no-sir", "Cannot select a level below 1");      
+    }
+
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (currentGroup.members.length > 1) {
+      throw new Meteor.Error("only-alone", "You can only do personal quests alone");
     }
 
     if (!wave) {

@@ -99,7 +99,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   // Apply enemy attacks
   actualBattle.enemies.forEach((enemy) => {
-    if (actualBattle.tick % enemy.stats.attackSpeedTicks === 0) {
+    if ((actualBattle.tick - enemy.tickOffset) % enemy.stats.attackSpeedTicks === 0) {
       let defender = actualBattle.units[0];
       if (enemy.target) {
         const targetUnit = _.findWhere(actualBattle.units, { id: enemy.target });
@@ -125,7 +125,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   // Apply player attacks
   actualBattle.units.forEach((unit) => {
-    if (unit && actualBattle.tick % unit.stats.attackSpeedTicks === 0) {
+    if (unit && (actualBattle.tick - unit.tickOffset) % unit.stats.attackSpeedTicks === 0) {
       let defender = actualBattle.enemies[0];
       // Do we have a preferred target
       if (unit.target) {

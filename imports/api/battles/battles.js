@@ -28,6 +28,7 @@ BattlesSchema = new SimpleSchema({
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
   'units.$.name': { type: String },
+  'units.$.tickOffset': { type: Number, defaultValue: 0 },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
   'units.$.buffs': { type: [Object], defaultValue: [] },
@@ -53,6 +54,7 @@ BattlesSchema = new SimpleSchema({
   'enemies.$.enemyId': { type: String },
   'enemies.$.name': { type: String },
   'enemies.$.target': { type: String, optional: true },
+  'enemies.$.tickOffset': { type: Number, defaultValue: 0 },
   'enemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
   'enemies.$.buffs': { type: [Object], defaultValue: [] },

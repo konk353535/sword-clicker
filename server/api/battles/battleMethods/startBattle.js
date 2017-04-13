@@ -126,6 +126,7 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
       name: userCombat.username || 'Unnamed',
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
+      tickOffset: _.random(0, 5),
       icon: 'character'
     });
 
@@ -139,11 +140,11 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
         abilities: usersEquippedAbilities,
         name: `Test_${i}`,
         stats: userCombatStats,
+        tickOffset: _.random(0, 5),
         xpDistribution: userCombat.xpDistribution,
         icon: 'character'
       });
-    }
-    */
+    }*/
 
   });
 
@@ -168,7 +169,8 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
         buffs: [],
         target: randomUnitTarget.id,
         enemyId: enemyConstants.id,
-        name: enemyConstants.name
+        name: enemyConstants.name,
+        tickOffset: _.random(0, 5)
       });
     }
   });

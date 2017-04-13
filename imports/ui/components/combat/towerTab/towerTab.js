@@ -21,6 +21,7 @@ Template.towerTab.onCreated(function bodyOnCreated() {
     } else {
       this.state.set('floorDetails', floorDetailsRaw.floorDetails);
       this.state.set('waveDetails', floorDetailsRaw.waveDetails);
+      this.state.set('maxFloor', floorDetailsRaw.maxFloor);
       this.state.set('usersCurrentFloor', 1);
     }
   });
@@ -41,10 +42,13 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       });
       this.state.set('finishedBattle', finishedBattle);
       if (this.state.get('waveDetails') && finishedBattle.win) {
-        if (this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0) {
+        const isBossWin = finishedBattle.difficulty === 'boss';
+        const isActiveWaveWin = this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0;
+        if (isBoss || isActiveWaveWin) {
           Meteor.call('battles.getWaveDetails', (err, res) => {
             if (res) {
-              this.state.set('waveDetails', res);
+              this.state.set('waveDetails', res.waveDetails);
+              this.state.set('maxFloor', res.maxFloor);
             }
           });
         }
@@ -60,6 +64,22 @@ const findBattleHandler = function (err, res) {
 }
 
 Template.towerTab.events({
+
+  'click .select-floor'(event, instance) {
+    const selectedFloor = $(event.target).closest('.select-floor')[0].getAttribute('data-floor');
+
+    Meteor.call('battles.getFloorDetails', parseInt(selectedFloor), (err, floorDetailsRaw) => {
+      if (err) {
+        console.log(err);
+      } else {
+        instance.state.set('floorDetails', floorDetailsRaw.floorDetails);
+        instance.state.set('waveDetails', floorDetailsRaw.waveDetails);
+        instance.state.set('maxFloor', floorDetailsRaw.maxFloor);
+        instance.state.set('usersCurrentFloor', selectedFloor);
+      }
+    });
+  },
+
   'click .battle-easy-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
   },
@@ -100,10 +120,6 @@ Template.towerTab.helpers({
   },
 
   inCurrentBattle() {
-    console.log('here');
-    console.log(Battles.findOne({
-      finished: false
-    }));
     return Battles.findOne({
       finished: false
     });
@@ -133,5 +149,20 @@ Template.towerTab.helpers({
 
   usersCurrentFloor() {
     return Template.instance().state.get('usersCurrentFloor');
+  },
+
+  maxFloor() {
+    return Template.instance().state.get('maxFloor');
+  },
+
+  floorsList() {
+    let floorsList = [];
+    let maxFloor = Template.instance().state.get('maxFloor');
+
+    for (let i = 0; i < maxFloor; i++) {
+      floorsList.push(i + 1)
+    }
+
+    return floorsList;
   }
 })

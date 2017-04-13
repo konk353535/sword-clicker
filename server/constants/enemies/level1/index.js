@@ -14,6 +14,18 @@ const baseStats = {
   damageTaken: 1
 }
 
+const enhancedStats = {
+  healthMax: 75,
+  health: 75,
+  attack: 5,
+  attackMax: 10,
+  accuracy: 15,
+  defense: 10,
+  armor: 10,
+  attackSpeed: 1,
+  damageTaken: 1
+}
+
 export const LEVEL_ONE_ENEMIES = {
 
   fly: {
@@ -107,4 +119,4 @@ export const LEVEL_ONE_ENEMIES = {
   }
 }
 
-enemyStatSetter(LEVEL_ONE_ENEMIES, baseStats);
+enemyStatSetter(LEVEL_ONE_ENEMIES, baseStats, enhancedStats);

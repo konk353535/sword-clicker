@@ -14,6 +14,18 @@ const baseStats = {
   damageTaken: 1
 }
 
+const enhancedStats = {
+  healthMax: 390,
+  health: 390,
+  attack: 16,
+  attackMax: 24,
+  accuracy: 40,
+  defense: 40,
+  armor: 37,
+  attackSpeed: 1,
+  damageTaken: 1
+}
+
 export const LEVEL_FIVE_ENEMIES = {
 
   wolf: {
@@ -107,5 +119,5 @@ export const LEVEL_FIVE_ENEMIES = {
   }
 }
 
-enemyStatSetter(LEVEL_FIVE_ENEMIES, baseStats);
+enemyStatSetter(LEVEL_FIVE_ENEMIES, baseStats, enhancedStats);
 

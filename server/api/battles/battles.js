@@ -85,13 +85,42 @@ const completeBattle = function (actualBattle) {
     });
 
     if (actualBattle.floor && actualBattle.difficulty) {
-      // Decrement floor
-      Floors.update({
-        floor: actualBattle.floor,
-        floorComplete: false
-      }, {
-        $inc: incrementData
-      });
+      if (actualBattle.difficulty !== 'boss') {
+        // Decrement floor
+        Floors.update({
+          floor: actualBattle.floor,
+          floorComplete: false
+        }, {
+          $inc: incrementData
+        });
+      } else {
+        // Complete the floor!
+        let updatedCount = Floors.update({
+          floor: actualBattle.floor,
+          floorComplete: false
+        }, {
+          $set: {
+            floorComplete: true
+          }
+        });
+
+        if (updatedCount === 1) {
+          // Insert the next floor
+          const floorCounts = FLOORS.getWaveCounts();
+
+          // Create our next floor
+          Floors.insert({
+            floor: actualBattle.floor + 1,
+            createdAt: new Date(),
+            easyWaves: floorCounts.easy,
+            easyWavesTotal: floorCounts.easy,
+            hardWaves: floorCounts.hard,
+            hardWavesTotal: floorCounts.hard,
+            veryHardWaves: floorCounts.veryHard,
+            veryHardWavesTotal: floorCounts.veryHard,
+          });
+        }
+      }
 
       // Update all participants contributions
       owners.forEach((owner) => {
@@ -105,6 +134,7 @@ const completeBattle = function (actualBattle) {
             easyWaves: 0,
             hardWaves: 0,
             veryHardWaves: 0,
+            bossWaves: 0,
             username: ownerObject.name // To do: Make this work when users have multiple units
           }
         };
@@ -254,6 +284,16 @@ const progressBattle = function (actualBattle, battleIntervalId) {
 
   // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
   if (isUpdatedStale || isCreatedStale) {
+    console.log('--------- Ending Battle Early!!! -------------');
+    if (isUpdatedStale) {
+      console.log('Reason: Is updated stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Last updated = ${moment(actualBattle.updatedAt).toDate()}`);
+    } else {
+      console.log('Reason: Is created stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
+    }
     Battles.update(actualBattle._id, {
       $set: {
         finished: true,
@@ -476,6 +516,8 @@ const progressBattle = function (actualBattle, battleIntervalId) {
     }
   });
 
+  actualBattle.updatedAt = new Date();
+
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);
     Meteor.setTimeout(() => {
@@ -597,6 +639,23 @@ const startBattle = function (battleData, floor, difficulty) {
       xpDistribution: userCombat.xpDistribution,
       icon: 'character'
     });
+
+    /*
+    // Duplicate units x10 to simulate a raid boss party
+    for (let i = 0; i < 9; i++) {
+      let tempId = Random.id();
+      newBattle.units.push({
+        id: tempId,
+        owner: tempId,
+        abilities: usersEquippedAbilities,
+        name: `Test_${i}`,
+        stats: userCombatStats,
+        xpDistribution: userCombat.xpDistribution,
+        icon: 'character'
+      });
+    }
+    */
+
   });
 
   if (!hasEnergy) {
@@ -708,6 +767,7 @@ Meteor.methods({
       hardWavesTotal: currentFloor.hardWavesTotal,
       veryHardWaves: currentFloor.veryHardWaves,
       veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+      maxFloor: currentFloor.floor
     }
   },
 
@@ -732,12 +792,14 @@ Meteor.methods({
           veryHardWaves: currentFloor.veryHardWaves,
           veryHardWavesTotal: currentFloor.veryHardWavesTotal,
         },
-        floorDetails: specifiedFloorConstants
+        floorDetails: specifiedFloorConstants,
+        maxFloor: currentFloor.floor
       }
     }
 
     return {
-      floorDetails: specifiedFloorConstants
+      floorDetails: specifiedFloorConstants,
+      maxFloor: currentFloor.floor
     }
   },
 

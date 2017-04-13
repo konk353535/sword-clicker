@@ -14,6 +14,18 @@ const baseStats = {
   damageTaken: 1
 }
 
+const enhancedStats = {
+  healthMax: 180,
+  health: 180,
+  attack: 10,
+  attackMax: 20,
+  accuracy: 35,
+  defense: 30,
+  armor: 30,
+  attackSpeed: 1,
+  damageTaken: 1
+}
+
 export const LEVEL_THREE_ENEMIES = {
 
   spider: {
@@ -107,5 +119,5 @@ export const LEVEL_THREE_ENEMIES = {
   }
 }
 
-enemyStatSetter(LEVEL_THREE_ENEMIES, baseStats);
+enemyStatSetter(LEVEL_THREE_ENEMIES, baseStats, enhancedStats);
 

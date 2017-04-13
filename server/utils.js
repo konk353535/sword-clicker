@@ -25,15 +25,29 @@ export const flattenObjectForMongo = function(ob) {
   return toReturn;
 };
 
-export const enemyStatSetter = function(constants, baseStats) {
+export const enemyStatSetter = function(constants, baseStats, enhancedStats) {
   Object.keys(constants).forEach((enemyKey) => {
+
+    const enhancedEnemy = JSON.parse(JSON.stringify(constants[enemyKey]));
+    enhancedEnemy.id = `e_${enemyKey}`;
+    enhancedEnemy.name = `En. ${enhancedEnemy.name}`;
+    // Store enhanced enemy
+    constants[`e_${enemyKey}`] = enhancedEnemy;
+
+    // Mutate enchancedEnemies stats
+    Object.keys(enhancedEnemy.stats).forEach((statKey) => {
+      const currentStatValue = enhancedEnemy.stats[statKey];
+      enhancedEnemy.stats[statKey] = currentStatValue * enhancedStats[statKey];
+    });
+
     const currentEnemy = constants[enemyKey];
+
     // Mutate stats accordingly
     Object.keys(currentEnemy.stats).forEach((statKey) => {
       const currentStatValue = currentEnemy.stats[statKey];
       currentEnemy.stats[statKey] = currentStatValue * baseStats[statKey];
     });
-  })
+  });
 }
 
 export const attackSpeedTicks = function(attackSpeed) {

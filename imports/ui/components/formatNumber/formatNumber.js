@@ -8,7 +8,7 @@ import './formatNumber.html';
 Template.formatNumber.helpers({
   formattedNumber() {
     const number = Template.instance().data;
-    if (number < 10000) {
+    if (number < 1000) {
       return Math.floor(number);
     }
 

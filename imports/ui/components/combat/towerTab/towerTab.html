@@ -1,5 +1,18 @@
 <template name="towerTab">
-  <h1>The Tower - Floor {{usersCurrentFloor}}</h1>
+  <h1 class="d-flex">
+    The Tower - Floor {{usersCurrentFloor}}
+    <div class="dropdown ml-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Floor {{usersCurrentFloor}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {{#each floorsList}}
+          <a class="dropdown-item select-floor" href="#" data-floor={{this}}>Floor {{this}}</a>
+        {{/each}}
+      </div>
+    </div>
+  </h1>
+
   <!-- Make this a tooltip
   <p>
     The community works together to make progress in the tower.<br />

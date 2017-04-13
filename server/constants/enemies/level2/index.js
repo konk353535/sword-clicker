@@ -3,13 +3,25 @@ import { baseLootTable, floorOneHardLootTable } from '/server/constants/enemies/
 import { enemyStatSetter } from '/server/utils';
 
 const baseStats = {
-  healthMax: 30,
-  health: 30,
+  healthMax: 50,
+  health: 50,
   attack: 5,
   attackMax: 10,
   accuracy: 15,
   defense: 10,
   armor: 20,
+  attackSpeed: 1,
+  damageTaken: 1
+}
+
+const enhancedStats = {
+  healthMax: 150,
+  health: 150,
+  attack: 10,
+  attackMax: 20,
+  accuracy: 30,
+  defense: 20,
+  armor: 40,
   attackSpeed: 1,
   damageTaken: 1
 }
@@ -65,7 +77,7 @@ export const LEVEL_TWO_ENEMIES = {
       health: 0.5,
       healthMax: 0.5,
       defense: 1,
-      armor: 20,
+      armor: 15,
       damageTaken: 1
     },
     rewards: baseLootTable.concat(floorOneHardLootTable)
@@ -108,5 +120,5 @@ export const LEVEL_TWO_ENEMIES = {
   }
 }
 
-enemyStatSetter(LEVEL_TWO_ENEMIES, baseStats);
+enemyStatSetter(LEVEL_TWO_ENEMIES, baseStats, enhancedStats);
 

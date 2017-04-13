@@ -11,7 +11,8 @@ FloorWaveScoresSchema = new SimpleSchema({
   username: { type: String },
   easyWaves: { type: Number, defaultValue: 0 },
   hardWaves: { type: Number, defaultValue: 0 },
-  veryHardWaves: { type: Number, defaultValue: 0 }
+  veryHardWaves: { type: Number, defaultValue: 0 },
+  bossWaves: { type: Number, defaultValue: 0 }
 });
 
 FloorWaveScores.attachSchema(FloorWaveScoresSchema);

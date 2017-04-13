@@ -14,6 +14,18 @@ const baseStats = {
   damageTaken: 1
 }
 
+const enhancedStats = {
+  healthMax: 300,
+  health: 300,
+  attack: 15,
+  attackMax: 22,
+  accuracy: 35,
+  defense: 35,
+  armor: 30,
+  attackSpeed: 1,
+  damageTaken: 1
+}
+
 export const LEVEL_FOUR_ENEMIES = {
 
   cat: {
@@ -107,5 +119,5 @@ export const LEVEL_FOUR_ENEMIES = {
   }
 }
 
-enemyStatSetter(LEVEL_FOUR_ENEMIES, baseStats);
+enemyStatSetter(LEVEL_FOUR_ENEMIES, baseStats, enhancedStats);
 

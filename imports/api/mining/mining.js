@@ -19,7 +19,7 @@ MiningSchema = new SimpleSchema({
   prospectors: { type: Number, defaultValue: 1 },
   stats: { type: Object, blackbox: true, defaultValue: {} },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
-  lastGameUpdated: { type: Date }
+  lastGameUpdated: { type: Date, defaultValue: new Date() }
 });
 
 Mining.attachSchema(MiningSchema);

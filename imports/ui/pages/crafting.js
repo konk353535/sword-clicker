@@ -214,8 +214,15 @@ Template.craftingPage.helpers({
     let filterTierRegex = new RegExp(patterns.join('|'), 'gi');
 
     let filteredRecipes = instance.state.get('recipes').filter((item) => {
-      // Filter by tier
-      return !item.id.match(filterTierRegex);
+      if (patterns.length > 0 && filterTierRegex) {
+        // Filter out if it matches the pattern.
+        if(item.id.match(filterTierRegex)) {
+          return false;
+        }
+        return true;
+      }
+
+      return true;
     });
 
     if (recipeFilter === 'all') {

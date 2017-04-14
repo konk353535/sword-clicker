@@ -34,27 +34,89 @@
             <img src="icons/{{this.type}}.svg" class="small-icon">
           </div>
         {{/each}}
+        <!-- Quest Filter -->
+        <div
+          class="icon-border p-2 m-1 select-skill
+          {{#if $eq currentSkill.type 'personalQuest'}}select-skill-active{{/if}}"
+          style="cursor: pointer"
+          data-name="personalQuest">
+          <img src="icons/personalQuest.svg" class="small-icon">
+        </div>
+        <!-- Tower Filter -->
+        <div
+          class="icon-border p-2 m-1 select-skill
+          {{#if $eq currentSkill.type 'tower'}}select-skill-active{{/if}}"
+          style="cursor: pointer"
+          data-name="tower">
+          <img src="icons/tower.svg" class="small-icon">
+        </div>
       </div>
-      <table class="table table-sm table-centered table-responsive">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Total XP</th>
-            <th>Level</th>
-          </tr>
-        </thead>
-        <thead>
-          {{#each highscores}}
+      {{#if $eq currentSkill.type 'personalQuest'}}
+        <table class="table table-sm table-centered table-responsive">
+          <thead>
             <tr>
-              <td>{{this.rank}}</td>
-              <td>{{this.username}}</td>
-              <td>{{this.totalXp}}</td>
-              <td>{{this.level}}</td>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Level</th>
+              <th>Wave</th>
             </tr>
-          {{/each}}
-        </thead>
-      </table>
+          </thead>
+          <thead>
+            {{#each highscores}}
+              <tr>
+                <td>{{this.rank}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.personalQuest.level}}</td>
+                <td>{{this.personalQuest.wave}}</td>
+              </tr>
+            {{/each}}
+          </thead>
+        </table>
+      {{else if $eq currentSkill.type 'tower'}}
+        <table class="table table-centered">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th># Very Hard Waves</th>
+              <th># Hard Waves</th>
+              <th># Easy Waves</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each highscores}}
+              <tr>
+                <td>{{this.rank}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.veryHardWaves}}</td>
+                <td>{{this.hardWaves}}</td>
+                <td>{{this.easyWaves}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <table class="table table-sm table-centered table-responsive">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Total XP</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <thead>
+            {{#each highscores}}
+              <tr>
+                <td>{{this.rank}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.totalXp}}</td>
+                <td>{{this.level}}</td>
+              </tr>
+            {{/each}}
+          </thead>
+        </table>
+      {{/if}}
     </div>
   </div>
 </template>

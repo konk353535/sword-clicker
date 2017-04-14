@@ -17,12 +17,21 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
 
   this.autorun(() => {
     const skillName = this.state.get('selectedSkill');
-    Meteor.call('skills.highscores', skillName, (err, res) => {
-      res.forEach((item, index) => {
-        item.rank = index + 1;
+    if (skillName === 'tower') {
+      Meteor.call('battles.currentFloorHighscores', (err, res) => {
+        this.state.set('highscores', res.map((highscore, index) => {
+          highscore.rank = index + 1;
+          return highscore;
+        }));
       });
-      this.state.set('highscores', res);
-    });
+    } else {
+      Meteor.call('skills.highscores', skillName, (err, res) => {
+        res.forEach((item, index) => {
+          item.rank = index + 1;
+        });
+        this.state.set('highscores', res);
+      });     
+    }
   });
 });
 

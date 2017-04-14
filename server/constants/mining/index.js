@@ -89,10 +89,10 @@ export const MINING = {
       requiredLevel: 20,
       healthMax: 10000,
       xp: 700,
-      id: 'carbon',
-      icon: 'carbon',
-      name: 'carbon',
-      itemId: 'ore_carbon',
+      id: 'mithril',
+      icon: 'mithril',
+      name: 'mithril',
+      itemId: 'ore_mithril',
       chance: 0.001
     }
   }

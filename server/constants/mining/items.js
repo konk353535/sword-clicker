@@ -200,5 +200,30 @@ export const MINING_ITEMS = {
       miner: 150,
       energyRegen: 2
     }
+  },
+
+  mithril_pickaxe: {
+    id: 'mithril_pickaxe',
+    icon: 'mithrilPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'mithril pickaxe',
+    sellPrice: 750,
+    description: 'A pickaxe forged from mithril. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 20, // Maximum energy stored
+      attack: 100, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 4, // Energy regen per minute
+      miner: 150 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 20,
+      attack: 50,
+      miner: 200,
+      energyRegen: 3
+    }
   }
 }

@@ -28,7 +28,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from copper. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 1, // Determines what logs you can cut
+      attack: 3, // Determines what logs you can cut
       attackSpeed: 2, // How often you cut ( 1 per minute )
       accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
     },
@@ -47,7 +47,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from iron. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 3, // Determines what logs you can cut
+      attack: 6, // Determines what logs you can cut
       attackSpeed: 3, // How often you cut ( 1 per minute )
       accuracy: 25 // Extra chance of getting a log ( 1% extra chance )
     },
@@ -66,7 +66,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from steel. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 6, // Determines what logs you can cut
+      attack: 9, // Determines what logs you can cut
       attackSpeed: 3, // How often you cut ( 1 per minute )
       accuracy: 50 // Extra chance of getting a log ( 1% extra chance )
     },
@@ -85,12 +85,31 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 9, // Determines what logs you can cut
+      attack: 12, // Determines what logs you can cut
       attackSpeed: 4, // How often you cut ( 1 per minute )
       accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
     },
     extraStats: {
       accuracy: 24
+    }
+  },
+
+  mithril_axe: {
+    id: 'mithril_axe',
+    icon: 'mithrilAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'mithril axe',
+    sellPrice: 1000,
+    description: 'An axe forged from mithril. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 15, // Determines what logs you can cut
+      attackSpeed: 4, // How often you cut ( 1 per minute )
+      accuracy: 25 // Extra chance of getting a log ( 1% extra chance )
+    },
+    extraStats: {
+      accuracy: 75
     }
   },
 
@@ -124,5 +143,13 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'oak log',
     sellPrice: 100
+  },
+
+  maple_log: {
+    id: 'maple_log',
+    icon: 'mapleLog',
+    category: 'woodcutting',
+    name: 'maple log',
+    sellPrice: 150
   }
 }

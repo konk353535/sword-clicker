@@ -147,5 +147,43 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 11
     }]
+  },
+
+  mithril_axe: {
+    produces: 'mithril_axe',
+    recipeFor: 'crafting',
+    name: 'mithril axe',
+    id: 'mithril_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60, // 60
+    xp: 1000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'mithril_essence',
+      icon: ITEMS['mithril_essence'].icon,
+      name: ITEMS['mithril_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 15
+    }]
   }
 }

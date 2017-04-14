@@ -97,6 +97,30 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
+  carbon_furnace: {
+    produces: 'carbon_furnace',
+    recipeFor: 'crafting',
+    name: 'carbon furnace',
+    id: 'carbon_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 13,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 13
+    }],
+    timeToCraft: 120,
+    xp: 200,
+    maxToCraft: 1
+  },
+
   copper_bar: {
     produces: 'copper_bar',
     recipeFor: 'crafting',
@@ -246,6 +270,37 @@ export const CRAFTING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 10
+    }]
+  },
+
+  mithril_bar: {
+    produces: 'mithril_bar',
+    recipeFor: 'crafting',
+    name: 'mithril bar',
+    id: 'mithril_bar',
+    category: 'crafting',
+    timeToCraft: 10,
+    xp: 60,
+    maxToCraft: 150,
+    requiredCraftingLevel: 13,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_mithril',
+      icon: ITEMS['ore_mithril'].icon,
+      name: ITEMS['ore_mithril'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 13
     }]
   }
 }

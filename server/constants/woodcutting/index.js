@@ -102,6 +102,54 @@ export const WOODCUTTING = {
         name: 'woodcutting',
         level: 9
       }]
+    },
+
+    novice_lumber_jack: {
+      requiredWoodcuttingLevel: 12,
+      icon: 'noviceLumberJack',
+      name: 'novice lumberjack',
+      id: 'novice_lumber_jack',
+      axeId: 'carbon_axe',
+      required: [{
+        type: 'item',
+        itemId: 'carbon_axe',
+        icon: ITEMS['carbon_axe'].icon,
+        name: ITEMS['carbon_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 10000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 12
+      }]
+    },
+
+    lumber_jack: {
+      requiredWoodcuttingLevel: 15,
+      icon: 'lumberJack',
+      name: 'lumberjack',
+      id: 'lumber_jack',
+      axeId: 'mithril_axe',
+      required: [{
+        type: 'item',
+        itemId: 'mithril_axe',
+        icon: ITEMS['mithril_axe'].icon,
+        name: ITEMS['mithril_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 25000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 15
+      }]
     }
   },
 
@@ -144,8 +192,18 @@ export const WOODCUTTING = {
       name: 'oak log',
       itemId: 'oak_log',
       chance: 0.003
+    },
+
+    maple_log: {
+      requiredAttack: 12,
+      xp: 45,
+      id: 'maple_log',
+      icon: 'mapleLog',
+      name: 'maple log',
+      itemId: 'maple_log',
+      chance: 0.0015
     }
 
-    // Oak, Maple, Walnut, Cherry, Mahogany
+    // Walnut, Cherry, Mahogany
   }
 }

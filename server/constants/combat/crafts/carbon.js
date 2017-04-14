@@ -143,7 +143,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_long_sword',
     timeToCraft: 420, // 60
-    xp: 2110,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 11,
     required: [{

@@ -175,5 +175,51 @@ export const MINING_CRAFTS = {
       name: 'crafting',
       level: 9
     }]
+  },
+
+
+  mithril_pickaxe: {
+    produces: 'mithril_pickaxe',
+    recipeFor: 'crafting',
+    name: 'mithril pickaxe',
+    id: 'mithril_pickaxe',
+    category: 'mining',
+    timeToCraft: 300,
+    xp: 500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'mithril_essence',
+      icon: ITEMS['mithril_essence'].icon,
+      name: ITEMS['mithril_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 15
+    }]
   }
 }

@@ -27,5 +27,6 @@ Meteor.startup(() => {
   Items._ensureIndex({ owner: 1 });
   Mining._ensureIndex({ owner: 1 });
   MiningSpace._ensureIndex({ owner: 1 });
+  Battles._ensureIndex({ owners: 1 });
 
 });

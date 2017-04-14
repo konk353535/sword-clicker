@@ -130,8 +130,8 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
       icon: 'character'
     });
 
-    /*
     // Duplicate units x10 to simulate a raid boss party
+    /*
     for (let i = 0; i < 9; i++) {
       let tempId = Random.id();
       newBattle.units.push({

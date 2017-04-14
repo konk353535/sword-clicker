@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
+import moment from 'moment';
 
 import { Floors } from '/imports/api/floors/floors';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
@@ -188,7 +189,10 @@ Meteor.methods({
 
 Meteor.publish('battles', function() {
   return Battles.find({
-    owners: this.userId
+    owners: this.userId,
+    updatedAt: {
+      $gt: moment().subtract(60, 'seconds').toDate()
+    }
   });
 });
 

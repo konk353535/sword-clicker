@@ -127,7 +127,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 12,
     required: [{
       type: 'item',
       itemId: 'carbon_bar',

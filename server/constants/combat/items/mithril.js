@@ -26,7 +26,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 15
+      level: 20
     }]
   },
 
@@ -57,7 +57,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 15
+      level: 20
     }]
   },
 
@@ -86,7 +86,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 15
+      level: 20
     }]
   },
 
@@ -116,7 +116,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 15
+      level: 20
     }]
   },
 
@@ -145,7 +145,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 15
+      level: 20
     }]
   },
 
@@ -171,7 +171,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 15
+      level: 20
     }]
   },
 
@@ -197,7 +197,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 15
+      level: 20
     }]
   },
 
@@ -223,7 +223,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 15
+      level: 20
     }]
   },
 
@@ -249,7 +249,7 @@ export const MITHRIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 15
+      level: 20
     }]
   }
 }

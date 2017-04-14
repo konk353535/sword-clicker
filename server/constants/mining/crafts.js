@@ -148,7 +148,7 @@ export const MINING_CRAFTS = {
     timeToCraft: 300,
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 12,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -173,7 +173,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 12
     }]
   },
 

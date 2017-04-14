@@ -26,7 +26,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 12
+      level: 15
     }]
   },
 
@@ -57,7 +57,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 12
+      level: 15
     }]
   },
 
@@ -86,7 +86,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 12
+      level: 15
     }]
   },
 
@@ -116,7 +116,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 12
+      level: 15
     }]
   },
 
@@ -145,7 +145,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 12
+      level: 15
     }]
   },
 
@@ -171,7 +171,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 12
+      level: 15
     }]
   },
 
@@ -197,7 +197,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 12
+      level: 15
     }]
   },
 
@@ -223,7 +223,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 12
+      level: 15
     }]
   },
 
@@ -249,7 +249,7 @@ export const CARBON_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 12
+      level: 15
     }]
   }
 }

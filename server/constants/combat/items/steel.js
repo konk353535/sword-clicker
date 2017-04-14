@@ -26,7 +26,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 10
     }]
   },
 
@@ -57,7 +57,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 10
     }]
   },
 
@@ -86,7 +86,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 10
     }]
   },
 
@@ -116,7 +116,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 10
     }]
   },
 
@@ -145,7 +145,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 10
     }]
   },
 
@@ -171,7 +171,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 10
     }]
   },
 
@@ -197,7 +197,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 10
     }]
   },
 
@@ -223,7 +223,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 10
     }]
   },
 
@@ -249,7 +249,7 @@ export const STEEL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 10
     }]
   }
 }

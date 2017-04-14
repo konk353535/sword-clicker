@@ -222,12 +222,12 @@ export const COPPER_ITEMS = {
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 1,
+      healthMax: 2,
       defense: 3,
       armor: 10
     },
     extraStats: {
-      healthMax: 2,
+      healthMax: 4,
       defense: 3,
       armor: 5
     },

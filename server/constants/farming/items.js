@@ -26,6 +26,31 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  red_apple_seed: {
+    id: 'red_apple_seed',
+    icon: 'redAppleSeed',
+    category: 'seed',
+    name: 'red apple seed',
+    description: 'Used to grow red apples. Useful for eating.',
+    sellPrice: 50,
+    produces: 'red_apple'
+  },
+
+  red_apple: {
+    id: 'red_apple',
+    icon: 'redApple',
+    category: 'food',
+    name: 'red apple',
+    description() {
+      const buff = BUFFS.food_red_apple;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_red_apple'
+    }],
+    sellPrice: 50
+  },
+
   basil_seed: {
     id: 'basil_seed',
     icon: 'basilSeed',

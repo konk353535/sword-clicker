@@ -237,12 +237,12 @@ export const IRON_ITEMS = {
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 3,
+      healthMax: 6,
       defense: 3,
       armor: 20
     },
     extraStats: {
-      healthMax: 4,
+      healthMax: 8,
       defense: 5,
       armor: 10
     },

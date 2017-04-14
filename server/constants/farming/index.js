@@ -50,6 +50,21 @@ export const FARMING = {
       }]
     },
 
+    red_apple_seed: {
+      id: 'red_apple_seed',
+      itemId: 'red_apple_seed',
+      requiredFarmingLevel: 5,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 5
+      }]
+    },
+
     basil_seed: {
       id: 'basil_seed',
       itemId: 'basil_seed',

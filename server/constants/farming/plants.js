@@ -51,6 +51,31 @@ export const PLANTS = {
     }]
   },
 
+  red_apple: {
+    produces: 'red_apple',
+    name: 'red apple',
+    id: 'red_apple',
+    category: 'farming',
+    icon: ITEMS['red_apple'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 120,
+    growthTime: 60 * 60,
+    xp: 50,
+    required: [{
+      type: 'item',
+      itemId: 'red_apple_seed',
+      icon: ITEMS['red_apple_seed'].icon,
+      name: ITEMS['red_apple_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 5
+    }]
+  },
+
   dead_plant: {
     produces: 'dead_plant',
     name: 'dead plant',

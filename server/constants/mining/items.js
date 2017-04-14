@@ -39,6 +39,22 @@ export const MINING_ITEMS = {
     sellPrice: 150
   },
 
+  ore_carbon: {
+    id: 'ore_carbon',
+    icon: 'carbon',
+    category: 'mining',
+    name: 'carbon',
+    sellPrice: 200
+  },
+
+  ore_mithril: {
+    id: 'ore_mithril',
+    icon: 'mithril',
+    category: 'mining',
+    name: 'mithril',
+    sellPrice: 250
+  },
+
   primitive_pickaxe: {
     id: 'primitive_pickaxe',
     icon: 'primitivePickaxe',
@@ -95,7 +111,7 @@ export const MINING_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'iron pickaxe',
-    sellPrice: 600,
+    sellPrice: 300,
     description: 'A pickaxe forged from iron. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -142,7 +158,7 @@ export const MINING_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'steel pickaxe',
-    sellPrice: 1200,
+    sellPrice: 400,
     description: 'A pickaxe forged from steel. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -157,6 +173,31 @@ export const MINING_ITEMS = {
       energyStorage: 20,
       attack: 25,
       miner: 125,
+      energyRegen: 2
+    }
+  },
+
+  carbon_pickaxe: {
+    id: 'carbon_pickaxe',
+    icon: 'carbonPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'carbon pickaxe',
+    sellPrice: 500,
+    description: 'A pickaxe forged from carbon. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 20, // Maximum energy stored
+      attack: 70, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 4, // Energy regen per minute
+      miner: 150 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 20,
+      attack: 30,
+      miner: 150,
       energyRegen: 2
     }
   }

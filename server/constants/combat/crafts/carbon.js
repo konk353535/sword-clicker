@@ -1,0 +1,408 @@
+import { ITEMS } from '/server/constants/items/index.js'; 
+
+export const CARBON_CRAFTS = {
+  carbon_dagger: {
+    produces: 'carbon_dagger',
+    name: 'carbon dagger',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'carbon_dagger',
+    timeToCraft: 240, // 60
+    xp: 130,
+    maxToCraft: 1,
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }]
+  },
+
+  carbon_spear: {
+    produces: 'carbon_spear',
+    name: 'carbon spear',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'carbon_spear',
+    timeToCraft: 300, // 60
+    xp: 200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_short_sword: {
+    produces: 'carbon_short_sword',
+    name: 'carbon short sword',
+    category: 'combat',
+    recipeFor: 'crafting',
+    id: 'carbon_short_sword',
+    timeToCraft: 300, // 60
+    xp: 250,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_long_sword: {
+    produces: 'carbon_long_sword',
+    name: 'carbon long sword',
+    category: 'combat',
+    recipeFor: 'crafting',
+    id: 'carbon_long_sword',
+    timeToCraft: 420, // 60
+    xp: 2110,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_battle_axe: {
+    recipeFor: 'crafting',
+    produces: 'carbon_battle_axe',
+    name: 'carbon battle axe',
+    category: 'combat',
+    id: 'carbon_battle_axe',
+    timeToCraft: 600, // 60
+    xp: 320,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_helmet: {
+    recipeFor: 'crafting',
+    produces: 'carbon_helmet',
+    name: 'carbon helmet',
+    category: 'combat',
+    id: 'carbon_helmet',
+    timeToCraft: 240, // 60
+    xp: 200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_chest_plate: {
+    recipeFor: 'crafting',
+    produces: 'carbon_chest_plate',
+    name: 'carbon chest plate',
+    category: 'combat',
+    id: 'carbon_chest_plate',
+    timeToCraft: 240, // 60
+    xp: 200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_plate_legs: {
+    recipeFor: 'crafting',
+    produces: 'carbon_plate_legs',
+    name: 'carbon plate legs',
+    category: 'combat',
+    id: 'carbon_plate_legs',
+    timeToCraft: 240, // 60
+    xp: 200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  },
+
+  carbon_shield: {
+    recipeFor: 'crafting',
+    produces: 'carbon_shield',
+    name: 'carbon shield',
+    category: 'combat',
+    id: 'carbon_shield',
+    timeToCraft: 240, // 60
+    xp: 200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
+  }
+}

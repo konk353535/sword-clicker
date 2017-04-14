@@ -52,12 +52,12 @@ export const WOODCUTTING = {
       }, {
         type: 'skill',
         name: 'woodcutting',
-        level: 2
+        level: 3
       }]
     },
 
     wise_man: {
-      requiredWoodcuttingLevel: 3,
+      requiredWoodcuttingLevel: 6,
       icon: 'wiseMan',
       name: 'wise man',
       id: 'wise_man',
@@ -76,7 +76,31 @@ export const WOODCUTTING = {
       }, {
         type: 'skill',
         name: 'woodcutting',
-        level: 10
+        level: 6
+      }]
+    },
+
+    muscle_man: {
+      requiredWoodcuttingLevel: 9,
+      icon: 'muscleMan',
+      name: 'Muscle Man',
+      id: 'muscle_man',
+      axeId: 'steel_axe',
+      required: [{
+        type: 'item',
+        itemId: 'steel_axe',
+        icon: ITEMS['steel_axe'].icon,
+        name: ITEMS['steel_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 5000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 9
       }]
     }
   },
@@ -99,7 +123,7 @@ export const WOODCUTTING = {
       icon: 'beechLog',
       name: 'beech log',
       itemId: 'beech_log',
-      chance: 0.025 // Base chance to chop this log
+      chance: 0.025
     },
 
     ash_log: {
@@ -109,8 +133,18 @@ export const WOODCUTTING = {
       icon: 'ashLog',
       name: 'ash log',
       itemId: 'ash_log',
-      chance: 0.015 // Base chance to chop this log
+      chance: 0.015
     },
+
+    oak_log: {
+      requiredAttack: 9,
+      xp: 45,
+      id: 'oak_log',
+      icon: 'oakLog',
+      name: 'oak log',
+      itemId: 'oak_log',
+      chance: 0.003
+    }
 
     // Oak, Maple, Walnut, Cherry, Mahogany
   }

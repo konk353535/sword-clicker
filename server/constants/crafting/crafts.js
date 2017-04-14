@@ -73,6 +73,30 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
+  steel_furnace: {
+    produces: 'steel_furnace',
+    recipeFor: 'crafting',
+    name: 'steel furnace',
+    id: 'steel_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 9,
+    required: [{
+      type: 'item',
+      itemId: 'steel_bar',
+      icon: ITEMS['steel_bar'].icon,
+      name: ITEMS['steel_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 9
+    }],
+    timeToCraft: 120, // Time to craft item in seconds
+    xp: 100, // Xp earned once crafted
+    maxToCraft: 1 // Maximum number of this that can be crafted together
+  },
+
   copper_bar: {
     produces: 'copper_bar',
     recipeFor: 'crafting',
@@ -184,6 +208,44 @@ export const CRAFTING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 8
+    }]
+  },
+
+  carbon_bar: {
+    produces: 'carbon_bar',
+    recipeFor: 'crafting',
+    name: 'carbon bar',
+    id: 'carbon_bar',
+    category: 'crafting',
+    timeToCraft: 10,
+    xp: 30,
+    maxToCraft: 100,
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ore_carbon',
+      icon: ITEMS['ore_carbon'].icon,
+      name: ITEMS['ore_carbon'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
     }]
   }
 }

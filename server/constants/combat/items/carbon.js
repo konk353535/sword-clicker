@@ -1,255 +1,255 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
 
-export const STEEL_ITEMS = {
-  steel_dagger: {
-    id: 'steel_dagger',
-    icon: 'steelDagger',
+export const CARBON_ITEMS = {
+  carbon_dagger: {
+    id: 'carbon_dagger',
+    icon: 'carbonDagger',
     category: 'combat',
     weaponType: 'dagger',
     slot: 'mainHand',
-    name: 'steel dagger',
-    sellPrice: 500,
+    name: 'carbon dagger',
+    sellPrice: 700,
     description: 'An okay dagger.',
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 4,
-      attackMax: 6,
+      attack: 5,
+      attackMax: 7,
       attackSpeed: FAST_SPEED,
-      accuracy: 5
+      accuracy: 7
     },
     extraStats: {
-      attack: 3,
-      attackMax: 3,
-      accuracy: 7
+      attack: 4,
+      attackMax: 4,
+      accuracy: 9
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_spear: {
-    id: 'steel_spear',
-    icon: 'steelSpear',
+  carbon_spear: {
+    id: 'carbon_spear',
+    icon: 'carbonSpear',
     category: 'combat',
     weaponType: 'spear',
     slot: 'mainHand',
-    name: 'steel spear',
-    sellPrice: 600,
+    name: 'carbon spear',
+    sellPrice: 800,
     description: 'Often used for defense',
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 5,
-      attackMax: 8,
+      attack: 7,
+      attackMax: 10,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 5,
-      defense: 20
+      accuracy: 8,
+      defense: 28
     },
     extraStats: {
-      attack: 3,
-      attackMax: 4,
-      accuracy: 6,
-      defense: 10
+      attack: 4,
+      attackMax: 5,
+      accuracy: 8,
+      defense: 14
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_short_sword: {
-    id: 'steel_short_sword',
-    icon: 'steelShortSword',
+  carbon_short_sword: {
+    id: 'carbon_short_sword',
+    icon: 'carbonShortSword',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',
-    name: 'steel short sword',
-    sellPrice: 600,
+    name: 'carbon short sword',
+    sellPrice: 800,
     description: 'A good balance between offense and defense',
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 5,
-      attackMax: 10,
+      attack: 7,
+      attackMax: 13,
       attackSpeed: FAST_SPEED,
-      accuracy: 8,
+      accuracy: 11,
     },
     extraStats: {
-      attack: 5,
-      attackMax: 5,
-      accuracy: 8
+      attack: 6,
+      attackMax: 7,
+      accuracy: 12
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_long_sword: {
-    id: 'steel_long_sword',
-    icon: 'steelLongSword',
+  carbon_long_sword: {
+    id: 'carbon_long_sword',
+    icon: 'carbonLongSword',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
-    name: 'steel long sword',
-    sellPrice: 600,
+    name: 'carbon long sword',
+    sellPrice: 800,
     description: 'A pure offensive weapon',
     isTwoHanded: true,
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 10,
-      attackMax: 17,
+      attack: 14,
+      attackMax: 21,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 17,
+      accuracy: 21,
     },
     extraStats: {
-      attack: 7,
-      attackMax: 10,
-      accuracy: 10
+      attack: 9,
+      attackMax: 12,
+      accuracy: 12
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_battle_axe: {
-    id: 'steel_battle_axe',
-    icon: 'steelBattleAxe',
+  carbon_battle_axe: {
+    id: 'carbon_battle_axe',
+    icon: 'carbonBattleAxe',
     category: 'combat',
     weaponType: 'battleAxe',
     slot: 'mainHand',
-    name: 'steel battle axe',
-    sellPrice: 300,
+    name: 'carbon battle axe',
+    sellPrice: 500,
     description: 'A slow pure offensive weapon.',
     isTwoHanded: true,
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 12,
-      attackMax: 35,
+      attack: 15,
+      attackMax: 48,
       attackSpeed: SLOW_SPEED,
-      accuracy: 13,
+      accuracy: 20,
     },
     extraStats: {
-      attack: 5,
-      attackMax: 24
+      attack: 7,
+      attackMax: 30
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_helmet: {
-    id: 'steel_helmet',
-    icon: 'steelHelmet',
+  carbon_helmet: {
+    id: 'carbon_helmet',
+    icon: 'carbonHelmet',
     category: 'combat',
     slot: 'head',
-    name: 'steel helmet',
+    name: 'carbon helmet',
     sellPrice: 400,
     description: 'Protect your head',
     isEquippable: true,
     stats: {
-      healthMax: 4,
-      defense: 5,
-      armor: 13
+      healthMax: 7,
+      defense: 8,
+      armor: 20
     },
     extraStats: {
-      healthMax: 5,
-      defense: 4,
-      armor: 7
+      healthMax: 7,
+      defense: 6,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_chest_plate: {
-    id: 'steel_chest_plate',
-    icon: 'steelChestPlate',
+  carbon_chest_plate: {
+    id: 'carbon_chest_plate',
+    icon: 'carbonChestPlate',
     category: 'combat',
     slot: 'chest',
-    name: 'steel chestplate',
+    name: 'carbon chestplate',
     sellPrice: 600,
     description: 'Protect your heart',
     isEquippable: true,
     stats: {
-      healthMax: 4,
-      defense: 4,
-      armor: 13
+      healthMax: 6,
+      defense: 6,
+      armor: 19
     },
     extraStats: {
-      healthMax: 5,
-      defense: 7,
-      armor: 13
+      healthMax: 7,
+      defense: 10,
+      armor: 20
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_plate_legs: {
-    id: 'steel_plate_legs',
-    icon: 'steelPlateLegs',
+  carbon_plate_legs: {
+    id: 'carbon_plate_legs',
+    icon: 'carbonPlateLegs',
     category: 'combat',
     slot: 'legs',
-    name: 'steel platelegs',
-    sellPrice: 300,
+    name: 'carbon platelegs',
+    sellPrice: 400,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 4,
-      defense: 4,
-      armor: 12
+      healthMax: 6,
+      defense: 6,
+      armor: 16
     },
     extraStats: {
-      healthMax: 5,
-      defense: 5,
-      armor: 13
+      healthMax: 7,
+      defense: 7,
+      armor: 19
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 12
     }]
   },
 
-  steel_shield: {
-    id: 'steel_shield',
-    icon: 'steelShield',
+  carbon_shield: {
+    id: 'carbon_shield',
+    icon: 'carbonShield',
     category: 'combat',
     slot: 'offHand',
-    name: 'steel shield',
-    sellPrice: 150,
+    name: 'carbon shield',
+    sellPrice: 250,
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 8,
-      defense: 4,
-      armor: 25
+      healthMax: 12,
+      defense: 6,
+      armor: 35
     },
     extraStats: {
-      healthMax: 10,
-      defense: 7,
-      armor: 13
+      healthMax: 14,
+      defense: 9,
+      armor: 19
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 8
+      level: 12
     }]
   }
 }

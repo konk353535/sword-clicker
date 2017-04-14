@@ -33,8 +33,6 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
     },
     extraStats: {
-      attack: 2,
-      attackSpeed: 2,
       accuracy: 50
     }
   },
@@ -54,7 +52,6 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 25 // Extra chance of getting a log ( 1% extra chance )
     },
     extraStats: {
-      attackSpeed: 3,
       accuracy: 50
     }
   },
@@ -74,8 +71,26 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 50 // Extra chance of getting a log ( 1% extra chance )
     },
     extraStats: {
-      attackSpeed: 3,
       accuracy: 75
+    }
+  },
+
+  carbon_axe: {
+    id: 'carbon_axe',
+    icon: 'carbonAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'carbon axe',
+    sellPrice: 1000,
+    description: 'An axe forged from carbon. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 9, // Determines what logs you can cut
+      attackSpeed: 4, // How often you cut ( 1 per minute )
+      accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
+    },
+    extraStats: {
+      accuracy: 24
     }
   },
 
@@ -101,5 +116,13 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'ash log',
     sellPrice: 50
+  },
+
+  oak_log: {
+    id: 'oak_log',
+    icon: 'oakLog',
+    category: 'woodcutting',
+    name: 'oak log',
+    sellPrice: 100
   }
 }

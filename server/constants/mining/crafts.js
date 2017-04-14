@@ -137,5 +137,43 @@ export const MINING_CRAFTS = {
       name: 'crafting',
       level: 9
     }]
+  },
+
+  carbon_pickaxe: {
+    produces: 'carbon_pickaxe',
+    recipeFor: 'crafting',
+    name: 'carbon pickaxe',
+    id: 'carbon_pickaxe',
+    category: 'mining',
+    timeToCraft: 300,
+    xp: 500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 9
+    }]
   }
 }

@@ -116,5 +116,36 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 9
     }]
+  },
+
+  carbon_axe: {
+    produces: 'carbon_axe',
+    recipeFor: 'crafting',
+    name: 'carbon axe',
+    id: 'carbon_axe',
+    category: 'woodcutting',
+    timeToCraft: 300, // 60
+    xp: 500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 11,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_bar',
+      icon: ITEMS['carbon_bar'].icon,
+      name: ITEMS['carbon_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 11
+    }]
   }
 }

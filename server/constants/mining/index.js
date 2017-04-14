@@ -71,7 +71,29 @@ export const MINING = {
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.04
+      chance: 0.02
+    },
+
+    carbon: {
+      requiredLevel: 15,
+      healthMax: 5000,
+      xp: 350,
+      id: 'carbon',
+      icon: 'carbon',
+      name: 'carbon',
+      itemId: 'ore_carbon',
+      chance: 0.005
+    },
+
+    mithril: {
+      requiredLevel: 20,
+      healthMax: 10000,
+      xp: 700,
+      id: 'carbon',
+      icon: 'carbon',
+      name: 'carbon',
+      itemId: 'ore_carbon',
+      chance: 0.001
     }
   }
 }

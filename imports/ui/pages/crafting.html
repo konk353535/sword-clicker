@@ -36,6 +36,45 @@
         <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
       </li>
     </ul>
+
+    <div class="mb-3">
+      <b>Filter: </b>
+      <span class="tier-filter badge
+        badge-{{#if craftingTierFilter.primitive}}empty{{else}}stone{{/if}}" data-tier-filter="primitive">
+          Primititve
+      </span>
+      {{#if $gte craftingLevel 2}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.copper}}empty{{else}}copper{{/if}}" data-tier-filter="copper">
+            Copper
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 4}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.iron}}empty{{else}}iron{{/if}}" data-tier-filter="iron">
+            Iron
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 7}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.steel}}empty{{else}}steel{{/if}}" data-tier-filter="steel">
+            Steel
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 10}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.carbon}}empty{{else}}carbon{{/if}}" data-tier-filter="carbon">
+            Carbon
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 14}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.mithril}}empty{{else}}mithril{{/if}}" data-tier-filter="mithril">
+            Mithril
+        </span>
+      {{/if}}
+    </div>
+
     <table class="table table-bordered table-hover table-centered table-responsive">
       <thead>
         <tr>

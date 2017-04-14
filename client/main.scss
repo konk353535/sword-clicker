@@ -1,14 +1,18 @@
 /* CSS declarations go here */
 @import "{}/node_modules/bootstrap/scss/bootstrap.scss";
 @import "iconFont.scss";
+@import "styles/colors.scss";
 @import "styles/chat.scss";
 @import "styles/icons.scss";
-
-
+@import "styles/badges.scss";
 
 .body-content {
   margin-left: $spacer / 2;
   margin-right: $spacer / 2;
+}
+
+.tier-filter {
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

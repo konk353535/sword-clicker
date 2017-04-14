@@ -29,6 +29,12 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('recipeFilter', 'all');
       }
+
+      if (myUser.uiState && myUser.uiState.craftingTierFilter !== undefined) {
+        this.state.set('craftingTierFilter', myUser.uiState.craftingTierFilter);
+      } else {
+        this.state.set('craftingTierFilter', {});
+      }
     }
   });
 
@@ -75,6 +81,22 @@ Template.craftingPage.events({
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
     Meteor.call('users.setUiState', 'craftingFilter', filter);
+  },
+
+  'click .tier-filter'(event, instance) {
+    const filter = instance.$(event.target).closest('.tier-filter').data('tier-filter');
+    const craftingTierFilter = instance.state.get('craftingTierFilter')
+    const existingFilter = craftingTierFilter[filter];
+
+    if (existingFilter) {
+      craftingTierFilter[existingFilter] = false;
+      instance.state.set('craftingTierFilter', craftingTierFilter);
+      Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, false);
+    } else {
+      craftingTierFilter[existingFilter] = true;
+      instance.state.set('craftingTierFilter', craftingTierFilter);
+      Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, true);
+    }
   },
 
   'keyup .craft-amount-input'(event, instance) {
@@ -164,6 +186,14 @@ Template.craftingPage.helpers({
     return Template.instance().state.get('recipeFilter');
   },
 
+  craftingLevel() {
+    return Skills.findOne({ type: 'crafting' }).level;
+  },
+
+  craftingTierFilter() {
+    return Template.instance().state.get('craftingTierFilter');
+  },
+
   recipes() {
     const instance = Template.instance();
     const recipeFilter = instance.state.get('recipeFilter');
@@ -172,10 +202,26 @@ Template.craftingPage.helpers({
       return [];
     }
 
+    const patterns = [];
+    const craftingTierFilter = instance.state.get('craftingTierFilter');
+    Object.keys(craftingTierFilter).forEach((tierKey) => {
+      if (craftingTierFilter[tierKey]) {
+        patterns.push(tierKey);
+      }
+    });
+
+    // Create regex exp to filter out based on current tier filter selection
+    let filterTierRegex = new RegExp(patterns.join('|'), 'gi');
+
+    let filteredRecipes = instance.state.get('recipes').filter((item) => {
+      // Filter by tier
+      return !item.id.match(filterTierRegex);
+    });
+
     if (recipeFilter === 'all') {
-      return instance.state.get('recipes');
+      return filteredRecipes;
     } else {
-      return instance.state.get('recipes').filter((item) => {
+      return filteredRecipes.filter((item) => {
         return item.category === recipeFilter;
       });
     }

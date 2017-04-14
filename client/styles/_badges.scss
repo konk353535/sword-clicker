@@ -1,0 +1,30 @@
+// Custom badges for crafting tab
+
+.badge-stone {
+  background-color: $color-stone;
+}
+
+.badge-copper {
+  background-color: $color-copper;
+}
+
+.badge-iron {
+  background-color: $color-iron;
+}
+
+.badge-steel {
+  background-color: $color-steel;
+}
+
+.badge-carbon {
+  background-color: $color-carbon;
+}
+
+.badge-mithril {
+  background-color: $color-mithril;
+}
+
+.badge-empty {
+  background-color: $gray-lighter;
+  color: darken($gray-lighter, 20);
+}

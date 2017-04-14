@@ -36,7 +36,13 @@ Meteor.methods({
       'craftingFilter',
       'combatTab',
       'towerFloor',
-      'questLevel'
+      'questLevel',
+      'craftingTierFilter.primitive',
+      'craftingTierFilter.copper',
+      'craftingTierFilter.iron',
+      'craftingTierFilter.steel',
+      'craftingTierFilter.carbon',
+      'craftingTierFilter.mithril'
     ];
 
     if (_.contains(validIds, id)) {

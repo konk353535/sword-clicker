@@ -47,7 +47,12 @@ Meteor.methods({
 
     // Determine time since last update
     const now = moment();
-    const minutesElapsed = moment.duration(now.diff(woodcutting.lastGameUpdated)).asMinutes();
+    let minutesElapsed = moment.duration(now.diff(woodcutting.lastGameUpdated)).asMinutes();
+
+    // Cap offline gains to 8 hours
+    if (minutesElapsed > (8 * 60)) {
+      minutesElapsed = 8 * 60;
+    }
 
     // Determine item and exp gains
     const gainedItems = {};

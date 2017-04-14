@@ -159,7 +159,13 @@ Meteor.methods({
 
     // Determine time since last update
     const now = moment();
-    const secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
+    let secondsElapsed = moment.duration(now.diff(mining.lastGameUpdated)).asSeconds();
+
+    // Cap offline gains to 8 hours
+    if (secondsElapsed > (60 * 60 * 8)) {
+      secondsElapsed = 60 * 60 * 8;
+    }
+
     const minutesElapsed = secondsElapsed / 60;
 
     if (mining.stats.energy < mining.stats.energyStorage) {

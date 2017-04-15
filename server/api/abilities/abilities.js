@@ -200,6 +200,14 @@ Meteor.methods({
   }
 });
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'abilities.unequip' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'abilities.equip' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'abilities.learn' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'abilities.fetchLibrary' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'abilities' }, 100, 5 * MINUTE);
+
 Meteor.publish('abilities', function() {
 
   //Transform function

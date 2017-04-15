@@ -19,7 +19,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 5000);
+  }, 10000);
 
   Meteor.call('mining.gameUpdate', (err, res) => {
     // Show mining spaces

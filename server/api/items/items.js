@@ -327,6 +327,14 @@ Meteor.methods({
   }
 });
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'items.unequip' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'items.eat' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'items.equip' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'items.sellItem' }, 50, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'items' }, 1000, 5 * MINUTE);
+
 Meteor.publish('items', function() {
 
   //Transform function

@@ -133,6 +133,14 @@ Meteor.methods({
   }
 });
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'groups.leave' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'groups.kick' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'groups.acceptInvite' }, 5, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'groups.invite' }, 25, 5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
+
 Meteor.publish('groups', function() {
 
   //Transform function
@@ -145,19 +153,13 @@ Meteor.publish('groups', function() {
     }, {
       fields: {
         username: 1,
-        _id: 1,
-        health: 1,
-        healthMax: 1
+        _id: 1
       }
     }).fetch();
 
     const memberTransform = function (member) {
       member.name = member.username;
       member.icon = "character";
-      member.stats = {
-        health: member.health,
-        healthMax: member.healthMax
-      }
       return member;
     }
 

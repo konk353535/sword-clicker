@@ -109,4 +109,9 @@ Meteor.methods({
     return payment;
   }
 
-})
+});
+
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'shop.buyMembership' }, 20, 10 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'shop.purchase' }, 20, 10 * MINUTE);

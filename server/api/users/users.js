@@ -58,6 +58,13 @@ Meteor.methods({
   }
 })
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'users.initUiState' }, 10, 10 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'users.activeUsers' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'users.setUiState' }, 50, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'userData' }, 50, 1 * MINUTE);
+
 Meteor.publish("userData", function () {
   if (this.userId) {
     return Meteor.users.find({

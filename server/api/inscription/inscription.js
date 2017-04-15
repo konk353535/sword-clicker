@@ -156,6 +156,13 @@ Meteor.methods({
   }
 });
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'inscription.craftItem' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'inscription.fetchRecipes' }, 10, 5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'inscription.updateGame' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'inscription' }, 100, 10 * MINUTE);
+
 Meteor.publish('inscription', function() {
 
   //Transform function

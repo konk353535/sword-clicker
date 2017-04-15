@@ -34,19 +34,19 @@ Template.body.onCreated(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 17000);
+  }, 65555);
 
   woodcuttingTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('woodcutting.gameUpdate');
     }
-  }, 19000);
+  }, 64444);
 
   combatTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 23000);
+  }, 63333);
 
   floatingTextTimer = Meteor.setInterval(() => {
     // Increase height and decrease opacity

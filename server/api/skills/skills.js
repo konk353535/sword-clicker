@@ -205,6 +205,13 @@ Meteor.methods({
   }
 });
 
+const MINUTE = 60 * 1000;
+
+DDPRateLimiter.addRule({ type: 'method', name: 'skills.learnSkill' }, 10, 10 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'skills.requirements' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'skills.highscores' }, 50, 5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'skills' }, 100, 1 * MINUTE);
+
 Meteor.publish('skills', function() {
 
   //Transform function

@@ -11,3 +11,15 @@
     </div>
   </div>
 </template>
+
+<template name="override-atError">
+  <div class="at-error alert alert-danger">
+    {{#each error}}
+      <div>{{errorText}}</div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="override-atNavButton">
+  <button type="button" id="at-nav-button" class="btn btn-secondary navbar-btn">{{text}}</button>
+</template>

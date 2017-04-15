@@ -7,6 +7,8 @@ import './components/accounts/accounts.html';
 
 Template['override-atPwdFormBtn'].replaces('atPwdFormBtn');
 Template['override-fullPageAtForm'].replaces('fullPageAtForm');
+Template['override-atError'].replaces('atError');
+Template['override-atNavButton'].replaces('atNavButton');
 
 import './body.html';
 

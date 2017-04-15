@@ -1,0 +1,51 @@
+<template name="guestSettingsPage">
+  <div class="container d-flex justify-content-center mt-3">
+    <div style="width: 470px">
+      <div class="at-form">
+        {{#if error}}
+          <div class="alert alert-danger">
+            {{error}}
+          </div>
+        {{/if}}
+        <div class="text-center">
+          Update guest account
+        </div>
+        <form class="mt-2">
+          <fieldset>
+            <div class="at-input form-group has-feedback">
+              <label class="control-label" for="at-field-username">
+                Username 
+              </label>
+              <input type="text" class="form-control" id="at-field-username" name="at-field-username" placeholder="Username" autocapitalize="none" autocorrect="off">
+              
+              <span class="help-block hide"></span>
+            </div>
+            <div class="at-input form-group has-feedback">
+              <label class="control-label" for="at-field-password">
+                Password 
+              </label>
+              <input type="password" class="form-control" id="at-field-password" name="at-field-password">
+              
+              <span class="help-block hide"></span>
+            </div>
+            <div class="at-input form-group has-feedback">
+              <label class="control-label" for="at-field-confirm-password">
+                Confirm Password 
+              </label>
+              <input type="password" class="form-control" id="at-field-confirm-password" name="at-field-confirm-password">
+              
+              <span class="help-block hide"></span>
+            </div>
+            <button type="submit" class="at-btn btn btn-block btn-primary" id="at-update-btn" disabled={{updating}}>
+              {{#if updating}}
+                Updating...
+              {{else}}
+                Update
+              {{/if}}
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

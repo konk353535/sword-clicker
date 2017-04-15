@@ -4,11 +4,13 @@ import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import './components/accounts/accounts.html';
+import './components/accounts/accounts.js';
 
 Template['override-atPwdFormBtn'].replaces('atPwdFormBtn');
 Template['override-fullPageAtForm'].replaces('fullPageAtForm');
 Template['override-atError'].replaces('atError');
 Template['override-atNavButton'].replaces('atNavButton');
+Template['override-atPwdForm'].replaces('atPwdForm');
 
 import './body.html';
 

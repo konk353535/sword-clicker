@@ -21,5 +21,43 @@
 </template>
 
 <template name="override-atNavButton">
-  <button type="button" id="at-nav-button" class="btn btn-secondary navbar-btn">{{text}}</button>
+  {{#if $eq text 'Sign Out'}}
+    <a class="dropdown-item navbar-btn" style="cursor: pointer" id="at-nav-button">
+      {{text}}
+    </a>
+  {{else}}
+    <button type="button" id="at-nav-button" class="btn btn-secondary navbar-btn">{{text}}</button>
+  {{/if}}
+</template>
+
+<template name="playAsGuestBtn">
+  <button type="button" class="btn btn-secondary btn-block play-as-guest-btn mt-3 {{#if creatingGuest}}disabled{{/if}}">
+    {{#if creatingGuest}}
+      Creating guest account...
+    {{else}}
+      Play as guest
+    {{/if}}
+  </button>
+</template>
+
+<template name="override-atPwdForm">
+  <div class="at-pwd-form">
+    <form role="form" id="at-pwd-form" novalidate action="#" method="POST">
+      <fieldset {{disabled}}>
+        {{#each fields}}
+          {{> atInput}}
+        {{/each}}
+        {{#if showReCaptcha}}
+          {{> atReCaptcha}}
+        {{/if}}
+        {{#if showForgotPasswordLink}}
+          {{> atPwdLink}}
+        {{/if}}
+        {{> atPwdFormBtn}}
+        {{#if showForgotPasswordLink}}
+          {{> playAsGuestBtn}}
+        {{/if}}
+      </fieldset>
+    </form>
+  </div>
 </template>

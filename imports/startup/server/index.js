@@ -1,4 +1,6 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
+import { Random } from 'meteor/random';
+
 import { Skills } from '../../api/skills/skills.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
@@ -15,72 +17,79 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
 
-AccountsTemplates.configure({
-  postSignUpHook: function (userId, info) {
-    Skills.insert({
-      type: 'mining',
-      createdAt: new Date(),
-      owner: userId,
-      username: info.username
-    });
+Accounts.onCreateUser((options, user) => {
+  user._id = Random.id();
+  const userId = user._id;
 
-    Skills.insert({
-      type: 'total',
-      createdAt: new Date(),
-      owner: userId,
-      username: info.username
-    });
+  if (options.isGuest) {
+    user.isGuest = options.isGuest;
+  }
 
-    Mining.insert({
-      owner: userId,
-      lastGameUpdated: new Date()
-    });
+  Skills.insert({
+    type: 'mining',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  });
 
-    Combat.insert({
-      owner: userId,
-      stats: {
-        health: 50,
-        energy: 25
-      }
-    });
+  Skills.insert({
+    type: 'total',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  });
 
-    Abilities.insert({
-      owner: userId,
-      learntAbilities: []
-    });
+  Mining.insert({
+    owner: userId,
+    lastGameUpdated: new Date()
+  });
 
+  Combat.insert({
+    owner: userId,
+    stats: {
+      health: 50,
+      energy: 25
+    }
+  });
+
+  Abilities.insert({
+    owner: userId,
+    learntAbilities: []
+  });
+
+  MiningSpace.insert({
+    owner: userId,
+    oreId: MINING.ores.stone.id,
+    health: MINING.ores.stone.healthMax,
+    index: 0
+  });
+
+  for (let i = 1; i < 16; i++) {
     MiningSpace.insert({
       owner: userId,
       oreId: MINING.ores.stone.id,
       health: MINING.ores.stone.healthMax,
-      index: 0
+      index: i
     });
-
-    for (let i = 1; i < 16; i++) {
-      MiningSpace.insert({
-        owner: userId,
-        oreId: MINING.ores.stone.id,
-        health: MINING.ores.stone.healthMax,
-        index: i
-      });
-    }
-
-    addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
-
-    // Equip the pick axe
-    Items.update({
-      owner: userId,
-      itemId: ITEMS['primitive_pickaxe'].id
-    }, {
-      $set: {
-        equipped: true,
-        slot: ITEMS['primitive_pickaxe'].slot
-      }
-    });
-
-    // Update mining stats
-    updateMiningStats(userId, true);
   }
+
+  addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
+
+  // Equip the pick axe
+  Items.update({
+    owner: userId,
+    itemId: ITEMS['primitive_pickaxe'].id
+  }, {
+    $set: {
+      equipped: true,
+      slot: ITEMS['primitive_pickaxe'].slot
+    }
+  });
+
+  // Update mining stats
+  updateMiningStats(userId, true);
+
+  return user;
 });
 
 const currentFloor = Floors.findOne();

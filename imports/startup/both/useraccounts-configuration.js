@@ -6,7 +6,7 @@ AccountsTemplates.configure({
   forbidClientAccountCreation: false,
   overrideLoginErrors: true,
   sendVerificationEmail: false,
-  lowercaseUsername: false,
+  lowercaseUsername: true,
 
   // Appearance
   showAddRemoveServices: false,

@@ -10,6 +10,18 @@ Router.route('/home', {
   }
 });
 
+Router.route('/guestSettings', {
+
+  name: 'guestSettings',
+
+  template: 'guestSettingsPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/shop', {
 
   name: 'shop',

@@ -11,6 +11,7 @@ UserSchema = new SimpleSchema({
   floor: { type: Number, defaultValue: 1 },
   membershipTo: { type: Date, optional: true },
   gems: { type: Number, defaultValue: 5 },
+  isGuest: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
   username: { type: String },
   personalQuest: { type: Object },

@@ -7,6 +7,22 @@ Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
 });
 
+Template.nav.events({
+  'click .guest-sign-out-btn'(event, instance) {
+    // Show confirm logout modal for guest sign out
+    instance.$('.guestSignOffConfirmModal').modal('show');
+  },
+
+  'click .guest-set-password-btn'(event, instance) {
+    instance.$('.guestSignOffConfirmModal').modal('hide');
+    Router.go('/guestSettings');
+  },
+
+  'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
+    instance.$('.guestSignOffConfirmModal').modal('hide');
+  }
+})
+
 Template.nav.helpers({
   currentRoute() {
     return Router.current().route.getName();

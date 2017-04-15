@@ -3,6 +3,9 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
+import { Skills } from '/imports/api/skills/skills';
+import { Combat } from '/imports/api/combat/combat';
+import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
 
 Meteor.methods({
@@ -26,6 +29,61 @@ Meteor.methods({
         $gte: moment().subtract(5, 'minutes').toDate()
       }
     }).count();
+  },
+
+  'users.createGuest'({ username, password }) {
+    return Accounts.createUser({
+      username,
+      password,
+      isGuest: true
+    });
+  },
+
+  'users.updateGuest'({ username, password }) {
+    // Make sure this account is actually a guest
+    if (!Meteor.user().isGuest) {
+      throw new Meteor.Error('not-guest', 'Cant update details if your not a guest');
+    }
+
+    // Update username
+    Accounts.setUsername(Meteor.userId(), username);
+
+    // Update password
+    Accounts.setPassword(Meteor.userId(), password, { logout: false });
+
+    // Update isGuest flag
+    Users.update(Meteor.userId(), {
+      $set: {
+        isGuest: false
+      }
+    });
+
+    const newUsername = Meteor.user().username;
+
+    // Update other places in the app now that username has changed
+    Skills.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        username: newUsername
+      }
+    }, { multi: true });
+
+    Combat.update({
+      owner: Meteor.userId()
+    }, { 
+      $set: {
+        username: newUsername
+      }
+    });
+
+    FloorWaveScores.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        username: newUsername
+      }
+    }, { multi: true });
   },
 
   'users.setUiState'(id, value) {
@@ -75,7 +133,8 @@ Meteor.publish("userData", function () {
         'uiState': 1,
         'gems': 1,
         'membershipTo': 1,
-        'personalQuest': 1
+        'personalQuest': 1,
+        'isGuest': 1
       }
     });
   } else {

@@ -2,7 +2,9 @@
   <div class="icon-box mine-space-container">
     {{#unless isEmpty}}
       <img src="/icons/{{mineSpace.icon}}.svg" class="ore-icon">
-      {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.healthMax}}
+      <span style="font-size: 12px; white-space: nowrap">
+        {{> formatNumber mineSpace.health}} / {{> formatNumber mineSpace.healthMax}}
+      </span>
     {{/unless}}
   </div><br />
   

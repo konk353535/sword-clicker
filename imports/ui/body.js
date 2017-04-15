@@ -3,6 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import moment from 'moment';
 
+import './components/accounts/accounts.html';
+
+Template['override-atPwdFormBtn'].replaces('atPwdFormBtn');
+Template['override-fullPageAtForm'].replaces('fullPageAtForm');
+
 import './body.html';
 
 let miningTimer;

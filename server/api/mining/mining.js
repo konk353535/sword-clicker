@@ -375,7 +375,7 @@ const MINUTE = 60 * 1000;
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 200, 10 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 10, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 50, 60 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 1000, 5 * MINUTE);
 
 Meteor.publish('miningSpace', function() {

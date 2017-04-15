@@ -1,0 +1,13 @@
+<template name="override-atPwdFormBtn">
+  <button type="submit" class="at-btn submit btn btn-lg btn-block btn-primary {{submitDisabled}}" id="at-btn">
+    {{buttonText}}
+  </button>
+</template>
+
+<template name="override-fullPageAtForm">
+  <div class="container d-flex justify-content-center mt-3">
+    <div style="width: 470px">
+      {{> atForm}}
+    </div>
+  </div>
+</template>

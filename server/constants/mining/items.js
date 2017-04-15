@@ -61,13 +61,13 @@ export const MINING_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'primitive pickaxe',
-    sellPrice: 10,
+    sellPrice: 15,
     description: 'A basic pickaxe. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
       energyStorage: 15, // Maximum energy stored
-      attack: 5, // Damage per hit
+      attack: 10, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 10, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
@@ -92,14 +92,14 @@ export const MINING_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 20, // Maximum energy stored
-      attack: 20, // Damage per hit
+      attack: 25, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
       miner: 25 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 20,
-      attack: 10,
+      attack: 15,
       miner: 75,
       energyRegen: 2
     }

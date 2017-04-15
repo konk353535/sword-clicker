@@ -23,7 +23,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 50,
+        amount: 20,
         consumes: true
       }, {
         type: 'skill',

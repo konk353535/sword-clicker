@@ -11,9 +11,17 @@ import '../components/mining/mineSpace.js';
 import './mining.html';
 
 let miningPageTimer;
+let hasInitGameUpdate;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  this.autorun(() => {
+    if (!hasInitGameUpdate && Mining.findOne()) {
+      Meteor.call('mining.gameUpdate');
+      hasInitGameUpdate = true;
+    }
+  });
 
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
@@ -21,12 +29,10 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   }, 10000);
 
-  Meteor.call('mining.gameUpdate', (err, res) => {
-    // Show mining spaces
-    Meteor.subscribe('miningSpace');
-    // Do I even need this?
-    Meteor.subscribe('mining');
-  });
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+  // Do I even need this?
+  Meteor.subscribe('mining');
 });
 
 Template.miningPage.events({

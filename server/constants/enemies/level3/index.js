@@ -1,5 +1,5 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
-import { baseLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { LOOT_TABLE } from './lootTable';
 import { enemyStatSetter } from '/server/utils';
 
 const baseStats = {
@@ -43,7 +43,7 @@ export const LEVEL_THREE_ENEMIES = {
       armor: 0.1,
       damageTaken: 1
     },
-    rewards: []
+    rewards: LOOT_TABLE
   },
 
   snake: {
@@ -61,7 +61,7 @@ export const LEVEL_THREE_ENEMIES = {
       armor: 0.05,
       damageTaken: 1
     },
-    rewards: []
+    rewards: LOOT_TABLE
   },
 
   falcon: {
@@ -79,7 +79,7 @@ export const LEVEL_THREE_ENEMIES = {
       armor: 0.1,
       damageTaken: 1
     },
-    rewards: []
+    rewards: LOOT_TABLE
   },
 
   skunk: {
@@ -97,7 +97,7 @@ export const LEVEL_THREE_ENEMIES = {
       armor: 1,
       damageTaken: 1
     },
-    rewards: []
+    rewards: LOOT_TABLE
   },
 
   lizard: {
@@ -115,7 +115,7 @@ export const LEVEL_THREE_ENEMIES = {
       armor: 1,
       damageTaken: 1
     },
-    rewards: []
+    rewards: LOOT_TABLE
   }
 }
 

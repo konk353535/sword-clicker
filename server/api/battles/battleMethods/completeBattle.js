@@ -50,21 +50,35 @@ export const completeBattle = function (actualBattle) {
     actualBattle.deadEnemies.forEach((deadEnemy) => {
       const rewards = ENEMIES[deadEnemy.enemyId].rewards;
       for (let i = 0; i < rewards.length; i++) {
-        const reward = rewards[i];
+        const rewardTable = rewards[i];
         const diceRoll = Math.random();
 
-        if (reward.chance >= diceRoll) {
-          rewardsGained.push(reward);
+        if (rewardTable.chance >= diceRoll) {
+          rewardsGained.push(_.sample(rewardTable.rewards));
           break;          
         }
       }
     });
 
+    // Apply rewards for complete wave ( if this is a tower battle )
+    if (actualBattle.floor) {
+      const floorRewards = FLOORS[actualBattle.floor][actualBattle.difficulty].rewards;
+      for (let i = 0; i < floorRewards.length; i++) {
+        const rewardTable = floorRewards[i];
+        const diceRoll = Math.random();
+
+        if (rewardTable.chance >= diceRoll) {
+          rewardsGained.push(_.sample(rewardTable.rewards));
+          break;          
+        }
+      }
+    }
+
     // Process rewards to peeps
     const owners = _.uniq(units.map((unit) => unit.owner));
     rewardsGained.forEach((rewardGained) => {
       if (rewardGained.type === 'item') {
-        const luckyOwner = owners[_.random(0, owners.length - 1)];
+        const luckyOwner = _.sample(owners);
         addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
         finalTickEvents.push({
           type: 'item',
@@ -74,6 +88,7 @@ export const completeBattle = function (actualBattle) {
           owner: luckyOwner
         });
       }
+      // To do: add support for getting gold
     });
 
     if (actualBattle.floor && actualBattle.difficulty) {

@@ -90,6 +90,66 @@ export const CARBON_ITEMS = {
     }]
   },
 
+
+  carbon_scimitar: {
+    id: 'carbon_scimitar',
+    icon: 'carbonScimitarSword',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'carbon scimitar',
+    sellPrice: 800,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 10,
+      attackMax: 17,
+      attackSpeed: FAST_SPEED,
+      accuracy: 14,
+    },
+    extraStats: {
+      attack: 8,
+      attackMax: 10,
+      accuracy: 16
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
+  },
+
+  carbon_broad_sword: {
+    id: 'carbon_broad_sword',
+    icon: 'carbonBroadSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'carbon broad sword',
+    sellPrice: 800,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 17,
+      attackMax: 25,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 25,
+    },
+    extraStats: {
+      attack: 11,
+      attackMax: 14,
+      accuracy: 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
+  },
+
   carbon_long_sword: {
     id: 'carbon_long_sword',
     icon: 'carbonLongSword',

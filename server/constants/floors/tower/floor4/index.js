@@ -1,3 +1,6 @@
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+
+
 export const TOWER_FLOOR_4 = {
   easy: {
     name: 'Jungle Bridge',
@@ -10,6 +13,13 @@ export const TOWER_FLOOR_4 = {
       { enemies: [{ id: 'e_goat', amount: 1 }] },
       { enemies: [{ id: 'e_fox', amount: 1 }] }
     ]
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'ore_carbon', amount: 3 },
+        { type: 'gold', amount: 250 }
+      ]
+    }])
   },
 
   hard: {
@@ -22,7 +32,18 @@ export const TOWER_FLOOR_4 = {
       { enemies: [{ id: 'eagle', amount: 1 }, { id: 'e_boar', amount: 1}] },
       { enemies: [{ id: 'kangaroo', amount: 1 }, { id: 'e_goat', amount: 1}] },
       { enemies: [{ id: 'jellyFish', amount: 1 }, { id: 'e_fox', amount: 1}] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 400 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'carbon_bar', amount: 2 },
+        { type: 'item', itemId: 'oak_log', amount: 15 },
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+      ]
+    }])
   },
 
   veryHard: {
@@ -35,7 +56,25 @@ export const TOWER_FLOOR_4 = {
       { enemies: [{ id: 'e_boar', amount: 1 }, { id: 'e_eagle', amount: 1}] },
       { enemies: [{ id: 'e_goat', amount: 1 }, { id: 'e_kangaroo', amount: 1}] },
       { enemies: [{ id: 'e_fox', amount: 1 }, { id: 'e_jellyFish', amount: 1}] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 800 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'carbon_shield', amount: 1 },
+        { type: 'item', itemId: 'carbon_spear', amount: 1 },
+        { type: 'item', itemId: 'carbon_long_sword', amount: 1 },
+        { type: 'item', itemId: 'carbon_plate_legs', amount: 1 },
+        { type: 'item', itemId: 'carbon_chest_plate', amount: 1 },
+        { type: 'item', itemId: 'carbon_helmet', amount: 1 },
+        { type: 'item', itemId: 'carbon_dagger', amount: 1 },
+        { type: 'item', itemId: 'carbon_short_sword', amount: 1 },
+        { type: 'item', itemId: 'carbon_battle_axe', amount: 1 },
+        { type: 'item', itemId: 'mithril_essence', amount: 3 }
+      ]
+    }])
   },
 
   boss: {
@@ -48,6 +87,13 @@ export const TOWER_FLOOR_4 = {
         { id: 'e_jellyFish', amount: 1 },
         { id: 'boss_spartan', amount: 1 }
       ]
-    }]
+    }],
+    rewards: orderLootTable([{
+      chance: 1,
+      rewards: [
+        { type: 'item', itemId: 'carbon_scimitar', amount: 1 },
+        { type: 'item', itemId: 'carbon_broad_sword', amount: 1 }
+      ]
+    }])
   }
 }

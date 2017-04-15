@@ -75,6 +75,35 @@ export const COPPER_ITEMS = {
     }]
   },
 
+  copper_scimitar: {
+    id: 'copper_scimitar',
+    icon: 'copperScimitar',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'copper scimitar',
+    sellPrice: 150,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 4,
+      attackMax: 8,
+      attackSpeed: FAST_SPEED,
+      accuracy: 6,
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 4,
+      accuracy: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
+  },
+
   copper_long_sword: {
     id: 'copper_long_sword',
     icon: 'copperLongSword',
@@ -102,6 +131,36 @@ export const COPPER_ITEMS = {
       type: 'skill',
       name: 'attack',
       level: 2
+    }]
+  },
+
+  copper_broad_sword: {
+    id: 'copper_broad_sword',
+    icon: 'copperBroadSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'copper broad sword',
+    sellPrice: 150,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 8,
+      attackMax: 14,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 14,
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 8,
+      accuracy: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
     }]
   },
 

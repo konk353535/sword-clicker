@@ -4,6 +4,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Users } from '/imports/api/users/users';
+import { Battles } from '/imports/api/battles/battles';
 
 import './personalQuestTab.html';
 
@@ -18,6 +19,24 @@ Template.personalQuestTab.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('currentLevel', myUser.personalQuest.level);
       }
+    }
+  });
+
+  Tracker.autorun(() => {
+
+    const finishedBattle = Battles.findOne({
+      finished: true,
+      updatedAt: {
+        $lte: moment().toDate(),
+        $gte: moment().subtract(1, 'second').toDate()
+      }
+    });
+
+    if (finishedBattle) {
+      finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
+        return tickEvent.owner === Meteor.userId();
+      });
+      this.state.set('finishedBattle', finishedBattle);
     }
   });
 
@@ -55,10 +74,18 @@ Template.personalQuestTab.events({
         toastr.warning(err.reason);
       }
     })
+  },
+
+  'click .btn-close-finishedBattle'(event, instance) {
+    instance.state.set('finishedBattle', null);
   }
 })
 
 Template.personalQuestTab.helpers({
+
+  finishedBattle() {
+    return Template.instance().state.get('finishedBattle');
+  },
 
   maxLevel() {
     return Template.instance().state.get('maxLevel');

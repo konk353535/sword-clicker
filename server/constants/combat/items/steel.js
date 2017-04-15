@@ -90,6 +90,65 @@ export const STEEL_ITEMS = {
     }]
   },
 
+  steel_scimitar: {
+    id: 'steel_scimitar',
+    icon: 'steelScimitar',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'steel scimitar',
+    sellPrice: 600,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 7,
+      attackMax: 13,
+      attackSpeed: FAST_SPEED,
+      accuracy: 11,
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 7,
+      accuracy: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
+  },
+
+  steel_broad_sword: {
+    id: 'steel_broad_sword',
+    icon: 'steelBroadSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'steel broad sword',
+    sellPrice: 600,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 14,
+      attackMax: 21,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 21,
+    },
+    extraStats: {
+      attack: 9,
+      attackMax: 12,
+      accuracy: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
+  },
+
   steel_long_sword: {
     id: 'steel_long_sword',
     icon: 'steelLongSword',

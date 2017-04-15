@@ -90,6 +90,65 @@ export const IRON_ITEMS = {
     }]
   },
 
+  iron_scimitar: {
+    id: 'iron_scimitar',
+    icon: 'ironScimitar',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'iron scimitar',
+    sellPrice: 300,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 5,
+      attackMax: 10,
+      attackSpeed: FAST_SPEED,
+      accuracy: 8,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 5,
+      accuracy: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
+  },
+
+  iron_broad_sword: {
+    id: 'iron_broad_sword',
+    icon: 'ironBroadSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'iron broad sword',
+    sellPrice: 300,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 10,
+      attackMax: 17,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 17,
+    },
+    extraStats: {
+      attack: 7,
+      attackMax: 10,
+      accuracy: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
+  },
+
   iron_long_sword: {
     id: 'iron_long_sword',
     icon: 'ironLongSword',

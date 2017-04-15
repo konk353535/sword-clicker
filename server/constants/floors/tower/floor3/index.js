@@ -1,3 +1,5 @@
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+
 export const TOWER_FLOOR_3 = {
   easy: {
     name: 'Poppy Field',
@@ -9,7 +11,14 @@ export const TOWER_FLOOR_3 = {
       { enemies: [{ id: 'e_falcon', amount: 1 }] },
       { enemies: [{ id: 'e_skunk', amount: 1 }] },
       { enemies: [{ id: 'e_lizard', amount: 1 }] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'ore_steel', amount: 3 },
+        { type: 'gold', amount: 200 }
+      ]
+    }])
   },
 
   hard: {
@@ -22,7 +31,17 @@ export const TOWER_FLOOR_3 = {
       { enemies: [{ id: 'boar', amount: 1 }, { id: 'e_falcon', amount: 1}] },
       { enemies: [{ id: 'goat', amount: 1 }, { id: 'e_skunk', amount: 1}] },
       { enemies: [{ id: 'fox', amount: 1 }, { id: 'e_lizard', amount: 1}] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 300 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'steel_bar', amount: 2 },
+        { type: 'item', itemId: 'ash_log', amount: 20 }
+      ]
+    }])
   },
 
   veryHard: {
@@ -35,7 +54,25 @@ export const TOWER_FLOOR_3 = {
       { enemies: [{ id: 'e_boar', amount: 1 }, { id: 'e_falcon', amount: 1}] },
       { enemies: [{ id: 'e_goat', amount: 1 }, { id: 'e_skunk', amount: 1}] },
       { enemies: [{ id: 'e_fox', amount: 1 }, { id: 'e_lizard', amount: 1}] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 600 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'steel_shield', amount: 1 },
+        { type: 'item', itemId: 'steel_spear', amount: 1 },
+        { type: 'item', itemId: 'steel_long_sword', amount: 1 },
+        { type: 'item', itemId: 'steel_plate_legs', amount: 1 },
+        { type: 'item', itemId: 'steel_chest_plate', amount: 1 },
+        { type: 'item', itemId: 'steel_helmet', amount: 1 },
+        { type: 'item', itemId: 'steel_dagger', amount: 1 },
+        { type: 'item', itemId: 'steel_short_sword', amount: 1 },
+        { type: 'item', itemId: 'steel_battle_axe', amount: 1 },
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+      ]
+    }])
   },
 
   boss: {
@@ -48,6 +85,13 @@ export const TOWER_FLOOR_3 = {
         { id: 'e_fox', amount: 1 },
         { id: 'boss_bone_warrior', amount: 1 }
       ]
-    }]
+    }],
+    rewards: orderLootTable([{
+      chance: 1,
+      rewards: [
+        { type: 'item', itemId: 'steel_scimitar', amount: 1 },
+        { type: 'item', itemId: 'steel_broad_sword', amount: 1 }
+      ]
+    }])
   }
 }

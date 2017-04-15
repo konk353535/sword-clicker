@@ -1,5 +1,5 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
-import { baseLootTable, floorOneHardLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { LOOT_TABLE } from './lootTable';
 import { enemyStatSetter } from '/server/utils';
 
 const baseStats = {
@@ -44,7 +44,7 @@ export const LEVEL_TWO_ENEMIES = {
       armor: 0.5,
       damageTaken: 1
     },
-    rewards: baseLootTable.concat(floorOneHardLootTable)
+    rewards: LOOT_TABLE
   },
   // Floor 1 - Hard - 2
   rabbit: {
@@ -62,7 +62,7 @@ export const LEVEL_TWO_ENEMIES = {
       armor: 0.1,
       damageTaken: 1
     },
-    rewards: baseLootTable.concat(floorOneHardLootTable)
+    rewards: LOOT_TABLE
   },
   // Floor 1 - Hard - 3
   crab: {
@@ -80,7 +80,7 @@ export const LEVEL_TWO_ENEMIES = {
       armor: 15,
       damageTaken: 1
     },
-    rewards: baseLootTable.concat(floorOneHardLootTable)
+    rewards: LOOT_TABLE
   },
   // Floor 1 - Hard - 4
   snail: {
@@ -98,7 +98,7 @@ export const LEVEL_TWO_ENEMIES = {
       armor: 5,
       damageTaken: 1
     },
-    rewards: baseLootTable.concat(floorOneHardLootTable)
+    rewards: LOOT_TABLE
   },
   // Floor 1 - Hard - 5
   wasp: {
@@ -116,7 +116,7 @@ export const LEVEL_TWO_ENEMIES = {
       armor: 0.1,
       damageTaken: 1
     },
-    rewards: baseLootTable.concat(floorOneHardLootTable)
+    rewards: LOOT_TABLE
   }
 }
 

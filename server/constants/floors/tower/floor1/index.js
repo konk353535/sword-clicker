@@ -1,3 +1,5 @@
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+
 export const TOWER_FLOOR_1 = {
   easy: {
     name: 'Grass Fields',
@@ -9,7 +11,14 @@ export const TOWER_FLOOR_1 = {
       { enemies: [{ id: 'e_mouse', amount: 1 }] },
       { enemies: [{ id: 'e_bee', amount: 1 }] },
       { enemies: [{ id: 'e_bird', amount: 1 }] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'ore_stone', amount: 3 },
+        { type: 'gold', amount: 25 }
+      ]
+    }])
   },
 
   hard: {
@@ -22,7 +31,17 @@ export const TOWER_FLOOR_1 = {
       { enemies: [{ id: 'e_mouse', amount: 1 }, { id: 'crab', amount: 1 }] },
       { enemies: [{ id: 'e_bee', amount: 1 }, { id: 'snail', amount: 1 }] },
       { enemies: [{ id: 'e_bird', amount: 1 }, { id: 'wasp', amount: 1 }] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 50 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'copper_bar', amount: 2 },
+        { type: 'item', itemId: 'pine_log', amount: 20 }
+      ]
+    }])
   },
 
   veryHard: {
@@ -35,7 +54,24 @@ export const TOWER_FLOOR_1 = {
       { enemies: [{ id: 'e_mouse', amount: 1 }, { id: 'e_crab', amount: 1 }] },
       { enemies: [{ id: 'e_bee', amount: 1 }, { id: 'e_snail', amount: 1 }] },
       { enemies: [{ id: 'e_bird', amount: 1 }, { id: 'e_wasp', amount: 1 }] }
-    ]
+    ],
+    rewards: orderLootTable([{
+      chance: 1 / 8,
+      rewards: [{ type: 'gold', amount: 100 }]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'copper_shield', amount: 1 },
+        { type: 'item', itemId: 'copper_spear', amount: 1 },
+        { type: 'item', itemId: 'copper_long_sword', amount: 1 },
+        { type: 'item', itemId: 'copper_plate_legs', amount: 1 },
+        { type: 'item', itemId: 'copper_chest_plate', amount: 1 },
+        { type: 'item', itemId: 'copper_helmet', amount: 1 },
+        { type: 'item', itemId: 'copper_dagger', amount: 1 },
+        { type: 'item', itemId: 'copper_short_sword', amount: 1 },
+        { type: 'item', itemId: 'copper_battle_axe', amount: 1 }
+      ]
+    }])
   },
 
   boss: {
@@ -46,6 +82,13 @@ export const TOWER_FLOOR_1 = {
         { id: 'e_wasp', amount: 1 },
         { id: 'boss_cougar', amount: 1 }
       ]
-    }]
+    }],
+    rewards: orderLootTable([{
+      chance: 1,
+      rewards: [
+        { type: 'item', itemId: 'copper_scimitar', amount: 1 },
+        { type: 'item', itemId: 'copper_broad_sword', amount: 1 }
+      ]
+    }])
   }
 }

@@ -1,5 +1,5 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
-import { baseLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { LOOT_TABLE } from './lootTable';
 import { enemyStatSetter } from '/server/utils';
 
 const baseStats = {
@@ -43,7 +43,7 @@ export const LEVEL_ONE_ENEMIES = {
       armor: 0.5,
       damageTaken: 1
     },
-    rewards: baseLootTable
+    rewards: LOOT_TABLE
   },
 
   grasshopper: {
@@ -61,7 +61,7 @@ export const LEVEL_ONE_ENEMIES = {
       armor: 1,
       damageTaken: 1
     },
-    rewards: baseLootTable
+    rewards: LOOT_TABLE
   },
 
   mouse: {
@@ -79,7 +79,7 @@ export const LEVEL_ONE_ENEMIES = {
       armor: 1,
       damageTaken: 1
     },
-    rewards: baseLootTable
+    rewards: LOOT_TABLE
   },
 
   bee: {
@@ -97,7 +97,7 @@ export const LEVEL_ONE_ENEMIES = {
       armor: 1,
       damageTaken: 1
     },
-    rewards: baseLootTable
+    rewards: LOOT_TABLE
   },
 
   bird: {
@@ -115,7 +115,7 @@ export const LEVEL_ONE_ENEMIES = {
       armor: 0.2,
       damageTaken: 1
     },
-    rewards: baseLootTable
+    rewards: LOOT_TABLE
   }
 }
 

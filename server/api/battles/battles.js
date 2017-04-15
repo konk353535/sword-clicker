@@ -45,7 +45,7 @@ Meteor.methods({
       members: Meteor.userId()
     });
 
-    if (currentGroup.members.length > 1) {
+    if (currentGroup && currentGroup.members.length > 1) {
       throw new Meteor.Error("only-alone", "You can only do personal quests alone");
     }
 

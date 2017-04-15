@@ -55,7 +55,7 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       if (this.state.get('waveDetails') && finishedBattle.win) {
         const isBossWin = finishedBattle.difficulty === 'boss';
         const isActiveWaveWin = this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0;
-        if (isBoss || isActiveWaveWin) {
+        if (isBossWin || isActiveWaveWin) {
           Meteor.call('battles.getWaveDetails', (err, res) => {
             if (res) {
               this.state.set('waveDetails', res.waveDetails);

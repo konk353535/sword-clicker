@@ -18,6 +18,11 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'ore_steel', amount: 3 },
         { type: 'gold', amount: 200 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'juniper', amount: 1 }
+      ]
     }])
   },
 
@@ -40,6 +45,11 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'steel_bar', amount: 2 },
         { type: 'item', itemId: 'ash_log', amount: 20 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }])
   },
@@ -70,7 +80,8 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'steel_dagger', amount: 1 },
         { type: 'item', itemId: 'steel_short_sword', amount: 1 },
         { type: 'item', itemId: 'steel_battle_axe', amount: 1 },
-        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+        { type: 'item', itemId: 'mithril_essence', amount: 1 },
+        { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }])
   },

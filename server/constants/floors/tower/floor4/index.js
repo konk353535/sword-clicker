@@ -12,12 +12,17 @@ export const TOWER_FLOOR_4 = {
       { enemies: [{ id: 'e_boar', amount: 1 }] },
       { enemies: [{ id: 'e_goat', amount: 1 }] },
       { enemies: [{ id: 'e_fox', amount: 1 }] }
-    ]
+    ],
     rewards: orderLootTable([{
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'ore_carbon', amount: 3 },
         { type: 'gold', amount: 250 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }])
   },

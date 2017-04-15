@@ -121,6 +121,11 @@ Template.towerTab.helpers({
 
   cantBossBattle() {
     const waveDetails = Template.instance().state.get('waveDetails');
+
+    if (Template.instance().state.get('usersCurrentFloor') < Template.instance().state.get('maxFloor')) {
+      return false;
+    }
+
     if (waveDetails && waveDetails.easyWaves <= 0) {
       if (waveDetails.hardWaves <= 0) {
         if (waveDetails.veryHardWaves <= 0) {

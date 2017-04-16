@@ -43,10 +43,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  this.subscribe('groups');
-  this.subscribe('combat');
-  this.subscribe('battles');
-  this.subscribe('abilities');
+  Meteor.subscribe('groups');
+  Meteor.subscribe('combat');
+  Meteor.subscribe('battles');
+  Meteor.subscribe('abilities');
 
   this.autorun(() => {
     // Only called when skills have loaded

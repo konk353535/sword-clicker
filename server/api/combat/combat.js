@@ -166,8 +166,8 @@ Meteor.methods({
 
 const MINUTE = 60 * 1000;
 
-DDPRateLimiter.addRule({ type: 'method', name: 'combat.gameUpdate' }, 25, 2 * MINUTE);
-DDPRateLimiter.addRule({ type: 'subscription', name: 'combat' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'combat.gameUpdate' }, 30, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'subscription', name: 'combat' }, 30, 1 * MINUTE);
 
 Meteor.publish('combat', function() {
   const currentGroup = Groups.findOne({

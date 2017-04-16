@@ -20,7 +20,7 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
       if (Meteor.user()) {
         Meteor.call('farming.gameUpdate');
       }
-    }, 6000);
+    }, 5000);
 
     this.autorun(() => {
       if (Skills.findOne({ type: 'farming' })) {

@@ -268,12 +268,10 @@ Meteor.methods({
         damagePerTick *=  (1 + (mining.stats.miner / 100));
       }
 
-      console.log(`Damage per tick before = ${damagePerTick}`);
       // Apply membership benefits
       if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
         damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
       }
-      console.log(`Damage per tick after = ${damagePerTick}`);
 
       let totalRemainingDamage = damagePerTick * tickCount;
 

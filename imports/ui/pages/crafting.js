@@ -136,7 +136,7 @@ Template.craftingPage.events({
         if (err) {
           toastr.warning(err.reason);
         } else {
-          toastr.success(`Started crafting ${recipeConstants.name}`)
+          toastr.success(`Crafting ${recipeConstants.name}`)
         }
       });
     }

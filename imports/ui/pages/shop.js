@@ -44,7 +44,8 @@ Template.shopPage.rendered = function () {
       const currentPack = instance.state.get('currentPack');
       Meteor.call('shop.purchase', { token: token.id, currentPack }, (err, res) => {
         if (err) {
-          toastr.error('An error occured while purchasing gems');
+          console.log(err.reason);
+          toastr.error('An error occured while purchasing gems.');
         } else {
           toastr.success('Successfully purchased');
         }

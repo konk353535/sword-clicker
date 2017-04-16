@@ -31,7 +31,8 @@ Template.body.onCreated(function () {
   // Store if the user is an active membership in session
   Tracker.autorun(() => {
     if (Meteor.user()) {
-      if (moment().isBefore(Meteor.user().membershipTo)) {
+      const membershipTo = Meteor.user().membershipTo;
+      if (membershipTo && moment().isBefore(membershipTo)) {
         Session.set('isMember', true);
       } else {
         Session.set('isMember', false);

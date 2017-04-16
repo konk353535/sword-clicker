@@ -64,46 +64,62 @@ Meteor.methods({
     let handleCharge = Meteor.wrapAsync( stripe.charges.create, stripe.charges );
 
     let payment;
-    if (currentPack === 'bunch') {
-      payment = handleCharge({
-        amount: 499,
-        currency: "usd",
-        description: "Bunch Of Gems",
-        source: token,
-      });
-    } else if (currentPack === 'bag') {
-      payment = handleCharge({
-        amount: 999,
-        currency: "usd",
-        description: "Bag Of Gems",
-        source: token,
-      });
-    } else if (currentPack === 'box') {
-      payment = handleCharge({
-        amount: 1999,
-        currency: "usd",
-        description: "Box Of Gems",
-        source: token,
-      });
-    }
-
-    if (payment.id) {
-      let newGems = 0;
+    try {
       if (currentPack === 'bunch') {
-        newGems = 5;
+        payment = handleCharge({
+          amount: 499,
+          currency: "usd",
+          description: "Bunch Of Gems",
+          source: token,
+          metadata: {
+            userId: Meteor.userId(),
+            username: Meteor.user().username 
+          }
+        });
       } else if (currentPack === 'bag') {
-        newGems = 10;
+        payment = handleCharge({
+          amount: 999,
+          currency: "usd",
+          description: "Bag Of Gems",
+          source: token,
+          metadata: {
+            userId: Meteor.userId(),
+            username: Meteor.user().username 
+          }
+        });
       } else if (currentPack === 'box') {
-        newGems = 25;
+        payment = handleCharge({
+          amount: 1999,
+          currency: "usd",
+          description: "Box Of Gems",
+          source: token,
+          metadata: {
+            userId: Meteor.userId(),
+            username: Meteor.user().username 
+          }
+        });
       }
 
-      Users.update({
-        _id: Meteor.userId(),
-      }, {
-        $inc: {
-          gems: newGems
+      if (payment.id) {
+        let newGems = 0;
+        if (currentPack === 'bunch') {
+          newGems = 5;
+        } else if (currentPack === 'bag') {
+          newGems = 10;
+        } else if (currentPack === 'box') {
+          newGems = 25;
         }
-      })
+
+        Users.update({
+          _id: Meteor.userId(),
+        }, {
+          $inc: {
+            gems: newGems
+          }
+        })
+      }
+    } catch(err) {
+      throw new Meteor.Error("unknown-error", "Unknown error occured when attempting to purchase gems");
     }
 
     return payment;

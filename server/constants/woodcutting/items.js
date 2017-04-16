@@ -29,12 +29,13 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from copper. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 3, // Determines what logs you can cut
-      attackSpeed: 2, // How often you cut ( 1 per minute )
-      accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
+      attack: 3,
+      attackSpeed: 1,
+      accuracy: 1
     },
     extraStats: {
-      accuracy: 50
+      accuracy: 50,
+      attackSpeed: 1
     }
   },
 
@@ -48,12 +49,13 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from iron. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 6, // Determines what logs you can cut
-      attackSpeed: 3, // How often you cut ( 1 per minute )
-      accuracy: 25 // Extra chance of getting a log ( 1% extra chance )
+      attack: 6,
+      attackSpeed: 1,
+      accuracy: 25
     },
     extraStats: {
-      accuracy: 50
+      accuracy: 50,
+      attackSpeed: 1
     }
   },
 
@@ -67,12 +69,13 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from steel. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 9, // Determines what logs you can cut
-      attackSpeed: 3, // How often you cut ( 1 per minute )
-      accuracy: 50 // Extra chance of getting a log ( 1% extra chance )
+      attack: 9,
+      attackSpeed: 1,
+      accuracy: 50
     },
     extraStats: {
-      accuracy: 75
+      accuracy: 75,
+      attackSpeed: 1
     }
   },
 
@@ -86,12 +89,13 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 12, // Determines what logs you can cut
-      attackSpeed: 4, // How often you cut ( 1 per minute )
-      accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
+      attack: 12,
+      attackSpeed: 1,
+      accuracy: 1
     },
     extraStats: {
-      accuracy: 24
+      accuracy: 24,
+      attackSpeed: 1
     }
   },
 
@@ -105,12 +109,13 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from mithril. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 15, // Determines what logs you can cut
-      attackSpeed: 4, // How often you cut ( 1 per minute )
-      accuracy: 25 // Extra chance of getting a log ( 1% extra chance )
+      attack: 15,
+      attackSpeed: 1,
+      accuracy: 25
     },
     extraStats: {
-      accuracy: 75
+      accuracy: 75,
+      attackSpeed: 1
     }
   },
 

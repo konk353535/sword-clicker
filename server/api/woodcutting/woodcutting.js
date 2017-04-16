@@ -149,9 +149,12 @@ Meteor.methods({
     }
 
     // Fetch the axe which we will use, as it will dissapear when we call requirements util
-    const axeToUse = Items.findOne({ itemId: woodcutterConstants.axeId }, {
+    const axeToUse = Items.findOne({
+      itemId: woodcutterConstants.axeId,
+      owner: Meteor.userId()
+    }, {
       sort: [
-        ['_id', 'asc']
+        ['quality', 'desc']
       ]
     });
 
@@ -164,7 +167,7 @@ Meteor.methods({
 
     if (axeToUse.extraStats) {
       Object.keys(axeToUse.extraStats).forEach((stat) => {
-        if(stats[stat]) {
+        if(stats[stat] !== undefined) {
           stats[stat] += axeToUse.extraStats[stat];
         }
       });

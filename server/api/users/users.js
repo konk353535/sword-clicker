@@ -117,7 +117,8 @@ Meteor.methods({
 })
 
 const MINUTE = 60 * 1000;
-
+DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest' }, 5, 60 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'users.initUiState' }, 10, 10 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'users.activeUsers' }, 10, 2 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'users.setUiState' }, 50, 1 * MINUTE);

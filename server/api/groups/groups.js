@@ -32,7 +32,8 @@ Meteor.methods({
   'groups.kick'(username) {
     // Fetch your current group
     const currentGroup = Groups.findOne({
-      leader: this.userId
+      leader: this.userId,
+      members: this.userId
     });
 
     if (!currentGroup) {
@@ -167,13 +168,20 @@ Meteor.publish('groups', function() {
     }, {
       fields: {
         username: 1,
+        stats: 1,
         _id: 1
       }
     }).fetch();
 
     const memberTransform = function (member) {
+      const orginalStats = JSON.parse(JSON.stringify(member.stats));
+      delete member.stats;
       member.name = member.username;
       member.icon = "character";
+      member.stats = {
+        health: orginalStats.health,
+        healthMax: orginalStats.healthMax
+      }
       return member;
     }
 

@@ -20,13 +20,6 @@ export const STEEL_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 3,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'ash_log',
       icon: ITEMS['ash_log'].icon,
       name: ITEMS['ash_log'].name,
@@ -63,13 +56,6 @@ export const STEEL_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'ash_log',
@@ -110,13 +96,6 @@ export const STEEL_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'ash_log',
       icon: ITEMS['ash_log'].icon,
       name: ITEMS['ash_log'].name,
@@ -155,13 +134,6 @@ export const STEEL_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'ash_log',
       icon: ITEMS['ash_log'].icon,
       name: ITEMS['ash_log'].name,
@@ -198,13 +170,6 @@ export const STEEL_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 10,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'ash_log',

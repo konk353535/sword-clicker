@@ -49,7 +49,7 @@ export const MINING = {
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.09
+      chance: 0.08
     },
 
     iron: {

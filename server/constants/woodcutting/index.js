@@ -161,7 +161,7 @@ export const WOODCUTTING = {
       icon: 'pineLog',
       name: 'pine log',
       itemId: 'pine_log',
-      chance: 0.09 // Base chance to chop this log
+      chance: 0.1 // Base chance to chop this log
     },
 
     beech_log: {

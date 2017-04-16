@@ -35,6 +35,19 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is still in one.');
   }
 
+  // Ensure group size is not too large
+  if (currentGroup) {
+    if (difficulty === 'boss') {
+      if (currentGroup.members.length > BATTLES.maxBossPartySize) {
+        throw new Meteor.Error('to-large', `Your party is too large, maximum party size for boss fights is ${BATTLES.maxBossPartySize}`);
+      }
+    } else {
+      if (currentGroup.members.length > BATTLES.maxTowerPartySize) {
+        throw new Meteor.Error('to-large', `Your party is too large, maximum party size for tower fights is ${BATTLES.maxTowerPartySize}`);
+      }
+    }
+  }
+
   // Create clone of battle objects
   let battleConstants = JSON.parse(JSON.stringify(battleData));
 

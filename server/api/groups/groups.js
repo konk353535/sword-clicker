@@ -5,6 +5,8 @@ import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 
+import { BATTLES } from '/server/constants/battles/index.js';
+
 Meteor.methods({
 
   'groups.leave'() {
@@ -63,8 +65,14 @@ Meteor.methods({
       _id: id,
       invites: Meteor.userId()
     });
+
     if (!targetGroup) {
       return;
+    }
+
+    if (accept && targetGroup.members.length + 1 > BATTLES.maxBossPartySize) {
+      throw new Meteor.Error('group-full',
+        `Group is full (${targetGroup.members.length} / ${BATTLES.maxBossPartySize}) members`);
     }
 
     // Remove from invites list
@@ -113,6 +121,12 @@ Meteor.methods({
     if (currentGroup && (_.contains(currentGroup.invites, targetUser._id) ||
       _.contains(currentGroup.members, targetUser._id))) {
       return;
+    }
+
+    // Make sure there is room for target user
+    if (currentGroup.members.length + currentGroup.invites.length + 1 > BATTLES.maxBossPartySize) {
+      throw new Meteor.Error('group-full',
+        `Group is full (${currentGroup.members.length + currentGroup.invites.length} / ${BATTLES.maxBossPartySize}) members`);
     }
 
     if (currentGroup) {

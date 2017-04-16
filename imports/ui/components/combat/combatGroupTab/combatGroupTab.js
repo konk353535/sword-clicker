@@ -20,7 +20,11 @@ Template.combatGroupTab.events({
     const text = Template.instance().$('.group-user-input').val();
  
     // Send invite request
-    Meteor.call('groups.invite', text);
+    Meteor.call('groups.invite', text, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
  
     // Clear input
     Template.instance().$('.group-user-input').val('');
@@ -35,7 +39,11 @@ Template.combatGroupTab.events({
     const text = target.text.value;
  
     // Send invite request
-    Meteor.call('groups.invite', text);
+    Meteor.call('groups.invite', text, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
  
     // Clear input
     target.text.value = '';
@@ -45,7 +53,11 @@ Template.combatGroupTab.events({
     // Get target data
     const $target = Template.instance().$(event.target);
     const inviteId = $target.data('invite-id');
-    Meteor.call('groups.acceptInvite', inviteId, true);
+    Meteor.call('groups.acceptInvite', inviteId, true, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
   },
 
   'click .btn-kick'(event) {

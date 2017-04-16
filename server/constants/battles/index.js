@@ -53,34 +53,7 @@ export const BATTLES = {
 
   tickDuration: 200, // How long each tick lasts
 
-  floorOneBoss: {
-    enemies: [{
-      id: 'puma',
-      amount: 1
-    }, {
-      id: 'elephant',
-      amount: 1
-    }, {
-      id: 'angryRooster',
-      amount: 1
-    }, {
-      id: 'lionBoss',
-      amount: 1
-    }]
-  },
+  maxBossPartySize: 10,
 
-  small_rat_pack: {
-    enemies: [{
-      id: 'rat',
-      amount: 3
-    }]
-  },
-
-  dummy: {
-    enemies: [{
-      id: 'dummy',
-      amount: 2
-    }]
-  }
-
+  maxTowerPartySize: 5
 }

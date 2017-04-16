@@ -109,3 +109,6 @@ if (!currentFloor) {
     veryHardWavesTotal: floorCounts.veryHard,
   });
 }
+
+const MINUTE = 60 * 1000;
+DDPRateLimiter.addRule({ type: 'method', name: 'SimpleChat.newMessage' }, 15, 1 * MINUTE);

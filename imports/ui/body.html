@@ -5,6 +5,8 @@
     {{> yield}}
   </div>
 
-  {{> chatWindow}}
+  {{#if currentUser}}
+    {{> chatWindow}}
+  {{/if}}
 
 </template>

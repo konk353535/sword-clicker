@@ -47,7 +47,7 @@ export const MINING_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 50,
+      amount: 20,
       consumes: true
     }, {
       type: 'item',

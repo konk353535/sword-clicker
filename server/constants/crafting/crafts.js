@@ -150,7 +150,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_copper',
       icon: ITEMS['ore_copper'].icon,
       name: ITEMS['ore_copper'].name,
-      amount: 5,
+      amount: 3,
       consumes: true
     }, {
       type: 'skill',
@@ -188,7 +188,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_iron',
       icon: ITEMS['ore_iron'].icon,
       name: ITEMS['ore_iron'].name,
-      amount: 5,
+      amount: 3,
       consumes: true
     }, {
       type: 'skill',
@@ -226,7 +226,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_steel',
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
-      amount: 5,
+      amount: 3,
       consumes: true
     }, {
       type: 'skill',
@@ -264,7 +264,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_carbon',
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
-      amount: 5,
+      amount: 3,
       consumes: true
     }, {
       type: 'skill',

@@ -42,7 +42,7 @@ export const MINING = {
     },
 
     coal: {
-      requiredLevel: 3,
+      requiredLevel: 2,
       healthMax: 85,
       xp: 8,
       id: 'coal',

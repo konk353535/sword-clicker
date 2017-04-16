@@ -58,18 +58,24 @@ Template.body.onCreated(function () {
   }, 63333);
 
   floatingTextTimer = Meteor.setInterval(() => {
+    let viewWidth = $(window).width();
     // Increase height and decrease opacity
     $(".floating-text").each(function(i) {      
 
       var y = $(this).position().top;
       var count = $(this).data('count');
 
-      if (count > 50) {
+      if(viewWidth <= 768) {
+        count += 2;
+        $(this).css('opacity', $(this).css('opacity') - 0.01);
+      }
+
+      if (count > 15) {
         $(this).css('opacity', $(this).css('opacity') - 0.01);
       }
 
       $(this).css('top', y - 1.0);
-      if(count > 100){
+      if(count > 70){
         $(this).remove();
       } else {
         $(this).data('count', count + 1);

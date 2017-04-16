@@ -88,7 +88,7 @@ export const LEVEL_ONE_ENEMIES = {
     name: 'bee',
     stats: {
       attack: 1,
-      attackMax: 5,
+      attackMax: 3,
       attackSpeed: SLOW_SPEED,
       accuracy: 0.3,
       health: 1,

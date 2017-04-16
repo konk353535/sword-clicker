@@ -4,7 +4,7 @@ import { ITEMS } from '/server/constants/items/index';
 export const WOODCUTTING_ITEMS = woodcuttingItems;
 export const WOODCUTTING = {
 
-  baseMaxWoodcutters: 3,
+  baseMaxWoodcutters: 5,
 
   // Woodcutters inherit stats from there associated axes
   woodcutters: {

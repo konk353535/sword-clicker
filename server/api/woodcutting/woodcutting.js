@@ -16,17 +16,26 @@ Meteor.methods({
 
   'woodcutting.fireWoodcutter'(index) {
     const woodcutting = Woodcutting.findOne({ owner: this.userId });
+    const targetWoodcutter = woodcutting.woodcutters[index];
 
-    if (woodcutting && woodcutting.woodcutters[index]) {
-      woodcutting.woodcutters.splice(index, 1);
-      Woodcutting.update({
-        owner: this.userId
-      }, {
-        $set: {
-          woodcutters: woodcutting.woodcutters
-        }
-      });
+    // Ensure this woodcutter isn't already set to die
+    if (!targetWoodcutter || targetWoodcutter.deathTime) {
+      return;
     }
+
+    // Increase stats
+    targetWoodcutter.stats.attackSpeed *= (WOODCUTTING.suicidalFury.attackSpeedIncrease / 100);
+
+    // Append death time
+    targetWoodcutter.deathTime = moment().add(WOODCUTTING.suicidalFury.duration, 'seconds').toDate();
+
+    Woodcutting.update({
+      owner: this.userId
+    }, {
+      $set: {
+        woodcutters: woodcutting.woodcutters
+      }
+    });
   },
 
   'woodcutting.gameUpdate'() {
@@ -60,7 +69,23 @@ Meteor.methods({
 
     // Iterate through all miners for minutesElapsed
     woodcutting.woodcutters.forEach((currentWoodcutter) => {
-      const rawSwingCount = currentWoodcutter.stats.attackSpeed * minutesElapsed;
+      let localMinutesElapsed = minutesElapsed;
+      // Is this woodcutter got a death timer on it?
+      if (currentWoodcutter.deathTime) {
+        // See how long is left on the deathTime
+        const timeDiff = moment().diff(currentWoodcutter.deathTime);
+        if (moment().isAfter(currentWoodcutter.deathTime)) {
+          localMinutesElapsed -= (timeDiff / 60);
+        }
+
+        if (localMinutesElapsed < 0) {
+          localMinutesElapsed = 0;
+        } else if (localMinutesElapsed > 1) {
+          localMinutesElapsed = 1;
+        }
+      }
+
+      const rawSwingCount = currentWoodcutter.stats.attackSpeed * localMinutesElapsed;
       let definiteSwingCount = Math.floor(rawSwingCount);
       if (rawSwingCount % 1 >= Math.random()) {
         definiteSwingCount += 1;
@@ -112,6 +137,21 @@ Meteor.methods({
     });
 
     addXp('woodcutting', gainedXp);
+
+    // If there is any woodcutters with death timers past now, kill em
+    woodcutting.woodcutters = woodcutting.woodcutters.filter((woodcutter) => {
+      if (woodcutter.deathTime) {
+        return moment().isBefore(woodcutter.deathTime);
+      } else {
+        return true;
+      }
+    });
+
+    Woodcutting.update(woodcutting._id, {
+      $set: {
+        woodcutters: woodcutting.woodcutters
+      }
+    });
   },
 
   'woodcutting.fetchWoodcutters'() {

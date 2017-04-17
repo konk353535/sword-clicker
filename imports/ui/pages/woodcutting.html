@@ -24,7 +24,12 @@
     <div class="d-flex flex-wrap">
       <!-- List of my woodcutters here -->
       {{#each woodcutting.woodcutters}}
-        {{> itemIcon item=this}}
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          {{> itemIcon item=this classes="cursor-pointer"}}
+          {{#if this.deathTime}}
+            Dies in {{moDiff this.deathTime moNow 'seconds'}}
+          {{/if}}
+        </div>
       {{/each}}
 
       <!-- Click to buy a woodcutter -->
@@ -55,13 +60,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm firing woodcutter</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Activation</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Confirm you want to fire this woodcutter?
+          <div>
+            <span class="text-danger">
+              Kill this woodcutter,
+            </span> but increase it's attack speed by 1000% for 60 seconds before it dies.
+          </div><br />
+          Confirm you want to activate?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -114,7 +114,7 @@ Template.woodcuttingPage.helpers({
       woodcutter.hideStats = true;
 
       woodcutter.primaryAction = {
-        description: 'Fire woodcutter',
+        description: 'activate Suicidal Fury',
         method() {
           instance.state.set('firingWoodcutterIndex', woodcutterIndex);
           instance.$('.fireModal').modal('show');

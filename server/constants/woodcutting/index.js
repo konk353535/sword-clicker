@@ -4,6 +4,11 @@ import { ITEMS } from '/server/constants/items/index';
 export const WOODCUTTING_ITEMS = woodcuttingItems;
 export const WOODCUTTING = {
 
+  suicidalFury: {
+    duration: 90, // In seconds
+    attackSpeedIncrease: 1000 // Percentage
+  },
+
   baseMaxWoodcutters: 3,
 
   // Woodcutters inherit stats from there associated axes
@@ -161,7 +166,7 @@ export const WOODCUTTING = {
       icon: 'pineLog',
       name: 'pine log',
       itemId: 'pine_log',
-      chance: 0.1 // Base chance to chop this log
+      chance: 0.15 // Base chance to chop this log
     },
 
     beech_log: {

@@ -407,9 +407,11 @@ Meteor.methods({
             const emptySpace = emptyMiningSpaces[0];
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
-            emptySpace.health = newOre.healthMax;
-            emptySpace.oreId = newOre.id;
-            emptySpace.isDirty = true; // So we know to save this later
+            if (newOre) {
+              emptySpace.health = newOre.healthMax;
+              emptySpace.oreId = newOre.id;
+              emptySpace.isDirty = true; // So we know to save this later
+            }
           }
 
           if (tick % 10) {

@@ -15,7 +15,9 @@ MiningSpaceSchema = new SimpleSchema({
 MiningSpace.attachSchema(MiningSpaceSchema);
 
 MiningSchema = new SimpleSchema({
-  miners: { type: Number, defaultValue: 1 },
+  miners: { type: [Object] },
+  'miners.$.id': { type: String },
+  'miners.$.amount': { type: Number },
   prospectors: { type: Number, defaultValue: 1 },
   stats: { type: Object, blackbox: true, defaultValue: {} },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },

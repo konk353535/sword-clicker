@@ -41,7 +41,11 @@ Accounts.onCreateUser((options, user) => {
 
   Mining.insert({
     owner: userId,
-    lastGameUpdated: new Date()
+    lastGameUpdated: new Date(),
+    miners: [{
+      id: MINING.miners.primitive_miner.id,
+      amount: 1
+    }]
   });
 
   Combat.insert({

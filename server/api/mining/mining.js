@@ -11,6 +11,7 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
+import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
@@ -105,27 +106,39 @@ Meteor.methods({
     attackMineSpace(mineSpaceId, mining.stats.attack);
   },
 
-  'mining.buyMiner'() {
+  'mining.buyMiner'(minerId) {
     const mining = Mining.findOne({ owner: Meteor.userId() });
+    const targetMinerConstants = MINING.miners[minerId];
+
+    if (!targetMinerConstants) {
+      return;
+    }
+
     // Maximum # of miners?
-    if (mining.miners >= MINING.miners.max) {
+    const existingTargetMiner = _.findWhere(mining.miners, { id: minerId });
+    if (existingTargetMiner && existingTargetMiner.amount + 1 > targetMinerConstants.max) {
       return;
     }
 
-    // Enough gold?
-    const newMinersCost = MINING.miners.cost(mining.miners);
-    if (Meteor.user().gold < newMinersCost) {
+    // Do we have the requirements for this craft (items / levels / gold)
+    if (!requirementsUtility(targetMinerConstants.required, 1)) {
       return;
     }
 
-    // Take gold
-    Users.update(Meteor.userId(), {
-      $inc: { gold: (newMinersCost * -1) }
-    });
+    // Inject new miner / update existing
+    if (existingTargetMiner) {
+      existingTargetMiner.amount += 1;
+    } else {
+      mining.miners.push({
+        id: minerId,
+        amount: 1
+      });
+    }
 
-    // Up miners
     Mining.update(mining._id, {
-      $inc: { miners: 1 }
+      $set: {
+        miners: mining.miners
+      }
     });
   },
 
@@ -262,7 +275,11 @@ Meteor.methods({
       }
 
       // Determine how much damage your miners do
-      let damagePerTick = mining.miners * MINING.miners.damagePerSecond * tickStrength;
+      let damagePerTick = 0;
+      mining.miners.forEach((miner) => {
+        const minerTypeDPS = MINING.miners[miner.id].damagePerSecond;
+        damagePerTick += (minerTypeDPS * miner.amount * tickStrength);
+      });
 
       if (mining.stats.miner) {
         damagePerTick *=  (1 + (mining.stats.miner / 100));
@@ -367,7 +384,28 @@ Meteor.methods({
       // Less then 5 minutes, use second based ticks
       simulateMining(secondsElapsed, 1);
     }
-  }
+  },
+
+  'mining.fetchMiners'() {
+    console.log('fetch miners');
+    const miningSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'mining'
+    });
+
+    const minersArray = Object.keys(MINING.miners).map((key) => {
+      return MINING.miners[key];
+    }).filter((recipe) => {
+      // Only show woodcutters we can hire, or close to ( 1 level away )
+      if (miningSkill.level + 1 >= recipe.requiredMiningLevel) {
+        return true;
+      }
+
+      return false;
+    });
+
+    return minersArray;
+  },
 });
 
 const MINUTE = 60 * 1000;
@@ -376,6 +414,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 100,
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 600, 2 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'mining' }, 40, 2 * MINUTE);
 
@@ -422,8 +461,6 @@ Meteor.publish('mining', function() {
 
   //Transform function
   var transform = function(doc) {
-    doc.nextMinerCost = MINING.miners.cost(doc.miners);
-    doc.maxMiners = MINING.miners.max;
     doc.nextProspectorCost = MINING.prospecting.cost(doc.prospectors);
     doc.maxProspectors = MINING.prospecting.max;
     return doc;

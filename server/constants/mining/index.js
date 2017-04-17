@@ -1,4 +1,5 @@
 import { MINING_ITEMS as miningItems } from './items';
+import { ITEMS } from '/server/constants/items/index';
 
 export const MINING_ITEMS = miningItems;
 
@@ -12,11 +13,155 @@ export const MINING = {
     }
   },
   miners: {
-    max: 10,
-    cost(currentMinersCount) {
-      return 10 + ((currentMinersCount - 1) * 30) * (currentMinersCount - 1) * (currentMinersCount - 1);
+    primitive_miner: {
+      requiredMiningLevel: 1,
+      icon: 'primitiveMiner',
+      name: 'primitive miner',
+      id: 'primitive_miner',
+      required: [{
+        type: 'item',
+        itemId: 'primitive_pickaxe',
+        icon: ITEMS['primitive_pickaxe'].icon,
+        name: ITEMS['primitive_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 1
+      }],
+      max: 3,
+      damagePerSecond: 0.07
     },
-    damagePerSecond: 0.07
+
+   copper_miner: {
+      requiredMiningLevel: 3,
+      icon: 'copperMiner',
+      name: 'copper miner',
+      id: 'copper_miner',
+      required: [{
+        type: 'item',
+        itemId: 'copper_pickaxe',
+        icon: ITEMS['copper_pickaxe'].icon,
+        name: ITEMS['copper_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 500,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 3
+      }],
+      max: 3,
+      damagePerSecond: 0.1
+    },
+
+   iron_miner: {
+      requiredMiningLevel: 5,
+      icon: 'ironMiner',
+      name: 'iron miner',
+      id: 'iron_miner',
+      required: [{
+        type: 'item',
+        itemId: 'iron_pickaxe',
+        icon: ITEMS['iron_pickaxe'].icon,
+        name: ITEMS['iron_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 5
+      }],
+      max: 3,
+      damagePerSecond: 0.11
+    },
+
+   steel_miner: {
+      requiredMiningLevel: 10,
+      icon: 'steelMiner',
+      name: 'steel miner',
+      id: 'steel_miner',
+      required: [{
+        type: 'item',
+        itemId: 'steel_pickaxe',
+        icon: ITEMS['steel_pickaxe'].icon,
+        name: ITEMS['steel_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 10
+      }],
+      max: 3,
+      damagePerSecond: 0.12
+    },
+
+   carbon_miner: {
+      requiredMiningLevel: 15,
+      icon: 'carbonMiner',
+      name: 'carbon miner',
+      id: 'carbon_miner',
+      required: [{
+        type: 'item',
+        itemId: 'carbon_pickaxe',
+        icon: ITEMS['carbon_pickaxe'].icon,
+        name: ITEMS['carbon_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 5000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 15
+      }],
+      max: 3,
+      damagePerSecond: 0.13
+    },
+
+   mithril_miner: {
+      requiredMiningLevel: 20,
+      icon: 'mithrilMiner',
+      name: 'mithril miner',
+      id: 'mithril_miner',
+      required: [{
+        type: 'item',
+        itemId: 'mithril_pickaxe',
+        icon: ITEMS['mithril_pickaxe'].icon,
+        name: ITEMS['mithril_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 25000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 20
+      }],
+      max: 3,
+      damagePerSecond: 0.15
+    }
   },
   ores: {
     stone: {
@@ -52,14 +197,14 @@ export const MINING = {
       chance: 0.08
     },
 
-    iron: {
+    steel: {
       requiredLevel: 5,
       healthMax: 500,
       xp: 40,
-      id: 'iron',
-      icon: 'iron',
-      name: 'iron',
-      itemId: 'ore_iron',
+      id: 'steel',
+      icon: 'steel',
+      name: 'steel',
+      itemId: 'ore_steel',
       chance: 0.04
     },
 

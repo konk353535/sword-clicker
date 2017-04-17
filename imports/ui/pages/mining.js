@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
@@ -23,6 +24,16 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   });
 
+  Tracker.autorun(() => {
+    const miningSkill = Skills.findOne({ type: 'mining' });
+    if (!miningSkill) {
+      return;
+    }
+
+    const results = ReactiveMethod.call('mining.fetchMiners', miningSkill.level) || [];
+    this.state.set('rawBuyableMiners', results);
+  });
+
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
@@ -37,9 +48,13 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
 Template.miningPage.events({
   'click .buy-miner'(event, instance) {
-    if (Meteor.user().gold >= Mining.findOne().nextMinerCost) {
-      Meteor.call('mining.buyMiner');
-    }
+    Template.instance().$('.minersModal').modal('show');      
+  },
+
+  'click .miner-row'(event, instance) {
+    const minerId = instance.$(event.target).closest('.miner-row').data('miner');
+
+    Meteor.call('mining.buyMiner', minerId);
   },
 
   'click .buy-prospector'(event, instance) {
@@ -54,17 +69,17 @@ Template.miningPage.onDestroyed(function bodyOnDestroyed() {
 });
 
 Template.miningPage.rendered = function () {
-  const minerTooltip = new Drop({
-    target: Template.instance().$('.buy-miner')[0],
-    content: Template.instance().$('.miners-tooltip-content')[0],
+  const prospectorTooltip = new Drop({
+    target: Template.instance().$('.buy-prospector')[0],
+    content: Template.instance().$('.prospectors-tooltip-content')[0],
     openOn: 'hover',
     position: 'top left',
     remove: true
   });
 
-  const prospectorTooltip = new Drop({
-    target: Template.instance().$('.buy-prospector')[0],
-    content: Template.instance().$('.prospectors-tooltip-content')[0],
+  const minerTooltip = new Drop({
+    target: Template.instance().$('.buy-miner')[0],
+    content: Template.instance().$('.miners-tooltip-content')[0],
     openOn: 'hover',
     position: 'top left',
     remove: true
@@ -114,6 +129,48 @@ Template.miningPage.helpers({
         }        
       }
       return item;
+    });
+  },
+
+  totalDPH() {
+    const mining = Mining.findOne({});
+    const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
+
+    if (!mining || !rawBuyableMiners) {
+      return 0;
+    }
+
+    let totalDPH = 0;
+
+    rawBuyableMiners.forEach((possibleMiner) => {
+      const localMiner = _.findWhere(mining.miners, { id: possibleMiner.id });
+      if (localMiner) {
+        totalDPH += localMiner.amount * possibleMiner.damagePerSecond * 3600;
+      };
+    });
+
+    return totalDPH;
+  },
+
+  buyableMiners() {
+    const mining = Mining.findOne({});
+    const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
+
+    if (!mining || !rawBuyableMiners) {
+      return;
+    }
+
+    return rawBuyableMiners.map((possibleMiner) => {
+      const localMiner = _.findWhere(mining.miners, { id: possibleMiner.id });
+      if (localMiner) {
+        possibleMiner.amount = localMiner.amount;
+        possibleMiner.damagePerHour = localMiner.amount * possibleMiner.damagePerSecond * 3600;
+      } else {
+        possibleMiner.amount = 0;
+        possibleMiner.damagePerHour = possibleMiner.damagePerSecond * 3600;
+      }
+
+      return possibleMiner;
     });
   },
 

@@ -45,6 +45,10 @@ Accounts.onCreateUser((options, user) => {
     miners: [{
       id: MINING.miners.primitive_miner.id,
       amount: 1
+    }],
+    prospectors: [{
+      id: MINING.prospectors.stone.id,
+      amount: 1
     }]
   });
 

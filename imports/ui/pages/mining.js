@@ -31,7 +31,10 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
 
     const results = ReactiveMethod.call('mining.fetchMiners', miningSkill.level) || [];
+    const prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level) || [];
     this.state.set('rawBuyableMiners', results);
+    this.state.set('rawBuyableProspectors', prospectorResults);
+
   });
 
   miningPageTimer = Meteor.setInterval(function () {
@@ -57,10 +60,24 @@ Template.miningPage.events({
     Meteor.call('mining.buyMiner', minerId);
   },
 
+  'click .prospector-hire'(event, instance) {
+    const prospectorId = instance.$(event.target).closest('.prospector-hire').data('prospector');
+
+    Meteor.call('mining.buyProspector', prospectorId);
+  },
+
+  'click .prospector-fire'(event, instance) {
+    const prospectorId = instance.$(event.target).closest('.prospector-fire').data('prospector');
+
+    Meteor.call('mining.fireProspector', prospectorId, (err, res) => {
+      if (err) {
+        toastr.error(err.reason);
+      }
+    });
+  },
+
   'click .buy-prospector'(event, instance) {
-    if (Meteor.user().gold >= Mining.findOne().nextProspectorCost) {
-      Meteor.call('mining.buyProspector');
-    }
+    Template.instance().$('.prospectorsModal').modal('show');
   }
 });
 
@@ -171,6 +188,26 @@ Template.miningPage.helpers({
       }
 
       return possibleMiner;
+    });
+  },
+
+  buyableProspectors() {
+    const mining = Mining.findOne({});
+    const rawBuyableProspectors = Template.instance().state.get('rawBuyableProspectors');
+
+    if (!mining || !rawBuyableProspectors) {
+      return;
+    }
+
+    return rawBuyableProspectors.map((possibleProspector) => {
+      const localProspector = _.findWhere(mining.prospectors, { id: possibleProspector.id });
+      if (localProspector) {
+        possibleProspector.amount = localProspector.amount;
+      } else {
+        possibleProspector.amount = 0;
+      }
+
+      return possibleProspector;
     });
   },
 

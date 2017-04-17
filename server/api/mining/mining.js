@@ -142,27 +142,69 @@ Meteor.methods({
     });
   },
 
-  'mining.buyProspector'() {
+  'mining.buyProspector'(prospectorId) {
     const mining = Mining.findOne({ owner: Meteor.userId() });
+    const targetProspectorConstants = MINING.prospectors[prospectorId];
+
+    if (!targetProspectorConstants) {
+      return;
+    }
+
     // Maximum # of prospectors?
-    if (mining.prospectors >= MINING.prospecting.max) {
+    const existingTargetProspector = _.findWhere(mining.prospectors, { id: prospectorId });
+    if (existingTargetProspector && existingTargetProspector.amount + 1 > targetProspectorConstants.max) {
       return;
     }
 
-    // Enough gold?
-    const newProspectorsCost = MINING.prospecting.cost(mining.prospectors);
-    if (Meteor.user().gold < newProspectorsCost) {
+    // Do we have the requirements for this craft (items / levels / gold)
+    if (!requirementsUtility(targetProspectorConstants.required, 1)) {
       return;
     }
 
-    // Take gold
-    Users.update(Meteor.userId(), {
-      $inc: { gold: (newProspectorsCost * -1) }
-    });
+    // Inject new miner / update existing
+    if (existingTargetProspector) {
+      existingTargetProspector.amount += 1;
+    } else {
+      mining.prospectors.push({
+        id: prospectorId,
+        amount: 1
+      });
+    }
 
-    // Up prospectors
     Mining.update(mining._id, {
-      $inc: { prospectors: 1 }
+      $set: {
+        prospectors: mining.prospectors
+      }
+    });
+  },
+
+  'mining.fireProspector'(prospectorId) {
+    const mining = Mining.findOne({ owner: Meteor.userId() });
+
+    // Does user own specified prospector?
+    const existingTargetProspector = _.findWhere(mining.prospectors, { id: prospectorId });
+    if (!existingTargetProspector || existingTargetProspector.amount <= 0) {
+      return;
+    }
+
+    existingTargetProspector.amount -= 1;
+
+    // Ensure we still have atleast one prospector
+    let hasAtleastOneProspector = false;
+    for (let i = 0; i < mining.prospectors.length; i++) {
+      if (mining.prospectors[i].amount > 0) {
+        hasAtleastOneProspector = true;
+      }
+    }
+
+    if (!hasAtleastOneProspector) {
+      throw new Meteor.Error("too-few-prospectors", "You cannot fire your last prospector");
+    }
+
+    Mining.update(mining._id, {
+      $set: {
+        prospectors: mining.prospectors
+      }
     });
   },
 
@@ -260,12 +302,33 @@ Meteor.methods({
       let gainedXp = 0;
       let gainedItems = {};
 
+      // Build prospectors map
+      const prospectorsMap = {};
+      mining.prospectors.forEach((prospector) => {
+        prospectorsMap[prospector.id] = prospector.amount;
+      });
+
       // Prepare easy arrays for which ore is about to spawn
-      const availableOres = rawOresArray.filter((ore) => ore.requiredLevel <= miningSkill.level);
-      const sortedChanceOres = _.sortBy(availableOres, 'chance');
+      const availableOres = rawOresArray.filter((ore) => {
+        if (ore.requiredLevel > miningSkill.level) {
+          return false;
+        } else if (!prospectorsMap[ore.id] || prospectorsMap[ore.id] === 0) {
+          return false;
+        }
+        return true;
+      });
+
+      // Increase or decrease chance of finding ore based on owned prospectors
+      const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
+        if (prospectorsMap[ore.id]) {
+          ore.chance *= prospectorsMap[ore.id];
+        }
+        return ore;
+      });
+      const sortedChanceOres = _.sortBy(computedOres, 'chance');
 
       // Determine how many new ores to spawn
-      let totalChance = MINING.prospecting.chance + (MINING.prospecting.chancePerProspector * mining.prospectors);
+      let totalChance = MINING.prospecting.chance;
       let newOresCount = tickCount * tickStrength * totalChance;
 
       if ((newOresCount % 1) > Math.random()) {
@@ -300,9 +363,11 @@ Meteor.methods({
             newOresCount--;
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
-            miningSpace.health = newOre.healthMax;
-            miningSpace.oreId = newOre.id;
-            miningSpace.isDirty = true; // So we know to save this later
+            if (newOre) {
+              miningSpace.health = newOre.healthMax;
+              miningSpace.oreId = newOre.id;
+              miningSpace.isDirty = true; // So we know to save this later
+            }
           }
         });
 
@@ -387,7 +452,6 @@ Meteor.methods({
   },
 
   'mining.fetchMiners'() {
-    console.log('fetch miners');
     const miningSkill = Skills.findOne({
       owner: Meteor.userId(),
       type: 'mining'
@@ -406,13 +470,34 @@ Meteor.methods({
 
     return minersArray;
   },
+
+  'mining.fetchProspectors'() {
+    const miningSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'mining'
+    });
+
+    const prospectorsArray = Object.keys(MINING.prospectors).map((key) => {
+      return MINING.prospectors[key];
+    }).filter((recipe) => {
+      // Only show woodcutters we can hire, or close to ( 1 level away )
+      if (miningSkill.level + 1 >= recipe.requiredMiningLevel) {
+        return true;
+      }
+
+      return false;
+    });
+
+    return prospectorsArray;
+  },
 });
 
 const MINUTE = 60 * 1000;
 
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 100, 2 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 10, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 30, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.fireProspector' }, 30, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 30, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 20, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 10, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 600, 2 * MINUTE);
@@ -461,8 +546,6 @@ Meteor.publish('mining', function() {
 
   //Transform function
   var transform = function(doc) {
-    doc.nextProspectorCost = MINING.prospecting.cost(doc.prospectors);
-    doc.maxProspectors = MINING.prospecting.max;
     return doc;
   }
 

@@ -5,11 +5,104 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: 1 / 15,
-    chancePerProspector: 1 / 200,
-    max: 10,
-    cost(currentProspectorsCount) {
-      return 10 + ((currentProspectorsCount - 1) * 60) * (currentProspectorsCount - 1);
+    chance: 1 / 3, // Max of 20 spawns a minute
+  },
+  prospectors: {
+    stone: {
+      requiredMiningLevel: 1,
+      icon: 'stoneProspector',
+      name: 'stone prospector',
+      id: 'stone',
+      required: [{
+        type: 'gold',
+        amount: 10,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 1
+      }],
+      max: 10
+    },
+    copper: {
+      requiredMiningLevel: 2,
+      icon: 'copperProspector',
+      name: 'copper prospector',
+      id: 'copper',
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 2
+      }],
+      max: 10
+    },
+    iron: {
+      requiredMiningLevel: 5,
+      icon: 'ironProspector',
+      name: 'iron prospector',
+      id: 'iron',
+      required: [{
+        type: 'gold',
+        amount: 75,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 5
+      }],
+      max: 10
+    },
+    steel: {
+      requiredMiningLevel: 10,
+      icon: 'steelProspector',
+      name: 'steel prospector',
+      id: 'steel',
+      required: [{
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 10
+      }],
+      max: 10
+    },
+    carbon: {
+      requiredMiningLevel: 15,
+      icon: 'carbonProspector',
+      name: 'carbon prospector',
+      id: 'carbon',
+      required: [{
+        type: 'gold',
+        amount: 250,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 15
+      }],
+      max: 10
+    },
+    mithril: {
+      requiredMiningLevel: 20,
+      icon: 'mithrilProspector',
+      name: 'mithril prospector',
+      id: 'mithril',
+      required: [{
+        type: 'gold',
+        amount: 1000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 20
+      }],
+      max: 10
     }
   },
   miners: {
@@ -39,7 +132,7 @@ export const MINING = {
     },
 
    copper_miner: {
-      requiredMiningLevel: 3,
+      requiredMiningLevel: 2,
       icon: 'copperMiner',
       name: 'copper miner',
       id: 'copper_miner',
@@ -52,12 +145,12 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 500,
+        amount: 250,
         consumes: true
       }, {
         type: 'skill',
         name: 'mining',
-        level: 3
+        level: 2
       }],
       max: 3,
       damagePerSecond: 0.1
@@ -172,7 +265,7 @@ export const MINING = {
       icon: 'stone',
       name: 'stone',
       itemId: 'ore_stone',
-      chance: 1
+      chance: 0.07
     },
 
     copper: {
@@ -183,7 +276,7 @@ export const MINING = {
       icon: 'copper',
       name: 'copper',
       itemId: 'ore_copper',
-      chance: 0.3
+      chance: 0.019
     },
 
     coal: {
@@ -194,7 +287,7 @@ export const MINING = {
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.08
+      chance: 0.005
     },
 
     steel: {
@@ -205,7 +298,7 @@ export const MINING = {
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.04
+      chance: 0.003
     },
 
     steel: {
@@ -216,7 +309,7 @@ export const MINING = {
       icon: 'steel',
       name: 'steel',
       itemId: 'ore_steel',
-      chance: 0.02
+      chance: 0.0015
     },
 
     carbon: {
@@ -227,7 +320,7 @@ export const MINING = {
       icon: 'carbon',
       name: 'carbon',
       itemId: 'ore_carbon',
-      chance: 0.005
+      chance: 0.00035
     },
 
     mithril: {
@@ -238,7 +331,7 @@ export const MINING = {
       icon: 'mithril',
       name: 'mithril',
       itemId: 'ore_mithril',
-      chance: 0.001
+      chance: 0.0001
     }
   }
 }

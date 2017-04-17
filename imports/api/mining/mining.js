@@ -18,7 +18,9 @@ MiningSchema = new SimpleSchema({
   miners: { type: [Object] },
   'miners.$.id': { type: String },
   'miners.$.amount': { type: Number },
-  prospectors: { type: Number, defaultValue: 1 },
+  prospectors: { type: [Object] },
+  'prospectors.$.id': { type: String },
+  'prospectors.$.amount': { type: Number },  
   stats: { type: Object, blackbox: true, defaultValue: {} },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date, defaultValue: new Date() }

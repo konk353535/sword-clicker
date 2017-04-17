@@ -11,9 +11,14 @@
 
   <h2>Mining Upgrades</h2>
   <div class="d-flex flex-row flex-wrap">
-    <div class="icon-box buy-miner" style="cursor: pointer;">
+
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="icon-box buy-miner" style="cursor: pointer;">
         <img src="/icons/miner.svg" class="ore-icon">
+      </div>
+      <div class="d-flex">
         {{> formatNumber totalDPH}} DPH
+      </div>
     </div>
 
     <!-- Tooltip for buy miner icon -->
@@ -21,24 +26,23 @@
       <h3 class='popover-title text-capitalize'>Miners</h3>
       <div class='popover-content'>
         Auto mine ores over time.<br /><br />
-        Current Damage Per Hour: {{> formatNumber totalDPH}}
+        Damage Per Hour <b>{{> formatNumber totalDPH}}</b>
         <br />
         <b>Click</b> to view upgrades
       </div>
     </div>
 
-    <div class="icon-box buy-prospector">
+    <div class="icon-box buy-prospector" style="cursor: pointer;">
         <img src="/icons/prospector.svg" class="ore-icon">
-        {{mining.prospectors}} / {{mining.maxProspectors}}
     </div>
+
     <!-- Tooltip for buy prospector icon -->
     <div class="prospectors-tooltip-content my-tooltip-inner">
       <h3 class='popover-title text-capitalize'>Prospectors</h3>
       <div class='popover-content'>
         Increase the chance of finding ores
         <br />
-        Cost: {{nextProspectorCost}} Gold<br />
-        <b>Click</b> to buy
+        <b>Click</b> to view upgrades
       </div>
     </div>
     {{#if equippedItemsMap.pickaxe}}
@@ -124,6 +128,53 @@
                         {{> formatNumber this.damagePerHour}}
                       </span>
                     {{/if}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prospectors Modal -->
+  <div class="modal prospectorsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Prospectors</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-centered table-responsive">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th class="hidden-md-down">Icon</th>
+                <th>Requirements</th>
+                <th>Count</th>
+                <th>Actions</th>
+              </tr>  
+            </thead>
+            <tbody>
+              {{#each buyableProspectors}}
+                <tr class="prospector-row text-center">
+                  <td class="text-capitalize">{{this.name}}</td>
+                  <td class="hidden-md-down">
+                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+                  </td>
+                  <td>{{ > requiredItems requiredItems=this.required}}</td>
+                  <td>{{this.amount}} / {{this.max}}</td>
+                  <td>
+                    <button class="btn btn-primary m-1 prospector-hire" data-prospector={{this.id}}>
+                      Hire
+                    </button>
+                    <button class="btn btn-danger m-1 prospector-fire" data-prospector={{this.id}}>
+                      Fire
+                    </button>
                   </td>
                 </tr>
               {{/each}}

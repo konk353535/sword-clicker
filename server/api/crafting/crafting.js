@@ -44,7 +44,8 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
     owner: Meteor.userId(),
     itemId: {
       $in: requiredItemList
-    }
+    },
+    equipped: false
   }, {
     sort: [
       ['_id', 'asc']

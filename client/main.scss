@@ -136,6 +136,11 @@
   background-color: white;
 }
 
+.drop-element {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 .tooltip.show {
   opacity: 1.0;
 }

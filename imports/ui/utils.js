@@ -32,7 +32,7 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
         notMet = true;
       }
     } else if (requiredItem.type === 'item') {
-      const hasItem = Items.findOne({ itemId: requiredItem.itemId });
+      const hasItem = Items.findOne({ itemId: requiredItem.itemId, equipped: false });
 
       if (!hasItem || hasItem.amount < requiredItem.amount) {
         requiredItem.notMet = true;

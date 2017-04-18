@@ -17,7 +17,7 @@
         <img src="/icons/miner.svg" class="ore-icon">
       </div>
       <div class="d-flex">
-        {{> formatNumber totalDPH}} DPH
+        {{summaryMiners.count}} / {{summaryMiners.max}}
       </div>
     </div>
 
@@ -26,22 +26,24 @@
       <h3 class='popover-title text-capitalize'>Miners</h3>
       <div class='popover-content'>
         Auto mine ores over time.<br /><br />
-        Damage Per Hour <b>{{> formatNumber totalDPH}}</b>
-        <br />
         <b>Click</b> to view upgrades
       </div>
     </div>
 
-    <div class="icon-box buy-prospector" style="cursor: pointer;">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="icon-box buy-prospector" style="cursor: pointer;">
         <img src="/icons/prospector.svg" class="ore-icon">
+      </div>
+      <div class="d-flex">
+        {{summaryProspectors.count}} / {{summaryProspectors.max}}
+      </div>
     </div>
 
     <!-- Tooltip for buy prospector icon -->
     <div class="prospectors-tooltip-content my-tooltip-inner">
       <h3 class='popover-title text-capitalize'>Prospectors</h3>
       <div class='popover-content'>
-        Increase the chance of finding ores
-        <br />
+        Increase the chance of finding specific ores<br /><br />
         <b>Click</b> to view upgrades
       </div>
     </div>

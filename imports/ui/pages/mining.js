@@ -149,7 +149,7 @@ Template.miningPage.helpers({
     });
   },
 
-  totalDPH() {
+  summaryMiners() {
     const mining = Mining.findOne({});
     const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
 
@@ -157,16 +157,54 @@ Template.miningPage.helpers({
       return 0;
     }
 
-    let totalDPH = 0;
+    let count = 0;
+    let max = 0;
 
     rawBuyableMiners.forEach((possibleMiner) => {
       const localMiner = _.findWhere(mining.miners, { id: possibleMiner.id });
-      if (localMiner) {
-        totalDPH += localMiner.amount * possibleMiner.damagePerSecond * 3600;
-      };
+
+      if (possibleMiner) {
+        max += possibleMiner.max;
+      }
+      if (localMiner && localMiner.amount) {
+        count += localMiner.amount;
+      }
     });
 
-    return totalDPH;
+    return {
+      count,
+      max
+    };
+  },
+
+  summaryProspectors() {
+    const mining = Mining.findOne({});
+    const rawBuyableProspectors = Template.instance().state.get('rawBuyableProspectors');
+
+    if (!mining || !rawBuyableProspectors) {
+      return 0;
+    }
+
+    let count = 0;
+    let max = 0;
+
+    rawBuyableProspectors.forEach((possibleProspector) => {
+      const localProspector = _.findWhere(mining.prospectors, { id: possibleProspector.id });
+      if (possibleProspector) {
+        max += possibleProspector.max;
+      }
+
+      if (localProspector && localProspector.amount) {
+        count += localProspector.amount;
+      } else {
+        count += 1;
+      }
+    });
+
+    return {
+      count,
+      max
+    };
   },
 
   buyableMiners() {
@@ -204,7 +242,7 @@ Template.miningPage.helpers({
       if (localProspector) {
         possibleProspector.amount = localProspector.amount;
       } else {
-        possibleProspector.amount = 0;
+        possibleProspector.amount = 1;
       }
 
       return possibleProspector;

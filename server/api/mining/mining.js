@@ -167,7 +167,7 @@ Meteor.methods({
     } else {
       mining.prospectors.push({
         id: prospectorId,
-        amount: 1
+        amount: 2
       });
     }
 
@@ -184,20 +184,12 @@ Meteor.methods({
     // Does user own specified prospector?
     const existingTargetProspector = _.findWhere(mining.prospectors, { id: prospectorId });
     if (!existingTargetProspector || existingTargetProspector.amount <= 0) {
-      return;
+      throw new Meteor.Error("too-few-prospectors", "You cannot fire your last prospector");
     }
 
     existingTargetProspector.amount -= 1;
 
-    // Ensure we still have atleast one prospector
-    let hasAtleastOneProspector = false;
-    for (let i = 0; i < mining.prospectors.length; i++) {
-      if (mining.prospectors[i].amount > 0) {
-        hasAtleastOneProspector = true;
-      }
-    }
-
-    if (!hasAtleastOneProspector) {
+    if (existingTargetProspector.amount < 1) {
       throw new Meteor.Error("too-few-prospectors", "You cannot fire your last prospector");
     }
 
@@ -312,13 +304,12 @@ Meteor.methods({
       const availableOres = rawOresArray.filter((ore) => {
         if (ore.requiredLevel > miningSkill.level) {
           return false;
-        } else if (!prospectorsMap[ore.id] || prospectorsMap[ore.id] === 0) {
-          return false;
         }
         return true;
       });
 
       // Increase or decrease chance of finding ore based on owned prospectors
+      // Clone so we don't mutatet the constants
       const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
         if (prospectorsMap[ore.id]) {
           ore.chance *= prospectorsMap[ore.id];
@@ -482,12 +473,8 @@ Meteor.methods({
     const prospectorsArray = Object.keys(MINING.prospectors).map((key) => {
       return MINING.prospectors[key];
     }).filter((recipe) => {
-      // Only show woodcutters we can hire, or close to ( 1 level away )
-      if (miningSkill.level + 1 >= recipe.requiredMiningLevel) {
-        return true;
-      }
-
-      return false;
+      // Only show woodcutters we can hire
+      return miningSkill.level >= recipe.requiredMiningLevel;
     });
 
     return prospectorsArray;

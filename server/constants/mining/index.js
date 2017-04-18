@@ -15,7 +15,7 @@ export const MINING = {
       id: 'stone',
       required: [{
         type: 'gold',
-        amount: 10,
+        amount: 5,
         consumes: true
       }, {
         type: 'skill',
@@ -31,7 +31,23 @@ export const MINING = {
       id: 'copper',
       required: [{
         type: 'gold',
-        amount: 50,
+        amount: 20,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 2
+      }],
+      max: 10
+    },
+    coal: {
+      requiredMiningLevel: 2,
+      icon: 'carbonProspector',
+      name: 'coal prospector',
+      id: 'coal',
+      required: [{
+        type: 'gold',
+        amount: 20,
         consumes: true
       }, {
         type: 'skill',
@@ -47,7 +63,7 @@ export const MINING = {
       id: 'iron',
       required: [{
         type: 'gold',
-        amount: 75,
+        amount: 50,
         consumes: true
       }, {
         type: 'skill',
@@ -63,7 +79,7 @@ export const MINING = {
       id: 'steel',
       required: [{
         type: 'gold',
-        amount: 100,
+        amount: 75,
         consumes: true
       }, {
         type: 'skill',
@@ -79,7 +95,7 @@ export const MINING = {
       id: 'carbon',
       required: [{
         type: 'gold',
-        amount: 250,
+        amount: 100,
         consumes: true
       }, {
         type: 'skill',
@@ -95,7 +111,7 @@ export const MINING = {
       id: 'mithril',
       required: [{
         type: 'gold',
-        amount: 1000,
+        amount: 400,
         consumes: true
       }, {
         type: 'skill',

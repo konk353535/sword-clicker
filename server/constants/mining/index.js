@@ -276,7 +276,7 @@ export const MINING = {
     stone: {
       requiredLevel: 1,
       healthMax: 10,
-      xp: 1000,
+      xp: 1,
       id: 'stone',
       icon: 'stone',
       name: 'stone',

@@ -31,6 +31,26 @@ Template.skillHeader.helpers({
 
             $('body').append(element);
           }
+        } else {
+          const maxWidth = $(window).width() - 100;
+          const perWidth = maxWidth / 7;
+          const setHeight = ($(window).height() / 2);
+          for (let i = 0; i < 7; i++) {
+            const top = setHeight;
+            const left = 50 + parseInt(perWidth * i);
+            const element = `
+              <p
+                class='floating-text text-white bg-primary'
+                data-count=-50
+                style='top: ${top}px; left: ${left}px; opacity: 1.0;'>
+                <span class='text-capitalize'>
+                  ${instance.data.skill.type}
+                </span> Level Up <i class="lilIcon-${instance.data.skill.type}"></i>
+              </p>
+            `;
+
+            $('body').append(element);
+          }
         }
       }
 

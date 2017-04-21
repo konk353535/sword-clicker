@@ -5,7 +5,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'primitive axe',
-    sellPrice: 15,
+    sellPrice: 10,
     description: 'A sharpened rock. Used for woodcutting',
     isAxe: true,
     stats: {

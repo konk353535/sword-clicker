@@ -5,7 +5,7 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: 1 / 3, // Max of 20 spawns a minute
+    chance: 1 / 5, // 1 spawn every 5 seconds ( 12 / min )
   },
   prospectors: {
     stone: {
@@ -22,7 +22,7 @@ export const MINING = {
         name: 'mining',
         level: 1
       }],
-      max: 10
+      max: 5
     },
     copper: {
       requiredMiningLevel: 2,
@@ -38,7 +38,7 @@ export const MINING = {
         name: 'mining',
         level: 2
       }],
-      max: 10
+      max: 5
     },
     coal: {
       requiredMiningLevel: 2,
@@ -54,7 +54,7 @@ export const MINING = {
         name: 'mining',
         level: 2
       }],
-      max: 10
+      max: 5
     },
     iron: {
       requiredMiningLevel: 5,
@@ -70,7 +70,7 @@ export const MINING = {
         name: 'mining',
         level: 5
       }],
-      max: 10
+      max: 5
     },
     steel: {
       requiredMiningLevel: 10,
@@ -86,7 +86,7 @@ export const MINING = {
         name: 'mining',
         level: 10
       }],
-      max: 10
+      max: 5
     },
     carbon: {
       requiredMiningLevel: 15,
@@ -102,7 +102,7 @@ export const MINING = {
         name: 'mining',
         level: 15
       }],
-      max: 10
+      max: 5
     },
     mithril: {
       requiredMiningLevel: 20,
@@ -118,7 +118,7 @@ export const MINING = {
         name: 'mining',
         level: 20
       }],
-      max: 10
+      max: 5
     }
   },
   miners: {
@@ -276,40 +276,51 @@ export const MINING = {
     stone: {
       requiredLevel: 1,
       healthMax: 10,
-      xp: 1,
+      xp: 3,
       id: 'stone',
       icon: 'stone',
       name: 'stone',
       itemId: 'ore_stone',
-      chance: 0.07
+      chance: 0.08
     },
 
     copper: {
       requiredLevel: 2,
-      healthMax: 35,
-      xp: 3,
+      healthMax: 25,
+      xp: 7,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
       itemId: 'ore_copper',
-      chance: 0.019
+      chance: 0.03
     },
 
     coal: {
       requiredLevel: 2,
-      healthMax: 85,
-      xp: 8,
+      healthMax: 50,
+      xp: 15,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
       itemId: 'ore_coal',
-      chance: 0.005
+      chance: 0.009
+    },
+
+    iron: {
+      requiredLevel: 5,
+      healthMax: 100,
+      xp: 30,
+      id: 'iron',
+      icon: 'iron',
+      name: 'iron',
+      itemId: 'ore_iron',
+      chance: 0.006
     },
 
     steel: {
-      requiredLevel: 5,
-      healthMax: 500,
-      xp: 40,
+      requiredLevel: 10,
+      healthMax: 200,
+      xp: 60,
       id: 'steel',
       icon: 'steel',
       name: 'steel',
@@ -317,37 +328,26 @@ export const MINING = {
       chance: 0.003
     },
 
-    steel: {
-      requiredLevel: 10,
-      healthMax: 2000,
-      xp: 180,
-      id: 'steel',
-      icon: 'steel',
-      name: 'steel',
-      itemId: 'ore_steel',
-      chance: 0.0015
-    },
-
     carbon: {
       requiredLevel: 15,
-      healthMax: 5000,
-      xp: 250,
+      healthMax: 400,
+      xp: 120,
       id: 'carbon',
       icon: 'carbon',
       name: 'carbon',
       itemId: 'ore_carbon',
-      chance: 0.00035
+      chance: 0.0015
     },
 
     mithril: {
       requiredLevel: 20,
-      healthMax: 10000,
-      xp: 400,
+      healthMax: 1000,
+      xp: 250,
       id: 'mithril',
       icon: 'mithril',
       name: 'mithril',
       itemId: 'ore_mithril',
-      chance: 0.0001
+      chance: 0.00075
     }
   }
 }

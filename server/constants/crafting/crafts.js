@@ -1,6 +1,31 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
 export const CRAFTING_CRAFTS = {
+
+  polished_stone: {
+    produces: 'polished_stone',
+    recipeFor: 'crafting',
+    name: 'polished stone',
+    category: 'crafting',
+    id: 'polished_stone',
+    requiredCraftingLevel: 1,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 1,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 1
+    }],
+    timeToCraft: 60,
+    xp: 1,
+    maxToCraft: 1
+  },
+
   stone_furnace: {
     produces: 'stone_furnace',
     recipeFor: 'crafting',
@@ -13,7 +38,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 20,
+      amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -37,7 +62,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 15,
+      amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -61,7 +86,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'iron_bar',
       icon: ITEMS['iron_bar'].icon,
       name: ITEMS['iron_bar'].name,
-      amount: 15,
+      amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -85,7 +110,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'steel_bar',
       icon: ITEMS['steel_bar'].icon,
       name: ITEMS['steel_bar'].name,
-      amount: 10,
+      amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -109,7 +134,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'carbon_bar',
       icon: ITEMS['carbon_bar'].icon,
       name: ITEMS['carbon_bar'].name,
-      amount: 10,
+      amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -150,7 +175,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_copper',
       icon: ITEMS['ore_copper'].icon,
       name: ITEMS['ore_copper'].name,
-      amount: 3,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -181,14 +206,14 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 5,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
       itemId: 'ore_iron',
       icon: ITEMS['ore_iron'].icon,
       name: ITEMS['ore_iron'].name,
-      amount: 3,
+      amount: 2,
       consumes: true
     }, {
       type: 'skill',
@@ -219,14 +244,14 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 5,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
       itemId: 'ore_steel',
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
-      amount: 3,
+      amount: 2,
       consumes: true
     }, {
       type: 'skill',
@@ -257,14 +282,14 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 5,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
       itemId: 'ore_carbon',
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
-      amount: 3,
+      amount: 2,
       consumes: true
     }, {
       type: 'skill',
@@ -295,7 +320,7 @@ export const CRAFTING_CRAFTS = {
       itemId: 'ore_mithril',
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
-      amount: 3,
+      amount: 2,
       consumes: true
     }, {
       type: 'skill',

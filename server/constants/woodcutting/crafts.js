@@ -16,7 +16,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 5,
+      amount: 3,
       consumes: true
     }, {
       type: 'skill',

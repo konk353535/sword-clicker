@@ -8,6 +8,15 @@ export const CRAFTING_ITEMS = {
     description: 'Used to melt ores into bars'
   },
 
+  polished_stone: {
+    id: 'polished_stone',
+    icon: 'polishedStone',
+    category: 'crafting',
+    name: 'polished stone',
+    sellPrice: 20,
+    description: 'Can be sold for a tidy sum'
+  },
+
   copper_furnace: {
     id: 'copper_furnace',
     icon: 'copperFurnace',

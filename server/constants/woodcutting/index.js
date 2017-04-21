@@ -5,7 +5,7 @@ export const WOODCUTTING_ITEMS = woodcuttingItems;
 export const WOODCUTTING = {
 
   suicidalFury: {
-    duration: 90, // In seconds
+    duration: 60, // In seconds
     attackSpeedIncrease: 1000 // Percentage
   },
 

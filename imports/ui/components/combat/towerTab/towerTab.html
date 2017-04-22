@@ -68,7 +68,6 @@
           </th>
         {{/if}}
         <th class="align-middle text-center">Difficulty</th>
-        <th class="align-middle text-center">Max Party Size</th>      
         <th class="align-middle text-center">Action</th>
       </tr>
     </thead>
@@ -82,7 +81,6 @@
           </td>
         {{/if}}
         <td class="align-middle">Easy</td>
-        <td class="align-middle">5</td>
         <td class="align-middle">
           <button class="btn btn-secondary battle-easy-btn">
             Find Battle
@@ -98,7 +96,6 @@
           </td>
         {{/if}}
         <td class="align-middle">Hard</td>
-        <td class="align-middle">5</td>
         <td class="align-middle">
           <button class="btn btn-secondary battle-hard-btn">
             Find Battle
@@ -114,7 +111,6 @@
           </td>
         {{/if}}
         <td class="align-middle">Very Hard</td>
-        <td class="align-middle">5</td>
         <td class="align-middle">
           <button class="btn btn-secondary battle-veryHard-btn">
             Find Battle
@@ -126,11 +122,12 @@
         <td class="align-middle"></td>
         {{#if waveDetails}}
           <td class="align-middle text-center">
-            1 / 1
+            1
           </td>
         {{/if}}
-        <td class="align-middle">???</td>
-        <td class="align-middle">10</td>
+        <td class="align-middle">
+          {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
+        </td>
         <td class="align-middle">
           <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
             Boss Battle
@@ -139,4 +136,20 @@
       </tr>
     </tbody>
   </table>
+
+  {{#if waveDetails}}
+    <h2 class="d-flex">
+      <span class="mr-1">Floor Rewards</span>
+      {{> helpIcon title='How to get rewards' content=floorRewardsHelpContent}}
+    </h2>
+    <div class="d-flex align-items-center">
+      <img src="/icons/treasureChest.svg" class="large-icon">
+      {{#each floorDetails.rewards}}
+        <div class="icon-box item-icon-container small ml-3">
+          {{ > recipeIcon recipe=this}}
+        </div> x {{this.amount}}
+      {{/each}}
+    </div>
+  {{/if}}
+
 </template>

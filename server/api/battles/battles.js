@@ -80,7 +80,7 @@ Meteor.methods({
       difficulty = null;
     }
 
-    if (difficulty === 'boss' && currentFloor.floor === floor) {
+    if (difficulty === 'boss' && currentFloor.floor == floor) {
       let canBossBattle = false;
       if (currentFloor.easyWaves <= 0) {
         if (currentFloor.hardWaves <= 0) {
@@ -92,6 +92,9 @@ Meteor.methods({
 
       if (!canBossBattle) {
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
+      } else {
+        const bossHealth = currentFloor.health;
+        return  startBattle(_.sample(possibleBattles), { floor, difficulty, health: bossHealth });
       }
     }
 
@@ -124,7 +127,7 @@ Meteor.methods({
 
     const specifiedFloorConstants = FLOORS[floorNumber];
 
-    if (currentFloor.floor === floorNumber) {
+    if (currentFloor.floor == floorNumber) {
       return {
         waveDetails: {
           easyWaves: currentFloor.easyWaves,
@@ -133,14 +136,43 @@ Meteor.methods({
           hardWavesTotal: currentFloor.hardWavesTotal,
           veryHardWaves: currentFloor.veryHardWaves,
           veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+          health: currentFloor.health,
+          healthMax: currentFloor.healthMax
         },
-        floorDetails: specifiedFloorConstants,
+        floorDetails: {
+          easy: {
+            name: specifiedFloorConstants.easy.name,
+            image: specifiedFloorConstants.easy.image
+          },
+          hard: {
+            name: specifiedFloorConstants.hard.name,
+            image: specifiedFloorConstants.hard.image
+          },
+          veryHard: {
+            name: specifiedFloorConstants.veryHard.name,
+            image: specifiedFloorConstants.veryHard.image
+          },
+          rewards: specifiedFloorConstants.floorRewards
+        },
         maxFloor: currentFloor.floor
       }
     }
 
     return {
-      floorDetails: specifiedFloorConstants,
+      floorDetails: {
+        easy: {
+          name: specifiedFloorConstants.easy.name,
+          image: specifiedFloorConstants.easy.image
+        },
+        hard: {
+          name: specifiedFloorConstants.hard.name,
+          image: specifiedFloorConstants.hard.image
+        },
+        veryHard: {
+          name: specifiedFloorConstants.veryHard.name,
+          image: specifiedFloorConstants.veryHard.image
+        }
+      },
       maxFloor: currentFloor.floor
     }
   },

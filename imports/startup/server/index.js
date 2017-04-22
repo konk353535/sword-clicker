@@ -16,6 +16,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
+import './crons.js';
 
 Accounts.onCreateUser((options, user) => {
   user._id = Random.id();

@@ -7,6 +7,7 @@ import './main.html';
 // Components
 import '/imports/ui/components/chatWindow/chatWindow.js';
 import '/imports/ui/components/ability/ability.js';
+import '/imports/ui/components/helpIcon/helpIcon.js';
 import '/imports/ui/components/itemIcon/itemIcon.js';
 import '/imports/ui/components/recipeIcon/recipeIcon.js';
 import '/imports/ui/components/formatNumber/formatNumber.js';

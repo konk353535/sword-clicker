@@ -15,6 +15,8 @@ FloorsSchema = new SimpleSchema({
   hardWavesTotal: { type: Number },
   veryHardWaves: { type: Number, min: 0 },
   veryHardWavesTotal: { type: Number },
+  health: { type: Number, decimal: true, defaultValue: 1000 },
+  healthMax: { type: Number, defaultValue: 1000 },  
   floorComplete: { type: Boolean, defaultValue: false }
 });
 

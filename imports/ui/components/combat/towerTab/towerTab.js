@@ -28,7 +28,8 @@ Template.towerTab.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-    Meteor.call('battles.getFloorDetails', this.state.get('usersCurrentFloor'), (err, floorDetailsRaw) => {
+
+    Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
       if (err) {
         console.log(err);
       } else {
@@ -107,6 +108,18 @@ Template.towerTab.events({
 })
 
 Template.towerTab.helpers({
+
+  floorRewardsHelpContent() {
+    return `
+      <p>Rewards are distributed when the community completes this floor.</p>
+      <b>Guaranteed a drop</b>
+      <p>Top 10 players in boss damage and wave contributions</p>
+      <b>Chance for a drop</b>
+      <p>
+        Any player who participated in the tower<br />
+        Chance is weighted by how much you contributed
+      </p>`;
+  },
 
   finishedBattle() {
     return Template.instance().state.get('finishedBattle');

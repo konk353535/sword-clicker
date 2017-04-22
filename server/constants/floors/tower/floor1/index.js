@@ -1,4 +1,5 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_1 = {
   easy: {
@@ -77,9 +78,6 @@ export const TOWER_FLOOR_1 = {
   boss: {
     possibleBattles: [{
       enemies: [
-        { id: 'e_rabbit', amount: 1 },
-        { id: 'e_snail', amount: 1 },
-        { id: 'e_wasp', amount: 1 },
         { id: 'boss_cougar', amount: 1 }
       ]
     }],
@@ -90,5 +88,26 @@ export const TOWER_FLOOR_1 = {
         { type: 'item', itemId: 'copper_broad_sword', amount: 1 }
       ]
     }])
-  }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'steel_dwarven_idol',
+      icon: ITEMS['steel_dwarven_idol'].icon,
+      name: ITEMS['steel_dwarven_idol'].name,
+      amount: 15,
+      baseStats: ITEMS['steel_dwarven_idol'].stats,
+      extraStats: ITEMS['steel_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'steel_mining_hammer',
+      icon: ITEMS['steel_mining_hammer'].icon,
+      name: ITEMS['steel_mining_hammer'].name,
+      amount: 15,
+      baseStats: ITEMS['steel_mining_hammer'].stats,
+      extraStats: ITEMS['steel_mining_hammer'].extraStats
+    }
+  ]
 }

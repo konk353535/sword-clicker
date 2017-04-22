@@ -9,6 +9,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import './equipmentTab.html';
 
 const updateTooltips = function (instance, tooltipNames) {
+  console.log(tooltipNames);
   setTimeout(() => {
     tooltipNames.forEach((tooltipName) => {
       new Drop({

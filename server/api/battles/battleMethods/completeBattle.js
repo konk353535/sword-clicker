@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
@@ -11,7 +13,44 @@ import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
+
+const distributeRewards = function distributeRewards({ floor }) {
+  console.log('Distributing rewards');
+
+  // Fetch the rewards
+  const rawFloorRewards = FLOORS[floor].floorRewards;
+  const floorRewards = [];
+  rawFloorRewards.forEach((reward) => {
+    for (let i = 0; i < reward.amount; i++) {
+      floorRewards.push(reward.itemId);
+    }
+  });
+  let randomizedFloorRewards = _.shuffle(floorRewards);
+
+  // Fetch top 10 by damage dealt
+  const sortedBossHealthScores = BossHealthScores.find({}, {
+    sort: [
+      ['bossDamage', 'desc']
+    ],
+    limit: 10
+  }).fetch();
+
+  // Fetch top 10 by wave score points
+  const sortedFloorWaveScores = FloorWaveScores.find({}, {
+    sort: [
+      ['points', 'desc']
+    ],
+    limit: 10
+  }).fetch();
+
+  sortedFloorWaveScores.concat(sortedBossHealthScores).forEach((target) => {
+    addItem(randomizedFloorRewards.pop(), 1, target.owner);
+  });
+
+  // Weighted lottery ( Do Later )
+}
 
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
@@ -24,26 +63,29 @@ export const completeBattle = function (actualBattle) {
     // Won
     win = true;
 
-    // Apply xp gains
+    // Apply xp gains, only if not a boss battle
     const totalXpGain = actualBattle.totalXpGain;
     const units = actualBattle.units.concat(actualBattle.deadUnits);
-    units.forEach((unit) => {
-      // Distribute xp gained evenly across units
-      const xpPortion = totalXpGain / units.length;
-      Object.keys(unit.xpDistribution).forEach((skillName) => {
-        // Distribute xp gained per player, per skill
-        // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
-        const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
 
-        addXp(skillName, skillXpPortion, unit.id);
-        finalTickEvents.push({
-          type: 'xp',
-          amount: skillXpPortion,
-          skill: skillName,
-          owner: unit.owner
-        })
+    if (!actualBattle.startingBossHp) {
+      units.forEach((unit) => {
+        // Distribute xp gained evenly across units
+        const xpPortion = totalXpGain / units.length;
+        Object.keys(unit.xpDistribution).forEach((skillName) => {
+          // Distribute xp gained per player, per skill
+          // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
+          const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
+
+          addXp(skillName, skillXpPortion, unit.id);
+          finalTickEvents.push({
+            type: 'xp',
+            amount: skillXpPortion,
+            skill: skillName,
+            owner: unit.owner
+          })
+        });
       });
-    });
+    }
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
@@ -100,66 +142,29 @@ export const completeBattle = function (actualBattle) {
         }, {
           $inc: incrementData
         });
-      } else {
-        // Complete the floor!
-        let updatedCount = Floors.update({
-          floor: actualBattle.floor,
-          floorComplete: false
-        }, {
-          $set: {
-            floorComplete: true
-          }
+
+        // Update all participants contributions
+        owners.forEach((owner) => {
+          // Find owner object
+          const ownerObject = _.findWhere(units, { owner });
+          const updateSelector = { owner, floor: actualBattle.floor };
+
+          const updateModifier = {
+            $inc: {},
+            $setOnInsert: {
+              easyWaves: 0,
+              hardWaves: 0,
+              veryHardWaves: 0,
+              bossWaves: 0,
+              username: ownerObject.name // To do: Make this work when users have multiple units
+            }
+          };
+          updateModifier['$inc'][`${actualBattle.difficulty}Waves`] = 1;
+          updateModifier['$setOnInsert'][`${actualBattle.difficulty}Waves`] = 1;
+
+          FloorWaveScores.upsert(updateSelector, updateModifier)
         });
-
-        if (updatedCount === 1) {
-          // Notify general chat
-          Chats.insert({
-            message: `The boss on floor ${actualBattle.floor} has been defeated!
-              Floor ${actualBattle.floor + 1} is now unlocked.`,
-            username: 'SERVER',
-            name: 'SERVER',
-            date: new Date(),
-            roomId: 'General'
-          });
-
-          // Insert the next floor
-          const floorCounts = FLOORS.getWaveCounts();
-
-          // Create our next floor
-          Floors.insert({
-            floor: actualBattle.floor + 1,
-            createdAt: new Date(),
-            easyWaves: floorCounts.easy,
-            easyWavesTotal: floorCounts.easy,
-            hardWaves: floorCounts.hard,
-            hardWavesTotal: floorCounts.hard,
-            veryHardWaves: floorCounts.veryHard,
-            veryHardWavesTotal: floorCounts.veryHard,
-          });
-        }
       }
-
-      // Update all participants contributions
-      owners.forEach((owner) => {
-        // Find owner object
-        const ownerObject = _.findWhere(units, { owner });
-        const updateSelector = { owner, floor: actualBattle.floor };
-
-        const updateModifier = {
-          $inc: {},
-          $setOnInsert: {
-            easyWaves: 0,
-            hardWaves: 0,
-            veryHardWaves: 0,
-            bossWaves: 0,
-            username: ownerObject.name // To do: Make this work when users have multiple units
-          }
-        };
-        updateModifier['$inc'][`${actualBattle.difficulty}Waves`] = 1;
-        updateModifier['$setOnInsert'][`${actualBattle.difficulty}Waves`] = 1;
-
-        FloorWaveScores.upsert(updateSelector, updateModifier)
-      });
     } else if (actualBattle.level && actualBattle.wave) {
       // Should only be for one person? but a good habit I guess?
       owners.forEach((owner) => {
@@ -190,14 +195,18 @@ export const completeBattle = function (actualBattle) {
   // Update all player units healths
   const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits);
   allFriendlyUnits.forEach((unit) => {
-    // Update relevant stuff, use callback so this is non blocking
-    Combat.update({
-      owner: unit.owner
-    }, {
+    const combatModifier = {
       $set: {
         'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
       }
-    }, (err, res) => {
+    };
+    if (actualBattle.startingBossHp) {
+      combatModifier['$set'].foughtBoss = true;
+    }
+    // Update relevant stuff, use callback so this is non blocking
+    Combat.update({
+      owner: unit.owner
+    }, combatModifier, (err, res) => {
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
 
@@ -225,6 +234,80 @@ export const completeBattle = function (actualBattle) {
     });
   });
 
+  // Is this a current boss battle?
+  if (actualBattle.startingBossHp) {
+    const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
+    const damageDealt = actualBattle.startingBossHp - allEnemies[0].stats.health;
+
+    console.log(`Damage dealth to boss ${damageDealt}`);
+
+    // Update players contributions
+    allFriendlyUnits.forEach((unit) => {
+      BossHealthScores.insert({
+        owner: unit.owner,
+        username: unit.name,
+        bossDamage: damageDealt
+      });
+    });
+
+    // Update bosses hp
+    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor });
+    if (currentFloor) {
+      currentFloor.health -= damageDealt;
+
+      if (currentFloor.health <= 0) {
+        console.log('Health is below 0');
+        // Complete the floor!
+        let updatedCount = Floors.update({
+          floor: actualBattle.floor,
+          floorComplete: false
+        }, {
+          $set: {
+            floorComplete: true
+          }
+        });
+
+        console.log(`Updated count is ${updatedCount}`);
+        if (updatedCount === 1) {
+          // Distribute rewards
+          distributeRewards({ floor: actualBattle.floor });
+
+          // Notify general chat
+          Chats.insert({
+            message: `The boss on floor ${actualBattle.floor} has been defeated!
+              Floor ${actualBattle.floor + 1} is now unlocked.`,
+            username: 'SERVER',
+            name: 'SERVER',
+            date: new Date(),
+            roomId: 'General'
+          });
+
+          // Insert the next floor
+          const floorCounts = FLOORS.getWaveCounts();
+
+          // Create our next floor
+          Floors.insert({
+            floor: actualBattle.floor + 1,
+            createdAt: new Date(),
+            easyWaves: floorCounts.easy,
+            easyWavesTotal: floorCounts.easy,
+            hardWaves: floorCounts.hard,
+            hardWavesTotal: floorCounts.hard,
+            veryHardWaves: floorCounts.veryHard,
+            veryHardWavesTotal: floorCounts.veryHard,
+          });
+        }
+      } else {
+        // Just update the bosses hp
+        Floors.update(currentFloor._id, {
+          $inc: {
+            health: damageDealt * -1
+          }
+        });
+      }
+    }
+  }
+
   Battles.update(actualBattle._id, {
     $set: {
       finished: true,
@@ -234,6 +317,8 @@ export const completeBattle = function (actualBattle) {
     }
   });
 
-  // Delete battle as it is over
-  // Battles.remove(actualBattle._id);
+  // Delete battle after 1 minute
+  Meteor.setTimeout(() => {
+    Battles.remove(actualBattle._id);
+  }, 60000);
 }

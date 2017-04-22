@@ -7,6 +7,7 @@ export const Combat = new Mongo.Collection('combat');
 CombatSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   username: { type: String, optional: true },
+  foughtBoss: { type: Boolean, defaultValue: false },
   stats: { type: Object },
   'stats.attack': { type: Number, defaultValue: 0 },
   'stats.attackMax': { type: Number, decimal: true, defaultValue: 0 },

@@ -14,7 +14,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 
 import { progressBattle } from './progressBattle.js';
 
-export const startBattle = function (battleData, { floor, difficulty, level, wave }) {
+export const startBattle = function (battleData, { floor, difficulty, level, wave, health }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   // Is user in a group? If so this is a group battle
@@ -94,13 +94,22 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
   let hasEnergy = true;
   let battleEnergyCost = COMBAT.energyConsumption[difficulty] || 1;
 
-  // Inject users into battles units
+  // Ensure users have energy requirements + havent already fought boss
   usersCombatStats.forEach((userCombat) => {
     if (userCombat.stats.energy < battleEnergyCost) {
       const requirementString = `${userCombat.username} does not have enough energy to start this battle`;
       throw new Meteor.Error("not-enough-energy", requirementString);
       hasEnergy = false;
     }
+
+    if (health && userCombat.foughtBoss) {
+      throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
+      hasEnergy = false;
+    }
+  });
+
+  // Inject users into battles units
+  usersCombatStats.forEach((userCombat) => {
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
       if (userCombat.stats[statName] !== undefined) {
@@ -171,6 +180,10 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
   battleConstants.enemies.forEach((enemy) => {
     const enemyConstants = ENEMIES[enemy.id];
     const enemyStats = enemyConstants.stats;
+    // This is the current active boss battle
+    if (enemyConstants.isBoss && health) {
+      enemyStats.health = health;
+    }
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
     for (let i = 0; i < enemy.amount; i++) {
       const randomUnitTarget = _.sample(newBattle.units);
@@ -197,6 +210,11 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
   newBattle.totalXpGain = totalXpGain;
   newBattle.deadUnits = [];
   newBattle.deadEnemies = [];
+
+  // Is the currently active boss battle
+  if (health) {
+    newBattle.startingBossHp = health;
+  }
 
   // Save battle
   const actualBattleId = Battles.insert(newBattle);

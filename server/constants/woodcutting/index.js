@@ -176,7 +176,7 @@ export const WOODCUTTING = {
       icon: 'beechLog',
       name: 'beech log',
       itemId: 'beech_log',
-      chance: 0.025
+      chance: 0.035
     },
 
     ash_log: {
@@ -186,7 +186,7 @@ export const WOODCUTTING = {
       icon: 'ashLog',
       name: 'ash log',
       itemId: 'ash_log',
-      chance: 0.015
+      chance: 0.025
     },
 
     oak_log: {
@@ -196,7 +196,7 @@ export const WOODCUTTING = {
       icon: 'oakLog',
       name: 'oak log',
       itemId: 'oak_log',
-      chance: 0.003
+      chance: 0.025
     },
 
     maple_log: {
@@ -206,7 +206,7 @@ export const WOODCUTTING = {
       icon: 'mapleLog',
       name: 'maple log',
       itemId: 'maple_log',
-      chance: 0.0015
+      chance: 0.01
     }
 
     // Walnut, Cherry, Mahogany

@@ -27,14 +27,16 @@ Template.towerTab.onCreated(function bodyOnCreated() {
     }
   });
 
-  Meteor.call('battles.getFloorDetails', (err, floorDetailsRaw) => {
-    if (err) {
-      console.log(err);
-    } else {
-      this.state.set('floorDetails', floorDetailsRaw.floorDetails);
-      this.state.set('waveDetails', floorDetailsRaw.waveDetails);
-      this.state.set('maxFloor', floorDetailsRaw.maxFloor);
-    }
+  Tracker.autorun(() => {
+    Meteor.call('battles.getFloorDetails', this.state.get('usersCurrentFloor'), (err, floorDetailsRaw) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this.state.set('floorDetails', floorDetailsRaw.floorDetails);
+        this.state.set('waveDetails', floorDetailsRaw.waveDetails);
+        this.state.set('maxFloor', floorDetailsRaw.maxFloor);
+      }
+    });
   });
 
   this.autorun(() => {
@@ -79,17 +81,8 @@ Template.towerTab.events({
   'click .select-floor'(event, instance) {
     const selectedFloor = $(event.target).closest('.select-floor')[0].getAttribute('data-floor');
 
-    Meteor.call('battles.getFloorDetails', parseInt(selectedFloor), (err, floorDetailsRaw) => {
-      if (err) {
-        console.log(err);
-      } else {
-        instance.state.set('floorDetails', floorDetailsRaw.floorDetails);
-        instance.state.set('waveDetails', floorDetailsRaw.waveDetails);
-        instance.state.set('maxFloor', floorDetailsRaw.maxFloor);
-        instance.state.set('usersCurrentFloor', selectedFloor);
-        Meteor.call('users.setUiState', 'towerFloor', selectedFloor);
-      }
-    });
+    instance.state.set('usersCurrentFloor', parseInt(selectedFloor));
+    Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
   },
 
   'click .battle-easy-btn'(event, instance) {

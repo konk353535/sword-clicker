@@ -17,9 +17,14 @@ import './crafting.html';
 import '../components/craftingDuration/craftingDuration.js';
 
 let gameUpdateTimer;
+let recipeCache;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  if (Session.get('recipeCache')) {
+    recipeCache = Session.get('recipeCache');
+  }
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -41,8 +46,30 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   this.autorun(() => {
     if (Skills.findOne({ type: 'crafting' })) {
       const craftingSkill = Skills.findOne({ type: 'crafting' });
-      // Pass level so that this is recalled when we get up a level
-      const results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
+      let results;
+
+      // Check if valid cache exists
+      if (recipeCache && recipeCache.data && recipeCache.level === craftingSkill.level &&
+        moment().isBefore(moment(recipeCache.date).add(2, 'minutes'))) {
+        results = recipeCache.data;
+      } else {
+        // Pass level so that this is recalled when we get up a level
+        results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
+
+        recipeCache =  {
+          data: results,
+          level: craftingSkill.level,
+          date: moment().toDate()
+        }
+
+        Session.set('recipeCache', {
+          data: results,
+          level: craftingSkill.level,
+          date: moment().toDate()
+        });
+      }
+
+
       if (results) {
         const resultsMap = {};
         results.forEach((result) => {

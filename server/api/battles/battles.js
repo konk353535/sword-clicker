@@ -50,12 +50,12 @@ Meteor.methods({
     }
 
     if (!wave) {
-      wave = _.random(1, 5);
+      wave = _.random(1, 10);
     }
 
-    const targetBattle = FLOORS.personalQuest[level].waves[wave - 1];
-    if (targetBattle) {
-      startBattle(targetBattle, { level, wave });
+    const targetEnemy = FLOORS.personalQuestMonsterGenerator(level);
+    if (targetEnemy) {
+      startBattle({ enemies: [targetEnemy] }, { level, wave });
     } else {
       throw new Meteor.Error("oh... sorry!", "Couldnt find the specified battle for that level and wave combo");
     }

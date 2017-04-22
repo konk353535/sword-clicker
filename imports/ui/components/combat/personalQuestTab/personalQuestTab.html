@@ -36,6 +36,13 @@
               <img src="/icons/{{this.icon}}.svg" class="small-icon">
             </div>
           {{/if}}
+
+          {{#if $eq this.type 'gold'}}
+            <div class="ml-1 d-flex align-items-center">
+              +{{this.amount}}
+              <img src="/icons/gold.svg" class="small-icon">
+            </div>
+          {{/if}}
         {{/each}}
       </div>
       <button type="button" class="btn btn-sm btn-secondary btn-close-finishedBattle">Close</button>
@@ -44,7 +51,7 @@
 
   <div class="d-flex justify-content-center flex-column align-items-center" style="height: 300px">
     {{#if $eq usersCurrentLevel maxLevel}}
-      <h4>Wave {{maxLevelCurrentWave}} / 5</h4>
+      <h4>Wave {{maxLevelCurrentWave}} / 10</h4>
       <button class="btn btn-primary mt-1 find-battle">Battle</button>
     {{else}}
       <h4>Already Completed All Waves</h4>  

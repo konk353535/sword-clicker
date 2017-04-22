@@ -178,13 +178,23 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
 
   // Inject enemies into the battle
   battleConstants.enemies.forEach((enemy) => {
-    const enemyConstants = ENEMIES[enemy.id];
+    let enemyConstants;
+    if (enemy.stats) {
+      enemyConstants = enemy;
+    } else {
+      enemyConstants = ENEMIES[enemy.id];
+    }
     const enemyStats = enemyConstants.stats;
     // This is the current active boss battle
     if (enemyConstants.isBoss && health) {
       enemyStats.health = health;
     }
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
+
+    if (!enemy.amount) {
+      enemy.amount = 1;
+    }
+
     for (let i = 0; i < enemy.amount; i++) {
       const randomUnitTarget = _.sample(newBattle.units);
       totalXpGain += BATTLES.xpGain(enemyStats);

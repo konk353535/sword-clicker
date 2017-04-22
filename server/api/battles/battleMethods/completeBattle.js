@@ -146,7 +146,12 @@ export const completeBattle = function (actualBattle) {
     // Apply rewards for killing monsters
     const rewardsGained = [];
     actualBattle.deadEnemies.forEach((deadEnemy) => {
-      const rewards = ENEMIES[deadEnemy.enemyId].rewards;
+      let rewards;
+      if (actualBattle.level) {
+        rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level).rewards;
+      } else {
+        rewards = ENEMIES[deadEnemy.enemyId].rewards;
+      }
       for (let i = 0; i < rewards.length; i++) {
         const rewardTable = rewards[i];
         const diceRoll = Math.random();
@@ -183,6 +188,20 @@ export const completeBattle = function (actualBattle) {
           amount: rewardGained.amount,
           itemId: rewardGained.itemId,
           icon: ITEMS[rewardGained.itemId].icon,
+          owner: luckyOwner
+        });
+      } else if (rewardGained.type === 'gold') {
+        const luckyOwner = _.sample(owners);
+        Users.update(luckyOwner, {
+          $inc: {
+            gold: rewardGained.amount
+          }
+        });
+        finalTickEvents.push({
+          type: 'gold',
+          amount: rewardGained.amount,
+          itemId: rewardGained.itemId,
+          icon: 'gold',
           owner: luckyOwner
         });
       }
@@ -233,7 +252,7 @@ export const completeBattle = function (actualBattle) {
       owners.forEach((owner) => {
         const userObject = Users.findOne({ _id: owner });
         if (userObject.personalQuest.level === actualBattle.level) {
-          if (actualBattle.wave + 1 > 5) {
+          if (actualBattle.wave + 1 > 10) {
             Users.update(owner, {
               $set: {
                 'personalQuest.level': actualBattle.level + 1,

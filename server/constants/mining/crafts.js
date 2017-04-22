@@ -47,7 +47,7 @@ export const MINING_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 20,
+      amount: 5,
       consumes: true
     }, {
       type: 'item',
@@ -85,7 +85,7 @@ export const MINING_CRAFTS = {
       itemId: 'beech_log',
       icon: ITEMS['beech_log'].icon,
       name: ITEMS['beech_log'].name,
-      amount: 25,
+      amount: 15,
       consumes: true
     }, {
       type: 'item',
@@ -123,7 +123,7 @@ export const MINING_CRAFTS = {
       itemId: 'ash_log',
       icon: ITEMS['ash_log'].icon,
       name: ITEMS['ash_log'].name,
-      amount: 25,
+      amount: 15,
       consumes: true
     }, {
       type: 'item',

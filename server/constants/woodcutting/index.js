@@ -9,7 +9,7 @@ export const WOODCUTTING = {
     attackSpeedIncrease: 1000 // Percentage
   },
 
-  baseMaxWoodcutters: 3,
+  baseMaxWoodcutters: 5,
 
   // Woodcutters inherit stats from there associated axes
   woodcutters: {
@@ -52,7 +52,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 500,
+        amount: 100,
         consumes: true
       }, {
         type: 'skill',
@@ -76,7 +76,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 1000,
+        amount: 500,
         consumes: true
       }, {
         type: 'skill',
@@ -100,7 +100,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 5000,
+        amount: 1000,
         consumes: true
       }, {
         type: 'skill',
@@ -124,7 +124,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 10000,
+        amount: 2500,
         consumes: true
       }, {
         type: 'skill',
@@ -148,7 +148,7 @@ export const WOODCUTTING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 25000,
+        amount: 5000,
         consumes: true
       }, {
         type: 'skill',
@@ -161,17 +161,17 @@ export const WOODCUTTING = {
   woods: {
     pine_log: {
       requiredAttack: 1,
-      xp: 1,
+      xp: 3,
       id: 'pine_log',
       icon: 'pineLog',
       name: 'pine log',
       itemId: 'pine_log',
-      chance: 0.15 // Base chance to chop this log
+      chance: 0.13 // Base chance to chop this log
     },
 
     beech_log: {
       requiredAttack: 3,
-      xp: 3,
+      xp: 5,
       id: 'beech_log',
       icon: 'beechLog',
       name: 'beech log',

@@ -175,6 +175,36 @@ export const MITHRIL_ITEMS = {
     }]
   },
 
+  mithril_horned_helmet: {
+    id: 'mithril_horned_helmet',
+    icon: 'mithrilHornedHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'mithril horned helmet',
+    sellPrice: 500,
+    description: 'Headbut your enemies',
+    isEquippable: true,
+    stats: {
+      healthMax: 4,
+      armor: 5,
+      attack: 5,
+      attackMax: 5,
+      accuracy: 5
+    },
+    extraStats: {
+      healthMax: 4,
+      armor: 5,
+      attack: 5,
+      attackMax: 5,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+
   mithril_chest_plate: {
     id: 'mithril_chest_plate',
     icon: 'mithrilChestPlate',

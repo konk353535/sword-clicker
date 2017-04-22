@@ -210,13 +210,6 @@ export const IRON_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'beech_log',
       icon: ITEMS['beech_log'].icon,
       name: ITEMS['beech_log'].name,
@@ -253,13 +246,6 @@ export const IRON_CRAFTS = {
       name: ITEMS['copper_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'beech_log',
@@ -300,13 +286,6 @@ export const IRON_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'beech_log',
       icon: ITEMS['beech_log'].icon,
       name: ITEMS['beech_log'].name,
@@ -343,13 +322,6 @@ export const IRON_CRAFTS = {
       name: ITEMS['copper_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'beech_log',

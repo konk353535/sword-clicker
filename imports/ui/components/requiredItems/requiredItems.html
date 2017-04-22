@@ -2,14 +2,14 @@
   <div class="d-flex align-items-center justify-content-center required-items-container">
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
-        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
         <img src="/icons/gold.svg" class="small-icon">
-      {{else if $eq this.type 'skill'}}
-        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
-        <img src="/icons/{{this.name}}.svg" class="small-icon">      
-      {{else}}
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+      {{else if $eq this.type 'skill'}}
+        <img src="/icons/{{this.name}}.svg" class="small-icon">      
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
+      {{else}}
         <img src="/icons/{{this.icon}}.svg" class="small-icon">
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
       {{/if}}
     {{/each}}
   </div>

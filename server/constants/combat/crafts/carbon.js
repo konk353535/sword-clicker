@@ -210,13 +210,6 @@ export const CARBON_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'oak_log',
       icon: ITEMS['oak_log'].icon,
       name: ITEMS['oak_log'].name,
@@ -253,13 +246,6 @@ export const CARBON_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'oak_log',
@@ -300,13 +286,6 @@ export const CARBON_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'oak_log',
       icon: ITEMS['oak_log'].icon,
       name: ITEMS['oak_log'].name,
@@ -343,13 +322,6 @@ export const CARBON_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
-      type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
     }, {
       type: 'item',
       itemId: 'oak_log',

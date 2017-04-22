@@ -16,7 +16,7 @@ export const PAPER_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 50,
+      amount: 30,
       consumes: true
     }, {
       type: 'skill',

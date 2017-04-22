@@ -11,7 +11,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
-    required: [UTIL.MANY_RED_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
+    required: [UTIL.RED_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
   },
 
   execute_level_1_tome: {

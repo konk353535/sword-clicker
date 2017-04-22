@@ -29,6 +29,12 @@ Template.itemIcon.rendered = function () {
   });
 }
 
+const sellItem = function (event, instance) {
+  Template.instance().$('.sellModal').modal('hide');
+  const itemData = instance.data.item;
+  Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
+}
+
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
     const primaryAction = instance.data.item.primaryAction;
@@ -38,6 +44,10 @@ Template.itemIcon.events({
       instance.state.set('sellAmount', instance.data.item.amount);
       Template.instance().$('.sellModal').modal('show');      
     }
+  },
+
+  'submit .sell-form'(event, instance) {
+    sellItem(event, instance);
   },
 
   'keyup .sell-amount-input'(event, instance) {
@@ -51,8 +61,6 @@ Template.itemIcon.events({
   },
 
   'click .sell-btn'(event, instance) {
-    Template.instance().$('.sellModal').modal('hide');
-    const itemData = instance.data.item;
-    Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
+    sellItem(event, instance);
   }
 })

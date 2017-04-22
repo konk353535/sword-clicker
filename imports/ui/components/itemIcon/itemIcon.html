@@ -59,7 +59,9 @@
         </div>
         <div class="modal-body">
           How many to sell?
-          <input class="form-control sell-amount-input" value={{sellAmount}}><br />
+          <form class="sell-form">
+            <input class="form-control sell-amount-input" value={{sellAmount}}><br />
+          </form>
           +{{ totalPrice sellAmount item.sellPrice }} Gold
         </div>
         <div class="modal-footer">

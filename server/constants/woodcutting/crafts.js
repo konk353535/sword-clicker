@@ -47,7 +47,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 10,
+      amount: 5,
       consumes: true
     }, {
       type: 'skill',
@@ -78,7 +78,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'beech_log',
       icon: ITEMS['beech_log'].icon,
       name: ITEMS['beech_log'].name,
-      amount: 20,
+      amount: 10,
       consumes: true
     }, {
       type: 'skill',
@@ -109,7 +109,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'ash_log',
       icon: ITEMS['ash_log'].icon,
       name: ITEMS['ash_log'].name,
-      amount: 20,
+      amount: 10,
       consumes: true
     }, {
       type: 'skill',
@@ -140,7 +140,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'oak_log',
       icon: ITEMS['oak_log'].icon,
       name: ITEMS['oak_log'].name,
-      amount: 20,
+      amount: 10,
       consumes: true
     }, {
       type: 'skill',
@@ -178,7 +178,7 @@ export const WOODCUTTING_CRAFTS = {
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
-      amount: 20,
+      amount: 10,
       consumes: true
     }, {
       type: 'skill',

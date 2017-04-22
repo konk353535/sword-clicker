@@ -14,8 +14,7 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 1 // Extra chance of getting a log ( 1% extra chance )
     },
     extraStats: {
-      accuracy: 25,
-      attackSpeed: 1
+      accuracy: 25
     }
   },
 

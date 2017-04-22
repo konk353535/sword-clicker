@@ -61,7 +61,7 @@ export const COPPER_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 20,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',
@@ -99,14 +99,14 @@ export const COPPER_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 10,
+      amount: 5,
       consumes: true
     }, {
       type: 'item',
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 10,
+      amount: 5,
       consumes: true
     }, {
       type: 'skill',
@@ -137,14 +137,14 @@ export const COPPER_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 15,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 25,
+      amount: 10,
       consumes: true
     }, {
       type: 'skill',
@@ -175,14 +175,14 @@ export const COPPER_CRAFTS = {
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 50,
+      amount: 20,
       consumes: true
     }, {
       type: 'item',
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 10,
+      amount: 5,
       consumes: true
     }, {
       type: 'skill',
@@ -210,17 +210,10 @@ export const COPPER_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 25,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',
@@ -255,17 +248,10 @@ export const COPPER_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 25,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',
@@ -300,17 +286,10 @@ export const COPPER_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 25,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',
@@ -345,17 +324,10 @@ export const COPPER_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ore_coal',
-      icon: ITEMS['ore_coal'].icon,
-      name: ITEMS['ore_coal'].name,
-      amount: 5,
-      consumes: true
-    }, {
-      type: 'item',
       itemId: 'pine_log',
       icon: ITEMS['pine_log'].icon,
       name: ITEMS['pine_log'].name,
-      amount: 50,
+      amount: 10,
       consumes: true
     }, {
       type: 'item',

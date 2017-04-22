@@ -234,6 +234,36 @@ export const STEEL_ITEMS = {
     }]
   },
 
+  steel_horned_helmet: {
+    id: 'steel_horned_helmet',
+    icon: 'steelHornedHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'steel horned helmet',
+    sellPrice: 400,
+    description: 'Headbut your enemies',
+    isEquippable: true,
+    stats: {
+      healthMax: 2,
+      armor: 1,
+      attack: 3,
+      attackMax: 3,
+      accuracy: 3
+    },
+    extraStats: {
+      healthMax: 2,
+      armor: 1,
+      attack: 3,
+      attackMax: 3,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
   steel_chest_plate: {
     id: 'steel_chest_plate',
     icon: 'steelChestPlate',

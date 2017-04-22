@@ -51,10 +51,10 @@ export const LEVEL_ONE_ENEMIES = {
     icon: 'grasshopper',
     name: 'grasshopper',
     stats: {
-      attack: 0.7,
-      attackMax: 0.7,
+      attack: 0.6,
+      attackMax: 0.6,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 5,
+      accuracy: 1,
       health: 0.6,
       healthMax: 0.6,
       defense: 0.5,
@@ -93,7 +93,7 @@ export const LEVEL_ONE_ENEMIES = {
       accuracy: 0.3,
       health: 1,
       healthMax: 1,
-      defense: 2,
+      defense: 1.3,
       armor: 1,
       damageTaken: 1
     },
@@ -107,11 +107,11 @@ export const LEVEL_ONE_ENEMIES = {
     stats: {
       attack: 1,
       attackMax: 2,
-      attackSpeed: FAST_SPEED,
-      accuracy: 5,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 1,
       health: 1,
       healthMax: 1,
-      defense: 2,
+      defense: 0.5,
       armor: 0.2,
       damageTaken: 1
     },

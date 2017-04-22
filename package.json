@@ -13,6 +13,7 @@
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
     "stripe": "^4.17.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "weighted-random": "^0.1.0"
   }
 }

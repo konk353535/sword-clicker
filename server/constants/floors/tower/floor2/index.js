@@ -1,4 +1,5 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_2 = {
   easy: {
@@ -77,11 +78,6 @@ export const TOWER_FLOOR_2 = {
   boss: {
     possibleBattles: [{
       enemies: [
-        { id: 'e_spider', amount: 1 },
-        { id: 'e_snake', amount: 1 },
-        { id: 'e_falcon', amount: 1 },
-        { id: 'e_skunk', amount: 1 },
-        { id: 'e_lizard', amount: 1 },
         { id: 'boss_cobra', amount: 1 }
       ]
     }],
@@ -92,5 +88,26 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'iron_broad_sword', amount: 1 }
       ]
     }])
-  }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'mithril_horned_helmet',
+      icon: ITEMS['mithril_horned_helmet'].icon,
+      name: ITEMS['mithril_horned_helmet'].name,
+      amount: 15,
+      baseStats: ITEMS['mithril_horned_helmet'].stats,
+      extraStats: ITEMS['mithril_horned_helmet'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'mithril_mining_hammer',
+      icon: ITEMS['mithril_mining_hammer'].icon,
+      name: ITEMS['mithril_mining_hammer'].name,
+      amount: 15,
+      baseStats: ITEMS['mithril_mining_hammer'].stats,
+      extraStats: ITEMS['mithril_mining_hammer'].extraStats
+    }
+  ]
 }

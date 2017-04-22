@@ -1,5 +1,5 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
-
+import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_4 = {
   easy: {
@@ -85,11 +85,6 @@ export const TOWER_FLOOR_4 = {
   boss: {
     possibleBattles: [{
       enemies: [
-        { id: 'e_wolf', amount: 1 },
-        { id: 'e_beaver', amount: 1 },
-        { id: 'e_eagle', amount: 1 },
-        { id: 'e_kangaroo', amount: 1 },
-        { id: 'e_jellyFish', amount: 1 },
         { id: 'boss_spartan', amount: 1 }
       ]
     }],
@@ -100,5 +95,35 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_broad_sword', amount: 1 }
       ]
     }])
-  }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'thirsting_saber',
+      icon: ITEMS['thirsting_saber'].icon,
+      name: ITEMS['thirsting_saber'].name,
+      amount: 10,
+      baseStats: ITEMS['thirsting_saber'].stats,
+      extraStats: ITEMS['thirsting_saber'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'cursed_long_sword',
+      icon: ITEMS['cursed_long_sword'].icon,
+      name: ITEMS['cursed_long_sword'].name,
+      amount: 10,
+      baseStats: ITEMS['cursed_long_sword'].stats,
+      extraStats: ITEMS['cursed_long_sword'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'spartan_shield',
+      icon: ITEMS['spartan_shield'].icon,
+      name: ITEMS['spartan_shield'].name,
+      amount: 10,
+      baseStats: ITEMS['spartan_shield'].stats,
+      extraStats: ITEMS['spartan_shield'].extraStats
+    }
+  ]
 }

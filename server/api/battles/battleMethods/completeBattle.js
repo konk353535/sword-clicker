@@ -15,7 +15,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
-
+import weightedRandom from 'weighted-random';
 
 const POINTS = {
   easy: 1,
@@ -67,7 +67,45 @@ const distributeRewards = function distributeRewards({ floor }) {
     addItem(reward, 1, target.owner);
   });
 
-  // Weighted lottery ( Do Later )
+  try {
+    let bossDamageRewardsCount = Math.floor(randomizedFloorRewards.length / 2);
+    let floorWaveRewardsCount = Math.floor(randomizedFloorRewards.length / 2);
+
+    // Weighted lottery for boss damage
+    const allDamages = BossHealthScores.find({}).fetch();
+    const allDamageWeights = allDamages.map((item) => {
+      return parseInt(item.bossDamage);
+    });
+
+    console.log('allDamages');
+    console.log(allDamages);
+
+    for (let i = 0; i < bossDamageRewardsCount; i++) {
+      const selectionIndex = weightedRandom(allDamageWeights);
+      const reward = randomizedFloorRewards.pop();
+      console.log(`selection index - ${selectionIndex}`);
+      addItem(reward, 1, allDamages[selectionIndex].owner);
+    }
+
+    // Weighted lottery for waves
+    const floorPoints = FloorWaveScores.find({ floor }).fetch();
+    const floorPointsWeights = floorPoints.map((item) => {
+      return parseInt(item.points) || 0;
+    });
+
+    console.log('floorPoints');
+    console.log(floorPoints);
+
+    for (let i = 0; i < floorWaveRewardsCount; i++) {
+      const selectionIndex = weightedRandom(floorPointsWeights);
+      const reward = randomizedFloorRewards.pop();
+      console.log(`selection index - ${selectionIndex}`);
+      addItem(reward, 1, floorPoints[selectionIndex].owner);
+    }
+  } catch(err) {
+    console.log('Error while processing rewards for floor completion');
+    console.log(err);
+  }
 }
 
 export const completeBattle = function (actualBattle) {

@@ -1,4 +1,5 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_3 = {
   easy: {
@@ -89,11 +90,6 @@ export const TOWER_FLOOR_3 = {
   boss: {
     possibleBattles: [{
       enemies: [
-        { id: 'e_cat', amount: 1 },
-        { id: 'e_turtle', amount: 1 },
-        { id: 'e_boar', amount: 1 },
-        { id: 'e_goat', amount: 1 },
-        { id: 'e_fox', amount: 1 },
         { id: 'boss_bone_warrior', amount: 1 }
       ]
     }],
@@ -104,5 +100,17 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'steel_broad_sword', amount: 1 }
       ]
     }])
-  }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'mithril_dwarven_idol',
+      icon: ITEMS['mithril_dwarven_idol'].icon,
+      name: ITEMS['mithril_dwarven_idol'].name,
+      amount: 30,
+      baseStats: ITEMS['mithril_dwarven_idol'].stats,
+      extraStats: ITEMS['mithril_dwarven_idol'].extraStats
+    }
+  ]
 }

@@ -6,7 +6,8 @@ body {
   }
 
   .direct-chat-timestamp.pull-right {
-    display: none;
+    float: none !important;
+    font-size: $font-size-xs;
   }
 
   .direct-chat-name.pull-left {

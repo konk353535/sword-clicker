@@ -1,7 +1,10 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+
 import moment from 'moment';
+
+import { Skills } from '/imports/api/skills/skills.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -15,9 +18,12 @@ Template['override-atPwdForm'].replaces('atPwdForm');
 import './body.html';
 
 let miningTimer;
+let craftingTimer;
 let woodcuttingTimer;
 let combatTimer;
 let floatingTextTimer;
+
+let cachedSkills = {};
 
 Template.body.onCreated(function () {
 
@@ -38,7 +44,61 @@ Template.body.onCreated(function () {
         Session.set('isMember', false);
       }
     }
-  })
+  });
+
+  // Track exp and level drops
+  Tracker.autorun(() => {
+    const skills = Skills.find({}).fetch();
+
+    skills.forEach((skill) => {
+      const skillCache = cachedSkills[skill.type];
+      if (skillCache) {
+        if (skillCache.level === skill.level) {
+          // Show tick for this skill
+          const xpGained = skill.xp - skillCache.xp;
+          if (xpGained > 0) {
+            const element = `
+              <p
+                class='floating-text'
+                data-count=1
+                style='top: 75px; right: 25px; opacity: 1.0;'>
+                +${xpGained} <i class="lilIcon-${skill.type}"></i>
+              </p>
+            `;
+
+            $('body').append(element);
+          }
+        } else {
+          const maxWidth = $(window).width() - 100;
+          const perWidth = maxWidth / 7;
+          const setHeight = ($(window).height() / 2);
+          for (let i = 0; i < 7; i++) {
+            const top = setHeight;
+            const left = 50 + parseInt(perWidth * i);
+            const element = `
+              <p
+                class='floating-text text-white bg-primary'
+                data-count=-50
+                style='top: ${top}px; left: ${left}px; opacity: 1.0;'>
+                <span class='text-capitalize'>
+                  ${instance.data.skill.type}
+                </span> Level Up <i class="lilIcon-${skill.type}"></i>
+              </p>
+            `;
+
+            $('body').append(element);
+          }
+        }
+        skillCache.xp = skill.xp;
+        skillCache.level = skill.level;
+      } else {
+        cachedSkills[skill.type] = {
+          xp: skill.xp,
+          level: skill.level
+        }
+      }
+    });
+  });
 
   miningTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
@@ -57,6 +117,12 @@ Template.body.onCreated(function () {
       Meteor.call('combat.gameUpdate');
     }
   }, 33333);
+
+  craftingTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('crafting.updateGame');
+    }
+  }, 32222);
 
   floatingTextTimer = Meteor.setInterval(() => {
     let viewWidth = $(window).width();
@@ -96,6 +162,7 @@ Handlebars.registerHelper('isMember', function (id) {
 
 Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);
+  Meteor.clearInterval(craftingTimer);
   Meteor.clearInterval(miningTimer);
   Meteor.clearInterval(woodcuttingTimer);
   Meteor.clearInterval(floatingTextTimer);

@@ -12,8 +12,7 @@ FloorWaveScoresSchema = new SimpleSchema({
   easyWaves: { type: Number, decimal: true, defaultValue: 0 },
   hardWaves: { type: Number, decimal: true, defaultValue: 0 },
   veryHardWaves: { type: Number, decimal: true, defaultValue: 0 },
-  points: { type: Number, decimal: true, defaultValue: 0 },
-  bossDamage: { type: Number, decimal: true, defaultValue: 0 }
+  points: { type: Number, decimal: true, defaultValue: 0 }
 });
 
 FloorWaveScores.attachSchema(FloorWaveScoresSchema);

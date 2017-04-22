@@ -16,6 +16,13 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
+
+const POINTS = {
+  easy: 1,
+  hard: 5,
+  veryHard: 10
+}
+
 const distributeRewards = function distributeRewards({ floor }) {
   console.log('Distributing rewards');
 
@@ -29,6 +36,9 @@ const distributeRewards = function distributeRewards({ floor }) {
   });
   let randomizedFloorRewards = _.shuffle(floorRewards);
 
+  console.log('Rewards');
+  console.log(randomizedFloorRewards);
+
   // Fetch top 10 by damage dealt
   const sortedBossHealthScores = BossHealthScores.find({}, {
     sort: [
@@ -37,16 +47,24 @@ const distributeRewards = function distributeRewards({ floor }) {
     limit: 10
   }).fetch();
 
+  console.log(sortedBossHealthScores);
+
   // Fetch top 10 by wave score points
-  const sortedFloorWaveScores = FloorWaveScores.find({}, {
+  const sortedFloorWaveScores = FloorWaveScores.find({
+    floor
+  }, {
     sort: [
       ['points', 'desc']
     ],
     limit: 10
   }).fetch();
 
+  console.log(sortedFloorWaveScores);
+
   sortedFloorWaveScores.concat(sortedBossHealthScores).forEach((target) => {
-    addItem(randomizedFloorRewards.pop(), 1, target.owner);
+    const reward = randomizedFloorRewards.pop();
+    console.log(`Giving ${reward} to ${target.owner}`)
+    addItem(reward, 1, target.owner);
   });
 
   // Weighted lottery ( Do Later )
@@ -143,6 +161,9 @@ export const completeBattle = function (actualBattle) {
           $inc: incrementData
         });
 
+        // Calculate points
+        const points = POINTS[actualBattle.difficulty] / owners.length;
+
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
@@ -156,11 +177,15 @@ export const completeBattle = function (actualBattle) {
               hardWaves: 0,
               veryHardWaves: 0,
               bossWaves: 0,
+              points: 0,
               username: ownerObject.name // To do: Make this work when users have multiple units
             }
           };
+
           updateModifier['$inc'][`${actualBattle.difficulty}Waves`] = 1;
           updateModifier['$setOnInsert'][`${actualBattle.difficulty}Waves`] = 1;
+          updateModifier['$inc'].points = points;
+          updateModifier['$setOnInsert'].points = points;
 
           FloorWaveScores.upsert(updateSelector, updateModifier)
         });

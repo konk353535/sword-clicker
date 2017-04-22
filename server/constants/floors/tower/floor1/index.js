@@ -96,18 +96,9 @@ export const TOWER_FLOOR_1 = {
       itemId: 'steel_dwarven_idol',
       icon: ITEMS['steel_dwarven_idol'].icon,
       name: ITEMS['steel_dwarven_idol'].name,
-      amount: 15,
+      amount: 30,
       baseStats: ITEMS['steel_dwarven_idol'].stats,
       extraStats: ITEMS['steel_dwarven_idol'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'steel_mining_hammer',
-      icon: ITEMS['steel_mining_hammer'].icon,
-      name: ITEMS['steel_mining_hammer'].name,
-      amount: 15,
-      baseStats: ITEMS['steel_mining_hammer'].stats,
-      extraStats: ITEMS['steel_mining_hammer'].extraStats
     }
   ]
 }

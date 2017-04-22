@@ -186,9 +186,7 @@ Meteor.methods({
       floor: currentFloor.floor
     }, {
       sort: {
-        veryHardWaves: -1,
-        hardWaves: -1,
-        easyWaves: -1
+        points: -1
       },
       limit: 10
     }).fetch()

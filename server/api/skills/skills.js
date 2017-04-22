@@ -5,6 +5,7 @@ import { Items } from '/imports/api/items/items';
 import { Inscription } from '/imports/api/inscription/inscription';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Users } from '/imports/api/users/users';
+import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -188,6 +189,17 @@ Meteor.methods({
         },
         fields: {
           personalQuest: 1,
+          username: 1
+        },
+        limit: 10
+      }).fetch();
+    } else if (skillName === 'boss') {
+      return BossHealthScores.find({}, {
+        sort: {
+          bossDamage: -1
+        },
+        fields: {
+          bossDamage: 1,
           username: 1
         },
         limit: 10

@@ -21,6 +21,11 @@ let recipeCache;
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  if (Session.get('itemViewLimit') !== undefined) {
+    this.state.set('itemViewLimit', Session.get('itemViewLimit'));
+  } else {
+    this.state.set('itemViewLimit', 10);
+  }
 
   if (Session.get('recipeCache')) {
     recipeCache = Session.get('recipeCache');
@@ -169,6 +174,16 @@ Template.craftingPage.events({
     }
   },
 
+  'click .show-all-items'(event, instance) {
+    Session.set('itemViewLimit', 0);
+    instance.state.set('itemViewLimit', 0);
+  },
+
+  'click .show-less-items'(event, instance) {
+    Session.set('itemViewLimit', 10);
+    instance.state.set('itemViewLimit', 10);
+  },
+
   'click .craft-btn'(event, instance) {
     const recipeId = instance.state.get('multiCraftRecipeId');
     const amountToCraft = parseInt($(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
@@ -261,7 +276,22 @@ Template.craftingPage.helpers({
     }
   },
 
+  itemViewLimit() {
+    return Template.instance().state.get('itemViewLimit');
+  },
+
+  allItemsCount() {
+    return Items.find({ equipped: false }).fetch().length;
+  },
+
   items() {
+    const itemViewLimit = Template.instance().state.get('itemViewLimit');
+    if (itemViewLimit !== 0) {
+      return Items.find({ equipped: false }, {
+        limit: itemViewLimit
+      })
+    }
+
     return Items.find({ equipped: false });
   }
 });

@@ -16,6 +16,17 @@
       {{#each items}}
         {{> itemIcon item=this classes="small"}}
       {{/each}}
+      {{#if $gt allItemsCount itemViewLimit}}
+        {{#if itemViewLimit}}
+          <div class="item-icon-container small icon-box show-all-items" style="cursor: pointer">
+            More
+          </div>
+        {{else}}
+          <div class="item-icon-container small icon-box show-less-items" style="cursor: pointer">
+            Less
+          </div>
+        {{/if}}
+      {{/if}}
     </div>
 
     <h2>Recipes</h2>

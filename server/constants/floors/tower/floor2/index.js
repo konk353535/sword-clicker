@@ -74,7 +74,7 @@ export const TOWER_FLOOR_2 = {
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'iron_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'iron_mining_hammer', amount: 1 },
       ]

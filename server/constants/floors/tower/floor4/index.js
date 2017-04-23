@@ -98,10 +98,10 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_short_sword', amount: 1 },
         { type: 'item', itemId: 'carbon_battle_axe', amount: 1 },
       ]
-    }, 
+    }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 },
         { type: 'item', itemId: 'mithril_essence', amount: 3 },

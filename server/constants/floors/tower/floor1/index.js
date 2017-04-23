@@ -74,9 +74,9 @@ export const TOWER_FLOOR_1 = {
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'copper_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'copper_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'copper_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'copper_mining_hammer', amount: 1 },
+        { type: 'item', itemId: 'copper_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

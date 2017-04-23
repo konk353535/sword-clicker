@@ -28,7 +28,7 @@ export const ORE_ITEMS = {
     icon: 'iron',
     category: 'mining',
     name: 'iron',
-    sellPrice: 50
+    sellPrice: 10
   },
 
   ore_steel: {
@@ -36,7 +36,7 @@ export const ORE_ITEMS = {
     icon: 'steel',
     category: 'mining',
     name: 'steel',
-    sellPrice: 150
+    sellPrice: 20
   },
 
   ore_carbon: {
@@ -44,7 +44,7 @@ export const ORE_ITEMS = {
     icon: 'carbon',
     category: 'mining',
     name: 'carbon',
-    sellPrice: 200
+    sellPrice: 35
   },
 
   ore_mithril: {
@@ -52,6 +52,6 @@ export const ORE_ITEMS = {
     icon: 'mithril',
     category: 'mining',
     name: 'mithril',
-    sellPrice: 250
+    sellPrice: 50
   }
 }

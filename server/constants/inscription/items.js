@@ -40,7 +40,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'pigmentBlue255',
     category: 'pigment',
     name: 'pigment blue 255',
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Used in inscription for marking pages'
   },
 
@@ -58,7 +58,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'lavender',
     category: 'herb',
     name: 'lavender',
-    sellPrice: 1500,
+    sellPrice: 1250,
     description: 'Used to make a purple pigment.'
   },
 
@@ -67,7 +67,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'pinePaper',
     category: 'paper',
     name: 'pine paper',
-    sellPrice: 125,
+    sellPrice: 50,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -76,7 +76,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'beechPaper',
     category: 'paper',
     name: 'beech paper',
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -85,7 +85,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'ashPaper',
     category: 'paper',
     name: 'ash paper',
-    sellPrice: 500,
+    sellPrice: 200,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -98,7 +98,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'berserk',
       level: 1
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to learn the berserk ability.'
   },
 
@@ -111,7 +111,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'berserk',
       level: 2
     },
-    sellPrice: 1000,
+    sellPrice: 500,
     description: 'Can be consumed to upgrade the berserk ability.'
   },
 
@@ -137,7 +137,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'execute',
       level: 1
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to learn the execute ability.'
   },
 
@@ -150,7 +150,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'execute',
       level: 2
     },
-    sellPrice: 1000,
+    sellPrice: 500,
     description: 'Can be consumed to upgrade the execute ability.'
   },
 
@@ -176,7 +176,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'bleed',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the bleed ability.'
   },
 
@@ -189,7 +189,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'bleed',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the bleed ability.'
   },
 
@@ -215,7 +215,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'blade_spin',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the bladeSpin ability.'
   },
 
@@ -228,7 +228,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'blade_spin',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the bladeSpin ability.'
   },
 
@@ -254,7 +254,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'blade_frenzy',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the blade frenzy ability.'
   },
 
@@ -267,7 +267,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'blade_frenzy',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the blade frenzy ability.'
   },
 
@@ -293,7 +293,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'defensive_stance',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the defensive stance ability.'
   },
 
@@ -306,7 +306,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'defensive_stance',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the defensive stance ability.'
   },
 
@@ -332,7 +332,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'evasive_maneuvers',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the evasive maneuvers ability.'
   },
 
@@ -345,7 +345,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'evasive_maneuvers',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the evasive maneuvers ability.'
   },
 
@@ -371,7 +371,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'armor_up',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the armor up ability.'
   },
 
@@ -384,7 +384,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'armor_up',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the armor up ability.'
   },
 
@@ -397,7 +397,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'armor_up',
       level: 3
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the armor up ability.'
   },
 
@@ -410,7 +410,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'iron_will',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the iron will ability.'
   },
 
@@ -423,7 +423,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'iron_will',
       level: 2
     },
-    sellPrice: 500,
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the iron will ability.'
   },
 
@@ -449,7 +449,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'taunt',
       level: 1
     },
-    sellPrice: 250,
+    sellPrice: 100,
     description: 'Can be consumed to learn the taunt ability.'
   }
 }

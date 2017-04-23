@@ -58,7 +58,7 @@ export const CRAFTING_ITEMS = {
     icon: 'copperBar',
     category: 'crafting',
     name: 'copper bar',
-    sellPrice: 20,
+    sellPrice: 15,
     description: 'Used to craft copper tools and weapons'
   },
 
@@ -67,7 +67,7 @@ export const CRAFTING_ITEMS = {
     icon: 'ironBar',
     category: 'crafting',
     name: 'iron bar',
-    sellPrice: 75,
+    sellPrice: 30,
     description: 'Used to craft iron tools and weapons'
   },
 
@@ -76,7 +76,7 @@ export const CRAFTING_ITEMS = {
     icon: 'steelBar',
     category: 'crafting',
     name: 'steel bar',
-    sellPrice: 150,
+    sellPrice: 40,
     description: 'Used to craft steel tools and weapons'
   },
 
@@ -85,7 +85,7 @@ export const CRAFTING_ITEMS = {
     icon: 'carbonBar',
     category: 'crafting',
     name: 'carbon bar',
-    sellPrice: 250,
+    sellPrice: 50,
     description: 'Used to craft carbon tools and weapons'
   },
 
@@ -94,7 +94,7 @@ export const CRAFTING_ITEMS = {
     icon: 'mithrilBar',
     category: 'crafting',
     name: 'mithril bar',
-    sellPrice: 450,
+    sellPrice: 60,
     description: 'Used to craft mithril tools and weapons'
   }
 }

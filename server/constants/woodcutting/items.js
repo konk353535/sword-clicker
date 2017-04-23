@@ -24,7 +24,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'copper axe',
-    sellPrice: 100,
+    sellPrice: 50,
     description: 'An axe forged from copper. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -44,7 +44,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'iron axe',
-    sellPrice: 500,
+    sellPrice: 100,
     description: 'An axe forged from iron. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -64,7 +64,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'steel axe',
-    sellPrice: 1000,
+    sellPrice: 200,
     description: 'An axe forged from steel. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -84,7 +84,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'carbon axe',
-    sellPrice: 1000,
+    sellPrice: 300,
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -104,7 +104,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'mithril axe',
-    sellPrice: 1000,
+    sellPrice: 500,
     description: 'An axe forged from mithril. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -139,7 +139,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ashLog',
     category: 'woodcutting',
     name: 'ash log',
-    sellPrice: 50
+    sellPrice: 10
   },
 
   oak_log: {
@@ -147,7 +147,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'oakLog',
     category: 'woodcutting',
     name: 'oak log',
-    sellPrice: 100
+    sellPrice: 15
   },
 
   maple_log: {
@@ -155,6 +155,6 @@ export const WOODCUTTING_ITEMS = {
     icon: 'mapleLog',
     category: 'woodcutting',
     name: 'maple log',
-    sellPrice: 150
+    sellPrice: 20
   }
 }

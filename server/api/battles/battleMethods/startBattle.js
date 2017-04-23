@@ -35,6 +35,9 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
     battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
     battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
     battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
+  } else if (difficulty === 'boss') {
+    // Is tower BOSS
+    battleData.enemies.push(FLOORS[floor].boss.enemy);
   }
 
   // Is user in a group? If so this is a group battle

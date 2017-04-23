@@ -136,7 +136,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 100,
+        amount: 50,
         consumes: true
       }, {
         type: 'skill',
@@ -161,7 +161,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 250,
+        amount: 150,
         consumes: true
       }, {
         type: 'skill',
@@ -186,7 +186,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 1000,
+        amount: 500,
         consumes: true
       }, {
         type: 'skill',
@@ -236,7 +236,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 5000,
+        amount: 2500,
         consumes: true
       }, {
         type: 'skill',
@@ -261,7 +261,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 25000,
+        amount: 4000,
         consumes: true
       }, {
         type: 'skill',
@@ -281,7 +281,7 @@ export const MINING = {
       icon: 'stone',
       name: 'stone',
       itemId: 'ore_stone',
-      chance: 0.08
+      chance: 0.06
     },
 
     copper: {

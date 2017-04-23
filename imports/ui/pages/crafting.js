@@ -168,7 +168,7 @@ Template.craftingPage.events({
         if (err) {
           toastr.warning(err.reason);
         } else {
-          toastr.success(`Crafting ${recipeConstants.name}`)
+          toastr.success(`Crafting ${recipeConstants.name}`, null, { timeOut: 1000 });
         }
       });
     }

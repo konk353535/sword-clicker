@@ -21,7 +21,7 @@ export const CRAFTING_CRAFTS = {
       name: 'crafting',
       level: 1
     }],
-    timeToCraft: 60,
+    timeToCraft: 30,
     xp: 1,
     maxToCraft: 1
   },

@@ -209,6 +209,36 @@ export const CARBON_ITEMS = {
     }]
   },
 
+  carbon_horned_helmet: {
+    id: 'carbon_horned_helmet',
+    icon: 'carbonHornedHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'carbon horned helmet',
+    sellPrice: 400,
+    description: 'Headbut your enemies',
+    isEquippable: true,
+    stats: {
+      healthMax: 3,
+      armor: 4,
+      attack: 4,
+      attackMax: 4,
+      accuracy: 4
+    },
+    extraStats: {
+      healthMax: 3,
+      armor: 4,
+      attack: 4,
+      attackMax: 4,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
+  },
+
   carbon_helmet: {
     id: 'carbon_helmet',
     icon: 'carbonHelmet',

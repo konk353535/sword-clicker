@@ -6,13 +6,6 @@ export const TOWER_FLOOR_2 = {
     name: 'Greek Garden',
     image: 'greekGarden.jpeg',
     floor: 2,
-    possibleBattles: [
-      { enemies: [{ id: 'e_rat', amount: 3 }] },
-      { enemies: [{ id: 'e_rabbit', amount: 1 }] },
-      { enemies: [{ id: 'e_crab', amount: 1 }] },
-      { enemies: [{ id: 'e_snail', amount: 1 }] },
-      { enemies: [{ id: 'e_wasp', amount: 1 }] }
-    ],
     rewards: orderLootTable([{
       chance: 1 / 8,
       rewards: [
@@ -26,41 +19,17 @@ export const TOWER_FLOOR_2 = {
     name: 'Rocky Mountain',
     image: 'rockyMountain.jpeg',
     floor: 2,
-    possibleBattles: [
-      { enemies: [{ id: 'e_rat', amount: 3 }, { id: 'spider', amount: 1}] },
-      { enemies: [{ id: 'e_rabbit', amount: 1 }, { id: 'snake', amount: 1}] },
-      { enemies: [{ id: 'e_crab', amount: 1 }, { id: 'falcon', amount: 1}] },
-      { enemies: [{ id: 'e_snail', amount: 1 }, { id: 'skunk', amount: 1}] },
-      { enemies: [{ id: 'e_wasp', amount: 1 }, { id: 'lizard', amount: 1}] }
-    ],
     rewards: orderLootTable([{
-      chance: 1 / 8,
+      chance: 1 / 2,
       rewards: [{ type: 'gold', amount: 200 }]
     }, {
-      chance: 1 / 32,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'iron_bar', amount: 2 },
         { type: 'item', itemId: 'beech_log', amount: 20 }
       ]
-    }])
-  },
-
-  veryHard: {
-    name: 'Desert',
-    image: 'desertLandscape.jpeg',
-    floor: 2,
-    possibleBattles: [
-      { enemies: [{ id: 'e_rat', amount: 3 }, { id: 'e_spider', amount: 1}] },
-      { enemies: [{ id: 'e_rabbit', amount: 1 }, { id: 'e_snake', amount: 1}] },
-      { enemies: [{ id: 'e_crab', amount: 1 }, { id: 'e_falcon', amount: 1}] },
-      { enemies: [{ id: 'e_snail', amount: 1 }, { id: 'e_skunk', amount: 1}] },
-      { enemies: [{ id: 'e_wasp', amount: 1 }, { id: 'e_lizard', amount: 1}] }
-    ],
-    rewards: orderLootTable([{
-      chance: 1 / 8,
-      rewards: [{ type: 'gold', amount: 400 }]
     }, {
-      chance: 1 / 32,
+      chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'iron_shield', amount: 1 },
         { type: 'item', itemId: 'iron_spear', amount: 1 },
@@ -71,6 +40,49 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'iron_dagger', amount: 1 },
         { type: 'item', itemId: 'iron_short_sword', amount: 1 },
         { type: 'item', itemId: 'iron_battle_axe', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'iron_horned_helmet', amount: 1 },
+        { type: 'item', itemId: 'iron_mining_hammer', amount: 1 },
+        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 }
+      ]
+    }])
+  },
+
+  veryHard: {
+    name: 'Desert',
+    image: 'desertLandscape.jpeg',
+    floor: 2,
+    rewards: orderLootTable([{
+      chance: 1 / 2,
+      rewards: [{ type: 'gold', amount: 400 }]
+    }, {
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'iron_shield', amount: 1 },
+        { type: 'item', itemId: 'iron_spear', amount: 1 },
+        { type: 'item', itemId: 'iron_long_sword', amount: 1 },
+        { type: 'item', itemId: 'iron_plate_legs', amount: 1 },
+        { type: 'item', itemId: 'iron_chest_plate', amount: 1 },
+        { type: 'item', itemId: 'iron_helmet', amount: 1 },
+        { type: 'item', itemId: 'iron_dagger', amount: 1 },
+        { type: 'item', itemId: 'iron_short_sword', amount: 1 },
+        { type: 'item', itemId: 'iron_battle_axe', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'iron_horned_helmet', amount: 1 },
+        { type: 'item', itemId: 'iron_mining_hammer', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'iron_scimitar', amount: 1 },
+        { type: 'item', itemId: 'iron_broad_sword', amount: 1 }
       ]
     }])
   },

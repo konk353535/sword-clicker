@@ -208,6 +208,36 @@ export const IRON_ITEMS = {
     }]
   },
 
+  iron_horned_helmet: {
+    id: 'iron_horned_helmet',
+    icon: 'ironHornedHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'iron horned helmet',
+    sellPrice: 300,
+    description: 'Protect your head',
+    isEquippable: true,
+    stats: {
+      healthMax: 1,
+      armor: 1,
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
+    },
+    extraStats: {
+      healthMax: 1,
+      armor: 1,
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
+  },
+
   iron_helmet: {
     id: 'iron_helmet',
     icon: 'ironHelmet',

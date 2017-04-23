@@ -124,23 +124,23 @@
           </button>
         </td>
       </tr>
-      <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}}">
-        <td class="align-middle">Final Room</td>
-        <td class="align-middle"></td>
-        {{#if waveDetails}}
+      {{#if waveDetails}}
+        <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}}">
+          <td class="align-middle">Final Room</td>
+          <td class="align-middle"></td>
           <td class="align-middle text-center">
             1
           </td>
-        {{/if}}
-        <td class="align-middle">
-          {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
-        </td>
-        <td class="align-middle">
-          <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
-            Boss Battle
-          </button>
-        </td>
-      </tr>
+          <td class="align-middle">
+            {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
+          </td>
+          <td class="align-middle">
+            <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
+              Boss Battle
+            </button>
+          </td>
+        </tr>
+      {{/if}}
     </tbody>
   </table>
 

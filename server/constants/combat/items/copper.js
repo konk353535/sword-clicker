@@ -193,6 +193,32 @@ export const COPPER_ITEMS = {
     }]
   },
 
+  copper_horned_helmet: {
+    id: 'copper_horned_helmet',
+    icon: 'copperHornedHelmet',
+    category: 'combat',
+    slot: 'head',
+    name: 'copper horned helmet',
+    sellPrice: 150,
+    description: 'Protect your head',
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 1,
+      accuracy: 1
+    },
+    extraStats: {
+      attack: 1,
+      attackMax: 1,
+      accuracy: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
+  },
+
   copper_helmet: {
     id: 'copper_helmet',
     icon: 'copperHelmet',

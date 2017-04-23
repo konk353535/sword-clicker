@@ -53,12 +53,7 @@ Meteor.methods({
       wave = _.random(1, 10);
     }
 
-    const targetEnemy = FLOORS.personalQuestMonsterGenerator(level);
-    if (targetEnemy) {
-      startBattle({ enemies: [targetEnemy] }, { level, wave });
-    } else {
-      throw new Meteor.Error("oh... sorry!", "Couldnt find the specified battle for that level and wave combo");
-    }
+    startBattle({ level, wave });
   },
 
   'battles.findBattle'(floor, difficulty) {
@@ -70,14 +65,13 @@ Meteor.methods({
     const currentFloor = Floors.findOne({ floorComplete: false });
 
     if (floor > currentFloor.floor) {
-      return;
+      throw new Meteor.Error("no-sir", "Dont have access to that floor!");
     }
 
-    const possibleBattles = FLOORS[floor][difficulty].possibleBattles;
+    let isTowerContribution = true;
 
     if (currentFloor[`${difficulty}Waves`] <= 0) {
-      floor = null;
-      difficulty = null;
+      isTowerContribution = false;
     }
 
     if (difficulty === 'boss' && currentFloor.floor == floor) {
@@ -94,12 +88,12 @@ Meteor.methods({
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
       } else {
         const bossHealth = currentFloor.health;
-        return  startBattle(_.sample(possibleBattles), { floor, difficulty, health: bossHealth });
+        return  startBattle({ floor, difficulty, health: bossHealth, isTowerContribution: true });
       }
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle(_.sample(possibleBattles), { floor, difficulty });
+    startBattle({ floor, difficulty, isTowerContribution });
   },
 
   'battles.getWaveDetails'() {

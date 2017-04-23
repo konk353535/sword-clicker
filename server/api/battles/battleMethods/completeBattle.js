@@ -146,12 +146,19 @@ export const completeBattle = function (actualBattle) {
     // Apply rewards for killing monsters
     const rewardsGained = [];
     actualBattle.deadEnemies.forEach((deadEnemy) => {
-      let rewards;
+      let rewards = [];
       if (actualBattle.level) {
         rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level).rewards;
-      } else {
+      } else if (actualBattle.difficulty === 'easy') {
+        rewards = FLOORS.easyTowerMonsterGenerator(actualBattle.floor).rewards;
+      } else if (actualBattle.difficulty === 'hard') {
+        rewards = FLOORS.hardTowerMonsterGenerator(actualBattle.floor).rewards;
+      } else if (actualBattle.difficulty === 'veryHard') {
+        rewards = FLOORS.veryHardTowerMonsterGenerator(actualBattle.floor).rewards;
+      } else if (actualBattle.difficulty === 'boss') {
         rewards = ENEMIES[deadEnemy.enemyId].rewards;
       }
+
       for (let i = 0; i < rewards.length; i++) {
         const rewardTable = rewards[i];
         const diceRoll = Math.random();
@@ -208,7 +215,7 @@ export const completeBattle = function (actualBattle) {
       // To do: add support for getting gold
     });
 
-    if (actualBattle.floor && actualBattle.difficulty) {
+    if (actualBattle.floor && actualBattle.difficulty && actualBattle.isTowerContribution) {
       if (actualBattle.difficulty !== 'boss') {
         // Decrement floor
         Floors.update({

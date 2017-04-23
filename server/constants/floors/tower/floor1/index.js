@@ -6,13 +6,6 @@ export const TOWER_FLOOR_1 = {
     name: 'Grass Fields',
     image: 'grassField.jpeg',
     floor: 1,
-    possibleBattles: [
-      { enemies: [{ id: 'e_fly', amount: 3 }] },
-      { enemies: [{ id: 'e_grasshopper', amount: 1 }] },
-      { enemies: [{ id: 'e_mouse', amount: 1 }] },
-      { enemies: [{ id: 'e_bee', amount: 1 }] },
-      { enemies: [{ id: 'e_bird', amount: 1 }] }
-    ],
     rewards: orderLootTable([{
       chance: 1 / 8,
       rewards: [

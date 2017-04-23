@@ -101,6 +101,6 @@ Template.personalQuestTab.helpers({
 
   levelsList() {
     const maxLevel = Template.instance().state.get('maxLevel');
-    return _.range(1, maxLevel + 1);
+    return _.range(maxLevel, 0, -1);
   }
 });

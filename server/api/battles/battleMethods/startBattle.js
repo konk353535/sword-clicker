@@ -1,6 +1,7 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 import { COMBAT, ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
+import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 
 import { Random } from 'meteor/random'
 import moment from 'moment';
@@ -14,8 +15,27 @@ import { Abilities } from '/imports/api/abilities/abilities';
 
 import { progressBattle } from './progressBattle.js';
 
-export const startBattle = function (battleData, { floor, difficulty, level, wave, health }) {
+export const startBattle = function ({ floor, difficulty, level, wave, health, isTowerContribution }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
+
+  let battleData = { enemies: [] };
+
+  if (level) {
+    // Is personalQuest
+    battleData.enemies.push(FLOORS.personalQuestMonsterGenerator(level));
+  } else if (difficulty === 'easy') {
+    // Is tower EASY
+    battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
+  } else if (difficulty === 'hard') {
+    // Is tower HARD
+    battleData.enemies.push(FLOORS.hardTowerMonsterGenerator(floor));
+    battleData.enemies.push(FLOORS.hardTowerMonsterGenerator(floor));
+  } else if (difficulty === 'veryHard') {
+    // Is tower VERY HARD
+    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
+    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
+    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
+  }
 
   // Is user in a group? If so this is a group battle
   const currentGroup = Groups.findOne({
@@ -51,22 +71,6 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
   // Create clone of battle objects
   let battleConstants = JSON.parse(JSON.stringify(battleData));
 
-  // Ensure valid battle id
-  if (!_.isObject(battleConstants)) {
-    // Fallback to check if this is a single enemy battle
-    if (ENEMIES[battleData]) {
-      battleConstants = {
-        enemies: [{
-          id: battleData,
-          amount: 1
-        }]
-      }
-    } else {
-      console.log('Unknown battle format');
-      return;
-    }
-  }
-
   // This seems overkill? Can we just do this on equip / level up?
   // To do: Ensure this is no longer required
   // updateCombatStats();
@@ -79,6 +83,7 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
     difficulty,
     wave,
     level,
+    isTowerContribution,
     tickEvents: [],
     units: [],
     enemies: []
@@ -179,12 +184,16 @@ export const startBattle = function (battleData, { floor, difficulty, level, wav
   // Inject enemies into the battle
   battleConstants.enemies.forEach((enemy) => {
     let enemyConstants;
+
+    // If this is a dynamic mob, it will already have stats
     if (enemy.stats) {
       enemyConstants = enemy;
     } else {
       enemyConstants = ENEMIES[enemy.id];
     }
+
     const enemyStats = enemyConstants.stats;
+
     // This is the current active boss battle
     if (enemyConstants.isBoss && health) {
       enemyStats.health = health;

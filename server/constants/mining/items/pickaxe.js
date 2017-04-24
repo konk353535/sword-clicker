@@ -382,14 +382,14 @@ export const PICKAXE_ITEMS = {
       energyStorage: 14,
       attack: 10,
       energyPerHit: 1,
-      energyRegen: 5,
+      energyRegen: 6,
       miner: 20
     },
     extraStats: {
       energyStorage: 14,
       attack: 5,
       miner: 25,
-      energyRegen: 2
+      energyRegen: 3
     }
   },
 

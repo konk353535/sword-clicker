@@ -141,8 +141,7 @@ Meteor.methods({
       // Update existing level
       Abilities.update({
         _id: myAbilities._id,
-        "learntAbilities.abilityId": hasTargetAbility.abilityId,
-        currentCooldown: 0
+        "learntAbilities.abilityId": hasTargetAbility.abilityId
       }, {
         $set: {
           "learntAbilities.$.level": tomeConstants.teaches.level
@@ -154,7 +153,8 @@ Meteor.methods({
           learntAbilities: {
             abilityId: tomeConstants.teaches.abilityId,
             level: 1,
-            equipped: false
+            equipped: false,
+            currentCooldown: 0
           }
         }
       })

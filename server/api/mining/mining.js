@@ -488,7 +488,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 30, 1 *
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.fireProspector' }, 30, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 30, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 20, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 30, 1 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 600, 2 * MINUTE);
 DDPRateLimiter.addRule({ type: 'subscription', name: 'mining' }, 40, 2 * MINUTE);
 

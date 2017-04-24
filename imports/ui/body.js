@@ -51,50 +51,47 @@ Template.body.onCreated(function () {
     const skills = Skills.find({}).fetch();
 
     skills.forEach((skill) => {
-      const skillCache = cachedSkills[skill.type];
-      if (skillCache) {
-        if (skillCache.level === skill.level) {
-          // Show tick for this skill
-          const xpGained = skill.xp - skillCache.xp;
-          if (xpGained > 0) {
-            const element = `
-              <p
-                class='floating-text'
-                data-count=1
-                style='top: 75px; right: 25px; opacity: 1.0;'>
-                +${xpGained} <i class="lilIcon-${skill.type}"></i>
-              </p>
-            `;
+      if (skill.type === 'total') {
+        const skillCache = cachedSkills[skill.type];
+        if (skillCache) {
+          if (skillCache.level === skill.level) {
+            // Show tick for this skill
+            const xpGained = skill.xp - skillCache.xp;
+            if (xpGained > 0) {
+              const element = `
+                <p
+                  class='floating-text'
+                  data-count=1
+                  style='top: 75px; right: 25px; opacity: 1.0;'>
+                  +${xpGained} <i class="lilIcon-${skill.type}"></i>
+                </p>
+              `;
 
-            $('body').append(element);
+              $('body').append(element);
+            }
+          } else {
+            for (let i = 0; i < 2; i++) {
+              const element = `
+                <p
+                  class='floating-text text-white bg-primary'
+                  data-count=-50
+                  style='top: 150px; left: 50px; opacity: 1.0;'>
+                  <span class='text-capitalize'>
+                    ${skill.type}
+                  </span> Level Up <i class="lilIcon-${skill.type}"></i>
+                </p>
+              `;
+
+              $('body').append(element);
+            }
           }
+          skillCache.xp = skill.xp;
+          skillCache.level = skill.level;
         } else {
-          const maxWidth = $(window).width() - 100;
-          const perWidth = maxWidth / 2;
-          const setHeight = ($(window).height() / 2);
-          for (let i = 0; i < 2; i++) {
-            const top = setHeight;
-            const left = 50 + parseInt(perWidth * i);
-            const element = `
-              <p
-                class='floating-text text-white bg-primary'
-                data-count=-50
-                style='top: ${top}px; left: ${left}px; opacity: 1.0;'>
-                <span class='text-capitalize'>
-                  ${skill.type}
-                </span> Level Up <i class="lilIcon-${skill.type}"></i>
-              </p>
-            `;
-
-            $('body').append(element);
+          cachedSkills[skill.type] = {
+            xp: skill.xp,
+            level: skill.level
           }
-        }
-        skillCache.xp = skill.xp;
-        skillCache.level = skill.level;
-      } else {
-        cachedSkills[skill.type] = {
-          xp: skill.xp,
-          level: skill.level
         }
       }
     });

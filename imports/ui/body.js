@@ -51,7 +51,7 @@ Template.body.onCreated(function () {
     const skills = Skills.find({}).fetch();
 
     skills.forEach((skill) => {
-      if (skill.type === 'total') {
+      if (skill.type !== 'total') {
         const skillCache = cachedSkills[skill.type];
         if (skillCache) {
           if (skillCache.level === skill.level) {
@@ -75,7 +75,7 @@ Template.body.onCreated(function () {
                 <p
                   class='floating-text text-white bg-primary'
                   data-count=-50
-                  style='top: 150px; left: 50px; opacity: 1.0;'>
+                  style='top: 150px; right: 50px; opacity: 1.0;'>
                   <span class='text-capitalize'>
                     ${skill.type}
                   </span> Level Up <i class="lilIcon-${skill.type}"></i>

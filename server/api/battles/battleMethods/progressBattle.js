@@ -162,6 +162,13 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       if (targetUnit) {
         targetUnit.target = action.targets[0];
       }
+    } else if (action.abilityId === 'clickAttack') {
+      // Deal x damage to target
+      const targetUnit = _.findWhere(actualBattle.enemies, { id: action.targets[0] });
+      const casterUnit = _.findWhere(actualBattle.units, { id: action.caster });
+      if (targetUnit && casterUnit) {
+        dealDamage(1, { attacker: casterUnit, defender: targetUnit, tickEvents: actualBattle.tickEvents });
+      }
     } else {
       // Ensure the specified ability is able to be casted for the specified caster
       const castersUnits = actualBattle.units.filter((unit) => {

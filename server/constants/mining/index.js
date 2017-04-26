@@ -79,7 +79,7 @@ export const MINING = {
       id: 'steel',
       required: [{
         type: 'gold',
-        amount: 75,
+        amount: 100,
         consumes: true
       }, {
         type: 'skill',
@@ -95,7 +95,7 @@ export const MINING = {
       id: 'carbon',
       required: [{
         type: 'gold',
-        amount: 100,
+        amount: 200,
         consumes: true
       }, {
         type: 'skill',
@@ -111,7 +111,7 @@ export const MINING = {
       id: 'mithril',
       required: [{
         type: 'gold',
-        amount: 400,
+        amount: 1000,
         consumes: true
       }, {
         type: 'skill',
@@ -211,7 +211,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 1000,
+        amount: 2500,
         consumes: true
       }, {
         type: 'skill',
@@ -236,7 +236,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 2500,
+        amount: 7500,
         consumes: true
       }, {
         type: 'skill',
@@ -261,7 +261,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 4000,
+        amount: 20000,
         consumes: true
       }, {
         type: 'skill',

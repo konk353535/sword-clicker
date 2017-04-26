@@ -14,7 +14,7 @@
       <h1>My Units</h1>
       <div class="d-flex flex-row flex-wrap">
         {{#each currentBattle.units}}
-          {{> battleUnit unit=this isFriendly="true"}}
+          {{> battleUnit unit=this isFriendly="true" battleId=currentBattle._id}}
         {{/each}}
       </div>
     </div>
@@ -22,7 +22,7 @@
       <h1>Enemy Units</h1>
       <div class="d-flex flex-row flex-wrap">
         {{#each currentBattle.enemies}}
-          {{> battleUnit unit=this isEnemy="true"}}
+          {{> battleUnit unit=this isEnemy="true" battleId=currentBattle._id}}
         {{/each}}
       </div>
     </div>

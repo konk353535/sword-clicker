@@ -12,6 +12,10 @@ import './currentBattleUi.html';
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  Tracker.autorun(() => {
+
+  })
+
   this.autorun(() => {
     const currentBattle = Battles.findOne({ finished: false });
 
@@ -55,9 +59,43 @@ Template.currentBattleUi.events({
 
 Template.currentBattleUi.helpers({
   currentBattle() {
-    return Battles.findOne({
+    const currentBattle = Battles.findOne({
       finished: false
     });
+
+    if (!currentBattle) {
+      return {};
+    }
+
+    const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
+    if (myUnit) {
+      Template.instance().state.set('myUnit', myUnit);
+    }
+
+    return currentBattle;
+  },
+
+  unitClicked() {
+    const instance = Template.instance();
+    return function (unitId) {
+      // Current Battle
+      const currentBattle = Battles.findOne({
+        finished: false
+      });
+
+      // Amulet Stats
+      const myUnit = instance.state.get('myUnit');
+
+      if (!$('body').hasClass('targetting-enemies')) {
+        if (myUnit && myUnit.amulet && myUnit.amulet.energy >= 1) {
+          const battleId = currentBattle._id;
+          const casterId = Meteor.userId();
+          Meteor.call('battles.castAbility', battleId, 'clickAttack', {
+            targets: [unitId], caster: casterId
+          });
+        }
+      }
+    }
   },
 
   changeTargetAbility() {
@@ -104,18 +142,18 @@ Template.currentBattleUi.helpers({
   },
 
   myUnitsBuffs() {
-    const currentBattle = Battles.findOne({
-      finished: false
-    });
-    if (!currentBattle) {
-      return [];
-    }
+    const instance = Template.instance();
 
-    const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
-    if (!myUnit) {
-      return [];
+    if (instance && instance.state.get('myUnit')) {
+      return instance.state.get('myUnit').buffs;
     }
-
-    return myUnit.buffs;
   },
+
+  myUnitsAmulet() {
+    const instance = Template.instance();
+
+    if (instance && instance.state.get('myUnit')) {
+      return instance.state.get('myUnit').amulet;
+    }
+  }
 });

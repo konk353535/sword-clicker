@@ -166,8 +166,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       // Deal x damage to target
       const targetUnit = _.findWhere(actualBattle.enemies, { id: action.targets[0] });
       const casterUnit = _.findWhere(actualBattle.units, { id: action.caster });
-      if (targetUnit && casterUnit) {
-        dealDamage(1, { attacker: casterUnit, defender: targetUnit, tickEvents: actualBattle.tickEvents });
+      // Ensure caster unit has sufficient energy
+      if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
+        casterUnit.amulet.energy -= 1;
+        dealDamage(casterUnit.amulet.attack, {
+          attacker: casterUnit,
+          defender: targetUnit,
+          tickEvents: actualBattle.tickEvents
+        });
       }
     } else {
       // Ensure the specified ability is able to be casted for the specified caster

@@ -44,8 +44,18 @@ export const updateCombatStats = function (userId, username) {
   }).fetch();
 
   // Apply combat items
-  combatItems.forEach((combatItem) => {
+  for (let i = 0; i < combatItems.length; i++) {
+    const combatItem = combatItems[i];
     combatItem.constants = ITEMS[combatItem.itemId];
+    if (combatItem.constants.isAttackAmulet) {
+      // Fetch existing energy
+      playerData.amulet = JSON.parse(JSON.stringify(combatItem.constants.stats));
+      if (playerData.amulet.energy == null) {
+        playerData.amulet.energy = 0;
+      } 
+      continue;
+    }
+
     if (combatItem.constants.stats) {
       const itemStats = JSON.parse(JSON.stringify(combatItem.constants.stats));
       if (combatItem.extraStats) {
@@ -65,7 +75,7 @@ export const updateCombatStats = function (userId, username) {
         playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
       }
     }
-  });
+  };
 
   // Fetch all users skill levels
   const combatSkills = Skills.find({
@@ -131,6 +141,14 @@ Meteor.methods({
       }
     }
 
+    // Amulet energy regen
+    if (currentCombat.amulet && currentCombat.amulet.energy < currentCombat.amulet.energyStorage) {
+      currentCombat.amulet.energy += minutesElapsed * currentCombat.amulet.energyRegen;
+      if (currentCombat.amulet.energy >= currentCombat.amulet.energyStorage) {
+        currentCombat.amulet.energy = currentCombat.amulet.energyStorage;
+      }
+    }
+
     // Health Regen
     if (currentCombat.stats.health <= currentCombat.stats.healthMax) {
       currentCombat.stats.health += (COMBAT.baseHealthRegenPerMinute * minutesElapsed);
@@ -158,6 +176,7 @@ Meteor.methods({
     Combat.update(currentCombat._id, {
       $set: Object.assign(flattenObjectForMongo({ stats: currentCombat.stats }), {
         buffs: currentCombat.buffs,
+        amulet: currentCombat.amulet,
         lastGameUpdated: new Date()
       })
     });

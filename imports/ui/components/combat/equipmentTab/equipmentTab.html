@@ -47,6 +47,14 @@
             Head
           </div>
         {{/if}}
+        <!-- Neck -->
+        {{#if equippedItemsMap.neck}}
+          {{> itemIcon item=equippedItemsMap.neck}}
+        {{else}}
+          <div class="icon-box">
+            Neck
+          </div>
+        {{/if}}
         <!-- Chest -->
         {{#if equippedItemsMap.chest}}
           {{> itemIcon item=equippedItemsMap.chest}}

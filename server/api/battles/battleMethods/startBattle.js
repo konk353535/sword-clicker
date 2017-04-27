@@ -154,6 +154,7 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
       owner: userCombat.owner,
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',
+      amulet: userCombat.amulet,
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 5),

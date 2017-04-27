@@ -53,5 +53,21 @@ export const ORE_ITEMS = {
     category: 'mining',
     name: 'mithril',
     sellPrice: 50
+  },
+
+  jade: {
+    id: 'jade',
+    icon: 'jade',
+    category: 'mining',
+    name: 'jade',
+    sellPrice: 500
+  },
+
+  lapislazuli: {
+    id: 'lapislazuli',
+    icon: 'lapislazuli',
+    category: 'mining',
+    name: 'lapis lazuli',
+    sellPrice: 2500
   }
 }

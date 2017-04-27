@@ -197,7 +197,7 @@ Meteor.methods({
 
   'items.equip'(_id, itemId) {
     const itemConstants = ITEMS[itemId];
-    // SECURITY ISSUE: We're trust the user to send the correct itemId here, needs to be fix
+    // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fix
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
 

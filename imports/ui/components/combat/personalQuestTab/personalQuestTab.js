@@ -16,7 +16,7 @@ Template.personalQuestTab.onCreated(function bodyOnCreated() {
     if (myUser) {
       if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
         this.state.set('currentLevel', myUser.uiState.questLevel);
-      } else {
+      } else if (myUser.personalQuest) {
         this.state.set('currentLevel', myUser.personalQuest.level);
       }
     }

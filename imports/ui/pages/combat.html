@@ -20,6 +20,17 @@
             <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
+        {{#if combat.amulet.energyStorage}}
+          <div class="d-flex flex-column m-3" style="width: 200px">
+            <div class="d-flex align-items-center">
+              <img src="/icons/amulet.svg" class="small-icon mr-1">
+              {{> formatNumber combat.amulet.energy}} / {{combat.amulet.energyStorage}}
+            </div>
+            <div class="progress mt-1" style="width: 100%">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.amuletPercentage}}%" aria-valuenow="{{combat.amuletPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        {{/if}}
         {{#each combat.buffs}}
           {{> buffIcon buff=this}}
         {{/each}}

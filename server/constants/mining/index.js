@@ -348,6 +348,28 @@ export const MINING = {
       name: 'mithril',
       itemId: 'ore_mithril',
       chance: 0.00075
+    },
+
+    jade: {
+      requiredLevel: 1,
+      healthMax: 1000,
+      xp: 333,
+      id: 'jade',
+      icon: 'jade',
+      name: 'jade',
+      itemId: 'jade',
+      chance: 0.0000015
+    },
+
+    lapislazuli: {
+      requiredLevel: 1,
+      healthMax: 50000,
+      xp: 7600,
+      id: 'lapislazuli',
+      icon: 'lapislazuli',
+      name: 'lapislazuli',
+      itemId: 'lapislazuli',
+      chance: 0.000000015
     }
   }
 }

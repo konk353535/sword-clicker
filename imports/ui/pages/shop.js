@@ -61,7 +61,8 @@ Template.shopPage.rendered = function () {
   document.getElementById('purchaseButtonBunch').addEventListener('click', function(e) {
     // Open Checkout with further options:
     handler.open({
-      name: 'Clicker',
+      name: 'Eternity Tower',
+      image: 'https://eternitytower.net/icons/tower.svg',
       description: 'Bunch Of Gems',
       currency: 'usd',
       amount: 499
@@ -74,7 +75,8 @@ Template.shopPage.rendered = function () {
   document.getElementById('purchaseButtonBag').addEventListener('click', function(e) {
     // Open Checkout with further options:
     handler.open({
-      name: 'Clicker',
+      name: 'Eternity Tower',
+      image: 'https://eternitytower.net/icons/tower.svg',
       description: 'Bag Of Gems',
       currency: 'usd',
       amount: 999
@@ -87,7 +89,8 @@ Template.shopPage.rendered = function () {
   document.getElementById('purchaseButtonBox').addEventListener('click', function(e) {
     // Open Checkout with further options:
     handler.open({
-      name: 'Clicker',
+      name: 'Eternity Tower',
+      image: 'https://eternitytower.net/icons/tower.svg',
       description: 'Box Of Gems',
       currency: 'usd',
       amount: 1999

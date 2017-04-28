@@ -129,6 +129,14 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
 const craftItem = function (recipeId, amountToCraft = 1) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
+  if (crafting && (crafting.currentlyCrafting === undefined || crafting.currentlyCrafting === null)) {
+    Crafting.update(crafting._id, {
+      $set: {
+        currentlyCrafting: []
+      }
+    });
+  }
+
   // Are we crafting atleast one item
   if (amountToCraft <= 0) {
     return;
@@ -236,7 +244,7 @@ Meteor.methods({
     // If existing crafts done, remove from crafting table
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
-    if (!crafting) {
+    if (!crafting || !crafting.currentlyCrafting) {
       return;
     }
 

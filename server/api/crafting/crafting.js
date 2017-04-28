@@ -239,6 +239,10 @@ Meteor.methods({
     // If existing crafts done, remove from crafting table
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
+    if (!crafting) {
+      return;
+    }
+
     let craftingXp = 0;
     const newItems = [];
     const popValues = []; // Store array of currentCrafting endDates
@@ -266,7 +270,6 @@ Meteor.methods({
 
     // Add new items to user
     newItems.forEach((item) => {
-      console.log(`Calling add item from crafting updategame - ${item.itemId} - ${item.amount}`);
       addItem(item.itemId, item.amount);
     })
 

@@ -70,10 +70,21 @@ const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
   return MINING.ores[oreKey];
 });
 
-const attackMineSpace = function (id, damage) {
+const attackMineSpace = function (id, mining) {
+  const damage = mining.stats.attack;
   const mineSpace = MiningSpace.findOne({ _id: id, owner: Meteor.userId() });
 
   const oreConstants = MINING.ores[mineSpace.oreId];
+
+  if (!oreConstants) {
+    return;
+  }
+
+  Mining.update(mining._id, {
+    $inc: {
+      'stats.energy': (mining.stats.energyPerHit * -1)
+    }
+  });
 
   if (mineSpace.health - damage <= 0) {
     // Mine space has been destroyed
@@ -97,13 +108,7 @@ Meteor.methods({
       return;
     }
 
-    Mining.update(mining._id, {
-      $inc: {
-        'stats.energy': (mining.stats.energyPerHit * -1)
-      }
-    });
-
-    attackMineSpace(mineSpaceId, mining.stats.attack);
+    attackMineSpace(mineSpaceId, mining);
   },
 
   'mining.buyMiner'(minerId) {

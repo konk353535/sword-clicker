@@ -6,7 +6,7 @@ export const WOODCUTTING = {
 
   suicidalFury: {
     duration: 60, // In seconds
-    attackSpeedIncrease: 1000 // Percentage
+    attackSpeedIncrease: 1250 // Percentage
   },
 
   baseMaxWoodcutters: 5,
@@ -166,7 +166,7 @@ export const WOODCUTTING = {
       icon: 'pineLog',
       name: 'pine log',
       itemId: 'pine_log',
-      chance: 0.13 // Base chance to chop this log
+      chance: 0.16 // Base chance to chop this log
     },
 
     beech_log: {

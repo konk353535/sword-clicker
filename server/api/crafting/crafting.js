@@ -287,10 +287,10 @@ Meteor.methods({
 
 const MINUTE = 60 * 1000;
 
-DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem' }, 50, 5 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes' }, 20, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame' }, 20, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem' }, 50, 5 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes' }, 20, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame' }, 20, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish('crafting', function() {
 

@@ -230,11 +230,11 @@ Meteor.methods({
 
 const MINUTE = 60 * 1000;
 
-DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fireWoodcutter' }, 10, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate' }, 20, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fetchWoodcutters' }, 10, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.hireWoodcutter' }, 10, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fireWoodcutter' }, 10, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate' }, 20, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fetchWoodcutters' }, 10, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.hireWoodcutter' }, 10, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);
 
 Meteor.publish('woodcutting', function() {
 

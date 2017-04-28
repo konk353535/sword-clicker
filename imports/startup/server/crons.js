@@ -3,6 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
+import { Battles } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 
 SyncedCron.add({
@@ -36,6 +37,27 @@ SyncedCron.add({
     // Clear hp dealt on leaderboards
     BossHealthScores.remove({});
 
+    return true;
+  }
+});
+
+SyncedCron.add({
+  name: 'Remove dead battles',
+  schedule: function(parser) {
+    return parser.text('every 2 minutes');
+  },
+  job: function() {
+    Battles.update({    
+      finished: false,    
+      updatedAt: {    
+        $lte: moment().subtract(2, 'minutes').toDate()   
+      }   
+    }, {    
+      $set: {   
+        finished: true,   
+        win: false    
+      }   
+    });
     return true;
   }
 });

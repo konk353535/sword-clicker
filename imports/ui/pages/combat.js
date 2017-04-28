@@ -132,7 +132,7 @@ Template.combatPage.helpers({
 
     currentCombat.energyPercentage = currentCombat.stats.energy / currentCombat.stats.energyMax * 100;
     currentCombat.healthPercentage = currentCombat.stats.health / currentCombat.stats.healthMax * 100;
-    if (currentCombat.amulet.energyStorage) {
+    if (currentCombat.amulet && currentCombat.amulet.energyStorage) {
       currentCombat.amuletPercentage = currentCombat.amulet.energy / currentCombat.amulet.energyStorage * 100;
     }
     return currentCombat;

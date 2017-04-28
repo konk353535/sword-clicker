@@ -145,20 +145,17 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants || recipeConstants.recipeFor !== 'crafting') {
-    console.log('Invalid recipe');
     return;
   }
 
   // Make sure amountToCraft doesn't exceed recipe limit
   if (amountToCraft > recipeConstants.maxToCraft) {
-    console.log('Beyond max to craft');
     return;
   }
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
-    console.log('doesnt meet reqs');
     return;
   }
 

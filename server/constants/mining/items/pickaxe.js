@@ -432,14 +432,14 @@ export const PICKAXE_ITEMS = {
       energyStorage: 20,
       attack: 20,
       energyPerHit: 1,
-      energyRegen: 4,
+      energyRegen: 5,
       miner: 30
     },
     extraStats: {
       energyStorage: 20,
       attack: 5,
       miner: 30,
-      energyRegen: 3
+      energyRegen: 2
     }
   },
 
@@ -454,17 +454,17 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 20,
+      energyStorage: 22,
       attack: 25,
       energyPerHit: 1,
-      energyRegen: 4,
+      energyRegen: 5,
       miner: 35
     },
     extraStats: {
-      energyStorage: 20,
+      energyStorage: 22,
       attack: 5,
       miner: 35,
-      energyRegen: 3
+      energyRegen: 2
     }
   }
 }

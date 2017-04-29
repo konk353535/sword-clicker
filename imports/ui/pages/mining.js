@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills.js';
@@ -13,6 +14,8 @@ import './mining.html';
 
 let miningPageTimer;
 let hasInitGameUpdate;
+let minersCache;
+let prospectorsCache;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -24,17 +27,51 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   });
 
+  if (Session.get('minersCache')) {
+    minersCache = Session.get('minersCache')
+  }
+
+  if (Session.get('prospectorsCache')) {
+    prospectorsCache = Session.get('prospectorsCache')
+  }
+
   Tracker.autorun(() => {
     const miningSkill = Skills.findOne({ type: 'mining' });
     if (!miningSkill) {
       return;
     }
 
-    const results = ReactiveMethod.call('mining.fetchMiners', miningSkill.level) || [];
-    const prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level) || [];
-    this.state.set('rawBuyableMiners', results);
-    this.state.set('rawBuyableProspectors', prospectorResults);
+    let minerResults;
+    let prospectorResults;
 
+    if (minersCache && minersCache.data && minersCache.level === miningSkill.level &&
+      moment().isBefore(moment(minersCache.date).add(5, 'minutes'))) {
+      minerResults = minersCache.data;
+    } else {
+      minerResults = ReactiveMethod.call('mining.fetchMiners', miningSkill.level);
+      minersCache = {
+        data: minerResults,
+        level: miningSkill.level,
+        date: moment().toDate(),
+      }
+      Session.set('minersCache', minersCache);
+    }
+
+    if (prospectorsCache && prospectorsCache.data && prospectorsCache.level === miningSkill.level &&
+      moment().isBefore(moment(prospectorsCache.date).add(5, 'minutes'))) {
+      prospectorResults = prospectorsCache.data;
+    } else {
+      prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level);
+      prospectorsCache = {
+        data: prospectorResults,
+        level: miningSkill.level,
+        date: moment().toDate()
+      }
+      Session.set('prospectorsCache', prospectorsCache);
+    }
+
+    this.state.set('rawBuyableMiners', minerResults);
+    this.state.set('rawBuyableProspectors', prospectorResults);
   });
 
   miningPageTimer = Meteor.setInterval(function () {

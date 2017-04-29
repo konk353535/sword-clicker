@@ -102,7 +102,7 @@ Template.combatGroupTab.helpers({
       }
     });
 
-    return combats.fetch().map((userCombat) => {
+    return combats.map((userCombat) => {
       // Map stuff we want to read into stats
       userCombat.stats = {
         health: userCombat.stats.health,

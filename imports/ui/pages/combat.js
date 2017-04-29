@@ -82,6 +82,23 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     }
   });
 
+  Tracker.autorun(() => {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+    if (currentGroup && currentGroup.members.length !== this.state.get('currentMemberCount')) {
+      setTimeout(() => {
+        Meteor.subscribe('combat');
+        this.state.set('currentMemberCount', currentGroup.members.length);
+      }, 1500);
+    }
+  });
+
   this.autorun(() => {
     // Only called when skills have loaded
     if (Skills.findOne()) {

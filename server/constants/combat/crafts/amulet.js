@@ -7,7 +7,7 @@ export const AMULET_CRAFTS = {
     recipeFor: 'crafting',
     category: 'combat',
     id: 'stone_amulet',
-    timeToCraft: 15, // 60
+    timeToCraft: 40, // 60
     xp: 1,
     maxToCraft: 1,
     requiredCraftingLevel: 3,

@@ -21,6 +21,7 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
       Meteor.call('battles.currentFloorHighscores', (err, res) => {
         this.state.set('highscores', res.map((highscore, index) => {
           highscore.rank = index + 1;
+          highscore.points = highscore.points.toFixed(2);
           return highscore;
         }));
       });

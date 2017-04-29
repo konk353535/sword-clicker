@@ -54,6 +54,52 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_lemon: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'lemon',
+    name: 'eating lemon',
+    description({ buff, level }) {
+      const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
+      return `Regenerates ${totalEnergy} energy over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 300, // How long the buff will last
+      totalDuration: 300,
+      energyPerSecond: 0.05 // energy it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.energy > target.stats.energyMax) {
+          target.stats.energy = target.stats.energyMax;
+        }
+      }
+    }
+  },
+
   food_grape_fruit: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'grapeFruit',

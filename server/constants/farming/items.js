@@ -26,6 +26,31 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  lemon_seed: {
+    id: 'lemon_seed',
+    icon: 'lemonSeed',
+    category: 'seed',
+    name: 'Lemmon Seed',
+    description: 'Used to grow lemon. Useful for regenerating energy.',
+    sellPrice: 50,
+    produces: 'lemon'
+  },
+
+  lemon: {
+    id: 'lemon',
+    icon: 'lemon',
+    category: 'food',
+    name: 'lemon',
+    description() {
+      const buff = BUFFS.food_lemon;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_lemon'
+    }],
+    sellPrice: 50
+  },
+
   red_apple_seed: {
     id: 'red_apple_seed',
     icon: 'redAppleSeed',

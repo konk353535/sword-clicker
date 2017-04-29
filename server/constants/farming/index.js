@@ -20,6 +20,21 @@ export const FARMING = {
       }]
     },
 
+    lemon_seed: {
+      id: 'lemon_seed',
+      itemId: 'lemon_seed',
+      requiredFarmingLevel: 2,
+      required: [{
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 2
+      }]
+    },
+
     rubia_flower_seed: {
       id: 'rubia_flower_seed',
       itemId: 'rubia_flower_seed',

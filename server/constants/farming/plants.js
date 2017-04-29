@@ -26,6 +26,31 @@ export const PLANTS = {
     }]
   },
 
+  lemon: {
+    produces: 'lemon',
+    name: 'lemon',
+    id: 'lemon',
+    category: 'farming',
+    icon: ITEMS['lemon'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 300,
+    xp: 15,
+    required: [{
+      type: 'item',
+      itemId: 'lemon_seed',
+      icon: ITEMS['lemon_seed'].icon,
+      name: ITEMS['lemon_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 2
+    }]
+  },
+
   grape_fruit: {
     produces: 'grape_fruit',
     name: 'grapefruit',

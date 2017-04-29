@@ -209,6 +209,7 @@ Meteor.methods({
         type: skillName
       }, {
         sort: {
+          level: -1,
           totalXp: -1
         },
         limit: 10

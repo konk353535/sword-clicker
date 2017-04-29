@@ -6,6 +6,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { Battles } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 
+// Reset boss health
 SyncedCron.add({
   name: 'Reset boss health',
   schedule: function(parser) {
@@ -41,6 +42,7 @@ SyncedCron.add({
   }
 });
 
+// Finish dead battles
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {

@@ -37,7 +37,7 @@ export const addXp = function (skillType, xp, specificUserId) {
         owner,
         type: 'total'
       }, {
-        $inc: { level: 1, totalXp: xp }
+        $inc: { level: 1 }
       })
     } else {
       // Update Level
@@ -56,7 +56,7 @@ export const addXp = function (skillType, xp, specificUserId) {
         owner,
         type: 'total'
       }, {
-        $inc: { level: 1, totalXp: xp }
+        $inc: { level: 1 }
       })
     }
   } else {
@@ -67,12 +67,14 @@ export const addXp = function (skillType, xp, specificUserId) {
     });
     
     // This can probably be optimized
+    /* Remove for performance reasons
     Skills.update({
       type: 'total',
       owner
     }, {
       $inc: { totalXp: xp }
     });
+    */
   }
 }
 

@@ -39,7 +39,6 @@ Meteor.methods({
   },
 
   'woodcutting.gameUpdate'() {
-    this.unblock();
     // Fetch all db data we need
     const woodcutting = Woodcutting.findOne({ owner: this.userId });
 
@@ -139,17 +138,15 @@ Meteor.methods({
     addXp('woodcutting', gainedXp);
 
     // If there is any woodcutters with death timers past now, kill em
-    woodcutting.woodcutters = woodcutting.woodcutters.filter((woodcutter) => {
-      if (woodcutter.deathTime) {
-        return moment().isBefore(woodcutter.deathTime);
-      } else {
-        return true;
-      }
-    });
-
-    Woodcutting.update(woodcutting._id, {
-      $set: {
-        woodcutters: woodcutting.woodcutters
+    woodcutting.woodcutters.forEach((woodcutter) => {
+      if (woodcutter.deathTime && moment().isAfter(woodcutter.deathTime)) {
+        Woodcutting.update(woodcutting._id, {
+          $pull: {
+            woodcutters: {
+              deathTime: woodcutter.deathTime
+            }
+          }
+        }, { multi: true });  
       }
     });
   },

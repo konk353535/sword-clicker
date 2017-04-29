@@ -12,6 +12,7 @@ import { Users } from '/imports/api/users/users.js';
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
+import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
 import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';

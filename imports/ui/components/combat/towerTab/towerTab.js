@@ -10,7 +10,6 @@ import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 
-import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import './towerTab.html';
 
 Template.towerTab.onCreated(function bodyOnCreated() {

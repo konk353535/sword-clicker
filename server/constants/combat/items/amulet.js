@@ -5,7 +5,7 @@ export const AMULET_ITEMS = {
     category: 'combat',
     slot: 'neck',
     name: 'stone amulet',
-    sellPrice: 100,
+    sellPrice: 40,
     description: 'An amulet with traices of magic.',
     isEquippable: true,
     isAttackAmulet: true,

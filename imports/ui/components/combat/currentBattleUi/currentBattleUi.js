@@ -12,10 +12,6 @@ import './currentBattleUi.html';
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  Tracker.autorun(() => {
-
-  })
-
   this.autorun(() => {
     const currentBattle = Battles.findOne({ finished: false });
 
@@ -52,10 +48,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
   })
 });
-
-Template.currentBattleUi.events({
-
-})
 
 Template.currentBattleUi.helpers({
   currentBattle() {

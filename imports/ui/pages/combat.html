@@ -2,7 +2,8 @@
   {{#if attackSkill}}
     {{#if inCurrentBattle}}
       {{> currentBattleUi}}
-    {{else}}
+    {{/if}}
+    <div class="{{#if inCurrentBattle}}hidden-xs-up{{/if}}">
       <div class="d-flex align-items-center">
         <div class="d-flex flex-column my-3" style="width: 200px">
           <div class="d-flex align-items-center">
@@ -68,7 +69,7 @@
       {{else if showAbilitiesTab}}
         {{> combatAbilitiesTab}}
       {{/if}}
-    {{/if}}
+    </div>
   {{else}}
     <div 
       class="d-flex justify-content-center align-items-center flex-column"

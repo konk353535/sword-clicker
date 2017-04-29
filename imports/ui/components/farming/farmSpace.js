@@ -44,7 +44,9 @@ Template.farmSpace.events({
   'click'(event, instance) {
     if (instance.state.get('finishedGrowing')) {
       Meteor.call('farming.pick', instance.data.farmSpace.index, (err, res) => {
-        if (!err) {
+        if (err) {
+          TimeSync.resync()
+        } else {
           instance.state.set('finishedGrowing', false);
         }
       });

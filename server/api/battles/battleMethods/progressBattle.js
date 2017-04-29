@@ -13,6 +13,10 @@ import { BattleActions } from '/imports/api/battles/battleActions';
 
 
 export const progressBattle = function (actualBattle, battleIntervalId) {
+  if (!actualBattle) {
+    Meteor.clearInterval(battleIntervalId);
+  }
+
   actualBattle.tickEvents = [];
   actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 

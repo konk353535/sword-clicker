@@ -125,7 +125,7 @@ Meteor.methods({
     }
 
     // Make sure there is room for target user
-    if (currentGroup.members.length + currentGroup.invites.length + 1 > BATTLES.maxBossPartySize) {
+    if (currentGroup && currentGroup.members.length + currentGroup.invites.length + 1 > BATTLES.maxBossPartySize) {
       throw new Meteor.Error('group-full',
         `Group is full (${currentGroup.members.length + currentGroup.invites.length} / ${BATTLES.maxBossPartySize}) members`);
     }

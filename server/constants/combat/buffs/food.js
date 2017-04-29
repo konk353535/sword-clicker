@@ -96,6 +96,10 @@ export const FOOD_BUFFS = {
         if (target.stats.energy > target.stats.energyMax) {
           target.stats.energy = target.stats.energyMax;
         }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.energy += 0.5;
       }
     }
   },

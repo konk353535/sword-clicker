@@ -38,36 +38,6 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       }
     });
   });
-
-  this.autorun(() => {
-
-    const finishedBattle = Battles.findOne({
-      finished: true,
-      updatedAt: {
-        $lte: moment().toDate(),
-        $gte: moment().subtract(1, 'second').toDate()
-      }
-    });
-
-    if (finishedBattle) {
-      finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
-        return tickEvent.owner === Meteor.userId();
-      });
-      this.state.set('finishedBattle', finishedBattle);
-      if (this.state.get('waveDetails') && finishedBattle.win) {
-        const isBossWin = finishedBattle.difficulty === 'boss';
-        const isActiveWaveWin = this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0;
-        if (isBossWin || isActiveWaveWin) {
-          Meteor.call('battles.getWaveDetails', (err, res) => {
-            if (res) {
-              this.state.set('waveDetails', res.waveDetails);
-              this.state.set('maxFloor', res.maxFloor);
-            }
-          });
-        }
-      }
-    }
-  });
 });
 
 const findBattleHandler = function (err, res) {
@@ -99,10 +69,6 @@ Template.towerTab.events({
 
   'click .battle-boss-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
-  },
-
-  'click .btn-close-finishedBattle'(event, instance) {
-    instance.state.set('finishedBattle', null);
   }
 })
 
@@ -118,10 +84,6 @@ Template.towerTab.helpers({
         Any player who participated in the tower<br />
         Chance is weighted by how much you contributed
       </p>`;
-  },
-
-  finishedBattle() {
-    return Template.instance().state.get('finishedBattle');
   },
 
   cantBossBattle() {

@@ -22,24 +22,6 @@ Template.personalQuestTab.onCreated(function bodyOnCreated() {
     }
   });
 
-  Tracker.autorun(() => {
-
-    const finishedBattle = Battles.findOne({
-      finished: true,
-      updatedAt: {
-        $lte: moment().toDate(),
-        $gte: moment().subtract(1, 'second').toDate()
-      }
-    });
-
-    if (finishedBattle) {
-      finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
-        return tickEvent.owner === Meteor.userId();
-      });
-      this.state.set('finishedBattle', finishedBattle);
-    }
-  });
-
   this.autorun(() => {
     const userDoc = Users.findOne({});
     if (userDoc && userDoc.personalQuest) {
@@ -74,18 +56,10 @@ Template.personalQuestTab.events({
         toastr.warning(err.reason);
       }
     })
-  },
-
-  'click .btn-close-finishedBattle'(event, instance) {
-    instance.state.set('finishedBattle', null);
   }
 })
 
 Template.personalQuestTab.helpers({
-
-  finishedBattle() {
-    return Template.instance().state.get('finishedBattle');
-  },
 
   maxLevel() {
     return Template.instance().state.get('maxLevel');

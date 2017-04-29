@@ -50,6 +50,39 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('abilities');
 
   this.autorun(() => {
+
+    const finishedBattle = Battles.findOne({
+      finished: true,
+      updatedAt: {
+        $gte: moment().subtract(10, 'second').toDate()
+      }
+    }, {
+      sort: {
+        updatedAt: -1
+      }
+    });
+
+    if (finishedBattle) {
+      finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
+        return tickEvent.owner === Meteor.userId();
+      });
+      this.state.set('finishedBattle', finishedBattle);
+      if (this.state.get('waveDetails') && finishedBattle.win) {
+        const isBossWin = finishedBattle.difficulty === 'boss';
+        const isActiveWaveWin = this.state.get('waveDetails')[`${finishedBattle.difficulty}Waves`] > 0;
+        if (isBossWin || isActiveWaveWin) {
+          Meteor.call('battles.getWaveDetails', (err, res) => {
+            if (res) {
+              this.state.set('waveDetails', res.waveDetails);
+              this.state.set('maxFloor', res.maxFloor);
+            }
+          });
+        }
+      }
+    }
+  });
+
+  this.autorun(() => {
     // Only called when skills have loaded
     if (Skills.findOne()) {
       const attackSkill = Skills.findOne({ type: 'attack' });
@@ -105,6 +138,10 @@ Template.combatPage.events({
   'click .groupTabLink'(event, instance) {
     instance.state.set('currentTab', 'group');
     Meteor.call('users.setUiState', 'combatTab', 'group');
+  },
+
+  'click .btn-close-finishedBattle'(event, instance) {
+    instance.state.set('finishedBattle', null);
   }
 })
 
@@ -163,6 +200,10 @@ Template.combatPage.helpers({
     return Battles.findOne({
       finished: false
     });
+  },
+
+  finishedBattle() {
+    return Template.instance().state.get('finishedBattle');
   },
 
   learnRequirements() {

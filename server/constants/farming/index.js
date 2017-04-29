@@ -38,7 +38,7 @@ export const FARMING = {
     rubia_flower_seed: {
       id: 'rubia_flower_seed',
       itemId: 'rubia_flower_seed',
-      requiredFarmingLevel: 1,
+      requiredFarmingLevel: 2,
       required: [{
         type: 'gold',
         amount: 50,
@@ -46,7 +46,7 @@ export const FARMING = {
       }, {
         type: 'skill',
         name: 'farming',
-        level: 1
+        level: 2
       }]
     },
 

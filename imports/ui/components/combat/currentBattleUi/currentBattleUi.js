@@ -122,12 +122,14 @@ Template.currentBattleUi.helpers({
     const myUnit = _.findWhere(currentBattle.units, { owner: Meteor.userId() });
     const abilityMap = {};
 
-    myUnit.abilities.forEach((ability) => {
-      abilityMap[ability.id] = {
-        currentCooldown: ability.currentCooldown,
-        id: ability.id
-      }
-    });
+    if (myUnit) {
+      myUnit.abilities.forEach((ability) => {
+        abilityMap[ability.id] = {
+          currentCooldown: ability.currentCooldown,
+          id: ability.id
+        }
+      });
+    }
 
     const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
       if (abilityMap[ability.abilityId]) {

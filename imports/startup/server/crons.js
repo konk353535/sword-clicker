@@ -57,7 +57,7 @@ SyncedCron.add({
         finished: true,   
         win: false    
       }   
-    });
+    }, { multi: true });
     return true;
   }
 });

@@ -15,6 +15,7 @@ import { BattleActions } from '/imports/api/battles/battleActions';
 export const progressBattle = function (actualBattle, battleIntervalId) {
   if (!actualBattle) {
     Meteor.clearInterval(battleIntervalId);
+    return;
   }
 
   actualBattle.tickEvents = [];

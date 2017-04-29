@@ -132,7 +132,7 @@ Template.body.onCreated(function () {
       var count = $(this).data('count');
 
       if(viewWidth <= 768) {
-        count += 2;
+        count += 1;
         $(this).css('opacity', $(this).css('opacity') - 0.01);
       }
 
@@ -141,7 +141,7 @@ Template.body.onCreated(function () {
       }
 
       $(this).css('top', y - 1.0);
-      if(count > 70){
+      if(count > 60){
         $(this).remove();
       } else {
         $(this).data('count', count + 1);

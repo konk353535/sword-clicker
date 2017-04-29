@@ -16,6 +16,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     const currentBattle = Battles.findOne({ finished: false });
 
     if (currentBattle) {
+      if (currentBattle.tickEvents.length > 3) {
+        // Only show user owned ticks
+        currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
+          return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
+        });
+      }
       currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
         const offset = $(`#${tickEvent.to}`).offset();
         let color;

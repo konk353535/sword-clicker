@@ -45,7 +45,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     let prospectorResults;
 
     if (minersCache && minersCache.data && minersCache.level === miningSkill.level &&
-      moment().isBefore(moment(minersCache.date).add(5, 'minutes'))) {
+      moment().isBefore(moment(minersCache.date).add(30, 'minutes'))) {
       minerResults = minersCache.data;
     } else {
       minerResults = ReactiveMethod.call('mining.fetchMiners', miningSkill.level);
@@ -58,7 +58,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
 
     if (prospectorsCache && prospectorsCache.data && prospectorsCache.level === miningSkill.level &&
-      moment().isBefore(moment(prospectorsCache.date).add(5, 'minutes'))) {
+      moment().isBefore(moment(prospectorsCache.date).add(30, 'minutes'))) {
       prospectorResults = prospectorsCache.data;
     } else {
       prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level);

@@ -108,6 +108,8 @@ Meteor.methods({
       return;
     }
 
+    this.unblock();
+
     attackMineSpace(mineSpaceId, mining);
   },
 

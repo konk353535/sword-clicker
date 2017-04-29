@@ -6,6 +6,7 @@ import { resumeBattle } from '/server/api/battles/battles';
 
 import { Battles } from '/imports/api/battles/battles';
 import { Crafting } from '/imports/api/crafting/crafting';
+import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
@@ -28,5 +29,6 @@ Meteor.startup(() => {
   Mining._ensureIndex({ owner: 1 });
   MiningSpace._ensureIndex({ owner: 1 });
   Battles._ensureIndex({ owners: 1 });
+  BattleActions._ensureIndex({ battleId: 1 });
 
 });

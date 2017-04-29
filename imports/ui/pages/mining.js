@@ -78,7 +78,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 5000);
+  }, 6000);
 
   // Show mining spaces
   Meteor.subscribe('miningSpace');

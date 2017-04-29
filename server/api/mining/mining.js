@@ -254,7 +254,7 @@ Meteor.methods({
         }
       }
 
-      return JSON.parse(JSON.stringify(newOre));
+      return newOre;
     }
 
     // Modifies the miningSpaces array
@@ -368,7 +368,7 @@ Meteor.methods({
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
             if (newOre) {
-              miningSpace.health = newOre.healthMax;
+              miningSpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
               miningSpace.oreId = newOre.id;
               miningSpace.isDirty = true; // So we know to save this later
             }
@@ -416,7 +416,7 @@ Meteor.methods({
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
             if (newOre) {
-              emptySpace.health = newOre.healthMax;
+              emptySpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
               emptySpace.oreId = newOre.id;
               emptySpace.isDirty = true; // So we know to save this later
             }

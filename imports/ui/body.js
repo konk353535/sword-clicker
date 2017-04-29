@@ -51,7 +51,7 @@ Template.body.onCreated(function () {
     const skills = Skills.find({}).fetch();
 
     skills.forEach((skill) => {
-      if (skill.type !== 'total') {
+      if (skill.type !== 'total' || skill.owner !== Meteor.userId()) {
         const skillCache = cachedSkills[skill.type];
         if (skillCache) {
           if (skillCache.level === skill.level) {
@@ -87,10 +87,12 @@ Template.body.onCreated(function () {
           }
           skillCache.xp = skill.xp;
           skillCache.level = skill.level;
+          skillCache.owner = skill.owner;
         } else {
           cachedSkills[skill.type] = {
             xp: skill.xp,
-            level: skill.level
+            level: skill.level,
+            owner: skill.owner
           }
         }
       }

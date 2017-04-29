@@ -293,11 +293,7 @@ Template.miningPage.helpers({
     }).map((item) => {
       item.hideCount = true;
       item.primaryAction = {
-        description: 'unequip',
-        item,
-        method() {
-          Meteor.call('items.unequip', this.item._id, this.item.itemId);
-        }
+        method() {}
       }
       return item;
     });

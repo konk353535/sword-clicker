@@ -66,5 +66,9 @@ Template.mineSpace.rendered = function () {
 Template.mineSpace.helpers({
   isEmpty() {
     return !this.mineSpace.oreId;
+  },
+
+  ceiledNumber() {
+    return Math.ceil(Template.instance().data.mineSpace.health);
   }
 });

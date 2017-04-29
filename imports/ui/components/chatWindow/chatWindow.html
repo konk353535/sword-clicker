@@ -6,10 +6,31 @@
     </div>
   {{else}}
     <div class="chat-container">
-      <div style="position: relative;">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link room-general {{#if $eq currentRoom 'General'}}active{{/if}}" href="#">General</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link room-other {{#if $eq currentRoom 'Other'}}active{{/if}}" href="#">Other</a>
+        </li>
+        {{#if currentGroup}}
+          <li class="nav-item">
+            <a class="nav-link room-party {{#if $eq currentRoom currentGroup._id}}active{{/if}}" href="#">Party</a>
+          </li>
+        {{/if}}
         <img src="icons/minimize.svg" class="minimize-icon small-icon">
-      </div>
-      {{>SimpleChatWindow roomId="General" username=currentUser.username limit=10}}
+      </ul>
+      {{#if $eq currentRoom 'General'}}
+        {{>SimpleChatWindow roomId='General' username=currentUser.username limit=10}}
+      {{/if}}
+      {{#if $eq currentRoom 'Other'}}
+        {{>SimpleChatWindow roomId='Other' username=currentUser.username limit=10}}
+      {{/if}}
+      {{#if currentGroup}}
+        {{#if $eq currentRoom currentGroup._id}}
+          {{>SimpleChatWindow roomId=currentGroup._id username=currentUser.username limit=10}}
+        {{/if}}
+      {{/if}}
     </div>
   {{/if}}
 </template>

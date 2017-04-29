@@ -153,6 +153,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('items');
   // Show skills
   Meteor.subscribe('skills');
+  // Show groups
+  Meteor.subscribe('groups');
 });
 
 Handlebars.registerHelper('isMember', function (id) {

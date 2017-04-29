@@ -314,7 +314,7 @@ export const MINING = {
       icon: 'iron',
       name: 'iron',
       itemId: 'ore_iron',
-      chance: 0.006
+      chance: 0.008
     },
 
     steel: {
@@ -351,25 +351,25 @@ export const MINING = {
     },
 
     jade: {
-      requiredLevel: 1,
+      requiredLevel: 10,
       healthMax: 1000,
       xp: 333,
       id: 'jade',
       icon: 'jade',
       name: 'jade',
       itemId: 'jade',
-      chance: 0.0000015
+      chance: 0.0000035
     },
 
     lapislazuli: {
-      requiredLevel: 1,
+      requiredLevel: 20,
       healthMax: 50000,
       xp: 7600,
       id: 'lapislazuli',
       icon: 'lapislazuli',
       name: 'lapislazuli',
       itemId: 'lapislazuli',
-      chance: 0.000000015
+      chance: 0.000000035
     }
   }
 }

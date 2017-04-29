@@ -44,7 +44,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  Meteor.subscribe('groups');
   Meteor.subscribe('combat');
   Meteor.subscribe('battles');
   Meteor.subscribe('abilities');

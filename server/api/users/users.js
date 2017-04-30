@@ -135,7 +135,8 @@ Meteor.publish("userData", function () {
         'gems': 1,
         'membershipTo': 1,
         'personalQuest': 1,
-        'isGuest': 1
+        'isGuest': 1,
+        'isMutedExpiry': 1
       }
     });
   } else {

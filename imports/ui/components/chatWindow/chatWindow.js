@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups.js';
@@ -17,6 +18,10 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     let myUserDoc = Users.findOne({ _id: Meteor.userId() });
     if (myUserDoc && myUserDoc.uiState && myUserDoc.uiState.showChat !== undefined) {
       minimized = !myUserDoc.uiState.showChat;      
+    }
+
+    if (myUserDoc && myUserDoc.isMutedExpiry && moment().isBefore(myUserDoc.isMutedExpiry)) {
+      toastr.error(`You will be unmuted in ${moment(myUserDoc.isMutedExpiry).fromNow()}. Please keep things civil.`);
     }
 
     this.state.set('minimized', minimized);

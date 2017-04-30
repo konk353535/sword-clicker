@@ -243,8 +243,6 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
 
   // Save battle
   const actualBattleId = BattlesList.insert({ owners: newBattle.owners, createdAt: new Date () });
-  
-  console.log(`Creating battle list - ${actualBattleId}`)
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;

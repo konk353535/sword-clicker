@@ -39,13 +39,15 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.tickEvents = [];
   actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
-  /*
   // Fetch actions related to this battle
-  const battleActions = BattleActions.find({
-    battleId: actualBattle._id
-  }).fetch();
-  */
-  const battleActions = [];
+  const battleActions = redis.matching(`battleActions-${actualBattle._id}-*`).fetch().map((action) => {
+    return JSON.parse(action);
+  });
+
+  // Remove all battle actions as we've got them for this tick
+  battleActions.forEach((battleAction) => {
+    redis.del(`battleActions-${actualBattle._id}-${battleAction._id}`);
+  });
 
   const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
     let damage = rawDamage;
@@ -235,13 +237,6 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       actualBattle.units.splice(i, 1);
     }
   }
-
-  // Remove all battle actions as we've got them for this tick
-  BattleActions.remove({
-    _id: {
-      $in: battleActions.map((item) => item._id)
-    }
-  });
 
   // Update ability cooldowns
   actualBattle.enemies.concat(actualBattle.units).forEach((aliveUnit) => {

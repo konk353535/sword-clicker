@@ -144,7 +144,7 @@ export const IRON_CRAFTS = {
       itemId: 'iron_bar',
       icon: ITEMS['iron_bar'].icon,
       name: ITEMS['iron_bar'].name,
-      amount: 25,
+      amount: 20,
       consumes: true
     }, {
       type: 'skill',

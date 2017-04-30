@@ -1,12 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
 import moment from 'moment';
+import { Random } from 'meteor/random';
 
 import { Floors } from '/imports/api/floors/floors';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
-import { BattleActions } from '/imports/api/battles/battleActions';
+import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
@@ -222,9 +223,9 @@ Meteor.methods({
 
   'battles.castAbility'(battleId, abilityId, options) {
     // Fetch the battle
-    const targetBattle = Battles.findOne({
-      _id: battleId,
-      owners: Meteor.userId()
+    const targetBattle = BattlesList.findOne({
+      owners: Meteor.userId(),
+      _id: battleId
     });
 
     if (!targetBattle) {
@@ -235,13 +236,17 @@ Meteor.methods({
       throw new Meteor.Error("access-denied", "You do not have control of that caster");
     }
 
-    BattleActions.insert({
+    const obj = {
       battleId,
       abilityId,
       caster: options.caster,
       target: options.target,
       targets: options.targets
-    });
+    }
+
+    check(obj, BattleActionsSchema);
+    obj._id = Random.id();
+    redis.set(`battleActions-${battleId}-${obj._id}`, JSON.stringify(obj));
   }
 });
 
@@ -271,9 +276,6 @@ Meteor.publish('battlesList', function () {
 });
 
 Meteor.publish("redis-battles", function (currentBattle) {
-  console.log('Server recieved subscription');
-  console.log(currentBattle);
-
   return redis.matching(`battles-${currentBattle._id}`);
 });
 

@@ -88,7 +88,7 @@ Template.currentBattleUi.helpers({
     const instance = Template.instance();
     return function (unitId) {
       // Current Battle
-      const currentBattle = Template.instance().state.get('currentBattle');
+      const currentBattle = instance.state.get('currentBattle');
 
       // Amulet Stats
       const myUnit = instance.state.get('myUnit');

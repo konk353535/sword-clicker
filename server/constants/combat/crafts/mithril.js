@@ -172,7 +172,7 @@ export const MITHRIL_CRAFTS = {
       itemId: 'mithril_bar',
       icon: ITEMS['mithril_bar'].icon,
       name: ITEMS['mithril_bar'].name,
-      amount: 25,
+      amount: 20,
       consumes: true
     }, {
       type: 'skill',

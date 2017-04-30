@@ -48,13 +48,12 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.text('every 10 seconds');
+    return parser.text('every 2 minutes');
   },
   job: function() {
-    /*
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(2, 'seconds').toDate()   
+        $lte: moment().subtract(2, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
       const currentBattle = redis.get(`battles-${battleList._id}`);
@@ -68,7 +67,7 @@ SyncedCron.add({
       } else if (isUpdatedStale) {
         redis.del(`battles-${battleList._id}`);
       }
-    });*/
+    });
     return true;
   }
 });

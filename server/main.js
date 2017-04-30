@@ -4,7 +4,7 @@ import '/imports/startup/server';
 
 import { resumeBattle } from '/server/api/battles/battles';
 
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
@@ -14,11 +14,9 @@ import { Skills } from '/imports/api/skills/skills';
 Meteor.startup(() => {
 
   // Start processing abandoned battles
-  Battles.find({
-    finished: false
-  }).fetch().forEach((existingBattle, battleIndex) => {
+  BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
     Meteor.setTimeout(() => {
-      resumeBattle(existingBattle);
+      resumeBattle(existingBattle._id);
     }, Math.random() * 1000);
   });
 

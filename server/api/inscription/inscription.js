@@ -36,6 +36,11 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
+  // Make sure amountToCraft doesn't exceed recipe limit
+  if (amountToCraft > recipeConstants.maxToCraft) {
+    return;
+  }
+
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {

@@ -9,11 +9,13 @@ import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 
 import { Groups } from '/imports/api/groups/groups';
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 
 import { progressBattle } from './progressBattle.js';
+
+const redis = new Meteor.RedisCollection('redis');
 
 export const startBattle = function ({ floor, difficulty, level, wave, health, isTowerContribution }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
@@ -53,7 +55,7 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
   }
 
   // Ensure battle particiapnts aren't already in a battle
-  const currentBattle = Battles.findOne({ owners: battleParticipants, finished: false });
+  const currentBattle = BattlesList.findOne({ owners: battleParticipants });
   if (currentBattle) {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is still in one.');
   }
@@ -240,8 +242,14 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
   }
 
   // Save battle
-  const actualBattleId = Battles.insert(newBattle);
-  const actualBattle = Battles.findOne(actualBattleId);
+  const actualBattleId = BattlesList.insert({ owners: newBattle.owners, createdAt: new Date () });
+  
+  console.log(`Creating battle list - ${actualBattleId}`)
+
+  newBattle.tick = 0;
+  newBattle._id = actualBattleId;
+  redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));
+  const actualBattle = newBattle;
 
   // Take energy from all members
   Combat.update({

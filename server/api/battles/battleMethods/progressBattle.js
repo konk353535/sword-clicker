@@ -8,8 +8,10 @@ import { attackSpeedTicks } from '/server/utils';
 import { castAbility } from './castAbility.js';
 import { completeBattle } from './completeBattle.js';
 
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions } from '/imports/api/battles/battleActions';
+
+const redis = new Meteor.RedisCollection('redis');
 
 const tickTracker = {};
 
@@ -21,16 +23,16 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     tickTracker[actualBattle._id] = 1;
   }
 
-  if (!actualBattle || tickTracker[actualBattle._id] > 1500) {
+  if (!actualBattle || tickTracker[actualBattle._id] > 2000) {
     console.log('I activate my trap card, tick tracker!');
     Meteor.clearInterval(battleIntervalId);
-    delete tickTracker[actualBattle._id];
-    Battles.update(actualBattle._id, {
-      $set: {
-        finished: true,
-        win: false
-      }
-    });
+    if (actualBattle) {
+      delete tickTracker[actualBattle._id];
+      // Remove from battle list
+      BattlesList.remove(actualBattle._id);
+      // Remove from redis
+      redis.del(`battles-${actualBattle._id}`);
+    }
     return;
   }
 
@@ -252,19 +254,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     }
   });
 
-  if (actualBattle.tickEvents.length > 0 || battleActions.length > 0) {
-    Battles.update(actualBattle._id, {
-      $set: {
-        tick: actualBattle.tick,
-        units: actualBattle.units,
-        deadUnits: actualBattle.deadUnits,
-        deadEnemies: actualBattle.deadEnemies,
-        enemies: actualBattle.enemies,
-        tickEvents: actualBattle.tickEvents,
-        updatedAt: new Date()
-      }
-    });
-  }
+  actualBattle.updatedAt = new Date();
+  // Strip util &  all alive
+  delete actualBattle.utils;
+  delete actualBattle.allAliveUnits;
+  redis.set(`battles-${actualBattle._id}`, JSON.stringify(actualBattle));
 
   actualBattle.updatedAt = new Date();
 

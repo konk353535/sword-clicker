@@ -1,8 +1,9 @@
 <template name="combatPage">
   {{#if attackSkill}}
-    {{#if inCurrentBattle}}
+    <div class="{{#unless inCurrentBattle}}hidden-xs-up{{/unless}}">
       {{> currentBattleUi}}
-    {{/if}}
+    </div>
+
     <div class="{{#if inCurrentBattle}}hidden-xs-up{{/if}}">
       <div class="d-flex align-items-center">
         <div class="d-flex flex-column my-3" style="width: 200px">

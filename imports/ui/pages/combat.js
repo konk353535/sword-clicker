@@ -5,7 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
-import { Battles } from '/imports/api/battles/battles.js';
+import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Users } from '/imports/api/users/users.js';
 
@@ -19,6 +19,8 @@ import '/imports/ui/components/combat/combatGroupTab/combatGroupTab.js';
 import '/imports/ui/components/combat/personalQuestTab/personalQuestTab.js';
 
 import './combat.html';
+
+const redis = new Meteor.RedisCollection('redis');
 
 let combatPageTimer;
 
@@ -47,6 +49,20 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('combat');
   Meteor.subscribe('battles');
   Meteor.subscribe('abilities');
+  Meteor.subscribe('battlesList');
+
+  // When new battle comes up, update our subscribe of redis-battles
+  Tracker.autorun(() => {
+    const currentBattle = BattlesList.findOne({}, {
+      sort: {
+        createdAt: -1
+      }
+    });
+
+    if (currentBattle) {
+      Meteor.subscribe('redis-battles', currentBattle);
+    }
+  });
 
   this.autorun(() => {
 
@@ -213,9 +229,13 @@ Template.combatPage.helpers({
   },
 
   inCurrentBattle() {
-    return Battles.findOne({
-      finished: false
-    });
+    const currentBattles = redis.matching(`battles-*`).fetch();
+
+    if (currentBattles) {
+      return currentBattles[0];
+    }
+
+    return [];
   },
 
   finishedBattle() {

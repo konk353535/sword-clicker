@@ -55,7 +55,7 @@ export const BATTLES = {
     return armor / (armor + 100);
   },
 
-  tickDuration: 200, // How long each tick lasts
+  tickDuration: 1000, // How long each tick lasts
 
   maxBossPartySize: 5,
 

@@ -7,7 +7,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
 
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
 import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -16,6 +16,8 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import weightedRandom from 'weighted-random';
+
+const redis = new Meteor.RedisCollection('redis');
 
 const POINTS = {
   easy: 1,
@@ -397,17 +399,18 @@ export const completeBattle = function (actualBattle) {
     }
   }
 
-  Battles.update(actualBattle._id, {
-    $set: {
-      finished: true,
-      win,
-      finalTickEvents,
-      updatedAt: new Date()   
-    }
+  Battles.insert({
+    owners: actualBattle.owners,
+    finished: true,
+    win,
+    finalTickEvents,
+    updatedAt: new Date(),
+    createdAt: new Date()
   });
 
-  // Delete battle after 1 minute
-  Meteor.setTimeout(() => {
-    Battles.remove(actualBattle._id);
-  }, 60000);
+  // Remove from battle list
+  BattlesList.remove(actualBattle._id);
+
+  // Remove from redis
+  redis.del(`battles-${actualBattle._id}`);  
 }

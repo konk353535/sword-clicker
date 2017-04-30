@@ -3,8 +3,10 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
+
+const redis = new Meteor.RedisCollection('redis');
 
 // Reset boss health
 SyncedCron.add({
@@ -46,20 +48,27 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.text('every 2 minutes');
+    return parser.text('every 10 seconds');
   },
   job: function() {
-    Battles.update({    
-      finished: false,    
-      updatedAt: {    
-        $lte: moment().subtract(2, 'minutes').toDate()   
-      }   
-    }, {    
-      $set: {   
-        finished: true,   
-        win: false    
-      }   
-    }, { multi: true });
+    /*
+    BattlesList.find({
+      createdAt: {    
+        $lte: moment().subtract(2, 'seconds').toDate()   
+      } 
+    }).fetch().forEach((battleList) => {
+      const currentBattle = redis.get(`battles-${battleList._id}`);
+      let isUpdatedStale;
+      if (currentBattle) {
+        isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
+      }
+
+      if (!currentBattle) {
+        BattlesList.remove(battleList._id);
+      } else if (isUpdatedStale) {
+        redis.del(`battles-${battleList._id}`);
+      }
+    });*/
     return true;
   }
 });

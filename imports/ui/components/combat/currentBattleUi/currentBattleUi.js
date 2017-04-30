@@ -4,16 +4,27 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import _ from 'underscore';
 
-import { Battles } from '/imports/api/battles/battles.js';
+import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 
 import './currentBattleUi.html';
 
+const redis = new Meteor.RedisCollection('redis');
+
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  this.autorun(() => {
-    const currentBattle = Battles.findOne({ finished: false });
+  Tracker.autorun(() => {
+    // Lots of hacks follow, I'm so sorry
+    const currentBattleList = BattlesList.findOne({
+      owners: Meteor.userId()
+    });
+    if (!currentBattleList) return;
+    const rawBattle = redis.get(`battles-${currentBattleList._id}`);
+    if (!rawBattle) return;
+    const currentBattle = JSON.parse(rawBattle);
+    this.state.set('currentBattle', currentBattle);
+    if (!currentBattle) return;
 
     const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
     if (myUnit) {
@@ -64,9 +75,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 
 Template.currentBattleUi.helpers({
   currentBattle() {
-    const currentBattle = Battles.findOne({
-      finished: false
-    });
+    const currentBattle = Template.instance().state.get('currentBattle');
 
     if (!currentBattle) {
       return {};
@@ -79,9 +88,7 @@ Template.currentBattleUi.helpers({
     const instance = Template.instance();
     return function (unitId) {
       // Current Battle
-      const currentBattle = Battles.findOne({
-        finished: false
-      });
+      const currentBattle = Template.instance().state.get('currentBattle');
 
       // Amulet Stats
       const myUnit = instance.state.get('myUnit');
@@ -115,9 +122,8 @@ Template.currentBattleUi.helpers({
       return;
     }
 
-    const currentBattle = Battles.findOne({
-      finished: false
-    });
+    const currentBattle = Template.instance().state.get('currentBattle');
+
     if (!currentBattle) {
       return;
     }

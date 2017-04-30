@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Floors } from '/imports/api/floors/floors';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
-import { Battles } from '/imports/api/battles/battles';
+import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
 
@@ -15,15 +15,26 @@ import { FLOORS } from '/server/constants/floors/index.js'; // List of floor det
 import { startBattle } from './battleMethods/startBattle';
 import { progressBattle } from './battleMethods/progressBattle';
 
+const redis = new Meteor.RedisCollection('redis');
+
 export const resumeBattle = function(id) {
   // Find the battle
-  const actualBattle = Battles.findOne(id);
+  const rawBattle = redis.get(`battles-${id}`);
+  let actualBattle;
+  if (rawBattle) {
+    actualBattle = JSON.parse(rawBattle);
+  }
 
-  let isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(60, 'seconds'));
-  let isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
+  let isUpdatedStale;
+  let isCreatedStale;
+
+  if (actualBattle) {
+    isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(60, 'seconds'));
+    isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
+  }
 
   // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
-  if (isUpdatedStale || isCreatedStale) {
+  if (isUpdatedStale || isCreatedStale || !actualBattle) {
     console.log('--------- Ending Battle Early!!! -------------');
     if (isUpdatedStale) {
       console.log('Reason: Is updated stale');
@@ -35,12 +46,10 @@ export const resumeBattle = function(id) {
       console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
     }
 
-    Battles.update(actualBattle._id, {
-      $set: {
-        finished: true,
-        win: false
-      }
-    });
+    // Remove from battle list
+    BattlesList.remove(actualBattle._id);
+    // Remove from redis
+    redis.del(`battles-${actualBattle._id}`);
     return;
   }
 
@@ -253,5 +262,18 @@ Meteor.publish('battles', function() {
       $gt: moment().subtract(60, 'seconds').toDate()
     }
   });
+});
+
+Meteor.publish('battlesList', function () {
+  return BattlesList.find({
+    owners: this.userId
+  });
+});
+
+Meteor.publish("redis-battles", function (currentBattle) {
+  console.log('Server recieved subscription');
+  console.log(currentBattle);
+
+  return redis.matching(`battles-${currentBattle._id}`);
 });
 

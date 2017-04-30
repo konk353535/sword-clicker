@@ -27,6 +27,7 @@ import '../imports/ui/pages/crafting.js';
 import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';
 import '../imports/ui/pages/skills.js';
+import '../imports/ui/pages/patchNotes.js';
 import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
 import '../imports/ui/pages/shop.js';

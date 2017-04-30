@@ -29,6 +29,7 @@ export const resumeBattle = function(id) {
 Meteor.methods({
 
   'battles.findPersonalBattle'(level, wave) {
+    throw new Meteor.Error("no-sir", "Battles disabled for 1 hour (enabled again at 1pm brisbane time)");
     // Ensure user has access to specified wave
     const maxLevel = Meteor.user().personalQuest.level;
     const maxWave = Meteor.user().personalQuest.wave;
@@ -57,6 +58,7 @@ Meteor.methods({
   },
 
   'battles.findBattle'(floor, difficulty) {
+    throw new Meteor.Error("no-sir", "Battles disabled for 1 hour (enabled again at 1pm brisbane time)");
     if (!_.contains(['easy', 'hard', 'veryHard', 'boss'], difficulty)) {
       return;
     }

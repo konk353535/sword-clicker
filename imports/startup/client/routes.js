@@ -22,6 +22,18 @@ Router.route('/guestSettings', {
   }
 });
 
+Router.route('/patchNotes', {
+
+  name: 'patchNotes',
+
+  template: 'patchNotesPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/shop', {
 
   name: 'shop',

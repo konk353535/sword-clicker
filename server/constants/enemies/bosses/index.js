@@ -11,8 +11,8 @@ export const BOSS_ENEMIES = {
       attackMax: 50,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 40,
-      health: 15000,
-      healthMax: 15000,
+      health: 5000,
+      healthMax: 5000,
       defense: 30,
       armor: 120,
       damageTaken: 1
@@ -30,8 +30,8 @@ export const BOSS_ENEMIES = {
       attackMax: 40,
       attackSpeed: VERY_FAST_SPEED,
       accuracy: 100,
-      health: 30000,
-      healthMax: 30000,
+      health: 7500,
+      healthMax: 7500,
       defense: 70,
       armor: 100,
       damageTaken: 1

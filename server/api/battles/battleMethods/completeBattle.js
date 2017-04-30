@@ -376,6 +376,10 @@ export const completeBattle = function (actualBattle) {
           // Insert the next floor
           const floorCounts = FLOORS.getWaveCounts();
 
+          // Get bosses hp
+          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.possibleBattles[0].enemies[0].id;
+          const bossEnemyConstants = ENEMIES[bossEnemyId];
+
           // Create our next floor
           Floors.insert({
             floor: actualBattle.floor + 1,
@@ -386,6 +390,8 @@ export const completeBattle = function (actualBattle) {
             hardWavesTotal: floorCounts.hard,
             veryHardWaves: floorCounts.veryHard,
             veryHardWavesTotal: floorCounts.veryHard,
+            health: bossEnemyConstants.stats.healthMax,
+            healthMax: bossEnemyConstants.stats.healthMax
           });
         }
       } else {

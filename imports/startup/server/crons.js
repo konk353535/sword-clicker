@@ -62,9 +62,9 @@ SyncedCron.add({
         isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
       }
 
-      if (!currentBattle) {
-        BattlesList.remove(battleList._id);
-      } else if (isUpdatedStale) {
+      BattlesList.remove(battleList._id);
+
+      if (currentBattle) {
         redis.del(`battles-${battleList._id}`);
       }
     });

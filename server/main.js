@@ -19,7 +19,7 @@ Meteor.startup(() => {
   }).fetch().forEach((existingBattle, battleIndex) => {
     Meteor.setTimeout(() => {
       resumeBattle(existingBattle);
-    }, Math.random() * 50 * battleIndex);
+    }, Math.random() * 1000);
   });
 
   // Ensure indexes on key databases

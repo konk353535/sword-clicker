@@ -73,7 +73,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
 
         if (buff.data.duration < 0) {
@@ -126,7 +126,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
 
         if (buff.data.duration < 0) {
@@ -180,7 +180,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
 
         if (buff.data.duration < 0) {
@@ -235,7 +235,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
 
         if (buff.data.duration < 0) {

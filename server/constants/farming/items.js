@@ -57,7 +57,7 @@ export const FARMING_ITEMS = {
     category: 'seed',
     name: 'red apple seed',
     description: 'Used to grow red apples. Useful for eating.',
-    sellPrice: 50,
+    sellPrice: 10,
     produces: 'red_apple'
   },
 
@@ -162,7 +162,7 @@ export const FARMING_ITEMS = {
     category: 'seed',
     name: 'grape fruit seed',
     description: 'Used to grow grape fruit. Yum!',
-    sellPrice: 10,
+    sellPrice: 3,
     produces: 'grape_fruit'
   },
 

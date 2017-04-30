@@ -11,45 +11,39 @@ import { completeBattle } from './completeBattle.js';
 import { Battles } from '/imports/api/battles/battles';
 import { BattleActions } from '/imports/api/battles/battleActions';
 
+const tickTracker = {};
 
 export const progressBattle = function (actualBattle, battleIntervalId) {
-  if (!actualBattle) {
-    Meteor.clearInterval(battleIntervalId);
-    return;
+
+  if (tickTracker[actualBattle._id]) {
+    tickTracker[actualBattle._id] += 1;
+  } else {
+    tickTracker[actualBattle._id] = 1;
   }
 
-  actualBattle.tickEvents = [];
-  actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
-
-  let isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(30, 'seconds'));
-  let isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
-
-  // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
-  if (isUpdatedStale || isCreatedStale) {
-    console.log('--------- Ending Battle Early!!! -------------');
-    if (isUpdatedStale) {
-      console.log('Reason: Is updated stale');
-      console.log(`Now = ${moment().toDate()}`);
-      console.log(`Last updated = ${moment(actualBattle.updatedAt).toDate()}`);
-    } else {
-      console.log('Reason: Is created stale');
-      console.log(`Now = ${moment().toDate()}`);
-      console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
-    }
+  if (!actualBattle || tickTracker[actualBattle._id] > 1500) {
+    console.log('I activate my trap card, tick tracker!');
+    Meteor.clearInterval(battleIntervalId);
+    delete tickTracker[actualBattle._id];
     Battles.update(actualBattle._id, {
       $set: {
         finished: true,
         win: false
       }
     });
-    Meteor.clearInterval(battleIntervalId);
     return;
   }
 
+  actualBattle.tickEvents = [];
+  actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
+
+  /*
   // Fetch actions related to this battle
   const battleActions = BattleActions.find({
     battleId: actualBattle._id
   }).fetch();
+  */
+  const battleActions = [];
 
   const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
     let damage = rawDamage;
@@ -98,7 +92,6 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           buff.constants.events.onTick({ secondsElapsed, buff, target: aliveUnit, actualBattle });
         }
       });
-
     }
   });
 
@@ -259,24 +252,27 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     }
   });
 
-  Battles.update(actualBattle._id, {
-    $set: {
-      tick: actualBattle.tick,
-      units: actualBattle.units,
-      deadUnits: actualBattle.deadUnits,
-      deadEnemies: actualBattle.deadEnemies,
-      enemies: actualBattle.enemies,
-      tickEvents: actualBattle.tickEvents,
-      updatedAt: new Date()
-    }
-  });
+  if (actualBattle.tickEvents.length > 0 || battleActions.length > 0) {
+    Battles.update(actualBattle._id, {
+      $set: {
+        tick: actualBattle.tick,
+        units: actualBattle.units,
+        deadUnits: actualBattle.deadUnits,
+        deadEnemies: actualBattle.deadEnemies,
+        enemies: actualBattle.enemies,
+        tickEvents: actualBattle.tickEvents,
+        updatedAt: new Date()
+      }
+    });
+  }
 
   actualBattle.updatedAt = new Date();
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
     Meteor.clearInterval(battleIntervalId);
+    delete tickTracker[actualBattle._id];
     Meteor.setTimeout(() => {
       completeBattle(actualBattle);
-    }, 2000);
+    }, 1000);
   }
 }

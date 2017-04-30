@@ -269,7 +269,7 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'farming.water' }, 10, 0.25 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'farming.pick' }, 12, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'farming.plant' }, 12, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.buyShopItem' }, 40, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.buyShopItem' }, 30, 0.5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells' }, 10, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'farmingSpace' }, 240, 2 * MINUTE);
 

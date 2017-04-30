@@ -62,8 +62,8 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.data.duration -= localSecondsElapsed;
+        let localSecondsElapsed = secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
         if (buff.data.duration < 0) {
           localSecondsElapsed += buff.data.duration;
@@ -208,7 +208,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
 
         if (buff.data.duration < 0) {
@@ -261,7 +261,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, actualBattle }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;
 

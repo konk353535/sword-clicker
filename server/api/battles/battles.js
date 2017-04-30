@@ -19,6 +19,31 @@ export const resumeBattle = function(id) {
   // Find the battle
   const actualBattle = Battles.findOne(id);
 
+  let isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(60, 'seconds'));
+  let isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
+
+  // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
+  if (isUpdatedStale || isCreatedStale) {
+    console.log('--------- Ending Battle Early!!! -------------');
+    if (isUpdatedStale) {
+      console.log('Reason: Is updated stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Last updated = ${moment(actualBattle.updatedAt).toDate()}`);
+    } else {
+      console.log('Reason: Is created stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
+    }
+
+    Battles.update(actualBattle._id, {
+      $set: {
+        finished: true,
+        win: false
+      }
+    });
+    return;
+  }
+
   // Progress battle
   const battleIntervalId = Meteor.setInterval(() => {
     progressBattle(actualBattle, battleIntervalId);
@@ -29,7 +54,6 @@ export const resumeBattle = function(id) {
 Meteor.methods({
 
   'battles.findPersonalBattle'(level, wave) {
-    throw new Meteor.Error("no-sir", "Battles disabled for 1 hour (enabled again at 1pm brisbane time)");
     // Ensure user has access to specified wave
     const maxLevel = Meteor.user().personalQuest.level;
     const maxWave = Meteor.user().personalQuest.wave;
@@ -58,7 +82,6 @@ Meteor.methods({
   },
 
   'battles.findBattle'(floor, difficulty) {
-    throw new Meteor.Error("no-sir", "Battles disabled for 1 hour (enabled again at 1pm brisbane time)");
     if (!_.contains(['easy', 'hard', 'veryHard', 'boss'], difficulty)) {
       return;
     }

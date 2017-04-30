@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Skills } from '/imports/api/skills/skills.js';
- 
+import { Session } from 'meteor/session';
+
 import './nav.html';
 
 Template.nav.onCreated(function bodyOnCreated() {
@@ -23,6 +24,14 @@ Template.nav.events({
     Router.go('/guestSettings');
   },
 
+  'click .disable-floating-text'(event, instance) {
+    Session.set('floatingTextDisabled', true);
+  },
+
+  'click .enable-floating-text'(event, instance) {
+    Session.set('floatingTextDisabled', false);
+  },
+
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
     instance.$('.guestSignOffConfirmModal').modal('hide');
   }
@@ -39,6 +48,10 @@ Template.nav.helpers({
     } else {
       return true;
     }
+  },
+
+  floatingTextDisabled() {
+    return Session.get('floatingTextDisabled');
   },
 
   hasFarmingSkill() {

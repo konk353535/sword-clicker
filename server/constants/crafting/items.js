@@ -17,6 +17,15 @@ export const CRAFTING_ITEMS = {
     description: 'Can be sold for a tidy sum'
   },
 
+  polished_black_stone: {
+    id: 'polished_black_stone',
+    icon: 'polishedBlackStone',
+    category: 'crafting',
+    name: 'polished black stone',
+    sellPrice: 300,
+    description: 'Can be sold for a tidy sum'
+  },
+
   copper_furnace: {
     id: 'copper_furnace',
     icon: 'copperFurnace',

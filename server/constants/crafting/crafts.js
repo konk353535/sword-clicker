@@ -26,6 +26,44 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1
   },
 
+  polished_black_stone: {
+    produces: 'polished_black_stone',
+    recipeFor: 'crafting',
+    name: 'polished black stone',
+    category: 'crafting',
+    id: 'polished_black_stone',
+    requiredCraftingLevel: 5,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 50,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'ore_copper',
+      icon: ITEMS['ore_copper'].icon,
+      name: ITEMS['ore_copper'].name,
+      amount: 20,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 5
+    }],
+    timeToCraft: 600,
+    xp: 1,
+    maxToCraft: 1
+  },
+
   stone_furnace: {
     produces: 'stone_furnace',
     recipeFor: 'crafting',

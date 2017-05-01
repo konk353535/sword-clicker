@@ -399,7 +399,7 @@ export const MINING = {
       icon: 'adamantium',
       name: 'adamantium',
       itemId: 'ore_adamantium',
-      chance: 1.00045
+      chance: 0.00045
     },
 
     jade: {

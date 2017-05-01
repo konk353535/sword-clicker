@@ -25,40 +25,26 @@ export const addXp = function (skillType, xp, specificUserId) {
 
   skill.xp += xp;
   const xpToNextLevel = skillConstants.xpToLevel(skill.level);
+
   if (skill.xp >= xpToNextLevel) {
-    if (skill.xp - xpToNextLevel === 0) {
-      // Update Level
-      Skills.update(skill._id, {
-        $inc: { level: 1, totalXp: xp },
-        $set: { xp: skill.xp }
-      });
-      // Can probably be optimized
-      Skills.update({
-        owner,
-        type: 'total'
-      }, {
-        $inc: { level: 1 }
-      })
-    } else {
-      // Update Level
-      Skills.update(skill._id, {
-        $inc: { level: 1, totalXp: xp },
-        $set: { xp: (skill.xp - xpToNextLevel) }
-      });
+    // Update Level
+    Skills.update(skill._id, {
+      $inc: { level: 1, totalXp: xp },
+      $set: { xp: (skill.xp - xpToNextLevel) }
+    });
 
-      // If this is attack / Defense / Health recompute combat
-      if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health') {
-        updateCombatStats(owner);
-      }
-
-      // Can probably be optimized
-      Skills.update({
-        owner,
-        type: 'total'
-      }, {
-        $inc: { level: 1 }
-      })
+    // If this is attack / Defense / Health recompute combat
+    if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health') {
+      updateCombatStats(owner);
     }
+
+    // Can probably be optimized
+    Skills.update({
+      owner,
+      type: 'total'
+    }, {
+      $inc: { level: 1 }
+    })
   } else {
     // Just update exp
     Skills.update(skill._id, {

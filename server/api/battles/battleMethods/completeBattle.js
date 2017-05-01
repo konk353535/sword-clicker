@@ -294,6 +294,9 @@ export const completeBattle = function (actualBattle) {
     if (actualBattle.startingBossHp) {
       combatModifier['$set'].foughtBoss = true;
     }
+    if (unit.amulet) {
+      combatModifier['$set']['amulet.energy'] = unit.amulet.energy;
+    }
     // Update relevant stuff, use callback so this is non blocking
     Combat.update({
       owner: unit.owner

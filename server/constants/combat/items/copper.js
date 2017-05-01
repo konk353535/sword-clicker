@@ -28,7 +28,7 @@ export const COPPER_ITEMS = {
     slot: 'mainHand',
     name: 'copper spear',
     sellPrice: 75,
-    description: 'Often used for defense',
+    description: 'Used to train defense.',
     isWeapon: true,
     isEquippable: true,
     stats: {

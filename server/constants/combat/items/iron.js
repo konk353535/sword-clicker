@@ -20,7 +20,7 @@ export const IRON_ITEMS = {
     },
     extraStats: {
       attack: 2,
-      attackMax: 2,
+      attackMax: 1,
       accuracy: 5
     },
     requiredEquip: [{

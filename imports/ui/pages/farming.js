@@ -99,7 +99,11 @@ Template.farmingPage.helpers({
     // Pass level so that this is recalled when we get up a level
     const results = ReactiveMethod.call('farming.fetchSeedShopSells', farmingSkill.level);
 
-    return results || [];
+    if (results) {
+      return _.sortBy(results, 'requiredFarmingLevel');
+    }
+
+    return [];
   },
 });
 

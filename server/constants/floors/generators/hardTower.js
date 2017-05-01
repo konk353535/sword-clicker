@@ -1,7 +1,8 @@
 import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
 
 export const hardTowerMonsterGenerator = function(floor) {
-    const possibleMonsters = MONSTER_LIST[1];
+    const possibleMonsters = [];
+    possibleMonsters.push(...MONSTER_LIST[1]);
     let rewardLevel = 1;
 
     if (floor >= 2) {

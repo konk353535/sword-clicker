@@ -51,7 +51,8 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'steel_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
       ]
     }, {
       chance: 1 / 64,

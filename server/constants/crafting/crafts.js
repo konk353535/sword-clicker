@@ -108,7 +108,7 @@ export const CRAFTING_CRAFTS = {
       level: 4
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 50, // Xp earned once crafted
+    xp: 35, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -132,7 +132,7 @@ export const CRAFTING_CRAFTS = {
       level: 6
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 100, // Xp earned once crafted
+    xp: 50, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -156,7 +156,7 @@ export const CRAFTING_CRAFTS = {
       level: 9
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 100, // Xp earned once crafted
+    xp: 70, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -180,7 +180,7 @@ export const CRAFTING_CRAFTS = {
       level: 13
     }],
     timeToCraft: 120,
-    xp: 200,
+    xp: 80,
     maxToCraft: 1
   },
 
@@ -204,7 +204,7 @@ export const CRAFTING_CRAFTS = {
       level: 16
     }],
     timeToCraft: 15 * 60,
-    xp: 350,
+    xp: 100,
     maxToCraft: 1
   },
 
@@ -215,7 +215,7 @@ export const CRAFTING_CRAFTS = {
     category: 'crafting',
     id: 'copper_bar',
     timeToCraft: 3,
-    xp: 3,
+    xp: 2,
     maxToCraft: 100,
     requiredCraftingLevel: 2,
     required: [{
@@ -253,7 +253,7 @@ export const CRAFTING_CRAFTS = {
     id: 'iron_bar',
     category: 'crafting',
     timeToCraft: 6,
-    xp: 21,
+    xp: 19,
     maxToCraft: 100,
     requiredCraftingLevel: 5,
     required: [{
@@ -291,7 +291,7 @@ export const CRAFTING_CRAFTS = {
     id: 'steel_bar',
     category: 'crafting',
     timeToCraft: 10,
-    xp: 30,
+    xp: 27,
     maxToCraft: 100,
     requiredCraftingLevel: 8,
     required: [{
@@ -329,7 +329,7 @@ export const CRAFTING_CRAFTS = {
     id: 'carbon_bar',
     category: 'crafting',
     timeToCraft: 10,
-    xp: 30,
+    xp: 27,
     maxToCraft: 100,
     requiredCraftingLevel: 11,
     required: [{
@@ -367,7 +367,7 @@ export const CRAFTING_CRAFTS = {
     id: 'mithril_bar',
     category: 'crafting',
     timeToCraft: 10,
-    xp: 60,
+    xp: 54,
     maxToCraft: 150,
     requiredCraftingLevel: 14,
     required: [{
@@ -398,7 +398,7 @@ export const CRAFTING_CRAFTS = {
     id: 'adamantium_bar',
     category: 'crafting',
     timeToCraft: 30,
-    xp: 80,
+    xp: 72,
     maxToCraft: 100,
     requiredCraftingLevel: 20,
     required: [{

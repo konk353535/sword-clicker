@@ -8,7 +8,7 @@ export const COPPER_CRAFTS = {
     category: 'combat',
     id: 'copper_dagger',
     timeToCraft: 60, // 60
-    xp: 40,
+    xp: 37,
     maxToCraft: 1,
     requiredCraftingLevel: 2,
     required: [{
@@ -46,7 +46,7 @@ export const COPPER_CRAFTS = {
     category: 'combat',
     id: 'copper_spear',
     timeToCraft: 120, // 60
-    xp: 80,
+    xp: 76,
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{
@@ -84,7 +84,7 @@ export const COPPER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'copper_short_sword',
     timeToCraft: 120, // 60
-    xp: 80,
+    xp: 76,
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{
@@ -122,7 +122,7 @@ export const COPPER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'copper_long_sword',
     timeToCraft: 120, // 60
-    xp: 80,
+    xp: 76,
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{
@@ -160,7 +160,7 @@ export const COPPER_CRAFTS = {
     category: 'combat',
     id: 'copper_battle_axe',
     timeToCraft: 120, // 60
-    xp: 80,
+    xp: 76,
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{

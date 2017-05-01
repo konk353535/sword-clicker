@@ -328,7 +328,7 @@ export const MINING = {
     copper: {
       requiredLevel: 2,
       healthMax: 20,
-      xp: 7,
+      xp: 6,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
@@ -339,7 +339,7 @@ export const MINING = {
     coal: {
       requiredLevel: 2,
       healthMax: 35,
-      xp: 15,
+      xp: 13,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
@@ -350,7 +350,7 @@ export const MINING = {
     iron: {
       requiredLevel: 5,
       healthMax: 80,
-      xp: 30,
+      xp: 28,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
@@ -361,7 +361,7 @@ export const MINING = {
     steel: {
       requiredLevel: 10,
       healthMax: 200,
-      xp: 60,
+      xp: 57,
       id: 'steel',
       icon: 'steel',
       name: 'steel',
@@ -372,7 +372,7 @@ export const MINING = {
     carbon: {
       requiredLevel: 15,
       healthMax: 400,
-      xp: 120,
+      xp: 115,
       id: 'carbon',
       icon: 'carbon',
       name: 'carbon',
@@ -383,7 +383,7 @@ export const MINING = {
     mithril: {
       requiredLevel: 20,
       healthMax: 1000,
-      xp: 250,
+      xp: 245,
       id: 'mithril',
       icon: 'mithril',
       name: 'mithril',
@@ -394,7 +394,7 @@ export const MINING = {
     adamantium: {
       requiredLevel: 25,
       healthMax: 5000,
-      xp: 450,
+      xp: 440,
       id: 'adamantium',
       icon: 'adamantium',
       name: 'adamantium',

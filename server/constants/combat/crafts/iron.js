@@ -46,7 +46,7 @@ export const IRON_CRAFTS = {
     category: 'combat',
     id: 'iron_spear',
     timeToCraft: 180, // 60
-    xp: 140,
+    xp: 120,
     maxToCraft: 1,
     requiredCraftingLevel: 5,
     required: [{
@@ -84,7 +84,7 @@ export const IRON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'iron_short_sword',
     timeToCraft: 120, // 60
-    xp: 140,
+    xp: 120,
     maxToCraft: 1,
     requiredCraftingLevel: 5,
     required: [{
@@ -122,7 +122,7 @@ export const IRON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'iron_long_sword',
     timeToCraft: 240, // 60
-    xp: 140,
+    xp: 120,
     maxToCraft: 1,
     requiredCraftingLevel: 5,
     required: [{

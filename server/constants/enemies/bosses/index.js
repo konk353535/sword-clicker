@@ -49,8 +49,8 @@ export const BOSS_ENEMIES = {
       attackMax: 125,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 150,
-      health: 60000,
-      healthMax: 60000,
+      health: 12500,
+      healthMax: 12500,
       defense: 100,
       armor: 140,
       damageTaken: 1
@@ -68,8 +68,27 @@ export const BOSS_ENEMIES = {
       attackMax: 200,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 170,
-      health: 100000,
-      healthMax: 100000,
+      health: 20000,
+      healthMax: 20000,
+      defense: 140,
+      armor: 180,
+      damageTaken: 1
+    },
+    rewards: []
+  },
+
+  boss_mage: {
+    id: 'boss_mage',
+    icon: 'bossMage',
+    name: 'Boss mage',
+    isBoss: true,
+    stats: {
+      attack: 100,
+      attackMax: 200,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 170,
+      health: 35000,
+      healthMax: 35000,
       defense: 140,
       armor: 180,
       damageTaken: 1

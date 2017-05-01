@@ -185,5 +185,43 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 15
     }]
+  },
+
+  adamantium_axe: {
+    produces: 'adamantium_axe',
+    recipeFor: 'crafting',
+    name: 'adamantium axe',
+    id: 'adamantium_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 2, // 60
+    xp: 1500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'adamantium_essence',
+      icon: ITEMS['adamantium_essence'].icon,
+      name: ITEMS['adamantium_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'walnut_log',
+      icon: ITEMS['walnut_log'].icon,
+      name: ITEMS['walnut_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }]
   }
 }

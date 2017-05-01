@@ -100,7 +100,8 @@ Meteor.methods({
       'craftingTierFilter.iron',
       'craftingTierFilter.steel',
       'craftingTierFilter.carbon',
-      'craftingTierFilter.mithril'
+      'craftingTierFilter.mithril',
+      'craftingTierFilter.adamantium',
     ];
 
     if (_.contains(validIds, id)) {

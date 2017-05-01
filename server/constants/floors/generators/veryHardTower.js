@@ -5,20 +5,24 @@ export const veryHardTowerMonsterGenerator = function(floor) {
     let rewardLevel = 1;
 
     if (floor >= 1) {
-      rewardLevel = 2;
-      possibleMonsters.push(...MONSTER_LIST[2])
-    }
-    if (floor >= 2) {
       rewardLevel = 3;
       possibleMonsters.push(...MONSTER_LIST[3])
     }
-    if (floor >= 3) {
-      rewardLevel = 4;
-      possibleMonsters.push(...MONSTER_LIST[4])
-    }
-    if (floor >= 4) {
+    if (floor >= 2) {
       rewardLevel = 5;
       possibleMonsters.push(...MONSTER_LIST[5])
+    }
+    if (floor >= 3) {
+      rewardLevel = 6;
+      possibleMonsters.push(...MONSTER_LIST[6])
+    }
+    if (floor >= 4) {
+      rewardLevel = 7;
+      possibleMonsters.push(...MONSTER_LIST[7])
+    }
+    if (floor >= 5) {
+      rewardLevel = 8;
+      possibleMonsters.push(...MONSTER_LIST[8])
     }
 
     const selectedMonster = _.sample(possibleMonsters);

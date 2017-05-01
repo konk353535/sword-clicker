@@ -11,7 +11,10 @@
           <a class="nav-link room-general {{#if $eq currentRoom 'General'}}active{{/if}}" href="#">General</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link room-other {{#if $eq currentRoom 'Other'}}active{{/if}}" href="#">Other</a>
+          <a class="nav-link room-other {{#if $eq currentRoom 'Other'}}active{{/if}}" href="#">LFG</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link room-bugs {{#if $eq currentRoom 'Bugs'}}active{{/if}}" href="#">Bugs</a>
         </li>
         {{#if currentGroup}}
           <li class="nav-item">
@@ -25,6 +28,9 @@
       {{/if}}
       {{#if $eq currentRoom 'Other'}}
         {{>SimpleChatWindow roomId='Other' username=currentUser.username limit=10}}
+      {{/if}}
+      {{#if $eq currentRoom 'Bugs'}}
+        {{>SimpleChatWindow roomId='Bugs' username=currentUser.username limit=10}}
       {{/if}}
       {{#if currentGroup}}
         {{#if $eq currentRoom currentGroup._id}}

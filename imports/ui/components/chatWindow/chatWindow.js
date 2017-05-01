@@ -48,6 +48,10 @@ Template.chatWindow.events({
     instance.state.set('currentRoom', 'Other');
   },
 
+  'click .room-bugs'(event, instance) {
+    instance.state.set('currentRoom', 'Bugs');
+  },
+
   'click .room-party'(event, instance) {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()

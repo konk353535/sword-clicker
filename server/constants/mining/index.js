@@ -119,6 +119,22 @@ export const MINING = {
         level: 20
       }],
       max: 5
+    },
+    adamantium: {
+      requiredMiningLevel: 25,
+      icon: 'adamantiumProspector',
+      name: 'adamantium prospector',
+      id: 'adamantium',
+      required: [{
+        type: 'gold',
+        amount: 5000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 25
+      }],
+      max: 5
     }
   },
   miners: {
@@ -270,6 +286,31 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.15
+    },
+
+    adamantium_miner: {
+      requiredMiningLevel: 25,
+      icon: 'adamantiumMiner',
+      name: 'adamantium miner',
+      id: 'adamantium_miner',
+      required: [{
+        type: 'item',
+        itemId: 'adamantium_pickaxe',
+        icon: ITEMS['adamantium_pickaxe'].icon,
+        name: ITEMS['adamantium_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 50000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 25
+      }],
+      max: 3,
+      damagePerSecond: 0.17
     }
   },
   ores: {
@@ -348,6 +389,17 @@ export const MINING = {
       name: 'mithril',
       itemId: 'ore_mithril',
       chance: 0.00075
+    },
+
+    adamantium: {
+      requiredLevel: 25,
+      healthMax: 5000,
+      xp: 450,
+      id: 'adamantium',
+      icon: 'adamantium',
+      name: 'adamantium',
+      itemId: 'ore_adamantium',
+      chance: 1.00045
     },
 
     jade: {

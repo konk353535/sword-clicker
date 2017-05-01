@@ -466,5 +466,30 @@ export const PICKAXE_ITEMS = {
       miner: 35,
       energyRegen: 2
     }
+  },
+
+  adamantium_pickaxe: {
+    id: 'adamantium_pickaxe',
+    icon: 'adamantiumPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'adamantium pickaxe',
+    sellPrice: 750,
+    description: 'A pickaxe forged from adamantium. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 25,
+      attack: 30,
+      energyPerHit: 1,
+      energyRegen: 5,
+      miner: 40
+    },
+    extraStats: {
+      energyStorage: 25,
+      attack: 5,
+      miner: 40,
+      energyRegen: 2
+    }
   }
 }

@@ -20,22 +20,39 @@ export const personalQuestMonsterGenerator = function(level) {
       rewardLevel = 5;
       possibleMonsters.push(...MONSTER_LIST[5])
     }
+    if (level >= 35) {
+      rewardLevel = 6;
+      possibleMonsters.push(...MONSTER_LIST[6])
+    }
+    if (level >= 50) {
+      rewardLevel = 7;
+      possibleMonsters.push(...MONSTER_LIST[7])
+    }
+    if (level >= 75) {
+      rewardLevel = 8;
+      possibleMonsters.push(...MONSTER_LIST[8])
+    }
 
     const selectedMonster = _.sample(possibleMonsters);
+
+    let extraStats = 0;
+    if (level >= 35) {
+      extraStats = level - 34;
+    }
 
     return {
       id: selectedMonster.id,
       icon: selectedMonster.icon,
       name: selectedMonster.name,
       stats: {
-        health: 10 + (level * 7),
-        healthMax: 10 + (level * 7),
-        attack: 1 + Math.floor(level / 3),
-        attackMax: (1 + Math.floor(level / 3)) * 1.5,
+        health: 10 + (level * 7) + (extraStats * 25),
+        healthMax: 10 + (level * 7) + (extraStats * 25),
+        attack: 1 + Math.floor(level / 3) + (extraStats / 2),
+        attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
         attackSpeed: 0.5,
-        accuracy: 1 + level,
-        armor: 1 + (level * 2.5),
-        defense: 1 + level,
+        accuracy: 1 + level + (extraStats / 2),
+        armor: 1 + (level * 2.5) + extraStats,
+        defense: 1 + level + (extraStats / 2),
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]

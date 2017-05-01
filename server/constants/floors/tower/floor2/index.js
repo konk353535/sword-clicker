@@ -105,21 +105,21 @@ export const TOWER_FLOOR_2 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'mithril_horned_helmet',
-      icon: ITEMS['mithril_horned_helmet'].icon,
-      name: ITEMS['mithril_horned_helmet'].name,
+      itemId: 'carbon_horned_helmet',
+      icon: ITEMS['carbon_horned_helmet'].icon,
+      name: ITEMS['carbon_horned_helmet'].name,
       amount: 15,
-      baseStats: ITEMS['mithril_horned_helmet'].stats,
-      extraStats: ITEMS['mithril_horned_helmet'].extraStats
+      baseStats: ITEMS['carbon_horned_helmet'].stats,
+      extraStats: ITEMS['carbon_horned_helmet'].extraStats
     },
     {
       type: 'item',
-      itemId: 'mithril_mining_hammer',
-      icon: ITEMS['mithril_mining_hammer'].icon,
-      name: ITEMS['mithril_mining_hammer'].name,
+      itemId: 'carbon_hammer',
+      icon: ITEMS['carbon_mining_hammer'].icon,
+      name: ITEMS['carbon_mining_hammer'].name,
       amount: 15,
-      baseStats: ITEMS['mithril_mining_hammer'].stats,
-      extraStats: ITEMS['mithril_mining_hammer'].extraStats
+      baseStats: ITEMS['carbon_mining_hammer'].stats,
+      extraStats: ITEMS['carbon_mining_hammer'].extraStats
     }
   ]
 }

@@ -155,6 +155,30 @@ export const WOODCUTTING = {
         name: 'woodcutting',
         level: 15
       }]
+    },
+
+    lumber_jack_expert: {
+      requiredWoodcuttingLevel: 20,
+      icon: 'lumberJack',
+      name: 'lumberjack expert',
+      id: 'lumber_jack',
+      axeId: 'adamantium_axe',
+      required: [{
+        type: 'item',
+        itemId: 'adamantium_axe',
+        icon: ITEMS['adamantium_axe'].icon,
+        name: ITEMS['adamantium_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 25000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 20
+      }]
     }
   },
 
@@ -207,8 +231,18 @@ export const WOODCUTTING = {
       name: 'maple log',
       itemId: 'maple_log',
       chance: 0.01
+    },
+
+    walnut_log: {
+      requiredAttack: 15,
+      xp: 90,
+      id: 'walnut_log',
+      icon: 'walnutLog',
+      name: 'walnut log',
+      itemId: 'walnut_log',
+      chance: 0.01
     }
 
-    // Walnut, Cherry, Mahogany
+    // Cherry, Mahogany
   }
 }

@@ -118,6 +118,26 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
+  adamantium_axe: {
+    id: 'adamantium_axe',
+    icon: 'adamantiumAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'adamantium axe',
+    sellPrice: 750,
+    description: 'An axe forged from adamantium. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 18,
+      attackSpeed: 2,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
   pine_log: {
     id: 'pine_log',
     icon: 'pineLog',
@@ -156,5 +176,13 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'maple log',
     sellPrice: 20
+  },
+
+  walnut_log: {
+    id: 'walnut_log',
+    icon: 'walnutLog',
+    category: 'woodcutting',
+    name: 'walnut log',
+    sellPrice: 30
   }
 }

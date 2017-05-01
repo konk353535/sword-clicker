@@ -4,19 +4,19 @@ export const easyTowerMonsterGenerator = function(floor) {
     const possibleMonsters = MONSTER_LIST[1];
     let rewardLevel = 1;
 
-    if (floor >= 3) {
+    if (floor >= 2) {
       rewardLevel = 2;
       possibleMonsters.push(...MONSTER_LIST[2])
     }
-    if (floor >= 5) {
+    if (floor >= 3) {
       rewardLevel = 3;
       possibleMonsters.push(...MONSTER_LIST[3])
     }
-    if (floor >= 7) {
+    if (floor >= 4) {
       rewardLevel = 4;
       possibleMonsters.push(...MONSTER_LIST[4])
     }
-    if (floor >= 9) {
+    if (floor >= 5) {
       rewardLevel = 5;
       possibleMonsters.push(...MONSTER_LIST[5])
     }

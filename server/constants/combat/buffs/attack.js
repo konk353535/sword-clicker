@@ -119,7 +119,7 @@ export const ATTACK_BUFFS = {
         const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
         const baseDamage = caster.stats.attack;
         const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
-        const totalDamage = (baseDamage + extraDamage) * (1 + (missingHealthPercentage / 100));
+        const totalDamage = (baseDamage + extraDamage) * (1 + (missingHealthPercentage / 100)) * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
         actualBattle.utils.dealDamage(totalDamage, {
@@ -158,7 +158,8 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         const baseDamage = caster.stats.attack;
         const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
-        const totalDamage = (baseDamage + extraDamage) * (buff.constants.constants.damagePercentage / 100);
+        const percentDamage = buff.constants.constants.damagePercentage + (buff.data.level * buff.constants.constants.damagePerLevel);
+        const totalDamage = (baseDamage + extraDamage) * (percentDamage / 100);
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
         actualBattle.utils.dealDamage(totalDamage, {

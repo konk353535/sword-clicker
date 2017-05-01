@@ -84,6 +84,12 @@
             Mithril
         </span>
       {{/if}}
+      {{#if $gte craftingLevel 17}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.adamantium}}empty{{else}}adamantium{{/if}}" data-tier-filter="adamantium">
+            Adamantium
+        </span>
+      {{/if}}
     </div>
 
     <table class="table table-bordered table-hover table-centered table-responsive">

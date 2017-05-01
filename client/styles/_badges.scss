@@ -24,6 +24,10 @@
   background-color: $color-mithril;
 }
 
+.badge-adamantium {
+  background-color: $color-adamantium;
+}
+
 .badge-empty {
   background-color: $gray-lighter;
   color: darken($gray-lighter, 20);

@@ -6,13 +6,6 @@ export const TOWER_FLOOR_3 = {
     name: 'Poppy Field',
     image: 'poppyField.jpg',
     floor: 3,
-    possibleBattles: [
-      { enemies: [{ id: 'e_spider', amount: 1 }] },
-      { enemies: [{ id: 'e_snake', amount: 1 }] },
-      { enemies: [{ id: 'e_falcon', amount: 1 }] },
-      { enemies: [{ id: 'e_skunk', amount: 1 }] },
-      { enemies: [{ id: 'e_lizard', amount: 1 }] }
-    ],
     rewards: orderLootTable([{
       chance: 1 / 8,
       rewards: [
@@ -31,13 +24,6 @@ export const TOWER_FLOOR_3 = {
     name: 'Mysterious Woods',
     image: 'mysteriousWoods.jpeg',
     floor: 3,
-    possibleBattles: [
-      { enemies: [{ id: 'cat', amount: 1 }, { id: 'e_spider', amount: 1}] },
-      { enemies: [{ id: 'turtle', amount: 1 }, { id: 'e_snake', amount: 1}] },
-      { enemies: [{ id: 'boar', amount: 1 }, { id: 'e_falcon', amount: 1}] },
-      { enemies: [{ id: 'goat', amount: 1 }, { id: 'e_skunk', amount: 1}] },
-      { enemies: [{ id: 'fox', amount: 1 }, { id: 'e_lizard', amount: 1}] }
-    ],
     rewards: orderLootTable([{
       chance: 1 / 2,
       rewards: [{ type: 'gold', amount: 300 }]
@@ -79,13 +65,6 @@ export const TOWER_FLOOR_3 = {
     name: 'Green Lake',
     image: 'greenLake.jpeg',
     floor: 3,
-    possibleBattles: [
-      { enemies: [{ id: 'e_cat', amount: 1 }, { id: 'e_spider', amount: 1}] },
-      { enemies: [{ id: 'e_turtle', amount: 1 }, { id: 'e_snake', amount: 1}] },
-      { enemies: [{ id: 'e_boar', amount: 1 }, { id: 'e_falcon', amount: 1}] },
-      { enemies: [{ id: 'e_goat', amount: 1 }, { id: 'e_skunk', amount: 1}] },
-      { enemies: [{ id: 'e_fox', amount: 1 }, { id: 'e_lizard', amount: 1}] }
-    ],
     rewards: orderLootTable([{
       chance: 1 / 4,
       rewards: [{ type: 'gold', amount: 600 }]
@@ -138,12 +117,12 @@ export const TOWER_FLOOR_3 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'mithril_dwarven_idol',
-      icon: ITEMS['mithril_dwarven_idol'].icon,
-      name: ITEMS['mithril_dwarven_idol'].name,
+      itemId: 'carbon_dwarven_idol',
+      icon: ITEMS['carbon_dwarven_idol'].icon,
+      name: ITEMS['carbon_dwarven_idol'].name,
       amount: 30,
-      baseStats: ITEMS['mithril_dwarven_idol'].stats,
-      extraStats: ITEMS['mithril_dwarven_idol'].extraStats
+      baseStats: ITEMS['carbon_dwarven_idol'].stats,
+      extraStats: ITEMS['carbon_dwarven_idol'].extraStats
     }
   ]
 }

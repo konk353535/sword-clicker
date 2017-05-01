@@ -15,5 +15,14 @@ export const MISC_ITEMS = {
     name: 'mithril essence',
     sellPrice: 1000,
     description: 'Required to bond mithril together.'
+  },
+
+  adamantium_essence: {
+    id: 'adamantium_essence',
+    icon: 'adamantiumEssence',
+    category: 'misc',
+    name: 'adamantium essence',
+    sellPrice: 2000,
+    description: 'Required to bond adamantium together.'
   }
 }

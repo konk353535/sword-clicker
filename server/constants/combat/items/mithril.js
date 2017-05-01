@@ -90,6 +90,65 @@ export const MITHRIL_ITEMS = {
     }]
   },
 
+  mithril_scimitar: {
+    id: 'mithril_scimitar',
+    icon: 'mithrilScimitarSword',
+    category: 'combat',
+    weaponType: 'shortSword',
+    slot: 'mainHand',
+    name: 'mithril scimitar',
+    sellPrice: 1000,
+    description: 'A good balance between offense and defense',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 12,
+      attackMax: 20,
+      attackSpeed: FAST_SPEED,
+      accuracy: 17,
+    },
+    extraStats: {
+      attack: 8,
+      attackMax: 10,
+      accuracy: 16
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
+  },
+
+  mithril_broad_sword: {
+    id: 'mithril_broad_sword',
+    icon: 'mithrilBroadSword',
+    category: 'combat',
+    weaponType: 'longSword',
+    slot: 'mainHand',
+    name: 'mithril broad sword',
+    sellPrice: 1000,
+    description: 'A pure offensive weapon',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 20,
+      attackMax: 28,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 28,
+    },
+    extraStats: {
+      attack: 11,
+      attackMax: 14,
+      accuracy: 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
+  },
+
   mithril_long_sword: {
     id: 'mithril_long_sword',
     icon: 'mithrilLongSword',

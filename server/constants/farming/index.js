@@ -80,6 +80,36 @@ export const FARMING = {
       }]
     },
 
+    pineapple_seed: {
+      id: 'pineapple_seed',
+      itemId: 'pineapple_seed',
+      requiredFarmingLevel: 10,
+      required: [{
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 10
+      }]
+    },
+
+    watermelon_seed: {
+      id: 'watermelon_seed',
+      itemId: 'watermelon_seed',
+      requiredFarmingLevel: 15,
+      required: [{
+        type: 'gold',
+        amount: 250,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 15
+      }]
+    },
+
     basil_seed: {
       id: 'basil_seed',
       itemId: 'basil_seed',

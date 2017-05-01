@@ -54,6 +54,13 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .chat-container {
+    width: 350px;
+    height: inherit;
+  }
+}
+
 .chat-minimized {
   cursor: pointer;
   padding: 5px;

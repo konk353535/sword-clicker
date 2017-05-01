@@ -55,6 +55,14 @@ export const ORE_ITEMS = {
     sellPrice: 50
   },
 
+  ore_adamantium: {
+    id: 'ore_adamantium',
+    icon: 'adamantium',
+    category: 'mining',
+    name: 'adamantium',
+    sellPrice: 75
+  },
+
   jade: {
     id: 'jade',
     icon: 'jade',

@@ -62,6 +62,15 @@ export const CRAFTING_ITEMS = {
     description: 'Used to melt ores into bars'
   },
 
+  mithril_furnace: {
+    id: 'mithril_furnace',
+    icon: 'mithrilFurnace',
+    category: 'crafting',
+    name: 'mithril furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
   copper_bar: {
     id: 'copper_bar',
     icon: 'copperBar',
@@ -105,5 +114,15 @@ export const CRAFTING_ITEMS = {
     name: 'mithril bar',
     sellPrice: 60,
     description: 'Used to craft mithril tools and weapons'
+  },
+
+
+  adamantium_bar: {
+    id: 'adamantium_bar',
+    icon: 'adamantiumBar',
+    category: 'crafting',
+    name: 'adamantium bar',
+    sellPrice: 80,
+    description: 'Used to craft adamantium tools and weapons'
   }
 }

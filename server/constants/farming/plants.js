@@ -85,7 +85,7 @@ export const PLANTS = {
     waterStorage: 100,
     initialWater: 50,
     requiredWater: 120,
-    growthTime: 60 * 60,
+    growthTime: 30 * 60,
     xp: 50,
     required: [{
       type: 'item',
@@ -98,6 +98,56 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 5
+    }]
+  },
+
+  pineapple: {
+    produces: 'pineapple',
+    name: 'pineapple',
+    id: 'pineapple',
+    category: 'farming',
+    icon: ITEMS['pineapple'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 300,
+    growthTime: 30 * 60,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'pineapple_seed',
+      icon: ITEMS['pineapple_seed'].icon,
+      name: ITEMS['pineapple_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 10
+    }]
+  },
+
+  watermelon: {
+    produces: 'watermelon',
+    name: 'watermelon',
+    id: 'watermelon',
+    category: 'farming',
+    icon: ITEMS['watermelon'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 300,
+    growthTime: 15 * 60,
+    xp: 75,
+    required: [{
+      type: 'item',
+      itemId: 'watermelon_seed',
+      icon: ITEMS['watermelon_seed'].icon,
+      name: ITEMS['watermelon_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 15
     }]
   },
 

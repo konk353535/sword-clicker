@@ -184,6 +184,30 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1
   },
 
+  mithril_furnace: {
+    produces: 'mithril_furnace',
+    recipeFor: 'crafting',
+    name: 'mithril furnace',
+    id: 'mithril_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 16,
+    required: [{
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 16
+    }],
+    timeToCraft: 15 * 60,
+    xp: 350,
+    maxToCraft: 1
+  },
+
   copper_bar: {
     produces: 'copper_bar',
     recipeFor: 'crafting',
@@ -364,6 +388,37 @@ export const CRAFTING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 14
+    }]
+  },
+
+  adamantium_bar: {
+    produces: 'adamantium_bar',
+    recipeFor: 'crafting',
+    name: 'adamantium bar',
+    id: 'adamantium_bar',
+    category: 'crafting',
+    timeToCraft: 30,
+    xp: 80,
+    maxToCraft: 100,
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'mithril_furnace',
+      icon: ITEMS['mithril_furnace'].icon,
+      name: ITEMS['mithril_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_adamantium',
+      icon: ITEMS['ore_adamantium'].icon,
+      name: ITEMS['ore_adamantium'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
     }]
   }
 }

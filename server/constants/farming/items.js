@@ -76,6 +76,56 @@ export const FARMING_ITEMS = {
     sellPrice: 50
   },
 
+  pineapple_seed: {
+    id: 'pineapple_seed',
+    icon: 'pineappleSeed',
+    category: 'seed',
+    name: 'pineapple seed',
+    description: 'Used to grow pine apples. Useful for eating.',
+    sellPrice: 20,
+    produces: 'pineapple'
+  },
+
+  pineapple: {
+    id: 'pineapple',
+    icon: 'pineapple',
+    category: 'food',
+    name: 'pineapple',
+    description() {
+      const buff = BUFFS.food_pineapple;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_pineapple'
+    }],
+    sellPrice: 100
+  },
+
+  watermelon_seed: {
+    id: 'watermelon_seed',
+    icon: 'watermelonSeed',
+    category: 'seed',
+    name: 'watermelon seed',
+    description: 'Used to grow watermelons. Useful for eating.',
+    sellPrice: 30,
+    produces: 'watermelon'
+  },
+
+  watermelon: {
+    id: 'watermelon',
+    icon: 'watermelon',
+    category: 'food',
+    name: 'watermelon',
+    description() {
+      const buff = BUFFS.food_watermelon;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_watermelon'
+    }],
+    sellPrice: 150
+  },
+
   basil_seed: {
     id: 'basil_seed',
     icon: 'basilSeed',

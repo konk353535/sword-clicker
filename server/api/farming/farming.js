@@ -43,9 +43,13 @@ const farmSpaceModifier = function (farmSpace, farming) {
 
     farmSpace.isDirty = true;
     if (farmSpace.water <= 0) {
-      // This plant has died!
-      farmSpace.plantId = 'dead_plant';
-      farmSpace.maturityDate = new Date();
+      farmSpace.plantDate = moment(farmSpace.plantDate).add(secondsElapsed, 'seconds').toDate();
+      farmSpace.maturityDate = moment(farmSpace.maturityDate).add(secondsElapsed, 'seconds').toDate();
+      const totalTime = Math.abs(moment().diff(farmSpace.maturityDate)) / 1000;
+      if (totalTime > plantConstants.growthTime) {
+        farmSpace.plantDate = moment().toDate();
+        farmSpace.maturityDate = moment().add(plantConstants.growthTime, 'seconds').toDate();
+      }
     } else if (now.isAfter(maturityDate)) {
       farmSpace.growing = false;
     }
@@ -105,6 +109,7 @@ Meteor.methods({
             water: farmSpace.water,
             plantId: farmSpace.plantId,
             maturityDate: farmSpace.maturityDate,
+            plantDate: farmSpace.plantDate,
             growing: farmSpace.growing
           }
         });
@@ -121,12 +126,6 @@ Meteor.methods({
 
     if (targetToWater.plantId) {
       const farming = Farming.findOne({ owner: Meteor.userId() });
-
-      // Is this plant already dead?
-      let updatedTargetToWater = farmSpaceModifier(targetToWater, farming);
-      if (updatedTargetToWater.water <= 0 && updatedTargetToWater.isDirty) {
-        throw new Meteor.Error("woops", "This is dead. So cannot be picked. Sorry!");
-      }
 
       const plantConstants = FARMING.plants[targetToWater.plantId];
       if (targetToWater.water < plantConstants.waterStorage) {

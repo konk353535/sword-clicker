@@ -177,8 +177,10 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
 
+  const userDoc = Meteor.user();
+
   // Apply membership benefits
-  if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+  if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
     timeToCraft *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
   }
 
@@ -286,10 +288,13 @@ Meteor.methods({
 });
 
 const MINUTE = 60 * 1000;
+const userId = function userId(userId) {
+  return userId;
+}
 
-// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem' }, 50, 5 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes' }, 20, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 5, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes', userId }, 5, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 5, 10000);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish('crafting', function() {

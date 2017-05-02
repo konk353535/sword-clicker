@@ -14,6 +14,22 @@ const redis = new Meteor.RedisCollection('redis');
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  /*
+  $(document).on('keyup', (e) => {
+      if (e.which === 49) {
+        castAbility(1);
+      } else if (e.which === 50) {
+        castAbility(2);
+      } else if (e.which === 51) {
+        castAbility(3);
+      } else if (e.which === 52) {
+        castAbility(4);
+      } else if (e.which === 53) {
+        castAbility(5);
+      }
+  });
+  */
+
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({
@@ -74,6 +90,10 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
   })
 });
+
+Template.currentBattleUi.onDestroyed(() => {
+  // $(document).off('keyup');
+})
 
 Template.currentBattleUi.helpers({
   currentBattle() {

@@ -130,7 +130,8 @@ Meteor.methods({
       let baseEnergyRegen = COMBAT.baseEnergyRegenPerMinute * minutesElapsed;
 
       // Apply membership benefits
-      if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+      const userDoc = Meteor.user()
+      if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
         baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
       }
 

@@ -10,6 +10,7 @@ import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
+import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 
 Meteor.startup(() => {
 
@@ -23,10 +24,14 @@ Meteor.startup(() => {
   // Ensure indexes on key databases
   Crafting._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ owner: 1 });
+  Skills._ensureIndex({ type: 1 });
   Items._ensureIndex({ owner: 1 });
   Mining._ensureIndex({ owner: 1 });
   MiningSpace._ensureIndex({ owner: 1 });
   Battles._ensureIndex({ owners: 1 });
+  Farming._ensureIndex({ owner: 1 });
+  FarmingSpace._ensureIndex({ owner: 1 });
+  FarmingSpace._ensureIndex({ index: 1 });
   BattleActions._ensureIndex({ battleId: 1 });
 
 });

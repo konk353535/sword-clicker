@@ -114,7 +114,9 @@ Template.equipmentTab.helpers({
   },
 
   defenseStats() {
-    const combat = Combat.findOne();
+    const combat = Combat.findOne({
+      owner: Meteor.userId()
+    });
     if (!combat) {
       Template.instance().state.set('defenseStats', []);
     } else {
@@ -138,7 +140,9 @@ Template.equipmentTab.helpers({
   },
 
   offenseStats() {
-    const combat = Combat.findOne();
+    const combat = Combat.findOne({
+      owner: Meteor.userId()
+    });
     if (!combat) {
       Template.instance().state.set('offenseStats', []);
     } else {

@@ -11,6 +11,7 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+import { Users } from '/imports/api/users/users';
 
 Meteor.methods({
 
@@ -45,6 +46,8 @@ Meteor.methods({
     if (!woodcutting) {
       return;
     }
+
+    const userDoc = Meteor.user();
 
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
@@ -109,7 +112,7 @@ Meteor.methods({
         }
 
         // Apply membership benefits
-        if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+        if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
           rawGeneratedLogs *= (1 + (DONATORS_BENEFITS.woodcuttingBonus / 100));
         }
 
@@ -228,7 +231,11 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fireWoodcutter' }, 10, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate' }, 20, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
+  userId(userId) {
+    return userId;
+  } 
+}, 3, 10000);
 // DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.fetchWoodcutters' }, 10, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.hireWoodcutter' }, 10, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);

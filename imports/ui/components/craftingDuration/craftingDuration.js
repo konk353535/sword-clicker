@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import './craftingDuration.html';
 
+let called = false;
 Template.craftingDuration.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.autorun(() => {
@@ -26,10 +27,17 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
 
     // Simplify this logic to make it less cooked once time syncing is implemented
     if (now.isAfter(endDate)) {
-      if (this.data.isCrafting) {
-        Meteor.call('crafting.updateGame');
-      } else {
-        Meteor.call('inscription.updateGame');      
+      if (!called) {
+        called = true;
+        if (this.data.isCrafting) {
+          Meteor.call('crafting.updateGame', (err, res) => {
+            called = false;
+          });
+        } else {
+          Meteor.call('inscription.updateGame', (err, res) => {
+            called = false;
+          });      
+        }
       }
       craftingProcess.percentage = 100;
     }

@@ -353,7 +353,8 @@ Meteor.methods({
       }
 
       // Apply membership benefits
-      if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+      const userDoc = Meteor.user();
+      if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
         damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
       }
 
@@ -503,15 +504,18 @@ Meteor.methods({
 });
 
 const MINUTE = 60 * 1000;
+const userId = function userId(userId) {
+  return userId;
+}
 
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 100, 0.5 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 30, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.fireProspector' }, 30, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 30, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 10, 0.5 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 30, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 600, 2 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'subscription', name: 'mining' }, 100, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace', userId }, 100, 0.5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector', userId }, 15, 0.5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.fireProspector', userId }, 15, 0.5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner', userId }, 15, 0.5 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate', userId }, 3, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners', userId }, 15, 0.5 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace', userId }, 600, 2 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'subscription', name: 'mining', userId }, 100, 1 * MINUTE);
 
 Meteor.publish('miningSpace', function() {
 

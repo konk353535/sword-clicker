@@ -263,14 +263,17 @@ Meteor.methods({
 });
 
 const MINUTE = 60 * 1000;
+const userId = function userId(userId) {
+  return userId;
+}
 
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.gameUpdate' }, 20, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.water' }, 10, 0.25 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.pick' }, 12, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.plant' }, 12, 1 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'farming.buyShopItem' }, 30, 0.5 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells' }, 10, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'subscription', name: 'farmingSpace' }, 240, 2 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.gameUpdate', userId }, 5, 15000);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.water', userId }, 20, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.pick', userId }, 20, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.plant', userId }, 20, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.buyShopItem', userId }, 100, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells', userId }, 10, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'subscription', name: 'farmingSpace', userId }, 240, 2 * MINUTE);
 
 Meteor.publish('farmingSpace', function() {
 

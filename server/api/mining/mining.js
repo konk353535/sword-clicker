@@ -390,6 +390,8 @@ Meteor.methods({
           if (miningSpace.isDirty) {
             MiningSpace.update(miningSpace._id, {
               $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+            }, function (err, res) {
+              // Intentionally blank
             });
           }
         });
@@ -446,6 +448,8 @@ Meteor.methods({
           if (miningSpace.isDirty) {
             MiningSpace.update(miningSpace._id, {
               $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+            }, function (err, res) {
+              // Intentionally blank
             });
           }
         });
@@ -500,11 +504,11 @@ Meteor.methods({
 
 const MINUTE = 60 * 1000;
 
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 150, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace' }, 100, 0.5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector' }, 30, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'mining.fireProspector' }, 30, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyMiner' }, 30, 1 * MINUTE);
-// DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 100, 1 * MINUTE);
+// DDPRateLimiter.addRule({ type: 'method', name: 'mining.gameUpdate' }, 10, 0.5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners' }, 30, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'miningSpace' }, 600, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'mining' }, 100, 1 * MINUTE);

@@ -88,7 +88,7 @@ export const ABILITIES = {
     name: 'evasive maneuvers',
     id: 'evasive_maneuvers',
     buffs: ['evasive_maneuvers'],
-    cooldown: 10,
+    cooldown: 40,
     slot: 'any',
     isHidden: false,
     target: 'self',

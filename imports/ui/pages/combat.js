@@ -28,7 +28,8 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   combatPageTimer = Meteor.setInterval(function () {
-    if (Meteor.user()) {
+    const currentBattle = BattlesList.findOne({});
+    if (Meteor.user() && !currentBattle) {
       Meteor.call('combat.gameUpdate');
     }
   }, 10000);

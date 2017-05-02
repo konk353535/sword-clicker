@@ -88,11 +88,7 @@ export const TOWER_FLOOR_2 = {
   },
 
   boss: {
-    possibleBattles: [{
-      enemies: [
-        { id: 'boss_cobra', amount: 1 }
-      ]
-    }],
+    enemy: { id: 'boss_cobra', amount: 1 },
     rewards: orderLootTable([{
       chance: 1,
       rewards: [

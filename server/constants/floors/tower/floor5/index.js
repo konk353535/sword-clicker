@@ -99,11 +99,7 @@ export const TOWER_FLOOR_5 = {
   },
 
   boss: {
-    possibleBattles: [{
-      enemies: [
-        { id: 'boss_mage', amount: 1 }
-      ]
-    }],
+    enemy: { id: 'boss_mage', amount: 1 },
     rewards: orderLootTable([{
       chance: 1,
       rewards: [

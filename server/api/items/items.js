@@ -65,15 +65,30 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   }
 
   if (newItemsList.length === 1) {
-    const extraStats = newItemsList[0].extraStats;
-    const currentItem = Items.findOne({ owner, itemId, extraStats });
-    if (currentItem) {
-      // Update
-      Items.update({ _id: currentItem._id }, {
-        $inc: { amount: amount }
-      });
+    if (itemConstants.extraStats) {
+      const extraStats = newItemsList[0].extraStats;
+      const currentItem = Items.findOne({ owner, itemId, extraStats });
+      if (currentItem) {
+        // Update
+        Items.update({ _id: currentItem._id }, {
+          $inc: { amount: amount }
+        });
+      } else {
+        Items.insert(newItemsList[0]);
+      }
     } else {
-      Items.insert(newItemsList[0]);
+      Items.upsert({ owner, itemId }, {
+        $inc: {
+          amount
+        },
+        $setOnInsert: {
+          itemId,
+          owner,
+          category: itemConstants.category,
+          amount,
+          equipped: false
+        }
+      })
     }
   } else {
     newItemsList.forEach((newItem) => {

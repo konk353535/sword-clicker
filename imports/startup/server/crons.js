@@ -20,7 +20,7 @@ SyncedCron.add({
     const floorConstants = FLOORS[currentFloor.floor];
 
     // Get bosses hp
-    const bossEnemyId = floorConstants.boss.possibleBattles[0].enemies[0].id;
+    const bossEnemyId = floorConstants.boss.enemy.id;
     const bossEnemyConstants = ENEMIES[bossEnemyId];
 
     Floors.update({ floorComplete: false }, {

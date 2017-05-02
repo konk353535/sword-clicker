@@ -93,7 +93,11 @@
           <td class="align-middle">Final Room</td>
           <td class="align-middle"></td>
           <td class="align-middle text-center">
-            1
+            {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
+              Resets in {{moDiff bossResetDate moNow 'hours'}} hours
+            {{else}}
+              Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
+            {{/if}}
           </td>
           <td class="align-middle">
             {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}

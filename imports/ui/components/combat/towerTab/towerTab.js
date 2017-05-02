@@ -135,6 +135,10 @@ Template.towerTab.helpers({
     return Template.instance().state.get('usersCurrentFloor');
   },
 
+  bossResetDate() {
+    return moment().utc().hours(23).minutes(59).seconds(59);
+  },
+
   maxFloor() {
     return Template.instance().state.get('maxFloor');
   },

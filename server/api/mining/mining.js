@@ -72,7 +72,10 @@ const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
 
 const attackMineSpace = function (id, mining) {
   const damage = mining.stats.attack;
-  const mineSpace = MiningSpace.findOne({ _id: id, owner: Meteor.userId() });
+  const mineSpace = MiningSpace.findOne({ _id: id });
+  if (mineSpace.owner !== Meteor.userId()) {
+    return;
+  }
 
   const oreConstants = MINING.ores[mineSpace.oreId];
 

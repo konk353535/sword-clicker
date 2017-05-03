@@ -21,7 +21,9 @@ import './crons.js';
 Accounts.onCreateUser((options, user) => {
   user._id = Random.id();
   const userId = user._id;
-
+  user.uiState = {
+    showChat: true
+  }
   if (options.isGuest) {
     user.isGuest = options.isGuest;
   }

@@ -46,14 +46,14 @@ export const personalQuestMonsterGenerator = function(level) {
       icon: selectedMonster.icon,
       name: selectedMonster.name,
       stats: {
-        health: 10 + (level * 7) + (extraStats * 25),
-        healthMax: 10 + (level * 7) + (extraStats * 25),
+        health: 10 + (level * 7) + (extraStats * 20),
+        healthMax: 10 + (level * 7) + (extraStats * 20),
         attack: 1 + Math.floor(level / 3) + (extraStats / 2),
         attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
         attackSpeed: 0.5,
         accuracy: 1 + level + (extraStats / 2),
         armor: 1 + (level * 2.5) + extraStats,
-        defense: 1 + level + (extraStats / 2),
+        defense: 1 + level,
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]

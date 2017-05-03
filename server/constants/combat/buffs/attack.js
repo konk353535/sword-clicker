@@ -101,12 +101,12 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.damagePerLevel;
       const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
       return `
-        Auto attack for up to <b>${damageIncreasePerPercentage * 100}%</b> bonus damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Auto attack for 0 - <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
         Based on your targets missing health.`;
     },
     constants: {
       damageBase: 1, // % Increase of damage for each % of health enemy is missing
-      damagePerLevel: 1
+      damagePerLevel: 0.5
     },
     data: {
       duration: 0,
@@ -119,7 +119,7 @@ export const ATTACK_BUFFS = {
         const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
         const baseDamage = caster.stats.attack;
         const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
-        const totalDamage = (baseDamage + extraDamage) * (1 + (missingHealthPercentage / 100)) * damageIncreasePerPercentage;
+        const totalDamage = (baseDamage + extraDamage) * (missingHealthPercentage / 100) * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
         actualBattle.utils.dealDamage(totalDamage, {
@@ -247,7 +247,7 @@ export const ATTACK_BUFFS = {
     },
     constants: {
       damagePerSecondBase: 0.5,
-      damagePerSecondPerLevel : 0.5
+      damagePerSecondPerLevel: 1
     },
     data: {
       duration: 10,

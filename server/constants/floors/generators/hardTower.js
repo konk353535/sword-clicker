@@ -36,7 +36,7 @@ export const hardTowerMonsterGenerator = function(floor) {
         attackSpeed: 0.5,
         accuracy: 10 + (floor * 15) * 1.7,
         armor: 10 + (floor * 20) * 1.7,
-        defense: 10 + (floor * 15) * 1.7,
+        defense: 10 + (floor * 15) * 1.5,
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]

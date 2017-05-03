@@ -43,7 +43,7 @@ export const ABILITIES = {
     name: 'execute',
     id: 'execute',
     buffs: ['execute'],
-    cooldown: 20,
+    cooldown: 40,
     slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking
@@ -103,7 +103,7 @@ export const ABILITIES = {
     name: 'blade frenzy',
     id: 'blade_frenzy',
     buffs: ['blade_frenzy'],
-    cooldown: 300,
+    cooldown: 60,
     slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking
@@ -148,7 +148,7 @@ export const ABILITIES = {
     name: 'bleed',
     id: 'bleed',
     buffs: ['bleed'],
-    cooldown: 20,
+    cooldown: 30,
     slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking

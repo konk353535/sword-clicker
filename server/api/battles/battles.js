@@ -222,18 +222,19 @@ Meteor.methods({
   },
 
   'battles.castAbility'(battleId, abilityId, options) {
-    // Fetch the battle
-    const targetBattle = BattlesList.findOne({
-      owners: Meteor.userId(),
-      _id: battleId
-    });
 
-    if (!targetBattle) {
-      throw new Meteor.Error("battle-not-found", "Ability cannot be cast on battle that doesnt exist");
+    if (options.caster !== Meteor.userId()) {
+      throw new Meteor.Error("battle-not-found", "Thats not you!");      
     }
 
     if (options.caster && options.caster !== Meteor.userId()) {
       throw new Meteor.Error("access-denied", "You do not have control of that caster");
+    }
+
+    let existingActions = [];
+    let rawRedis = redis.get(`battleActions-${battleId}`);
+    if (rawRedis) {
+      existingActions = JSON.parse(rawRedis);
     }
 
     const obj = {
@@ -245,8 +246,9 @@ Meteor.methods({
     }
 
     check(obj, BattleActionsSchema);
-    obj._id = Random.id();
-    redis.set(`battleActions-${battleId}-${obj._id}`, JSON.stringify(obj));
+
+    existingActions.push(obj);
+    redis.set(`battleActions-${battleId}`, JSON.stringify(existingActions));
   }
 });
 

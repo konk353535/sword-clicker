@@ -29,10 +29,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   combatPageTimer = Meteor.setInterval(function () {
     const currentBattle = BattlesList.findOne({});
-    if (Meteor.user() && !currentBattle) {
+    if (Meteor.user() && (!currentBattle || (Math.random() * 10 > 7))) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 10000);
+  }, 7000);
 
   this.state.set('hasLearnRequirements', false);
 

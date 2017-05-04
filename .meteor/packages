@@ -43,3 +43,4 @@ aldeed:template-extension
 sha
 slava:redis-livedata
 check
+meteorhacks:cluster

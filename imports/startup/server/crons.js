@@ -8,6 +8,8 @@ import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 
 const redis = new Meteor.RedisCollection('redis');
 
+if (process.env['CLUSTER_WORKER_ID'] !== "1") return
+
 // Reset boss health
 SyncedCron.add({
   name: 'Reset boss health',
@@ -56,16 +58,19 @@ SyncedCron.add({
         $lte: moment().subtract(2, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
-      const currentBattle = redis.get(`battles-${battleList._id}`);
+      let currentBattle = redis.get(`battles-${battleList._id}`);
+      currentBattle = currentBattle ? JSON.parse(currentBattle) : currentBattle;
+
       let isUpdatedStale;
       if (currentBattle) {
         isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
       }
 
-      BattlesList.remove(battleList._id);
 
-      if (currentBattle) {
+      if (isUpdatedStale || !currentBattle) {
+        BattlesList.remove(battleList._id);
         redis.del(`battles-${battleList._id}`);
+        redis.del(`battleActions-${battleList._id}`);
       }
     });
     return true;

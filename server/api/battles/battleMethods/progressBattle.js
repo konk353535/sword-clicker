@@ -40,14 +40,13 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
   // Fetch actions related to this battle
-  const battleActions = redis.matching(`battleActions-${actualBattle._id}-*`).fetch().map((action) => {
-    return JSON.parse(action);
-  });
+  const rawBattleActions = redis.get(`battleActions-${actualBattle._id}`);
+  const battleActions = rawBattleActions ? JSON.parse(rawBattleActions) : [];
 
   // Remove all battle actions as we've got them for this tick
-  battleActions.forEach((battleAction) => {
-    redis.del(`battleActions-${actualBattle._id}-${battleAction._id}`);
-  });
+  if (rawBattleActions) {
+    redis.del(`battleActions-${actualBattle._id}`);
+  }
 
   const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
     let damage = rawDamage;

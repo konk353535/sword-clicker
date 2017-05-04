@@ -14,6 +14,8 @@ import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 
 Meteor.startup(() => {
 
+  if (process.env['CLUSTER_WORKER_ID'] !== "1") return 
+
   // Start processing abandoned battles
   BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
     Meteor.setTimeout(() => {

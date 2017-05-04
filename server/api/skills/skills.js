@@ -179,7 +179,7 @@ Meteor.methods({
           personalQuest: 1,
           username: 1
         },
-        limit: 10
+        limit: 20
       }).fetch();
     } else if (skillName === 'boss') {
       return BossHealthScores.find({}, {
@@ -190,7 +190,7 @@ Meteor.methods({
           bossDamage: 1,
           username: 1
         },
-        limit: 10
+        limit: 20
       }).fetch();
     } else {
       return Skills.find({
@@ -200,7 +200,7 @@ Meteor.methods({
           level: -1,
           totalXp: -1
         },
-        limit: 10
+        limit: 20
       }).fetch();
     }
   }

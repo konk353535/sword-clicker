@@ -44,11 +44,7 @@
     {{#each pendingInvites}}
       <div class="mb-1 d-flex align-items-center">
         <div>
-          Invite pending from (
-          {{#each this.membersDetails}}
-            {{this.username}}
-          {{/each}}
-          )
+          Invite pending from {{this.leaderName}}
         </div>
         <button class="btn btn-success ml-3 btn-sm accept-btn" data-invite-id={{this._id}}>Accept</button>
         <button class="btn btn-danger ml-3 btn-sm decline-btn" data-invite-id={{this._id}}>Decline</button>

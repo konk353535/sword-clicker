@@ -21,6 +21,10 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   const newItemsList = [];
   const itemConstants = ITEMS[itemId];  
 
+  if (!itemConstants) {
+    return;
+  }
+
   // Roll for stats if required
   if (itemConstants.extraStats) {
     for (let i = 0; i < amount; i++) {

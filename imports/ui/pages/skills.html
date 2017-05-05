@@ -59,6 +59,12 @@
           <img src="icons/boss.svg" class="small-icon">
         </div>
       </div>
+      {{#if showAll200}}
+        <a href="#" class="hide-full-200">Hide Top 200</a>
+      {{else}}
+        <a href="#" class="show-full-200">Show Top 200</a>
+      {{/if}}
+
       {{#if $eq currentSkill.type 'personalQuest'}}
         <table class="table table-sm table-centered table-responsive">
           <thead>

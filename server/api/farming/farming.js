@@ -38,11 +38,22 @@ const farmSpaceModifier = function (farmSpace, farming) {
     // Percentage of total growth time
     const growthTimeDecimal = secondsElapsed / plantConstants.growthTime;
 
+    // Store original water
+    const originalWater = farmSpace.water;
+
     // Update me farm space water usage
     farmSpace.water -= (growthTimeDecimal * plantConstants.requiredWater);
 
     farmSpace.isDirty = true;
     if (farmSpace.water <= 0) {
+
+      // Grow if there was originally any water
+      if (originalWater >= 1) {
+        // Determine growth from water amount
+        const growthAmount = (originalWater / plantConstants.requiredWater) * plantConstants.growthTime;
+        secondsElapsed -= growthAmount;
+      }
+
       farmSpace.plantDate = moment(farmSpace.plantDate).add(secondsElapsed, 'seconds').toDate();
       farmSpace.maturityDate = moment(farmSpace.maturityDate).add(secondsElapsed, 'seconds').toDate();
       const totalTime = Math.abs(moment().diff(farmSpace.maturityDate)) / 1000;

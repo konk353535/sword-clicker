@@ -168,7 +168,12 @@ Meteor.methods({
     }
   },
 
-  'skills.highscores'(skillName) {
+  'skills.highscores'(skillName, showAll200) {
+    let limit = 10;
+    if (showAll200) {
+      limit = 200;
+    }
+
     if (skillName === 'personalQuest') {
       return Users.find({}, {
         sort: {
@@ -179,7 +184,7 @@ Meteor.methods({
           personalQuest: 1,
           username: 1
         },
-        limit: 20
+        limit
       }).fetch();
     } else if (skillName === 'boss') {
       return BossHealthScores.find({}, {
@@ -190,7 +195,7 @@ Meteor.methods({
           bossDamage: 1,
           username: 1
         },
-        limit: 20
+        limit
       }).fetch();
     } else {
       return Skills.find({
@@ -200,7 +205,7 @@ Meteor.methods({
           level: -1,
           totalXp: -1
         },
-        limit: 20
+        limit
       }).fetch();
     }
   }

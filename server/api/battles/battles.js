@@ -206,7 +206,11 @@ Meteor.methods({
     }
   },
 
-  'battles.currentFloorHighscores'() {
+  'battles.currentFloorHighscores'(showAll200) {
+    let limit = 20;
+    if (showAll200) {
+      limit = 200;
+    }
     // Fetch current active floor
     const currentFloor = Floors.findOne({ floorComplete: false });
 
@@ -217,7 +221,7 @@ Meteor.methods({
       sort: {
         points: -1
       },
-      limit: 10
+      limit
     }).fetch()
   },
 

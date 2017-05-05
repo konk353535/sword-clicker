@@ -14,22 +14,6 @@ const redis = new Meteor.RedisCollection('redis');
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  /*
-  $(document).on('keyup', (e) => {
-      if (e.which === 49) {
-        castAbility(1);
-      } else if (e.which === 50) {
-        castAbility(2);
-      } else if (e.which === 51) {
-        castAbility(3);
-      } else if (e.which === 52) {
-        castAbility(4);
-      } else if (e.which === 53) {
-        castAbility(5);
-      }
-  });
-  */
-
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({
@@ -91,10 +75,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   })
 });
 
-Template.currentBattleUi.onDestroyed(() => {
-  // $(document).off('keyup');
-})
-
 Template.currentBattleUi.helpers({
   currentBattle() {
     const currentBattle = Template.instance().state.get('currentBattle');
@@ -144,6 +124,14 @@ Template.currentBattleUi.helpers({
       return;
     }
 
+    const abilityIndexes = {
+      'mainHand': 0,
+      'offHand': 1,
+      'head': 2,
+      'chest': 3,
+      'legs': 4
+    }
+
     const currentBattle = Template.instance().state.get('currentBattle');
 
     if (!currentBattle) {
@@ -161,14 +149,18 @@ Template.currentBattleUi.helpers({
       });
     }
 
-    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+    const equippedAbilities = myAbilities.learntAbilities.map((ability) => {
+      ability.index = abilityIndexes[ability.slot];
+      ability.hotkey = ability.index + 1;
+      return ability;
+    }).filter((ability) => {
       if (abilityMap[ability.abilityId]) {
         ability.currentCooldown = abilityMap[ability.abilityId].currentCooldown;
       }
       return ability.equipped;
     });
 
-    return equippedAbilities;
+    return _.sortBy(equippedAbilities, 'index');
   },
 
   myUnitsBuffs() {

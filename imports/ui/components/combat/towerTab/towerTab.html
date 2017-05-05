@@ -28,7 +28,7 @@
   {{/unless}}
 
   <!-- List stuff! -->
-  <table class="table table-responsive">
+  <table class="table table-responsive table-hover">
     <thead>
       <tr>
         <th class="align-middle text-center">Name</th>
@@ -43,7 +43,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="text-center">
+      <tr class="text-center battle-easy-row cursor-pointer">
         <td class="align-middle">{{floorDetails.easy.name}}</td>
         <td class="align-middle"><img src="images/{{floorDetails.easy.image}}" class="floor-image"></td>
         {{#if waveDetails}}
@@ -58,7 +58,7 @@
           </button>
         </td>
       </tr>
-      <tr class="text-center">
+      <tr class="text-center battle-hard-row cursor-pointer">
         <td class="align-middle">{{floorDetails.hard.name}}</td>
         <td class="align-middle"><img src="images/{{floorDetails.hard.image}}" class="floor-image"></td>
         {{#if waveDetails}}
@@ -73,7 +73,7 @@
           </button>
         </td>
       </tr>
-      <tr class="text-center">
+      <tr class="text-center battle-veryHard-row cursor-pointer">
         <td class="align-middle">{{floorDetails.veryHard.name}}</td>
         <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
         {{#if waveDetails}}
@@ -89,7 +89,7 @@
         </td>
       </tr>
       {{#if waveDetails}}
-        <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}}">
+        <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}} battle-boss-row cursor-pointer">
           <td class="align-middle">Final Room</td>
           <td class="align-middle"></td>
           <td class="align-middle text-center">

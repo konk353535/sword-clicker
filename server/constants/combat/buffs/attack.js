@@ -242,12 +242,12 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
       const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
-      return `Deals ${dps.toFixed(1)} damage every second. (+${damagePerSecondPerLevel} per lvl) <br />
+      return `Deals 10% of your accuracy as damage every second. (+3% per lvl) <br />
       For ${buff.data.totalDuration}s.`;
     },
     constants: {
-      damagePerSecondBase: 0.5,
-      damagePerSecondPerLevel: 1
+      damagePerSecondBase: 0.07,
+      damagePerSecondPerLevel: 0.03
     },
     data: {
       duration: 10,
@@ -257,6 +257,8 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
         buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
+        buff.data.dps *= caster.stats.accuracy;
+
         buff.data.timeTillDamage = 1;
         buff.data.caster = caster.id;
       },

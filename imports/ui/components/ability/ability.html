@@ -1,5 +1,6 @@
 <template name="ability">
   <div class="ability-icon-container">
+    <div class="ability-hotkey">{{ability.hotkey}}</div>
     <div class="ability-icon {{#if $gt ability.currentCooldown 0}}disabled{{/if}}">
       <img src="icons/{{ability.icon}}.svg">
     </div>

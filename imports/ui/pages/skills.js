@@ -9,6 +9,7 @@ import './skills.html';
 Template.skillsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('selectedSkill', 'total');
+  this.state.set('showAll200', false);
 
   // Fetch active users count
   Meteor.call('users.activeUsers', (err, res) => {
@@ -16,9 +17,10 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
+    const showAll200 = this.state.get('showAll200')
     const skillName = this.state.get('selectedSkill');
     if (skillName === 'tower') {
-      Meteor.call('battles.currentFloorHighscores', (err, res) => {
+      Meteor.call('battles.currentFloorHighscores', showAll200, (err, res) => {
         this.state.set('highscores', res.map((highscore, index) => {
           highscore.rank = index + 1;
           highscore.points = highscore.points.toFixed(2);
@@ -26,7 +28,7 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
         }));
       });
     } else {
-      Meteor.call('skills.highscores', skillName, (err, res) => {
+      Meteor.call('skills.highscores', skillName, showAll200, (err, res) => {
         res.forEach((item, index) => {
           item.rank = index + 1;
         });
@@ -40,10 +42,23 @@ Template.skillsPage.events({
   'click .select-skill'(event, instance) {
     const skillName = $(event.target).closest('.select-skill')[0].getAttribute('data-name');
     instance.state.set('selectedSkill', skillName);
-  }
+  },
+
+  'click .show-full-200'(event, instance) {
+    instance.state.set('showAll200', true);
+  },
+
+  'click .hide-full-200'(event, instance) {
+    instance.state.set('showAll200', false);
+  },
 });
 
 Template.skillsPage.helpers({
+
+  showAll200() {
+    return Template.instance().state.get('showAll200');
+  },
+
   skills() {
     const mostSkills = Skills.find({
       type: {

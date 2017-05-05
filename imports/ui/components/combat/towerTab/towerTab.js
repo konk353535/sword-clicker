@@ -58,15 +58,27 @@ Template.towerTab.events({
   'click .battle-easy-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
   },
+  'click .battle-easy-row'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
+  },
 
   'click .battle-hard-btn'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard', findBattleHandler);
+  },
+  'click .battle-hard-row'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard', findBattleHandler);
   },
 
   'click .battle-veryHard-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
   },
+  'click .battle-veryHard-row'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
+  },
 
+  'click .battle-boss-row'(event, instance) {
+    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
+  },
   'click .battle-boss-btn'(event, instance) {
     Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
   }

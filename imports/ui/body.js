@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
+import { Groups } from '/imports/api/groups/groups.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -32,6 +33,21 @@ Template.body.onCreated(function () {
     if (Meteor.user() && Meteor.user().gold && !Meteor.user().uiState) {
       Meteor.call('users.initUiState');
     }
+  });
+
+  // Auto tracker for invites to groups
+  Tracker.autorun(() => {
+    const invitedToGroups = Groups.find({
+      invites: Meteor.userId()
+    });
+
+    invitedToGroups.forEach((invitedToGroups) => {
+      toastr.info(`
+        <div class="d-flex">
+          You have been invited to a group by ${invitedToGroups.leaderName}.
+        </div>
+      `)
+    });
   });
 
   // Store if the user is an active membership in session

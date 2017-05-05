@@ -140,6 +140,7 @@ Meteor.methods({
     } else {
       // Create group with myself and the target user
       Groups.insert({
+        leaderName: Meteor.user().username,
         leader: this.userId,
         members: [this.userId],
         invites: [targetUser._id]

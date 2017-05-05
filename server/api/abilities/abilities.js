@@ -43,7 +43,12 @@ Meteor.methods({
       // Unequip specified slot
       Abilities.update({
         owner: Meteor.userId(),
-        'learntAbilities.slot': slot
+        learntAbilities: {
+          $elemMatch: {
+            slot,
+            equipped: true
+          }
+        }
       }, {
         $set: {
           'learntAbilities.$.equipped': false

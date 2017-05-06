@@ -49,6 +49,11 @@ Template.combatGroupTab.events({
     target.text.value = '';
   },
 
+  'click .kick-unit'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.kick-unit').data('owner');
+    Meteor.call('groups.kick', { ownerId });
+  },
+
   'click .accept-btn'(event) {
     // Get target data
     const $target = Template.instance().$(event.target);
@@ -63,7 +68,7 @@ Template.combatGroupTab.events({
   'click .btn-kick'(event) {
     // Fetch value
     const username = Template.instance().$('.group-user-input').val();
-    Meteor.call('groups.kick', username);
+    Meteor.call('groups.kick', { username });
     Template.instance().$('.group-user-input').val('');
   },
 
@@ -82,6 +87,9 @@ Template.combatGroupTab.events({
 Template.combatGroupTab.helpers({
 
   currentGroup() {
+    console.log(Groups.findOne({
+      members: Meteor.userId()
+    }));
     return Groups.findOne({
       members: Meteor.userId()
     });

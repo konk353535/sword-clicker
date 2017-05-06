@@ -2,7 +2,12 @@
   {{> yield 'nav'}}
 
   <div class="body-content" id="content">
-    {{> yield}}
+    <div class="d-sm-flex flex-grow">
+      {{> groupList}}
+      <div class="flex-grow">
+        {{> yield}}
+      </div>
+    </div>
   </div>
 
   {{#if currentUser}}

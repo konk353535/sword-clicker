@@ -171,6 +171,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('skills');
   // Show groups
   Meteor.subscribe('groups');
+  // Show combat details for groups
+  Meteor.subscribe('combat');
 });
 
 Handlebars.registerHelper('isMember', function (id) {

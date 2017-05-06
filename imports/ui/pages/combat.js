@@ -29,10 +29,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   combatPageTimer = Meteor.setInterval(function () {
     const currentBattle = BattlesList.findOne({});
-    if (Meteor.user() && (!currentBattle || (Math.random() * 10 > 7))) {
+    if (Meteor.user() && (!currentBattle || (Math.random() * 10 > 3))) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 7000);
+  }, 5000);
 
   this.state.set('hasLearnRequirements', false);
 
@@ -47,7 +47,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  Meteor.subscribe('combat');
   Meteor.subscribe('battles');
   Meteor.subscribe('abilities');
   Meteor.subscribe('battlesList');

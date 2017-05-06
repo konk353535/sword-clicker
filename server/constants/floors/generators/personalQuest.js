@@ -67,7 +67,7 @@ export const personalQuestMonsterGenerator = function(level) {
         attack: 1 + Math.floor(level / 3) + (extraStats / 2),
         attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
         attackSpeed: 0.5,
-        accuracy: 1 + level + (extraStats / 1.5),
+        accuracy: 1 + level + extraStats,
         armor: 1 + (level * 2.5) + extraStats,
         defense: 1 + level,
         damageTaken: 1

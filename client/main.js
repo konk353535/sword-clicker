@@ -5,6 +5,7 @@ import 'bootstrap';
 import './main.html';
 
 // Components
+import '/imports/ui/components/groupList/groupList.js';
 import '/imports/ui/components/chatWindow/chatWindow.js';
 import '/imports/ui/components/ability/ability.js';
 import '/imports/ui/components/helpIcon/helpIcon.js';

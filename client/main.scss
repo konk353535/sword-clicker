@@ -19,6 +19,17 @@
   cursor: pointer;
 }
 
+.flex-grow {
+  flex: 1 1 auto;
+}
+
+.battle-unit-name {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
 
   // Fix so tables are full width on pc

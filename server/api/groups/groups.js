@@ -29,7 +29,7 @@ Meteor.methods({
     });
   },
 
-  'groups.kick'(username) {
+  'groups.kick'({ username, ownerId }) {
     // Fetch your current group
     const currentGroup = Groups.findOne({
       leader: this.userId,
@@ -40,13 +40,20 @@ Meteor.methods({
       return;
     }
 
-    // Find specified username id
-    const targetUser = Users.findOne({
-      username
-    });
+    let targetUser;
+    if (username) {
+      // Find specified username id
+      targetUser = Users.findOne({
+        username
+      });
+    }
 
     const memberFilter = function (member) {
-      return member !== targetUser._id;
+      if (targetUser) {
+        return member !== targetUser._id
+      } else {
+        return member !== ownerId;
+      }
     }
 
     // Remove from current group (invites + users)
@@ -170,6 +177,7 @@ Meteor.publish('groups', function() {
       fields: {
         username: 1,
         stats: 1,
+        owner: 1,
         _id: 1
       }
     }).fetch();
@@ -178,6 +186,7 @@ Meteor.publish('groups', function() {
       const orginalStats = JSON.parse(JSON.stringify(member.stats));
       delete member.stats;
       member.name = member.username;
+      member.owner = member.owner;
       member.icon = "character";
       member.stats = {
         health: orginalStats.health,

@@ -148,7 +148,7 @@
                 <td>{{this.rank}}</td>
                 <td>{{this.username}}</td>
                 {{#unless $eq currentSkill.type 'total'}}
-                  <td>{{this.totalXp}}</td>
+                  <td>{{> ceilNumber this.totalXp}}</td>
                 {{/unless}}
                 <td>{{this.level}}</td>
               </tr>

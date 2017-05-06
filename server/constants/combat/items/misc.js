@@ -30,13 +30,13 @@ export const MISC_ITEMS = {
     }]
   },
 
-  cursed_long_sword: {
-    id: 'cursed_long_sword',
-    icon: 'cursedLongSword',
+  enchanted_long_sword: {
+    id: 'enchanted_long_sword',
+    icon: 'enchantedLongSword',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
-    name: 'cursed long sword',
+    name: 'encahnted long sword',
     sellPrice: 5000,
     description: 'Rumored to be cursed, those who use it perish',
     isTwoHanded: true,

@@ -22,7 +22,7 @@ const redis = new Meteor.RedisCollection('redis');
 const POINTS = {
   easy: 1,
   hard: 5,
-  veryHard: 10
+  veryHard: 20
 }
 
 const distributeRewards = function distributeRewards({ floor }) {
@@ -261,7 +261,7 @@ export const completeBattle = function (actualBattle) {
       owners.forEach((owner) => {
         const userObject = Users.findOne({ _id: owner });
         if (userObject.personalQuest.level === actualBattle.level) {
-          if (actualBattle.wave + 1 > 10) {
+          if (actualBattle.wave + 1 > 5) {
             Users.update(owner, {
               $set: {
                 'personalQuest.level': actualBattle.level + 1,

@@ -223,5 +223,157 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 20
     }]
+  },
+
+  orichalcum_axe: {
+    produces: 'orichalcum_axe',
+    recipeFor: 'crafting',
+    name: 'orichalcum axe',
+    id: 'orichalcum_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 4, // 60
+    xp: 3000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'orichalcum_essence',
+      icon: ITEMS['orichalcum_essence'].icon,
+      name: ITEMS['orichalcum_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 25
+    }]
+  },
+
+  cobalt_axe: {
+    produces: 'cobalt_axe',
+    recipeFor: 'crafting',
+    name: 'cobalt axe',
+    id: 'cobalt_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 5, // 60
+    xp: 4500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 30,
+    required: [{
+      type: 'item',
+      itemId: 'cobalt_essence',
+      icon: ITEMS['cobalt_essence'].icon,
+      name: ITEMS['cobalt_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cobalt_bar',
+      icon: ITEMS['cobalt_bar'].icon,
+      name: ITEMS['cobalt_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 30
+    }]
+  },
+
+  fairy_steel_axe: {
+    produces: 'fairy_steel_axe',
+    recipeFor: 'crafting',
+    name: 'fairy_steel axe',
+    id: 'fairy_steel_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 6, // 60
+    xp: 4500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'fairy_steel_essence',
+      icon: ITEMS['fairy_steel_essence'].icon,
+      name: ITEMS['fairy_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fairy_steel_bar',
+      icon: ITEMS['fairy_steel_bar'].icon,
+      name: ITEMS['fairy_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 35
+    }]
+  },
+
+  cursed_axe: {
+    produces: 'cursed_axe',
+    recipeFor: 'crafting',
+    name: 'cursed axe',
+    id: 'cursed_axe',
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 6, // 60
+    xp: 4500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fiery_log',
+      icon: ITEMS['fiery_log'].icon,
+      name: ITEMS['fiery_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
+    }]
   }
 }

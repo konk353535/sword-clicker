@@ -10,12 +10,12 @@ export const FLOORS = Object.assign({
     const activePlayers = 1;
 
     // Total # waves = weekly activePlayers rounded to closest 100
-    const totalWaves = 300;
+    const totalWaves = 1000;
 
     return {
       easy: totalWaves * 0.7,
       hard: totalWaves * 0.2,
-      veryHard: totalWaves * 0.1
+      veryHard: totalWaves * 0.05
     }
   },
 

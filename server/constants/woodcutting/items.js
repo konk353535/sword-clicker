@@ -138,6 +138,86 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
+  orichalcum_axe: {
+    id: 'orichalcum_axe',
+    icon: 'orichalcumAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'orichalcum axe',
+    sellPrice: 1000,
+    description: 'An axe forged from orichalcum. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 21,
+      attackSpeed: 2,
+      accuracy: 75
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  cobalt_axe: {
+    id: 'cobalt_axe',
+    icon: 'cobaltAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'cobalt axe',
+    sellPrice: 1500,
+    description: 'An axe forged from cobalt. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 24,
+      attackSpeed: 2,
+      accuracy: 25
+    },
+    extraStats: {
+      accuracy: 50,
+      attackSpeed: 1
+    }
+  },
+
+  fairy_steel_axe: {
+    id: 'fairy_steel_axe',
+    icon: 'fairy_steelAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'fairy steel axe',
+    sellPrice: 2000,
+    description: 'An axe forged from fairy steel. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 27,
+      attackSpeed: 2,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  cursed_axe: {
+    id: 'cursed_axe',
+    icon: 'cursedAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'cursed axe',
+    sellPrice: 750,
+    description: 'A cursed axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 30,
+      attackSpeed: 2,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
   pine_log: {
     id: 'pine_log',
     icon: 'pineLog',
@@ -184,5 +264,45 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'walnut log',
     sellPrice: 30
+  },
+
+  cherry_log: {
+    id: 'cherry_log',
+    icon: 'cherryLog',
+    category: 'woodcutting',
+    name: 'cherry log',
+    sellPrice: 40
+  },
+
+  mahogany_log: {
+    id: 'mahogany_log',
+    icon: 'mahoganyLog',
+    category: 'woodcutting',
+    name: 'mahogany log',
+    sellPrice: 50
+  },
+
+  elk_log: {
+    id: 'elk_log',
+    icon: 'elkLog',
+    category: 'woodcutting',
+    name: 'elk log',
+    sellPrice: 60
+  },
+
+  fiery_log: {
+    id: 'fiery_log',
+    icon: 'fieryLog',
+    category: 'woodcutting',
+    name: 'fiery log',
+    sellPrice: 70
+  },
+
+  magic_log: {
+    id: 'magic_log',
+    icon: 'magicLog',
+    category: 'woodcutting',
+    name: 'magic log',
+    sellPrice: 80
   }
 }

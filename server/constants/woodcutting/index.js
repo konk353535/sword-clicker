@@ -179,6 +179,102 @@ export const WOODCUTTING = {
         name: 'woodcutting',
         level: 20
       }]
+    },
+
+    lumber_jack_champion: {
+      requiredWoodcuttingLevel: 25,
+      icon: 'lumberJack',
+      name: 'lumberjack champion',
+      id: 'lumber_jack',
+      axeId: 'orichalcum_axe',
+      required: [{
+        type: 'item',
+        itemId: 'orichalcum_axe',
+        icon: ITEMS['orichalcum_axe'].icon,
+        name: ITEMS['orichalcum_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 50000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 25
+      }]
+    },
+
+    lumber_jack_legend: {
+      requiredWoodcuttingLevel: 30,
+      icon: 'lumberJack',
+      name: 'lumberjack legend',
+      id: 'lumber_jack',
+      axeId: 'cobalt_axe',
+      required: [{
+        type: 'item',
+        itemId: 'cobalt_axe',
+        icon: ITEMS['cobalt_axe'].icon,
+        name: ITEMS['cobalt_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 75000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 30
+      }]
+    },
+
+    lumber_jack_hero: {
+      requiredWoodcuttingLevel: 35,
+      icon: 'lumberJack',
+      name: 'lumberjack hero',
+      id: 'lumber_jack',
+      axeId: 'fairy_steel_axe',
+      required: [{
+        type: 'item',
+        itemId: 'fairy_steel_axe',
+        icon: ITEMS['fairy_steel_axe'].icon,
+        name: ITEMS['fairy_steel_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 100000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 35
+      }]
+    },
+
+    lumber_jack_pack: {
+      requiredWoodcuttingLevel: 40,
+      icon: 'lumberJack',
+      name: 'lumberjack pack',
+      id: 'lumber_jack',
+      axeId: 'cursed_axe',
+      required: [{
+        type: 'item',
+        itemId: 'cursed_axe',
+        icon: ITEMS['cursed_axe'].icon,
+        name: ITEMS['cursed_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 150000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 40
+      }]
     }
   },
 
@@ -241,8 +337,57 @@ export const WOODCUTTING = {
       name: 'walnut log',
       itemId: 'walnut_log',
       chance: 0.01
-    }
+    },
 
-    // Cherry, Mahogany
+    cherry_log: {
+      requiredAttack: 18,
+      xp: 120,
+      id: 'cherry_log',
+      icon: 'cherryLog',
+      name: 'cherry log',
+      itemId: 'cherry_log',
+      chance: 0.01
+    },
+
+    mahogany_log: {
+      requiredAttack: 21,
+      xp: 120,
+      id: 'mahogany_log',
+      icon: 'mahoganyLog',
+      name: 'mahogany log',
+      itemId: 'mahogany_log',
+      chance: 0.01
+    },
+
+    elk_log: {
+      requiredAttack: 24,
+      xp: 180,
+      id: 'elk_log',
+      icon: 'elkLog',
+      name: 'elk log',
+      itemId: 'elk_log',
+      chance: 0.01
+    },
+
+
+    fiery_log: {
+      requiredAttack: 27,
+      xp: 240,
+      id: 'fiery_log',
+      icon: 'fieryLog',
+      name: 'fiery log',
+      itemId: 'fiery_log',
+      chance: 0.01
+    },
+
+    magic_log: {
+      requiredAttack: 30,
+      xp: 300,
+      id: 'magic_log',
+      icon: 'magicLog',
+      name: 'magic log',
+      itemId: 'magic_log',
+      chance: 0.01
+    }
   }
 }

@@ -63,6 +63,38 @@ export const ORE_ITEMS = {
     sellPrice: 75
   },
 
+  ore_orichalcum: {
+    id: 'ore_orichalcum',
+    icon: 'orichalcum',
+    category: 'mining',
+    name: 'orichalcum',
+    sellPrice: 100
+  },
+
+  ore_cobalt: {
+    id: 'ore_cobalt',
+    icon: 'cobalt',
+    category: 'mining',
+    name: 'cobalt',
+    sellPrice: 125
+  },
+
+  ore_fairy_steel: {
+    id: 'ore_fairy_steel',
+    icon: 'fairy_steel',
+    category: 'mining',
+    name: 'fairy steel',
+    sellPrice: 150
+  },
+
+  ore_cursed: {
+    id: 'ore_cursed',
+    icon: 'cursed',
+    category: 'mining',
+    name: 'cursed ore',
+    sellPrice: 175
+  },
+
   jade: {
     id: 'jade',
     icon: 'jade',

@@ -109,30 +109,12 @@ export const TOWER_FLOOR_4 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'thirsting_saber',
-      icon: ITEMS['thirsting_saber'].icon,
-      name: ITEMS['thirsting_saber'].name,
-      amount: 10,
-      baseStats: ITEMS['thirsting_saber'].stats,
-      extraStats: ITEMS['thirsting_saber'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'cursed_long_sword',
-      icon: ITEMS['cursed_long_sword'].icon,
-      name: ITEMS['cursed_long_sword'].name,
-      amount: 10,
-      baseStats: ITEMS['cursed_long_sword'].stats,
-      extraStats: ITEMS['cursed_long_sword'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'spartan_shield',
-      icon: ITEMS['spartan_shield'].icon,
-      name: ITEMS['spartan_shield'].name,
-      amount: 10,
-      baseStats: ITEMS['spartan_shield'].stats,
-      extraStats: ITEMS['spartan_shield'].extraStats
+      itemId: 'mithril_dwarven_idol',
+      icon: ITEMS['mithril_dwarven_idol'].icon,
+      name: ITEMS['mithril_dwarven_idol'].name,
+      amount: 30,
+      baseStats: ITEMS['mithril_dwarven_idol'].stats,
+      extraStats: ITEMS['mithril_dwarven_idol'].extraStats
     }
   ]
 }

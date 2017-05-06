@@ -71,6 +71,51 @@ export const CRAFTING_ITEMS = {
     description: 'Used to melt ores into bars'
   },
 
+  adamantium_furnace: {
+    id: 'adamantium_furnace',
+    icon: 'adamantiumFurnace',
+    category: 'crafting',
+    name: 'adamantium furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
+  orichalcum_furnace: {
+    id: 'orichalcum_furnace',
+    icon: 'orichalcumFurnace',
+    category: 'crafting',
+    name: 'orichalcum furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
+  cobalt_furnace: {
+    id: 'cobalt_furnace',
+    icon: 'cobaltFurnace',
+    category: 'crafting',
+    name: 'cobalt furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
+  fairy_steel_furnace: {
+    id: 'fairy_steel_furnace',
+    icon: 'fairySteelFurnace',
+    category: 'crafting',
+    name: 'fairy steel furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
+  cursed_furnace: {
+    id: 'cursed_furnace',
+    icon: 'cursedFurnace',
+    category: 'crafting',
+    name: 'cursed furnace',
+    sellPrice: 1,
+    description: 'Used to melt ores into bars'
+  },
+
   copper_bar: {
     id: 'copper_bar',
     icon: 'copperBar',
@@ -116,7 +161,6 @@ export const CRAFTING_ITEMS = {
     description: 'Used to craft mithril tools and weapons'
   },
 
-
   adamantium_bar: {
     id: 'adamantium_bar',
     icon: 'adamantiumBar',
@@ -124,5 +168,41 @@ export const CRAFTING_ITEMS = {
     name: 'adamantium bar',
     sellPrice: 80,
     description: 'Used to craft adamantium tools and weapons'
+  },
+
+  orichalcum_bar: {
+    id: 'orichalcum_bar',
+    icon: 'orichalcumBar',
+    category: 'crafting',
+    name: 'orichalcum bar',
+    sellPrice: 100,
+    description: 'Used to craft orichalcum tools and weapons'
+  },
+
+  cobalt_bar: {
+    id: 'cobalt_bar',
+    icon: 'cobaltBar',
+    category: 'crafting',
+    name: 'cobalt bar',
+    sellPrice: 120,
+    description: 'Used to craft cobalt tools and weapons'
+  },
+
+  fairy_steel_bar: {
+    id: 'fairy_steel_bar',
+    icon: 'fairySteelBar',
+    category: 'crafting',
+    name: 'fairy steel bar',
+    sellPrice: 140,
+    description: 'Used to craft fairy steel tools and weapons'
+  },
+
+  cursed_bar: {
+    id: 'cursed_bar',
+    icon: 'cursedBar',
+    category: 'crafting',
+    name: 'cursed bar',
+    sellPrice: 160,
+    description: 'Used to craft cursed tools and weapons'
   }
 }

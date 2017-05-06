@@ -94,5 +94,62 @@ export const BOSS_ENEMIES = {
       damageTaken: 1
     },
     rewards: []
+  },
+
+  boss_goblin: {
+    id: 'boss_goblin',
+    icon: 'bossGoblin',
+    name: 'Boss goblin',
+    isBoss: true,
+    stats: {
+      attack: 120,
+      attackMax: 240,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 250,
+      health: 45000,
+      healthMax: 45000,
+      defense: 180,
+      armor: 180,
+      damageTaken: 1
+    },
+    rewards: []
+  },
+
+  boss_ogre: {
+    id: 'boss_ogre',
+    icon: 'bossOgre',
+    name: 'Boss ogre',
+    isBoss: true,
+    stats: {
+      attack: 140,
+      attackMax: 260,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 270,
+      health: 55000,
+      healthMax: 55000,
+      defense: 220,
+      armor: 180,
+      damageTaken: 1
+    },
+    rewards: []
+  },
+
+  boss_phenoix: {
+    id: 'boss_phenoix',
+    icon: 'bossPhenoix',
+    name: 'Boss phenoix',
+    isBoss: true,
+    stats: {
+      attack: 140,
+      attackMax: 260,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 270,
+      health: 75000,
+      healthMax: 75000,
+      defense: 220,
+      armor: 180,
+      damageTaken: 1
+    },
+    rewards: []
   }
 }

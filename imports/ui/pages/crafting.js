@@ -254,7 +254,7 @@ Template.craftingPage.helpers({
 
     // Create regex exp to filter out based on current tier filter selection
     let filterTierRegex = new RegExp(patterns.join('|'), 'gi');
-
+    console.log(instance.state.get('recipes'));
     let filteredRecipes = instance.state.get('recipes').filter((item) => {
       if (patterns.length > 0 && filterTierRegex) {
         // Filter out if it matches the pattern.

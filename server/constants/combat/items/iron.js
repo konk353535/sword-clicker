@@ -46,7 +46,7 @@ export const IRON_ITEMS = {
       attackMax: 6,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 3,
-      defense: 15
+      defense: 7
     },
     extraStats: {
       attack: 3,

@@ -13,15 +13,15 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 12,
-      attackMax: 15,
+      attack: 5,
+      attackMax: 16,
       attackSpeed: FAST_SPEED,
-      accuracy: 15
+      accuracy: 18
     },
     extraStats: {
-      attack: 6,
-      attackMax: 6,
-      accuracy: 12
+      attack: 2,
+      attackMax: 2,
+      accuracy: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -43,16 +43,16 @@ export const ADAMANTIUM_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 15,
-      attackMax: 19,
+      attackMax: 24,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 15,
-      defense: 44
+      accuracy: 22,
+      defense: 24
     },
     extraStats: {
-      attack: 6,
-      attackMax: 10,
-      accuracy: 12,
-      defense: 18
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2,
+      defense: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -73,15 +73,15 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 15,
-      attackMax: 22,
+      attack: 17,
+      attackMax: 27,
       attackSpeed: FAST_SPEED,
-      accuracy: 19,
+      accuracy: 30,
     },
     extraStats: {
-      attack: 8,
-      attackMax: 10,
-      accuracy: 16
+      attack: 2,
+      attackMax: 2,
+      accuracy: 3
     },
     requiredEquip: [{
       type: 'skill',
@@ -102,15 +102,15 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 17,
-      attackMax: 26,
+      attack: 20,
+      attackMax: 30,
       attackSpeed: FAST_SPEED,
-      accuracy: 23,
+      accuracy: 34,
     },
     extraStats: {
-      attack: 8,
-      attackMax: 10,
-      accuracy: 16
+      attack: 2,
+      attackMax: 2,
+      accuracy: 3
     },
     requiredEquip: [{
       type: 'skill',
@@ -132,15 +132,15 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 26,
-      attackMax: 33,
+      attack: 32,
+      attackMax: 44,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 33,
+      accuracy: 44,
     },
     extraStats: {
-      attack: 11,
-      attackMax: 14,
-      accuracy: 14
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -162,15 +162,15 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 22,
-      attackMax: 30,
+      attack: 27,
+      attackMax: 37,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 30,
+      accuracy: 37,
     },
     extraStats: {
-      attack: 11,
-      attackMax: 14,
-      accuracy: 14
+      attack: 3,
+      attackMax: 4,
+      accuracy: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -192,14 +192,14 @@ export const ADAMANTIUM_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 23,
-      attackMax: 63,
+      attack: 26,
+      attackMax: 80,
       attackSpeed: SLOW_SPEED,
-      accuracy: 30,
+      accuracy: 27,
     },
     extraStats: {
-      attack: 9,
-      attackMax: 35
+      attack: 3,
+      attackMax: 14
     },
     requiredEquip: [{
       type: 'skill',
@@ -218,14 +218,14 @@ export const ADAMANTIUM_ITEMS = {
     description: 'Protect your head',
     isEquippable: true,
     stats: {
-      healthMax: 12,
-      defense: 13,
-      armor: 31
+      healthMax: 18,
+      defense: 17,
+      armor: 37
     },
     extraStats: {
-      healthMax: 10,
-      defense: 8,
-      armor: 14
+      healthMax: 2,
+      defense: 2,
+      armor: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -245,17 +245,17 @@ export const ADAMANTIUM_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 7,
-      armor: 7,
-      attack: 8,
-      attackMax: 8,
-      accuracy: 8
+      armor: 9,
+      attack: 9,
+      attackMax: 9,
+      accuracy: 9
     },
     extraStats: {
-      healthMax: 4,
-      armor: 5,
-      attack: 5,
-      attackMax: 5,
-      accuracy: 5
+      healthMax: 2,
+      armor: 2,
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -274,14 +274,14 @@ export const ADAMANTIUM_ITEMS = {
     description: 'Protect your heart',
     isEquippable: true,
     stats: {
-      healthMax: 11,
-      defense: 11,
-      armor: 29
+      healthMax: 16,
+      defense: 19,
+      armor: 41
     },
     extraStats: {
-      healthMax: 9,
-      defense: 14,
-      armor: 25
+      healthMax: 2,
+      defense: 4,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -300,14 +300,14 @@ export const ADAMANTIUM_ITEMS = {
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 12,
-      defense: 12,
-      armor: 25
+      healthMax: 17,
+      defense: 17,
+      armor: 33
     },
     extraStats: {
-      healthMax: 10,
-      defense: 10,
-      armor: 24
+      healthMax: 2,
+      defense: 2,
+      armor: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -326,14 +326,14 @@ export const ADAMANTIUM_ITEMS = {
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 23,
-      defense: 14,
+      healthMax: 33,
+      defense: 16,
       armor: 60
     },
     extraStats: {
-      healthMax: 20,
-      defense: 11,
-      armor: 24
+      healthMax: 6,
+      defense: 4,
+      armor: 11
     },
     requiredEquip: [{
       type: 'skill',

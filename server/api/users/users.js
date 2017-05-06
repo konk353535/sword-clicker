@@ -102,6 +102,10 @@ Meteor.methods({
       'craftingTierFilter.carbon',
       'craftingTierFilter.mithril',
       'craftingTierFilter.adamantium',
+      'craftingTierFilter.orichalcum',
+      'craftingTierFilter.cobalt',
+      'craftingTierFilter.fairy_steel',
+      'craftingTierFilter.cursed',
     ];
 
     if (_.contains(validIds, id)) {

@@ -33,6 +33,22 @@ export const personalQuestMonsterGenerator = function(level) {
       rewardLevel = 8;
       possibleMonsters.push(...MONSTER_LIST[8])
     }
+    if (level >= 100) {
+      rewardLevel = 9;
+      possibleMonsters.push(...MONSTER_LIST[9])
+    }
+    if (level >= 125) {
+      rewardLevel = 10;
+      possibleMonsters.push(...MONSTER_LIST[10])
+    }
+    if (level >= 150) {
+      rewardLevel = 11;
+      possibleMonsters.push(...MONSTER_LIST[11])
+    }
+    if (level >= 175) {
+      rewardLevel = 12;
+      possibleMonsters.push(...MONSTER_LIST[12])
+    }
 
     const selectedMonster = _.sample(possibleMonsters);
 
@@ -51,7 +67,7 @@ export const personalQuestMonsterGenerator = function(level) {
         attack: 1 + Math.floor(level / 3) + (extraStats / 2),
         attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
         attackSpeed: 0.5,
-        accuracy: 1 + level + (extraStats / 2),
+        accuracy: 1 + level + (extraStats / 1.5),
         armor: 1 + (level * 2.5) + extraStats,
         defense: 1 + level,
         damageTaken: 1

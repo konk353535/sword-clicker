@@ -90,6 +90,30 @@
             Adamantium
         </span>
       {{/if}}
+      {{#if $gte craftingLevel 24}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.orichalcum}}empty{{else}}orichalcum{{/if}}" data-tier-filter="orichalcum">
+            Orichalcum
+        </span>
+      {{/if}}
+        {{#if $gte craftingLevel 29}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.cobalt}}empty{{else}}cobalt{{/if}}" data-tier-filter="cobalt">
+            Cobalt
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 34}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.fairy_steel}}empty{{else}}fairy-steel{{/if}}" data-tier-filter="fairy_steel">
+            FairySteel
+        </span>
+      {{/if}}
+      {{#if $gte craftingLevel 39}}
+        <span class="tier-filter badge
+          badge-{{#if craftingTierFilter.cursed}}empty{{else}}cursed{{/if}}" data-tier-filter="cursed">
+            Cursed
+        </span>
+      {{/if}}
     </div>
 
     <table class="table table-bordered table-hover table-centered table-responsive">

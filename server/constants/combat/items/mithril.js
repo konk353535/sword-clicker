@@ -13,15 +13,15 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 7,
-      attackMax: 10,
+      attack: 4,
+      attackMax: 14,
       attackSpeed: FAST_SPEED,
-      accuracy: 10
+      accuracy: 16
     },
     extraStats: {
-      attack: 6,
-      attackMax: 6,
-      accuracy: 12
+      attack: 2,
+      attackMax: 2,
+      accuracy: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -42,17 +42,17 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 10,
-      attackMax: 14,
+      attack: 14,
+      attackMax: 22,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 10,
-      defense: 35
+      accuracy: 20,
+      defense: 20
     },
     extraStats: {
-      attack: 6,
-      attackMax: 10,
-      accuracy: 12,
-      defense: 18
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2,
+      defense: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -73,15 +73,15 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 10,
-      attackMax: 17,
+      attack: 16,
+      attackMax: 25,
       attackSpeed: FAST_SPEED,
-      accuracy: 14,
+      accuracy: 28,
     },
     extraStats: {
-      attack: 8,
-      attackMax: 10,
-      accuracy: 16
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -102,15 +102,15 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 12,
-      attackMax: 20,
+      attack: 18,
+      attackMax: 28,
       attackSpeed: FAST_SPEED,
-      accuracy: 17,
+      accuracy: 31,
     },
     extraStats: {
-      attack: 8,
-      attackMax: 10,
-      accuracy: 16
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -132,15 +132,15 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 20,
-      attackMax: 28,
+      attack: 29,
+      attackMax: 40,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 28,
+      accuracy: 40,
     },
     extraStats: {
-      attack: 11,
-      attackMax: 14,
-      accuracy: 14
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -162,15 +162,15 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 17,
-      attackMax: 25,
+      attack: 25,
+      attackMax: 34,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 25,
+      accuracy: 34,
     },
     extraStats: {
-      attack: 11,
-      attackMax: 14,
-      accuracy: 14
+      attack: 2,
+      attackMax: 4,
+      accuracy: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -192,14 +192,14 @@ export const MITHRIL_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 18,
-      attackMax: 53,
+      attack: 24,
+      attackMax: 73,
       attackSpeed: SLOW_SPEED,
       accuracy: 25,
     },
     extraStats: {
-      attack: 9,
-      attackMax: 35
+      attack: 3,
+      attackMax: 12
     },
     requiredEquip: [{
       type: 'skill',
@@ -218,14 +218,14 @@ export const MITHRIL_ITEMS = {
     description: 'Protect your head',
     isEquippable: true,
     stats: {
-      healthMax: 9,
-      defense: 10,
-      armor: 26
+      healthMax: 17,
+      defense: 16,
+      armor: 34
     },
     extraStats: {
-      healthMax: 10,
-      defense: 8,
-      armor: 14
+      healthMax: 2,
+      defense: 2,
+      armor: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -244,18 +244,18 @@ export const MITHRIL_ITEMS = {
     description: 'Headbut your enemies',
     isEquippable: true,
     stats: {
-      healthMax: 4,
-      armor: 5,
-      attack: 5,
-      attackMax: 5,
-      accuracy: 5
+      healthMax: 6,
+      armor: 8,
+      attack: 8,
+      attackMax: 8,
+      accuracy: 8
     },
     extraStats: {
-      healthMax: 4,
-      armor: 5,
-      attack: 5,
-      attackMax: 5,
-      accuracy: 5
+      healthMax: 2,
+      armor: 2,
+      attack: 2,
+      attackMax: 2,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -274,14 +274,14 @@ export const MITHRIL_ITEMS = {
     description: 'Protect your heart',
     isEquippable: true,
     stats: {
-      healthMax: 8,
-      defense: 8,
-      armor: 23
+      healthMax: 15,
+      defense: 18,
+      armor: 38
     },
     extraStats: {
-      healthMax: 9,
-      defense: 14,
-      armor: 25
+      healthMax: 2,
+      defense: 4,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -300,14 +300,14 @@ export const MITHRIL_ITEMS = {
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 8,
-      defense: 8,
-      armor: 20
+      healthMax: 16,
+      defense: 16,
+      armor: 30
     },
     extraStats: {
-      healthMax: 10,
-      defense: 10,
-      armor: 24
+      healthMax: 2,
+      defense: 2,
+      armor: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -326,14 +326,14 @@ export const MITHRIL_ITEMS = {
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 16,
-      defense: 8,
-      armor: 40
+      healthMax: 30,
+      defense: 15,
+      armor: 55
     },
     extraStats: {
-      healthMax: 20,
-      defense: 11,
-      armor: 24
+      healthMax: 6,
+      defense: 4,
+      armor: 9
     },
     requiredEquip: [{
       type: 'skill',

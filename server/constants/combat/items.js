@@ -4,6 +4,10 @@ import { STEEL_ITEMS } from './items/steel';
 import { CARBON_ITEMS } from './items/carbon';
 import { MITHRIL_ITEMS } from './items/mithril';
 import { ADAMANTIUM_ITEMS } from './items/adamantium';
+import { ORICHALCUM_ITEMS } from './items/orichalcum';
+import { COBALT_ITEMS } from './items/cobalt';
+import { FAIRY_STEEL_ITEMS } from './items/fairySteel';
+import { CURSED_ITEMS } from './items/cursed';
 import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
 
@@ -14,5 +18,9 @@ export const COMBAT_ITEMS = Object.assign(
   CARBON_ITEMS,
   MITHRIL_ITEMS,
   ADAMANTIUM_ITEMS,
+  ORICHALCUM_ITEMS,
+  COBALT_ITEMS,
+  FAIRY_STEEL_ITEMS,
+  CURSED_ITEMS,
   MISC_ITEMS,
   AMULET_ITEMS);

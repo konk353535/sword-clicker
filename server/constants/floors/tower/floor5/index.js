@@ -83,17 +83,14 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'mithril_essence', amount: 3 },
+        { type: 'item', itemId: 'adamantium_essence', amount: 1 },
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
-        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'thirsting_saber', amount: 1 },
-        { type: 'item', itemId: 'cursed_long_sword', amount: 1 },
-        { type: 'item', itemId: 'spartan_shield', amount: 1 }
+        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 }
       ]
     }])
   },
@@ -112,30 +109,12 @@ export const TOWER_FLOOR_5 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'thirsting_saber',
-      icon: ITEMS['thirsting_saber'].icon,
-      name: ITEMS['thirsting_saber'].name,
-      amount: 10,
-      baseStats: ITEMS['thirsting_saber'].stats,
-      extraStats: ITEMS['thirsting_saber'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'cursed_long_sword',
-      icon: ITEMS['cursed_long_sword'].icon,
-      name: ITEMS['cursed_long_sword'].name,
-      amount: 10,
-      baseStats: ITEMS['cursed_long_sword'].stats,
-      extraStats: ITEMS['cursed_long_sword'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'spartan_shield',
-      icon: ITEMS['spartan_shield'].icon,
-      name: ITEMS['spartan_shield'].name,
-      amount: 10,
-      baseStats: ITEMS['spartan_shield'].stats,
-      extraStats: ITEMS['spartan_shield'].extraStats
+      itemId: 'adamantium_dwarven_idol',
+      icon: ITEMS['adamantium_dwarven_idol'].icon,
+      name: ITEMS['adamantium_dwarven_idol'].name,
+      amount: 30,
+      baseStats: ITEMS['adamantium_dwarven_idol'].stats,
+      extraStats: ITEMS['adamantium_dwarven_idol'].extraStats
     }
   ]
 }

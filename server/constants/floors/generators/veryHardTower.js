@@ -25,6 +25,22 @@ export const veryHardTowerMonsterGenerator = function(floor) {
       rewardLevel = 8;
       possibleMonsters.push(...MONSTER_LIST[8])
     }
+    if (floor >= 6) {
+      rewardLevel = 9;
+      possibleMonsters.push(...MONSTER_LIST[9])
+    }
+    if (floor >= 7) {
+      rewardLevel = 10;
+      possibleMonsters.push(...MONSTER_LIST[10])
+    }
+    if (floor >= 8) {
+      rewardLevel = 11;
+      possibleMonsters.push(...MONSTER_LIST[11])
+    }
+    if (floor >= 9) {
+      rewardLevel = 12;
+      possibleMonsters.push(...MONSTER_LIST[12])
+    }
 
     const selectedMonster = _.sample(possibleMonsters);
 

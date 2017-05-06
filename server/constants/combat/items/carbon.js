@@ -46,7 +46,7 @@ export const CARBON_ITEMS = {
       attackMax: 10,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 8,
-      defense: 28
+      defense: 14
     },
     extraStats: {
       attack: 4,

@@ -5,7 +5,7 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: 1 / 5, // 1 spawn every 5 seconds ( 12 / min )
+    chance: 1 / 6, // 1 spawn every 5 seconds ( 12 / min )
   },
   prospectors: {
     stone: {
@@ -133,6 +133,70 @@ export const MINING = {
         type: 'skill',
         name: 'mining',
         level: 25
+      }],
+      max: 5
+    },
+    orichalcum: {
+      requiredMiningLevel: 30,
+      icon: 'orichalcumProspector',
+      name: 'orichalcum prospector',
+      id: 'orichalcum',
+      required: [{
+        type: 'gold',
+        amount: 10000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 30
+      }],
+      max: 5
+    },
+    cobalt: {
+      requiredMiningLevel: 30,
+      icon: 'cobaltProspector',
+      name: 'cobalt prospector',
+      id: 'cobalt',
+      required: [{
+        type: 'gold',
+        amount: 15000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 30
+      }],
+      max: 5
+    },
+    fairy_steel: {
+      requiredMiningLevel: 35,
+      icon: 'fairy_steelProspector',
+      name: 'fairy steel prospector',
+      id: 'fairy_steel',
+      required: [{
+        type: 'gold',
+        amount: 20000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 35
+      }],
+      max: 5
+    },
+    cursed: {
+      requiredMiningLevel: 40,
+      icon: 'cursedProspector',
+      name: 'cursed prospector',
+      id: 'cursed',
+      required: [{
+        type: 'gold',
+        amount: 25000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 40
       }],
       max: 5
     }
@@ -311,13 +375,113 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.17
+    },
+
+    orichalcum_miner: {
+      requiredMiningLevel: 30,
+      icon: 'orichalcumMiner',
+      name: 'orichalcum miner',
+      id: 'orichalcum_miner',
+      required: [{
+        type: 'item',
+        itemId: 'orichalcum_pickaxe',
+        icon: ITEMS['orichalcum_pickaxe'].icon,
+        name: ITEMS['orichalcum_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 100000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 30
+      }],
+      max: 3,
+      damagePerSecond: 0.20
+    },
+
+    cobalt_miner: {
+      requiredMiningLevel: 35,
+      icon: 'cobaltMiner',
+      name: 'cobalt miner',
+      id: 'cobalt_miner',
+      required: [{
+        type: 'item',
+        itemId: 'cobalt_pickaxe',
+        icon: ITEMS['cobalt_pickaxe'].icon,
+        name: ITEMS['cobalt_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 150000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 35
+      }],
+      max: 3,
+      damagePerSecond: 0.23
+    },
+
+    fairy_steel_miner: {
+      requiredMiningLevel: 40,
+      icon: 'fairySteelMiner',
+      name: 'fairy steel miner',
+      id: 'fairy_steel_miner',
+      required: [{
+        type: 'item',
+        itemId: 'fairy_steel_pickaxe',
+        icon: ITEMS['fairy_steel_pickaxe'].icon,
+        name: ITEMS['fairy_steel_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 200000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 40
+      }],
+      max: 3,
+      damagePerSecond: 0.26
+    },
+
+    cursed_miner: {
+      requiredMiningLevel: 45,
+      icon: 'cursedMiner',
+      name: 'cursed miner',
+      id: 'cursed_miner',
+      required: [{
+        type: 'item',
+        itemId: 'cursed_pickaxe',
+        icon: ITEMS['cursed_pickaxe'].icon,
+        name: ITEMS['cursed_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 50000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 45
+      }],
+      max: 3,
+      damagePerSecond: 0.29
     }
   },
   ores: {
     stone: {
       requiredLevel: 1,
       healthMax: 10,
-      xp: 3,
+      xp: 2,
       id: 'stone',
       icon: 'stone',
       name: 'stone',
@@ -328,7 +492,7 @@ export const MINING = {
     copper: {
       requiredLevel: 2,
       healthMax: 20,
-      xp: 6,
+      xp: 5,
       id: 'copper',
       icon: 'copper',
       name: 'copper',
@@ -339,7 +503,7 @@ export const MINING = {
     coal: {
       requiredLevel: 2,
       healthMax: 35,
-      xp: 13,
+      xp: 9,
       id: 'coal',
       icon: 'coal',
       name: 'coal',
@@ -350,7 +514,7 @@ export const MINING = {
     iron: {
       requiredLevel: 5,
       healthMax: 80,
-      xp: 28,
+      xp: 23,
       id: 'iron',
       icon: 'iron',
       name: 'iron',
@@ -361,7 +525,7 @@ export const MINING = {
     steel: {
       requiredLevel: 10,
       healthMax: 200,
-      xp: 57,
+      xp: 49,
       id: 'steel',
       icon: 'steel',
       name: 'steel',
@@ -372,7 +536,7 @@ export const MINING = {
     carbon: {
       requiredLevel: 15,
       healthMax: 400,
-      xp: 115,
+      xp: 100,
       id: 'carbon',
       icon: 'carbon',
       name: 'carbon',
@@ -383,23 +547,133 @@ export const MINING = {
     mithril: {
       requiredLevel: 20,
       healthMax: 1000,
-      xp: 245,
+      xp: 205,
       id: 'mithril',
       icon: 'mithril',
       name: 'mithril',
       itemId: 'ore_mithril',
-      chance: 0.00075
+      chance: 0.00065
+    },
+
+    mithril_essence: {
+      requiredLevel: 23,
+      healthMax: 10000,
+      xp: 200,
+      id: 'mithril_essence',
+      icon: 'mithrilEssence',
+      name: 'mithril_essence',
+      itemId: 'mithril_essence',
+      chance: 0.0000075
     },
 
     adamantium: {
       requiredLevel: 25,
       healthMax: 5000,
-      xp: 440,
+      xp: 350,
       id: 'adamantium',
       icon: 'adamantium',
       name: 'adamantium',
       itemId: 'ore_adamantium',
-      chance: 0.00045
+      chance: 0.00030
+    },
+
+    adamantium_essence: {
+      requiredLevel: 28,
+      healthMax: 50000,
+      xp: 350,
+      id: 'adamantium_essence',
+      icon: 'adamantiumEssence',
+      name: 'adamantium_essence',
+      itemId: 'adamantium_essence',
+      chance: 0.0000045
+    },
+
+    orichalcum: {
+      requiredLevel: 30,
+      healthMax: 7500,
+      xp: 660,
+      id: 'orichalcum',
+      icon: 'orichalcum',
+      name: 'orichalcum',
+      itemId: 'ore_orichalcum',
+      chance: 0.0002
+    },
+
+    orichalcum_essence: {
+      requiredLevel: 33,
+      healthMax: 75000,
+      xp: 660,
+      id: 'orichalcum_essence',
+      icon: 'orichalcumEssence',
+      name: 'orichalcum_essence',
+      itemId: 'orichalcum_essence',
+      chance: 0.0000025
+    },
+
+    cobalt: {
+      requiredLevel: 35,
+      healthMax: 10000,
+      xp: 840,
+      id: 'cobalt',
+      icon: 'cobalt',
+      name: 'cobalt',
+      itemId: 'ore_cobalt',
+      chance: 0.00015
+    },
+
+    cobalt_essence: {
+      requiredLevel: 38,
+      healthMax: 100000,
+      xp: 840,
+      id: 'cobalt_essence',
+      icon: 'cobaltEssence',
+      name: 'cobalt_essence',
+      itemId: 'cobalt_essence',
+      chance: 0.0000015
+    },
+
+    fairy_steel: {
+      requiredLevel: 40,
+      healthMax: 12500,
+      xp: 1000,
+      id: 'fairy_steel',
+      icon: 'fairy_steel',
+      name: 'fairy_steel',
+      itemId: 'ore_fairy_steel',
+      chance: 0.00010
+    },
+
+    fairy_steel_essence: {
+      requiredLevel: 43,
+      healthMax: 125000,
+      xp: 1000,
+      id: 'fairy_steel_essence',
+      icon: 'fairySteelEssence',
+      name: 'fairy_steel_essence',
+      itemId: 'fairy_steel_essence',
+      chance: 0.0000010
+    },
+
+    cursed: {
+      requiredLevel: 45,
+      healthMax: 15000,
+      xp: 1250,
+      id: 'cursed',
+      icon: 'cursed',
+      name: 'cursed',
+      itemId: 'ore_cursed',
+      chance: 0.00006
+    },
+
+    cursed_essence: {
+      requiredLevel: 48,
+      healthMax: 150000,
+      xp: 1250,
+      id: 'cursed_essence',
+      icon: 'cursedEssence',
+      name: 'cursed_essence',
+      itemId: 'cursed_essence',
+      chance: 0.0000005
     },
 
     jade: {

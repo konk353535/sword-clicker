@@ -208,6 +208,126 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1
   },
 
+  adamantium_furnace: {
+    produces: 'adamantium_furnace',
+    recipeFor: 'crafting',
+    name: 'adamantium furnace',
+    id: 'adamantium_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }],
+    timeToCraft: 20 * 60,
+    xp: 150,
+    maxToCraft: 1
+  },
+
+  orichalcum_furnace: {
+    produces: 'orichalcum_furnace',
+    recipeFor: 'crafting',
+    name: 'orichalcum furnace',
+    id: 'orichalcum_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 25
+    }],
+    timeToCraft: 25 * 60,
+    xp: 200,
+    maxToCraft: 1
+  },
+
+  cobalt_furnace: {
+    produces: 'cobalt_furnace',
+    recipeFor: 'crafting',
+    name: 'cobalt furnace',
+    id: 'cobalt_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 30,
+    required: [{
+      type: 'item',
+      itemId: 'cobalt_bar',
+      icon: ITEMS['cobalt_bar'].icon,
+      name: ITEMS['cobalt_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 30
+    }],
+    timeToCraft: 30 * 60,
+    xp: 250,
+    maxToCraft: 1
+  },
+
+  fairy_steel_furnace: {
+    produces: 'fairy_steel_furnace',
+    recipeFor: 'crafting',
+    name: 'fairy steel furnace',
+    id: 'fairy_steel_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'fairy_steel_bar',
+      icon: ITEMS['fairy_steel_bar'].icon,
+      name: ITEMS['fairy_steel_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 35
+    }],
+    timeToCraft: 35 * 60,
+    xp: 300,
+    maxToCraft: 1
+  },
+
+  cursed_furnace: {
+    produces: 'cursed_furnace',
+    recipeFor: 'crafting',
+    name: 'cursed furnace',
+    id: 'cursed_furnace',
+    category: 'crafting',
+    requiredCraftingLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
+    }],
+    timeToCraft: 40 * 60,
+    xp: 350,
+    maxToCraft: 1
+  },
+
   copper_bar: {
     produces: 'copper_bar',
     recipeFor: 'crafting',
@@ -419,6 +539,130 @@ export const CRAFTING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 20
+    }]
+  },
+
+  orichalcum_bar: {
+    produces: 'orichalcum_bar',
+    recipeFor: 'crafting',
+    name: 'orichalcum bar',
+    id: 'orichalcum_bar',
+    category: 'crafting',
+    timeToCraft: 40,
+    xp: 72,
+    maxToCraft: 100,
+    requiredCraftingLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'adamantium_furnace',
+      icon: ITEMS['adamantium_furnace'].icon,
+      name: ITEMS['adamantium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_orichalcum',
+      icon: ITEMS['ore_orichalcum'].icon,
+      name: ITEMS['ore_orichalcum'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 25
+    }]
+  },
+
+  cobalt_bar: {
+    produces: 'cobalt_bar',
+    recipeFor: 'crafting',
+    name: 'cobalt bar',
+    id: 'cobalt_bar',
+    category: 'crafting',
+    timeToCraft: 50,
+    xp: 72,
+    maxToCraft: 100,
+    requiredCraftingLevel: 30,
+    required: [{
+      type: 'item',
+      itemId: 'orichalcum_furnace',
+      icon: ITEMS['orichalcum_furnace'].icon,
+      name: ITEMS['orichalcum_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_cobalt',
+      icon: ITEMS['ore_cobalt'].icon,
+      name: ITEMS['ore_cobalt'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 30
+    }]
+  },
+
+  fairy_steel_bar: {
+    produces: 'fairy_steel_bar',
+    recipeFor: 'crafting',
+    name: 'fairy_steel bar',
+    id: 'fairy_steel_bar',
+    category: 'crafting',
+    timeToCraft: 50,
+    xp: 72,
+    maxToCraft: 100,
+    requiredCraftingLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_fairy_steel',
+      icon: ITEMS['ore_fairy_steel'].icon,
+      name: ITEMS['ore_fairy_steel'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 35
+    }]
+  },
+
+  cursed_bar: {
+    produces: 'cursed_bar',
+    recipeFor: 'crafting',
+    name: 'cursed bar',
+    id: 'cursed_bar',
+    category: 'crafting',
+    timeToCraft: 70,
+    xp: 72,
+    maxToCraft: 100,
+    requiredCraftingLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'fairy_steel_furnace',
+      icon: ITEMS['fairy_steel_furnace'].icon,
+      name: ITEMS['fairy_steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_cursed',
+      icon: ITEMS['ore_cursed'].icon,
+      name: ITEMS['ore_cursed'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
     }]
   }
 }

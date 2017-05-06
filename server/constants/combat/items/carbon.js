@@ -43,16 +43,16 @@ export const CARBON_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 7,
-      attackMax: 10,
+      attackMax: 11,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 8,
-      defense: 14
+      accuracy: 9,
+      defense: 18
     },
     extraStats: {
       attack: 4,
-      attackMax: 5,
-      accuracy: 8,
-      defense: 14
+      attackMax: 4,
+      accuracy: 6,
+      defense: 7
     },
     requiredEquip: [{
       type: 'skill',
@@ -73,15 +73,15 @@ export const CARBON_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 7,
-      attackMax: 13,
+      attack: 10,
+      attackMax: 16,
       attackSpeed: FAST_SPEED,
-      accuracy: 11,
+      accuracy: 15,
     },
     extraStats: {
-      attack: 6,
-      attackMax: 7,
-      accuracy: 12
+      attack: 3,
+      attackMax: 4,
+      accuracy: 8
     },
     requiredEquip: [{
       type: 'skill',
@@ -103,15 +103,15 @@ export const CARBON_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 10,
-      attackMax: 17,
+      attack: 14,
+      attackMax: 22,
       attackSpeed: FAST_SPEED,
-      accuracy: 14,
+      accuracy: 22,
     },
     extraStats: {
-      attack: 8,
-      attackMax: 10,
-      accuracy: 16
+      attack: 4,
+      attackMax: 5,
+      accuracy: 8
     },
     requiredEquip: [{
       type: 'skill',
@@ -133,15 +133,15 @@ export const CARBON_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 17,
-      attackMax: 25,
+      attack: 22,
+      attackMax: 32,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 25,
+      accuracy: 32,
     },
     extraStats: {
-      attack: 11,
-      attackMax: 14,
-      accuracy: 14
+      attack: 5,
+      attackMax: 7,
+      accuracy: 7
     },
     requiredEquip: [{
       type: 'skill',
@@ -163,15 +163,15 @@ export const CARBON_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 14,
-      attackMax: 21,
+      attack: 18,
+      attackMax: 27,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 21,
+      accuracy: 27,
     },
     extraStats: {
-      attack: 9,
-      attackMax: 12,
-      accuracy: 12
+      attack: 5,
+      attackMax: 6,
+      accuracy: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -194,13 +194,13 @@ export const CARBON_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 15,
-      attackMax: 48,
+      attackMax: 60,
       attackSpeed: SLOW_SPEED,
       accuracy: 20,
     },
     extraStats: {
       attack: 7,
-      attackMax: 30
+      attackMax: 15
     },
     requiredEquip: [{
       type: 'skill',
@@ -249,14 +249,14 @@ export const CARBON_ITEMS = {
     description: 'Protect your head',
     isEquippable: true,
     stats: {
-      healthMax: 7,
-      defense: 8,
-      armor: 20
+      healthMax: 10,
+      defense: 10,
+      armor: 25
     },
     extraStats: {
-      healthMax: 7,
-      defense: 6,
-      armor: 10
+      healthMax: 4,
+      defense: 3,
+      armor: 5
     },
     requiredEquip: [{
       type: 'skill',
@@ -275,14 +275,14 @@ export const CARBON_ITEMS = {
     description: 'Protect your heart',
     isEquippable: true,
     stats: {
-      healthMax: 6,
-      defense: 6,
-      armor: 19
+      healthMax: 8,
+      defense: 10,
+      armor: 29
     },
     extraStats: {
-      healthMax: 7,
-      defense: 10,
-      armor: 20
+      healthMax: 5,
+      defense: 6,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -301,14 +301,14 @@ export const CARBON_ITEMS = {
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 6,
-      defense: 6,
-      armor: 16
+      healthMax: 8,
+      defense: 8,
+      armor: 25
     },
     extraStats: {
-      healthMax: 7,
-      defense: 7,
-      armor: 19
+      healthMax: 5,
+      defense: 5,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -327,14 +327,14 @@ export const CARBON_ITEMS = {
     description: 'Provides large defense bonuses',
     isEquippable: true,
     stats: {
-      healthMax: 12,
-      defense: 6,
-      armor: 35
+      healthMax: 19,
+      defense: 10,
+      armor: 45
     },
     extraStats: {
-      healthMax: 14,
-      defense: 9,
-      armor: 19
+      healthMax: 7,
+      defense: 5,
+      armor: 9
     },
     requiredEquip: [{
       type: 'skill',

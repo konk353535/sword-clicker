@@ -1,0 +1,19 @@
+<template name="meditateTab">
+  <div 
+    class="d-flex justify-content-center align-items-center flex-column"
+    style="height: 200px; margin-top: 100px;">
+    <div>You can meditate to gain exp in all your combat skills over time.</div>
+    <div>You cannot battle while meditating</div>
+    <img src="/icons/meditate.svg" class="medium-icon mb-3">
+    {{#if combat.meditatingStartDate}}
+      Current total gain is {{combat.totalXpGain}}xp
+      <button class="btn btn-primary stop-meditation">
+        Stop Meditation (Collect Xp)
+      </button>
+    {{else}}
+      <button class="btn btn-primary start-meditation">
+        Start Meditation
+      </button>
+    {{/if}}
+  </div>
+</template>

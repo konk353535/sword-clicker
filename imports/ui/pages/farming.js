@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
@@ -67,6 +68,7 @@ Template.farmingPage.helpers({
     }).map((item) => {
       if (item.category === 'seed') {
         item.required = item.plantingDetails.required;
+        item.description = `Growth time is ${moment.duration(item.plantingDetails.growthTime, 'seconds').humanize()}`;
         item.primaryAction = {
           description: 'plant',
           item,

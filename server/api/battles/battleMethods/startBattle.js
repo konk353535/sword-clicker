@@ -112,6 +112,10 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
       hasEnergy = false;
     }
 
+    if (userCombat.meditatingStartDate) {
+      throw new Meteor.Error("is-meditating", `${userCombat.username} is meditating. You cannot battle while meditating`);      
+    }
+
     if (health && userCombat.foughtBoss) {
       throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
       hasEnergy = false;

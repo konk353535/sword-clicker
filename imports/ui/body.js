@@ -72,8 +72,13 @@ Template.body.onCreated(function () {
         if (skillCache) {
           if (skillCache.level === skill.level) {
             // Show tick for this skill
-            const xpGained = skill.xp - skillCache.xp;
+            let xpGained = skill.xp - skillCache.xp;
             if (xpGained > 0) {
+              if (xpGained < 1) {
+                xpGained = xpGained.toFixed(2);
+              } else {
+                xpGained = Math.round(xpGained);
+              }
               const element = `
                 <p
                   class='floating-text'

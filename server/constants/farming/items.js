@@ -144,6 +144,46 @@ export const FARMING_ITEMS = {
     sellPrice: 100
   },
 
+  pine_seed: {
+    id: 'pine_seed',
+    icon: 'pineSeed',
+    category: 'seed',
+    name: 'Pine Seed',
+    description: 'Used to grow pine log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'pine_log'
+  },
+
+  beech_seed: {
+    id: 'beech_seed',
+    icon: 'beechSeed',
+    category: 'seed',
+    name: 'beech Seed',
+    description: 'Used to grow beech log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'beech_log'
+  },
+
+  ash_seed: {
+    id: 'ash_seed',
+    icon: 'ashSeed',
+    category: 'seed',
+    name: 'ash Seed',
+    description: 'Used to grow ash log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'ash_log'
+  },
+
+  oak_seed: {
+    id: 'oak_seed',
+    icon: 'oakSeed',
+    category: 'seed',
+    name: 'oak Seed',
+    description: 'Used to grow oak log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'oak_log'
+  },
+
   pink_rose_seed: {
     id: 'pink_rose_seed',
     icon: 'pinkRoseSeed',

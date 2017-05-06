@@ -20,6 +20,66 @@ export const FARMING = {
       }]
     },
 
+    pine_seed: {
+      id: 'pine_seed',
+      itemId: 'pine_seed',
+      requiredFarmingLevel: 1,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 1
+      }]
+    },
+
+    beech_seed: {
+      id: 'beech_seed',
+      itemId: 'beech_seed',
+      requiredFarmingLevel: 5,
+      required: [{
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 5
+      }]
+    },
+
+    ash_seed: {
+      id: 'ash_seed',
+      itemId: 'ash_seed',
+      requiredFarmingLevel: 10,
+      required: [{
+        type: 'gold',
+        amount: 200,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 10
+      }]
+    },
+
+    oak_seed: {
+      id: 'oak_seed',
+      itemId: 'oak_seed',
+      requiredFarmingLevel: 15,
+      required: [{
+        type: 'gold',
+        amount: 400,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 15
+      }]
+    },
+
     lemon_seed: {
       id: 'lemon_seed',
       itemId: 'lemon_seed',

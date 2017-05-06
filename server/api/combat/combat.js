@@ -7,6 +7,7 @@ import { Groups } from '/imports/api/groups/groups';
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 
+import { addXp } from '/server/api/skills/skills';
 import { attackSpeedTicks } from '/server/api/battles/battles';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -113,6 +114,55 @@ export const updateCombatStats = function (userId, username) {
 };
 
 Meteor.methods({
+
+  'combat.startMeditation'() {
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        meditatingStartDate: moment().toDate()
+      }
+    });
+  },
+
+  'combat.stopMeditation'() {
+    // Time since meditation
+    const combat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+
+    if (!combat.meditatingStartDate) {
+      throw new Meteor.Error("no-meditation", "you're not meditating");
+    }
+
+    const now = moment();
+    let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
+
+    if (hoursElapsed > 8) {
+      hoursElapsed = 8; 
+    }
+
+    // Skills level x 10xp / hour
+    const combatSkills = Skills.find({
+      owner: Meteor.userId(),
+      type: {
+        $in: ['attack', 'defense', 'health']
+      }
+    }).fetch();
+
+    combatSkills.forEach((skill) => {
+      addXp(skill.type, hoursElapsed * 10 * skill.level)
+    });
+
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        meditatingStartDate: null
+      }
+    });
+  },
+
   'combat.gameUpdate'() {
     this.unblock();
 

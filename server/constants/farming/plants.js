@@ -235,6 +235,110 @@ export const PLANTS = {
     }]
   },
 
+  pine_log: {
+    produces: 'pine_log',
+    produceAmount: 20,
+    name: 'pine tree',
+    id: 'pine_log',
+    category: 'farming',
+    icon: 'pineTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 200,
+    required: [{
+      type: 'item',
+      itemId: 'pine_seed',
+      icon: ITEMS['pine_seed'].icon,
+      name: ITEMS['pine_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 1
+    }]
+  },
+
+  beech_log: {
+    produces: 'beech_log',
+    produceAmount: 20,
+    name: 'beech tree',
+    id: 'beech_log',
+    category: 'farming',
+    icon: 'beechTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 400,
+    required: [{
+      type: 'item',
+      itemId: 'beech_seed',
+      icon: ITEMS['beech_seed'].icon,
+      name: ITEMS['beech_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 5
+    }]
+  },
+
+  ash_log: {
+    produces: 'ash_log',
+    name: 'ash tree',
+    produceAmount: 20,
+    id: 'ash_log',
+    category: 'farming',
+    icon: 'ashTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 800,
+    required: [{
+      type: 'item',
+      itemId: 'ash_seed',
+      icon: ITEMS['ash_seed'].icon,
+      name: ITEMS['ash_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 10
+    }]
+  },
+
+  oak_log: {
+    produces: 'oak_log',
+    name: 'oak tree',
+    produceAmount: 20,
+    id: 'oak_log',
+    category: 'farming',
+    icon: 'oakTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 1200,
+    required: [{
+      type: 'item',
+      itemId: 'oak_seed',
+      icon: ITEMS['oak_seed'].icon,
+      name: ITEMS['oak_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 15
+    }]
+  },
+
   endive: {
     produces: 'endive',
     name: 'endive',

@@ -155,19 +155,27 @@ Meteor.methods({
       owner: Meteor.userId(),
       index
     });
-
     if (moment().isAfter(targetToPick.maturityDate)) {
       // Good to pick
       const plantConstants = FARMING.plants[targetToPick.plantId];
-
       // Fetch Farming
       const farming = Farming.findOne({
         owner: Meteor.userId()
       });
 
+
       let updatedTargetToPick = farmSpaceModifier(targetToPick, farming);
-      if (updatedTargetToPick.water <= 0 && updatedTargetToPick.isDirty) {
-        throw new Meteor.Error("woops", "This is dead. So cannot be picked. Sorry!");
+      if (!moment().isAfter(updatedTargetToPick.maturityDate)) {
+        FarmingSpace.update({
+          _id: targetToPick._id
+        }, {
+          $set: {
+            water: plantConstants.waterStorage,
+            maturityDate: updatedTargetToPick.maturityDate,
+            plantDate: updatedTargetToPick.plantDate
+          }
+        });
+        throw new Meteor.Error("woops", "That hasn't grown yet.");
       }
 
       // Update patch
@@ -184,7 +192,7 @@ Meteor.methods({
       });
 
       // Add item
-      addItem(plantConstants.produces);
+      addItem(plantConstants.produces, plantConstants.produceAmount || 1);
       // Add Xp
       addXp('farming', plantConstants.xp);
     } else {

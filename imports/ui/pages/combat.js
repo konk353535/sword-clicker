@@ -12,6 +12,7 @@ import { Users } from '/imports/api/users/users.js';
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
+import '/imports/ui/components/combat/meditateTab/meditateTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
@@ -157,6 +158,11 @@ Template.combatPage.events({
     Meteor.call('users.setUiState', 'combatTab', 'tower');
   },
 
+  'click .meditateTabLink'(event, instance) {
+    instance.state.set('currentTab', 'meditate');
+    Meteor.call('users.setUiState', 'combatTab', 'meditate');
+  },
+
   'click .equipmentTabLink'(event, instance) {
     instance.state.set('currentTab', 'equipment');
     Meteor.call('users.setUiState', 'combatTab', 'equipment');
@@ -218,6 +224,10 @@ Template.combatPage.helpers({
 
   showTowerTab() {
     return Template.instance().state.get('currentTab') === 'tower';
+  },
+
+  showMeditateTab() {
+    return Template.instance().state.get('currentTab') === 'meditate';
   },
 
   showCombatGroupTab() {

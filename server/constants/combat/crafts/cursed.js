@@ -23,7 +23,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -68,7 +68,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -113,7 +113,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -158,7 +158,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 2,
+      amount: 8,
       consumes: true
     }, {
       type: 'item',
@@ -203,7 +203,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 2,
+      amount: 8,
       consumes: true
     }, {
       type: 'item',
@@ -248,7 +248,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -293,7 +293,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -338,7 +338,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',
@@ -383,7 +383,7 @@ export const CURSED_CRAFTS = {
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,
       name: ITEMS['cursed_essence'].name,
-      amount: 1,
+      amount: 4,
       consumes: true
     }, {
       type: 'item',

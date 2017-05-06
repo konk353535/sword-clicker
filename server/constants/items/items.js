@@ -13,7 +13,7 @@ export const MISC_ITEMS = {
     icon: 'mithrilEssence',
     category: 'mining',
     name: 'mithril essence',
-    sellPrice: 1000,
+    sellPrice: 250,
     description: 'Required to bond mithril together.'
   },
 
@@ -22,7 +22,7 @@ export const MISC_ITEMS = {
     icon: 'adamantiumEssence',
     category: 'mining',
     name: 'adamantium essence',
-    sellPrice: 2000,
+    sellPrice: 500,
     description: 'Required to bond adamantium together.'
   },
 
@@ -31,7 +31,7 @@ export const MISC_ITEMS = {
     icon: 'orichalcumEssence',
     category: 'mining',
     name: 'orichalcum essence',
-    sellPrice: 3000,
+    sellPrice: 750,
     description: 'Required to bond orichalcum together.'
   },
 
@@ -40,7 +40,7 @@ export const MISC_ITEMS = {
     icon: 'cobaltEssence',
     category: 'mining',
     name: 'cobalt essence',
-    sellPrice: 3500,
+    sellPrice: 875,
     description: 'Required to bond cobalt together.'
   },
 
@@ -49,7 +49,7 @@ export const MISC_ITEMS = {
     icon: 'fairySteelEssence',
     category: 'mining',
     name: 'fairy steel essence',
-    sellPrice: 4000,
+    sellPrice: 1000,
     description: 'Required to bond fairy steel together.'
   },
 
@@ -58,7 +58,7 @@ export const MISC_ITEMS = {
     icon: 'cursedEssence',
     category: 'mining',
     name: 'cursed essence',
-    sellPrice: 4500,
+    sellPrice: 1250,
     description: 'Required to bond cursed ore together.'
   }
 }

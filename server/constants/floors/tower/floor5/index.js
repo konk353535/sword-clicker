@@ -31,12 +31,12 @@ export const TOWER_FLOOR_5 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'carbon_bar', amount: 2 },
-        { type: 'item', itemId: 'maple_log', amount: 15 }
+        { type: 'item', itemId: 'maple_log', amount: 15 },
+        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
       ]
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 },
         { type: 'item', itemId: 'mithril_shield', amount: 1 },
         { type: 'item', itemId: 'mithril_spear', amount: 1 },
         { type: 'item', itemId: 'mithril_long_sword', amount: 1 },
@@ -63,7 +63,10 @@ export const TOWER_FLOOR_5 = {
     floor: 5,
     rewards: orderLootTable([{
       chance: 1 / 4,
-      rewards: [{ type: 'gold', amount: 800 }]
+      rewards: [
+        { type: 'gold', amount: 800 },
+        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+      ]
     }, {
       chance: 1 / 8,
       rewards: [
@@ -83,7 +86,6 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 },
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }, {

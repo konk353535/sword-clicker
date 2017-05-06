@@ -33,8 +33,7 @@ export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 128,
   rewards: [
     { type: 'item', itemId: 'lavender', amount: 1 },
-    { type: 'item', itemId: 'steel_bar', amount: 1 },
-    { type: 'item', itemId: 'mithril_essence', amount: 1 }
+    { type: 'item', itemId: 'steel_bar', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
@@ -44,7 +43,8 @@ export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 32,
   rewards: [
-    { type: 'item', itemId: 'ore_steel', amount: 1 }
+    { type: 'item', itemId: 'ore_steel', amount: 1 },
+    { type: 'item', itemId: 'mithril_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 16,

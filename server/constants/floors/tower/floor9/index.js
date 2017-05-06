@@ -63,7 +63,10 @@ export const TOWER_FLOOR_9 = {
     floor: 9,
     rewards: orderLootTable([{
       chance: 1 / 4,
-      rewards: [{ type: 'gold', amount: 800 }]
+      rewards: [
+        { type: 'gold', amount: 800 },
+        { type: 'item', itemId: 'cursed_essence', amount: 1 },
+      ]
     }, {
       chance: 1 / 8,
       rewards: [
@@ -83,7 +86,6 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'cursed_essence', amount: 3 },
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }, {

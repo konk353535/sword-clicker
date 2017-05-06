@@ -83,7 +83,7 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'mithril_essence', amount: 3 },
+        { type: 'item', itemId: 'adamantium_essence', amount: 3 },
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }, {

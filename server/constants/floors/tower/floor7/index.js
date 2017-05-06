@@ -63,7 +63,10 @@ export const TOWER_FLOOR_7 = {
     floor: 7,
     rewards: orderLootTable([{
       chance: 1 / 4,
-      rewards: [{ type: 'gold', amount: 800 }]
+      rewards: [
+        { type: 'gold', amount: 800 },
+        { type: 'item', itemId: 'cobalt_essence', amount: 1 },
+      ]
     }, {
       chance: 1 / 8,
       rewards: [
@@ -83,7 +86,6 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'orichalcum_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'cobalt_essence', amount: 3 },
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
     }, {

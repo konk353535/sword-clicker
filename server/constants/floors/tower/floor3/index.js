@@ -34,6 +34,11 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'ash_log', amount: 20 }
       ]
     }, {
+      chance: 1/ 8,
+      rewards: [
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'steel_shield', amount: 1 },
@@ -51,8 +56,7 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'steel_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 }
       ]
     }, {
       chance: 1 / 64,
@@ -68,7 +72,10 @@ export const TOWER_FLOOR_3 = {
     floor: 3,
     rewards: orderLootTable([{
       chance: 1 / 4,
-      rewards: [{ type: 'gold', amount: 600 }]
+      rewards: [
+        { type: 'gold', amount: 600 },
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+      ]
     }, {
       chance: 1 / 8,
       rewards: [
@@ -87,8 +94,7 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'steel_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+        { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

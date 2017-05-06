@@ -33,8 +33,7 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'lavender', amount: 1 },
-    { type: 'item', itemId: 'carbon_bar', amount: 1 },
-    { type: 'item', itemId: 'mithril_essence', amount: 1 }
+    { type: 'item', itemId: 'carbon_bar', amount: 1 }
   ]
 }, {
   chance: 1 / 32,
@@ -44,7 +43,8 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 16,
   rewards: [
-    { type: 'item', itemId: 'ore_carbon', amount: 1 }
+    { type: 'item', itemId: 'ore_carbon', amount: 1 },
+    { type: 'item', itemId: 'mithril_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,

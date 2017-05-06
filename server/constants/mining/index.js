@@ -153,7 +153,7 @@ export const MINING = {
       max: 5
     },
     cobalt: {
-      requiredMiningLevel: 30,
+      requiredMiningLevel: 35,
       icon: 'cobaltProspector',
       name: 'cobalt prospector',
       id: 'cobalt',
@@ -164,13 +164,13 @@ export const MINING = {
       }, {
         type: 'skill',
         name: 'mining',
-        level: 30
+        level: 35
       }],
       max: 5
     },
     fairy_steel: {
-      requiredMiningLevel: 35,
-      icon: 'fairy_steelProspector',
+      requiredMiningLevel: 40,
+      icon: 'fairySteelProspector',
       name: 'fairy steel prospector',
       id: 'fairy_steel',
       required: [{
@@ -180,12 +180,12 @@ export const MINING = {
       }, {
         type: 'skill',
         name: 'mining',
-        level: 35
+        level: 40
       }],
       max: 5
     },
     cursed: {
-      requiredMiningLevel: 40,
+      requiredMiningLevel: 45,
       icon: 'cursedProspector',
       name: 'cursed prospector',
       id: 'cursed',
@@ -196,7 +196,7 @@ export const MINING = {
       }, {
         type: 'skill',
         name: 'mining',
-        level: 40
+        level: 45
       }],
       max: 5
     }
@@ -466,7 +466,7 @@ export const MINING = {
         consumes: true
       }, {
         type: 'gold',
-        amount: 50000,
+        amount: 250000,
         consumes: true
       }, {
         type: 'skill',

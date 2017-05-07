@@ -170,6 +170,51 @@ export const FARMING = {
       }]
     },
 
+    potato_seed: {
+      id: 'potato_seed',
+      itemId: 'potato_seed',
+      requiredFarmingLevel: 20,
+      required: [{
+        type: 'gold',
+        amount: 250,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 20
+      }]
+    },
+
+    carrot_seed: {
+      id: 'carrot_seed',
+      itemId: 'carrot_seed',
+      requiredFarmingLevel: 20,
+      required: [{
+        type: 'gold',
+        amount: 250,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 20
+      }]
+    },
+
+    dragonfruit_seed: {
+      id: 'dragonfruit_seed',
+      itemId: 'dragonfruit_seed',
+      requiredFarmingLevel: 25,
+      required: [{
+        type: 'gold',
+        amount: 500,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 25
+      }]
+    },
+
     basil_seed: {
       id: 'basil_seed',
       itemId: 'basil_seed',
@@ -228,6 +273,21 @@ export const FARMING = {
         name: 'farming',
         level: 7
       }]
-    }
+    },
+
+    agrimony_seed: {
+      id: 'agrimony_seed',
+      itemId: 'agrimony_seed',
+      requiredFarmingLevel: 12,
+      required: [{
+        type: 'gold',
+        amount: 15000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 12
+      }]
+    },
   }
 }

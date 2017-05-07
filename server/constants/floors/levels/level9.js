@@ -32,7 +32,7 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'lavender', amount: 1 },
+    { type: 'item', itemId: 'celery_seed', amount: 1 },
     { type: 'item', itemId: 'orichalcum_bar', amount: 1 }
   ]
 }, {

@@ -1,6 +1,20 @@
 import { UTIL } from './util';
 
 export const LEVEL_ONE_CRAFTS = {
+
+  shield_bash_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'shield_bash_level_1_tome',
+    name: 'Shield bash Lv 1.',
+    id: 'shield_bash_level_1_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
+  },
+
   berserk_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_1_tome',

@@ -7,6 +7,21 @@ export const ABILITY = {
 
 export const ABILITIES = {
 
+  shield_bash: {
+    icon: 'shieldBash',
+    name: 'shield bash',
+    id: 'shield_bash',
+    buffs: ['shield_bash'],
+    cooldown: 60,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.shield_bash;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   berserk: {
     icon: 'berserk',
     name: 'Berserk',

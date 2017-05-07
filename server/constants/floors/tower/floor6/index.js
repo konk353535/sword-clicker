@@ -15,7 +15,7 @@ export const TOWER_FLOOR_6 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'agrimony_seed', amount: 1 }
       ]
     }])
   },
@@ -85,14 +85,14 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'adamantium_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'adamantium_scimitar', amount: 1 },
-        { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'chill_seed', amount: 1 }
       ]
     }])
   },

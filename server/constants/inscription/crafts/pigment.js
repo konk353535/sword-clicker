@@ -49,6 +49,30 @@ export const PIGMENT_CRAFTS = {
     }]
   },
 
+  pigment_red_150: {
+    recipeFor: 'inscription',
+    produces: 'pigment_red_150',
+    name: 'pigment red(150)',
+    id: 'pigment_red_150',
+    category: 'pigment',
+    timeToCraft: 300,
+    xp: 25,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'chilli',
+      icon: ITEMS['chilli'].icon,
+      name: ITEMS['chilli'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 10
+    }]
+  },
+
   pigment_green_255: {
     recipeFor: 'inscription',
     produces: 'pigment_green_255',
@@ -70,6 +94,30 @@ export const PIGMENT_CRAFTS = {
       type: 'skill',
       name: 'inscription',
       level: 2
+    }]
+  },
+
+  pigment_green_170: {
+    recipeFor: 'inscription',
+    produces: 'pigment_green_170',
+    name: 'pigment green(170)',
+    id: 'pigment_green_170',
+    category: 'pigment',
+    timeToCraft: 180,
+    xp: 35,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'celery',
+      icon: ITEMS['celery'].icon,
+      name: ITEMS['celery'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 15
     }]
   },
 
@@ -142,6 +190,78 @@ export const PIGMENT_CRAFTS = {
       type: 'skill',
       name: 'inscription',
       level: 6
+    }]
+  },
+
+  pigment_purple_200: {
+    recipeFor: 'inscription',
+    produces: 'pigment_purple_200',
+    name: 'pigment purple(200)',
+    id: 'pigment_purple_200',
+    category: 'pigment',
+    timeToCraft: 600,
+    xp: 50,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'cardoon',
+      icon: ITEMS['cardoon'].icon,
+      name: ITEMS['cardoon'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 20
+    }]
+  },
+
+  pigment_yellow_255: {
+    recipeFor: 'inscription',
+    produces: 'pigment_yellow_255',
+    name: 'pigment yellow(255)',
+    id: 'pigment_yellow_255',
+    category: 'pigment',
+    timeToCraft: 600,
+    xp: 50,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'feverfew',
+      icon: ITEMS['feverfew'].icon,
+      name: ITEMS['feverfew'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 25
+    }]
+  },
+
+  pigment_white_128: {
+    recipeFor: 'inscription',
+    produces: 'pigment_white_128',
+    name: 'pigment white(128)',
+    id: 'pigment_white_128',
+    category: 'pigment',
+    timeToCraft: 600,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'agrimony',
+      icon: ITEMS['agrimony'].icon,
+      name: ITEMS['agrimony'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 10
     }]
   }
 }

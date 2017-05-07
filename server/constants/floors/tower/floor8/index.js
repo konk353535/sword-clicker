@@ -15,7 +15,7 @@ export const TOWER_FLOOR_8 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'celery_seed', amount: 1 }
       ]
     }])
   },
@@ -85,14 +85,14 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'cobalt_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cobalt_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'cobalt_scimitar', amount: 1 },
-        { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'cardoon_seed', amount: 1 }
       ]
     }])
   },

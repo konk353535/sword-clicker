@@ -101,6 +101,81 @@ export const FARMING_ITEMS = {
     sellPrice: 100
   },
 
+  potato_seed: {
+    id: 'potato_seed',
+    icon: 'potatoSeed',
+    category: 'seed',
+    name: 'potato seed',
+    description: 'Used to grow potatos. Useful for eating.',
+    sellPrice: 20,
+    produces: 'potato'
+  },
+
+  potato: {
+    id: 'potato',
+    icon: 'potato',
+    category: 'food',
+    name: 'potato',
+    description() {
+      const buff = BUFFS.food_potato;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_potato'
+    }],
+    sellPrice: 100
+  },
+
+  carrot_seed: {
+    id: 'carrot_seed',
+    icon: 'carrotSeed',
+    category: 'seed',
+    name: 'carrot seed',
+    description: 'Used to grow carrots. Useful for eating.',
+    sellPrice: 20,
+    produces: 'carrot'
+  },
+
+  carrot: {
+    id: 'carrot',
+    icon: 'carrot',
+    category: 'food',
+    name: 'carrot',
+    description() {
+      const buff = BUFFS.food_carrot;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_carrot'
+    }],
+    sellPrice: 100
+  },
+
+  dragonfruit_seed: {
+    id: 'dragonfruit_seed',
+    icon: 'dragonfruitSeed',
+    category: 'seed',
+    name: 'dragonfruit seed',
+    description: 'Used to grow dragonfruits. Useful for eating.',
+    sellPrice: 20,
+    produces: 'dragonfruit'
+  },
+
+  dragonfruit: {
+    id: 'dragonfruit',
+    icon: 'dragonfruit',
+    category: 'food',
+    name: 'dragonfruit',
+    description() {
+      const buff = BUFFS.food_dragonfruit;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_dragonfruit'
+    }],
+    sellPrice: 100
+  },
+
   watermelon_seed: {
     id: 'watermelon_seed',
     icon: 'watermelonSeed',
@@ -236,6 +311,97 @@ export const FARMING_ITEMS = {
     category: 'herb',
     name: 'juniper',
     sellPrice: 300
+  },
+
+  agrimony_seed: {
+    id: 'agrimony_seed',
+    icon: 'agrimonySeed',
+    category: 'seed',
+    name: 'agrimony seed',
+    description: 'Used to grow a agrimony. Useful for inscription',
+    sellPrice: 300,
+    produces: 'agrimony'
+  },
+
+  agrimony: {
+    id: 'agrimony',
+    icon: 'agrimony',
+    category: 'herb',
+    name: 'agrimony',
+    sellPrice: 1000
+  },
+
+  cardoon_seed: {
+    id: 'cardoon_seed',
+    icon: 'cardoonSeed',
+    category: 'seed',
+    name: 'cardoon seed',
+    description: 'Used to grow a cardoon. Useful for inscription',
+    sellPrice: 300,
+    produces: 'cardoon'
+  },
+
+  cardoon: {
+    id: 'cardoon',
+    icon: 'cardoon',
+    category: 'herb',
+    name: 'cardoon',
+    sellPrice: 1000
+  },
+
+  chilli_seed: {
+    id: 'chilli_seed',
+    icon: 'chilliSeed',
+    category: 'seed',
+    name: 'chilli seed',
+    description: 'Used to grow a chilli. Useful for inscription',
+    sellPrice: 300,
+    produces: 'chilli'
+  },
+
+  chilli: {
+    id: 'chilli',
+    icon: 'chilli',
+    category: 'herb',
+    name: 'chilli',
+    sellPrice: 1000
+  },
+
+  celery_seed: {
+    id: 'celery_seed',
+    icon: 'celerySeed',
+    category: 'seed',
+    name: 'celery seed',
+    description: 'Used to grow a celery. Useful for inscription',
+    sellPrice: 300,
+    produces: 'celery'
+  },
+
+  celery: {
+    id: 'celery',
+    icon: 'celery',
+    category: 'herb',
+    name: 'celery',
+    sellPrice: 1000
+  },
+
+
+  feverfew_seed: {
+    id: 'feverfew_seed',
+    icon: 'feverfewSeed',
+    category: 'seed',
+    name: 'feverfew seed',
+    description: 'Used to grow a feverfew. Useful for inscription',
+    sellPrice: 1000,
+    produces: 'feverfew'
+  },
+
+  feverfew: {
+    id: 'feverfew',
+    icon: 'feverfew',
+    category: 'herb',
+    name: 'feverfew',
+    sellPrice: 5000
   },
 
   dead_plant: {

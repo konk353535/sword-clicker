@@ -15,7 +15,7 @@ export const TOWER_FLOOR_7 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'chill_seed', amount: 1 }
       ]
     }])
   },
@@ -85,12 +85,12 @@ export const TOWER_FLOOR_7 = {
       rewards: [
         { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'orichalcum_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
+        { type: 'item', itemId: 'celery_seed', amount: 1 },
         { type: 'item', itemId: 'orichalcum_scimitar', amount: 1 },
         { type: 'item', itemId: 'orichalcum_broad_sword', amount: 1 }
       ]

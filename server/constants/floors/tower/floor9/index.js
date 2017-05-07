@@ -15,7 +15,7 @@ export const TOWER_FLOOR_9 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'cardoon_seed', amount: 1 }
       ]
     }])
   },
@@ -85,14 +85,14 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'fairy_steel_scimitar', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'fairy_steel_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
     }])
   },

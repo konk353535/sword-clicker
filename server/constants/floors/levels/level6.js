@@ -32,8 +32,9 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'lavender', amount: 1 },
-    { type: 'item', itemId: 'carbon_bar', amount: 1 }
+    { type: 'item', itemId: 'agrimony_seed', amount: 1 },
+    { type: 'item', itemId: 'carbon_bar', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 32,

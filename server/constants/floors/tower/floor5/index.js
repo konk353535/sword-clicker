@@ -86,7 +86,7 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'agrimony_seed', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

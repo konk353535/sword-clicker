@@ -151,6 +151,81 @@ export const PLANTS = {
     }]
   },
 
+  potato: {
+    produces: 'potato',
+    name: 'potato',
+    id: 'potato',
+    category: 'farming',
+    icon: ITEMS['potato'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 10 * 60,
+    xp: 75,
+    required: [{
+      type: 'item',
+      itemId: 'potato_seed',
+      icon: ITEMS['potato_seed'].icon,
+      name: ITEMS['potato_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 20
+    }]
+  },
+
+  carrot: {
+    produces: 'carrot',
+    name: 'carrot',
+    id: 'carrot',
+    category: 'farming',
+    icon: ITEMS['carrot'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 20 * 60,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'carrot_seed',
+      icon: ITEMS['carrot_seed'].icon,
+      name: ITEMS['carrot_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 20
+    }]
+  },
+
+  dragonfruit: {
+    produces: 'dragonfruit',
+    name: 'dragonfruit',
+    id: 'dragonfruit',
+    category: 'farming',
+    icon: ITEMS['dragonfruit'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 30 * 60,
+    xp: 150,
+    required: [{
+      type: 'item',
+      itemId: 'dragonfruit_seed',
+      icon: ITEMS['dragonfruit_seed'].icon,
+      name: ITEMS['dragonfruit_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 25
+    }]
+  },
+
   dead_plant: {
     produces: 'dead_plant',
     name: 'dead plant',
@@ -386,6 +461,131 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 7
+    }]
+  },
+
+  agrimony: {
+    produces: 'agrimony',
+    name: 'agrimony',
+    id: 'agrimony',
+    category: 'farming',
+    icon: ITEMS['agrimony'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 1000,
+    growthTime: 60 * 60 * 1,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'agrimony_seed',
+      icon: ITEMS['agrimony_seed'].icon,
+      name: ITEMS['agrimony_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 12
+    }]
+  },
+
+  cardoon: {
+    produces: 'cardoon',
+    name: 'cardoon',
+    id: 'cardoon',
+    category: 'farming',
+    icon: ITEMS['cardoon'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 2000,
+    growthTime: 15 * 60 * 1,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'cardoon_seed',
+      icon: ITEMS['cardoon_seed'].icon,
+      name: ITEMS['cardoon_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 25
+    }]
+  },
+
+  chilli: {
+    produces: 'chilli',
+    name: 'chilli',
+    id: 'chilli',
+    category: 'farming',
+    icon: ITEMS['chilli'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 200,
+    growthTime: 60 * 60 * 1,
+    xp: 50,
+    required: [{
+      type: 'item',
+      itemId: 'chilli_seed',
+      icon: ITEMS['chilli_seed'].icon,
+      name: ITEMS['chilli_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 15
+    }]
+  },
+
+  celery: {
+    produces: 'celery',
+    name: 'celery',
+    id: 'celery',
+    category: 'farming',
+    icon: ITEMS['celery'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 300,
+    growthTime: 60 * 60 * 1,
+    xp: 50,
+    required: [{
+      type: 'item',
+      itemId: 'celery_seed',
+      icon: ITEMS['celery_seed'].icon,
+      name: ITEMS['celery_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 20
+    }]
+  },
+
+  feverfew: {
+    produces: 'feverfew',
+    name: 'feverfew',
+    id: 'feverfew',
+    category: 'farming',
+    icon: ITEMS['feverfew'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 300,
+    growthTime: 24 * 60 * 1,
+    xp: 50,
+    required: [{
+      type: 'item',
+      itemId: 'feverfew_seed',
+      icon: ITEMS['feverfew_seed'].icon,
+      name: ITEMS['feverfew_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 30
     }]
   }
 

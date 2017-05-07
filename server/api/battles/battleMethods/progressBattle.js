@@ -49,6 +49,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   }
 
   const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
+
     let damage = rawDamage;
     if (damage > 0) {
       const dmgReduction = BATTLES.dmgReduction(defender.stats.armor);
@@ -71,6 +72,24 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
       const rawDamage = attacker.stats.attack + extraRawDamage;
+
+      // Tick didDamage event on attacker
+      attacker.buffs.forEach((buff) => {
+        buff.constants = BUFFS[buff.id];
+        if (buff.constants.events.onDidDamage) {
+          // Did Damage
+          buff.constants.events.onDidDamage({ secondsElapsed, buff, target: aliveUnit, actualBattle })
+        }
+      });
+
+      // Tick tookDamage event on defender
+      defender.buffs.forEach((buff) => {
+        buff.constants = BUFFS[buff.id];
+        if (buff.constants.events.onTookDamage) {
+          // Took Damage
+          buff.constants.events.onTookDamage({ secondsElapsed, buff, target: aliveUnit, actualBattle })
+        }
+      });
 
       dealDamage(rawDamage, { attacker, defender, tickEvents });
     } else {

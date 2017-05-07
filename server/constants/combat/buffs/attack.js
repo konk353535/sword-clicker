@@ -137,6 +137,49 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  shield_bash: {
+    duplicateTag: 'shield_bash', // Used to stop duplicate buffs
+    icon: 'shieldBash',
+    name: 'shield bash',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageBase = buff.constants.damageBase;
+      const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
+      return `Deal ${damageTotal}% of your defense as damage. (+${damagePerLevel * 100}% per lvl)`;
+    },
+    constants: {
+      damageBase: 1,
+      damagePerLevel: 0.1
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damagePerLevel = constants.damagePerLevel;
+        const damageBase = constants.damageBase;
+        const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
+        console.log(damageTotalDecimal);
+        // Targets missing health %
+        const actualDamage = caster.stats.defense * damageTotalDecimal;
+
+        actualBattle.utils.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   blade_spin: {
     duplicateTag: 'blade_spin', // Used to stop duplicate buffs
     icon: 'bladeSpin',

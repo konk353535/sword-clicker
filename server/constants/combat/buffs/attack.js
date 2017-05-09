@@ -3,6 +3,69 @@ import { attackSpeedTicks } from '/server/utils';
 
 export const ATTACK_BUFFS = {
 
+  phantom_strikes: {
+    duplicateTag: 'phantom_strikes', // Used to stop duplicate buffs
+    icon: 'phantomStrikes',
+    name: 'phantom strikes',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const chance = buff.constants.extraAttackChance * 100;
+      const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
+      const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
+
+      return `${chance}% chance to attack twice.<br />
+        Extra attack deals ${damage}% damage (+${damagePerLevel}% per lvl) <br />`;
+    },
+    constants: {
+      extraAttackChance: 0.1,
+      extraAttackDamageBase: 0.6,
+      extraAttackDamagePerLevel: 0.1
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        if (Math.random() <= constants.extraAttackChance) {
+          const baseDamage = attacker.stats.attack;
+          const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
+          const abilityDamagePercentage = constants.extraAttackDamageBase + constants.extraAttackDamagePerLevel * buff.data.level;
+
+          const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
+
+          actualBattle.utils.dealDamage(totalDamage, {
+            attacker,
+            defender,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   berserk: {
     duplicateTag: 'berserk', // Used to stop duplicate buffs
     icon: 'berserk',
@@ -161,7 +224,6 @@ export const ATTACK_BUFFS = {
         const damagePerLevel = constants.damagePerLevel;
         const damageBase = constants.damageBase;
         const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
-        console.log(damageTotalDecimal);
         // Targets missing health %
         const actualDamage = caster.stats.defense * damageTotalDecimal;
 
@@ -190,7 +252,7 @@ export const ATTACK_BUFFS = {
       return `Deals ${damagePercentage}% weapon damage to all enemies. (+${damagePerLevel}% per lvl)`;
     },
     constants: {
-      damagePercentage: 15,
+      damagePercentage: 35,
       damagePerLevel: 5
     },
     data: {
@@ -285,7 +347,7 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
       const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
-      return `Deals 10% of your accuracy as damage every second. (+3% per lvl) <br />
+      return `Deals ${dps * 100}% of your accuracy as damage every second. (+3% per lvl) <br />
       For ${buff.data.totalDuration}s.`;
     },
     constants: {

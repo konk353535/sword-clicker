@@ -21,19 +21,41 @@ export const AMULET_ITEMS = {
     }]
   },
 
+  mithril_amulet: {
+    id: 'mithril_amulet',
+    icon: 'mithrilAmulet',
+    category: 'combat',
+    slot: 'neck',
+    name: 'mithril amulet',
+    sellPrice: 400,
+    description: 'A mithril amulet.',
+    isEquippable: true,
+    isAttackAmulet: true,
+    stats: {
+      attack: 2, // Damage per click
+      energyStorage: 15, // Max energy stored
+      energyRegen: 5 // Per minute
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
+  },
+
   jade_amulet: {
     id: 'jade_amulet',
     icon: 'jadeAmulet',
     category: 'combat',
     slot: 'neck',
     name: 'jade amulet',
-    sellPrice: 1000,
+    sellPrice: 600,
     description: 'A magic amulet.',
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      attack: 2, // Damage per click
-      energyStorage: 10, // Max energy stored
+      attack: 3, // Damage per click
+      energyStorage: 15, // Max energy stored
       energyRegen: 10 // Per minute
     },
     requiredEquip: [{
@@ -54,9 +76,9 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      attack: 2,
-      energyStorage: 25,
-      energyRegen: 10
+      attack: 5,
+      energyStorage: 10,
+      energyRegen: 2
     },
     requiredEquip: [{
       type: 'skill',

@@ -8,7 +8,7 @@
       <h1>Skills</h1>
       {{#each skills}}
         <div class="d-flex align-items-center my-1">
-          <i class="lilIcon-{{this.type}} small-icon mr-3"></i>
+          <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>
           <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
           {{#unless $eq this.type 'total'}}
             <div class="progress" style="flex: 1 1 auto; height: 16px;">
@@ -31,7 +31,7 @@
             {{#if $eq currentSkill.type this.type}}select-skill-active{{/if}}"
             style="cursor: pointer"
             data-name="{{this.type}}">
-            <img src="icons/{{this.type}}.svg" class="small-icon">
+            <img src="icons/{{this.type}}.svg" class="extra-small-icon">
           </div>
         {{/each}}
         <!-- Quest Filter -->
@@ -40,7 +40,7 @@
           {{#if $eq currentSkill.type 'personalQuest'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="personalQuest">
-          <img src="icons/personalQuest.svg" class="small-icon">
+          <img src="icons/personalQuest.svg" class="extra-small-icon">
         </div>
         <!-- Tower Filter -->
         <div
@@ -48,7 +48,7 @@
           {{#if $eq currentSkill.type 'tower'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="tower">
-          <img src="icons/tower.svg" class="small-icon">
+          <img src="icons/tower.svg" class="extra-small-icon">
         </div>
         <!-- Boss Hp Filter -->
         <div
@@ -56,7 +56,7 @@
           {{#if $eq currentSkill.type 'boss'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="boss">
-          <img src="icons/boss.svg" class="small-icon">
+          <img src="icons/boss.svg" class="extra-small-icon">
         </div>
       </div>
       {{#if showAll200}}

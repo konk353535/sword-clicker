@@ -81,7 +81,7 @@ export const ORE_ITEMS = {
 
   ore_fairy_steel: {
     id: 'ore_fairy_steel',
-    icon: 'fairy_steel',
+    icon: 'fairySteel',
     category: 'mining',
     name: 'fairy steel',
     sellPrice: 150

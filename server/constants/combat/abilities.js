@@ -7,6 +7,22 @@ export const ABILITY = {
 
 export const ABILITIES = {
 
+  phantom_strikes: {
+    icon: 'phantomStrikes',
+    name: 'phantom strikes',
+    id: 'phantom_strikes',
+    buffs: ['phantom_strikes'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.phantom_strikes;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   shield_bash: {
     icon: 'shieldBash',
     name: 'shield bash',

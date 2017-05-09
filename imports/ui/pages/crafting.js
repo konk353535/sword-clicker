@@ -60,15 +60,17 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       } else {
         // Pass level so that this is recalled when we get up a level
         results = ReactiveMethod.call('crafting.fetchRecipes', craftingSkill.level);
-
+        const tiers = ReactiveMethod.call('crafting.fetchTiers', craftingSkill.level);
         recipeCache =  {
           data: results,
+          tiers,
           level: craftingSkill.level,
           date: moment().toDate()
         }
 
         Session.set('recipeCache', {
           data: results,
+          tiers,
           level: craftingSkill.level,
           date: moment().toDate()
         });
@@ -236,6 +238,21 @@ Template.craftingPage.helpers({
     return Template.instance().state.get('craftingTierFilter');
   },
 
+  craftingFilters() {
+    // Lists out specified crafting tiers
+    const instance = Template.instance();
+    const recipes = Session.get('recipeCache');
+    const craftingTierFilter = instance.state.get('craftingTierFilter');
+
+    console.log(recipes.tiers);
+    if (recipes && recipes.tiers) {
+      return recipes.tiers.map((tier) => {
+        tier.empty = !!craftingTierFilter[tier.name]
+        return tier;
+      });
+    }
+  },
+
   recipes() {
     const instance = Template.instance();
     const recipeFilter = instance.state.get('recipeFilter');
@@ -254,7 +271,7 @@ Template.craftingPage.helpers({
 
     // Create regex exp to filter out based on current tier filter selection
     let filterTierRegex = new RegExp(patterns.join('|'), 'gi');
-    console.log(instance.state.get('recipes'));
+
     let filteredRecipes = instance.state.get('recipes').filter((item) => {
       if (patterns.length > 0 && filterTierRegex) {
         // Filter out if it matches the pattern.

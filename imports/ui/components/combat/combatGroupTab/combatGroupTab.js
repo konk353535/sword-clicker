@@ -87,9 +87,6 @@ Template.combatGroupTab.events({
 Template.combatGroupTab.helpers({
 
   currentGroup() {
-    console.log(Groups.findOne({
-      members: Meteor.userId()
-    }));
     return Groups.findOne({
       members: Meteor.userId()
     });

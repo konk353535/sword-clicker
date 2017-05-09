@@ -84,6 +84,12 @@ export const TOWER_FLOOR_1 = {
         { type: 'item', itemId: 'copper_scimitar', amount: 1 },
         { type: 'item', itemId: 'copper_broad_sword', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 },
+        { type: 'item', itemId: 'jade', amount: 1 }
+      ]
     }])
   },
 

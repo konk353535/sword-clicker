@@ -374,6 +374,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the bleed ability.'
   },
 
+  phantom_strikes_level_1_tome: {
+    id: 'phantom_strikes_level_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'phantom strikes Lv 1',
+    teaches: {
+      abilityId: 'phantom_strikes',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the phantom strikes ability.'
+  },
+
   blade_spin_level_1_tome: {
     id: 'blade_spin_level_1_tome',
     icon: 'tome',

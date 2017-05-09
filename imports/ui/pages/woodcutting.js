@@ -82,11 +82,11 @@ Template.woodcuttingPage.helpers({
       // Incoming hacks!
       woodcutter.description = `
         <div class="d-flex align-items-center">
-          <i class="lilIcon-attack small-icon mr-1"></i>
+          <i class="lilIcon-attack extra-small-icon mr-1"></i>
           ${woodcutter.stats.attack}
         </div>
         <div class="d-flex align-items-center">
-          <i class="lilIcon-attackSpeed small-icon mr-1"></i>
+          <i class="lilIcon-attackSpeed extra-small-icon mr-1"></i>
           ${woodcutter.stats.attackSpeed}
         </div>
       `;
@@ -97,7 +97,7 @@ Template.woodcuttingPage.helpers({
         computedBonus += Math.floor(woodcutter.stats.accuracy * ( 1 + (DONATORS_BENEFITS.woodcuttingBonus / 100)));
         woodcutter.description += `
           <div class="d-flex align-items-center">
-            <i class="lilIcon-accuracy small-icon mr-1"></i>
+            <i class="lilIcon-accuracy extra-small-icon mr-1"></i>
             ${woodcutter.stats.accuracy}&nbsp;+&nbsp;
             <span class='text-primary'>${computedBonus}</span>
           </div>
@@ -105,7 +105,7 @@ Template.woodcuttingPage.helpers({
       } else {
         woodcutter.description += `
           <div class="d-flex align-items-center">
-            <i class="lilIcon-accuracy small-icon mr-1"></i>
+            <i class="lilIcon-accuracy extra-small-icon mr-1"></i>
             ${woodcutter.stats.accuracy}
           </div>
         `

@@ -2,7 +2,7 @@
 
   {{#if minimized}}
     <div class="chat-minimized">
-      Chat <img src="icons/maximize.svg" class="maximize-icon small-icon">
+      Chat <img src="icons/maximize.svg" class="maximize-icon extra-small-icon">
     </div>
   {{else}}
     <div class="chat-container">
@@ -21,7 +21,7 @@
             <a class="nav-link room-party {{#if $eq currentRoom currentGroup._id}}active{{/if}}" href="#">Party</a>
           </li>
         {{/if}}
-        <img src="icons/minimize.svg" class="minimize-icon small-icon">
+        <img src="icons/minimize.svg" class="minimize-icon extra-small-icon">
       </ul>
       {{#if $eq currentRoom 'General'}}
         {{>SimpleChatWindow roomId='General' username=currentUser.username limit=10}}

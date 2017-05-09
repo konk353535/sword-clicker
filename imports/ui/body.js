@@ -146,9 +146,14 @@ Template.body.onCreated(function () {
 
   floatingTextTimer = Meteor.setInterval(() => {
     let viewWidth = $(window).width();
+    let count = 0;
     // Increase height and decrease opacity
     $(".floating-text").each(function(i) {      
-
+      count++;
+      if (count > 50) {
+        $(this).remove();
+        return;
+      }
       var y = $(this).position().top;
       var count = $(this).data('count');
 

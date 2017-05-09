@@ -51,69 +51,17 @@
     <div class="mb-3">
       <b>Filter: </b>
       <span class="tier-filter badge
-        badge-{{#if craftingTierFilter.primitive}}empty{{else}}stone{{/if}}" data-tier-filter="primitive">
+        badge-{{#if craftingTierFilter.primitive}}empty{{else}}grey-0{{/if}}" data-tier-filter="primitive">
           Primitive
       </span>
-      {{#if $gte craftingLevel 2}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.copper}}empty{{else}}copper{{/if}}" data-tier-filter="copper">
-            Copper
+
+      {{#each craftingFilters}}
+        <span class="tier-filter text-capitalize badge
+          badge-{{#if this.empty}}empty{{else}}{{this.color}}{{/if}}" data-tier-filter="{{this.name}}">
+            {{this.displayName}}
         </span>
-      {{/if}}
-      {{#if $gte craftingLevel 4}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.iron}}empty{{else}}iron{{/if}}" data-tier-filter="iron">
-            Iron
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 7}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.steel}}empty{{else}}steel{{/if}}" data-tier-filter="steel">
-            Steel
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 10}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.carbon}}empty{{else}}carbon{{/if}}" data-tier-filter="carbon">
-            Carbon
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 14}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.mithril}}empty{{else}}mithril{{/if}}" data-tier-filter="mithril">
-            Mithril
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 17}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.adamantium}}empty{{else}}adamantium{{/if}}" data-tier-filter="adamantium">
-            Adamantium
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 24}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.orichalcum}}empty{{else}}orichalcum{{/if}}" data-tier-filter="orichalcum">
-            Orichalcum
-        </span>
-      {{/if}}
-        {{#if $gte craftingLevel 29}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.cobalt}}empty{{else}}cobalt{{/if}}" data-tier-filter="cobalt">
-            Cobalt
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 34}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.fairy_steel}}empty{{else}}fairy-steel{{/if}}" data-tier-filter="fairy_steel">
-            FairySteel
-        </span>
-      {{/if}}
-      {{#if $gte craftingLevel 39}}
-        <span class="tier-filter badge
-          badge-{{#if craftingTierFilter.cursed}}empty{{else}}cursed{{/if}}" data-tier-filter="cursed">
-            Cursed
-        </span>
-      {{/if}}
+      {{/each}}
+
     </div>
 
     <table class="table table-bordered table-hover table-centered table-responsive">

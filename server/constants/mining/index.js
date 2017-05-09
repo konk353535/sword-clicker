@@ -557,13 +557,13 @@ export const MINING = {
 
     mithril_essence: {
       requiredLevel: 23,
-      healthMax: 10000,
+      healthMax: 3000,
       xp: 200,
       id: 'mithril_essence',
       icon: 'mithrilEssence',
       name: 'mithril_essence',
       itemId: 'mithril_essence',
-      chance: 0.0000075
+      chance: 0.0000095
     },
 
     adamantium: {
@@ -579,7 +579,7 @@ export const MINING = {
 
     adamantium_essence: {
       requiredLevel: 28,
-      healthMax: 50000,
+      healthMax: 15000,
       xp: 350,
       id: 'adamantium_essence',
       icon: 'adamantiumEssence',
@@ -601,7 +601,7 @@ export const MINING = {
 
     orichalcum_essence: {
       requiredLevel: 33,
-      healthMax: 75000,
+      healthMax: 22500,
       xp: 660,
       id: 'orichalcum_essence',
       icon: 'orichalcumEssence',
@@ -623,7 +623,7 @@ export const MINING = {
 
     cobalt_essence: {
       requiredLevel: 38,
-      healthMax: 100000,
+      healthMax: 30000,
       xp: 840,
       id: 'cobalt_essence',
       icon: 'cobaltEssence',
@@ -637,7 +637,7 @@ export const MINING = {
       healthMax: 12500,
       xp: 1000,
       id: 'fairy_steel',
-      icon: 'fairy_steel',
+      icon: 'fairySteel',
       name: 'fairy_steel',
       itemId: 'ore_fairy_steel',
       chance: 0.00010
@@ -645,7 +645,7 @@ export const MINING = {
 
     fairy_steel_essence: {
       requiredLevel: 43,
-      healthMax: 125000,
+      healthMax: 37500,
       xp: 1000,
       id: 'fairy_steel_essence',
       icon: 'fairySteelEssence',
@@ -667,7 +667,7 @@ export const MINING = {
 
     cursed_essence: {
       requiredLevel: 48,
-      healthMax: 150000,
+      healthMax: 45000,
       xp: 1250,
       id: 'cursed_essence',
       icon: 'cursedEssence',
@@ -689,13 +689,13 @@ export const MINING = {
 
     lapislazuli: {
       requiredLevel: 20,
-      healthMax: 50000,
-      xp: 7600,
+      healthMax: 15000,
+      xp: 1000,
       id: 'lapislazuli',
       icon: 'lapislazuli',
       name: 'lapislazuli',
       itemId: 'lapislazuli',
-      chance: 0.000000035
+      chance: 0.000000095
     }
   }
 }

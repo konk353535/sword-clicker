@@ -203,6 +203,21 @@ Meteor.methods({
     craftItem(recipeId, amount);
   },
 
+  'crafting.fetchTiers'() {
+    const craftingSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'crafting'
+    });
+
+    const tiersArray = Object.keys(CRAFTING.tiers).map((tierKey) => {
+      return CRAFTING.tiers[tierKey];
+    }).filter((tier) => {
+      return craftingSkill.level + 1 > tier.requiredCraftingLevel;
+    });
+
+    return tiersArray;
+  },
+
   'crafting.fetchRecipes'() {
     const craftingSkill = Skills.findOne({
       owner: Meteor.userId(),

@@ -39,6 +39,30 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.tickEvents = [];
   actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
 
+  // If this is the first tick apply all passives to appropriate units
+  if (actualBattle.tick === 0) {
+    actualBattle.allAliveUnits.forEach((unit) => {
+      if (unit.abilities) {
+        unit.abilities.forEach((ability) => {
+          if (ABILITIES[ability.id].isPassive) {
+            const targets = [unit.id];
+            // Cast it! and put it on cooldown
+            const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[ability.id]));
+            abilityToCast.level = ability.level;
+
+            // Fetch who we are are targetting with this ability
+            castAbility({
+              ability: abilityToCast,
+              caster: unit,
+              targets: [unit],
+              actualBattle
+            });
+          }
+        })
+      }
+    })
+  }
+
   // Fetch actions related to this battle
   const rawBattleActions = redis.get(`battleActions-${actualBattle._id}`);
   const battleActions = rawBattleActions ? JSON.parse(rawBattleActions) : [];
@@ -74,22 +98,26 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       const rawDamage = attacker.stats.attack + extraRawDamage;
 
       // Tick didDamage event on attacker
-      attacker.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
-        if (buff.constants.events.onDidDamage) {
-          // Did Damage
-          buff.constants.events.onDidDamage({ secondsElapsed, buff, target: aliveUnit, actualBattle })
-        }
-      });
+      if (attacker.buffs) {
+        attacker.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onDidDamage) {
+            // Did Damage
+            buff.constants.events.onDidDamage({ secondsElapsed, buff, defender, attacker, actualBattle })
+          }
+        });
+      }
 
       // Tick tookDamage event on defender
-      defender.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
-        if (buff.constants.events.onTookDamage) {
-          // Took Damage
-          buff.constants.events.onTookDamage({ secondsElapsed, buff, target: aliveUnit, actualBattle })
-        }
-      });
+      if (defender.buffs) {
+        defender.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onTookDamage) {
+            // Took Damage
+            buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle })
+          }
+        });
+      }
 
       dealDamage(rawDamage, { attacker, defender, tickEvents });
     } else {

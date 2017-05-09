@@ -46,6 +46,51 @@ export const MITHRIL_CRAFTS = {
     }]
   },
 
+  mithril_amulet: {
+    produces: 'mithril_amulet',
+    name: 'mithril amulet',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'mithril_amulet',
+    timeToCraft: 60 * 60,
+    xp: 300,
+    maxToCraft: 1,
+    requiredCraftingLevel: 16,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'mithril_essence',
+      icon: ITEMS['mithril_essence'].icon,
+      name: ITEMS['mithril_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 16
+    }]
+  },
+
   mithril_spear: {
     produces: 'mithril_spear',
     name: 'mithril spear',

@@ -37,12 +37,25 @@ body.targetting-enemies {
   }
 }
 
-.small-icon {
+.extra-small-icon {
   width: 24px;
   height: 24px;
   font-size: 24px;
   line-height: 24px;
   pointer-events: none;
+}
+
+.small-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  pointer-events: none;
+}
+
+.small-icon img {
+  width: 24px;
+  height: 24px;
 }
 
 .medium-icon {

@@ -7,7 +7,7 @@
 
     {{#if myUnitsAmulet}}
       <div class="buff-icon-container icon-box medium-icon" style="position: relative">
-        <img src="/icons/amulet.svg" class="small-icon">
+        <img src="/icons/amulet.svg" class="extra-small-icon">
         <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
           {{> formatNumber myUnitsAmulet.energy}} / {{> formatNumber myUnitsAmulet.energyStorage}}
         </span>
@@ -23,7 +23,7 @@
       <h1>My Units</h1>
       <div class="d-flex flex-row flex-wrap">
         {{#each currentBattle.units}}
-          {{> battleUnit unit=this isFriendly="true" unitClicked=unitClicked}}
+          {{> battleUnit unit=this isFriendly="true" unitClicked=unitClicked showBuffs=true}}
         {{/each}}
       </div>
     </div>
@@ -31,7 +31,7 @@
       <h1>Enemy Units</h1>
       <div class="d-flex flex-row flex-wrap">
         {{#each currentBattle.enemies}}
-          {{> battleUnit unit=this isEnemy="true" unitClicked=unitClicked}}
+          {{> battleUnit unit=this isEnemy="true" unitClicked=unitClicked showBuffs=true}}
         {{/each}}
       </div>
     </div>

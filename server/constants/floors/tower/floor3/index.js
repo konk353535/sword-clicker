@@ -101,7 +101,12 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'steel_scimitar', amount: 1 },
         { type: 'item', itemId: 'steel_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'juniper', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'lapislazuli', amount: 1 }
       ]
     }])
   },

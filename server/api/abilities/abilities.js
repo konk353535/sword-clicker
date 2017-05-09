@@ -188,6 +188,7 @@ Meteor.methods({
         description: ABILITIES[abilityKey].description(abilityLevel),
         name: `${abilityConstant.name} (${abilityLevel})`,
         icon: abilityConstant.icon,
+        isHidden: abilityConstant.isHidden,
         cooldown: abilityConstant.cooldown,
         level: abilityLevel,
         id: abilityConstant.id
@@ -195,7 +196,7 @@ Meteor.methods({
 
       return abilityData;
     }).filter((ability) => {
-      if (ability.isHidden) {
+      if (ability.isHidden && !abilitiesMap[ability.id]) {
         return false;
       }
 

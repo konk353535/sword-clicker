@@ -165,6 +165,7 @@ Template.craftingPage.events({
       instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
       instance.state.set('multiCraftRecipeId', recipeId);
       instance.$('.multiCraftModal').modal('show');
+      instance.$('.craft-amount-input').focus();
     } else {
       Meteor.call('crafting.craftItem', recipeId, 1, (err) => {
         if (err) {
@@ -184,6 +185,25 @@ Template.craftingPage.events({
   'click .show-less-items'(event, instance) {
     Session.set('itemViewLimit', 10);
     instance.state.set('itemViewLimit', 10);
+  },
+
+  'submit .craft-amount-form'(event, instance) {
+    event.preventDefault();
+
+    const recipeId = instance.state.get('multiCraftRecipeId');
+    const amountToCraft = instance.state.get('craftAmount');
+    
+    const recipeListMap = instance.state.get('recipeListMap');
+    const recipeConstants = recipeListMap[recipeId];
+
+    instance.$('.multiCraftModal').modal('hide');
+    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
+      if (err) {
+        toastr.warning('Failed to craft item');
+      } else {
+        toastr.success(`Started crafting ${recipeConstants.name}`)
+      }
+    });
   },
 
   'click .craft-btn'(event, instance) {

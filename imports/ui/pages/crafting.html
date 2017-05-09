@@ -109,22 +109,24 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          How many to craft?<br />
-          Max: {{maxCraftAmount}}
-          <input class="form-control craft-amount-input" value={{craftAmount}}><br />
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary craft-btn" data-amount='1'>
-            Craft 1
-          </button>          
-          <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
-            Craft X ({{craftAmount}})
-          </button>
-          <button type="button" class="btn btn-danger craft-btn" data-amount={{maxCraftableAmount}}>
-            Craft All ({{maxCraftableAmount}})
-          </button>
-        </div>
+        <form class="craft-amount-form">
+          <div class="modal-body">
+            How many to craft?<br />
+            Max: {{maxCraftAmount}}
+            <input class="form-control craft-amount-input" value={{craftAmount}}><br />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary craft-btn" data-amount='1'>
+              Craft 1
+            </button>          
+            <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
+              Craft X ({{craftAmount}})
+            </button>
+            <button type="button" class="btn btn-danger craft-btn" data-amount={{maxCraftableAmount}}>
+              Craft All ({{maxCraftableAmount}})
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

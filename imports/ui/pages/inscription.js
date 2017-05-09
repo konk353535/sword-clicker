@@ -120,12 +120,15 @@ Template.inscriptionPage.events({
       instance.state.set('craftAmount', 1);
       instance.state.set('multiCraftRecipeId', recipeId);
       instance.$('.multiCraftModal').modal('show');
+      instance.$('.craft-amount-input').focus();
     } else {
       Meteor.call('inscription.craftItem', recipeId, 1);
     }
   },
 
-  'click .craft-btn'(event, instance) {
+  'submit .craft-amount-form, click .craft-btn'(event, instance) {
+    event.preventDefault();
+
     const recipeId = instance.state.get('multiCraftRecipeId');
     const amountToCraft = parseInt(instance.state.get('craftAmount'));
 

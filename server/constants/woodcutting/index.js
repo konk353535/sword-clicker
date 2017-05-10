@@ -161,7 +161,7 @@ export const WOODCUTTING = {
       requiredWoodcuttingLevel: 20,
       icon: 'lumberJack',
       name: 'lumberjack expert',
-      id: 'lumber_jack',
+      id: 'lumber_jack_expert',
       axeId: 'adamantium_axe',
       required: [{
         type: 'item',
@@ -185,7 +185,7 @@ export const WOODCUTTING = {
       requiredWoodcuttingLevel: 25,
       icon: 'lumberJack',
       name: 'lumberjack champion',
-      id: 'lumber_jack',
+      id: 'lumber_jack_champion',
       axeId: 'orichalcum_axe',
       required: [{
         type: 'item',
@@ -209,7 +209,7 @@ export const WOODCUTTING = {
       requiredWoodcuttingLevel: 30,
       icon: 'lumberJack',
       name: 'lumberjack legend',
-      id: 'lumber_jack',
+      id: 'lumber_jack_legend',
       axeId: 'cobalt_axe',
       required: [{
         type: 'item',
@@ -233,7 +233,7 @@ export const WOODCUTTING = {
       requiredWoodcuttingLevel: 35,
       icon: 'lumberJack',
       name: 'lumberjack hero',
-      id: 'lumber_jack',
+      id: 'lumber_jack_hero',
       axeId: 'fairy_steel_axe',
       required: [{
         type: 'item',
@@ -257,7 +257,7 @@ export const WOODCUTTING = {
       requiredWoodcuttingLevel: 40,
       icon: 'lumberJack',
       name: 'lumberjack pack',
-      id: 'lumber_jack',
+      id: 'lumber_jack_pack',
       axeId: 'cursed_axe',
       required: [{
         type: 'item',

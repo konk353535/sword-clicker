@@ -8,6 +8,15 @@ export const CRAFTING_ITEMS = {
     description: 'Used to melt ores into bars'
   },
 
+  composite_wall: {
+    id: 'composite_wall',
+    icon: 'compositeWall',
+    category: 'crafting',
+    name: 'composite wall',
+    sellPrice: 100,
+    description: 'A useless wall. Good for a training craftsmen.'
+  },
+
   polished_stone: {
     id: 'polished_stone',
     icon: 'polishedStone',

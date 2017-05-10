@@ -1,6 +1,6 @@
 <template name="battleUnit">
   <div class="d-flex">
-    <div class="d-flex flex-column align-items-center justify-content-center px-2" style="max-width: 100%">
+    <div class="d-flex flex-column align-items-center flex-wrap justify-content-center px-2" style="max-width: 100%;">
       {{#if unit.name}}
         <span class="text-capitalize battle-unit-name">{{unit.name}}</span>
       {{/if}}
@@ -17,7 +17,7 @@
       </div>
     </div>
     {{#if showBuffs}}
-      <div class="d-flex flex-column" style="min-width: 40px">
+      <div class="d-flex flex-column flex-wrap" style="min-width: 40px; max-height: 200px;">
         {{#each unit.buffs}}
           {{> buffIcon buff=this small=true}}
         {{/each}}

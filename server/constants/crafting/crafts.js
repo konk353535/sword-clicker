@@ -64,6 +64,51 @@ export const CRAFTING_CRAFTS = {
     maxToCraft: 1
   },
 
+  composite_wall: {
+    produces: 'composite_wall',
+    recipeFor: 'crafting',
+    name: 'composite wall',
+    category: 'crafting',
+    id: 'composite_wall',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 100,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'copper_bar',
+      icon: ITEMS['copper_bar'].icon,
+      name: ITEMS['copper_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'iron_bar',
+      icon: ITEMS['iron_bar'].icon,
+      name: ITEMS['iron_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'steel_bar',
+      icon: ITEMS['steel_bar'].icon,
+      name: ITEMS['steel_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 60 * 60 * 8,
+    xp: 4000,
+    maxToCraft: 1
+  },
+
   stone_furnace: {
     produces: 'stone_furnace',
     recipeFor: 'crafting',

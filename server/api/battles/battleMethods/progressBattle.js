@@ -72,7 +72,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     redis.del(`battleActions-${actualBattle._id}`);
   }
 
-  const dealDamage = function(rawDamage, { attacker, defender, tickEvents }) {
+  const dealDamage = function(rawDamage, { attacker, defender, tickEvents, customColor, customIcon }) {
 
     let damage = rawDamage;
     if (damage > 0) {
@@ -82,10 +82,12 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     }
 
     tickEvents.push({
-      from: attacker.id,
+      from: attacker ? attacker.id : '',
       to: defender.id,
       eventType: 'damage',
-      label: Math.round(damage)
+      label: Math.round(damage),
+      customColor,
+      customIcon
     });
   }
 

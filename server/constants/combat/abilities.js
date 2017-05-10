@@ -7,6 +7,22 @@ export const ABILITY = {
 
 export const ABILITIES = {
 
+  poisoned_blade: {
+    icon: 'poisonedBlade',
+    name: 'poisoned blade',
+    id: 'poisoned_blade',
+    buffs: ['poisoned_blade'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.poisoned_blade;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   phantom_strikes: {
     icon: 'phantomStrikes',
     name: 'phantom strikes',

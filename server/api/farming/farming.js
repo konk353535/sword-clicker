@@ -14,6 +14,7 @@ import { FARMING } from '/server/constants/farming';
 import { ITEMS } from '/server/constants/items';
 
 // Given a farm space, will return it modified based on
+/*
 const farmSpaceModifier = function (farmSpace, farming) {
   if (farmSpace.plantId && farmSpace.plantId !== 'dead_plant' && farmSpace.growing) {
     const plantConstants = FARMING.plants[farmSpace.plantId];
@@ -67,7 +68,7 @@ const farmSpaceModifier = function (farmSpace, farming) {
   }
 
   return farmSpace;
-}
+}*/
 
 export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
   // Make sure the user is currently a member
@@ -87,6 +88,7 @@ export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
 
 Meteor.methods({
 
+  /*
   'farming.gameUpdate'() {
     this.unblock();
     // Fetch farming for last game updated
@@ -109,22 +111,7 @@ Meteor.methods({
         $exists: true
       }
     }).map((farmSpace) => {
-      return farmSpaceModifier(farmSpace, farming);
-    });
-
-    // Save any changes to farm space
-    farmingSpaces.forEach((farmSpace) => {
-      if (farmSpace.isDirty) {
-        FarmingSpace.update(farmSpace._id, {
-          $set: {
-            water: farmSpace.water,
-            plantId: farmSpace.plantId,
-            maturityDate: farmSpace.maturityDate,
-            plantDate: farmSpace.plantDate,
-            growing: farmSpace.growing
-          }
-        });
-      }
+      return farmSpace;
     });
   },
 
@@ -147,7 +134,7 @@ Meteor.methods({
         });
       }
     }
-  },
+  },*/
 
   'farming.pick'(index) {
     // Pick whatever is in the specified index
@@ -162,21 +149,6 @@ Meteor.methods({
       const farming = Farming.findOne({
         owner: Meteor.userId()
       });
-
-
-      let updatedTargetToPick = farmSpaceModifier(targetToPick, farming);
-      if (!moment().isAfter(updatedTargetToPick.maturityDate)) {
-        FarmingSpace.update({
-          _id: targetToPick._id
-        }, {
-          $set: {
-            water: plantConstants.waterStorage,
-            maturityDate: updatedTargetToPick.maturityDate,
-            plantDate: updatedTargetToPick.plantDate
-          }
-        });
-        throw new Meteor.Error("woops", "That hasn't grown yet.");
-      }
 
       // Update patch
       FarmingSpace.update({
@@ -230,7 +202,6 @@ Meteor.methods({
     FarmingSpace.update(emptySpace._id, {
       $set: {
         plantId: plantConstants.id,
-        water: plantConstants.initialWater,
         maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
         plantDate: new Date(),
         growing: true

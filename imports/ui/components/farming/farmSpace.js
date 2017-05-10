@@ -33,9 +33,7 @@ const updateFarmSpaceUI = function (self) {
       // Update water %
       const totalDiff = moment(farmSpace.plantDate).diff(farmSpace.maturityDate);
       const currentDiff = moment(farmSpace.plantDate).diff(moment());
-      if (!self.state.get('growthPercentage') || farmSpace.water > 0) {
-        self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
-      }
+      self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
     }
 }
 
@@ -49,14 +47,10 @@ Template.farmSpace.events({
       Meteor.call('farming.pick', instance.data.farmSpace.index, (err, res) => {
         if (err) {
           TimeSync.resync();
-          Meteor.call('farming.water', instance.data.farmSpace.index);
         } else {
           instance.state.set('finishedGrowing', false);
         }
       });
-      // Set finished growing to false now that this is picked
-    } else {
-      Meteor.call('farming.water', instance.data.farmSpace.index);
     }
   }
 });
@@ -78,10 +72,6 @@ Template.farmSpace.helpers({
 
   finishedGrowing() {
     return Template.instance().state.get('finishedGrowing');
-  },
-
-  waterPercentage() {
-    return Template.instance().data.farmSpace.waterPercentage;
   },
 
   growthPercentage() {

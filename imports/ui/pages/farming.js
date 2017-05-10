@@ -9,19 +9,12 @@ import { FarmingSpace } from '/imports/api/farming/farming.js';
 import '../components/farming/farmSpace.js';
 import './farming.html';
 
-let farmingTimer;
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   Meteor.call('farming.gameUpdate', (err) => {
     this.state.set('tooltipsLoaded', false);
     this.subscribe('farmingSpace');
-
-    farmingTimer = Meteor.setInterval(function () {
-      if (Meteor.user()) {
-        Meteor.call('farming.gameUpdate');
-      }
-    }, 5000);
 
     this.autorun(() => {
       if (Skills.findOne({ type: 'farming' })) {
@@ -32,10 +25,6 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
       }
     });
   });
-});
-
-Template.farmingPage.onDestroyed(function () {
-  Meteor.clearInterval(farmingTimer);
 });
 
 Template.farmingPage.events({
@@ -87,10 +76,7 @@ Template.farmingPage.helpers({
   },
 
   farmingSpaces() {
-    return FarmingSpace.find().map((item) => {
-      item.waterPercentage = (item.water / item.waterStorage) * 100;
-      return item;
-    });
+    return FarmingSpace.find();
   },
 
   buyableSeeds() {

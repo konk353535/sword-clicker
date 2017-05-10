@@ -29,6 +29,8 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 
   if (Session.get('recipeCache')) {
     recipeCache = Session.get('recipeCache');
+  } else if (recipeCache) {
+    Session.set('recipeCache', recipeCache);
   }
 
   Tracker.autorun(() => {
@@ -54,7 +56,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       let results;
 
       // Check if valid cache exists
-      if (recipeCache && recipeCache.data && recipeCache.level === craftingSkill.level &&
+      if (recipeCache && recipeCache.data && recipeCache.tiers && recipeCache.level === craftingSkill.level &&
         moment().isBefore(moment(recipeCache.date).add(2, 'minutes'))) {
         results = recipeCache.data;
       } else {

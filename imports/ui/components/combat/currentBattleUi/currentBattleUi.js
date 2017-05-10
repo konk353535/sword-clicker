@@ -45,6 +45,8 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
             let color;
             if (tickEvent.label == 0) {
               color = 'blue';
+            } else if (tickEvent.customColor) {
+              color = tickEvent.customColor;
             } else {
               color = 'red';
             }

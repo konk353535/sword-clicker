@@ -82,7 +82,8 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'iron_scimitar', amount: 1 },
-        { type: 'item', itemId: 'iron_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'iron_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
       ]
     }])
   },

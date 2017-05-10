@@ -3,6 +3,121 @@ import { attackSpeedTicks } from '/server/utils';
 
 export const ATTACK_BUFFS = {
 
+  basic_poison: {
+    duplicateTag: 'basic_poison', // Used to stop duplicate buffs
+    icon: 'poison',
+    name: 'basic poison',
+    description({ buff, level }) {
+      return 'Deals poison damage over time';
+    },
+    constants: {
+      timeTillDamage: 5,
+    },
+    events: {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+
+        if (buff.data.timeTillDamage !== undefined) {
+          buff.data.timeTillDamage -= secondsElapsed;
+        } else {
+          buff.data.timeTillDamage = 0;
+        }
+
+        if (buff.data.timeTillDamage <= 0) {
+          buff.data.timeTillDamage = constants.timeTillDamage;
+          const poisonDamage = buff.data.damage;
+          actualBattle.utils.dealDamage(poisonDamage, {
+            defender: target,
+            tickEvents: actualBattle.tickEvents,
+            customIcon: 'poison',
+            customColor: '#229b00'
+          });
+        }
+
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove() {
+
+      }
+    }
+  },
+
+  poisoned_blade: {
+    duplicateTag: 'poisoned_blade', // Used to stop duplicate buffs
+    icon: 'poisonedBlade',
+    name: 'poisoned blade',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const chance = buff.constants.poisonChance * 100;
+      const damagePerLevel = buff.constants.poisonDamagePerLevel * 100;
+      const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
+
+      return `${chance}% chance to poison the enemy.<br />
+        Deals ${damage.toFixed(1)}% damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
+        Lasts indefinetly.`;
+    },
+    constants: {
+      poisonChance: 0.05,
+      poisonDamageBase: 0.17,
+      poisonDamagePerLevel: 0.03
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        if (Math.random() <= constants.poisonChance) {
+          const baseDamage = attacker.stats.attack;
+          const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
+          const abilityDamagePercentage = constants.poisonDamageBase + (constants.poisonDamagePerLevel * buff.data.level);
+
+          const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
+
+          // Add poisoned debuff to enemy
+          defender.buffs.push({
+            id: 'basic_poison',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              damage: Math.ceil(totalDamage),
+              icon: 'poison',
+              sourceId: attacker.id
+            }
+          })
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   phantom_strikes: {
     duplicateTag: 'phantom_strikes', // Used to stop duplicate buffs
     icon: 'phantomStrikes',

@@ -179,6 +179,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  poisoned_blade_1_tome: {
+    id: 'poisoned_blade_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Poisoned blade Lv 1',
+    teaches: {
+      abilityId: 'poisoned_blade',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the poisoned blade ability.'
+  },
+
   berserk_level_1_tome: {
     id: 'berserk_level_1_tome',
     icon: 'tome',

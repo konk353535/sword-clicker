@@ -33,7 +33,8 @@ export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 128,
   rewards: [
     { type: 'item', itemId: 'lavender', amount: 1 },
-    { type: 'item', itemId: 'steel_bar', amount: 1 }
+    { type: 'item', itemId: 'steel_bar', amount: 1 },
+    { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

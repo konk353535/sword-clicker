@@ -7,6 +7,22 @@ export const ABILITY = {
 
 export const ABILITIES = {
 
+  frost_armor: {
+    icon: 'frostArmor',
+    name: 'frost armor',
+    id: 'frost_armor',
+    buffs: ['frost_armor'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.frost_armor;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   poisoned_blade: {
     icon: 'poisonedBlade',
     name: 'poisoned blade',

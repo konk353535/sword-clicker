@@ -326,7 +326,7 @@ export const ATTACK_BUFFS = {
       return `Deal ${damageTotal}% of your defense as damage. (+${damagePerLevel * 100}% per lvl)`;
     },
     constants: {
-      damageBase: 1,
+      damageBase: 0.9,
       damagePerLevel: 0.1
     },
     data: {

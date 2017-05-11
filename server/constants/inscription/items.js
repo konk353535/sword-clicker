@@ -179,9 +179,22 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  frost_armor_1_tome: {
+    id: 'frost_armor_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Frost armor Lv 1',
+    teaches: {
+      abilityId: 'frost_armor',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the frost armor ability.'
+  },
+
   poisoned_blade_1_tome: {
     id: 'poisoned_blade_1_tome',
-    icon: 'tome',
+    icon: 'tomeUncommon',
     category: 'tome',
     name: 'Poisoned blade Lv 1',
     teaches: {

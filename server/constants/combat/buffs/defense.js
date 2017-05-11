@@ -1,7 +1,105 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const DEFENSE_BUFFS = {
+
+  frosted_attacks: {
+    duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
+    icon: 'frostArmor',
+    name: 'forsted attacks',
+    description({ buff, level }) {
+      return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Mutate targets attack speed
+        target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Mutate targets attack speed
+        target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      }
+    }
+  },
+
+  frost_armor: {
+    duplicateTag: 'frost_armor', // Used to stop duplicate buffs
+    icon: 'frostArmor',
+    name: 'frost armor',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const chance = buff.constants.frostChance * 100;
+      const attackSpeedDecrease = buff.constants.attackSpeedDecrease * 100;
+      const durationPerLevel = buff.constants.durationPerLevel;
+      const durationTotal = buff.constants.durationBase + (durationPerLevel * localLevel);
+
+      return `${chance}% chance to freeze your attacker.<br />
+        Lowers enemy attack speed by ${attackSpeedDecrease}% for ${durationTotal}s. (+${durationPerLevel}s per lvl).<br />`;
+    },
+    constants: {
+      frostChance: 0.15,
+      attackSpeedDecrease: 0.25,
+      durationBase: 9,
+      durationPerLevel: 1
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        if (Math.random() <= constants.frostChance) {
+          const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
+          const durationPerLevel = constants.durationPerLevel;
+          const durationTotal = constants.durationBase + (durationPerLevel * buff.data.level);
+
+          const newBuff = {
+            id: 'frosted_attacks',
+            data: {
+              duration: durationTotal,
+              totalDuration: durationTotal,
+              attackSpeedDecrease,
+              icon: 'frostArmor'
+            }
+          }
+
+          addBuff({ buff: newBuff, target: attacker, caster: defender });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 
   taunt: {
     duplicateTag: 'taunt', // Used to stop duplicate buffs

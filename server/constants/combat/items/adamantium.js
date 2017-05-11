@@ -86,7 +86,7 @@ export const ADAMANTIUM_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 25
     }]
   },
 
@@ -115,7 +115,7 @@ export const ADAMANTIUM_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 25
     }]
   },
 
@@ -145,7 +145,7 @@ export const ADAMANTIUM_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 25
     }]
   },
 

@@ -61,7 +61,8 @@ export const TOWER_FLOOR_3 = {
     }, {
       chance: 1 / 64,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'juniper', amount: 1 },
+        { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
       ]
     }])
   },

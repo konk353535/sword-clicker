@@ -27,7 +27,8 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
     { type: 'item', itemId: 'carbon_axe', amount: 1 },
-    { type: 'item', itemId: 'carbon_dagger', amount: 1 }
+    { type: 'item', itemId: 'carbon_dagger', amount: 1 },
+    { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

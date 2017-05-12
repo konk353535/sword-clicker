@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
+import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 
 export const DEFENSE_BUFFS = {
 
@@ -86,6 +87,63 @@ export const DEFENSE_BUFFS = {
 
           addBuff({ buff: newBuff, target: attacker, caster: defender });
         }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  spiked_armor: {
+    duplicateTag: 'spiked_armor', // Used to stop duplicate buffs
+    icon: 'spikedArmor',
+    name: 'spiked armor',
+    description({ buff, level }) {
+
+      const damageReflectionBase = buff.constants.damageReflectionBase;
+      const damageReflectionPerLevel = buff.constants.damageReflectionPerLevel * level;
+      const damageReflection = damageReflectionBase + damageReflectionPerLevel;
+
+      return `
+        Reflect ${Math.round(damageReflection * 100)}% of damage taken. <br />
+        (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
+    },
+    constants: {
+      damageReflectionBase: 0.25,
+      damageReflectionPerLevel: 0.05
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+        const constants = buff.constants.constants;
+
+        const damageReflectionBase = constants.damageReflectionBase;
+        const damageReflectionPerLevel = constants.damageReflectionPerLevel * buff.data.level;
+        const damageReflection = damageReflectionBase + damageReflectionPerLevel;
+
+        const dmgReduction = BATTLES.dmgReduction(defender.stats.armor);
+        const totalDamage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
+
+        actualBattle.utils.dealDamage(totalDamage * damageReflection, {
+          attacker: defender,
+          defender: attacker,
+          tickEvents: actualBattle.tickEvents
+        });
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

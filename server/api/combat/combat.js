@@ -105,6 +105,11 @@ export const updateCombatStats = function (userId, username) {
     playerData.stats.attackSpeed = 0.5;
   }
 
+  // If health is above healthMax, reset health
+  if (playerData.stats.health > playerData.stats.healthMax) {
+    playerData.stats.health = playerData.stats.healthMax;
+  }
+
   // Set player stats
   Combat.update({
     owner: userId

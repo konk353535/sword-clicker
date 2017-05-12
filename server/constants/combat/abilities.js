@@ -7,6 +7,22 @@ export const ABILITY = {
 
 export const ABILITIES = {
 
+  spiked_armor: {
+    icon: 'spikedArmor',
+    name: 'spiked armor',
+    id: 'spiked_armor',
+    buffs: ['spiked_armor'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.spiked_armor;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   frost_armor: {
     icon: 'frostArmor',
     name: 'frost armor',

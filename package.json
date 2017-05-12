@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-ui-router": "^0.4.2",
+    "animate.css": "^3.5.2",
     "babel-runtime": "^6.20.0",
     "bootstrap": "^4.0.0-alpha.6",
     "lodash": "^4.17.4",

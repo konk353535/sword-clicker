@@ -88,7 +88,23 @@
   cursor: not-allowed;
 }
 
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -200%, 0);
+  }
+}
+
+.fadeOutUp {
+  animation-name: fadeOutUp;
+}
+
 .floating-text {
+  animation-duration: 2s;
   pointer-events: none;
   position: absolute;
   cursor: pointer;

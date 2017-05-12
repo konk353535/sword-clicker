@@ -59,7 +59,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
               offset.top += 40;
             }
 
-            let element = `
+            let element = $(`
               <p
                 class='floating-text'
                 data-count=1
@@ -67,9 +67,10 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
                 <i class="lilIcon-attack"></i>
                 ${tickEvent.label}
               </p>
-            `;
+            `);
 
             $('body').append(element);
+            $(element).animateCss('fadeOutUp');
           }
         });
       }

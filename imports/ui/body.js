@@ -79,20 +79,21 @@ Template.body.onCreated(function () {
               } else {
                 xpGained = Math.round(xpGained);
               }
-              const element = `
+              const element = $(`
                 <p
                   class='floating-text'
                   data-count=1
                   style='top: 75px; right: 25px; opacity: 1.0;'>
                   +${xpGained} <i class="lilIcon-${skill.type}"></i>
                 </p>
-              `;
+              `);
 
               $('body').append(element);
+              $(element).animateCss('fadeOutUp');
             }
           } else {
             for (let i = 0; i < 2; i++) {
-              const element = `
+              const element = $(`
                 <p
                   class='floating-text text-white bg-primary'
                   data-count=-50
@@ -101,9 +102,10 @@ Template.body.onCreated(function () {
                     ${skill.type}
                   </span> Level Up <i class="lilIcon-${skill.type}"></i>
                 </p>
-              `;
+              `);
 
               $('body').append(element);
+              $(element).animateCss('fadeOutUp');
             }
           }
           skillCache.xp = skill.xp;
@@ -118,6 +120,16 @@ Template.body.onCreated(function () {
         }
       }
     });
+  });
+
+
+  $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).remove();
+        });
+    }
   });
 
   miningTimer = Meteor.setInterval(function () {
@@ -144,6 +156,7 @@ Template.body.onCreated(function () {
     }
   }, 60 * 1000 + (Math.random() * 1000));
 
+  /*
   floatingTextTimer = Meteor.setInterval(() => {
     let viewWidth = $(window).width();
     let count = 0;
@@ -173,7 +186,7 @@ Template.body.onCreated(function () {
         $(this).data('count', count + 1);
       }
     });
-  }, 20);
+  }, 20);*/
 
   // Show items
   Meteor.subscribe('items');

@@ -192,6 +192,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the frost armor ability.'
   },
 
+  spiked_armor_1_tome: {
+    id: 'spiked_armor_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Spiked armor Lv 1',
+    teaches: {
+      abilityId: 'spiked_armor',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the spiked armor ability.'
+  },
+
   poisoned_blade_1_tome: {
     id: 'poisoned_blade_1_tome',
     icon: 'tomeUncommon',

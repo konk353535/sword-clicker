@@ -28,6 +28,7 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'mithril_pickaxe', amount: 1 },
     { type: 'item', itemId: 'mithril_axe', amount: 1 },
     { type: 'item', itemId: 'mithril_dagger', amount: 1 },
+    { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

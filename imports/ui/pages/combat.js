@@ -70,7 +70,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     const finishedBattle = Battles.findOne({
       finished: true,
       updatedAt: {
-        $gte: moment().subtract(10, 'second').toDate()
+        $gte: moment().subtract(15, 'second').toDate()
       }
     }, {
       sort: {

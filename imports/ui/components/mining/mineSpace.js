@@ -25,7 +25,7 @@ Template.mineSpace.events({
         // Determine left based on tick # + tickEventIndex
         offset.left += -20 + (Math.round(Math.random() * 50)); // -20 to 30
 
-        let element = `
+        let element = $(`
           <p
             class='floating-text'
             data-count=1
@@ -33,9 +33,10 @@ Template.mineSpace.events({
             <i class="lilIcon-mining"></i>
             ${myMining.stats.attack}
           </p>
-        `;
+        `);
 
         $('body').append(element);
+        $(element).animateCss('fadeOutUp');
       } else {
         if (!warningShown) {
           toastr.warning(`

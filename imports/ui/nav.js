@@ -62,6 +62,14 @@ Template.nav.helpers({
     }
   },
 
+  hasInscriptionSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'inscription' });
+    } else {
+      return true;
+    }
+  },
+
   hasAttackSkill() {
     if (Skills.findOne()) {
       return Skills.findOne({ type: 'attack' });

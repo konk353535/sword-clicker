@@ -27,6 +27,20 @@ export const SKILLS = {
     }]
   },
 
+  astronomy: {
+    xpToLevel(level) {
+      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+    },
+
+    requirementsToLearn: [{
+      itemId: 'ore_copper',
+      icon: ITEMS['ore_copper'].icon,
+      name: ITEMS['ore_copper'].name,
+      amount: 25,
+      type: 'item'
+    }]
+  },
+
   farming: {
     xpToLevel(level) {
       return 30 * level + ((level / 2) * (level / 2) * level * 10);

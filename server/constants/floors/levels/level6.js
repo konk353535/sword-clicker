@@ -25,22 +25,26 @@ export const LEVEL_SIX_MONSTERS = [{
 export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   chance: 1 / 128,
   rewards: [
+    { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 },
+    { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
+  ]
+},{
+  chance: 1 / 96,
+  rewards: [
     { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
     { type: 'item', itemId: 'carbon_axe', amount: 1 },
-    { type: 'item', itemId: 'carbon_dagger', amount: 1 },
-    { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
+    { type: 'item', itemId: 'carbon_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'agrimony_seed', amount: 1 },
-    { type: 'item', itemId: 'carbon_bar', amount: 1 },
     { type: 'item', itemId: 'lavender', amount: 1 },
-    { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 32,
   rewards: [
+    { type: 'item', itemId: 'carbon_bar', amount: 1 },
     { type: 'item', itemId: 'ore_mithril', amount: 1 }
   ]
 }, {

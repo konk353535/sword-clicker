@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 
+import { Astronomy } from '/imports/api/astronomy/astronomy';
 import { Inscription } from '/imports/api/inscription/inscription';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Users } from '/imports/api/users/users';
@@ -156,6 +157,18 @@ Meteor.methods({
             index: i
           });
         }
+      } else if (skillName === 'astronomy') {
+        Astronomy.insert({
+          owner: Meteor.userId(),
+          mages: [{
+            id: 'main',
+            stats: {
+              attackSpeed: 75,
+              criticalChance: 5
+            }
+          }],
+          lastGameUpdated: moment().toDate()
+        });
       }
     }
   },

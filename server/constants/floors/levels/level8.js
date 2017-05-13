@@ -25,14 +25,18 @@ export const LEVEL_EIGHT_MONSTERS = [{
 export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
+    { type: 'item', itemId: 'celery_seed', amount: 1 },
+  ]
+}, {
+  chance: 1 / 128,
+  rewards: [
     { type: 'item', itemId: 'adamantium_pickaxe', amount: 1 },
     { type: 'item', itemId: 'adamantium_axe', amount: 1 },
-    { type: 'item', itemId: 'adamantium_dagger', amount: 1 },
+    { type: 'item', itemId: 'adamantium_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'celery_seed', amount: 1 },
     { type: 'item', itemId: 'adamantium_bar', amount: 1 }
   ]
 }, {

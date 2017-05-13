@@ -58,6 +58,18 @@ Router.route('/', {
   }
 });
 
+Router.route('/astronomy', {
+
+  name: 'astronomy',
+
+  template: 'astronomyPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/farming', {
 
   name: 'farming',

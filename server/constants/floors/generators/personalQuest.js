@@ -29,23 +29,23 @@ export const personalQuestMonsterGenerator = function(level) {
       rewardLevel = 7;
       possibleMonsters.push(...MONSTER_LIST[7])
     }
-    if (level >= 70) {
+    if (level >= 65) {
       rewardLevel = 8;
       possibleMonsters.push(...MONSTER_LIST[8])
     }
-    if (level >= 90) {
+    if (level >= 75) {
       rewardLevel = 9;
       possibleMonsters.push(...MONSTER_LIST[9])
     }
-    if (level >= 110) {
+    if (level >= 90) {
       rewardLevel = 10;
       possibleMonsters.push(...MONSTER_LIST[10])
     }
-    if (level >= 130) {
+    if (level >= 110) {
       rewardLevel = 11;
       possibleMonsters.push(...MONSTER_LIST[11])
     }
-    if (level >= 150) {
+    if (level >= 130) {
       rewardLevel = 12;
       possibleMonsters.push(...MONSTER_LIST[12])
     }

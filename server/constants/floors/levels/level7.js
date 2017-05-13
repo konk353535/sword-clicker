@@ -25,10 +25,14 @@ export const LEVEL_SEVEN_MONSTERS = [{
 export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
+    { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
+  ]
+}, {
+  chance: 1 / 128,
+  rewards: [
     { type: 'item', itemId: 'mithril_pickaxe', amount: 1 },
     { type: 'item', itemId: 'mithril_axe', amount: 1 },
-    { type: 'item', itemId: 'mithril_dagger', amount: 1 },
-    { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
+    { type: 'item', itemId: 'mithril_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

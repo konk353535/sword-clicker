@@ -5,6 +5,7 @@ import { CRAFTING_ITEMS } from '/server/constants/crafting/items';
 import { MINING_ITEMS } from '/server/constants/mining/items';
 import { WOODCUTTING_ITEMS } from '/server/constants/woodcutting/items';
 import { INSCRIPTION_ITEMS } from '/server/constants/inscription/items';
+import { ASTRONOMY_ITEMS } from '/server/constants/astronomy/items';
 
 export const ITEMS = Object.assign(
   MISC_ITEMS,
@@ -13,5 +14,6 @@ export const ITEMS = Object.assign(
   MINING_ITEMS,
   WOODCUTTING_ITEMS,
   FARMING_ITEMS,
-  INSCRIPTION_ITEMS
+  INSCRIPTION_ITEMS,
+  ASTRONOMY_ITEMS
 );

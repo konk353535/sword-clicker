@@ -42,6 +42,13 @@
                     Inscription
                   </a>
                 </li>
+                {{#if hasInscriptionSkill}}
+                  <li class="nav-item">
+                    <a class="nav-link {{#if $eq currentRoute 'astronomy'}}active{{/if}}" href="/astronomy">
+                      Astronomy
+                    </a>
+                  </li>
+                {{/if}}
               {{/if}}
             {{/if}}
           {{/if}}

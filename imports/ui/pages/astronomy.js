@@ -73,6 +73,22 @@ Template.astronomyPage.events({
     instance.$('.hireMageModal').modal('show');
   },
 
+  'submit .deposit-form'(event, instance) {
+    event.preventDefault();
+    const mage = instance.state.get('selectedMage');
+    const amount = parseInt($('.deposit-amount-input').val())
+    Meteor.call('astronomy.depositMageGold', mage.index, amount);
+    instance.$('.depositMageModal').modal('hide');
+  },
+
+  'submit .withdraw-form'(event, instance) {
+    event.preventDefault();
+    const mage = instance.state.get('selectedMage');
+    const amount = parseInt($('.withdraw-amount-input').val())
+    Meteor.call('astronomy.withdrawMageGold', mage.index, amount);
+    instance.$('.depositMageModal').modal('hide');
+  },
+
   'click .buy-mage-upgrade'(event, instance) {
     const statId = instance.$(event.target).closest('.buy-mage-upgrade').data('stat');
     Meteor.call('astronomy.upgradeMage', statId, (err, res) => {
@@ -96,6 +112,7 @@ Template.astronomyPage.helpers({
     }
 
     astronomy.mages.forEach((mage, mageIndex) => {
+      mage.index = mageIndex
       if (mageIndex === 0) {
         mage.primaryAction = {
           description: 'Upgrade',
@@ -105,9 +122,12 @@ Template.astronomyPage.helpers({
         }
       } else {
         mage.primaryAction = {
-          description: 'Todo..',
+          description: 'Deposit / Withdraw',
           method() {
-
+            // Open modal
+            instance.$('.depositMageModal').modal('show');
+            // Update current mage
+            instance.state.set('selectedMage', mage);
           }
         }
       }
@@ -117,10 +137,13 @@ Template.astronomyPage.helpers({
     return astronomy;
   },
 
+  selectedMage() {
+    return Template.instance().state.get('selectedMage');
+  },
+
   hireableMages() {
     const types = ['water', 'air', 'fire', 'earth'];
 
-    console.log(Template.instance().state.get('hireMageCost'));
     return types.map((type) => {
       return {
         cost: Template.instance().state.get('hireMageCost'),

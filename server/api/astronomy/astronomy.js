@@ -103,9 +103,73 @@ Meteor.methods({
     });
   },
   // Deposit gold to mage
-  'astronomy.depositMageGold'(index) { },
-  // Fire mage
-  'astronomy.fireMage'(index) { },
+  'astronomy.depositMageGold'(index, amount) {
+    // Check we have enough gold, and deposit it
+    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+
+    // Do we have enough gold
+    const userDoc = Meteor.user();
+
+    if (userDoc.gold < amount) {
+      throw new Meteor.Error("invalid-gold", "dont have that much gold");
+    }
+
+    // Does mage exist?
+    if (astronomy.mages[index]) {
+      const targetMage = astronomy.mages[index];
+      targetMage.gold += amount;
+    } else {
+      throw new Meteor.Error("invalid-mage", "mage does not exist");
+    }
+
+    // Update user, then update mage
+    Users.update(Meteor.userId(), {
+      $inc: {
+        gold: amount * -1
+      }
+    });
+
+    Astronomy.update(astronomy._id, {
+      $set: {
+        mages: astronomy.mages
+      }
+    });
+  },
+  // Withdraw gold from mage
+  'astronomy.withdrawMageGold'(index, amount) {
+
+    // If more gold then what is there specified, withdraw all gold
+    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+
+    // Do we have enough gold
+    const userDoc = Meteor.user();
+
+    // Does mage exist?
+    if (astronomy.mages[index]) {
+      const targetMage = astronomy.mages[index];
+      if (targetMage.gold < amount) {
+        amount = targetMage.gold;
+        targetMage.gold = 0;
+      } else {
+        targetMage.gold -= amount;
+      }
+    } else {
+      throw new Meteor.Error("invalid-mage", "mage does not exist");
+    }
+
+    // Update user, then update mage
+    Users.update(Meteor.userId(), {
+      $inc: {
+        gold: amount
+      }
+    });
+
+    Astronomy.update(astronomy._id, {
+      $set: {
+        mages: astronomy.mages
+      }
+    });
+  },
   // Boost mage
   'astronomy.boostMage'(index) { },
   // Game Update
@@ -139,11 +203,28 @@ Meteor.methods({
     const gainedItems = {};
     let gainedXp = 0;
 
+    // Cost of mage per hour
+    const costPerHour = ASTRONOMY.mageHireCost[0].amount;
+
     // Iterate through all miners for minutesElapsed
     astronomy.mages.forEach((currentMage) => {
 
+      let localHoursElapsed = hoursElapsed;
+
+      if (currentMage.type) {
+        // Check there is enough gold
+        const maxTime = currentMage.gold / costPerHour;
+        if (localHoursElapsed > maxTime) {
+          currentMage.gold = 0;
+          localHoursElapsed = maxTime;
+        } else {
+          // Remove gold
+          currentMage.gold -= (localHoursElapsed * costPerHour);
+        }
+      }
+
       // Calculate shard fragments found
-      let totalFound = currentMage.stats.attackSpeed * hoursElapsed;
+      let totalFound = currentMage.stats.attackSpeed * localHoursElapsed;
 
       if (totalFound < 1 && Math.random() < totalFound) {
         totalFound = 1;
@@ -198,6 +279,17 @@ Meteor.methods({
     if (gainedXp >= 1) {
       addXp('astronomy', gainedXp);
     }
+
+    // Update mages
+    astronomy.mages = astronomy.mages.filter((mage) => {
+      return !mage.type || mage.gold > 0;
+    });
+
+    Astronomy.update(astronomy._id, {
+      $set: {
+        mages: astronomy.mages
+      }
+    });
   }
 });
 
@@ -214,6 +306,7 @@ Meteor.publish('astronomy', function() {
       } else if (mage.type) {
         mage.icon = `${mage.type}Mage`;
         mage.name = `${mage.type} mage`;
+        mage.stats.gold = Math.round(mage.gold);
       }
       return mage;
     });

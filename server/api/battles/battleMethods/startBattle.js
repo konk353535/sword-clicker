@@ -151,7 +151,10 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
       return {
         id: ability.abilityId,
         level: ability.level,
-        currentCooldown: ability.currentCooldown || 0
+        currentCooldown: ability.currentCooldown || 0,
+        casts: ability.casts,
+        totalCasts: 0,
+        isSpell: ability.isSpell
       }
     });
 

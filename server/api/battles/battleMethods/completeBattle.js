@@ -3,6 +3,7 @@ import _ from 'underscore';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
+import { MAGIC } from '/server/constants/magic/index.js';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
@@ -309,11 +310,18 @@ export const completeBattle = function (actualBattle) {
         owner: unit.owner
       });
 
+      let totalMagicXp = 0;
+
       if (userAbilities) {
         // Modify relevant abiltiy id cooldowns and update
         userAbilities.learntAbilities.forEach((ability) => {
           const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
           if (abilityToUpdate) {
+            if (abilityToUpdate.isSpell) {
+              ability.casts = abilityToUpdate.casts;
+              const spellConstants = MAGIC.spells[ability.abilityId];
+              totalMagicXp += abilityToUpdate.totalCasts * spellConstants.xp;
+            }
             ability.currentCooldown = abilityToUpdate.currentCooldown;
           }
         });
@@ -324,6 +332,10 @@ export const completeBattle = function (actualBattle) {
             lastGameUpdated: new Date()
           }
         });
+      }
+
+      if (totalMagicXp > 0) {
+        addXp('magic', totalMagicXp, unit.owner);
       }
     });
   });

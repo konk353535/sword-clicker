@@ -7,6 +7,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
 import { requirementsUtility } from '/server/api/crafting/crafting';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
@@ -60,6 +61,12 @@ Meteor.methods({
   },
 
   'abilities.craftSpell'(abilityId, amount) {
+
+    const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
+    if (currentBattle) {
+      throw new Meteor.Error('in-battle', 'You cannot craft spells while in a battle');
+    }
+
     // Do we have resources to craft this spell?
     const spellConstants = MAGIC.spells[abilityId];
 

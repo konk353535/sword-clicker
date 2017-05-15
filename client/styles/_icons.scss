@@ -164,6 +164,13 @@ body.targetting-enemies {
     font-size: 10px;
   }
 
+  .ability-casts {
+    position: absolute;
+    bottom: 1px;
+    right: 3px;
+    font-size: 10px;
+  }
+
   .ability-icon.disabled {
     background-color: $gray-light;
     img {

@@ -244,7 +244,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         }
       }
 
-      if (unitAbility) {
+      if (unitAbility && (!unitAbility.isSpell || unitAbility.casts > 0)) {
         // Cast it! and put it on cooldown
         const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
         const unitsAndEnemies = actualBattle.units.concat(actualBattle.enemies);
@@ -252,8 +252,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           return _.contains(action.targets, unit.id);
         });
         abilityToCast.level = unitAbility.level;
-        // Fetch who we are are targetting with this ability
 
+        // Fetch who we are are targetting with this ability
         castAbility({
           ability: abilityToCast,
           caster: actionCaster,
@@ -261,6 +261,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           actualBattle
         });
 
+        unitAbility.casts -= 1;
+        unitAbility.totalCasts += 1;
         unitAbility.currentCooldown = abilityToCast.cooldown;
       }
     }

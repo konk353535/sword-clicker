@@ -1,7 +1,13 @@
 <template name="ability">
   <div class="ability-icon-container">
     <div class="ability-hotkey">{{ability.hotkey}}</div>
-    <div class="ability-icon {{#if $gt ability.currentCooldown 0}}disabled{{/if}}">
+    {{#if ability.isSpell}}
+      <div class="ability-casts">{{ability.casts}}</div>
+    {{/if}}
+    <div class="ability-icon
+      {{#if $gt ability.currentCooldown 0}}disabled{{/if}}
+      {{#if $and (ability.isSpell) ($lte ability.casts 0)}}disabled{{/if}}
+    ">
       <img src="icons/{{ability.icon}}.svg">
     </div>
     {{#if $gt ability.currentCooldown 0}}

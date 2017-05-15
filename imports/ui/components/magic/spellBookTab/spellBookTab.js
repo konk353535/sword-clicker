@@ -58,7 +58,7 @@ Template.spellBookTab.events({
     instance.$('.multiCraftModal').modal('hide');
     Meteor.call('abilities.craftSpell', abilityId, amountToCraft, (err) => {
       if (err) {
-        toastr.warning('Failed to craft item');
+        toastr.warning(err.reason);
       } else {
         toastr.success(`Crafted ${spellConstants.name}`)
       }
@@ -75,7 +75,7 @@ Template.spellBookTab.events({
 
     Meteor.call('abilities.craftSpell', abilityId, amountToCraft, (err) => {
       if (err) {
-        toastr.warning('Failed to craft item');
+        toastr.warning(err.reason);
       } else {
         toastr.success(`Crafting ${spellConstants.name}`)
       }

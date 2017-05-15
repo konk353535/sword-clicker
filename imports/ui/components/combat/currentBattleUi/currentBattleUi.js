@@ -147,6 +147,7 @@ Template.currentBattleUi.helpers({
       myUnit.abilities.forEach((ability) => {
         abilityMap[ability.id] = {
           currentCooldown: ability.currentCooldown,
+          casts: ability.casts,
           id: ability.id
         }
       });
@@ -159,6 +160,7 @@ Template.currentBattleUi.helpers({
     }).filter((ability) => {
       if (abilityMap[ability.abilityId]) {
         ability.currentCooldown = abilityMap[ability.abilityId].currentCooldown;
+        ability.casts = abilityMap[ability.abilityId].casts;
       }
       return ability.equipped;
     });

@@ -47,6 +47,8 @@ BattlesSchema = new SimpleSchema({
   'units.$.abilities': { type: [Object], optional: true },
   'units.$.abilities.$.id': { type: String },
   'units.$.abilities.$.level': { type: Number, defaultValue: 1 },
+  'units.$.abilities.$.casts': { type: Number, defaultValue: 0, optional: true },
+  'units.$.abilities.$.totalCasts': { type: Number, defaultValue: 0, optional: true },
   'units.$.abilities.$.currentCooldown': { type: Number, decimal: true, defaultValue: 0 },
 
   deadUnits: { type: [Object], optional: true },

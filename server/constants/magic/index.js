@@ -5,6 +5,7 @@ export const MAGIC = {
     rock_dart: {
       id: 'rock_dart',
       abilityId: 'rock_dart',
+      xp: 1,
       maxToCraft: 10000,
       required: [{
         type: 'item',

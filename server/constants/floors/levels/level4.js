@@ -7,7 +7,8 @@ export const LEVEL_FOUR_MONSTERS = [{
 }, {
   id: 'turtle',
   icon: 'turtle',
-  name: 'turtle'
+  name: 'turtle',
+  heavilyArmored: true
 }, {
   id: 'goat',
   icon: 'goat',

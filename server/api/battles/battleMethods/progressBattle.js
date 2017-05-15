@@ -72,11 +72,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     redis.del(`battleActions-${actualBattle._id}`);
   }
 
-  const dealDamage = function(rawDamage, { attacker, defender, tickEvents, customColor, customIcon }) {
+  const dealDamage = function(rawDamage, { attacker, defender, tickEvents, customColor, customIcon, isMagic }) {
 
     let damage = rawDamage;
     if (damage > 0) {
-      const dmgReduction = BATTLES.dmgReduction(defender.stats.armor);
+      const dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
       damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
       defender.stats.health -= damage;
     }
@@ -86,8 +86,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       to: defender.id,
       eventType: 'damage',
       label: Math.round(damage),
-      customColor,
-      customIcon
+      customColor: isMagic ? 'blue' : undefined,
+      customIcon: isMagic ? 'magic' : undefined
     });
   }
 

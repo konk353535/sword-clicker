@@ -29,7 +29,8 @@ export const updateCombatStats = function (userId, username) {
       magicPower: 0,
       energyMax: COMBAT.baseEnergyMax,
       defense: 0,
-      armor: 0
+      armor: 0,
+      magicArmor: 0
     },
     xpDistribution: {}
   };

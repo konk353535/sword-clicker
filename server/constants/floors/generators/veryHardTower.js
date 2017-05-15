@@ -44,7 +44,7 @@ export const veryHardTowerMonsterGenerator = function(floor) {
 
     const selectedMonster = _.sample(possibleMonsters);
 
-    return {
+    const monster = {
       id: selectedMonster.id,
       icon: selectedMonster.icon,
       name: selectedMonster.name,
@@ -57,8 +57,19 @@ export const veryHardTowerMonsterGenerator = function(floor) {
         accuracy: 10 + (floor * 15) * 1.7,
         armor: 10 + (floor * 20) * 1.7,
         defense: 10 + (floor * 15) * 1.5,
+        magicArmor: 1 + (floor * 10) * 1.7,
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]
     }
+
+    if (selectedMonster.heavilyArmored) {
+      monster.stats.armor *= 1.5;
+      monster.stats.magicArmor *= 0.5;
+    } else if (selectedMonster.magicArmored) {
+      monster.stats.armor *= 0.6;
+      monster.stats.magicArmor *= 2.0;
+    }
+
+    return monster;
   }

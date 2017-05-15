@@ -47,7 +47,7 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
-  /*
+
   fire_dart: {
     icon: 'fireDart',
     name: 'fire dart',
@@ -61,5 +61,5 @@ export const MAGIC_ABILITIES = {
       const BUFF = BUFFS.fire_dart;
       return BUFF.description({ buff: BUFF, level });
     }
-  },*/
+  }
 }

@@ -57,7 +57,7 @@ export const personalQuestMonsterGenerator = function(level) {
       extraStats = level - 34;
     }
 
-    return {
+    const monster = {
       id: selectedMonster.id,
       icon: selectedMonster.icon,
       name: selectedMonster.name,
@@ -70,8 +70,19 @@ export const personalQuestMonsterGenerator = function(level) {
         accuracy: 1 + level + extraStats,
         armor: 1 + (level * 2.5) + extraStats,
         defense: 1 + level,
+        magicArmor: 1 + (level * 1.2),
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]
     }
+
+    if (selectedMonster.heavilyArmored) {
+      monster.stats.armor *= 1.5;
+      monster.stats.magicArmor *= 0.5;
+    } else if (selectedMonster.magicArmored) {
+      monster.stats.armor *= 0.6;
+      monster.stats.magicArmor *= 2.0;
+    }
+
+    return monster;
   }

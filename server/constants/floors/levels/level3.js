@@ -11,7 +11,8 @@ export const LEVEL_THREE_MONSTERS = [{
 }, {
   id: 'falcon',
   icon: 'falcon',
-  name: 'falcon'
+  name: 'falcon',
+  magicArmored: true
 }, {
   id: 'lizard',
   icon: 'lizard',

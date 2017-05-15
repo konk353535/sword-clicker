@@ -57,6 +57,25 @@ export const MAGIC = {
         name: 'astronomy',
         level: 1
       }]
+    },
+
+    fire_dart: {
+      id: 'fire_dart',
+      abilityId: 'fire_dart',
+      xp: 1,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 1
+      }]
     }
   }
 }

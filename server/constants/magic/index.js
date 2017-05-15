@@ -226,6 +226,80 @@ export const MAGIC = {
         name: 'magic',
         level: 10
       }]
+    },
+
+    feeding_frenzy: {
+      id: 'feeding_frenzy',
+      abilityId: 'feeding_frenzy',
+      xp: 50,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_water_shard',
+        icon: ITEMS['complete_water_shard'].icon,
+        name: ITEMS['complete_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_fire_shard',
+        icon: ITEMS['complete_fire_shard'].icon,
+        name: ITEMS['complete_fire_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 15
+      }]
+    },
+
+    elemental_shield: {
+      id: 'elemental_shield',
+      abilityId: 'elemental_shield',
+      xp: 50,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'air_shard_fragment',
+        icon: ITEMS['air_shard_fragment'].icon,
+        name: ITEMS['air_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_earth_shard',
+        icon: ITEMS['complete_earth_shard'].icon,
+        name: ITEMS['complete_earth_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 15
+      }]
     }
   }
 }

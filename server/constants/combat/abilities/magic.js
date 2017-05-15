@@ -145,5 +145,38 @@ export const MAGIC_ABILITIES = {
       const BUFF = BUFFS.angels_touch;
       return BUFF.description({ buff: BUFF, level });
     }
-  }
+  },
+
+  elemental_shield: {
+    icon: 'elementalShield',
+    name: 'elemental_shield',
+    id: 'elemental_shield',
+    buffs: ['elemental_shield'],
+    cooldown: 300,
+    slot: 'any',
+    isHidden: true,
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.elemental_shield;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  feeding_frenzy: {
+    icon: 'feedingFrenzy',
+    name: 'feeding frenzy',
+    id: 'feeding_frenzy',
+    buffs: ['feeding_frenzy'],
+    cooldown: 600,
+    slot: 'any',
+    isHidden: true,
+    isMagic: true,
+    target: 'allAllies', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.feeding_frenzy;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 }

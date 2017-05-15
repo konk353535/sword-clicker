@@ -16,6 +16,8 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
     }
   } else if (ability.target === 'allEnemies') {
     targets = actualBattle.enemies;
+  } else if (ability.target === 'allAllies') {
+    targets = actualBattle.units;
   } else if (ability.target === 'self') {
     targets = [caster];
   } else if (ability.target === 'singleEnemy') {

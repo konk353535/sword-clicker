@@ -352,8 +352,10 @@ export const MAGIC_BUFFS = {
       },
 
       onRemove({ buff, target, caster, actualBattle }) {
-        target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+        if (buff.data.totalAttackSpeedDecimal) {
+          target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+        }
 
         // Find original caster
         let originalCaster = _.findWhere(actualBattle.units, { id: buff.data.originalCaster });
@@ -361,8 +363,10 @@ export const MAGIC_BUFFS = {
           originalCaster = _.findWhere(actualBattle.deadUnits, { id: buff.data.originalCaster });
         }
 
-        originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-        originalCaster.stats.attackSpeedTicks = attackSpeedTicks(originalCaster.stats.attackSpeed);
+        if (originalCaster) {
+          originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
+          originalCaster.stats.attackSpeedTicks = attackSpeedTicks(originalCaster.stats.attackSpeed);
+        }
       }
     }
   },
@@ -417,7 +421,142 @@ export const MAGIC_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.armor -= buff.data.totalArmor;
+        if (buff.data.totalArmor) {
+          target.stats.armor -= buff.data.totalArmor;
+        }
+      }
+    }
+  },
+
+  elemental_shield: {
+    duplicateTag: 'elemental_shield', // Used to stop duplicate buffs
+    icon: 'elementalShield',
+    name: 'elemental shield',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}MP) health shield to the target. <br />
+        Target gains ${c.damageBase}% damage while the shield is active. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />`;
+    },
+    constants: {
+      damageBase: 25,
+      baseShield: 50,
+      shieldMPRatio: 0.7,
+      healthCost: 50,
+      healthCostMPRatio: 2
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const baseShield = constants.baseShield;
+        const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
+        const totalShield = baseShield + shieldMP;
+        const damageDecimal = 1 + (constants.damageBase / 100);
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.damageDecimal = damageDecimal;
+          buff.data.shieldHp = totalShield;
+          target.stats.attack *= buff.data.damageDecimal;
+          target.stats.attackMax *= buff.data.damageDecimal;
+        } else {
+          buff.data.shieldHp = 0;
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, secondsElapsed, rawDamage }) {
+        if (buff.data.shieldHp >= rawDamage) {
+          buff.data.shieldHp -= rawDamage;
+          defender.stats.health += rawDamage;
+        } else {
+          defender.stats.health += buff.data.shieldHp;
+          buff.data.shieldHp = 0;
+        }
+
+        if (buff.data.shieldHp <= 0) {
+          removeBuff({ buff, target: defender, caster: defender });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.damageDecimal) {
+          target.stats.attack /= buff.data.damageDecimal;
+          target.stats.attackMax /= buff.data.damageDecimal;
+        }
+      }
+    }
+  },
+
+  feeding_frenzy: {
+    duplicateTag: 'feeding_frenzy', // Used to stop duplicate buffs
+    icon: 'feedingFrenzy',
+    name: 'feeding frenzy',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Increases all allies attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP). <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        Lasts for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      increaseBase: 20,
+      increaseMPRatio: 0.2,
+      healthCost: 50,
+      healthCostMPRatio: 2
+    },
+    data: {
+      duration: 20,
+      totalDuration: 20,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const increaseBase = constants.increaseBase;
+        const increaseMP = constants.increaseMPRatio * caster.stats.magicPower;
+        const totalIncrease = increaseBase + increaseMP;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.increaseDecimal = 1 + (totalIncrease / 100);
+          target.stats.attackSpeed *= buff.data.increaseDecimal;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+          target.stats.attack *= buff.data.increaseDecimal;
+          target.stats.attackMax *= buff.data.increaseDecimal;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.increaseDecimal) {
+          target.stats.attackSpeed /= buff.data.increaseDecimal;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+          target.stats.attack /= buff.data.increaseDecimal;
+          target.stats.attackMax /= buff.data.increaseDecimal;
+        }
       }
     }
   },
@@ -476,7 +615,9 @@ export const MAGIC_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.armor += buff.data.totalArmorReduction;
+        if (buff.data.totalArmorReduction) {
+          target.stats.armor += buff.data.totalArmorReduction;
+        }
       }
     }
   },

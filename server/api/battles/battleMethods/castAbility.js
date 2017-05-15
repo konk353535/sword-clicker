@@ -27,6 +27,15 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
     } else {
       targets = [];
     }
+  } else if (ability.target === 'singleFriendly') {
+    // Make sure specified target is an ally
+    if (targets[0] && targets.length === 1) {
+      if (!_.findWhere(actualBattle.units, { id: targets[0].id })) {
+        targets = [];
+      }
+    } else {
+      targets = [];
+    }
   }
 
 

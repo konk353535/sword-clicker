@@ -1,4 +1,4 @@
-body.targetting-enemies {
+body.targetting-enemies, body.targetting-friendlies {
   cursor: crosshair;
 
   .ability-icon {
@@ -7,6 +7,10 @@ body.targetting-enemies {
 }
 
 .targetting-enemies .enemy-icon:hover {
+  border-color: $red;
+}
+
+.targetting-friendlies .friendly-icon:hover {
   border-color: $red;
 }
 

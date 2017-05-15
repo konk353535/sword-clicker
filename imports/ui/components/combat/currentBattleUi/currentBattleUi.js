@@ -64,7 +64,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
                 class='floating-text'
                 data-count=1
                 style='top: ${offset.top}px; left: ${offset.left}px; opacity: 1.0; color: ${color}'>
-                <i class="lilIcon-attack"></i>
+                <i class="lilIcon-${tickEvent.customIcon ? tickEvent.customIcon : 'attack'}"></i>
                 ${tickEvent.label}
               </p>
             `);
@@ -116,6 +116,7 @@ Template.currentBattleUi.helpers({
       icon: 'changeTarget',
       description: 'Select a target to attack',
       name: 'Attack Target',
+      target: 'singleEnemy',
       currentCooldown: 0,
       targettable: true
     }

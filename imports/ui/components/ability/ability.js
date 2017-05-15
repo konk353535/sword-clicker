@@ -8,28 +8,53 @@ import './ability.html';
 
 const castAbility = function(instance) {
   const currentBattleId = BattlesList.findOne({})._id;
+
   if (instance.data.ability.targettable) {
-    if (!$('body').hasClass('targetting-enemies')) {
-      $('body').addClass('targetting-enemies');
-      Meteor.setTimeout(() => {
-        // Add body listener for when you want to click out
-        $('body').on(`click.${instance.data.ability.id}`, function (event) {
-          if ($(event.target).hasClass('enemy-icon')) {
-            const targetId = $(event.target).data('unit-id');
-            const battleId = currentBattleId;
-            const abilityId = instance.data.ability.id;
-            // Fire this ability from = us, to = 
-            Meteor.call('battles.castAbility', battleId, abilityId, {
-              targets: [targetId], caster: Meteor.userId()
-            });
-          }
-          
-          $('body').removeClass('targetting-enemies');
-          $('body').off(`click.${instance.data.ability.id}`);
-        });
-      }, 1);
+    if (instance.data.ability.target === 'singleEnemy') {
+      if (!$('body').hasClass('targetting-enemies')) {
+        $('body').addClass('targetting-enemies');
+        Meteor.setTimeout(() => {
+          // Add body listener for when you want to click out
+          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+            if ($(event.target).hasClass('enemy-icon')) {
+              const targetId = $(event.target).data('unit-id');
+              const battleId = currentBattleId;
+              const abilityId = instance.data.ability.id;
+              // Fire this ability from = us, to = 
+              Meteor.call('battles.castAbility', battleId, abilityId, {
+                targets: [targetId], caster: Meteor.userId()
+              });
+            }
+            
+            $('body').removeClass('targetting-enemies');
+            $('body').off(`click.${instance.data.ability.id}`);
+          });
+        }, 1);
+      }
+    } else if (instance.data.ability.target === 'singleFriendly') {
+      if (!$('body').hasClass('targetting-friendlies')) {
+        $('body').addClass('targetting-friendlies');
+        Meteor.setTimeout(() => {
+          // Add body listener for when you want to click out
+          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+            if ($(event.target).hasClass('friendly-icon')) {
+              const targetId = $(event.target).data('unit-id');
+              const battleId = currentBattleId;
+              const abilityId = instance.data.ability.id;
+              // Fire this ability from = us, to = 
+              Meteor.call('battles.castAbility', battleId, abilityId, {
+                targets: [targetId], caster: Meteor.userId()
+              });
+            }
+            
+            $('body').removeClass('targetting-friendlies');
+            $('body').off(`click.${instance.data.ability.id}`);
+          });
+        }, 1);
+      }
     }
   } else {
+    console.log('Casting!');
     const battleId = currentBattleId;
     const abilityId = instance.data.ability.id;
     const targetId = Meteor.userId();

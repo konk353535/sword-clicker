@@ -91,6 +91,23 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     });
   }
 
+  const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
+
+    target.stats.health += healAmount;
+    if (target.stats.health > target.stats.healthMax) {
+      target.stats.health = target.stats.healthMax;
+    }
+
+    tickEvents.push({
+      from: caster ? caster.id : '',
+      to: target.id,
+      eventType: 'heal',
+      label: Math.round(healAmount),
+      customColor: '#d9534f',
+      customIcon: 'health'
+    });
+  }
+
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
     const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
@@ -129,7 +146,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   actualBattle.utils = {
     autoAttack,
-    dealDamage
+    dealDamage,
+    healTarget
   }
 
   const secondsElapsed = (BATTLES.tickDuration / 1000);

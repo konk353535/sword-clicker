@@ -298,6 +298,25 @@ export const completeBattle = function (actualBattle) {
     if (unit.amulet) {
       combatModifier['$set']['amulet.energy'] = unit.amulet.energy;
     }
+
+    let totalMagicXp = 0;
+
+    unit.abilities.forEach((ability) => {
+      const spellConstants = MAGIC.spells[ability.id];
+      totalMagicXp += ability.totalCasts * spellConstants.xp;
+    });
+
+    if (totalMagicXp > 0) {
+      addXp('magic', totalMagicXp, unit.owner);
+
+      finalTickEvents.push({
+        type: 'xp',
+        amount: totalMagicXp,
+        skill: 'magic',
+        owner: unit.owner
+      });
+    }
+
     // Update relevant stuff, use callback so this is non blocking
     Combat.update({
       owner: unit.owner
@@ -310,8 +329,6 @@ export const completeBattle = function (actualBattle) {
         owner: unit.owner
       });
 
-      let totalMagicXp = 0;
-
       if (userAbilities) {
         // Modify relevant abiltiy id cooldowns and update
         userAbilities.learntAbilities.forEach((ability) => {
@@ -319,8 +336,6 @@ export const completeBattle = function (actualBattle) {
           if (abilityToUpdate) {
             if (abilityToUpdate.isSpell) {
               ability.casts = abilityToUpdate.casts;
-              const spellConstants = MAGIC.spells[ability.abilityId];
-              totalMagicXp += abilityToUpdate.totalCasts * spellConstants.xp;
             }
             ability.currentCooldown = abilityToUpdate.currentCooldown;
           }
@@ -333,12 +348,9 @@ export const completeBattle = function (actualBattle) {
           }
         });
       }
-
-      if (totalMagicXp > 0) {
-        addXp('magic', totalMagicXp, unit.owner);
-      }
     });
   });
+
 
   // Is this a current boss battle?
   if (actualBattle.startingBossHp) {

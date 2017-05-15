@@ -61,5 +61,89 @@ export const MAGIC_ABILITIES = {
       const BUFF = BUFFS.fire_dart;
       return BUFF.description({ buff: BUFF, level });
     }
+  },
+
+  mud_armor: {
+    icon: 'mudArmor',
+    name: 'mud armor',
+    id: 'mud_armor',
+    buffs: ['mud_armor'],
+    cooldown: 180,
+    slot: 'any',
+    targettable: true,
+    isHidden: true,
+    target: 'singleFriendly',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.mud_armor;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  mending_water: {
+    icon: 'mendingWater',
+    name: 'mending water',
+    id: 'mending_water',
+    buffs: ['mending_water'],
+    cooldown: 30,
+    slot: 'any',
+    targettable: true,
+    isHidden: true,
+    target: 'singleFriendly',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.mending_water;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  ignite: {
+    icon: 'ignite',
+    name: 'ignite',
+    id: 'ignite',
+    buffs: ['ignite'],
+    cooldown: 180,
+    slot: 'any',
+    isHidden: true,
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.ignite;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  frenzied_winds: {
+    icon: 'frenziedWinds',
+    name: 'frenzied_winds',
+    id: 'frenzied_winds',
+    buffs: ['frenzied_winds'],
+    cooldown: 180,
+    slot: 'any',
+    isHidden: true,
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.frenzied_winds;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  angels_touch: {
+    icon: 'angelsTouch',
+    name: 'angels_touch',
+    id: 'angels_touch',
+    buffs: ['angels_touch'],
+    cooldown: 300,
+    slot: 'any',
+    isHidden: true,
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.angels_touch;
+      return BUFF.description({ buff: BUFF, level });
+    }
   }
 }

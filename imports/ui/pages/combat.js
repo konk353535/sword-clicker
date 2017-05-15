@@ -115,7 +115,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  this.autorun(() => {
+  Tracker.autorun(() => {
     // Only called when skills have loaded
     if (Skills.findOne()) {
       const attackSkill = Skills.findOne({ type: 'attack' });

@@ -11,6 +11,8 @@ AbilitiesSchema = new SimpleSchema({
   'learntAbilities.$.abilityId': { type: String },
   'learntAbilities.$.equipped': { type: Boolean, defaultValue: false },
   'learntAbilities.$.slot': { type: String, optional: true },
+  'learntAbilities.$.casts': { type: Number, optional: true },
+  'learntAbilities.$.isSpell': { type: Boolean, optional: true },
   'learntAbilities.$.currentCooldown': { type: Number, decimal: true, defaultValue: 0 },
   'learntAbilities.$.level': { type: Number }
 });

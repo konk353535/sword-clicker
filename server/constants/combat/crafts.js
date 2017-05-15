@@ -9,6 +9,7 @@ import { COBALT_CRAFTS } from './crafts/cobalt';
 import { FAIRY_STEEL_CRAFTS } from './crafts/fairySteel';
 import { CURSED_CRAFTS } from './crafts/cursed';
 import { AMULET_CRAFTS } from './crafts/amulet';
+import { STAFF_CRAFTS } from './crafts/staff';
 
 export const COMBAT_CRAFTS = Object.assign(
   IRON_CRAFTS,
@@ -21,4 +22,5 @@ export const COMBAT_CRAFTS = Object.assign(
   COBALT_CRAFTS,
   FAIRY_STEEL_CRAFTS,
   CURSED_CRAFTS,
-  AMULET_CRAFTS);
+  AMULET_CRAFTS,
+  STAFF_CRAFTS);

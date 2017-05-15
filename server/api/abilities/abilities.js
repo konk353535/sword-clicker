@@ -6,9 +6,11 @@ import moment from 'moment';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
+import { requirementsUtility } from '/server/api/crafting/crafting';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
+import { MAGIC } from '/server/constants/magic/index';
 
 import { consumeItem } from '/server/api/items/items';
 
@@ -55,6 +57,47 @@ Meteor.methods({
         }
       });
     }
+  },
+
+  'abilities.craftSpell'(abilityId, amount) {
+    // Do we have resources to craft this spell?
+    const spellConstants = MAGIC.spells[abilityId];
+
+    if (!spellConstants) {
+      throw new Meteor.Error("invalid-spell", "invalid spell");
+    }
+
+    if (!requirementsUtility(spellConstants.required, amount)) {
+      throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
+      return;
+    }
+
+    // Update existing level
+    Abilities.update({
+      owner: Meteor.userId(),
+      "learntAbilities.abilityId": abilityId
+    }, {
+      $inc: {
+        "learntAbilities.$.casts": amount
+      }
+    });    
+  },
+
+  'abilities.fetchSpellCrafting'() {
+    // Get my abilities
+    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const mySpellAbilities = myAbilities.learntAbilities.filter((ability) => {
+      return ability.isSpell;
+    }).map((ability) => {
+      ability.icon = ABILITIES[ability.abilityId].icon;
+      ability.name = ABILITIES[ability.abilityId].name;
+      ability.required = MAGIC.spells[ability.abilityId].required;
+      ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft;
+      return ability;
+    });
+
+    // Merge with required items to craft said abilities
+    return mySpellAbilities;
   },
 
   'abilities.equip'(abilityId) {

@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 
+import { Abilities } from '/imports/api/abilities/abilities';
 import { Astronomy } from '/imports/api/astronomy/astronomy';
 import { Inscription } from '/imports/api/inscription/inscription';
 import { Crafting } from '/imports/api/crafting/crafting';
@@ -168,6 +169,22 @@ Meteor.methods({
             }
           }],
           lastGameUpdated: moment().toDate()
+        });
+      } else if (skillName === 'magic') {
+        // Update abilities
+        Abilities.update({
+          owner: Meteor.userId()
+        }, {
+          $push: {
+            learntAbilities: {
+              abilityId: 'rock_dart',
+              level: 1,
+              equipped: false,
+              currentCooldown: 0,
+              isSpell: true,
+              casts: 0
+            }
+          }
         });
       }
     }

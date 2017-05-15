@@ -180,7 +180,7 @@ export const WOODCUTTING_ITEMS = {
 
   fairy_steel_axe: {
     id: 'fairy_steel_axe',
-    icon: 'fairy_steelAxe',
+    icon: 'fairySteelAxe',
     category: 'woodcutting',
     slot: 'axe',
     name: 'fairy steel axe',

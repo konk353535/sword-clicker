@@ -58,11 +58,11 @@ Router.route('/', {
   }
 });
 
-Router.route('/astronomy', {
+Router.route('/magic', {
 
-  name: 'astronomy',
+  name: 'magic',
 
-  template: 'astronomyPage',
+  template: 'magicPage',
 
   yieldRegions: {
     'nav': { to: 'nav' },

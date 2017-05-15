@@ -1,0 +1,146 @@
+<template name="astronomyTab">
+
+  {{> skillHeader skill=astronomySkill}}
+
+  <h2>Astronomy Items</h2>
+  <div class="d-flex flex-wrap">
+    {{#each items}}
+      {{> itemIcon item=this classes="small"}}
+    {{else}}
+      You have no astronomy items!
+    {{/each}}
+  </div>
+
+  <div class="d-flex align-items-center mt-3">
+    <h2>
+      Mages
+    </h2>
+    <small class="ml-3 mt-1">{{astronomy.mages.length}} / {{astronomy.maxMages}}</small>
+  </div>
+
+  <p>Mages collect shards over time</p>
+
+  <div class="d-flex flex-wrap align-items-start">
+    <!-- List of my mages here -->
+    {{#each astronomy.mages}}
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        {{> itemIcon item=this classes="cursor-pointer"}}
+      </div>
+    {{/each}}
+
+    <!-- Click to buy a mage -->
+    <div class="icon-box buy-mage" style="cursor: pointer">
+      <img src="/icons/mage.svg" class="ore-icon">
+      Buy
+    </div>
+  </div>
+
+  <!-- Upgrade Mage Modal -->
+  <div class="modal mageUpgadeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upgrade Mage</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-centered table-responsive">
+            <thead>
+              <tr>
+                <th>Stat</th>
+                <th>Change</th>
+                <th>Cost</th>
+                <th>Action</th>
+              </tr>  
+            </thead>
+            <tbody>
+              {{#each mainMageUpgrades}}
+                <tr class="craft-row text-center">
+                  <td class="text-capitalize">
+                    <img src="/icons/{{this.key}}.svg" class="small-icon">
+                    {{this.description}}
+                  </td>
+                  <td>{{this.value}} -> {{this.nextValue}}</td>
+                  <td>{{> requiredItems requiredItems=this.cost}}</td>
+                  <td>
+                    <button class="btn btn-primary buy-mage-upgrade" data-stat="{{this.key}}">
+                      Buy
+                    </button>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hire Mage Modal -->
+  <div class="modal hireMageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hire Mage</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-centered table-responsive">
+            <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Cost Per Hour</th>
+                <th>Action</th>
+              </tr>  
+            </thead>
+            <tbody>
+              {{#each hireableMages}}
+                <tr class="craft-row text-center">
+                  <td class="text-capitalize">
+                    <img src="/icons/{{this.type}}Mage.svg" class="small-icon">
+                    {{this.type}} mage
+                  </td>
+                  <td>{{> requiredItems requiredItems=this.cost}}</td>
+                  <td>
+                    <button class="btn btn-primary buy-mage-type" data-type="{{this.type}}">
+                      Buy
+                    </button>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Depsoit Mage Money Modal -->
+  <div class="modal depositMageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Deposit / Withdraw</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Current Coffers: {{selectedMage.gold}}
+          <form class="form-inline withdraw-form" data-mage="{{selectedMage.index}}">
+            <input class="form-control withdraw-amount-input" value={{selectedMage.gold}}><br />
+            <button class="btn btn-primary ml-2">Withdraw</button>
+          </form>
+          <form class="form-inline deposit-form mt-3" data-mage="{{selectedMage.index}}">
+            <input class="form-control deposit-amount-input"><br />
+            <button class="btn btn-primary ml-2">Deposit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

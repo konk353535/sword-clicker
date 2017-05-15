@@ -40,20 +40,15 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'adamantium_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
-  rewards: [
-    { type: 'item', itemId: 'ore_adamantium', amount: 1 }
-  ]
-}, {
   chance: 1 / 16,
   rewards: [
-    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
     { type: 'item', itemId: 'adamantium_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,
   rewards: [
     { type: 'gold', amount: 600 },
+    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
     { type: 'item', itemId: 'walnut_log', amount: 2 }
   ]
 }]);

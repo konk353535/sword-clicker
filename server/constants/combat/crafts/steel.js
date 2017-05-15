@@ -10,7 +10,7 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 130,
     maxToCraft: 1,
-    requiredCraftingLevel: 7,
+    requiredCraftingLevel: 8,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -35,7 +35,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 7
+      level: 8
     }]
   },
 

@@ -7,6 +7,16 @@ export const SKILLS = {
     }
   },
 
+  magic: {
+    xpToLevel(level) {
+      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+    },
+
+    statsPerLevel: {
+      magicPower: 1,
+    }
+  },
+
   total: {
     xpToLevel() {
       return -1;

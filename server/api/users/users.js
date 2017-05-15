@@ -93,6 +93,7 @@ Meteor.methods({
       'inscriptionLevelFilter',
       'craftingFilter',
       'combatTab',
+      'magicTab',
       'towerFloor',
       'questLevel',
       'craftingTierFilter.primitive',

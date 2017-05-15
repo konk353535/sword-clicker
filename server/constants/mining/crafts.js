@@ -325,9 +325,9 @@ export const MINING_CRAFTS = {
     requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'mithril_furnace',
-      icon: ITEMS['mithril_furnace'].icon,
-      name: ITEMS['mithril_furnace'].name,
+      itemId: 'orichalcum_furnace',
+      icon: ITEMS['orichalcum_furnace'].icon,
+      name: ITEMS['orichalcum_furnace'].name,
       amount: 1,
       consumes: false
     }, {

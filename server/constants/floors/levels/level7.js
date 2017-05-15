@@ -43,19 +43,19 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 32,
   rewards: [
-    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
     { type: 'item', itemId: 'adamantium_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 16,
   rewards: [
-    { type: 'item', itemId: 'ore_mithril', amount: 1 },
     { type: 'item', itemId: 'mithril_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,
   rewards: [
     { type: 'gold', amount: 400 },
+    { type: 'item', itemId: 'ore_mithril', amount: 1 },
+    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
     { type: 'item', itemId: 'walnut_log', amount: 1 }
   ]
 }]);

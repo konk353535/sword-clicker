@@ -17,6 +17,7 @@ CombatSchema = new SimpleSchema({
   'stats.healthMax': { type: Number, defaultValue: 50 },
   'stats.energy': { type: Number, defaultValue: 20, decimal: true },
   'stats.energyMax': { type: Number, defaultValue: 20 },
+  'stats.magicPower': { type: Number, defaultValue: 0 },
   'stats.defense': { type: Number, defaultValue: 0 },
   'stats.armor': { type: Number, defaultValue: 0 },
   'stats.damageTaken': { type: Number, defaultValue: 1 },

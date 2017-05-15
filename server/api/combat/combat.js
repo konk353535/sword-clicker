@@ -26,6 +26,7 @@ export const updateCombatStats = function (userId, username) {
       accuracy: 0,
       healthMax: 0,
       damageTaken: 1,
+      magicPower: 0,
       energyMax: COMBAT.baseEnergyMax,
       defense: 0,
       armor: 0
@@ -82,7 +83,7 @@ export const updateCombatStats = function (userId, username) {
   const combatSkills = Skills.find({
     owner: userId,
     type: {
-      $in: ['attack', 'health', 'defense']
+      $in: ['attack', 'health', 'defense', 'magic']
     }
   }).fetch();
 

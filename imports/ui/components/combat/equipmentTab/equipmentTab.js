@@ -30,14 +30,14 @@ Template.equipmentTab.onCreated(function bodyOnCreated() {
     if (this.state.get('offenseStats') && this.state.get('defenseStats')) {
       if (!this.state.get('tooltipsLoaded')) {
         this.state.set('tooltipsLoaded', true);
-        updateTooltips(this, ['attack', 'attackSpeed', 'accuracy', 'defense', 'health', 'armor']);
+        updateTooltips(this, ['attack', 'attackSpeed', 'accuracy', 'defense', 'health', 'armor', 'magicPower']);
       }
     }
   });
 });
 
 Template.equipmentTab.rendered = function () {
-  updateTooltips(Template.instance(), ['attackSkill', 'defenseSkill', 'healthSkill']);
+  updateTooltips(Template.instance(), ['attackSkill', 'defenseSkill', 'healthSkill', 'magicSkill']);
 }
 
 Template.equipmentTab.helpers({
@@ -113,6 +113,12 @@ Template.equipmentTab.helpers({
     });
   },
 
+  magicSkill() {
+    return Skills.findOne({
+      type: 'magic'
+    });
+  },
+
   defenseStats() {
     const combat = Combat.findOne({
       owner: Meteor.userId()
@@ -155,6 +161,10 @@ Template.equipmentTab.helpers({
         name: 'attack speed',
         icon: 'attackSpeed',
         value: combat.stats.attackSpeed
+      }, {
+        name: 'magic power',
+        icon: 'magicPower',
+        value: combat.stats.magicPower
       }, {
         name: 'accuracy',
         icon: 'accuracy',

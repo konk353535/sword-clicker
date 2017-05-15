@@ -25,6 +25,10 @@
         Cooldown <b>{{item.cooldown}}s</b><br />
       {{/if}}
 
+      {{#if item.isSpell}}
+        <b>{{item.casts}}</b> casts remaining.<br /><br />
+      {{/if}}
+
       {{#unless item.hideStats}}
         {{#if item.stats}}
           {{> displayCombatStats stats=item.stats}}

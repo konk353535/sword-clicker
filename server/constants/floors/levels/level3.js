@@ -7,7 +7,15 @@ export const LEVEL_THREE_MONSTERS = [{
 }, {
   id: 'snake',
   icon: 'snake',
-  name: 'snake'
+  name: 'snake',
+  buffs: [{
+    id: 'poisoned_blade',
+    data: {
+      level: 1,
+      icon: 'poisonedBlade',
+      name: 'poisoned blade'
+    }
+  }]
 }, {
   id: 'falcon',
   icon: 'falcon',

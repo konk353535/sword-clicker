@@ -13,8 +13,8 @@ export const CRAFTING_ITEMS = {
     icon: 'compositeWall',
     category: 'crafting',
     name: 'composite wall',
-    sellPrice: 100,
-    description: 'A useless wall. Good for a training craftsmen.'
+    sellPrice: 1000,
+    description: 'A useless wall. Good crafting xp.'
   },
 
   polished_stone: {
@@ -32,6 +32,15 @@ export const CRAFTING_ITEMS = {
     category: 'crafting',
     name: 'polished black stone',
     sellPrice: 300,
+    description: 'Can be sold for a tidy sum'
+  },
+
+  polished_blue_stone: {
+    id: 'polished_blue_stone',
+    icon: 'polishedBlueStone',
+    category: 'crafting',
+    name: 'polished blue stone',
+    sellPrice: 600,
     description: 'Can be sold for a tidy sum'
   },
 

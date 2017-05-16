@@ -20,7 +20,15 @@ export const LEVEL_FIVE_MONSTERS = [{
   id: 'jellyFish',
   icon: 'jellyFish',
   name: 'jellyfish',
-  magicArmored: true
+  magicArmored: true,
+  buffs: [{
+    id: 'poisoned_blade',
+    data: {
+      level: 1,
+      icon: 'poisonedBlade',
+      name: 'poisoned blade'
+    }
+  }]
 }];
 
 export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{

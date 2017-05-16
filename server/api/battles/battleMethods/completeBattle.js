@@ -406,7 +406,7 @@ export const completeBattle = function (actualBattle) {
           const floorCounts = FLOORS.getWaveCounts();
 
           // Get bosses hp
-          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.possibleBattles[0].enemies[0].id;
+          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
           const bossEnemyConstants = ENEMIES[bossEnemyId];
 
           // Create our next floor

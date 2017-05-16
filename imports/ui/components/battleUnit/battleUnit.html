@@ -1,5 +1,5 @@
 <template name="battleUnit">
-  <div class="d-flex">
+  <div class="d-flex flex-column">
     <div class="d-flex flex-column align-items-center flex-wrap justify-content-center px-2" style="max-width: 100%;">
       {{#if unit.name}}
         <span class="text-capitalize battle-unit-name">{{unit.name}}</span>
@@ -10,14 +10,14 @@
         data-unit-id={{unit.id}}
         class="icon-box {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}} {{#if small}}item-icon-container small{{/if}}">
       <div class="health-bar d-flex justify-content-center">
-        {{> formatNumber unit.stats.health}} / {{unit.stats.healthMax}}
+        {{> formatNumber unit.stats.health}} / {{> formatNumber unit.stats.healthMax}}
       </div>
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
     </div>
     {{#if showBuffs}}
-      <div class="d-flex flex-column flex-wrap" style="min-width: 40px; max-height: 200px;">
+      <div class="d-flex flex-wrap" style="width: 120px">
         {{#each unit.buffs}}
           {{> buffIcon buff=this small=true}}
         {{/each}}

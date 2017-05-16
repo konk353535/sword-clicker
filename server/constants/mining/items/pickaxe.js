@@ -347,7 +347,7 @@ export const PICKAXE_ITEMS = {
       attack: 1, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 1, // Energy regen per minute
-      miner: 50 // Increases effeciency of miners
+      miner: 40 // Increases effeciency of miners
     },
     extraStats: {
       miner: 10
@@ -369,7 +369,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 100
+      miner: 75
     },
     extraStats: {
       miner: 10
@@ -391,7 +391,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 150
+      miner: 115
     },
     extraStats: {
       miner: 10
@@ -413,7 +413,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 200
+      miner: 150
     },
     extraStats: {
       miner: 10
@@ -435,7 +435,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 250
+      miner: 180
     },
     extraStats: {
       miner: 10
@@ -457,7 +457,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 275
+      miner: 210
     },
     extraStats: {
       miner: 10
@@ -479,7 +479,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 300
+      miner: 240
     },
     extraStats: {
       miner: 10
@@ -501,7 +501,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 325
+      miner: 270
     },
     extraStats: {
       miner: 10
@@ -523,7 +523,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 350
+      miner: 300
     },
     extraStats: {
       miner: 10
@@ -545,7 +545,7 @@ export const PICKAXE_ITEMS = {
       attack: 1,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 375
+      miner: 330
     },
     extraStats: {
       miner: 10

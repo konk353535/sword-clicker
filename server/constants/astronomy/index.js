@@ -3,20 +3,26 @@ import { ASTRONOMY_ITEMS as astronomyItems } from './items';
 export const ASTRONOMY_ITEMS = astronomyItems;
 
 export const ASTRONOMY = {
-  baseMaxMages: 5,
+  baseMaxMages: 7,
 
-  mageHireCost: [{
-    type: 'gold',
-    amount: 500,
-    consumes: true
-  }],
+  mageHireCost(mainMage) {
+    let totalGold = 500;
+
+    totalGold += 3 * mainMage.stats.attackSpeed * (1 + (mainMage.stats.criticalChance / 100) * 2);
+
+    return [{
+      type: 'gold',
+      amount: Math.round(totalGold),
+      consumes: true
+    }]
+  },
 
   upgradeCosts: {
     attackSpeed(current) {
-      const goldAmount = (current - 50) * 750;
+      const goldAmount = (current - 50) * ((current - 50) / 15) * 300;
       return [{
         type: 'gold',
-        amount: goldAmount,
+        amount: Math.round(goldAmount),
         consumes: true
       }]
     },
@@ -25,7 +31,7 @@ export const ASTRONOMY = {
       const goldAmount = (current - 1) * (current / 15) * 1000;
       return [{
         type: 'gold',
-        amount: goldAmount,
+        amount: Math.round(goldAmount),
         consumes: true
       }]
     }

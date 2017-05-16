@@ -15,6 +15,7 @@ export const BOSS_ENEMIES = {
       healthMax: 5000,
       defense: 30,
       armor: 120,
+      magicArmor: 60,
       damageTaken: 1
     },
     rewards: []
@@ -34,6 +35,7 @@ export const BOSS_ENEMIES = {
       healthMax: 7500,
       defense: 70,
       armor: 100,
+      magicArmor: 500,
       damageTaken: 1
     },
     rewards: []
@@ -52,7 +54,8 @@ export const BOSS_ENEMIES = {
       health: 12500,
       healthMax: 12500,
       defense: 100,
-      armor: 140,
+      armor: 260,
+      magicArmor: 130,
       damageTaken: 1
     },
     rewards: []
@@ -72,6 +75,7 @@ export const BOSS_ENEMIES = {
       healthMax: 20000,
       defense: 140,
       armor: 180,
+      magicArmor: 180,
       damageTaken: 1
     },
     rewards: []
@@ -90,7 +94,8 @@ export const BOSS_ENEMIES = {
       health: 35000,
       healthMax: 35000,
       defense: 140,
-      armor: 180,
+      armor: 250,
+      magicArmor: 1000,
       damageTaken: 1
     },
     rewards: []
@@ -110,6 +115,7 @@ export const BOSS_ENEMIES = {
       healthMax: 45000,
       defense: 180,
       armor: 180,
+      magicArmor: 180,
       damageTaken: 1
     },
     rewards: []
@@ -128,7 +134,8 @@ export const BOSS_ENEMIES = {
       health: 55000,
       healthMax: 55000,
       defense: 220,
-      armor: 180,
+      armor: 250,
+      magicArmor: 250,
       damageTaken: 1
     },
     rewards: []
@@ -147,7 +154,8 @@ export const BOSS_ENEMIES = {
       health: 75000,
       healthMax: 75000,
       defense: 220,
-      armor: 180,
+      armor: 300,
+      magicArmor: 400,
       damageTaken: 1
     },
     rewards: []

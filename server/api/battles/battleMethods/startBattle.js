@@ -224,7 +224,7 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
         id: Random.id(),
         stats: enemyStats,
         icon: enemyConstants.icon,
-        buffs: [],
+        buffs: enemyConstants.buffs || [],
         target: randomUnitTarget.id,
         enemyId: enemyConstants.id,
         name: enemyConstants.name,

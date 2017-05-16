@@ -39,7 +39,7 @@ export const addXp = function (skillType, xp, specificUserId) {
     });
 
     // If this is attack / Defense / Health recompute combat
-    if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health') {
+    if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health' || skill.type === 'magic') {
       updateCombatStats(owner);
     }
 
@@ -186,6 +186,7 @@ Meteor.methods({
             }
           }
         });
+        updateCombatStats(Meteor.userId());
       }
     }
   },

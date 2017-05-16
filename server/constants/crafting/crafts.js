@@ -23,7 +23,7 @@ export const CRAFTING_CRAFTS = {
     }],
     timeToCraft: 30,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   polished_black_stone: {
@@ -61,7 +61,38 @@ export const CRAFTING_CRAFTS = {
     }],
     timeToCraft: 600,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
+  },
+
+  polished_blue_stone: {
+    produces: 'polished_blue_stone',
+    recipeFor: 'crafting',
+    name: 'polished blue stone',
+    category: 'crafting',
+    id: 'polished_blue_stone',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 50,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'ore_mithril',
+      icon: ITEMS['ore_mithril'].icon,
+      name: ITEMS['ore_mithril'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 300,
+    xp: 5,
+    maxToCraft: 5
   },
 
   composite_wall: {

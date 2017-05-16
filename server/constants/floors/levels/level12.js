@@ -19,7 +19,15 @@ export const LEVEL_TWELVE_MONSTERS = [{
 }, {
   id: 'jellyFish',
   icon: 'jellyFish',
-  name: 'jellyfish'
+  name: 'jellyfish',
+  buffs: [{
+    id: 'poisoned_blade',
+    data: {
+      level: 1,
+      icon: 'poisonedBlade',
+      name: 'poisoned blade'
+    }
+  }]
 }];
 
 export const LEVEL_TWELVE_LOOT_TABLE = orderLootTable([{

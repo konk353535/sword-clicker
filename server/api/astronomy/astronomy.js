@@ -62,7 +62,16 @@ Meteor.methods({
   },
   // Cost to hire a mage
   'astronomy.hireMageCost'() {
-    return ASTRONOMY.mageHireCost;
+    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    if (!astronomy) {
+      return;
+    }
+    const mainMage = astronomy.mages[0];
+    if (!mainMage) {
+      return;
+    }
+
+    return ASTRONOMY.mageHireCost(mainMage);
   },
   // Hire a specific type of mage
   'astronomy.hireMage'(type) {
@@ -79,7 +88,8 @@ Meteor.methods({
       throw new Meteor.Error("missed-requirmeents", "already have the max # of mages");
     }
 
-    const requirements = ASTRONOMY.mageHireCost;
+    const mainMage = astronomy.mages[0];
+    const requirements = ASTRONOMY.mageHireCost(mainMage);
 
     if (!requirementsUtility(requirements, 1)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
@@ -104,6 +114,9 @@ Meteor.methods({
   },
   // Deposit gold to mage
   'astronomy.depositMageGold'(index, amount) {
+    if (amount <= 0) {
+      return;
+    }
     // Check we have enough gold, and deposit it
     const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
 
@@ -137,6 +150,9 @@ Meteor.methods({
   },
   // Withdraw gold from mage
   'astronomy.withdrawMageGold'(index, amount) {
+    if (amount <= 0) {
+      return;
+    }
 
     // If more gold then what is there specified, withdraw all gold
     const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
@@ -204,7 +220,8 @@ Meteor.methods({
     let gainedXp = 0;
 
     // Cost of mage per hour
-    const costPerHour = ASTRONOMY.mageHireCost[0].amount;
+    const mainMage = astronomy.mages[0];
+    const costPerHour = ASTRONOMY.mageHireCost(mainMage)[0].amount;
 
     // Iterate through all miners for minutesElapsed
     astronomy.mages.forEach((currentMage) => {

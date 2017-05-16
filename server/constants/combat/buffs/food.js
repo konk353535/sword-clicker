@@ -67,7 +67,7 @@ export const FOOD_BUFFS = {
       duration: 300, // How long the buff will last
       totalDuration: 300,
       energyPerSecond: 0.03, // energy it will do per second
-      healthPerSecond: 1.5
+      healthPerSecond: 2
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -336,7 +336,7 @@ export const FOOD_BUFFS = {
     data: { // Data we require to persist
       duration: 10, // How long the buff will last
       totalDuration: 10,
-      healthPerSecond: 20 // Healing it will do per second
+      healthPerSecond: 18 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -447,7 +447,7 @@ export const FOOD_BUFFS = {
     data: { // Data we require to persist
       duration: 180, // How long the buff will last
       totalDuration: 180,
-      healthPerSecond: 2 // Healing it will do per second
+      healthPerSecond: 3 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

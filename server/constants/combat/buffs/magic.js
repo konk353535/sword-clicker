@@ -164,7 +164,7 @@ export const MAGIC_BUFFS = {
     description({ buff, level }) {
       const c = buff.constants;
       return `
-        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 5 seconds. <br />
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 4 seconds. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
@@ -172,11 +172,11 @@ export const MAGIC_BUFFS = {
       healBase: 5,
       healMPRatio: 0.5,
       healthCost: 8,
-      healthCostMPRatio: 0.7
+      healthCostMPRatio: 0.9
     },
     data: {
-      duration: 15,
-      totalDuration: 15,
+      duration: 20,
+      totalDuration: 20,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -199,7 +199,7 @@ export const MAGIC_BUFFS = {
             target,
             tickEvents: actualBattle.tickEvents
           });
-          buff.data.timeTillHeal = 5;
+          buff.data.timeTillHeal = 4;
         }
       },
 
@@ -213,7 +213,7 @@ export const MAGIC_BUFFS = {
             target,
             tickEvents: actualBattle.tickEvents
           });
-          buff.data.timeTillHeal = 5;
+          buff.data.timeTillHeal = 4;
         }
 
         if (buff.data.duration < 0) {
@@ -802,6 +802,7 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
+          buff.data.duration = -1;
         }
       },
 

@@ -61,6 +61,7 @@ export const personalQuestMonsterGenerator = function(level) {
       id: selectedMonster.id,
       icon: selectedMonster.icon,
       name: selectedMonster.name,
+      buffs: selectedMonster.buffs,
       stats: {
         health: 10 + (level * 7) + (extraStats * 20),
         healthMax: 10 + (level * 7) + (extraStats * 20),

@@ -16,8 +16,8 @@ export const MAGIC_BUFFS = {
     constants: {
       damageBase: 10,
       damageMPRatio: 1,
-      healthCost: 5,
-      healthCostMPRatio: 0.5
+      healthCost: 3,
+      healthCostMPRatio: 0.20
     },
     data: {
       duration: 0,
@@ -67,8 +67,8 @@ export const MAGIC_BUFFS = {
     constants: {
       healBase: 10,
       healMPRatio: 1,
-      healthCost: 5,
-      healthCostMPRatio: 0.5
+      healthCost: 3,
+      healthCostMPRatio: 0.2
     },
     data: {
       duration: 0,
@@ -118,8 +118,8 @@ export const MAGIC_BUFFS = {
     constants: {
       healBase: 1000,
       healMPRatio: 4,
-      healthCost: 100,
-      healthCostMPRatio: 2
+      healthCost: 50,
+      healthCostMPRatio: 1
     },
     data: {
       duration: 0,
@@ -171,8 +171,8 @@ export const MAGIC_BUFFS = {
     constants: {
       healBase: 5,
       healMPRatio: 0.5,
-      healthCost: 15,
-      healthCostMPRatio: 1.7
+      healthCost: 8,
+      healthCostMPRatio: 0.7
     },
     data: {
       duration: 15,
@@ -239,8 +239,8 @@ export const MAGIC_BUFFS = {
     constants: {
       damageBase: 2,
       damageMPRatio: 0.2,
-      healthCost: 15,
-      healthCostMPRatio: 2
+      healthCost: 8,
+      healthCostMPRatio: 1
     },
     data: {
       duration: 25,
@@ -309,8 +309,8 @@ export const MAGIC_BUFFS = {
     constants: {
       damageBase: 7,
       damageMPRatio: 0.1,
-      healthCost: 1000,
-      healthCostMPRatio: 2
+      healthCost: 500,
+      healthCostMPRatio: 1
     },
     data: {
       duration: 60,
@@ -380,8 +380,8 @@ export const MAGIC_BUFFS = {
     constants: {
       attackSpeedBase: 25,
       attackSpeedMPRatio: 0.2,
-      healthCost: 10,
-      healthCostMPRatio: 1
+      healthCost: 5,
+      healthCostMPRatio: 0.5
     },
     data: {
       duration: 15,
@@ -454,8 +454,8 @@ export const MAGIC_BUFFS = {
     constants: {
       attackSpeedBase: 200,
       attackSpeedMPRatio: 0.1,
-      healthCost: 250,
-      healthCostMPRatio: 0.5
+      healthCost: 150,
+      healthCostMPRatio: 0.2
     },
     data: {
       duration: 30,
@@ -514,8 +514,8 @@ export const MAGIC_BUFFS = {
     constants: {
       armorBase: 25,
       armorMPRatio: 2,
-      healthCost: 10,
-      healthCostMPRatio: 1
+      healthCost: 5,
+      healthCostMPRatio: 0.5
     },
     data: {
       duration: 15,
@@ -572,8 +572,8 @@ export const MAGIC_BUFFS = {
       damageBase: 25,
       baseShield: 50,
       shieldMPRatio: 0.7,
-      healthCost: 50,
-      healthCostMPRatio: 2
+      healthCost: 25,
+      healthCostMPRatio: 1
     },
     data: {
       duration: Infinity,
@@ -642,8 +642,8 @@ export const MAGIC_BUFFS = {
       damageBase: 25,
       baseShield: 500,
       shieldMPRatio: 2,
-      healthCost: 250,
-      healthCostMPRatio: 0.5
+      healthCost: 150,
+      healthCostMPRatio: 0.25
     },
     data: {
       duration: Infinity,
@@ -711,8 +711,8 @@ export const MAGIC_BUFFS = {
     constants: {
       increaseBase: 20,
       increaseMPRatio: 0.2,
-      healthCost: 25,
-      healthCostMPRatio: 0.2
+      healthCost: 15,
+      healthCostMPRatio: 0.1
     },
     data: {
       duration: 20,
@@ -774,8 +774,8 @@ export const MAGIC_BUFFS = {
     constants: {
       armorReductionBase: 10,
       armorReductionMPRatio: 1,
-      healthCost: 5,
-      healthCostMPRatio: 0.5,
+      healthCost: 3,
+      healthCostMPRatio: 0.2,
       totalDuration: 5
     },
     data: {
@@ -834,8 +834,8 @@ export const MAGIC_BUFFS = {
     constants: {
       damageBase: 10,
       damageMPRatio: 1,
-      healthCost: 6,
-      healthCostMPRatio: 0.6
+      healthCost: 3,
+      healthCostMPRatio: 0.3
     },
     data: {
       duration: 0,

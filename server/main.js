@@ -12,6 +12,7 @@ import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
+import { addItem } from '/server/api/items/items';
 
 Meteor.startup(() => {
 

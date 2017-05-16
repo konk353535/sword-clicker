@@ -28,12 +28,14 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'iron_pickaxe', amount: 1 },
     { type: 'item', itemId: 'iron_axe', amount: 1 },
-    { type: 'item', itemId: 'iron_dagger', amount: 1 }
+    { type: 'item', itemId: 'iron_dagger', amount: 1 },
+    { type: 'item', itemId: 'brown_wizard_hat', amount: 1 },
+    { type: 'item', itemId: 'brown_wizard_shirt', amount: 1 },
+    { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 },
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'iron_bar', amount: 1 },
     { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
   ]
 }, {

@@ -37,7 +37,10 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'mithril_pickaxe', amount: 1 },
     { type: 'item', itemId: 'mithril_axe', amount: 1 },
-    { type: 'item', itemId: 'mithril_dagger', amount: 1 }
+    { type: 'item', itemId: 'mithril_dagger', amount: 1 },
+    { type: 'item', itemId: 'blue_wizard_hat', amount: 1 },
+    { type: 'item', itemId: 'blue_wizard_shirt', amount: 1 },
+    { type: 'item', itemId: 'blue_wizard_shorts', amount: 1 },
   ]
 }, {
   chance: 1 / 64,

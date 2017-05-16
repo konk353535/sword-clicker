@@ -26,6 +26,7 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
   chance: 1 / 512,
   rewards: [
     { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
+    { type: 'item', itemId: 'ruby_staff', amount: 1 }
   ]
 }, {
   chance: 1 / 256,

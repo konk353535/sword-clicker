@@ -11,6 +11,7 @@ import { CURSED_ITEMS } from './items/cursed';
 import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
 import { STAFF_ITEMS } from './items/staff';
+import { WIZARD_ITEMS } from './items/wizard';
 
 export const COMBAT_ITEMS = Object.assign(
   IRON_ITEMS,
@@ -25,4 +26,5 @@ export const COMBAT_ITEMS = Object.assign(
   CURSED_ITEMS,
   MISC_ITEMS,
   AMULET_ITEMS,
-  STAFF_ITEMS);
+  STAFF_ITEMS,
+  WIZARD_ITEMS);

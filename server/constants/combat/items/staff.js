@@ -31,5 +31,201 @@ export const STAFF_ITEMS = {
       name: 'magic',
       level: 1
     }]
+  },
+
+  oak_staff: {
+    id: 'oak_staff',
+    icon: 'oakStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'oak staff',
+    sellPrice: 200,
+    description: 'What seems like a normal oak staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 6,
+      attackMax: 12,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 10,
+      magicPower: 13
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 5
+    }]
+  },
+
+  walnut_staff: {
+    id: 'walnut_staff',
+    icon: 'walnutStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'walnut staff',
+    sellPrice: 400,
+    description: 'What seems like a normal walnut staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 8,
+      attackMax: 15,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 15,
+      magicPower: 16
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 10
+    }]
+  },
+
+  mahogany_staff: {
+    id: 'mahogany_staff',
+    icon: 'mahoganyStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'mahogany staff',
+    sellPrice: 400,
+    description: 'What seems like a normal mahogany staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 10,
+      attackMax: 17,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 23,
+      magicPower: 19
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
+  fiery_staff: {
+    id: 'fiery_staff',
+    icon: 'fieryStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'fiery staff',
+    sellPrice: 400,
+    description: 'What seems like a normal fiery staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15,
+      attackMax: 25,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 30,
+      magicPower: 24
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
+  dwarven_staff: {
+    id: 'dwarven_staff',
+    icon: 'dwarvenStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'dwarven staff',
+    sellPrice: 400,
+    description: 'A staff from an old dwarf',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15,
+      attackMax: 25,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 30,
+      magicPower: 35,
+      defense: -20
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
+  ruby_staff: {
+    id: 'ruby_staff',
+    icon: 'rubyStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'ruby staff',
+    sellPrice: 400,
+    description: 'The ruby lusts for blood',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15,
+      attackMax: 25,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 30,
+      magicPower: 50,
+      defense: -30,
+      armor: -25,
+      healthMax: 100
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }]
   }
 }

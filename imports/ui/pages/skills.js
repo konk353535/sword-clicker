@@ -79,12 +79,14 @@ Template.skillsPage.helpers({
       { type: 'total' },
       { type: 'attack' },
       { type: 'defense' },
+      { type: 'health' },
+      { type: 'magic' },
       { type: 'mining' },
       { type: 'farming' },
       { type: 'inscription' },
       { type: 'crafting' },
       { type: 'woodcutting' },
-      { type: 'health' }
+      { type: 'astronomy' }
     ];
   },
 

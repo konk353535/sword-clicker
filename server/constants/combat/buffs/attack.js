@@ -16,6 +16,7 @@ export const ATTACK_BUFFS = {
     events: {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         const constants = buff.constants.constants;
+        buff.data.duration -= secondsElapsed;
 
         if (buff.data.timeTillDamage !== undefined) {
           buff.data.timeTillDamage -= secondsElapsed;
@@ -64,7 +65,7 @@ export const ATTACK_BUFFS = {
 
       return `${chance}% chance to poison the enemy.<br />
         Deals ${damage.toFixed(1)}% damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
-        Lasts indefinetly.`;
+        Lasts 3 minutes.`;
     },
     constants: {
       poisonChance: 0.05,
@@ -93,8 +94,8 @@ export const ATTACK_BUFFS = {
           defender.buffs.push({
             id: 'basic_poison',
             data: {
-              duration: Infinity,
-              totalDuration: Infinity,
+              duration: 180,
+              totalDuration: 180,
               damage: Math.ceil(totalDamage),
               icon: 'poison',
               sourceId: attacker.id

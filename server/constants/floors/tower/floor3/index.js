@@ -15,7 +15,8 @@ export const TOWER_FLOOR_3 = {
     }, {
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'juniper', amount: 1 },
+        { type: 'item', itemId: 'dwarven_staff', amount: 1 }
       ]
     }])
   },

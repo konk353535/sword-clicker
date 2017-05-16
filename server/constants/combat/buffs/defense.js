@@ -113,7 +113,7 @@ export const DEFENSE_BUFFS = {
       const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
       return `
-        Reflect ${Math.round(damageReflection * 100)}% of damage taken. <br />
+        Reflect ${Math.round(damageReflection * 100)}% of damage taken as true damage. <br />
         (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
     },
     constants: {
@@ -141,6 +141,7 @@ export const DEFENSE_BUFFS = {
         actualBattle.utils.dealDamage(totalDamage * damageReflection, {
           attacker: defender,
           defender: attacker,
+          isTrueDamage: true,
           tickEvents: actualBattle.tickEvents
         });
       },

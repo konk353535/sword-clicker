@@ -235,6 +235,20 @@ Meteor.methods({
         totalFound *= 2;
       }
 
+      // Based on total found see if we get complete / ful shard
+      const completeChance = 1 / 1000;
+      const ancientChance = 1 / 10000;
+      let foundComplete = false;
+      let foundAncient = false;
+
+      if (Math.random() <= completeChance * totalFound) {
+        foundComplete = true;
+      }
+
+      if (Math.random() <= ancientChance * totalFound) {
+        foundAncient = true;
+      }
+
       gainedXp += totalFound;
       if (currentMage.type) {
         const item_id = `${currentMage.type}_shard_fragment`;
@@ -243,6 +257,26 @@ Meteor.methods({
           gainedItems[item_id] += Math.floor(totalFound);
         } else {
           gainedItems[item_id] = Math.floor(totalFound);
+        }
+
+        if (foundComplete) {
+          const item_id = `complete_${currentMage.type}_shard`;
+          // all found are of specified type
+          if (gainedItems[item_id]) {
+            gainedItems[item_id] += 1;
+          } else {
+            gainedItems[item_id] = 1;
+          }
+        }
+
+        if (foundAncient) {
+          const item_id = `ancient_${currentMage.type}_shard`;
+          // all found are of specified type
+          if (gainedItems[item_id]) {
+            gainedItems[item_id] += 1;
+          } else {
+            gainedItems[item_id] = 1;
+          }
         }
       } else {
         const types = ['fire', 'water', 'air', 'earth'];
@@ -267,6 +301,27 @@ Meteor.methods({
             gainedItems[item_id] += Math.floor(totalFound);
           } else {
             gainedItems[item_id] = Math.floor(totalFound);
+          }
+        }
+
+        const randomType = _.sample(types);
+        if (foundComplete) {
+          const item_id = `complete_${randomType}_shard`;
+          // all found are of specified type
+          if (gainedItems[item_id]) {
+            gainedItems[item_id] += 1;
+          } else {
+            gainedItems[item_id] = 1;
+          }
+        }
+
+        if (foundAncient) {
+          const item_id = `ancient_${randomType}_shard`;
+          // all found are of specified type
+          if (gainedItems[item_id]) {
+            gainedItems[item_id] += 1;
+          } else {
+            gainedItems[item_id] = 1;
           }
         }
       }

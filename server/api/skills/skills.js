@@ -164,8 +164,8 @@ Meteor.methods({
           mages: [{
             id: 'main',
             stats: {
-              attackSpeed: 75,
-              criticalChance: 5
+              attackSpeed: 50,
+              criticalChance: 1
             }
           }],
           lastGameUpdated: moment().toDate()

@@ -194,8 +194,6 @@ Meteor.methods({
     // Get ability constans
     const abilityConstants = ABILITIES[tomeConstants.teaches.abilityId];
 
-    console.log(abilityConstants);
-
     // Add to learnt abilities
     if (hasTargetAbility) {
       // Update existing level

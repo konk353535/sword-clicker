@@ -22,6 +22,7 @@ let miningTimer;
 let craftingTimer;
 let woodcuttingTimer;
 let combatTimer;
+let astronomyTimer;
 let floatingTextTimer;
 
 let cachedSkills = {};
@@ -156,6 +157,12 @@ Template.body.onCreated(function () {
     }
   }, 60 * 1000 + (Math.random() * 1000));
 
+  astronomyTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('astronomy.gameUpdate');
+    }
+  }, 60 * 1000 + (Math.random() * 1000));
+
   /*
   floatingTextTimer = Meteor.setInterval(() => {
     let viewWidth = $(window).width();
@@ -206,6 +213,7 @@ Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);
   Meteor.clearInterval(craftingTimer);
   Meteor.clearInterval(miningTimer);
+  Meteor.clearInterval(astronomyTimer);
   Meteor.clearInterval(woodcuttingTimer);
   Meteor.clearInterval(floatingTextTimer);
 });

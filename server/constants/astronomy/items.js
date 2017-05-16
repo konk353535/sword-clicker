@@ -37,7 +37,7 @@ export const ASTRONOMY_ITEMS = {
 
   complete_water_shard: {
     id: 'complete_water_shard',
-    icon: 'completewaterShard',
+    icon: 'completeWaterShard',
     category: 'astronomy',
     name: 'complete water shard',
     sellPrice: 100,
@@ -46,7 +46,7 @@ export const ASTRONOMY_ITEMS = {
 
   ancient_water_shard: {
     id: 'ancient_water_shard',
-    icon: 'ancientwaterShard',
+    icon: 'ancientWaterShard',
     category: 'astronomy',
     name: 'ancient water shard',
     sellPrice: 1000,
@@ -64,7 +64,7 @@ export const ASTRONOMY_ITEMS = {
 
   complete_earth_shard: {
     id: 'complete_earth_shard',
-    icon: 'completeearthShard',
+    icon: 'completeEarthShard',
     category: 'astronomy',
     name: 'complete earth shard',
     sellPrice: 100,
@@ -73,7 +73,7 @@ export const ASTRONOMY_ITEMS = {
 
   ancient_earth_shard: {
     id: 'ancient_earth_shard',
-    icon: 'ancientearthShard',
+    icon: 'ancientEarthShard',
     category: 'astronomy',
     name: 'ancient earth shard',
     sellPrice: 1000,
@@ -91,7 +91,7 @@ export const ASTRONOMY_ITEMS = {
 
   complete_air_shard: {
     id: 'complete_air_shard',
-    icon: 'completeairShard',
+    icon: 'completeAirShard',
     category: 'astronomy',
     name: 'complete air shard',
     sellPrice: 100,
@@ -100,7 +100,7 @@ export const ASTRONOMY_ITEMS = {
 
   ancient_air_shard: {
     id: 'ancient_air_shard',
-    icon: 'ancientairShard',
+    icon: 'ancientAirShard',
     category: 'astronomy',
     name: 'ancient air shard',
     sellPrice: 1000,

@@ -13,7 +13,7 @@ export const ASTRONOMY = {
 
   upgradeCosts: {
     attackSpeed(current) {
-      const goldAmount = (current - 74) * 1000;
+      const goldAmount = (current - 50) * 750;
       return [{
         type: 'gold',
         amount: goldAmount,
@@ -22,7 +22,7 @@ export const ASTRONOMY = {
     },
 
     criticalChance(current) {
-      const goldAmount = (current - 4) * (current / 20) * 1000;
+      const goldAmount = (current - 1) * (current / 15) * 1000;
       return [{
         type: 'gold',
         amount: goldAmount,

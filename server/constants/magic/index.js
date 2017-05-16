@@ -300,6 +300,103 @@ export const MAGIC = {
         name: 'magic',
         level: 15
       }]
+    },
+
+
+    // Tier 3 Spell
+    heavens_descent: {
+      id: 'heavens_descent',
+      abilityId: 'heavens_descent',
+      xp: 500,
+      maxToCraft: 2,
+      required: [{
+        type: 'item',
+        itemId: 'ancient_water_shard',
+        icon: ITEMS['ancient_water_shard'].icon,
+        name: ITEMS['ancient_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 30
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 25
+      }]
+    },
+
+    // Tier 3 Spell
+    lightning_speed: {
+      id: 'lightning_speed',
+      abilityId: 'lightning_speed',
+      xp: 500,
+      maxToCraft: 2,
+      required: [{
+        type: 'item',
+        itemId: 'ancient_air_shard',
+        icon: ITEMS['ancient_air_shard'].icon,
+        name: ITEMS['ancient_air_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 30
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 25
+      }]
+    },
+
+    // Tier 3 Spell
+    diamond_skin: {
+      id: 'diamond_skin',
+      abilityId: 'diamond_skin',
+      xp: 500,
+      maxToCraft: 2,
+      required: [{
+        type: 'item',
+        itemId: 'ancient_earth_shard',
+        icon: ITEMS['ancient_earth_shard'].icon,
+        name: ITEMS['ancient_earth_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 30
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 25
+      }]
+    },
+
+    // Tier 3 Spell
+    inferno: {
+      id: 'inferno',
+      abilityId: 'inferno',
+      xp: 500,
+      maxToCraft: 2,
+      required: [{
+        type: 'item',
+        itemId: 'ancient_fire_shard',
+        icon: ITEMS['ancient_fire_shard'].icon,
+        name: ITEMS['ancient_fire_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 30
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 25
+      }]
     }
   }
 }

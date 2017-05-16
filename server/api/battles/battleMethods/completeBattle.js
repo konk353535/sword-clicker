@@ -302,8 +302,10 @@ export const completeBattle = function (actualBattle) {
     let totalMagicXp = 0;
 
     unit.abilities.forEach((ability) => {
-      const spellConstants = MAGIC.spells[ability.id];
-      totalMagicXp += ability.totalCasts * spellConstants.xp;
+      if (ability.isSpell) {
+        const spellConstants = MAGIC.spells[ability.id];
+        totalMagicXp += ability.totalCasts * spellConstants.xp;
+      }
     });
 
     if (totalMagicXp > 0) {

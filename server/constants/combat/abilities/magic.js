@@ -179,4 +179,68 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+
+  heavens_descent: {
+    icon: 'heavensDescent',
+    name: 'heavens descent',
+    id: 'heavens_descent',
+    buffs: ['heavens_descent'],
+    cooldown: 60 * 60 * 24 * 3,
+    slot: 'any',
+    isHidden: true,
+    isMagic: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.heavens_descent;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  lightning_speed: {
+    icon: 'lightningSpeed',
+    name: 'lightning speed',
+    id: 'lightning_speed',
+    buffs: ['lightning_speed'],
+    cooldown: 60 * 60 * 24 * 3,
+    slot: 'any',
+    isHidden: true,
+    isMagic: true,
+    target: 'allAllies',
+    description(level) {
+      const BUFF = BUFFS.lightning_speed;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  diamond_skin: {
+    icon: 'diamondSkin',
+    name: 'diamond skin',
+    id: 'diamond_skin',
+    buffs: ['diamond_skin'],
+    cooldown: 60 * 60 * 24 * 3,
+    slot: 'any',
+    isHidden: true,
+    isMagic: true,
+    target: 'allAllies',
+    description(level) {
+      const BUFF = BUFFS.diamond_skin;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  inferno: {
+    icon: 'inferno',
+    name: 'inferno',
+    id: 'inferno',
+    buffs: ['inferno'],
+    cooldown: 60 * 60 * 24 * 3,
+    slot: 'any',
+    isHidden: true,
+    isMagic: true,
+    target: 'allEnemies',
+    description(level) {
+      const BUFF = BUFFS.inferno;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 }

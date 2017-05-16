@@ -89,6 +89,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       customColor: isMagic ? 'blue' : undefined,
       customIcon: isMagic ? 'magic' : undefined
     });
+
+    return damage;
   }
 
   const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
@@ -116,6 +118,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
       const rawDamage = attacker.stats.attack + extraRawDamage;
 
+      const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents });
+
       // Tick didDamage event on attacker
       if (attacker.buffs) {
         attacker.buffs.forEach((buff) => {
@@ -133,12 +137,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           buff.constants = BUFFS[buff.id];
           if (buff.constants.events.onTookDamage) {
             // Took Damage
-            buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, rawDamage })
+            buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt })
           }
         });
       }
 
-      dealDamage(rawDamage, { attacker, defender, tickEvents });
     } else {
       dealDamage(0, { attacker, defender, tickEvents });
     }

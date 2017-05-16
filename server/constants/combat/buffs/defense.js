@@ -129,15 +129,14 @@ export const DEFENSE_BUFFS = {
         // Blank
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         const constants = buff.constants.constants;
 
         const damageReflectionBase = constants.damageReflectionBase;
         const damageReflectionPerLevel = constants.damageReflectionPerLevel * buff.data.level;
         const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
-        const dmgReduction = BATTLES.dmgReduction(defender.stats.armor);
-        const totalDamage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
+        const totalDamage = damageDealt;
 
         actualBattle.utils.dealDamage(totalDamage * damageReflection, {
           attacker: defender,

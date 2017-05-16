@@ -295,6 +295,75 @@ export const MAGIC_BUFFS = {
     }
   },
 
+  inferno: {
+    duplicateTag: 'inferno', // Used to stop duplicate buffs
+    icon: 'inferno',
+    name: 'inferno',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Damages all enemies for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) twice a second. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        Lasts for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      damageBase: 7,
+      damageMPRatio: 0.1,
+      healthCost: 1000,
+      healthCostMPRatio: 2
+    },
+    data: {
+      duration: 60,
+      totalDuration: 60,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damageBase = constants.damageBase;
+        const damageMP = constants.damageMPRatio * caster.stats.magicPower;
+        const totalDamage = damageBase + damageMP;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          buff.data.totalDamage = totalDamage;
+          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+          buff.data.timeTillDamage = 0.5;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+        buff.data.timeTillDamage -= secondsElapsed;
+
+        if (buff.data.timeTillDamage <= 0) {
+          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+          buff.data.timeTillDamage = 0.5;
+        }
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove() {}
+    }
+  },
 
   frenzied_winds: {
     duplicateTag: 'frenzied_winds', // Used to stop duplicate buffs
@@ -303,7 +372,7 @@ export const MAGIC_BUFFS = {
     description({ buff, level }) {
       const c = buff.constants;
       return `
-        Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(c.armorMPRatio * 100)}% of MP). <br />
+        Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
         Decrease your attack speed by the same amount <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
         Lasts for ${buff.data.totalDuration}s`;
@@ -366,6 +435,66 @@ export const MAGIC_BUFFS = {
         if (originalCaster) {
           originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
           originalCaster.stats.attackSpeedTicks = attackSpeedTicks(originalCaster.stats.attackSpeed);
+        }
+      }
+    }
+  },
+
+  lightning_speed: {
+    duplicateTag: 'lightning_speed', // Used to stop duplicate buffs
+    icon: 'lightningSpeed',
+    name: 'lightning speed',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Increases all allies attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
+        Lasts for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      attackSpeedBase: 200,
+      attackSpeedMPRatio: 0.1,
+      healthCost: 250,
+      healthCostMPRatio: 0.5
+    },
+    data: {
+      duration: 30,
+      totalDuration: 30,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const attackSpeedBase = constants.attackSpeedBase;
+        const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower;
+        const totalAttackSpeed = attackSpeedBase + attackSpeedMP;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
+
+          target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (buff.data.totalAttackSpeedDecimal) {
+          target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -435,7 +564,7 @@ export const MAGIC_BUFFS = {
     description({ buff, level }) {
       const c = buff.constants;
       return `
-        Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}MP) health shield to the target. <br />
+        Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
         Target gains ${c.damageBase}% damage while the shield is active. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />`;
     },
@@ -475,10 +604,80 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTookDamage({ buff, defender, attacker, secondsElapsed, rawDamage }) {
-        if (buff.data.shieldHp >= rawDamage) {
-          buff.data.shieldHp -= rawDamage;
-          defender.stats.health += rawDamage;
+      onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt }) {
+        if (buff.data.shieldHp >= damageDealt) {
+          buff.data.shieldHp -= damageDealt;
+          defender.stats.health += damageDealt;
+        } else {
+          defender.stats.health += buff.data.shieldHp;
+          buff.data.shieldHp = 0;
+        }
+
+        if (buff.data.shieldHp <= 0) {
+          removeBuff({ buff, target: defender, caster: defender });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.damageDecimal) {
+          target.stats.attack /= buff.data.damageDecimal;
+          target.stats.attackMax /= buff.data.damageDecimal;
+        }
+      }
+    }
+  },
+
+  diamond_skin: {
+    duplicateTag: 'diamond_skin', // Used to stop duplicate buffs
+    icon: 'diamondSkin',
+    name: 'diamond skin',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
+        Target gains ${c.damageBase}% damage while the shield is active. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />`;
+    },
+    constants: {
+      damageBase: 25,
+      baseShield: 500,
+      shieldMPRatio: 2,
+      healthCost: 250,
+      healthCostMPRatio: 0.5
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const baseShield = constants.baseShield;
+        const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
+        const totalShield = baseShield + shieldMP;
+        const damageDecimal = 1 + (constants.damageBase / 100);
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.damageDecimal = damageDecimal;
+          buff.data.shieldHp = totalShield;
+          target.stats.attack *= buff.data.damageDecimal;
+          target.stats.attackMax *= buff.data.damageDecimal;
+        } else {
+          buff.data.shieldHp = 0;
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
+        if (buff.data.shieldHp >= damageDealt) {
+          buff.data.shieldHp -= damageDealt;
+          defender.stats.health += damageDealt;
         } else {
           defender.stats.health += buff.data.shieldHp;
           buff.data.shieldHp = 0;
@@ -506,14 +705,14 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Increases all allies attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
       increaseBase: 20,
       increaseMPRatio: 0.2,
-      healthCost: 50,
-      healthCostMPRatio: 2
+      healthCost: 25,
+      healthCostMPRatio: 0.2
     },
     data: {
       duration: 20,
@@ -662,6 +861,51 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onTick({ buff, target, caster }) {
+        removeBuff({ buff, target, caster });
+      },
+
+      onRemove() {}
+    }
+  },
+
+  heavens_descent: {
+    duplicateTag: 'heavens_descent', // Used to stop duplicate buffs
+    icon: 'heavensDescent',
+    name: 'heavens descent',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Resurrects all fallen allies. Heals all allies to full hp<br />
+        At a cost of ${c.healthCost} health`;
+    },
+    constants: {
+      healthCost: 1000
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const healthBase = constants.healthCost;
+        const totalHealth = healthBase;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          // Interface with actual battle, mutate all deadUnits into units
+          actualBattle.units = actualBattle.deadUnits.concat(actualBattle.units);
+          actualBattle.deadUnits = [];
+          actualBattle.units.forEach((unit) => {
+            unit.stats.health = unit.stats.healthMax;
           });
         }
       },

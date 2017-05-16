@@ -3,10 +3,10 @@ import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const MAGIC_BUFFS = {
-  rock_dart: {
-    duplicateTag: 'rock_dart', // Used to stop duplicate buffs
-    icon: 'rockDart',
-    name: 'rock dart',
+  earth_dart: {
+    duplicateTag: 'earth_dart', // Used to stop duplicate buffs
+    icon: 'earthDart',
+    name: 'earth dart',
     description({ buff, level }) {
       const c = buff.constants;
       return `

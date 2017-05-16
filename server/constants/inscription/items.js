@@ -218,6 +218,201 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the poisoned blade ability.'
   },
 
+  earth_dart_tome: {
+    id: 'earth_dart_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Earth Dart',
+    teaches: {
+      abilityId: 'earth_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the earth dart spell.'
+  },
+
+  mud_armor_tome: {
+    id: 'mud_armor_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'mud armor',
+    teaches: {
+      abilityId: 'mud_armor',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the mud armor spell.'
+  },
+
+  mending_water_tome: {
+    id: 'mending_water_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'mending water',
+    teaches: {
+      abilityId: 'mending_water',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the mending water spell.'
+  },
+
+  ignite_tome: {
+    id: 'ignite_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'ignite',
+    teaches: {
+      abilityId: 'ignite',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the ignite spell.'
+  },
+
+  angels_touch_tome: {
+    id: 'angels_touch_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'angels touch',
+    teaches: {
+      abilityId: 'angels_touch',
+      level: 1
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to learn the angels touch spell.'
+  },
+
+  feeding_frenzy_tome: {
+    id: 'feeding_frenzy_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'feeding frenzy',
+    teaches: {
+      abilityId: 'feeding_frenzy',
+      level: 1
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to learn the feeding frenzy spell.'
+  },
+
+  elemental_shield_tome: {
+    id: 'elemental_shield_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'elemental shield',
+    teaches: {
+      abilityId: 'elemental_shield',
+      level: 1
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to learn the elemental shield spell.'
+  },
+
+  heavens_descent_tome: {
+    id: 'heavens_descent_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'heavens descent',
+    teaches: {
+      abilityId: 'heavens_descent',
+      level: 1
+    },
+    sellPrice: 25000,
+    description: 'Can be consumed to learn the heavens descent spell.'
+  },
+
+  inferno_tome: {
+    id: 'inferno_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'inferno',
+    teaches: {
+      abilityId: 'inferno',
+      level: 1
+    },
+    sellPrice: 25000,
+    description: 'Can be consumed to learn the inferno spell.'
+  },
+
+  lightning_speed_tome: {
+    id: 'lightning_speed_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'lightning_speed',
+    teaches: {
+      abilityId: 'lightning_speed',
+      level: 1
+    },
+    sellPrice: 25000,
+    description: 'Can be consumed to learn the lightning_speed spell.'
+  },
+
+  diamond_skin_tome: {
+    id: 'diamond_skin_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'diamond_skin',
+    teaches: {
+      abilityId: 'diamond_skin',
+      level: 1
+    },
+    sellPrice: 25000,
+    description: 'Can be consumed to learn the diamond_skin spell.'
+  },
+
+  frenzied_winds_tome: {
+    id: 'frenzied_winds_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'frenzied winds',
+    teaches: {
+      abilityId: 'frenzied_winds',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the frenzied winds spell.'
+  },
+
+  fire_dart_tome: {
+    id: 'fire_dart_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'fire Dart',
+    teaches: {
+      abilityId: 'fire_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the fire dart spell.'
+  },
+
+  water_dart_tome: {
+    id: 'water_dart_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'water Dart',
+    teaches: {
+      abilityId: 'water_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the water dart spell.'
+  },
+
+  air_dart_tome: {
+    id: 'air_dart_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'air Dart',
+    teaches: {
+      abilityId: 'air_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the air dart spell.'
+  },
+
   berserk_level_1_tome: {
     id: 'berserk_level_1_tome',
     icon: 'tome',

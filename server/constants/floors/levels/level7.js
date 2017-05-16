@@ -23,6 +23,11 @@ export const LEVEL_SEVEN_MONSTERS = [{
 }];
 
 export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
+  chance: 1 / 512,
+  rewards: [
+    { type: 'item', itemId: 'elemental_shield_tome', amount: 1 },
+  ]
+}, {
   chance: 1 / 256,
   rewards: [
     { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }

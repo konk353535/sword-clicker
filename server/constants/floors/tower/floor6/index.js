@@ -94,6 +94,11 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
         { type: 'item', itemId: 'chill_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 1024,
+      rewards: [
+        { type: 'item', itemId: 'lightning_speed_tome', amount: 1 },
+      ]
     }])
   },
 

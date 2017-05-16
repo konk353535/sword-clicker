@@ -177,7 +177,7 @@ Meteor.methods({
         }, {
           $push: {
             learntAbilities: {
-              abilityId: 'rock_dart',
+              abilityId: 'earth_dart',
               level: 1,
               equipped: false,
               currentCooldown: 0,

@@ -94,6 +94,11 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
         { type: 'item', itemId: 'cardoon_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 1024,
+      rewards: [
+        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+      ]
     }])
   },
 

@@ -92,7 +92,8 @@ export const TOWER_FLOOR_5 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
-        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
       ]
     }])
   },

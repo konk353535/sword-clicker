@@ -23,6 +23,11 @@ export const LEVEL_NINE_MONSTERS = [{
 }];
 
 export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
+  chance: 1 / 512,
+  rewards: [
+    { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
+  ]
+}, {
   chance: 1 / 256,
   rewards: [
     { type: 'item', itemId: 'orichalcum_pickaxe', amount: 1 },

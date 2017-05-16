@@ -23,6 +23,11 @@ export const LEVEL_EIGHT_MONSTERS = [{
 }];
 
 export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
+  chance: 1 / 512,
+  rewards: [
+    { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
+  ]
+}, {
   chance: 1 / 256,
   rewards: [
     { type: 'item', itemId: 'celery_seed', amount: 1 },

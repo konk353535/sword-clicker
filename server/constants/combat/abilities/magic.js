@@ -2,17 +2,17 @@ import moment from 'moment';
 import { BUFFS } from '/server/constants/combat/index';
 
 export const MAGIC_ABILITIES = {
-  rock_dart: {
-    icon: 'rockDart',
-    name: 'rock dart',
-    id: 'rock_dart',
-    buffs: ['rock_dart'],
+  earth_dart: {
+    icon: 'earthDart',
+    name: 'earth dart',
+    id: 'earth_dart',
+    buffs: ['earth_dart'],
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
     isMagic: true,
     description(level) {
-      const BUFF = BUFFS.rock_dart;
+      const BUFF = BUFFS.earth_dart;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -71,7 +71,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 180,
     slot: 'any',
     targettable: true,
-    isHidden: true,
+    isHidden: false,
     target: 'singleFriendly',
     isMagic: true,
     description(level) {
@@ -88,7 +88,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 30,
     slot: 'any',
     targettable: true,
-    isHidden: true,
+    isHidden: false,
     target: 'singleFriendly',
     isMagic: true,
     description(level) {
@@ -104,7 +104,7 @@ export const MAGIC_ABILITIES = {
     buffs: ['ignite'],
     cooldown: 180,
     slot: 'any',
-    isHidden: true,
+    isHidden: false,
     target: 'currentEnemy',
     isMagic: true,
     description(level) {
@@ -120,7 +120,7 @@ export const MAGIC_ABILITIES = {
     buffs: ['frenzied_winds'],
     cooldown: 180,
     slot: 'any',
-    isHidden: true,
+    isHidden: false,
     target: 'singleFriendly',
     targettable: true,
     isMagic: true,

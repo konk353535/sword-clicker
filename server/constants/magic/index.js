@@ -2,9 +2,9 @@ import { ITEMS } from '/server/constants/items/index';
 
 export const MAGIC = {
   spells: {
-    rock_dart: {
-      id: 'rock_dart',
-      abilityId: 'rock_dart',
+    earth_dart: {
+      id: 'earth_dart',
+      abilityId: 'earth_dart',
       xp: 1,
       maxToCraft: 10000,
       required: [{

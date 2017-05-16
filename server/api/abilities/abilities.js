@@ -191,6 +191,11 @@ Meteor.methods({
     // Okay all is good, remove the tome
     consumeItem(tome, 1);
 
+    // Get ability constans
+    const abilityConstants = ABILITIES[tomeConstants.teaches.abilityId];
+
+    console.log(abilityConstants);
+
     // Add to learnt abilities
     if (hasTargetAbility) {
       // Update existing level
@@ -209,6 +214,8 @@ Meteor.methods({
             abilityId: tomeConstants.teaches.abilityId,
             level: 1,
             equipped: false,
+            isSpell: abilityConstants.isMagic,
+            casts: abilityConstants.isMagic ? 1 : undefined,
             currentCooldown: 0
           }
         }

@@ -105,6 +105,11 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'juniper', amount: 1 },
       ]
     }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'elemental_shield_tome', amount: 1 },
+      ]
+    }, {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'lapislazuli', amount: 1 }

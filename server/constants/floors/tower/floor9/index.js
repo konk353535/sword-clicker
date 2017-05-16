@@ -94,6 +94,11 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'fairy_steel_broad_sword', amount: 1 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 1024,
+      rewards: [
+        { type: 'item', itemId: 'heavens_descent_tome', amount: 1 },
+      ]
     }])
   },
 

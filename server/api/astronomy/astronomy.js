@@ -248,7 +248,7 @@ Meteor.methods({
       }
 
       // Do we crit?
-      if (Math.random() <= currentMage.stats.criticalChance) {
+      if (Math.random() <= (currentMage.stats.criticalChance / 100)) {
         totalFound *= 2;
       }
 

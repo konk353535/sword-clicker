@@ -140,7 +140,10 @@ Meteor.methods({
       }
     });
 
-    Inscription.update(inscription._id, {
+    const updated = Inscription.update({
+      _id: inscription._id,
+      currentlyCrafting: inscription.currentlyCrafting
+    }, {
       $pull: {
         currentlyCrafting: {
           endDate: {
@@ -149,6 +152,10 @@ Meteor.methods({
         }
       }
     });
+
+    if (updated === 0) {
+      return;
+    }
 
     // Add new items to user
     newItems.forEach((item) => {

@@ -280,7 +280,10 @@ Meteor.methods({
       }
     });
 
-    Crafting.update(crafting._id, {
+    const updatedCount = Crafting.update({
+      _id: crafting._id,
+      currentlyCrafting: crafting.currentlyCrafting
+    }, {
       $pull: {
         currentlyCrafting: {
           endDate: {
@@ -289,6 +292,10 @@ Meteor.methods({
         }
       }
     });
+
+    if (updatedCount === 0) {
+      return;
+    }
 
     // Add new items to user
     newItems.forEach((item) => {

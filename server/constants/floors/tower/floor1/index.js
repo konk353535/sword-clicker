@@ -10,7 +10,8 @@ export const TOWER_FLOOR_1 = {
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'ore_stone', amount: 3 },
-        { type: 'gold', amount: 25 }
+        { type: 'gold', amount: 25 },
+        { type: 'item', itemId: 'brown_wizard_hat', amount: 1 }
       ]
     }])
   },
@@ -26,7 +27,8 @@ export const TOWER_FLOOR_1 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'copper_bar', amount: 2 },
-        { type: 'item', itemId: 'pine_log', amount: 20 }
+        { type: 'item', itemId: 'pine_log', amount: 20 },
+        { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 }
       ]
     }, {
       chance: 1 / 16,

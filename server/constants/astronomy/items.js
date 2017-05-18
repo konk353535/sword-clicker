@@ -4,7 +4,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'fireShardFragment',
     category: 'astronomy',
     name: 'fire shard fragment',
-    sellPrice: 10,
+    sellPrice: 4,
     description: 'Fragments of a fire shard'
   },
 
@@ -31,7 +31,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'waterShardFragment',
     category: 'astronomy',
     name: 'water shard fragment',
-    sellPrice: 10,
+    sellPrice: 4,
     description: 'Fragments of a water shard'
   },
 
@@ -58,7 +58,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'earthShardFragment',
     category: 'astronomy',
     name: 'earth shard fragment',
-    sellPrice: 10,
+    sellPrice: 4,
     description: 'Fragments of a earth shard'
   },
 
@@ -85,7 +85,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'airShardFragment',
     category: 'astronomy',
     name: 'air shard fragment',
-    sellPrice: 10,
+    sellPrice: 4,
     description: 'Fragments of a air shard'
   },
 

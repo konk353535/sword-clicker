@@ -2,6 +2,60 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_1 = {
+  1: {
+    name: 'Grass Field',
+    enemies: ['grasshopper'],
+    rewards: []
+  },
+  2: {
+    name: 'Cow Poo',
+    enemies: ['fly'],
+    rewards: []
+  },
+  3: {
+    name: 'Under Garden',
+    enemies: ['worm'],
+    rewards: []
+  },
+  4: {
+    name: 'Flower Field',
+    enemies: ['butterfly'],
+    rewards: []
+  },
+  5: {
+    name: 'Fake Dragons Nest',
+    enemies: ['dragonfly'],
+    rewards: []
+  },
+  6: {
+    name: 'Bee Hive',
+    enemies: ['bee'],
+    rewards: []
+  },
+  7: {
+    name: 'Fortress of stings',
+    enemies: ['wasp'],
+    rewards: []
+  },
+
+  boss: {
+    enemy: { id: 'boss_cougar', amount: 1 }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'copper_dwarven_idol',
+      icon: ITEMS['copper_dwarven_idol'].icon,
+      name: ITEMS['copper_dwarven_idol'].name,
+      baseStats: ITEMS['copper_dwarven_idol'].stats,
+      extraStats: ITEMS['copper_dwarven_idol'].extraStats
+    }
+  ]
+}
+
+/*
+export const TOWER_FLOOR_1 = {
   easy: {
     name: 'Grass Fields',
     image: 'grassField.jpeg',
@@ -127,3 +181,4 @@ export const TOWER_FLOOR_1 = {
     }
   ]
 }
+*/

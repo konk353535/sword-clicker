@@ -27,7 +27,6 @@ Template.towerTab.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-
     Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
       if (err) {
         console.log(err);
@@ -38,6 +37,7 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       }
     });
   });
+
 });
 
 const findBattleHandler = function (err, res) {
@@ -55,20 +55,40 @@ Template.towerTab.events({
     Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
   },
 
-  'click .battle-easy-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
+  'click .battle-deeper'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
   },
 
-  'click .battle-hard-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard', findBattleHandler);
+  'click .battle-room-1-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
   },
 
-  'click .battle-veryHard-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
+  'click .battle-room-2-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 2, findBattleHandler);
+  },
+
+  'click .battle-room-3-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 3, findBattleHandler);
+  },
+
+  'click .battle-room-4-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 4, findBattleHandler);
+  },
+
+  'click .battle-room-5-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 5, findBattleHandler);
+  },
+
+  'click .battle-room-6-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 6, findBattleHandler);
+  },
+
+  'click .battle-room-7-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 7, findBattleHandler);
   },
 
   'click .battle-boss-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
   }
 })
 
@@ -93,12 +113,8 @@ Template.towerTab.helpers({
       return false;
     }
 
-    if (waveDetails && waveDetails.easyWaves <= 0) {
-      if (waveDetails.hardWaves <= 0) {
-        if (waveDetails.veryHardWaves <= 0) {
-          return false;
-        }
-      }
+    if (waveDetails && waveDetails.points < waveDetails.pointsMax) {
+      return false;
     }
     return true;
   },
@@ -141,6 +157,11 @@ Template.towerTab.helpers({
 
   maxFloor() {
     return Template.instance().state.get('maxFloor');
+  },
+
+  currentCommunityfloor() {
+    const instance = Template.instance();
+    return instance.state.get('maxFloor') == instance.state.get('usersCurrentFloor');
   },
 
   floorsList() {

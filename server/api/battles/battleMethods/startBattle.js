@@ -17,28 +17,22 @@ import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
 
-export const startBattle = function ({ floor, difficulty, level, wave, health, isTowerContribution }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
 
   if (level) {
-    // Is personalQuest
+    // Is personalQuest (To Do)
     battleData.enemies.push(FLOORS.personalQuestMonsterGenerator(level));
-  } else if (difficulty === 'easy') {
-    // Is tower EASY
+  } else if (room === 0) {
+    // Is tower explore (To Do)
     battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
-  } else if (difficulty === 'hard') {
-    // Is tower HARD
-    battleData.enemies.push(FLOORS.hardTowerMonsterGenerator(floor));
-    battleData.enemies.push(FLOORS.hardTowerMonsterGenerator(floor));
-  } else if (difficulty === 'veryHard') {
-    // Is tower VERY HARD
-    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
-    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
-    battleData.enemies.push(FLOORS.veryHardTowerMonsterGenerator(floor));
-  } else if (difficulty === 'boss') {
-    // Is tower BOSS
+  } else if (room >= 1 && room <= 7) {
+    // Is tower room specific
+    battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room);
+  } else if (room === 'boss') {
+    // Is tower BOSS (To Do)
     battleData.enemies.push(FLOORS[floor].boss.enemy);
   }
 
@@ -62,7 +56,7 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
 
   // Ensure group size is not too large
   if (currentGroup) {
-    if (difficulty === 'boss') {
+    if (room === 'boss') {
       if (currentGroup.members.length > BATTLES.maxBossPartySize) {
         throw new Meteor.Error('to-large', `Your party is too large, maximum party size for boss fights is ${BATTLES.maxBossPartySize}`);
       }
@@ -85,10 +79,11 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
     updatedAt: new Date(),
     owners: battleParticipants,
     floor,
-    difficulty,
+    room,
     wave,
     level,
     isTowerContribution,
+    isExplorationRun,
     tickEvents: [],
     units: [],
     enemies: []
@@ -102,7 +97,7 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
   }).fetch();
 
   let hasEnergy = true;
-  let battleEnergyCost = COMBAT.energyConsumption[difficulty] || 1;
+  let battleEnergyCost = COMBAT.energyConsumption[room] || 1;
 
   // Ensure users have energy requirements + havent already fought boss
   usersCombatStats.forEach((userCombat) => {
@@ -169,22 +164,6 @@ export const startBattle = function ({ floor, difficulty, level, wave, health, i
       tickOffset: _.random(0, 5),
       icon: 'character'
     });
-
-    // Duplicate units x10 to simulate a raid boss party
-    /*
-    for (let i = 0; i < 9; i++) {
-      let tempId = Random.id();
-      newBattle.units.push({
-        id: tempId,
-        owner: tempId,
-        abilities: usersEquippedAbilities,
-        name: `Test_${i}`,
-        stats: userCombatStats,
-        tickOffset: _.random(0, 5),
-        xpDistribution: userCombat.xpDistribution,
-        icon: 'character'
-      });
-    }*/
 
   });
 

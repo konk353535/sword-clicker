@@ -2,6 +2,60 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
 
 export const TOWER_FLOOR_2 = {
+  1: {
+    name: 'Derelict House',
+    enemies: ['rat'],
+    rewards: []
+  },
+  2: {
+    name: 'Cliffs Edge',
+    enemies: ['bird'],
+    rewards: []
+  },
+  3: {
+    name: 'Mossy Garden',
+    enemies: ['snail'],
+    rewards: []
+  },
+  4: {
+    name: 'Minor Earth Alter',
+    enemies: ['brown_mage'],
+    rewards: []
+  },
+  5: {
+    name: 'Hidden Cove',
+    enemies: ['crab'],
+    rewards: []
+  },
+  6: {
+    name: 'Suspicious Mine',
+    enemies: ['angry_miner'],
+    rewards: []
+  },
+  7: {
+    name: 'Carrot Farm',
+    enemies: ['rabbit'],
+    rewards: []
+  },
+
+  boss: {
+    enemy: { id: 'boss_cobra', amount: 1 }
+  },
+
+  floorRewards: [
+    {
+      type: 'item',
+      itemId: 'iron_dwarven_idol',
+      icon: ITEMS['iron_dwarven_idol'].icon,
+      name: ITEMS['iron_dwarven_idol'].name,
+      baseStats: ITEMS['iron_dwarven_idol'].stats,
+      extraStats: ITEMS['iron_dwarven_idol'].extraStats
+    }
+  ]
+}
+
+/*
+export const TOWER_FLOOR_2 = {
   easy: {
     name: 'Greek Garden',
     image: 'greekGarden.jpeg',
@@ -122,3 +176,4 @@ export const TOWER_FLOOR_2 = {
     }
   ]
 }
+*/

@@ -7,22 +7,89 @@ import { LEVEL_FOUR_ENEMIES } from '/server/constants/enemies/level4/index.js'
 import { LEVEL_FIVE_ENEMIES } from '/server/constants/enemies/level5/index.js'
 import { BOSS_ENEMIES } from '/server/constants/enemies/bosses/index.js'
 
-export const ENEMIES = Object.assign({
-  dummy: {
-    id: 'dummy',
+export const ENEMIES = {
+
+  grasshopper: {
+    id: 'grasshopper',
+    icon: 'grasshopper',
+    name: 'grasshopper'
+  },
+
+  fly: {
+    id: 'fly',
+    icon: 'fly',
+    name: 'fly'
+  },
+
+  worm: {
+    id: 'worm',
+    icon: 'worm',
+    name: 'worm'
+  },
+
+  butterfly: {
+    id: 'butterfly',
+    icon: 'butterfly',
+    name: 'butterfly'
+  },
+
+  dragonfly: {
+    id: 'dragonfly',
+    icon: 'dragonfly',
+    name: 'dragonfly'
+  },
+
+  bee: {
+    id: 'bee',
+    icon: 'bee',
+    name: 'bee'
+  },
+
+  wasp: {
+    id: 'wasp',
+    icon: 'wasp',
+    name: 'wasp'
+  },
+
+  angry_miner: {
+    id: 'angry_miner',
+    icon: 'angry_miner',
+    name: 'angry miner'
+  },
+
+  bird: {
+    id: 'bird',
+    icon: 'bird',
+    name: 'bird'
+  },
+
+  rat: {
+    id: 'rat',
     icon: 'rat',
-    name: 'dummy',
-    stats: {
-      attack: 1,
-      attackMax: 1,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 10,
-      health: 100,
-      healthMax: 100,
-      defense: 4,
-      armor: 4,
-      damageTaken: 1
-    },
-    rewards: []
+    name: 'rat'
+  },
+
+  crab: {
+    id: 'crab',
+    icon: 'crab',
+    name: 'crab'
+  },
+
+  snail: {
+    id: 'snail',
+    icon: 'snail',
+    name: 'snail'
+  },
+
+  brown_mage: {
+    id: 'brown_mage',
+    icon: 'brown_mage',
+    name: 'brown_mage'
+  },
+
+  rabbit: {
+    id: 'rabbit',
+    icon: 'rabbit',
+    name: 'rabbit'
   }
-}, LEVEL_ONE_ENEMIES, LEVEL_TWO_ENEMIES, LEVEL_THREE_ENEMIES, LEVEL_FOUR_ENEMIES, LEVEL_FIVE_ENEMIES, BOSS_ENEMIES);
+};

@@ -17,8 +17,9 @@ BattlesSchema = new SimpleSchema({
   updatedAt: { type: Date },
 
   floor: { type: Number, optional: true },
-  difficulty: { type: String, optional: true },
-  isTowerContribution: { type: Boolean, optional: true },
+  room: { type: String, optional: true },
+  isTowerContribution: { type: Boolean, optional: true }, // If this counts for tower points
+  isExplorationRun: { type: Boolean, optional: true }, // If this is a multi room run
   startingBossHp: { type: Number, decimal: true, optional: true },
   level: { type: Number, optional: true },
   wave: { type: Number, optional: true },
@@ -27,6 +28,7 @@ BattlesSchema = new SimpleSchema({
   finished: { type: Boolean, defaultValue: false, optional: true },
 
   totalXpGain: { type: Number, decimal: true, optional: true },
+  carryOverRewards: { type: [Object], blackbox: true, optional: true },
   tick: { type: Number, defaultValue: 0, optional: true },
 
   units: { type: [Object], optional: true }, // Usually just your player, but leave options open for pets

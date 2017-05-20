@@ -1,10 +1,12 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
+import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
+import { Random } from 'meteor/random'
 
+import { attackSpeedTicks } from '/server/utils';
 import { castAbility } from './castAbility.js';
 import { completeBattle } from './completeBattle.js';
 
@@ -117,7 +119,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    let hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    if (hitChance <= 0.05) {
+      hitChance = 0.05;
+    }
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
@@ -334,6 +339,32 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.updatedAt = new Date();
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
+    // Before we end the battle, make sure it shouldn't continue
+    if (actualBattle.isExplorationRun && actualBattle.units.length > 0) {
+      if (actualBattle.room !== 'boss' && actualBattle.room < 7) {
+        actualBattle.room += 1;
+        // Populate battle with next room
+        const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room);
+        // Inject into battle
+        newMonsters.forEach((monster) => {
+          const randomUnitTarget = _.sample(actualBattle.units);
+          actualBattle.totalXpGain += BATTLES.xpGain(monster.stats);
+          actualBattle.enemies.push({
+            id: Random.id(),
+            stats: monster.stats,
+            icon: monster.icon,
+            buffs: monster.buffs || [],
+            target: randomUnitTarget.id,
+            enemyId: monster.id,
+            name: monster.name,
+            tickOffset: _.random(0, 5)
+          });
+        });
+
+        return;
+      }
+    }
+
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
     Meteor.setTimeout(() => {

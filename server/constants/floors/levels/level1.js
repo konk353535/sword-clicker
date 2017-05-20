@@ -13,9 +13,9 @@ export const LEVEL_ONE_MONSTERS = [{
   icon: 'mouse',
   name: 'mouse'
 }, {
-  id: 'bee',
-  icon: 'bee',
-  name: 'bee'
+  id: 'grasshopper',
+  icon: 'grasshopper',
+  name: 'grasshopper'
 }, {
   id: 'bird',
   icon: 'bird',

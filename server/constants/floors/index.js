@@ -27,7 +27,7 @@ export const FLOORS = Object.assign({
       maxPoints += Math.pow(1.7, i);
     }
 
-    return activeTowerUsers * (maxPoints / 3) * floorDays[floor];
+    return Math.round(activeTowerUsers * (maxPoints / 3) * floorDays[floor]);
   },
 
   // Given a level, create a monster for personal quest

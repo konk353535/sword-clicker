@@ -28,28 +28,29 @@
   {{/unless}}
 
   {{#if currentCommunityfloor}}
-    <p>
-      <b>What</b><br />
-      The community must work together to progress through the 'Eternal Tower'
-    </p>
-    <p>
-      <b>Why</b><br />
-      The top players in point contributions will recieve a powerful reward (see bottom of page)
-    </p>
-    <p>
-      <b>How</b><br />
-      Groups of 1-5 players.<br />
-      Further you make it, more points you get.<br />
-      3 official attempts a day.<br />
-      Subsequent attempts won't contribute points.
-    </p>
-
-    <p>Current Progress: {{waveDetails.points}} / {{waveDetails.pointsMax}}</p>
-    <label>
-      Official Attempt
-      <input type="checkbox">
-    </label><br />
-    <button class="btn btn-primary battle-deeper">Battle Deeper</button>
+    <div style="margin-top: 50px; margin-bottom: 50px;">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>Current Progress: {{waveDetails.points}} / {{waveDetails.pointsMax}}</div>
+        <label class="official-attempt mb-1">
+          Official Attempt ({{combat.towerContributionsToday}} / 3)
+          <input type="checkbox" checked={{combat.isTowerContribution}}>
+        </label>
+        <button class="btn btn-primary battle-deeper">Battle Deeper</button>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center my-3">
+        <div>
+          Boss {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
+        </div>
+        {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
+          Resets in {{moDiff bossResetDate moNow 'hours'}} hours
+        {{else}}
+          Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
+        {{/if}}
+        <button class="btn btn-danger battle-boss-btn mt-1 {{#if cantBossBattle}}disabled{{/if}}">
+          Battle
+        </button>
+      </div>
+    </div>
   {{else}}
     <table class="table table-responsive table-hover">
       <thead>
@@ -123,36 +124,17 @@
             </button>
           </td>
         </tr>
-        {{#if waveDetails}}
-          <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}} battle-boss-row cursor-pointer">
-            <td class="align-middle">Final Room</td>
-            <td class="align-middle"></td>
-            <td class="align-middle text-center">
-              {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
-                Resets in {{moDiff bossResetDate moNow 'hours'}} hours
-              {{else}}
-                Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
-              {{/if}}
-            </td>
-            <td class="align-middle">
-              {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
-            </td>
-            <td class="align-middle">
-              <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
-                Boss Battle
-              </button>
-            </td>
-          </tr>
-        {{/if}}
       </tbody>
     </table>
   {{/if}}
 
   {{#if currentCommunityfloor}}
+
     <h2 class="d-flex mt-3">
       <span class="mr-1">Floor Rewards</span>
       {{> helpIcon title='How to get rewards' content=floorRewardsHelpContent}}
     </h2>
+
     <div class="d-flex align-items-center">
       <img src="/icons/treasureChest.svg" class="large-icon">
       {{#each floorDetails.rewards}}

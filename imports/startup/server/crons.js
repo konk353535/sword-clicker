@@ -10,7 +10,7 @@ const redis = new Meteor.RedisCollection('redis');
 
 if (process.env['CLUSTER_WORKER_ID'] !== "1") return
 
-// Reset boss health
+// Reset tower things (daily)
 SyncedCron.add({
   name: 'Reset boss health',
   schedule: function(parser) {
@@ -38,6 +38,17 @@ SyncedCron.add({
         foughtBoss: false
       }
     }, { multi: true });
+
+    // Enable users to fight waves again
+    Combat.update({
+      towerContributionsToday: {
+        $gt: 0
+      }
+    }, {
+      $set: {
+        towerContributionsToday: 0
+      }
+    }, { mult: true });
 
     // Clear hp dealt on leaderboards
     BossHealthScores.remove({});

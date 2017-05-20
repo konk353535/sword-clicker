@@ -9,6 +9,8 @@ CombatSchema = new SimpleSchema({
   username: { type: String, optional: true },
   foughtBoss: { type: Boolean, defaultValue: false },
   stats: { type: Object },
+  isTowerContribution: { type: Boolean, defaultValue: false, optional: true },
+  towerContributionsToday: { type: Number, defaultValue: 0, optional: true },
   'stats.attack': { type: Number, defaultValue: 1 },
   'stats.attackMax': { type: Number, decimal: true, defaultValue: 1 },
   'stats.attackSpeed': { type: Number, decimal: true, defaultValue: 1 },

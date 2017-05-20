@@ -134,12 +134,8 @@ Meteor.methods({
     const currentFloor = Floors.findOne({ floorComplete: false });
 
     return {
-      easyWaves: currentFloor.easyWaves,
-      easyWavesTotal: currentFloor.easyWavesTotal,
-      hardWaves: currentFloor.hardWaves,
-      hardWavesTotal: currentFloor.hardWavesTotal,
-      veryHardWaves: currentFloor.veryHardWaves,
-      veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+      points: Math.floor(currentFloor.points),
+      pointsMax: currentFloor.pointsMax,
       maxFloor: currentFloor.floor
     }
   },
@@ -160,7 +156,7 @@ Meteor.methods({
         waveDetails: {
           health: currentFloor.health,
           healthMax: currentFloor.healthMax,
-          points: currentFloor.points,
+          points: Math.floor(currentFloor.points),
           pointsMax: currentFloor.pointsMax
         },
         floorDetails: {

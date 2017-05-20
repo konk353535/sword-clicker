@@ -9,6 +9,7 @@ import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
+import { Combat } from '/imports/api/combat/combat.js';
 
 import './towerTab.html';
 
@@ -87,6 +88,10 @@ Template.towerTab.events({
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 7, findBattleHandler);
   },
 
+  'change .official-attempt input'(event, instance) {
+     Meteor.call('combat.updateIsTowerContribution', event.target.checked);
+  },
+
   'click .battle-boss-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
   }
@@ -106,17 +111,42 @@ Template.towerTab.helpers({
       </p>`;
   },
 
+  theTowerHelpContent() {
+    return `
+      <p>
+        <b>What</b><br />
+        The community must work together to progress through the 'Eternal Tower'
+      </p>
+      <p>
+        <b>Why</b><br />
+        The top players in point contributions will recieve a powerful reward (see bottom of page)
+      </p>
+      <p>
+        <b>How</b><br />
+        Groups of 1-5 players. Further you make it, more points you get.<br />
+        3 official attempts a day. Subsequent attempts won't contribute points.
+      </p>`
+  },
+
   cantBossBattle() {
     const waveDetails = Template.instance().state.get('waveDetails');
+    const instance = Template.instance();
 
-    if (Template.instance().state.get('usersCurrentFloor') < Template.instance().state.get('maxFloor')) {
+    if (instance.state.get('usersCurrentFloor') < instance.state.get('maxFloor')) {
       return false;
     }
 
-    if (waveDetails && waveDetails.points < waveDetails.pointsMax) {
+    if (waveDetails && waveDetails.points > waveDetails.pointsMax) {
       return false;
     }
+
     return true;
+  },
+
+  combat() {
+    return Combat.findOne({
+      owner: Meteor.userId()
+    });
   },
 
   inCurrentBattle() {

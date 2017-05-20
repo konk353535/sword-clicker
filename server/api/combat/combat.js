@@ -6,6 +6,7 @@ import { Groups } from '/imports/api/groups/groups';
 
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
+import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
 import { attackSpeedTicks } from '/server/api/battles/battles';
@@ -128,6 +129,16 @@ Meteor.methods({
     }, {
       $set: {
         meditatingStartDate: moment().toDate()
+      }
+    });
+  },
+
+  'combat.updateIsTowerContribution'(newValue) {
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        isTowerContribution: newValue
       }
     });
   },

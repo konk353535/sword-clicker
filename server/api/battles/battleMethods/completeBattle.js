@@ -153,6 +153,8 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
+    console.log(`Points earnt - ${pointsEarnt}`);
+
     // Apply xp gains, only if not a boss battle
     const totalXpGain = actualBattle.totalXpGain;
     const units = actualBattle.units.concat(actualBattle.deadUnits);
@@ -271,19 +273,30 @@ export const completeBattle = function (actualBattle) {
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
-          const updateSelector = { owner, floor: actualBattle.floor };
+          if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
+            ownerObject.towerContributionsToday++
 
-          const updateModifier = {
-            $inc: {
-              points: pointsEarnt
-            },
-            $setOnInsert: {
-              points: pointsEarnt,
-              username: ownerObject.name // To do: Make this work when users have multiple units
-            }
-          };
+            const updateSelector = { owner, floor: actualBattle.floor };
 
-          FloorWaveScores.upsert(updateSelector, updateModifier)
+            const updateModifier = {
+              $inc: {
+                points: pointsEarnt
+              },
+              $setOnInsert: {
+                points: pointsEarnt,
+                username: ownerObject.name // To do: Make this work when users have multiple units
+              }
+            };
+
+            finalTickEvents.push({
+              type: 'points',
+              amount: pointsEarnt.toFixed(1),
+              icon: 'tower',
+              owner
+            });
+
+            FloorWaveScores.upsert(updateSelector, updateModifier);
+          }
         });
       }
     } else if (actualBattle.level && actualBattle.wave) {
@@ -315,7 +328,8 @@ export const completeBattle = function (actualBattle) {
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
-        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
+        'towerContributionsToday': unit.towerContributionsToday
       }
     };
     if (actualBattle.startingBossHp) {

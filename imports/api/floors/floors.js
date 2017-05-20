@@ -9,7 +9,7 @@ FloorsSchema = new SimpleSchema({
   floor: { type: Number },
   createdAt: { type: Date },
   finishedAt: { type: Date, optional: true },
-  points: { type: Number, defaultValue: 0 },
+  points: { type: Number, decimal: true, defaultValue: 0 },
   pointsMax: { type: Number, defaultValue: 10000 },
   health: { type: Number, decimal: true, defaultValue: 1000 },
   healthMax: { type: Number, defaultValue: 1000 },  

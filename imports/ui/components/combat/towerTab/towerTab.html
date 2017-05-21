@@ -25,14 +25,17 @@
       {{#if currentCommunityfloor}}
         <div class="d-flex flex-column flex-grow">
           <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
-            <button class="btn btn-primary battle-deeper">Battle Deeper</button><br />
-            <label class="official-attempt my-1">
+            <button class="btn btn-primary battle-deeper">Battle Deeper</button>
+            <label class="official-attempt mt-1">
               Official Attempt ({{combat.towerContributionsToday}} / 3)
               <input type="checkbox" checked={{combat.isTowerContribution}}>
             </label>
           </div>
           {{#unless cantBossBattle}}
             <div class="my-3 d-flex flex-column flex-grow align-items-center justify-content-center">
+              <button class="btn btn-danger battle-boss-btn mb-1 {{#if cantBossBattle}}disabled{{/if}}">
+                Battle
+              </button>
               <div>
                 Boss {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
               </div>
@@ -41,9 +44,6 @@
               {{else}}
                 Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
               {{/if}}
-              <button class="btn btn-danger battle-boss-btn mt-1 {{#if cantBossBattle}}disabled{{/if}}">
-                Battle
-              </button>
             </div>
           {{/unless}}
         </div>

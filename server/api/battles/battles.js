@@ -102,7 +102,7 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
-    if (floor === currentCommunityFloor.floor) {
+    if (floor === currentCommunityFloor.floor && room !== 'boss') {
       isExplorationRun = true;
       room = 1;
     }
@@ -117,9 +117,9 @@ Meteor.methods({
       }      
     }
 
-    if (room === 'boss' && !canBossBattle) {
+    if (room === 'boss') {
       if (canBossBattle) {
-        const bossHealth = currentFloor.health;
+        const bossHealth = currentCommunityFloor.health;
         return startBattle({ floor, room, health: bossHealth, isTowerContribution: true });
       } else {
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");

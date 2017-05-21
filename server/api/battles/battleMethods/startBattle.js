@@ -186,6 +186,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       enemyConstants = ENEMIES[enemy.id];
     }
 
+    console.log(enemy);
+    console.log(enemyConstants);
+
     const enemyStats = enemyConstants.stats;
 
     // This is the current active boss battle

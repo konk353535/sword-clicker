@@ -92,12 +92,12 @@ Template.towerTab.events({
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 7, findBattleHandler);
   },
 
-  'change .official-attempt input'(event, instance) {
-     Meteor.call('combat.updateIsTowerContribution', event.target.checked);
+  'click .battle-boss-btn'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
   },
 
-  'click .battle-boss-row'(event, instance) {
-    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
+  'change .official-attempt input'(event, instance) {
+     Meteor.call('combat.updateIsTowerContribution', event.target.checked);
   }
 })
 
@@ -142,13 +142,13 @@ Template.towerTab.helpers({
         if (percentRank <= 10) {
           reward.chance = 100;
         } else if (percentRank <= 25) {
-          reward.chance = 40;
+          reward.chance = 50;
         } else if (percentRank <= 50) {
-          reward.chance = 20;
+          reward.chance = 25;
         } else if (percentRank <= 75) {
-          reward.chance = 10;
-        } else {
           reward.chance = 5;
+        } else {
+          reward.chance = 1;
         }
       } else if (reward.type === 'gold') {
         reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;

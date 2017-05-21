@@ -21,27 +21,11 @@ import weightedRandom from 'weighted-random';
 
 const redis = new Meteor.RedisCollection('redis');
 
-const POINTS = {
-  easy: 1,
-  hard: 5,
-  veryHard: 20
-}
-
 const distributeRewards = function distributeRewards({ floor }) {
   console.log('Distributing rewards');
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
-  const floorRewards = [];
-  rawFloorRewards.forEach((reward) => {
-    for (let i = 0; i < reward.amount; i++) {
-      floorRewards.push(reward.itemId);
-    }
-  });
-  let randomizedFloorRewards = _.shuffle(floorRewards);
-
-  console.log('Rewards');
-  console.log(randomizedFloorRewards);
 
   // Fetch top 10 by damage dealt
   const sortedBossHealthScores = BossHealthScores.find({}, {
@@ -51,65 +35,56 @@ const distributeRewards = function distributeRewards({ floor }) {
     limit: 10
   }).fetch();
 
-  console.log(sortedBossHealthScores);
+  sortedBossHealthScores.forEach((bossHealthScore) => {
+    rawFloorRewards.forEach((reward) => {
+      if (reward.type === 'item') {
+         addItem(reward.itemId, 1, bossHealthScore.owner);
+      }
+    })
+  })
 
-  // Fetch top 10 by wave score points
+  // Fetch all users by tower points
   const sortedFloorWaveScores = FloorWaveScores.find({
     floor
   }, {
     sort: [
       ['points', 'desc']
-    ],
-    limit: 10
+    ]
   }).fetch();
 
-  console.log(sortedFloorWaveScores);
+  const totalContributors = sortedFloorWaveScores.length;
 
-  sortedFloorWaveScores.concat(sortedBossHealthScores).forEach((target) => {
-    const reward = randomizedFloorRewards.pop();
-    console.log(`Giving ${reward} to ${target.owner}`)
-    addItem(reward, 1, target.owner);
-  });
-
-  try {
-    let bossDamageRewardsCount = Math.floor(randomizedFloorRewards.length / 2);
-    let floorWaveRewardsCount = Math.floor(randomizedFloorRewards.length / 2);
-
-    // Weighted lottery for boss damage
-    const allDamages = BossHealthScores.find({}).fetch();
-    const allDamageWeights = allDamages.map((item) => {
-      return parseInt(item.bossDamage);
-    });
-
-    console.log('allDamages');
-    console.log(allDamages);
-
-    for (let i = 0; i < bossDamageRewardsCount; i++) {
-      const selectionIndex = weightedRandom(allDamageWeights);
-      const reward = randomizedFloorRewards.pop();
-      console.log(`selection index - ${selectionIndex}`);
-      addItem(reward, 1, allDamages[selectionIndex].owner);
+  sortedFloorWaveScores.forEach((waveScore, index) => {
+    const percentRank = ((index + 1) / totalContributors) * 100;
+    let chance = 0;
+    if (percentRank <= 10 || index <= 9) {
+      chance = 100;
+    } else if (percentRank <= 25) {
+      chance = 50;
+    } else if (percentRank <= 50) {
+      chance = 25;
+    } else if (percentRank <= 75) {
+      chance = 5;
+    } else {
+      chance = 1;
     }
 
-    // Weighted lottery for waves
-    const floorPoints = FloorWaveScores.find({ floor }).fetch();
-    const floorPointsWeights = floorPoints.map((item) => {
-      return parseInt(item.points) || 0;
+    console.log(`Rank = ${percentRank}`);
+    rawFloorRewards.forEach((reward) => {
+      if (reward.type === 'item' && Math.random() <= (chance / 100)) {
+        addItem(reward.itemId, 1, waveScore.owner);
+        console.log(`Adding item - ${reward.itemId}`);
+      } else if (reward.type === 'gold') {
+        const goldAmount = (1 - (percentRank / 100)) * reward.amount;
+        console.log(`Adding gold - ${goldAmount}`);
+        Users.update(waveScore.owner, {
+          $inc: {
+            gold: goldAmount
+          }
+        });
+      }
     });
-
-    console.log('floorPoints');
-    console.log(floorPoints);
-
-    for (let i = 0; i < floorWaveRewardsCount; i++) {
-      const selectionIndex = weightedRandom(floorPointsWeights);
-      const reward = randomizedFloorRewards.pop();
-      console.log(`selection index - ${selectionIndex}`);
-      addItem(reward, 1, floorPoints[selectionIndex].owner);
-    }
-  } catch(err) {
-    console.log('Error while processing rewards for floor completion');
-    console.log(err);
-  }
+  })
 }
 
 export const completeBattle = function (actualBattle) {

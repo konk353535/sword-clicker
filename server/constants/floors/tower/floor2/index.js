@@ -39,7 +39,8 @@ export const TOWER_FLOOR_2 = {
   },
 
   boss: {
-    enemy: { id: 'boss_cobra', amount: 1 }
+    enemy: { id: 'boss_cobra', amount: 1 },
+    rewards: []
   },
 
   floorRewards: [

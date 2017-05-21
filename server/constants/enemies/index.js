@@ -7,7 +7,7 @@ import { LEVEL_FOUR_ENEMIES } from '/server/constants/enemies/level4/index.js'
 import { LEVEL_FIVE_ENEMIES } from '/server/constants/enemies/level5/index.js'
 import { BOSS_ENEMIES } from '/server/constants/enemies/bosses/index.js'
 
-export const ENEMIES = {
+export const ENEMIES = Object.assign({
 
   grasshopper: {
     id: 'grasshopper',
@@ -91,5 +91,7 @@ export const ENEMIES = {
     id: 'rabbit',
     icon: 'rabbit',
     name: 'rabbit'
-  }
-};
+  },
+
+
+}, BOSS_ENEMIES);

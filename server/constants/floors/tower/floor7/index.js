@@ -23,7 +23,7 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'ash_log', amount: 20 },
         { type: 'item', itemId: 'ash_staff', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Place of orichalcum',
@@ -33,7 +33,7 @@ export const TOWER_FLOOR_7 = {
       rewards: [
         { type: 'item', itemId: 'orichalcum_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Frozen Peak',
@@ -43,7 +43,7 @@ export const TOWER_FLOOR_7 = {
       rewards: [
         { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -65,7 +65,7 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Sparta',

@@ -14,12 +14,12 @@ export const TOWER_FLOOR_5 = {
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'lettice_seed', amount: 1 }
-        { type: 'item', itemId: 'lemon_seed', amount: 1 }
-        { type: 'item', itemId: 'pineapple_seed', amount: 1 }
+        { type: 'item', itemId: 'lettice_seed', amount: 1 },
+        { type: 'item', itemId: 'lemon_seed', amount: 1 },
+        { type: 'item', itemId: 'pineapple_seed', amount: 1 },
         { type: 'item', itemId: 'red_apple_seed', amount: 1 }
       ]
-    }])
+    }]))
   },
   3: {
     name: 'Grape Fruit Tree',
@@ -29,7 +29,7 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'grape_fruit', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Place of mithril',
@@ -39,7 +39,7 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'mithril_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Beech Tree',
@@ -51,7 +51,7 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'beech_log', amount: 20 },
         { type: 'item', itemId: 'beech_staff', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -73,7 +73,7 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Snake',

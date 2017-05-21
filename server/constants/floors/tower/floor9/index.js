@@ -21,7 +21,7 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'lettice', amount: 50 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Place of fairies',
@@ -31,7 +31,7 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Fire Temple',
@@ -41,7 +41,7 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'ruby_staff', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -63,7 +63,7 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Master Farmers Market',

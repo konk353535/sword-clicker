@@ -21,7 +21,7 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Shallow Shore',
@@ -36,7 +36,7 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -59,7 +59,7 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Spiders Web',

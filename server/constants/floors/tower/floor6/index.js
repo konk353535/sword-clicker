@@ -19,12 +19,12 @@ export const TOWER_FLOOR_6 = {
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'lettice_seed', amount: 1 }
-        { type: 'item', itemId: 'lemon_seed', amount: 1 }
-        { type: 'item', itemId: 'pineapple_seed', amount: 1 }
+        { type: 'item', itemId: 'lettice_seed', amount: 1 },
+        { type: 'item', itemId: 'lemon_seed', amount: 1 },
+        { type: 'item', itemId: 'pineapple_seed', amount: 1 },
         { type: 'item', itemId: 'red_apple_seed', amount: 1 }
       ]
-    }])
+    }]))
   },
   3: {
     name: 'Watermelon Planatation',
@@ -39,7 +39,7 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Place of adamantium',
@@ -49,7 +49,7 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Volcanic Chamber',
@@ -59,7 +59,7 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'angels_touch_tome', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -81,7 +81,7 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Mysterious Mine',

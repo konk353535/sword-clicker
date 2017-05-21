@@ -21,7 +21,7 @@ export const TOWER_FLOOR_10 = {
       rewards: [
         { type: 'item', itemId: 'lettice', amount: 50 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Cursed Place',
@@ -31,7 +31,7 @@ export const TOWER_FLOOR_10 = {
       rewards: [
         { type: 'item', itemId: 'cursed_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Demonic Resonance',
@@ -41,7 +41,7 @@ export const TOWER_FLOOR_10 = {
       rewards: [
         { type: 'item', itemId: 'thirsting_saber', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -63,7 +63,7 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'cursed_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cursed_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Fire Mage',

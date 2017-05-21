@@ -31,7 +31,7 @@ export const TOWER_FLOOR_1 = {
       rewards: [
         { type: 'item', itemId: 'rubia_flower_seed', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Abandoned Mine',

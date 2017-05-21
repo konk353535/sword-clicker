@@ -102,6 +102,7 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
+    let isExplorationRun = false;
     if (floor === currentCommunityFloor.floor && room !== 'boss') {
       isExplorationRun = true;
       room = 1;

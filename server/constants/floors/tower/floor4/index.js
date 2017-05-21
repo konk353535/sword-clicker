@@ -21,7 +21,7 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Protected Bay',
@@ -38,7 +38,7 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'blue_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'blue_wizard_shorts', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -60,7 +60,7 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Earthen Mage',

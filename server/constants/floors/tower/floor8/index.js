@@ -23,7 +23,7 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'oak_log', amount: 20 },
         { type: 'item', itemId: 'oak_staff', amount: 1 }
       ]
-    }])
+    }]))
   },
   4: {
     name: 'Place of cobalt',
@@ -33,7 +33,7 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'cobalt_essence', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Carrot Patch',
@@ -43,7 +43,7 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'carrot', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -65,7 +65,7 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'cobalt_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Magicians Headquarters',

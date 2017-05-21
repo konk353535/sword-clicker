@@ -28,7 +28,7 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'brown_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 }
       ]
-    }])
+    }]))
   },
   5: {
     name: 'Hidden Cove',
@@ -38,7 +38,7 @@ export const TOWER_FLOOR_2 = {
       rewards: [
         { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -61,7 +61,7 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'iron_mining_hammer', amount: 1 }
       ]
-    }]
+    }])
   },
   7: {
     name: 'Carrot Farm',

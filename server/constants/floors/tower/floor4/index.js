@@ -24,9 +24,14 @@ export const TOWER_FLOOR_4 = {
     }]))
   },
   4: {
-    name: 'Protected Bay',
-    enemies: ['jellyFish'],
-    rewards: LEVEL_FOUR_LOOT_TABLE
+    name: 'Deep Mine',
+    enemies: ['goblin'],
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'gold', amount: 750 }
+      ]
+    }]))
   },
   5: {
     name: 'Small Water Alter',

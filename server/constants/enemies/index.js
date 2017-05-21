@@ -21,6 +21,18 @@ export const ENEMIES = Object.assign({
     name: 'fly'
   },
 
+  goblin: {
+    id: 'goblin',
+    icon: 'goblin',
+    name: 'goblin'
+  },
+
+  young_ninja: {
+    id: 'young_ninja',
+    icon: 'youngNinja',
+    name: 'young ninja'
+  },
+
   dwarf: {
     id: 'dwarf',
     icon: 'dwarf',

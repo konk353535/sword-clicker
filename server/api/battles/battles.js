@@ -216,6 +216,8 @@ Meteor.methods({
       floor: currentCommunityFloor.floor
     });
 
+    console.log(userWaveScores);
+
     if (userWaveScores) {
       // Get ranking
       const userRanking = FloorWaveScores.find({

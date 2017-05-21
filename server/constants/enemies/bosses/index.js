@@ -103,7 +103,7 @@ export const BOSS_ENEMIES = {
 
   boss_goblin: {
     id: 'boss_goblin',
-    icon: 'bossGoblin',
+    icon: 'goblin',
     name: 'Boss goblin',
     isBoss: true,
     stats: {
@@ -123,7 +123,7 @@ export const BOSS_ENEMIES = {
 
   boss_ogre: {
     id: 'boss_ogre',
-    icon: 'bossOgre',
+    icon: 'iceGiant',
     name: 'Boss ogre',
     isBoss: true,
     stats: {
@@ -143,7 +143,7 @@ export const BOSS_ENEMIES = {
 
   boss_phenoix: {
     id: 'boss_phenoix',
-    icon: 'bossPhenoix',
+    icon: 'phenoix',
     name: 'Boss phenoix',
     isBoss: true,
     stats: {

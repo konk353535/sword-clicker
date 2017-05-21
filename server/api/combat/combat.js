@@ -156,8 +156,8 @@ Meteor.methods({
     const now = moment();
     let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
 
-    if (hoursElapsed > 8) {
-      hoursElapsed = 8; 
+    if (hoursElapsed > 24) {
+      hoursElapsed = 24; 
     }
 
     // Skills level x 10xp / hour
@@ -169,7 +169,7 @@ Meteor.methods({
     }).fetch();
 
     combatSkills.forEach((skill) => {
-      addXp(skill.type, hoursElapsed * 10 * skill.level)
+      addXp(skill.type, hoursElapsed * 15 * skill.level)
     });
 
     Combat.update({

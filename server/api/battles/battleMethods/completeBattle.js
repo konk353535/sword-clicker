@@ -234,22 +234,15 @@ export const completeBattle = function (actualBattle) {
 
     if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
       if (actualBattle.room !== 'boss') {
-        // Increment total points data
-        Floors.update({
-          floor: actualBattle.floor,
-          floorComplete: false
-        }, {
-          $inc: {
-            points: pointsEarnt
-          }
-        });
 
+        let isGroupTowerContribution = false;
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
           if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            ownerObject.towerContributionsToday++
+            ownerObject.towerContributionsToday++;
+            isGroupTowerContribution = true;
 
             const updateSelector = { owner, floor: actualBattle.floor };
 
@@ -273,6 +266,18 @@ export const completeBattle = function (actualBattle) {
             FloorWaveScores.upsert(updateSelector, updateModifier);
           }
         });
+
+        if (isGroupTowerContribution) {
+          // Increment total points data
+          Floors.update({
+            floor: actualBattle.floor,
+            floorComplete: false
+          }, {
+            $inc: {
+              points: pointsEarnt
+            }
+          });
+        }
       }
     } else if (actualBattle.level && actualBattle.wave) {
       // Should only be for one person? but a good habit I guess?

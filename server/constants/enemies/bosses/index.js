@@ -159,5 +159,25 @@ export const BOSS_ENEMIES = {
       damageTaken: 1
     },
     rewards: []
+  },
+
+  boss_gorilla: {
+    id: 'boss_gorilla',
+    icon: 'gorilla',
+    name: 'Boss Gorilla',
+    isBoss: true,
+    stats: {
+      attack: 180,
+      attackMax: 300,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 350,
+      health: 120000,
+      healthMax: 120000,
+      defense: 240,
+      armor: 200,
+      magicArmor: 200,
+      damageTaken: 1
+    },
+    rewards: []
   }
 }

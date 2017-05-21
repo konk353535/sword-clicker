@@ -32,9 +32,14 @@ export const TOWER_FLOOR_5 = {
     }])
   },
   4: {
-    name: 'Protected Bay',
-    enemies: ['jellyFish'],
-    rewards: LEVEL_FIVE_LOOT_TABLE
+    name: 'Place of mithril',
+    enemies: ['mithril_spirit'],
+    rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+      ]
+    }])
   },
   5: {
     name: 'Beech Tree',

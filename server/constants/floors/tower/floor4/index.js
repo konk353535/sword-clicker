@@ -66,7 +66,7 @@ export const TOWER_FLOOR_4 = {
     name: 'Earthen Mage',
     enemies: ['earth_mage'],
     rewards: [{
-      chance: 1 / 64,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
       ]

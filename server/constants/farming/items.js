@@ -437,6 +437,21 @@ export const FARMING_ITEMS = {
     sellPrice: 20
   },
 
+  tamarind_honey: {
+    id: 'tamarind_honey',
+    icon: 'tamarindHoney',
+    category: 'food',
+    name: 'tamarind honey',
+    description() {
+      const buff = BUFFS.food_tamarind_honey;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_tamarind_honey'
+    }],
+    sellPrice: 20
+  },
+
   rubia_flower_seed: {
     id: 'rubia_flower_seed',
     icon: 'rubiaFlowerSeed',

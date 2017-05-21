@@ -13,10 +13,13 @@ export const MISC_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 21,
-      attackMax: 30,
-      attackSpeed: FAST_SPEED,
-      accuracy: 33,
+      attack: 30,
+      attackMax: 40,
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 50,
+      health: -200,
+      defense: -100,
+      armor: -200
     },
     extraStats: {
       attack: 4,
@@ -26,7 +29,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 20
+      level: 45
     }]
   },
 
@@ -73,9 +76,10 @@ export const MISC_ITEMS = {
     description: 'The shield from a fallen spartan.',
     isEquippable: true,
     stats: {
-      healthMax: 45,
+      healthMax: 75,
       defense: 25,
-      armor: 80
+      armor: 125,
+      attackSpeed: -0.2
     },
     extraStats: {
       healthMax: 5,

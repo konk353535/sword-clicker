@@ -21,6 +21,66 @@ export const ENEMIES = Object.assign({
     name: 'fly'
   },
 
+  dwarf: {
+    id: 'dwarf',
+    icon: 'dwarf',
+    name: 'dwarf'
+  },
+
+  demon: {
+    id: 'demon',
+    icon: 'demon',
+    name: 'demon'
+  },
+
+  spartan: {
+    id: 'spartan',
+    icon: 'spartan',
+    name: 'spartan'
+  },
+
+  ice_giant: {
+    id: 'ice_giant',
+    icon: 'iceGiant',
+    name: 'ice giant'
+  },
+
+  cursed_spirit: {
+    id: 'cursed_spirit',
+    icon: 'cursedSpirit',
+    name: 'cursed spirit'
+  },
+
+  fairy_steel_spirit: {
+    id: 'fairy_steel_spirit',
+    icon: 'fairySteelSpirit',
+    name: 'fairy steel spirit'
+  },
+
+  cobalt_spirit: {
+    id: 'cobalt_spirit',
+    icon: 'cobaltSpirit',
+    name: 'cobalt spirit'
+  },
+
+  orichalcum_spirit: {
+    id: 'orichalcum_spirit',
+    icon: 'orichalcumSpirit',
+    name: 'orichalcum spirit'
+  },
+
+  adamantium_spirit: {
+    id: 'adamantium_spirit',
+    icon: 'adamantiumSpirit',
+    name: 'adamantium spirit'
+  },
+
+  mithril_spirit: {
+    id: 'mithril_spirit',
+    icon: 'mithrilSpirit',
+    name: 'mithril spirit'
+  },
+
   farmer: {
     id: 'farmer',
     icon: 'farmer',
@@ -87,6 +147,18 @@ export const ENEMIES = Object.assign({
     name: 'rat'
   },
 
+  lizard: {
+    id: 'lizard',
+    icon: 'lizard',
+    name: 'lizard'
+  },
+
+  elephant: {
+    id: 'elephant',
+    icon: 'elephant',
+    name: 'elephant'
+  },
+
   crab: {
     id: 'crab',
     icon: 'crab',
@@ -114,19 +186,25 @@ export const ENEMIES = Object.assign({
   brown_mage: {
     id: 'brown_mage',
     icon: 'brown_mage',
-    name: 'brown_mage'
+    name: 'brown mage'
   },
 
   earth_mage: {
     id: 'earth_mage',
-    icon: 'earth_mage',
-    name: 'earth_mage'
+    icon: 'earthMage',
+    name: 'earth mage'
+  },
+
+  fire_mage: {
+    id: 'fire_mage',
+    icon: 'fireMage',
+    name: 'fire mage'
   },
 
   blue_mage: {
     id: 'blue_mage',
     icon: 'blue_mage',
-    name: 'blue_mage'
+    name: 'blue mage'
   },
 
   rabbit: {

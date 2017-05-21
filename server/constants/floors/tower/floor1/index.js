@@ -50,6 +50,10 @@ export const TOWER_FLOOR_1 = {
       name: ITEMS['copper_dwarven_idol'].name,
       baseStats: ITEMS['copper_dwarven_idol'].stats,
       extraStats: ITEMS['copper_dwarven_idol'].extraStats
+    },
+    {
+      type: 'gold',
+      amount: 1000
     }
   ]
 }

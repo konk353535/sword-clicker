@@ -206,6 +206,38 @@ Meteor.methods({
     }).fetch()
   },
 
+  'battles.myFloorContributions'() {
+    // current floor contribution + ranking
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
+    // Fetch there waveScores
+    const userWaveScores = FloorWaveScores.findOne({
+      owner: Meteor.userId(),
+      floor: currentCommunityFloor.floor
+    });
+
+    if (userWaveScores) {
+      // Get ranking
+      const userRanking = FloorWaveScores.find({
+        floor: currentCommunityFloor.floor,
+        points: {
+          $gte: userWaveScores.points
+        }
+      }).count();
+
+      // Total Rankings
+      const totalRankings = FloorWaveScores.find({
+        floor: currentCommunityFloor.floor
+      }).count();
+
+      return {
+        points: Math.round(userWaveScores.points),
+        rank: userRanking,
+        total: totalRankings,
+        rankingPercentage: Math.round((userRanking / totalRankings) * 100)
+      }
+    }
+  },
+
   'battles.castAbility'(battleId, abilityId, options) {
 
     if (options.caster !== Meteor.userId()) {

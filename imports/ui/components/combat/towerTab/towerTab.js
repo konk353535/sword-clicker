@@ -27,6 +27,10 @@ Template.towerTab.onCreated(function bodyOnCreated() {
     }
   });
 
+  Meteor.call('battles.myFloorContributions', (err, res) => {
+    this.state.set('myFloorContributions', res);
+  });
+
   Tracker.autorun(() => {
     Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
       if (err) {
@@ -126,6 +130,36 @@ Template.towerTab.helpers({
         Groups of 1-5 players. Further you make it, more points you get.<br />
         3 official attempts a day. Subsequent attempts won't contribute points.
       </p>`
+  },
+
+  estimatedRewards() {
+    const instance = Template.instance();
+    const myContributions = instance.state.get('myFloorContributions');
+    const floorDetails = instance.state.get('floorDetails');
+    const percentRank = myContributions.rankingPercentage;
+    return floorDetails.rewards.map((reward) => {
+      if (reward.type === 'item') {
+        if (percentRank <= 10) {
+          reward.chance = 100;
+        } else if (percentRank <= 25) {
+          reward.chance = 40;
+        } else if (percentRank <= 50) {
+          reward.chance = 20;
+        } else if (percentRank <= 75) {
+          reward.chance = 10;
+        } else {
+          reward.chance = 5;
+        }
+      } else if (reward.type === 'gold') {
+        reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;
+      }
+
+      return reward;
+    })
+  },
+
+  myFloorContributions() {
+    return Template.instance().state.get('myFloorContributions');
   },
 
   cantBossBattle() {

@@ -443,7 +443,8 @@ export const completeBattle = function (actualBattle) {
           });
 
           // Insert the next floor (To do, make this pass a valid active tower users number)
-          const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, 10);
+          const activeTowerUsers = FloorWaveScores.find({ floor: actualBattle.floor }).count();
+          const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, activeTowerUsers);
 
           // Get bosses hp
           const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;

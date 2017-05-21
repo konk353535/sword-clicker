@@ -8,6 +8,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Users } from '/imports/api/users/users.js';
+import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
@@ -50,6 +51,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('battles');
   Meteor.subscribe('abilities');
+  Meteor.subscribe('floorWaveScores');
   Meteor.subscribe('battlesList');
 
   // When new battle comes up, update our subscribe of redis-battles

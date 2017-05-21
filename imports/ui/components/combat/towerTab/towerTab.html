@@ -132,8 +132,12 @@
         <div>{{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
         <h2 class="my-3">Your contribution</h2>
         <div>
-          {{myFloorContributions.points}}pts
-          (top {{myFloorContributions.rankingPercentage}} %)
+          {{#if myFloorContributions.points}}
+            {{myFloorContributions.points}}pts
+            (top {{myFloorContributions.rankingPercentage}} %)
+          {{else}}
+            No contributions
+          {{/if}}
         </div>
         <h2 class="my-3">Your estimated rewards</h2>
         <div class="d-flex align-items-center">

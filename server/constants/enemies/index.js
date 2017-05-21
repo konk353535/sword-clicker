@@ -21,6 +21,24 @@ export const ENEMIES = Object.assign({
     name: 'fly'
   },
 
+  farmer: {
+    id: 'farmer',
+    icon: 'farmer',
+    name: 'farmer'
+  },
+
+  beaver: {
+    id: 'beaver',
+    icon: 'beaver',
+    name: 'beaver'
+  },
+
+  snake: {
+    id: 'snake',
+    icon: 'snake',
+    name: 'snake'
+  },
+
   worm: {
     id: 'worm',
     icon: 'worm',
@@ -75,10 +93,22 @@ export const ENEMIES = Object.assign({
     name: 'crab'
   },
 
+  echidna: {
+    id: 'echidna',
+    icon: 'echidna',
+    name: 'echidna'
+  },
+
   snail: {
     id: 'snail',
     icon: 'snail',
     name: 'snail'
+  },
+
+  wombat: {
+    id: 'wombat',
+    icon: 'wombat',
+    name: 'wombat'
   },
 
   brown_mage: {
@@ -87,11 +117,34 @@ export const ENEMIES = Object.assign({
     name: 'brown_mage'
   },
 
+  earth_mage: {
+    id: 'earth_mage',
+    icon: 'earth_mage',
+    name: 'earth_mage'
+  },
+
+  blue_mage: {
+    id: 'blue_mage',
+    icon: 'blue_mage',
+    name: 'blue_mage'
+  },
+
   rabbit: {
     id: 'rabbit',
     icon: 'rabbit',
     name: 'rabbit'
   },
 
+  spider: {
+    id: 'spider',
+    icon: 'spider',
+    name: 'spider'
+  },
+
+  jellyFish: {
+    id: 'jellyFish',
+    icon: 'jellyFish',
+    name: 'jellyFish'
+  }
 
 }, BOSS_ENEMIES);

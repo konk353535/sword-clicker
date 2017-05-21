@@ -134,9 +134,9 @@ Template.towerTab.helpers({
 
   estimatedRewards() {
     const instance = Template.instance();
-    const myContributions = instance.state.get('myFloorContributions');
+    const myContributions = instance.state.get('myFloorContributions') || {};
     const floorDetails = instance.state.get('floorDetails');
-    const percentRank = myContributions.rankingPercentage;
+    const percentRank = myContributions.rankingPercentage || 100;
     return floorDetails.rewards.map((reward) => {
       if (reward.type === 'item') {
         if (percentRank <= 10) {
@@ -147,8 +147,10 @@ Template.towerTab.helpers({
           reward.chance = 25;
         } else if (percentRank <= 75) {
           reward.chance = 5;
-        } else {
+        } else if (percentRank <= 99) {
           reward.chance = 1;
+        } else {
+          reward.chance = 0;
         }
       } else if (reward.type === 'gold') {
         reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;

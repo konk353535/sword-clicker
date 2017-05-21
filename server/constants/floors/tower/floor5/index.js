@@ -1,112 +1,96 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
+import { LEVEL_FIVE_LOOT_TABLE } from '/server/constants/floors/levels/level5';
 
 export const TOWER_FLOOR_5 = {
-  easy: {
-    name: 'Jungle Bridge',
-    image: 'jungleBridge.jpeg',
-    floor: 5,
-    rewards: orderLootTable([{
-      chance: 1 / 8,
+  1: {
+    name: 'Muddy Creek',
+    enemies: ['worm'],
+    rewards: []
+  },
+  2: {
+    name: 'Farmers Market',
+    enemies: ['farmer'],
+    rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_mithril', amount: 3 },
-        { type: 'gold', amount: 500 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'lettice_seed', amount: 1 }
+        { type: 'item', itemId: 'lemon_seed', amount: 1 }
+        { type: 'item', itemId: 'pineapple_seed', amount: 1 }
+        { type: 'item', itemId: 'red_apple_seed', amount: 1 }
       ]
     }])
   },
-
-  hard: {
-    name: 'Lone Island',
-    image: 'loneIsland.jpeg',
-    floor: 5,
-    rewards: orderLootTable([{
-      chance: 1 / 2,
-      rewards: [{ type: 'gold', amount: 400 }]
-    }, {
+  3: {
+    name: 'Grape Fruit Tree',
+    enemies: ['bee'],
+    rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'carbon_bar', amount: 2 },
-        { type: 'item', itemId: 'maple_log', amount: 15 },
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+        { type: 'item', itemId: 'grape_fruit', amount: 1 }
       ]
-    }, {
+    }])
+  },
+  4: {
+    name: 'Protected Bay',
+    enemies: ['jellyFish'],
+    rewards: LEVEL_FIVE_LOOT_TABLE
+  },
+  5: {
+    name: 'Beech Tree',
+    enemies: ['beaver'],
+    rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'mithril_shield', amount: 1 },
-        { type: 'item', itemId: 'mithril_spear', amount: 1 },
-        { type: 'item', itemId: 'mithril_long_sword', amount: 1 },
-        { type: 'item', itemId: 'mithril_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'mithril_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'mithril_helmet', amount: 1 },
-        { type: 'item', itemId: 'mithril_dagger', amount: 1 },
-        { type: 'item', itemId: 'mithril_short_sword', amount: 1 },
-        { type: 'item', itemId: 'mithril_battle_axe', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'beech_seed', amount: 3 },
+        { type: 'item', itemId: 'beech_log', amount: 20 },
+        { type: 'item', itemId: 'beech_staff', amount: 1 }
       ]
     }])
   },
-
-  veryHard: {
-    name: 'Quartz Lake',
-    image: 'quartzLake.jpeg',
-    floor: 5,
+  6: {
+    name: 'Suspicious Mine',
+    enemies: ['angry_miner'],
     rewards: orderLootTable([{
       chance: 1 / 4,
       rewards: [
-        { type: 'gold', amount: 800 },
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+        { type: 'item', itemId: 'ore_mithril', amount: 1 },
+        { type: 'item', itemId: 'maple_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'mithril_shield', amount: 1 },
-        { type: 'item', itemId: 'mithril_spear', amount: 1 },
-        { type: 'item', itemId: 'mithril_long_sword', amount: 1 },
-        { type: 'item', itemId: 'mithril_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'mithril_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'mithril_helmet', amount: 1 },
-        { type: 'item', itemId: 'mithril_dagger', amount: 1 },
-        { type: 'item', itemId: 'mithril_short_sword', amount: 1 },
-        { type: 'item', itemId: 'mithril_battle_axe', amount: 1 },
+        { type: 'item', itemId: 'mithril_bar', amount: 1 }
       ]
     }, {
-      chance: 1 / 16,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'agrimony_seed', amount: 1 }
+        { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 }
+      ]
+    }]
+  },
+  7: {
+    name: 'Snake',
+    enemies: ['snake'],
+    rewards: [{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
         { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
+        { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 }
       ]
-    }])
+    }]
   },
 
   boss: {
     enemy: { id: 'boss_mage', amount: 1 },
-    rewards: orderLootTable([{
-      chance: 1,
-      rewards: [
-        { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
-        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 }
-      ]
-    }])
+    rewards: LEVEL_FIVE_LOOT_TABLE
   },
 
   floorRewards: [
@@ -115,9 +99,12 @@ export const TOWER_FLOOR_5 = {
       itemId: 'adamantium_dwarven_idol',
       icon: ITEMS['adamantium_dwarven_idol'].icon,
       name: ITEMS['adamantium_dwarven_idol'].name,
-      amount: 30,
       baseStats: ITEMS['adamantium_dwarven_idol'].stats,
       extraStats: ITEMS['adamantium_dwarven_idol'].extraStats
+    },
+    {
+      type: 'gold',
+      amount: 30000
     }
   ]
 }

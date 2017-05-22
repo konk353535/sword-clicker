@@ -5,7 +5,7 @@ import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const MONSTER_BUFFS = {
 
- stolen_stats: {
+  stolen_stats: {
     duplicateTag: 'stolen_stats', // Used to stop duplicate buffs
     icon: 'goblin',
     name: 'stolen stats',
@@ -94,5 +94,125 @@ export const MONSTER_BUFFS = {
 
       onRemove() {}
     }
-  }
+  },
+
+  ninja_reflexes: {
+    duplicateTag: 'ninja_reflexes', // Used to stop duplicate buffs
+    icon: 'youngNinja',
+    name: 'ninja reflexes',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        if (Math.random() <= 0.10) {
+          const newBuff = {
+            id: 'evasive_maneuvers',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              level: 1,
+              icon: 'evasiveManeuvers'
+            }
+          }
+
+          addBuff({ buff: newBuff, target: defender, caster: defender });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  dwarfs_rage: {
+    duplicateTag: 'berserk', // Used to stop duplicate buffs
+    icon: 'berserk',
+    name: 'dwarfs rage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        target.stats.attackMax *= 1.5;
+        target.stats.attack *= 1.5;
+        target.stats.accuracy *= 2;
+        target.stats.attackSpeed *= 3;
+        target.stats.magicArmor *= 0.3;
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  dwarfs_pre_rage: {
+    duplicateTag: 'dwarfs_pre_rage', // Used to stop duplicate buffs
+    icon: '',
+    name: 'dwarfs rage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        if (defender.stats.health <= (defender.stats.healthMax * 0.2)) {
+
+          const newBuff = {
+            id: 'dwarfs_rage',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              icon: 'dwarfsRage',
+              description: 'Massively increased offensive stats. More vulnerable to magic.'
+            }
+          }
+
+          // Add berserk buff
+          addBuff({ buff: newBuff, target: defender, caster: defender });
+          // Remove this buff
+          removeBuff({ buff, target: defender, caster: defender });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 }

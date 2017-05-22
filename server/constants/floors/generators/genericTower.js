@@ -16,15 +16,15 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     name: selectedMonster.name,
     buffs: selectedMonster.buffs || [],
     stats: {
-      health: room * 25 * floor * (1 + (floor / 3)),
-      healthMax: room * 25 * floor * (1 + (floor / 3)),
-      attack: room * 3 * floor * (1 + (floor / 3)),
-      attackMax: room * 4 * floor * (1 + (floor / 3)),
+      health: (room / 1.2) * 25 * floor * (1 + (floor / 3)),
+      healthMax: (room / 1.2) * 25 * floor * (1 + (floor / 3)),
+      attack: (room / 1.2) * 3 * floor * (1 + (floor / 3)),
+      attackMax: (room / 1.2) * 4 * floor * (1 + (floor / 3)),
       attackSpeed: 0.5,
-      accuracy: room * 3 * floor * (1 + (floor / 3)),
-      armor: room * 30 * (floor / 4),
-      defense: room * 2 * floor * (1 + (floor / 3)),
-      magicArmor: room * 1.5 * floor * (1 + (floor / 3)),
+      accuracy: (room / 1.2) * 3 * floor * (1 + (floor / 3)),
+      armor: (room / 1.2) * 30 * (floor / 4),
+      defense: (room / 1.2) * 2 * floor * (1 + (floor / 3)),
+      magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
       damageTaken: 1
     },
     rewards: []

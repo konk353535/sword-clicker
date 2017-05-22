@@ -277,7 +277,9 @@ export const DEFENSE_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
-        buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
+        if (buff.constants && buff.constants.constants) {
+          buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
+        }
         target.stats.damageTaken *= (1 - (99.9 / 100));
       },
 

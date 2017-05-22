@@ -52,24 +52,40 @@ export const ENEMIES = Object.assign({
         duration: Infinity,
         totalDuration: Infinity,
         icon: 'goblin',
-        name: 'stat stealer',
-        hideBuff: true
+        name: 'stat stealer'
       }
     }]
   },
 
-  // Chance to activate evasive maneuvers
+  // Chance to activate dodging
   young_ninja: {
     id: 'young_ninja',
     icon: 'youngNinja',
-    name: 'young ninja'
+    name: 'young ninja',
+    buffs: [{
+      id: 'ninja_reflexes',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'youngNinja',
+        name: 'Ninja Reflexes'
+      }
+    }]
   },
 
   // When below 50% hp, goes berserk
   dwarf: {
     id: 'dwarf',
     icon: 'dwarf',
-    name: 'dwarf'
+    name: 'dwarf',
+    buffs: [{
+      id: 'dwarfs_pre_rage',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        hideBuff: true
+      }
+    }]
   },
 
   // Randomly casts spell, which reduces healing

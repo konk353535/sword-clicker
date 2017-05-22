@@ -19,7 +19,9 @@
     {{#if showBuffs}}
       <div class="d-flex flex-wrap" style="width: 120px">
         {{#each unit.buffs}}
-          {{> buffIcon buff=this small=true}}
+          {{#unless this.data.hideBuff}}
+            {{> buffIcon buff=this small=true}}
+          {{/unless}}
         {{/each}}
       </div>
     {{/if}}

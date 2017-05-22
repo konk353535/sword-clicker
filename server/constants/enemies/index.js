@@ -45,7 +45,17 @@ export const ENEMIES = Object.assign({
   goblin: {
     id: 'goblin',
     icon: 'goblin',
-    name: 'goblin'
+    name: 'goblin',
+    buffs: [{
+      id: 'goblin_stat_stealer',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'goblin',
+        name: 'stat stealer',
+        hideBuff: true
+      }
+    }]
   },
 
   // Chance to activate evasive maneuvers

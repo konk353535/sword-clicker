@@ -92,58 +92,125 @@ export const ENEMIES = Object.assign({
   demon: {
     id: 'demon',
     icon: 'demon',
-    name: 'demon'
+    name: 'demon',
+    buffs: [{
+      id: 'demon_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
-  // Shield ability of kinda, every 30 seconds block 70% of damage for 25 seconds
+  // Block ability, reduces damage of all attacks after armor by X
   spartan: {
     id: 'spartan',
     icon: 'spartan',
-    name: 'spartan'
+    name: 'spartan',
+    statBuffs: [{
+      type: 'plus',
+      key: 'armor',
+      amount: 5000
+    }]
   },
 
   // Frost armor buff
   ice_giant: {
     id: 'ice_giant',
     icon: 'iceGiant',
-    name: 'ice giant'
+    name: 'ice giant',
+    buffs: [{
+      id: 'frost_armor',
+      data: {
+        level: 10,
+        name: 'Frost Armor',
+        icon: 'frostArmor'
+      }
+    }]
   },
 
-  // All spirits will be weak to magic, strong against armor
+  // Spirits will randomly 'Blink', turning invulnrable for 10s
   cursed_spirit: {
     id: 'cursed_spirit',
     icon: 'cursedSpirit',
-    name: 'cursed spirit'
+    name: 'cursed spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   fairy_steel_spirit: {
     id: 'fairy_steel_spirit',
     icon: 'fairySteelSpirit',
-    name: 'fairy steel spirit'
+    name: 'fairy steel spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   cobalt_spirit: {
     id: 'cobalt_spirit',
     icon: 'cobaltSpirit',
-    name: 'cobalt spirit'
+    name: 'cobalt spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   orichalcum_spirit: {
     id: 'orichalcum_spirit',
     icon: 'orichalcumSpirit',
-    name: 'orichalcum spirit'
+    name: 'orichalcum spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   adamantium_spirit: {
     id: 'adamantium_spirit',
     icon: 'adamantiumSpirit',
-    name: 'adamantium spirit'
+    name: 'adamantium spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   mithril_spirit: {
     id: 'mithril_spirit',
     icon: 'mithrilSpirit',
-    name: 'mithril spirit'
+    name: 'mithril spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
   },
 
   // Can spawn multiple farmers
@@ -158,14 +225,27 @@ export const ENEMIES = Object.assign({
   beaver: {
     id: 'beaver',
     icon: 'beaver',
-    name: 'beaver'
+    name: 'beaver',
+    buffs: [{
+      id: 'beaver_teeth',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
   // Has poisoned blades ability
   snake: {
     id: 'snake',
     icon: 'snake',
-    name: 'snake'
+    name: 'snake',
+    buffs: [{
+      id: 'poisoned_blade',
+      data: {
+        level: 1,
+        icon: 'poisonedBlade'
+      }
+    }]
   },
 
   // Can spawn multiple worms

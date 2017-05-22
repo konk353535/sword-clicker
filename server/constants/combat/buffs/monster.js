@@ -96,6 +96,54 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  spirit_blink: {
+    duplicateTag: 'spirit_blink', // Used to stop duplicate buffs
+    icon: 'spiritBlink',
+    name: 'spirit blink',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.timeTillBlink) {
+          buff.data.timeTillBlink = 5 + (Math.random() * 7);
+        }
+
+        buff.data.timeTillBlink -= secondsElapsed;
+
+        // Blink on average, every 5 seconds
+        if (buff.data.timeTillBlink <= 0) {
+          const newBuff = {
+            id: 'evasive_maneuvers',
+            data: {
+              duration: 4,
+              totalDuration: 4,
+              level: 1,
+              icon: 'invulnerable'
+            }
+          }
+
+          buff.data.timeTillBlink = 5 + (Math.random() * 7);
+
+          addBuff({ buff: newBuff, target, caster: target });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   ninja_reflexes: {
     duplicateTag: 'ninja_reflexes', // Used to stop duplicate buffs
     icon: 'youngNinja',
@@ -215,4 +263,166 @@ export const MONSTER_BUFFS = {
       }
     }
   },
+
+  healing_reduction: {
+    duplicateTag: 'healing_reduction', // Used to stop duplicate buffs
+    icon: 'healingReduction',
+    name: 'healing reduction',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Reduces healing recieved`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        if (target.stats.healingReduction != null) {
+          target.stats.healingReduction *= buff.data.healingReduction;
+        } else {
+          target.stats.healingReduction = buff.data.healingReduction;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target }) {
+        target.stats.healingReduction /= buff.data.healingReduction;
+      }
+    }
+  },
+
+  armor_reduction: {
+    duplicateTag: 'armor_reduction', // Used to stop duplicate buffs
+    icon: 'armorReduction',
+    name: 'armor reduction',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Reduces your armor`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        if (target.stats.armor <= 0) {
+          buff.data.armorReduction = 1;
+        }
+        target.stats.armor *= buff.data.armorReduction;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target }) {
+        target.stats.armor /= buff.data.armorReduction;
+      }
+    }
+  },
+
+  demon_monster: {
+    duplicateTag: 'demon_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'demon monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const healingReduction = 0.25;
+        const newBuff = {
+          id: 'healing_reduction',
+          data: {
+            duration: 30,
+            totalDuration: 30,
+            healingReduction,
+            icon: 'healingReduction',
+            description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
+          }
+        }
+
+        // Add healing reduction buff
+        addBuff({ buff: newBuff, target: defender, caster: attacker });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  beaver_teeth: {
+    duplicateTag: 'beaver_teeth', // Used to stop duplicate buffs
+    icon: '',
+    name: 'beaver teeth',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.5) {
+          const constants = buff.constants.constants;
+          const armorReduction = 0.66;
+          const newBuff = {
+            id: 'armor_reduction',
+            data: {
+              duration: 10,
+              allowDuplicates: true,
+              totalDuration: 10,
+              armorReduction,
+              icon: 'armorReduction',
+              description: `Reduces your armor by ${Math.round((1 - armorReduction) * 100)}%`
+            }
+          }
+
+          // Add healing reduction buff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  }
 }

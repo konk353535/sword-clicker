@@ -102,6 +102,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
 
+    if (target.stats.healingReduction != null) {
+      healAmount *= target.stats.healingReduction;
+    }
+
     target.stats.health += healAmount;
     if (target.stats.health > target.stats.healthMax) {
       target.stats.health = target.stats.healthMax;

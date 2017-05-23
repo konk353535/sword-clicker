@@ -402,14 +402,28 @@ export const ENEMIES = Object.assign({
   crab: {
     id: 'crab',
     icon: 'crab',
-    name: 'crab'
+    name: 'crab',
+    buffs: [{
+      id: 'crab_monster',
+      data: {
+        icon: 'armor',
+        name: 'Crab Armor'
+      }
+    }]
   },
 
   // Spiked armor ability
   echidna: {
     id: 'echidna',
     icon: 'echidna',
-    name: 'echidna'
+    name: 'echidna',
+    buffs: [{
+      id: 'spiked_armor',
+      data: {
+        level: 3,
+        icon: 'spikedArmor'
+      }
+    }]
   },
 
   // Lots of armor
@@ -432,7 +446,12 @@ export const ENEMIES = Object.assign({
   wombat: {
     id: 'wombat',
     icon: 'wombat',
-    name: 'wombat'
+    name: 'wombat',
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 1.3
+    }]
   },
 
   // Resistance to magic
@@ -455,14 +474,26 @@ export const ENEMIES = Object.assign({
   earth_mage: {
     id: 'earth_mage',
     icon: 'earthMage',
-    name: 'earth mage'
+    name: 'earth mage',
+    buffs: [{
+      id: 'earth_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
   // Casts fire abilities
   fire_mage: {
     id: 'fire_mage',
     icon: 'fireMage',
-    name: 'fire mage'
+    name: 'fire mage',
+    buffs: [{
+      id: 'fire_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
   blue_mage: {
@@ -484,7 +515,13 @@ export const ENEMIES = Object.assign({
   rabbit: {
     id: 'rabbit',
     icon: 'rabbit',
-    name: 'rabbit'
+    name: 'rabbit',
+    buffs: [{
+      id: 'rabbit_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
   // Venom + Swarm
@@ -492,14 +529,33 @@ export const ENEMIES = Object.assign({
     id: 'spider',
     icon: 'spider',
     name: 'spider',
-    swarmRange: [1, 3]
+    swarmRange: [1, 3],
+    buffs: [{
+      id: 'poisoned_blade',
+      data: {
+        level: 1,
+        icon: 'poisonedBlade'
+      }
+    }]
   },
 
   // Stronger venom, lower chance
   jellyFish: {
     id: 'jellyFish',
     icon: 'jellyFish',
-    name: 'jellyFish'
+    name: 'jellyFish',
+    buffs: [{
+      id: 'poisoned_blade',
+      data: {
+        level: 10,
+        icon: 'poisonedBlade'
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 0.3
+    }]
   }
 
 }, BOSS_ENEMIES);

@@ -15,7 +15,7 @@ export const CURSED_ITEMS = {
     stats: {
       attack: 9,
       attackMax: 22,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 25
     },
     extraStats: {

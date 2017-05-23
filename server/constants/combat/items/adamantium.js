@@ -15,7 +15,7 @@ export const ADAMANTIUM_ITEMS = {
     stats: {
       attack: 5,
       attackMax: 16,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 18
     },
     extraStats: {

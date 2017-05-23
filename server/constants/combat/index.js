@@ -33,6 +33,7 @@ export const COMBAT = {
     'healthMax',
     'damageTaken',
     'magicPower',
-    'armor'
+    'armor',
+    'magicArmor'
   ]
 }

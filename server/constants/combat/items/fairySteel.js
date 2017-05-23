@@ -15,7 +15,7 @@ export const FAIRY_STEEL_ITEMS = {
     stats: {
       attack: 8,
       attackMax: 20,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 23
     },
     extraStats: {

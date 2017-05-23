@@ -15,7 +15,7 @@ export const ORICHALCUM_ITEMS = {
     stats: {
       attack: 6,
       attackMax: 17,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 19
     },
     extraStats: {

@@ -2,6 +2,7 @@ import moment from 'moment';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
+import { BUFFS } from '/server/constants/combat/index.js';
 
 export const MONSTER_BUFFS = {
 
@@ -264,6 +265,43 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  rabbit_monster: {
+    duplicateTag: 'rabbit_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'rabbit monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        // Blank
+        if (!buff.data.timeTillRabbit) {
+          buff.data.timeTillRabbit = 5 + Math.random () * 5;
+        } else {
+          buff.data.timeTillRabbit -= secondsElapsed;
+          if (buff.data.timeTillRabbit <= 0) {
+            buff.data.timeTillRabbit = 15 + Math.random () * 5;
+            actualBattle.enemies.push(JSON.parse(JSON.stringify(target)));
+            buff.data.timeTillRabbit = 5000;
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   healing_reduction: {
     duplicateTag: 'healing_reduction', // Used to stop duplicate buffs
     icon: 'healingReduction',
@@ -297,6 +335,118 @@ export const MONSTER_BUFFS = {
 
       onRemove({ buff, target }) {
         target.stats.healingReduction /= buff.data.healingReduction;
+      }
+    }
+  },
+
+  earth_mage_monster: {
+    duplicateTag: 'earth_mage_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'earth mage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.05) {
+          const newBuff = {
+            id: 'mud_armor',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              icon: 'mudArmor',
+              description: ''
+            },
+            constants: BUFFS['mud_armor']
+          }
+
+          // cast mud armor
+          addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const newBuff = {
+          id: 'earth_dart',
+          data: {
+            duration: 0,
+            totalDuration: 0,
+            icon: 'earthDart',
+            description: ''
+          },
+          constants: BUFFS['earth_dart']
+        }
+
+        // cast earth dart
+        addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  fire_mage_monster: {
+    duplicateTag: 'fire_mage_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'fire mage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.05) {
+          const newBuff = {
+            id: 'ignite',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              icon: 'ignite',
+              description: ''
+            },
+            constants: BUFFS['ignite']
+          }
+
+          // cast ignite
+          addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.2) {
+          const newBuff = {
+            id: 'fire_dart',
+            data: {
+              duration: 0,
+              totalDuration: 0,
+              icon: 'fireDart',
+              description: ''
+            },
+            constants: BUFFS['fire_dart']
+          }
+
+          // cast fire dart
+          addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
       }
     }
   },
@@ -471,6 +621,48 @@ export const MONSTER_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  crab_monster: {
+    duplicateTag: 'crab_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'crab monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        defender.stats.armor -= 5;
+        defender.stats.magicArmor -= 5;
+        buff.data.hitsRequired -= 1;
+
+        if (buff.data.hitsRequired <= 0) {
+          defender.stats.armor -= 2000;
+          defender.stats.magicArmor -= 2000;
+          removeBuff({ buff, target: defender, caster: defender });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.hitsRequired == null) {
+          buff.data.hitsRequired = 70;
+          target.stats.armor += 2000;
+          target.stats.magicArmor += 2000;
+        }
       },
 
       onRemove({ buff, target, caster }) {

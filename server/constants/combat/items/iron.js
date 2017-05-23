@@ -15,7 +15,7 @@ export const IRON_ITEMS = {
     stats: {
       attack: 3,
       attackMax: 4,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 4
     },
     extraStats: {

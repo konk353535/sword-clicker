@@ -15,7 +15,7 @@ export const COBALT_ITEMS = {
     stats: {
       attack: 7,
       attackMax: 19,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 21
     },
     extraStats: {

@@ -15,7 +15,7 @@ export const MITHRIL_ITEMS = {
     stats: {
       attack: 4,
       attackMax: 14,
-      attackSpeed: FAST_SPEED,
+      attackSpeed: VERY_FAST_SPEED,
       accuracy: 16
     },
     extraStats: {

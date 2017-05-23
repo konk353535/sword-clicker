@@ -25,6 +25,8 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       armor: (room / 1.2) * 30 * (floor / 4),
       defense: (room / 1.2) * 2 * floor * (1 + (floor / 3)),
       magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
+      criticalChance: 0,
+      criticalDamage: 2,
       damageTaken: 1
     },
     rewards: []

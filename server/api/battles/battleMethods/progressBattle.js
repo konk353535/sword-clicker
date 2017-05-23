@@ -130,9 +130,16 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-      const rawDamage = attacker.stats.attack + extraRawDamage;
+      let rawDamage = attacker.stats.attack + extraRawDamage;
 
-      const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents });
+      // Is this a crit?
+      let customIcon;
+      if (attacker.stats.criticalChance && Math.random() <= attacker.stats.criticalChance) {
+        rawDamage *= attacker.stats.criticalDamage;
+        customIcon = 'criticalStrike';
+      }
+
+      const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents, customIcon });
 
       // Tick didDamage event on attacker
       if (attacker.buffs) {

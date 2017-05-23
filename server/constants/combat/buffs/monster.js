@@ -63,7 +63,7 @@ export const MONSTER_BUFFS = {
         buff.data.timeTillSteal -= secondsElapsed;
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
-          const statsToSteal = ['health', 'healthMax', 'armor', 'damage'];
+          const statsToSteal = ['health', 'healthMax', 'armor', 'attack'];
           const targetToSteal = _.sample(actualBattle.units);
 
           const newBuff = {
@@ -368,6 +368,156 @@ export const MONSTER_BUFFS = {
 
         // Add healing reduction buff
         addBuff({ buff: newBuff, target: defender, caster: attacker });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  rat_monster: {
+    duplicateTag: 'rat_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'rat monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const bleedChance = 0.2;
+
+        if (Math.random() <= bleedChance) {
+          const newBuff = {
+            id: 'bleed',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              dps: attacker.stats.attackMax / 30,
+              timeTillDamage: 1,
+              allowDuplicates: true,
+              icon: 'bleed',
+              name: 'bleed',
+              description: `Bleed every second for ${Math.round(attacker.stats.attackMax / 10)} damage`
+            }
+          }
+
+          // Add bleed debuff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  lizard_monster: {
+    duplicateTag: 'lizard_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'lizard monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+
+        // Does this unit have poison? remove poison + heal
+        const poisonedCount = defender.buffs.filter((buff) => {
+          return buff.id === 'basic_poison';
+        }).length;
+
+        if (poisonedCount >= 1) {
+          const totalHeal =  ((defender.stats.defense * poisonedCount) / 2);
+          actualBattle.utils.healTarget(totalHeal, {
+            caster: defender,
+            target: defender,
+            tickEvents: actualBattle.tickEvents
+          });
+
+          defender.buffs.forEach((buff) => {
+            if (buff.id === 'basic_poison' && buff.data.duration > 1) {
+              buff.data.duration = 0.2;
+              buff.data.timeTillDamage = 5;
+            }
+          });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  angry_miner_monster: {
+    duplicateTag: 'angry_miner_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'angry monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+
+        // Calculate miners missing % hp
+        const missingHp = defender.stats.healthMax - defender.stats.health;
+
+        if (!buff.data.lastMissingHp) {
+          const decimal = missingHp / defender.stats.healthMax;
+          defender.stats.attackMax *= 1 + decimal;
+          defender.stats.attack *= 1 + decimal;
+          defender.stats.accuracy *= 1 + decimal;
+          defender.stats.attackSpeed *= 1 + decimal;
+        } else {
+          const decimal = (missingHp - buff.data.lastMissingHp) / defender.stats.healthMax;
+          defender.stats.attackMax *= 1 + decimal;
+          defender.stats.attack *= 1 + decimal;
+          defender.stats.accuracy *= 1 + decimal;
+          defender.stats.attackSpeed *= 1 + decimal;
+        }
+
+        buff.data.lastMissingHp = missingHp;
+
+        // Recompute attack speed and damage by missingHp
+        defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

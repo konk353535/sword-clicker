@@ -480,8 +480,11 @@ export const ATTACK_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
-        buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
-        buff.data.dps *= caster.stats.accuracy;
+
+        if (buff.constants && buff.constants.constants) {
+          buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
+          buff.data.dps *= caster.stats.accuracy;
+        }
 
         buff.data.timeTillDamage = 1;
         buff.data.caster = caster.id;
@@ -515,6 +518,10 @@ export const ATTACK_BUFFS = {
             return targetBuff.id !== buff.id
           });
         }
+      },
+
+      onRemove() {
+
       }
     }
   },

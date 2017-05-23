@@ -283,15 +283,15 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'attackSpeed',
-      times: 3
+      amount: 3
     }, {
       type: 'times',
-      key: 'damageMax',
-      times: 0.4
+      key: 'attackMax',
+      amount: 0.4
     }, {
       type: 'times',
-      key: 'damage',
-      times: 0.4
+      key: 'attack',
+      amount: 0.4
     }]
   },
 
@@ -300,42 +300,82 @@ export const ENEMIES = Object.assign({
     id: 'bee',
     icon: 'bee',
     name: 'bee',
-    swarmRange: [1, 10]
+    swarmRange: [1, 10],
+    statBuffs: [{
+      type: 'plus',
+      key: 'criticalChance',
+      amount: 0.1
+    }]
   },
 
-  // Stun chance
+  // Crit chance
   wasp: {
     id: 'wasp',
     icon: 'wasp',
-    name: 'wasp'
+    name: 'wasp',
+    statBuffs: [{
+      type: 'plus',
+      key: 'criticalChance',
+      amount: 0.1
+    }]
   },
 
   // Gains attack speed, the more damage taken
   angry_miner: {
     id: 'angry_miner',
-    icon: 'angry_miner',
-    name: 'angry miner'
+    icon: 'angryMiner',
+    name: 'angry miner',
+    buffs: [{
+      id: 'angry_miner_monster',
+      data: {
+        icon: 'angryMiner',
+        name: 'angry miner'
+      }
+    }]
   },
 
-  // Crit chance
+  // Low Crit chance, high crit damage
   bird: {
     id: 'bird',
     icon: 'bird',
-    name: 'bird'
+    name: 'bird',
+    statBuffs: [{
+      type: 'plus',
+      key: 'criticalChance',
+      amount: 0.05
+    }, {
+      type: 'plus',
+      key: 'criticalDamage',
+      amount: 2
+    }]
   },
 
   // Chance to bleed
   rat: {
     id: 'rat',
     icon: 'rat',
-    name: 'rat'
+    name: 'rat',
+    swarmRange: [1, 3],
+    buffs: [{
+      id: 'rat_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
-  // Resistance to poison
+  // Heals from poison
   lizard: {
     id: 'lizard',
     icon: 'lizard',
-    name: 'lizard'
+    name: 'lizard',
+    buffs: [{
+      id: 'lizard_monster',
+      data: {
+        icon: 'lizard',
+        name: 'thirst for poison'
+      }
+    }]
   },
 
   // Lots of health
@@ -349,7 +389,7 @@ export const ENEMIES = Object.assign({
       amount: 2
     }, {
       type: 'times',
-      key: 'damageMax',
+      key: 'attackMax',
       amount: 3
     }, {
       type: 'times',
@@ -372,7 +412,7 @@ export const ENEMIES = Object.assign({
     name: 'echidna'
   },
 
-  // Lots of warmor
+  // Lots of armor
   snail: {
     id: 'snail',
     icon: 'snail',

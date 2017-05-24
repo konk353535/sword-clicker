@@ -37,6 +37,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'health',
       amount: 0.5
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.5
     }],
     swarmRange: [3, 6]
   },
@@ -389,6 +393,10 @@ export const ENEMIES = Object.assign({
       amount: 2
     }, {
       type: 'times',
+      key: 'healthMax',
+      amount: 2
+    }, {
+      type: 'times',
       key: 'attackMax',
       amount: 3
     }, {
@@ -439,6 +447,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'health',
       amount: 0.75
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.75
     }]
   },
 
@@ -450,6 +462,10 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'health',
+      amount: 1.3
+    }, {
+      type: 'times',
+      key: 'healthMax',
       amount: 1.3
     }]
   },

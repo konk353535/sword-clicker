@@ -96,7 +96,7 @@ export const completeBattle = function (actualBattle) {
     const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room);
     // Inject into battle
     newMonsters.forEach((monster) => {
-      actualBattle.totalXpGain -= BATTLES.xpGain(monster.stats);
+      actualBattle.totalXpGain -= BATTLES.xpGain(monster.stats, monster.buffs);
     });
   }
 
@@ -159,7 +159,7 @@ export const completeBattle = function (actualBattle) {
     actualBattle.deadEnemies.forEach((deadEnemy) => {
       let rewards = [];
       if (actualBattle.level) {
-        rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level).rewards;
+        rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
       }
 
       for (let i = 0; i < rewards.length; i++) {

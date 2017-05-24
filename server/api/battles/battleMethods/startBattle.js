@@ -24,7 +24,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
   if (level) {
     // Is personalQuest (To Do)
-    battleData.enemies.push(FLOORS.personalQuestMonsterGenerator(level));
+    battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave);
   } else if (room === 0) {
     // Is tower explore (To Do)
     battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
@@ -200,7 +200,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
     for (let i = 0; i < enemy.amount; i++) {
       const randomUnitTarget = _.sample(newBattle.units);
-      totalXpGain += BATTLES.xpGain(enemyStats);
+      totalXpGain += BATTLES.xpGain(enemyStats, enemyConstants.buffs);
       newBattle.enemies.push({
         id: Random.id(),
         stats: enemyStats,

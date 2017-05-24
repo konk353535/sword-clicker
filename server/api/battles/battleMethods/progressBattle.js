@@ -79,11 +79,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     let damage = rawDamage;
     if (damage > 0) {
       let dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
-      console.log(dmgReduction);
-      console.log(defender.stats);
+
       if (dmgReduction < 0) {
         dmgReduction = 0;
       } else if (isTrueDamage) {
+        dmgReduction = 0;
+      } else if (dmgReduction > 1) {
+        dmgReduction = 1;
+      } else if (dmgReduction == null) {
         dmgReduction = 0;
       }
       damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
@@ -125,10 +128,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    let hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
-    if (hitChance <= 0.05) {
-      hitChance = 0.05;
+    let hitChance = 0.5 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    if (hitChance <= 0.1) {
+      hitChance = 0.1;
     }
+
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
@@ -361,7 +365,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         // Inject into battle
         newMonsters.forEach((monster) => {
           const randomUnitTarget = _.sample(actualBattle.units);
-          actualBattle.totalXpGain += BATTLES.xpGain(monster.stats);
+          actualBattle.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs);
           actualBattle.enemies.push({
             id: Random.id(),
             stats: monster.stats,

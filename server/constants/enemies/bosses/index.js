@@ -64,7 +64,7 @@ export const BOSS_ENEMIES = {
   boss_spartan: {
     id: 'boss_spartan',
     icon: 'spartan',
-    name: 'Boss Spartan',
+    name: 'Spartan',
     isBoss: true,
     stats: {
       attack: 100,
@@ -84,7 +84,7 @@ export const BOSS_ENEMIES = {
   boss_mage: {
     id: 'boss_mage',
     icon: 'bossMage',
-    name: 'Boss mage',
+    name: 'mage',
     isBoss: true,
     stats: {
       attack: 100,
@@ -104,7 +104,7 @@ export const BOSS_ENEMIES = {
   boss_goblin: {
     id: 'boss_goblin',
     icon: 'goblin',
-    name: 'Boss goblin',
+    name: 'goblin',
     isBoss: true,
     stats: {
       attack: 120,
@@ -124,7 +124,7 @@ export const BOSS_ENEMIES = {
   boss_ogre: {
     id: 'boss_ogre',
     icon: 'iceGiant',
-    name: 'Boss ogre',
+    name: 'ogre',
     isBoss: true,
     stats: {
       attack: 140,
@@ -141,10 +141,10 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  boss_phenoix: {
-    id: 'boss_phenoix',
-    icon: 'phenoix',
-    name: 'Boss phenoix',
+  boss_phoenix: {
+    id: 'boss_phoenix',
+    icon: 'phoenix',
+    name: 'phoenix',
     isBoss: true,
     stats: {
       attack: 140,
@@ -164,7 +164,7 @@ export const BOSS_ENEMIES = {
   boss_gorilla: {
     id: 'boss_gorilla',
     icon: 'gorilla',
-    name: 'Boss Gorilla',
+    name: 'gorilla',
     isBoss: true,
     stats: {
       attack: 180,

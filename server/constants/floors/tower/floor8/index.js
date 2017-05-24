@@ -86,7 +86,7 @@ export const TOWER_FLOOR_8 = {
   },
 
   boss: {
-    enemy: { id: 'boss_phenoix', amount: 1 },
+    enemy: { id: 'boss_phoenix', amount: 1 },
     rewards: LEVEL_EIGHT_LOOT_TABLE
   },
 

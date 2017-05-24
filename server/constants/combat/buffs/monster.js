@@ -652,6 +652,12 @@ export const MONSTER_BUFFS = {
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;
           defender.stats.magicArmor -= 2000;
+          if (defender.stats.armor <= 1) {
+            defender.stats.armor = 1;
+          }
+          if (defender.stats.magicArmor <= 1) {
+            defender.stats.magicArmor = 1;
+          }
           removeBuff({ buff, target: defender, caster: defender });
         }
       },

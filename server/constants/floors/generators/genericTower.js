@@ -22,9 +22,9 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       attackMax: (room / 1.2) * 4 * floor * (1 + (floor / 3)),
       magicPower: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
       attackSpeed: 0.5,
-      accuracy: (room / 1.2) * 3 * floor * (1 + (floor / 3)),
-      armor: (room / 1.2) * 30 * (floor / 4),
-      defense: (room / 1.2) * 2 * floor * (1 + (floor / 3)),
+      accuracy: (room / 1.8) * 3 * floor * (1 + (floor / 3)),
+      armor: (room / 2.4) * 30 * (floor / 4),
+      defense: (room / 1.8) * 1.8 * floor * (1 + (floor / 3)),
       magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
       criticalChance: 0,
       criticalDamage: 2,
@@ -51,6 +51,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     // Divide monsters health
     monster.stats.health /= unitCount; // Divide health evenly
     monster.stats.health *= 1.3; // To account for aoe
+    monster.stats.attack /= unitCount;
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {

@@ -114,6 +114,10 @@ export const ENEMIES = Object.assign({
       type: 'plus',
       key: 'armor',
       amount: 5000
+    }, {
+      type: 'times',
+      key: 'magicArmor',
+      amount: 0.3
     }]
   },
 
@@ -304,7 +308,7 @@ export const ENEMIES = Object.assign({
     id: 'bee',
     icon: 'bee',
     name: 'bee',
-    swarmRange: [1, 10],
+    swarmRange: [1, 7],
     statBuffs: [{
       type: 'plus',
       key: 'criticalChance',
@@ -390,11 +394,11 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'health',
-      amount: 2
+      amount: 1.3
     }, {
       type: 'times',
       key: 'healthMax',
-      amount: 2
+      amount: 1.3
     }, {
       type: 'times',
       key: 'attackMax',
@@ -402,7 +406,7 @@ export const ENEMIES = Object.assign({
     }, {
       type: 'times',
       key: 'attackSpeed',
-      amount: 0.4
+      amount: 0.3
     }]
   },
 

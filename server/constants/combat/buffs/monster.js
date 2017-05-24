@@ -3,6 +3,7 @@ import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from '/server/constants/combat/index.js';
+import { Random } from 'meteor/random'
 
 export const MONSTER_BUFFS = {
 
@@ -290,7 +291,9 @@ export const MONSTER_BUFFS = {
           buff.data.timeTillRabbit -= secondsElapsed;
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
-            actualBattle.enemies.push(JSON.parse(JSON.stringify(target)));
+            const newRabbit = JSON.parse(JSON.stringify(target));
+            newRabbit.id = Random.id();
+            actualBattle.enemies.push(newRabbit);
             buff.data.timeTillRabbit = 5000;
           }
         }
@@ -665,7 +668,7 @@ export const MONSTER_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.hitsRequired == null) {
-          buff.data.hitsRequired = 70;
+          buff.data.hitsRequired = 50;
           target.stats.armor += 2000;
           target.stats.magicArmor += 2000;
         }
@@ -699,20 +702,14 @@ export const MONSTER_BUFFS = {
         const missingHp = defender.stats.healthMax - defender.stats.health;
 
         if (!buff.data.lastMissingHp) {
-          const decimal = missingHp / defender.stats.healthMax;
-          defender.stats.attackMax *= 1 + decimal;
-          defender.stats.attack *= 1 + decimal;
-          defender.stats.accuracy *= 1 + decimal;
-          defender.stats.attackSpeed *= 1 + decimal;
+          buff.data.lastMissingHp = missingHp;
         } else {
           const decimal = (missingHp - buff.data.lastMissingHp) / defender.stats.healthMax;
-          defender.stats.attackMax *= 1 + decimal;
-          defender.stats.attack *= 1 + decimal;
-          defender.stats.accuracy *= 1 + decimal;
-          defender.stats.attackSpeed *= 1 + decimal;
+          defender.stats.attackMax *= 1 + (decimal / 2);
+          defender.stats.attack *= 1 + (decimal / 2);
+          defender.stats.accuracy *= 1 + (decimal / 2);
+          buff.data.lastMissingHp = missingHp;
         }
-
-        buff.data.lastMissingHp = missingHp;
 
         // Recompute attack speed and damage by missingHp
         defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);

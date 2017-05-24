@@ -128,9 +128,17 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    let hitChance = 0.5 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
-    if (hitChance <= 0.1) {
-      hitChance = 0.1;
+    let hitGap = attacker.stats.accuracy - defender.stats.defense;
+    let hitChance = 0.5;
+
+    if (hitGap > 0) {
+      // Favours attacker
+      const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+      hitChance += extraChance;
+    } else {
+      // Favours defender
+      const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+      hitChance -= extraChance;
     }
 
     if (hitChance >= Math.random()) {
@@ -204,8 +212,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         if (targetUnit) {
           defender = targetUnit;
         } else {
-          delete enemy.target;
+          enemy.target = defender;
         }
+      } else {
+        enemy.target = defender;
       }
       autoAttack({ attacker: enemy, defender, tickEvents: actualBattle.tickEvents });
     }

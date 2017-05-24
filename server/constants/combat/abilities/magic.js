@@ -115,7 +115,7 @@ export const MAGIC_ABILITIES = {
 
   frenzied_winds: {
     icon: 'frenziedWinds',
-    name: 'frenzied_winds',
+    name: 'frenzied winds',
     id: 'frenzied_winds',
     buffs: ['frenzied_winds'],
     cooldown: 180,
@@ -132,7 +132,7 @@ export const MAGIC_ABILITIES = {
 
   angels_touch: {
     icon: 'angelsTouch',
-    name: 'angels_touch',
+    name: 'angels touch',
     id: 'angels_touch',
     buffs: ['angels_touch'],
     cooldown: 300,

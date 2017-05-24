@@ -5,6 +5,10 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
   const buffConstants = BUFFS[buff.id];
   let hasRemoved = false;
 
+  if (!_.isArray(target.buffs)) {
+    target.buffs = [];
+  }
+
   target.buffs = target.buffs.filter((ownerBuff) => {
     if (ownerBuff.id === buff.id && !hasRemoved) {
       buffConstants.events.onRemove({ buff, target, caster, actualBattle });

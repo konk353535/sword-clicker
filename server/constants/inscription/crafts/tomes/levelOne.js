@@ -41,19 +41,6 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.RED_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
   },
 
-  earth_dart_tome: {
-    recipeFor: 'inscription',
-    produces: 'earth_dart_tome',
-    name: 'Earth Dart',
-    id: 'earth_dart_tome',
-    category: 'tome',
-    timeToCraft: 180,
-    xp: 30,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 1,
-    required: [UTIL.RED_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
-  },
-
   air_dart_tome: {
     recipeFor: 'inscription',
     produces: 'air_dart_tome',
@@ -135,7 +122,7 @@ export const LEVEL_ONE_CRAFTS = {
   frenzied_winds_tome: {
     recipeFor: 'inscription',
     produces: 'frenzied_winds_tome',
-    name: 'frenzied winds.',
+    name: 'frenzied winds',
     id: 'frenzied_winds_tome',
     category: 'tome',
     timeToCraft: 600,

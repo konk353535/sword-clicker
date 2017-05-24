@@ -154,24 +154,24 @@ export const completeBattle = function (actualBattle) {
       });
     }
 
-    // Apply rewards for killing monsters (To do, later)
+    // Apply rewards for killing monsters
     const rewardsGained = [];
-    actualBattle.deadEnemies.forEach((deadEnemy) => {
-      let rewards = [];
-      if (actualBattle.level) {
-        rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
-      }
+    const deadEnemy = actualBattle.deadEnemies[0];
+    
+    let rewards = [];
+    if (actualBattle.level) {
+      rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
+    }
 
-      for (let i = 0; i < rewards.length; i++) {
-        const rewardTable = rewards[i];
-        const diceRoll = Math.random();
+    for (let i = 0; i < rewards.length; i++) {
+      const rewardTable = rewards[i];
+      const diceRoll = Math.random();
 
-        if (rewardTable.chance >= diceRoll) {
-          rewardsGained.push(_.sample(rewardTable.rewards));
-          break;          
-        }
+      if (rewardTable.chance >= diceRoll) {
+        rewardsGained.push(_.sample(rewardTable.rewards));
+        break;          
       }
-    });
+    }
 
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
@@ -198,7 +198,9 @@ export const completeBattle = function (actualBattle) {
 
       if (rewardTable.chance >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
-        break;          
+        if (rewardsGained >= units.length) {
+          break;
+        }
       }
     }
 
@@ -235,14 +237,22 @@ export const completeBattle = function (actualBattle) {
     if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
       if (actualBattle.room !== 'boss') {
 
-        let isGroupTowerContribution = false;
+        let countTowerContributors = 0;
+        owners.forEach((owner) => {
+          // Find owner object
+          const ownerObject = _.findWhere(units, { owner });
+
+          if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
+            countTowerContributors++;
+          }
+        });
+
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
           if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
             ownerObject.towerContributionsToday++;
-            isGroupTowerContribution = true;
 
             const updateSelector = { owner, floor: actualBattle.floor };
 
@@ -267,14 +277,14 @@ export const completeBattle = function (actualBattle) {
           }
         });
 
-        if (isGroupTowerContribution) {
+        if (countTowerContributors > 0) {
           // Increment total points data
           Floors.update({
             floor: actualBattle.floor,
             floorComplete: false
           }, {
             $inc: {
-              points: pointsEarnt
+              points: pointsEarnt * countTowerContributors
             }
           });
         }

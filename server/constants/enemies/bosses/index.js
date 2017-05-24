@@ -73,7 +73,7 @@ export const BOSS_ENEMIES = {
       accuracy: 170,
       health: 20000,
       healthMax: 20000,
-      defense: 140,
+      defense: 120,
       armor: 180,
       magicArmor: 180,
       damageTaken: 1

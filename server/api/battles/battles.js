@@ -84,8 +84,8 @@ Meteor.methods({
       throw new Meteor.Error("only-alone", "You can only do personal quests alone");
     }
 
-    if (!wave) {
-      wave = _.random(1, 10);
+    if (level !== maxLevel && wave !== maxWave + 1) {
+      wave = _.random(1, 5);
     }
 
     startBattle({ level, wave });

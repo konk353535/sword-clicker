@@ -116,7 +116,7 @@ export const FARMING = {
       requiredFarmingLevel: 3,
       required: [{
         type: 'gold',
-        amount: 6,
+        amount: 10,
         consumes: true
       }, {
         type: 'skill',
@@ -161,7 +161,7 @@ export const FARMING = {
       requiredFarmingLevel: 15,
       required: [{
         type: 'gold',
-        amount: 250,
+        amount: 200,
         consumes: true
       }, {
         type: 'skill',
@@ -176,7 +176,7 @@ export const FARMING = {
       requiredFarmingLevel: 20,
       required: [{
         type: 'gold',
-        amount: 250,
+        amount: 100,
         consumes: true
       }, {
         type: 'skill',
@@ -191,7 +191,7 @@ export const FARMING = {
       requiredFarmingLevel: 20,
       required: [{
         type: 'gold',
-        amount: 250,
+        amount: 300,
         consumes: true
       }, {
         type: 'skill',

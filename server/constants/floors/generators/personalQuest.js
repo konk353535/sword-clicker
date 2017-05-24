@@ -6,29 +6,38 @@ import { attackSpeedTicks } from '/server/utils';
 export const personalQuestMonsterGenerator = function(level, wave) {
 
   let rewardLevel = 1;
+  let possibleMonsters = ['grasshopper', 'fly', 'worm'];
 
   if (level >= 5) {
     rewardLevel = 2;
+    possibleMonsters.push(...['bird', 'rat', 'wombat']);
   }
   if (level >= 10) {
     rewardLevel = 3;
+    possibleMonsters.push(...['snake', 'elephant', 'rabbit']);
   }
   if (level >= 15) {
     rewardLevel = 4;
+    possibleMonsters.push(...['snail', 'echidna', 'lizard']);
   }
   if (level >= 20) {
+    possibleMonsters.push(...['crab', 'bee', 'spider']);
     rewardLevel = 5;
   }
   if (level >= 35) {
+    possibleMonsters.push(...['wasp', 'jellyFish', 'blue_mage', 'demon', 'goblin', 'young_ninja']);
     rewardLevel = 6;
   }
   if (level >= 50) {
+    possibleMonsters.push(...['angry_miner', 'dragonfly', 'brown_mage', 'ice_giant', 'dwarf', 'spartan']);
     rewardLevel = 7;
   }
   if (level >= 65) {
+    possibleMonsters.push(...['beaver', 'farmer', 'mithril_spirit']);
     rewardLevel = 8;
   }
   if (level >= 75) {
+    possibleMonsters.push(...['fire_mage', 'earth_mage']);
     rewardLevel = 9;
   }
   if (level >= 90) {
@@ -41,8 +50,8 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     rewardLevel = 12;
   }
 
-  const totalEnemies = Object.keys(ENEMIES).length;
-  const selectedMonsterId = Object.keys(ENEMIES)[(level + wave - 1) % totalEnemies];
+  const totalEnemies = possibleMonsters.length;
+  const selectedMonsterId = possibleMonsters[(level + wave - 1) % totalEnemies];
   const selectedMonster = ENEMIES[selectedMonsterId];
 
   let extraStats = 0;

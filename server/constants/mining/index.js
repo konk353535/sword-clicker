@@ -557,13 +557,13 @@ export const MINING = {
 
     mithril_essence: {
       requiredLevel: 23,
-      healthMax: 3000,
+      healthMax: 2000,
       xp: 200,
       id: 'mithril_essence',
       icon: 'mithrilEssence',
       name: 'mithril_essence',
       itemId: 'mithril_essence',
-      chance: 0.0000095
+      chance: 0.000095
     },
 
     adamantium: {
@@ -579,13 +579,13 @@ export const MINING = {
 
     adamantium_essence: {
       requiredLevel: 28,
-      healthMax: 15000,
+      healthMax: 10000,
       xp: 350,
       id: 'adamantium_essence',
       icon: 'adamantiumEssence',
       name: 'adamantium_essence',
       itemId: 'adamantium_essence',
-      chance: 0.0000045
+      chance: 0.000045
     },
 
     orichalcum: {
@@ -607,7 +607,7 @@ export const MINING = {
       icon: 'orichalcumEssence',
       name: 'orichalcum_essence',
       itemId: 'orichalcum_essence',
-      chance: 0.0000025
+      chance: 0.0000055
     },
 
     cobalt: {
@@ -629,7 +629,7 @@ export const MINING = {
       icon: 'cobaltEssence',
       name: 'cobalt_essence',
       itemId: 'cobalt_essence',
-      chance: 0.0000015
+      chance: 0.0000035
     },
 
     fairy_steel: {

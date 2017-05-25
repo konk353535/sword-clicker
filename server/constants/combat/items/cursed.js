@@ -16,7 +16,7 @@ export const CURSED_ITEMS = {
       attack: 9,
       attackMax: 22,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 25
+      accuracy: 35
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const CURSED_ITEMS = {
       attack: 23,
       attackMax: 36,
       attackSpeed: FAST_SPEED,
-      accuracy: 40,
+      accuracy: 50,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const CURSED_ITEMS = {
       attack: 28,
       attackMax: 42,
       attackSpeed: FAST_SPEED,
-      accuracy: 46,
+      accuracy: 56,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const CURSED_ITEMS = {
       attack: 43,
       attackMax: 58,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 57,
+      accuracy: 67,
     },
     extraStats: {
       attack: 3,
@@ -165,7 +165,7 @@ export const CURSED_ITEMS = {
       attack: 35,
       attackMax: 48,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 48,
+      accuracy: 58,
     },
     extraStats: {
       attack: 4,
@@ -195,7 +195,7 @@ export const CURSED_ITEMS = {
       attack: 36,
       attackMax: 99,
       attackSpeed: SLOW_SPEED,
-      accuracy: 36,
+      accuracy: 46,
     },
     extraStats: {
       attack: 4,

@@ -113,11 +113,11 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'plus',
       key: 'armor',
-      amount: 5000
+      amount: 500
     }, {
       type: 'times',
       key: 'magicArmor',
-      amount: 0.3
+      amount: 0.2
     }]
   },
 

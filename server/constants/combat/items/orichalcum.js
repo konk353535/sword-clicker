@@ -16,7 +16,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 6,
       attackMax: 17,
       attackSpeed: VERY_FAST_SPEED,
-      accuracy: 19
+      accuracy: 27
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 18,
       attackMax: 29,
       attackSpeed: FAST_SPEED,
-      accuracy: 33,
+      accuracy: 41,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 22,
       attackMax: 33,
       attackSpeed: FAST_SPEED,
-      accuracy: 37,
+      accuracy: 45,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 35,
       attackMax: 47,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 47,
+      accuracy: 55,
     },
     extraStats: {
       attack: 3,
@@ -165,7 +165,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 29,
       attackMax: 39,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 39,
+      accuracy: 47,
     },
     extraStats: {
       attack: 4,
@@ -195,7 +195,7 @@ export const ORICHALCUM_ITEMS = {
       attack: 28,
       attackMax: 86,
       attackSpeed: SLOW_SPEED,
-      accuracy: 29,
+      accuracy: 37,
     },
     extraStats: {
       attack: 4,

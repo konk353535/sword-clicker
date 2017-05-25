@@ -28,25 +28,25 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     possibleMonsters.push(...['wasp', 'jellyFish', 'blue_mage', 'demon', 'goblin', 'young_ninja']);
     rewardLevel = 6;
   }
-  if (level >= 50) {
+  if (level >= 45) {
     possibleMonsters.push(...['angry_miner', 'dragonfly', 'brown_mage', 'ice_giant', 'dwarf', 'spartan']);
     rewardLevel = 7;
   }
-  if (level >= 65) {
+  if (level >= 55) {
     possibleMonsters.push(...['beaver', 'farmer', 'mithril_spirit']);
     rewardLevel = 8;
   }
-  if (level >= 75) {
+  if (level >= 70) {
     possibleMonsters.push(...['fire_mage', 'earth_mage']);
     rewardLevel = 9;
   }
-  if (level >= 90) {
+  if (level >= 85) {
     rewardLevel = 10;
   }
-  if (level >= 110) {
+  if (level >= 100) {
     rewardLevel = 11;
   }
-  if (level >= 130) {
+  if (level >= 115) {
     rewardLevel = 12;
   }
 
@@ -101,6 +101,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     // Divide monsters health
     monster.stats.health /= unitCount; // Divide health evenly
     monster.stats.health *= 1.3; // To account for aoe
+    monster.stats.attack /= unitCount;
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {

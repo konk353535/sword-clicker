@@ -5,8 +5,8 @@ export const FARMING_ITEMS = {
     id: 'lettice_seed',
     icon: 'letticeSeed',
     category: 'seed',
-    name: 'Lettice Seed',
-    description: 'Used to grow lettice. Useful for eating.',
+    name: 'Lettuce Seed',
+    description: 'Used to grow lettuce. Useful for eating.',
     sellPrice: 1,
     produces: 'lettice'
   },
@@ -15,7 +15,7 @@ export const FARMING_ITEMS = {
     id: 'lettice',
     icon: 'lettice',
     category: 'food',
-    name: 'Lettice',
+    name: 'Lettuce',
     description() {
       const buff = BUFFS.food_lettice;
       return buff.description({ buff });
@@ -30,7 +30,7 @@ export const FARMING_ITEMS = {
     id: 'lemon_seed',
     icon: 'lemonSeed',
     category: 'seed',
-    name: 'Lemmon Seed',
+    name: 'Lemon Seed',
     description: 'Used to grow lemon. Useful for regenerating energy.',
     sellPrice: 50,
     produces: 'lemon'
@@ -416,7 +416,7 @@ export const FARMING_ITEMS = {
     id: 'grape_fruit_seed',
     icon: 'grapeFruitSeed',
     category: 'seed',
-    name: 'grape fruit seed',
+    name: 'grapefruit seed',
     description: 'Used to grow grape fruit. Yum!',
     sellPrice: 3,
     produces: 'grape_fruit'
@@ -426,13 +426,28 @@ export const FARMING_ITEMS = {
     id: 'grape_fruit',
     icon: 'grapeFruit',
     category: 'food',
-    name: 'grape fruit',
+    name: 'grapefruit',
     description() {
       const buff = BUFFS.food_grape_fruit;
       return buff.description({ buff });
     },
     buffs: [{
       id: 'food_grape_fruit'
+    }],
+    sellPrice: 20
+  },
+
+  tamarind_honey: {
+    id: 'tamarind_honey',
+    icon: 'tamarindHoney',
+    category: 'food',
+    name: 'tamarind honey',
+    description() {
+      const buff = BUFFS.food_tamarind_honey;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_tamarind_honey'
     }],
     sellPrice: 20
   },

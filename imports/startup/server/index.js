@@ -106,18 +106,14 @@ Accounts.onCreateUser((options, user) => {
 const currentFloor = Floors.findOne();
 
 if (!currentFloor) {
-  const floorCounts = FLOORS.getWaveCounts();
+  const pointsMax = FLOORS.getNewPointCount(1, 10);
 
   // Create our first floor
   Floors.insert({
     floor: 1,
     createdAt: new Date(),
-    easyWaves: floorCounts.easy,
-    easyWavesTotal: floorCounts.easy,
-    hardWaves: floorCounts.hard,
-    hardWavesTotal: floorCounts.hard,
-    veryHardWaves: floorCounts.veryHard,
-    veryHardWavesTotal: floorCounts.veryHard,
+    points: 0,
+    pointsMax
   });
 }
 

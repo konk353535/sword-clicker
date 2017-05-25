@@ -81,7 +81,9 @@ export const DEFENSE_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostArmor'
+              icon: 'frostArmor',
+              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              name: 'Frost Armor'
             }
           }
 
@@ -113,11 +115,11 @@ export const DEFENSE_BUFFS = {
       const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
       return `
-        Reflect ${Math.round(damageReflection * 100)}% of damage taken as true damage. <br />
+        Reflect ${Math.round(damageReflection * 100)}% of damage taken as magic damage. <br />
         (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
     },
     constants: {
-      damageReflectionBase: 0.25,
+      damageReflectionBase: 0.30,
       damageReflectionPerLevel: 0.05
     },
     data: {
@@ -141,7 +143,7 @@ export const DEFENSE_BUFFS = {
         actualBattle.utils.dealDamage(totalDamage * damageReflection, {
           attacker: defender,
           defender: attacker,
-          isTrueDamage: true,
+          isMagic: true,
           tickEvents: actualBattle.tickEvents
         });
       },
@@ -277,7 +279,9 @@ export const DEFENSE_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
-        buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
+        if (buff.constants && buff.constants.constants) {
+          buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
+        }
         target.stats.damageTaken *= (1 - (99.9 / 100));
       },
 

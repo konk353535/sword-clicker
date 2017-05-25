@@ -15,8 +15,8 @@ export const FAIRY_STEEL_ITEMS = {
     stats: {
       attack: 8,
       attackMax: 20,
-      attackSpeed: FAST_SPEED,
-      accuracy: 23
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 33
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const FAIRY_STEEL_ITEMS = {
       attack: 21,
       attackMax: 33,
       attackSpeed: FAST_SPEED,
-      accuracy: 37,
+      accuracy: 47,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const FAIRY_STEEL_ITEMS = {
       attack: 26,
       attackMax: 39,
       attackSpeed: FAST_SPEED,
-      accuracy: 43,
+      accuracy: 53,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const FAIRY_STEEL_ITEMS = {
       attack: 41,
       attackMax: 54,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 54,
+      accuracy: 64,
     },
     extraStats: {
       attack: 3,
@@ -165,7 +165,7 @@ export const FAIRY_STEEL_ITEMS = {
       attack: 33,
       attackMax: 45,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 45,
+      accuracy: 55,
     },
     extraStats: {
       attack: 4,
@@ -195,7 +195,7 @@ export const FAIRY_STEEL_ITEMS = {
       attack: 33,
       attackMax: 93,
       attackSpeed: SLOW_SPEED,
-      accuracy: 33,
+      accuracy: 43,
     },
     extraStats: {
       attack: 4,

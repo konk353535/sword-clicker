@@ -15,8 +15,8 @@ export const ADAMANTIUM_ITEMS = {
     stats: {
       attack: 5,
       attackMax: 16,
-      attackSpeed: FAST_SPEED,
-      accuracy: 18
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 24
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const ADAMANTIUM_ITEMS = {
       attack: 17,
       attackMax: 27,
       attackSpeed: FAST_SPEED,
-      accuracy: 30,
+      accuracy: 36,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const ADAMANTIUM_ITEMS = {
       attack: 20,
       attackMax: 30,
       attackSpeed: FAST_SPEED,
-      accuracy: 34,
+      accuracy: 40,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const ADAMANTIUM_ITEMS = {
       attack: 32,
       attackMax: 44,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 44,
+      accuracy: 50,
     },
     extraStats: {
       attack: 2,
@@ -165,7 +165,7 @@ export const ADAMANTIUM_ITEMS = {
       attack: 27,
       attackMax: 37,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 37,
+      accuracy: 43,
     },
     extraStats: {
       attack: 3,
@@ -195,7 +195,7 @@ export const ADAMANTIUM_ITEMS = {
       attack: 26,
       attackMax: 80,
       attackSpeed: SLOW_SPEED,
-      accuracy: 27,
+      accuracy: 33,
     },
     extraStats: {
       attack: 3,

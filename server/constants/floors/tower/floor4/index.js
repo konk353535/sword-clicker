@@ -1,109 +1,93 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
+import { LEVEL_FOUR_LOOT_TABLE } from '/server/constants/floors/levels/level4';
 
 export const TOWER_FLOOR_4 = {
-  easy: {
-    name: 'Jungle Bridge',
-    image: 'jungleBridge.jpeg',
-    floor: 4,
-    rewards: orderLootTable([{
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'ore_carbon', amount: 3 },
-        { type: 'gold', amount: 250 }
-      ]
-    }, {
-      chance: 1 / 32,
+  1: {
+    name: 'Lonely Oak',
+    enemies: ['bird'],
+    rewards: []
+  },
+  2: {
+    name: 'Little Burrow',
+    enemies: ['wombat'],
+    rewards: LEVEL_FOUR_LOOT_TABLE
+  },
+  3: {
+    name: 'Herb Garden',
+    enemies: ['butterfly'],
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'juniper', amount: 1 }
       ]
-    }])
+    }]))
   },
-
-  hard: {
-    name: 'Lone Island',
-    image: 'loneIsland.jpeg',
-    floor: 4,
-    rewards: orderLootTable([{
-      chance: 1 / 2,
-      rewards: [{ type: 'gold', amount: 400 }]
-    }, {
-      chance: 1 / 4,
+  4: {
+    name: 'Deep Mine',
+    enemies: ['goblin'],
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'carbon_bar', amount: 2 },
-        { type: 'item', itemId: 'oak_log', amount: 15 },
-        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+        { type: 'gold', amount: 750 }
       ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'carbon_shield', amount: 1 },
-        { type: 'item', itemId: 'carbon_spear', amount: 1 },
-        { type: 'item', itemId: 'carbon_long_sword', amount: 1 },
-        { type: 'item', itemId: 'carbon_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'carbon_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'carbon_helmet', amount: 1 },
-        { type: 'item', itemId: 'carbon_dagger', amount: 1 },
-        { type: 'item', itemId: 'carbon_short_sword', amount: 1 },
-        { type: 'item', itemId: 'carbon_battle_axe', amount: 1 }
-      ]
-    }, {
+    }]))
+  },
+  5: {
+    name: 'Small Water Alter',
+    enemies: ['blue_mage'],
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'blue_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shorts', amount: 1 }
       ]
-    }])
+    }]))
   },
-
-  veryHard: {
-    name: 'Quartz Lake',
-    image: 'quartzLake.jpeg',
-    floor: 4,
+  6: {
+    name: 'Suspicious Mine',
+    enemies: ['angry_miner'],
     rewards: orderLootTable([{
       chance: 1 / 4,
-      rewards: [{ type: 'gold', amount: 800 }]
+      rewards: [
+        { type: 'item', itemId: 'ore_carbon', amount: 1 },
+        { type: 'item', itemId: 'oak_log', amount: 1 }
+      ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'carbon_shield', amount: 1 },
-        { type: 'item', itemId: 'carbon_spear', amount: 1 },
-        { type: 'item', itemId: 'carbon_long_sword', amount: 1 },
-        { type: 'item', itemId: 'carbon_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'carbon_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'carbon_helmet', amount: 1 },
-        { type: 'item', itemId: 'carbon_dagger', amount: 1 },
-        { type: 'item', itemId: 'carbon_short_sword', amount: 1 },
-        { type: 'item', itemId: 'carbon_battle_axe', amount: 1 },
+        { type: 'item', itemId: 'carbon_bar', amount: 1 }
       ]
     }, {
-      chance: 1 / 16,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'adamantium_essence', amount: 3 },
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 }
+      ]
+    }])
+  },
+  7: {
+    name: 'Earthen Mage',
+    enemies: ['earth_mage'],
+    rewards: [{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'carbon_scimitar', amount: 1 },
-        { type: 'item', itemId: 'carbon_broad_sword', amount: 1 }
+        { type: 'item', itemId: 'carbon_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 }
       ]
-    }])
+    }]
   },
 
   boss: {
     enemy: { id: 'boss_spartan', amount: 1 },
-    rewards: orderLootTable([{
-      chance: 1,
-      rewards: [
-        { type: 'item', itemId: 'carbon_scimitar', amount: 1 },
-        { type: 'item', itemId: 'carbon_broad_sword', amount: 1 }
-      ]
-    }])
+    rewards: LEVEL_FOUR_LOOT_TABLE
   },
 
   floorRewards: [
@@ -112,9 +96,12 @@ export const TOWER_FLOOR_4 = {
       itemId: 'mithril_dwarven_idol',
       icon: ITEMS['mithril_dwarven_idol'].icon,
       name: ITEMS['mithril_dwarven_idol'].name,
-      amount: 30,
       baseStats: ITEMS['mithril_dwarven_idol'].stats,
       extraStats: ITEMS['mithril_dwarven_idol'].extraStats
+    },
+    {
+      type: 'gold',
+      amount: 15000
     }
   ]
 }

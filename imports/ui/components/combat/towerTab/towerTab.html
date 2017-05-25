@@ -1,130 +1,178 @@
 <template name="towerTab">
-  <h1 class="d-flex">
-    The Tower
-    <div class="dropdown ml-2">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Floor {{usersCurrentFloor}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        {{#each floorsList}}
-          <a class="dropdown-item select-floor" href="#" data-floor={{this}}>Floor {{this}}</a>
-        {{/each}}
-      </div>
-    </div>
-  </h1>
-
-  <!-- Make this a tooltip
-  <p>
-    The community works together to make progress in the tower.<br />
-    When the community clears all the waves associated to a floor a boss becomes fightable.<br />
-    Once the boss is defeated the next floor is unlocked for the entire community.<br />
-  </p>
-  -->
-
-  {{#unless equippedItemsMap.mainHand}}
-    <div class="alert alert-danger">
-      Warning you don't have a weapon equipped! You can equip one in the 'Equipments and Stats' tab.
-    </div>
-  {{/unless}}
-
-  <!-- List stuff! -->
-  <table class="table table-responsive table-hover">
-    <thead>
-      <tr>
-        <th class="align-middle text-center">Name</th>
-        <th class="align-middle text-center">Image</th>
-        {{#if waveDetails}}
-          <th class="align-middle text-center">
-            Remaining Waves 
-          </th>
-        {{/if}}
-        <th class="align-middle text-center">Difficulty</th>
-        <th class="align-middle text-center">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="text-center battle-easy-row cursor-pointer">
-        <td class="align-middle">{{floorDetails.easy.name}}</td>
-        <td class="align-middle"><img src="images/{{floorDetails.easy.image}}" class="floor-image"></td>
-        {{#if waveDetails}}
-          <td class="align-middle text-center">
-            {{waveDetails.easyWaves}} / {{waveDetails.easyWavesTotal}}
-          </td>
-        {{/if}}
-        <td class="align-middle">Easy</td>
-        <td class="align-middle">
-          <button class="btn btn-secondary battle-easy-btn">
-            Find Battle
+  <div class="d-flex">
+    <div class="d-flex flex-grow flex-column">
+      <h1 class="d-flex">
+        The Tower
+        <div class="dropdown mx-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Floor {{usersCurrentFloor}}
           </button>
-        </td>
-      </tr>
-      <tr class="text-center battle-hard-row cursor-pointer">
-        <td class="align-middle">{{floorDetails.hard.name}}</td>
-        <td class="align-middle"><img src="images/{{floorDetails.hard.image}}" class="floor-image"></td>
-        {{#if waveDetails}}
-          <td class="align-middle text-center">
-            {{waveDetails.hardWaves}} / {{waveDetails.hardWavesTotal}}
-          </td>
-        {{/if}}
-        <td class="align-middle">Hard</td>
-        <td class="align-middle">
-          <button class="btn btn-secondary battle-hard-btn">
-            Find Battle
-          </button>
-        </td>
-      </tr>
-      <tr class="text-center battle-veryHard-row cursor-pointer">
-        <td class="align-middle">{{floorDetails.veryHard.name}}</td>
-        <td class="align-middle"><img src="images/{{floorDetails.veryHard.image}}" class="floor-image"></td>
-        {{#if waveDetails}}
-          <td class="align-middle text-center">
-            {{waveDetails.veryHardWaves}} / {{waveDetails.veryHardWavesTotal}}
-          </td>
-        {{/if}}
-        <td class="align-middle">Very Hard</td>
-        <td class="align-middle">
-          <button class="btn btn-secondary battle-veryHard-btn">
-            Find Battle
-          </button>
-        </td>
-      </tr>
-      {{#if waveDetails}}
-        <tr class="text-center {{#if cantBossBattle}}disabled-row{{/if}} battle-boss-row cursor-pointer">
-          <td class="align-middle">Final Room</td>
-          <td class="align-middle"></td>
-          <td class="align-middle text-center">
-            {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
-              Resets in {{moDiff bossResetDate moNow 'hours'}} hours
-            {{else}}
-              Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
-            {{/if}}
-          </td>
-          <td class="align-middle">
-            {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
-          </td>
-          <td class="align-middle">
-            <button class="btn btn-danger battle-boss-btn {{#if cantBossBattle}}disabled{{/if}}">
-              Boss Battle
-            </button>
-          </td>
-        </tr>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {{#each floorsList}}
+              <a class="dropdown-item select-floor" href="#" data-floor={{this}}>Floor {{this}}</a>
+            {{/each}}
+          </div>
+        </div>
+        {{> helpIcon title='The Tower' content=theTowerHelpContent}}
+      </h1>
+
+      {{#unless equippedItemsMap.mainHand}}
+        <div class="alert alert-danger">
+          Warning you don't have a weapon equipped! You can equip one in the 'Equipments and Stats' tab.
+        </div>
+      {{/unless}}
+
+      {{#if currentCommunityfloor}}
+        <div class="d-flex flex-column flex-grow">
+          <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
+            <button class="btn btn-primary battle-deeper">Battle Deeper</button>
+            <label class="official-attempt mt-1">
+              Official Attempt ({{combat.towerContributionsToday}} / 3)
+              <input type="checkbox" checked={{combat.isTowerContribution}}>
+            </label>
+          </div>
+          {{#unless cantBossBattle}}
+            <div class="my-3 d-flex flex-column flex-grow align-items-center justify-content-center">
+              <button class="btn btn-danger battle-boss-btn mb-1 {{#if cantBossBattle}}disabled{{/if}}">
+                Battle
+              </button>
+              <div>
+                Boss {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
+              </div>
+              {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
+                Resets in {{moDiff bossResetDate moNow 'hours'}} hours
+              {{else}}
+                Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
+              {{/if}}
+            </div>
+          {{/unless}}
+        </div>
+      {{else}}
+        <table class="table table-responsive table-hover">
+          <thead>
+            <tr>
+              <th class="align-middle text-center">Room #</th>
+              <th class="align-middle text-center">Name</th>
+              <th class="align-middle text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center battle-room-1-row cursor-pointer">
+              <td class="align-middle">Room 1</td>
+              <td class="align-middle">{{floorDetails.[1].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-1-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-2-row cursor-pointer">
+              <td class="align-middle">Room 2</td>
+              <td class="align-middle">{{floorDetails.[2].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-2-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-3-row cursor-pointer">
+              <td class="align-middle">Room 3</td>
+              <td class="align-middle">{{floorDetails.[3].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-3-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-4-row cursor-pointer">
+              <td class="align-middle">Room 4</td>
+              <td class="align-middle">{{floorDetails.[4].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-4-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-5-row cursor-pointer">
+              <td class="align-middle">Room 5</td>
+              <td class="align-middle">{{floorDetails.[5].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-5-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-6-row cursor-pointer">
+              <td class="align-middle">Room 6</td>
+              <td class="align-middle">{{floorDetails.[6].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-6-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-7-row cursor-pointer">
+              <td class="align-middle">Room 7</td>
+              <td class="align-middle">{{floorDetails.[7].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-7-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       {{/if}}
-    </tbody>
-  </table>
 
-  {{#if waveDetails}}
-    <h2 class="d-flex">
-      <span class="mr-1">Floor Rewards</span>
-      {{> helpIcon title='How to get rewards' content=floorRewardsHelpContent}}
-    </h2>
-    <div class="d-flex align-items-center">
-      <img src="/icons/treasureChest.svg" class="large-icon">
-      {{#each floorDetails.rewards}}
-        <div class="icon-box item-icon-container small ml-3">
-          {{ > recipeIcon recipe=this}}
-        </div> x {{this.amount}}
-      {{/each}}
     </div>
-  {{/if}}
+    {{#if currentCommunityfloor}}
+      <div class="flex-grow">
+        <h1>Stats</h1>
+        <h2 class="my-3">Progress</h2>
+        <div>{{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
+        <h2 class="my-3">Your contribution</h2>
+        <div>
+          {{#if myFloorContributions.points}}
+            {{myFloorContributions.points}}pts
+            (top {{myFloorContributions.rankingPercentage}} %)
+          {{else}}
+            No contributions
+          {{/if}}
+        </div>
+        <h2 class="my-3">Your estimated rewards</h2>
+        <div class="d-flex align-items-center">
+          <img src="/icons/treasureChest.svg" class="large-icon">
+          {{#each estimatedRewards}}
+            {{#if $eq this.type 'item'}}
+              <div class="icon-box item-icon-container small ml-3">
+                {{ > recipeIcon recipe=this}}
+              </div>
+              {{this.chance}}% chance
+            {{else}}
+              <img src="/icons/gold.svg" class="small-icon"> {{this.goldAmount}}
+            {{/if}}
+          {{/each}}
+        </div>
+        <!--
+        <h2 class="d-flex my-3">
+          <span class="mr-1">Best Possible Rewards</span>
+          {{> helpIcon title='How to get rewards' content=floorRewardsHelpContent}}
+        </h2>
 
+        <div class="d-flex align-items-center">
+          <img src="/icons/treasureChest.svg" class="large-icon">
+          {{#each floorDetails.rewards}}
+            {{#if $eq this.type 'item'}}
+              <div class="icon-box item-icon-container small ml-3">
+                {{ > recipeIcon recipe=this}}
+              </div>
+            {{else}}
+              <img src="/icons/gold.svg" class="small-icon"> {{this.amount}}
+            {{/if}}
+          {{/each}}
+        </div>
+        -->
+      </div>
+    {{/if}}
+  </div>
 </template>

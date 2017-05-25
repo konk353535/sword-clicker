@@ -15,8 +15,8 @@ export const CARBON_ITEMS = {
     stats: {
       attack: 5,
       attackMax: 7,
-      attackSpeed: FAST_SPEED,
-      accuracy: 7
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 10
     },
     extraStats: {
       attack: 4,
@@ -76,7 +76,7 @@ export const CARBON_ITEMS = {
       attack: 10,
       attackMax: 16,
       attackSpeed: FAST_SPEED,
-      accuracy: 15,
+      accuracy: 18,
     },
     extraStats: {
       attack: 3,
@@ -106,7 +106,7 @@ export const CARBON_ITEMS = {
       attack: 14,
       attackMax: 22,
       attackSpeed: FAST_SPEED,
-      accuracy: 22,
+      accuracy: 25,
     },
     extraStats: {
       attack: 4,
@@ -136,7 +136,7 @@ export const CARBON_ITEMS = {
       attack: 22,
       attackMax: 32,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 32,
+      accuracy: 35,
     },
     extraStats: {
       attack: 5,
@@ -166,7 +166,7 @@ export const CARBON_ITEMS = {
       attack: 18,
       attackMax: 27,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 27,
+      accuracy: 30,
     },
     extraStats: {
       attack: 5,
@@ -196,7 +196,7 @@ export const CARBON_ITEMS = {
       attack: 15,
       attackMax: 60,
       attackSpeed: SLOW_SPEED,
-      accuracy: 20,
+      accuracy: 23,
     },
     extraStats: {
       attack: 7,

@@ -15,8 +15,8 @@ export const MITHRIL_ITEMS = {
     stats: {
       attack: 4,
       attackMax: 14,
-      attackSpeed: FAST_SPEED,
-      accuracy: 16
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 21
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const MITHRIL_ITEMS = {
       attack: 16,
       attackMax: 25,
       attackSpeed: FAST_SPEED,
-      accuracy: 28,
+      accuracy: 33,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const MITHRIL_ITEMS = {
       attack: 18,
       attackMax: 28,
       attackSpeed: FAST_SPEED,
-      accuracy: 31,
+      accuracy: 36,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const MITHRIL_ITEMS = {
       attack: 29,
       attackMax: 40,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 40,
+      accuracy: 45,
     },
     extraStats: {
       attack: 2,
@@ -165,7 +165,7 @@ export const MITHRIL_ITEMS = {
       attack: 25,
       attackMax: 34,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 34,
+      accuracy: 40,
     },
     extraStats: {
       attack: 2,
@@ -195,7 +195,7 @@ export const MITHRIL_ITEMS = {
       attack: 24,
       attackMax: 73,
       attackSpeed: SLOW_SPEED,
-      accuracy: 25,
+      accuracy: 30,
     },
     extraStats: {
       attack: 3,

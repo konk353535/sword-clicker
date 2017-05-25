@@ -41,8 +41,8 @@ Template.meditateTab.helpers({
 
     const now = moment();
     let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
-    if (hoursElapsed > 8) {
-      hoursElapsed = 8;
+    if (hoursElapsed > 24) {
+      hoursElapsed = 24;
     }
 
     combat.totalXpGain = (totalLevels * 10 * hoursElapsed).toFixed(2);

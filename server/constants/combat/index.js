@@ -10,11 +10,11 @@ export const BUFFS = buffs;
 export const COMBAT_ITEMS = combatItems;
 export const COMBAT = {
 
-  baseEnergyMax: 20,
+  baseEnergyMax: 40,
 
-  baseEnergyRegenPerMinute: 0.2, // 1 every 5 minutes
+  baseEnergyRegenPerMinute: 0.35, // 1 every 3 minutes
 
-  baseHealthRegenPerMinute: 5,
+  baseHealthRegenPerMinute: 30,
 
   energyConsumption: {
     easy: 1,
@@ -33,6 +33,7 @@ export const COMBAT = {
     'healthMax',
     'damageTaken',
     'magicPower',
-    'armor'
+    'armor',
+    'magicArmor'
   ]
 }

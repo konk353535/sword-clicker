@@ -153,11 +153,16 @@ Meteor.methods({
       return;
     }
 
-    // Remove the nom
-    consumeItem(targetItem, 1);
-
     // Fetch users combat
     const currentCombat = Combat.findOne({ owner: Meteor.userId() });
+
+    // If there already consuming food, return
+    if (currentCombat.buffs.length > 0) {
+      throw new Meteor.Error("already-eating", 'Your already eating food');
+    }
+
+    // Remove the nom
+    consumeItem(targetItem, 1);
 
     // Apply nom specific properties
     const buffs = JSON.parse(JSON.stringify(itemConstants.buffs));

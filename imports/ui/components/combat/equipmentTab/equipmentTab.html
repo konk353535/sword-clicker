@@ -6,7 +6,7 @@
     {{else}}
       <p>You have no items to equip.</p>
     {{/if}}
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
       {{#each unequippedCombatItems}}
         {{> itemIcon item=this classes="small"}}
       {{/each}}

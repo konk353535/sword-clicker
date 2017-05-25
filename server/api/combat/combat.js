@@ -6,6 +6,7 @@ import { Groups } from '/imports/api/groups/groups';
 
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
+import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
 import { attackSpeedTicks } from '/server/api/battles/battles';
@@ -132,6 +133,16 @@ Meteor.methods({
     });
   },
 
+  'combat.updateIsTowerContribution'(newValue) {
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        isTowerContribution: newValue
+      }
+    });
+  },
+
   'combat.stopMeditation'() {
     // Time since meditation
     const combat = Combat.findOne({
@@ -145,8 +156,8 @@ Meteor.methods({
     const now = moment();
     let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
 
-    if (hoursElapsed > 8) {
-      hoursElapsed = 8; 
+    if (hoursElapsed > 24) {
+      hoursElapsed = 24; 
     }
 
     // Skills level x 10xp / hour
@@ -158,7 +169,7 @@ Meteor.methods({
     }).fetch();
 
     combatSkills.forEach((skill) => {
-      addXp(skill.type, hoursElapsed * 10 * skill.level)
+      addXp(skill.type, hoursElapsed * 15 * skill.level)
     });
 
     Combat.update({

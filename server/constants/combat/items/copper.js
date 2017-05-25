@@ -15,7 +15,7 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 1, // Deal a min of 1 damage
       attackMax: 2, // Deal a max of 2 damage
-      attackSpeed: FAST_SPEED, // Attacks per second
+      attackSpeed: VERY_FAST_SPEED, // Attacks per second
       accuracy: 1 // Chance for weapon to hit
     }
   },

@@ -1,127 +1,99 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
+import { LEVEL_NINE_LOOT_TABLE } from '/server/constants/floors/levels/level9';
 
 export const TOWER_FLOOR_9 = {
-  easy: {
-    name: 'Jungle Bridge',
-    image: 'jungleBridge.jpeg',
-    floor: 9,
-    rewards: orderLootTable([{
+  1: {
+    name: 'Flaming House',
+    enemies: ['demon'],
+    rewards: []
+  },
+  2: {
+    name: 'Jungle',
+    enemies: ['lizard'],
+    rewards: LEVEL_NINE_LOOT_TABLE
+  },
+  3: {
+    name: 'savannah',
+    enemies: ['elephant'],
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'ore_fairy_steel', amount: 3 },
-        { type: 'gold', amount: 500 }
+        { type: 'item', itemId: 'lettice', amount: 50 }
       ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'cardoon_seed', amount: 1 }
-      ]
-    }])
+    }]))
   },
-
-  hard: {
-    name: 'Lone Island',
-    image: 'loneIsland.jpeg',
-    floor: 9,
-    rewards: orderLootTable([{
-      chance: 1 / 2,
-      rewards: [{ type: 'gold', amount: 400 }]
-    }, {
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'fairy_steel_bar', amount: 2 },
-        { type: 'item', itemId: 'fiery_log', amount: 15 }
-      ]
-    }, {
+  4: {
+    name: 'Place of fairies',
+    enemies: ['fairy_steel_spirit'],
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'cursed_essence', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_shield', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_spear', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_long_sword', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_helmet', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_dagger', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_short_sword', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_battle_axe', amount: 1 }
+        { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
       ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'fairy_steel_horned_helmet', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 }
-      ]
-    }])
+    }]))
   },
-
-  veryHard: {
-    name: 'Quartz Lake',
-    image: 'quartzLake.jpeg',
-    floor: 9,
+  5: {
+    name: 'Fire Temple',
+    enemies: ['fire_mage'],
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'ruby_staff', amount: 1 }
+      ]
+    }]))
+  },
+  6: {
+    name: 'Suspicious Mine',
+    enemies: ['angry_miner'],
     rewards: orderLootTable([{
       chance: 1 / 4,
       rewards: [
-        { type: 'gold', amount: 800 },
-        { type: 'item', itemId: 'cursed_essence', amount: 1 },
+        { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
+        { type: 'item', itemId: 'elk_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'fairy_steel_shield', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_spear', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_long_sword', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_plate_legs', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_chest_plate', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_helmet', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_dagger', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_short_sword', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_battle_axe', amount: 1 },
+        { type: 'item', itemId: 'fairy_steel_bar', amount: 1 }
       ]
     }, {
-      chance: 1 / 16,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_horned_helmet', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
       ]
-    }, {
+    }])
+  },
+  7: {
+    name: 'Master Farmers Market',
+    enemies: ['farmer'],
+    rewards: [{
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'fairy_steel_scimitar', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
+        { type: 'item', itemId: 'celery_seed', amount: 1 },
+        { type: 'item', itemId: 'dragon_fruit', amount: 3 }
       ]
-    }, {
-      chance: 1 / 1024,
-      rewards: [
-        { type: 'item', itemId: 'heavens_descent_tome', amount: 1 },
-      ]
-    }])
+    }]
   },
 
   boss: {
-    enemy: { id: 'boss_phenoix', amount: 1 },
-    rewards: orderLootTable([{
-      chance: 1,
-      rewards: [
-        { type: 'item', itemId: 'fairy_steel_scimitar', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_broad_sword', amount: 1 }
-      ]
-    }])
+    enemy: { id: 'boss_gorilla', amount: 1 },
+    rewards: LEVEL_NINE_LOOT_TABLE
   },
 
   floorRewards: [
     {
       type: 'item',
-      itemId: 'fairy_steel_dwarven_idol',
-      icon: ITEMS['fairy_steel_dwarven_idol'].icon,
-      name: ITEMS['fairy_steel_dwarven_idol'].name,
-      amount: 10,
-      baseStats: ITEMS['fairy_steel_dwarven_idol'].stats,
-      extraStats: ITEMS['fairy_steel_dwarven_idol'].extraStats
+      itemId: 'cursed_dwarven_idol',
+      icon: ITEMS['cursed_dwarven_idol'].icon,
+      name: ITEMS['cursed_dwarven_idol'].name,
+      baseStats: ITEMS['cursed_dwarven_idol'].stats,
+      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
+    },
+    {
+      type: 'gold',
+      amount: 150000
     }
   ]
 }

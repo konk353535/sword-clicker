@@ -3,20 +3,31 @@ import { personalQuestMonsterGenerator } from './generators/personalQuest.js';
 import { easyTowerMonsterGenerator } from './generators/easyTower.js';
 import { hardTowerMonsterGenerator } from './generators/hardTower.js';
 import { veryHardTowerMonsterGenerator } from './generators/veryHardTower.js';
+import { genericTowerMonsterGenerator } from './generators/genericTower.js';
 
 export const FLOORS = Object.assign({
 
-  getWaveCounts() {
-    const activePlayers = 1;
-
-    // Total # waves = weekly activePlayers rounded to closest 100
-    const totalWaves = 1000;
-
-    return {
-      easy: totalWaves * 0.7,
-      hard: totalWaves * 0.2,
-      veryHard: totalWaves * 0.05
+  getNewPointCount(floor, activeTowerUsers) {
+    const floorDays = {
+      1: 1, // Copper
+      2: 1, // Iron
+      3: 1, // Steel
+      4: 2, // Carbon
+      5: 2, // Mithril
+      6: 3, // Adamantium
+      7: 5, // Orichalcum
+      8: 8, // Cobalt
+      9: 10, // Fairy Steel
+      10: 15 // Cursed
     }
+
+    // Max points per player, per day
+    let maxPoints = 0;
+    for (let i = 0; i < 7; i++) {
+      maxPoints += Math.pow(1.7, i);
+    }
+
+    return Math.round(activeTowerUsers * maxPoints * floorDays[floor] * 3);
   },
 
   // Given a level, create a monster for personal quest
@@ -25,6 +36,7 @@ export const FLOORS = Object.assign({
   // Given a floor, create a monster for tower
   easyTowerMonsterGenerator,
   hardTowerMonsterGenerator,
-  veryHardTowerMonsterGenerator
+  veryHardTowerMonsterGenerator,
+  genericTowerMonsterGenerator
 
 }, TOWER_FLOORS);

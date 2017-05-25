@@ -84,63 +84,59 @@ Meteor.methods({
       throw new Meteor.Error("only-alone", "You can only do personal quests alone");
     }
 
-    if (!wave) {
-      wave = _.random(1, 10);
+    if (level !== maxLevel && wave !== maxWave + 1) {
+      wave = _.random(1, 5);
     }
 
     startBattle({ level, wave });
   },
 
-  'battles.findBattle'(floor, difficulty) {
-    if (!_.contains(['easy', 'hard', 'veryHard', 'boss'], difficulty)) {
-      return;
-    }
+  'battles.findTowerBattle'(floor, room) {
 
     // Ensure the floor specified is currently open
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
 
-    if (floor > currentFloor.floor) {
+    if (floor > currentCommunityFloor.floor) {
       throw new Meteor.Error("no-sir", "Dont have access to that floor!");
+    } else if (room > 7 || room < 1) {
+      throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
-    let isTowerContribution = true;
-
-    if (currentFloor[`${difficulty}Waves`] <= 0) {
-      isTowerContribution = false;
+    let isExplorationRun = false;
+    if (floor === currentCommunityFloor.floor && room !== 'boss') {
+      isExplorationRun = true;
+      room = 1;
     }
 
-    if (difficulty === 'boss' && currentFloor.floor == floor) {
-      let canBossBattle = false;
-      if (currentFloor.easyWaves <= 0) {
-        if (currentFloor.hardWaves <= 0) {
-          if (currentFloor.veryHardWaves <= 0) {
-            canBossBattle = true;
-          }
-        }
-      }
+    let isTowerContribution = false;
+    let canBossBattle = false;
 
-      if (!canBossBattle) {
-        throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
+    if (currentCommunityFloor.floor === floor) {
+      isTowerContribution = true;
+      if (currentCommunityFloor.points >= currentCommunityFloor.pointsMax) {
+        canBossBattle = true;
+      }      
+    }
+
+    if (room === 'boss') {
+      if (canBossBattle) {
+        const bossHealth = currentCommunityFloor.health;
+        return startBattle({ floor, room, health: bossHealth, isTowerContribution: true });
       } else {
-        const bossHealth = currentFloor.health;
-        return  startBattle({ floor, difficulty, health: bossHealth, isTowerContribution: true });
+        throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
       }
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle({ floor, difficulty, isTowerContribution });
+    startBattle({ floor, room, isTowerContribution, isExplorationRun });
   },
 
   'battles.getWaveDetails'() {
     const currentFloor = Floors.findOne({ floorComplete: false });
 
     return {
-      easyWaves: currentFloor.easyWaves,
-      easyWavesTotal: currentFloor.easyWavesTotal,
-      hardWaves: currentFloor.hardWaves,
-      hardWavesTotal: currentFloor.hardWavesTotal,
-      veryHardWaves: currentFloor.veryHardWaves,
-      veryHardWavesTotal: currentFloor.veryHardWavesTotal,
+      points: Math.floor(currentFloor.points),
+      pointsMax: currentFloor.pointsMax,
       maxFloor: currentFloor.floor
     }
   },
@@ -159,29 +155,20 @@ Meteor.methods({
     if (currentFloor.floor == floorNumber) {
       return {
         waveDetails: {
-          easyWaves: currentFloor.easyWaves,
-          easyWavesTotal: currentFloor.easyWavesTotal,
-          hardWaves: currentFloor.hardWaves,
-          hardWavesTotal: currentFloor.hardWavesTotal,
-          veryHardWaves: currentFloor.veryHardWaves,
-          veryHardWavesTotal: currentFloor.veryHardWavesTotal,
           health: currentFloor.health,
-          healthMax: currentFloor.healthMax
+          healthMax: currentFloor.healthMax,
+          points: Math.floor(currentFloor.points),
+          pointsMax: currentFloor.pointsMax
         },
         floorDetails: {
-          easy: {
-            name: specifiedFloorConstants.easy.name,
-            image: specifiedFloorConstants.easy.image
-          },
-          hard: {
-            name: specifiedFloorConstants.hard.name,
-            image: specifiedFloorConstants.hard.image
-          },
-          veryHard: {
-            name: specifiedFloorConstants.veryHard.name,
-            image: specifiedFloorConstants.veryHard.image
-          },
-          rewards: specifiedFloorConstants.floorRewards
+          rewards: specifiedFloorConstants.floorRewards,
+          1: { name: specifiedFloorConstants[1].name },
+          2: { name: specifiedFloorConstants[2].name },
+          3: { name: specifiedFloorConstants[3].name },
+          4: { name: specifiedFloorConstants[4].name },
+          5: { name: specifiedFloorConstants[5].name },
+          6: { name: specifiedFloorConstants[6].name },
+          7: { name: specifiedFloorConstants[7].name }
         },
         maxFloor: currentFloor.floor
       }
@@ -189,18 +176,13 @@ Meteor.methods({
 
     return {
       floorDetails: {
-        easy: {
-          name: specifiedFloorConstants.easy.name,
-          image: specifiedFloorConstants.easy.image
-        },
-        hard: {
-          name: specifiedFloorConstants.hard.name,
-          image: specifiedFloorConstants.hard.image
-        },
-        veryHard: {
-          name: specifiedFloorConstants.veryHard.name,
-          image: specifiedFloorConstants.veryHard.image
-        }
+        1: { name: specifiedFloorConstants[1].name },
+        2: { name: specifiedFloorConstants[2].name },
+        3: { name: specifiedFloorConstants[3].name },
+        4: { name: specifiedFloorConstants[4].name },
+        5: { name: specifiedFloorConstants[5].name },
+        6: { name: specifiedFloorConstants[6].name },
+        7: { name: specifiedFloorConstants[7].name }
       },
       maxFloor: currentFloor.floor
     }
@@ -223,6 +205,40 @@ Meteor.methods({
       },
       limit
     }).fetch()
+  },
+
+  'battles.myFloorContributions'() {
+    // current floor contribution + ranking
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
+    // Fetch there waveScores
+    const userWaveScores = FloorWaveScores.findOne({
+      owner: Meteor.userId(),
+      floor: currentCommunityFloor.floor
+    });
+
+    console.log(userWaveScores);
+
+    if (userWaveScores) {
+      // Get ranking
+      const userRanking = FloorWaveScores.find({
+        floor: currentCommunityFloor.floor,
+        points: {
+          $gte: userWaveScores.points
+        }
+      }).count();
+
+      // Total Rankings
+      const totalRankings = FloorWaveScores.find({
+        floor: currentCommunityFloor.floor
+      }).count();
+
+      return {
+        points: Math.round(userWaveScores.points),
+        rank: userRanking,
+        total: totalRankings,
+        rankingPercentage: Math.round((userRanking / totalRankings) * 100)
+      }
+    }
   },
 
   'battles.castAbility'(battleId, abilityId, options) {

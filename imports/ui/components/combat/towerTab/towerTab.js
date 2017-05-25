@@ -9,6 +9,7 @@ import { Battles } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
+import { Combat } from '/imports/api/combat/combat.js';
 
 import './towerTab.html';
 
@@ -26,8 +27,12 @@ Template.towerTab.onCreated(function bodyOnCreated() {
     }
   });
 
-  Tracker.autorun(() => {
+  Meteor.call('battles.myFloorContributions', (err, res) => {
+    console.log(res);
+    this.state.set('myFloorContributions', res);
+  });
 
+  Tracker.autorun(() => {
     Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
       if (err) {
         console.log(err);
@@ -38,6 +43,7 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       }
     });
   });
+
 });
 
 const findBattleHandler = function (err, res) {
@@ -55,20 +61,44 @@ Template.towerTab.events({
     Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
   },
 
-  'click .battle-easy-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'easy', findBattleHandler);
+  'click .battle-deeper'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
   },
 
-  'click .battle-hard-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'hard', findBattleHandler);
+  'click .battle-room-1-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
   },
 
-  'click .battle-veryHard-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'veryHard', findBattleHandler);
+  'click .battle-room-2-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 2, findBattleHandler);
   },
 
-  'click .battle-boss-row'(event, instance) {
-    Meteor.call('battles.findBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);    
+  'click .battle-room-3-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 3, findBattleHandler);
+  },
+
+  'click .battle-room-4-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 4, findBattleHandler);
+  },
+
+  'click .battle-room-5-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 5, findBattleHandler);
+  },
+
+  'click .battle-room-6-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 6, findBattleHandler);
+  },
+
+  'click .battle-room-7-row'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 7, findBattleHandler);
+  },
+
+  'click .battle-boss-btn'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
+  },
+
+  'change .official-attempt input'(event, instance) {
+     Meteor.call('combat.updateIsTowerContribution', event.target.checked);
   }
 })
 
@@ -86,21 +116,74 @@ Template.towerTab.helpers({
       </p>`;
   },
 
+  theTowerHelpContent() {
+    return `
+      <p>
+        <b>What</b><br />
+        The community must work together to progress through the 'Eternal Tower'
+      </p>
+      <p>
+        <b>Why</b><br />
+        The top players in point contributions will recieve a powerful reward (see bottom of page)
+      </p>
+      <p>
+        <b>How</b><br />
+        Groups of 1-5 players. Further you make it, more points you get.<br />
+        3 official attempts a day. Subsequent attempts won't contribute points.
+      </p>`
+  },
+
+  estimatedRewards() {
+    const instance = Template.instance();
+    const myContributions = instance.state.get('myFloorContributions') || {};
+    const floorDetails = instance.state.get('floorDetails');
+    const percentRank = myContributions.rankingPercentage || 100;
+    return floorDetails.rewards.map((reward) => {
+      if (reward.type === 'item') {
+        if (percentRank <= 10) {
+          reward.chance = 100;
+        } else if (percentRank <= 25) {
+          reward.chance = 50;
+        } else if (percentRank <= 50) {
+          reward.chance = 25;
+        } else if (percentRank <= 75) {
+          reward.chance = 5;
+        } else if (percentRank <= 99) {
+          reward.chance = 1;
+        } else {
+          reward.chance = 0;
+        }
+      } else if (reward.type === 'gold') {
+        reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;
+      }
+
+      return reward;
+    })
+  },
+
+  myFloorContributions() {
+    return Template.instance().state.get('myFloorContributions');
+  },
+
   cantBossBattle() {
     const waveDetails = Template.instance().state.get('waveDetails');
+    const instance = Template.instance();
 
-    if (Template.instance().state.get('usersCurrentFloor') < Template.instance().state.get('maxFloor')) {
+    if (instance.state.get('usersCurrentFloor') < instance.state.get('maxFloor')) {
       return false;
     }
 
-    if (waveDetails && waveDetails.easyWaves <= 0) {
-      if (waveDetails.hardWaves <= 0) {
-        if (waveDetails.veryHardWaves <= 0) {
-          return false;
-        }
-      }
+    if (waveDetails && waveDetails.points > waveDetails.pointsMax) {
+      return false;
     }
+
     return true;
+  },
+
+  combat() {
+    return Combat.findOne({
+      owner: Meteor.userId()
+    });
   },
 
   inCurrentBattle() {
@@ -141,6 +224,11 @@ Template.towerTab.helpers({
 
   maxFloor() {
     return Template.instance().state.get('maxFloor');
+  },
+
+  currentCommunityfloor() {
+    const instance = Template.instance();
+    return instance.state.get('maxFloor') == instance.state.get('usersCurrentFloor');
   },
 
   floorsList() {

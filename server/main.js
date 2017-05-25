@@ -14,6 +14,8 @@ import { Skills } from '/imports/api/skills/skills';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
+import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
+
 Meteor.startup(() => {
 
   if (process.env['CLUSTER_WORKER_ID'] !== "1") return 

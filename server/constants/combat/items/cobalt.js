@@ -15,8 +15,8 @@ export const COBALT_ITEMS = {
     stats: {
       attack: 7,
       attackMax: 19,
-      attackSpeed: FAST_SPEED,
-      accuracy: 21
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 30
     },
     extraStats: {
       attack: 2,
@@ -76,7 +76,7 @@ export const COBALT_ITEMS = {
       attack: 19,
       attackMax: 31,
       attackSpeed: FAST_SPEED,
-      accuracy: 35,
+      accuracy: 45,
     },
     extraStats: {
       attack: 2,
@@ -105,7 +105,7 @@ export const COBALT_ITEMS = {
       attack: 24,
       attackMax: 36,
       attackSpeed: FAST_SPEED,
-      accuracy: 40,
+      accuracy: 50,
     },
     extraStats: {
       attack: 2,
@@ -135,7 +135,7 @@ export const COBALT_ITEMS = {
       attack: 38,
       attackMax: 51,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 51,
+      accuracy: 61,
     },
     extraStats: {
       attack: 3,
@@ -165,7 +165,7 @@ export const COBALT_ITEMS = {
       attack: 31,
       attackMax: 42,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 42,
+      accuracy: 52,
     },
     extraStats: {
       attack: 4,
@@ -195,7 +195,7 @@ export const COBALT_ITEMS = {
       attack: 30,
       attackMax: 90,
       attackSpeed: SLOW_SPEED,
-      accuracy: 31,
+      accuracy: 41,
     },
     extraStats: {
       attack: 4,

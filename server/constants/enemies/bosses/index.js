@@ -64,7 +64,7 @@ export const BOSS_ENEMIES = {
   boss_spartan: {
     id: 'boss_spartan',
     icon: 'spartan',
-    name: 'Boss Spartan',
+    name: 'Spartan',
     isBoss: true,
     stats: {
       attack: 100,
@@ -73,7 +73,7 @@ export const BOSS_ENEMIES = {
       accuracy: 170,
       health: 20000,
       healthMax: 20000,
-      defense: 140,
+      defense: 120,
       armor: 180,
       magicArmor: 180,
       damageTaken: 1
@@ -84,7 +84,7 @@ export const BOSS_ENEMIES = {
   boss_mage: {
     id: 'boss_mage',
     icon: 'bossMage',
-    name: 'Boss mage',
+    name: 'mage',
     isBoss: true,
     stats: {
       attack: 100,
@@ -103,8 +103,8 @@ export const BOSS_ENEMIES = {
 
   boss_goblin: {
     id: 'boss_goblin',
-    icon: 'bossGoblin',
-    name: 'Boss goblin',
+    icon: 'goblin',
+    name: 'goblin',
     isBoss: true,
     stats: {
       attack: 120,
@@ -123,8 +123,8 @@ export const BOSS_ENEMIES = {
 
   boss_ogre: {
     id: 'boss_ogre',
-    icon: 'bossOgre',
-    name: 'Boss ogre',
+    icon: 'iceGiant',
+    name: 'ogre',
     isBoss: true,
     stats: {
       attack: 140,
@@ -141,10 +141,10 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  boss_phenoix: {
-    id: 'boss_phenoix',
-    icon: 'bossPhenoix',
-    name: 'Boss phenoix',
+  boss_phoenix: {
+    id: 'boss_phoenix',
+    icon: 'phoenix',
+    name: 'phoenix',
     isBoss: true,
     stats: {
       attack: 140,
@@ -156,6 +156,26 @@ export const BOSS_ENEMIES = {
       defense: 220,
       armor: 300,
       magicArmor: 400,
+      damageTaken: 1
+    },
+    rewards: []
+  },
+
+  boss_gorilla: {
+    id: 'boss_gorilla',
+    icon: 'gorilla',
+    name: 'gorilla',
+    isBoss: true,
+    stats: {
+      attack: 180,
+      attackMax: 300,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 350,
+      health: 120000,
+      healthMax: 120000,
+      defense: 240,
+      armor: 200,
+      magicArmor: 200,
       damageTaken: 1
     },
     rewards: []

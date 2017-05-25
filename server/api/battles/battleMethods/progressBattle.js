@@ -1,10 +1,12 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
+import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
+import { Random } from 'meteor/random'
 
+import { attackSpeedTicks } from '/server/utils';
 import { castAbility } from './castAbility.js';
 import { completeBattle } from './completeBattle.js';
 
@@ -77,9 +79,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     let damage = rawDamage;
     if (damage > 0) {
       let dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
+
       if (dmgReduction < 0) {
         dmgReduction = 0;
       } else if (isTrueDamage) {
+        dmgReduction = 0;
+      } else if (dmgReduction > 1) {
+        dmgReduction = 1;
+      } else if (dmgReduction == null) {
         dmgReduction = 0;
       }
       damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
@@ -100,6 +107,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
 
+    if (target.stats.healingReduction != null) {
+      healAmount *= target.stats.healingReduction;
+    }
+
     target.stats.health += healAmount;
     if (target.stats.health > target.stats.healthMax) {
       target.stats.health = target.stats.healthMax;
@@ -117,13 +128,32 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
   const autoAttack = function({ attacker, defender, tickEvents }) {
     // Do we hit?
-    const hitChance = 0.4 + ((attacker.stats.accuracy - defender.stats.defense) / 200);
+    let hitGap = attacker.stats.accuracy - defender.stats.defense;
+    let hitChance = 0.5;
+
+    if (hitGap > 0) {
+      // Favours attacker
+      const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+      hitChance += extraChance;
+    } else {
+      // Favours defender
+      const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+      hitChance -= extraChance;
+    }
+
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-      const rawDamage = attacker.stats.attack + extraRawDamage;
+      let rawDamage = attacker.stats.attack + extraRawDamage;
 
-      const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents });
+      // Is this a crit?
+      let customIcon;
+      if (attacker.stats.criticalChance && Math.random() <= attacker.stats.criticalChance) {
+        rawDamage *= attacker.stats.criticalDamage;
+        customIcon = 'criticalStrike';
+      }
+
+      const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents, customIcon });
 
       // Tick didDamage event on attacker
       if (attacker.buffs) {
@@ -182,8 +212,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         if (targetUnit) {
           defender = targetUnit;
         } else {
-          delete enemy.target;
+          enemy.target = defender;
         }
+      } else {
+        enemy.target = defender;
       }
       autoAttack({ attacker: enemy, defender, tickEvents: actualBattle.tickEvents });
     }
@@ -334,6 +366,32 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   actualBattle.updatedAt = new Date();
 
   if (actualBattle.enemies.length === 0 || actualBattle.units.length === 0) {
+    // Before we end the battle, make sure it shouldn't continue
+    if (actualBattle.isExplorationRun && actualBattle.units.length > 0) {
+      if (actualBattle.room !== 'boss' && actualBattle.room < 7) {
+        actualBattle.room += 1;
+        // Populate battle with next room
+        const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room);
+        // Inject into battle
+        newMonsters.forEach((monster) => {
+          const randomUnitTarget = _.sample(actualBattle.units);
+          actualBattle.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs);
+          actualBattle.enemies.push({
+            id: Random.id(),
+            stats: monster.stats,
+            icon: monster.icon,
+            buffs: monster.buffs || [],
+            target: randomUnitTarget.id,
+            enemyId: monster.id,
+            name: monster.name,
+            tickOffset: _.random(0, 5)
+          });
+        });
+
+        return;
+      }
+    }
+
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
     Meteor.setTimeout(() => {

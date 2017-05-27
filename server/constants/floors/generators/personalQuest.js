@@ -51,7 +51,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
   }
 
   const totalEnemies = possibleMonsters.length;
-  const selectedMonsterId = possibleMonsters[(level + wave - 1) % totalEnemies];
+  const selectedMonsterId = possibleMonsters[((level * 5) + wave - 1) % totalEnemies];
   const selectedMonster = ENEMIES[selectedMonsterId];
 
   let extraStats = 0;
@@ -102,6 +102,9 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     monster.stats.health /= unitCount; // Divide health evenly
     monster.stats.health *= 1.3; // To account for aoe
     monster.stats.attack /= unitCount;
+    monster.stats.attackMax /= unitCount;
+    monster.stats.attack *= 1.2;
+    monster.stats.attackMax *= 1.2;
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {

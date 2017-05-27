@@ -5,10 +5,9 @@ import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
+import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 const redis = new Meteor.RedisCollection('redis');
-
-if (process.env['CLUSTER_WORKER_ID'] !== "1") return
 
 // Reset tower things (daily)
 SyncedCron.add({
@@ -25,10 +24,12 @@ SyncedCron.add({
     const bossEnemyId = floorConstants.boss.enemy.id;
     const bossEnemyConstants = ENEMIES[bossEnemyId];
 
+    const activeTowerUsers = FloorWaveScores.find({ floor: currentFloor.floor }).count();
+
     Floors.update({ floorComplete: false }, {
       $set: {
-        health: bossEnemyConstants.stats.healthMax,
-        healthMax: bossEnemyConstants.stats.healthMax
+        health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
+        healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
       }
     });
 

@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
+import moment from 'moment';
 
 import { Combat } from '/imports/api/combat/combat';
-import { Groups } from '/imports/api/groups/groups';
+import { Groups, GroupFinder } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js';
@@ -22,11 +23,33 @@ Meteor.methods({
       return member !== this.userId;
     });
 
-    Groups.update(currentGroup._id, {
-      $set :{
-        members: currentGroup.members
-      }
+    // Is this user in group finder?
+    GroupFinder.remove({
+      owner: Meteor.userId()
     });
+
+    if (currentGroup.members.length === 0) {
+      Groups.remove(currentGroup._id);
+
+      // Is this group tied to a LFG?
+      GroupFinder.remove({
+        groupCreatedId: currentGroup._id
+      });
+    } else {
+
+      // Is leader leaving?
+      if (currentGroup.leader === this.userId) {
+        currentGroup.leader = currentGroup.members[0];
+      }
+
+      Groups.update(currentGroup._id, {
+        $set :{
+          members: currentGroup.members,
+          leader: currentGroup.leader
+        }
+      });
+    }
+
   },
 
   'groups.kick'({ username, ownerId }) {
@@ -65,6 +88,71 @@ Meteor.methods({
         members: currentGroup.members,
         invites: currentGroup.invites
       }
+    });
+  },
+
+  'groups.findGroup'(floor) {
+    // Is there one other user looking for this floor?
+    // Can specify floor later when there is more users
+    const existingGroup = GroupFinder.findOne({});
+
+    // Existing Group
+    if (existingGroup) {
+      if (existingGroup.groupCreatedId) {
+        // If a group exists
+        // Add this user to it as the leader
+        const targetGroup = Groups.findOne(existingGroup.groupCreatedId);
+
+        if (targetGroup) {
+          targetGroup.members.push(Meteor.userId());
+          targetGroup.leader = Meteor.userId();
+          targetGroup.leaderName = Meteor.user().username;
+
+          if (targetGroup.members.length >= 5) {
+            // Remove this entry
+            GroupFinder.remove(existingGroup._id);
+          }
+
+          Groups.update(targetGroup._id, {
+            $set: {
+              members: targetGroup.members,
+              leader: targetGroup.leader,
+              leaderName: targetGroup.leaderName
+            }
+          });
+          return;
+        }
+      } else {
+        // If no created group yet, make one.
+        // Add this user as leader
+        // Add other user as second player
+        const newlyCreatedGroupId = Groups.insert({
+          leaderName: Meteor.user().username,
+          leader: this.userId,
+          members: [this.userId],
+          invites: [existingGroup.owner]
+        });
+
+        GroupFinder.update(existingGroup._id, {
+          $set: {
+            groupCreatedId: newlyCreatedGroupId
+          }
+        });
+      }
+    } else {
+      // No group exists yet, add single entry and wait
+      GroupFinder.insert({
+        owner: Meteor.userId(),
+        createdAt: moment().toDate(),
+        floor
+      });
+    }
+  },
+
+  'groups.stopFindingGroup'() {
+    // Remove all records for this user
+    GroupFinder.remove({
+      owner: Meteor.userId()
     });
   },
 
@@ -163,6 +251,12 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'groups.acceptInvite' }, 5, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'groups.invite' }, 25, 5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
+
+Meteor.publish('groupFinder', function() {
+  return GroupFinder.find({
+    owner: this.userId
+  });
+});
 
 Meteor.publish('groups', function() {
 

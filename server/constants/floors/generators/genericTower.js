@@ -18,13 +18,13 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     stats: {
       health: (room / 1.2) * 25 * floor * (1 + (floor / 3)),
       healthMax: (room / 1.2) * 25 * floor * (1 + (floor / 3)),
-      attack: (room / 1.2) * 3 * floor * (1 + (floor / 3)),
-      attackMax: (room / 1.2) * 4 * floor * (1 + (floor / 3)),
-      magicPower: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
-      attackSpeed: 0.5,
-      accuracy: (room / 1.8) * 3 * floor * (1 + (floor / 3)),
-      armor: (room / 2.4) * 30 * (floor / 4),
-      defense: (room / 1.8) * 1.8 * floor * (1 + (floor / 3)),
+      attack: (room / 1.8) * 4 * floor * (1 + (floor / 3)),
+      attackMax: (room / 1.8) * 5 * floor * (1 + (floor / 3)),
+      magicPower: (room / 1.8) * 2.5 * floor * (1 + (floor / 3)),
+      attackSpeed: 0.5 + (room / 30),
+      accuracy: (room / 2.0) * 4 * floor * (1 + (floor / 3)),
+      armor: (room / 2.4) * 25 * (floor / 4),
+      defense: (room / 2.4) * 2.4 * floor * (1 + (floor / 3)),
       magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3)),
       criticalChance: 0,
       criticalDamage: 2,
@@ -50,8 +50,12 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);
     // Divide monsters health
     monster.stats.health /= unitCount; // Divide health evenly
-    monster.stats.health *= 1.3; // To account for aoe
+    monster.stats.health *= 1.2; // To account for aoe
     monster.stats.attack /= unitCount;
+    monster.stats.attackMax /= unitCount;
+    monster.stats.attack *= 1.2;
+    monster.stats.attackMax *= 1.2;
+
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {

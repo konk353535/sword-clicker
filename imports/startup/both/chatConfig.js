@@ -1,5 +1,7 @@
 import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { Users } from '/imports/api/users/users';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
+
 import moment from 'moment';
 
 SimpleChat.configure ({
@@ -11,7 +13,7 @@ SimpleChat.configure ({
     left: 'Left the',
     room: 'room at'
   },
-  limit: 10,
+  limit: 25,
   publishChats: function(roomId, limit){ //server
     return this.userId;
   },
@@ -36,14 +38,20 @@ SimpleChat.configure ({
 
     if (userDoc.isMod) {
       if (/\/hardmute/.test(message)) {
+        // Find user
+        const targetUser = Users.find({ username: message.split('/hardmute')[1].toLowerCase().trim() })
+        
         // Set isMuted + Expiry
-        Users.update({
-          username: message.split('/hardmute')[1].toLowerCase().trim()
-        }, {
+        Users.update(targetUser._id, {
           $set: {
             isMutedExpiry: moment().add(12, 'hours').toDate()
           }
         });
+
+        // Remove muted users messages
+        Chats.remove({
+          userId: targetUser._id
+        }, { multi: true });
 
         return false;
       } else if (/\/mute/.test(message)) {

@@ -207,6 +207,7 @@ export const MONSTER_BUFFS = {
         target.stats.accuracy *= 2;
         target.stats.attackSpeed *= 3;
         target.stats.magicArmor *= 0.3;
+        target.stats.armor *= 0.3;
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
@@ -511,8 +512,8 @@ export const MONSTER_BUFFS = {
         const newBuff = {
           id: 'healing_reduction',
           data: {
-            duration: 30,
-            totalDuration: 30,
+            duration: 20,
+            totalDuration: 20,
             healingReduction,
             icon: 'healingReduction',
             description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
@@ -695,28 +696,29 @@ export const MONSTER_BUFFS = {
         // Blank
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
-
-        // Calculate miners missing % hp
-        const missingHp = defender.stats.healthMax - defender.stats.health;
-
-        if (!buff.data.lastMissingHp) {
-          buff.data.lastMissingHp = missingHp;
-        } else {
-          const decimal = (missingHp - buff.data.lastMissingHp) / defender.stats.healthMax;
-          defender.stats.attackMax *= 1 + (decimal / 2);
-          defender.stats.attack *= 1 + (decimal / 2);
-          defender.stats.accuracy *= 1 + (decimal / 2);
-          buff.data.lastMissingHp = missingHp;
-        }
-
-        // Recompute attack speed and damage by missingHp
-        defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
-      },
-
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
+        if (!buff.data.timeTillUpdate) {
+          buff.data.timeTillUpdate = 5;
+        } else if (buff.data.timeTillUpdate <= 0) {
+        
+          const missingHp = target.stats.healthMax - target.stats.health;
+
+          if (!buff.data.lastMissingHp) {
+            buff.data.lastMissingHp = missingHp;
+          } else {
+            const decimal = (missingHp - buff.data.lastMissingHp) / target.stats.healthMax;
+            target.stats.attackMax *= 1 + (decimal / 2);
+            target.stats.attack *= 1 + (decimal / 2);
+            target.stats.accuracy *= 1 + (decimal / 2);
+            buff.data.lastMissingHp = missingHp;
+          }
+
+          // Recompute attack speed and damage by missingHp
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+        }
+
+        buff.data.timeTillUpdate -= secondsElapsed;
       },
 
       onRemove({ buff, target, caster }) {

@@ -29,7 +29,7 @@ export const TOWER_FLOOR_8 = {
     name: 'Place of cobalt',
     enemies: ['cobalt_spirit'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
-      chance: 1 / 16,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'cobalt_essence', amount: 1 }
       ]

@@ -370,6 +370,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     if (actualBattle.isExplorationRun && actualBattle.units.length > 0) {
       if (actualBattle.room !== 'boss' && actualBattle.room < 7) {
         actualBattle.room += 1;
+        // Strip out old dead enemies
+        actualBattle.deadEnemies = [];
         // Populate battle with next room
         const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room);
         // Inject into battle

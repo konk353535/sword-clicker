@@ -191,6 +191,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     // This is the current active boss battle
     if (enemyConstants.isBoss && health) {
       enemyStats.health = health;
+      enemyStats.healthMax = health;
     }
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
 

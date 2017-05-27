@@ -92,7 +92,7 @@ export const ORICHALCUM_ITEMS = {
 
   orichalcum_scimitar: {
     id: 'orichalcum_scimitar',
-    icon: 'orichalcumScimitarSword',
+    icon: 'orichalcumScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

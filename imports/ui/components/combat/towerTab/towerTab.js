@@ -10,6 +10,7 @@ import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 import { Combat } from '/imports/api/combat/combat.js';
+import { Groups, GroupFinder } from '/imports/api/groups/groups';
 
 import './towerTab.html';
 
@@ -26,6 +27,8 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       }
     }
   });
+
+  Meteor.subscribe('groupFinder');
 
   Meteor.call('battles.myFloorContributions', (err, res) => {
     console.log(res);
@@ -95,6 +98,14 @@ Template.towerTab.events({
 
   'click .battle-boss-btn'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', findBattleHandler);
+  },
+
+  'click .find-group'(event, instance) {
+    Meteor.call('groups.findGroup', instance.state.get('usersCurrentFloor'), findBattleHandler);    
+  },
+
+  'click .stop-finding-group'(event, instance) {
+    Meteor.call('groups.stopFindingGroup', findBattleHandler);    
   },
 
   'change .official-attempt input'(event, instance) {
@@ -189,6 +200,16 @@ Template.towerTab.helpers({
   inCurrentBattle() {
     return Battles.findOne({
       finished: false
+    });
+  },
+
+  groupFinder() {
+    return GroupFinder.findOne();
+  },
+
+  currentGroup() {
+    return Groups.findOne({
+      members: Meteor.userId()
     });
   },
 

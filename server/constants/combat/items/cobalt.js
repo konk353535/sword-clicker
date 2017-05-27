@@ -92,7 +92,7 @@ export const COBALT_ITEMS = {
 
   cobalt_scimitar: {
     id: 'cobalt_scimitar',
-    icon: 'cobaltScimitarSword',
+    icon: 'cobaltScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

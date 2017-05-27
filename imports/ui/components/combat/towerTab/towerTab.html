@@ -14,6 +14,20 @@
           </div>
         </div>
         {{> helpIcon title='The Tower' content=theTowerHelpContent}}
+
+        {{#unless currentGroup}}
+          <div>
+            {{#if groupFinder}}
+              <button class="btn btn-danger ml-3 stop-finding-group">
+                Finding...
+              </button>
+            {{else}}
+              <button class="btn btn-primary find-group ml-3">
+                Find Group
+              </button>
+            {{/if}}
+          </div>
+        {{/unless}}
       </h1>
 
       {{#unless equippedItemsMap.mainHand}}

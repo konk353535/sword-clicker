@@ -327,10 +327,19 @@ Template.craftingPage.helpers({
     const itemViewLimit = Template.instance().state.get('itemViewLimit');
     if (itemViewLimit !== 0) {
       return Items.find({ equipped: false }, {
-        limit: itemViewLimit
+        limit: itemViewLimit,
+        sort: {
+          category: 1,
+          name: 1
+        }
       })
     }
 
-    return Items.find({ equipped: false });
+    return Items.find({ equipped: false }, {
+      sort: {
+        category: 1,
+        name: 1
+      }
+    });
   }
 });

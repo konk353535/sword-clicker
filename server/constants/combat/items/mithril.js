@@ -92,7 +92,7 @@ export const MITHRIL_ITEMS = {
 
   mithril_scimitar: {
     id: 'mithril_scimitar',
-    icon: 'mithrilScimitarSword',
+    icon: 'mithrilScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

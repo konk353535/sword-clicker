@@ -93,7 +93,7 @@ export const CARBON_ITEMS = {
 
   carbon_scimitar: {
     id: 'carbon_scimitar',
-    icon: 'carbonScimitarSword',
+    icon: 'carbonScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

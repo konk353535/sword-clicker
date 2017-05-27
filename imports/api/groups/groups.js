@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Groups = new Mongo.Collection('groups');
+export const GroupFinder = new Mongo.Collection('groupFinder');
 
 GroupsSchema = new SimpleSchema({
   leader: { type: String, regEx: SimpleSchema.RegEx.Id },
@@ -12,3 +13,12 @@ GroupsSchema = new SimpleSchema({
 });
 
 Groups.attachSchema(GroupsSchema);
+
+GroupFinderSchema = new SimpleSchema({
+  owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  floor: { type: Number, optional: true },
+  createdAt: { type: Date },
+  groupCreatedId: { type: String, optional: true }
+});
+
+GroupFinder.attachSchema(GroupFinderSchema);

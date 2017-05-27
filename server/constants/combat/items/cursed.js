@@ -92,7 +92,7 @@ export const CURSED_ITEMS = {
 
   cursed_scimitar: {
     id: 'cursed_scimitar',
-    icon: 'cursedScimitarSword',
+    icon: 'cursedScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

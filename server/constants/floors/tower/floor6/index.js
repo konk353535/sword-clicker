@@ -45,7 +45,7 @@ export const TOWER_FLOOR_6 = {
     name: 'Place of adamantium',
     enemies: ['adamantium_spirit'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
-      chance: 1 / 16,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }
       ]

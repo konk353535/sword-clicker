@@ -92,7 +92,7 @@ export const FAIRY_STEEL_ITEMS = {
 
   fairy_steel_scimitar: {
     id: 'fairy_steel_scimitar',
-    icon: 'fairySteelScimitarSword',
+    icon: 'fairySteelScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

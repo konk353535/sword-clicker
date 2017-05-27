@@ -1,42 +1,102 @@
 <template name="chatWindow">
 
-  {{#if minimized}}
-    <div class="chat-minimized">
-      Chat <img src="icons/maximize.svg" class="maximize-icon extra-small-icon">
-    </div>
-  {{else}}
+  <div class="d-flex align-items-center" style="margin-top: 100px">
+    <h2>Chat</h2>
+    {{#if minimized}}
+      <img src="icons/maximize.svg" class="maximize-icon extra-small-icon ml-3">
+    {{else}}
+      <img src="icons/minimize.svg" class="minimize-icon extra-small-icon ml-3">
+    {{/if}}
+  </div>
+
+  {{#unless minimized}}
     <div class="chat-container">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link room-general {{#if $eq currentRoom 'General'}}active{{/if}}" href="#">General</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link room-other {{#if $eq currentRoom 'Other'}}active{{/if}}" href="#">LFG</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link room-bugs {{#if $eq currentRoom 'Bugs'}}active{{/if}}" href="#">Bugs</a>
-        </li>
-        {{#if currentGroup}}
-          <li class="nav-item">
-            <a class="nav-link room-party {{#if $eq currentRoom currentGroup._id}}active{{/if}}" href="#">Party</a>
-          </li>
-        {{/if}}
-        <img src="icons/minimize.svg" class="minimize-icon extra-small-icon">
-      </ul>
-      {{#if $eq currentRoom 'General'}}
-        {{>SimpleChatWindow roomId='General' username=currentUser.username limit=10}}
-      {{/if}}
-      {{#if $eq currentRoom 'Other'}}
-        {{>SimpleChatWindow roomId='Other' username=currentUser.username limit=10}}
-      {{/if}}
-      {{#if $eq currentRoom 'Bugs'}}
-        {{>SimpleChatWindow roomId='Bugs' username=currentUser.username limit=10}}
-      {{/if}}
-      {{#if currentGroup}}
-        {{#if $eq currentRoom currentGroup._id}}
-          {{>SimpleChatWindow roomId=currentGroup._id username=currentUser.username limit=10}}
-        {{/if}}
-      {{/if}}
+
+      <div class="box-body chat-scroll">
+        <!-- Conversations are loaded here -->
+        <div class="direct-chat-messages">
+            <div class="scroll-height">
+                {{#unless Template.subscriptionsReady}}
+                  <div class="" style="height: 34px; width: 64px; margin: auto">
+                    {{>spinner}}
+                  </div>
+                {{else}}
+                  {{#if hasMore}}
+                    <button class="btn btn-block btn-default" id="simple-chat-load-more">
+                      Load More
+                    </button>
+                  {{/if}}
+                {{/unless}}
+                <!-- Message. Default to the left -->
+                {{#each simpleChats}}
+                    {{#if message}}
+                        <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
+                             id="{{_id}}">
+                            <div class="direct-chat-info clearfix">
+                              <span class="direct-chat-name pull-left chat-{{this.roomId}}">{{name}}</span>
+                              <span class="direct-chat-timestamp pull-right">
+                                [{{moFormat date "h:mm A"}}]
+                              </span>
+                            </div>
+                            <!-- /.direct-chat-info -->
+                            {{#if avatar}}
+                                <img class="direct-chat-img" src="{{avatar}}" alt="message user image"><!-- /.direct-chat-img -->
+                            {{/if}}
+                            <div class="direct-chat-text chat-{{this.roomId}}" style="{{#unless avatar}}margin: 5px 0 0 0px{{/unless}}">
+                                {{{message}}}
+                                {{#if me}}
+                                    <div class="direct-chat-checks">
+                                        {{#if sent}}
+                                            {{#if showReceived }}
+                                                <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                {{#if receivedAll}}
+                                                    <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                {{/if}}
+                                            {{/if}}
+                                        {{else}}
+                                            <i class="icon-clock"></i>
+                                        {{/if}}
+
+                                    </div>
+                                {{/if}}
+                            </div>
+                            <!-- /.direct-chat-text -->
+                        </div>
+                    {{/if}}
+                    <!-- /.dir-->
+                {{/each}}
+            </div>
+        </div>
+        <!--/.direct-chat-messages-->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <div class="input-group">
+          <div class="input-group-btn dropup">
+            <button type="button" class="btn btn-secondary dropdown-toggle {{currentChat.class}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{currentChat.name}}
+            </button>
+            <div class="dropdown-menu">
+              {{#each availableChats}}
+                <a class="dropdown-item change-chat {{this.class}}" href="#" data-chat-id="{{this.id}}">{{this.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+          <input
+            type="text"
+            name="message"
+            placeholder="{{placeholder}}"
+            class="form-control"
+            id="simple-chat-message">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-primary btn-flat" id="message-send">
+              Send
+            </button>
+          </span>
+        </div>
+      </div>
+      <!-- /.box-footer-->
+
     </div>
-  {{/if}}
+  {{/unless}}
 </template>

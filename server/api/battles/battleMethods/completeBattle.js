@@ -79,7 +79,7 @@ const distributeRewards = function distributeRewards({ floor }) {
         console.log(`Adding gold - ${goldAmount}`);
         Users.update(waveScore.owner, {
           $inc: {
-            gold: goldAmount
+            gold: Math.round(goldAmount)
           }
         });
       }
@@ -124,11 +124,9 @@ export const completeBattle = function (actualBattle) {
 
       // Add points from previous rooms
       for (let i = actualBattle.room - 1; i > 0; i--) {
-        pointsEarnt += Math.pow(1.7, actualBattle.room);
+        pointsEarnt += Math.pow(1.7, i);
       }
     }
-
-    console.log(`Points earnt - ${pointsEarnt}`);
 
     // Apply xp gains, only if not a boss battle
     const totalXpGain = actualBattle.totalXpGain;
@@ -446,8 +444,8 @@ export const completeBattle = function (actualBattle) {
             createdAt: new Date(),
             points: 0,
             pointsMax: newPointMax, // Need some kind of
-            health: bossEnemyConstants.stats.healthMax,
-            healthMax: bossEnemyConstants.stats.healthMax
+            health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
+            healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
           });
         }
       } else {

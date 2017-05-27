@@ -1,13 +1,30 @@
+// For Party, as it will be the parties id
+.direct-chat-text, .direct-chat-name, .chat-Party {
+  color: $brand-primary !important;
+}
+
+.chat-General {
+  color: black !important;
+}
+
+.chat-Game {
+  color: $brand-danger !important;
+}
+
+.chat-LFG {
+  color: $brand-info !important;
+}
+
 body {
   .direct-chat-info {
     display: block;
     margin-bottom: 0px;
     margin-right: $spacer / 2;
+    float: left;
   }
 
   .direct-chat-timestamp.pull-right {
     float: none !important;
-    font-size: $font-size-xs;
   }
 
   .direct-chat-name.pull-left {
@@ -16,6 +33,10 @@ body {
 
   .direct-chat-msg {
     margin-bottom: 0px;
+  }
+
+  .direct-chat-messages {
+    height: 300px;
   }
 
   .direct-chat-text {
@@ -38,20 +59,20 @@ body {
 }
 
 .chat-container {
-  width: 550px;
-  height: 370px;
-  position: fixed;
+  height: 380px;
   border: 1px solid $gray-lighter;
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
   background-color: white;
-  bottom: 0px;
-  right: 15px;
+  margin-bottom: $spacer;
 
   .nav-tabs {
     overflow-y: hidden;
     width: 100%;
     position: relative;
   }
+}
+
+.box-footer {
+  border-bottom: 1px solid #f4f4f4;
 }
 
 @media (max-width: 768px) {
@@ -72,15 +93,15 @@ body {
   background-color: white;
 }
 
-.maximize-icon {
-  pointer-events: all;
+body .maximize-icon {
+  background-color: white;
   padding: 2px;
+  z-index: 50;
+  cursor: pointer;
+  pointer-events: all;
 }
 
 body .minimize-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
   background-color: white;
   padding: 2px;
   z-index: 50;

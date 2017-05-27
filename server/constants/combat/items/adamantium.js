@@ -92,7 +92,7 @@ export const ADAMANTIUM_ITEMS = {
 
   adamantium_scimitar: {
     id: 'adamantium_scimitar',
-    icon: 'adamantiumScimitarSword',
+    icon: 'adamantiumScimitar',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',

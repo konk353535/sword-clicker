@@ -209,6 +209,12 @@ Handlebars.registerHelper('isMember', function (id) {
   return Session.get('isMember');
 });
 
+Template.myLayout.helpers({
+  currentRoute() {
+    return Router.current().route.getName();
+  },
+})
+
 Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);
   Meteor.clearInterval(craftingTimer);

@@ -11,6 +11,7 @@ import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 import { SKILLS } from '/server/constants/skills/index.js';
 import _ from 'underscore';
@@ -36,6 +37,17 @@ export const addXp = function (skillType, xp, specificUserId) {
         totalXp: (skill.totalXp + xp),
         xp: (skill.xp - xpToNextLevel)
       }
+    });
+
+    Chats.insert({
+      message: `Level Up! You are now level ${skill.level + 1} ${skill.type}`,
+      username: 'Game',
+      name: 'Game',
+      date: new Date(),
+      custom: {
+        roomType: 'Game'
+      },
+      roomId: `Game-${owner}`
     });
 
     // If this is attack / Defense / Health recompute combat

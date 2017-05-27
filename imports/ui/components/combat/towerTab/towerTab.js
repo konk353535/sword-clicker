@@ -31,7 +31,6 @@ Template.towerTab.onCreated(function bodyOnCreated() {
   Meteor.subscribe('groupFinder');
 
   Meteor.call('battles.myFloorContributions', (err, res) => {
-    console.log(res);
     this.state.set('myFloorContributions', res);
   });
 

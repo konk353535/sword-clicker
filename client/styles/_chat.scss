@@ -58,11 +58,23 @@ body {
   }
 }
 
+.chat-container.minimized {
+  display: none;
+}
+
 .chat-container {
   height: 380px;
   border: 1px solid $gray-lighter;
   background-color: white;
   margin-bottom: $spacer;
+
+  &.chatPage {
+    height: calc(100vh - 140px);
+
+    .direct-chat-messages {
+      height: calc(100vh - 220px);
+    }
+  }
 
   .nav-tabs {
     overflow-y: hidden;

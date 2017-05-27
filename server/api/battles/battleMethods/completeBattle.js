@@ -427,6 +427,9 @@ export const completeBattle = function (actualBattle) {
             username: 'SERVER',
             name: 'SERVER',
             date: new Date(),
+            custom: {
+              roomType: 'Game'
+            },
             roomId: 'General'
           });
 

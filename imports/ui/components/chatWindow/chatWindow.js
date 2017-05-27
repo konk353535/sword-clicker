@@ -12,9 +12,9 @@ import { Groups } from '/imports/api/groups/groups.js';
 import './chatWindow.html';
 
 SimpleChat.scrollToEnd = function () {
-  Template.SimpleChatWindow.endScroll = true;
-  $(".direct-chat-messages").animate({scrollTop: $('.scroll-height').height()}, 300);
-  $('.direct-chat-messages').trigger('scroll')
+  Template.chatWindow.endScroll = true;
+  $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
+  $('.direct-chat-messages').trigger('scroll');
 }
 
 const AVAILABLE_CHATS = {
@@ -47,7 +47,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
   this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
 
-  this.autorun(() => {
+  Tracker.autorun(() => {
     let minimized = true;
     let myUserDoc = Users.findOne({ _id: Meteor.userId() });
     if (myUserDoc && myUserDoc.uiState && myUserDoc.uiState.showChat !== undefined) {
@@ -61,7 +61,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     this.state.set('minimized', minimized);
   });
 
-  Tracker.autorun(() => {
+  this.autorun(() => {
     const currentGroup = Groups.findOne();
     Meteor.subscribe("simpleChats", 'General', this.limit.get());
     if (currentGroup) {
@@ -71,7 +71,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     // People looking for group
     Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
     // Events relevant to you
-    Meteor.subscribe("simpleChats", 'Game', this.limit.get());
+    Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
     this.subscribing = true;
   });
 });
@@ -80,17 +80,29 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 Template.chatWindow.rendered = function () {
   SimpleChat.scrollToEnd();
 
-  Meteor.setTimeout(() => {
-    SimpleChat.scrollToEnd();
-  }, 1000);
+  this.$('.direct-chat-messages').scroll(function (event) {
+    if (event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350) {
+      Template.chatWindow.endScroll = true;
+    } else {
+      Template.chatWindow.endScroll = false;
+    }
+  });
 
-  Meteor.setTimeout(() => {
-    SimpleChat.scrollToEnd();
-  }, 2500);
+  this.autorun(() => {
+    if (this.subscriptionsReady()) {
+      this.subscribing = false;
+      SimpleChat.scrollToEnd(this);
+    }
+  });
 
-  Meteor.setTimeout(() => {
-    SimpleChat.scrollToEnd();
-  }, 5000);
+  $(window).on('SimpleChat.newMessage', (e, id, doc) => {
+    if (Template.chatWindow.endScroll) {
+      SimpleChat.scrollToEnd(this)
+    }
+
+    // To do: add some kind of notification logic for Tab Heading?
+  });
+
 }
 
 Template.chatWindow.events({
@@ -126,6 +138,60 @@ Template.chatWindow.events({
       members: Meteor.userId()
     });
     instance.state.set('currentRoom', currentGroup._id);
+  },
+
+  'keydown #simple-chat-message': function (event) {
+    var $message = $(event.currentTarget)
+    if (event.which == 13 && $message.val() != '') { // 13 is the enter key event
+      event.preventDefault()
+      Template.instance().$('button#message-send').click()
+    }
+  },
+
+  'click button#message-send': function () {
+    let template = Template.instance()
+    var $message = template.$('#simple-chat-message')
+    var text = $message.val()
+
+    // Check for client commands
+    if (text.trim().toLowerCase() === '/party') {
+      $message.val('');
+      template.state.set('currentChat', 'Party')
+      return;
+    } else if (text.trim().toLowerCase() === '/general') {
+      $message.val('');
+      template.state.set('currentChat', 'General')
+      return;
+    } else if (text.trim().toLowerCase() === '/lfg') {
+      $message.val('');
+      template.state.set('currentChat', 'LFG')
+      return;
+    }
+
+    if ($message.val() != '') {
+      var text = $message.val()
+      $message.val('');
+      SimpleChat.scrollToEnd(template)
+      const currentChatId = template.state.get('currentChat');
+      // Room id is based
+      const custom = {
+        roomType: currentChatId
+      }
+
+      let roomId;
+      if (currentChatId === 'Party') {
+        roomId = Groups.findOne({ members: Meteor.userId() })._id;
+      } else {
+        roomId = currentChatId;
+      }
+
+
+      Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {
+          if (err) {
+              $message.val(text);
+          }
+      })
+    }
   },
 
   'click #simple-chat-load-more': function () {
@@ -164,8 +230,25 @@ Template.chatWindow.helpers({
     });
   },
 
+  isChatPage() {
+    if (Template.instance().data) {
+      return Template.instance().data.isChatPage;
+    }
+
+    return false;
+  },
+
   simpleChats: function () {
-    return Chats.find({}, {sort: {date: 1}})
+    const instance = Template.instance();
+    var chats = Chats.find({}, {sort: {date: 1}})
+    let handleChanges = chats.observeChanges({
+      added: (id, doc) => {
+        const username = Meteor.user().username;
+        $(window).trigger('SimpleChat.newMessage', [id, doc])
+      }
+    });
+
+    return chats;
   },
 
   hasMore: function () {

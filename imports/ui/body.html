@@ -10,7 +10,9 @@
     </div>
 
     {{#if currentUser}}
-      {{> chatWindow}}
+      {{#unless $eq currentRoute 'chat'}}
+        {{> chatWindow}}
+      {{/unless}}
     {{/if}}
   </div>
 

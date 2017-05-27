@@ -266,7 +266,6 @@ Template.craftingPage.helpers({
     const recipes = Session.get('recipeCache');
     const craftingTierFilter = instance.state.get('craftingTierFilter');
 
-    console.log(recipes.tiers);
     if (recipes && recipes.tiers) {
       return recipes.tiers.map((tier) => {
         tier.empty = !!craftingTierFilter[tier.name]

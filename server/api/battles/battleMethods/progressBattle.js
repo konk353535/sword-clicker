@@ -212,10 +212,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         if (targetUnit) {
           defender = targetUnit;
         } else {
-          enemy.target = defender;
+          enemy.target = defender.id;
         }
       } else {
-        enemy.target = defender;
+        enemy.target = defender.id;
       }
       autoAttack({ attacker: enemy, defender, tickEvents: actualBattle.tickEvents });
     }

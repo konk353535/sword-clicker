@@ -22,6 +22,19 @@ Router.route('/guestSettings', {
   }
 });
 
+
+Router.route('/chat', {
+
+  name: 'chat',
+
+  template: 'chatPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/patchNotes', {
 
   name: 'patchNotes',

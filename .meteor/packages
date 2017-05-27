@@ -44,3 +44,4 @@ sha
 slava:redis-livedata
 check
 meteorhacks:cluster
+standard-minifier-js@1.2.1

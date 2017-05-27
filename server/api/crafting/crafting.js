@@ -84,7 +84,6 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
       }
     } else if (requirement.type === 'gold') {
       if (myUser.gold < requirement.amount) {
-        console.log(`cant craft because no gold`);
         canCraft = false;
       } else {
         if (requirement.consumes) {
@@ -95,7 +94,6 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
     } else if (requirement.type === 'skill') {
       const mySkill = mySkillsMap[requirement.name];
       if (mySkill.level < requirement.level) {
-        console.log(`cant craft because level not met`);
         canCraft = false;
       }
     }

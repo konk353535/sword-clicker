@@ -49,7 +49,7 @@ SyncedCron.add({
       $set: {
         towerContributionsToday: 0
       }
-    }, { mult: true });
+    }, { multi: true });
 
     // Clear hp dealt on leaderboards
     BossHealthScores.remove({});

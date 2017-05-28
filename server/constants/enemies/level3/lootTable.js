@@ -13,7 +13,7 @@ export const LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'iron_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 4,
   rewards: [
     { type: 'item', itemId: 'ore_iron', amount: 1 },
     { type: 'gold', amount: 75 },

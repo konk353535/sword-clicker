@@ -14,6 +14,7 @@ export const SKILLS = {
 
     statsPerLevel: {
       magicPower: 1,
+      magicArmor: 1
     }
   },
 

@@ -31,11 +31,6 @@ export const LEVEL_NINE_MONSTERS = [{
 }];
 
 export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 512,
-  rewards: [
-    { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
-  ]
-}, {
   chance: 1 / 256,
   rewards: [
     { type: 'item', itemId: 'orichalcum_pickaxe', amount: 1 },
@@ -49,19 +44,15 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'orichalcum_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
-  rewards: [
-    { type: 'item', itemId: 'ore_orichalcum', amount: 1 }
-  ]
-}, {
-  chance: 1 / 16,
+  chance: 1 / 48,
   rewards: [
     { type: 'item', itemId: 'orichalcum_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 600 },
+    { type: 'item', itemId: 'ore_orichalcum', amount: 1 },
     { type: 'item', itemId: 'cherry_log', amount: 2 }
   ]
 }]);

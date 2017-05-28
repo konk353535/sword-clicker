@@ -35,7 +35,7 @@ export const LEVEL_TWO_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'ore_coal', amount: 1 },
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 4,
   rewards: [
     { type: 'item', itemId: 'ore_copper', amount: 1 },
     { type: 'item', itemId: 'copper_bar', amount: 1 },

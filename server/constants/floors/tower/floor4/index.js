@@ -37,6 +37,11 @@ export const TOWER_FLOOR_4 = {
     name: 'Small Water Alter',
     enemies: ['blue_mage'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [ 
+        { type: 'item', itemId: 'spirit_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'blue_wizard_hat', amount: 1 },

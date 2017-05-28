@@ -17,6 +17,11 @@ export const TOWER_FLOOR_8 = {
     name: 'Oak Tree',
     enemies: ['bird'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemID: 'celery_seed', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'oak_seed', amount: 3 },

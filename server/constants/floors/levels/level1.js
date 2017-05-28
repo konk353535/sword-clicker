@@ -34,7 +34,7 @@ export const LEVEL_ONE_LOOT_TABLE = orderLootTable([{
     amount: 1
   }]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 4,
   rewards: [{
     type: 'item',
     itemId: 'ore_stone',

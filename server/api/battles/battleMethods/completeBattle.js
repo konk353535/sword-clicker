@@ -194,7 +194,8 @@ export const completeBattle = function (actualBattle) {
       const rewardTable = floorRewards[i];
       const diceRoll = Math.random();
 
-      if (rewardTable.chance >= diceRoll) {
+      // Each user = additional 33% chance of loot
+      if ((rewardTable.chance * (0.66 + (units.length / 3))) >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
         if (rewardsGained >= units.length) {
           break;

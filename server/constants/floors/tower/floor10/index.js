@@ -19,7 +19,8 @@ export const TOWER_FLOOR_10 = {
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'lettice', amount: 50 }
+        { type: 'item', itemId: 'lettice', amount: 50 },
+        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
     }]))
   },

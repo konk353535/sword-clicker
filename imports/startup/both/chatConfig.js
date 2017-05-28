@@ -23,6 +23,10 @@ SimpleChat.configure ({
   allow: function(message, roomId, username, avatar, name){
     const userDoc = Users.findOne(this.userId);
 
+    if (userDoc.username !== username || userDoc.username !== name) {
+      return;
+    }
+
     if (userDoc.isMutedExpiry) {
       if (moment().isBefore(userDoc.isMutedExpiry)) {
         return false;

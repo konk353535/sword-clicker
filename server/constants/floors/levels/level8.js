@@ -31,17 +31,6 @@ export const LEVEL_EIGHT_MONSTERS = [{
 }];
 
 export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 512,
-  rewards: [
-    { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
-    { type: 'item', itemId: 'ruby_staff', amount: 1 }
-  ]
-}, {
-  chance: 1 / 256,
-  rewards: [
-    { type: 'item', itemId: 'celery_seed', amount: 1 },
-  ]
-}, {
   chance: 1 / 128,
   rewards: [
     { type: 'item', itemId: 'adamantium_pickaxe', amount: 1 },
@@ -59,7 +48,7 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'adamantium_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 600 },
     { type: 'item', itemId: 'ore_adamantium', amount: 1 },

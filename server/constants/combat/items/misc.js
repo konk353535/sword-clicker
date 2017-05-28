@@ -91,5 +91,28 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 20
     }]
+  },
+
+  spirit_shield: {
+    id: 'spirit_shield',
+    icon: 'spiritShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'spirit shield',
+    sellPrice: 500,
+    description: 'The shield pulls at your spirit.',
+    isEquippable: true,
+    stats: {
+      healthMax: 10,
+      magicArmor: 35,
+    },
+    extraStats: {
+      healthMax: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 1
+    }]
   }
 }

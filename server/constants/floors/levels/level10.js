@@ -40,24 +40,18 @@ export const LEVEL_TEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'cardoon_seed', amount: 1 },
     { type: 'item', itemId: 'cobalt_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
+  chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'ore_cobalt', amount: 1 }
-  ]
-}, {
-  chance: 1 / 16,
-  rewards: [
-    { type: 'item', itemId: 'ore_cobalt', amount: 1 },
     { type: 'item', itemId: 'cobalt_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,
   rewards: [
     { type: 'gold', amount: 600 },
+    { type: 'item', itemId: 'ore_cobalt', amount: 2 },
     { type: 'item', itemId: 'mahogany_log', amount: 2 }
   ]
 }]);

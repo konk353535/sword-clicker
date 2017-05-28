@@ -19,7 +19,8 @@ export const TOWER_FLOOR_3 = {
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'juniper', amount: 1 },
+        { type: 'item', itemId: 'agrimony_seed', amount: 1 }
       ]
     }]))
   },

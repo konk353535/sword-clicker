@@ -17,6 +17,11 @@ export const TOWER_FLOOR_7 = {
     name: 'Ash Tree',
     enemies: ['beaver'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cardoon_seed', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'ash_seed', amount: 3 },

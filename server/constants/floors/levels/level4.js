@@ -28,8 +28,7 @@ export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'steel_pickaxe', amount: 1 },
     { type: 'item', itemId: 'steel_axe', amount: 1 },
-    { type: 'item', itemId: 'steel_dagger', amount: 1 },
-    { type: 'item', itemId: 'lavender', amount: 1 },
+    { type: 'item', itemId: 'steel_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 128,
@@ -42,7 +41,7 @@ export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'ore_steel', amount: 1 },
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 4,
   rewards: [
     { type: 'item', itemId: 'ash_log', amount: 1 },
     { type: 'gold', amount: 100 }

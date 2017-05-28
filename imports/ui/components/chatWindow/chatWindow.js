@@ -185,7 +185,6 @@ Template.chatWindow.events({
         roomId = currentChatId;
       }
 
-
       Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {
           if (err) {
               $message.val(text);

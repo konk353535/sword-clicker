@@ -13,7 +13,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 30,
-      magicPower: 3
+      magicPower: 3,
+      magicArmor: 5
     },
     extraStats: {
       healthMax: 10,
@@ -37,7 +38,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 60,
-      magicPower: 6
+      magicPower: 6,
+      magicArmor: 10
     },
     extraStats: {
       healthMax: 20,
@@ -61,7 +63,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 30,
-      magicPower: 3
+      magicPower: 3,
+      magicArmor: 5,
     },
     extraStats: {
       healthMax: 10,
@@ -85,7 +88,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 60,
-      magicPower: 6
+      magicPower: 6,
+      magicArmor: 10
     },
     extraStats: {
       healthMax: 20,
@@ -109,7 +113,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 30,
-      magicPower: 3
+      magicPower: 3,
+      magicArmor: 5
     },
     extraStats: {
       healthMax: 10,
@@ -133,7 +138,8 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 60,
-      magicPower: 6
+      magicPower: 6,
+      magicArmor: 10
     },
     extraStats: {
       healthMax: 10,

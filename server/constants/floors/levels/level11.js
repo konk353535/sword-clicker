@@ -40,24 +40,18 @@ export const LEVEL_ELEVEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'cardoon_seed', amount: 1 },
     { type: 'item', itemId: 'fairy_steel_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
+  chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'ore_fairy_steel', amount: 1 }
-  ]
-}, {
-  chance: 1 / 16,
-  rewards: [
-    { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
     { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,
   rewards: [
     { type: 'gold', amount: 600 },
+    { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
     { type: 'item', itemId: 'elk_log', amount: 2 }
   ]
 }]);

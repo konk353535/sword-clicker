@@ -30,7 +30,7 @@ Template.equipmentTab.onCreated(function bodyOnCreated() {
     if (this.state.get('offenseStats') && this.state.get('defenseStats')) {
       if (!this.state.get('tooltipsLoaded')) {
         this.state.set('tooltipsLoaded', true);
-        updateTooltips(this, ['attack', 'attackSpeed', 'accuracy', 'defense', 'health', 'armor', 'magicPower']);
+        updateTooltips(this, ['attack', 'attackSpeed', 'accuracy', 'defense', 'health', 'armor', 'magicPower', 'magicArmor']);
       }
     }
   });
@@ -139,6 +139,10 @@ Template.equipmentTab.helpers({
         name: 'armor',
         icon: 'armor',
         value: combat.stats.armor
+      }, {
+        name: 'magic armor',
+        icon: 'magicArmor',
+        value: combat.stats.magicArmor
       }]);
     }
 

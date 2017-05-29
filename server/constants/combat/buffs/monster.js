@@ -204,7 +204,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster }) {
         target.stats.attackMax *= 1.5;
         target.stats.attack *= 1.5;
-        target.stats.accuracy *= 2;
+        target.stats.accuracy *= 1.5;
         target.stats.attackSpeed *= 3;
         target.stats.magicArmor *= 0.3;
         target.stats.armor *= 0.3;

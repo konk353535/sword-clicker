@@ -284,9 +284,11 @@ const MINUTE = 60 * 1000;
 
 Meteor.publish('battles', function() {
   return Battles.find({
-    owners: this.userId,
-    updatedAt: {
-      $gt: moment().subtract(60, 'seconds').toDate()
+    owners: this.userId
+  }, {
+    limit: 25,
+    sort: {
+      updatedAt: -1
     }
   });
 });

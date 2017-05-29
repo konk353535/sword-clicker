@@ -251,7 +251,7 @@ export const completeBattle = function (actualBattle) {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
           if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            ownerObject.towerContributionsToday++;
+            ownerObject.usedTowerContribution = true;
 
             const updateSelector = { owner, floor: actualBattle.floor };
 
@@ -317,8 +317,10 @@ export const completeBattle = function (actualBattle) {
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
-        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
-        'towerContributionsToday': unit.towerContributionsToday
+        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+      },
+      $inc: {
+        'towerContributionsToday': unit.usedTowerContribution ? 1 : 0
       }
     };
     if (actualBattle.startingBossHp) {

@@ -63,6 +63,11 @@
             {{/if}}
           </a>
         </li>
+        <li class="nav-item battleLogTabLink">
+          <a class="nav-link {{#if showBattleLogTab}}active{{/if}}" href="#">
+            Battle Log
+          </a>
+        </li>
       </ul>
 
       <!-- Post fight banner -->
@@ -118,6 +123,8 @@
         {{> meditateTab}}
       {{else if showCombatGroupTab}}
         {{> combatGroupTab}}
+      {{else if showBattleLogTab}}
+        {{> battleLogTab}}
       {{else if showAbilitiesTab}}
         {{> combatAbilitiesTab}}
       {{/if}}

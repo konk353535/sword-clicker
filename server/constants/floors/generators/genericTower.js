@@ -2,6 +2,7 @@ import { FLOORS } from '/server/constants/floors/index';
 import { ENEMIES } from '/server/constants/enemies/index';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
+import { Random } from 'meteor/random';
 
 export const genericTowerMonsterGenerator = function(floor, room) {
 
@@ -59,7 +60,9 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {
-      allMonsters.push(JSON.parse(JSON.stringify(monster)));
+      const monsterClone = JSON.parse(JSON.stringify(monster));
+      monsterClone.id = Random.id();
+      allMonsters.push(monsterClone);
     }
 
     return allMonsters;

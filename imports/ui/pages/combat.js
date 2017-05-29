@@ -14,6 +14,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
 import '/imports/ui/components/combat/meditateTab/meditateTab.js';
+import '/imports/ui/components/combat/battleLogTab/battleLogTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
@@ -175,6 +176,11 @@ Template.combatPage.events({
     Meteor.call('users.setUiState', 'combatTab', 'abilities');
   },
 
+  'click .battleLogTabLink'(event, instance) {
+    instance.state.set('currentTab', 'battleLog');
+    Meteor.call('users.setUiState', 'combatTab', 'battleLog');
+  },
+
   'click .groupTabLink'(event, instance) {
     instance.state.set('currentTab', 'group');
     Meteor.call('users.setUiState', 'combatTab', 'group');
@@ -234,6 +240,10 @@ Template.combatPage.helpers({
 
   showCombatGroupTab() {
     return Template.instance().state.get('currentTab') === 'group';
+  },
+
+  showBattleLogTab() {
+    return Template.instance().state.get('currentTab') === 'battleLog';
   },
 
   showAbilitiesTab() {

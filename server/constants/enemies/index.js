@@ -486,7 +486,7 @@ export const ENEMIES = Object.assign({
     }, {
       type: 'times',
       key: 'armor',
-      amount: 0.2
+      amount: 0.3
     }]
   },
 
@@ -500,6 +500,15 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'damage',
+      amount: 0.25
+    }, {
+      type: 'times',
+      key: 'damageMax',
+      amount: 0.25
     }]
   },
 
@@ -513,6 +522,15 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'damage',
+      amount: 0.25
+    }, {
+      type: 'times',
+      key: 'damageMax',
+      amount: 0.25
     }]
   },
 
@@ -527,7 +545,7 @@ export const ENEMIES = Object.assign({
     }, {
       type: 'times',
       key: 'armor',
-      amount: 0.2
+      amount: 0.3
     }]
   },
 
@@ -541,6 +559,15 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'armor',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 0.8
     }]
   },
 

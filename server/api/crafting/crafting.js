@@ -4,6 +4,7 @@ import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import moment from 'moment';
+import _ from 'underscore';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { CRAFTING } from '/server/constants/crafting/index.js';
@@ -253,6 +254,51 @@ Meteor.methods({
     });
 
     return _.sortBy(recipesArray, 'requiredCraftingLevel');
+  },
+
+  'crafting.cancelCraft'(targetEndDate) {
+    // If existing crafts done, remove from crafting table
+    const crafting = Crafting.findOne({ owner: Meteor.userId() });
+
+    if (!crafting || !crafting.currentlyCrafting) {
+      return;
+    }
+
+    // Target Crafting Item
+    let targetCrafting;
+    crafting.currentlyCrafting.forEach((currentCrafting) => {
+      if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
+        targetCrafting = currentCrafting;
+      }
+    });
+
+    // Remove targetCrafting from current crafting array
+    const updatedCount = Crafting.update({
+      _id: crafting._id,
+      currentlyCrafting: crafting.currentlyCrafting
+    }, {
+      $pull: {
+        currentlyCrafting: {
+          endDate: {
+            $in: [targetCrafting.endDate]
+          }
+        }
+      }
+    });
+
+    if (updatedCount === 0) {
+      return;
+    }
+
+    // Refund resources for specified crat
+    const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
+    recipeConstants.required.forEach((required) => {
+      if (required.consumes) {
+        if (required.type === 'item') {
+          addItem(required.itemId, required.amount * targetCrafting.amount);
+        }
+      }
+    });
   },
 
   'crafting.updateGame'() {

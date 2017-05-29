@@ -50,6 +50,13 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
   });
 });
 
+Template.craftingDuration.events({
+  'click'() {
+    const instance = Template.instance();
+    // Cancel the craft for this
+    Meteor.call('crafting.cancelCraft', instance.data.craftingProcess.endDate);
+  },
+})
 
 Template.craftingDuration.helpers({
   computedCraftingProcess() {

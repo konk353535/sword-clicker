@@ -1,0 +1,50 @@
+<template name="battleLogTab">
+  <div class="d-flex flex-column">
+      <!-- Post fight banner -->
+      {{#each battles}}
+        <div class="d-flex alert alert-secondary" role="alert">
+          {{#if this.win}}
+            <strong class="text-success d-flex align-items-center mr-1">Victory</strong>
+          {{else}}
+            <strong class="text-danger d-flex align-items-center mr-1">Defeat</strong>
+          {{/if}}
+
+          <div class="d-flex align-items-center" style="flex: 1 1 auto">
+            {{#each this.finalTickEvents}}
+              {{#if $eq this.type 'xp'}}
+                <div class="ml-1">
+                  +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
+                </div>
+              {{/if}}
+
+              {{#if $eq this.type 'item'}}
+                <div class="ml-1 d-flex align-items-center">
+                  +{{this.amount}}
+                  <img src="/icons/{{this.icon}}.svg" class="ml-1 extra-small-icon">
+                </div>
+              {{/if}}
+
+              {{#if $eq this.type 'points'}}
+                <div class="ml-1 d-flex align-items-center">
+                  +{{this.amount}}
+                  <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+                </div>
+              {{/if}}
+
+              {{#if $eq this.type 'gold'}}
+                <div class="ml-1 d-flex align-items-center">
+                  +{{this.amount}}
+                  <img src="/icons/gold.svg" class="extra-small-icon">
+                </div>
+              {{/if}}
+
+            {{/each}}
+
+            <span class="d-flex justify-content-end flex-grow">
+              {{moFormat this.updatedAt 'Do MMM h:mm A'}}
+            </span>
+          </div>
+        </div>
+      {{/each}}
+  </div>
+</template>

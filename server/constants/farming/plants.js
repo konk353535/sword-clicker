@@ -85,7 +85,7 @@ export const PLANTS = {
     waterStorage: 100,
     initialWater: 50,
     requiredWater: 120,
-    growthTime: 30 * 60,
+    growthTime: 10 * 60,
     xp: 50,
     required: [{
       type: 'item',
@@ -110,7 +110,7 @@ export const PLANTS = {
     waterStorage: 100,
     initialWater: 50,
     requiredWater: 300,
-    growthTime: 30 * 60,
+    growthTime: 15 * 60,
     xp: 100,
     required: [{
       type: 'item',
@@ -185,7 +185,7 @@ export const PLANTS = {
     waterStorage: 100,
     initialWater: 50,
     requiredWater: 200,
-    growthTime: 20 * 60,
+    growthTime: 10 * 60,
     xp: 100,
     required: [{
       type: 'item',

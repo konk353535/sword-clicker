@@ -6,7 +6,7 @@ export const AMULET_ITEMS = {
     slot: 'neck',
     name: 'stone amulet',
     sellPrice: 40,
-    description: 'An amulet with traices of magic.',
+    description: 'An amulet with traces of magic. Click monsters to damage in combat.',
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
@@ -28,7 +28,7 @@ export const AMULET_ITEMS = {
     slot: 'neck',
     name: 'mithril amulet',
     sellPrice: 400,
-    description: 'A mithril amulet.',
+    description: 'A mithril amulet. Click monsters to damage in combat.',
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
@@ -50,7 +50,7 @@ export const AMULET_ITEMS = {
     slot: 'neck',
     name: 'jade amulet',
     sellPrice: 600,
-    description: 'A magic amulet.',
+    description: 'A magic amulet. Click monsters to damage in combat.',
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
@@ -72,7 +72,7 @@ export const AMULET_ITEMS = {
     slot: 'neck',
     name: 'lapis lazuli amulet',
     sellPrice: 2000,
-    description: 'A magic amulet.',
+    description: 'A magic amulet. Click monsters to damage in combat.',
     isEquippable: true,
     isAttackAmulet: true,
     stats: {

@@ -3,6 +3,16 @@
       <!-- Post fight banner -->
       {{#each battles}}
         <div class="d-flex alert alert-secondary" role="alert">
+          {{#if this.wave}}
+            <span class="mr-1">L{{this.level}} W{{this.wave}}</span>
+          {{/if}}
+          {{#if this.isExplorationRun}}
+            <span class="mr-1">F{{this.floor}}</span>
+          {{/if}}
+          {{#if this.room}}
+            <span class="mr-1">F{{this.floor}} R{{this.room}}</span>
+          {{/if}}
+
           {{#if this.win}}
             <strong class="text-success d-flex align-items-center mr-1">Victory</strong>
           {{else}}

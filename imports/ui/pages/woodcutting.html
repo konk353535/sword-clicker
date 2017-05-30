@@ -19,8 +19,10 @@
       <small class="ml-3 mt-1">{{woodcutting.woodcutters.length}} / {{woodcutting.maxWoodcutters}}</small>
     </div>
 
-    <p>Woodcutters collect wood over time</p>
-
+    <p class="d-flex">
+      <span class="mr-1">Woodcutters collect wood over time</span>
+      {{> helpIcon title='Woodcutter Stats' content=woodcutterStatContent}}
+    </p>
     <div class="d-flex flex-wrap">
       <!-- List of my woodcutters here -->
       {{#each woodcutting.woodcutters}}

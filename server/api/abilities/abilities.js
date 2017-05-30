@@ -236,8 +236,10 @@ Meteor.methods({
     const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
       const abilityConstant = JSON.parse(JSON.stringify(ABILITIES[abilityKey]));
       let abilityLevel = 1;
+      let learntLevel = 0;
       if (abilitiesMap[abilityKey]) {
         abilityLevel = abilitiesMap[abilityKey];
+        learntLevel = abilitiesMap[abilityKey];
       }
       const abilityData = {
         description: ABILITIES[abilityKey].description(abilityLevel),
@@ -245,6 +247,7 @@ Meteor.methods({
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
         cooldown: abilityConstant.cooldown,
+        learntLevel,
         level: abilityLevel,
         id: abilityConstant.id
       }

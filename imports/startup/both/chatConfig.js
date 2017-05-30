@@ -21,6 +21,10 @@ SimpleChat.configure ({
 
   },
   allow: function(message, roomId, username, avatar, name){
+    if (message.length > 512) {
+      return;
+    }
+
     const userDoc = Users.findOne(this.userId);
 
     if (userDoc.username !== username || userDoc.username !== name) {
@@ -43,7 +47,7 @@ SimpleChat.configure ({
     if (userDoc.isMod) {
       if (/\/hardmute/.test(message)) {
         // Find user
-        const targetUser = Users.find({ username: message.split('/hardmute')[1].toLowerCase().trim() })
+        const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() })
         
         // Set isMuted + Expiry
         Users.update(targetUser._id, {
@@ -52,10 +56,11 @@ SimpleChat.configure ({
           }
         });
 
+
         // Remove muted users messages
         Chats.remove({
           userId: targetUser._id
-        }, { multi: true });
+        });
 
         return false;
       } else if (/\/mute/.test(message)) {

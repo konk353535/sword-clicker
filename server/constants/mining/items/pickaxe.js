@@ -565,7 +565,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 10, // Maximum energy stored
-      attack: 3, // Damage per hit
+      attack: 5, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 15, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
@@ -573,8 +573,7 @@ export const PICKAXE_ITEMS = {
     extraStats: {
       energyStorage: 10,
       attack: 1,
-      energyRegen: 5,
-      miner: 24
+      energyRegen: 5
     }
   },
 
@@ -590,7 +589,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 12, // Maximum energy stored
-      attack: 7, // Damage per hit
+      attack: 8, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
       miner: 10 // Increases effeciency of miners
@@ -615,7 +614,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 14,
-      attack: 10,
+      attack: 11,
       energyPerHit: 1,
       energyRegen: 6,
       miner: 20

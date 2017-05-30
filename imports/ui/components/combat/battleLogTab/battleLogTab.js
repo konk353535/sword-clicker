@@ -21,6 +21,7 @@ Template.battleLogTab.helpers({
       battle.finalTickEvents = battle.finalTickEvents.filter((tickEvent) => {
         return tickEvent.owner === Meteor.userId();
       });
+      console.log(battle);
       return battle;
     })
   }

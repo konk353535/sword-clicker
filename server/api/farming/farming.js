@@ -242,9 +242,16 @@ Meteor.methods({
 
       return false;
     }).map((shopItem) => {
+      const itemConstants = ITEMS[shopItem.itemId];
+      const producesConstants = ITEMS[itemConstants.produces];
       shopItem.icon = ITEMS[shopItem.itemId].icon;
       shopItem.name = ITEMS[shopItem.itemId].name;
-      shopItem.description = ITEMS[shopItem.itemId].description;
+
+      if (_.isFunction(producesConstants.description)) {
+        shopItem.description = producesConstants.description();
+      } else {
+        shopItem.description = ITEMS[shopItem.itemId].description;
+      }
       return shopItem;
     });
 

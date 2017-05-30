@@ -68,7 +68,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
     });
   }
 
-  if (newItemsList.length === 1) {
+  if (newItemsList.length === 1 && !itemConstants.stats) {
     if (itemConstants.extraStats) {
       const extraStats = newItemsList[0].extraStats;
       const currentItem = Items.findOne({ owner, itemId, extraStats });

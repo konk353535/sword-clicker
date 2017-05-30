@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Abilities } from '/imports/api/abilities/abilities.js';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -175,18 +176,23 @@ Template.inscriptionPage.helpers({
     const abilityMap = instance.state.get('abilityMap');
 
     if (recipeFilter === 'abilities') {
-      return instance.state.get('recipes').filter((item) => {
+      const abilityRecipes = instance.state.get('recipes').filter((item) => {
         return item.category === 'tome' && item.teaches.level === parseInt(levelFilter);
       }).map((recipe) => {
+
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {
             recipe.ability = abilityMap[recipeTeaches];
+            recipe.isLearnt = recipe.ability.level === recipe.ability.learntLevel;
+
             recipe.ability.primaryAction = {};
           }
         }
         return recipe;
       });
+
+      return _.sortBy(abilityRecipes, 'isLearnt');
     } else {
       return instance.state.get('recipes').filter((item) => {
         return item.category === recipeFilter;

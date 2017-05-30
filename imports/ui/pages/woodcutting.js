@@ -139,6 +139,30 @@ Template.woodcuttingPage.helpers({
     }
   },
 
+  woodcutterStatContent() {
+    return `
+      <p>
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-attack extra-small-icon mr-1"></i><b>Attack</b>
+        </div>
+        Determines the best wood a woodcutter can get.
+      </p>
+      <p>
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-attackSpeed extra-small-icon mr-1"></i><b>Speed</b>
+        </div>
+        How many times a minute the woodcutter will chop wood.
+      </p>
+      <p>
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-accuracy extra-small-icon mr-1"></i><b>Accuracy</b>
+        </div>
+        Accuracy increases the chance of getting rarer logs. <br />
+        As well as getting more basic logs.
+      </p>
+    `;
+  },
+
   buyableWoodcutters() {
     const woodcuttingSkill = Skills.findOne({ type: 'woodcutting' });
     if (!woodcuttingSkill) {

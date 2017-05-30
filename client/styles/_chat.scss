@@ -21,6 +21,7 @@ body {
     margin-bottom: 0px;
     margin-right: $spacer / 2;
     float: left;
+    white-space: nowrap;
   }
 
   .direct-chat-timestamp.pull-right {
@@ -33,6 +34,7 @@ body {
 
   .direct-chat-msg {
     margin-bottom: 0px;
+    display: flex;
   }
 
   .direct-chat-messages {

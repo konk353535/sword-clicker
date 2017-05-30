@@ -116,6 +116,8 @@ Template.currentBattleUi.helpers({
       icon: 'changeTarget',
       description: 'Select a target to attack',
       name: 'Attack Target',
+      slot: 'changeTarget',
+      hotkey: 't',
       target: 'singleEnemy',
       currentCooldown: 0,
       targettable: true

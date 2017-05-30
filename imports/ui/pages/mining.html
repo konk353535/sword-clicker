@@ -85,6 +85,13 @@
     {{/if}}
   </div>
 
+  {{#if $lte miningSkill.level 3}}
+    <h2>How to mine</h2>
+    <div>1. Click on ores to deal damage.</div>
+    <div>2. Once an ore 'dies' it will appear in your inventory.</div>
+    <div>3. Use gathered ore to craft items.</div>
+  {{/if}}
+
   <h2>Mine Shaft</h2>
   <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
     {{#each miningSpaces}}

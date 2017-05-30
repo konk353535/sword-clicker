@@ -54,7 +54,6 @@ const castAbility = function(instance) {
       }
     }
   } else {
-    console.log('Casting!');
     const battleId = currentBattleId;
     const abilityId = instance.data.ability.id;
     const targetId = Meteor.userId();
@@ -74,7 +73,8 @@ Template.ability.onCreated(function bodyOnCreated() {
     'offHand': 1,
     'head': 2,
     'chest': 3,
-    'legs': 4
+    'legs': 4,
+    'changeTarget': 35 // t
   }
   $(document).on('keyup', (e) => {
     if (keyCodes[slot] != null && e.which == 49 + keyCodes[slot]) {

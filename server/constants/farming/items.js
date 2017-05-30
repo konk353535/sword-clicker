@@ -6,7 +6,10 @@ export const FARMING_ITEMS = {
     icon: 'letticeSeed',
     category: 'seed',
     name: 'Lettuce Seed',
-    description: 'Used to grow lettuce. Useful for eating.',
+    description() {
+      const buff = BUFFS.food_lettice;
+      return buff.description({ buff });
+    },
     sellPrice: 1,
     produces: 'lettice'
   },

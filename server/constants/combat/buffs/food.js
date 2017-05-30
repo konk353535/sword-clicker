@@ -63,7 +63,7 @@ export const FOOD_BUFFS = {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Then, regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
       duration: 240, // How long the buff will last
@@ -174,7 +174,7 @@ export const FOOD_BUFFS = {
     name: 'eating grapefruit',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp insatntly. <br /> Digests over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
       duration: 120, // How long the buff will last

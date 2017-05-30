@@ -38,7 +38,12 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'carbon_dagger', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
+  chance: 1 / 16,
+  rewards: [
+    { type: 'item', itemId: 'mithril_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 8,
   rewards: [
     { type: 'item', itemId: 'carbon_bar', amount: 1 },
     { type: 'item', itemId: 'ore_mithril', amount: 1 }

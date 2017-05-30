@@ -128,9 +128,10 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
-    // Apply xp gains, only if not a boss battle
-    const totalXpGain = actualBattle.totalXpGain;
     const units = actualBattle.units.concat(actualBattle.deadUnits);
+
+    // Apply xp gains, only if not a boss battle
+    const totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
     if (!actualBattle.startingBossHp) {
       units.forEach((unit) => {
@@ -190,12 +191,13 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
+    // Each user = additional 20% chance of loot
+    const extraChance = 1 + (units.length * 0.2) - 0.2;
     for (let i = 0; i < floorRewards.length; i++) {
       const rewardTable = floorRewards[i];
       const diceRoll = Math.random();
 
-      // Each user = additional 33% chance of loot
-      if ((rewardTable.chance * (0.66 + (units.length / 3))) >= diceRoll) {
+      if ((rewardTable.chance * extraChance) >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
         if (rewardsGained >= units.length) {
           break;
@@ -317,7 +319,8 @@ export const completeBattle = function (actualBattle) {
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
-        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0)
+        'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
+        lastGameUpdated: new Date(),
       },
       $inc: {
         'towerContributionsToday': unit.usedTowerContribution ? 1 : 0
@@ -468,6 +471,11 @@ export const completeBattle = function (actualBattle) {
   Battles.insert({
     owners: actualBattle.owners,
     finished: true,
+    level: actualBattle.level,
+    wave: actualBattle.wave,
+    floor: actualBattle.floor,
+    room: actualBattle.room,
+    isExplorationRun: actualBattle.isExplorationRun,
     win,
     finalTickEvents,
     updatedAt: new Date(),

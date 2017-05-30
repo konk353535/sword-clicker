@@ -78,7 +78,9 @@
       <tbody>
         {{#each recipes}}
           <tr class="craft-row" style="cursor: pointer" data-recipe={{this.id}}>
-            <td class="text-capitalize">{{this.name}}</td>
+            <td class="text-capitalize {{#if this.isLearnt}}text-success{{/if}}">
+              {{this.name}}
+            </td>
             <td>
               {{ > recipeIcon recipe=this}}
             </td>

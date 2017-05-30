@@ -67,12 +67,7 @@ export const COPPER_ITEMS = {
       attack: 2,
       attackMax: 2,
       accuracy: 3
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 2
-    }]
+    }
   },
 
   copper_scimitar: {
@@ -96,12 +91,7 @@ export const COPPER_ITEMS = {
       attack: 4,
       attackMax: 4,
       accuracy: 6
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 5
-    }]
+    }
   },
 
   copper_long_sword: {
@@ -126,12 +116,7 @@ export const COPPER_ITEMS = {
       attack: 3,
       attackMax: 5,
       accuracy: 4
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 2
-    }]
+    }
   },
 
   copper_broad_sword: {
@@ -156,12 +141,7 @@ export const COPPER_ITEMS = {
       attack: 6,
       attackMax: 8,
       accuracy: 8
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 5
-    }]
+    }
   },
 
   copper_battle_axe: {
@@ -185,12 +165,7 @@ export const COPPER_ITEMS = {
     extraStats: {
       attack: 2,
       attackMax: 10
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 2
-    }]
+    }
   },
 
   copper_horned_helmet: {
@@ -211,12 +186,7 @@ export const COPPER_ITEMS = {
       attack: 1,
       attackMax: 1,
       accuracy: 1
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 1
-    }]
+    }
   },
 
   copper_helmet: {
@@ -237,12 +207,7 @@ export const COPPER_ITEMS = {
       healthMax: 2,
       defense: 1,
       armor: 2
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 1
-    }]
+    }
   },
 
   copper_chest_plate: {
@@ -263,12 +228,7 @@ export const COPPER_ITEMS = {
       healthMax: 2,
       defense: 1,
       armor: 2
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 1
-    }]
+    }
   },
 
   copper_plate_legs: {
@@ -289,12 +249,7 @@ export const COPPER_ITEMS = {
       healthMax: 2,
       defense: 1,
       armor: 2
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 1
-    }]
+    }
   },
 
   copper_shield: {
@@ -315,11 +270,6 @@ export const COPPER_ITEMS = {
       healthMax: 4,
       defense: 3,
       armor: 5
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 1
-    }]
+    }
   }
 }

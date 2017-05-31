@@ -53,7 +53,7 @@ export const TOWER_FLOOR_8 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_cobalt', amount: 1 },
@@ -70,12 +70,12 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'cobalt_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Magicians Headquarters',
     enemies: ['blue_mage'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 }
@@ -87,7 +87,7 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
         { type: 'item', itemId: 'cobalt_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

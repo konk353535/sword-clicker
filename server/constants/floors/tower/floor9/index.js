@@ -46,7 +46,7 @@ export const TOWER_FLOOR_9 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
@@ -63,18 +63,18 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Master Farmers Market',
     enemies: ['farmer'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'celery_seed', amount: 1 },
         { type: 'item', itemId: 'dragon_fruit', amount: 3 }
       ]
-    }]
+    }]))
   },
 
   boss: {

@@ -14,10 +14,10 @@ export const TOWER_FLOOR_3 = {
     rewards: LEVEL_THREE_LOOT_TABLE
   },
   3: {
-    name: 'Herb Garden',
+    name: 'Juniper Garden',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'juniper', amount: 1 },
         { type: 'item', itemId: 'agrimony_seed', amount: 1 }
@@ -42,7 +42,7 @@ export const TOWER_FLOOR_3 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_coal', amount: 1 },
@@ -60,12 +60,12 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Spiders Web',
     enemies: ['spider'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'polished_stone', amount: 30 }
@@ -77,7 +77,7 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'steel_broad_sword', amount: 1 },
         { type: 'item', itemId: 'steel_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

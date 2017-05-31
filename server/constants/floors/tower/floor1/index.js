@@ -27,7 +27,7 @@ export const TOWER_FLOOR_1 = {
     name: 'Flower Field',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'rubia_flower_seed', amount: 1 }
       ]
@@ -36,17 +36,17 @@ export const TOWER_FLOOR_1 = {
   5: {
     name: 'Abandoned Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_stone', amount: 1 },
-        { type: 'item', itemId: 'ore_copper', amount: 1 },
-        { type: 'item', itemId: 'pine_log', amount: 1 }
+        { type: 'item', itemId: 'ore_stone', amount: 5 },
+        { type: 'item', itemId: 'ore_copper', amount: 3 },
+        { type: 'item', itemId: 'pine_log', amount: 3 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'copper_bar', amount: 1 }
+        { type: 'item', itemId: 'copper_bar', amount: 2 }
       ]
     }, {
       chance: 1 / 32,
@@ -64,14 +64,14 @@ export const TOWER_FLOOR_1 = {
   7: {
     name: 'Fortress of stings',
     enemies: ['wasp'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'copper_scimitar', amount: 1 },
         { type: 'item', itemId: 'copper_broad_sword', amount: 1 },
         { type: 'item', itemId: 'copper_horned_helmet', amount: 1 }
       ]
-    }]
+    }])
   },
 
   boss: {

@@ -43,7 +43,7 @@ export const TOWER_FLOOR_2 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_coal', amount: 1 },
@@ -61,12 +61,12 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'iron_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Carrot Farm',
     enemies: ['rabbit'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'carrot', amount: 1 }
@@ -78,7 +78,7 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'iron_broad_sword', amount: 1 },
         { type: 'item', itemId: 'iron_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

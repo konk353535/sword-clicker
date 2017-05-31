@@ -69,7 +69,7 @@ export const TOWER_FLOOR_6 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_adamantium', amount: 1 },
@@ -86,12 +86,12 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Mysterious Mine',
     enemies: ['dwarf'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'dwarven_staff', amount: 1 }
@@ -103,7 +103,7 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
         { type: 'item', itemId: 'adamantium_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

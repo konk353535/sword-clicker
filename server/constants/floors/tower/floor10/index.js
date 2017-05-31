@@ -47,7 +47,7 @@ export const TOWER_FLOOR_10 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_cursed', amount: 1 },
@@ -64,12 +64,12 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'cursed_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cursed_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Fire Mage',
     enemies: ['fire_mage'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [
         { type: 'item', itemId: 'inferno_tome', amount: 1 }
@@ -79,7 +79,7 @@ export const TOWER_FLOOR_10 = {
       rewards: [
         { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
       ]
-    }]
+    }]))
   },
 
   boss: {

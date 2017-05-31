@@ -53,7 +53,7 @@ export const TOWER_FLOOR_4 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_carbon', amount: 1 },
@@ -70,12 +70,12 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Earthen Mage',
     enemies: ['earth_mage'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
@@ -87,7 +87,7 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'carbon_broad_sword', amount: 1 },
         { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

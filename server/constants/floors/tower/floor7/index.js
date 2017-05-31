@@ -53,7 +53,7 @@ export const TOWER_FLOOR_7 = {
   6: {
     name: 'Suspicious Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable([{
+    rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_orichalcum', amount: 1 },
@@ -70,12 +70,12 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'Sparta',
     enemies: ['spartan'],
-    rewards: [{
+    rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'spartan_shield', amount: 1 }
@@ -87,7 +87,7 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'orichalcum_broad_sword', amount: 1 },
         { type: 'item', itemId: 'orichalcum_horned_helmet', amount: 1 }
       ]
-    }]
+    }]))
   },
 
   boss: {

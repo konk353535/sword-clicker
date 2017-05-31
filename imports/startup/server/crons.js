@@ -25,7 +25,9 @@ SyncedCron.add({
     const bossEnemyConstants = ENEMIES[bossEnemyId];
 
     const activeTowerUsers = FloorWaveScores.find({ floor: currentFloor.floor }).count();
-
+    console.log(`active tower users ${activeTowerUsers}`);
+    console.log(`boss enemy constants`);
+    console.log(bossEnemyConstants);
     Floors.update({ floorComplete: false }, {
       $set: {
         health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
@@ -33,12 +35,21 @@ SyncedCron.add({
       }
     });
 
+    console.log('Have finally reset boss health');
+
+    // Clear hp dealt on leaderboards
+    BossHealthScores.remove({});
+
+    console.log('Boss hp score reset');
+
     // Enable users to fight bosses again
     Combat.update({ foughtBoss: true }, {
       $set: {
         foughtBoss: false
       }
     }, { multi: true });
+
+    console.log('Fought boss is done now');
 
     // Enable users to fight waves again
     Combat.update({
@@ -51,9 +62,7 @@ SyncedCron.add({
       }
     }, { multi: true });
 
-    // Clear hp dealt on leaderboards
-    BossHealthScores.remove({});
-
+    console.log('All done for boss battle reset');
     return true;
   }
 });

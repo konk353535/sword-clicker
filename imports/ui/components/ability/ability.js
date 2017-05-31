@@ -66,6 +66,12 @@ const castAbility = function(instance) {
 
 Template.ability.onCreated(function bodyOnCreated() {
 
+});
+
+Template.ability.rendered = function () {
+
+  $(document).off('keyup');
+
   const slot = this.data.ability.slot;
   // Map slot to button press
   const keyCodes = {
@@ -81,11 +87,7 @@ Template.ability.onCreated(function bodyOnCreated() {
       castAbility(this);
     }
   });
-})
-
-Template.ability.onDestroyed(() => {
-  $(document).off('keyup');
-})
+}
 
 Template.ability.events({
   'click'(event, instance) {

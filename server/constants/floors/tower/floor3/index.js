@@ -14,11 +14,12 @@ export const TOWER_FLOOR_3 = {
     rewards: LEVEL_THREE_LOOT_TABLE
   },
   3: {
-    name: 'Juniper Garden',
+    name: 'Herb Garden',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 48,
       rewards: [
+        { type: 'item', itemId: 'lavender', amount: 1 },
         { type: 'item', itemId: 'juniper', amount: 1 },
         { type: 'item', itemId: 'agrimony_seed', amount: 1 }
       ]

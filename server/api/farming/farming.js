@@ -173,6 +173,22 @@ Meteor.methods({
     }
   },
 
+  'farming.killPlant'(index) {
+    // Pick whatever is in the specified index
+    FarmingSpace.update({
+      owner: Meteor.userId(),
+      index
+    }, {
+      $set: {
+        plantId: null,
+        water: null,
+        maturityDate: null,
+        plantDate: null,
+        growing: null
+      }
+    });
+  },
+
   'farming.plant'(plantId) {
     // Does the user have a spare planting space?
     const emptySpace = FarmingSpace.findOne({
@@ -207,6 +223,47 @@ Meteor.methods({
         growing: true
       }
     });
+  },
+
+  'farming.plantAll'(plantId) {
+    // Which farming spaces are free
+    const emptySpaces = FarmingSpace.find({
+      owner: Meteor.userId(),
+      active: true,
+      $or: [{
+        plantId: {
+          $exists: false
+        }
+      }, {
+        plantId: null
+      }]
+    }).fetch();
+
+    if (!emptySpaces || emptySpaces.length === 0) {
+      throw new Meteor.Error("no-free-spaces", "There are no free farming fields to plant this seed");
+    }
+
+    // Fetch plant constants
+    const plantConstants = FARMING.plants[plantId];
+
+    if (!plantConstants || !requirementsUtility(plantConstants.required, emptySpaces.length)) {
+      throw new Meteor.Error("requirements-not-met", "You do not meet the requirements to plant this seed");
+    }
+
+    // Modify farming space with growing sapling
+    FarmingSpace.update({
+      owner: Meteor.userId(),
+      index: {
+        $in: emptySpaces.map((emptySpace) => { return emptySpace.index })
+      }
+    }, {
+      $set: {
+        plantId: plantConstants.id,
+        maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
+        plantDate: new Date(),
+        growing: true
+      }
+    }, { multi: true });
   },
 
   'farming.buyShopItem'(seedId) {

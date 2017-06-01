@@ -70,9 +70,11 @@ Template.ability.onCreated(function bodyOnCreated() {
 
 Template.ability.rendered = function () {
 
-  $(document).off('keyup');
 
   const slot = this.data.ability.slot;
+
+  $(document).off(`keyup.${slot}`);
+
   // Map slot to button press
   const keyCodes = {
     'mainHand': 0,
@@ -82,7 +84,7 @@ Template.ability.rendered = function () {
     'legs': 4,
     'changeTarget': 35 // t
   }
-  $(document).on('keyup', (e) => {
+  $(document).on(`keyup.${slot}`, (e) => {
     if (keyCodes[slot] != null && e.which == 49 + keyCodes[slot]) {
       castAbility(this);
     }

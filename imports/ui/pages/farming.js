@@ -69,7 +69,19 @@ Template.farmingPage.helpers({
               }
             });
           }
-        }        
+        }
+        item.shiftAction = {
+          description: 'plant all',
+          item,
+          method() {
+            // Planting
+            Meteor.call('farming.plantAll', item.plantingDetails.produces, (err, res) => {
+              if (err) {
+                toastr.warning(err.reason);
+              }
+            });
+          }
+        }
       }
       return item;
     });

@@ -275,6 +275,54 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  double_edged_sword: {
+    duplicateTag: 'double_edged_sword', // Used to stop duplicate buffs
+    icon: 'doubleEdgedSword',
+    name: 'double edged sword',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
+      return `
+        Attack for <b>${damageIncreasePerPercentage * 100}%</b> of your max damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Deal half of this damage to yourself.`;
+    },
+    constants: {
+      damageBase: 4.5, // 7.5x damage
+      damagePerLevel: 0.5
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
+        // Targets missing health %
+        const baseDamage = caster.stats.attackMax;
+        const totalDamage = baseDamage * damageIncreasePerPercentage;
+
+        buff.data.endDate = moment().add(0, 'seconds').toDate();
+        actualBattle.utils.dealDamage(totalDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+
+        actualBattle.utils.dealDamage(totalDamage / 2, {
+          attacker: caster,
+          defender: caster,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   execute: {
     duplicateTag: 'execute', // Used to stop duplicate buffs
     icon: 'execute',
@@ -474,8 +522,8 @@ export const ATTACK_BUFFS = {
       damagePerSecondPerLevel: 0.03
     },
     data: {
-      duration: 10,
-      totalDuration: 10,
+      duration: 12,
+      totalDuration: 12,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

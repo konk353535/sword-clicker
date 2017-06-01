@@ -20,7 +20,15 @@ Meteor.startup(() => {
 
   if (process.env['CLUSTER_WORKER_ID'] !== "1") return 
 
+  /*
+  Object.keys(ITEMS).forEach((itemId) => {
+    console.log(itemId);
+    addItem(itemId, 1, 'dwh6m5aWF5bT8bDyq');
+  });
+  */
+
   // Process combat items with extra stats beyond normal values
+
   /*
   Items.find({
     category: 'combat'

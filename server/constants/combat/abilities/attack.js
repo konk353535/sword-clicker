@@ -34,6 +34,21 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  double_edged_sword: {
+    icon: 'doubleEdgedSword',
+    name: 'doubled edged sword',
+    id: 'double_edged_sword',
+    buffs: ['double_edged_sword'],
+    cooldown: 180,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.double_edged_sword;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   shield_bash: {
     icon: 'shieldBash',
     name: 'shield bash',

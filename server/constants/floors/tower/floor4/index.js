@@ -17,9 +17,9 @@ export const TOWER_FLOOR_4 = {
     name: 'Herb Garden',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 48,
       rewards: [
-        { type: 'item', itemId: 'juniper', amount: 1 }
+        { type: 'item', itemId: 'lavender', amount: 1 }
       ]
     }]))
   },

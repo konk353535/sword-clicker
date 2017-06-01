@@ -42,11 +42,21 @@
 
       {{#if item.primaryAction}}
         {{#if item.primaryAction.description}}
-          <b>Left Click</b> to {{item.primaryAction.description}}
+          <div>
+            <b>Left Click</b> to {{item.primaryAction.description}}
+          </div>
         {{/if}}
       {{else}}
         <b>Sells for</b> {{item.sellPrice}} Gold<br />
         <b>Left Click</b> to sell
+      {{/if}}
+
+      {{#if item.shiftAction}}
+        {{#if item.shiftAction.description}}
+          <div>
+            <b>Shift Click</b> to {{item.shiftAction.description}}
+          </div>
+        {{/if}}
       {{/if}}
     </div>
   </div>

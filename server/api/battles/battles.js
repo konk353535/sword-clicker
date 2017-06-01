@@ -63,14 +63,12 @@ export const resumeBattle = function(id) {
 
 Meteor.methods({
 
-  'battles.findPersonalBattle'(level, wave) {
+  'battles.findPersonalBattle'(level) {
     // Ensure user has access to specified wave
     const maxLevel = Meteor.user().personalQuest.level;
     const maxWave = Meteor.user().personalQuest.wave;
 
-    if (level === maxLevel && wave !== maxWave) {
-      throw new Meteor.Error("no-sir", "Can only fight the current wave, for levels you have not completed");
-    } else if (level > maxLevel) {
+    if (level > maxLevel) {
       throw new Meteor.Error("no-sir", "You are not up to the specified level");
     } else if (level <= 0) {
       throw new Meteor.Error("no-sir", "Cannot select a level below 1");      
@@ -84,7 +82,9 @@ Meteor.methods({
       throw new Meteor.Error("only-alone", "You can only do personal quests alone");
     }
 
-    if (level !== maxLevel && wave !== maxWave + 1) {
+    if (level === maxLevel) {
+      wave = maxWave;
+    } else {
       wave = _.random(1, 5);
     }
 

@@ -3,6 +3,7 @@ import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const MAGIC_BUFFS = {
+
   earth_dart: {
     duplicateTag: 'earth_dart', // Used to stop duplicate buffs
     icon: 'earthDart',

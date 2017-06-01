@@ -38,7 +38,11 @@ const sellItem = function (event, instance) {
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
     const primaryAction = instance.data.item.primaryAction;
-    if (primaryAction) {
+    const shiftAction = instance.data.item.shiftAction;
+
+    if (window.event.shiftKey) {
+      shiftAction.method();      
+    } else if (primaryAction) {
       primaryAction.method();
     } else {
       instance.state.set('sellAmount', instance.data.item.amount);

@@ -52,6 +52,11 @@ Template.farmSpace.events({
         }
       });
     }
+
+    if (window.event.shiftKey) {
+      // Send kill event for this plant
+      Meteor.call('farming.killPlant', instance.data.farmSpace.index);
+    }
   }
 });
 

@@ -283,7 +283,7 @@ export const PICKAXE_ITEMS = {
 
   fairy_steel_mining_hammer: {
     id: 'fairy_steel_mining_hammer',
-    icon: 'fairy_steelMiningHammer',
+    icon: 'fairySteelMiningHammer',
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy_steel mining hammer',

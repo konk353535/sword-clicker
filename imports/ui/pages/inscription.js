@@ -184,7 +184,7 @@ Template.inscriptionPage.helpers({
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {
             recipe.ability = abilityMap[recipeTeaches];
-            recipe.isLearnt = recipe.ability.level === recipe.ability.learntLevel;
+            recipe.isLearnt = recipe.teaches.level <= recipe.ability.learntLevel;
 
             recipe.ability.primaryAction = {};
           }

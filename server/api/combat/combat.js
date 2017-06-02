@@ -17,7 +17,6 @@ import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT, BUFFS } from '/server/constants/combat/index.js';
 
 export const updateCombatStats = function (userId, username) {
-
   // Build up our object of skills
   const playerData = {
     stats: {

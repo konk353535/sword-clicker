@@ -330,9 +330,9 @@ Meteor.methods({
       // Remove item
       Items.remove(currentItem._id);
 
-      if (itemConstants.category === 'combat') {
+      if (itemConstants.category === 'combat' && currentItem.equipped) {
         updateCombatStats(Meteor.userId(), Meteor.user().username);
-      } else if (itemConstants.category === 'mining') {
+      } else if (itemConstants.category === 'mining' && currentItem.equipped) {
         updateMiningStats();
       }
     } else {

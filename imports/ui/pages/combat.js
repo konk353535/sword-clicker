@@ -45,7 +45,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
       if (myUser.uiState && myUser.uiState.combatTab !== undefined) {
         this.state.set('currentTab', myUser.uiState.combatTab);
       } else {
-        this.state.set('currentTab', 'equipment');
+        this.state.set('currentTab', 'personalQuest');
       }
     }
   });

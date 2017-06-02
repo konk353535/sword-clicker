@@ -4,14 +4,17 @@ import { Random } from 'meteor/random';
 import { Skills } from '../../api/skills/skills.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
+import { Crafting } from '../../api/crafting/crafting.js';
 import { Combat } from '../../api/combat/combat.js';
 import { Abilities } from '../../api/abilities/abilities.js';
 import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
+import { updateCombatStats } from '/server/api/combat/combat.js';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
+import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 
 import '/imports/api/users/users.js';
@@ -36,10 +39,44 @@ Accounts.onCreateUser((options, user) => {
   });
 
   Skills.insert({
+    type: 'defense',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  });
+
+  Skills.insert({
+    type: 'attack',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  });
+
+  Skills.insert({
+    type: 'health',
+    createdAt: new Date(),
+    owner: userId,
+    level: SKILLS.health.baseLevel,
+    username: user.username
+  });
+
+  Skills.insert({
+    type: 'crafting',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  });
+
+  Skills.insert({
     type: 'total',
     createdAt: new Date(),
     owner: userId,
     username: user.username
+  });
+
+  Crafting.insert({
+    owner: userId,
+    currentlyCrafting: []
   });
 
   Mining.insert({
@@ -59,13 +96,20 @@ Accounts.onCreateUser((options, user) => {
     owner: userId,
     stats: {
       health: 50,
-      energy: 25
+      healthMax: 50,
+      energy: 40
     }
   });
 
   Abilities.insert({
     owner: userId,
-    learntAbilities: []
+    learntAbilities: [{
+      "abilityId": "execute",
+      "level": 1,
+      "equipped": true,
+      "slot": "mainHand",
+      "currentCooldown": 0
+    }]
   });
 
   MiningSpace.insert({
@@ -85,6 +129,8 @@ Accounts.onCreateUser((options, user) => {
   }
 
   addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
+  addItem(ITEMS['copper_dagger'].id, 1, userId);
+  addItem(ITEMS['lettice'].id, 5, userId);
 
   // Equip the pick axe
   Items.update({
@@ -97,8 +143,21 @@ Accounts.onCreateUser((options, user) => {
     }
   });
 
+  // Equip dagger
+  Items.update({
+    owner: userId,
+    itemId: ITEMS['copper_dagger'].id
+  }, {
+    $set: {
+      equipped: true,
+      slot: ITEMS['copper_dagger'].slot
+    }
+  });
+
   // Update mining stats
   updateMiningStats(userId, true);
+  // Update combat stats
+  updateCombatStats(userId, user.username);
 
   return user;
 });

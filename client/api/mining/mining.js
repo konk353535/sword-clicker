@@ -3,18 +3,18 @@ import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 
 Meteor.methods({
-  'mining.clickedMineSpace'(mineSpaceId) {
+  'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
     const mining = Mining.findOne({ owner: Meteor.userId() });
     const mineSpace = MiningSpace.findOne({ _id: mineSpaceId, owner: Meteor.userId() });
-    const damage = mining.stats.attack;
+    const damage = mining.stats.attack * multiplier;
 
-    if (mining.stats.energy < mining.stats.energyPerHit) {
+    if (mining.stats.energy < (mining.stats.energyPerHit * multiplier)) {
       return;
     }
 
     Mining.update(mining._id, {
       $inc: {
-        'stats.energy': (mining.stats.energyPerHit * -1)
+        'stats.energy': (mining.stats.energyPerHit * -1 * multiplier)
       }
     });
 

@@ -24,14 +24,18 @@ SyncedCron.add({
     const bossEnemyId = floorConstants.boss.enemy.id;
     const bossEnemyConstants = ENEMIES[bossEnemyId];
 
-    const activeTowerUsers = FloorWaveScores.find({ floor: currentFloor.floor }).count();
+    const activeTowerUsers = FloorWaveScores.find({
+      floor: currentFloor.floor,
+      points: {
+        $gte: 1
+      }
+    }).count();
     console.log(`active tower users ${activeTowerUsers}`);
     console.log(`boss enemy constants`);
     console.log(bossEnemyConstants);
     Floors.update({ floorComplete: false }, {
       $set: {
-        health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-        healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
+        health: currentFloor.healthMax
       }
     });
 

@@ -39,8 +39,9 @@ Template.itemIcon.events({
   'click .icon-box'(event, instance) {
     const primaryAction = instance.data.item.primaryAction;
     const shiftAction = instance.data.item.shiftAction;
-
-    if (window.event.shiftKey) {
+    const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
+    
+    if (shiftKey) {
       shiftAction.method();      
     } else if (primaryAction) {
       primaryAction.method();

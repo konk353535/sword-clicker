@@ -13,11 +13,24 @@ Template.mineSpace.onCreated(function bodyOnCreated() {
 
 Template.mineSpace.events({
   'click'(event, instance) {
+    const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
     const myMining = Mining.findOne({ owner: Meteor.userId() });
+    let multiplier = 1;
+
+    if (shiftKey) {
+      multiplier = 10;
+    }
+
+    if (myMining.stats.energy < (myMining.stats.energyPerHit * multiplier)) {
+      multiplier = Math.floor(myMining.stats.energy / myMining.stats.energyPerHit);
+      if (multiplier === 0) {
+        multiplier = 1;
+      }
+    }
 
     if (instance.data.mineSpace.oreId) {
-      if (myMining.stats.energy > myMining.stats.energyPerHit) {
-        Meteor.call('mining.clickedMineSpace', instance.data.mineSpace._id);
+      if (myMining.stats.energy > (myMining.stats.energyPerHit * multiplier)) {
+        Meteor.call('mining.clickedMineSpace', instance.data.mineSpace._id, multiplier);
         // Show mining damage in UI
         const offset = instance.$(event.target).offset();
         const color = 'red';
@@ -31,7 +44,7 @@ Template.mineSpace.events({
             data-count=1
             style='top: ${offset.top}px; left: ${offset.left}px; opacity: 1.0; color: ${color}'>
             <i class="lilIcon-mining"></i>
-            ${myMining.stats.attack}
+            ${myMining.stats.attack * multiplier}
           </p>
         `);
 

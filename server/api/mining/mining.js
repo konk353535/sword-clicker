@@ -70,8 +70,8 @@ const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
   return MINING.ores[oreKey];
 });
 
-const attackMineSpace = function (id, mining) {
-  const damage = mining.stats.attack;
+const attackMineSpace = function (id, mining, multiplier = 1) {
+  const damage = mining.stats.attack * multiplier;
   const mineSpace = MiningSpace.findOne({ _id: id });
   if (mineSpace.owner !== Meteor.userId()) {
     return;
@@ -85,7 +85,7 @@ const attackMineSpace = function (id, mining) {
 
   Mining.update(mining._id, {
     $inc: {
-      'stats.energy': (mining.stats.energyPerHit * -1)
+      'stats.energy': (mining.stats.energyPerHit * -1 * multiplier)
     }
   });
 
@@ -105,13 +105,17 @@ const attackMineSpace = function (id, mining) {
 }
 
 Meteor.methods({
-  'mining.clickedMineSpace'(mineSpaceId) {
-    const mining = Mining.findOne({ owner: this.userId });
-    if (mining.stats.energy < mining.stats.energyPerHit) {
+  'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
+    if (multiplier < 1 || multiplier > 10) {
       return;
     }
 
-    attackMineSpace(mineSpaceId, mining);
+    const mining = Mining.findOne({ owner: this.userId });
+    if (mining.stats.energy < (mining.stats.energyPerHit * multiplier)) {
+      return;
+    }
+
+    attackMineSpace(mineSpaceId, mining, multiplier);
   },
 
   'mining.buyMiner'(minerId) {

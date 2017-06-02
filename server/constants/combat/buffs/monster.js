@@ -359,7 +359,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        if (Math.random() <= 0.05) {
+        if (Math.random() <= 0.05 && !_.findWhere(defender.buffs, { id: 'mud_armor' })) {
           const newBuff = {
             id: 'mud_armor',
             data: {
@@ -414,7 +414,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        if (Math.random() <= 0.05) {
+        if (Math.random() <= 0.05 && !_.findWhere(attacker.buffs, { id: 'ignite' })) {
           const newBuff = {
             id: 'ignite',
             data: {

@@ -115,7 +115,7 @@ export const DEFENSE_BUFFS = {
       const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
       return `
-        Reflect ${Math.round(damageReflection * 100)}% of damage taken as magic damage. <br />
+        Reflect ${Math.round(damageReflection * 100)}% of attack damage taken as magic damage. <br />
         (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
     },
     constants: {

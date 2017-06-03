@@ -69,7 +69,7 @@ export const BATTLES = {
 
   tickDuration: 250, // How long each tick lasts
 
-  maxBossPartySize: 5,
+  maxBossPartySize: 10,
 
   maxTowerPartySize: 5
 }

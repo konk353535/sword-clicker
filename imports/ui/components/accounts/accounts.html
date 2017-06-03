@@ -50,12 +50,12 @@
         {{#if showReCaptcha}}
           {{> atReCaptcha}}
         {{/if}}
-        {{#if showForgotPasswordLink}}
-          {{> atPwdLink}}
-        {{/if}}
         {{> atPwdFormBtn}}
         {{#if showForgotPasswordLink}}
           {{> playAsGuestBtn}}
+        {{/if}}
+        {{#if showForgotPasswordLink}}
+          {{> atPwdLink}}
         {{/if}}
       </fieldset>
     </form>

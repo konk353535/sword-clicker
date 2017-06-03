@@ -5,19 +5,19 @@ AccountsTemplates.configure({
   enablePasswordChange: true,
   forbidClientAccountCreation: false,
   overrideLoginErrors: true,
-  sendVerificationEmail: false,
+  sendVerificationEmail: true,
   lowercaseUsername: true,
 
   // Appearance
   showAddRemoveServices: false,
   // Email field required for this to work
-  showForgotPasswordLink: false,
+  showForgotPasswordLink: true,
   showLabels: true,
   showPlaceholders: true,
-  showResendVerificationEmailLink: false,
+  showResendVerificationEmailLink: true,
 
   // Client-side Validation
-  continuousValidation: false,
+  continuousValidation: true,
   negativeFeedback: false,
   negativeValidation: true,
   positiveValidation: true,
@@ -25,18 +25,13 @@ AccountsTemplates.configure({
   showValidating: true
 })
 
-var pwd = AccountsTemplates.removeField('password');
-AccountsTemplates.removeField('email');
-AccountsTemplates.addFields([
-  {
-      _id: "username",
-      type: "text",
-      displayName: "username",
-      required: true,
-      minLength: 5,
-  },
-  pwd
-]);
+AccountsTemplates.addField({
+    _id: "username",
+    type: "text",
+    displayName: "username",
+    required: true,
+    minLength: 3,
+});
 
 Router.configure({
   layoutTemplate: 'myLayout',

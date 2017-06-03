@@ -16,6 +16,10 @@ UserSchema = new SimpleSchema({
   isGuest: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
   username: { type: String },
+  emails: { type: Array, optional: true },
+  'emails.$': { type: Object },
+  'emails.$.address': { type: String },
+  'emails.$.verified': { type: Boolean },
   personalQuest: { type: Object },
   'personalQuest.level': { type: Number, defaultValue: 1 },
   'personalQuest.wave': { type: Number, defaultValue: 1 }

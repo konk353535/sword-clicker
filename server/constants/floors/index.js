@@ -15,10 +15,10 @@ export const FLOORS = Object.assign({
       4: 2, // Carbon
       5: 2, // Mithril
       6: 3, // Adamantium
-      7: 5, // Orichalcum
-      8: 8, // Cobalt
-      9: 10, // Fairy Steel
-      10: 15 // Cursed
+      7: 4, // Orichalcum
+      8: 5, // Cobalt
+      9: 6, // Fairy Steel
+      10: 7 // Cursed
     }
 
     // Max points per player, per day

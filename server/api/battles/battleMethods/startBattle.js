@@ -183,7 +183,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     if (enemy.stats) {
       enemyConstants = enemy;
     } else {
-      enemyConstants = ENEMIES[enemy.id];
+      enemyConstants = JSON.parse(JSON.stringify(ENEMIES[enemy.id]));
     }
 
     const enemyStats = enemyConstants.stats;

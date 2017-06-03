@@ -37,9 +37,9 @@ export const genericTowerMonsterGenerator = function(floor, room) {
   if (selectedMonster.statBuffs) {
     selectedMonster.statBuffs.forEach((statBuff) => {
       if (statBuff.type === 'plus') {
-        monster.stats[statBuff.key] += statBuff.amount
+        monster.stats[statBuff.key] += statBuff.amount;
       } else if (statBuff.type === "times") {
-        monster.stats[statBuff.key] *= statBuff.amount        
+        monster.stats[statBuff.key] *= statBuff.amount;
       }
     })
   }

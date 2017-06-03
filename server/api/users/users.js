@@ -39,7 +39,7 @@ Meteor.methods({
     });
   },
 
-  'users.updateGuest'({ username, password }) {
+  'users.updateGuest'({ username, password, email }) {
     // Make sure this account is actually a guest
     if (!Meteor.user().isGuest) {
       throw new Meteor.Error('not-guest', 'Cant update details if your not a guest');
@@ -51,12 +51,19 @@ Meteor.methods({
     // Update password
     Accounts.setPassword(Meteor.userId(), password, { logout: false });
 
-    // Update isGuest flag
+    // Update isGuest flag + add email
     Users.update(Meteor.userId(), {
       $set: {
-        isGuest: false
+        isGuest: false,
+        emails: [{
+          address: email,
+          verified: false
+        }]
       }
     });
+
+    // Send email verification
+    Accounts.sendVerificationEmail(Meteor.userId());
 
     const newUsername = Meteor.user().username;
 

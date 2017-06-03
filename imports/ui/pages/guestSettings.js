@@ -17,6 +17,7 @@ Template.guestSettingsPage.events({
     }
 
     const username = instance.$('#at-field-username').val();
+    const email = instance.$('#at-field-email').val();
     const password = instance.$('#at-field-password').val();
     const confirmPassword = instance.$('#at-field-confirm-password').val();
   
@@ -27,6 +28,8 @@ Template.guestSettingsPage.events({
       return instance.state.set('error', 'You must specify a password');
     } else if (password.length < 6) {
       return instance.state.set('error', 'Password must be atleast 6 characters');
+    } else if (!email || email === '') {
+      return instance.state.set('error', 'You must enter an email address');
     } else {
       instance.state.set('error', '');
     }
@@ -39,7 +42,8 @@ Template.guestSettingsPage.events({
       password: {
         digest: SHA256(password),
         algorithm: "sha-256"
-      }
+      },
+      email
     }, (err, res) => {
       instance.state.set('updating', false);
       if (err) {

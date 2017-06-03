@@ -432,7 +432,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.6) {
           const newBuff = {
             id: 'fire_dart',
             data: {

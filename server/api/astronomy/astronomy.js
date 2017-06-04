@@ -176,7 +176,7 @@ Meteor.methods({
     // Update user, then update mage
     Users.update(Meteor.userId(), {
       $inc: {
-        gold: amount
+        gold: Math.round(amount)
       }
     });
 

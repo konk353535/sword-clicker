@@ -328,7 +328,11 @@ Meteor.methods({
       // Force amount to sell to actual item count;
       amountToSell = currentItem.amount;
       // Remove item
-      Items.remove(currentItem._id);
+      const itemsUpdated = Items.remove(currentItem._id);
+
+      if (itemsUpdated <= 0) {
+        return;
+      }
 
       if (itemConstants.category === 'combat' && currentItem.equipped) {
         updateCombatStats(Meteor.userId(), Meteor.user().username);
@@ -337,9 +341,13 @@ Meteor.methods({
       }
     } else {
       // Update item quantity
-      Items.update(currentItem._id, {
+      const itemsUpdated = Items.update(currentItem._id, {
         $inc: { amount: (amountToSell * -1) }
       });
+
+      if (itemsUpdated <= 0) {
+        return;
+      }
     }
 
     // Add gold to users account

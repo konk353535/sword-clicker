@@ -67,8 +67,13 @@ AccountsTemplates.configureRoute('resetPwd', {
   path: '/reset-password',
 });
 
+AccountsTemplates.configureRoute('verifyEmail', {
+  name: 'verifyEmail',
+  path: '/verify-email',
+});
+
 AccountsTemplates.configureRoute('changePwd')
 
 Router.plugin('ensureSignedIn', {
-    except: ['signIn', 'signUp', 'changePwd', 'resetPwd']
+  except: ['signIn', 'signUp', 'changePwd', 'resetPwd', 'verifyEmail']
 });

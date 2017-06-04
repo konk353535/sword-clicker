@@ -571,11 +571,11 @@ export const ENEMIES = Object.assign({
     }, {
       type: 'times',
       key: 'armor',
-      amount: 0.7
+      amount: 0.25
     }, {
       type: 'times',
       key: 'defense',
-      amount: 0.7
+      amount: 0.25
     }]
   },
 

@@ -22,7 +22,7 @@ import '/server/api/users/users.js';
 import './crons.js';
 
 Accounts.emailTemplates.siteName = "Eternity Tower";
-Accounts.emailTemplates.from = "Eternity Tower <no-reply@eternitytower.net>";
+Accounts.emailTemplates.from = "Admin Eternity Tower <admin@eternitytower.net>";
 Accounts.emailTemplates.resetPassword = {
   subject(user) {
     return "Reset your password on Eternity Tower";
@@ -139,7 +139,7 @@ Accounts.emailTemplates.resetPassword = {
                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
                           <tr>
                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
-                            <img src="http://eternitytower.net/icons/tower.svg" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
+                            <img src="http://eternitytower.net/images/tower.png" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
                             <br /><br />
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Hi there ${user.username},</p>
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Click the button below to reset your password</p>
@@ -295,7 +295,7 @@ Accounts.emailTemplates.verifyEmail = {
                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
                           <tr>
                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
-                            <img src="http://eternitytower.net/icons/tower.svg" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
+                            <img src="http://eternitytower.net/images/tower.png" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
                             <br /><br />
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Hi there ${user.username},</p>
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Welcome to Eternity Tower! <br /> Confirm your account and get started by clicking the confirm button below.</p>

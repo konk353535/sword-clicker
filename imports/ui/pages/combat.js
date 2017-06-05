@@ -13,7 +13,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 // Component used in the template
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
-import '/imports/ui/components/combat/meditateTab/meditateTab.js';
+import '/imports/ui/components/combat/adventuresTab/adventuresTab.js';
 import '/imports/ui/components/combat/battleLogTab/battleLogTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
@@ -161,9 +161,9 @@ Template.combatPage.events({
     Meteor.call('users.setUiState', 'combatTab', 'tower');
   },
 
-  'click .meditateTabLink'(event, instance) {
-    instance.state.set('currentTab', 'meditate');
-    Meteor.call('users.setUiState', 'combatTab', 'meditate');
+  'click .adventuresTabLink'(event, instance) {
+    instance.state.set('currentTab', 'adventures');
+    Meteor.call('users.setUiState', 'combatTab', 'adventures');
   },
 
   'click .equipmentTabLink'(event, instance) {
@@ -234,8 +234,8 @@ Template.combatPage.helpers({
     return Template.instance().state.get('currentTab') === 'tower';
   },
 
-  showMeditateTab() {
-    return Template.instance().state.get('currentTab') === 'meditate';
+  showAdventuresTab() {
+    return Template.instance().state.get('currentTab') === 'adventures';
   },
 
   showCombatGroupTab() {

@@ -50,11 +50,9 @@
         <li class="nav-item abilitiesTabLink">
           <a class="nav-link {{#if showAbilitiesTab}}active{{/if}}" href="#">Abilities</a>
         </li>
-        {{#if $gte attackSkill.level 2}}
-          <li class="nav-item meditateTabLink">
-            <a class="nav-link {{#if showMeditateTab}}active{{/if}}" href="#">Meditate</a>
-          </li>
-        {{/if}}
+        <li class="nav-item adventuresTabLink">
+          <a class="nav-link {{#if showAdventuresTab}}active{{/if}}" href="#">Adventures</a>
+        </li>
         <li class="nav-item groupTabLink">
           <a class="nav-link {{#if showCombatGroupTab}}active{{/if}}" href="#">
             Group
@@ -119,8 +117,8 @@
         {{> personalQuestTab}}
       {{else if showEquipmentTab}}
         {{> equipmentTab}}
-      {{else if showMeditateTab}}
-        {{> meditateTab}}
+      {{else if showAdventuresTab}}
+        {{> adventuresTab}}
       {{else if showCombatGroupTab}}
         {{> combatGroupTab}}
       {{else if showBattleLogTab}}

@@ -102,7 +102,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .chat-container {
+  .chat-container:not(.chat-page) {
     width: 350px;
     height: inherit;
   }

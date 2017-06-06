@@ -3,68 +3,111 @@
   <h1>Adventures</h1>
   <div class="d-flex flex-column">
     {{#each adventures}}
-      <div class="adventure-item-container d-flex my-1">
-        <img src="icons/{{this.icon}}.svg" class="medium-icon">
-        <div class="d-flex flex-column ml-3" style="width: 15%">
-          <div>{{this.name}}</div>
-          <div>{{this.length}}</div>
+      <div class="adventure-item-container d-flex flex-column my-1">
+        <div class="d-flex">
+          <img src="icons/{{this.icon}}.svg" class="medium-icon">
+          <div class="d-flex flex-column ml-3 hidden-xs-down" style="width: 15%">
+            <div>{{this.name}}</div>
+            <div>{{this.length}}</div>
+          </div>
+          <div class="d-flex flex-column mx-3" style="width: 15%">
+            <div>{{this.type}}</div>
+            {{#if this.isComplete}}
+              {{#if this.win}}
+                <div class="text-success">Victory</div>
+              {{else}}
+                <div class="text-danger">Failure</div>
+              {{/if}}
+            {{else}}
+              <div>{{this.durationTotalDisplay}}</div>
+            {{/if}}
+          </div>
+          <div class="d-flex mx-3 align-items-center justify-content-center hidden-xs-down" style="flex: 10 10 auto;">
+            {{#if this.percentageComplete}}
+              <div style="width: 100%">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: {{this.percentageComplete}}%" aria-valuenow="{{this.percentageComplete}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            {{else if this.isComplete}}
+              <div class="d-flex align-items-center" style="flex: 1 1 auto">
+                {{#each this.rewards}}
+                  {{#if $eq this.type 'xp'}}
+                    <div class="ml-1">
+                      +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
+                    </div>
+                  {{/if}}
+
+                  {{#if $eq this.type 'item'}}
+                    <div class="ml-1 d-flex align-items-center">
+                      +{{this.amount}}
+                      <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+                    </div>
+                  {{/if}}
+
+                  {{#if $eq this.type 'gold'}}
+                    <div class="ml-1 d-flex align-items-center">
+                      +{{this.amount}}
+                      <img src="/icons/gold.svg" class="extra-small-icon">
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+            {{/if}}
+          </div>
+          <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
+            {{#if this.durationLeft}}
+              <button class="btn btn-primary disabled" style="width: 100px;">
+                {{this.durationLeft}}
+              </button>
+            {{else if this.isComplete}}
+              <button class="btn btn-success" style="width: 100px;">
+                Collect
+              </button>
+            {{else if this.startDate}}
+              <button class="btn btn-primary disabled" style="width: 100px;">
+                Queued
+              </button>
+            {{else}}
+              <button class="btn btn-primary" style="width: 100px;">
+                Queue
+              </button>
+            {{/if}}
+          </div>
         </div>
-        <div class="d-flex flex-column mx-3" style="width: 15%">
-          <div>{{this.type}}</div>
-          <div>{{this.durationTotal}}</div>
-        </div>
-        <div class="d-flex mx-3 align-items-center justify-content-center" style="flex: 1 1 auto;">
-          {{#if this.percentageComplete}}
+        {{#if this.percentageComplete}}
+          <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
             <div style="width: 100%">
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: {{this.percentageComplete}}%" aria-valuenow="{{this.percentageComplete}}" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-          {{else if this.isComplete}}
-            <div class="d-flex align-items-center" style="flex: 1 1 auto">
-              {{#each this.rewards}}
-                {{#if $eq this.type 'xp'}}
-                  <div class="ml-1">
-                    +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
-                  </div>
-                {{/if}}
+          </div>
+        {{else if this.isComplete}}
+          <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
+            {{#each this.rewards}}
+              {{#if $eq this.type 'xp'}}
+                <div class="ml-1">
+                  +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
+                </div>
+              {{/if}}
 
-                {{#if $eq this.type 'item'}}
-                  <div class="ml-1 d-flex align-items-center">
-                    +{{this.amount}}
-                    <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
-                  </div>
-                {{/if}}
+              {{#if $eq this.type 'item'}}
+                <div class="ml-1 d-flex align-items-center">
+                  +{{this.amount}}
+                  <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+                </div>
+              {{/if}}
 
-                {{#if $eq this.type 'gold'}}
-                  <div class="ml-1 d-flex align-items-center">
-                    +{{this.amount}}
-                    <img src="/icons/gold.svg" class="extra-small-icon">
-                  </div>
-                {{/if}}
-              {{/each}}
-            </div>
-          {{/if}}
-        </div>
-        <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%">
-          {{#if this.durationLeft}}
-            <button class="btn btn-primary disabled" style="width: 100%">
-              {{this.durationLeft}}
-            </button>
-          {{else if this.isComplete}}
-            <button class="btn btn-success" style="width: 100%">
-              Collect
-            </button>
-          {{else if this.startDate}}
-            <button class="btn btn-primary disabled" style="width: 100%">
-              Queued
-            </button>
-          {{else}}
-            <button class="btn btn-primary" style="width: 100%">
-              Queue Battle
-            </button>
-          {{/if}}
-        </div>
+              {{#if $eq this.type 'gold'}}
+                <div class="ml-1 d-flex align-items-center">
+                  +{{this.amount}}
+                  <img src="/icons/gold.svg" class="extra-small-icon">
+                </div>
+              {{/if}}
+            {{/each}}
+          </div>
+        {{/if}}
       </div>
     {{/each}}
   </div>

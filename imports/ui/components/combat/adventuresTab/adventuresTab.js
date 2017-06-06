@@ -9,33 +9,27 @@ import './adventuresTab.html';
 
 Template.adventuresTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-});
 
-Template.adventuresTab.events({
-})
-
-Template.adventuresTab.helpers({
-  adventures() {
-    const rawAdventures = [{
-      name: 'Earth Alter',
-      icon: 'earthMage',
-      length: 'Long',
-      startDate: '2017-05-05T13:06:24+00:00',
-      endDate: '2017-05-05T13:26:26+00:00',
-      type: 'Magic',
-      durationTotal: 60 * 60,
-      win: true,
-      rewards: [{
-        type: "xp",
-        amount: 57,
-        skill: "magic"
-      }, {
-        type: "item",
-        amount: 1,
-        itemId: "ore_steel",
-        icon: "steel"
-      }]
+  const rawAdventures = [{
+    name: 'Earth Alter',
+    icon: 'earthMage',
+    length: 'Long',
+    startDate: '2017-05-05T13:06:24+00:00',
+    endDate: '2017-05-05T13:26:26+00:00',
+    type: 'Magic',
+    durationTotal: 60 * 60,
+    win: true,
+    rewards: [{
+      type: "xp",
+      amount: 57,
+      skill: "magic"
     }, {
+      type: "item",
+      amount: 1,
+      itemId: "ore_steel",
+      icon: "steel"
+    }]
+  }, {
       name: 'Fire Alter',
       icon: 'fireMage',
       length: 'Long',
@@ -49,33 +43,34 @@ Template.adventuresTab.helpers({
         amount: 57,
         skill: "magic"
       }]
-    }, {
+  }, {
       name: 'Demonic Resonance',
       icon: 'demon',
       length: 'Short',
-      startDate: '2017-06-05T13:06:24+00:00',
-      endDate: '2017-06-05T13:26:26+00:00',
+      startDate: '2017-06-06T21:03:24+10:00',
+      endDate: '2017-06-06T21:09:26+10:00',
       type: 'Melee',
       durationTotal: 5 * 60
-    }, {
+  }, {
       name: 'Bush Den',
       icon: 'wombat',
       length: 'Short',
-      startDate: '2017-06-05T14:06:24+00:00',
-      endDate: '2017-06-05T14:26:26+00:00',
+      startDate: '2017-06-06T15:06:24+00:00',
+      endDate: '2017-06-06T15:26:26+00:00',
       type: 'Melee',
       durationTotal: 5 * 60
-    }, {
+  }, {
       name: 'Tamarind Tree',
       icon: 'bee',
       length: 'Epic',
       type: 'Magic',
       durationTotal: 60 * 60 * 3
-    }];
+  }];
 
-    return rawAdventures.map((adventure) => {
+  const updateAdventures = function (self) {
+    self.state.set('adventures', rawAdventures.map((adventure) => {
       if (adventure.durationTotal) {
-        adventure.durationTotal = moment("2015-01-01").startOf('day').seconds(adventure.durationTotal).format('H:mm:ss');
+        adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.durationTotal).format('H:mm:ss');
       }
 
       if (adventure.win != null) {
@@ -95,6 +90,21 @@ Template.adventuresTab.helpers({
       }
 
       return adventure;
-    });
+    }));
+  }
+
+  updateAdventures(this);
+
+  Meteor.setInterval(() => {
+    updateAdventures(this);
+  }, 1000);
+});
+
+Template.adventuresTab.events({
+})
+
+Template.adventuresTab.helpers({
+  adventures() {
+    return Template.instance().state.get('adventures');
   }
 });

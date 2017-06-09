@@ -15,7 +15,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     id: selectedMonster.id,
     icon: selectedMonster.icon,
     name: selectedMonster.name,
-    buffs: selectedMonster.buffs || [],
+    buffs: JSON.parse(JSON.stringify(selectedMonster.buffs)) || [],
     stats: {
       health: (room / 1.2) * 25 * floor * (1 + (floor / 3)),
       healthMax: (room / 1.2) * 25 * floor * (1 + (floor / 3)),

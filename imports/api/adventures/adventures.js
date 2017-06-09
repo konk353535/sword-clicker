@@ -2,11 +2,12 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const Adventure = new Mongo.Collection('adventure');
+export const Adventures = new Mongo.Collection('adventures');
 
-AdventureSchema = new SimpleSchema({
+AdventuresSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date, defaultValue: new Date() },
+  timeTillUpdate: { type: Number, decimal: true, },
   adventures: { type: [Object] },
   'adventures.$.level': { type: Number }, // Determines XP / Chance of success
   'adventures.$.length': { type: String }, // Short, Long, Epic
@@ -16,8 +17,12 @@ AdventureSchema = new SimpleSchema({
   'adventures.$.type': { type: String }, // Magic / Melee (Determines XP reward types)
   'adventures.$.startDate': { type: Date, optional: true }, // When this adventure is 'started'
   'adventures.$.endDate': { type: Date, optional: true }, // When this adventure is 'complete'
-  'adventures.$.win': { type: Number, optional: true } // Was it a win / loss (win = loot, loss = just XP)
+  'adventures.$.win': { type: Boolean, optional: true }, // Was it a win / loss (win = loot, loss = just XP)
   'adventures.$.rewards': { type: [Object], blackbox: true, optional: true } // List of XP + loot rewards (User clicks collect to get them)
 });
 
-Adventure.attachSchema(AdventureSchema);
+Adventures.attachSchema(AdventuresSchema);
+
+// 1 - On account creation inject adventure collection
+// 2 - Call update game method for adventures every so often
+// 3 - This will populate the list of adventures

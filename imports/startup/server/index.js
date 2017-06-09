@@ -1,11 +1,13 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Random } from 'meteor/random';
+import moment from 'moment';
 
 import { Skills } from '../../api/skills/skills.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Crafting } from '../../api/crafting/crafting.js';
 import { Combat } from '../../api/combat/combat.js';
+import { Adventures } from '../../api/adventures/adventures.js';
 import { Abilities } from '../../api/abilities/abilities.js';
 import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
@@ -414,6 +416,13 @@ Accounts.onCreateUser((options, user) => {
       healthMax: 50,
       energy: 40
     }
+  });
+
+  Adventures.insert({
+    owner: userId,
+    adventures: [],
+    lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
+    timeTillUpdate: 60 * 3
   });
 
   Abilities.insert({

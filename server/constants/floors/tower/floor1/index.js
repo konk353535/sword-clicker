@@ -62,7 +62,7 @@ export const TOWER_FLOOR_1 = {
     rewards: LEVEL_ONE_LOOT_TABLE
   },
   7: {
-    name: 'Fortress of stings',
+    name: 'String Fortress',
     enemies: ['wasp'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
       chance: 1 / 32,

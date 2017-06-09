@@ -1,0 +1,20 @@
+
+.btn-hover-text {
+  &:hover {
+    .main-text {
+      display: none;
+    }
+
+    .hover-text {
+      display: block;
+    }
+
+    background-color: $brand-danger;
+    border-color: $brand-danger;
+  }
+
+  .hover-text {
+    display: none;
+  }
+}
+

@@ -3,13 +3,19 @@ import { Template } from 'meteor/templating';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
+import { Adventures } from '/imports/api/adventures/adventures.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './adventuresTab.html';
 
+let updatingAdventures = false;
+
 Template.adventuresTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  Meteor.subscribe('adventures');
+
+  /*
   const rawAdventures = [{
     name: 'Earth Alter',
     icon: 'earthMage',
@@ -66,11 +72,12 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
       type: 'Magic',
       durationTotal: 60 * 60 * 3
   }];
+  */
 
   const updateAdventures = function (self) {
-    self.state.set('adventures', rawAdventures.map((adventure) => {
-      if (adventure.durationTotal) {
-        adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.durationTotal).format('H:mm:ss');
+    self.state.set('adventures', _.sortBy(self.state.get('rawAdventures').map((adventure) => {
+      if (adventure.duration) {
+        adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');
       }
 
       if (adventure.win != null) {
@@ -89,11 +96,29 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         adventure.percentageComplete = Math.round((secondsSinceStart / totalSeconds) * 100);
       }
 
+      if (adventure.percentageComplete >= 100 && !updatingAdventures) {
+        updatingAdventures = true;
+        Meteor.call('adventures.gameUpdate', (err, res) => {
+          if (!err) {
+            updatingAdventures = false;
+          } else {
+            Meteor.setTimeout(() => {
+              updatingAdventures = false;
+            }, 60000)
+          }
+        });
+      }
+
       return adventure;
-    }));
+    }), 'endDate'));
   }
 
-  updateAdventures(this);
+  this.autorun(() => {
+    if (Adventures.findOne()) {
+      this.state.set('rawAdventures', Adventures.findOne().adventures);
+      updateAdventures(this);
+    }
+  });
 
   Meteor.setInterval(() => {
     updateAdventures(this);
@@ -101,6 +126,35 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
 });
 
 Template.adventuresTab.events({
+  'click .start-adventure-btn'(event, instance) {
+    const index = instance.$(event.target).closest('.start-adventure-btn').data('index');
+
+    Meteor.call('adventures.startAdventure', index, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .collect-adventure-btn'(event, instance) {
+    const index = instance.$(event.target).closest('.collect-adventure-btn').data('index');
+
+    Meteor.call('adventures.collectAdventure', index, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .cancel-adventure-btn'(event, instance) {
+    const index = instance.$(event.target).closest('.cancel-adventure-btn').data('index');
+
+    Meteor.call('adventures.cancelAdventure', index, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  }
 })
 
 Template.adventuresTab.helpers({

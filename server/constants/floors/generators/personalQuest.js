@@ -65,7 +65,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     id: selectedMonster.id,
     icon: selectedMonster.icon,
     name: selectedMonster.name,
-    buffs: selectedMonster.buffs,
+    buffs: JSON.parse(JSON.stringify(selectedMonster.buffs || [])),
     stats: {
       health: 10 + (level * 7) + (extraStats * 20),
       healthMax: 10 + (level * 7) + (extraStats * 20),

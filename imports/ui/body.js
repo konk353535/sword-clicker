@@ -20,6 +20,7 @@ import './body.html';
 
 let miningTimer;
 let craftingTimer;
+let adventuresTimer;
 let woodcuttingTimer;
 let combatTimer;
 let astronomyTimer;
@@ -139,6 +140,13 @@ Template.body.onCreated(function () {
     }
   }, 116 * 1000 + (Math.random() * 1000));
 
+  Meteor.call('adventures.gameUpdate');
+  adventuresTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('adventures.gameUpdate');
+    }
+  }, 112 * 1000 + (Math.random() * 1000));
+
   woodcuttingTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('woodcutting.gameUpdate');
@@ -218,6 +226,7 @@ Template.myLayout.helpers({
 Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);
   Meteor.clearInterval(craftingTimer);
+  Meteor.clearInterval(adventuresTimer);
   Meteor.clearInterval(miningTimer);
   Meteor.clearInterval(astronomyTimer);
   Meteor.clearInterval(woodcuttingTimer);

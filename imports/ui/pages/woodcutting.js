@@ -78,6 +78,9 @@ Template.woodcuttingPage.helpers({
       return;
     }
 
+    const userDoc = Meteor.user();
+    const hasMiningUpgrade = userDoc.woodcuttingUpgradeTo && moment().isBefore(userDoc.woodcuttingUpgradeTo);
+
     woodcutting.woodcutters.forEach((woodcutter, woodcutterIndex) => {
       // Incoming hacks!
       woodcutter.description = `
@@ -92,9 +95,8 @@ Template.woodcuttingPage.helpers({
       `;
 
       // Append to description based on if the user is currently a member
-      if (Session.get('isMember')) {
-        let computedBonus = DONATORS_BENEFITS.woodcuttingBonus;
-        computedBonus += Math.floor(woodcutter.stats.accuracy * ( 1 + (DONATORS_BENEFITS.woodcuttingBonus / 100)));
+      if (hasMiningUpgrade) {
+        let computedBonus = Math.floor(woodcutter.stats.accuracy * (DONATORS_BENEFITS.woodcuttingBonus / 100));
         woodcutter.description += `
           <div class="d-flex align-items-center">
             <i class="lilIcon-accuracy extra-small-icon mr-1"></i>

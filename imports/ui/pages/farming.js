@@ -88,7 +88,19 @@ Template.farmingPage.helpers({
   },
 
   farmingSpaces() {
-    return FarmingSpace.find();
+    const userDoc = Meteor.user();
+    const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+    
+    return FarmingSpace.find().map((farmingSpace) => {
+      if (farmingSpace.index === 4 || farmingSpace.index === 5) {
+        if (hasFarmingUpgrade) {
+          farmingSpace.active = true;
+        } else {
+          farmingSpace.active = false;
+        }
+      }
+      return farmingSpace;
+    });
   },
 
   buyableSeeds() {

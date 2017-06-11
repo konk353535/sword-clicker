@@ -61,13 +61,16 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         });
         this.state.set('recipeListMap', resultsMap);
 
+        const userDoc = Meteor.user();
+        const hasInscriptionUpgrade = userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo)
+
         // Store recipes
         this.state.set('recipes', results.map((result) => {
           if (inscriptionSkill.level < result.inscriptionSkill) {
             result.notMetLevelReq = true;
           }
 
-          if (Session.get('isMember')) {
+          if (hasInscriptionUpgrade) {
             const bonusPercentage = DONATORS_BENEFITS.inscriptionBonus;
             result.calculatedTimeToCraft = (result.timeToCraft * (1 - (bonusPercentage / 100))).toFixed(0);
           } else {

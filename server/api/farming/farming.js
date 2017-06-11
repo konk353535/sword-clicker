@@ -5,6 +5,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Farming } from '/imports/api/farming/farming';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Users } from '/imports/api/users/users';
+import { Events } from '/imports/api/events/events';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
@@ -190,18 +191,48 @@ Meteor.methods({
   },
 
   'farming.plant'(plantId) {
+    const userDoc = Meteor.user();
+    if (userDoc.logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'farming.plant.single',
+        date: new Date(),
+        data: { plantId }
+      }, () => {})
+    }
+
+    const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+
+    let searchQuery = {};
+    if (hasFarmingUpgrade) {
+      searchQuery = {
+        owner: Meteor.userId(),
+        $or: [{
+          plantId: {
+            $exists: false
+          }
+        }, {
+          plantId: null
+        }]
+      }
+    } else {
+      searchQuery = {
+        owner: Meteor.userId(),
+        index: {
+          $in: [0, 1, 2, 3]
+        },
+        $or: [{
+          plantId: {
+            $exists: false
+          }
+        }, {
+          plantId: null
+        }]
+      }
+    }
+
     // Does the user have a spare planting space?
-    const emptySpace = FarmingSpace.findOne({
-      owner: Meteor.userId(),
-      active: true,
-      $or: [{
-        plantId: {
-          $exists: false
-        }
-      }, {
-        plantId: null
-      }]
-    });
+    const emptySpace = FarmingSpace.findOne(searchQuery);
 
     if (!emptySpace) {
       throw new Meteor.Error("no-free-spaces", "There are no free farming fields to plant this seed");
@@ -226,18 +257,51 @@ Meteor.methods({
   },
 
   'farming.plantAll'(plantId) {
+
+    const userDoc = Meteor.user();
+
+    if (userDoc.logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'farming.plant.all',
+        date: new Date(),
+        data: { plantId }
+      }, () => {})
+    }
+
+
+    const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+
+    let searchQuery = {};
+    if (hasFarmingUpgrade) {
+      searchQuery = {
+        owner: Meteor.userId(),
+        $or: [{
+          plantId: {
+            $exists: false
+          }
+        }, {
+          plantId: null
+        }]
+      }
+    } else {
+      searchQuery = {
+        owner: Meteor.userId(),
+        index: {
+          $in: [0, 1, 2, 3]
+        },
+        $or: [{
+          plantId: {
+            $exists: false
+          }
+        }, {
+          plantId: null
+        }]
+      }
+    }
+
     // Which farming spaces are free
-    const emptySpaces = FarmingSpace.find({
-      owner: Meteor.userId(),
-      active: true,
-      $or: [{
-        plantId: {
-          $exists: false
-        }
-      }, {
-        plantId: null
-      }]
-    }).fetch();
+    const emptySpaces = FarmingSpace.find(searchQuery).fetch();
 
     if (!emptySpaces || emptySpaces.length === 0) {
       throw new Meteor.Error("no-free-spaces", "There are no free farming fields to plant this seed");

@@ -9,6 +9,7 @@ import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 
 import { Groups } from '/imports/api/groups/groups';
+import { Adventures } from '/imports/api/adventures/adventures';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -54,6 +55,24 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is still in one.');
   }
 
+  // Ensure battle participants don't have any active adventures
+  const activeAdventures = Adventures.findOne({
+    owner: {
+      $in: battleParticipants
+    },
+    adventures: {
+      $elemMatch :{
+        endDate: {
+          $gt: new Date()
+        }        
+      }
+    }
+  });
+
+  if (activeAdventures) {
+    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is in an adventure');
+  }
+
   // Ensure group size is not too large
   if (currentGroup) {
     if (room === 'boss') {
@@ -69,10 +88,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
   // Create clone of battle objects
   let battleConstants = JSON.parse(JSON.stringify(battleData));
-
-  // This seems overkill? Can we just do this on equip / level up?
-  // To do: Ensure this is no longer required
-  // updateCombatStats();
 
   const newBattle = {
     createdAt: new Date(),

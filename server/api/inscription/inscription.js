@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Inscription } from '/imports/api/inscription/inscription';
 import { Skills } from '/imports/api/skills/skills';
+import { Events } from '/imports/api/events/events';
 import moment from 'moment';
 
 import { CRAFTING } from '/server/constants/crafting/index.js';
@@ -58,8 +59,10 @@ const craftItem = function (recipeId, amountToCraft) {
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
 
+  const userDoc = Meteor.user();
+
   // Apply membership benefits
-  if (Meteor.user().membershipTo && moment().isBefore(Meteor.user().membershipTo)) {
+  if (Meteor.user().inscriptionUpgradeTo && moment().isBefore(Meteor.user().inscriptionUpgradeTo)) {
     timeToCraft *= (1 - (DONATORS_BENEFITS.inscriptionBonus / 100));
   }
 
@@ -79,6 +82,15 @@ const craftItem = function (recipeId, amountToCraft) {
 
 Meteor.methods({
   'inscription.craftItem'(recipeId, amount) {
+    if (Meteor.user().logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'inscription.craftItem',
+        date: new Date(),
+        data: { recipeId, amount }
+      }, () => {})
+    }
+
     craftItem(recipeId, amount);
   },
 

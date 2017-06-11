@@ -7,6 +7,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 
+import { BattlesList } from '/imports/api/battles/battles';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Floors } from '/imports/api/floors/floors';
@@ -29,7 +30,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor) {
 
   if (type === 'magic' && combatSkills.magic) {
     // Level = Magic Level / 4
-    level = Math.ceil(combatSkills.magic.level / 4);
+    level = Math.ceil(combatSkills.magic.level / 5);
   } else {
     // Level = ((Attack + Defense) / 2) / 5
     level = Math.ceil(((combatSkills.attack.level + combatSkills.defense.level) / 2) / 5);
@@ -96,17 +97,24 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
 
   // Xp / hour lookup
   const xpLookup = {
-    1: 3000,
-    2: 15000,
-    3: 30000,
-    4: 60000,
-    5: 120000,
-    6: 180000
+    1: 2000,
+    2: 12000,
+    3: 23000,
+    4: 56000,
+    5: 85000,
+    6: 130000
+  }
+
+  const lengthXpLookup = {
+    short: 1,
+    long: 0.9,
+    epic: 0.7
   }
 
   // Determine xp
-  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 30000);
-  const totalXp = xpPerHour * (adventure.duration / 3600);
+  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 25000);
+  const lengthXpDecimal = lengthXpLookup[adventure.length];
+  const totalXp = xpPerHour * (adventure.duration / 3600) * lengthXpDecimal;
 
   adventure.rewards = [];
   if (adventure.type === 'physical') {
@@ -114,8 +122,8 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal), skill: 'health' });
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal), skill: 'defense' });
   } else {
-    adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.05 * completionDecimal), skill: 'magic' });
-    adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.95 * completionDecimal), skill: 'health' }); 
+    adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.03 * completionDecimal), skill: 'magic' });
+    adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.97 * completionDecimal), skill: 'health' }); 
   }
 
   // Determine loot
@@ -178,14 +186,32 @@ Meteor.methods({
       delete targetAdventure.endDate;
     }
 
-    // Recompute start and end dates for other queue'd adventures
+    // Update existing adventures start and end times
+
+    // Sorted list of left over adventures
+    const sortedActiveAdventures = _.sortBy(myAdventures.adventures.filter((adventure) => {
+      return adventure.startDate && adventure.win == null;
+    }), 'startDate');
+
+    // Reconstruct start and end dates
+    sortedActiveAdventures.forEach((adventure, index) => {
+      if (moment().isBefore(adventure.startDate)) {
+        if (index === 0) {
+          adventure.startDate = moment().toDate();
+          adventure.endDate = moment().add(adventure.duration, 'seconds').toDate();
+        } else {
+          adventure.startDate = moment(sortedActiveAdventures[index - 1].endDate).toDate();
+          adventure.endDate = moment(adventure.startDate).add(adventure.duration, 'seconds').toDate();
+        }
+      }
+    });
 
     const updatedCount = Adventures.update({
       owner: this.userId,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
-        adventures: myAdventures.adventures,
+        adventures: _.sortBy(myAdventures.adventures, 'startDate'),
         lastGameUpdated: new Date()
       }
     });
@@ -237,11 +263,18 @@ Meteor.methods({
   },
 
   'adventures.startAdventure'(adventureIndex) {
+
+    // Make sure user isn't in combat
+    const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
+    if (currentBattle) {
+      throw new Meteor.Error('in-battle', 'You cannot start a adventure while you are in a battle');
+    }
+
     // Queue up an adventure
     const myAdventures = Adventures.findOne({ owner: this.userId });
 
     const activeAdventures = myAdventures.adventures.filter((adventure) => {
-      return adventure.startDate && moment().isBefore(adventure.endDate);
+      return adventure.startDate && adventure.win == null;
     });
 
     if (activeAdventures.length >= MAX_ACTIVE_ADVENTURES) {
@@ -270,7 +303,7 @@ Meteor.methods({
       owner: this.userId
     }, {
       $set: {
-        adventures: myAdventures.adventures
+        adventures: _.sortBy(myAdventures.adventures, 'startDate'),
       }
     });
   },
@@ -323,7 +356,7 @@ Meteor.methods({
     myAdventures.timeTillUpdate -= secondsElapsed;
 
     if (myAdventures.timeTillUpdate <= 0) {
-      let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / MAX_ADVENTURES) + 1);
+      let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / NEW_ADVENTURE_SECONDS) + 1);
       if (newAdventureCount >= MAX_ADVENTURES) {
         newAdventureCount = MAX_ADVENTURES;
       }
@@ -371,7 +404,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
   userId(userId) {
     return userId;
   } 
-}, 3, 10000);
+}, 10, 10000);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'adventures' }, 40, 2 * MINUTE);
 
 Meteor.publish('adventures', function() {

@@ -198,7 +198,7 @@ Meteor.methods({
 
       // Apply membership benefits
       const userDoc = Meteor.user()
-      if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
+      if (userDoc.combatUpgradeTo && moment().isBefore(userDoc.combatUpgradeTo)) {
         baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
       }
 

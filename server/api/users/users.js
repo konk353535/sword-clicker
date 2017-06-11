@@ -148,6 +148,12 @@ Meteor.publish("userData", function () {
         'gems': 1,
         'membershipTo': 1,
         'personalQuest': 1,
+        'miningUpgradeTo': 1,
+        'craftingUpgradeTo': 1,
+        'combatUpgradeTo': 1,
+        'woodcuttingUpgradeTo': 1,
+        'farmingUpgradeTo': 1,
+        'inscriptionUpgradeTo': 1,
         'isGuest': 1,
         'isMutedExpiry': 1
       }

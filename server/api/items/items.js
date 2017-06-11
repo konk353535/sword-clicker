@@ -3,6 +3,8 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
+import { Events } from '/imports/api/events/events';
+
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
 import { BUFFS } from '/server/constants/combat/index.js';
@@ -141,6 +143,16 @@ Meteor.methods({
   },
 
   'items.eat'(_id, itemId) {
+
+    if (Meteor.user().logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'items.eat',
+        date: new Date(),
+        data: { itemId }
+      }, () => {})
+    }
+
     // Check we have the nom
     const targetItem = Items.findOne({ _id, itemId });
     if (!targetItem || targetItem.amount < 1) {

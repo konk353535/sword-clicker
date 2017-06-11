@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Random } from 'meteor/random';
 
 import { Floors } from '/imports/api/floors/floors';
+import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
@@ -64,9 +65,20 @@ export const resumeBattle = function(id) {
 Meteor.methods({
 
   'battles.findPersonalBattle'(level) {
+    const userDoc = Meteor.user();
+
     // Ensure user has access to specified wave
-    const maxLevel = Meteor.user().personalQuest.level;
-    const maxWave = Meteor.user().personalQuest.wave;
+    const maxLevel = userDoc.personalQuest.level;
+    const maxWave = userDoc.personalQuest.wave;
+
+    if (userDoc.logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'battle.personal.start',
+        date: new Date(),
+        data: { level }
+      }, () => {})
+    }
 
     if (level > maxLevel) {
       throw new Meteor.Error("no-sir", "You are not up to the specified level");
@@ -92,6 +104,15 @@ Meteor.methods({
   },
 
   'battles.findTowerBattle'(floor, room) {
+
+    if (Meteor.user().logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'battle.tower.start',
+        date: new Date(),
+        data: { floor, room }
+      }, () => {})
+    }
 
     // Ensure the floor specified is currently open
     const currentCommunityFloor = Floors.findOne({ floorComplete: false });

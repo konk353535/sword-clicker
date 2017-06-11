@@ -3,6 +3,7 @@ import { Crafting } from '/imports/api/crafting/crafting';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
+import { Events } from '/imports/api/events/events';
 import moment from 'moment';
 import _ from 'underscore';
 
@@ -179,7 +180,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   const userDoc = Meteor.user();
 
   // Apply membership benefits
-  if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
+  if (userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo)) {
     timeToCraft *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
   }
 
@@ -199,6 +200,15 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
 Meteor.methods({
   'crafting.craftItem'(recipeId, amount) {
+    if (Meteor.user().logEvents) {
+      Events.insert({
+        owner: this.userId,
+        event: 'crafting.craftItem',
+        date: new Date(),
+        data: { recipeId, amount }
+      }, () => {})
+    }
+
     craftItem(recipeId, amount);
   },
 

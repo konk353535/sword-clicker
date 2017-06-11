@@ -10,10 +10,20 @@ UserSchema = new SimpleSchema({
   gold: { type: Number, defaultValue: 100 },
   floor: { type: Number, defaultValue: 1 },
   membershipTo: { type: Date, optional: true },
+
+  miningUpgradeTo: { type: Date, optional: true },
+  craftingUpgradeTo: { type: Date, optional: true },
+  combatUpgradeTo: { type: Date, optional: true },
+  woodcuttingUpgradeTo: { type: Date, optional: true },
+  inscriptionUpgradeTo: { type: Date, optional: true },
+  astronomyUpgradeTo: { type: Date, optional: true },
+  farmingUpgradeTo: { type: Date, optional: true },
+
   gems: { type: Number, defaultValue: 0 },
   isMutedExpiry: { type: Date, optional: true },
   isMod: { type: Boolean, optional: true },
   isGuest: { type: Boolean, optional: true },
+  logEvents: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
   username: { type: String },
   emails: { type: Array, optional: true },

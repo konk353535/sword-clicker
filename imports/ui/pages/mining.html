@@ -56,7 +56,13 @@
       </div>
       <div class="d-flex flex-column ml-3">
         <div class="d-flex align-items-center">
-          {{mining.stats.attack}}<i class="lilIcon-attack mx-1"></i> Damage per click.
+          {{#if hasMiningUpgrade}}
+            ({{mining.stats.attack}}
+            {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
+          {{else}}
+            {{mining.stats.attack}}
+          {{/if}}
+          <i class="lilIcon-attack mx-1"></i> Damage per click.
         </div>
         <div class="d-flex align-items-center">
           {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
@@ -68,7 +74,7 @@
           {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
         </div>
         <div class="d-flex align-items-center">
-          {{#if isMember}}
+          {{#if hasMiningUpgrade}}
             ({{mining.stats.miner}}
             {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
           {{else}}

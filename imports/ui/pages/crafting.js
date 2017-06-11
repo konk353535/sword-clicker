@@ -78,6 +78,8 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
         });
       }
 
+      const userDoc = Meteor.user();
+      const hasCraftingUpgrade = userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo);
 
       if (results) {
         const resultsMap = {};
@@ -92,7 +94,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
             result.notMetLevelReq = true;
           }
 
-          if (Session.get('isMember')) {
+          if (hasCraftingUpgrade) {
             const bonusPercentage = DONATORS_BENEFITS.craftingBonus;
             result.calculatedTimeToCraft = (result.timeToCraft * (1 - (bonusPercentage / 100))).toFixed(0);
           } else {

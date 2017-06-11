@@ -71,7 +71,7 @@ const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
 });
 
 const attackMineSpace = function (id, mining, multiplier = 1) {
-  const damage = mining.stats.attack * multiplier;
+  let damage = mining.stats.attack * multiplier;
   const mineSpace = MiningSpace.findOne({ _id: id });
   if (mineSpace.owner !== Meteor.userId()) {
     return;
@@ -88,6 +88,11 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
       'stats.energy': (mining.stats.energyPerHit * -1 * multiplier)
     }
   });
+
+  const userDoc = Meteor.user();
+  if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+    damage *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
+  }  
 
   if (mineSpace.health - damage <= 0) {
     // Mine space has been destroyed
@@ -361,7 +366,7 @@ Meteor.methods({
 
       // Apply membership benefits
       const userDoc = Meteor.user();
-      if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
+      if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
         damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
       }
 

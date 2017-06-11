@@ -9,8 +9,8 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 });
 
 Template.shopPage.events({
-  'click .buy-15'() {
-    if (Meteor.user().gems < 5) {
+  'click .buy-all-15'() {
+    if (Meteor.user().gems < 500) {
       return;
     }
     Meteor.call('shop.buyMembership', 15, (err, res) => {
@@ -21,11 +21,89 @@ Template.shopPage.events({
     });
   },
 
-  'click .buy-30'() {
-    if (Meteor.user().gems < 10) {
+  'click .buy-all-30'() {
+    if (Meteor.user().gems < 900) {
       return;
     }
     Meteor.call('shop.buyMembership', 30, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-mining-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'mining' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-crafting-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'crafting' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-combat-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'combat' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-woodcutting-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'woodcutting' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-farming-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'farming' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-inscription-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'inscription' }, (err, res) => {
       if (err) {
         toastr.error('An unexpected error occured when buying membership.');
       }
@@ -109,5 +187,45 @@ Template.shopPage.rendered = function () {
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
+  },
+
+  currentUpgrades() {
+    const upgrades = [{
+      name: 'mining',
+      icon: 'mining',
+      description: '+20% damage'
+    }, {
+      name: 'crafting',
+      icon: 'crafting',
+      description: '+20% speed'
+    }, {
+      name: 'combat',
+      icon: 'attack',
+      description: '+20% energy regen'
+    }, {
+      name: 'woodcutting',
+      icon: 'woodcutting',
+      description: '+20% speed'
+    }, {
+      name: 'farming',
+      icon: 'farming',
+      description: '+2 spaces'
+    }, {
+      name: 'inscription',
+      icon: 'inscription',
+      description: '+20% speed'
+    }];
+
+    // Bind users upgradeto to each part in the map
+    const userDoc = Meteor.user();
+
+    return upgrades.map((upgrade) => {
+      const upgradeStatus = userDoc[`${upgrade.name}UpgradeTo`];
+      if (upgradeStatus && moment().isBefore(upgradeStatus)) {
+        upgrade.date = userDoc[`${upgrade.name}UpgradeTo`];
+      }
+
+      return upgrade;
+    });
   }
 })

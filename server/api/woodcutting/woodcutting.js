@@ -112,7 +112,7 @@ Meteor.methods({
         }
 
         // Apply membership benefits
-        if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
+        if (userDoc.woodcuttingUpgradeTo && moment().isBefore(userDoc.woodcuttingUpgradeTo)) {
           rawGeneratedLogs *= (1 + (DONATORS_BENEFITS.woodcuttingBonus / 100));
         }
 

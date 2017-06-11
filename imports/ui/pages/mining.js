@@ -286,6 +286,11 @@ Template.miningPage.helpers({
     });
   },
 
+  hasMiningUpgrade() {
+    const userDoc = Meteor.user();
+    return userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo);
+  },
+
   equippedItemsMap() {
     const equippedItems = Items.find({
       category: 'mining',

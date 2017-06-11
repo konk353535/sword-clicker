@@ -15,67 +15,10 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('adventures');
 
-  /*
-  const rawAdventures = [{
-    name: 'Earth Alter',
-    icon: 'earthMage',
-    length: 'Long',
-    startDate: '2017-05-05T13:06:24+00:00',
-    endDate: '2017-05-05T13:26:26+00:00',
-    type: 'Magic',
-    durationTotal: 60 * 60,
-    win: true,
-    rewards: [{
-      type: "xp",
-      amount: 57,
-      skill: "magic"
-    }, {
-      type: "item",
-      amount: 1,
-      itemId: "ore_steel",
-      icon: "steel"
-    }]
-  }, {
-      name: 'Fire Alter',
-      icon: 'fireMage',
-      length: 'Long',
-      startDate: '2017-05-05T13:06:24+00:00',
-      endDate: '2017-05-05T13:26:26+00:00',
-      type: 'Magic',
-      durationTotal: 60 * 60,
-      win: false,
-      rewards: [{
-        type: "xp",
-        amount: 57,
-        skill: "magic"
-      }]
-  }, {
-      name: 'Demonic Resonance',
-      icon: 'demon',
-      length: 'Short',
-      startDate: '2017-06-06T21:03:24+10:00',
-      endDate: '2017-06-06T21:09:26+10:00',
-      type: 'Melee',
-      durationTotal: 5 * 60
-  }, {
-      name: 'Bush Den',
-      icon: 'wombat',
-      length: 'Short',
-      startDate: '2017-06-06T15:06:24+00:00',
-      endDate: '2017-06-06T15:26:26+00:00',
-      type: 'Melee',
-      durationTotal: 5 * 60
-  }, {
-      name: 'Tamarind Tree',
-      icon: 'bee',
-      length: 'Epic',
-      type: 'Magic',
-      durationTotal: 60 * 60 * 3
-  }];
-  */
-
   const updateAdventures = function (self) {
-    self.state.set('adventures', _.sortBy(self.state.get('rawAdventures').map((adventure) => {
+    self.state.set('adventures', self.state.get('rawAdventures').map((adventure, index) => {
+      adventure.index = index;
+
       if (adventure.duration) {
         adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');
       }
@@ -84,7 +27,13 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         adventure.isComplete = true;
       }
 
-      if (!adventure.isComplete && moment().isAfter(adventure.startDate)) {
+      if (!adventure.startDate) {
+        adventure.inactive = true;
+      } else {
+        adventure.inactive = false;
+      }
+
+      if (!adventure.isComplete && moment().isAfter(adventure.startDate) && moment().isBefore(adventure.endDate)) {
         // Seconds since start
         const secondsSinceStart = moment.duration(moment().diff(adventure.startDate)).asSeconds();
         // Seconds till end
@@ -93,24 +42,20 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         const totalSeconds = moment.duration(moment(adventure.endDate).diff(adventure.startDate)).asSeconds();
         // Formatted seconds left
         adventure.durationLeft = moment("2015-01-01").startOf('day').seconds(secondsLeft).format('H:mm:ss');
-        adventure.percentageComplete = Math.round((secondsSinceStart / totalSeconds) * 100);
+        adventure.percentageComplete = Math.ceil((secondsSinceStart / totalSeconds) * 100);
       }
 
-      if (adventure.percentageComplete >= 100 && !updatingAdventures) {
+      if (moment().isAfter(adventure.endDate) && !updatingAdventures) {
         updatingAdventures = true;
         Meteor.call('adventures.gameUpdate', (err, res) => {
-          if (!err) {
+          Meteor.setTimeout(() => {
             updatingAdventures = false;
-          } else {
-            Meteor.setTimeout(() => {
-              updatingAdventures = false;
-            }, 60000)
-          }
+          }, 1000)
         });
       }
 
       return adventure;
-    }), 'endDate'));
+    }));
   }
 
   this.autorun(() => {
@@ -158,7 +103,44 @@ Template.adventuresTab.events({
 })
 
 Template.adventuresTab.helpers({
-  adventures() {
-    return Template.instance().state.get('adventures');
+
+  epicAdventures() {
+    const instance = Template.instance();
+    if (!instance.state.get('adventures')) {
+      return;
+    }
+    return instance.state.get('adventures').filter((adventure) => {
+      return adventure.length === 'epic' && !adventure.startDate;
+    });
+  },
+
+  longAdventures() {
+    const instance = Template.instance();
+    if (!instance.state.get('adventures')) {
+      return;
+    }
+    return instance.state.get('adventures').filter((adventure) => {
+      return adventure.length === 'long' && !adventure.startDate;
+    });
+  },
+
+  shortAdventures() {
+    const instance = Template.instance();
+    if (!instance.state.get('adventures')) {
+      return;
+    }
+    return instance.state.get('adventures').filter((adventure) => {
+      return adventure.length === 'short' && !adventure.startDate;
+    });
+  },
+
+  activeAdventures() {
+    const instance = Template.instance();
+    if (!instance.state.get('adventures')) {
+      return;
+    }
+    return instance.state.get('adventures').filter((adventure) => {
+      return adventure.startDate;
+    });
   }
 });

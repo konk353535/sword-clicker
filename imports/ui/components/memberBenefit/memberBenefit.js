@@ -17,7 +17,13 @@ Template.memberBenefit.helpers({
       const bonusAmount = DONATORS_BENEFITS[instance.data.bonusKey];
       if (bonusAmount) {
         const value = instance.data.value;
-        return bonusAmount + Math.floor(value * (bonusAmount / 100));
+        return Math.floor(value * (bonusAmount / 100));
+      }
+    } else if (instance.data.bonusKey === 'miningAttackBonus') {
+      const bonusAmount = DONATORS_BENEFITS.miningBonus;
+      if (bonusAmount) {
+        const value = instance.data.value;
+        return (value * (bonusAmount / 100)).toFixed(1);
       }
     }
 

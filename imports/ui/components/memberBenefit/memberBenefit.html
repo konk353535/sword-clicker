@@ -1,7 +1,14 @@
 <template name="memberBenefit">
   <span class="benefit-container">
     {{#if $eq bonusKey 'miningBonus'}}
-      &nbsp;+&nbsp;
+      &nbsp;+
+      <span class="text-primary benefit-container">
+        {{calculatedBonus}}
+      </span>
+    {{/if}}
+
+    {{#if $eq bonusKey 'miningAttackBonus'}}
+      &nbsp;+
       <span class="text-primary benefit-container">
         {{calculatedBonus}}
       </span>

@@ -178,7 +178,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       amulet: userCombat.amulet,
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
-      tickOffset: _.random(0, 5),
+      tickOffset: _.random(0, 5) + 4,
       icon: 'character'
     });
 
@@ -225,7 +225,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         target: randomUnitTarget.id,
         enemyId: enemyConstants.id,
         name: enemyConstants.name,
-        tickOffset: _.random(0, 5)
+        tickOffset: _.random(0, 5) + 4
       });
     }
   });

@@ -1,5 +1,5 @@
 <template name="itemIcon">
-  <div class="item-icon-container {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative" data-id="{{item._id}}">
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
@@ -55,6 +55,14 @@
         {{#if item.shiftAction.description}}
           <div>
             <b>Shift Click</b> to {{item.shiftAction.description}}
+          </div>
+        {{/if}}
+      {{/if}}
+
+      {{#if item.ctrlAction}}
+        {{#if item.ctrlAction.description}}
+          <div>
+            <b>Ctrl Click</b> to {{item.ctrlAction.description}}
           </div>
         {{/if}}
       {{/if}}

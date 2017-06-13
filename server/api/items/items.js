@@ -142,6 +142,141 @@ Meteor.methods({
     }
   },
 
+  'items.use'({ baseItemId, targetItemId }) {
+    // Fetch both items
+    const baseItem = Items.findOne({
+      owner: Meteor.userId(),
+      _id: baseItemId
+    });
+
+    const targetItem = Items.findOne({
+      owner: Meteor.userId(),
+      _id: targetItemId
+    });
+
+    if (!baseItem || !targetItem || baseItem.amount <= 0 || targetItem.amount <= 0) {
+      return;
+    }
+
+    const baseItemConstants = ITEMS[baseItem.itemId];
+    const targetItemConstants = ITEMS[targetItem.itemId];
+
+    // Check what the behaviour is for the baseItem, targetting that targetItem
+    if (baseItem.itemId === 'enhancer_key') {
+      const ENHANCER_KEY_INCREASE = 15;
+      if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
+        // Get the current quality
+        const originalQuality = targetItem.quality
+        const targetItemClone = JSON.parse(JSON.stringify(targetItem));
+
+        // Mutate the targetItems stats until we get to target quality
+        const increaseOptions = []
+        const extraStatKeys = Object.keys(targetItemConstants.extraStats);
+        extraStatKeys.forEach((extraStatKey) => {
+          const maxStat = targetItemConstants.extraStats[extraStatKey];
+          const currentStat = targetItem.extraStats[extraStatKey];
+
+          if (currentStat !== maxStat) {
+            // Stat percentage
+            const statPercent = (currentStat / maxStat) * 100;
+            // Smallest increment
+            const smallestIncrement = ((1 / maxStat) * 100) / extraStatKeys.length;
+
+            if (smallestIncrement <= ENHANCER_KEY_INCREASE) {
+              increaseOptions.push({
+                key: extraStatKey,
+                smallestIncrement,
+                currentStat,
+                maxStat,
+                maxIncrease: maxStat - currentStat
+              });
+            }
+          }
+        });
+
+        // Randomly choose an increment
+        const shuffledIncreaseOptions = _.shuffle(increaseOptions);
+        // Keep track of total quality increase
+        let currentQualityIncrease = 0;
+
+        shuffledIncreaseOptions.forEach((option) => {
+          // Can we apply this upgrade in the least?
+          let upgradePercentLeft = 100 - originalQuality - currentQualityIncrease;
+          if (upgradePercentLeft > (ENHANCER_KEY_INCREASE - currentQualityIncrease)) {
+            upgradePercentLeft = ENHANCER_KEY_INCREASE - currentQualityIncrease;
+          }
+
+          if (option.smallestIncrement <= upgradePercentLeft) {
+            // Floor times left to add
+            let timesToAdd = Math.floor(upgradePercentLeft / option.smallestIncrement);
+            if (timesToAdd > option.maxIncrease) {
+              timesToAdd = option.maxIncrease;
+            }
+
+            // Keep track of current quality increases
+            currentQualityIncrease += timesToAdd * option.smallestIncrement;
+
+            // Handle edge case of this extra stat not existing
+            if (!targetItemClone.extraStats[option.key]) {
+              targetItemClone.extraStats[option.key] = 0;
+            }
+            targetItemClone.extraStats[option.key] += timesToAdd;
+          }
+        });
+
+        if (currentQualityIncrease > 0) {
+          // Recompute quality
+          targetItemClone.quality = 0;
+          extraStatKeys.forEach((extraStatKey) => {
+            const maxValue = targetItemConstants.extraStats[extraStatKey];
+            const currentValue = targetItemClone.extraStats[extraStatKey] || 0;
+            targetItemClone.quality += ((currentValue / maxValue) * 100);
+          });
+
+          targetItemClone.quality = Math.round(targetItemClone.quality / extraStatKeys.length);
+
+          // Remove the key
+          if (baseItem.amount === 1) {
+            Items.remove({
+              owner: Meteor.userId(),
+              _id: baseItem._id
+            });
+          } else {
+            Items.update({
+              owner: Meteor.userId(),
+              _id: baseItem._id
+            }, {
+              $inc: {
+                amount: -1
+              }
+            });
+          }
+
+          // Update the stats of the item
+          Items.update({
+            owner: Meteor.userId(),
+            _id: targetItem._id
+          }, {
+            $set: {
+              extraStats: targetItemClone.extraStats,
+              quality: targetItemClone.quality,
+              enhanced: true
+            }
+          });
+        } else {
+          throw new Meteor.Error("invalid-target", 'Invalid target item');
+        }
+      } else {
+        throw new Meteor.Error("invalid-target", 'Invalid target item');
+      }
+    }
+
+    // To Do: Make this more generic
+    // If there is a valid behaviour, execute it
+
+    // Done
+  },
+
   'items.eat'(_id, itemId) {
 
     if (Meteor.user().logEvents) {
@@ -406,6 +541,14 @@ Meteor.publish('items', function() {
 
     if (_.isFunction(itemConstants.description)) {
       doc.description = itemConstants.description();
+    }
+
+    if (itemConstants.shiftActionData) {
+      doc.shiftActionData = itemConstants.shiftActionData;
+    }
+
+    if (doc.enhanced) {
+      doc.name += ' (e)';
     }
 
     return doc;

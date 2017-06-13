@@ -2,11 +2,28 @@ import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
 import moment from 'moment';
 
+import { addItem } from '/server/api/items/items.js';
+
 const stripe = require("stripe")(Meteor.settings.private.stripe);
 
 import { unlockFarmingSpaces } from '/server/api/farming/farming';
 
 Meteor.methods({
+
+  'shop.buyEnhancerKey'() {
+    const requiredGems = 80;
+    if (Meteor.user().gems < requiredGems) {
+      throw new Meteor.Error("no-gems", "Not enough gems");
+    }
+
+    Users.update(Meteor.userId(), {
+      $inc: {
+        gems: (requiredGems * -1) 
+      }
+    });
+
+    addItem('enhancer_key', 1, Meteor.userId());
+  },
 
   'shop.buyMembership'(days) {
     if (!_.contains([15, 30], days)) {
@@ -130,7 +147,7 @@ Meteor.methods({
         });
       } else if (currentPack === 'bag') {
         payment = handleCharge({
-          amount: 999,
+          amount: 1999,
           currency: "usd",
           description: "Bag Of Gems",
           source: token,
@@ -141,7 +158,7 @@ Meteor.methods({
         });
       } else if (currentPack === 'box') {
         payment = handleCharge({
-          amount: 1999,
+          amount: 4999,
           currency: "usd",
           description: "Box Of Gems",
           source: token,

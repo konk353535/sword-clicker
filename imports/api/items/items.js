@@ -10,6 +10,7 @@ ItemsSchema = new SimpleSchema({
   amount: { type: Number, defaultValue: 1 },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   equipped: { type: Boolean, defaultValue: false },
+  enhanced: { type: Boolean, optional: true },
   slot: { type: String, optional: true },
   extraStats: { type: Object, blackbox: true, optional: true },
   quality: { type: Number, optional: true }

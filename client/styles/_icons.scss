@@ -1,9 +1,17 @@
-body.targetting-enemies, body.targetting-friendlies {
+body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   cursor: crosshair;
+
+  .item {
+    cursor: crosshair;
+  }
 
   .ability-icon {
     cursor: crosshair;
   }
+}
+
+.targetting-item .item:hover {
+  border-color: $red;
 }
 
 .targetting-enemies .enemy-icon:hover {

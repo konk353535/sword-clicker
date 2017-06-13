@@ -21,6 +21,19 @@ Template.shopPage.events({
     });
   },
 
+  'click .buy-enhancer-key'() {
+    if (Meteor.user().gems < 75) {
+      return;
+    }
+
+    Meteor.call('shop.buyEnhancerKey', (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying key.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
   'click .buy-all-30'() {
     if (Meteor.user().gems < 900) {
       return;
@@ -157,7 +170,7 @@ Template.shopPage.rendered = function () {
       image: 'https://eternitytower.net/icons/tower.svg',
       description: 'Bag Of Gems',
       currency: 'usd',
-      amount: 999
+      amount: 1999
     });
     instance.state.set('currentPack', 'bag')
     instance.state.set('processing', true);
@@ -171,7 +184,7 @@ Template.shopPage.rendered = function () {
       image: 'https://eternitytower.net/icons/tower.svg',
       description: 'Box Of Gems',
       currency: 'usd',
-      amount: 1999
+      amount: 4999
     });
     instance.state.set('currentPack', 'box')
     instance.state.set('processing', true);

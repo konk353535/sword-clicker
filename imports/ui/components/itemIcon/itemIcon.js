@@ -37,6 +37,11 @@ const sellItem = function (event, instance) {
 
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
+
+    if ($('body').hasClass('targetting-item')) {
+      return;
+    }
+
     const primaryAction = instance.data.item.primaryAction;
     const shiftAction = instance.data.item.shiftAction;
     const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;

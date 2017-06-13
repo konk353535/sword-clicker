@@ -24,6 +24,10 @@ const NEW_ADVENTURE_SECONDS = 120;
 const MAX_ACTIVE_ADVENTURES = 3;
 
 const createAdventure = function createAdventure(combatSkills, maxFloor) {
+  if (maxFloor < 1) {
+    maxFloor = 1;
+  }
+
   const magicChance = 0.2;
   let type = Math.random() <= magicChance && combatSkills.magic ? 'magic' : 'physical';
   let level;
@@ -99,20 +103,20 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
   const xpLookup = {
     1: 2000,
     2: 12000,
-    3: 23000,
-    4: 56000,
-    5: 85000,
-    6: 130000
+    3: 20000,
+    4: 45000,
+    5: 65000,
+    6: 110000
   }
 
   const lengthXpLookup = {
     short: 1,
-    long: 0.9,
-    epic: 0.7
+    long: 0.8,
+    epic: 0.6
   }
 
   // Determine xp
-  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 25000);
+  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 20000);
   const lengthXpDecimal = lengthXpLookup[adventure.length];
   const totalXp = xpPerHour * (adventure.duration / 3600) * lengthXpDecimal;
 
@@ -134,11 +138,11 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     // Epic = 2 chance per hour
     let chances;
     if (adventure.length === 'short') {
-      chances = 2;
+      chances = 1;
     } else if (adventure.length === 'long') {
-      chances = 3;
+      chances = 1;
     } else if (adventure.length === 'epic') {
-      chances = Math.ceil(adventure.duration / 3600) * 2;
+      chances = 1.5;
     }
 
     // Possibly rewards
@@ -363,7 +367,7 @@ Meteor.methods({
 
       for (let i = 0; i < newAdventureCount; i++) {
         // Add a new adventure entry
-        myAdventures.adventures.unshift(createAdventure(combatSkills, maxFloor));
+        myAdventures.adventures.unshift(createAdventure(combatSkills, maxFloor - 1));
       }
       myAdventures.timeTillUpdate = NEW_ADVENTURE_SECONDS;
     }

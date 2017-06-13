@@ -19,6 +19,40 @@ import '../components/craftingDuration/craftingDuration.js';
 let gameUpdateTimer;
 let recipeCache;
 
+const itemModifier = function (item) {
+  if (item.shiftActionData) {
+    item.shiftAction = {
+      description: item.shiftActionData.description,
+      item,
+      method() {
+        if (this.item.shiftActionData.target) {
+          const targetClass = `targetting-${this.item.shiftActionData.target}`;
+          if (!$('body').hasClass(targetClass)) {
+            $('body').addClass(targetClass);
+            Meteor.setTimeout(() => {
+              // Add body listener for when you want to click out
+              $('body').on(`click.${this.item._id}`, (event) => {
+                const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
+                if (closestTarget) {
+                  const targetId = closestTarget.data('id');
+                  if (targetId) {
+                    Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
+                  }
+                }
+                
+                $('body').removeClass(targetClass);
+                $('body').off(`click.${this.item._id}`);
+              });
+            }, 1);
+          }
+        }
+      }
+    }
+  }
+
+  return item;
+}
+
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   if (Session.get('itemViewLimit') !== undefined) {
@@ -333,7 +367,7 @@ Template.craftingPage.helpers({
           category: 1,
           name: 1
         }
-      })
+      }).map((itemModifier));
     }
 
     return Items.find({ equipped: false }, {
@@ -341,6 +375,6 @@ Template.craftingPage.helpers({
         category: 1,
         name: 1
       }
-    });
+    }).map((itemModifier));
   }
 });

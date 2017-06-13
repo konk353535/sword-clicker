@@ -8,8 +8,7 @@
           {{/if}}
           {{#if this.isExplorationRun}}
             <span class="mr-1">F{{this.floor}}</span>
-          {{/if}}
-          {{#if this.room}}
+          {{else if this.room}}
             <span class="mr-1">F{{this.floor}} R{{this.room}}</span>
           {{/if}}
 

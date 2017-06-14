@@ -4,6 +4,8 @@ Router.route('/home', {
 
   template: 'homePage',
 
+  title: 'home',
+
   yieldRegions: {
     'nav': { to: 'nav' },
     'footer': { to: 'footer' }
@@ -155,5 +157,12 @@ Router.route('/combat', {
     'footer': { to: 'footer' }
   }
 });
+
+Router.onAfterAction(() => {
+  const name = Router.current().route.options.name;
+  if (name) {
+    document.title = `Eternity Tower - ${name.charAt(0).toUpperCase() + name.slice(1)}`;
+  }
+})
 
 

@@ -10,21 +10,6 @@ import { unlockFarmingSpaces } from '/server/api/farming/farming';
 
 Meteor.methods({
 
-  'shop.buyEnhancerKey'() {
-    const requiredGems = 80;
-    if (Meteor.user().gems < requiredGems) {
-      throw new Meteor.Error("no-gems", "Not enough gems");
-    }
-
-    Users.update(Meteor.userId(), {
-      $inc: {
-        gems: (requiredGems * -1) 
-      }
-    });
-
-    addItem('enhancer_key', 1, Meteor.userId());
-  },
-
   'shop.buyMembership'(days) {
     if (!_.contains([15, 30], days)) {
       throw new Meteor.Error("not-valid-days", "Not valid day amount");

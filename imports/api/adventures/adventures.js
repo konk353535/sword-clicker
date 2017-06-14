@@ -9,6 +9,7 @@ AdventuresSchema = new SimpleSchema({
   lastGameUpdated: { type: Date, defaultValue: new Date() },
   timeTillUpdate: { type: Number, decimal: true, },
   adventures: { type: [Object] },
+  'adventures.$.id': { type: String },
   'adventures.$.level': { type: Number }, // Determines XP / Chance of success
   'adventures.$.length': { type: String }, // Short, Long, Epic
   'adventures.$.floor': { type: Number }, // Floor this represents

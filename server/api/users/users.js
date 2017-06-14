@@ -117,7 +117,9 @@ Meteor.methods({
     ];
 
     if (_.contains(validIds, id)) {
-      const setObject = {}
+      const setObject = {
+        username: Meteor.user().username.toLowerCase()
+      }
       setObject[`uiState.${id}`] = value;
 
       Users.update({

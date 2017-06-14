@@ -55,7 +55,7 @@
           </div>
           <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
             {{#if this.durationLeft}}
-              <button class="btn btn-primary btn-hover-text cancel-adventure-btn" style="width: 100px;" data-index="{{this.index}}">
+              <button class="btn btn-primary btn-hover-text cancel-adventure-btn" style="width: 100px;" data-id="{{this.id}}">
                 <span class="main-text">
                   {{this.durationLeft}}
                 </span>
@@ -64,15 +64,15 @@
                 </span>
               </button>
             {{else if this.isComplete}}
-              <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-index="{{this.index}}">
+              <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-id="{{this.id}}">
                 Collect
               </button>
             {{else if this.startDate}}
-              <button class="btn btn-danger cancel-adventure-btn" style="width: 100px;" data-index="{{this.index}}">
+              <button class="btn btn-danger cancel-adventure-btn" style="width: 100px;" data-id="{{this.id}}">
                 Cancel
               </button>
             {{else}}
-              <button class="btn btn-primary start-adventure-btn" style="width: 100px;" data-index="{{this.index}}">
+              <button class="btn btn-primary start-adventure-btn" style="width: 100px;" data-id="{{this.id}}">
                 Queue
               </button>
             {{/if}}

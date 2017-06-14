@@ -16,7 +16,7 @@ Template.nav.events({
 
   'click .nav-link'(event, instance) {
     // Clear free floating tooltips
-    $('.drop.drop-element.drop-enabled').remove()
+    $('.drop.drop-element.drop-enabled').remove();
   },
 
   'click .guest-set-password-btn'(event, instance) {

@@ -16,9 +16,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
   Meteor.subscribe('adventures');
 
   const updateAdventures = function (self) {
-    self.state.set('adventures', self.state.get('rawAdventures').map((adventure, index) => {
-      adventure.index = index;
-
+    self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
       if (adventure.duration) {
         adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');
       }
@@ -72,9 +70,8 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
 
 Template.adventuresTab.events({
   'click .start-adventure-btn'(event, instance) {
-    const index = instance.$(event.target).closest('.start-adventure-btn').data('index');
-
-    Meteor.call('adventures.startAdventure', index, (err, res) => {
+    const id = instance.$(event.target).closest('.start-adventure-btn').attr('data-id');
+    Meteor.call('adventures.startAdventure', id, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }
@@ -82,9 +79,8 @@ Template.adventuresTab.events({
   },
 
   'click .collect-adventure-btn'(event, instance) {
-    const index = instance.$(event.target).closest('.collect-adventure-btn').data('index');
-
-    Meteor.call('adventures.collectAdventure', index, (err, res) => {
+    const id = instance.$(event.target).closest('.collect-adventure-btn').attr('data-id');
+    Meteor.call('adventures.collectAdventure', id, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }
@@ -92,9 +88,8 @@ Template.adventuresTab.events({
   },
 
   'click .cancel-adventure-btn'(event, instance) {
-    const index = instance.$(event.target).closest('.cancel-adventure-btn').data('index');
-
-    Meteor.call('adventures.cancelAdventure', index, (err, res) => {
+    const id = instance.$(event.target).closest('.cancel-adventure-btn').attr('data-id');
+    Meteor.call('adventures.cancelAdventure', id, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }

@@ -196,7 +196,11 @@ Meteor.methods({
   'groups.invite'(username) {
     // Does the specified username exist
     const targetUser = Users.findOne({
-      username: username.toLowerCase()
+      $or: [{
+        username: username.toLowerCase()
+      }, {
+        email: username.toLowerCase()
+      }]
     });
 
     if (!targetUser) {

@@ -21,19 +21,6 @@ Template.shopPage.events({
     });
   },
 
-  'click .buy-enhancer-key'() {
-    if (Meteor.user().gems < 75) {
-      return;
-    }
-
-    Meteor.call('shop.buyEnhancerKey', (err, res) => {
-      if (err) {
-        toastr.error('An unexpected error occured when buying key.');
-      }
-      toastr.success('Successfully purchased.')
-    });
-  },
-
   'click .buy-all-30'() {
     if (Meteor.user().gems < 900) {
       return;

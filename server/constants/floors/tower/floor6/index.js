@@ -32,7 +32,7 @@ export const TOWER_FLOOR_6 = {
     }]))
   },
   3: {
-    name: 'Watermelon Planatation',
+    name: 'Watermelon Plantation',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,

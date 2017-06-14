@@ -24,6 +24,11 @@ export const addXp = function (skillType, xp, specificUserId) {
     owner = Meteor.userId();
   }
   const skill = Skills.findOne({ owner , type: skillType });
+
+  if (!skill) {
+    return;
+  }
+
   const skillConstants = SKILLS[skill.type];
 
   skill.xp += xp;

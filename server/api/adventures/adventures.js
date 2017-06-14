@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import _ from 'underscore';
+import { Random } from 'meteor/random';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -78,6 +79,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor) {
   }
 
   return {
+    id: Random.id(),
     level,
     type,
     floor,
@@ -175,12 +177,12 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
 
 Meteor.methods({
 
-  'adventures.cancelAdventure'(adventureIndex) {
+  'adventures.cancelAdventure'(adventureId) {
     // Queue up an adventure
     const myAdventures = Adventures.findOne({ owner: this.userId });
 
     // Set data for target adventure
-    const targetAdventure = myAdventures.adventures[adventureIndex];
+    const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
 
     if (moment().isAfter(targetAdventure.startDate)) {
       // Partially complete, give some rewards
@@ -221,12 +223,12 @@ Meteor.methods({
     });
   },
 
-  'adventures.collectAdventure'(adventureIndex) {
+  'adventures.collectAdventure'(adventureId) {
     // Queue up an adventure
     const myAdventures = Adventures.findOne({ owner: this.userId });
 
     // Set data for target adventure
-    const targetAdventure = myAdventures.adventures[adventureIndex];
+    const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
 
     // Can't collect un finished adventure
     if (targetAdventure.win == null) {
@@ -234,7 +236,9 @@ Meteor.methods({
     }
 
     // Remove target adventure from array
-    myAdventures.adventures.splice(adventureIndex, 1);
+    myAdventures.adventures = myAdventures.adventures.filter((adventure) => {
+      return adventure.id !== adventureId;
+    });
 
     const updatedCount = Adventures.update({
       owner: this.userId,
@@ -266,8 +270,7 @@ Meteor.methods({
     })
   },
 
-  'adventures.startAdventure'(adventureIndex) {
-
+  'adventures.startAdventure'(adventureId) {
     // Make sure user isn't in combat
     const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
     if (currentBattle) {
@@ -298,7 +301,7 @@ Meteor.methods({
     }
 
     // Set data for target adventure
-    const targetAdventure = myAdventures.adventures[adventureIndex];
+    const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
 
     targetAdventure.startDate = moment(furthestActiveAdventure).toDate();
     targetAdventure.endDate = moment(targetAdventure.startDate).add(targetAdventure.duration, 'seconds').toDate();
@@ -330,6 +333,10 @@ Meteor.methods({
 
     // Are any active adventures finished?
     myAdventures.adventures.forEach((adventure) => {
+      if (!adventure.id) {
+        adventure.id = Random.id();
+      }
+
       if (moment().isAfter(adventure.endDate) && adventure.win == null) {
         processCompleteAdventure(adventure);
       }

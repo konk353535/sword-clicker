@@ -213,10 +213,6 @@ Template.body.onCreated(function () {
   Meteor.subscribe('combat');
 });
 
-Handlebars.registerHelper('isMember', function (id) {
-  return Session.get('isMember');
-});
-
 Template.myLayout.helpers({
   currentRoute() {
     return Router.current().route.getName();

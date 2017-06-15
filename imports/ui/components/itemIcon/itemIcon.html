@@ -3,6 +3,12 @@
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
+
+    <!-- Abilities can have required items -->
+    {{#if item.requiredItem}}
+      <img src="/icons/{{item.requiredItem}}.svg" class="small-icon">
+    {{/if}}
+
     <img src="/icons/{{item.icon}}.svg" class="item-icon">
     {{#unless item.hideCount}}
       {{#if item.amount}}

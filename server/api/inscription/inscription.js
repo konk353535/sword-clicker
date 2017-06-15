@@ -94,6 +94,53 @@ Meteor.methods({
     craftItem(recipeId, amount);
   },
 
+  'inscription.cancelCraft'(targetEndDate) {
+    // If existing crafts done, remove from crafting table
+    const inscription = Inscription.findOne({ owner: Meteor.userId() });
+
+    if (!inscription || !inscription.currentlyCrafting) {
+      return;
+    }
+
+    // Target Crafting Item
+    let targetCrafting;
+    inscription.currentlyCrafting.forEach((currentCrafting) => {
+      console.log(targetEndDate);
+      console.log(currentCrafting.endDate);
+      if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
+        targetCrafting = currentCrafting;
+      }
+    });
+
+    // Remove targetCrafting from current crafting array
+    const updatedCount = Inscription.update({
+      _id: inscription._id,
+      currentlyCrafting: inscription.currentlyCrafting
+    }, {
+      $pull: {
+        currentlyCrafting: {
+          endDate: {
+            $in: [targetCrafting.endDate]
+          }
+        }
+      }
+    });
+
+    if (updatedCount === 0) {
+      return;
+    }
+
+    // Refund resources for specified crat
+    const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
+    recipeConstants.required.forEach((required) => {
+      if (required.consumes) {
+        if (required.type === 'item') {
+          addItem(required.itemId, required.amount * targetCrafting.amount);
+        }
+      }
+    });
+  },
+
   'inscription.fetchRecipes'() {
     const inscriptionSkill = Skills.findOne({
       owner: Meteor.userId(),

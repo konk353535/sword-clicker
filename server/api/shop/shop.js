@@ -159,9 +159,9 @@ Meteor.methods({
         if (currentPack === 'bunch') {
           newGems = 500;
         } else if (currentPack === 'bag') {
-          newGems = 1300;
+          newGems = 2300;
         } else if (currentPack === 'box') {
-          newGems = 3500;
+          newGems = 6200;
         }
 
         Users.update({

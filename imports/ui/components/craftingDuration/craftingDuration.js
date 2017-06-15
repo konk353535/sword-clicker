@@ -53,8 +53,13 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
 Template.craftingDuration.events({
   'click'() {
     const instance = Template.instance();
-    // Cancel the craft for this
-    Meteor.call('crafting.cancelCraft', instance.data.craftingProcess.endDate);
+    if (instance.data.isCrafting) {
+      // Cancel the craft for this
+      Meteor.call('crafting.cancelCraft', instance.data.craftingProcess.endDate);
+    } else {
+      // Cancel the craft for this
+      Meteor.call('inscription.cancelCraft', instance.data.craftingProcess.endDate);      
+    }
   },
 })
 

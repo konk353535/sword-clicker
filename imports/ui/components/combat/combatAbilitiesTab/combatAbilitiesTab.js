@@ -90,6 +90,13 @@ Template.combatAbilitiesTab.helpers({
 
     return instance.state.get('abilityLibrary').map((ability) => {
       ability.primaryAction = {};
+      if (ability.requires) {
+        ability.requires.forEach((require) => {
+          if (require.type === 'item') {
+            ability.requiredItem = require.itemType
+          }
+        });
+      }
 
       if (_.findWhere(myAbilities.learntAbilities, { abilityId: ability.id })) {
         ability.notLearnt = false;

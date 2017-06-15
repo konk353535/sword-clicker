@@ -13,10 +13,10 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 1, // Deal a min of 1 damage
-      attackMax: 2, // Deal a max of 2 damage
-      attackSpeed: VERY_FAST_SPEED, // Attacks per second
-      accuracy: 1 // Chance for weapon to hit
+      attack: 1,
+      attackMax: 2,
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 1
     }
   },
 

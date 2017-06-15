@@ -247,6 +247,7 @@ Meteor.methods({
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
         cooldown: abilityConstant.cooldown,
+        requires: abilityConstant.requires,
         learntLevel,
         level: abilityLevel,
         id: abilityConstant.id

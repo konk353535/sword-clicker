@@ -1,5 +1,3 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
-
 export const COPPER_ITEMS = {
   copper_dagger: {
     id: 'copper_dagger',
@@ -15,8 +13,8 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 1,
       attackMax: 2,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 1
+      attackSpeed: 1,
+      accuracy: 3
     }
   },
 
@@ -34,15 +32,15 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 2,
       attackMax: 3,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 2,
-      defense: 4
+      attackSpeed: 0.5,
+      accuracy: 3,
+      defense: 2
     },
     extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2,
-      defense: 4
+      attack: 1,
+      attackMax: 1,
+      accuracy: 1,
+      defense: 1
     }
   },
 
@@ -60,13 +58,13 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 2,
       attackMax: 4,
-      attackSpeed: FAST_SPEED,
-      accuracy: 3,
+      attackSpeed: 0.7,
+      accuracy: 4.5,
     },
     extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 3
+      attack: 1,
+      attackMax: 1,
+      accuracy: 1
     }
   },
 
@@ -84,13 +82,13 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 4,
       attackMax: 8,
-      attackSpeed: FAST_SPEED,
-      accuracy: 6,
+      attackSpeed: 0.7,
+      accuracy: 6.5,
     },
     extraStats: {
-      attack: 4,
-      attackMax: 4,
-      accuracy: 6
+      attack: 1,
+      attackMax: 2,
+      accuracy: 1
     }
   },
 
@@ -109,13 +107,13 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 4,
       attackMax: 7,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 7,
+      attackSpeed: 0.5,
+      accuracy: 8,
     },
     extraStats: {
-      attack: 3,
-      attackMax: 5,
-      accuracy: 4
+      attack: 1,
+      attackMax: 2,
+      accuracy: 2
     }
   },
 
@@ -132,15 +130,15 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 8,
-      attackMax: 14,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 14,
+      attack: 5,
+      attackMax: 8,
+      attackSpeed: 0.5,
+      accuracy: 9,
     },
     extraStats: {
-      attack: 6,
-      attackMax: 8,
-      accuracy: 8
+      attack: 2,
+      attackMax: 3,
+      accuracy: 3
     }
   },
 
@@ -159,12 +157,12 @@ export const COPPER_ITEMS = {
     stats: {
       attack: 5,
       attackMax: 15,
-      attackSpeed: SLOW_SPEED,
+      attackSpeed: 0.3,
       accuracy: 5,
     },
     extraStats: {
-      attack: 2,
-      attackMax: 10
+      attack: 1,
+      attackMax: 3
     }
   },
 

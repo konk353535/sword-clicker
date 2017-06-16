@@ -10,12 +10,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 30 * 60,
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 14,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -27,9 +27,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -42,7 +42,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 14
+      level: 65
     }]
   },
 
@@ -55,12 +55,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 300,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -72,9 +72,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -87,7 +87,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -100,12 +100,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 300,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -117,9 +117,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -132,7 +132,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -145,12 +145,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -162,9 +162,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -177,7 +177,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -190,12 +190,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 750,
     maxToCraft: 1,
-    requiredCraftingLevel: 17,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -207,9 +207,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -222,7 +222,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 17
+      level: 65
     }]
   },
 
@@ -235,12 +235,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 750,
     maxToCraft: 1,
-    requiredCraftingLevel: 17,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -252,9 +252,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -267,7 +267,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 17
+      level: 65
     }]
   },
 
@@ -280,12 +280,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -297,9 +297,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -312,7 +312,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -325,12 +325,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -342,9 +342,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -357,7 +357,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -370,12 +370,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60, // 60
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -387,9 +387,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -402,7 +402,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   },
 
@@ -415,12 +415,12 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60, // 60
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 16,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -432,9 +432,9 @@ export const MITHRIL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -447,7 +447,7 @@ export const MITHRIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 16
+      level: 65
     }]
   }
 }

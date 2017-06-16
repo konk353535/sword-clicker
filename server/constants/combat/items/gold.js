@@ -1,262 +1,262 @@
-export const IRON_ITEMS = {
-  "iron_dagger": {
-    "id": "iron_dagger",
-    "icon": "ironDagger",
+export const GOLD_ITEMS = {
+  "gold_dagger": {
+    "id": "gold_dagger",
+    "icon": "goldDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "iron dagger",
+    "name": "gold dagger",
     "sellPrice": 50,
     "description": "A poorly made dagger.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 1.8,
-      "attackMax": 3.6,
+      "attack": 2.4,
+      "attackMax": 4.8,
       "attackSpeed": 1,
-      "accuracy": 5.4
+      "accuracy": 7.2
     }
   },
-  "iron_spear": {
-    "id": "iron_spear",
-    "icon": "ironSpear",
+  "gold_spear": {
+    "id": "gold_spear",
+    "icon": "goldSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "iron spear",
+    "name": "gold spear",
     "sellPrice": 75,
     "description": "Used to train defense.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3.6,
-      "attackMax": 5.4,
+      "attack": 4.8,
+      "attackMax": 7.2,
       "attackSpeed": 0.5,
-      "accuracy": 5.4,
-      "defense": 3.6
+      "accuracy": 7.2,
+      "defense": 4.8
     },
     "extraStats": {
-      "attack": 1.1,
-      "attackMax": 1.6,
-      "accuracy": 1.6,
-      "defense": 1.1
+      "attack": 1.4,
+      "attackMax": 2.2,
+      "accuracy": 2.2,
+      "defense": 1.4
     }
   },
-  "iron_short_sword": {
-    "id": "iron_short_sword",
-    "icon": "ironShortSword",
+  "gold_short_sword": {
+    "id": "gold_short_sword",
+    "icon": "goldShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "iron short sword",
+    "name": "gold short sword",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3.6,
-      "attackMax": 7,
+      "attack": 4.8,
+      "attackMax": 9.3,
       "attackSpeed": 0.7,
-      "accuracy": 8
+      "accuracy": 10.7
     },
     "extraStats": {
-      "attack": 1.1,
-      "attackMax": 2.1,
-      "accuracy": 2.4
+      "attack": 1.4,
+      "attackMax": 2.8,
+      "accuracy": 3.2
     }
   },
-  "iron_scimitar": {
-    "id": "iron_scimitar",
-    "icon": "ironScimitar",
+  "gold_scimitar": {
+    "id": "gold_scimitar",
+    "icon": "goldScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "iron scimitar",
+    "name": "gold scimitar",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 14.2,
+      "attack": 9.3,
+      "attackMax": 18.9,
       "attackSpeed": 0.7,
-      "accuracy": 11.5
+      "accuracy": 15.4
     },
     "extraStats": {
-      "attack": 2.1,
-      "attackMax": 4.3,
-      "accuracy": 3.4
+      "attack": 2.8,
+      "attackMax": 5.7,
+      "accuracy": 4.6
     }
   },
-  "iron_long_sword": {
-    "id": "iron_long_sword",
-    "icon": "ironLongSword",
+  "gold_long_sword": {
+    "id": "gold_long_sword",
+    "icon": "goldLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "iron long sword",
+    "name": "gold long sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 12.4,
+      "attack": 9.3,
+      "attackMax": 16.5,
       "attackSpeed": 0.5,
-      "accuracy": 14.2
+      "accuracy": 18.9
     },
     "extraStats": {
-      "attack": 2.1,
-      "attackMax": 3.7,
-      "accuracy": 4.3
+      "attack": 2.8,
+      "attackMax": 5,
+      "accuracy": 5.7
     }
   },
-  "iron_broad_sword": {
-    "id": "iron_broad_sword",
-    "icon": "ironBroadSword",
+  "gold_broad_sword": {
+    "id": "gold_broad_sword",
+    "icon": "goldBroadSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "iron broad sword",
+    "name": "gold broad sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.9,
-      "attackMax": 14.2,
+      "attack": 11.9,
+      "attackMax": 18.9,
       "attackSpeed": 0.5,
-      "accuracy": 15.9
+      "accuracy": 21.2
     },
     "extraStats": {
-      "attack": 2.7,
-      "attackMax": 4.3,
-      "accuracy": 4.8
+      "attack": 3.6,
+      "attackMax": 5.7,
+      "accuracy": 6.4
     }
   },
-  "iron_battle_axe": {
-    "id": "iron_battle_axe",
-    "icon": "ironBattleAxe",
+  "gold_battle_axe": {
+    "id": "gold_battle_axe",
+    "icon": "goldBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "iron battle axe",
+    "name": "gold battle axe",
     "sellPrice": 75,
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.9,
-      "attackMax": 26.7,
+      "attack": 11.9,
+      "attackMax": 35.6,
       "attackSpeed": 0.3,
-      "accuracy": 8.9
+      "accuracy": 11.9
     },
     "extraStats": {
-      "attack": 2.7,
-      "attackMax": 8
+      "attack": 3.6,
+      "attackMax": 10.7
     }
   },
-  "iron_horned_helmet": {
-    "id": "iron_horned_helmet",
-    "icon": "ironHornedHelmet",
+  "gold_horned_helmet": {
+    "id": "gold_horned_helmet",
+    "icon": "goldHornedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "iron horned helmet",
+    "name": "gold horned helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 1.8,
-      "attackMax": 1.8,
-      "accuracy": 1.8
+      "attack": 2.4,
+      "attackMax": 2.4,
+      "accuracy": 2.4
     },
     "extraStats": {
-      "attack": 0.5,
-      "attackMax": 0.5,
-      "accuracy": 0.5
+      "attack": 0.7,
+      "attackMax": 0.7,
+      "accuracy": 0.7
     }
   },
-  "iron_helmet": {
-    "id": "iron_helmet",
-    "icon": "ironHelmet",
+  "gold_helmet": {
+    "id": "gold_helmet",
+    "icon": "goldHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "iron helmet",
+    "name": "gold helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.8,
-      "defense": 1.8,
-      "armor": 8.9
+      "healthMax": 2.4,
+      "defense": 2.4,
+      "armor": 11.9
     },
     "extraStats": {
-      "healthMax": 0.5,
-      "defense": 0.5,
-      "armor": 2.7
+      "healthMax": 0.7,
+      "defense": 0.7,
+      "armor": 3.6
     }
   },
-  "iron_chest_plate": {
-    "id": "iron_chest_plate",
-    "icon": "ironChestPlate",
+  "gold_chest_plate": {
+    "id": "gold_chest_plate",
+    "icon": "goldChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "iron chestplate",
+    "name": "gold chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.8,
-      "defense": 1.8,
-      "armor": 8.9
+      "healthMax": 2.4,
+      "defense": 2.4,
+      "armor": 11.9
     },
     "extraStats": {
-      "healthMax": 0.5,
-      "defense": 0.5,
-      "armor": 2.7
+      "healthMax": 0.7,
+      "defense": 0.7,
+      "armor": 3.6
     }
   },
-  "iron_plate_legs": {
-    "id": "iron_plate_legs",
-    "icon": "ironPlateLegs",
+  "gold_plate_legs": {
+    "id": "gold_plate_legs",
+    "icon": "goldPlateLegs",
     "category": "combat",
     "slot": "legs",
-    "name": "iron platelegs",
+    "name": "gold platelegs",
     "sellPrice": 75,
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.8,
-      "defense": 1.8,
-      "armor": 8.9
+      "healthMax": 2.4,
+      "defense": 2.4,
+      "armor": 11.9
     },
     "extraStats": {
-      "healthMax": 0.5,
-      "defense": 0.5,
-      "armor": 2.7
+      "healthMax": 0.7,
+      "defense": 0.7,
+      "armor": 3.6
     }
   },
-  "iron_shield": {
-    "id": "iron_shield",
-    "icon": "ironShield",
+  "gold_shield": {
+    "id": "gold_shield",
+    "icon": "goldShield",
     "category": "combat",
     "slot": "offHand",
-    "name": "iron shield",
+    "name": "gold shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.6,
-      "defense": 5.4,
-      "armor": 17.7
+      "healthMax": 4.8,
+      "defense": 7.2,
+      "armor": 23.6
     },
     "extraStats": {
-      "healthMax": 1.1,
-      "defense": 1.6,
-      "armor": 5.3
+      "healthMax": 1.4,
+      "defense": 2.2,
+      "armor": 7.1
     }
   }
 }

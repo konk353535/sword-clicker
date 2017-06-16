@@ -12,12 +12,12 @@
 .body-content {
   margin-left: $spacer / 2;
   margin-right: $spacer / 2;
-  margin-bottom: 370px;
+  margin-bottom: 100px;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 1200px) {
   .inactive-adventure {
-    flex: 0 1 100%;
+    flex: 0 1 32.33%;
   }
 }
 
@@ -27,9 +27,9 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 576px) {
   .inactive-adventure {
-    flex: 0 1 32.33%;
+    flex: 0 1 100%;
   }
 }
 

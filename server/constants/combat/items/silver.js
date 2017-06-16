@@ -1,262 +1,262 @@
-export const MITHRIL_ITEMS = {
-  "mithril_dagger": {
-    "id": "mithril_dagger",
-    "icon": "mithrilDagger",
+export const SILVER_ITEMS = {
+  "silver_dagger": {
+    "id": "silver_dagger",
+    "icon": "silverDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "mithril dagger",
+    "name": "silver dagger",
     "sellPrice": 50,
     "description": "A poorly made dagger.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 13.5,
+      "attack": 2.1,
+      "attackMax": 4.2,
       "attackSpeed": 1,
-      "accuracy": 20.5
+      "accuracy": 6.3
     }
   },
-  "mithril_spear": {
-    "id": "mithril_spear",
-    "icon": "mithrilSpear",
+  "silver_spear": {
+    "id": "silver_spear",
+    "icon": "silverSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "mithril spear",
+    "name": "silver spear",
     "sellPrice": 75,
     "description": "Used to train defense.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.5,
-      "attackMax": 20.5,
+      "attack": 4.2,
+      "attackMax": 6.3,
       "attackSpeed": 0.5,
-      "accuracy": 20.5,
-      "defense": 13.5
+      "accuracy": 6.3,
+      "defense": 4.2
     },
     "extraStats": {
-      "attack": 4.1,
-      "attackMax": 6.1,
-      "accuracy": 6.1,
-      "defense": 4.1
+      "attack": 1.3,
+      "attackMax": 1.9,
+      "accuracy": 1.9,
+      "defense": 1.3
     }
   },
-  "mithril_short_sword": {
-    "id": "mithril_short_sword",
-    "icon": "mithrilShortSword",
+  "silver_short_sword": {
+    "id": "silver_short_sword",
+    "icon": "silverShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "mithril short sword",
+    "name": "silver short sword",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.5,
-      "attackMax": 26.5,
+      "attack": 4.2,
+      "attackMax": 8.2,
       "attackSpeed": 0.7,
-      "accuracy": 30.3
+      "accuracy": 9.4
     },
     "extraStats": {
-      "attack": 4.1,
-      "attackMax": 7.9,
-      "accuracy": 9.1
+      "attack": 1.3,
+      "attackMax": 2.5,
+      "accuracy": 2.8
     }
   },
-  "mithril_scimitar": {
-    "id": "mithril_scimitar",
-    "icon": "mithrilScimitar",
+  "silver_scimitar": {
+    "id": "silver_scimitar",
+    "icon": "silverScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "mithril scimitar",
+    "name": "silver scimitar",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.5,
-      "attackMax": 54.1,
+      "attack": 8.2,
+      "attackMax": 16.6,
       "attackSpeed": 0.7,
-      "accuracy": 43.7
+      "accuracy": 13.5
     },
     "extraStats": {
-      "attack": 7.9,
-      "attackMax": 16.2,
-      "accuracy": 13.1
+      "attack": 2.5,
+      "attackMax": 5,
+      "accuracy": 4.1
     }
   },
-  "mithril_long_sword": {
-    "id": "mithril_long_sword",
-    "icon": "mithrilLongSword",
+  "silver_long_sword": {
+    "id": "silver_long_sword",
+    "icon": "silverLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "mithril long sword",
+    "name": "silver long sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.5,
-      "attackMax": 46.8,
+      "attack": 8.2,
+      "attackMax": 14.5,
       "attackSpeed": 0.5,
-      "accuracy": 54.1
+      "accuracy": 16.6
     },
     "extraStats": {
-      "attack": 7.9,
-      "attackMax": 14,
-      "accuracy": 16.2
+      "attack": 2.5,
+      "attackMax": 4.4,
+      "accuracy": 5
     }
   },
-  "mithril_broad_sword": {
-    "id": "mithril_broad_sword",
-    "icon": "mithrilBroadSword",
+  "silver_broad_sword": {
+    "id": "silver_broad_sword",
+    "icon": "silverBroadSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "mithril broad sword",
+    "name": "silver broad sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.9,
-      "attackMax": 54.1,
+      "attack": 10.4,
+      "attackMax": 16.6,
       "attackSpeed": 0.5,
-      "accuracy": 60.3
+      "accuracy": 18.6
     },
     "extraStats": {
-      "attack": 10.2,
-      "attackMax": 16.2,
-      "accuracy": 18.1
+      "attack": 3.1,
+      "attackMax": 5,
+      "accuracy": 5.6
     }
   },
-  "mithril_battle_axe": {
-    "id": "mithril_battle_axe",
-    "icon": "mithrilBattleAxe",
+  "silver_battle_axe": {
+    "id": "silver_battle_axe",
+    "icon": "silverBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "mithril battle axe",
+    "name": "silver battle axe",
     "sellPrice": 75,
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.9,
-      "attackMax": 101.3,
+      "attack": 10.4,
+      "attackMax": 31.2,
       "attackSpeed": 0.3,
-      "accuracy": 33.9
+      "accuracy": 10.4
     },
     "extraStats": {
-      "attack": 10.2,
-      "attackMax": 30.4
+      "attack": 3.1,
+      "attackMax": 9.4
     }
   },
-  "mithril_horned_helmet": {
-    "id": "mithril_horned_helmet",
-    "icon": "mithrilHornedHelmet",
+  "silver_horned_helmet": {
+    "id": "silver_horned_helmet",
+    "icon": "silverHornedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "mithril horned helmet",
+    "name": "silver horned helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 7,
-      "accuracy": 7
-    },
-    "extraStats": {
       "attack": 2.1,
       "attackMax": 2.1,
       "accuracy": 2.1
+    },
+    "extraStats": {
+      "attack": 0.6,
+      "attackMax": 0.6,
+      "accuracy": 0.6
     }
   },
-  "mithril_helmet": {
-    "id": "mithril_helmet",
-    "icon": "mithrilHelmet",
+  "silver_helmet": {
+    "id": "silver_helmet",
+    "icon": "silverHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "mithril helmet",
+    "name": "silver helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
-    },
-    "extraStats": {
       "healthMax": 2.1,
       "defense": 2.1,
-      "armor": 10.2
+      "armor": 10.4
+    },
+    "extraStats": {
+      "healthMax": 0.6,
+      "defense": 0.6,
+      "armor": 3.1
     }
   },
-  "mithril_chest_plate": {
-    "id": "mithril_chest_plate",
-    "icon": "mithrilChestPlate",
+  "silver_chest_plate": {
+    "id": "silver_chest_plate",
+    "icon": "silverChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "mithril chestplate",
+    "name": "silver chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
-    },
-    "extraStats": {
       "healthMax": 2.1,
       "defense": 2.1,
-      "armor": 10.2
+      "armor": 10.4
+    },
+    "extraStats": {
+      "healthMax": 0.6,
+      "defense": 0.6,
+      "armor": 3.1
     }
   },
-  "mithril_plate_legs": {
-    "id": "mithril_plate_legs",
-    "icon": "mithrilPlateLegs",
+  "silver_plate_legs": {
+    "id": "silver_plate_legs",
+    "icon": "silverPlateLegs",
     "category": "combat",
     "slot": "legs",
-    "name": "mithril platelegs",
+    "name": "silver platelegs",
     "sellPrice": 75,
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
-    },
-    "extraStats": {
       "healthMax": 2.1,
       "defense": 2.1,
-      "armor": 10.2
+      "armor": 10.4
+    },
+    "extraStats": {
+      "healthMax": 0.6,
+      "defense": 0.6,
+      "armor": 3.1
     }
   },
-  "mithril_shield": {
-    "id": "mithril_shield",
-    "icon": "mithrilShield",
+  "silver_shield": {
+    "id": "silver_shield",
+    "icon": "silverShield",
     "category": "combat",
     "slot": "offHand",
-    "name": "mithril shield",
+    "name": "silver shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 13.5,
-      "defense": 20.5,
-      "armor": 67.3
+      "healthMax": 4.2,
+      "defense": 6.3,
+      "armor": 20.7
     },
     "extraStats": {
-      "healthMax": 4.1,
-      "defense": 6.1,
-      "armor": 20.2
+      "healthMax": 1.3,
+      "defense": 1.9,
+      "armor": 6.2
     }
   }
 }

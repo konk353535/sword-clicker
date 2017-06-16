@@ -279,7 +279,7 @@ export const WOODCUTTING = {
   },
 
   woods: {
-    pine_log: {
+    pine_log: { // 1
       requiredAttack: 1,
       xp: 3,
       id: 'pine_log',
@@ -289,8 +289,8 @@ export const WOODCUTTING = {
       chance: 0.16 // Base chance to chop this log
     },
 
-    beech_log: {
-      requiredAttack: 3,
+    beech_log: { // 2
+      requiredAttack: 5,
       xp: 5,
       id: 'beech_log',
       icon: 'beechLog',
@@ -299,8 +299,8 @@ export const WOODCUTTING = {
       chance: 0.035
     },
 
-    ash_log: {
-      requiredAttack: 6,
+    ash_log: { // 3
+      requiredAttack: 10,
       xp: 15,
       id: 'ash_log',
       icon: 'ashLog',
@@ -309,8 +309,8 @@ export const WOODCUTTING = {
       chance: 0.025
     },
 
-    oak_log: {
-      requiredAttack: 9,
+    oak_log: { // 4
+      requiredAttack: 15,
       xp: 45,
       id: 'oak_log',
       icon: 'oakLog',
@@ -319,8 +319,8 @@ export const WOODCUTTING = {
       chance: 0.025
     },
 
-    maple_log: {
-      requiredAttack: 12,
+    maple_log: { // 5
+      requiredAttack: 20,
       xp: 45,
       id: 'maple_log',
       icon: 'mapleLog',
@@ -329,8 +329,8 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    walnut_log: {
-      requiredAttack: 15,
+    walnut_log: { // 6
+      requiredAttack: 25,
       xp: 90,
       id: 'walnut_log',
       icon: 'walnutLog',
@@ -339,8 +339,8 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    cherry_log: {
-      requiredAttack: 18,
+    cherry_log: { // 7
+      requiredAttack: 30,
       xp: 120,
       id: 'cherry_log',
       icon: 'cherryLog',
@@ -349,8 +349,8 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    mahogany_log: {
-      requiredAttack: 21,
+    mahogany_log: { // 8
+      requiredAttack: 35,
       xp: 120,
       id: 'mahogany_log',
       icon: 'mahoganyLog',
@@ -359,8 +359,8 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    elk_log: {
-      requiredAttack: 24,
+    elk_log: { // 9
+      requiredAttack: 40,
       xp: 180,
       id: 'elk_log',
       icon: 'elkLog',
@@ -369,10 +369,119 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
+    black_log: { // 10
+      requiredAttack: 45,
+      xp: 220,
+      id: 'black_log',
+      icon: 'blackLog',
+      name: 'black log',
+      itemId: 'black_log',
+      chance: 0.01
+    },
 
-    fiery_log: {
-      requiredAttack: 27,
-      xp: 240,
+    blue_gum_log: { // 11
+      requiredAttack: 50,
+      xp: 260,
+      id: 'blue_gum_log',
+      icon: 'blueGumLog',
+      name: 'blue_gum log',
+      itemId: 'blue_gum_log',
+      chance: 0.01
+    },
+
+    cedar_log: { // 12
+      requiredAttack: 55,
+      xp: 300,
+      id: 'cedar_log',
+      icon: 'cedarLog',
+      name: 'cedar log',
+      itemId: 'cedar_log',
+      chance: 0.01
+    },
+
+    denya_log: { // 13
+      requiredAttack: 60,
+      xp: 340,
+      id: 'denya_log',
+      icon: 'denyaLog',
+      name: 'denya log',
+      itemId: 'denya_log',
+      chance: 0.01
+    },
+
+    gombe_log: { // 14
+      requiredAttack: 65,
+      xp: 380,
+      id: 'gombe_log',
+      icon: 'gombeLog',
+      name: 'gombe log',
+      itemId: 'gombe_log',
+      chance: 0.01
+    },
+
+    hickory_log: { // 15
+      requiredAttack: 70,
+      xp: 420,
+      id: 'hickory_log',
+      icon: 'hickoryLog',
+      name: 'hickory log',
+      itemId: 'hickory_log',
+      chance: 0.01
+    },
+
+    larch_log: { // 16
+      requiredAttack: 75,
+      xp: 480,
+      id: 'larch_log',
+      icon: 'larchLog',
+      name: 'larch log',
+      itemId: 'larch_log',
+      chance: 0.01
+    },
+
+    poplar_log: { // 17
+      requiredAttack: 80,
+      xp: 520,
+      id: 'poplar_log',
+      icon: 'poplarLog',
+      name: 'poplar log',
+      itemId: 'poplar_log',
+      chance: 0.01
+    },
+
+    tali_log: { // 18
+      requiredAttack: 85,
+      xp: 560,
+      id: 'tali_log',
+      icon: 'taliLog',
+      name: 'tali log',
+      itemId: 'tali_log',
+      chance: 0.01
+    },
+
+    willow_log: { // 19
+      requiredAttack: 90,
+      xp: 600,
+      id: 'willow_log',
+      icon: 'willowLog',
+      name: 'willow log',
+      itemId: 'willow_log',
+      chance: 0.01
+    },
+
+    teak_log: { // 20
+      requiredAttack: 95,
+      xp: 620,
+      id: 'teak_log',
+      icon: 'teakLog',
+      name: 'teak log',
+      itemId: 'teak_log',
+      chance: 0.01
+    },
+
+    fiery_log: { // 21
+      requiredAttack: 100,
+      xp: 640,
       id: 'fiery_log',
       icon: 'fieryLog',
       name: 'fiery log',
@@ -380,14 +489,15 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    magic_log: {
-      requiredAttack: 30,
-      xp: 300,
+    magic_log: { // 22
+      requiredAttack: 105,
+      xp: 690,
       id: 'magic_log',
       icon: 'magicLog',
       name: 'magic log',
       itemId: 'magic_log',
       chance: 0.01
-    }
+    },
+
   }
 }

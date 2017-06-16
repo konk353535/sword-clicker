@@ -48,7 +48,7 @@
   <div class="p-1">
     {{#if availableTomes}}
       <h1>Available Tomes</h1>
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         {{#each availableTomes}}
           {{> itemIcon item=this classes="small"}}
         {{/each}}

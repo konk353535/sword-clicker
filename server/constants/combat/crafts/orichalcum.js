@@ -10,7 +10,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -27,9 +27,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -42,7 +42,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -55,7 +55,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -72,9 +72,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -87,7 +87,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -100,7 +100,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 550,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -117,9 +117,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -132,7 +132,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -145,7 +145,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 27,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -162,9 +162,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -177,7 +177,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 27
+      level: 75
     }]
   },
 
@@ -190,7 +190,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 27,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -207,9 +207,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -222,7 +222,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 27
+      level: 75
     }]
   },
 
@@ -235,7 +235,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -252,9 +252,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -267,7 +267,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -280,7 +280,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -297,9 +297,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -312,7 +312,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -325,7 +325,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -342,9 +342,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -357,7 +357,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
@@ -370,7 +370,7 @@ export const ORICHALCUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -387,9 +387,9 @@ export const ORICHALCUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -402,7 +402,7 @@ export const ORICHALCUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   }
 }

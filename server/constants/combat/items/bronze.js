@@ -1,177 +1,177 @@
-export const TIN_ITEMS = {
-  "tin_dagger": {
-    "id": "tin_dagger",
-    "icon": "tinDagger",
+export const BRONZE_ITEMS = {
+  "bronze_dagger": {
+    "id": "bronze_dagger",
+    "icon": "bronzeDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "tin dagger",
+    "name": "bronze dagger",
     "sellPrice": 50,
     "description": "A poorly made dagger.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 1.2,
-      "attackMax": 2.5,
+      "attack": 1.5,
+      "attackMax": 3,
       "attackSpeed": 1,
-      "accuracy": 3.7
+      "accuracy": 4.5
     }
   },
-  "tin_spear": {
-    "id": "tin_spear",
-    "icon": "tinSpear",
+  "bronze_spear": {
+    "id": "bronze_spear",
+    "icon": "bronzeSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "tin spear",
+    "name": "bronze spear",
     "sellPrice": 75,
     "description": "Used to train defense.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.5,
-      "attackMax": 3.7,
+      "attack": 3,
+      "attackMax": 4.5,
       "attackSpeed": 0.5,
-      "accuracy": 3.7,
-      "defense": 2.5
+      "accuracy": 4.5,
+      "defense": 3
     },
     "extraStats": {
-      "attack": 0.8,
-      "attackMax": 1.1,
-      "accuracy": 1.1,
-      "defense": 0.8
+      "attack": 0.9,
+      "attackMax": 1.3,
+      "accuracy": 1.3,
+      "defense": 0.9
     }
   },
-  "tin_short_sword": {
-    "id": "tin_short_sword",
-    "icon": "tinShortSword",
+  "bronze_short_sword": {
+    "id": "bronze_short_sword",
+    "icon": "bronzeShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "tin short sword",
+    "name": "bronze short sword",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.5,
-      "attackMax": 4.9,
+      "attack": 3,
+      "attackMax": 5.9,
       "attackSpeed": 0.7,
-      "accuracy": 5.5
+      "accuracy": 6.7
     },
     "extraStats": {
-      "attack": 0.8,
-      "attackMax": 1.5,
-      "accuracy": 1.7
+      "attack": 0.9,
+      "attackMax": 1.8,
+      "accuracy": 2
     }
   },
-  "tin_scimitar": {
-    "id": "tin_scimitar",
-    "icon": "tinScimitar",
+  "bronze_scimitar": {
+    "id": "bronze_scimitar",
+    "icon": "bronzeScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "tin scimitar",
+    "name": "bronze scimitar",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.9,
-      "attackMax": 9.8,
+      "attack": 5.9,
+      "attackMax": 11.9,
       "attackSpeed": 0.7,
-      "accuracy": 8
+      "accuracy": 9.7
     },
     "extraStats": {
-      "attack": 1.5,
-      "attackMax": 2.9,
-      "accuracy": 2.4
-    }
-  },
-  "tin_long_sword": {
-    "id": "tin_long_sword",
-    "icon": "tinLongSword",
-    "category": "combat",
-    "weaponType": "longSword",
-    "slot": "mainHand",
-    "name": "tin long sword",
-    "sellPrice": 75,
-    "description": "A pure offensive weapon",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 4.9,
-      "attackMax": 8.6,
-      "attackSpeed": 0.5,
-      "accuracy": 9.8
-    },
-    "extraStats": {
-      "attack": 1.5,
-      "attackMax": 2.6,
+      "attack": 1.8,
+      "attackMax": 3.6,
       "accuracy": 2.9
     }
   },
-  "tin_broad_sword": {
-    "id": "tin_broad_sword",
-    "icon": "tinBroadSword",
+  "bronze_long_sword": {
+    "id": "bronze_long_sword",
+    "icon": "bronzeLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "tin broad sword",
+    "name": "bronze long sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.2,
-      "attackMax": 9.8,
+      "attack": 5.9,
+      "attackMax": 10.4,
       "attackSpeed": 0.5,
-      "accuracy": 11.1
+      "accuracy": 11.9
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 2.9,
-      "accuracy": 3.3
+      "attack": 1.8,
+      "attackMax": 3.1,
+      "accuracy": 3.6
     }
   },
-  "tin_battle_axe": {
-    "id": "tin_battle_axe",
-    "icon": "tinBattleAxe",
+  "bronze_broad_sword": {
+    "id": "bronze_broad_sword",
+    "icon": "bronzeBroadSword",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "bronze broad sword",
+    "sellPrice": 75,
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 7.5,
+      "attackMax": 11.9,
+      "attackSpeed": 0.5,
+      "accuracy": 13.4
+    },
+    "extraStats": {
+      "attack": 2.3,
+      "attackMax": 3.6,
+      "accuracy": 4
+    }
+  },
+  "bronze_battle_axe": {
+    "id": "bronze_battle_axe",
+    "icon": "bronzeBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "tin battle axe",
+    "name": "bronze battle axe",
     "sellPrice": 75,
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.2,
-      "attackMax": 18.5,
+      "attack": 7.5,
+      "attackMax": 22.4,
       "attackSpeed": 0.3,
-      "accuracy": 6.2
+      "accuracy": 7.5
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 5.6
+      "attack": 2.3,
+      "attackMax": 6.7
     }
   },
-  "tin_horned_helmet": {
-    "id": "tin_horned_helmet",
-    "icon": "tinHornedHelmet",
+  "bronze_horned_helmet": {
+    "id": "bronze_horned_helmet",
+    "icon": "bronzeHornedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "tin horned helmet",
+    "name": "bronze horned helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 1.2,
-      "attackMax": 1.2,
-      "accuracy": 1.2
+      "attack": 1.5,
+      "attackMax": 1.5,
+      "accuracy": 1.5
     },
     "extraStats": {
       "attack": 0.4,
@@ -179,84 +179,84 @@ export const TIN_ITEMS = {
       "accuracy": 0.4
     }
   },
-  "tin_helmet": {
-    "id": "tin_helmet",
-    "icon": "tinHelmet",
+  "bronze_helmet": {
+    "id": "bronze_helmet",
+    "icon": "bronzeHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "tin helmet",
+    "name": "bronze helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.5,
+      "defense": 1.5,
+      "armor": 7.5
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.3
     }
   },
-  "tin_chest_plate": {
-    "id": "tin_chest_plate",
-    "icon": "tinChestPlate",
+  "bronze_chest_plate": {
+    "id": "bronze_chest_plate",
+    "icon": "bronzeChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "tin chestplate",
+    "name": "bronze chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.5,
+      "defense": 1.5,
+      "armor": 7.5
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.3
     }
   },
-  "tin_plate_legs": {
-    "id": "tin_plate_legs",
-    "icon": "tinPlateLegs",
+  "bronze_plate_legs": {
+    "id": "bronze_plate_legs",
+    "icon": "bronzePlateLegs",
     "category": "combat",
     "slot": "legs",
-    "name": "tin platelegs",
+    "name": "bronze platelegs",
     "sellPrice": 75,
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.5,
+      "defense": 1.5,
+      "armor": 7.5
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.3
     }
   },
-  "tin_shield": {
-    "id": "tin_shield",
-    "icon": "tinShield",
+  "bronze_shield": {
+    "id": "bronze_shield",
+    "icon": "bronzeShield",
     "category": "combat",
     "slot": "offHand",
-    "name": "tin shield",
+    "name": "bronze shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.5,
-      "defense": 3.7,
-      "armor": 12.3
+      "healthMax": 3,
+      "defense": 4.5,
+      "armor": 14.9
     },
     "extraStats": {
-      "healthMax": 0.8,
-      "defense": 1.1,
-      "armor": 3.7
+      "healthMax": 0.9,
+      "defense": 1.3,
+      "armor": 4.5
     }
   }
 }

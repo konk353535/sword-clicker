@@ -176,6 +176,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',
       amulet: userCombat.amulet,
+      mainHandType: userCombat.mainHandType,
+      offHandType: userCombat.offHandType,
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 5) + 4,

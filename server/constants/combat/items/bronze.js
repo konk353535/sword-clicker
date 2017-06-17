@@ -11,10 +11,10 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 1.5,
-      "attackMax": 3,
+      "attack": 1.8,
+      "attackMax": 3.6,
       "attackSpeed": 1,
-      "accuracy": 4.5
+      "accuracy": 5.5
     }
   },
   "bronze_spear": {
@@ -29,17 +29,17 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3,
-      "attackMax": 4.5,
+      "attack": 3.6,
+      "attackMax": 5.5,
       "attackSpeed": 0.5,
-      "accuracy": 4.5,
-      "defense": 3
+      "accuracy": 5.5,
+      "defense": 3.6
     },
     "extraStats": {
-      "attack": 0.9,
-      "attackMax": 1.3,
-      "accuracy": 1.3,
-      "defense": 0.9
+      "attack": 1.1,
+      "attackMax": 1.7,
+      "accuracy": 1.7,
+      "defense": 1.1
     }
   },
   "bronze_short_sword": {
@@ -54,15 +54,15 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3,
-      "attackMax": 5.9,
+      "attack": 3.6,
+      "attackMax": 7.3,
       "attackSpeed": 0.7,
-      "accuracy": 6.7
+      "accuracy": 8.2
     },
     "extraStats": {
-      "attack": 0.9,
-      "attackMax": 1.8,
-      "accuracy": 2
+      "attack": 1.1,
+      "attackMax": 2.2,
+      "accuracy": 2.5
     }
   },
   "bronze_scimitar": {
@@ -77,15 +77,15 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.9,
-      "attackMax": 11.9,
+      "attack": 7.3,
+      "attackMax": 14.6,
       "attackSpeed": 0.7,
-      "accuracy": 9.7
+      "accuracy": 11.8
     },
     "extraStats": {
-      "attack": 1.8,
-      "attackMax": 3.6,
-      "accuracy": 2.9
+      "attack": 2.2,
+      "attackMax": 4.4,
+      "accuracy": 3.5
     }
   },
   "bronze_long_sword": {
@@ -101,15 +101,15 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.9,
-      "attackMax": 10.4,
+      "attack": 7.3,
+      "attackMax": 12.7,
       "attackSpeed": 0.5,
-      "accuracy": 11.9
+      "accuracy": 14.6
     },
     "extraStats": {
-      "attack": 1.8,
-      "attackMax": 3.1,
-      "accuracy": 3.6
+      "attack": 2.2,
+      "attackMax": 3.8,
+      "accuracy": 4.4
     }
   },
   "bronze_broad_sword": {
@@ -125,15 +125,15 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7.5,
-      "attackMax": 11.9,
+      "attack": 9.1,
+      "attackMax": 14.6,
       "attackSpeed": 0.5,
-      "accuracy": 13.4
+      "accuracy": 16.4
     },
     "extraStats": {
-      "attack": 2.3,
-      "attackMax": 3.6,
-      "accuracy": 4
+      "attack": 2.7,
+      "attackMax": 4.4,
+      "accuracy": 4.9
     }
   },
   "bronze_battle_axe": {
@@ -149,14 +149,14 @@ export const BRONZE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7.5,
-      "attackMax": 22.4,
+      "attack": 9.1,
+      "attackMax": 27.3,
       "attackSpeed": 0.3,
-      "accuracy": 7.5
+      "accuracy": 9.1
     },
     "extraStats": {
-      "attack": 2.3,
-      "attackMax": 6.7
+      "attack": 2.7,
+      "attackMax": 8.2
     }
   },
   "bronze_horned_helmet": {
@@ -169,14 +169,14 @@ export const BRONZE_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 1.5,
-      "attackMax": 1.5,
-      "accuracy": 1.5
+      "attack": 1.8,
+      "attackMax": 1.8,
+      "accuracy": 1.8
     },
     "extraStats": {
-      "attack": 0.4,
-      "attackMax": 0.4,
-      "accuracy": 0.4
+      "attack": 0.5,
+      "attackMax": 0.5,
+      "accuracy": 0.5
     }
   },
   "bronze_helmet": {
@@ -189,14 +189,14 @@ export const BRONZE_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.5,
-      "defense": 1.5,
-      "armor": 7.5
+      "healthMax": 1.8,
+      "defense": 1.8,
+      "armor": 9.1
     },
     "extraStats": {
-      "healthMax": 0.4,
-      "defense": 0.4,
-      "armor": 2.3
+      "healthMax": 0.5,
+      "defense": 0.5,
+      "armor": 2.7
     }
   },
   "bronze_chest_plate": {
@@ -209,14 +209,14 @@ export const BRONZE_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.5,
-      "defense": 1.5,
-      "armor": 7.5
+      "healthMax": 1.8,
+      "defense": 1.8,
+      "armor": 9.1
     },
     "extraStats": {
-      "healthMax": 0.4,
-      "defense": 0.4,
-      "armor": 2.3
+      "healthMax": 0.5,
+      "defense": 0.5,
+      "armor": 2.7
     }
   },
   "bronze_plate_legs": {
@@ -229,34 +229,35 @@ export const BRONZE_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.5,
-      "defense": 1.5,
-      "armor": 7.5
+      "healthMax": 1.8,
+      "defense": 1.8,
+      "armor": 9.1
     },
     "extraStats": {
-      "healthMax": 0.4,
-      "defense": 0.4,
-      "armor": 2.3
+      "healthMax": 0.5,
+      "defense": 0.5,
+      "armor": 2.7
     }
   },
   "bronze_shield": {
     "id": "bronze_shield",
     "icon": "bronzeShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "bronze shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3,
-      "defense": 4.5,
-      "armor": 14.9
+      "healthMax": 3.6,
+      "defense": 5.5,
+      "armor": 18.2
     },
     "extraStats": {
-      "healthMax": 0.9,
-      "defense": 1.3,
-      "armor": 4.5
+      "healthMax": 1.1,
+      "defense": 1.7,
+      "armor": 5.5
     }
   }
 }

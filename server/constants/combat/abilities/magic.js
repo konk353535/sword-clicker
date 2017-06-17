@@ -28,12 +28,8 @@ export const MAGIC_ABILITIES = {
     targettable: true,
     isMagic: true,
     requires: [{
-      type: 'item',
-      itemType: 'staff'
-    }, {
-      type: 'skill',
-      skillType: 'magic',
-      level: 10
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.water_dart;

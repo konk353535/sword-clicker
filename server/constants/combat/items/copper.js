@@ -254,6 +254,7 @@ export const COPPER_ITEMS = {
     id: 'copper_shield',
     icon: 'copperShield',
     category: 'combat',
+    weaponType: 'shield',
     slot: 'offHand',
     name: 'copper shield',
     sellPrice: 75,

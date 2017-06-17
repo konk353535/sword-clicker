@@ -1,7 +1,7 @@
 export const FAIRY_STEEL_ITEMS = {
   "fairy_steel_dagger": {
     "id": "fairy_steel_dagger",
-    "icon": "fairySteelDagger",
+    "icon": "fairy_steelDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -11,15 +11,15 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.2,
-      "attackMax": 19.8,
+      "attack": 14.3,
+      "attackMax": 26.8,
       "attackSpeed": 1,
-      "accuracy": 30
+      "accuracy": 41.9
     }
   },
   "fairy_steel_spear": {
     "id": "fairy_steel_spear",
-    "icon": "fairySteelSpear",
+    "icon": "fairy_steelSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -29,22 +29,22 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 19.8,
-      "attackMax": 30,
+      "attack": 26.8,
+      "attackMax": 41.9,
       "attackSpeed": 0.5,
-      "accuracy": 30,
-      "defense": 19.8
+      "accuracy": 41.9,
+      "defense": 26.8
     },
     "extraStats": {
-      "attack": 5.9,
-      "attackMax": 9,
-      "accuracy": 9,
-      "defense": 5.9
+      "attack": 8,
+      "attackMax": 12.6,
+      "accuracy": 12.6,
+      "defense": 8
     }
   },
   "fairy_steel_short_sword": {
     "id": "fairy_steel_short_sword",
-    "icon": "fairySteelShortSword",
+    "icon": "fairy_steelShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -54,20 +54,20 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 19.8,
-      "attackMax": 38.8,
+      "attack": 26.8,
+      "attackMax": 54.6,
       "attackSpeed": 0.7,
-      "accuracy": 44.3
+      "accuracy": 61.9
     },
     "extraStats": {
-      "attack": 5.9,
-      "attackMax": 11.6,
-      "accuracy": 13.3
+      "attack": 8,
+      "attackMax": 16.4,
+      "accuracy": 18.6
     }
   },
   "fairy_steel_scimitar": {
     "id": "fairy_steel_scimitar",
-    "icon": "fairySteelScimitar",
+    "icon": "fairy_steelScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -77,20 +77,20 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 38.8,
-      "attackMax": 79.2,
+      "attack": 54.6,
+      "attackMax": 109.8,
       "attackSpeed": 0.7,
-      "accuracy": 64
+      "accuracy": 88.9
     },
     "extraStats": {
-      "attack": 11.6,
-      "attackMax": 23.8,
-      "accuracy": 19.2
+      "attack": 16.4,
+      "attackMax": 32.9,
+      "accuracy": 26.7
     }
   },
   "fairy_steel_long_sword": {
     "id": "fairy_steel_long_sword",
-    "icon": "fairySteelLongSword",
+    "icon": "fairy_steelLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -101,20 +101,20 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 38.8,
-      "attackMax": 68.5,
+      "attack": 54.6,
+      "attackMax": 95.6,
       "attackSpeed": 0.5,
-      "accuracy": 79.2
+      "accuracy": 109.8
     },
     "extraStats": {
-      "attack": 11.6,
-      "attackMax": 20.6,
-      "accuracy": 23.8
+      "attack": 16.4,
+      "attackMax": 28.7,
+      "accuracy": 32.9
     }
   },
   "fairy_steel_broad_sword": {
     "id": "fairy_steel_broad_sword",
-    "icon": "fairySteelBroadSword",
+    "icon": "fairy_steelBroadSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -125,20 +125,20 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 49.7,
-      "attackMax": 79.2,
+      "attack": 68.4,
+      "attackMax": 109.8,
       "attackSpeed": 0.5,
-      "accuracy": 88.3
+      "accuracy": 122.9
     },
     "extraStats": {
-      "attack": 14.9,
-      "attackMax": 23.8,
-      "accuracy": 26.5
+      "attack": 20.5,
+      "attackMax": 32.9,
+      "accuracy": 36.9
     }
   },
   "fairy_steel_battle_axe": {
     "id": "fairy_steel_battle_axe",
-    "icon": "fairySteelBattleAxe",
+    "icon": "fairy_steelBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -149,19 +149,19 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 49.7,
-      "attackMax": 148.3,
+      "attack": 68.4,
+      "attackMax": 204.4,
       "attackSpeed": 0.3,
-      "accuracy": 49.7
+      "accuracy": 68.4
     },
     "extraStats": {
-      "attack": 14.9,
-      "attackMax": 44.5
+      "attack": 20.5,
+      "attackMax": 61.3
     }
   },
   "fairy_steel_horned_helmet": {
     "id": "fairy_steel_horned_helmet",
-    "icon": "fairySteelHornedHelmet",
+    "icon": "fairy_steelHornedHelmet",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel horned helmet",
@@ -169,19 +169,19 @@ export const FAIRY_STEEL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 10.2,
-      "attackMax": 10.2,
-      "accuracy": 10.2
+      "attack": 14.3,
+      "attackMax": 14.3,
+      "accuracy": 14.3
     },
     "extraStats": {
-      "attack": 3.1,
-      "attackMax": 3.1,
-      "accuracy": 3.1
+      "attack": 4.3,
+      "attackMax": 4.3,
+      "accuracy": 4.3
     }
   },
   "fairy_steel_helmet": {
     "id": "fairy_steel_helmet",
-    "icon": "fairySteelHelmet",
+    "icon": "fairy_steelHelmet",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel helmet",
@@ -189,39 +189,39 @@ export const FAIRY_STEEL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 10.2,
-      "defense": 10.2,
-      "armor": 49.7
+      "healthMax": 14.3,
+      "defense": 14.3,
+      "armor": 68.4
     },
     "extraStats": {
-      "healthMax": 3.1,
-      "defense": 3.1,
-      "armor": 14.9
+      "healthMax": 4.3,
+      "defense": 4.3,
+      "armor": 20.5
     }
   },
   "fairy_steel_chest_plate": {
     "id": "fairy_steel_chest_plate",
-    "icon": "fairySteelChestPlate",
+    "icon": "fairy_steelChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "fairy_steel chestplate",
+    "name": "fairy steel chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 10.2,
-      "defense": 10.2,
-      "armor": 49.7
+      "healthMax": 14.3,
+      "defense": 14.3,
+      "armor": 68.4
     },
     "extraStats": {
-      "healthMax": 3.1,
-      "defense": 3.1,
-      "armor": 14.9
+      "healthMax": 4.3,
+      "defense": 4.3,
+      "armor": 20.5
     }
   },
   "fairy_steel_plate_legs": {
     "id": "fairy_steel_plate_legs",
-    "icon": "fairySteelPlateLegs",
+    "icon": "fairy_steelPlateLegs",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",
@@ -229,34 +229,35 @@ export const FAIRY_STEEL_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 10.2,
-      "defense": 10.2,
-      "armor": 49.7
+      "healthMax": 14.3,
+      "defense": 14.3,
+      "armor": 68.4
     },
     "extraStats": {
-      "healthMax": 3.1,
-      "defense": 3.1,
-      "armor": 14.9
+      "healthMax": 4.3,
+      "defense": 4.3,
+      "armor": 20.5
     }
   },
   "fairy_steel_shield": {
     "id": "fairy_steel_shield",
-    "icon": "fairySteelShield",
+    "icon": "fairy_steelShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "fairy steel shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 19.8,
-      "defense": 30,
-      "armor": 98.6
+      "healthMax": 26.8,
+      "defense": 41.9,
+      "armor": 137.3
     },
     "extraStats": {
-      "healthMax": 5.9,
-      "defense": 9,
-      "armor": 29.6
+      "healthMax": 8,
+      "defense": 12.6,
+      "armor": 41.2
     }
   }
 }

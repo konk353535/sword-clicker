@@ -11,10 +11,10 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 13.5,
+      "attack": 9.7,
+      "attackMax": 18.4,
       "attackSpeed": 1,
-      "accuracy": 20.5
+      "accuracy": 28.6
     }
   },
   "mithril_spear": {
@@ -29,17 +29,17 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.5,
-      "attackMax": 20.5,
+      "attack": 18.4,
+      "attackMax": 28.6,
       "attackSpeed": 0.5,
-      "accuracy": 20.5,
-      "defense": 13.5
+      "accuracy": 28.6,
+      "defense": 18.4
     },
     "extraStats": {
-      "attack": 4.1,
-      "attackMax": 6.1,
-      "accuracy": 6.1,
-      "defense": 4.1
+      "attack": 5.5,
+      "attackMax": 8.6,
+      "accuracy": 8.6,
+      "defense": 5.5
     }
   },
   "mithril_short_sword": {
@@ -54,15 +54,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.5,
-      "attackMax": 26.5,
+      "attack": 18.4,
+      "attackMax": 37.3,
       "attackSpeed": 0.7,
-      "accuracy": 30.3
+      "accuracy": 42.3
     },
     "extraStats": {
-      "attack": 4.1,
-      "attackMax": 7.9,
-      "accuracy": 9.1
+      "attack": 5.5,
+      "attackMax": 11.2,
+      "accuracy": 12.7
     }
   },
   "mithril_scimitar": {
@@ -77,15 +77,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.5,
-      "attackMax": 54.1,
+      "attack": 37.3,
+      "attackMax": 75,
       "attackSpeed": 0.7,
-      "accuracy": 43.7
+      "accuracy": 60.7
     },
     "extraStats": {
-      "attack": 7.9,
-      "attackMax": 16.2,
-      "accuracy": 13.1
+      "attack": 11.2,
+      "attackMax": 22.5,
+      "accuracy": 18.2
     }
   },
   "mithril_long_sword": {
@@ -101,15 +101,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.5,
-      "attackMax": 46.8,
+      "attack": 37.3,
+      "attackMax": 65.3,
       "attackSpeed": 0.5,
-      "accuracy": 54.1
+      "accuracy": 75
     },
     "extraStats": {
-      "attack": 7.9,
-      "attackMax": 14,
-      "accuracy": 16.2
+      "attack": 11.2,
+      "attackMax": 19.6,
+      "accuracy": 22.5
     }
   },
   "mithril_broad_sword": {
@@ -125,15 +125,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.9,
-      "attackMax": 54.1,
+      "attack": 46.7,
+      "attackMax": 75,
       "attackSpeed": 0.5,
-      "accuracy": 60.3
+      "accuracy": 83.9
     },
     "extraStats": {
-      "attack": 10.2,
-      "attackMax": 16.2,
-      "accuracy": 18.1
+      "attack": 14,
+      "attackMax": 22.5,
+      "accuracy": 25.2
     }
   },
   "mithril_battle_axe": {
@@ -149,14 +149,14 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.9,
-      "attackMax": 101.3,
+      "attack": 46.7,
+      "attackMax": 139.6,
       "attackSpeed": 0.3,
-      "accuracy": 33.9
+      "accuracy": 46.7
     },
     "extraStats": {
-      "attack": 10.2,
-      "attackMax": 30.4
+      "attack": 14,
+      "attackMax": 41.9
     }
   },
   "mithril_horned_helmet": {
@@ -169,14 +169,14 @@ export const MITHRIL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 7,
-      "accuracy": 7
+      "attack": 9.7,
+      "attackMax": 9.7,
+      "accuracy": 9.7
     },
     "extraStats": {
-      "attack": 2.1,
-      "attackMax": 2.1,
-      "accuracy": 2.1
+      "attack": 2.9,
+      "attackMax": 2.9,
+      "accuracy": 2.9
     }
   },
   "mithril_helmet": {
@@ -189,14 +189,14 @@ export const MITHRIL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
+      "healthMax": 9.7,
+      "defense": 9.7,
+      "armor": 46.7
     },
     "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.2
+      "healthMax": 2.9,
+      "defense": 2.9,
+      "armor": 14
     }
   },
   "mithril_chest_plate": {
@@ -209,14 +209,14 @@ export const MITHRIL_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
+      "healthMax": 9.7,
+      "defense": 9.7,
+      "armor": 46.7
     },
     "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.2
+      "healthMax": 2.9,
+      "defense": 2.9,
+      "armor": 14
     }
   },
   "mithril_plate_legs": {
@@ -229,34 +229,35 @@ export const MITHRIL_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.9
+      "healthMax": 9.7,
+      "defense": 9.7,
+      "armor": 46.7
     },
     "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.2
+      "healthMax": 2.9,
+      "defense": 2.9,
+      "armor": 14
     }
   },
   "mithril_shield": {
     "id": "mithril_shield",
     "icon": "mithrilShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "mithril shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 13.5,
-      "defense": 20.5,
-      "armor": 67.3
+      "healthMax": 18.4,
+      "defense": 28.6,
+      "armor": 93.7
     },
     "extraStats": {
-      "healthMax": 4.1,
-      "defense": 6.1,
-      "armor": 20.2
+      "healthMax": 5.5,
+      "defense": 8.6,
+      "armor": 28.1
     }
   }
 }

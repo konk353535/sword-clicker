@@ -11,10 +11,10 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 10.9,
+      "attack": 7.8,
+      "attackMax": 14.8,
       "attackSpeed": 1,
-      "accuracy": 16.5
+      "accuracy": 23
     }
   },
   "obsidian_spear": {
@@ -29,17 +29,17 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.9,
-      "attackMax": 16.5,
+      "attack": 14.8,
+      "attackMax": 23,
       "attackSpeed": 0.5,
-      "accuracy": 16.5,
-      "defense": 10.9
+      "accuracy": 23,
+      "defense": 14.8
     },
     "extraStats": {
-      "attack": 3.3,
-      "attackMax": 5,
-      "accuracy": 5,
-      "defense": 3.3
+      "attack": 4.4,
+      "attackMax": 6.9,
+      "accuracy": 6.9,
+      "defense": 4.4
     }
   },
   "obsidian_short_sword": {
@@ -54,15 +54,15 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.9,
-      "attackMax": 21.3,
+      "attack": 14.8,
+      "attackMax": 30,
       "attackSpeed": 0.7,
-      "accuracy": 24.4
+      "accuracy": 34
     },
     "extraStats": {
-      "attack": 3.3,
-      "attackMax": 6.4,
-      "accuracy": 7.3
+      "attack": 4.4,
+      "attackMax": 9,
+      "accuracy": 10.2
     }
   },
   "obsidian_scimitar": {
@@ -77,15 +77,15 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 21.3,
-      "attackMax": 43.5,
+      "attack": 30,
+      "attackMax": 60.4,
       "attackSpeed": 0.7,
-      "accuracy": 35.2
+      "accuracy": 48.8
     },
     "extraStats": {
-      "attack": 6.4,
-      "attackMax": 13,
-      "accuracy": 10.6
+      "attack": 9,
+      "attackMax": 18.1,
+      "accuracy": 14.6
     }
   },
   "obsidian_long_sword": {
@@ -101,15 +101,15 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 21.3,
-      "attackMax": 37.7,
+      "attack": 30,
+      "attackMax": 52.5,
       "attackSpeed": 0.5,
-      "accuracy": 43.5
+      "accuracy": 60.4
     },
     "extraStats": {
-      "attack": 6.4,
-      "attackMax": 11.3,
-      "accuracy": 13
+      "attack": 9,
+      "attackMax": 15.8,
+      "accuracy": 18.1
     }
   },
   "obsidian_broad_sword": {
@@ -125,15 +125,15 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 27.2,
-      "attackMax": 43.5,
+      "attack": 37.6,
+      "attackMax": 60.4,
       "attackSpeed": 0.5,
-      "accuracy": 48.5
+      "accuracy": 67.5
     },
     "extraStats": {
-      "attack": 8.2,
-      "attackMax": 13,
-      "accuracy": 14.5
+      "attack": 11.3,
+      "attackMax": 18.1,
+      "accuracy": 20.3
     }
   },
   "obsidian_battle_axe": {
@@ -149,14 +149,14 @@ export const OBSIDIAN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 27.2,
-      "attackMax": 81.5,
+      "attack": 37.6,
+      "attackMax": 112.3,
       "attackSpeed": 0.3,
-      "accuracy": 27.2
+      "accuracy": 37.6
     },
     "extraStats": {
-      "attack": 8.2,
-      "attackMax": 24.5
+      "attack": 11.3,
+      "attackMax": 33.7
     }
   },
   "obsidian_horned_helmet": {
@@ -169,14 +169,14 @@ export const OBSIDIAN_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 5.6,
-      "accuracy": 5.6
+      "attack": 7.8,
+      "attackMax": 7.8,
+      "accuracy": 7.8
     },
     "extraStats": {
-      "attack": 1.7,
-      "attackMax": 1.7,
-      "accuracy": 1.7
+      "attack": 2.3,
+      "attackMax": 2.3,
+      "accuracy": 2.3
     }
   },
   "obsidian_helmet": {
@@ -189,14 +189,14 @@ export const OBSIDIAN_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 5.6,
-      "defense": 5.6,
-      "armor": 27.2
+      "healthMax": 7.8,
+      "defense": 7.8,
+      "armor": 37.6
     },
     "extraStats": {
-      "healthMax": 1.7,
-      "defense": 1.7,
-      "armor": 8.2
+      "healthMax": 2.3,
+      "defense": 2.3,
+      "armor": 11.3
     }
   },
   "obsidian_chest_plate": {
@@ -209,14 +209,14 @@ export const OBSIDIAN_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 5.6,
-      "defense": 5.6,
-      "armor": 27.2
+      "healthMax": 7.8,
+      "defense": 7.8,
+      "armor": 37.6
     },
     "extraStats": {
-      "healthMax": 1.7,
-      "defense": 1.7,
-      "armor": 8.2
+      "healthMax": 2.3,
+      "defense": 2.3,
+      "armor": 11.3
     }
   },
   "obsidian_plate_legs": {
@@ -229,34 +229,35 @@ export const OBSIDIAN_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 5.6,
-      "defense": 5.6,
-      "armor": 27.2
+      "healthMax": 7.8,
+      "defense": 7.8,
+      "armor": 37.6
     },
     "extraStats": {
-      "healthMax": 1.7,
-      "defense": 1.7,
-      "armor": 8.2
+      "healthMax": 2.3,
+      "defense": 2.3,
+      "armor": 11.3
     }
   },
   "obsidian_shield": {
     "id": "obsidian_shield",
     "icon": "obsidianShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "obsidian shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 10.9,
-      "defense": 16.5,
-      "armor": 54.1
+      "healthMax": 14.8,
+      "defense": 23,
+      "armor": 75.4
     },
     "extraStats": {
-      "healthMax": 3.3,
-      "defense": 5,
-      "armor": 16.2
+      "healthMax": 4.4,
+      "defense": 6.9,
+      "armor": 22.6
     }
   }
 }

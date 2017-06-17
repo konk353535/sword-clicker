@@ -11,10 +11,10 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3.2,
-      "attackMax": 6.3,
+      "attack": 4.5,
+      "attackMax": 8.6,
       "attackSpeed": 1,
-      "accuracy": 9.5
+      "accuracy": 13.2
     }
   },
   "steel_spear": {
@@ -29,17 +29,17 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.3,
-      "attackMax": 9.5,
+      "attack": 8.6,
+      "attackMax": 13.2,
       "attackSpeed": 0.5,
-      "accuracy": 9.5,
-      "defense": 6.3
+      "accuracy": 13.2,
+      "defense": 8.6
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 2.9,
-      "accuracy": 2.9,
-      "defense": 1.9
+      "attack": 2.6,
+      "attackMax": 4,
+      "accuracy": 4,
+      "defense": 2.6
     }
   },
   "steel_short_sword": {
@@ -54,15 +54,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.3,
-      "attackMax": 12.3,
+      "attack": 8.6,
+      "attackMax": 17.3,
       "attackSpeed": 0.7,
-      "accuracy": 14.1
+      "accuracy": 19.7
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 3.7,
-      "accuracy": 4.2
+      "attack": 2.6,
+      "attackMax": 5.2,
+      "accuracy": 5.9
     }
   },
   "steel_scimitar": {
@@ -77,15 +77,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 12.3,
-      "attackMax": 25,
+      "attack": 17.3,
+      "attackMax": 34.9,
       "attackSpeed": 0.7,
-      "accuracy": 20.3
+      "accuracy": 28.2
     },
     "extraStats": {
-      "attack": 3.7,
-      "attackMax": 7.5,
-      "accuracy": 6.1
+      "attack": 5.2,
+      "attackMax": 10.5,
+      "accuracy": 8.5
     }
   },
   "steel_long_sword": {
@@ -101,15 +101,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 12.3,
-      "attackMax": 21.8,
+      "attack": 17.3,
+      "attackMax": 30.3,
       "attackSpeed": 0.5,
-      "accuracy": 25
+      "accuracy": 34.9
     },
     "extraStats": {
-      "attack": 3.7,
-      "attackMax": 6.5,
-      "accuracy": 7.5
+      "attack": 5.2,
+      "attackMax": 9.1,
+      "accuracy": 10.5
     }
   },
   "steel_broad_sword": {
@@ -125,15 +125,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 15.7,
-      "attackMax": 25,
+      "attack": 21.7,
+      "attackMax": 34.9,
       "attackSpeed": 0.5,
-      "accuracy": 28
+      "accuracy": 39
     },
     "extraStats": {
-      "attack": 4.7,
-      "attackMax": 7.5,
-      "accuracy": 8.4
+      "attack": 6.5,
+      "attackMax": 10.5,
+      "accuracy": 11.7
     }
   },
   "steel_battle_axe": {
@@ -149,14 +149,14 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 15.7,
-      "attackMax": 47.1,
+      "attack": 21.7,
+      "attackMax": 64.9,
       "attackSpeed": 0.3,
-      "accuracy": 15.7
+      "accuracy": 21.7
     },
     "extraStats": {
-      "attack": 4.7,
-      "attackMax": 14.1
+      "attack": 6.5,
+      "attackMax": 19.5
     }
   },
   "steel_horned_helmet": {
@@ -169,14 +169,14 @@ export const STEEL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 3.2,
-      "attackMax": 3.2,
-      "accuracy": 3.2
+      "attack": 4.5,
+      "attackMax": 4.5,
+      "accuracy": 4.5
     },
     "extraStats": {
-      "attack": 1,
-      "attackMax": 1,
-      "accuracy": 1
+      "attack": 1.3,
+      "attackMax": 1.3,
+      "accuracy": 1.3
     }
   },
   "steel_helmet": {
@@ -189,14 +189,14 @@ export const STEEL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.2,
-      "defense": 3.2,
-      "armor": 15.7
+      "healthMax": 4.5,
+      "defense": 4.5,
+      "armor": 21.7
     },
     "extraStats": {
-      "healthMax": 1,
-      "defense": 1,
-      "armor": 4.7
+      "healthMax": 1.3,
+      "defense": 1.3,
+      "armor": 6.5
     }
   },
   "steel_chest_plate": {
@@ -209,14 +209,14 @@ export const STEEL_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.2,
-      "defense": 3.2,
-      "armor": 15.7
+      "healthMax": 4.5,
+      "defense": 4.5,
+      "armor": 21.7
     },
     "extraStats": {
-      "healthMax": 1,
-      "defense": 1,
-      "armor": 4.7
+      "healthMax": 1.3,
+      "defense": 1.3,
+      "armor": 6.5
     }
   },
   "steel_plate_legs": {
@@ -229,34 +229,35 @@ export const STEEL_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.2,
-      "defense": 3.2,
-      "armor": 15.7
+      "healthMax": 4.5,
+      "defense": 4.5,
+      "armor": 21.7
     },
     "extraStats": {
-      "healthMax": 1,
-      "defense": 1,
-      "armor": 4.7
+      "healthMax": 1.3,
+      "defense": 1.3,
+      "armor": 6.5
     }
   },
   "steel_shield": {
     "id": "steel_shield",
     "icon": "steelShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "steel shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 6.3,
-      "defense": 9.5,
-      "armor": 31.2
+      "healthMax": 8.6,
+      "defense": 13.2,
+      "armor": 43.5
     },
     "extraStats": {
-      "healthMax": 1.9,
-      "defense": 2.9,
-      "armor": 9.4
+      "healthMax": 2.6,
+      "defense": 4,
+      "armor": 13
     }
   }
 }

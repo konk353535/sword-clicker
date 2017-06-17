@@ -19,43 +19,43 @@ const options = {
     prefix: 'stone',
     color: '#5d5b5b',
     tier: 0,
-    increase: 1.35
+    increase: 1.4
   },
   copper: {
     prefix: 'copper',
     color: '#BE5B0C',
     tier: 1,
-    increase: 1.25
+    increase: 1.5
   },
   tin: {
     prefix: 'tin',
     color: '#869eac',
     tier: 2,
-    increase: 1.23
+    increase: 1.4
   },
   bronze: {
     prefix: 'bronze',
     color: '#db5625',
     tier: 3,
-    increase: 1.21
+    increase: 1.3
   },
   iron: {
     prefix: 'iron',
     color: '#535252',
     tier: 4,
-    increase: 1.19
+    increase: 1.25
   },
   silver: {
     prefix: 'silver',
     color: '#c8e0d5',
     tier: 5,
-    increase: 1.17
+    increase: 1.2
   },
   gold: {
     prefix: 'gold',
     color: '#ffd635',
     tier: 6,
-    increase: 1.14
+    increase: 1.2
   },
   carbon: {
     prefix: 'carbon',
@@ -173,6 +173,7 @@ async.forEachOfSeries(Object.keys(options), (tierName, index, callback) => {
     // Increase values by 10%
     Object.keys(parsedData).forEach((combatItemKey) => {
       const item = parsedData[combatItemKey];
+      item.name = item.name.replace('_', ' ');
       Object.keys(item.stats).forEach((statKey) => {
         if (statKey !== 'attackSpeed') {
           item.stats[statKey] = math.round(item.stats[statKey] * optionData.increase, 1);

@@ -11,10 +11,10 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.4,
-      "attackMax": 16.2,
+      "attack": 11.7,
+      "attackMax": 22,
       "attackSpeed": 1,
-      "accuracy": 24.6
+      "accuracy": 34.3
     }
   },
   "orichalcum_spear": {
@@ -29,17 +29,17 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.2,
-      "attackMax": 24.6,
+      "attack": 22,
+      "attackMax": 34.3,
       "attackSpeed": 0.5,
-      "accuracy": 24.6,
-      "defense": 16.2
+      "accuracy": 34.3,
+      "defense": 22
     },
     "extraStats": {
-      "attack": 4.9,
-      "attackMax": 7.4,
-      "accuracy": 7.4,
-      "defense": 4.9
+      "attack": 6.6,
+      "attackMax": 10.3,
+      "accuracy": 10.3,
+      "defense": 6.6
     }
   },
   "orichalcum_short_sword": {
@@ -54,15 +54,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.2,
-      "attackMax": 31.8,
+      "attack": 22,
+      "attackMax": 44.7,
       "attackSpeed": 0.7,
-      "accuracy": 36.3
+      "accuracy": 50.7
     },
     "extraStats": {
-      "attack": 4.9,
-      "attackMax": 9.5,
-      "accuracy": 10.9
+      "attack": 6.6,
+      "attackMax": 13.4,
+      "accuracy": 15.2
     }
   },
   "orichalcum_scimitar": {
@@ -77,15 +77,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 31.8,
-      "attackMax": 64.9,
+      "attack": 44.7,
+      "attackMax": 89.9,
       "attackSpeed": 0.7,
-      "accuracy": 52.4
+      "accuracy": 72.8
     },
     "extraStats": {
-      "attack": 9.5,
-      "attackMax": 19.5,
-      "accuracy": 15.7
+      "attack": 13.4,
+      "attackMax": 27,
+      "accuracy": 21.8
     }
   },
   "orichalcum_long_sword": {
@@ -101,15 +101,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 31.8,
-      "attackMax": 56.1,
+      "attack": 44.7,
+      "attackMax": 78.3,
       "attackSpeed": 0.5,
-      "accuracy": 64.9
+      "accuracy": 89.9
     },
     "extraStats": {
-      "attack": 9.5,
-      "attackMax": 16.8,
-      "accuracy": 19.5
+      "attack": 13.4,
+      "attackMax": 23.5,
+      "accuracy": 27
     }
   },
   "orichalcum_broad_sword": {
@@ -125,15 +125,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 40.7,
-      "attackMax": 64.9,
+      "attack": 56,
+      "attackMax": 89.9,
       "attackSpeed": 0.5,
-      "accuracy": 72.3
+      "accuracy": 100.6
     },
     "extraStats": {
-      "attack": 12.2,
-      "attackMax": 19.5,
-      "accuracy": 21.7
+      "attack": 16.8,
+      "attackMax": 27,
+      "accuracy": 30.2
     }
   },
   "orichalcum_battle_axe": {
@@ -149,14 +149,14 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 40.7,
-      "attackMax": 121.4,
+      "attack": 56,
+      "attackMax": 167.4,
       "attackSpeed": 0.3,
-      "accuracy": 40.7
+      "accuracy": 56
     },
     "extraStats": {
-      "attack": 12.2,
-      "attackMax": 36.4
+      "attack": 16.8,
+      "attackMax": 50.2
     }
   },
   "orichalcum_horned_helmet": {
@@ -169,14 +169,14 @@ export const ORICHALCUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 8.4,
-      "attackMax": 8.4,
-      "accuracy": 8.4
+      "attack": 11.7,
+      "attackMax": 11.7,
+      "accuracy": 11.7
     },
     "extraStats": {
-      "attack": 2.5,
-      "attackMax": 2.5,
-      "accuracy": 2.5
+      "attack": 3.5,
+      "attackMax": 3.5,
+      "accuracy": 3.5
     }
   },
   "orichalcum_helmet": {
@@ -189,14 +189,14 @@ export const ORICHALCUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 8.4,
-      "defense": 8.4,
-      "armor": 40.7
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
     "extraStats": {
-      "healthMax": 2.5,
-      "defense": 2.5,
-      "armor": 12.2
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     }
   },
   "orichalcum_chest_plate": {
@@ -209,14 +209,14 @@ export const ORICHALCUM_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 8.4,
-      "defense": 8.4,
-      "armor": 40.7
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
     "extraStats": {
-      "healthMax": 2.5,
-      "defense": 2.5,
-      "armor": 12.2
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     }
   },
   "orichalcum_plate_legs": {
@@ -229,34 +229,35 @@ export const ORICHALCUM_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 8.4,
-      "defense": 8.4,
-      "armor": 40.7
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
     "extraStats": {
-      "healthMax": 2.5,
-      "defense": 2.5,
-      "armor": 12.2
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     }
   },
   "orichalcum_shield": {
     "id": "orichalcum_shield",
     "icon": "orichalcumShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "orichalcum shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 16.2,
-      "defense": 24.6,
-      "armor": 80.7
+      "healthMax": 22,
+      "defense": 34.3,
+      "armor": 112.4
     },
     "extraStats": {
-      "healthMax": 4.9,
-      "defense": 7.4,
-      "armor": 24.2
+      "healthMax": 6.6,
+      "defense": 10.3,
+      "armor": 33.7
     }
   }
 }

@@ -11,10 +11,10 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.1,
-      "attackMax": 4.2,
+      "attack": 2.8,
+      "attackMax": 5.4,
       "attackSpeed": 1,
-      "accuracy": 6.3
+      "accuracy": 8.3
     }
   },
   "silver_spear": {
@@ -29,17 +29,17 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.2,
-      "attackMax": 6.3,
+      "attack": 5.4,
+      "attackMax": 8.3,
       "attackSpeed": 0.5,
-      "accuracy": 6.3,
-      "defense": 4.2
+      "accuracy": 8.3,
+      "defense": 5.4
     },
     "extraStats": {
-      "attack": 1.3,
-      "attackMax": 1.9,
-      "accuracy": 1.9,
-      "defense": 1.3
+      "attack": 1.6,
+      "attackMax": 2.5,
+      "accuracy": 2.5,
+      "defense": 1.6
     }
   },
   "silver_short_sword": {
@@ -54,15 +54,15 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.2,
-      "attackMax": 8.2,
+      "attack": 5.4,
+      "attackMax": 10.9,
       "attackSpeed": 0.7,
-      "accuracy": 9.4
+      "accuracy": 12.4
     },
     "extraStats": {
-      "attack": 1.3,
-      "attackMax": 2.5,
-      "accuracy": 2.8
+      "attack": 1.6,
+      "attackMax": 3.3,
+      "accuracy": 3.7
     }
   },
   "silver_scimitar": {
@@ -77,15 +77,15 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.2,
-      "attackMax": 16.6,
+      "attack": 10.9,
+      "attackMax": 22,
       "attackSpeed": 0.7,
-      "accuracy": 13.5
+      "accuracy": 17.8
     },
     "extraStats": {
-      "attack": 2.5,
-      "attackMax": 5,
-      "accuracy": 4.1
+      "attack": 3.3,
+      "attackMax": 6.6,
+      "accuracy": 5.3
     }
   },
   "silver_long_sword": {
@@ -101,15 +101,15 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.2,
-      "attackMax": 14.5,
+      "attack": 10.9,
+      "attackMax": 19.1,
       "attackSpeed": 0.5,
-      "accuracy": 16.6
+      "accuracy": 22
     },
     "extraStats": {
-      "attack": 2.5,
-      "attackMax": 4.4,
-      "accuracy": 5
+      "attack": 3.3,
+      "attackMax": 5.7,
+      "accuracy": 6.6
     }
   },
   "silver_broad_sword": {
@@ -125,15 +125,15 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.4,
-      "attackMax": 16.6,
+      "attack": 13.7,
+      "attackMax": 22,
       "attackSpeed": 0.5,
-      "accuracy": 18.6
+      "accuracy": 24.6
     },
     "extraStats": {
-      "attack": 3.1,
-      "attackMax": 5,
-      "accuracy": 5.6
+      "attack": 4.1,
+      "attackMax": 6.6,
+      "accuracy": 7.4
     }
   },
   "silver_battle_axe": {
@@ -149,14 +149,14 @@ export const SILVER_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.4,
-      "attackMax": 31.2,
+      "attack": 13.7,
+      "attackMax": 40.9,
       "attackSpeed": 0.3,
-      "accuracy": 10.4
+      "accuracy": 13.7
     },
     "extraStats": {
-      "attack": 3.1,
-      "attackMax": 9.4
+      "attack": 4.1,
+      "attackMax": 12.3
     }
   },
   "silver_horned_helmet": {
@@ -169,14 +169,14 @@ export const SILVER_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 2.1,
-      "attackMax": 2.1,
-      "accuracy": 2.1
+      "attack": 2.8,
+      "attackMax": 2.8,
+      "accuracy": 2.8
     },
     "extraStats": {
-      "attack": 0.6,
-      "attackMax": 0.6,
-      "accuracy": 0.6
+      "attack": 0.8,
+      "attackMax": 0.8,
+      "accuracy": 0.8
     }
   },
   "silver_helmet": {
@@ -189,14 +189,14 @@ export const SILVER_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.4
+      "healthMax": 2.8,
+      "defense": 2.8,
+      "armor": 13.7
     },
     "extraStats": {
-      "healthMax": 0.6,
-      "defense": 0.6,
-      "armor": 3.1
+      "healthMax": 0.8,
+      "defense": 0.8,
+      "armor": 4.1
     }
   },
   "silver_chest_plate": {
@@ -209,14 +209,14 @@ export const SILVER_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.4
+      "healthMax": 2.8,
+      "defense": 2.8,
+      "armor": 13.7
     },
     "extraStats": {
-      "healthMax": 0.6,
-      "defense": 0.6,
-      "armor": 3.1
+      "healthMax": 0.8,
+      "defense": 0.8,
+      "armor": 4.1
     }
   },
   "silver_plate_legs": {
@@ -229,34 +229,35 @@ export const SILVER_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.4
+      "healthMax": 2.8,
+      "defense": 2.8,
+      "armor": 13.7
     },
     "extraStats": {
-      "healthMax": 0.6,
-      "defense": 0.6,
-      "armor": 3.1
+      "healthMax": 0.8,
+      "defense": 0.8,
+      "armor": 4.1
     }
   },
   "silver_shield": {
     "id": "silver_shield",
     "icon": "silverShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "silver shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 4.2,
-      "defense": 6.3,
-      "armor": 20.7
+      "healthMax": 5.4,
+      "defense": 8.3,
+      "armor": 27.4
     },
     "extraStats": {
-      "healthMax": 1.3,
-      "defense": 1.9,
-      "armor": 6.2
+      "healthMax": 1.6,
+      "defense": 2.5,
+      "armor": 8.2
     }
   }
 }

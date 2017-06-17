@@ -32,6 +32,8 @@ export const updateCombatStats = function (userId, username) {
       armor: 0,
       magicArmor: 0
     },
+    mainHandType: '',
+    offHandType: '',
     xpDistribution: {}
   };
 
@@ -50,6 +52,13 @@ export const updateCombatStats = function (userId, username) {
   for (let i = 0; i < combatItems.length; i++) {
     const combatItem = combatItems[i];
     combatItem.constants = ITEMS[combatItem.itemId];
+
+    if (combatItem.constants.slot === 'mainHand') {
+      playerData.mainHandType = combatItem.constants.weaponType;
+    } else if (combatItem.constants.slot === 'offHand') {
+      playerData.offHandType = combatItem.constants.weaponType;
+    }
+
     if (combatItem.constants.isAttackAmulet) {
       // Fetch existing energy
       playerData.amulet = JSON.parse(JSON.stringify(combatItem.constants.stats));

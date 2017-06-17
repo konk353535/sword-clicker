@@ -5,16 +5,16 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "cursed dagger",
+    "name": "fairy steel dagger",
     "sellPrice": 50,
     "description": "A poorly made dagger.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 12.4,
-      "attackMax": 24.2,
+      "attack": 17.4,
+      "attackMax": 32.7,
       "attackSpeed": 1,
-      "accuracy": 36.6
+      "accuracy": 51.1
     }
   },
   "cursed_spear": {
@@ -23,23 +23,23 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "cursed spear",
+    "name": "fairy steel spear",
     "sellPrice": 75,
     "description": "Used to train defense.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 24.2,
-      "attackMax": 36.6,
+      "attack": 32.7,
+      "attackMax": 51.1,
       "attackSpeed": 0.5,
-      "accuracy": 36.6,
-      "defense": 24.2
+      "accuracy": 51.1,
+      "defense": 32.7
     },
     "extraStats": {
-      "attack": 7.3,
-      "attackMax": 11,
-      "accuracy": 11,
-      "defense": 7.3
+      "attack": 9.8,
+      "attackMax": 15.3,
+      "accuracy": 15.3,
+      "defense": 9.8
     }
   },
   "cursed_short_sword": {
@@ -48,21 +48,21 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "cursed short sword",
+    "name": "fairy steel short sword",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 24.2,
-      "attackMax": 47.4,
+      "attack": 32.7,
+      "attackMax": 66.7,
       "attackSpeed": 0.7,
-      "accuracy": 54.1
+      "accuracy": 75.5
     },
     "extraStats": {
-      "attack": 7.3,
-      "attackMax": 14.2,
-      "accuracy": 16.2
+      "attack": 9.8,
+      "attackMax": 20,
+      "accuracy": 22.7
     }
   },
   "cursed_scimitar": {
@@ -71,21 +71,21 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "cursed scimitar",
+    "name": "fairy steel scimitar",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 47.4,
-      "attackMax": 96.7,
+      "attack": 66.7,
+      "attackMax": 134.1,
       "attackSpeed": 0.7,
-      "accuracy": 78.2
+      "accuracy": 108.6
     },
     "extraStats": {
-      "attack": 14.2,
-      "attackMax": 29,
-      "accuracy": 23.5
+      "attack": 20,
+      "attackMax": 40.2,
+      "accuracy": 32.6
     }
   },
   "cursed_long_sword": {
@@ -94,22 +94,22 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "cursed long sword",
+    "name": "fairy steel long sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 47.4,
-      "attackMax": 83.6,
+      "attack": 66.7,
+      "attackMax": 116.7,
       "attackSpeed": 0.5,
-      "accuracy": 96.7
+      "accuracy": 134.1
     },
     "extraStats": {
-      "attack": 14.2,
-      "attackMax": 25.1,
-      "accuracy": 29
+      "attack": 20,
+      "attackMax": 35,
+      "accuracy": 40.2
     }
   },
   "cursed_broad_sword": {
@@ -118,22 +118,22 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "cursed broad sword",
+    "name": "fairy steel broad sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 60.7,
-      "attackMax": 96.7,
+      "attack": 83.5,
+      "attackMax": 134.1,
       "attackSpeed": 0.5,
-      "accuracy": 107.8
+      "accuracy": 150
     },
     "extraStats": {
-      "attack": 18.2,
-      "attackMax": 29,
-      "accuracy": 32.3
+      "attack": 25.1,
+      "attackMax": 40.2,
+      "accuracy": 45
     }
   },
   "cursed_battle_axe": {
@@ -142,21 +142,21 @@ export const CURSED_ITEMS = {
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "cursed battle axe",
+    "name": "fairy steel battle axe",
     "sellPrice": 75,
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 60.7,
-      "attackMax": 181,
+      "attack": 83.5,
+      "attackMax": 249.5,
       "attackSpeed": 0.3,
-      "accuracy": 60.7
+      "accuracy": 83.5
     },
     "extraStats": {
-      "attack": 18.2,
-      "attackMax": 54.3
+      "attack": 25.1,
+      "attackMax": 74.9
     }
   },
   "cursed_horned_helmet": {
@@ -164,19 +164,19 @@ export const CURSED_ITEMS = {
     "icon": "cursedHornedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "cursed horned helmet",
+    "name": "fairy steel horned helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 12.4,
-      "attackMax": 12.4,
-      "accuracy": 12.4
+      "attack": 17.4,
+      "attackMax": 17.4,
+      "accuracy": 17.4
     },
     "extraStats": {
-      "attack": 3.7,
-      "attackMax": 3.7,
-      "accuracy": 3.7
+      "attack": 5.2,
+      "attackMax": 5.2,
+      "accuracy": 5.2
     }
   },
   "cursed_helmet": {
@@ -184,19 +184,19 @@ export const CURSED_ITEMS = {
     "icon": "cursedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "cursed helmet",
+    "name": "fairy steel helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 12.4,
-      "defense": 12.4,
-      "armor": 60.7
+      "healthMax": 17.4,
+      "defense": 17.4,
+      "armor": 83.5
     },
     "extraStats": {
-      "healthMax": 3.7,
-      "defense": 3.7,
-      "armor": 18.2
+      "healthMax": 5.2,
+      "defense": 5.2,
+      "armor": 25.1
     }
   },
   "cursed_chest_plate": {
@@ -204,19 +204,19 @@ export const CURSED_ITEMS = {
     "icon": "cursedChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "cursed chestplate",
+    "name": "fairy steel chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 12.4,
-      "defense": 12.4,
-      "armor": 60.7
+      "healthMax": 17.4,
+      "defense": 17.4,
+      "armor": 83.5
     },
     "extraStats": {
-      "healthMax": 3.7,
-      "defense": 3.7,
-      "armor": 18.2
+      "healthMax": 5.2,
+      "defense": 5.2,
+      "armor": 25.1
     }
   },
   "cursed_plate_legs": {
@@ -224,39 +224,40 @@ export const CURSED_ITEMS = {
     "icon": "cursedPlateLegs",
     "category": "combat",
     "slot": "legs",
-    "name": "cursed platelegs",
+    "name": "fairy steel platelegs",
     "sellPrice": 75,
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 12.4,
-      "defense": 12.4,
-      "armor": 60.7
+      "healthMax": 17.4,
+      "defense": 17.4,
+      "armor": 83.5
     },
     "extraStats": {
-      "healthMax": 3.7,
-      "defense": 3.7,
-      "armor": 18.2
+      "healthMax": 5.2,
+      "defense": 5.2,
+      "armor": 25.1
     }
   },
   "cursed_shield": {
     "id": "cursed_shield",
     "icon": "cursedShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
-    "name": "cursed shield",
+    "name": "fairy steel shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 24.2,
-      "defense": 36.6,
-      "armor": 120.3
+      "healthMax": 32.7,
+      "defense": 51.1,
+      "armor": 167.6
     },
     "extraStats": {
-      "healthMax": 7.3,
-      "defense": 11,
-      "armor": 36.1
+      "healthMax": 9.8,
+      "defense": 15.3,
+      "armor": 50.3
     }
   }
 }

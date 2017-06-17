@@ -11,10 +11,10 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.4,
-      "attackMax": 8.6,
+      "attack": 6.2,
+      "attackMax": 11.7,
       "attackSpeed": 1,
-      "accuracy": 13
+      "accuracy": 18.1
     }
   },
   "titanium_spear": {
@@ -29,17 +29,17 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.6,
-      "attackMax": 13,
+      "attack": 11.7,
+      "attackMax": 18.1,
       "attackSpeed": 0.5,
-      "accuracy": 13,
-      "defense": 8.6
+      "accuracy": 18.1,
+      "defense": 11.7
     },
     "extraStats": {
-      "attack": 2.6,
-      "attackMax": 3.9,
-      "accuracy": 3.9,
-      "defense": 2.6
+      "attack": 3.5,
+      "attackMax": 5.4,
+      "accuracy": 5.4,
+      "defense": 3.5
     }
   },
   "titanium_short_sword": {
@@ -54,15 +54,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.6,
-      "attackMax": 16.8,
+      "attack": 11.7,
+      "attackMax": 23.7,
       "attackSpeed": 0.7,
-      "accuracy": 19.3
+      "accuracy": 26.9
     },
     "extraStats": {
-      "attack": 2.6,
-      "attackMax": 5,
-      "accuracy": 5.8
+      "attack": 3.5,
+      "attackMax": 7.1,
+      "accuracy": 8.1
     }
   },
   "titanium_scimitar": {
@@ -77,15 +77,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.8,
-      "attackMax": 34.3,
+      "attack": 23.7,
+      "attackMax": 47.7,
       "attackSpeed": 0.7,
-      "accuracy": 27.8
+      "accuracy": 38.6
     },
     "extraStats": {
-      "attack": 5,
-      "attackMax": 10.3,
-      "accuracy": 8.3
+      "attack": 7.1,
+      "attackMax": 14.3,
+      "accuracy": 11.6
     }
   },
   "titanium_long_sword": {
@@ -101,15 +101,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.8,
-      "attackMax": 29.8,
+      "attack": 23.7,
+      "attackMax": 41.5,
       "attackSpeed": 0.5,
-      "accuracy": 34.3
+      "accuracy": 47.7
     },
     "extraStats": {
-      "attack": 5,
-      "attackMax": 8.9,
-      "accuracy": 10.3
+      "attack": 7.1,
+      "attackMax": 12.5,
+      "accuracy": 14.3
     }
   },
   "titanium_broad_sword": {
@@ -125,15 +125,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 21.5,
-      "attackMax": 34.3,
+      "attack": 29.7,
+      "attackMax": 47.7,
       "attackSpeed": 0.5,
-      "accuracy": 38.3
+      "accuracy": 53.4
     },
     "extraStats": {
-      "attack": 6.5,
-      "attackMax": 10.3,
-      "accuracy": 11.5
+      "attack": 8.9,
+      "attackMax": 14.3,
+      "accuracy": 16
     }
   },
   "titanium_battle_axe": {
@@ -149,14 +149,14 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 21.5,
-      "attackMax": 64.4,
+      "attack": 29.7,
+      "attackMax": 88.8,
       "attackSpeed": 0.3,
-      "accuracy": 21.5
+      "accuracy": 29.7
     },
     "extraStats": {
-      "attack": 6.5,
-      "attackMax": 19.3
+      "attack": 8.9,
+      "attackMax": 26.6
     }
   },
   "titanium_horned_helmet": {
@@ -169,14 +169,14 @@ export const TITANIUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 4.4,
-      "attackMax": 4.4,
-      "accuracy": 4.4
+      "attack": 6.2,
+      "attackMax": 6.2,
+      "accuracy": 6.2
     },
     "extraStats": {
-      "attack": 1.3,
-      "attackMax": 1.3,
-      "accuracy": 1.3
+      "attack": 1.9,
+      "attackMax": 1.9,
+      "accuracy": 1.9
     }
   },
   "titanium_helmet": {
@@ -189,14 +189,14 @@ export const TITANIUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 4.4,
-      "defense": 4.4,
-      "armor": 21.5
+      "healthMax": 6.2,
+      "defense": 6.2,
+      "armor": 29.7
     },
     "extraStats": {
-      "healthMax": 1.3,
-      "defense": 1.3,
-      "armor": 6.5
+      "healthMax": 1.9,
+      "defense": 1.9,
+      "armor": 8.9
     }
   },
   "titanium_chest_plate": {
@@ -209,14 +209,14 @@ export const TITANIUM_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 4.4,
-      "defense": 4.4,
-      "armor": 21.5
+      "healthMax": 6.2,
+      "defense": 6.2,
+      "armor": 29.7
     },
     "extraStats": {
-      "healthMax": 1.3,
-      "defense": 1.3,
-      "armor": 6.5
+      "healthMax": 1.9,
+      "defense": 1.9,
+      "armor": 8.9
     }
   },
   "titanium_plate_legs": {
@@ -229,34 +229,35 @@ export const TITANIUM_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 4.4,
-      "defense": 4.4,
-      "armor": 21.5
+      "healthMax": 6.2,
+      "defense": 6.2,
+      "armor": 29.7
     },
     "extraStats": {
-      "healthMax": 1.3,
-      "defense": 1.3,
-      "armor": 6.5
+      "healthMax": 1.9,
+      "defense": 1.9,
+      "armor": 8.9
     }
   },
   "titanium_shield": {
     "id": "titanium_shield",
     "icon": "titaniumShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "titanium shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 8.6,
-      "defense": 13,
-      "armor": 42.7
+      "healthMax": 11.7,
+      "defense": 18.1,
+      "armor": 59.6
     },
     "extraStats": {
-      "healthMax": 2.6,
-      "defense": 3.9,
-      "armor": 12.8
+      "healthMax": 3.5,
+      "defense": 5.4,
+      "armor": 17.9
     }
   }
 }

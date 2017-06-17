@@ -11,10 +11,10 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 1.2,
-      "attackMax": 2.5,
+      "attack": 1.4,
+      "attackMax": 2.8,
       "attackSpeed": 1,
-      "accuracy": 3.7
+      "accuracy": 4.2
     }
   },
   "tin_spear": {
@@ -29,16 +29,16 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.5,
-      "attackMax": 3.7,
+      "attack": 2.8,
+      "attackMax": 4.2,
       "attackSpeed": 0.5,
-      "accuracy": 3.7,
-      "defense": 2.5
+      "accuracy": 4.2,
+      "defense": 2.8
     },
     "extraStats": {
       "attack": 0.8,
-      "attackMax": 1.1,
-      "accuracy": 1.1,
+      "attackMax": 1.3,
+      "accuracy": 1.3,
       "defense": 0.8
     }
   },
@@ -54,15 +54,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.5,
-      "attackMax": 4.9,
+      "attack": 2.8,
+      "attackMax": 5.6,
       "attackSpeed": 0.7,
-      "accuracy": 5.5
+      "accuracy": 6.3
     },
     "extraStats": {
       "attack": 0.8,
-      "attackMax": 1.5,
-      "accuracy": 1.7
+      "attackMax": 1.7,
+      "accuracy": 1.9
     }
   },
   "tin_scimitar": {
@@ -77,15 +77,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.9,
-      "attackMax": 9.8,
+      "attack": 5.6,
+      "attackMax": 11.2,
       "attackSpeed": 0.7,
-      "accuracy": 8
+      "accuracy": 9.1
     },
     "extraStats": {
-      "attack": 1.5,
-      "attackMax": 2.9,
-      "accuracy": 2.4
+      "attack": 1.7,
+      "attackMax": 3.4,
+      "accuracy": 2.7
     }
   },
   "tin_long_sword": {
@@ -101,15 +101,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.9,
-      "attackMax": 8.6,
+      "attack": 5.6,
+      "attackMax": 9.8,
       "attackSpeed": 0.5,
-      "accuracy": 9.8
+      "accuracy": 11.2
     },
     "extraStats": {
-      "attack": 1.5,
-      "attackMax": 2.6,
-      "accuracy": 2.9
+      "attack": 1.7,
+      "attackMax": 2.9,
+      "accuracy": 3.4
     }
   },
   "tin_broad_sword": {
@@ -125,15 +125,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.2,
-      "attackMax": 9.8,
+      "attack": 7,
+      "attackMax": 11.2,
       "attackSpeed": 0.5,
-      "accuracy": 11.1
+      "accuracy": 12.6
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 2.9,
-      "accuracy": 3.3
+      "attack": 2.1,
+      "attackMax": 3.4,
+      "accuracy": 3.8
     }
   },
   "tin_battle_axe": {
@@ -149,14 +149,14 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 6.2,
-      "attackMax": 18.5,
+      "attack": 7,
+      "attackMax": 21,
       "attackSpeed": 0.3,
-      "accuracy": 6.2
+      "accuracy": 7
     },
     "extraStats": {
-      "attack": 1.9,
-      "attackMax": 5.6
+      "attack": 2.1,
+      "attackMax": 6.3
     }
   },
   "tin_horned_helmet": {
@@ -169,9 +169,9 @@ export const TIN_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 1.2,
-      "attackMax": 1.2,
-      "accuracy": 1.2
+      "attack": 1.4,
+      "attackMax": 1.4,
+      "accuracy": 1.4
     },
     "extraStats": {
       "attack": 0.4,
@@ -189,14 +189,14 @@ export const TIN_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.4,
+      "defense": 1.4,
+      "armor": 7
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.1
     }
   },
   "tin_chest_plate": {
@@ -209,14 +209,14 @@ export const TIN_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.4,
+      "defense": 1.4,
+      "armor": 7
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.1
     }
   },
   "tin_plate_legs": {
@@ -229,34 +229,35 @@ export const TIN_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 1.2,
-      "defense": 1.2,
-      "armor": 6.2
+      "healthMax": 1.4,
+      "defense": 1.4,
+      "armor": 7
     },
     "extraStats": {
       "healthMax": 0.4,
       "defense": 0.4,
-      "armor": 1.9
+      "armor": 2.1
     }
   },
   "tin_shield": {
     "id": "tin_shield",
     "icon": "tinShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "tin shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.5,
-      "defense": 3.7,
-      "armor": 12.3
+      "healthMax": 2.8,
+      "defense": 4.2,
+      "armor": 14
     },
     "extraStats": {
       "healthMax": 0.8,
-      "defense": 1.1,
-      "armor": 3.7
+      "defense": 1.3,
+      "armor": 4.2
     }
   }
 }

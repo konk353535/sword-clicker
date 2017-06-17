@@ -11,10 +11,10 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.4,
-      "attackMax": 4.8,
+      "attack": 3.4,
+      "attackMax": 6.5,
       "attackSpeed": 1,
-      "accuracy": 7.2
+      "accuracy": 10
     }
   },
   "gold_spear": {
@@ -29,17 +29,17 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.8,
-      "attackMax": 7.2,
+      "attack": 6.5,
+      "attackMax": 10,
       "attackSpeed": 0.5,
-      "accuracy": 7.2,
-      "defense": 4.8
+      "accuracy": 10,
+      "defense": 6.5
     },
     "extraStats": {
-      "attack": 1.4,
-      "attackMax": 2.2,
-      "accuracy": 2.2,
-      "defense": 1.4
+      "attack": 2,
+      "attackMax": 3,
+      "accuracy": 3,
+      "defense": 2
     }
   },
   "gold_short_sword": {
@@ -54,15 +54,15 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.8,
-      "attackMax": 9.3,
+      "attack": 6.5,
+      "attackMax": 13.1,
       "attackSpeed": 0.7,
-      "accuracy": 10.7
+      "accuracy": 14.9
     },
     "extraStats": {
-      "attack": 1.4,
-      "attackMax": 2.8,
-      "accuracy": 3.2
+      "attack": 2,
+      "attackMax": 3.9,
+      "accuracy": 4.5
     }
   },
   "gold_scimitar": {
@@ -77,15 +77,15 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.3,
-      "attackMax": 18.9,
+      "attack": 13.1,
+      "attackMax": 26.4,
       "attackSpeed": 0.7,
-      "accuracy": 15.4
+      "accuracy": 21.4
     },
     "extraStats": {
-      "attack": 2.8,
-      "attackMax": 5.7,
-      "accuracy": 4.6
+      "attack": 3.9,
+      "attackMax": 7.9,
+      "accuracy": 6.4
     }
   },
   "gold_long_sword": {
@@ -101,15 +101,15 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.3,
-      "attackMax": 16.5,
+      "attack": 13.1,
+      "attackMax": 22.9,
       "attackSpeed": 0.5,
-      "accuracy": 18.9
+      "accuracy": 26.4
     },
     "extraStats": {
-      "attack": 2.8,
-      "attackMax": 5,
-      "accuracy": 5.7
+      "attack": 3.9,
+      "attackMax": 6.9,
+      "accuracy": 7.9
     }
   },
   "gold_broad_sword": {
@@ -125,15 +125,15 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 11.9,
-      "attackMax": 18.9,
+      "attack": 16.4,
+      "attackMax": 26.4,
       "attackSpeed": 0.5,
-      "accuracy": 21.2
+      "accuracy": 29.5
     },
     "extraStats": {
-      "attack": 3.6,
-      "attackMax": 5.7,
-      "accuracy": 6.4
+      "attack": 4.9,
+      "attackMax": 7.9,
+      "accuracy": 8.9
     }
   },
   "gold_battle_axe": {
@@ -149,14 +149,14 @@ export const GOLD_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 11.9,
-      "attackMax": 35.6,
+      "attack": 16.4,
+      "attackMax": 49.1,
       "attackSpeed": 0.3,
-      "accuracy": 11.9
+      "accuracy": 16.4
     },
     "extraStats": {
-      "attack": 3.6,
-      "attackMax": 10.7
+      "attack": 4.9,
+      "attackMax": 14.7
     }
   },
   "gold_horned_helmet": {
@@ -169,14 +169,14 @@ export const GOLD_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 2.4,
-      "attackMax": 2.4,
-      "accuracy": 2.4
+      "attack": 3.4,
+      "attackMax": 3.4,
+      "accuracy": 3.4
     },
     "extraStats": {
-      "attack": 0.7,
-      "attackMax": 0.7,
-      "accuracy": 0.7
+      "attack": 1,
+      "attackMax": 1,
+      "accuracy": 1
     }
   },
   "gold_helmet": {
@@ -189,14 +189,14 @@ export const GOLD_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.4,
-      "defense": 2.4,
-      "armor": 11.9
+      "healthMax": 3.4,
+      "defense": 3.4,
+      "armor": 16.4
     },
     "extraStats": {
-      "healthMax": 0.7,
-      "defense": 0.7,
-      "armor": 3.6
+      "healthMax": 1,
+      "defense": 1,
+      "armor": 4.9
     }
   },
   "gold_chest_plate": {
@@ -209,14 +209,14 @@ export const GOLD_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.4,
-      "defense": 2.4,
-      "armor": 11.9
+      "healthMax": 3.4,
+      "defense": 3.4,
+      "armor": 16.4
     },
     "extraStats": {
-      "healthMax": 0.7,
-      "defense": 0.7,
-      "armor": 3.6
+      "healthMax": 1,
+      "defense": 1,
+      "armor": 4.9
     }
   },
   "gold_plate_legs": {
@@ -229,34 +229,35 @@ export const GOLD_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.4,
-      "defense": 2.4,
-      "armor": 11.9
+      "healthMax": 3.4,
+      "defense": 3.4,
+      "armor": 16.4
     },
     "extraStats": {
-      "healthMax": 0.7,
-      "defense": 0.7,
-      "armor": 3.6
+      "healthMax": 1,
+      "defense": 1,
+      "armor": 4.9
     }
   },
   "gold_shield": {
     "id": "gold_shield",
     "icon": "goldShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "gold shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 4.8,
-      "defense": 7.2,
-      "armor": 23.6
+      "healthMax": 6.5,
+      "defense": 10,
+      "armor": 32.9
     },
     "extraStats": {
-      "healthMax": 1.4,
-      "defense": 2.2,
-      "armor": 7.1
+      "healthMax": 2,
+      "defense": 3,
+      "armor": 9.9
     }
   }
 }

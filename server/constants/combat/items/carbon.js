@@ -11,10 +11,10 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.8,
-      "attackMax": 5.6,
+      "attack": 4,
+      "attackMax": 7.6,
       "attackSpeed": 1,
-      "accuracy": 8.4
+      "accuracy": 11.7
     }
   },
   "carbon_spear": {
@@ -29,17 +29,17 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 8.4,
+      "attack": 7.6,
+      "attackMax": 11.7,
       "attackSpeed": 0.5,
-      "accuracy": 8.4,
-      "defense": 5.6
+      "accuracy": 11.7,
+      "defense": 7.6
     },
     "extraStats": {
-      "attack": 1.7,
-      "attackMax": 2.5,
-      "accuracy": 2.5,
-      "defense": 1.7
+      "attack": 2.3,
+      "attackMax": 3.5,
+      "accuracy": 3.5,
+      "defense": 2.3
     }
   },
   "carbon_short_sword": {
@@ -54,15 +54,15 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 10.9,
+      "attack": 7.6,
+      "attackMax": 15.3,
       "attackSpeed": 0.7,
-      "accuracy": 12.5
+      "accuracy": 17.4
     },
     "extraStats": {
-      "attack": 1.7,
-      "attackMax": 3.3,
-      "accuracy": 3.8
+      "attack": 2.3,
+      "attackMax": 4.6,
+      "accuracy": 5.2
     }
   },
   "carbon_scimitar": {
@@ -77,15 +77,15 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.9,
-      "attackMax": 22.1,
+      "attack": 15.3,
+      "attackMax": 30.9,
       "attackSpeed": 0.7,
-      "accuracy": 18
+      "accuracy": 25
     },
     "extraStats": {
-      "attack": 3.3,
-      "attackMax": 6.6,
-      "accuracy": 5.4
+      "attack": 4.6,
+      "attackMax": 9.3,
+      "accuracy": 7.5
     }
   },
   "carbon_long_sword": {
@@ -101,15 +101,15 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 10.9,
-      "attackMax": 19.3,
+      "attack": 15.3,
+      "attackMax": 26.8,
       "attackSpeed": 0.5,
-      "accuracy": 22.1
+      "accuracy": 30.9
     },
     "extraStats": {
-      "attack": 3.3,
-      "attackMax": 5.8,
-      "accuracy": 6.6
+      "attack": 4.6,
+      "attackMax": 8,
+      "accuracy": 9.3
     }
   },
   "carbon_broad_sword": {
@@ -125,15 +125,15 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.9,
-      "attackMax": 22.1,
+      "attack": 19.2,
+      "attackMax": 30.9,
       "attackSpeed": 0.5,
-      "accuracy": 24.8
+      "accuracy": 34.5
     },
     "extraStats": {
-      "attack": 4.2,
-      "attackMax": 6.6,
-      "accuracy": 7.4
+      "attack": 5.8,
+      "attackMax": 9.3,
+      "accuracy": 10.4
     }
   },
   "carbon_battle_axe": {
@@ -149,14 +149,14 @@ export const CARBON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.9,
-      "attackMax": 41.7,
+      "attack": 19.2,
+      "attackMax": 57.4,
       "attackSpeed": 0.3,
-      "accuracy": 13.9
+      "accuracy": 19.2
     },
     "extraStats": {
-      "attack": 4.2,
-      "attackMax": 12.5
+      "attack": 5.8,
+      "attackMax": 17.2
     }
   },
   "carbon_horned_helmet": {
@@ -169,14 +169,14 @@ export const CARBON_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 2.8,
-      "attackMax": 2.8,
-      "accuracy": 2.8
+      "attack": 4,
+      "attackMax": 4,
+      "accuracy": 4
     },
     "extraStats": {
-      "attack": 0.8,
-      "attackMax": 0.8,
-      "accuracy": 0.8
+      "attack": 1.2,
+      "attackMax": 1.2,
+      "accuracy": 1.2
     }
   },
   "carbon_helmet": {
@@ -189,14 +189,14 @@ export const CARBON_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.9
+      "healthMax": 4,
+      "defense": 4,
+      "armor": 19.2
     },
     "extraStats": {
-      "healthMax": 0.8,
-      "defense": 0.8,
-      "armor": 4.2
+      "healthMax": 1.2,
+      "defense": 1.2,
+      "armor": 5.8
     }
   },
   "carbon_chest_plate": {
@@ -209,14 +209,14 @@ export const CARBON_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.9
+      "healthMax": 4,
+      "defense": 4,
+      "armor": 19.2
     },
     "extraStats": {
-      "healthMax": 0.8,
-      "defense": 0.8,
-      "armor": 4.2
+      "healthMax": 1.2,
+      "defense": 1.2,
+      "armor": 5.8
     }
   },
   "carbon_plate_legs": {
@@ -229,34 +229,35 @@ export const CARBON_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.9
+      "healthMax": 4,
+      "defense": 4,
+      "armor": 19.2
     },
     "extraStats": {
-      "healthMax": 0.8,
-      "defense": 0.8,
-      "armor": 4.2
+      "healthMax": 1.2,
+      "defense": 1.2,
+      "armor": 5.8
     }
   },
   "carbon_shield": {
     "id": "carbon_shield",
     "icon": "carbonShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "carbon shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 5.6,
-      "defense": 8.4,
-      "armor": 27.6
+      "healthMax": 7.6,
+      "defense": 11.7,
+      "armor": 38.5
     },
     "extraStats": {
-      "healthMax": 1.7,
-      "defense": 2.5,
-      "armor": 8.3
+      "healthMax": 2.3,
+      "defense": 3.5,
+      "armor": 11.5
     }
   }
 }

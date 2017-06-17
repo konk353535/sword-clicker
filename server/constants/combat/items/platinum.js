@@ -11,10 +11,10 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 3.8,
-      "attackMax": 7.5,
+      "attack": 5.4,
+      "attackMax": 10.2,
       "attackSpeed": 1,
-      "accuracy": 11.3
+      "accuracy": 15.7
     }
   },
   "platinum_spear": {
@@ -29,17 +29,17 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7.5,
-      "attackMax": 11.3,
+      "attack": 10.2,
+      "attackMax": 15.7,
       "attackSpeed": 0.5,
-      "accuracy": 11.3,
-      "defense": 7.5
+      "accuracy": 15.7,
+      "defense": 10.2
     },
     "extraStats": {
-      "attack": 2.3,
-      "attackMax": 3.4,
-      "accuracy": 3.4,
-      "defense": 2.3
+      "attack": 3.1,
+      "attackMax": 4.7,
+      "accuracy": 4.7,
+      "defense": 3.1
     }
   },
   "platinum_short_sword": {
@@ -54,15 +54,15 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7.5,
-      "attackMax": 14.6,
+      "attack": 10.2,
+      "attackMax": 20.6,
       "attackSpeed": 0.7,
-      "accuracy": 16.8
+      "accuracy": 23.4
     },
     "extraStats": {
-      "attack": 2.3,
-      "attackMax": 4.4,
-      "accuracy": 5
+      "attack": 3.1,
+      "attackMax": 6.2,
+      "accuracy": 7
     }
   },
   "platinum_scimitar": {
@@ -77,15 +77,15 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 14.6,
-      "attackMax": 29.8,
+      "attack": 20.6,
+      "attackMax": 41.5,
       "attackSpeed": 0.7,
-      "accuracy": 24.2
+      "accuracy": 33.6
     },
     "extraStats": {
-      "attack": 4.4,
-      "attackMax": 8.9,
-      "accuracy": 7.3
+      "attack": 6.2,
+      "attackMax": 12.5,
+      "accuracy": 10.1
     }
   },
   "platinum_long_sword": {
@@ -101,15 +101,15 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 14.6,
-      "attackMax": 25.9,
+      "attack": 20.6,
+      "attackMax": 36.1,
       "attackSpeed": 0.5,
-      "accuracy": 29.8
+      "accuracy": 41.5
     },
     "extraStats": {
-      "attack": 4.4,
-      "attackMax": 7.8,
-      "accuracy": 8.9
+      "attack": 6.2,
+      "attackMax": 10.8,
+      "accuracy": 12.5
     }
   },
   "platinum_broad_sword": {
@@ -125,15 +125,15 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18.7,
-      "attackMax": 29.8,
+      "attack": 25.8,
+      "attackMax": 41.5,
       "attackSpeed": 0.5,
-      "accuracy": 33.3
+      "accuracy": 46.4
     },
     "extraStats": {
-      "attack": 5.6,
-      "attackMax": 8.9,
-      "accuracy": 10
+      "attack": 7.7,
+      "attackMax": 12.5,
+      "accuracy": 13.9
     }
   },
   "platinum_battle_axe": {
@@ -149,14 +149,14 @@ export const PLATINUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18.7,
-      "attackMax": 56,
+      "attack": 25.8,
+      "attackMax": 77.2,
       "attackSpeed": 0.3,
-      "accuracy": 18.7
+      "accuracy": 25.8
     },
     "extraStats": {
-      "attack": 5.6,
-      "attackMax": 16.8
+      "attack": 7.7,
+      "attackMax": 23.2
     }
   },
   "platinum_horned_helmet": {
@@ -169,14 +169,14 @@ export const PLATINUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 3.8,
-      "attackMax": 3.8,
-      "accuracy": 3.8
+      "attack": 5.4,
+      "attackMax": 5.4,
+      "accuracy": 5.4
     },
     "extraStats": {
-      "attack": 1.1,
-      "attackMax": 1.1,
-      "accuracy": 1.1
+      "attack": 1.6,
+      "attackMax": 1.6,
+      "accuracy": 1.6
     }
   },
   "platinum_helmet": {
@@ -189,14 +189,14 @@ export const PLATINUM_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.8,
-      "defense": 3.8,
-      "armor": 18.7
+      "healthMax": 5.4,
+      "defense": 5.4,
+      "armor": 25.8
     },
     "extraStats": {
-      "healthMax": 1.1,
-      "defense": 1.1,
-      "armor": 5.6
+      "healthMax": 1.6,
+      "defense": 1.6,
+      "armor": 7.7
     }
   },
   "platinum_chest_plate": {
@@ -209,14 +209,14 @@ export const PLATINUM_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.8,
-      "defense": 3.8,
-      "armor": 18.7
+      "healthMax": 5.4,
+      "defense": 5.4,
+      "armor": 25.8
     },
     "extraStats": {
-      "healthMax": 1.1,
-      "defense": 1.1,
-      "armor": 5.6
+      "healthMax": 1.6,
+      "defense": 1.6,
+      "armor": 7.7
     }
   },
   "platinum_plate_legs": {
@@ -229,34 +229,35 @@ export const PLATINUM_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 3.8,
-      "defense": 3.8,
-      "armor": 18.7
+      "healthMax": 5.4,
+      "defense": 5.4,
+      "armor": 25.8
     },
     "extraStats": {
-      "healthMax": 1.1,
-      "defense": 1.1,
-      "armor": 5.6
+      "healthMax": 1.6,
+      "defense": 1.6,
+      "armor": 7.7
     }
   },
   "platinum_shield": {
     "id": "platinum_shield",
     "icon": "platinumShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "platinum shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 7.5,
-      "defense": 11.3,
-      "armor": 37.1
+      "healthMax": 10.2,
+      "defense": 15.7,
+      "armor": 51.8
     },
     "extraStats": {
-      "healthMax": 2.3,
-      "defense": 3.4,
-      "armor": 11.1
+      "healthMax": 3.1,
+      "defense": 4.7,
+      "armor": 15.5
     }
   }
 }

@@ -11,10 +11,10 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.3,
-      "attackMax": 18,
+      "attack": 13,
+      "attackMax": 24.4,
       "attackSpeed": 1,
-      "accuracy": 27.3
+      "accuracy": 38.1
     }
   },
   "meteorite_spear": {
@@ -29,17 +29,17 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18,
-      "attackMax": 27.3,
+      "attack": 24.4,
+      "attackMax": 38.1,
       "attackSpeed": 0.5,
-      "accuracy": 27.3,
-      "defense": 18
+      "accuracy": 38.1,
+      "defense": 24.4
     },
     "extraStats": {
-      "attack": 5.4,
-      "attackMax": 8.2,
-      "accuracy": 8.2,
-      "defense": 5.4
+      "attack": 7.3,
+      "attackMax": 11.4,
+      "accuracy": 11.4,
+      "defense": 7.3
     }
   },
   "meteorite_short_sword": {
@@ -54,15 +54,15 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18,
-      "attackMax": 35.3,
+      "attack": 24.4,
+      "attackMax": 49.6,
       "attackSpeed": 0.7,
-      "accuracy": 40.3
+      "accuracy": 56.3
     },
     "extraStats": {
-      "attack": 5.4,
-      "attackMax": 10.6,
-      "accuracy": 12.1
+      "attack": 7.3,
+      "attackMax": 14.9,
+      "accuracy": 16.9
     }
   },
   "meteorite_scimitar": {
@@ -77,15 +77,15 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 35.3,
-      "attackMax": 72,
+      "attack": 49.6,
+      "attackMax": 99.8,
       "attackSpeed": 0.7,
-      "accuracy": 58.2
+      "accuracy": 80.8
     },
     "extraStats": {
-      "attack": 10.6,
-      "attackMax": 21.6,
-      "accuracy": 17.5
+      "attack": 14.9,
+      "attackMax": 29.9,
+      "accuracy": 24.2
     }
   },
   "meteorite_long_sword": {
@@ -101,15 +101,15 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 35.3,
-      "attackMax": 62.3,
+      "attack": 49.6,
+      "attackMax": 86.9,
       "attackSpeed": 0.5,
-      "accuracy": 72
+      "accuracy": 99.8
     },
     "extraStats": {
-      "attack": 10.6,
-      "attackMax": 18.7,
-      "accuracy": 21.6
+      "attack": 14.9,
+      "attackMax": 26.1,
+      "accuracy": 29.9
     }
   },
   "meteorite_broad_sword": {
@@ -125,15 +125,15 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 45.2,
-      "attackMax": 72,
+      "attack": 62.2,
+      "attackMax": 99.8,
       "attackSpeed": 0.5,
-      "accuracy": 80.3
+      "accuracy": 111.7
     },
     "extraStats": {
-      "attack": 13.6,
-      "attackMax": 21.6,
-      "accuracy": 24.1
+      "attack": 18.7,
+      "attackMax": 29.9,
+      "accuracy": 33.5
     }
   },
   "meteorite_battle_axe": {
@@ -149,14 +149,14 @@ export const METEORITE_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 45.2,
-      "attackMax": 134.8,
+      "attack": 62.2,
+      "attackMax": 185.8,
       "attackSpeed": 0.3,
-      "accuracy": 45.2
+      "accuracy": 62.2
     },
     "extraStats": {
-      "attack": 13.6,
-      "attackMax": 40.4
+      "attack": 18.7,
+      "attackMax": 55.7
     }
   },
   "meteorite_horned_helmet": {
@@ -169,14 +169,14 @@ export const METEORITE_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "attack": 9.3,
-      "attackMax": 9.3,
-      "accuracy": 9.3
+      "attack": 13,
+      "attackMax": 13,
+      "accuracy": 13
     },
     "extraStats": {
-      "attack": 2.8,
-      "attackMax": 2.8,
-      "accuracy": 2.8
+      "attack": 3.9,
+      "attackMax": 3.9,
+      "accuracy": 3.9
     }
   },
   "meteorite_helmet": {
@@ -189,14 +189,14 @@ export const METEORITE_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 9.3,
-      "defense": 9.3,
-      "armor": 45.2
+      "healthMax": 13,
+      "defense": 13,
+      "armor": 62.2
     },
     "extraStats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.6
+      "healthMax": 3.9,
+      "defense": 3.9,
+      "armor": 18.7
     }
   },
   "meteorite_chest_plate": {
@@ -209,14 +209,14 @@ export const METEORITE_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 9.3,
-      "defense": 9.3,
-      "armor": 45.2
+      "healthMax": 13,
+      "defense": 13,
+      "armor": 62.2
     },
     "extraStats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.6
+      "healthMax": 3.9,
+      "defense": 3.9,
+      "armor": 18.7
     }
   },
   "meteorite_plate_legs": {
@@ -229,34 +229,35 @@ export const METEORITE_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 9.3,
-      "defense": 9.3,
-      "armor": 45.2
+      "healthMax": 13,
+      "defense": 13,
+      "armor": 62.2
     },
     "extraStats": {
-      "healthMax": 2.8,
-      "defense": 2.8,
-      "armor": 13.6
+      "healthMax": 3.9,
+      "defense": 3.9,
+      "armor": 18.7
     }
   },
   "meteorite_shield": {
     "id": "meteorite_shield",
     "icon": "meteoriteShield",
     "category": "combat",
+    "weaponType": "shield",
     "slot": "offHand",
     "name": "meteorite shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 18,
-      "defense": 27.3,
-      "armor": 89.6
+      "healthMax": 24.4,
+      "defense": 38.1,
+      "armor": 124.8
     },
     "extraStats": {
-      "healthMax": 5.4,
-      "defense": 8.2,
-      "armor": 26.9
+      "healthMax": 7.3,
+      "defense": 11.4,
+      "armor": 37.4
     }
   }
 }

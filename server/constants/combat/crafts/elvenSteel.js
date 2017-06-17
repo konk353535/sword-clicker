@@ -23,7 +23,7 @@ export const elven_STEEL_CRAFTS = {
       itemId: 'elven_steel_essence',
       icon: ITEMS['elven_steel_essence'].icon,
       name: ITEMS['elven_steel_essence'].name,
-      amount: 4,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',

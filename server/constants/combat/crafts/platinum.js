@@ -20,6 +20,13 @@ export const platinum_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'elk_log',
       icon: ITEMS['elk_log'].icon,
       name: ITEMS['elk_log'].name,
@@ -56,6 +63,13 @@ export const platinum_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'elk_log',
@@ -96,6 +110,13 @@ export const platinum_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'elk_log',
       icon: ITEMS['elk_log'].icon,
       name: ITEMS['elk_log'].name,
@@ -132,6 +153,13 @@ export const platinum_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 8,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'elk_log',
@@ -172,6 +200,13 @@ export const platinum_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'elk_log',
       icon: ITEMS['elk_log'].icon,
       name: ITEMS['elk_log'].name,
@@ -208,6 +243,13 @@ export const platinum_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'elk_log',
@@ -248,6 +290,13 @@ export const platinum_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'elk_log',
       icon: ITEMS['elk_log'].icon,
       name: ITEMS['elk_log'].name,
@@ -286,6 +335,13 @@ export const platinum_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'elk_log',
       icon: ITEMS['elk_log'].icon,
       name: ITEMS['elk_log'].name,
@@ -322,6 +378,13 @@ export const platinum_CRAFTS = {
       name: ITEMS['steel_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'elk_log',

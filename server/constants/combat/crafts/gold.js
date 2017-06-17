@@ -27,6 +27,13 @@ export const GOLD_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'gold_bar',
       icon: ITEMS['gold_bar'].icon,
       name: ITEMS['gold_bar'].name,
@@ -56,6 +63,13 @@ export const GOLD_CRAFTS = {
       name: ITEMS['silver_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'walnut_log',
@@ -96,6 +110,13 @@ export const GOLD_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'walnut_log',
       icon: ITEMS['walnut_log'].icon,
       name: ITEMS['walnut_log'].name,
@@ -132,6 +153,13 @@ export const GOLD_CRAFTS = {
       name: ITEMS['silver_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 8,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'walnut_log',
@@ -172,6 +200,13 @@ export const GOLD_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'walnut_log',
       icon: ITEMS['walnut_log'].icon,
       name: ITEMS['walnut_log'].name,
@@ -208,6 +243,13 @@ export const GOLD_CRAFTS = {
       name: ITEMS['silver_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'walnut_log',
@@ -248,6 +290,13 @@ export const GOLD_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'walnut_log',
       icon: ITEMS['walnut_log'].icon,
       name: ITEMS['walnut_log'].name,
@@ -286,6 +335,13 @@ export const GOLD_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'walnut_log',
       icon: ITEMS['walnut_log'].icon,
       name: ITEMS['walnut_log'].name,
@@ -322,6 +378,13 @@ export const GOLD_CRAFTS = {
       name: ITEMS['silver_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'walnut_log',

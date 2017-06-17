@@ -27,6 +27,13 @@ export const TITANIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'titanium_bar',
       icon: ITEMS['titanium_bar'].icon,
       name: ITEMS['titanium_bar'].name,
@@ -56,6 +63,13 @@ export const TITANIUM_CRAFTS = {
       name: ITEMS['platinum_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'black_log',
@@ -96,6 +110,13 @@ export const TITANIUM_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'black_log',
       icon: ITEMS['black_log'].icon,
       name: ITEMS['black_log'].name,
@@ -132,6 +153,13 @@ export const TITANIUM_CRAFTS = {
       name: ITEMS['platinum_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'black_log',
@@ -172,6 +200,13 @@ export const TITANIUM_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'black_log',
       icon: ITEMS['black_log'].icon,
       name: ITEMS['black_log'].name,
@@ -208,6 +243,13 @@ export const TITANIUM_CRAFTS = {
       name: ITEMS['platinum_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'black_log',
@@ -248,6 +290,13 @@ export const TITANIUM_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'black_log',
       icon: ITEMS['black_log'].icon,
       name: ITEMS['black_log'].name,
@@ -286,6 +335,13 @@ export const TITANIUM_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'black_log',
       icon: ITEMS['black_log'].icon,
       name: ITEMS['black_log'].name,
@@ -322,6 +378,13 @@ export const TITANIUM_CRAFTS = {
       name: ITEMS['platinum_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'black_log',

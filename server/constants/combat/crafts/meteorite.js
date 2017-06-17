@@ -23,7 +23,7 @@ export const meteorite_CRAFTS = {
       itemId: 'meteorite_essence',
       icon: ITEMS['meteorite_essence'].icon,
       name: ITEMS['meteorite_essence'].name,
-      amount: 4,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',

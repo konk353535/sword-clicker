@@ -1,3 +1,5 @@
+import { ITEMS } from '/server/constants/items/index.js';
+
 const options = {
   stone: {
     prefix: 'stone',
@@ -151,49 +153,61 @@ const options = {
 
 const totalObject = {};
 const baseData = {
-  produces: 'copper_bar',
+  produces: 'mithril_pickaxe',
   recipeFor: 'crafting',
-  name: 'copper bar',
-  category: 'crafting',
-  id: 'copper_bar',
-  timeToCraft: 3,
-  xp: 2,
-  maxToCraft: 100,
-  requiredCraftingLevel: 2,
+  name: 'mithril pickaxe',
+  id: 'mithril_pickaxe',
+  category: 'mining',
+  timeToCraft: 300,
+  xp: 500,
+  maxToCraft: 1,
+  requiredCraftingLevel: 15,
   required: [{
     type: 'item',
-    itemId: 'stone_furnace',
-    icon: ITEMS['stone_furnace'].icon,
-    name: ITEMS['stone_furnace'].name,
+    itemId: 'carbon_furnace',
+    icon: ITEMS['carbon_furnace'].icon,
+    name: ITEMS['carbon_furnace'].name,
     amount: 1,
     consumes: false
   }, {
     type: 'item',
-    itemId: 'ore_coal',
-    icon: ITEMS['ore_coal'].icon,
-    name: ITEMS['ore_coal'].name,
+    itemId: 'mithril_essence',
+    icon: ITEMS['mithril_essence'].icon,
+    name: ITEMS['mithril_essence'].name,
     amount: 1,
     consumes: true
   }, {
     type: 'item',
-    itemId: 'ore_copper',
-    icon: ITEMS['ore_copper'].icon,
-    name: ITEMS['ore_copper'].name,
-    amount: 1,
+    itemId: 'maple_log',
+    icon: ITEMS['maple_log'].icon,
+    name: ITEMS['maple_log'].name,
+    amount: 10,
+    consumes: true
+  }, {
+    type: 'item',
+    itemId: 'mithril_bar',
+    icon: ITEMS['mithril_bar'].icon,
+    name: ITEMS['mithril_bar'].name,
+    amount: 5,
     consumes: true
   }, {
     type: 'skill',
     name: 'crafting',
-    level: 2
+    level: 15
   }]
 }
-totalObject.copper_bar = baseData;
+
+totalObject.mithril_pickaxe = baseData;
 Object.keys(options).forEach((optionKey, optionIndex) => {
-  if (optionKey !== 'stone' && optionKey !== 'copper') {
+  if (optionKey !== 'stone') {
     // Clone baseData
-    const newObject = JSON.parse(JSON.stringify(baseData));
+    let newObject = JSON.stringify(baseData, null, 2);
 
-    
+    newObject = newObject.replace(new RegExp('carbon', 'gi'), Object.keys(options)[optionIndex - 1]);
+    newObject = newObject.replace(new RegExp('mithril', 'gi'), option_key);
+    newObject = newObject.replace(new RegExp('maple_log', 'gi'), options[option_key].wood);
 
+    totalObject[newObject.id] = newObject;
   }
-})
+});
+console.log(totalObject);

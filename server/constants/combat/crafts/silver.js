@@ -20,6 +20,13 @@ export const silver_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
@@ -56,6 +63,13 @@ export const silver_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'maple_log',
@@ -96,6 +110,13 @@ export const silver_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
@@ -132,6 +153,13 @@ export const silver_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 8,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'maple_log',
@@ -172,6 +200,13 @@ export const silver_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
@@ -208,6 +243,13 @@ export const silver_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'maple_log',
@@ -248,6 +290,13 @@ export const silver_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
@@ -286,6 +335,13 @@ export const silver_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'maple_log',
       icon: ITEMS['maple_log'].icon,
       name: ITEMS['maple_log'].name,
@@ -322,6 +378,13 @@ export const silver_CRAFTS = {
       name: ITEMS['iron_furnace'].name,
       amount: 1,
       consumes: false
+    }, {
+      type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 4,
+      consumes: true
     }, {
       type: 'item',
       itemId: 'maple_log',

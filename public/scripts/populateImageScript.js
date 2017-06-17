@@ -36,7 +36,7 @@ const options = {
     color: '#535252',
     tier: 4
   },
-  silver: {
+  silver: { // First tier to require essence
     prefix: 'silver',
     color: '#c8e0d5',
     tier: 5

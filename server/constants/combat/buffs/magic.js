@@ -6,6 +6,58 @@ export const MAGIC_BUFFS = {
 
   /* BUFFS */
 
+  magic_wisdom: {
+    duplicateTag: 'magic_wisdom', // Used to stop duplicate buffs
+    icon: 'magicWisdom',
+    name: 'magic wisdom',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Increases your magic power by ${c.magicPowerBase}% <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        Lasts for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      magicPowerBase: 20,
+      healthCost: 15,
+      healthCostMPRatio: 0.2
+    },
+    data: {
+      duration: 300,
+      totalDuration: 300,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const magicPowerBase = constants.magicPowerBase;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.magicPowerBase = 1 + (magicPowerBase / 100);
+          target.stats.magicPower *= buff.data.magicPowerBase;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        target.stats.magicPower /= buff.data.magicPowerBase;
+      }
+    }
+  },
+
   frenzied_winds: {
     duplicateTag: 'frenzied_winds', // Used to stop duplicate buffs
     icon: 'frenziedWinds',
@@ -791,6 +843,157 @@ export const MAGIC_BUFFS = {
 
   /* DEBUFFS */
 
+  poison_dart: {
+    duplicateTag: 'poison_dart', // Used to stop duplicate buffs
+    icon: 'poisonDart',
+    name: 'poison dart',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Poisons the enemy dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage every 5 seconds.<br />
+        Lasts 3 minutes.`;
+    },
+    constants: {
+      damageMPRatio: 0.4,
+      healthCost: 10,
+      healthCostMPRatio: 0.5,
+      totalDuration: 3 * 60
+    },
+    data: {
+      duration: 3 * 60,
+      totalDuration: 3 * 60,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+  
+          // Add poisoned debuff to enemy
+          target.buffs.push({
+            id: 'basic_poison',
+            data: {
+              duration: 180,
+              totalDuration: 180,
+              damage: Math.ceil(magicDamageTotal),
+              icon: 'poison',
+              sourceId: caster.id
+            }
+          });
+        }
+        buff.data.duration = 0;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (buff.data.totalMagicArmorReduction) {
+          target.stats.magicArmor += buff.data.totalMagicArmorReduction;
+          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
+            attacker: target,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      }
+    }
+  },
+
+  affliction: {
+    duplicateTag: 'affliction', // Used to stop duplicate buffs
+    icon: 'affliction',
+    name: 'affliction',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Deals (${Math.round(c.damageMPRatio * 100)}% of MP) damage at the start and end of affliction. <br />
+        Reduces enemy magic armor by (${c.magicArmorReductionBase} + ${Math.round(c.magicArmorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+    },
+    constants: {
+      magicArmorReductionBase: 10,
+      magicArmorReductionMPRatio: 1.1,
+      damageMPRatio: 1,
+      healthCost: 10,
+      healthCostMPRatio: 0.1,
+      totalDuration: 3
+    },
+    data: {
+      duration: 3,
+      totalDuration: 3,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const magicArmorReductionBase = constants.magicArmorReductionBase;
+        const magicArmorReductionMP = constants.magicArmorReductionMPRatio * caster.stats.magicPower;
+        const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower;
+        const totalMagicArmorReduction = magicArmorReductionBase + magicArmorReductionMP;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          buff.data.magicDamageTotal = magicDamageTotal;
+          buff.data.totalMagicArmorReduction = totalMagicArmorReduction;
+          target.stats.magicArmor -= totalMagicArmorReduction;
+
+          actualBattle.utils.dealDamage(magicDamageTotal, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+        } else {
+          buff.data.totalMagicArmorReduction = 0;
+          buff.data.duration = -1;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (buff.data.totalMagicArmorReduction) {
+          target.stats.magicArmor += buff.data.totalMagicArmorReduction;
+          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
+            attacker: target,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      }
+    }
+  },
+
   air_dart: {
     duplicateTag: 'air_dart', // Used to stop duplicate buffs
     icon: 'airDart',
@@ -1227,6 +1430,58 @@ export const MAGIC_BUFFS = {
       damageMPRatio: 2.5,
       healthCost: 2,
       healthCostMPRatio: 0.15
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damageBase = constants.damageBase;
+        const damageMP = constants.damageMPRatio * caster.stats.magicPower;
+        const totalDamage = damageBase + damageMP;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          actualBattle.utils.dealDamage(totalDamage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onTick({ buff, target, caster }) {
+        removeBuff({ buff, target, caster });
+      },
+
+      onRemove() {}
+    }
+  },
+
+  meteor_strike: {
+    duplicateTag: 'meteor_strike', // Used to stop duplicate buffs
+    icon: 'meteorStrike',
+    name: 'meteor strike',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+    },
+    constants: {
+      damageBase: 20,
+      damageMPRatio: 8,
+      healthCost: 20,
+      healthCostMPRatio: 0.8
     },
     data: {
       duration: 0,

@@ -80,6 +80,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 30,
     slot: 'any',
     target: 'allAllies',
+    isHidden: true,
     isMagic: true,
     requires: [{
       type: 'weaponType',
@@ -87,6 +88,26 @@ export const MAGIC_ABILITIES = {
     }],
     description(level) {
       const BUFF = BUFFS.water_wave;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  poison_dart: {
+    icon: 'poisonDart',
+    name: 'poison dart',
+    id: 'poison_dart',
+    buffs: ['poison_dart'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.poison_dart;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -147,6 +168,66 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.fire_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  magic_wisdom: {
+    icon: 'magicWisdom',
+    name: 'magic wisdom',
+    id: 'magic_wisdom',
+    buffs: ['magic_wisdom'],
+    cooldown: 60 * 60 * 24,
+    slot: 'any',
+    target: 'self',
+    isMagic: true,
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.magic_wisdom;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  affliction: {
+    icon: 'affliction',
+    name: 'affliction',
+    id: 'affliction',
+    buffs: ['affliction'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.affliction;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  meteor_strike: {
+    icon: 'meteorStrike',
+    name: 'meteor strike',
+    id: 'meteor_strike',
+    buffs: ['meteor_strike'],
+    cooldown: 300,
+    isHidden: true,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.meteor_strike;
       return BUFF.description({ buff: BUFF, level });
     }
   },

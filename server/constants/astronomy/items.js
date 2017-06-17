@@ -1,4 +1,13 @@
 export const ASTRONOMY_ITEMS = {
+  poison_shard_fragment: {
+    id: 'poison_shard_fragment',
+    icon: 'poisonShardFragment',
+    category: 'astronomy',
+    name: 'poison shard fragment',
+    sellPrice: 4,
+    description: 'Fragments of a poison shard'
+  },
+
   fire_shard_fragment: {
     id: 'fire_shard_fragment',
     icon: 'fireShardFragment',

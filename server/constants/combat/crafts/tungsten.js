@@ -27,9 +27,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -72,9 +72,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -117,9 +117,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -162,9 +162,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -207,9 +207,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -252,9 +252,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -297,9 +297,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -342,9 +342,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -387,9 +387,9 @@ export const TUNGSTEN_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'black_gum_log',
-      icon: ITEMS['black_gum_log'].icon,
-      name: ITEMS['black_gum_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 50,
       consumes: true
     }, {

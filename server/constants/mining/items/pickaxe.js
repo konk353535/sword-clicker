@@ -106,6 +106,56 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  tin_mining_hammer: {
+    id: 'tin_mining_hammer',
+    icon: 'tinMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tin mining hammer',
+    sellPrice: 50,
+    description: 'A hammer forged from tin. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 80,
+      attack: 8,
+      energyPerHit: 1,
+      energyRegen: 8,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 2,
+      miner: 5,
+      energyRegen: 3
+    }
+  },
+
+  bronze_mining_hammer: {
+    id: 'bronze_mining_hammer',
+    icon: 'bronzeMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'bronze mining hammer',
+    sellPrice: 50,
+    description: 'A hammer forged from bronze. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 80,
+      attack: 8,
+      energyPerHit: 1,
+      energyRegen: 8,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 2,
+      miner: 5,
+      energyRegen: 3
+    }
+  },
+
   iron_mining_hammer: {
     id: 'iron_mining_hammer',
     icon: 'ironMiningHammer',
@@ -127,6 +177,81 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       miner: 10,
+      energyRegen: 2
+    }
+  },
+
+  silver_mining_hammer: {
+    id: 'silver_mining_hammer',
+    icon: 'silverMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'silver mining hammer',
+    sellPrice: 100,
+    description: 'A hammer forged from silver. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 85,
+      attack: 11,
+      energyPerHit: 1,
+      energyRegen: 5,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 10,
+      energyRegen: 2
+    }
+  },
+
+  gold_mining_hammer: {
+    id: 'gold_mining_hammer',
+    icon: 'goldMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'gold mining hammer',
+    sellPrice: 100,
+    description: 'A hammer forged from gold. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 85,
+      attack: 11,
+      energyPerHit: 1,
+      energyRegen: 5,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 10,
+      energyRegen: 2
+    }
+  },
+
+  carbon_mining_hammer: {
+    id: 'carbon_mining_hammer',
+    icon: 'carbonMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'carbon mining hammer',
+    sellPrice: 300,
+    description: 'A hammer forged from carbon. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 95,
+      attack: 22,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 20,
       energyRegen: 2
     }
   },
@@ -156,19 +281,19 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  carbon_mining_hammer: {
-    id: 'carbon_mining_hammer',
-    icon: 'carbonMiningHammer',
+  platinum_mining_hammer: {
+    id: 'platinum_mining_hammer',
+    icon: 'platinumMiningHammer',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'carbon mining hammer',
-    sellPrice: 300,
-    description: 'A hammer forged from carbon. Used for mining',
+    name: 'platinum mining hammer',
+    sellPrice: 200,
+    description: 'A hammer forged from platinum. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 95,
-      attack: 22,
+      energyStorage: 90,
+      attack: 15,
       energyPerHit: 1,
       energyRegen: 4,
       miner: 0
@@ -176,8 +301,108 @@ export const PICKAXE_ITEMS = {
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 20,
+      miner: 15,
       energyRegen: 2
+    }
+  },
+
+  titanium_mining_hammer: {
+    id: 'titanium_mining_hammer',
+    icon: 'titaniumMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanium mining hammer',
+    sellPrice: 200,
+    description: 'A hammer forged from titanium. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 90,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 15,
+      energyRegen: 2
+    }
+  },
+
+  tungsten_mining_hammer: {
+    id: 'tungsten_mining_hammer',
+    icon: 'tungstenMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tungsten mining hammer',
+    sellPrice: 200,
+    description: 'A hammer forged from tungsten. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 90,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 15,
+      energyRegen: 2
+    }
+  },
+
+  obsidian_mining_hammer: {
+    id: 'obsidian_mining_hammer',
+    icon: 'obsidianMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'obsidian mining hammer',
+    sellPrice: 200,
+    description: 'A hammer forged from obsidian. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 90,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 0
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 15,
+      energyRegen: 2
+    }
+  },
+
+  cobalt_mining_hammer: {
+    id: 'cobalt_mining_hammer',
+    icon: 'cobaltMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'cobalt mining hammer',
+    sellPrice: 1250,
+    description: 'A hammer forged from cobalt. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 105,
+      attack: 40,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 40
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 3,
+      miner: 25,
+      energyRegen: 3
     }
   },
 
@@ -256,22 +481,22 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  cobalt_mining_hammer: {
-    id: 'cobalt_mining_hammer',
-    icon: 'cobaltMiningHammer',
+  meteorite_mining_hammer: {
+    id: 'meteorite_mining_hammer',
+    icon: 'meteoriteMiningHammer',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'cobalt mining hammer',
-    sellPrice: 1250,
-    description: 'A hammer forged from cobalt. Used for mining',
+    name: 'meteorite mining hammer',
+    sellPrice: 1000,
+    description: 'A hammer forged from meteorite. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 40,
+      attack: 35,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 40
+      miner: 35
     },
     extraStats: {
       energyStorage: 10,
@@ -289,6 +514,31 @@ export const PICKAXE_ITEMS = {
     name: 'fairy_steel mining hammer',
     sellPrice: 1500,
     description: 'A hammer forged from fairy steel. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 105,
+      attack: 45,
+      energyPerHit: 1,
+      energyRegen: 4,
+      miner: 45
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 4,
+      miner: 25,
+      energyRegen: 3
+    }
+  },
+
+  elven_steel_mining_hammer: {
+    id: 'elven_steel_mining_hammer',
+    icon: 'elvenSteelMiningHammer',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'elven_steel mining hammer',
+    sellPrice: 1500,
+    description: 'A hammer forged from elven steel. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
@@ -354,6 +604,50 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  tin_dwarven_idol: {
+    id: 'tin_dwarven_idol',
+    icon: 'tinDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tin Dwarven Idol',
+    sellPrice: 50,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2, // Maximum energy stored
+      attack: 5, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 1, // Energy regen per minute
+      miner: 40 // Increases effeciency of miners
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+  bronze_dwarven_idol: {
+    id: 'bronze_dwarven_idol',
+    icon: 'bronzeDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'bronze Dwarven Idol',
+    sellPrice: 50,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2, // Maximum energy stored
+      attack: 5, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 1, // Energy regen per minute
+      miner: 40 // Increases effeciency of miners
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
   iron_dwarven_idol: {
     id: 'iron_dwarven_idol',
     icon: 'ironDwarvenIdol',
@@ -375,6 +669,74 @@ export const PICKAXE_ITEMS = {
       miner: 10
     }
   },
+
+  silver_dwarven_idol: {
+    id: 'silver_dwarven_idol',
+    icon: 'silverDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'silver Dwarven Idol',
+    sellPrice: 100,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 10,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 75
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+  gold_dwarven_idol: {
+    id: 'gold_dwarven_idol',
+    icon: 'goldDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'gold Dwarven Idol',
+    sellPrice: 100,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 10,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 75
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+
+  carbon_dwarven_idol: {
+    id: 'carbon_dwarven_idol',
+    icon: 'carbonDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'carbon Dwarven Idol',
+    sellPrice: 300,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 20,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 150
+    },
+    extraStats: {
+      miner: 15
+    }
+  },
+
 
   steel_dwarven_idol: {
     id: 'steel_dwarven_idol',
@@ -398,25 +760,113 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  carbon_dwarven_idol: {
-    id: 'carbon_dwarven_idol',
-    icon: 'carbonDwarvenIdol',
+  platinum_dwarven_idol: {
+    id: 'platinum_dwarven_idol',
+    icon: 'platinumDwarvenIdol',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'carbon Dwarven Idol',
-    sellPrice: 300,
+    name: 'platinum Dwarven Idol',
+    sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
       energyStorage: 2,
-      attack: 20,
+      attack: 15,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 150
+      miner: 115
     },
     extraStats: {
-      miner: 15
+      miner: 10
+    }
+  },
+
+  titanium_dwarven_idol: {
+    id: 'titanium_dwarven_idol',
+    icon: 'titaniumDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanium Dwarven Idol',
+    sellPrice: 200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 115
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+  tungsten_dwarven_idol: {
+    id: 'tungsten_dwarven_idol',
+    icon: 'tungstenDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tungsten Dwarven Idol',
+    sellPrice: 200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 115
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+  obsidian_dwarven_idol: {
+    id: 'obsidian_dwarven_idol',
+    icon: 'obsidianDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'obsidian Dwarven Idol',
+    sellPrice: 200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 2,
+      attack: 15,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 115
+    },
+    extraStats: {
+      miner: 10
+    }
+  },
+
+  cobalt_dwarven_idol: {
+    id: 'cobalt_dwarven_idol',
+    icon: 'cobaltDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'cobalt Dwarven Idol',
+    sellPrice: 1250,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 1,
+      attack: 40,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 270
+    },
+    extraStats: {
+      miner: 27
     }
   },
 
@@ -486,27 +936,29 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  cobalt_dwarven_idol: {
-    id: 'cobalt_dwarven_idol',
-    icon: 'cobaltDwarvenIdol',
+
+  meteorite_dwarven_idol: {
+    id: 'meteorite_dwarven_idol',
+    icon: 'meteoriteDwarvenIdol',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'cobalt Dwarven Idol',
-    sellPrice: 1250,
+    name: 'meteorite Dwarven Idol',
+    sellPrice: 1000,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
       energyStorage: 1,
-      attack: 40,
+      attack: 35,
       energyPerHit: 1,
       energyRegen: 1,
-      miner: 270
+      miner: 240
     },
     extraStats: {
-      miner: 27
+      miner: 24
     }
   },
+
 
   fairy_steel_dwarven_idol: {
     id: 'fairy_steel_dwarven_idol',
@@ -514,6 +966,28 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy steel Dwarven Idol',
+    sellPrice: 1500,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 1,
+      attack: 45,
+      energyPerHit: 1,
+      energyRegen: 1,
+      miner: 300
+    },
+    extraStats: {
+      miner: 30
+    }
+  },
+
+  elven_steel_dwarven_idol: {
+    id: 'elven_steel_dwarven_idol',
+    icon: 'elvenSteelDwarvenIdol',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'elven steel Dwarven Idol',
     sellPrice: 1500,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
@@ -602,6 +1076,56 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  tin_pickaxe: {
+    id: 'tin_pickaxe',
+    icon: 'tinPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tin pickaxe',
+    sellPrice: 50,
+    description: 'A pickaxe forged from tin. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 12, // Maximum energy stored
+      attack: 8, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 8, // Energy regen per minute
+      miner: 10 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 12,
+      attack: 3,
+      miner: 25,
+      energyRegen: 3
+    }
+  },
+
+  bronze_pickaxe: {
+    id: 'bronze_pickaxe',
+    icon: 'bronzePickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'bronze pickaxe',
+    sellPrice: 50,
+    description: 'A pickaxe forged from bronze. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 12, // Maximum energy stored
+      attack: 8, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 8, // Energy regen per minute
+      miner: 10 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 12,
+      attack: 3,
+      miner: 25,
+      energyRegen: 3
+    }
+  },
+
   iron_pickaxe: {
     id: 'iron_pickaxe',
     icon: 'ironPickaxe',
@@ -624,6 +1148,81 @@ export const PICKAXE_ITEMS = {
       attack: 5,
       miner: 25,
       energyRegen: 3
+    }
+  },
+
+  silver_pickaxe: {
+    id: 'silver_pickaxe',
+    icon: 'silverPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'silver pickaxe',
+    sellPrice: 100,
+    description: 'A pickaxe forged from silver. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 14,
+      attack: 11,
+      energyPerHit: 1,
+      energyRegen: 6,
+      miner: 20
+    },
+    extraStats: {
+      energyStorage: 14,
+      attack: 5,
+      miner: 25,
+      energyRegen: 3
+    }
+  },
+
+  gold_pickaxe: {
+    id: 'gold_pickaxe',
+    icon: 'goldPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'gold pickaxe',
+    sellPrice: 100,
+    description: 'A pickaxe forged from gold. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 14,
+      attack: 11,
+      energyPerHit: 1,
+      energyRegen: 6,
+      miner: 20
+    },
+    extraStats: {
+      energyStorage: 14,
+      attack: 5,
+      miner: 25,
+      energyRegen: 3
+    }
+  },
+
+  carbon_pickaxe: {
+    id: 'carbon_pickaxe',
+    icon: 'carbonPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'carbon pickaxe',
+    sellPrice: 300,
+    description: 'A pickaxe forged from carbon. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 20,
+      attack: 20,
+      energyPerHit: 1,
+      energyRegen: 5,
+      miner: 30
+    },
+    extraStats: {
+      energyStorage: 20,
+      attack: 5,
+      miner: 30,
+      energyRegen: 2
     }
   },
 
@@ -652,27 +1251,27 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  carbon_pickaxe: {
-    id: 'carbon_pickaxe',
-    icon: 'carbonPickaxe',
+  cobalt_pickaxe: {
+    id: 'cobalt_pickaxe',
+    icon: 'cobaltPickaxe',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'carbon pickaxe',
-    sellPrice: 300,
-    description: 'A pickaxe forged from carbon. Used for mining',
+    name: 'cobalt pickaxe',
+    sellPrice: 750,
+    description: 'A pickaxe forged from cobalt. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 20,
-      attack: 20,
+      energyStorage: 28,
+      attack: 40,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 30
+      miner: 50
     },
     extraStats: {
-      energyStorage: 20,
+      energyStorage: 28,
       attack: 5,
-      miner: 30,
+      miner: 50,
       energyRegen: 2
     }
   },
@@ -752,27 +1351,27 @@ export const PICKAXE_ITEMS = {
     }
   },
 
-  cobalt_pickaxe: {
-    id: 'cobalt_pickaxe',
-    icon: 'cobaltPickaxe',
+  meteorite_pickaxe: {
+    id: 'meteorite_pickaxe',
+    icon: 'meteoritePickaxe',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'cobalt pickaxe',
-    sellPrice: 750,
-    description: 'A pickaxe forged from cobalt. Used for mining',
+    name: 'meteorite pickaxe',
+    sellPrice: 1000,
+    description: 'A pickaxe forged from meteorite. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
       energyStorage: 28,
-      attack: 40,
+      attack: 35,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 50
+      miner: 45
     },
     extraStats: {
       energyStorage: 28,
       attack: 5,
-      miner: 50,
+      miner: 45,
       energyRegen: 2
     }
   },
@@ -785,6 +1384,31 @@ export const PICKAXE_ITEMS = {
     name: 'fairy steel pickaxe',
     sellPrice: 750,
     description: 'A pickaxe forged from fairy steel. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 31,
+      attack: 45,
+      energyPerHit: 1,
+      energyRegen: 5,
+      miner: 55
+    },
+    extraStats: {
+      energyStorage: 31,
+      attack: 5,
+      miner: 55,
+      energyRegen: 2
+    }
+  },
+
+  elven_steel_pickaxe: {
+    id: 'elven_steel_pickaxe',
+    icon: 'elvenSteelPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'elven steel pickaxe',
+    sellPrice: 750,
+    description: 'A pickaxe forged from elven steel. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {

@@ -82,7 +82,7 @@ const options = {
     prefix: 'tungsten',
     color: '#b9bed0',
     tier: 11,
-    wood: 'black_gum_log',
+    wood: 'blue_gum_log',
     level: 50
   },
   obsidian: {

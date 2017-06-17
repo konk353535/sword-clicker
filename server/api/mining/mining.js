@@ -111,7 +111,6 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 
 Meteor.methods({
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
-    console.log('here');
     if (multiplier < 1 || multiplier > 10) {
       return;
     }

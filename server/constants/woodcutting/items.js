@@ -500,9 +500,9 @@ export const WOODCUTTING_ITEMS = {
 
   blue_gum_log: {
     id: 'blue_gum_log',
-    icon: 'blue_gumLog',
+    icon: 'blueGumLog',
     category: 'woodcutting',
-    name: 'blue_gum log',
+    name: 'blue gum log',
     sellPrice: 80
   },
 

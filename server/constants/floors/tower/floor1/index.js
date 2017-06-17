@@ -82,11 +82,11 @@ export const TOWER_FLOOR_1 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'iron_dwarven_idol',
-      icon: ITEMS['iron_dwarven_idol'].icon,
-      name: ITEMS['iron_dwarven_idol'].name,
-      baseStats: ITEMS['iron_dwarven_idol'].stats,
-      extraStats: ITEMS['iron_dwarven_idol'].extraStats
+      itemId: 'tin_dwarven_idol',
+      icon: ITEMS['tin_dwarven_idol'].icon,
+      name: ITEMS['tin_dwarven_idol'].name,
+      baseStats: ITEMS['tin_dwarven_idol'].stats,
+      extraStats: ITEMS['tin_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

@@ -47,12 +47,12 @@ export const TOWER_FLOOR_6 = {
     }]))
   },
   4: {
-    name: 'Place of adamantium',
-    enemies: ['adamantium_spirit'],
+    name: 'Place of gold',
+    enemies: ['gold_spirit'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+        { type: 'item', itemId: 'gold_essence', amount: 1 }
       ]
     }]))
   },
@@ -72,19 +72,19 @@ export const TOWER_FLOOR_6 = {
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_adamantium', amount: 1 },
+        { type: 'item', itemId: 'ore_gold', amount: 1 },
         { type: 'item', itemId: 'walnut_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'adamantium_bar', amount: 1 }
+        { type: 'item', itemId: 'gold_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'gold_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'gold_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -99,9 +99,9 @@ export const TOWER_FLOOR_6 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'adamantium_scimitar', amount: 1 },
-        { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'adamantium_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'gold_scimitar', amount: 1 },
+        { type: 'item', itemId: 'gold_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'gold_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -114,11 +114,11 @@ export const TOWER_FLOOR_6 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'orichalcum_dwarven_idol',
-      icon: ITEMS['orichalcum_dwarven_idol'].icon,
-      name: ITEMS['orichalcum_dwarven_idol'].name,
-      baseStats: ITEMS['orichalcum_dwarven_idol'].stats,
-      extraStats: ITEMS['orichalcum_dwarven_idol'].extraStats
+      itemId: 'carbon_dwarven_idol',
+      icon: ITEMS['carbon_dwarven_idol'].icon,
+      name: ITEMS['carbon_dwarven_idol'].name,
+      baseStats: ITEMS['carbon_dwarven_idol'].stats,
+      extraStats: ITEMS['carbon_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

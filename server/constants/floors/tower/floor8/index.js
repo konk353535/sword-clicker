@@ -31,12 +31,12 @@ export const TOWER_FLOOR_8 = {
     }]))
   },
   4: {
-    name: 'Place of cobalt',
-    enemies: ['cobalt_spirit'],
+    name: 'Place of steel',
+    enemies: ['steel_spirit'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'cobalt_essence', amount: 1 }
+        { type: 'item', itemId: 'steel_essence', amount: 1 }
       ]
     }]))
   },
@@ -56,19 +56,19 @@ export const TOWER_FLOOR_8 = {
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_cobalt', amount: 1 },
+        { type: 'item', itemId: 'ore_steel', amount: 1 },
         { type: 'item', itemId: 'mahogany_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'cobalt_bar', amount: 1 }
+        { type: 'item', itemId: 'steel_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'cobalt_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -83,9 +83,9 @@ export const TOWER_FLOOR_8 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'cobalt_scimitar', amount: 1 },
-        { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'cobalt_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'steel_scimitar', amount: 1 },
+        { type: 'item', itemId: 'steel_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'steel_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -98,11 +98,11 @@ export const TOWER_FLOOR_8 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'fairy_steel_dwarven_idol',
-      icon: ITEMS['fairy_steel_dwarven_idol'].icon,
-      name: ITEMS['fairy_steel_dwarven_idol'].name,
-      baseStats: ITEMS['fairy_steel_dwarven_idol'].stats,
-      extraStats: ITEMS['fairy_steel_dwarven_idol'].extraStats
+      itemId: 'platinum_dwarven_idol',
+      icon: ITEMS['platinum_dwarven_idol'].icon,
+      name: ITEMS['platinum_dwarven_idol'].name,
+      baseStats: ITEMS['platinum_dwarven_idol'].stats,
+      extraStats: ITEMS['platinum_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

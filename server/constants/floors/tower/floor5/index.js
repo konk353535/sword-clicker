@@ -32,12 +32,12 @@ export const TOWER_FLOOR_5 = {
     }]))
   },
   4: {
-    name: 'Place of mithril',
-    enemies: ['mithril_spirit'],
+    name: 'Place of silver',
+    enemies: ['silver_spirit'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'mithril_essence', amount: 1 }
+        { type: 'item', itemId: 'silver_essence', amount: 1 }
       ]
     }]))
   },
@@ -59,19 +59,19 @@ export const TOWER_FLOOR_5 = {
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_mithril', amount: 1 },
+        { type: 'item', itemId: 'ore_silver', amount: 1 },
         { type: 'item', itemId: 'maple_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'mithril_bar', amount: 1 }
+        { type: 'item', itemId: 'silver_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'silver_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'silver_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -86,9 +86,9 @@ export const TOWER_FLOOR_5 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
-        { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'silver_scimitar', amount: 1 },
+        { type: 'item', itemId: 'silver_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'silver_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -101,11 +101,11 @@ export const TOWER_FLOOR_5 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'adamantium_dwarven_idol',
-      icon: ITEMS['adamantium_dwarven_idol'].icon,
-      name: ITEMS['adamantium_dwarven_idol'].name,
-      baseStats: ITEMS['adamantium_dwarven_idol'].stats,
-      extraStats: ITEMS['adamantium_dwarven_idol'].extraStats
+      itemId: 'gold_dwarven_idol',
+      icon: ITEMS['gold_dwarven_idol'].icon,
+      name: ITEMS['gold_dwarven_idol'].name,
+      baseStats: ITEMS['gold_dwarven_idol'].stats,
+      extraStats: ITEMS['gold_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

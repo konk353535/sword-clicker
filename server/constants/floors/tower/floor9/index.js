@@ -25,11 +25,11 @@ export const TOWER_FLOOR_9 = {
   },
   4: {
     name: 'Place of fairies',
-    enemies: ['fairy_steel_spirit'],
+    enemies: ['platinum_spirit'],
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
+        { type: 'item', itemId: 'platinum_essence', amount: 1 }
       ]
     }]))
   },
@@ -49,19 +49,19 @@ export const TOWER_FLOOR_9 = {
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
+        { type: 'item', itemId: 'ore_platinum', amount: 1 },
         { type: 'item', itemId: 'elk_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'fairy_steel_bar', amount: 1 }
+        { type: 'item', itemId: 'platinum_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'platinum_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'platinum_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -85,11 +85,11 @@ export const TOWER_FLOOR_9 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'cursed_dwarven_idol',
-      icon: ITEMS['cursed_dwarven_idol'].icon,
-      name: ITEMS['cursed_dwarven_idol'].name,
-      baseStats: ITEMS['cursed_dwarven_idol'].stats,
-      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
+      itemId: 'titanium_dwarven_idol',
+      icon: ITEMS['titanium_dwarven_idol'].icon,
+      name: ITEMS['titanium_dwarven_idol'].name,
+      baseStats: ITEMS['titanium_dwarven_idol'].stats,
+      extraStats: ITEMS['titanium_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

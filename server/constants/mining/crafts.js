@@ -766,7 +766,7 @@ export const MINING_CRAFTS = {
   fairy_steel_pickaxe: {
     produces: 'fairy_steel_pickaxe',
     recipeFor: 'crafting',
-    name: 'fairy_steel pickaxe',
+    name: 'fairy steel pickaxe',
     id: 'fairy_steel_pickaxe',
     category: 'mining',
     timeToCraft: 30 * MINUTE,

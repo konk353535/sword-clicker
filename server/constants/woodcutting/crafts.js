@@ -32,9 +32,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'copper_axe',
     category: 'woodcutting',
     timeToCraft: 60, // 60
-    xp: 50,
+    xp: 20,
     maxToCraft: 1,
-    requiredCraftingLevel: 3,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_bar',
@@ -52,7 +52,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 3
+      level: 5
     }]
   },
 
@@ -63,9 +63,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'tin_axe',
     category: 'woodcutting',
     timeToCraft: 60, // 60
-    xp: 50,
+    xp: 30,
     maxToCraft: 1,
-    requiredCraftingLevel: 3,
+    requiredCraftingLevel: 10,
     required: [{
       type: 'item',
       itemId: 'tin_bar',
@@ -75,15 +75,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'pine_log',
-      icon: ITEMS['pine_log'].icon,
-      name: ITEMS['pine_log'].name,
+      itemId: 'beech_log',
+      icon: ITEMS['beech_log'].icon,
+      name: ITEMS['beech_log'].name,
       amount: 5,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 3
+      level: 10
     }]
   },
 
@@ -94,9 +94,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'bronze_axe',
     category: 'woodcutting',
     timeToCraft: 60, // 60
-    xp: 50,
+    xp: 40,
     maxToCraft: 1,
-    requiredCraftingLevel: 3,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
       itemId: 'bronze_bar',
@@ -106,15 +106,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'pine_log',
-      icon: ITEMS['pine_log'].icon,
-      name: ITEMS['pine_log'].name,
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
       amount: 5,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 3
+      level: 15
     }]
   },
 
@@ -125,9 +125,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'iron_axe',
     category: 'woodcutting',
     timeToCraft: 120, // 60
-    xp: 150,
+    xp: 50,
     maxToCraft: 1,
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 20,
     required: [{
       type: 'item',
       itemId: 'iron_bar',
@@ -137,15 +137,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 6
+      level: 20
     }]
   },
 
@@ -156,9 +156,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'silver_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60, // 60
-    xp: 1000,
+    xp: 75,
     maxToCraft: 1,
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 25,
     required: [{
       type: 'item',
       itemId: 'silver_essence',
@@ -183,7 +183,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 25
     }]
   },
 
@@ -194,9 +194,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'gold_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60, // 60
-    xp: 1000,
+    xp: 100,
     maxToCraft: 1,
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
       itemId: 'gold_essence',
@@ -213,15 +213,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'walnut_log',
+      icon: ITEMS['walnut_log'].icon,
+      name: ITEMS['walnut_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 30
     }]
   },
 
@@ -232,9 +232,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'carbon_axe',
     category: 'woodcutting',
     timeToCraft: 300, // 60
-    xp: 500,
+    xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 12,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
       itemId: 'carbon_essence',
@@ -251,15 +251,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 35
     }]
   },
 
@@ -272,7 +272,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 300,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 40,
     required: [{
       type: 'item',
       itemId: 'steel_essence',
@@ -289,15 +289,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 40
     }]
   },
 
@@ -308,9 +308,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'platinum_axe',
     category: 'woodcutting',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 45,
     required: [{
       type: 'item',
       itemId: 'platinum_essence',
@@ -327,15 +327,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 45
     }]
   },
 
@@ -346,9 +346,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'titanium_axe',
     category: 'woodcutting',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 50,
     required: [{
       type: 'item',
       itemId: 'titanium_essence',
@@ -365,15 +365,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'black_log',
+      icon: ITEMS['black_log'].icon,
+      name: ITEMS['black_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 50
     }]
   },
 
@@ -384,9 +384,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'tungsten_axe',
     category: 'woodcutting',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 600,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 55,
     required: [{
       type: 'item',
       itemId: 'tungsten_essence',
@@ -403,15 +403,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 55
     }]
   },
 
@@ -422,9 +422,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'obsidian_axe',
     category: 'woodcutting',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 700,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
       itemId: 'obsidian_essence',
@@ -441,15 +441,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'cedar_log',
+      icon: ITEMS['cedar_log'].icon,
+      name: ITEMS['cedar_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 60
     }]
   },
 
@@ -460,9 +460,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'cobalt_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 5, // 60
-    xp: 4500,
+    xp: 1000,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
       itemId: 'cobalt_essence',
@@ -479,15 +479,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 65
     }]
   },
 
@@ -499,9 +499,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'mithril_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60, // 60
-    xp: 1000,
+    xp: 1500,
     maxToCraft: 1,
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_essence',
@@ -518,15 +518,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 70
     }]
   },
 
@@ -537,9 +537,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'adamantium_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1500,
+    xp: 1750,
     maxToCraft: 1,
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_essence',
@@ -556,15 +556,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 20
+      level: 75
     }]
   },
 
@@ -575,9 +575,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'orichalcum_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 4, // 60
-    xp: 3000,
+    xp: 2000,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 80,
     required: [{
       type: 'item',
       itemId: 'orichalcum_essence',
@@ -594,15 +594,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 80
     }]
   },
 
@@ -615,7 +615,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 4, // 60
     xp: 3000,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
       itemId: 'meteorite_essence',
@@ -632,28 +632,28 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'poplar_log',
+      icon: ITEMS['poplar_log'].icon,
+      name: ITEMS['poplar_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 85
     }]
   },
 
   fairy_steel_axe: {
     produces: 'fairy_steel_axe',
     recipeFor: 'crafting',
-    name: 'fairy_steel axe',
+    name: 'fairy steel axe',
     id: 'fairy_steel_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 6, // 60
-    xp: 4500,
+    xp: 4000,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 90,
     required: [{
       type: 'item',
       itemId: 'fairy_steel_essence',
@@ -670,28 +670,28 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 90
     }]
   },
 
   elven_steel_axe: {
     produces: 'elven_steel_axe',
     recipeFor: 'crafting',
-    name: 'elven_steel axe',
+    name: 'elven steel axe',
     id: 'elven_steel_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 6, // 60
     xp: 4500,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 95,
     required: [{
       type: 'item',
       itemId: 'elven_steel_essence',
@@ -708,15 +708,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 95
     }]
   },
 
@@ -727,9 +727,9 @@ export const WOODCUTTING_CRAFTS = {
     id: 'cursed_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 6, // 60
-    xp: 4500,
+    xp: 5000,
     maxToCraft: 1,
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 100,
     required: [{
       type: 'item',
       itemId: 'cursed_essence',
@@ -746,15 +746,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'fiery_log',
-      icon: ITEMS['fiery_log'].icon,
-      name: ITEMS['fiery_log'].name,
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 40
+      level: 100
     }]
   }
 }

@@ -6,6 +6,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'stone furnace',
     sellPrice: 1,
+    tier: 1,
     description: 'Used to melt ores into bars'
   },
 
@@ -15,6 +16,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'copper furnace',
     sellPrice: 1,
+    tier: 2,
     description: 'Used to melt ores into bars'
   },
 
@@ -24,6 +26,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'tin furnace',
     sellPrice: 1,
+    tier: 3,
     description: 'Used to melt ores into bars'
   },
 
@@ -32,6 +35,7 @@ export const FURNACE_ITEMS = {
     icon: 'bronzeFurnace',
     category: 'crafting',
     name: 'bronze furnace',
+    tier: 4,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -42,6 +46,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'iron furnace',
     sellPrice: 1,
+    tier: 5,
     description: 'Used to melt ores into bars'
   },
 
@@ -51,6 +56,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'silver furnace',
     sellPrice: 1,
+    tier: 6,
     description: 'Used to melt ores into bars'
   },
 
@@ -60,6 +66,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'gold furnace',
     sellPrice: 1,
+    tier: 7,
     description: 'Used to melt ores into bars'
   },
 
@@ -68,6 +75,7 @@ export const FURNACE_ITEMS = {
     icon: 'carbonFurnace',
     category: 'crafting',
     name: 'carbon furnace',
+    tier: 8,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -77,6 +85,7 @@ export const FURNACE_ITEMS = {
     icon: 'steelFurnace',
     category: 'crafting',
     name: 'steel furnace',
+    tier: 9,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -86,6 +95,7 @@ export const FURNACE_ITEMS = {
     icon: 'platinumFurnace',
     category: 'crafting',
     name: 'platinum furnace',
+    tier: 10,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -95,6 +105,7 @@ export const FURNACE_ITEMS = {
     icon: 'titaniumFurnace',
     category: 'crafting',
     name: 'titanium furnace',
+    tier: 11,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -104,6 +115,7 @@ export const FURNACE_ITEMS = {
     icon: 'tungstenFurnace',
     category: 'crafting',
     name: 'tungsten furnace',
+    tier: 12,
     sellPrice: 1,
     description: 'Used to melt ores into bars'
   },
@@ -114,6 +126,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'obsidian furnace',
     sellPrice: 1,
+    tier: 13,
     description: 'Used to melt ores into bars'
   },
 
@@ -123,6 +136,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'cobalt furnace',
     sellPrice: 1,
+    tier: 14,
     description: 'Used to melt ores into bars'
   },
 
@@ -133,6 +147,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'mithril furnace',
     sellPrice: 1,
+    tier: 15,
     description: 'Used to melt ores into bars'
   },
 
@@ -142,6 +157,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'adamantium furnace',
     sellPrice: 1,
+    tier: 16,
     description: 'Used to melt ores into bars'
   },
 
@@ -151,6 +167,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'orichalcum furnace',
     sellPrice: 1,
+    tier: 17,
     description: 'Used to melt ores into bars'
   },
 
@@ -160,6 +177,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'meteorite furnace',
     sellPrice: 1,
+    tier: 18,
     description: 'Used to melt ores into bars'
   },
 
@@ -169,6 +187,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'fairy steel furnace',
     sellPrice: 1,
+    tier: 19,
     description: 'Used to melt ores into bars'
   },
 
@@ -178,6 +197,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'elven steel furnace',
     sellPrice: 1,
+    tier: 20,
     description: 'Used to melt ores into bars'
   },
 
@@ -187,6 +207,7 @@ export const FURNACE_ITEMS = {
     category: 'crafting',
     name: 'cursed furnace',
     sellPrice: 1,
+    tier: 21,
     description: 'Used to melt ores into bars'
   }
 }

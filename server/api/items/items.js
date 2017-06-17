@@ -535,6 +535,10 @@ Meteor.publish('items', function() {
       }
     }
 
+    if (itemConstants.tier) {
+      doc.tier = itemConstants.tier;
+    }
+
     if (itemConstants.category === 'seed') {
       doc.plantingDetails = FARMING.plants[itemConstants.produces];
     }

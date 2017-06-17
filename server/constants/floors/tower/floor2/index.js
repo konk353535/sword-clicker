@@ -47,19 +47,19 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_coal', amount: 1 },
-        { type: 'item', itemId: 'ore_iron', amount: 1 },
+        { type: 'item', itemId: 'ore_tin', amount: 1 },
         { type: 'item', itemId: 'beech_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'iron_bar', amount: 1 }
+        { type: 'item', itemId: 'tin_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'iron_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'tin_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'tin_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -74,9 +74,9 @@ export const TOWER_FLOOR_2 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'iron_scimitar', amount: 1 },
-        { type: 'item', itemId: 'iron_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'iron_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'tin_scimitar', amount: 1 },
+        { type: 'item', itemId: 'tin_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'tin_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -89,11 +89,11 @@ export const TOWER_FLOOR_2 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'steel_dwarven_idol',
-      icon: ITEMS['steel_dwarven_idol'].icon,
-      name: ITEMS['steel_dwarven_idol'].name,
-      baseStats: ITEMS['steel_dwarven_idol'].stats,
-      extraStats: ITEMS['steel_dwarven_idol'].extraStats
+      itemId: 'bronze_dwarven_idol',
+      icon: ITEMS['bronze_dwarven_idol'].icon,
+      name: ITEMS['bronze_dwarven_idol'].name,
+      baseStats: ITEMS['bronze_dwarven_idol'].stats,
+      extraStats: ITEMS['bronze_dwarven_idol'].extraStats
     },
     {
       type: 'gold',

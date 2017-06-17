@@ -436,7 +436,7 @@ export const XP_CRAFTS = {
   fairy_steel_pylon: {
     produces: 'fairy_steel_pylon',
     recipeFor: 'crafting',
-    name: 'fairy_steel pylon',
+    name: 'fairy steel pylon',
     category: 'crafting',
     id: 'fairy_steel_pylon',
     requiredCraftingLevel: 92,
@@ -460,7 +460,7 @@ export const XP_CRAFTS = {
   elven_steel_wall: {
     produces: 'elven_steel_wall',
     recipeFor: 'crafting',
-    name: 'elven_steel wall',
+    name: 'elven steel wall',
     category: 'crafting',
     id: 'elven_steel_wall',
     requiredCraftingLevel: 97,

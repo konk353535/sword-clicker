@@ -237,6 +237,7 @@ Meteor.methods({
       const recipeConstant = JSON.parse(JSON.stringify(CRAFTING.recipes[craftingKey]));
       const itemConstant = ITEMS[recipeConstant.produces];
 
+      console.log(recipeConstant.produces);
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
 

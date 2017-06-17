@@ -58,14 +58,14 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
-  tin_axe: {
-    id: 'tin_axe',
-    icon: 'tinAxe',
-    category: 'woodcutting',
+  bronze_axe: {
+    id: 'bronze_axe',
+    icon: 'bronzeAxe',
+    category: 'woodcutbronzeg',
     slot: 'axe',
-    name: 'tin axe',
+    name: 'bronze axe',
     sellPrice: 50,
-    description: 'An axe forged from tin. Used for woodcutting',
+    description: 'An axe forged from bronze. Used for woodcutbronzeg',
     isAxe: true,
     stats: {
       attack: 15,

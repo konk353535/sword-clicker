@@ -314,7 +314,7 @@ export const BAR_CRAFTS = {
     timeToCraft: 11,
     xp: 11,
     maxToCraft: 100,
-    requiredCraftingLevel: 2,
+    requiredCraftingLevel: 40,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',

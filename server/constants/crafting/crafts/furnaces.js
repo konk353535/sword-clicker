@@ -457,18 +457,18 @@ export const FURNACE_CRAFTS = {
     maxToCraft: 1
   },
 
-  elven_furnace: {
-    produces: 'elven_furnace',
+  elven_steel_furnace: {
+    produces: 'elven_steel_furnace',
     recipeFor: 'crafting',
-    name: 'elven furnace',
-    id: 'elven_furnace',
+    name: 'elven steel furnace',
+    id: 'elven_steel_furnace',
     category: 'crafting',
     requiredCraftingLevel: 94,
     required: [{
       type: 'item',
-      itemId: 'elven_bar',
-      icon: ITEMS['elven_bar'].icon,
-      name: ITEMS['elven_bar'].name,
+      itemId: 'elven_steel_bar',
+      icon: ITEMS['elven_steel_bar'].icon,
+      name: ITEMS['elven_steel_bar'].name,
       amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {

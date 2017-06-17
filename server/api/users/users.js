@@ -105,15 +105,25 @@ Meteor.methods({
       'questLevel',
       'craftingTierFilter.primitive',
       'craftingTierFilter.copper',
+      'craftingTierFilter.tin',
+      'craftingTierFilter.bronze',
       'craftingTierFilter.iron',
-      'craftingTierFilter.steel',
+      'craftingTierFilter.silver',
+      'craftingTierFilter.gold',
       'craftingTierFilter.carbon',
+      'craftingTierFilter.steel',
+      'craftingTierFilter.platinum',
+      'craftingTierFilter.titanium',
+      'craftingTierFilter.tungsten',
+      'craftingTierFilter.obsidian',
+      'craftingTierFilter.cobalt',
       'craftingTierFilter.mithril',
       'craftingTierFilter.adamantium',
       'craftingTierFilter.orichalcum',
-      'craftingTierFilter.cobalt',
+      'craftingTierFilter.meteorite',
       'craftingTierFilter.fairy_steel',
-      'craftingTierFilter.cursed',
+      'craftingTierFilter.elven_steel',
+      'craftingTierFilter.cursed'
     ];
 
     if (_.contains(validIds, id)) {

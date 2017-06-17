@@ -20,7 +20,7 @@ export const GOLD_ITEMS = {
 
   polished_tin: {
     id: 'polished_tin',
-    icon: 'polishedtin',
+    icon: 'polishedTin',
     category: 'crafting',
     name: 'polished tin',
     sellPrice: 200,
@@ -38,7 +38,7 @@ export const GOLD_ITEMS = {
 
   polished_iron: {
     id: 'polished_iron',
-    icon: 'polishediron',
+    icon: 'polishedIron',
     category: 'crafting',
     name: 'polished iron',
     sellPrice: 375,
@@ -56,7 +56,7 @@ export const GOLD_ITEMS = {
 
   polished_gold: {
     id: 'polished_gold',
-    icon: 'polishedgold',
+    icon: 'polishedGold',
     category: 'crafting',
     name: 'polished gold',
     sellPrice: 625,
@@ -74,7 +74,7 @@ export const GOLD_ITEMS = {
 
   polished_steel: {
     id: 'polished_steel',
-    icon: 'polishedsteel',
+    icon: 'polishedSteel',
     category: 'crafting',
     name: 'polished steel',
     sellPrice: 625,
@@ -92,7 +92,7 @@ export const GOLD_ITEMS = {
 
   polished_titanium: {
     id: 'polished_titanium',
-    icon: 'polishedtitanium',
+    icon: 'polishedTitanium',
     category: 'crafting',
     name: 'polished titanium',
     sellPrice: 625,
@@ -110,7 +110,7 @@ export const GOLD_ITEMS = {
 
   polished_obsidian: {
     id: 'polished_obsidian',
-    icon: 'polishedobsidian',
+    icon: 'polishedObsidian',
     category: 'crafting',
     name: 'polished obsidian',
     sellPrice: 625,
@@ -128,7 +128,7 @@ export const GOLD_ITEMS = {
 
   polished_mithril: {
     id: 'polished_mithril',
-    icon: 'polishedmithril',
+    icon: 'polishedMithril',
     category: 'crafting',
     name: 'polished mithril',
     sellPrice: 625,
@@ -146,7 +146,7 @@ export const GOLD_ITEMS = {
 
   polished_orichalcum: {
     id: 'polished_orichalcum',
-    icon: 'polishedorichalcum',
+    icon: 'polishedOrichalcum',
     category: 'crafting',
     name: 'polished orichalcum',
     sellPrice: 625,
@@ -182,7 +182,7 @@ export const GOLD_ITEMS = {
 
   polished_cursed: {
     id: 'polished_cursed',
-    icon: 'polished_cursed',
+    icon: 'polishedCursed',
     category: 'crafting',
     name: 'polished cursed',
     sellPrice: 625,

@@ -132,7 +132,7 @@ export const MISC_ITEMS = {
     name: 'fairy steel essence',
     sellPrice: 900,
     description: 'Required to bond fairy steel together.'
-  }
+  },
 
   elven_steel_essence: {
     id: 'elven_steel_essence',

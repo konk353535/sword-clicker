@@ -361,18 +361,18 @@ export const GOLD_CRAFTS = {
     maxToCraft: 1
   },
 
-  adamanitum_sculpture: {
-    produces: 'adamanitum_sculpture',
+  adamantium_sculpture: {
+    produces: 'adamantium_sculpture',
     recipeFor: 'crafting',
-    name: 'adamanitum sculpture',
+    name: 'adamantium sculpture',
     category: 'crafting',
-    id: 'adamanitum_sculpture',
+    id: 'adamantium_sculpture',
     requiredCraftingLevel: 76,
     required: [{
       type: 'item',
-      itemId: 'ore_adamanitum',
-      icon: ITEMS['ore_adamanitum'].icon,
-      name: ITEMS['ore_adamanitum'].name,
+      itemId: 'ore_adamantium',
+      icon: ITEMS['ore_adamantium'].icon,
+      name: ITEMS['ore_adamantium'].name,
       amount: 5,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
@@ -436,7 +436,7 @@ export const GOLD_CRAFTS = {
   polished_fairy_steel: {
     produces: 'polished_fairy_steel',
     recipeFor: 'crafting',
-    name: 'polished fairy_steel',
+    name: 'polished fairy steel',
     category: 'crafting',
     id: 'polished_fairy_steel',
     requiredCraftingLevel: 91,
@@ -460,7 +460,7 @@ export const GOLD_CRAFTS = {
   elven_steel_sculpture: {
     produces: 'elven_steel_sculpture',
     recipeFor: 'crafting',
-    name: 'elven_steel sculpture',
+    name: 'elven steel sculpture',
     category: 'crafting',
     id: 'elven_steel_sculpture',
     requiredCraftingLevel: 96,

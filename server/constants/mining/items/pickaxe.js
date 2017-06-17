@@ -1251,6 +1251,106 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  platinum_pickaxe: {
+    id: 'platinum_pickaxe',
+    icon: 'platinumPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'platinum pickaxe',
+    sellPrice: 200,
+    description: 'A pickaxe forged from platinum. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 16, // Maximum energy stored
+      attack: 15, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 5, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 16,
+      attack: 5,
+      miner: 25,
+      energyRegen: 2
+    }
+  },
+
+  titanium_pickaxe: {
+    id: 'titanium_pickaxe',
+    icon: 'titaniumPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanium pickaxe',
+    sellPrice: 200,
+    description: 'A pickaxe forged from titanium. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 16, // Maximum energy stored
+      attack: 15, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 5, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 16,
+      attack: 5,
+      miner: 25,
+      energyRegen: 2
+    }
+  },
+
+  tungsten_pickaxe: {
+    id: 'tungsten_pickaxe',
+    icon: 'tungstenPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tungsten pickaxe',
+    sellPrice: 200,
+    description: 'A pickaxe forged from tungsten. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 16, // Maximum energy stored
+      attack: 15, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 5, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 16,
+      attack: 5,
+      miner: 25,
+      energyRegen: 2
+    }
+  },
+
+  obsidian_pickaxe: {
+    id: 'obsidian_pickaxe',
+    icon: 'obsidianPickaxe',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'obsidian pickaxe',
+    sellPrice: 200,
+    description: 'A pickaxe forged from obsidian. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 16, // Maximum energy stored
+      attack: 15, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 5, // Energy regen per minute
+      miner: 25 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 16,
+      attack: 5,
+      miner: 25,
+      energyRegen: 2
+    }
+  },
+
   cobalt_pickaxe: {
     id: 'cobalt_pickaxe',
     icon: 'cobaltPickaxe',

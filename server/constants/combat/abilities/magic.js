@@ -17,6 +17,21 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  earth_ball: {
+    icon: 'earthBall',
+    name: 'earth ball',
+    id: 'earth_ball',
+    buffs: ['earth_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.earth_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   water_dart: {
     icon: 'waterDart',
     name: 'water dart',
@@ -29,10 +44,49 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff']
     }],
     description(level) {
       const BUFF = BUFFS.water_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  water_ball: {
+    icon: 'waterBall',
+    name: 'water ball',
+    id: 'water_ball',
+    buffs: ['water_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.water_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  water_wave: {
+    icon: 'waterWave',
+    name: 'water wave',
+    id: 'water_wave',
+    buffs: ['water_wave'],
+    cooldown: 30,
+    slot: 'any',
+    target: 'allAllies',
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.water_wave;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -52,6 +106,21 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  air_ball: {
+    icon: 'airBall',
+    name: 'air ball',
+    id: 'air_ball',
+    buffs: ['air_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.air_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   fire_dart: {
     icon: 'fireDart',
     name: 'fire dart',
@@ -63,6 +132,21 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.fire_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  fire_ball: {
+    icon: 'fireBall',
+    name: 'fire ball',
+    id: 'fire_ball',
+    buffs: ['fire_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.fire_ball;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -84,6 +168,26 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  mending_spring: {
+    icon: 'mendingSpring',
+    name: 'mending spring',
+    id: 'mending_spring',
+    buffs: ['mending_spring'],
+    cooldown: 90,
+    slot: 'any',
+    isHidden: false,
+    target: 'allAllies',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.mending_spring;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   mending_water: {
     icon: 'mendingWater',
     name: 'mending water',
@@ -94,6 +198,10 @@ export const MAGIC_ABILITIES = {
     targettable: true,
     isHidden: false,
     target: 'singleFriendly',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.mending_water;

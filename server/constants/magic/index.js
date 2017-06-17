@@ -40,6 +40,89 @@ export const MAGIC = {
       }]
     },
 
+    water_ball: {
+      id: 'water_ball',
+      abilityId: 'water_ball',
+      xp: 10,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 10,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 20
+      }]
+    },
+
+    water_wave: {
+      id: 'water_wave',
+      abilityId: 'water_wave',
+      xp: 10,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_water_shard',
+        icon: ITEMS['complete_water_shard'].icon,
+        name: ITEMS['complete_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 10
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 10
+      }]
+    },
+
+    mending_spring: {
+      id: 'mending_spring',
+      abilityId: 'mending_spring',
+      xp: 10,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_water_shard',
+        icon: ITEMS['complete_water_shard'].icon,
+        name: ITEMS['complete_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 10
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 10
+      }]
+    },
+
     air_dart: {
       id: 'air_dart',
       abilityId: 'air_dart',
@@ -59,6 +142,29 @@ export const MAGIC = {
       }]
     },
 
+    air_ball: {
+      id: 'air_ball',
+      abilityId: 'air_ball',
+      xp: 10,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'air_shard_fragment',
+        icon: ITEMS['air_shard_fragment'].icon,
+        name: ITEMS['air_shard_fragment'].name,
+        amount: 10,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      },  {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      }]
+    },
+
     fire_dart: {
       id: 'fire_dart',
       abilityId: 'fire_dart',
@@ -75,6 +181,29 @@ export const MAGIC = {
         type: 'skill',
         name: 'astronomy',
         level: 1
+      }]
+    },
+
+    fire_ball: {
+      id: 'fire_ball',
+      abilityId: 'fire_ball',
+      xp: 10,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 10,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 20
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 20
       }]
     },
 

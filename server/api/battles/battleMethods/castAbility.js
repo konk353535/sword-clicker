@@ -6,20 +6,22 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
 
   // Does user have appropriate gear to cast this ability?
   let canCast = true;
-  ability.requires.forEach((required) => {
-    let meetsRequirement = false;
-    if (required.type === 'weaponType') {
-      required.weaponTypes.forEach((weaponType) => {
-        if (caster.mainHandType === weaponType || caster.offHandType === weaponType) {
-          meetsRequirement = true;
-        }
-      })
-    }
+  if (ability.requires) {
+    ability.requires.forEach((required) => {
+      let meetsRequirement = false;
+      if (required.type === 'weaponType') {
+        required.weaponTypes.forEach((weaponType) => {
+          if (caster.mainHandType === weaponType || caster.offHandType === weaponType) {
+            meetsRequirement = true;
+          }
+        })
+      }
 
-    if (!meetsRequirement) {
-      canCast = false;
-    }
-  });
+      if (!meetsRequirement) {
+        canCast = false;
+      }
+    });
+  }
 
   if (!canCast) {
     return false;
@@ -107,6 +109,5 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
       target.buffs = newBuffs;
     }
 
-    return true;
   });
 }

@@ -1,6 +1,72 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
 
 export const STAFF_ITEMS = {
+  /* Wands - Same as staffs but 1h, less magic power */
+
+  copper_wand: {
+    id: 'copper_wand',
+    icon: 'copperWand',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'copper wand',
+    sellPrice: 50,
+    description: 'What seems like a copper wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 4,
+      attackMax: 6,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 5,
+      magicPower: 5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 1
+    }]
+  },
+
+  copper_hammer: {
+    id: 'copper_hammer',
+    icon: 'copperHammer',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'copper hammer',
+    sellPrice: 50,
+    description: 'What seems like a copper hammer',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 4,
+      attackMax: 6,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 5,
+      defense: 3,
+      magicArmor: 10,
+      magicPower: 5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 1
+    }]
+  },
+
   beech_staff: {
     id: 'beech_staff',
     icon: 'beechStaff',
@@ -65,6 +131,72 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  gold_wand: {
+    id: 'gold_wand',
+    icon: 'goldWand',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'gold wand',
+    sellPrice: 50,
+    description: 'What seems like a gold wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 6,
+      attackMax: 11,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 8,
+      magicPower: 7
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 5
+    }]
+  },
+
+
+  gold_hammer: {
+    id: 'gold_hammer',
+    icon: 'goldHammer',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'gold hammer',
+    sellPrice: 50,
+    description: 'What seems like a gold hammer',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 6,
+      attackMax: 11,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 8,
+      magicPower: 7,
+      magicArmor: 25,
+      defense: 10
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 5
+    }]
+  },
+
+
   walnut_staff: {
     id: 'walnut_staff',
     icon: 'walnutStaff',
@@ -94,6 +226,71 @@ export const STAFF_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 10
+    }]
+  },
+
+  obsidian_wand: {
+    id: 'obsidian_wand',
+    icon: 'obsidianWand',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'obsidian wand',
+    sellPrice: 50,
+    description: 'What seems like a obsidian wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 12,
+      attackMax: 19,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 18,
+      magicPower: 12
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
+
+  obsidian_hammer: {
+    id: 'obsidian_hammer',
+    icon: 'obsidianHammer',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'obsidian hammer',
+    sellPrice: 50,
+    description: 'What seems like a obsidian hammer',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 12,
+      attackMax: 19,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 18,
+      magicPower: 12,
+      defense: 8  ,
+      magicArmor: 40
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
     }]
   },
 
@@ -147,6 +344,70 @@ export const STAFF_ITEMS = {
       attackSpeed: SLOW_SPEED,
       accuracy: 30,
       magicPower: 24
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
+  mithril_wand: {
+    id: 'mithril_wand',
+    icon: 'mithrilWand',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'mithril wand',
+    sellPrice: 50,
+    description: 'What seems like a mithril wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 14,
+      attackMax: 24,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 24,
+      magicPower: 16
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
+  mithril_hammer: {
+    id: 'mithril_hammer',
+    icon: 'mithrilHammer',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'mithril hammer',
+    sellPrice: 50,
+    description: 'What seems like a mithril hammer',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 14,
+      attackMax: 24,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 24,
+      magicPower: 16,
+      magicArmor: 50,
+      defense: 12
     },
     extraStats: {
       attack: 3,

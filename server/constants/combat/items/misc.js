@@ -477,6 +477,7 @@ export const MISC_ITEMS = {
     }
   },
 
+  /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',
     icon: 'spiritShield',
@@ -498,5 +499,102 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 1
     }]
-  }
+  },
+
+  fairy_spirit_shield: {
+    id: 'fairy_spirit_shield',
+    icon: 'fairySpiritShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'fairy spirit shield',
+    sellPrice: 500,
+    description: 'The shield pulls at your spirit.',
+    isEquippable: true,
+    stats: {
+      healthMax: 20,
+      magicArmor: 55,
+    },
+    extraStats: {
+      healthMax: 20,
+      magicArmor: 15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  cursed_spirit_shield: {
+    id: 'cursed_spirit_shield',
+    icon: 'cursedSpiritShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'cursed spirit shield',
+    sellPrice: 500,
+    description: 'The shield pulls at your spirit.',
+    isEquippable: true,
+    stats: {
+      healthMax: 35,
+      magicArmor: 70,
+    },
+    extraStats: {
+      healthMax: 35,
+      magicArmor: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  /* Defensive Magic Armor */
+  opal_chest_plate: {
+    id: 'opal_chest_plate',
+    icon: 'opalChestPlate',
+    category: 'combat',
+    slot: 'chest',
+    name: 'opal chest plate',
+    sellPrice: 1000,
+    description: 'This seems to expensive to wear.',
+    isEquippable: true,
+    stats: {
+      healthMax: 35,
+      magicArmor: 20,
+    },
+    extraStats: {
+      healthMax: 15,
+      magicArmor: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  opal_pants: {
+    id: 'opal_pants',
+    icon: 'opalPants',
+    category: 'combat',
+    slot: 'legs',
+    name: 'opal pants',
+    sellPrice: 1000,
+    description: 'This seems to expensive to wear.',
+    isEquippable: true,
+    stats: {
+      healthMax: 20,
+      magicArmor: 15,
+    },
+    extraStats: {
+      healthMax: 20,
+      magicArmor: 15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  }  
 }

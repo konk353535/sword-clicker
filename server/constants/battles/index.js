@@ -20,6 +20,12 @@ export const BATTLES = {
         attack: 0
       },
 
+      'wand': {
+        health: 1.0,
+        defense: 0,
+        attack: 0
+      },
+
       'longSword': {
         attack: 0.5,
         health: 0.5,

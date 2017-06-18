@@ -7,7 +7,7 @@ export const DEFENSE_BUFFS = {
 
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
-    icon: 'frostArmor',
+    icon: 'frostedAttacks',
     name: 'forsted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
@@ -81,9 +81,9 @@ export const DEFENSE_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostArmor',
+              icon: 'frostedAttacks',
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
-              name: 'Frost Armor'
+              name: 'Frosted Attacks'
             }
           }
 

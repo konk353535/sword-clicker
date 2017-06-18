@@ -92,6 +92,42 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  ice_dart: {
+    icon: 'iceDart',
+    name: 'ice dart',
+    id: 'ice_dart',
+    buffs: ['ice_dart'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: true,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.ice_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  blizzard: {
+    icon: 'blizzard',
+    name: 'blizzard',
+    id: 'blizzard',
+    buffs: ['blizzard'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'allEnemies',
+    isHidden: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff']
+    }],
+    description(level) {
+      const BUFF = BUFFS.blizzard;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   poison_dart: {
     icon: 'poisonDart',
     name: 'poison dart',

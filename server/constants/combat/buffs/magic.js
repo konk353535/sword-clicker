@@ -1118,6 +1118,166 @@ export const MAGIC_BUFFS = {
     }
   },
 
+  blizzard: {
+    duplicateTag: 'blizzard', // Used to stop duplicate buffs
+    icon: 'blizzard',
+    name: 'blizzard',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Freezes all enemies, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage <br />
+        And slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
+        Lasts for ${c.totalDuration}s. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+    },
+    constants: {
+      damageMPRatio: 0.2,
+      attackSpeedDecrease: 0.25,
+      healthCost: 5,
+      healthCostMPRatio: 0.1,
+      totalDuration: 10
+    },
+    data: {
+      duration: 10,
+      totalDuration: 10,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damage = constants.damageMPRatio * caster.stats.magicPower;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          actualBattle.utils.dealDamage(damage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+  
+          const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
+          const durationTotal = constants.totalDuration;
+
+          const newBuff = {
+            id: 'frosted_attacks',
+            data: {
+              duration: durationTotal,
+              totalDuration: durationTotal,
+              attackSpeedDecrease,
+              icon: 'frostedAttacks',
+              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              name: 'Frosted Attacks'
+            }
+          }
+
+          addBuff({ buff: newBuff, target, caster });
+
+        }
+
+        buff.data.duration = -1;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  ice_dart: {
+    duplicateTag: 'ice_dart', // Used to stop duplicate buffs
+    icon: 'iceDart',
+    name: 'ice dart',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage <br />
+        And slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
+        Lasts for ${c.totalDuration}s. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+    },
+    constants: {
+      damageMPRatio: 1.2,
+      attackSpeedDecrease: 0.15,
+      healthCost: 5,
+      healthCostMPRatio: 0.2,
+      totalDuration: 3
+    },
+    data: {
+      duration: 3,
+      totalDuration: 3,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damage = constants.damageMPRatio * caster.stats.magicPower;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          actualBattle.utils.dealDamage(damage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+  
+          const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
+          const durationTotal = constants.totalDuration;
+
+          const newBuff = {
+            id: 'frosted_attacks',
+            data: {
+              duration: durationTotal,
+              totalDuration: durationTotal,
+              attackSpeedDecrease,
+              icon: 'frostedAttacks',
+              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              name: 'Frosted Attacks'
+            }
+          }
+
+          addBuff({ buff: newBuff, target, caster });
+
+        }
+
+        buff.data.duration = -1;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
 
   /* OFFENSIVE BUFFS */
 

@@ -79,22 +79,6 @@ export const ATTACK_ABILITIES = {
     }
   },
 
-  taunt: {
-    icon: 'taunt',
-    name: 'taunt',
-    id: 'taunt',
-    buffs: ['taunt'],
-    cooldown: 10,
-    slot: 'any',
-    target: 'singleEnemy',
-    targettable: true,
-    isHidden: false,
-    description(level) {
-      const BUFF = BUFFS.taunt;
-      return BUFF.description({ buff: BUFF, level });
-    }
-  },
-
   execute: {
     icon: 'execute',
     name: 'execute',

@@ -2,7 +2,39 @@ import moment from 'moment';
 import { BUFFS } from '/server/constants/combat/index';
 
 export const DEFENSE_ABILITIES = {
-    defensive_stance: {
+
+  scream: {
+    icon: 'scream',
+    name: 'scream',
+    id: 'scream',
+    buffs: ['taunt'],
+    cooldown: 60,
+    slot: 'any',
+    target: 'allEnemies',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.taunt;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  taunt: {
+    icon: 'taunt',
+    name: 'taunt',
+    id: 'taunt',
+    buffs: ['taunt'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    targettable: true,
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.taunt;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  defensive_stance: {
     icon: 'defensiveStance',
     name: 'defensive stance',
     id: 'defensive_stance',

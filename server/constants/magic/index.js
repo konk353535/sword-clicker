@@ -21,6 +21,36 @@ export const MAGIC = {
       }]
     },
   
+    ice_dart: {
+      id: 'ice_dart',
+      abilityId: 'ice_dart',
+      xp: 2,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'air_shard_fragment',
+        icon: ITEMS['air_shard_fragment'].icon,
+        name: ITEMS['air_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 3
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 3
+      }]
+    },
+  
     earth_ball: {
       id: 'earth_ball',
       abilityId: 'earth_ball',
@@ -203,6 +233,36 @@ export const MAGIC = {
         type: 'skill',
         name: 'magic',
         level: 25
+      }]
+    },
+
+    blizzard: {
+      id: 'blizzard',
+      abilityId: 'blizzard',
+      xp: 25,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_water_shard',
+        icon: ITEMS['complete_water_shard'].icon,
+        name: ITEMS['complete_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'air_shard_fragment',
+        icon: ITEMS['air_shard_fragment'].icon,
+        name: ITEMS['air_shard_fragment'].name,
+        amount: 10,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 17
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 17
       }]
     },
 

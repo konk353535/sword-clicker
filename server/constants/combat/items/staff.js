@@ -131,6 +131,38 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  brown_trident: {
+    id: 'brown_trident',
+    icon: 'brownTrident',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'brown trident',
+    sellPrice: 200,
+    description: 'A sharp trident, beaming with magical energy.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 6,
+      attackMax: 12,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 10,
+      magicPower: 8
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 5
+    }]
+  },
+
   gold_wand: {
     id: 'gold_wand',
     icon: 'goldWand',
@@ -221,6 +253,38 @@ export const STAFF_ITEMS = {
       attackMax: 3,
       accuracy: 7,
       magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 10
+    }]
+  },
+
+  blue_trident: {
+    id: 'blue_trident',
+    icon: 'blueTrident',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'blue trident',
+    sellPrice: 400,
+    description: 'What seems like a normal walnut staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 8,
+      attackMax: 15,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 15,
+      magicPower: 12
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 1
     },
     requiredEquip: [{
       type: 'skill',
@@ -422,6 +486,38 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  purple_trident: {
+    id: 'purple_trident',
+    icon: 'purpleTrident',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'purple trident',
+    sellPrice: 400,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15,
+      attackMax: 25,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 30,
+      magicPower: 28,
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
   dwarven_staff: {
     id: 'dwarven_staff',
     icon: 'dwarvenStaff',
@@ -471,8 +567,8 @@ export const STAFF_ITEMS = {
       attack: 15,
       attackMax: 25,
       attackSpeed: SLOW_SPEED,
-      accuracy: 30,
-      magicPower: 50,
+      accuracy: 25,
+      magicPower: 43,
       defense: -30,
       armor: -25,
       healthMax: 100

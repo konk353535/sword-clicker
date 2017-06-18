@@ -24,7 +24,7 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
   }
 
   if (!canCast) {
-    return false;
+    return true;
   }
 
   if (ability.target === 'currentEnemy') {
@@ -110,4 +110,6 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
     }
 
   });
+
+  return false;
 }

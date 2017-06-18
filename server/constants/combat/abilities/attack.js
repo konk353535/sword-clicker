@@ -49,13 +49,32 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  penetrating_stab: {
+    icon: 'penetratingStab',
+    name: 'penetrating stab',
+    id: 'penetrating_stab',
+    buffs: ['penetrating_stab'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.penetrating_stab;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   shield_bash: {
     icon: 'shieldBash',
     name: 'shield bash',
     id: 'shield_bash',
     buffs: ['shield_bash'],
-    cooldown: 60,
+    cooldown: 15,
     slot: 'any',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['shield']
+    }],
     target: 'currentEnemy',
     isHidden: false,
     description(level) {

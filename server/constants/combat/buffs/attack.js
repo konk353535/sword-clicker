@@ -468,6 +468,56 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  penetrating_stab: {
+    duplicateTag: 'penetrating_stab', // Used to stop duplicate buffs
+    icon: 'penetratingStab',
+    name: 'penetrating stab',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageBase = buff.constants.damageBase;
+      const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
+      return `
+        Stab for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
+        (+${damagePerLevel * 100}% damage per lvl)`;
+    },
+    constants: {
+      damageBase: 0.8,
+      damagePerLevel: 0.2,
+      armorPenetration: 0.8,
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damagePerLevel = constants.damagePerLevel;
+        const damageBase = constants.damageBase;
+        const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
+  
+        const casterAttack = caster.stats.attack;
+        const casterAttackMax = caster.stats.attackMax;
+        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) / 2)) * damageTotalDecimal;
+
+        // Reduce armor by X% before hit
+        target.stats.armor *= (1 - constants.armorPenetration);
+        actualBattle.utils.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+        target.stats.armor /= (1 - constants.armorPenetration);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   shield_bash: {
     duplicateTag: 'shield_bash', // Used to stop duplicate buffs
     icon: 'shieldBash',

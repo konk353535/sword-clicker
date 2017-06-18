@@ -312,16 +312,20 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         abilityToCast.level = unitAbility.level;
 
         // Fetch who we are are targetting with this ability
-        castAbility({
+        const refundCast = castAbility({
           ability: abilityToCast,
           caster: actionCaster,
           targets: actionTargets,
           actualBattle
         });
 
-        unitAbility.casts -= 1;
-        unitAbility.totalCasts += 1;
-        unitAbility.currentCooldown = abilityToCast.cooldown;
+        if (refundCast) {
+
+        } else {
+          unitAbility.casts -= 1;
+          unitAbility.totalCasts += 1;
+          unitAbility.currentCooldown = abilityToCast.cooldown;
+        }
       }
     }
   });

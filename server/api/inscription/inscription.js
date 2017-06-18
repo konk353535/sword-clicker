@@ -22,11 +22,11 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
-  const maxConcurrentCrafts = INSCRIPTION.baseMaxCrafts;
+  const maxConcurrentCrafts = INSCRIPTION.getMaxCrafts(inscription.inscriptionLevel);
 
   // Are we already crafting?
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length >= maxConcurrentCrafts) {
-    console.log('Already crafting');
+    throw new Meteor.Error("already-crafting", "Already crafting too many items.");
     return;
   }
 
@@ -54,7 +54,7 @@ const craftItem = function (recipeId, amountToCraft) {
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length > 0) {
     // Get latest crafting time and use that for next items crafting start time
     // This will make crafting sequential
-    startDate = _.sortBy(inscription.currentlyCrafting, 'endDate')[0].endDate;
+    startDate = _.sortBy(inscription.currentlyCrafting, 'endDate').reverse()[0].endDate;
   }
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
@@ -105,8 +105,6 @@ Meteor.methods({
     // Target Crafting Item
     let targetCrafting;
     inscription.currentlyCrafting.forEach((currentCrafting) => {
-      console.log(targetEndDate);
-      console.log(currentCrafting.endDate);
       if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
         targetCrafting = currentCrafting;
       }

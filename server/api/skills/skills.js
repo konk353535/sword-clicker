@@ -58,6 +58,22 @@ export const addXp = function (skillType, xp, specificUserId) {
     // If this is attack / Defense / Health recompute combat
     if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health' || skill.type === 'magic') {
       updateCombatStats(owner);
+    } else if (skill.type === 'crafting') {
+      Crafting.update({
+        owner
+      }, {
+        $set: {
+          craftingLevel: skill.level + 1
+        }
+      });
+    } else if (skill.type === 'inscription') {
+      Inscription.update({
+        owner
+      }, {
+        $set: {
+          inscriptionLevel: skill.level + 1
+        }
+      });
     }
 
     // Can probably be optimized

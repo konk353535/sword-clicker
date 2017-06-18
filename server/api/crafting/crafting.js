@@ -142,7 +142,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
     return;
   }
 
-  const maxConcurrentCrafts = CRAFTING.baseMaxCrafts;
+  const maxConcurrentCrafts = CRAFTING.getMaxCrafts(crafting.craftingLevel);
 
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
@@ -172,7 +172,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length > 0) {
     // Get latest crafting time and use that for next items crafting start time
     // This will make crafting sequential
-    startDate = _.sortBy(crafting.currentlyCrafting, 'endDate')[0].endDate;
+    startDate = _.sortBy(crafting.currentlyCrafting, 'endDate').reverse()[0].endDate;
   }
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;

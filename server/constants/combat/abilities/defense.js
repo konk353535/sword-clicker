@@ -8,7 +8,7 @@ export const DEFENSE_ABILITIES = {
     name: 'scream',
     id: 'scream',
     buffs: ['taunt'],
-    cooldown: 60,
+    cooldown: 90,
     slot: 'any',
     target: 'allEnemies',
     isHidden: true,

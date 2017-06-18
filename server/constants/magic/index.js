@@ -20,7 +20,67 @@ export const MAGIC = {
         level: 1
       }]
     },
-  
+
+    lightning_storm: {
+      id: 'lightning_storm',
+      abilityId: 'lightning_storm',
+      xp: 25,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_air_shard',
+        icon: ITEMS['complete_air_shard'].icon,
+        name: ITEMS['complete_air_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_fire_shard',
+        icon: ITEMS['complete_fire_shard'].icon,
+        name: ITEMS['complete_fire_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 15
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 15
+      }]
+    },
+
+    lightning_dart: {
+      id: 'lightning_dart',
+      abilityId: 'lightning_dart',
+      xp: 3,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'air_shard_fragment',
+        icon: ITEMS['air_shard_fragment'].icon,
+        name: ITEMS['air_shard_fragment'].name,
+        amount: 2,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 5
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 5
+      }]
+    },
+
     ice_dart: {
       id: 'ice_dart',
       abilityId: 'ice_dart',

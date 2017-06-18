@@ -1056,6 +1056,150 @@ export const MAGIC_BUFFS = {
     }
   },
 
+  lightning_dart: {
+    duplicateTag: 'lightning_dart', // Used to stop duplicate buffs
+    icon: 'lightningDart',
+    name: 'lightning dart',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Strikes the target with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
+        And reducing there armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+    },
+    constants: {
+      armorReductionBase: 2,
+      armorReductionMPRatio: 0.9,
+      damageMPRatio: 1.0,
+      healthCost: 3,
+      healthCostMPRatio: 0.1,
+      totalDuration: 3
+    },
+    data: {
+      duration: 3,
+      totalDuration: 3,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const armorReductionBase = constants.armorReductionBase;
+        const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
+        const totalArmorReduction = armorReductionBase + armorReductionMP;
+        const damage = constants.damageMPRatio * caster.stats.magicPower;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          actualBattle.utils.dealDamage(damage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+
+          buff.data.totalArmorReduction = totalArmorReduction;
+          target.stats.armor -= totalArmorReduction;
+        } else {
+          buff.data.totalArmorReduction = 0;
+          buff.data.duration = -1;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.totalArmorReduction) {
+          target.stats.armor += buff.data.totalArmorReduction;
+        }
+      }
+    }
+  },
+
+  lightning_storm: {
+    duplicateTag: 'lightning_storm', // Used to stop duplicate buffs
+    icon: 'lightningStorm',
+    name: 'lightning storm',
+    description({ buff, level }) {
+      const c = buff.constants;
+
+      return `
+        Strikes all enemies with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
+        And reducing there armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target`;
+    },
+    constants: {
+      armorReductionBase: 2,
+      armorReductionMPRatio: 0.8,
+      damageMPRatio: 0.2,
+      healthCost: 10,
+      healthCostMPRatio: 0.15,
+      totalDuration: 9
+    },
+    data: {
+      duration: 9,
+      totalDuration: 9,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const armorReductionBase = constants.armorReductionBase;
+        const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
+        const totalArmorReduction = armorReductionBase + armorReductionMP;
+        const damage = constants.damageMPRatio * caster.stats.magicPower;
+
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          actualBattle.utils.dealDamage(damage, {
+            attacker: caster,
+            defender: target,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents
+          });
+
+          buff.data.totalArmorReduction = totalArmorReduction;
+          target.stats.armor -= totalArmorReduction;
+        } else {
+          buff.data.totalArmorReduction = 0;
+          buff.data.duration = -1;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.totalArmorReduction) {
+          target.stats.armor += buff.data.totalArmorReduction;
+        }
+      }
+    }
+  },
+
   air_ball: {
     duplicateTag: 'air_ball', // Used to stop duplicate buffs
     icon: 'airBall',
@@ -1212,7 +1356,7 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
-      damageMPRatio: 1.2,
+      damageMPRatio: 1.0,
       attackSpeedDecrease: 0.15,
       healthCost: 5,
       healthCostMPRatio: 0.2,

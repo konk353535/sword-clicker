@@ -148,6 +148,36 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  lightning_storm: {
+    icon: 'lightningStorm',
+    name: 'lighting storm',
+    id: 'lightning_storm',
+    buffs: ['lightning_storm'],
+    cooldown: 60,
+    slot: 'any',
+    target: 'allEnemies',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.lightning_storm;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  lightning_dart: {
+    icon: 'lightningDart',
+    name: 'lighting dart',
+    id: 'lightning_dart',
+    buffs: ['lightning_dart'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.lightning_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   air_dart: {
     icon: 'airDart',
     name: 'air dart',

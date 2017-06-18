@@ -79,6 +79,38 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  accuracy_up: {
+    icon: 'accuracy',
+    name: 'accuracy up',
+    id: 'accuracy_up',
+    buffs: ['accuracy_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.accuracy_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  attack_up: {
+    icon: 'attack',
+    name: 'attack up',
+    id: 'attack_up',
+    buffs: ['attack_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.attack_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   execute: {
     icon: 'execute',
     name: 'execute',

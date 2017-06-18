@@ -104,6 +104,106 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  health_up: {
+    duplicateTag: 'health_up', // Used to stop duplicate buffs
+    icon: 'health',
+    name: 'health up',
+    description({ buff, level }) {
+
+      const healthBase = buff.constants.healthBase;
+      const healthPerLevel = buff.constants.healthPerLevel * level;
+      const healthIncrease = healthBase + healthPerLevel;
+
+      return `
+        Increases health by ${Math.round(healthIncrease * 100)}%. <br />
+        (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)<br />`;
+    },
+    constants: {
+      healthBase: 0.04,
+      healthPerLevel: 0.02
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const healthBase = constants.healthBase;
+        const healthPerLevel = constants.healthPerLevel * buff.data.level;
+        const healthIncrease = healthBase + healthPerLevel;
+
+        buff.data.healthIncrease = healthIncrease;
+        caster.stats.health *= (1 + buff.data.healthIncrease);
+        caster.stats.healthMax *= (1 + buff.data.healthIncrease);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.health /= (1 + buff.data.healthIncrease);
+        caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+      }
+    }
+  },
+
+  defense_up: {
+    duplicateTag: 'defense_up', // Used to stop duplicate buffs
+    icon: 'defense',
+    name: 'defense up',
+    description({ buff, level }) {
+
+      const defenseBase = buff.constants.defenseBase;
+      const defensePerLevel = buff.constants.defensePerLevel * level;
+      const defenseIncrease = defenseBase + defensePerLevel;
+
+      return `
+        Increases defense by ${defenseIncrease}. <br />
+        (+${buff.constants.defensePerLevel} defense per lvl)<br />`;
+    },
+    constants: {
+      defenseBase: 2,
+      defensePerLevel: 4
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const defenseBase = constants.defenseBase;
+        const defensePerLevel = constants.defensePerLevel * buff.data.level;
+        const defenseIncrease = defenseBase + defensePerLevel;
+
+        buff.data.defenseIncrease = defenseIncrease;
+        caster.stats.defense += buff.data.defenseIncrease;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.defense -= buff.data.defenseIncrease;
+      }
+    }
+  },
+
   spiked_armor: {
     duplicateTag: 'spiked_armor', // Used to stop duplicate buffs
     icon: 'spikedArmor',

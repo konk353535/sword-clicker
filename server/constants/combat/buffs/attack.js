@@ -52,6 +52,107 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  attack_up: {
+    duplicateTag: 'attack_up', // Used to stop duplicate buffs
+    icon: 'attack',
+    name: 'attack up',
+    description({ buff, level }) {
+
+      const attackBase = buff.constants.attackBase;
+      const attackPerLevel = buff.constants.attackPerLevel * level;
+      const attackIncrease = attackBase + attackPerLevel;
+
+      return `
+        Increases attack by ${Math.round(attackIncrease * 100)}%. <br />
+        (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)<br />`;
+    },
+    constants: {
+      attackBase: 0.05,
+      attackPerLevel: 0.05
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const attackBase = constants.attackBase;
+        const attackPerLevel = constants.attackPerLevel * buff.data.level;
+        const attackIncrease = attackBase + attackPerLevel;
+
+        buff.data.attackIncrease = attackIncrease;
+        caster.stats.attack *= (1 + buff.data.attackIncrease);
+        caster.stats.attackMax *= (1 + buff.data.attackIncrease);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.attack /= (1 + buff.data.attackIncrease);
+        caster.stats.attackMax /= (1 + buff.data.attackIncrease);
+      }
+    }
+  },
+
+  accuracy_up: {
+    duplicateTag: 'accuracy_up', // Used to stop duplicate buffs
+    icon: 'accuracy',
+    name: 'accuracy up',
+    description({ buff, level }) {
+
+      const accuracyBase = buff.constants.accuracyBase;
+      const accuracyPerLevel = buff.constants.accuracyPerLevel * level;
+      const accuracyIncrease = accuracyBase + accuracyPerLevel;
+
+      return `
+        Increases accuracy by ${accuracyIncrease}. <br />
+        (+${buff.constants.accuracyPerLevel} accuracy per lvl)<br />`;
+    },
+    constants: {
+      accuracyBase: 2,
+      accuracyPerLevel: 6
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const accuracyBase = constants.accuracyBase;
+        const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
+        const accuracyIncrease = accuracyBase + accuracyPerLevel;
+
+        buff.data.accuracyIncrease = accuracyIncrease;
+        caster.stats.accuracy += buff.data.accuracyIncrease;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.accuracy -= buff.data.accuracyIncrease;
+      }
+    }
+  },
+
+
   poisoned_blade: {
     duplicateTag: 'poisoned_blade', // Used to stop duplicate buffs
     icon: 'poisonedBlade',

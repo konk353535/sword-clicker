@@ -64,6 +64,38 @@ export const DEFENSE_ABILITIES = {
     }
   },
 
+  health_up: {
+    icon: 'health',
+    name: 'health up',
+    id: 'health_up',
+    buffs: ['health_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.health_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  defense_up: {
+    icon: 'defense',
+    name: 'defense up',
+    id: 'defense_up',
+    buffs: ['defense_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.defense_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   spiked_armor: {
     icon: 'spikedArmor',
     name: 'spiked armor',

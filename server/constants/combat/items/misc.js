@@ -310,7 +310,172 @@ export const MISC_ITEMS = {
       "armor": 32.1,
       "accuracy": 3.6
     }
-  }
+  },
+
+  /* Knife - Off handed weapon, minor accuracy and damage increases */
+  "silver_knife": {
+    "id": "silver_knife",
+    "icon": "silverKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "silver knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 3,
+      "attack": 2,
+      "attackMax": 3
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2,
+      "attackMax": 2
+    }
+  },
+
+  "titanium_knife": {
+    "id": "titanium_knife",
+    "icon": "titaniumKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "titanium knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 5,
+      "attack": 4,
+      "attackMax": 5
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2,
+      "attackMax": 3
+    }
+  },
+
+  "cobalt_knife": {
+    "id": "cobalt_knife",
+    "icon": "cobaltKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "cobalt knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 7,
+      "attack": 6,
+      "attackMax": 8
+    },
+    "extraStats": {
+      "accuracy": 3,
+      "attack": 3,
+      "attackMax": 4
+    }
+  },
+
+  "cursed_knife": {
+    "id": "cursed_knife",
+    "icon": "cursedKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "cursed knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 10,
+      "attack": 8,
+      "attackMax": 10
+    },
+    "extraStats": {
+      "accuracy": 4,
+      "attack": 4,
+      "attackMax": 6
+    }
+  },
+
+  /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
+  "iron_rapiers": {
+    "id": "iron_rapiers",
+    "icon": "ironRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "iron rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 9.1,
+      "attackMax": 18.3,
+      "attackSpeed": 1.0,
+      "defense": -10,
+      "accuracy": 10.8
+    },
+    "extraStats": {
+      "attack": 2.7,
+      "attackMax": 5.5,
+      "accuracy": 2.4
+    }
+  },
+
+  "adamantium_rapiers": {
+    "id": "adamantium_rapiers",
+    "icon": "adamantiumRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "adamantium rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 41,
+      "attackMax": 82.5,
+      "attackSpeed": 1.0,
+      "defense": -10,
+      "accuracy": 45.8
+    },
+    "extraStats": {
+      "attack": 12.3,
+      "attackMax": 24.8,
+      "accuracy": 12
+    }
+  },
+
+  "fairy_steel_rapiers": {
+    "id": "fairy_steel_rapiers",
+    "icon": "fairySteelRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "fairy steel rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 54.6,
+      "attackMax": 109.8,
+      "attackSpeed": 1.0,
+      "accuracy": 62.9,
+      "defense": -25
+    },
+    "extraStats": {
+      "attack": 16.4,
+      "attackMax": 32.9,
+      "accuracy": 18.7
+    }
+  },
 
   spirit_shield: {
     id: 'spirit_shield',

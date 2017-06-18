@@ -49,6 +49,21 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  vamprisim: {
+    icon: 'vamprisim',
+    name: 'vamprisim',
+    id: 'vamprisim',
+    buffs: ['vamprisim'],
+    cooldown: 600,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.vamprisim;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   penetrating_stab: {
     icon: 'penetratingStab',
     name: 'penetrating stab',
@@ -171,6 +186,25 @@ export const ATTACK_ABILITIES = {
     target: 'self', // The curreny enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.blade_frenzy;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  bleeding_spin: {
+    icon: 'bleedingSpin',
+    name: 'bleeding spin',
+    id: 'bleeding_spin',
+    buffs: ['bleed'],
+    cooldown: 60,
+    slot: 'any',
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['battleAxe']
+    }],
+    target: 'allEnemies', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.bleed;
       return BUFF.description({ buff: BUFF, level });
     }
   },

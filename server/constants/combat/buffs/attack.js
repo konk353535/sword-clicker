@@ -152,6 +152,60 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  vamprisim: {
+    duplicateTag: 'vamprisim', // Used to stop duplicate buffs
+    icon: 'vamprisim',
+    name: 'vamprisim',
+    description({ buff, level }) {
+      const lifestealBase = buff.constants.lifestealBase;
+      const lifestealPerLevel = buff.constants.lifestealPerLevel;
+
+      const lifestealTotal = lifestealBase + (lifestealPerLevel * level);
+      return `Heal for ${Math.round(lifestealTotal * 100)}% of auto attack damage.<br />
+        Lasts 2 minutes.`;
+    },
+    constants: {
+      lifestealBase: 0.04,
+      lifestealPerLevel: 0.03,
+    },
+    data: {
+      duration: 120,
+      totalDuration: 120
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        const constants = buff.constants.constants;
+
+        const lifestealBase = constants.lifestealBase;
+        const lifestealPerLevel = constants.lifestealPerLevel;
+        buff.data.lifestealTotal = lifestealBase + (lifestealPerLevel * buff.data.level);
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        const totalHeal = (damageDealt * buff.data.lifestealTotal);
+
+        actualBattle.utils.healTarget(totalHeal, {
+          caster: attacker,
+          target: attacker,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 
   poisoned_blade: {
     duplicateTag: 'poisoned_blade', // Used to stop duplicate buffs

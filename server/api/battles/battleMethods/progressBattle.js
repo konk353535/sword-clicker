@@ -161,7 +161,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           buff.constants = BUFFS[buff.id];
           if (buff.constants.events.onDidDamage) {
             // Did Damage
-            buff.constants.events.onDidDamage({ secondsElapsed, buff, defender, attacker, actualBattle })
+            buff.constants.events.onDidDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt })
           }
         });
       }

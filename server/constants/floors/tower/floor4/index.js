@@ -44,7 +44,7 @@ export const TOWER_FLOOR_4 = {
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [ 
-        { type: 'item', itemId: 'spirit_shield', amount: 1 }
+        { type: 'item', itemId: 'spirit_shield', amount: 1 },
         { type: 'item', itemId: 'blue_trident', amount: 1 }
       ]
     }, {

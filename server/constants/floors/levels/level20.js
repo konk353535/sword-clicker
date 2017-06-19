@@ -1,6 +1,6 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
-export const LEVEL_NINE_MONSTERS = [{
+export const LEVEL_TWENTY_MONSTERS = [{
   id: 'wolf',
   icon: 'wolf',
   name: 'wolf'
@@ -30,30 +30,29 @@ export const LEVEL_NINE_MONSTERS = [{
   }]
 }];
 
-export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
+export const LEVEL_TWENTY_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
-    { type: 'item', itemId: 'steel_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'steel_axe', amount: 1 },
-    { type: 'item', itemId: 'steel_dagger', amount: 1 },
+    { type: 'item', itemId: 'elven_steel_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'elven_steel_axe', amount: 1 },
+    { type: 'item', itemId: 'elven_steel_dagger', amount: 1 },
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'celery_seed', amount: 1 },
-    { type: 'item', itemId: 'steel_bar', amount: 1 }
+    { type: 'item', itemId: 'elven_steel_bar', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
+  chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'steel_essence', amount: 1 }
+    { type: 'item', itemId: 'elven_steel_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 600 },
-    { type: 'item', itemId: 'ore_steel', amount: 1 },
-    { type: 'item', itemId: 'mahogany_log', amount: 2 }
+    { type: 'item', itemId: 'ore_elven_steel', amount: 1 },
+    { type: 'item', itemId: 'willow_log', amount: 2 }
   ]
 }]);
 

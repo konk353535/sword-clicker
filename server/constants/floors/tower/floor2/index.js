@@ -24,7 +24,7 @@ export const TOWER_FLOOR_2 = {
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'copper_wand', amount: 1 }
+        { type: 'item', itemId: 'copper_wand', amount: 1 },
         { type: 'item', itemId: 'brown_trident', amount: 1 }
       ]
     }, {

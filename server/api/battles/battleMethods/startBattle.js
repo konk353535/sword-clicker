@@ -28,6 +28,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave);
   } else if (room === 0) {
     // Is tower explore (To Do)
+    // Does this do anything?
     battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
   } else if (room >= 1 && room <= 7) {
     // Is tower room specific

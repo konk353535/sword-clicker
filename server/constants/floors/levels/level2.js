@@ -41,6 +41,6 @@ export const LEVEL_TWO_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'ore_copper', amount: 1 },
     { type: 'item', itemId: 'copper_bar', amount: 1 },
     { type: 'gold', amount: 50 },
-    { type: 'item', itemId: 'beech_log', amount: 1 }
+    { type: 'item', itemId: 'pine_log', amount: 1 }
   ]
 }]);

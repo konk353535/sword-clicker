@@ -40,8 +40,8 @@ export const TOWER_FLOOR_12 = {
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'obsidian_kite_shield', amount: 1 }
-        { type: 'item', itemId: 'obsidian_hammer', amount: 1 }
+        { type: 'item', itemId: 'obsidian_kite_shield', amount: 1 },
+        { type: 'item', itemId: 'obsidian_hammer', amount: 1 },
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
     }]))

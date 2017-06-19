@@ -67,7 +67,7 @@ export const TOWER_FLOOR_6 = {
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'angels_touch_tome', amount: 1 }
+        { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
         { type: 'item', itemId: 'gold_wand', amount: 1 }
       ]
     }]))

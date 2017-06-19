@@ -33,27 +33,27 @@ export const LEVEL_EIGHT_MONSTERS = [{
 export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
   chance: 1 / 128,
   rewards: [
-    { type: 'item', itemId: 'adamantium_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'adamantium_axe', amount: 1 },
-    { type: 'item', itemId: 'adamantium_dagger', amount: 1 }
+    { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'carbon_axe', amount: 1 },
+    { type: 'item', itemId: 'carbon_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'adamantium_bar', amount: 1 },
+    { type: 'item', itemId: 'carbon_bar', amount: 1 },
     { type: 'item', itemId: 'affliction_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 16,
   rewards: [
-    { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+    { type: 'item', itemId: 'carbon_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 600 },
-    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
-    { type: 'item', itemId: 'walnut_log', amount: 2 }
+    { type: 'item', itemId: 'ore_carbon', amount: 1 },
+    { type: 'item', itemId: 'cherry_log', amount: 2 }
   ]
 }]);
 

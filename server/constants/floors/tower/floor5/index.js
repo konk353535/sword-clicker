@@ -81,7 +81,7 @@ export const TOWER_FLOOR_5 = {
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
+        { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 },
         { type: 'item', itemId: 'poison_dart_tome', amount: 1 }
       ]
     }, {

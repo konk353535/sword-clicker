@@ -44,7 +44,7 @@ export const TOWER_FLOOR_8 = {
     name: 'Carrot Patch',
     enemies: ['rabbit'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
-      chance: 1 / 4,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 }
       ]
@@ -83,7 +83,8 @@ export const TOWER_FLOOR_8 = {
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 }
+        { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
+        { type: 'item', itemId: 'bleeding_spin_1_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

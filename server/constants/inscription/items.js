@@ -192,6 +192,188 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the frost armor ability.'
   },
 
+  water_wave_tome: {
+    id: 'water_wave_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Water wave',
+    teaches: {
+      abilityId: 'water_wave',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the water wave ability.'
+  },
+
+  mending_spring_tome: {
+    id: 'mending_spring_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Mending spring',
+    teaches: {
+      abilityId: 'mending_spring',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the mending spring ability.'
+  },
+
+  affliction_tome: {
+    id: 'affliction_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Affliction',
+    teaches: {
+      abilityId: 'affliction',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the affliction ability.'
+  },
+
+  wisdom_tome: {
+    id: 'wisdom_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'wisdom',
+    teaches: {
+      abilityId: 'wisdom',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the wisdom ability.'
+  },
+
+  poison_dart_tome: {
+    id: 'poison_dart_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'poison dart tome',
+    teaches: {
+      abilityId: 'poison_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the poison dart ability.'
+  },
+
+  lightning_dart_tome: {
+    id: 'lightning_dart_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'lightning dart tome',
+    teaches: {
+      abilityId: 'lightning_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the lightning dart ability.'
+  },
+
+  lightning_storm_tome: {
+    id: 'lightning_storm_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'lightning storm tome',
+    teaches: {
+      abilityId: 'lightning_storm',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the lightning storm ability.'
+  },
+
+  blizzard_tome: {
+    id: 'blizzard_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'blizzard tome',
+    teaches: {
+      abilityId: 'blizzard',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the blizzard ability.'
+  },
+
+  health_up_1_tome: {
+    id: 'health_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'health up tome lv 1',
+    teaches: {
+      abilityId: 'health_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the health up ability.'
+  },
+
+  damage_up_1_tome: {
+    id: 'damage_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'damage up tome lv 1',
+    teaches: {
+      abilityId: 'damage_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the damage up ability.'
+  },
+
+  accuracy_up_1_tome: {
+    id: 'accuracy_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'accuracy up tome lv 1',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the accuracy up ability.'
+  },
+
+  defense_up_1_tome: {
+    id: 'defense_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'defense up tome lv 1',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the defense up ability.'
+  },
+
+  bleeding_spin_1_tome: {
+    id: 'bleeding_spin_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'bleeding spin tome lv 1',
+    teaches: {
+      abilityId: 'bleeding_spin',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the bleeding spin ability.'
+  },
+
+  double_edged_sword_1_tome: {
+    id: 'double_edged_sword_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'double edged sword tome lv 1',
+    teaches: {
+      abilityId: 'double_edged',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the doubled edged sword ability.'
+  },
+
   spiked_armor_1_tome: {
     id: 'spiked_armor_1_tome',
     icon: 'tomeUncommon',

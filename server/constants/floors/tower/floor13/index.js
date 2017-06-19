@@ -70,9 +70,9 @@ export const TOWER_FLOOR_13 = {
     name: 'Fire Mage',
     enemies: ['fire_mage'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+        { type: 'item', itemId: 'lightning_storm_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 4,

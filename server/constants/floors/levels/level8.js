@@ -40,7 +40,8 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'adamantium_bar', amount: 1 }
+    { type: 'item', itemId: 'adamantium_bar', amount: 1 },
+    { type: 'item', itemId: 'affliction_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 16,

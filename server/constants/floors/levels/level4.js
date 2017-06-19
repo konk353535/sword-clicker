@@ -34,6 +34,7 @@ export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([{
   chance: 1 / 128,
   rewards: [
     { type: 'item', itemId: 'steel_bar', amount: 1 },
+    { type: 'item', itemId: 'health_up_1_tome', amount: 1 },
   ]
 }, {
   chance: 1 / 32,

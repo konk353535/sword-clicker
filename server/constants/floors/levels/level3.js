@@ -42,11 +42,6 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 },
   ]
 }, {
-  chance: 1 / 64,
-  rewards: [
-    { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
-  ]
-}, {
   chance: 1 / 16,
   rewards: [
     { type: 'item', itemId: 'ore_iron', amount: 1 },

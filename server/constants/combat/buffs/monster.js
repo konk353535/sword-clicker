@@ -398,6 +398,64 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  water_mage_monster: {
+    duplicateTag: 'water_mage_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'water mage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.05 && !_.findWhere(attacker.buffs, { id: 'frosted_attacks' })) {
+          const newBuff = {
+            id: 'frosted_attacks',
+            data: {
+              duration: 10,
+              totalDuration: 10,
+              attackSpeedDecrease: 25,
+              icon: 'frostedAttacks',
+              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              name: 'Frosted Attacks'
+            }
+          }
+
+          // cast frost attack
+          addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.6) {
+          const newBuff = {
+            id: 'water_dart',
+            data: {
+              duration: 0,
+              totalDuration: 0,
+              icon: 'waterDart',
+              description: ''
+            },
+            constants: BUFFS['water_dart']
+          }
+
+          // cast water dart
+          addBuff({ buff: newBuff, target: attacker, caster: attacker, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   fire_mage_monster: {
     duplicateTag: 'fire_mage_monster', // Used to stop duplicate buffs
     icon: '',

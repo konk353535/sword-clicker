@@ -82,13 +82,19 @@ export const TOWER_FLOOR_5 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
+        { type: 'item', itemId: 'poison_dart_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'silver_scimitar', amount: 1 },
         { type: 'item', itemId: 'silver_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'silver_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'silver_horned_helmet', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 4,
+      rewards: [
+        { type: 'item', itemId: 'poison_shard_fragment', amount: 25 }
       ]
     }]))
   },

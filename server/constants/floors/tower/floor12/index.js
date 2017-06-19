@@ -74,7 +74,7 @@ export const TOWER_FLOOR_12 = {
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+        { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 4,

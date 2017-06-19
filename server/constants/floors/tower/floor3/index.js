@@ -66,6 +66,11 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'bronze_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'bronze_mining_hammer', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'lightning_dart_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

@@ -558,6 +558,28 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  // Casts fire abilities
+  water_mage: {
+    id: 'water_mage',
+    icon: 'waterMage',
+    name: 'water mage',
+    buffs: [{
+      id: 'water_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.01
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.01
+    }]
+  },
+
   blue_mage: {
     id: 'blue_mage',
     icon: 'blue_mage',

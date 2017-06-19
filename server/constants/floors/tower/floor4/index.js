@@ -45,6 +45,7 @@ export const TOWER_FLOOR_4 = {
       chance: 1 / 128,
       rewards: [ 
         { type: 'item', itemId: 'spirit_shield', amount: 1 }
+        { type: 'item', itemId: 'blue_trident', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

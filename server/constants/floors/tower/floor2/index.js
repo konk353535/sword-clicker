@@ -25,6 +25,7 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'copper_wand', amount: 1 }
+        { type: 'item', itemId: 'brown_trident', amount: 1 }
       ]
     }, {
       chance: 1 / 16,

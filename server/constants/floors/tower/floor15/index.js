@@ -28,6 +28,11 @@ export const TOWER_FLOOR_15 = {
     name: 'Adamantium Place',
     enemies: ['adamantium_spirit'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cursed_spirit_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }

@@ -46,6 +46,11 @@ export const TOWER_FLOOR_8 = {
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
+        { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 4,
+      rewards: [
         { type: 'item', itemId: 'carrot', amount: 1 }
       ]
     }]))

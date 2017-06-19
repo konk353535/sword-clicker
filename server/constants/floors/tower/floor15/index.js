@@ -9,13 +9,13 @@ export const TOWER_FLOOR_15 = {
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Creaking Door',
+    enemies: ['wasp'],
     rewards: LEVEL_FIFTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Deep Water',
+    enemies: ['octopus'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -40,8 +40,8 @@ export const TOWER_FLOOR_15 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Dark Chasm',
+    enemies: ['crab'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -50,8 +50,8 @@ export const TOWER_FLOOR_15 = {
     }]))
   },
   6: {
-    name: 'Suspicious Mine',
-    enemies: ['angry_miner'],
+    name: 'Big Pit',
+    enemies: ['snake', 'snake', 'snake'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
@@ -72,8 +72,8 @@ export const TOWER_FLOOR_15 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Eternal Abyss',
+    enemies: ['demon', 'angel'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

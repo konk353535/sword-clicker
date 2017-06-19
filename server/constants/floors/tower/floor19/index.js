@@ -4,13 +4,13 @@ import { LEVEL_NINETEEN_LOOT_TABLE } from '/server/constants/floors/levels/level
 
 export const TOWER_FLOOR_19 = {
   1: {
-    name: 'Flaming House',
+    name: 'Murders House',
     enemies: ['demon'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Castle',
+    enemies: ['spartan'],
     rewards: LEVEL_NINETEEN_LOOT_TABLE
   },
   3: {
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_19 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Dojo',
+    enemies: ['young_ninja'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_19 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Hilly Plain',
+    enemies: ['unicorn'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

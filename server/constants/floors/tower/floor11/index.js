@@ -4,18 +4,18 @@ import { LEVEL_ELEVEN_LOOT_TABLE } from '/server/constants/floors/levels/level11
 
 export const TOWER_FLOOR_11 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Deep Mine',
+    enemies: ['goblin', 'goblin'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Ninja Academy',
+    enemies: ['young_ninja', 'young_ninja'],
     rewards: LEVEL_ELEVEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Dwarven Fortress',
+    enemies: ['dwarf', 'elephant'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_11 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Warlocks Palace',
+    enemies: ['demon', 'fire_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_11 = {
     }]))
   },
   7: {
-    name: 'Water Mage',
-    enemies: ['water_mage'],
+    name: 'Mages Guild',
+    enemies: ['water_mage', 'fire_mage', 'earth_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [

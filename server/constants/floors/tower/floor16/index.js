@@ -4,8 +4,8 @@ import { LEVEL_SIXTEEN_LOOT_TABLE } from '/server/constants/floors/levels/level1
 
 export const TOWER_FLOOR_16 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Blue House',
+    enemies: ['blue_mage'],
     rewards: []
   },
   2: {
@@ -14,8 +14,8 @@ export const TOWER_FLOOR_16 = {
     rewards: LEVEL_SIXTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Windy Peak',
+    enemies: ['echidna'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_16 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Fiery Pit',
+    enemies: ['demon', 'fire_mage'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_16 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Howling Abyss',
+    enemies: ['ice_giant'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

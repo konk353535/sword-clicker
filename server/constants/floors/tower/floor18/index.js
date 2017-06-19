@@ -4,18 +4,18 @@ import { LEVEL_EIGHTEEN_LOOT_TABLE } from '/server/constants/floors/levels/level
 
 export const TOWER_FLOOR_18 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Dirty Field',
+    enemies: ['worm'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Honey Comb',
+    enemies: ['bee'],
     rewards: LEVEL_EIGHTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Wasp Nests',
+    enemies: ['wasp'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_18 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Eternal Struggle',
+    enemies: ['demon', 'angel'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_18 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Waterfall',
+    enemies: ['water_mage', 'jellyFish'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

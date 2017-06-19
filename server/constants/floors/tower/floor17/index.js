@@ -4,18 +4,18 @@ import { LEVEL_SEVENTEEN_LOOT_TABLE } from '/server/constants/floors/levels/leve
 
 export const TOWER_FLOOR_17 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Old Shed',
+    enemies: ['rat'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Chestnut tree',
+    enemies: ['bird'],
     rewards: LEVEL_SEVENTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Cubby House',
+    enemies: ['spider'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_17 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Rocky Beach',
+    enemies: ['crab', 'crab', 'crab'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_17 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Empty Cave',
+    enemies: ['goblin', 'cut_purse'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

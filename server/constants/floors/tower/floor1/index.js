@@ -5,7 +5,7 @@ import { LEVEL_ONE_LOOT_TABLE } from '/server/constants/floors/levels/level1';
 export const TOWER_FLOOR_1 = {
   1: {
     name: 'Grass Field',
-    enemies: ['grasshopper'],
+    enemies: ['grasshopper', 'fly'],
     rewards: [{
       chance: 1 / 4,
       rewards: [

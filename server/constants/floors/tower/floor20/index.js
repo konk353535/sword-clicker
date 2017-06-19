@@ -4,18 +4,18 @@ import { LEVEL_TWENTY_LOOT_TABLE } from '/server/constants/floors/levels/level20
 
 export const TOWER_FLOOR_20 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Desert',
+    enemies: ['lizard'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Grassy Paddock',
+    enemies: ['fly'],
     rewards: LEVEL_TWENTY_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Wooden Dam',
+    enemies: ['beaver'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_20 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Winding River',
+    enemies: ['fish', 'jellyFish'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -46,7 +46,7 @@ export const TOWER_FLOOR_20 = {
   },
   6: {
     name: 'Suspicious Mine',
-    enemies: ['angry_miner'],
+    enemies: ['angry_miner', 'angry_miner'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_20 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Down Under',
+    enemies: ['echidna', 'wombat', 'snake', 'spider'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

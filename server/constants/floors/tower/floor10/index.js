@@ -4,18 +4,18 @@ import { LEVEL_TEN_LOOT_TABLE } from '/server/constants/floors/levels/level10';
 
 export const TOWER_FLOOR_10 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'abandoned lighthouse',
+    enemies: ['demon', 'crab'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Bush',
+    enemies: ['wombat', 'fly'],
     rewards: LEVEL_TEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Turquoise Lake',
+    enemies: ['jellyfish', 'fish'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_10 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Bandit Camp',
+    enemies: ['rabbit', 'cut_purse'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -67,13 +67,14 @@ export const TOWER_FLOOR_10 = {
       ]
     }]))
   },
+  // To do, some kind of herb garden drops
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Overgrown Grass',
+    enemies: ['grasshopper', 'spider'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+        { type: 'item', itemId: 'inferno_tome', amount: 1 } // Change to herb
       ]
     }, {
       chance: 1 / 4,
@@ -84,7 +85,7 @@ export const TOWER_FLOOR_10 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
+    enemy: { id: 'boss_gorilla', amount: 1 }, // Change to another boss
     rewards: LEVEL_TEN_LOOT_TABLE
   },
 

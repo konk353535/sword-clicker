@@ -4,18 +4,18 @@ import { LEVEL_THIRTEEN_LOOT_TABLE } from '/server/constants/floors/levels/level
 
 export const TOWER_FLOOR_13 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Animal Carcass',
+    enemies: ['fly', 'worm'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Sparta',
+    enemies: ['spartan', 'spartan'],
     rewards: LEVEL_THIRTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Venoms Place',
+    enemies: ['jellyFish', 'spider', 'snake'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_13 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Hell',
+    enemies: ['demon', 'demon', 'worm'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -45,8 +45,8 @@ export const TOWER_FLOOR_13 = {
     }]))
   },
   6: {
-    name: 'Suspicious Mine',
-    enemies: ['angry_miner'],
+    name: 'Old Mine',
+    enemies: ['dwarf'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
@@ -67,8 +67,8 @@ export const TOWER_FLOOR_13 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Rolling Stones',
+    enemies: ['ice_giant', 'water_mage'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [

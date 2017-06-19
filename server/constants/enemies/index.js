@@ -77,6 +77,21 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  unicorn: {
+    id: 'unicorn',
+    icon: 'unicorn',
+    name: 'unicorn',
+    buffs: [{
+      id: 'ninja_reflexes',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'youngNinja',
+        name: 'Ninja Reflexes'
+      }
+    }]
+  },
+
   // When below 50% hp, goes berserk
   dwarf: {
     id: 'dwarf',
@@ -105,6 +120,12 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  angel: {
+    id: 'angel',
+    icon: 'angel',
+    name: 'angel'
+  },
+
   // Block ability, reduces damage of all attacks after armor by X
   spartan: {
     id: 'spartan',
@@ -118,6 +139,25 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'magicArmor',
       amount: 0.2
+    }]
+  },
+
+  octopus: {
+    id: 'octopus',
+    icon: 'octopus',
+    name: 'octopus',
+    statBuffs: [{
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 4
+    }, {
+      type: 'times',
+      key: 'attack',
+      amount: 0.25
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.25
     }]
   },
 
@@ -393,6 +433,22 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }]
+  },
+
+  fish: {
+    id: 'fish',
+    icon: 'fish',
+    name: 'fish',
+    swarmRange: [4, 5],
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.8
     }]
   },
 

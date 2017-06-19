@@ -4,18 +4,18 @@ import { LEVEL_FOURTEEN_LOOT_TABLE } from '/server/constants/floors/levels/level
 
 export const TOWER_FLOOR_14 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'Leaking Dam',
+    enemies: ['beaver', 'beaver'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Snake Pit',
+    enemies: ['snake', 'snake'],
     rewards: LEVEL_FOURTEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Cliffs Edge',
+    enemies: ['dragonfly', 'butterfly'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -35,8 +35,8 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Meat Works',
+    enemies: ['rabbit', 'farmer'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
@@ -47,8 +47,8 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   6: {
-    name: 'Suspicious Mine',
-    enemies: ['angry_miner'],
+    name: 'Hells Quarry',
+    enemies: ['goblin', 'demon'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
@@ -69,8 +69,8 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Thieves Guild',
+    enemies: ['cut_purse', 'cut_purse'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 1024,
       rewards: [

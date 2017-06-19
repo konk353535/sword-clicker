@@ -215,6 +215,34 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  meteorite_spirit: {
+    id: 'meteorite_spirit',
+    icon: 'meteoriteSpirit',
+    name: 'meteorite spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  elven_steel_spirit: {
+    id: 'elven_steel_spirit',
+    icon: 'elvenSteelSpirit',
+    name: 'elven steel spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
   fairy_steel_spirit: {
     id: 'fairy_steel_spirit',
     icon: 'fairySteelSpirit',
@@ -275,6 +303,118 @@ export const ENEMIES = Object.assign({
     id: 'mithril_spirit',
     icon: 'mithrilSpirit',
     name: 'mithril spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  obsidian_spirit: {
+    id: 'obsidian_spirit',
+    icon: 'obsidianSpirit',
+    name: 'obsidian spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  tungsten_spirit: {
+    id: 'tungsten_spirit',
+    icon: 'tungstenSpirit',
+    name: 'tungsten spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  titanium_spirit: {
+    id: 'titanium_spirit',
+    icon: 'titaniumSpirit',
+    name: 'titanium spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  platinum_spirit: {
+    id: 'platinum_spirit',
+    icon: 'platinumSpirit',
+    name: 'platinum spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  steel_spirit: {
+    id: 'steel_spirit',
+    icon: 'steelSpirit',
+    name: 'steel spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  carbon_spirit: {
+    id: 'carbon_spirit',
+    icon: 'carbonSpirit',
+    name: 'carbon spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  gold_spirit: {
+    id: 'gold_spirit',
+    icon: 'goldSpirit',
+    name: 'gold spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  silver_spirit: {
+    id: 'silver_spirit',
+    icon: 'silverSpirit',
+    name: 'silver spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {

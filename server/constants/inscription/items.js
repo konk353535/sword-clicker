@@ -98,6 +98,115 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription for marking pages'
   },
 
+  pigment_green_140: {
+    id: 'pigment_green_140',
+    icon: 'pigmentGreen140',
+    category: 'pigment',
+    name: 'pigment green 140',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  catnip: { // Green 140
+    id: 'catnip',
+    icon: 'catnip',
+    category: 'herb',
+    name: 'catnip',
+    sellPrice: 1250,
+    description: 'Used to make a green pigment.'
+  },
+
+  pigment_purple_150: {
+    id: 'pigment_purple_150',
+    icon: 'pigmentpurple150',
+    category: 'pigment',
+    name: 'pigment purple 150',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  chives: { // Purple 150
+    id: 'chives',
+    icon: 'chives',
+    category: 'herb',
+    name: 'chives',
+    sellPrice: 1250,
+    description: 'Used to make a purple pigment.'
+  },
+
+  pigment_white_190: {
+    id: 'pigment_white_190',
+    icon: 'pigmentwhite190',
+    category: 'pigment',
+    name: 'pigment white 190',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  garlic: { // White 190
+    id: 'garlic',
+    icon: 'garlic',
+    category: 'herb',
+    name: 'garlic',
+    sellPrice: 1250,
+    description: 'Used to make a white pigment.'
+  },
+
+  pigment_yellow_200: {
+    id: 'pigment_yellow_200',
+    icon: 'pigmentyellow200',
+    category: 'pigment',
+    name: 'pigment yellow 200',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  lemon_grass: { // Yellow 200
+    id: 'lemon_grass',
+    icon: 'lemonGrass',
+    category: 'herb',
+    name: 'lemon grass',
+    sellPrice: 1250,
+    description: 'Used to make a yellow pigment.'
+  },
+
+
+  pigment_red_100: {
+    id: 'pigment_red_100',
+    icon: 'pigmentred100',
+    category: 'pigment',
+    name: 'pigment red 100',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  nasturtium: { // Red 100
+    id: 'nasturtium',
+    icon: 'nasturtium',
+    category: 'herb',
+    name: 'nasturtium',
+    sellPrice: 1250,
+    description: 'Used to make a red pigment.'
+  },
+
+  pigment_green_110: {
+    id: 'pigment_green_110',
+    icon: 'pigmentgreen110',
+    category: 'pigment',
+    name: 'pigment green 110',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  sorrell: { // Green 110
+    id: 'sorrell',
+    icon: 'sorrell',
+    category: 'herb',
+    name: 'sorrell',
+    sellPrice: 1250,
+    description: 'Used to make a red pigment.'
+  },
+
   lavender: {
     id: 'lavender',
     icon: 'lavender',

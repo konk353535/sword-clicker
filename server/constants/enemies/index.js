@@ -121,6 +121,30 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  // Block ability, reduces damage of all attacks after armor by X
+  cut_purse: {
+    id: 'cut_purse',
+    icon: 'cutPurse',
+    name: 'cut purse',
+    statBuffs: [{
+      type: 'times',
+      key: 'armor',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 1.6
+    }, {
+      type: 'times',
+      key: 'accuracy',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'attack',
+      amount: 0.8
+    }]
+  },
+
   // Frost armor buff
   ice_giant: {
     id: 'ice_giant',

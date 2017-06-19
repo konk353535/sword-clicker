@@ -17,6 +17,11 @@ export const TOWER_FLOOR_6 = {
     name: 'Farmers Market',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'gold_hammer', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }
@@ -63,6 +68,7 @@ export const TOWER_FLOOR_6 = {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'angels_touch_tome', amount: 1 }
+        { type: 'item', itemId: 'gold_wand', amount: 1 }
       ]
     }]))
   },
@@ -95,6 +101,11 @@ export const TOWER_FLOOR_6 = {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'dwarven_staff', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'gold_buckler', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

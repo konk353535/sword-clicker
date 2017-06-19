@@ -27,6 +27,11 @@ export const TOWER_FLOOR_4 = {
     name: 'Deep Mine',
     enemies: ['goblin'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'iron_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 8,
       rewards: [
         { type: 'gold', amount: 750 }

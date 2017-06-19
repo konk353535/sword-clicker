@@ -78,7 +78,7 @@ export const TOWER_FLOOR_7 = {
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'spartan_shield', amount: 1 }
+        { type: 'item', itemId: 'steel_kite_shield', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

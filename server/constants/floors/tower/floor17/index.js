@@ -40,7 +40,7 @@ export const TOWER_FLOOR_17 = {
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'thirsting_saber', amount: 1 }
+        { type: 'item', itemId: 'meteorite_kite_shield', amount: 1 }
       ]
     }]))
   },

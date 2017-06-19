@@ -57,9 +57,14 @@ export const TOWER_FLOOR_1 = {
     }])
   },
   6: {
-    name: 'Bee Hive',
+    name: 'Honey Mine',
     enemies: ['bee'],
-    rewards: LEVEL_ONE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_hammer', amount: 1 }
+      ]
+    }])
   },
   7: {
     name: 'String Fortress',

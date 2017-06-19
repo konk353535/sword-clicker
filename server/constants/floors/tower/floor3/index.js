@@ -28,7 +28,12 @@ export const TOWER_FLOOR_3 = {
   4: {
     name: 'Shallow Shore',
     enemies: ['crab'],
-    rewards: LEVEL_THREE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_kite_shield', amount: 1 }
+      ]
+    }]))
   },
   5: {
     name: 'Abandoned Dojo',

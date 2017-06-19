@@ -40,7 +40,7 @@ export const TOWER_FLOOR_18 = {
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'thirsting_saber', amount: 1 }
+        { type: 'item', itemId: 'fairy_steel_rapiers', amount: 1 }
       ]
     }]))
   },

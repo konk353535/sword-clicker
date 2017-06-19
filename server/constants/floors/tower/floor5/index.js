@@ -22,12 +22,12 @@ export const TOWER_FLOOR_5 = {
     }]))
   },
   3: {
-    name: 'Grape Fruit Tree',
-    enemies: ['bee'],
+    name: 'Dark Ally',
+    enemies: ['cut_purse'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 4,
+      chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'grape_fruit', amount: 1 }
+        { type: 'item', itemId: 'silver_knife', amount: 1 }
       ]
     }]))
   },

@@ -22,6 +22,11 @@ export const TOWER_FLOOR_2 = {
     name: 'Minor Earth Alter',
     enemies: ['brown_mage'],
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_wand', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'brown_wizard_hat', amount: 1 },
@@ -37,6 +42,11 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tin_buckler', amount: 1 }
       ]
     }]))
   },

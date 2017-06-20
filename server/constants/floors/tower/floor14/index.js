@@ -73,7 +73,7 @@ export const TOWER_FLOOR_14 = {
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'lemon_grass', amount: 1 }
+        { type: 'item', itemId: 'lemon_grass', amount: 1 },
         { type: 'item', itemId: 'garlic_seed', amount: 1 }
       ]
     }]))

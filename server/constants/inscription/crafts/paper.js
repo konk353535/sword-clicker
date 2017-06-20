@@ -192,4 +192,100 @@ export const PAPER_CRAFTS = {
       level: 30
     }]
   },
+
+  blue_gum_paper: {
+    recipeFor: 'inscription',
+    produces: 'blue_gum_paper',
+    name: 'blue_gum paper',
+    id: 'blue_gum_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 200,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 35
+    }]
+  },
+
+  denya_paper: {
+    recipeFor: 'inscription',
+    produces: 'denya_paper',
+    name: 'denya paper',
+    id: 'denya_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 200,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 40
+    }]
+  },
+
+  gombe_paper: {
+    recipeFor: 'inscription',
+    produces: 'gombe_paper',
+    name: 'gombe paper',
+    id: 'gombe_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 200,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 45,
+    required: [{
+      type: 'item',
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 45
+    }]
+  },
+
+  elk_paper: {
+    recipeFor: 'inscription',
+    produces: 'elk_paper',
+    name: 'elk paper',
+    id: 'elk_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 200,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 45,
+    required: [{
+      type: 'item',
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 45
+    }]
+  }
 }

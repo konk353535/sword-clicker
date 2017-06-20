@@ -288,6 +288,42 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  elk_paper: {
+    id: 'elk_paper',
+    icon: 'elkPaper',
+    category: 'paper',
+    name: 'elk paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  gombe_paper: {
+    id: 'gombe_paper',
+    icon: 'gombePaper',
+    category: 'paper',
+    name: 'gombe paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  denya_paper: {
+    id: 'denya_paper',
+    icon: 'denyaPaper',
+    category: 'paper',
+    name: 'denya paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  blue_gum_paper: {
+    id: 'blue_gum_paper',
+    icon: 'blue_gumPaper',
+    category: 'paper',
+    name: 'blue_gum paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
   frost_armor_1_tome: {
     id: 'frost_armor_1_tome',
     icon: 'tomeUncommon',

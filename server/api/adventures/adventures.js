@@ -104,21 +104,21 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
   // Xp / hour lookup
   const xpLookup = {
     1: 2000,
-    2: 12000,
-    3: 20000,
-    4: 45000,
-    5: 65000,
-    6: 110000
+    2: 6000,
+    3: 10000,
+    4: 22000,
+    5: 33000,
+    6: 55000
   }
 
   const lengthXpLookup = {
     short: 1,
-    long: 0.8,
-    epic: 0.6
+    long: 0.7,
+    epic: 0.5
   }
 
   // Determine xp
-  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 20000);
+  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);
   const lengthXpDecimal = lengthXpLookup[adventure.length];
   const totalXp = xpPerHour * (adventure.duration / 3600) * lengthXpDecimal;
 

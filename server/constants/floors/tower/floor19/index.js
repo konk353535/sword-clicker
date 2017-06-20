@@ -70,9 +70,9 @@ export const TOWER_FLOOR_19 = {
     name: 'Hilly Plain',
     enemies: ['unicorn'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+        { type: 'item', itemId: 'lightning_speed_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 4,

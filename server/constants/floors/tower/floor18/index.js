@@ -70,9 +70,9 @@ export const TOWER_FLOOR_18 = {
     name: 'Waterfall',
     enemies: ['water_mage', 'jellyFish'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
+        { type: 'item', itemId: 'heavens_descent_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 4,

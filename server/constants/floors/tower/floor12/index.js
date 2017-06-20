@@ -72,14 +72,9 @@ export const TOWER_FLOOR_12 = {
     name: 'Bloody River',
     enemies: ['elephant', 'rat', 'spartan'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 512,
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
       ]
     }]))
   },

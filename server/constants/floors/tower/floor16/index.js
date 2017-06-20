@@ -19,8 +19,7 @@ export const TOWER_FLOOR_16 = {
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'lettice', amount: 50 },
-        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
+        { type: 'item', itemId: 'pineapple', amount: 10 }
       ]
     }]))
   },
@@ -40,7 +39,7 @@ export const TOWER_FLOOR_16 = {
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'thirsting_saber', amount: 1 }
+        { type: 'item', itemId: 'meteor_tome', amount: 1 }
       ]
     }]))
   },
@@ -70,14 +69,9 @@ export const TOWER_FLOOR_16 = {
     name: 'Howling Abyss',
     enemies: ['ice_giant'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'frost_armor_3_tome', amount: 1 }
       ]
     }]))
   },

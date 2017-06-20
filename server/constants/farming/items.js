@@ -29,6 +29,16 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  garlic_seed: {
+    id: 'garlic_seed',
+    icon: 'garlicSeed',
+    category: 'seed',
+    name: 'garlic Seed',
+    description: 'Used to grow garlic. Useful for inscription.',
+    sellPrice: 500,
+    produces: 'garlic'
+  },
+
   lemon_seed: {
     id: 'lemon_seed',
     icon: 'lemonSeed',

@@ -301,6 +301,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the frost armor ability.'
   },
 
+  frost_armor_1_tome: {
+    id: 'frost_armor_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Frost armor Lv 2',
+    teaches: {
+      abilityId: 'frost_armor',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the frost armor ability.'
+  },
+
+  frost_armor_3_tome: {
+    id: 'frost_armor_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Frost armor Lv 3',
+    teaches: {
+      abilityId: 'frost_armor',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the frost armor ability.'
+  },
+
   water_wave_tome: {
     id: 'water_wave_tome',
     icon: 'tomeUncommon',

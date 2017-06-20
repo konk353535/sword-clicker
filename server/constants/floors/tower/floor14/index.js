@@ -19,8 +19,7 @@ export const TOWER_FLOOR_14 = {
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'lettice', amount: 50 },
-        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
+        { type: 'item', itemId: 'apple', amount: 15 }
       ]
     }]))
   },
@@ -72,14 +71,10 @@ export const TOWER_FLOOR_14 = {
     name: 'Thieves Guild',
     enemies: ['cut_purse', 'cut_purse'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'inferno_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'lemon_grass', amount: 1 }
+        { type: 'item', itemId: 'garlic_seed', amount: 1 }
       ]
     }]))
   },

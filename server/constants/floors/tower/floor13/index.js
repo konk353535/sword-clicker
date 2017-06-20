@@ -17,10 +17,15 @@ export const TOWER_FLOOR_13 = {
     name: 'Venoms Place',
     enemies: ['jellyFish', 'spider', 'snake'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'nasturtium', amount: 1 },
+      ]
+    }, {
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'lettice', amount: 50 },
-        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
+        { type: 'item', itemId: 'dragonfruit_seed', amount: 1 }
       ]
     }]))
   },
@@ -72,12 +77,13 @@ export const TOWER_FLOOR_13 = {
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'lightning_storm_tome', amount: 1 }
+        { type: 'item', itemId: 'lightning_storm_tome', amount: 1 },
+        { type: 'item', itemId: 'frost_armor_2_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'air_shard_fragment', amount: 50 }
       ]
     }]))
   },

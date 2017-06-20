@@ -539,6 +539,31 @@ export const PLANTS = {
     }]
   },
 
+  garlic: {
+    produces: 'garlic',
+    name: 'garlic',
+    id: 'garlic',
+    category: 'farming',
+    icon: ITEMS['garlic'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 300,
+    growthTime: 60 * 60 * 1,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'garlic_seed',
+      icon: ITEMS['garlic_seed'].icon,
+      name: ITEMS['garlic_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 35
+    }]
+  },
+
   celery: {
     produces: 'celery',
     name: 'celery',

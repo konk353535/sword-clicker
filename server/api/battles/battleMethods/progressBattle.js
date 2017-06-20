@@ -277,7 +277,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       // Ensure caster unit has sufficient energy
       if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
         casterUnit.amulet.energy -= 1;
-        dealDamage(casterUnit.amulet.attack, {
+        dealDamage(casterUnit.amulet.damage, {
           attacker: casterUnit,
           defender: targetUnit,
           tickEvents: actualBattle.tickEvents

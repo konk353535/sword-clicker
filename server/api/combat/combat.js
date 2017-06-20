@@ -64,8 +64,7 @@ export const updateCombatStats = function (userId, username) {
       playerData.amulet = JSON.parse(JSON.stringify(combatItem.constants.stats));
       if (playerData.amulet.energy == null) {
         playerData.amulet.energy = 0;
-      } 
-      continue;
+      }
     }
 
     if (combatItem.constants.stats) {

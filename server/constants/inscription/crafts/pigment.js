@@ -290,11 +290,11 @@ export const PIGMENT_CRAFTS = {
     }]
   },
 
-  pigment_nasturtium_100: {
+  pigment_red_100: {
     recipeFor: 'inscription',
-    produces: 'pigment_nasturtium_100',
-    name: 'pigment nasturtium(100)',
-    id: 'pigment_nasturtium_100',
+    produces: 'pigment_red_100',
+    name: 'pigment red(100)',
+    id: 'pigment_red_100',
     category: 'pigment',
     timeToCraft: 600,
     xp: 550,
@@ -302,9 +302,9 @@ export const PIGMENT_CRAFTS = {
     requiredInscriptionLevel: 37,
     required: [{
       type: 'item',
-      itemId: 'feverfew',
-      icon: ITEMS['feverfew'].icon,
-      name: ITEMS['feverfew'].name,
+      itemId: 'nasturtium',
+      icon: ITEMS['nasturtium'].icon,
+      name: ITEMS['nasturtium'].name,
       amount: 1,
       consumes: true
     }, {

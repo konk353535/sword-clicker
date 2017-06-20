@@ -1318,7 +1318,7 @@ export const MINING = {
       icon: 'jade',
       name: 'jade',
       itemId: 'jade',
-      chance: 0.0000035
+      chance: 0.0000009
     },
 
     lapislazuli: {
@@ -1329,7 +1329,51 @@ export const MINING = {
       icon: 'lapislazuli',
       name: 'lapislazuli',
       itemId: 'lapislazuli',
-      chance: 0.000000095
+      chance: 0.0000008
+    },
+
+    sapphire: {
+      requiredLevel: 30,
+      healthMax: 45000,
+      xp: 3000,
+      id: 'sapphire',
+      icon: 'sapphire',
+      name: 'sapphire',
+      itemId: 'sapphire',
+      chance: 0.0000007
+    },
+
+    emerald: {
+      requiredLevel: 40,
+      healthMax: 135000,
+      xp: 9000,
+      id: 'emerald',
+      icon: 'emerald',
+      name: 'emerald',
+      itemId: 'emerald',
+      chance: 0.0000006
+    },
+
+    ruby: {
+      requiredLevel: 50,
+      healthMax: 350000,
+      xp: 21000,
+      id: 'ruby',
+      icon: 'ruby',
+      name: 'ruby',
+      itemId: 'ruby',
+      chance: 0.0000005
+    },
+
+    tanzanite: {
+      requiredLevel: 60,
+      healthMax: 800000,
+      xp: 31000,
+      id: 'tanzanite',
+      icon: 'tanzanite',
+      name: 'tanzanite',
+      itemId: 'tanzanite',
+      chance: 0.0000004
     }
   }
 }

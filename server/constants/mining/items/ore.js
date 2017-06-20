@@ -189,5 +189,38 @@ export const ORE_ITEMS = {
     category: 'mining',
     name: 'lapis lazuli',
     sellPrice: 2500
+  },
+
+  sapphire: {
+    id: 'sapphire',
+    icon: 'sapphire',
+    category: 'mining',
+    name: 'sapphire',
+    sellPrice: 2500
+  },
+
+  emerald: {
+    id: 'emerald',
+    icon: 'emerald',
+    category: 'mining',
+    name: 'emerald',
+    sellPrice: 2500
+  },
+
+  ruby: {
+    id: 'ruby',
+    icon: 'ruby',
+    category: 'mining',
+    name: 'ruby',
+    sellPrice: 2500
+  },
+
+  tanzanite: {
+    id: 'tanzanite',
+    icon: 'tanzanite',
+    category: 'mining',
+    name: 'tanzanite',
+    sellPrice: 2500
   }
+
 }

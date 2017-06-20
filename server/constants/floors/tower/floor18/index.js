@@ -11,7 +11,12 @@ export const TOWER_FLOOR_18 = {
   2: {
     name: 'Honey Comb',
     enemies: ['bee'],
-    rewards: LEVEL_EIGHTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'lemon_honey', amount: 1 }
+      ]
+    }]))
   },
   3: {
     name: 'Wasp Nests',

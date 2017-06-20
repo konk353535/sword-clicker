@@ -55,6 +55,69 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_rockmelon: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'rockmelon',
+    name: 'eating rockmelon',
+    description({ buff, level }) {
+      const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      const instantHeal = buff.data.instantHeal;
+      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 240, // How long the buff will last
+      totalDuration: 240,
+      instantHeal: 600,
+      energyPerSecond: 0.04, // energy it will do per second
+      healthPerSecond: 3
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.health += buff.data.instantHeal;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.energy > target.stats.energyMax) {
+          target.stats.energy = target.stats.energyMax;
+        }
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }        
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.energy += 0.5;
+      }
+    }
+  },
+
   food_dragonfruit: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'dragonfruit',
@@ -70,7 +133,7 @@ export const FOOD_BUFFS = {
       totalDuration: 240,
       instantHeal: 300,
       energyPerSecond: 0.02, // energy it will do per second
-      healthPerSecond: 1.5
+      healthPerSecond: 2.5
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -279,6 +342,62 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_orange: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'orange',
+    name: 'eating orange',
+    description({ buff, level }) {
+      const instantHeal = buff.data.instantHeal;
+      return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 240, // How long the buff will last
+      totalDuration: 240,
+      instantHeal: 500,
+      healthPerSecond: 0.1 // Healing it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.health += buff.data.instantHeal;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health += 1;
+      }
+    }
+  },
+
   food_pineapple: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'pineapple',
@@ -390,6 +509,61 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_banana: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'banana',
+    name: 'eating banana',
+    description({ buff, level }) {
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 13, // How long the buff will last
+      totalDuration: 13,
+      healthPerSecond: 40 // Healing it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.health += 1;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health += 1;
+      }
+    }
+  },
+
   food_carrot: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'carrot',
@@ -402,6 +576,61 @@ export const FOOD_BUFFS = {
       duration: 10, // How long the buff will last
       totalDuration: 10,
       healthPerSecond: 26 // Healing it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.health += 1;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health += 1;
+      }
+    }
+  },
+
+  food_lemon_honey: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'lemonHoney',
+    name: 'lemon honey',
+    description({ buff, level }) {
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 60, // How long the buff will last
+      totalDuration: 60,
+      healthPerSecond: 0.5 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -512,6 +741,62 @@ export const FOOD_BUFFS = {
       duration: 900, // How long the buff will last
       totalDuration: 900,
       healthPerSecond: 2 // Healing it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+
+        target.stats.health += 1;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        buff.data.duration -= localSecondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+
+        if (buff.data.duration < 0) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health += 1;
+      }
+    }
+  },
+
+  food_sweet_potato: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'sweetPotato',
+    name: 'eating sweet potato',
+    description({ buff, level }) {
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+    },
+    data: { // Data we require to persist
+      duration: 900, // How long the buff will last
+      totalDuration: 900,
+      healthPerSecond: 3.3, // Healing it will do per second
+      energyPerSecond: 0.02
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

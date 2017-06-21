@@ -18,8 +18,6 @@ import { genericTowerMonsterGenerator } from '/server/constants/floors/generator
 
 Meteor.startup(() => {
 
-  if (process.env['CLUSTER_WORKER_ID'] !== "1") return 
-
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);

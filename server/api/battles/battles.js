@@ -263,7 +263,6 @@ Meteor.methods({
   },
 
   'battles.castAbility'(battleId, abilityId, options) {
-
     if (options.caster !== Meteor.userId()) {
       throw new Meteor.Error("battle-not-found", "Thats not you!");      
     }

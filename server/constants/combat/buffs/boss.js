@@ -139,7 +139,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little snake
           const littleSnake = {
-            enemyId: Random.id(),
+            id: Random.id(),
             tickOffset: 0,
             icon: 'snake',
             name: 'snake',
@@ -213,6 +213,67 @@ export const BOSS_BUFFS = {
             // cast earth dart
             addBuff({ buff: newBuff, target: unit, caster: defender, actualBattle });
           });
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_spartan: {
+    duplicateTag: 'boss_spartan', // Used to stop duplicate buffs
+    icon: 'spartan',
+    name: 'boss spartan',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Blade spin chance on hit`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        Object.keys(buff.data.stats).forEach((buffKey) => {
+          target.stats[buffKey] -= buff.data.stats[buffKey];
+        });
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        if (!buff.data.spartansSpawned) {
+
+          for (let i = 0; i < 2; i++) {
+            const spartanStats = JSON.parse(JSON.stringify(target.stats));
+            spartanStats.health = 300;
+            spartanStats.healthMax = 300;
+            spartanStats.attack *= 0.3;
+            spartanStats.attackMax *= 0.3;
+
+            // Spawn little snake
+            const littleSpartan = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'spartan',
+              name: 'spartan',
+              stats: spartanStats,
+              buffs: [{
+                id: 'phalanx',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  isEnemy: true,
+                  icon: 'phalanx',        
+                  name: 'phalanx'
+                }
+              }]
+            }
+
+            actualBattle.enemies.push(littleSpartan);
+          }
+
+          buff.data.spartansSpawned = true;
         }
       },
 

@@ -459,7 +459,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'cobalt axe',
     id: 'cobalt_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 5, // 60
+    timeToCraft: 30 * 60, // 60
     xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
@@ -498,7 +498,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'mithril axe',
     id: 'mithril_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60, // 60
+    timeToCraft: 30 * 60, // 60
     xp: 1500,
     maxToCraft: 1,
     requiredCraftingLevel: 70,

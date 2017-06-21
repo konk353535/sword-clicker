@@ -35,6 +35,69 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  phalanx: {
+    duplicateTag: 'phalanx', // Used to stop duplicate buffs
+    icon: 'phalanx',
+    name: 'phalanx',
+    description({ buff, level }) {
+    },
+    constants: {
+      armorPerAlly: 200
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        buff.data.extraArmor = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+
+        if (!buff.data.timeTillUpdate || buff.data.timeTillUpdate <= 0) {
+          let phalanxCount = 0;
+          if (buff.data.isEnemy) {
+            // Check for other enemies with buff
+            phalanxCount = actualBattle.enemies.filter((enemy) => {
+              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+            }).length;
+          } else {
+            // Check for other allies with buff
+            phalanxCount = actualBattle.enemies.filter((enemy) => {
+              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+            }).length;
+          }
+
+          if (buff.data.extraArmor) {
+            target.stats.armor -= buff.data.extraArmor;
+          }
+
+          if (phalanxCount > 1) {
+            buff.data.hideBuff = false;
+            buff.data.stacks = phalanxCount;
+            buff.data.extraArmor = phalanxCount * constants.armorPerAlly;
+            target.stats.armor += buff.data.extraArmor;
+          } else {
+            buff.data.hideBuff = true;
+            // Remove armor buff
+            buff.data.extraArmor = 0;
+          }
+
+          buff.data.timeTillUpdate = 10;
+        }
+
+        buff.data.timeTillUpdate -= secondsElapsed;
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   frost_armor: {
     duplicateTag: 'frost_armor', // Used to stop duplicate buffs
     icon: 'frostArmor',

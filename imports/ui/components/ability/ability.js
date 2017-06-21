@@ -17,7 +17,7 @@ const castAbility = function(instance) {
           // Add body listener for when you want to click out
           $('body').on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('enemy-icon')) {
-              const targetId = $(event.target).data('unit-id');
+              const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
               const abilityId = instance.data.ability.id;
               // Fire this ability from = us, to = 
@@ -38,7 +38,7 @@ const castAbility = function(instance) {
           // Add body listener for when you want to click out
           $('body').on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('friendly-icon')) {
-              const targetId = $(event.target).data('unit-id');
+              const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
               const abilityId = instance.data.ability.id;
               // Fire this ability from = us, to = 

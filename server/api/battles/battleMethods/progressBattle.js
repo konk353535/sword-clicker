@@ -77,7 +77,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   const dealDamage = function(rawDamage, { attacker, defender, tickEvents, customColor, customIcon, isMagic, isTrueDamage }) {
 
     let damage = rawDamage;
-    if (damage > 0) {
+    if (damage > 0 && damage) {
       let dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
 
       if (dmgReduction < 0) {

@@ -100,6 +100,10 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // phalanx
+  // Boss spawns with 3 additional spartans with lowish hp
+  // Each spartan gains 250 armor for each other spartan on the field
+  // Once the boss is alone, this buff is lost
   boss_spartan: {
     id: 'boss_spartan',
     icon: 'spartan',
@@ -114,9 +118,29 @@ export const BOSS_ENEMIES = {
       healthMax: 250,
       defense: 120,
       armor: 180,
-      magicArmor: 180,
+      magicArmor: 90,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_spartan',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'bossSpartan',        
+        name: 'boss spartan',
+        hideBuff: true
+      }
+    }, {
+      id: 'phalanx',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'phalanx',  
+        isEnemy: true,
+        extraArmor: 0,
+        name: 'phalanx'
+      }
+    }],
     rewards: []
   },
 

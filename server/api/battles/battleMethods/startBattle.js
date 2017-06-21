@@ -177,6 +177,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',
       amulet: userCombat.amulet,
+      buffs: [],
       mainHandType: userCombat.mainHandType,
       offHandType: userCombat.offHandType,
       stats: userCombatStats,

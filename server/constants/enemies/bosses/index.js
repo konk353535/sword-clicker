@@ -36,6 +36,10 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+
+  // Every 60s the cobra will spawn 2 adds (seperated by 5s)
+  // The adds are easy to kill, but can poison people so must be killed quickly
+
   boss_cobra: {
     id: 'boss_cobra',
     icon: 'cobra',
@@ -53,6 +57,17 @@ export const BOSS_ENEMIES = {
       magicArmor: 500,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_cobra',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'cobra',        
+        name: 'boss cobra',
+        timeTillSpawn: 45,
+        phase: 1
+      }
+    }],
     rewards: []
   },
 

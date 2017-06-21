@@ -102,6 +102,74 @@ export const BOSS_BUFFS = {
       onRemove({ buff, target }) {
       }
     }
+  },
+
+  boss_cobra: {
+    duplicateTag: 'boss_cobra', // Used to stop duplicate buffs
+    icon: 'boss cobra',
+    name: 'boss cobra',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Poisons the target every 60 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        Object.keys(buff.data.stats).forEach((buffKey) => {
+          target.stats[buffKey] -= buff.data.stats[buffKey];
+        });
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
+
+          const snakeStats = JSON.parse(JSON.stringify(target.stats));
+          snakeStats.health = 100;
+          snakeStats.healthMax = 100;
+          snakeStats.attack *= 0.3;
+          snakeStats.attackMax *= 0.3;
+
+          // Spawn little snake
+          const littleSnake = {
+            enemyId: Random.id(),
+            tickOffset: 0,
+            icon: 'snake',
+            name: 'snake',
+            stats: snakeStats,
+            buffs: [{
+              id: 'poisoned_blade',
+              data: {
+                icon: 'poisonedBlade',
+                duration: Infinity,
+                totalDuration: Infinity,
+                level: 25
+              }
+            }]
+          }
+
+          actualBattle.enemies.push(littleSnake);
+
+          if (buff.data.phase === 1) {
+            buff.data.timeTillSpawn = 5;
+            buff.data.phase = 2;
+          } else {
+            buff.data.timeTillSpawn = 45;
+            buff.data.phase = 1;
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
   }
 
 }

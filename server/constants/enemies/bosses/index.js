@@ -1,6 +1,12 @@
 import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
 
 export const BOSS_ENEMIES = {
+
+  // High accuracy
+  // Each consecutive attack on the same target increases damage (forced taunt offs)
+  // This is shown with a number of stacks on the target
+  // Drops off pretty quick (5-10s)
+
   boss_cougar: {
     id: 'boss_cougar',
     icon: 'puma',
@@ -8,9 +14,9 @@ export const BOSS_ENEMIES = {
     isBoss: true,
     stats: {
       attack: 20,
-      attackMax: 50,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 40,
+      attackMax: 40,
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 60,
       health: 100,
       healthMax: 100,
       defense: 30,
@@ -18,6 +24,15 @@ export const BOSS_ENEMIES = {
       magicArmor: 60,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_cougar',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        hideBuff: true,
+        name: 'boss cougar'
+      }
+    }],
     rewards: []
   },
 

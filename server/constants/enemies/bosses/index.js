@@ -39,7 +39,6 @@ export const BOSS_ENEMIES = {
 
   // Every 60s the cobra will spawn 2 adds (seperated by 5s)
   // The adds are easy to kill, but can poison people so must be killed quickly
-
   boss_cobra: {
     id: 'boss_cobra',
     icon: 'cobra',
@@ -71,6 +70,7 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // Cleave
   boss_bone_warrior: {
     id: 'boss_bone_warrior',
     icon: 'boneWarrior',
@@ -88,6 +88,15 @@ export const BOSS_ENEMIES = {
       magicArmor: 130,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_bone_warrior',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'boneWarrior',        
+        name: 'bone warrior'
+      }
+    }],
     rewards: []
   },
 

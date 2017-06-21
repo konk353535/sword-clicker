@@ -170,6 +170,55 @@ export const BOSS_BUFFS = {
       onRemove({ buff, target }) {
       }
     }
+  },
+
+  boss_bone_warrior: {
+    duplicateTag: 'boss_bone_warrior', // Used to stop duplicate buffs
+    icon: 'boneWarrior',
+    name: 'boss bone warrior',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Blade spin chance on hit`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        Object.keys(buff.data.stats).forEach((buffKey) => {
+          target.stats[buffKey] -= buff.data.stats[buffKey];
+        });
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const SPIN_CHANCE = 0.3;
+        if (Math.random() <= SPIN_CHANCE) {
+          // Cast Blade Spin
+          actualBattle.units.forEach((unit) => {
+
+            // Blade Spin
+            const newBuff = {
+              id: 'blade_spin',
+              data: {
+                duration: 0,
+                totalDuration: 0,
+                level: 1,
+                icon: 'bladeSpin',
+                description: ''
+              },
+              constants: BUFFS['blade_spin']
+            }
+
+            // cast earth dart
+            addBuff({ buff: newBuff, target: unit, caster: defender, actualBattle });
+          });
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
   }
 
 }

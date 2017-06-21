@@ -26,7 +26,6 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    targettable: true,
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.taunt;

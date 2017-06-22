@@ -77,8 +77,8 @@ export const BOSS_ENEMIES = {
     name: 'Boss Bone Warrior',
     isBoss: true,
     stats: {
-      attack: 75,
-      attackMax: 125,
+      attack: 35,
+      attackMax: 70,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 150,
       health: 200,
@@ -110,8 +110,8 @@ export const BOSS_ENEMIES = {
     name: 'Spartan',
     isBoss: true,
     stats: {
-      attack: 100,
-      attackMax: 200,
+      attack: 50,
+      attackMax: 100,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 170,
       health: 250,
@@ -144,26 +144,40 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // Summons enemies to fight for him (little worms)
+  // Casts fire ball at current enemy, 20% chance on attack
+  // Casts aoe ignite on all enemies, every 60 seconds.
   boss_mage: {
     id: 'boss_mage',
     icon: 'bossMage',
     name: 'mage',
     isBoss: true,
     stats: {
-      attack: 100,
-      attackMax: 200,
+      attack: 75,
+      attackMax: 150,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 170,
       health: 300,
       healthMax: 300,
       defense: 140,
-      armor: 250,
+      armor: 180,
       magicArmor: 1000,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_mage',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'bossMage',        
+        name: 'boss mage',
+        timeTillSpawn: 15
+      }
+    }],
     rewards: []
   },
 
+  // Summons goblins incrementally which steal yo stats (low hp, spawn quickly)
   boss_goblin: {
     id: 'boss_goblin',
     icon: 'goblin',
@@ -184,6 +198,7 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // High magic armor, 2 minds (swaps between magic and physical attacks)
   boss_ogre: {
     id: 'boss_ogre',
     icon: 'iceGiant',
@@ -204,6 +219,7 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // Burns enemies, summons another phenoix, which upon death respawns (only once)
   boss_phoenix: {
     id: 'boss_phoenix',
     icon: 'phoenix',
@@ -224,6 +240,8 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
+  // Intelligence, analyzes enemies weaknesses and gains stats the longer the fight goes
+  // Stat gain is based on who they are fighting
   boss_gorilla: {
     id: 'boss_gorilla',
     icon: 'gorilla',

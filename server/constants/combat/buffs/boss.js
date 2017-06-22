@@ -280,6 +280,112 @@ export const BOSS_BUFFS = {
       onRemove({ buff, target }) {
       }
     }
+  },
+
+  boss_mage: {
+    duplicateTag: 'boss_mage', // Used to stop duplicate buffs
+    icon: 'boss mage',
+    name: 'boss mage',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Incrementally summons birds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        Object.keys(buff.data.stats).forEach((buffKey) => {
+          target.stats[buffKey] -= buff.data.stats[buffKey];
+        });
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
+
+          const birdStats = JSON.parse(JSON.stringify(target.stats));
+          birdStats.health = 150;
+          birdStats.healthMax = 150;
+          birdStats.defense *= 0.7;
+          birdStats.attack *= 0.1;
+          birdStats.attackMax *= 0.1;
+          birdStats.accuracy *= 1.5;
+          birdStats.magicPower = 20;
+
+          // Spawn little bird
+          const littlebird = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'bird',
+            name: 'bird',
+            buffs: [{
+              id: 'boss_mage_bird',
+              data: {
+                icon: 'bird'
+              }
+            }],
+            stats: birdStats
+          }
+
+          actualBattle.enemies.push(littlebird);
+
+          buff.data.timeTillSpawn = 15;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_mage_bird: {
+    duplicateTag: 'boss_mage_bird', // Used to stop duplicate buffs
+    icon: 'bossMageBird',
+    name: 'boss mage bird',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Explodes on death`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // cast ignite on all units
+        actualBattle.units.forEach((unit) => {
+          target.stats.health = 200;
+          const newBuff = {
+            id: 'ignite',
+            data: {
+              duration: 25,
+              totalDuration: 25,
+              icon: 'ignite',
+              description: 'Burns you each second'
+            }
+          }
+
+          addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+          target.stats.health = 0;
+        });
+      }
+    }
   }
+
 
 }

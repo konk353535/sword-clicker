@@ -226,8 +226,23 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     const unit = actualBattle.units[i];
     if (unit.stats.health <= 0 || !unit.stats.health) {
       unit.stats.health = 0;
-      actualBattle.deadUnits.push(unit);
-      actualBattle.units.splice(i, 1);
+
+      // Call death event for this unit
+      if (unit.buffs) {
+        // Buffs can do things on tick, will collect them in the form of combatEvents
+        unit.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onBeforeDeath) {
+            buff.constants.events.onBeforeDeath({ buff, target: unit, actualBattle });
+          }
+        });
+      }
+
+      // Only kill unit if it is still dead
+      if (unit.stats.health <= 0) {
+        actualBattle.deadUnits.push(unit);
+        actualBattle.units.splice(i, 1);
+      }
     }
   }
 
@@ -257,8 +272,23 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     const enemy = actualBattle.enemies[i];
     if (enemy.stats.health <= 0 || !enemy.stats.health) {
       enemy.stats.health = 0;
-      actualBattle.deadEnemies.push(enemy);
-      actualBattle.enemies.splice(i, 1);
+
+      // Call death event for this enemy
+      if (enemy.buffs) {
+        // Buffs can do things on tick, will collect them in the form of combatEvents
+        enemy.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onBeforeDeath) {
+            buff.constants.events.onBeforeDeath({ secondsElapsed, buff, target: enemy, actualBattle });
+          }
+        });
+      }
+
+      // Unit may not be dead if beforeDeath event does something
+      if (enemy.stats.health <= 0) {
+        actualBattle.deadEnemies.push(enemy);
+        actualBattle.enemies.splice(i, 1);
+      }
     }
   }
 
@@ -335,8 +365,23 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     const enemy = actualBattle.enemies[i];
     if (enemy.stats.health <= 0 || !enemy.stats.health) {
       enemy.stats.health = 0;
-      actualBattle.deadEnemies.push(enemy);
-      actualBattle.enemies.splice(i, 1);
+
+      // Call death event for this enemy
+      if (enemy.buffs) {
+        // Buffs can do things on tick, will collect them in the form of combatEvents
+        enemy.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onBeforeDeath) {
+            buff.constants.events.onBeforeDeath({ secondsElapsed, buff, target: enemy, actualBattle });
+          }
+        });
+      }
+
+      // They may not be dead, as of onBeforeDeath
+      if (enemy.stats.health <= 0) {
+        actualBattle.deadEnemies.push(enemy);
+        actualBattle.enemies.splice(i, 1);
+      }
     }
   }
 
@@ -345,8 +390,22 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     const unit = actualBattle.units[i];
     if (unit.stats.health <= 0 || !unit.stats.health) {
       unit.stats.health = 0;
-      actualBattle.deadUnits.push(unit);
-      actualBattle.units.splice(i, 1);
+
+      // Call death event for this unit
+      if (unit.buffs) {
+        // Buffs can do things on tick, will collect them in the form of combatEvents
+        unit.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onBeforeDeath) {
+            buff.constants.events.onBeforeDeath({ secondsElapsed, buff, target: unit, actualBattle });
+          }
+        });
+      }
+
+      if (unit.stats.health <= 0) {
+        actualBattle.deadUnits.push(unit);
+        actualBattle.units.splice(i, 1);
+      }
     }
   }
 

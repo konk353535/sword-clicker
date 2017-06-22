@@ -26,6 +26,7 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   }
 
   const buffConstants = BUFFS[buff.id];
+  buff.constants = buffConstants;
   buffConstants.events.onApply({ buff, target, caster, actualBattle });
   if (!target.buffs) {
     target.buffs = [buff];

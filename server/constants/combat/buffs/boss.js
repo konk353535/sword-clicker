@@ -438,5 +438,35 @@ export const BOSS_BUFFS = {
     }
   },
 
+  boss_ogre: {
+    duplicateTag: 'boss_ogre', // Used to stop duplicate buffs
+    icon: 'ogre',
+    name: 'boss ogre',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        console.log('Changing Target!');
+        attacker.target = _.sample(actualBattle.units).id;
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
 
 }

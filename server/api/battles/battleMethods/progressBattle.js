@@ -140,7 +140,6 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
       hitChance -= extraChance;
     }
-
     if (hitChance >= Math.random()) {
       // How much do we hit for
       const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));

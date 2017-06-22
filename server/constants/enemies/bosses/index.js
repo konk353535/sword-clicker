@@ -208,15 +208,15 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  // High magic armor, 2 minds (swaps between magic and physical attacks)
+  // Changes target every attack
   boss_ogre: {
     id: 'boss_ogre',
     icon: 'iceGiant',
     name: 'ogre',
     isBoss: true,
     stats: {
-      attack: 140,
-      attackMax: 260,
+      attack: 120,
+      attackMax: 200,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 270,
       health: 400,
@@ -226,6 +226,16 @@ export const BOSS_ENEMIES = {
       magicArmor: 250,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_ogre',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'ogre',        
+        name: 'boss ogre',
+        hideBuff: true
+      }
+    }],
     rewards: []
   },
 

@@ -195,6 +195,16 @@ export const BOSS_ENEMIES = {
       magicArmor: 180,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_goblin',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'goblin',        
+        name: 'boss goblin',
+        timeTillSpawn: 30
+      }
+    }],
     rewards: []
   },
 

@@ -65,9 +65,6 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        Object.keys(buff.data.stats).forEach((buffKey) => {
-          target.stats[buffKey] -= buff.data.stats[buffKey];
-        });
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -118,9 +115,6 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        Object.keys(buff.data.stats).forEach((buffKey) => {
-          target.stats[buffKey] -= buff.data.stats[buffKey];
-        });
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -186,9 +180,6 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        Object.keys(buff.data.stats).forEach((buffKey) => {
-          target.stats[buffKey] -= buff.data.stats[buffKey];
-        });
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -235,9 +226,6 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        Object.keys(buff.data.stats).forEach((buffKey) => {
-          target.stats[buffKey] -= buff.data.stats[buffKey];
-        });
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -296,9 +284,7 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        Object.keys(buff.data.stats).forEach((buffKey) => {
-          target.stats[buffKey] -= buff.data.stats[buffKey];
-        });
+
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -385,7 +371,72 @@ export const BOSS_BUFFS = {
         });
       }
     }
-  }
+  },
+
+  boss_goblin: {
+    duplicateTag: 'boss_goblin', // Used to stop duplicate buffs
+    icon: 'goblin',
+    name: 'boss goblin',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
+
+          for (let i = 0; i < 3; i++) {
+            const goblinStats = JSON.parse(JSON.stringify(target.stats));
+            goblinStats.health = 150;
+            goblinStats.healthMax = 150;
+            goblinStats.defense *= 0.6;
+            goblinStats.attack *= 0.1;
+            goblinStats.attackMax *= 0.1;
+            goblinStats.accuracy *= 2;
+
+            // Spawn little goblin
+            const littleGoblin = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'goblin',
+              name: 'goblin',
+              stats: goblinStats,
+              buffs: [{
+                id: 'goblin_stat_stealer',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  timeTillSteal: 15,
+                  icon: 'goblin',        
+                  name: 'goblin stat stealer'
+                }
+              }]
+            }
+
+            actualBattle.enemies.push(littleGoblin);
+          }
+
+          buff.data.timeTillSpawn = 90;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 
 
 }

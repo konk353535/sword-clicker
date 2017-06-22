@@ -63,6 +63,8 @@ export const MONSTER_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
+        buff.data.stacks = Math.round(buff.data.timeTillSteal);
+
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
           const statsToSteal = ['health', 'healthMax', 'armor', 'attack'];
@@ -75,7 +77,8 @@ export const MONSTER_BUFFS = {
               totalDuration: 15,
               stats: {},
               name: 'Stolen Stats',
-              icon: 'goblin'
+              icon: 'goblin',
+              allowDuplicates: true
             }
           }
 

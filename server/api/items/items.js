@@ -136,7 +136,7 @@ Meteor.methods({
     }, { multi: true });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username);
+      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -451,7 +451,7 @@ Meteor.methods({
     });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username);
+      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }

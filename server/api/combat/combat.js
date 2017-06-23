@@ -16,7 +16,7 @@ import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT, BUFFS } from '/server/constants/combat/index.js';
 
-export const updateCombatStats = function (userId, username) {
+export const updateCombatStats = function (userId, username, amuletChanged = false) {
   // Build up our object of skills
   const playerData = {
     stats: {
@@ -62,7 +62,7 @@ export const updateCombatStats = function (userId, username) {
     if (combatItem.constants.isAttackAmulet) {
       // Fetch existing energy
       playerData.amulet = JSON.parse(JSON.stringify(combatItem.constants.stats));
-      if (playerData.amulet.energy == null) {
+      if (playerData.amulet.energy == null && amuletChanged) {
         playerData.amulet.energy = 0;
       }
     }

@@ -47,7 +47,7 @@ export const AMULET_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 6000,
+      amount: 500,
       consumes: true
     }, {
       type: 'skill',
@@ -78,7 +78,7 @@ export const AMULET_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 6000,
+      amount: 1000,
       consumes: true
     }, {
       type: 'skill',
@@ -109,7 +109,7 @@ export const AMULET_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 6000,
+      amount: 2000,
       consumes: true
     }, {
       type: 'skill',
@@ -140,7 +140,7 @@ export const AMULET_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 6000,
+      amount: 4000,
       consumes: true
     }, {
       type: 'skill',

@@ -14,7 +14,7 @@ export const TIN_ITEMS = {
       "attack": 1.4,
       "attackMax": 2.8,
       "attackSpeed": 1,
-      "accuracy": 4.2
+      "accuracy": 6.3
     }
   },
   "tin_spear": {
@@ -29,16 +29,16 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.8,
-      "attackMax": 4.2,
+      "attack": 5.6,
+      "attackMax": 7,
       "attackSpeed": 0.5,
-      "accuracy": 4.2,
+      "accuracy": 7,
       "defense": 2.8
     },
     "extraStats": {
-      "attack": 0.8,
-      "attackMax": 1.3,
-      "accuracy": 1.3,
+      "attack": 1.7,
+      "attackMax": 2.1,
+      "accuracy": 2.1,
       "defense": 0.8
     }
   },
@@ -54,15 +54,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 2.8,
-      "attackMax": 5.6,
+      "attack": 5.6,
+      "attackMax": 8.4,
       "attackSpeed": 0.7,
-      "accuracy": 6.3
+      "accuracy": 8.4
     },
     "extraStats": {
-      "attack": 0.8,
-      "attackMax": 1.7,
-      "accuracy": 1.9
+      "attack": 1.7,
+      "attackMax": 2.5,
+      "accuracy": 2.5
     }
   },
   "tin_scimitar": {
@@ -77,15 +77,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 11.2,
+      "attack": 6.2,
+      "attackMax": 9.8,
       "attackSpeed": 0.7,
-      "accuracy": 9.1
+      "accuracy": 8.4
     },
     "extraStats": {
-      "attack": 1.7,
-      "attackMax": 3.4,
-      "accuracy": 2.7
+      "attack": 1.9,
+      "attackMax": 2.9,
+      "accuracy": 2.5
     }
   },
   "tin_long_sword": {
@@ -101,14 +101,14 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 5.6,
-      "attackMax": 9.8,
+      "attack": 9.8,
+      "attackMax": 16.8,
       "attackSpeed": 0.5,
       "accuracy": 11.2
     },
     "extraStats": {
-      "attack": 1.7,
-      "attackMax": 2.9,
+      "attack": 2.9,
+      "attackMax": 5,
       "accuracy": 3.4
     }
   },
@@ -125,15 +125,15 @@ export const TIN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 7,
-      "attackMax": 11.2,
+      "attack": 14,
+      "attackMax": 19.6,
       "attackSpeed": 0.5,
-      "accuracy": 12.6
+      "accuracy": 11.2
     },
     "extraStats": {
-      "attack": 2.1,
-      "attackMax": 3.4,
-      "accuracy": 3.8
+      "attack": 4.2,
+      "attackMax": 5.9,
+      "accuracy": 3.4
     }
   },
   "tin_battle_axe": {
@@ -150,13 +150,13 @@ export const TIN_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 7,
-      "attackMax": 21,
+      "attackMax": 25.2,
       "attackSpeed": 0.3,
-      "accuracy": 7
+      "accuracy": 11.2
     },
     "extraStats": {
       "attack": 2.1,
-      "attackMax": 6.3
+      "attackMax": 7.6
     }
   },
   "tin_horned_helmet": {

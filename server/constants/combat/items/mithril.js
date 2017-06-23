@@ -14,7 +14,7 @@ export const MITHRIL_ITEMS = {
       "attack": 9.7,
       "attackMax": 18.4,
       "attackSpeed": 1,
-      "accuracy": 28.6
+      "accuracy": 42.3
     }
   },
   "mithril_spear": {
@@ -29,16 +29,16 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18.4,
-      "attackMax": 28.6,
+      "attack": 37.3,
+      "attackMax": 46.7,
       "attackSpeed": 0.5,
-      "accuracy": 28.6,
+      "accuracy": 46.7,
       "defense": 18.4
     },
     "extraStats": {
-      "attack": 5.5,
-      "attackMax": 8.6,
-      "accuracy": 8.6,
+      "attack": 11.2,
+      "attackMax": 14,
+      "accuracy": 14,
       "defense": 5.5
     }
   },
@@ -54,15 +54,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 18.4,
-      "attackMax": 37.3,
+      "attack": 37.3,
+      "attackMax": 55.7,
       "attackSpeed": 0.7,
-      "accuracy": 42.3
+      "accuracy": 55.7
     },
     "extraStats": {
-      "attack": 5.5,
-      "attackMax": 11.2,
-      "accuracy": 12.7
+      "attack": 11.2,
+      "attackMax": 16.7,
+      "accuracy": 16.7
     }
   },
   "mithril_scimitar": {
@@ -77,15 +77,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 37.3,
-      "attackMax": 75,
+      "attack": 41.3,
+      "attackMax": 65.3,
       "attackSpeed": 0.7,
-      "accuracy": 60.7
+      "accuracy": 55.7
     },
     "extraStats": {
-      "attack": 11.2,
-      "attackMax": 22.5,
-      "accuracy": 18.2
+      "attack": 12.4,
+      "attackMax": 19.6,
+      "accuracy": 16.7
     }
   },
   "mithril_long_sword": {
@@ -101,14 +101,14 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 37.3,
-      "attackMax": 65.3,
+      "attack": 65.3,
+      "attackMax": 112.2,
       "attackSpeed": 0.5,
       "accuracy": 75
     },
     "extraStats": {
-      "attack": 11.2,
-      "attackMax": 19.6,
+      "attack": 19.6,
+      "attackMax": 33.7,
       "accuracy": 22.5
     }
   },
@@ -125,15 +125,15 @@ export const MITHRIL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 46.7,
-      "attackMax": 75,
+      "attack": 93.7,
+      "attackMax": 131,
       "attackSpeed": 0.5,
-      "accuracy": 83.9
+      "accuracy": 75
     },
     "extraStats": {
-      "attack": 14,
-      "attackMax": 22.5,
-      "accuracy": 25.2
+      "attack": 28.1,
+      "attackMax": 39.3,
+      "accuracy": 22.5
     }
   },
   "mithril_battle_axe": {
@@ -150,13 +150,13 @@ export const MITHRIL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 46.7,
-      "attackMax": 139.6,
+      "attackMax": 167.9,
       "attackSpeed": 0.3,
-      "accuracy": 46.7
+      "accuracy": 75
     },
     "extraStats": {
       "attack": 14,
-      "attackMax": 41.9
+      "attackMax": 50.4
     }
   },
   "mithril_horned_helmet": {

@@ -57,24 +57,24 @@ export const ATTACK_ABILITIES = {
     cooldown: 600,
     slot: 'any',
     target: 'self',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.vamprisim;
       return BUFF.description({ buff: BUFF, level });
     }
   },
 
-  penetrating_stab: {
-    icon: 'penetratingStab',
-    name: 'penetrating stab',
-    id: 'penetrating_stab',
-    buffs: ['penetrating_stab'],
+  penetrating_slash: {
+    icon: 'penetratingSlash',
+    name: 'penetrating slash',
+    id: 'penetrating_slash',
+    buffs: ['penetrating_slash'],
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
     isHidden: false,
     description(level) {
-      const BUFF = BUFFS.penetrating_stab;
+      const BUFF = BUFFS.penetrating_slash;
       return BUFF.description({ buff: BUFF, level });
     }
   },

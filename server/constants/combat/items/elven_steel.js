@@ -14,7 +14,7 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 16,
       "attackMax": 30,
       "attackSpeed": 1,
-      "accuracy": 46.9
+      "accuracy": 69.3
     }
   },
   "elven_steel_spear": {
@@ -29,16 +29,16 @@ export const ELVEN_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 30,
-      "attackMax": 46.9,
+      "attack": 61.2,
+      "attackMax": 76.6,
       "attackSpeed": 0.5,
-      "accuracy": 46.9,
+      "accuracy": 76.6,
       "defense": 30
     },
     "extraStats": {
-      "attack": 9,
-      "attackMax": 14.1,
-      "accuracy": 14.1,
+      "attack": 18.4,
+      "attackMax": 23,
+      "accuracy": 23,
       "defense": 9
     }
   },
@@ -54,15 +54,15 @@ export const ELVEN_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 30,
-      "attackMax": 61.2,
+      "attack": 61.2,
+      "attackMax": 91.3,
       "attackSpeed": 0.7,
-      "accuracy": 69.3
+      "accuracy": 91.3
     },
     "extraStats": {
-      "attack": 9,
-      "attackMax": 18.4,
-      "accuracy": 20.8
+      "attack": 18.4,
+      "attackMax": 27.4,
+      "accuracy": 27.4
     }
   },
   "elven_steel_scimitar": {
@@ -77,15 +77,15 @@ export const ELVEN_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 61.2,
-      "attackMax": 123,
+      "attack": 67.6,
+      "attackMax": 107.1,
       "attackSpeed": 0.7,
-      "accuracy": 99.6
+      "accuracy": 91.3
     },
     "extraStats": {
-      "attack": 18.4,
-      "attackMax": 36.9,
-      "accuracy": 29.9
+      "attack": 20.3,
+      "attackMax": 32.1,
+      "accuracy": 27.4
     }
   },
   "elven_steel_long_sword": {
@@ -101,14 +101,14 @@ export const ELVEN_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 61.2,
-      "attackMax": 107.1,
+      "attack": 107.1,
+      "attackMax": 183.9,
       "attackSpeed": 0.5,
       "accuracy": 123
     },
     "extraStats": {
-      "attack": 18.4,
-      "attackMax": 32.1,
+      "attack": 32.1,
+      "attackMax": 55.2,
       "accuracy": 36.9
     }
   },
@@ -125,15 +125,15 @@ export const ELVEN_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 76.6,
-      "attackMax": 123,
+      "attack": 153.8,
+      "attackMax": 214.8,
       "attackSpeed": 0.5,
-      "accuracy": 137.6
+      "accuracy": 123
     },
     "extraStats": {
-      "attack": 23,
-      "attackMax": 36.9,
-      "accuracy": 41.3
+      "attack": 46.1,
+      "attackMax": 64.4,
+      "accuracy": 36.9
     }
   },
   "elven_steel_battle_axe": {
@@ -150,13 +150,13 @@ export const ELVEN_STEEL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 76.6,
-      "attackMax": 228.9,
+      "attackMax": 275.2,
       "attackSpeed": 0.3,
-      "accuracy": 76.6
+      "accuracy": 123
     },
     "extraStats": {
       "attack": 23,
-      "attackMax": 68.7
+      "attackMax": 82.6
     }
   },
   "elven_steel_horned_helmet": {

@@ -14,7 +14,7 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 10.7,
       "attackMax": 20.2,
       "attackSpeed": 1,
-      "accuracy": 31.5
+      "accuracy": 46.5
     }
   },
   "adamantium_spear": {
@@ -29,16 +29,16 @@ export const ADAMANTIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 20.2,
-      "attackMax": 31.5,
+      "attack": 41,
+      "attackMax": 51.4,
       "attackSpeed": 0.5,
-      "accuracy": 31.5,
+      "accuracy": 51.4,
       "defense": 20.2
     },
     "extraStats": {
-      "attack": 6.1,
-      "attackMax": 9.5,
-      "accuracy": 9.5,
+      "attack": 12.3,
+      "attackMax": 15.4,
+      "accuracy": 15.4,
       "defense": 6.1
     }
   },
@@ -54,15 +54,15 @@ export const ADAMANTIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 20.2,
-      "attackMax": 41,
+      "attack": 41,
+      "attackMax": 61.3,
       "attackSpeed": 0.7,
-      "accuracy": 46.5
+      "accuracy": 61.3
     },
     "extraStats": {
-      "attack": 6.1,
-      "attackMax": 12.3,
-      "accuracy": 14
+      "attack": 12.3,
+      "attackMax": 18.4,
+      "accuracy": 18.4
     }
   },
   "adamantium_scimitar": {
@@ -77,15 +77,15 @@ export const ADAMANTIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 41,
-      "attackMax": 82.5,
+      "attack": 45.4,
+      "attackMax": 71.8,
       "attackSpeed": 0.7,
-      "accuracy": 66.8
+      "accuracy": 61.3
     },
     "extraStats": {
-      "attack": 12.3,
-      "attackMax": 24.8,
-      "accuracy": 20
+      "attack": 13.6,
+      "attackMax": 21.5,
+      "accuracy": 18.4
     }
   },
   "adamantium_long_sword": {
@@ -101,14 +101,14 @@ export const ADAMANTIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 41,
-      "attackMax": 71.8,
+      "attack": 71.8,
+      "attackMax": 123.4,
       "attackSpeed": 0.5,
       "accuracy": 82.5
     },
     "extraStats": {
-      "attack": 12.3,
-      "attackMax": 21.5,
+      "attack": 21.5,
+      "attackMax": 37,
       "accuracy": 24.8
     }
   },
@@ -125,15 +125,15 @@ export const ADAMANTIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 51.4,
-      "attackMax": 82.5,
+      "attack": 103.1,
+      "attackMax": 144.1,
       "attackSpeed": 0.5,
-      "accuracy": 92.3
+      "accuracy": 82.5
     },
     "extraStats": {
-      "attack": 15.4,
-      "attackMax": 24.8,
-      "accuracy": 27.7
+      "attack": 30.9,
+      "attackMax": 43.2,
+      "accuracy": 24.8
     }
   },
   "adamantium_battle_axe": {
@@ -150,13 +150,13 @@ export const ADAMANTIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 51.4,
-      "attackMax": 153.6,
+      "attackMax": 184.7,
       "attackSpeed": 0.3,
-      "accuracy": 51.4
+      "accuracy": 82.5
     },
     "extraStats": {
       "attack": 15.4,
-      "attackMax": 46.1
+      "attackMax": 55.4
     }
   },
   "adamantium_horned_helmet": {

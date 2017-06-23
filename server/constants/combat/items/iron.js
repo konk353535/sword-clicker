@@ -14,7 +14,7 @@ export const IRON_ITEMS = {
       "attack": 2.3,
       "attackMax": 4.5,
       "attackSpeed": 1,
-      "accuracy": 6.9
+      "accuracy": 10.3
     }
   },
   "iron_spear": {
@@ -29,16 +29,16 @@ export const IRON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.5,
-      "attackMax": 6.9,
+      "attack": 9.1,
+      "attackMax": 11.4,
       "attackSpeed": 0.5,
-      "accuracy": 6.9,
+      "accuracy": 11.4,
       "defense": 4.5
     },
     "extraStats": {
-      "attack": 1.3,
-      "attackMax": 2.1,
-      "accuracy": 2.1,
+      "attack": 2.7,
+      "attackMax": 3.4,
+      "accuracy": 3.4,
       "defense": 1.3
     }
   },
@@ -54,15 +54,15 @@ export const IRON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 4.5,
-      "attackMax": 9.1,
+      "attack": 9.1,
+      "attackMax": 13.6,
       "attackSpeed": 0.7,
-      "accuracy": 10.3
+      "accuracy": 13.6
     },
     "extraStats": {
-      "attack": 1.3,
-      "attackMax": 2.7,
-      "accuracy": 3.1
+      "attack": 2.7,
+      "attackMax": 4.1,
+      "accuracy": 4.1
     }
   },
   "iron_scimitar": {
@@ -77,15 +77,15 @@ export const IRON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.1,
-      "attackMax": 18.3,
+      "attack": 10.1,
+      "attackMax": 15.9,
       "attackSpeed": 0.7,
-      "accuracy": 14.8
+      "accuracy": 13.6
     },
     "extraStats": {
-      "attack": 2.7,
-      "attackMax": 5.5,
-      "accuracy": 4.4
+      "attack": 3,
+      "attackMax": 4.8,
+      "accuracy": 4.1
     }
   },
   "iron_long_sword": {
@@ -101,14 +101,14 @@ export const IRON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.1,
-      "attackMax": 15.9,
+      "attack": 15.9,
+      "attackMax": 27.3,
       "attackSpeed": 0.5,
       "accuracy": 18.3
     },
     "extraStats": {
-      "attack": 2.7,
-      "attackMax": 4.8,
+      "attack": 4.8,
+      "attackMax": 8.2,
       "accuracy": 5.5
     }
   },
@@ -125,15 +125,15 @@ export const IRON_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 11.4,
-      "attackMax": 18.3,
+      "attack": 22.8,
+      "attackMax": 31.9,
       "attackSpeed": 0.5,
-      "accuracy": 20.5
+      "accuracy": 18.3
     },
     "extraStats": {
-      "attack": 3.4,
-      "attackMax": 5.5,
-      "accuracy": 6.1
+      "attack": 6.8,
+      "attackMax": 9.6,
+      "accuracy": 5.5
     }
   },
   "iron_battle_axe": {
@@ -150,13 +150,13 @@ export const IRON_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 11.4,
-      "attackMax": 34.1,
+      "attackMax": 41,
       "attackSpeed": 0.3,
-      "accuracy": 11.4
+      "accuracy": 18.3
     },
     "extraStats": {
       "attack": 3.4,
-      "attackMax": 10.2
+      "attackMax": 12.3
     }
   },
   "iron_horned_helmet": {

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const ATTACK_BUFFS = {
 
@@ -91,7 +92,7 @@ export const ATTACK_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ target, buff, caster: target })
         }
       },
 
@@ -141,7 +142,7 @@ export const ATTACK_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ target, buff, caster: target })
         }
       },
 
@@ -522,16 +523,16 @@ export const ATTACK_BUFFS = {
     }
   },
 
-  penetrating_stab: {
-    duplicateTag: 'penetrating_stab', // Used to stop duplicate buffs
-    icon: 'penetratingStab',
-    name: 'penetrating stab',
+  penetrating_slash: {
+    duplicateTag: 'penetrating_slash', // Used to stop duplicate buffs
+    icon: 'penetratingSlash',
+    name: 'penetrating slash',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
       const damageBase = buff.constants.damageBase;
       const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
       return `
-        Stab for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
+        slash for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
         (+${damagePerLevel * 100}% damage per lvl)`;
     },
     constants: {

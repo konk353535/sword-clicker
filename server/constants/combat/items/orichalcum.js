@@ -14,7 +14,7 @@ export const ORICHALCUM_ITEMS = {
       "attack": 11.7,
       "attackMax": 22,
       "attackSpeed": 1,
-      "accuracy": 34.3
+      "accuracy": 50.7
     }
   },
   "orichalcum_spear": {
@@ -29,16 +29,16 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 22,
-      "attackMax": 34.3,
+      "attack": 44.7,
+      "attackMax": 56,
       "attackSpeed": 0.5,
-      "accuracy": 34.3,
+      "accuracy": 56,
       "defense": 22
     },
     "extraStats": {
-      "attack": 6.6,
-      "attackMax": 10.3,
-      "accuracy": 10.3,
+      "attack": 13.4,
+      "attackMax": 16.8,
+      "accuracy": 16.8,
       "defense": 6.6
     }
   },
@@ -54,15 +54,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 22,
-      "attackMax": 44.7,
+      "attack": 44.7,
+      "attackMax": 66.8,
       "attackSpeed": 0.7,
-      "accuracy": 50.7
+      "accuracy": 66.8
     },
     "extraStats": {
-      "attack": 6.6,
-      "attackMax": 13.4,
-      "accuracy": 15.2
+      "attack": 13.4,
+      "attackMax": 20,
+      "accuracy": 20
     }
   },
   "orichalcum_scimitar": {
@@ -77,15 +77,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 44.7,
-      "attackMax": 89.9,
+      "attack": 49.5,
+      "attackMax": 78.3,
       "attackSpeed": 0.7,
-      "accuracy": 72.8
+      "accuracy": 66.8
     },
     "extraStats": {
-      "attack": 13.4,
-      "attackMax": 27,
-      "accuracy": 21.8
+      "attack": 14.9,
+      "attackMax": 23.5,
+      "accuracy": 20
     }
   },
   "orichalcum_long_sword": {
@@ -101,14 +101,14 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 44.7,
-      "attackMax": 78.3,
+      "attack": 78.3,
+      "attackMax": 134.5,
       "attackSpeed": 0.5,
       "accuracy": 89.9
     },
     "extraStats": {
-      "attack": 13.4,
-      "attackMax": 23.5,
+      "attack": 23.5,
+      "attackMax": 40.4,
       "accuracy": 27
     }
   },
@@ -125,15 +125,15 @@ export const ORICHALCUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 56,
-      "attackMax": 89.9,
+      "attack": 112.4,
+      "attackMax": 157.1,
       "attackSpeed": 0.5,
-      "accuracy": 100.6
+      "accuracy": 89.9
     },
     "extraStats": {
-      "attack": 16.8,
-      "attackMax": 27,
-      "accuracy": 30.2
+      "attack": 33.7,
+      "attackMax": 47.1,
+      "accuracy": 27
     }
   },
   "orichalcum_battle_axe": {
@@ -150,13 +150,13 @@ export const ORICHALCUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 56,
-      "attackMax": 167.4,
+      "attackMax": 201.3,
       "attackSpeed": 0.3,
-      "accuracy": 56
+      "accuracy": 89.9
     },
     "extraStats": {
       "attack": 16.8,
-      "attackMax": 50.2
+      "attackMax": 60.4
     }
   },
   "orichalcum_horned_helmet": {

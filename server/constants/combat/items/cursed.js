@@ -14,7 +14,7 @@ export const CURSED_ITEMS = {
       "attack": 17.4,
       "attackMax": 32.7,
       "attackSpeed": 1,
-      "accuracy": 51.1
+      "accuracy": 75.5
     }
   },
   "cursed_spear": {
@@ -29,16 +29,16 @@ export const CURSED_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 32.7,
-      "attackMax": 51.1,
+      "attack": 66.7,
+      "attackMax": 83.5,
       "attackSpeed": 0.5,
-      "accuracy": 51.1,
+      "accuracy": 83.5,
       "defense": 32.7
     },
     "extraStats": {
-      "attack": 9.8,
-      "attackMax": 15.3,
-      "accuracy": 15.3,
+      "attack": 20,
+      "attackMax": 25.1,
+      "accuracy": 25.1,
       "defense": 9.8
     }
   },
@@ -54,15 +54,15 @@ export const CURSED_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 32.7,
-      "attackMax": 66.7,
+      "attack": 66.7,
+      "attackMax": 99.5,
       "attackSpeed": 0.7,
-      "accuracy": 75.5
+      "accuracy": 99.5
     },
     "extraStats": {
-      "attack": 9.8,
-      "attackMax": 20,
-      "accuracy": 22.7
+      "attack": 20,
+      "attackMax": 29.8,
+      "accuracy": 29.8
     }
   },
   "cursed_scimitar": {
@@ -77,15 +77,15 @@ export const CURSED_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 66.7,
-      "attackMax": 134.1,
+      "attack": 73.7,
+      "attackMax": 116.7,
       "attackSpeed": 0.7,
-      "accuracy": 108.6
+      "accuracy": 99.5
     },
     "extraStats": {
-      "attack": 20,
-      "attackMax": 40.2,
-      "accuracy": 32.6
+      "attack": 22.1,
+      "attackMax": 35,
+      "accuracy": 29.8
     }
   },
   "cursed_long_sword": {
@@ -101,14 +101,14 @@ export const CURSED_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 66.7,
-      "attackMax": 116.7,
+      "attack": 116.7,
+      "attackMax": 200.5,
       "attackSpeed": 0.5,
       "accuracy": 134.1
     },
     "extraStats": {
-      "attack": 20,
-      "attackMax": 35,
+      "attack": 35,
+      "attackMax": 60.2,
       "accuracy": 40.2
     }
   },
@@ -125,15 +125,15 @@ export const CURSED_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 83.5,
-      "attackMax": 134.1,
+      "attack": 167.6,
+      "attackMax": 234.1,
       "attackSpeed": 0.5,
-      "accuracy": 150
+      "accuracy": 134.1
     },
     "extraStats": {
-      "attack": 25.1,
-      "attackMax": 40.2,
-      "accuracy": 45
+      "attack": 50.3,
+      "attackMax": 70.2,
+      "accuracy": 40.2
     }
   },
   "cursed_battle_axe": {
@@ -150,13 +150,13 @@ export const CURSED_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 83.5,
-      "attackMax": 249.5,
+      "attackMax": 300,
       "attackSpeed": 0.3,
-      "accuracy": 83.5
+      "accuracy": 134.1
     },
     "extraStats": {
       "attack": 25.1,
-      "attackMax": 74.9
+      "attackMax": 90
     }
   },
   "cursed_horned_helmet": {

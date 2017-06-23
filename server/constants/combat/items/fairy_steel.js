@@ -14,7 +14,7 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 14.3,
       "attackMax": 26.8,
       "attackSpeed": 1,
-      "accuracy": 41.9
+      "accuracy": 61.9
     }
   },
   "fairy_steel_spear": {
@@ -29,16 +29,16 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.8,
-      "attackMax": 41.9,
+      "attack": 54.6,
+      "attackMax": 68.4,
       "attackSpeed": 0.5,
-      "accuracy": 41.9,
+      "accuracy": 68.4,
       "defense": 26.8
     },
     "extraStats": {
-      "attack": 8,
-      "attackMax": 12.6,
-      "accuracy": 12.6,
+      "attack": 16.4,
+      "attackMax": 20.5,
+      "accuracy": 20.5,
       "defense": 8
     }
   },
@@ -54,15 +54,15 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.8,
-      "attackMax": 54.6,
+      "attack": 54.6,
+      "attackMax": 81.5,
       "attackSpeed": 0.7,
-      "accuracy": 61.9
+      "accuracy": 81.5
     },
     "extraStats": {
-      "attack": 8,
-      "attackMax": 16.4,
-      "accuracy": 18.6
+      "attack": 16.4,
+      "attackMax": 24.5,
+      "accuracy": 24.5
     }
   },
   "fairy_steel_scimitar": {
@@ -77,15 +77,15 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 54.6,
-      "attackMax": 109.8,
+      "attack": 60.4,
+      "attackMax": 95.6,
       "attackSpeed": 0.7,
-      "accuracy": 88.9
+      "accuracy": 81.5
     },
     "extraStats": {
-      "attack": 16.4,
-      "attackMax": 32.9,
-      "accuracy": 26.7
+      "attack": 18.1,
+      "attackMax": 28.7,
+      "accuracy": 24.5
     }
   },
   "fairy_steel_long_sword": {
@@ -101,14 +101,14 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 54.6,
-      "attackMax": 95.6,
+      "attack": 95.6,
+      "attackMax": 164.2,
       "attackSpeed": 0.5,
       "accuracy": 109.8
     },
     "extraStats": {
-      "attack": 16.4,
-      "attackMax": 28.7,
+      "attack": 28.7,
+      "attackMax": 49.3,
       "accuracy": 32.9
     }
   },
@@ -125,15 +125,15 @@ export const FAIRY_STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 68.4,
-      "attackMax": 109.8,
+      "attack": 137.3,
+      "attackMax": 191.8,
       "attackSpeed": 0.5,
-      "accuracy": 122.9
+      "accuracy": 109.8
     },
     "extraStats": {
-      "attack": 20.5,
-      "attackMax": 32.9,
-      "accuracy": 36.9
+      "attack": 41.2,
+      "attackMax": 57.5,
+      "accuracy": 32.9
     }
   },
   "fairy_steel_battle_axe": {
@@ -150,13 +150,13 @@ export const FAIRY_STEEL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 68.4,
-      "attackMax": 204.4,
+      "attackMax": 245.7,
       "attackSpeed": 0.3,
-      "accuracy": 68.4
+      "accuracy": 109.8
     },
     "extraStats": {
       "attack": 20.5,
-      "attackMax": 61.3
+      "attackMax": 73.7
     }
   },
   "fairy_steel_horned_helmet": {

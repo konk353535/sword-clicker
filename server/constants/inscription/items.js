@@ -118,7 +118,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_150: {
     id: 'pigment_purple_150',
-    icon: 'pigmentpurple150',
+    icon: 'pigmentPurple150',
     category: 'pigment',
     name: 'pigment purple 150',
     sellPrice: 2000,
@@ -136,7 +136,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_white_190: {
     id: 'pigment_white_190',
-    icon: 'pigmentwhite190',
+    icon: 'pigmentWhite190',
     category: 'pigment',
     name: 'pigment white 190',
     sellPrice: 2000,
@@ -154,7 +154,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_yellow_200: {
     id: 'pigment_yellow_200',
-    icon: 'pigmentyellow200',
+    icon: 'pigmentYellow200',
     category: 'pigment',
     name: 'pigment yellow 200',
     sellPrice: 2000,
@@ -173,7 +173,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_100: {
     id: 'pigment_red_100',
-    icon: 'pigmentred100',
+    icon: 'pigmentRed100',
     category: 'pigment',
     name: 'pigment red 100',
     sellPrice: 2000,
@@ -191,7 +191,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_110: {
     id: 'pigment_green_110',
-    icon: 'pigmentgreen110',
+    icon: 'pigmentGreen110',
     category: 'pigment',
     name: 'pigment green 110',
     sellPrice: 2000,
@@ -317,7 +317,7 @@ export const INSCRIPTION_ITEMS = {
 
   blue_gum_paper: {
     id: 'blue_gum_paper',
-    icon: 'blue_gumPaper',
+    icon: 'blueGumPaper',
     category: 'paper',
     name: 'blue_gum paper',
     sellPrice: 450,
@@ -408,11 +408,11 @@ export const INSCRIPTION_ITEMS = {
     category: 'tome',
     name: 'wisdom',
     teaches: {
-      abilityId: 'wisdom',
+      abilityId: 'magic_wisdom',
       level: 1
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the wisdom ability.'
+    description: 'Can be consumed to learn the magic wisdom ability.'
   },
 
   poison_dart_tome: {

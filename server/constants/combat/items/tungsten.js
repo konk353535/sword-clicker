@@ -14,7 +14,7 @@ export const TUNGSTEN_ITEMS = {
       "attack": 7,
       "attackMax": 13.2,
       "attackSpeed": 1,
-      "accuracy": 20.5
+      "accuracy": 30.4
     }
   },
   "tungsten_spear": {
@@ -29,16 +29,16 @@ export const TUNGSTEN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.2,
-      "attackMax": 20.5,
+      "attack": 26.8,
+      "attackMax": 33.6,
       "attackSpeed": 0.5,
-      "accuracy": 20.5,
+      "accuracy": 33.6,
       "defense": 13.2
     },
     "extraStats": {
-      "attack": 4,
-      "attackMax": 6.1,
-      "accuracy": 6.1,
+      "attack": 8,
+      "attackMax": 10.1,
+      "accuracy": 10.1,
       "defense": 4
     }
   },
@@ -54,15 +54,15 @@ export const TUNGSTEN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 13.2,
-      "attackMax": 26.8,
+      "attack": 26.8,
+      "attackMax": 40,
       "attackSpeed": 0.7,
-      "accuracy": 30.4
+      "accuracy": 40
     },
     "extraStats": {
-      "attack": 4,
-      "attackMax": 8,
-      "accuracy": 9.1
+      "attack": 8,
+      "attackMax": 12,
+      "accuracy": 12
     }
   },
   "tungsten_scimitar": {
@@ -77,15 +77,15 @@ export const TUNGSTEN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.8,
-      "attackMax": 53.9,
+      "attack": 29.6,
+      "attackMax": 46.9,
       "attackSpeed": 0.7,
-      "accuracy": 43.6
+      "accuracy": 40
     },
     "extraStats": {
-      "attack": 8,
-      "attackMax": 16.2,
-      "accuracy": 13.1
+      "attack": 8.9,
+      "attackMax": 14.1,
+      "accuracy": 12
     }
   },
   "tungsten_long_sword": {
@@ -101,14 +101,14 @@ export const TUNGSTEN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 26.8,
-      "attackMax": 46.9,
+      "attack": 46.9,
+      "attackMax": 80.6,
       "attackSpeed": 0.5,
       "accuracy": 53.9
     },
     "extraStats": {
-      "attack": 8,
-      "attackMax": 14.1,
+      "attack": 14.1,
+      "attackMax": 24.2,
       "accuracy": 16.2
     }
   },
@@ -125,15 +125,15 @@ export const TUNGSTEN_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.6,
-      "attackMax": 53.9,
+      "attack": 67.3,
+      "attackMax": 94.1,
       "attackSpeed": 0.5,
-      "accuracy": 60.3
+      "accuracy": 53.9
     },
     "extraStats": {
-      "attack": 10.1,
-      "attackMax": 16.2,
-      "accuracy": 18.1
+      "attack": 20.2,
+      "attackMax": 28.2,
+      "accuracy": 16.2
     }
   },
   "tungsten_battle_axe": {
@@ -150,13 +150,13 @@ export const TUNGSTEN_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 33.6,
-      "attackMax": 100.3,
+      "attackMax": 120.6,
       "attackSpeed": 0.3,
-      "accuracy": 33.6
+      "accuracy": 53.9
     },
     "extraStats": {
       "attack": 10.1,
-      "attackMax": 30.1
+      "attackMax": 36.2
     }
   },
   "tungsten_horned_helmet": {

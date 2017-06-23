@@ -322,7 +322,7 @@ export const MAGIC_ABILITIES = {
     buffs: ['mending_spring'],
     cooldown: 90,
     slot: 'any',
-    isHidden: false,
+    isHidden: true,
     target: 'allAllies',
     requires: [{
       type: 'weaponType',
@@ -345,10 +345,6 @@ export const MAGIC_ABILITIES = {
     targettable: true,
     isHidden: false,
     target: 'singleFriendly',
-    requires: [{
-      type: 'weaponType',
-      weaponTypes: ['staff']
-    }],
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.mending_water;

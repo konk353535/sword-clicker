@@ -459,7 +459,6 @@ export const BOSS_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        console.log('Changing Target!');
         attacker.target = _.sample(actualBattle.units).id;
       },
 

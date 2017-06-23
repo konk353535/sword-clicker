@@ -141,7 +141,7 @@ export const FARMING_ITEMS = {
 
   banana_seed: {
     id: 'banana_seed',
-    icon: 'banana seed',
+    icon: 'bananaSeed',
     category: 'seed',
     name: 'banana seed',
     description: 'Used to grow bananas. Useful for eating.',

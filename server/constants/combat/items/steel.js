@@ -14,7 +14,7 @@ export const STEEL_ITEMS = {
       "attack": 4.5,
       "attackMax": 8.6,
       "attackSpeed": 1,
-      "accuracy": 13.2
+      "accuracy": 19.7
     }
   },
   "steel_spear": {
@@ -29,16 +29,16 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.6,
-      "attackMax": 13.2,
+      "attack": 17.3,
+      "attackMax": 21.7,
       "attackSpeed": 0.5,
-      "accuracy": 13.2,
+      "accuracy": 21.7,
       "defense": 8.6
     },
     "extraStats": {
-      "attack": 2.6,
-      "attackMax": 4,
-      "accuracy": 4,
+      "attack": 5.2,
+      "attackMax": 6.5,
+      "accuracy": 6.5,
       "defense": 2.6
     }
   },
@@ -54,15 +54,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 8.6,
-      "attackMax": 17.3,
+      "attack": 17.3,
+      "attackMax": 25.9,
       "attackSpeed": 0.7,
-      "accuracy": 19.7
+      "accuracy": 25.9
     },
     "extraStats": {
-      "attack": 2.6,
-      "attackMax": 5.2,
-      "accuracy": 5.9
+      "attack": 5.2,
+      "attackMax": 7.8,
+      "accuracy": 7.8
     }
   },
   "steel_scimitar": {
@@ -77,15 +77,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 17.3,
-      "attackMax": 34.9,
+      "attack": 19.2,
+      "attackMax": 30.3,
       "attackSpeed": 0.7,
-      "accuracy": 28.2
+      "accuracy": 25.9
     },
     "extraStats": {
-      "attack": 5.2,
-      "attackMax": 10.5,
-      "accuracy": 8.5
+      "attack": 5.8,
+      "attackMax": 9.1,
+      "accuracy": 7.8
     }
   },
   "steel_long_sword": {
@@ -101,14 +101,14 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 17.3,
-      "attackMax": 30.3,
+      "attack": 30.3,
+      "attackMax": 52.1,
       "attackSpeed": 0.5,
       "accuracy": 34.9
     },
     "extraStats": {
-      "attack": 5.2,
-      "attackMax": 9.1,
+      "attack": 9.1,
+      "attackMax": 15.6,
       "accuracy": 10.5
     }
   },
@@ -125,15 +125,15 @@ export const STEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 21.7,
-      "attackMax": 34.9,
+      "attack": 43.5,
+      "attackMax": 60.8,
       "attackSpeed": 0.5,
-      "accuracy": 39
+      "accuracy": 34.9
     },
     "extraStats": {
-      "attack": 6.5,
-      "attackMax": 10.5,
-      "accuracy": 11.7
+      "attack": 13,
+      "attackMax": 18.2,
+      "accuracy": 10.5
     }
   },
   "steel_battle_axe": {
@@ -150,13 +150,13 @@ export const STEEL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 21.7,
-      "attackMax": 64.9,
+      "attackMax": 78,
       "attackSpeed": 0.3,
-      "accuracy": 21.7
+      "accuracy": 34.9
     },
     "extraStats": {
       "attack": 6.5,
-      "attackMax": 19.5
+      "attackMax": 23.4
     }
   },
   "steel_horned_helmet": {

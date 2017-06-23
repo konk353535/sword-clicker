@@ -14,7 +14,7 @@ export const TITANIUM_ITEMS = {
       "attack": 6.2,
       "attackMax": 11.7,
       "attackSpeed": 1,
-      "accuracy": 18.1
+      "accuracy": 26.9
     }
   },
   "titanium_spear": {
@@ -29,16 +29,16 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 11.7,
-      "attackMax": 18.1,
+      "attack": 23.7,
+      "attackMax": 29.7,
       "attackSpeed": 0.5,
-      "accuracy": 18.1,
+      "accuracy": 29.7,
       "defense": 11.7
     },
     "extraStats": {
-      "attack": 3.5,
-      "attackMax": 5.4,
-      "accuracy": 5.4,
+      "attack": 7.1,
+      "attackMax": 8.9,
+      "accuracy": 8.9,
       "defense": 3.5
     }
   },
@@ -54,15 +54,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 11.7,
-      "attackMax": 23.7,
+      "attack": 23.7,
+      "attackMax": 35.4,
       "attackSpeed": 0.7,
-      "accuracy": 26.9
+      "accuracy": 35.4
     },
     "extraStats": {
-      "attack": 3.5,
-      "attackMax": 7.1,
-      "accuracy": 8.1
+      "attack": 7.1,
+      "attackMax": 10.6,
+      "accuracy": 10.6
     }
   },
   "titanium_scimitar": {
@@ -77,15 +77,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 23.7,
-      "attackMax": 47.7,
+      "attack": 26.2,
+      "attackMax": 41.5,
       "attackSpeed": 0.7,
-      "accuracy": 38.6
+      "accuracy": 35.4
     },
     "extraStats": {
-      "attack": 7.1,
-      "attackMax": 14.3,
-      "accuracy": 11.6
+      "attack": 7.9,
+      "attackMax": 12.5,
+      "accuracy": 10.6
     }
   },
   "titanium_long_sword": {
@@ -101,14 +101,14 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 23.7,
-      "attackMax": 41.5,
+      "attack": 41.5,
+      "attackMax": 71.3,
       "attackSpeed": 0.5,
       "accuracy": 47.7
     },
     "extraStats": {
-      "attack": 7.1,
-      "attackMax": 12.5,
+      "attack": 12.5,
+      "attackMax": 21.4,
       "accuracy": 14.3
     }
   },
@@ -125,15 +125,15 @@ export const TITANIUM_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 29.7,
-      "attackMax": 47.7,
+      "attack": 59.6,
+      "attackMax": 83.3,
       "attackSpeed": 0.5,
-      "accuracy": 53.4
+      "accuracy": 47.7
     },
     "extraStats": {
-      "attack": 8.9,
-      "attackMax": 14.3,
-      "accuracy": 16
+      "attack": 17.9,
+      "attackMax": 25,
+      "accuracy": 14.3
     }
   },
   "titanium_battle_axe": {
@@ -150,13 +150,13 @@ export const TITANIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 29.7,
-      "attackMax": 88.8,
+      "attackMax": 106.7,
       "attackSpeed": 0.3,
-      "accuracy": 29.7
+      "accuracy": 47.7
     },
     "extraStats": {
       "attack": 8.9,
-      "attackMax": 26.6
+      "attackMax": 32
     }
   },
   "titanium_horned_helmet": {

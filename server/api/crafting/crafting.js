@@ -50,7 +50,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
     equipped: false
   }, {
     sort: [
-      ['_id', 'asc']
+      ['quality', 'desc']
     ]
   }).fetch();
 

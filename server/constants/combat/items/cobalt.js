@@ -14,7 +14,7 @@ export const COBALT_ITEMS = {
       "attack": 8.7,
       "attackMax": 16.6,
       "attackSpeed": 1,
-      "accuracy": 25.8
+      "accuracy": 38.1
     }
   },
   "cobalt_spear": {
@@ -29,16 +29,16 @@ export const COBALT_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.6,
-      "attackMax": 25.8,
+      "attack": 33.6,
+      "attackMax": 42.1,
       "attackSpeed": 0.5,
-      "accuracy": 25.8,
+      "accuracy": 42.1,
       "defense": 16.6
     },
     "extraStats": {
-      "attack": 5,
-      "attackMax": 7.7,
-      "accuracy": 7.7,
+      "attack": 10.1,
+      "attackMax": 12.6,
+      "accuracy": 12.6,
       "defense": 5
     }
   },
@@ -54,15 +54,15 @@ export const COBALT_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 16.6,
-      "attackMax": 33.6,
+      "attack": 33.6,
+      "attackMax": 50.2,
       "attackSpeed": 0.7,
-      "accuracy": 38.1
+      "accuracy": 50.2
     },
     "extraStats": {
-      "attack": 5,
-      "attackMax": 10.1,
-      "accuracy": 11.4
+      "attack": 10.1,
+      "attackMax": 15.1,
+      "accuracy": 15.1
     }
   },
   "cobalt_scimitar": {
@@ -77,15 +77,15 @@ export const COBALT_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.6,
-      "attackMax": 67.6,
+      "attack": 37.2,
+      "attackMax": 58.8,
       "attackSpeed": 0.7,
-      "accuracy": 54.7
+      "accuracy": 50.2
     },
     "extraStats": {
-      "attack": 10.1,
-      "attackMax": 20.3,
-      "accuracy": 16.4
+      "attack": 11.2,
+      "attackMax": 17.6,
+      "accuracy": 15.1
     }
   },
   "cobalt_long_sword": {
@@ -101,14 +101,14 @@ export const COBALT_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 33.6,
-      "attackMax": 58.8,
+      "attack": 58.8,
+      "attackMax": 101.1,
       "attackSpeed": 0.5,
       "accuracy": 67.6
     },
     "extraStats": {
-      "attack": 10.1,
-      "attackMax": 17.6,
+      "attack": 17.6,
+      "attackMax": 30.3,
       "accuracy": 20.3
     }
   },
@@ -125,15 +125,15 @@ export const COBALT_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 42.1,
-      "attackMax": 67.6,
+      "attack": 84.4,
+      "attackMax": 118,
       "attackSpeed": 0.5,
-      "accuracy": 75.6
+      "accuracy": 67.6
     },
     "extraStats": {
-      "attack": 12.6,
-      "attackMax": 20.3,
-      "accuracy": 22.7
+      "attack": 25.3,
+      "attackMax": 35.4,
+      "accuracy": 20.3
     }
   },
   "cobalt_battle_axe": {
@@ -150,13 +150,13 @@ export const COBALT_ITEMS = {
     "isEquippable": true,
     "stats": {
       "attack": 42.1,
-      "attackMax": 125.8,
+      "attackMax": 151.3,
       "attackSpeed": 0.3,
-      "accuracy": 42.1
+      "accuracy": 67.6
     },
     "extraStats": {
       "attack": 12.6,
-      "attackMax": 37.7
+      "attackMax": 45.4
     }
   },
   "cobalt_horned_helmet": {

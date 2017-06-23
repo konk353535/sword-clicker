@@ -372,7 +372,7 @@ Template.craftingPage.helpers({
         tier: -1
       }
     }).fetch();
-    let highestFurnace;
+    let highestFurnaceTier = 'stone_furnace';
     if (allFurnaces.length > 0) {
       highestFurnaceTier = allFurnaces[0].tier;
     }

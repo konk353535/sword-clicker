@@ -51,7 +51,7 @@
       <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
         {{> itemIcon item=equippedItemsMap.pickaxe}}
         <div class="d-flex">
-          {{> formatNumber mining.stats.energy}} / {{mining.stats.energyStorage}}
+          {{> formatNumber number=mining.stats.energy}} / {{mining.stats.energyStorage}}
         </div>
       </div>
       <div class="d-flex flex-column ml-3">
@@ -138,10 +138,10 @@
                   <td>{{this.amount}} / {{this.max}}</td>
                   <td>
                     {{#if this.amount}}
-                      {{> formatNumber this.damagePerHour}}
+                      {{> formatNumber number=this.damagePerHour}}
                     {{else}}
                       <span class="text-muted">
-                        {{> formatNumber this.damagePerHour}}
+                        {{> formatNumber number=this.damagePerHour}}
                       </span>
                     {{/if}}
                   </td>

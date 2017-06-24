@@ -3,7 +3,7 @@
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
         <img src="/icons/goldCoin.svg" class="extra-small-icon">
-        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber this.amount}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
       {{else if $eq this.type 'skill'}}
         <img src="/icons/{{this.name}}.svg" class="extra-small-icon">      
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
@@ -24,7 +24,7 @@
         {{#if this.consumes}}
           <div class="d-flex align-items-center">
             {{#if $eq this.type 'gold'}}
-              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber this.amount}}</span>
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
               <img src="/icons/goldCoin.svg" class="extra-small-icon">
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}

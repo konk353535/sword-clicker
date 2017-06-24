@@ -10,7 +10,7 @@
         data-unit-id={{unit.id}}
         class="icon-box {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}} {{#if small}}item-icon-container small{{/if}}">
       <div class="health-bar d-flex justify-content-center">
-        {{> formatNumber unit.stats.health}} / {{> formatNumber unit.stats.healthMax}}
+        {{> formatNumber number=unit.stats.health}} / {{> formatNumber number=unit.stats.healthMax}}
       </div>
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>

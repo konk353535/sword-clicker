@@ -11,8 +11,8 @@
 
     <img src="/icons/{{item.icon}}.svg" class="item-icon">
     {{#unless item.hideCount}}
-      {{#if item.amount}}
-        <div class="item-amount">{{> formatNumber item.amount}}</div>
+      {{#if $gt item.amount 1}}
+        <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
       {{/if}}
     {{/unless}}
   </div>

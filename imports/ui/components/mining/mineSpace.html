@@ -3,7 +3,7 @@
     {{#unless isEmpty}}
       <img src="/icons/{{mineSpace.icon}}.svg" class="ore-icon">
       <span style="font-size: 12px; white-space: nowrap">
-        {{> formatNumber ceiledNumber}} / {{> formatNumber mineSpace.healthMax}}
+        {{> formatNumber number=ceiledNumber}} / {{> formatNumber number=mineSpace.healthMax}}
       </span>
     {{/unless}}
   </div><br />

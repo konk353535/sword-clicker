@@ -49,7 +49,7 @@
                 Battle
               </button>
               <div>
-                Boss {{> formatNumber waveDetails.health}} / {{> formatNumber waveDetails.healthMax}}
+                Boss {{> formatNumber number=waveDetails.health}} / {{> formatNumber number=waveDetails.healthMax}}
               </div>
             {{/unless}}
             {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}

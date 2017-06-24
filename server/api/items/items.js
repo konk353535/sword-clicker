@@ -521,6 +521,10 @@ Meteor.publish('items', function() {
   //Transform function
   var transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
+    if (!itemConstants) {
+      return;
+    }
+
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
     doc.sellPrice = itemConstants.sellPrice;

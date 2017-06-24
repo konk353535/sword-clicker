@@ -22,11 +22,11 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     possibleMonsters.push(...['snail', 'echidna', 'lizard']);
   }
   if (level >= 20) {
-    possibleMonsters.push(...['crab', 'bee', 'spider']);
+    possibleMonsters.push(...['demon', 'bee', 'spider']);
     rewardLevel = 5;
   }
   if (level >= 35) {
-    possibleMonsters.push(...['wasp', 'jellyFish', 'blue_mage', 'demon', 'goblin', 'young_ninja']);
+    possibleMonsters.push(...['wasp', 'jellyFish', 'blue_mage', 'crab', 'goblin', 'young_ninja']);
     rewardLevel = 6;
   }
   if (level >= 45) {

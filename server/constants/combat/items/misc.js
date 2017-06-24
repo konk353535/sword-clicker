@@ -225,7 +225,7 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 6.5,
       "defense": 8,
-      "armor": 26.9
+      "armor": 26.9,
       "accuracy": 4.5
     },
     "extraStats": {
@@ -249,7 +249,7 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 13.2,
       "defense": 16.5,
-      "armor": 45.3
+      "armor": 45.3,
       "accuracy": 5.5
     },
     "extraStats": {
@@ -273,7 +273,7 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 18.4,
       "defense": 20.6,
-      "armor": 75.7
+      "armor": 75.7,
       "accuracy": 6.6
     },
     "extraStats": {
@@ -297,7 +297,7 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 30,
       "defense": 38.9,
-      "armor": 113.8
+      "armor": 113.8,
       "accuracy": 8.9
     },
     "extraStats": {

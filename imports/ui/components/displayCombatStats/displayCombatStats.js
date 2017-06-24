@@ -71,12 +71,12 @@ Template.displayCombatStats.helpers({
     if (statsMap.attack) {
       if (statsMap.attackMax) {
         statsArr.push({
-          label: `${statsMap.attack} - ${statsMap.attackMax}`,
+          label: `${statsMap.attack.toFixed(1)} - ${statsMap.attackMax.toFixed(1)}`,
           key: 'attack'
         });        
       } else {
         statsArr.push({
-          label: `${statsMap.attack}`,
+          label: `${statsMap.attack.toFixed(1)}`,
           key: 'attack'
         });
       }
@@ -88,7 +88,7 @@ Template.displayCombatStats.helpers({
       }
 
       statsArr.push({
-        label: statsMap[key],
+        label: statsMap[key].toFixed(1),
         key
       });
     });

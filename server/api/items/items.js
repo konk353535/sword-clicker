@@ -12,6 +12,8 @@ import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
+const math = require('mathjs');
+
 export const addItem = function (itemId, amount = 1, specificUserId) {
   let owner;
   if (specificUserId) {
@@ -37,12 +39,12 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
 
       // Roll for each of the stats
       Object.keys(itemConstants.extraStats).forEach((statName) => {
-        const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
+        const extra = itemConstants.extraStats[statName] * Math.random();
         // Determine how good this roll was
         maxRoll += 1;
         if (extra > 0) {
-          extraStats[statName] = extra;
-          myRoll += (extra / itemConstants.extraStats[statName]);
+          extraStats[statName] = math.round(extra, 1);
+          myRoll += (extraStats[statName] / itemConstants.extraStats[statName]);
         }
       });
 

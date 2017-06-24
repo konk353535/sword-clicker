@@ -80,11 +80,11 @@ export const LEVEL_TWO_CRAFTS = {
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
 
-  damage_up_level_2_tome: {
+  attack_up_level_2_tome: {
     recipeFor: 'inscription',
-    produces: 'damage_up_2_tome',
+    produces: 'attack_up_2_tome',
     name: 'damage Up Lv 2.',
-    id: 'damage_up_2_tome',
+    id: 'attack_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
     xp: 30,

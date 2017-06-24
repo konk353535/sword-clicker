@@ -11,7 +11,12 @@ export const TOWER_FLOOR_8 = {
   2: {
     name: 'White Beach',
     enemies: ['crab'],
-    rewards: LEVEL_EIGHT_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+      chance: 1 / 1024,
+      rewards: [
+        { type: 'item', itemId: 'opal_chest_plate', amount: 1 }
+      ]
+    }]))
   },
   3: {
     name: 'Oak Tree',
@@ -19,7 +24,7 @@ export const TOWER_FLOOR_8 = {
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemID: 'celery_seed', amount: 1 }
+        { type: 'item', itemId: 'celery_seed', amount: 1 }
       ]
     }, {
       chance: 1 / 16,

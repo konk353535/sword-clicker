@@ -106,15 +106,14 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 3.6,
-      "defense": 6.3,
-      "armor": 30,
-      "accuracy": -10,
+      "defense": 6.2,
+      "armor": 30.6,
       "attackSpeed": -0.15
     },
     "extraStats": {
       "healthMax": 1.1,
-      "defense": 2.0,
-      "armor": 9.3
+      "defense": 1.3,
+      "armor": 5.0
     }
   },
 
@@ -130,15 +129,14 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 8.6,
-      "defense": 15.1,
-      "armor": 73,
-      "accuracy": -15,
+      "defense": 14.9,
+      "armor": 73.5,
       "attackSpeed": -0.15
     },
     "extraStats": {
       "healthMax": 2.6,
-      "defense": 4.6,
-      "armor": 22.3
+      "defense": 4,
+      "armor": 10
     }
   },
 
@@ -154,15 +152,14 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 14.8,
-      "defense": 26.4,
-      "armor": 127.4,
-      "accuracy": -20,
+      "defense": 26,
+      "armor": 128.4,
       "attackSpeed": -0.15
     },
     "extraStats": {
       "healthMax": 4.4,
-      "defense": 7.9,
-      "armor": 38.4
+      "defense": 6.9,
+      "armor": 15.6
     }
   },
 
@@ -179,14 +176,13 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 24.4,
       "defense": 43.1,
-      "armor": 210,
-      "accuracy": -30,
+      "armor": 210.8,
       "attackSpeed": -0.15
     },
     "extraStats": {
       "healthMax": 7.3,
-      "defense": 13.1,
-      "armor": 63.4
+      "defense": 11.4,
+      "armor": 37.4
     }
   },
 
@@ -205,14 +201,14 @@ export const MISC_ITEMS = {
     "stats": {
       "healthMax": 2.8,
       "defense": 3.8,
-      "armor": 9.8,
+      "armor": 10.4,
       "accuracy": 2
     },
     "extraStats": {
       "healthMax": 0.8,
       "defense": 1.3,
-      "armor": 3.3,
-      "accuracy": 1.2
+      "armor": 4.2,
+      "accuracy": 1.0
     }
   },
 
@@ -228,8 +224,8 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 6.5,
-      "defense": 9,
-      "armor": 23.1,
+      "defense": 8,
+      "armor": 26.9
       "accuracy": 4.5
     },
     "extraStats": {
@@ -252,8 +248,8 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 13.2,
-      "defense": 18.5,
-      "armor": 47.3,
+      "defense": 16.5,
+      "armor": 45.3
       "accuracy": 5.5
     },
     "extraStats": {
@@ -276,8 +272,8 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 18.4,
-      "defense": 25.6,
-      "armor": 65.3,
+      "defense": 20.6,
+      "armor": 75.7
       "accuracy": 6.6
     },
     "extraStats": {
@@ -300,8 +296,8 @@ export const MISC_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 30,
-      "defense": 42.9,
-      "armor": 107.8,
+      "defense": 38.9,
+      "armor": 113.8
       "accuracy": 8.9
     },
     "extraStats": {
@@ -414,8 +410,8 @@ export const MISC_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 9.1,
-      "attackMax": 18.3,
+      "attack": 10.1,
+      "attackMax": 13.9,
       "attackSpeed": 1.0,
       "defense": -10,
       "accuracy": 10.8
@@ -439,8 +435,8 @@ export const MISC_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 41,
-      "attackMax": 82.5,
+      "attack": 45.4,
+      "attackMax": 71.8,
       "attackSpeed": 1.0,
       "defense": -10,
       "accuracy": 45.8
@@ -464,10 +460,10 @@ export const MISC_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 54.6,
-      "attackMax": 109.8,
+      "attack": 60.4,
+      "attackMax": 95.6,
       "attackSpeed": 1.0,
-      "accuracy": 62.9,
+      "accuracy": 60.9,
       "defense": -25
     },
     "extraStats": {
@@ -562,6 +558,7 @@ export const MISC_ITEMS = {
     stats: {
       healthMax: 35,
       magicArmor: 20,
+      accuracy: 10
     },
     extraStats: {
       healthMax: 15,
@@ -586,6 +583,7 @@ export const MISC_ITEMS = {
     stats: {
       healthMax: 20,
       magicArmor: 15,
+      accuracy: 10,
     },
     extraStats: {
       healthMax: 20,

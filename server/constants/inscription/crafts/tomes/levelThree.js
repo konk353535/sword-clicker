@@ -67,11 +67,11 @@ export const LEVEL_THREE_CRAFTS = {
     required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.ELK_PAPER, UTIL.LEVEL_40]
   },
 
-  damage_up_level_3_tome: {
+  attack_up_level_3_tome: {
     recipeFor: 'inscription',
-    produces: 'damage_up_3_tome',
+    produces: 'attack_up_3_tome',
     name: 'damage Up Lv 3.',
-    id: 'damage_up_3_tome',
+    id: 'attack_up_3_tome',
     category: 'tome',
     timeToCraft: 180,
     xp: 300,

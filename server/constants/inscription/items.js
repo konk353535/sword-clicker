@@ -506,43 +506,43 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the health up ability.'
   },
 
-  damage_up_1_tome: {
-    id: 'damage_up_1_tome',
+  attack_up_1_tome: {
+    id: 'attack_up_1_tome',
     icon: 'tomeUncommon',
     category: 'tome',
     name: 'damage up tome lv 1',
     teaches: {
-      abilityId: 'damage_up',
+      abilityId: 'attack_up',
       level: 1
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the damage up ability.'
+    description: 'Can be consumed to learn the attack up ability.'
   },
 
-  damage_up_2_tome: {
-    id: 'damage_up_2_tome',
+  attack_up_2_tome: {
+    id: 'attack_up_2_tome',
     icon: 'tomeUncommon',
     category: 'tome',
     name: 'damage up tome lv 2',
     teaches: {
-      abilityId: 'damage_up',
+      abilityId: 'attack_up',
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the damage up ability.'
+    description: 'Can be consumed to learn the attack up ability.'
   },
 
-  damage_up_3_tome: {
-    id: 'damage_up_3_tome',
+  attack_up_3_tome: {
+    id: 'attack_up_3_tome',
     icon: 'tomeUncommon',
     category: 'tome',
     name: 'damage up tome lv 3',
     teaches: {
-      abilityId: 'damage_up',
+      abilityId: 'attack_up',
       level: 3
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the damage up ability.'
+    description: 'Can be consumed to learn the attack up ability.'
   },
 
   accuracy_up_1_tome: {

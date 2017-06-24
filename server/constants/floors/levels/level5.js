@@ -34,7 +34,7 @@ export const LEVEL_FIVE_MONSTERS = [{
 export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
-    { type: 'item', itemId: 'damage_up_1_tome', amount: 1 },
+    { type: 'item', itemId: 'attack_up_1_tome', amount: 1 },
   ]
 }, {
   chance: 1 / 128,

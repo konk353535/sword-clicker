@@ -967,7 +967,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'tome',
     name: 'meteor',
     teaches: {
-      abilityId: 'meteor',
+      abilityId: 'meteor_strike',
       level: 1
     },
     sellPrice: 2500,

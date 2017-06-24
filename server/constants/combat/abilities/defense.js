@@ -11,7 +11,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 90,
     slot: 'any',
     target: 'allEnemies',
-    isHidden: true,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.taunt;
       return BUFF.description({ buff: BUFF, level });

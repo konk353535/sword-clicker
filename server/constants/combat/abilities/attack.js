@@ -57,7 +57,7 @@ export const ATTACK_ABILITIES = {
     cooldown: 600,
     slot: 'any',
     target: 'self',
-    isHidden: true,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.vamprisim;
       return BUFF.description({ buff: BUFF, level });
@@ -150,7 +150,7 @@ export const ATTACK_ABILITIES = {
     name: 'execute',
     id: 'execute',
     buffs: ['execute'],
-    cooldown: 40,
+    cooldown: 10,
     slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking

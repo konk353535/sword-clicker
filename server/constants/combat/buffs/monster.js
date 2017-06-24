@@ -620,12 +620,13 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              dps: attacker.stats.attackMax / 30,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 15)),
+              caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
               icon: 'bleed',
               name: 'bleed',
-              description: `Bleed every second for ${Math.round(attacker.stats.attackMax / 10)} damage`
+              description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
           }
 

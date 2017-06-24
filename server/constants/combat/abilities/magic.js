@@ -100,7 +100,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: true,
+    isHidden: false,
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.ice_dart;
@@ -284,7 +284,7 @@ export const MAGIC_ABILITIES = {
     id: 'meteor_strike',
     buffs: ['meteor_strike'],
     cooldown: 300,
-    isHidden: true,
+    isHidden: false,
     slot: 'any',
     target: 'currentEnemy',
     isMagic: true,

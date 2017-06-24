@@ -370,9 +370,9 @@ export const ATTACK_BUFFS = {
       damagePercentageIncreaseBase: 45,
       damagePercentageIncreasePerLevel: 5,
       damageTakenPercentageIncreaseBase: 20,
-      damageTakenPercentageIncreasePerLevel: 5,
-      healthLostPerSecondBase: 0.5,
-      healthLostPerSecondPerLevel: 0.5
+      damageTakenPercentageIncreasePerLevel: 4,
+      healthLostPerSecondBase: 0.8,
+      healthLostPerSecondPerLevel: 0.2
     },
     data: {
       duration: 10,
@@ -487,11 +487,11 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.damagePerLevel;
       const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
       return `
-        Auto attack for 0 - <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Execute enemies below 30% hp for up to <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
         Based on your targets missing health.`;
     },
     constants: {
-      damageBase: 1, // % Increase of damage for each % of health enemy is missing
+      damageBase: 2, // % Increase of damage for each % of health enemy is missing
       damagePerLevel: 0.5
     },
     data: {
@@ -500,6 +500,13 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+
+        // Target HP
+        const targetHp = (target.stats.health / target.stats.healthMax) * 100;
+        if (targetHp > 30) {
+          return;
+        }
+
         const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
@@ -735,7 +742,7 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
-        if (buff.constants && buff.constants.constants) {
+        if (buff.constants && buff.constants.constants && !buff.data.dps) {
           buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
           buff.data.dps *= caster.stats.accuracy;
         }
@@ -760,6 +767,7 @@ export const ATTACK_BUFFS = {
           const allUnits = actualBattle.units.concat(actualBattle.enemies, actualBattle.deadEnemies, actualBattle.deadUnits);
           const caster = _.findWhere(allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
+
           actualBattle.utils.dealDamage(buff.data.dps, { 
             attacker: caster,
             defender: target,

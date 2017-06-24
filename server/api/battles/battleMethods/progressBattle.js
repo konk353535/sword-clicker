@@ -97,7 +97,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       from: attacker ? attacker.id : '',
       to: defender.id,
       eventType: 'damage',
-      label: Math.round(damage),
+      label: damage.toFixed(1),
       customColor: isMagic ? 'blue' : customColor,
       customIcon: isMagic ? 'magic' : customIcon
     });
@@ -120,7 +120,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       from: caster ? caster.id : '',
       to: target.id,
       eventType: 'heal',
-      label: Math.round(healAmount),
+      label: (healAmount).toFixed(1),
       customColor: '#d9534f',
       customIcon: 'health'
     });

@@ -49,17 +49,17 @@ export const ATTACK_ABILITIES = {
     }
   },
 
-  vamprisim: {
-    icon: 'vamprisim',
-    name: 'vamprisim',
-    id: 'vamprisim',
-    buffs: ['vamprisim'],
+  vampirism: {
+    icon: 'vampirism',
+    name: 'vampirism',
+    id: 'vampirism',
+    buffs: ['vampirism'],
     cooldown: 600,
     slot: 'any',
     target: 'self',
     isHidden: false,
     description(level) {
-      const BUFF = BUFFS.vamprisim;
+      const BUFF = BUFFS.vampirism;
       return BUFF.description({ buff: BUFF, level });
     }
   },

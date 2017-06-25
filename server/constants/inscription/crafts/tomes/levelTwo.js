@@ -28,11 +28,11 @@ export const LEVEL_TWO_CRAFTS = {
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
 
-  vamprisim_level_2_tome: {
+  vampirism_level_2_tome: {
     recipeFor: 'inscription',
-    produces: 'vamprisim_level_2_tome',
-    name: 'vamprisim lv 2',
-    id: 'vamprisim_level_2_tome',
+    produces: 'vampirism_level_2_tome',
+    name: 'vampirism lv 2',
+    id: 'vampirism_level_2_tome',
     category: 'tome',
     timeToCraft: 300,
     xp: 100,

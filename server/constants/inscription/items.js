@@ -1130,30 +1130,30 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the penetrating slash ability.'
   },
 
-  vamprisim_level_1_tome: {
-    id: 'vamprisim_level_1_tome',
+  vampirism_level_1_tome: {
+    id: 'vampirism_level_1_tome',
     icon: 'tome',
     category: 'tome',
-    name: 'vamprisim Lv 1',
+    name: 'vampirism Lv 1',
     teaches: {
-      abilityId: 'vamprisim',
+      abilityId: 'vampirism',
       level: 1
     },
     sellPrice: 100,
-    description: 'Can be consumed to learn the vamprisim ability.'
+    description: 'Can be consumed to learn the vampirism ability.'
   },
 
-  vamprisim_level_2_tome: {
-    id: 'vamprisim_level_2_tome',
+  vampirism_level_2_tome: {
+    id: 'vampirism_level_2_tome',
     icon: 'tome',
     category: 'tome',
-    name: 'vamprisim Lv 2',
+    name: 'vampirism Lv 2',
     teaches: {
-      abilityId: 'vamprisim',
+      abilityId: 'vampirism',
       level: 2
     },
     sellPrice: 100,
-    description: 'Can be consumed to learn the vamprisim ability.'
+    description: 'Can be consumed to learn the vampirism ability.'
   },
 
   bleed_level_1_tome: {

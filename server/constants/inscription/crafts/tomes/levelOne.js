@@ -106,11 +106,11 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.BLUE_255, UTIL.PURPLE_255, UTIL.OAK_PAPER, UTIL.LEVEL_17]
   },
 
-  vamprisim_level_1_tome: {
+  vampirism_level_1_tome: {
     recipeFor: 'inscription',
-    produces: 'vamprisim_level_1_tome',
-    name: 'vamprisim lv 1',
-    id: 'vamprisim_level_1_tome',
+    produces: 'vampirism_level_1_tome',
+    name: 'vampirism lv 1',
+    id: 'vampirism_level_1_tome',
     category: 'tome',
     timeToCraft: 300,
     xp: 100,

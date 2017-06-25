@@ -153,10 +153,10 @@ export const ATTACK_BUFFS = {
     }
   },
 
-  vamprisim: {
-    duplicateTag: 'vamprisim', // Used to stop duplicate buffs
-    icon: 'vamprisim',
-    name: 'vamprisim',
+  vampirism: {
+    duplicateTag: 'vampirism', // Used to stop duplicate buffs
+    icon: 'vampirism',
+    name: 'vampirism',
     description({ buff, level }) {
       const lifestealBase = buff.constants.lifestealBase;
       const lifestealPerLevel = buff.constants.lifestealPerLevel;

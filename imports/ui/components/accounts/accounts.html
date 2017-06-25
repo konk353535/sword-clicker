@@ -38,6 +38,10 @@
       Play as guest
     {{/if}}
   </button>
+  <div class="mt-1">
+    By clicking play as guest, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
+  </div>
+  <br />
 </template>
 
 <template name="override-atPwdForm">
@@ -53,9 +57,11 @@
         {{> atPwdFormBtn}}
         {{#if showForgotPasswordLink}}
           {{> playAsGuestBtn}}
-        {{/if}}
-        {{#if showForgotPasswordLink}}
           {{> atPwdLink}}
+        {{else}}
+          <div class="mt-1">
+            By clicking register, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
+          </div>
         {{/if}}
       </fieldset>
     </form>

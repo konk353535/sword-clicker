@@ -61,11 +61,11 @@ export const WOODCUTTING_ITEMS = {
   bronze_axe: {
     id: 'bronze_axe',
     icon: 'bronzeAxe',
-    category: 'woodcutbronzeg',
+    category: 'woodcutting',
     slot: 'axe',
     name: 'bronze axe',
     sellPrice: 50,
-    description: 'An axe forged from bronze. Used for woodcutbronzeg',
+    description: 'An axe forged from bronze. Used for woodcutting',
     isAxe: true,
     stats: {
       attack: 15,

@@ -1,6 +1,6 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
-export const obsidian_CRAFTS = {
+export const OBSIDIAN_CRAFTS = {
   obsidian_dagger: {
     produces: 'obsidian_dagger',
     name: 'obsidian dagger',

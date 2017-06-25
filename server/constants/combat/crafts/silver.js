@@ -1,6 +1,6 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
-export const silver_CRAFTS = {
+export const SILVER_CRAFTS = {
   silver_dagger: {
     produces: 'silver_dagger',
     name: 'silver dagger',

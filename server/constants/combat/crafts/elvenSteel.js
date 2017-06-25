@@ -1,6 +1,6 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
-export const elven_STEEL_CRAFTS = {
+export const ELVEN_STEEL_CRAFTS = {
   elven_steel_dagger: {
     produces: 'elven_steel_dagger',
     name: 'elven_steel dagger',

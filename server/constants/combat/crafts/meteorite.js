@@ -1,6 +1,6 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
-export const meteorite_CRAFTS = {
+export const METEORITE_CRAFTS = {
   meteorite_dagger: {
     produces: 'meteorite_dagger',
     name: 'meteorite dagger',

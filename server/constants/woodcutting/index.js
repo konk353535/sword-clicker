@@ -532,7 +532,7 @@ export const WOODCUTTING = {
 
     beech_log: { // 2
       requiredAttack: 5,
-      xp: 5,
+      xp: 6,
       id: 'beech_log',
       icon: 'beechLog',
       name: 'beech log',
@@ -542,7 +542,7 @@ export const WOODCUTTING = {
 
     ash_log: { // 3
       requiredAttack: 10,
-      xp: 15,
+      xp: 18,
       id: 'ash_log',
       icon: 'ashLog',
       name: 'ash log',
@@ -552,7 +552,7 @@ export const WOODCUTTING = {
 
     oak_log: { // 4
       requiredAttack: 15,
-      xp: 45,
+      xp: 50,
       id: 'oak_log',
       icon: 'oakLog',
       name: 'oak log',
@@ -562,7 +562,7 @@ export const WOODCUTTING = {
 
     maple_log: { // 5
       requiredAttack: 20,
-      xp: 45,
+      xp: 70,
       id: 'maple_log',
       icon: 'mapleLog',
       name: 'maple log',

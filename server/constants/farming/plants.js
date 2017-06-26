@@ -101,6 +101,31 @@ export const PLANTS = {
     }]
   },
 
+  pear: {
+    produces: 'pear',
+    name: 'pear',
+    id: 'pear',
+    category: 'farming',
+    icon: ITEMS['pear'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 300,
+    xp: 20,
+    required: [{
+      type: 'item',
+      itemId: 'pear_seed',
+      icon: ITEMS['pear_seed'].icon,
+      name: ITEMS['pear_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 8
+    }]
+  },
+
   pineapple: {
     produces: 'pineapple',
     name: 'pineapple',

@@ -37,7 +37,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_copper',
       icon: ITEMS['ore_copper'].icon,
       name: ITEMS['ore_copper'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -46,7 +46,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_tin: {
@@ -85,7 +85,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_bronze',
       icon: ITEMS['ore_bronze'].icon,
       name: ITEMS['ore_bronze'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -94,7 +94,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_iron: {
@@ -133,7 +133,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_silver',
       icon: ITEMS['ore_silver'].icon,
       name: ITEMS['ore_silver'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -142,7 +142,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_gold: {
@@ -181,7 +181,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_carbon',
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -190,7 +190,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_steel: {
@@ -229,7 +229,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_platinum',
       icon: ITEMS['ore_platinum'].icon,
       name: ITEMS['ore_platinum'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -238,7 +238,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_titanium: {
@@ -277,7 +277,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_tungsten',
       icon: ITEMS['ore_tungsten'].icon,
       name: ITEMS['ore_tungsten'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -286,7 +286,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_obsidian: {
@@ -325,7 +325,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_cobalt',
       icon: ITEMS['ore_cobalt'].icon,
       name: ITEMS['ore_cobalt'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -334,7 +334,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_mithril: {
@@ -373,7 +373,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_adamantium',
       icon: ITEMS['ore_adamantium'].icon,
       name: ITEMS['ore_adamantium'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -382,7 +382,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_orichalcum: {
@@ -421,7 +421,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_meteorite',
       icon: ITEMS['ore_meteorite'].icon,
       name: ITEMS['ore_meteorite'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -430,7 +430,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_fairy_steel: {
@@ -469,7 +469,7 @@ export const GOLD_CRAFTS = {
       itemId: 'ore_elven_steel',
       icon: ITEMS['ore_elven_steel'].icon,
       name: ITEMS['ore_elven_steel'].name,
-      amount: 5,
+      amount: 3,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
@@ -478,7 +478,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 30
+    maxToCraft: 100
   },
 
   polished_cursed: {

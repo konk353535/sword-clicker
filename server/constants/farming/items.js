@@ -29,6 +29,34 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  pear_seed: {
+    id: 'pear_seed',
+    icon: 'pearSeed',
+    category: 'seed',
+    name: 'Pear Seed',
+    description() {
+      const buff = BUFFS.food_pear;
+      return buff.description({ buff });
+    },
+    sellPrice: 1,
+    produces: 'pear'
+  },
+
+  pear: {
+    id: 'pear',
+    icon: 'pear',
+    category: 'food',
+    name: 'Pear',
+    description() {
+      const buff = BUFFS.food_pear;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_pear'
+    }],
+    sellPrice: 70
+  },
+
   garlic_seed: {
     id: 'garlic_seed',
     icon: 'garlicSeed',

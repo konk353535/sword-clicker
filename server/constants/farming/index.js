@@ -20,6 +20,21 @@ export const FARMING = {
       }]
     },
 
+    pear_seed: {
+      id: 'pear_seed',
+      itemId: 'pear_seed',
+      requiredFarmingLevel: 8,
+      required: [{
+        type: 'gold',
+        amount: 30,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 8
+      }]
+    },
+
     pine_seed: {
       id: 'pine_seed',
       itemId: 'pine_seed',

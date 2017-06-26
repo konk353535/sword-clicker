@@ -215,6 +215,8 @@ Meteor.methods({
       if (currentCombat.stats.energy > currentCombat.stats.energyMax) {
         currentCombat.stats.energy = currentCombat.stats.energyMax;
       }
+    } else {
+      currentCombat.stats.energy = currentCombat.stats.energyMax;
     }
 
     // Amulet energy regen
@@ -231,6 +233,8 @@ Meteor.methods({
       if (currentCombat.stats.health > currentCombat.stats.healthMax) {
         currentCombat.stats.health = currentCombat.stats.healthMax;
       }
+    } else {
+      currentCombat.stats.health = currentCombat.stats.healthMax;
     }
 
     // Process buffs

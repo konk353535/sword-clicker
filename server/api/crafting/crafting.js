@@ -274,11 +274,39 @@ Meteor.methods({
       return;
     }
 
+    const newCrafting = JSON.parse(JSON.stringify(crafting.currentlyCrafting));
+
     // Target Crafting Item
     let targetCrafting;
-    crafting.currentlyCrafting.forEach((currentCrafting) => {
+    newCrafting.forEach((currentCrafting, index) => {
       if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
         targetCrafting = currentCrafting;
+      }
+    });
+
+    console.log(`Before length = ${newCrafting.length}`);
+
+    // Remove targetCrafting from the array
+    const filteredCrafting = newCrafting.filter((crafting) => {
+      return crafting !== targetCrafting;
+    });
+
+    console.log(`After length = ${filteredCrafting.length}`);
+
+    // Reorder crafts and recalculate start / end date
+    const sortedCrafts = _.sortBy(filteredCrafting, 'startDate');
+
+    // Reconstruct start and end dates
+    sortedCrafts.forEach((craft, index) => {
+      if (moment().isBefore(craft.startDate)) {
+        const craftDuration = craft.amount * CRAFTING.recipes[craft.recipeId].timeToCraft;
+        if (index === 0) {
+          craft.startDate = moment().toDate();
+          craft.endDate = moment().add(craftDuration, 'seconds').toDate();
+        } else {
+          craft.startDate = moment(sortedCrafts[index - 1].endDate).toDate();
+          craft.endDate = moment(craft.startDate).add(craftDuration, 'seconds').toDate();
+        }
       }
     });
 
@@ -287,12 +315,8 @@ Meteor.methods({
       _id: crafting._id,
       currentlyCrafting: crafting.currentlyCrafting
     }, {
-      $pull: {
-        currentlyCrafting: {
-          endDate: {
-            $in: [targetCrafting.endDate]
-          }
-        }
+      $set: {
+        currentlyCrafting: sortedCrafts
       }
     });
 

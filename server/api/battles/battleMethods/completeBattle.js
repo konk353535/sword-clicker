@@ -391,9 +391,13 @@ export const completeBattle = function (actualBattle) {
   // Is this a current boss battle?
   if (actualBattle.startingBossHp) {
     const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-    const damageDealt = actualBattle.startingBossHp - allEnemies[0].stats.health;
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
+    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
 
-    console.log(`Damage dealth to boss ${damageDealt}`);
+    if (!damageDealt || damageDealt < 0) {
+      damageDealt = 0;
+    }
+    console.log(`Damage dealt to boss ${damageDealt}`);
 
     // Update players contributions
     allFriendlyUnits.forEach((unit) => {

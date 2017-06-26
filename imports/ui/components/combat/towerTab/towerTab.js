@@ -164,7 +164,7 @@ Template.towerTab.helpers({
           reward.chance = 0;
         }
       } else if (reward.type === 'gold') {
-        reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;
+        reward.goldAmount = Math.round((1 - (percentRank / 100)) * reward.amount);
       }
 
       return reward;

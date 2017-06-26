@@ -714,6 +714,7 @@ export const MONSTER_BUFFS = {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
+        buff.data.stacks = buff.data.hitsRequired;
 
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;

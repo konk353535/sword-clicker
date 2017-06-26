@@ -288,11 +288,11 @@ export const MAGIC = {
       }, {
         type: 'skill',
         name: 'astronomy',
-        level: 25
+        level: 15
       }, {
         type: 'skill',
         name: 'magic',
-        level: 25
+        level: 15
       }]
     },
 
@@ -413,7 +413,7 @@ export const MAGIC = {
     meteor_strike: {
       id: 'meteor_strike',
       abilityId: 'meteor_strike',
-      xp: 10,
+      xp: 50,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -432,11 +432,11 @@ export const MAGIC = {
       }, {
         type: 'skill',
         name: 'astronomy',
-        level: 15
+        level: 25
       },  {
         type: 'skill',
         name: 'magic',
-        level: 15
+        level: 25
       }]
     },
 

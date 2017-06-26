@@ -85,7 +85,7 @@ Template.body.onCreated(function () {
                 <p
                   class='floating-text'
                   data-count=1
-                  style='top: 75px; right: 25px; opacity: 1.0;'>
+                  style='top: 100px; right: 25px; opacity: 1.0;'>
                   +${xpGained} <i class="lilIcon-${skill.type}"></i>
                 </p>
               `);

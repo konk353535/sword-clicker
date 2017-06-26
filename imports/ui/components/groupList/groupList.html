@@ -4,8 +4,17 @@
       <div class="d-flex flex-column p-1 mr-3 hidden-xs-down" style="border-right: 1px solid #DFDFDF;
         max-width: 125px; margin-left: -1rem">
 
+        {{#if showReadyCheck}}
+          <a href="#" class="text-success text-center is-ready-btn mt-2">Ready</a>
+          <a href="#" class="text-danger text-center not-ready-btn mb-3">Not Ready</a>
+        {{/if}}
+
         {{#each currentGroupMembers}}
+          <div class="
+            {{#if this.readyCheck.ready}}user-ready{{/if}}
+            {{#if this.readyCheck.notReady}}user-not-ready{{/if}}">
           {{> battleUnit unit=this small=true}}
+          </div>
         {{/each}}
 
         {{#if currentGroup.invitesDetails}}
@@ -16,6 +25,9 @@
         {{/if}}
 
         <button class="btn btn-danger leave-group btn-sm mt-3 mx-1">Leave</button>
+        {{#if $eq currentGroup.leader currentUserId}}
+          <button class="btn btn-success ready-check btn-sm mt-2 mx-1">Ready Check</button>
+        {{/if}}
       </div>
     {{else if hasPendingInvites}}
       <div class="d-flex flex-column p-1 mr-3 hidden-xs-down" style="border-right: 1px solid #DFDFDF;

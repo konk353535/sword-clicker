@@ -149,6 +149,79 @@ Meteor.methods({
     }
   },
 
+  'groups.ready'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    if (currentGroup.membersChecks[Meteor.userId()]) {
+      currentGroup.membersChecks[Meteor.userId()].ready = true;
+    }
+
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: currentGroup.membersChecks
+      }
+    });
+  },
+
+  'groups.notReady'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    if (currentGroup.membersChecks[Meteor.userId()]) {
+      currentGroup.membersChecks[Meteor.userId()].notReady = true;
+    }
+
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: currentGroup.membersChecks
+      }
+    });
+  },
+
+  'groups.readyCheck'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    // Must be leader to ready check users
+    if (currentGroup && currentGroup.leader !== this.userId) {
+      return;
+    }
+
+    // Members Object
+    const membersObject = {};
+
+    currentGroup.members.forEach((memberId) => {
+      membersObject[memberId] = {
+        notReady: false,
+        ready: false
+      };
+    })
+
+    // Set ready checks
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: membersObject,
+        lastReadyCheck: new Date()
+      }
+    });
+  },
+
   'groups.stopFindingGroup'() {
     // Remove all records for this user
     GroupFinder.remove({

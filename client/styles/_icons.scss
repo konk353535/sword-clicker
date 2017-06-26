@@ -35,6 +35,18 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   padding: $spacer * 0.25;
 }
 
+.user-ready .icon-box {
+  border-color: $brand-success;
+}
+
+.user-not-ready .icon-box {
+  border-color: $brand-danger;
+}
+
+.leader-icon.icon-box {
+  border-color: $brand-warning;
+}
+
 // Used in inscription to stop icon box having a border
 .no-box-border {
   .icon-box {

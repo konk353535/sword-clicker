@@ -102,7 +102,7 @@
               <div class="d-flex align-items-center ml-1">
                 {{> formatNumber number=this.value decimal=1}}
                 {{#if this.maxValue}}
-                  / {{this.maxValue}}
+                  / {{> formatNumber number=this.maxValue decimal=0}}
                 {{/if}}
               </div>
             </div>

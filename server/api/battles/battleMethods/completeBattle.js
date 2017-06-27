@@ -38,7 +38,8 @@ const distributeRewards = function distributeRewards({ floor }) {
   sortedBossHealthScores.forEach((bossHealthScore) => {
     rawFloorRewards.forEach((reward) => {
       if (reward.type === 'item') {
-         addItem(reward.itemId, 1, bossHealthScore.owner);
+        console.log(`Adding item - ${reward.itemId}`);
+        addItem(reward.itemId, 1, bossHealthScore.owner);
       }
     })
   })
@@ -73,7 +74,7 @@ const distributeRewards = function distributeRewards({ floor }) {
     rawFloorRewards.forEach((reward) => {
       if (reward.type === 'item' && Math.random() <= (chance / 100)) {
         addItem(reward.itemId, 1, waveScore.owner);
-        console.log(`Adding item - ${reward.itemId}`);
+        console.log(`Adding item - ${reward.itemId} - 1`);
       } else if (reward.type === 'gold') {
         const goldAmount = (1 - (percentRank / 100)) * reward.amount;
         console.log(`Adding gold - ${goldAmount}`);
@@ -450,6 +451,15 @@ export const completeBattle = function (actualBattle) {
           // Get bosses hp
           const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
           const bossEnemyConstants = ENEMIES[bossEnemyId];
+
+          // Reset tower contributions for all
+          Combat.update({}, {
+            $set: {
+              towerContributionsToday: 0
+            }
+          }, { multi: true });
+
+          BossHealthScores.remove({});
 
           // Create our next floor
           Floors.insert({

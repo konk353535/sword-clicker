@@ -44,7 +44,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.water_dart;
@@ -64,7 +64,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.water_ball;
@@ -84,7 +84,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.water_wave;
@@ -120,7 +120,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.blizzard;
@@ -140,7 +140,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.poison_dart;
@@ -250,7 +250,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.magic_wisdom;
@@ -270,7 +270,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.affliction;
@@ -290,7 +290,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     description(level) {
       const BUFF = BUFFS.meteor_strike;
@@ -326,7 +326,7 @@ export const MAGIC_ABILITIES = {
     target: 'allAllies',
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff']
+      weaponTypes: ['staff', 'wand']
     }],
     isMagic: true,
     description(level) {

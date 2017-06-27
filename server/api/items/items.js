@@ -557,10 +557,6 @@ Meteor.publish('items', function() {
       doc.shiftActionData = itemConstants.shiftActionData;
     }
 
-    if (doc.enhanced) {
-      doc.name += ' (e)';
-    }
-
     return doc;
   }
 

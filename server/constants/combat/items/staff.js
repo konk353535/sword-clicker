@@ -112,10 +112,10 @@ export const STAFF_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 6,
-      attackMax: 12,
+      attack: 5,
+      attackMax: 10,
       attackSpeed: SLOW_SPEED,
-      accuracy: 10,
+      accuracy: 8,
       magicPower: 13
     },
     extraStats: {

@@ -290,7 +290,7 @@ export const MONSTER_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // Blank
         if (!buff.data.timeTillRabbit) {
-          buff.data.timeTillRabbit = 5 + Math.random () * 5;
+          buff.data.timeTillRabbit = 9 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
           if (buff.data.timeTillRabbit <= 0) {

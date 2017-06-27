@@ -106,6 +106,14 @@ export const TOWER_FLOOR_7 = {
       extraStats: ITEMS['steel_dwarven_idol'].extraStats
     },
     {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
+    },
+    {
       type: 'gold',
       amount: 100000
     }

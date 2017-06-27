@@ -21,6 +21,9 @@
   <div class="item-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>
       {{item.name}}
+      {{#if item.enhanced}}
+        (E)
+      {{/if}}
     </h3>
     <div class='popover-content'>
       {{#if item.description}}

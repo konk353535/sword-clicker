@@ -391,7 +391,8 @@ Template.craftingPage.helpers({
         limit: itemViewLimit,
         sort: {
           category: 1,
-          name: 1
+          name: 1,
+          quality: -1
         }
       }).map((itemModifier));
     }
@@ -408,7 +409,8 @@ Template.craftingPage.helpers({
     }, {
       sort: {
         category: 1,
-        name: 1
+        name: 1,
+        quality: -1
       }
     }).map((itemModifier));
   }

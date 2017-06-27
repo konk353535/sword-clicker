@@ -337,7 +337,6 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  // Demon
   boss_genie_lamp: {
     id: 'boss_genie_lamp',
     icon: 'bossGenieLamp',
@@ -363,6 +362,36 @@ export const BOSS_ENEMIES = {
         icon: 'bossGenieLamp',        
         name: 'genies lamp',
         hideBuff: true
+      }
+    }],
+    rewards: []
+  },
+
+  boss_living_tree: {
+    id: 'boss_living_tree',
+    icon: 'livingTree',
+    name: 'Living Tree',
+    isBoss: true,
+    stats: {
+      attack: 1,
+      attackMax: 1,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 450,
+      health: 600,
+      healthMax: 600,
+      defense: 290,
+      armor: 250,
+      magicArmor: 250,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_living_tree',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'livingTree',
+        damageTillSpawn: 100,
+        name: 'genies lamp'
       }
     }],
     rewards: []

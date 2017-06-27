@@ -1172,4 +1172,62 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_living_tree: {
+    duplicateTag: 'boss_living_tree', // Used to stop duplicate buffs
+    icon: 'livingTree',
+    name: 'boss tree',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Eternal`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        if (!buff.data.lastKnownHealth) {
+          buff.data.lastKnownHealth = target.stats.health;
+        } else {
+          const healthLost = buff.data.lastKnownHealth - target.stats.health;
+          buff.data.lastKnownHealth = target.stats.health;
+          buff.data.damageTillSpawn -= healthLost;
+          buff.data.stacks = Math.round(buff.data.damageTillSpawn);
+        }
+
+        if (buff.data.damageTillSpawn <= 0) {
+          buff.data.damageTillSpawn = 100;
+          const birdStats = JSON.parse(JSON.stringify(target.stats));
+          birdStats.health = 250;
+          birdStats.healthMax = 250;
+          birdStats.attackSpeed = 1;
+          birdStats.attackSpeedTicks = attackSpeedTicks(1);
+          birdStats.attackMax = 150;
+          birdStats.attack = 150;
+          birdStats.armor /= 2;
+
+          // Spawn bird
+          const bird = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'bird',
+            name: 'bird',
+            stats: birdStats,
+            buffs: []
+          }
+
+          actualBattle.enemies.push(bird);
+        }
+
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 }

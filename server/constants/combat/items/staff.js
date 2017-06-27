@@ -147,7 +147,7 @@ export const STAFF_ITEMS = {
       attack: 6,
       attackMax: 12,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 10,
+      accuracy: 14,
       magicPower: 8
     },
     extraStats: {
@@ -277,7 +277,7 @@ export const STAFF_ITEMS = {
       attack: 8,
       attackMax: 15,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 15,
+      accuracy: 19,
       magicPower: 12
     },
     extraStats: {
@@ -502,7 +502,7 @@ export const STAFF_ITEMS = {
       attack: 15,
       attackMax: 25,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 30,
+      accuracy: 39,
       magicPower: 28,
     },
     extraStats: {

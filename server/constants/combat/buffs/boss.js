@@ -573,8 +573,8 @@ export const BOSS_BUFFS = {
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
-                icon: 'babyPhoenix',        
-                name: 'baby phoenix'
+                icon: 'phoenixEgg',        
+                name: 'phoenix egg'
               }
             }]
           }
@@ -668,7 +668,7 @@ export const BOSS_BUFFS = {
               totalDuration: Infinity,
               timeTillSpawn: 120,
               isEnemy: true,
-              icon: 'babyPhoenix',        
+              icon: 'babyPhoenix',  
               name: 'baby phoenix'
             }
           }]
@@ -680,5 +680,122 @@ export const BOSS_BUFFS = {
     }
   },
 
+  boss_gorilla: {
+    duplicateTag: 'boss_gorilla', // Used to stop duplicate buffs
+    icon: 'boss gorilla',
+    name: 'boss gorilla',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Gets smarter every 30 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillLearn -= secondsElapsed;
+        buff.data.stacks = Math.round(buff.data.timeTillLearn);
+
+        if (buff.data.stacks <= 0) {
+          buff.data.stacks = 0;
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+
+        if (buff.data.timeTillLearn <= 0) {
+          const LEARNT_DURATION = Infinity;
+
+          // Does defender already have the buff?
+          let targetBuff = _.findWhere(defender.buffs, { id: 'gorilla_learning' });
+          if (targetBuff) {
+            targetBuff.data.duration = LEARNT_DURATION;
+            defender.stats.attackMax *= (1 - ((targetBuff.data.stacks * 2) / 100));
+            defender.stats.attack *= (1 - ((targetBuff.data.stacks * 2) / 100));
+            defender.stats.magicPower *= (1 - ((targetBuff.data.stacks * 2) / 100));
+
+            if (defender.stats.attackMax <= 0) {
+              defender.stats.attackMax = 1;
+            }
+            if (defender.stats.attack <= 0) {
+              defender.stats.attack = 1;
+            }
+            if (defender.stats.magicPower <= 0) {
+              defender.stats.magicPower = 1;
+            }
+
+            targetBuff.data.stacks *= 3;
+          } else {
+            const newBuff = {
+              id: 'gorilla_learning',
+              data: {
+                duration: LEARNT_DURATION,
+                totalDuration: LEARNT_DURATION,
+                stacks: 1,
+                icon: 'gorillaLearning',
+                description: 'Increases damage taken, and decrease damage dealt by 1% per stack'
+              }
+            }
+
+            // cast learning buff
+            addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+          }
+
+          buff.data.timeTillLearn = 15;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  gorilla_learning: {
+    duplicateTag: 'gorilla_learning', // Used to stop duplicate buffs
+    icon: 'gorillaLearning',
+    name: 'gorilla learning',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Increases damage taken, and decrease damage dealt by 1% per stack`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        const constants = buff.constants.constants;
+
+        const extraDamage = 0.01 * buff.data.stacks;
+        const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
+        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+          attacker,
+          defender,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 
 }

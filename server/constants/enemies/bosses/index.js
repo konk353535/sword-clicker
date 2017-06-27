@@ -285,7 +285,7 @@ export const BOSS_ENEMIES = {
       attack: 180,
       attackMax: 300,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 350,
+      accuracy: 400,
       health: 500,
       healthMax: 500,
       defense: 240,
@@ -293,6 +293,16 @@ export const BOSS_ENEMIES = {
       magicArmor: 200,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_gorilla',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'gorilla',        
+        name: 'boss gorilla',
+        timeTillLearn: 15
+      }
+    }],
     rewards: []
   }
 }

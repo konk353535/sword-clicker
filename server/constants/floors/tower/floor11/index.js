@@ -88,7 +88,7 @@ export const TOWER_FLOOR_11 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
+    enemy: { id: 'boss_genie_lamp', amount: 1 },
     rewards: LEVEL_ELEVEN_LOOT_TABLE
   },
 

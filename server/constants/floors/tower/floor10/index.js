@@ -84,7 +84,7 @@ export const TOWER_FLOOR_10 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 }, // Change to another boss
+    enemy: { id: 'boss_demon', amount: 1 }, // Change to another boss
     rewards: LEVEL_TEN_LOOT_TABLE
   },
 

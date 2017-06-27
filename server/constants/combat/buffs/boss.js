@@ -798,4 +798,378 @@ export const BOSS_BUFFS = {
     }
   },
 
+  boss_genie_lamp: {
+    duplicateTag: 'boss_genie_lamp', // Used to stop duplicate buffs
+    icon: 'bossGenieLamp',
+    name: 'boss genie lamp',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `It's a lamp?`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        if (!buff.data.lampsSpawned) {
+
+            const powerLamp = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'bossGeniePowerLamp',
+              name: 'power',
+              isLamp: true,
+              stats: {
+                health: 500,
+                healthMax: 500,
+                attackSpeed: 0.01,
+                attackSpeedTicks: 1000,
+                armor: 0,
+                magicArmor: 0,
+                magicPower: 0,
+                defense: 0,
+                accuracy: 0,
+                damageTaken: 1
+              },
+              buffs: [{
+                id: 'boss_genie_power_lamp',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  isEnemy: true,
+                  icon: 'bossGeniePowerLamp',        
+                  name: 'power lap'
+                }
+              }]
+            }
+
+            const wisdomLamp = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'bossGenieWisdomLamp',
+              name: 'wisdom',
+              isLamp: true,
+              stats: {
+                health: 500,
+                healthMax: 500,
+                attackSpeed: 0.01,
+                attackSpeedTicks: 1000,
+                armor: 0,
+                magicArmor: 0,
+                magicPower: 0,
+                defense: 0,
+                accuracy: 0,
+                damageTaken: 1
+              },
+              buffs: [{
+                id: 'boss_genie_wisdom_lamp',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  isEnemy: true,
+                  icon: 'bossGenieWisdomLamp',        
+                  name: 'wisdom lamp'
+                }
+              }]
+            }
+
+            const healthLamp = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'bossGenieHealthLamp',
+              name: 'Vitality',
+              isLamp: true,
+              stats: {
+                health: 500,
+                healthMax: 500,
+                attackSpeed: 0.01,
+                attackSpeedTicks: 1000,
+                armor: 0,
+                magicArmor: 0,
+                magicPower: 0,
+                defense: 0,
+                accuracy: 0,
+                damageTaken: 1
+              },
+              buffs: [{
+                id: 'boss_genie_health_lamp',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  isEnemy: true,
+                  icon: 'bossGenieHealthLamp',        
+                  name: 'health lamp'
+                }
+              }]
+            }
+
+            actualBattle.enemies.push(powerLamp);
+            actualBattle.enemies.push(wisdomLamp);
+            actualBattle.enemies.push(healthLamp);
+
+          buff.data.lampsSpawned = true;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_genie_power_lamp: {
+    duplicateTag: 'boss_genie_power_lamp', // Used to stop duplicate buffs
+    icon: 'bossGeniePowerLamp',
+    name: 'boss genie power lamp',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Grants power on destruction`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // Apply power buff to all allies
+        actualBattle.units.forEach((targetUnit) => {
+          const newBuff = {
+            id: 'boss_genie_power_up',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              description: 'Increases damage by 10%',
+              icon: 'bossGeniePowerLamp',        
+              name: 'power up'
+            }
+          }
+          addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
+        });
+
+        // Destroy the other lamps
+        actualBattle.enemies.forEach((enemy) => {
+          if (enemy.id !== target.id && enemy.isLamp) {
+            enemy.buffs = [];
+            enemy.stats.health = -1;
+          }
+        });
+      }
+    }
+  },
+
+  boss_genie_wisdom_lamp: {
+    duplicateTag: 'boss_genie_wisdom_lamp', // Used to stop duplicate buffs
+    icon: 'bossGenieWisdomLamp',
+    name: 'boss genie wisdom lamp',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Grants wisdom on destruction`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // Apply wisdom buff to all allies
+        actualBattle.units.forEach((targetUnit) => {
+          const newBuff = {
+            id: 'boss_genie_wisdom_up',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              icon: 'bossGenieWisdomLamp',
+              description: 'Increases magic power by 20%',      
+              name: 'wisdom up'
+            }
+          }
+          addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
+        });
+
+        // Destroy the other lamps
+        actualBattle.enemies.forEach((enemy) => {
+          if (enemy.id !== target.id && enemy.isLamp) {
+            enemy.buffs = [];
+            enemy.stats.health = -1;
+          }
+        });
+      }
+    }
+  },
+
+  boss_genie_health_lamp: {
+    duplicateTag: 'boss_genie_health_lamp', // Used to stop duplicate buffs
+    icon: 'bossGenieHealthLamp',
+    name: 'health',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Grants health on destruction`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // Apply health buff to all allies
+        actualBattle.units.forEach((targetUnit) => {
+          const newBuff = {
+            id: 'boss_genie_health_up',
+            data: {
+              description: 'Increase health by 50%',
+              duration: Infinity,
+              totalDuration: Infinity,
+              icon: 'bossGenieHealthLamp',        
+              name: 'health up'
+            }
+          }
+          addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
+        });
+
+        // Destroy the other lamps
+        actualBattle.enemies.forEach((enemy) => {
+          if (enemy.id !== target.id && enemy.isLamp) {
+            enemy.buffs = [];
+            enemy.stats.health = -1;
+          }
+        });
+      }
+    }
+  },
+
+  boss_genie_health_up: {
+    duplicateTag: 'boss_genie_health_up', // Used to stop duplicate buffs
+    icon: 'bossGenieHealthLamp',
+    name: 'health up',
+    description({ buff, level }) {
+      return `Increases health by 50%`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        console.log(`Before health = ${caster.stats.health}`)
+        caster.stats.health *= 1.5;
+        caster.stats.healthMax *= 1.5;
+        console.log(`After health = ${caster.stats.health}`)
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.health /= 1.5;
+        caster.stats.healthMax /= 1.5;
+      }
+    }
+  },
+
+  boss_genie_power_up: {
+    duplicateTag: 'boss_genie_power_up', // Used to stop duplicate buffs
+    icon: 'bossGeniePowerLamp',
+    name: 'power up',
+    description({ buff, level }) {
+      return `Increases damage by 10%`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        console.log(`Before attack power = ${caster.stats.attack}`)
+        caster.stats.attack *= 1.1;
+        caster.stats.attackMax *= 1.1;
+        console.log(`After attack power = ${caster.stats.attack}`)
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.attack /= 1.1;
+        caster.stats.attackMax /= 1.1;
+      }
+    }
+  },
+
+ boss_genie_wisdom_up: {
+    duplicateTag: 'boss_genie_wisdom_up', // Used to stop duplicate buffs
+    icon: 'bossGenieWisdomLamp',
+    name: 'wisdom up',
+    description({ buff, level }) {
+      return `Increases magic power by 20%`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        console.log(`Before magic power = ${caster.stats.magicPower}`)
+        caster.stats.magicPower *= 1.2;
+        console.log(`After magic power = ${caster.stats.magicPower}`)
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        caster.stats.magicPower /= 1.2;
+      }
+    }
+  },
 }

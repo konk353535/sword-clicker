@@ -304,5 +304,67 @@ export const BOSS_ENEMIES = {
       }
     }],
     rewards: []
+  },
+
+  // Demon
+  boss_demon: {
+    id: 'boss_demon',
+    icon: 'bossDemon',
+    name: 'demon',
+    isBoss: true,
+    stats: {
+      attack: 200,
+      attackMax: 250,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 420,
+      health: 550,
+      healthMax: 550,
+      defense: 270,
+      armor: 250,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'demon_monster',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'demon',        
+        name: 'demon',
+        hideBuff: true
+      }
+    }],
+    rewards: []
+  },
+
+  // Demon
+  boss_genie_lamp: {
+    id: 'boss_genie_lamp',
+    icon: 'bossGenieLamp',
+    name: 'Genies Lamp',
+    isBoss: true,
+    stats: {
+      attack: 250,
+      attackMax: 350,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 420,
+      health: 550,
+      healthMax: 550,
+      defense: 270,
+      armor: 250,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_genie_lamp',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'bossGenieLamp',        
+        name: 'genies lamp',
+        hideBuff: true
+      }
+    }],
+    rewards: []
   }
 }

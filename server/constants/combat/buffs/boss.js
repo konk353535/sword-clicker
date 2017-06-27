@@ -53,7 +53,7 @@ export const BOSS_BUFFS = {
 
   boss_cougar: {
     duplicateTag: 'boss_cougar', // Used to stop duplicate buffs
-    icon: 'boss cougar',
+    icon: 'puma',
     name: 'boss cougar',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1224,6 +1224,50 @@ export const BOSS_BUFFS = {
           actualBattle.enemies.push(bird);
         }
 
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_vampire: {
+    duplicateTag: 'boss_vampire', // Used to stop duplicate buffs
+    icon: 'vampire',
+    name: 'vampire',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return 'Loves blood';
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillBlood -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillBlood);
+
+        if (buff.data.timeTillBlood <= 0) {
+          const newBuff = {
+            id: 'vampirism',
+            data: {
+              icon: 'vampirism',
+              description: 'Gains healtl equal to the damage you deal.',
+              level: 32,
+              totalDuration: 10,
+              duration: 10
+            }
+          }
+
+          buff.data.timeTillBlood = 150;
+          addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+        }
       },
 
       onRemove({ buff, target }) {

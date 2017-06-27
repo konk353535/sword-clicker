@@ -395,5 +395,94 @@ export const BOSS_ENEMIES = {
       }
     }],
     rewards: []
-  }
+  },
+
+  boss_vampire: {
+    id: 'boss_vampire',
+    icon: 'vampire',
+    name: 'vampire',
+    isBoss: true,
+    stats: {
+      attack: 275,
+      attackMax: 350,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 420,
+      health: 550,
+      healthMax: 550,
+      defense: 300,
+      armor: 250,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_vampire',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'vampire',        
+        name: 'vampire',
+        timeTillBlood: 30
+      }
+    }],
+    rewards: []
+  },
+
+  boss_frankenstein: {
+    id: 'boss_frankenstein',
+    icon: 'frankenstein',
+    name: 'frankenstein',
+    isBoss: true,
+    stats: {
+      attack: 275,
+      attackMax: 350,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 430,
+      health: 600,
+      healthMax: 600,
+      defense: 300,
+      armor: 300,
+      magicArmor: 100,
+      damageTaken: 1
+    },
+    rewards: []
+  },
+
+  boss_cassiopeia: {
+    id: 'boss_cassiopeia',
+    icon: 'cassiopeia',
+    name: 'cassiopeia',
+    isBoss: true,
+    stats: {
+      attack: 150,
+      attackMax: 200,
+      attackSpeed: VERY_FAST_SPEED,
+      accuracy: 450,
+      health: 600,
+      healthMax: 600,
+      defense: 330,
+      armor: 300,
+      magicArmor: 100,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_ogre',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'ogre',        
+        name: 'boss ogre',
+        hideBuff: true
+      }
+    }, {
+      id: 'poisoned_blade',
+      data: {
+        duration: 10000,
+        totalDuration: 10000,
+        icon: 'poisonedBlade',
+        name: 'poisoned blade',
+        level: 1
+      }
+    }],
+    rewards: []
+  },
 }

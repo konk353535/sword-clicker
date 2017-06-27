@@ -467,5 +467,218 @@ export const BOSS_BUFFS = {
     }
   },
 
+  boss_phoenix: {
+    duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
+    icon: 'spartan',
+    name: 'boss phenoix',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Eternal`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        if (!buff.data.phoenixsSpawned) {
+
+          for (let i = 0; i < 2; i++) {
+            const phoenixStats = JSON.parse(JSON.stringify(target.stats));
+            phoenixStats.health = 500;
+            phoenixStats.healthMax = 500;
+            phoenixStats.attackSpeed = 0.001;
+            phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
+            phoenixStats.attackMax /= 3;
+            phoenixStats.attack /= 3;
+            phoenixStats.armor /= 3;
+
+            // Spawn little snake
+            const phoenixEgg = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'phoenixEgg',
+              name: 'phoenix egg',
+              stats: phoenixStats,
+              buffs: [{
+                id: 'phoenix_egg',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  timeTillSpawn: 60,
+                  isEnemy: true,
+                  icon: 'babyPhoenix',        
+                  name: 'baby phoenix'
+                }
+              }]
+            }
+
+            actualBattle.enemies.push(phoenixEgg);
+          }
+
+          buff.data.phoenixsSpawned = true;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  phoenix_egg: {
+    duplicateTag: 'phoenix_egg', // Used to stop duplicate buffs
+    icon: 'phoenixEgg',
+    name: 'phoenix egg',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
+
+          const phoenixStats = JSON.parse(JSON.stringify(target.stats));
+          phoenixStats.health = target.stats.health;
+          phoenixStats.healthMax = target.stats.health;
+          phoenixStats.attackSpeed = 0.5;
+          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
+          phoenixStats.armor *= 3;
+
+          // Spawn little goblin
+          const littlePhoenix = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'babyPhoenix',
+            name: 'babyPhoenix',
+            stats: phoenixStats,
+            buffs: [{
+              id: 'baby_phoenix',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'babyPhoenix',        
+                name: 'baby phoenix'
+              }
+            }]
+          }
+
+          actualBattle.enemies.push(littlePhoenix);
+
+          buff.data.hasSpawned = true;
+          target.stats.health = -1;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        if (!buff.data.hasSpawned) {
+
+          const phoenixStats = JSON.parse(JSON.stringify(target.stats));
+          phoenixStats.health = 10;
+          phoenixStats.healthMax = 10;
+          phoenixStats.attackSpeed = 0.5;
+          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
+          phoenixStats.armor *= 3;
+
+          // Spawn little goblin
+          const littlePhoenix = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'babyPhoenix',
+            name: 'babyPhoenix',
+            stats: phoenixStats,
+            buffs: [{
+              id: 'baby_phoenix',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'phoenixEgg',        
+                name: 'phoenix egg'
+              }
+            }]
+          }
+
+          actualBattle.enemies.push(littlePhoenix);
+        }
+      }
+    }
+  },
+
+  baby_phoenix: {
+    duplicateTag: 'baby_phoenix', // Used to stop duplicate buffs
+    icon: 'babyPhoenix',
+    name: 'baby phoenix',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Returns to an egg on death`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target }) {
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // cast ignite on all units
+        const phoenixStats = JSON.parse(JSON.stringify(target.stats));
+        phoenixStats.health = 500;
+        phoenixStats.healthMax = 500;
+        phoenixStats.attackSpeed = 0.001;
+        phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
+        phoenixStats.armor /= 3;
+
+        // Spawn little snake
+        const phoenixEgg = {
+          id: Random.id(),
+          tickOffset: 0,
+          icon: 'phoenixEgg',
+          name: 'phoenix egg',
+          stats: phoenixStats,
+          buffs: [{
+            id: 'phoenix_egg',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              timeTillSpawn: 120,
+              isEnemy: true,
+              icon: 'babyPhoenix',        
+              name: 'baby phoenix'
+            }
+          }]
+        }
+
+        actualBattle.enemies.push(phoenixEgg);
+
+      }
+    }
+  },
+
 
 }

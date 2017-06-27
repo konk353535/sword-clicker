@@ -218,10 +218,10 @@ export const BOSS_ENEMIES = {
       attack: 120,
       attackMax: 200,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 270,
+      accuracy: 300,
       health: 400,
       healthMax: 400,
-      defense: 220,
+      defense: 240,
       armor: 250,
       magicArmor: 250,
       damageTaken: 1
@@ -239,7 +239,11 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  // Burns enemies, summons another phenoix, which upon death respawns (only once)
+  // Spawns with two eggs. Eggs have decent hp.
+  // Choose between killing eggs then fighting boss. Or ignoring eggs
+  // Once eggs timer hits 0, two phenoixes spawn
+  // Killing the eggs spawns the phenoixes at 10% hp
+  // Killing these little phenoixes spawns eggs with a longer cooldown then initially
   boss_phoenix: {
     id: 'boss_phoenix',
     icon: 'phoenix',
@@ -249,14 +253,24 @@ export const BOSS_ENEMIES = {
       attack: 140,
       attackMax: 260,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 270,
+      accuracy: 350,
       health: 450,
       healthMax: 450,
-      defense: 220,
+      defense: 280,
       armor: 300,
       magicArmor: 400,
       damageTaken: 1
     },
+    buffs: [{
+      id: 'boss_phoenix',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'phenoix',        
+        name: 'boss phenoix',
+        hideBuff: true
+      }
+    }],
     rewards: []
   },
 

@@ -15,7 +15,12 @@ export const TITANIUM_ITEMS = {
       "attackMax": 11.7,
       "attackSpeed": 1,
       "accuracy": 26.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "titanium_spear": {
     "id": "titanium_spear",
@@ -40,7 +45,12 @@ export const TITANIUM_ITEMS = {
       "attackMax": 8.9,
       "accuracy": 8.9,
       "defense": 3.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   },
   "titanium_short_sword": {
     "id": "titanium_short_sword",
@@ -63,7 +73,12 @@ export const TITANIUM_ITEMS = {
       "attack": 7.1,
       "attackMax": 10.6,
       "accuracy": 10.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "titanium_scimitar": {
     "id": "titanium_scimitar",
@@ -86,7 +101,12 @@ export const TITANIUM_ITEMS = {
       "attack": 7.9,
       "attackMax": 12.5,
       "accuracy": 10.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "titanium_long_sword": {
     "id": "titanium_long_sword",
@@ -110,7 +130,12 @@ export const TITANIUM_ITEMS = {
       "attack": 12.5,
       "attackMax": 21.4,
       "accuracy": 14.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "titanium_broad_sword": {
     "id": "titanium_broad_sword",
@@ -134,7 +159,12 @@ export const TITANIUM_ITEMS = {
       "attack": 17.9,
       "attackMax": 25,
       "accuracy": 14.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "titanium_battle_axe": {
     "id": "titanium_battle_axe",
@@ -157,7 +187,12 @@ export const TITANIUM_ITEMS = {
     "extraStats": {
       "attack": 8.9,
       "attackMax": 32
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "titanium_horned_helmet": {
     "id": "titanium_horned_helmet",
@@ -177,7 +212,12 @@ export const TITANIUM_ITEMS = {
       "attack": 1.9,
       "attackMax": 1.9,
       "accuracy": 1.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   },
   "titanium_helmet": {
     "id": "titanium_helmet",
@@ -197,7 +237,12 @@ export const TITANIUM_ITEMS = {
       "healthMax": 1.9,
       "defense": 1.9,
       "armor": 8.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   },
   "titanium_chest_plate": {
     "id": "titanium_chest_plate",
@@ -217,7 +262,12 @@ export const TITANIUM_ITEMS = {
       "healthMax": 1.9,
       "defense": 1.9,
       "armor": 8.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   },
   "titanium_plate_legs": {
     "id": "titanium_plate_legs",
@@ -237,7 +287,12 @@ export const TITANIUM_ITEMS = {
       "healthMax": 1.9,
       "defense": 1.9,
       "armor": 8.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   },
   "titanium_shield": {
     "id": "titanium_shield",
@@ -258,6 +313,11 @@ export const TITANIUM_ITEMS = {
       "healthMax": 3.5,
       "defense": 5.4,
       "armor": 17.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
   }
 }

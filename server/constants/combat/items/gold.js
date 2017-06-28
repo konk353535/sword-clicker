@@ -15,7 +15,12 @@ export const GOLD_ITEMS = {
       "attackMax": 6.5,
       "attackSpeed": 1,
       "accuracy": 14.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "gold_spear": {
     "id": "gold_spear",
@@ -40,7 +45,12 @@ export const GOLD_ITEMS = {
       "attackMax": 4.9,
       "accuracy": 4.9,
       "defense": 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
   "gold_short_sword": {
     "id": "gold_short_sword",
@@ -63,7 +73,12 @@ export const GOLD_ITEMS = {
       "attack": 3.9,
       "attackMax": 5.9,
       "accuracy": 5.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "gold_scimitar": {
     "id": "gold_scimitar",
@@ -86,7 +101,12 @@ export const GOLD_ITEMS = {
       "attack": 4.4,
       "attackMax": 6.9,
       "accuracy": 5.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "gold_long_sword": {
     "id": "gold_long_sword",
@@ -110,7 +130,12 @@ export const GOLD_ITEMS = {
       "attack": 6.9,
       "attackMax": 11.8,
       "accuracy": 7.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "gold_broad_sword": {
     "id": "gold_broad_sword",
@@ -134,7 +159,12 @@ export const GOLD_ITEMS = {
       "attack": 9.9,
       "attackMax": 13.8,
       "accuracy": 7.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "gold_battle_axe": {
     "id": "gold_battle_axe",
@@ -157,7 +187,12 @@ export const GOLD_ITEMS = {
     "extraStats": {
       "attack": 4.9,
       "attackMax": 17.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "gold_horned_helmet": {
     "id": "gold_horned_helmet",
@@ -177,7 +212,12 @@ export const GOLD_ITEMS = {
       "attack": 1,
       "attackMax": 1,
       "accuracy": 1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
   "gold_helmet": {
     "id": "gold_helmet",
@@ -197,7 +237,12 @@ export const GOLD_ITEMS = {
       "healthMax": 1,
       "defense": 1,
       "armor": 4.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
   "gold_chest_plate": {
     "id": "gold_chest_plate",
@@ -217,7 +262,12 @@ export const GOLD_ITEMS = {
       "healthMax": 1,
       "defense": 1,
       "armor": 4.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
   "gold_plate_legs": {
     "id": "gold_plate_legs",
@@ -237,7 +287,12 @@ export const GOLD_ITEMS = {
       "healthMax": 1,
       "defense": 1,
       "armor": 4.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
   "gold_shield": {
     "id": "gold_shield",
@@ -258,6 +313,11 @@ export const GOLD_ITEMS = {
       "healthMax": 2,
       "defense": 3,
       "armor": 9.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   }
 }

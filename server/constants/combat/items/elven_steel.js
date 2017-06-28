@@ -1,11 +1,11 @@
 export const ELVEN_STEEL_ITEMS = {
   "elven_steel_dagger": {
     "id": "elven_steel_dagger",
-    "icon": "elven_steelDagger",
+    "icon": "elvenSteelDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "fairy steel dagger",
+    "name": "elven steel dagger",
     "sellPrice": 50,
     "description": "A poorly made dagger.",
     "isWeapon": true,
@@ -15,15 +15,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attackMax": 30,
       "attackSpeed": 1,
       "accuracy": 69.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "elven_steel_spear": {
     "id": "elven_steel_spear",
-    "icon": "elven_steelSpear",
+    "icon": "elvenSteelSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "fairy steel spear",
+    "name": "elven steel spear",
     "sellPrice": 75,
     "description": "Used to train defense.",
     "isWeapon": true,
@@ -40,15 +45,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attackMax": 23,
       "accuracy": 23,
       "defense": 9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
   "elven_steel_short_sword": {
     "id": "elven_steel_short_sword",
-    "icon": "elven_steelShortSword",
+    "icon": "elvenSteelShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "fairy steel short sword",
+    "name": "elven steel short sword",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
@@ -63,15 +73,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 18.4,
       "attackMax": 27.4,
       "accuracy": 27.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "elven_steel_scimitar": {
     "id": "elven_steel_scimitar",
-    "icon": "elven_steelScimitar",
+    "icon": "elvenSteelScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "fairy steel scimitar",
+    "name": "elven steel scimitar",
     "sellPrice": 75,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
@@ -86,15 +101,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 20.3,
       "attackMax": 32.1,
       "accuracy": 27.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "elven_steel_long_sword": {
     "id": "elven_steel_long_sword",
-    "icon": "elven_steelLongSword",
+    "icon": "elvenSteelLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "fairy steel long sword",
+    "name": "elven steel long sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
@@ -110,15 +130,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 32.1,
       "attackMax": 55.2,
       "accuracy": 36.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "elven_steel_broad_sword": {
     "id": "elven_steel_broad_sword",
-    "icon": "elven_steelBroadSword",
+    "icon": "elvenSteelBroadSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "fairy steel broad sword",
+    "name": "elven steel broad sword",
     "sellPrice": 75,
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
@@ -134,15 +159,20 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 46.1,
       "attackMax": 64.4,
       "accuracy": 36.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "elven_steel_battle_axe": {
     "id": "elven_steel_battle_axe",
-    "icon": "elven_steelBattleAxe",
+    "icon": "elvenSteelBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "fairy steel battle axe",
+    "name": "elven steel battle axe",
     "sellPrice": 75,
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
@@ -157,14 +187,19 @@ export const ELVEN_STEEL_ITEMS = {
     "extraStats": {
       "attack": 23,
       "attackMax": 82.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "elven_steel_horned_helmet": {
     "id": "elven_steel_horned_helmet",
-    "icon": "elven_steelHornedHelmet",
+    "icon": "elvenSteelHornedHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "fairy steel horned helmet",
+    "name": "elven steel horned helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
@@ -177,14 +212,19 @@ export const ELVEN_STEEL_ITEMS = {
       "attack": 4.8,
       "attackMax": 4.8,
       "accuracy": 4.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
   "elven_steel_helmet": {
     "id": "elven_steel_helmet",
-    "icon": "elven_steelHelmet",
+    "icon": "elvenSteelHelmet",
     "category": "combat",
     "slot": "head",
-    "name": "fairy steel helmet",
+    "name": "elven steel helmet",
     "sellPrice": 75,
     "description": "Protect your head",
     "isEquippable": true,
@@ -197,14 +237,19 @@ export const ELVEN_STEEL_ITEMS = {
       "healthMax": 4.8,
       "defense": 4.8,
       "armor": 23
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
   "elven_steel_chest_plate": {
     "id": "elven_steel_chest_plate",
-    "icon": "elven_steelChestPlate",
+    "icon": "elvenSteelChestPlate",
     "category": "combat",
     "slot": "chest",
-    "name": "fairy steel chestplate",
+    "name": "elven steel chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -217,14 +262,19 @@ export const ELVEN_STEEL_ITEMS = {
       "healthMax": 4.8,
       "defense": 4.8,
       "armor": 23
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
   "elven_steel_plate_legs": {
     "id": "elven_steel_plate_legs",
-    "icon": "elven_steelPlateLegs",
+    "icon": "elvenSteelPlateLegs",
     "category": "combat",
     "slot": "legs",
-    "name": "fairy steel platelegs",
+    "name": "elven steel platelegs",
     "sellPrice": 75,
     "description": "Protect your legs",
     "isEquippable": true,
@@ -237,15 +287,20 @@ export const ELVEN_STEEL_ITEMS = {
       "healthMax": 4.8,
       "defense": 4.8,
       "armor": 23
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
   "elven_steel_shield": {
     "id": "elven_steel_shield",
-    "icon": "elven_steelShield",
+    "icon": "elvenSteelShield",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
-    "name": "fairy steel shield",
+    "name": "elven steel shield",
     "sellPrice": 75,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
@@ -258,6 +313,11 @@ export const ELVEN_STEEL_ITEMS = {
       "healthMax": 9,
       "defense": 14.1,
       "armor": 46.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   }
 }

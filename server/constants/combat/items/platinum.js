@@ -15,7 +15,12 @@ export const PLATINUM_ITEMS = {
       "attackMax": 10.2,
       "attackSpeed": 1,
       "accuracy": 23.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "platinum_spear": {
     "id": "platinum_spear",
@@ -40,7 +45,12 @@ export const PLATINUM_ITEMS = {
       "attackMax": 7.7,
       "accuracy": 7.7,
       "defense": 3.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   },
   "platinum_short_sword": {
     "id": "platinum_short_sword",
@@ -63,7 +73,12 @@ export const PLATINUM_ITEMS = {
       "attack": 6.2,
       "attackMax": 9.2,
       "accuracy": 9.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "platinum_scimitar": {
     "id": "platinum_scimitar",
@@ -86,7 +101,12 @@ export const PLATINUM_ITEMS = {
       "attack": 6.8,
       "attackMax": 10.8,
       "accuracy": 9.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "platinum_long_sword": {
     "id": "platinum_long_sword",
@@ -110,7 +130,12 @@ export const PLATINUM_ITEMS = {
       "attack": 10.8,
       "attackMax": 18.6,
       "accuracy": 12.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "platinum_broad_sword": {
     "id": "platinum_broad_sword",
@@ -134,7 +159,12 @@ export const PLATINUM_ITEMS = {
       "attack": 15.5,
       "attackMax": 21.7,
       "accuracy": 12.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
   "platinum_battle_axe": {
     "id": "platinum_battle_axe",
@@ -157,7 +187,12 @@ export const PLATINUM_ITEMS = {
     "extraStats": {
       "attack": 7.7,
       "attackMax": 27.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "platinum_horned_helmet": {
     "id": "platinum_horned_helmet",
@@ -177,7 +212,12 @@ export const PLATINUM_ITEMS = {
       "attack": 1.6,
       "attackMax": 1.6,
       "accuracy": 1.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   },
   "platinum_helmet": {
     "id": "platinum_helmet",
@@ -197,7 +237,12 @@ export const PLATINUM_ITEMS = {
       "healthMax": 1.6,
       "defense": 1.6,
       "armor": 7.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   },
   "platinum_chest_plate": {
     "id": "platinum_chest_plate",
@@ -217,7 +262,12 @@ export const PLATINUM_ITEMS = {
       "healthMax": 1.6,
       "defense": 1.6,
       "armor": 7.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   },
   "platinum_plate_legs": {
     "id": "platinum_plate_legs",
@@ -237,7 +287,12 @@ export const PLATINUM_ITEMS = {
       "healthMax": 1.6,
       "defense": 1.6,
       "armor": 7.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   },
   "platinum_shield": {
     "id": "platinum_shield",
@@ -258,6 +313,11 @@ export const PLATINUM_ITEMS = {
       "healthMax": 3.1,
       "defense": 4.7,
       "armor": 15.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
   }
 }

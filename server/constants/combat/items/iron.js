@@ -15,7 +15,12 @@ export const IRON_ITEMS = {
       "attackMax": 4.5,
       "attackSpeed": 1,
       "accuracy": 10.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "iron_spear": {
     "id": "iron_spear",
@@ -40,7 +45,12 @@ export const IRON_ITEMS = {
       "attackMax": 3.4,
       "accuracy": 3.4,
       "defense": 1.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   },
   "iron_short_sword": {
     "id": "iron_short_sword",
@@ -63,7 +73,12 @@ export const IRON_ITEMS = {
       "attack": 2.7,
       "attackMax": 4.1,
       "accuracy": 4.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "iron_scimitar": {
     "id": "iron_scimitar",
@@ -86,7 +101,12 @@ export const IRON_ITEMS = {
       "attack": 3,
       "attackMax": 4.8,
       "accuracy": 4.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "iron_long_sword": {
     "id": "iron_long_sword",
@@ -110,7 +130,12 @@ export const IRON_ITEMS = {
       "attack": 4.8,
       "attackMax": 8.2,
       "accuracy": 5.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "iron_broad_sword": {
     "id": "iron_broad_sword",
@@ -134,7 +159,12 @@ export const IRON_ITEMS = {
       "attack": 6.8,
       "attackMax": 9.6,
       "accuracy": 5.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "iron_battle_axe": {
     "id": "iron_battle_axe",
@@ -157,7 +187,12 @@ export const IRON_ITEMS = {
     "extraStats": {
       "attack": 3.4,
       "attackMax": 12.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "iron_horned_helmet": {
     "id": "iron_horned_helmet",
@@ -177,7 +212,12 @@ export const IRON_ITEMS = {
       "attack": 0.7,
       "attackMax": 0.7,
       "accuracy": 0.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   },
   "iron_helmet": {
     "id": "iron_helmet",
@@ -197,7 +237,12 @@ export const IRON_ITEMS = {
       "healthMax": 0.7,
       "defense": 0.7,
       "armor": 3.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   },
   "iron_chest_plate": {
     "id": "iron_chest_plate",
@@ -217,7 +262,12 @@ export const IRON_ITEMS = {
       "healthMax": 0.7,
       "defense": 0.7,
       "armor": 3.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   },
   "iron_plate_legs": {
     "id": "iron_plate_legs",
@@ -237,7 +287,12 @@ export const IRON_ITEMS = {
       "healthMax": 0.7,
       "defense": 0.7,
       "armor": 3.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   },
   "iron_shield": {
     "id": "iron_shield",
@@ -258,6 +313,11 @@ export const IRON_ITEMS = {
       "healthMax": 1.3,
       "defense": 2.1,
       "armor": 6.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
   }
 }

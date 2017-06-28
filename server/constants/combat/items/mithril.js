@@ -15,7 +15,12 @@ export const MITHRIL_ITEMS = {
       "attackMax": 18.4,
       "attackSpeed": 1,
       "accuracy": 42.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "mithril_spear": {
     "id": "mithril_spear",
@@ -40,7 +45,12 @@ export const MITHRIL_ITEMS = {
       "attackMax": 14,
       "accuracy": 14,
       "defense": 5.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
   "mithril_short_sword": {
     "id": "mithril_short_sword",
@@ -63,7 +73,12 @@ export const MITHRIL_ITEMS = {
       "attack": 11.2,
       "attackMax": 16.7,
       "accuracy": 16.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "mithril_scimitar": {
     "id": "mithril_scimitar",
@@ -86,7 +101,12 @@ export const MITHRIL_ITEMS = {
       "attack": 12.4,
       "attackMax": 19.6,
       "accuracy": 16.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "mithril_long_sword": {
     "id": "mithril_long_sword",
@@ -110,7 +130,12 @@ export const MITHRIL_ITEMS = {
       "attack": 19.6,
       "attackMax": 33.7,
       "accuracy": 22.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "mithril_broad_sword": {
     "id": "mithril_broad_sword",
@@ -134,7 +159,12 @@ export const MITHRIL_ITEMS = {
       "attack": 28.1,
       "attackMax": 39.3,
       "accuracy": 22.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "mithril_battle_axe": {
     "id": "mithril_battle_axe",
@@ -157,7 +187,12 @@ export const MITHRIL_ITEMS = {
     "extraStats": {
       "attack": 14,
       "attackMax": 50.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "mithril_horned_helmet": {
     "id": "mithril_horned_helmet",
@@ -177,7 +212,12 @@ export const MITHRIL_ITEMS = {
       "attack": 2.9,
       "attackMax": 2.9,
       "accuracy": 2.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
   "mithril_helmet": {
     "id": "mithril_helmet",
@@ -197,7 +237,12 @@ export const MITHRIL_ITEMS = {
       "healthMax": 2.9,
       "defense": 2.9,
       "armor": 14
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
   "mithril_chest_plate": {
     "id": "mithril_chest_plate",
@@ -217,7 +262,12 @@ export const MITHRIL_ITEMS = {
       "healthMax": 2.9,
       "defense": 2.9,
       "armor": 14
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
   "mithril_plate_legs": {
     "id": "mithril_plate_legs",
@@ -237,7 +287,12 @@ export const MITHRIL_ITEMS = {
       "healthMax": 2.9,
       "defense": 2.9,
       "armor": 14
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
   "mithril_shield": {
     "id": "mithril_shield",
@@ -258,6 +313,11 @@ export const MITHRIL_ITEMS = {
       "healthMax": 5.5,
       "defense": 8.6,
       "armor": 28.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   }
 }

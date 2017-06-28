@@ -15,7 +15,12 @@ export const STEEL_ITEMS = {
       "attackMax": 8.6,
       "attackSpeed": 1,
       "accuracy": 19.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "steel_spear": {
     "id": "steel_spear",
@@ -40,7 +45,12 @@ export const STEEL_ITEMS = {
       "attackMax": 6.5,
       "accuracy": 6.5,
       "defense": 2.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
   "steel_short_sword": {
     "id": "steel_short_sword",
@@ -63,7 +73,12 @@ export const STEEL_ITEMS = {
       "attack": 5.2,
       "attackMax": 7.8,
       "accuracy": 7.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "steel_scimitar": {
     "id": "steel_scimitar",
@@ -86,7 +101,12 @@ export const STEEL_ITEMS = {
       "attack": 5.8,
       "attackMax": 9.1,
       "accuracy": 7.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "steel_long_sword": {
     "id": "steel_long_sword",
@@ -110,7 +130,12 @@ export const STEEL_ITEMS = {
       "attack": 9.1,
       "attackMax": 15.6,
       "accuracy": 10.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "steel_broad_sword": {
     "id": "steel_broad_sword",
@@ -134,7 +159,12 @@ export const STEEL_ITEMS = {
       "attack": 13,
       "attackMax": 18.2,
       "accuracy": 10.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
   },
   "steel_battle_axe": {
     "id": "steel_battle_axe",
@@ -157,7 +187,12 @@ export const STEEL_ITEMS = {
     "extraStats": {
       "attack": 6.5,
       "attackMax": 23.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "steel_horned_helmet": {
     "id": "steel_horned_helmet",
@@ -177,7 +212,12 @@ export const STEEL_ITEMS = {
       "attack": 1.3,
       "attackMax": 1.3,
       "accuracy": 1.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
   "steel_helmet": {
     "id": "steel_helmet",
@@ -197,7 +237,12 @@ export const STEEL_ITEMS = {
       "healthMax": 1.3,
       "defense": 1.3,
       "armor": 6.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
   "steel_chest_plate": {
     "id": "steel_chest_plate",
@@ -217,7 +262,12 @@ export const STEEL_ITEMS = {
       "healthMax": 1.3,
       "defense": 1.3,
       "armor": 6.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
   "steel_plate_legs": {
     "id": "steel_plate_legs",
@@ -237,7 +287,12 @@ export const STEEL_ITEMS = {
       "healthMax": 1.3,
       "defense": 1.3,
       "armor": 6.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
   "steel_shield": {
     "id": "steel_shield",
@@ -258,6 +313,11 @@ export const STEEL_ITEMS = {
       "healthMax": 2.6,
       "defense": 4,
       "armor": 13
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   }
 }

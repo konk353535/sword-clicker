@@ -15,7 +15,12 @@ export const BRONZE_ITEMS = {
       "attackMax": 3.6,
       "attackSpeed": 1,
       "accuracy": 8.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "bronze_spear": {
     "id": "bronze_spear",
@@ -40,7 +45,12 @@ export const BRONZE_ITEMS = {
       "attackMax": 2.7,
       "accuracy": 2.7,
       "defense": 1.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
   "bronze_short_sword": {
     "id": "bronze_short_sword",
@@ -63,7 +73,12 @@ export const BRONZE_ITEMS = {
       "attack": 2.2,
       "attackMax": 3.3,
       "accuracy": 3.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "bronze_scimitar": {
     "id": "bronze_scimitar",
@@ -86,7 +101,12 @@ export const BRONZE_ITEMS = {
       "attack": 2.4,
       "attackMax": 3.8,
       "accuracy": 3.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "bronze_long_sword": {
     "id": "bronze_long_sword",
@@ -110,7 +130,12 @@ export const BRONZE_ITEMS = {
       "attack": 3.8,
       "attackMax": 6.5,
       "accuracy": 4.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "bronze_broad_sword": {
     "id": "bronze_broad_sword",
@@ -134,7 +159,12 @@ export const BRONZE_ITEMS = {
       "attack": 5.5,
       "attackMax": 7.6,
       "accuracy": 4.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
   "bronze_battle_axe": {
     "id": "bronze_battle_axe",
@@ -157,7 +187,12 @@ export const BRONZE_ITEMS = {
     "extraStats": {
       "attack": 2.7,
       "attackMax": 9.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "bronze_horned_helmet": {
     "id": "bronze_horned_helmet",
@@ -177,7 +212,12 @@ export const BRONZE_ITEMS = {
       "attack": 0.5,
       "attackMax": 0.5,
       "accuracy": 0.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
   "bronze_helmet": {
     "id": "bronze_helmet",
@@ -197,7 +237,12 @@ export const BRONZE_ITEMS = {
       "healthMax": 0.5,
       "defense": 0.5,
       "armor": 2.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
   "bronze_chest_plate": {
     "id": "bronze_chest_plate",
@@ -217,7 +262,12 @@ export const BRONZE_ITEMS = {
       "healthMax": 0.5,
       "defense": 0.5,
       "armor": 2.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
   "bronze_plate_legs": {
     "id": "bronze_plate_legs",
@@ -237,7 +287,12 @@ export const BRONZE_ITEMS = {
       "healthMax": 0.5,
       "defense": 0.5,
       "armor": 2.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
   "bronze_shield": {
     "id": "bronze_shield",
@@ -258,6 +313,11 @@ export const BRONZE_ITEMS = {
       "healthMax": 1.1,
       "defense": 1.7,
       "armor": 5.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   }
 }

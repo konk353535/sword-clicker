@@ -15,7 +15,12 @@ export const ORICHALCUM_ITEMS = {
       "attackMax": 22,
       "attackSpeed": 1,
       "accuracy": 50.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "orichalcum_spear": {
     "id": "orichalcum_spear",
@@ -40,7 +45,12 @@ export const ORICHALCUM_ITEMS = {
       "attackMax": 16.8,
       "accuracy": 16.8,
       "defense": 6.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   },
   "orichalcum_short_sword": {
     "id": "orichalcum_short_sword",
@@ -63,7 +73,12 @@ export const ORICHALCUM_ITEMS = {
       "attack": 13.4,
       "attackMax": 20,
       "accuracy": 20
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "orichalcum_scimitar": {
     "id": "orichalcum_scimitar",
@@ -86,7 +101,12 @@ export const ORICHALCUM_ITEMS = {
       "attack": 14.9,
       "attackMax": 23.5,
       "accuracy": 20
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "orichalcum_long_sword": {
     "id": "orichalcum_long_sword",
@@ -110,7 +130,12 @@ export const ORICHALCUM_ITEMS = {
       "attack": 23.5,
       "attackMax": 40.4,
       "accuracy": 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "orichalcum_broad_sword": {
     "id": "orichalcum_broad_sword",
@@ -134,7 +159,12 @@ export const ORICHALCUM_ITEMS = {
       "attack": 33.7,
       "attackMax": 47.1,
       "accuracy": 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "orichalcum_battle_axe": {
     "id": "orichalcum_battle_axe",
@@ -157,7 +187,12 @@ export const ORICHALCUM_ITEMS = {
     "extraStats": {
       "attack": 16.8,
       "attackMax": 60.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "orichalcum_horned_helmet": {
     "id": "orichalcum_horned_helmet",
@@ -177,7 +212,12 @@ export const ORICHALCUM_ITEMS = {
       "attack": 3.5,
       "attackMax": 3.5,
       "accuracy": 3.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   },
   "orichalcum_helmet": {
     "id": "orichalcum_helmet",
@@ -197,7 +237,12 @@ export const ORICHALCUM_ITEMS = {
       "healthMax": 3.5,
       "defense": 3.5,
       "armor": 16.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   },
   "orichalcum_chest_plate": {
     "id": "orichalcum_chest_plate",
@@ -217,7 +262,12 @@ export const ORICHALCUM_ITEMS = {
       "healthMax": 3.5,
       "defense": 3.5,
       "armor": 16.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   },
   "orichalcum_plate_legs": {
     "id": "orichalcum_plate_legs",
@@ -237,7 +287,12 @@ export const ORICHALCUM_ITEMS = {
       "healthMax": 3.5,
       "defense": 3.5,
       "armor": 16.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   },
   "orichalcum_shield": {
     "id": "orichalcum_shield",
@@ -258,6 +313,11 @@ export const ORICHALCUM_ITEMS = {
       "healthMax": 6.6,
       "defense": 10.3,
       "armor": 33.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
   }
 }

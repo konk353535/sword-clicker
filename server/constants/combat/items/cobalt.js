@@ -15,7 +15,12 @@ export const COBALT_ITEMS = {
       "attackMax": 16.6,
       "attackSpeed": 1,
       "accuracy": 38.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "cobalt_spear": {
     "id": "cobalt_spear",
@@ -40,7 +45,12 @@ export const COBALT_ITEMS = {
       "attackMax": 12.6,
       "accuracy": 12.6,
       "defense": 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   },
   "cobalt_short_sword": {
     "id": "cobalt_short_sword",
@@ -63,7 +73,12 @@ export const COBALT_ITEMS = {
       "attack": 10.1,
       "attackMax": 15.1,
       "accuracy": 15.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "cobalt_scimitar": {
     "id": "cobalt_scimitar",
@@ -86,7 +101,12 @@ export const COBALT_ITEMS = {
       "attack": 11.2,
       "attackMax": 17.6,
       "accuracy": 15.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "cobalt_long_sword": {
     "id": "cobalt_long_sword",
@@ -110,7 +130,12 @@ export const COBALT_ITEMS = {
       "attack": 17.6,
       "attackMax": 30.3,
       "accuracy": 20.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "cobalt_broad_sword": {
     "id": "cobalt_broad_sword",
@@ -134,7 +159,12 @@ export const COBALT_ITEMS = {
       "attack": 25.3,
       "attackMax": 35.4,
       "accuracy": 20.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
   },
   "cobalt_battle_axe": {
     "id": "cobalt_battle_axe",
@@ -157,7 +187,12 @@ export const COBALT_ITEMS = {
     "extraStats": {
       "attack": 12.6,
       "attackMax": 45.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "cobalt_horned_helmet": {
     "id": "cobalt_horned_helmet",
@@ -177,7 +212,12 @@ export const COBALT_ITEMS = {
       "attack": 2.6,
       "attackMax": 2.6,
       "accuracy": 2.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   },
   "cobalt_helmet": {
     "id": "cobalt_helmet",
@@ -197,7 +237,12 @@ export const COBALT_ITEMS = {
       "healthMax": 2.6,
       "defense": 2.6,
       "armor": 12.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   },
   "cobalt_chest_plate": {
     "id": "cobalt_chest_plate",
@@ -217,7 +262,12 @@ export const COBALT_ITEMS = {
       "healthMax": 2.6,
       "defense": 2.6,
       "armor": 12.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   },
   "cobalt_plate_legs": {
     "id": "cobalt_plate_legs",
@@ -237,7 +287,12 @@ export const COBALT_ITEMS = {
       "healthMax": 2.6,
       "defense": 2.6,
       "armor": 12.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   },
   "cobalt_shield": {
     "id": "cobalt_shield",
@@ -258,6 +313,11 @@ export const COBALT_ITEMS = {
       "healthMax": 5,
       "defense": 7.7,
       "armor": 25.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
   }
 }

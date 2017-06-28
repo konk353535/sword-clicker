@@ -15,7 +15,12 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 20.2,
       "attackSpeed": 1,
       "accuracy": 46.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "adamantium_spear": {
     "id": "adamantium_spear",
@@ -40,7 +45,12 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 15.4,
       "accuracy": 15.4,
       "defense": 6.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   },
   "adamantium_short_sword": {
     "id": "adamantium_short_sword",
@@ -63,7 +73,12 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 12.3,
       "attackMax": 18.4,
       "accuracy": 18.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "adamantium_scimitar": {
     "id": "adamantium_scimitar",
@@ -86,7 +101,12 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 13.6,
       "attackMax": 21.5,
       "accuracy": 18.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "adamantium_long_sword": {
     "id": "adamantium_long_sword",
@@ -110,7 +130,12 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 21.5,
       "attackMax": 37,
       "accuracy": 24.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "adamantium_broad_sword": {
     "id": "adamantium_broad_sword",
@@ -134,7 +159,12 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 30.9,
       "attackMax": 43.2,
       "accuracy": 24.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
   },
   "adamantium_battle_axe": {
     "id": "adamantium_battle_axe",
@@ -157,7 +187,12 @@ export const ADAMANTIUM_ITEMS = {
     "extraStats": {
       "attack": 15.4,
       "attackMax": 55.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
   "adamantium_horned_helmet": {
     "id": "adamantium_horned_helmet",
@@ -177,7 +212,12 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 3.2,
       "attackMax": 3.2,
       "accuracy": 3.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   },
   "adamantium_helmet": {
     "id": "adamantium_helmet",
@@ -197,7 +237,12 @@ export const ADAMANTIUM_ITEMS = {
       "healthMax": 3.2,
       "defense": 3.2,
       "armor": 15.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   },
   "adamantium_chest_plate": {
     "id": "adamantium_chest_plate",
@@ -217,7 +262,12 @@ export const ADAMANTIUM_ITEMS = {
       "healthMax": 3.2,
       "defense": 3.2,
       "armor": 15.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   },
   "adamantium_plate_legs": {
     "id": "adamantium_plate_legs",
@@ -237,7 +287,12 @@ export const ADAMANTIUM_ITEMS = {
       "healthMax": 3.2,
       "defense": 3.2,
       "armor": 15.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   },
   "adamantium_shield": {
     "id": "adamantium_shield",
@@ -258,6 +313,11 @@ export const ADAMANTIUM_ITEMS = {
       "healthMax": 6.1,
       "defense": 9.5,
       "armor": 30.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
   }
 }

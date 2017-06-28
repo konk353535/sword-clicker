@@ -15,7 +15,12 @@ export const METEORITE_ITEMS = {
       "attackMax": 24.4,
       "attackSpeed": 1,
       "accuracy": 56.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "meteorite_spear": {
     "id": "meteorite_spear",
@@ -40,7 +45,12 @@ export const METEORITE_ITEMS = {
       "attackMax": 18.7,
       "accuracy": 18.7,
       "defense": 7.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
   "meteorite_short_sword": {
     "id": "meteorite_short_sword",
@@ -63,7 +73,12 @@ export const METEORITE_ITEMS = {
       "attack": 14.9,
       "attackMax": 22.2,
       "accuracy": 22.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "meteorite_scimitar": {
     "id": "meteorite_scimitar",
@@ -86,7 +101,12 @@ export const METEORITE_ITEMS = {
       "attack": 16.5,
       "attackMax": 26.1,
       "accuracy": 22.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "meteorite_long_sword": {
     "id": "meteorite_long_sword",
@@ -110,7 +130,12 @@ export const METEORITE_ITEMS = {
       "attack": 26.1,
       "attackMax": 44.8,
       "accuracy": 29.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "meteorite_broad_sword": {
     "id": "meteorite_broad_sword",
@@ -134,7 +159,12 @@ export const METEORITE_ITEMS = {
       "attack": 37.4,
       "attackMax": 52.3,
       "accuracy": 29.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "meteorite_battle_axe": {
     "id": "meteorite_battle_axe",
@@ -157,7 +187,12 @@ export const METEORITE_ITEMS = {
     "extraStats": {
       "attack": 18.7,
       "attackMax": 67
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
   },
   "meteorite_horned_helmet": {
     "id": "meteorite_horned_helmet",
@@ -177,7 +212,12 @@ export const METEORITE_ITEMS = {
       "attack": 3.9,
       "attackMax": 3.9,
       "accuracy": 3.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
   "meteorite_helmet": {
     "id": "meteorite_helmet",
@@ -197,7 +237,12 @@ export const METEORITE_ITEMS = {
       "healthMax": 3.9,
       "defense": 3.9,
       "armor": 18.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
   "meteorite_chest_plate": {
     "id": "meteorite_chest_plate",
@@ -217,7 +262,12 @@ export const METEORITE_ITEMS = {
       "healthMax": 3.9,
       "defense": 3.9,
       "armor": 18.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
   "meteorite_plate_legs": {
     "id": "meteorite_plate_legs",
@@ -237,7 +287,12 @@ export const METEORITE_ITEMS = {
       "healthMax": 3.9,
       "defense": 3.9,
       "armor": 18.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
   "meteorite_shield": {
     "id": "meteorite_shield",
@@ -258,6 +313,11 @@ export const METEORITE_ITEMS = {
       "healthMax": 7.3,
       "defense": 11.4,
       "armor": 37.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   }
 }

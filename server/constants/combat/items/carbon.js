@@ -15,7 +15,12 @@ export const CARBON_ITEMS = {
       "attackMax": 7.6,
       "attackSpeed": 1,
       "accuracy": 17.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "carbon_spear": {
     "id": "carbon_spear",
@@ -40,7 +45,12 @@ export const CARBON_ITEMS = {
       "attackMax": 5.8,
       "accuracy": 5.8,
       "defense": 2.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   },
   "carbon_short_sword": {
     "id": "carbon_short_sword",
@@ -63,7 +73,12 @@ export const CARBON_ITEMS = {
       "attack": 4.6,
       "attackMax": 6.9,
       "accuracy": 6.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "carbon_scimitar": {
     "id": "carbon_scimitar",
@@ -86,7 +101,12 @@ export const CARBON_ITEMS = {
       "attack": 5.1,
       "attackMax": 8,
       "accuracy": 6.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "carbon_long_sword": {
     "id": "carbon_long_sword",
@@ -110,7 +130,12 @@ export const CARBON_ITEMS = {
       "attack": 8,
       "attackMax": 13.8,
       "accuracy": 9.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "carbon_broad_sword": {
     "id": "carbon_broad_sword",
@@ -134,7 +159,12 @@ export const CARBON_ITEMS = {
       "attack": 11.5,
       "attackMax": 16.1,
       "accuracy": 9.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
   },
   "carbon_battle_axe": {
     "id": "carbon_battle_axe",
@@ -157,7 +187,12 @@ export const CARBON_ITEMS = {
     "extraStats": {
       "attack": 5.8,
       "attackMax": 20.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
   },
   "carbon_horned_helmet": {
     "id": "carbon_horned_helmet",
@@ -177,7 +212,12 @@ export const CARBON_ITEMS = {
       "attack": 1.2,
       "attackMax": 1.2,
       "accuracy": 1.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   },
   "carbon_helmet": {
     "id": "carbon_helmet",
@@ -197,7 +237,12 @@ export const CARBON_ITEMS = {
       "healthMax": 1.2,
       "defense": 1.2,
       "armor": 5.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   },
   "carbon_chest_plate": {
     "id": "carbon_chest_plate",
@@ -217,7 +262,12 @@ export const CARBON_ITEMS = {
       "healthMax": 1.2,
       "defense": 1.2,
       "armor": 5.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   },
   "carbon_plate_legs": {
     "id": "carbon_plate_legs",
@@ -237,7 +287,12 @@ export const CARBON_ITEMS = {
       "healthMax": 1.2,
       "defense": 1.2,
       "armor": 5.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   },
   "carbon_shield": {
     "id": "carbon_shield",
@@ -258,6 +313,11 @@ export const CARBON_ITEMS = {
       "healthMax": 2.3,
       "defense": 3.5,
       "armor": 11.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
   }
 }

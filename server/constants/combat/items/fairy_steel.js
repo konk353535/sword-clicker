@@ -1,7 +1,7 @@
 export const FAIRY_STEEL_ITEMS = {
   "fairy_steel_dagger": {
     "id": "fairy_steel_dagger",
-    "icon": "fairy_steelDagger",
+    "icon": "fairySteelDagger",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -15,11 +15,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attackMax": 26.8,
       "attackSpeed": 1,
       "accuracy": 61.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "fairy_steel_spear": {
     "id": "fairy_steel_spear",
-    "icon": "fairy_steelSpear",
+    "icon": "fairySteelSpear",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -40,11 +45,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attackMax": 20.5,
       "accuracy": 20.5,
       "defense": 8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   },
   "fairy_steel_short_sword": {
     "id": "fairy_steel_short_sword",
-    "icon": "fairy_steelShortSword",
+    "icon": "fairySteelShortSword",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -63,11 +73,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 16.4,
       "attackMax": 24.5,
       "accuracy": 24.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "fairy_steel_scimitar": {
     "id": "fairy_steel_scimitar",
-    "icon": "fairy_steelScimitar",
+    "icon": "fairySteelScimitar",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -86,11 +101,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 18.1,
       "attackMax": 28.7,
       "accuracy": 24.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "fairy_steel_long_sword": {
     "id": "fairy_steel_long_sword",
-    "icon": "fairy_steelLongSword",
+    "icon": "fairySteelLongSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -110,11 +130,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 28.7,
       "attackMax": 49.3,
       "accuracy": 32.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "fairy_steel_broad_sword": {
     "id": "fairy_steel_broad_sword",
-    "icon": "fairy_steelBroadSword",
+    "icon": "fairySteelBroadSword",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -134,11 +159,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 41.2,
       "attackMax": 57.5,
       "accuracy": 32.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
   },
   "fairy_steel_battle_axe": {
     "id": "fairy_steel_battle_axe",
-    "icon": "fairy_steelBattleAxe",
+    "icon": "fairySteelBattleAxe",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -157,11 +187,16 @@ export const FAIRY_STEEL_ITEMS = {
     "extraStats": {
       "attack": 20.5,
       "attackMax": 73.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
   "fairy_steel_horned_helmet": {
     "id": "fairy_steel_horned_helmet",
-    "icon": "fairy_steelHornedHelmet",
+    "icon": "fairySteelHornedHelmet",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel horned helmet",
@@ -177,11 +212,16 @@ export const FAIRY_STEEL_ITEMS = {
       "attack": 4.3,
       "attackMax": 4.3,
       "accuracy": 4.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   },
   "fairy_steel_helmet": {
     "id": "fairy_steel_helmet",
-    "icon": "fairy_steelHelmet",
+    "icon": "fairySteelHelmet",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel helmet",
@@ -197,11 +237,16 @@ export const FAIRY_STEEL_ITEMS = {
       "healthMax": 4.3,
       "defense": 4.3,
       "armor": 20.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   },
   "fairy_steel_chest_plate": {
     "id": "fairy_steel_chest_plate",
-    "icon": "fairy_steelChestPlate",
+    "icon": "fairySteelChestPlate",
     "category": "combat",
     "slot": "chest",
     "name": "fairy steel chestplate",
@@ -217,11 +262,16 @@ export const FAIRY_STEEL_ITEMS = {
       "healthMax": 4.3,
       "defense": 4.3,
       "armor": 20.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   },
   "fairy_steel_plate_legs": {
     "id": "fairy_steel_plate_legs",
-    "icon": "fairy_steelPlateLegs",
+    "icon": "fairySteelPlateLegs",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",
@@ -237,11 +287,16 @@ export const FAIRY_STEEL_ITEMS = {
       "healthMax": 4.3,
       "defense": 4.3,
       "armor": 20.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   },
   "fairy_steel_shield": {
     "id": "fairy_steel_shield",
-    "icon": "fairy_steelShield",
+    "icon": "fairySteelShield",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -258,6 +313,11 @@ export const FAIRY_STEEL_ITEMS = {
       "healthMax": 8,
       "defense": 12.6,
       "armor": 41.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
   }
 }

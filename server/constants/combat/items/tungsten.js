@@ -15,7 +15,12 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 13.2,
       "attackSpeed": 1,
       "accuracy": 30.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "tungsten_spear": {
     "id": "tungsten_spear",
@@ -40,7 +45,12 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 10.1,
       "accuracy": 10.1,
       "defense": 4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
   "tungsten_short_sword": {
     "id": "tungsten_short_sword",
@@ -63,7 +73,12 @@ export const TUNGSTEN_ITEMS = {
       "attack": 8,
       "attackMax": 12,
       "accuracy": 12
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "tungsten_scimitar": {
     "id": "tungsten_scimitar",
@@ -86,7 +101,12 @@ export const TUNGSTEN_ITEMS = {
       "attack": 8.9,
       "attackMax": 14.1,
       "accuracy": 12
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "tungsten_long_sword": {
     "id": "tungsten_long_sword",
@@ -110,7 +130,12 @@ export const TUNGSTEN_ITEMS = {
       "attack": 14.1,
       "attackMax": 24.2,
       "accuracy": 16.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "tungsten_broad_sword": {
     "id": "tungsten_broad_sword",
@@ -134,7 +159,12 @@ export const TUNGSTEN_ITEMS = {
       "attack": 20.2,
       "attackMax": 28.2,
       "accuracy": 16.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "tungsten_battle_axe": {
     "id": "tungsten_battle_axe",
@@ -157,7 +187,12 @@ export const TUNGSTEN_ITEMS = {
     "extraStats": {
       "attack": 10.1,
       "attackMax": 36.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
   },
   "tungsten_horned_helmet": {
     "id": "tungsten_horned_helmet",
@@ -177,7 +212,12 @@ export const TUNGSTEN_ITEMS = {
       "attack": 2.1,
       "attackMax": 2.1,
       "accuracy": 2.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
   "tungsten_helmet": {
     "id": "tungsten_helmet",
@@ -197,7 +237,12 @@ export const TUNGSTEN_ITEMS = {
       "healthMax": 2.1,
       "defense": 2.1,
       "armor": 10.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
   "tungsten_chest_plate": {
     "id": "tungsten_chest_plate",
@@ -217,7 +262,12 @@ export const TUNGSTEN_ITEMS = {
       "healthMax": 2.1,
       "defense": 2.1,
       "armor": 10.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
   "tungsten_plate_legs": {
     "id": "tungsten_plate_legs",
@@ -237,7 +287,12 @@ export const TUNGSTEN_ITEMS = {
       "healthMax": 2.1,
       "defense": 2.1,
       "armor": 10.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
   "tungsten_shield": {
     "id": "tungsten_shield",
@@ -258,6 +313,11 @@ export const TUNGSTEN_ITEMS = {
       "healthMax": 4,
       "defense": 6.1,
       "armor": 20.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   }
 }

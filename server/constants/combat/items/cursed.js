@@ -15,7 +15,12 @@ export const CURSED_ITEMS = {
       "attackMax": 32.7,
       "attackSpeed": 1,
       "accuracy": 75.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "cursed_spear": {
     "id": "cursed_spear",
@@ -40,7 +45,12 @@ export const CURSED_ITEMS = {
       "attackMax": 25.1,
       "accuracy": 25.1,
       "defense": 9.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   },
   "cursed_short_sword": {
     "id": "cursed_short_sword",
@@ -63,7 +73,12 @@ export const CURSED_ITEMS = {
       "attack": 20,
       "attackMax": 29.8,
       "accuracy": 29.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "cursed_scimitar": {
     "id": "cursed_scimitar",
@@ -86,7 +101,12 @@ export const CURSED_ITEMS = {
       "attack": 22.1,
       "attackMax": 35,
       "accuracy": 29.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
   },
   "cursed_long_sword": {
     "id": "cursed_long_sword",
@@ -110,7 +130,12 @@ export const CURSED_ITEMS = {
       "attack": 35,
       "attackMax": 60.2,
       "accuracy": 40.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "cursed_broad_sword": {
     "id": "cursed_broad_sword",
@@ -134,7 +159,12 @@ export const CURSED_ITEMS = {
       "attack": 50.3,
       "attackMax": 70.2,
       "accuracy": 40.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
   },
   "cursed_battle_axe": {
     "id": "cursed_battle_axe",
@@ -157,7 +187,12 @@ export const CURSED_ITEMS = {
     "extraStats": {
       "attack": 25.1,
       "attackMax": 90
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
   "cursed_horned_helmet": {
     "id": "cursed_horned_helmet",
@@ -177,7 +212,12 @@ export const CURSED_ITEMS = {
       "attack": 5.2,
       "attackMax": 5.2,
       "accuracy": 5.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   },
   "cursed_helmet": {
     "id": "cursed_helmet",
@@ -197,7 +237,12 @@ export const CURSED_ITEMS = {
       "healthMax": 5.2,
       "defense": 5.2,
       "armor": 25.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   },
   "cursed_chest_plate": {
     "id": "cursed_chest_plate",
@@ -217,7 +262,12 @@ export const CURSED_ITEMS = {
       "healthMax": 5.2,
       "defense": 5.2,
       "armor": 25.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   },
   "cursed_plate_legs": {
     "id": "cursed_plate_legs",
@@ -237,7 +287,12 @@ export const CURSED_ITEMS = {
       "healthMax": 5.2,
       "defense": 5.2,
       "armor": 25.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   },
   "cursed_shield": {
     "id": "cursed_shield",
@@ -258,6 +313,11 @@ export const CURSED_ITEMS = {
       "healthMax": 9.8,
       "defense": 15.3,
       "armor": 50.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
   }
 }

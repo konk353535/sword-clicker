@@ -15,7 +15,12 @@ export const TIN_ITEMS = {
       "attackMax": 2.8,
       "attackSpeed": 1,
       "accuracy": 6.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
   },
   "tin_spear": {
     "id": "tin_spear",
@@ -40,7 +45,12 @@ export const TIN_ITEMS = {
       "attackMax": 2.1,
       "accuracy": 2.1,
       "defense": 0.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
   "tin_short_sword": {
     "id": "tin_short_sword",
@@ -63,7 +73,12 @@ export const TIN_ITEMS = {
       "attack": 1.7,
       "attackMax": 2.5,
       "accuracy": 2.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
   },
   "tin_scimitar": {
     "id": "tin_scimitar",
@@ -86,7 +101,12 @@ export const TIN_ITEMS = {
       "attack": 1.9,
       "attackMax": 2.9,
       "accuracy": 2.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "tin_long_sword": {
     "id": "tin_long_sword",
@@ -110,7 +130,12 @@ export const TIN_ITEMS = {
       "attack": 2.9,
       "attackMax": 5,
       "accuracy": 3.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
   },
   "tin_broad_sword": {
     "id": "tin_broad_sword",
@@ -134,7 +159,12 @@ export const TIN_ITEMS = {
       "attack": 4.2,
       "attackMax": 5.9,
       "accuracy": 3.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
   },
   "tin_battle_axe": {
     "id": "tin_battle_axe",
@@ -157,7 +187,12 @@ export const TIN_ITEMS = {
     "extraStats": {
       "attack": 2.1,
       "attackMax": 7.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
   },
   "tin_horned_helmet": {
     "id": "tin_horned_helmet",
@@ -177,7 +212,12 @@ export const TIN_ITEMS = {
       "attack": 0.4,
       "attackMax": 0.4,
       "accuracy": 0.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
   "tin_helmet": {
     "id": "tin_helmet",
@@ -197,7 +237,12 @@ export const TIN_ITEMS = {
       "healthMax": 0.4,
       "defense": 0.4,
       "armor": 2.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
   "tin_chest_plate": {
     "id": "tin_chest_plate",
@@ -217,7 +262,12 @@ export const TIN_ITEMS = {
       "healthMax": 0.4,
       "defense": 0.4,
       "armor": 2.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
   "tin_plate_legs": {
     "id": "tin_plate_legs",
@@ -237,7 +287,12 @@ export const TIN_ITEMS = {
       "healthMax": 0.4,
       "defense": 0.4,
       "armor": 2.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
   "tin_shield": {
     "id": "tin_shield",
@@ -258,6 +313,11 @@ export const TIN_ITEMS = {
       "healthMax": 0.8,
       "defense": 1.3,
       "armor": 4.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   }
 }

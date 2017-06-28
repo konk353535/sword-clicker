@@ -15,7 +15,12 @@ export const SILVER_ITEMS = {
       "attackMax": 5.4,
       "attackSpeed": 1,
       "accuracy": 12.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "silver_spear": {
     "id": "silver_spear",
@@ -40,7 +45,12 @@ export const SILVER_ITEMS = {
       "attackMax": 4.1,
       "accuracy": 4.1,
       "defense": 1.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   },
   "silver_short_sword": {
     "id": "silver_short_sword",
@@ -63,7 +73,12 @@ export const SILVER_ITEMS = {
       "attack": 3.3,
       "attackMax": 4.9,
       "accuracy": 4.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "silver_scimitar": {
     "id": "silver_scimitar",
@@ -86,7 +101,12 @@ export const SILVER_ITEMS = {
       "attack": 3.6,
       "attackMax": 5.7,
       "accuracy": 4.9
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "silver_long_sword": {
     "id": "silver_long_sword",
@@ -110,7 +130,12 @@ export const SILVER_ITEMS = {
       "attack": 5.7,
       "attackMax": 9.8,
       "accuracy": 6.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "silver_broad_sword": {
     "id": "silver_broad_sword",
@@ -134,7 +159,12 @@ export const SILVER_ITEMS = {
       "attack": 8.2,
       "attackMax": 11.5,
       "accuracy": 6.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
   },
   "silver_battle_axe": {
     "id": "silver_battle_axe",
@@ -157,7 +187,12 @@ export const SILVER_ITEMS = {
     "extraStats": {
       "attack": 4.1,
       "attackMax": 14.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
   "silver_horned_helmet": {
     "id": "silver_horned_helmet",
@@ -177,7 +212,12 @@ export const SILVER_ITEMS = {
       "attack": 0.8,
       "attackMax": 0.8,
       "accuracy": 0.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   },
   "silver_helmet": {
     "id": "silver_helmet",
@@ -197,7 +237,12 @@ export const SILVER_ITEMS = {
       "healthMax": 0.8,
       "defense": 0.8,
       "armor": 4.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   },
   "silver_chest_plate": {
     "id": "silver_chest_plate",
@@ -217,7 +262,12 @@ export const SILVER_ITEMS = {
       "healthMax": 0.8,
       "defense": 0.8,
       "armor": 4.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   },
   "silver_plate_legs": {
     "id": "silver_plate_legs",
@@ -237,7 +287,12 @@ export const SILVER_ITEMS = {
       "healthMax": 0.8,
       "defense": 0.8,
       "armor": 4.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   },
   "silver_shield": {
     "id": "silver_shield",
@@ -258,6 +313,11 @@ export const SILVER_ITEMS = {
       "healthMax": 1.6,
       "defense": 2.5,
       "armor": 8.2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
   }
 }

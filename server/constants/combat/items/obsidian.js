@@ -15,7 +15,12 @@ export const OBSIDIAN_ITEMS = {
       "attackMax": 14.8,
       "attackSpeed": 1,
       "accuracy": 34
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "obsidian_spear": {
     "id": "obsidian_spear",
@@ -40,7 +45,12 @@ export const OBSIDIAN_ITEMS = {
       "attackMax": 11.3,
       "accuracy": 11.3,
       "defense": 4.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
   "obsidian_short_sword": {
     "id": "obsidian_short_sword",
@@ -63,7 +73,12 @@ export const OBSIDIAN_ITEMS = {
       "attack": 9,
       "attackMax": 13.4,
       "accuracy": 13.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "obsidian_scimitar": {
     "id": "obsidian_scimitar",
@@ -86,7 +101,12 @@ export const OBSIDIAN_ITEMS = {
       "attack": 10,
       "attackMax": 15.8,
       "accuracy": 13.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "obsidian_long_sword": {
     "id": "obsidian_long_sword",
@@ -110,7 +130,12 @@ export const OBSIDIAN_ITEMS = {
       "attack": 15.8,
       "attackMax": 27.1,
       "accuracy": 18.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "obsidian_broad_sword": {
     "id": "obsidian_broad_sword",
@@ -134,7 +159,12 @@ export const OBSIDIAN_ITEMS = {
       "attack": 22.6,
       "attackMax": 31.6,
       "accuracy": 18.1
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
   "obsidian_battle_axe": {
     "id": "obsidian_battle_axe",
@@ -157,7 +187,12 @@ export const OBSIDIAN_ITEMS = {
     "extraStats": {
       "attack": 11.3,
       "attackMax": 40.5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
   },
   "obsidian_horned_helmet": {
     "id": "obsidian_horned_helmet",
@@ -177,7 +212,12 @@ export const OBSIDIAN_ITEMS = {
       "attack": 2.3,
       "attackMax": 2.3,
       "accuracy": 2.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
   "obsidian_helmet": {
     "id": "obsidian_helmet",
@@ -197,7 +237,12 @@ export const OBSIDIAN_ITEMS = {
       "healthMax": 2.3,
       "defense": 2.3,
       "armor": 11.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
   "obsidian_chest_plate": {
     "id": "obsidian_chest_plate",
@@ -217,7 +262,12 @@ export const OBSIDIAN_ITEMS = {
       "healthMax": 2.3,
       "defense": 2.3,
       "armor": 11.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
   "obsidian_plate_legs": {
     "id": "obsidian_plate_legs",
@@ -237,7 +287,12 @@ export const OBSIDIAN_ITEMS = {
       "healthMax": 2.3,
       "defense": 2.3,
       "armor": 11.3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
   "obsidian_shield": {
     "id": "obsidian_shield",
@@ -258,6 +313,11 @@ export const OBSIDIAN_ITEMS = {
       "healthMax": 4.4,
       "defense": 6.9,
       "armor": 22.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   }
 }

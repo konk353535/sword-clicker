@@ -4,12 +4,13 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './recipeIcon.html';
 
+let tooltip;
 Template.recipeIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
 
 Template.recipeIcon.rendered = function () {
-  const iconTooltip = new Drop({
+  tooltip = new Drop({
     target: Template.instance().$('.recipe-container')[0],
     content: Template.instance().$('.recipe-tooltip-content')[0],
     openOn: 'hover',
@@ -17,3 +18,7 @@ Template.recipeIcon.rendered = function () {
     remove: true
   });
 }
+
+Template.recipeIcon.onDestroyed(function () {
+  tooltip.destroy();
+})

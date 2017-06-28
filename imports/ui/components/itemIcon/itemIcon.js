@@ -4,6 +4,8 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './itemIcon.html';
 
+let tooltip;
+
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
@@ -20,14 +22,21 @@ Template.itemIcon.helpers({
 })
 
 Template.itemIcon.rendered = function () {
-  const minerTooltip = new Drop({
-    target: Template.instance().$('.item-icon-container')[0],
-    content: Template.instance().$('.item-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+  const instance = Template.instance();
+  Meteor.setTimeout(() => {
+    tooltip = new Drop({
+      target: instance.$('.item-icon-container')[0],
+      content: instance.$('.item-tooltip-content')[0],
+      openOn: 'hover',
+      position: 'top left',
+      remove: true
+    });
+  }, 1);
 }
+
+Template.itemIcon.onDestroyed(function () {
+  tooltip.destroy();
+})
 
 const sellItem = function (event, instance) {
   Template.instance().$('.sellModal').modal('hide');

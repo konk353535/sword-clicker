@@ -7,6 +7,7 @@ import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './requiredItems.html';
 
+let tooltip;
 const fetchRequiredItems = function (instance) {
   let recipeName = instance.data.recipeName;
   const requiredItems = instance.data.requiredItems;
@@ -38,7 +39,7 @@ Template.requiredItems.onCreated(function bodyOnCreated() {
 });
 
 Template.requiredItems.rendered = function () {
-  const mineSpaceTooltip = new Drop({
+  tooltip = new Drop({
     target: Template.instance().$('.required-items-container')[0],
     content: Template.instance().$('.required-items-tooltip')[0],
     openOn: 'hover',
@@ -46,6 +47,10 @@ Template.requiredItems.rendered = function () {
     remove: true
   });
 }
+
+Template.requiredItems.onDestroyed(function () {
+  tooltip.destroy();
+})
 
 Template.requiredItems.helpers({
   computedRequiredItems() {

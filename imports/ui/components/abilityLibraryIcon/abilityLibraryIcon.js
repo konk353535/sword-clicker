@@ -4,12 +4,13 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './abilityLibraryIcon.html';
 
+let tooltip;
 Template.abilityLibraryIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
 
 Template.abilityLibraryIcon.rendered = function () {
-  const minerTooltip = new Drop({
+  tooltip = new Drop({
     target: Template.instance().$('.item-icon-container')[0],
     content: Template.instance().$('.item-tooltip-content')[0],
     openOn: 'hover',
@@ -17,6 +18,10 @@ Template.abilityLibraryIcon.rendered = function () {
     remove: true
   });
 }
+
+Template.abilityLibraryIcon.onDestroyed(function () {
+  tooltip.destroy();
+})
 
 Template.abilityLibraryIcon.events({
   'click .icon-box'(event, instance) {

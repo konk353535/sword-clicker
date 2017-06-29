@@ -20,7 +20,9 @@ Template.abilityLibraryIcon.rendered = function () {
 }
 
 Template.abilityLibraryIcon.onDestroyed(function () {
-  tooltip.destroy();
+  if (tooltip && tooltip.target) {
+    tooltip.destroy();
+  }
 })
 
 Template.abilityLibraryIcon.events({

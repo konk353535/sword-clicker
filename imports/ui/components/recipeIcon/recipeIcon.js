@@ -20,5 +20,7 @@ Template.recipeIcon.rendered = function () {
 }
 
 Template.recipeIcon.onDestroyed(function () {
-  tooltip.destroy();
+  if (tooltip && tooltip.target) {
+    tooltip.destroy();
+  }
 })

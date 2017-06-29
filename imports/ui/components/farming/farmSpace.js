@@ -74,7 +74,9 @@ Template.farmSpace.rendered = function () {
 }
 
 Template.farmSpace.onDestroyed(function () {
-  tooltip.destroy();
+  if (tooltip && tooltip.target) {
+    tooltip.destroy();
+  }
 })
 
 Template.farmSpace.helpers({

@@ -49,7 +49,9 @@ Template.requiredItems.rendered = function () {
 }
 
 Template.requiredItems.onDestroyed(function () {
-  tooltip.destroy();
+  if (tooltip && tooltip.target) {
+    tooltip.destroy();
+  }
 })
 
 Template.requiredItems.helpers({

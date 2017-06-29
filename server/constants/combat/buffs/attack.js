@@ -539,7 +539,7 @@ export const ATTACK_BUFFS = {
       const damageBase = buff.constants.damageBase;
       const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
       return `
-        slash for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
+        Slash for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
         (+${damagePerLevel * 100}% damage per lvl)`;
     },
     constants: {

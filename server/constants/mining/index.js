@@ -959,7 +959,7 @@ export const MINING = {
 
     silver: {
       requiredLevel: 20,
-      healthMax: 600,
+      healthMax: 500,
       xp: 50,
       id: 'silver',
       icon: 'silver',
@@ -970,7 +970,7 @@ export const MINING = {
 
     silver_essence: {
       requiredLevel: 20,
-      healthMax: 600,
+      healthMax: 500,
       xp: 50,
       id: 'silver_essence',
       icon: 'silverEssence',
@@ -981,7 +981,7 @@ export const MINING = {
 
     gold: {
       requiredLevel: 25,
-      healthMax: 1200,
+      healthMax: 750,
       xp: 70,
       id: 'gold',
       icon: 'gold',
@@ -992,7 +992,7 @@ export const MINING = {
 
     gold_essence: {
       requiredLevel: 25,
-      healthMax: 1200,
+      healthMax: 750,
       xp: 70,
       id: 'gold_essence',
       icon: 'goldEssence',
@@ -1003,7 +1003,7 @@ export const MINING = {
 
     carbon: {
       requiredLevel: 30,
-      healthMax: 2500,
+      healthMax: 1250,
       xp: 90,
       id: 'carbon',
       icon: 'carbon',
@@ -1014,7 +1014,7 @@ export const MINING = {
 
     carbon_essence: {
       requiredLevel: 30,
-      healthMax: 2500,
+      healthMax: 1250,
       xp: 90,
       id: 'carbon_essence',
       icon: 'carbonEssence',
@@ -1025,7 +1025,7 @@ export const MINING = {
 
     steel: {
       requiredLevel: 35,
-      healthMax: 5000,
+      healthMax: 2000,
       xp: 120,
       id: 'steel',
       icon: 'steel',
@@ -1036,7 +1036,7 @@ export const MINING = {
 
     steel_essence: {
       requiredLevel: 35,
-      healthMax: 5000,
+      healthMax: 2000,
       xp: 120,
       id: 'steel_essence',
       icon: 'steelEssence',
@@ -1047,7 +1047,7 @@ export const MINING = {
 
     platinum: {
       requiredLevel: 40,
-      healthMax: 10000,
+      healthMax: 4000,
       xp: 150,
       id: 'platinum',
       icon: 'platinum',
@@ -1058,7 +1058,7 @@ export const MINING = {
 
     platinum_essence: {
       requiredLevel: 40,
-      healthMax: 10000,
+      healthMax: 4000,
       xp: 150,
       id: 'platinum_essence',
       icon: 'platinumEssence',
@@ -1069,7 +1069,7 @@ export const MINING = {
 
     titanium: {
       requiredLevel: 45,
-      healthMax: 25000,
+      healthMax: 6000,
       xp: 180,
       id: 'titanium',
       icon: 'titanium',
@@ -1080,7 +1080,7 @@ export const MINING = {
 
     titanium_essence: {
       requiredLevel: 45,
-      healthMax: 25000,
+      healthMax: 6000,
       xp: 180,
       id: 'titanium_essence',
       icon: 'titaniumEssence',
@@ -1091,7 +1091,7 @@ export const MINING = {
 
     tungsten: {
       requiredLevel: 50,
-      healthMax: 75000,
+      healthMax: 8000,
       xp: 250,
       id: 'tungsten',
       icon: 'tungsten',
@@ -1102,7 +1102,7 @@ export const MINING = {
 
     tungsten_essence: {
       requiredLevel: 50,
-      healthMax: 75000,
+      healthMax: 8000,
       xp: 250,
       id: 'tungsten_essence',
       icon: 'tungstenEssence',
@@ -1113,7 +1113,7 @@ export const MINING = {
 
     obsidian: {
       requiredLevel: 55,
-      healthMax: 150000,
+      healthMax: 11000,
       xp: 300,
       id: 'obsidian',
       icon: 'obsidian',
@@ -1124,7 +1124,7 @@ export const MINING = {
 
     obsidian_essence: {
       requiredLevel: 55,
-      healthMax: 150000,
+      healthMax: 11000,
       xp: 300,
       id: 'obsidian_essence',
       icon: 'obsidianEssence',
@@ -1135,7 +1135,7 @@ export const MINING = {
 
     cobalt: {
       requiredLevel: 60,
-      healthMax: 300000,
+      healthMax: 14000,
       xp: 400,
       id: 'cobalt',
       icon: 'cobalt',
@@ -1146,7 +1146,7 @@ export const MINING = {
 
     cobalt_essence: {
       requiredLevel: 60,
-      healthMax: 300000,
+      healthMax: 14000,
       xp: 400,
       id: 'cobalt_essence',
       icon: 'cobaltEssence',
@@ -1157,7 +1157,7 @@ export const MINING = {
 
     mithril: {
       requiredLevel: 65,
-      healthMax: 400000,
+      healthMax: 20000,
       xp: 500,
       id: 'mithril',
       icon: 'mithril',
@@ -1168,7 +1168,7 @@ export const MINING = {
 
     mithril_essence: {
       requiredLevel: 65,
-      healthMax: 400000,
+      healthMax: 20000,
       xp: 500,
       id: 'mithril_essence',
       icon: 'mithrilEssence',
@@ -1179,7 +1179,7 @@ export const MINING = {
 
     adamantium: {
       requiredLevel: 70,
-      healthMax: 500000,
+      healthMax: 30000,
       xp: 600,
       id: 'adamantium',
       icon: 'adamantium',
@@ -1190,7 +1190,7 @@ export const MINING = {
 
     adamantium_essence: {
       requiredLevel: 70,
-      healthMax: 500000,
+      healthMax: 30000,
       xp: 600,
       id: 'adamantium_essence',
       icon: 'adamantiumEssence',
@@ -1201,7 +1201,7 @@ export const MINING = {
 
     orichalcum: {
       requiredLevel: 75,
-      healthMax: 600000,
+      healthMax: 45000,
       xp: 700,
       id: 'orichalcum',
       icon: 'orichalcum',
@@ -1212,7 +1212,7 @@ export const MINING = {
 
     orichalcum_essence: {
       requiredLevel: 75,
-      healthMax: 600000,
+      healthMax: 45000,
       xp: 700,
       id: 'orichalcum_essence',
       icon: 'orichalcumEssence',
@@ -1223,7 +1223,7 @@ export const MINING = {
 
     meteorite: {
       requiredLevel: 80,
-      healthMax: 700000,
+      healthMax: 60000,
       xp: 800,
       id: 'meteorite',
       icon: 'meteorite',
@@ -1234,7 +1234,7 @@ export const MINING = {
 
     meteorite_essence: {
       requiredLevel: 80,
-      healthMax: 700000,
+      healthMax: 60000,
       xp: 800,
       id: 'meteorite_essence',
       icon: 'meteoriteEssence',
@@ -1245,7 +1245,7 @@ export const MINING = {
 
     fairy_steel: {
       requiredLevel: 85,
-      healthMax: 800000,
+      healthMax: 75000,
       xp: 900,
       id: 'fairy_steel',
       icon: 'fairySteel',
@@ -1256,7 +1256,7 @@ export const MINING = {
 
     fairy_steel_essence: {
       requiredLevel: 85,
-      healthMax: 800000,
+      healthMax: 75000,
       xp: 900,
       id: 'fairy_steel_essence',
       icon: 'fairySteelEssence',
@@ -1267,7 +1267,7 @@ export const MINING = {
 
     elven_steel: {
       requiredLevel: 90,
-      healthMax: 900000,
+      healthMax: 100000,
       xp: 1000,
       id: 'elven_steel',
       icon: 'elvenSteel',
@@ -1278,7 +1278,7 @@ export const MINING = {
 
     elven_steel_essence: {
       requiredLevel: 90,
-      healthMax: 900000,
+      healthMax: 100000,
       xp: 1000,
       id: 'elven_steel_essence',
       icon: 'elvenSteelEssence',
@@ -1289,7 +1289,7 @@ export const MINING = {
 
     cursed: {
       requiredLevel: 95,
-      healthMax: 1000000,
+      healthMax: 125000,
       xp: 1250,
       id: 'cursed',
       icon: 'cursed',
@@ -1300,7 +1300,7 @@ export const MINING = {
 
     cursed_essence: {
       requiredLevel: 95,
-      healthMax: 1000000,
+      healthMax: 125000,
       xp: 1250,
       id: 'cursed_essence',
       icon: 'cursedEssence',

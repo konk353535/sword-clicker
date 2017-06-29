@@ -18,24 +18,31 @@ Template.itemIcon.helpers({
   sellAmount() {
     const instance = Template.instance();
     return instance.state.get('sellAmount');
+  },
+
+  showSellModal() {
+    const instance = Template.instance();
+    return instance.state.get('showSellModal');
   }
 })
 
 Template.itemIcon.rendered = function () {
-  const instance = Template.instance();
-  Meteor.setTimeout(() => {
+
+    // var currentData = Template.currentData();
     tooltip = new Drop({
-      target: instance.$('.item-icon-container')[0],
-      content: instance.$('.item-tooltip-content')[0],
+      target: Template.instance().$('.item-icon-container')[0],
+      content: Template.instance().$('.item-tooltip-content')[0],
       openOn: 'hover',
       position: 'top left',
       remove: true
     });
-  }, 1);
 }
 
 Template.itemIcon.onDestroyed(function () {
-  tooltip.destroy();
+  console.log(`Destroyed - ${Template.instance().data.item.quality}`);
+  if (tooltip && tooltip.target) {
+    tooltip.remove();
+  }
 })
 
 const sellItem = function (event, instance) {
@@ -43,6 +50,7 @@ const sellItem = function (event, instance) {
   const itemData = instance.data.item;
   Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
 }
+
 
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
@@ -61,7 +69,10 @@ Template.itemIcon.events({
       primaryAction.method();
     } else {
       instance.state.set('sellAmount', instance.data.item.amount);
-      Template.instance().$('.sellModal').modal('show');      
+      instance.state.set('showSellModal', true);
+      Meteor.setTimeout(() => {
+        instance.$('.sellModal').modal('show');
+      }, 10);
     }
   },
 

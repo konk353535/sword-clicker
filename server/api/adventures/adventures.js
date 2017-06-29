@@ -307,10 +307,12 @@ Meteor.methods({
     targetAdventure.endDate = moment(targetAdventure.startDate).add(targetAdventure.duration, 'seconds').toDate();
 
     Adventures.update({
-      owner: this.userId
+      owner: this.userId,
+      lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
         adventures: _.sortBy(myAdventures.adventures, 'startDate'),
+        lastGameUpdated: moment(myAdventures.lastGameUpdated).add(1, 'seconds').toDate()
       }
     });
   },

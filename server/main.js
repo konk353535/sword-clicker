@@ -3,6 +3,7 @@ import '/imports/startup/both';
 import '/imports/startup/server';
 
 import { ITEMS } from '/server/constants/items/index';
+import { ABILITIES } from '/server/constants/combat/abilities';
 import { resumeBattle } from '/server/api/battles/battles';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';

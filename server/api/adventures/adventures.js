@@ -35,7 +35,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor) {
 
   if (type === 'magic' && combatSkills.magic) {
     // Level = Magic Level / 4
-    level = Math.ceil(combatSkills.magic.level / 5);
+    level = Math.ceil(combatSkills.magic.level / 4);
   } else {
     // Level = ((Attack + Defense) / 2) / 5
     level = Math.ceil(((combatSkills.attack.level + combatSkills.defense.level) / 2) / 5);

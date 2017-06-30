@@ -1,6 +1,17 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
+Router.configure({
+  layoutTemplate: 'myLayout',
+  yieldTemplates: {
+    nav: { to: 'nav' },
+    footer: { to: 'footer' },
+  }
+});
+
 AccountsTemplates.configure({
+
+  defaultLayout: 'myLayout',
+
   confirmPassword: true,
   enablePasswordChange: true,
   forbidClientAccountCreation: false,
@@ -39,18 +50,6 @@ AccountsTemplates.addFields([
   pwd
 ]);
 
-Router.configure({
-  layoutTemplate: 'myLayout',
-  yieldTemplates: {
-    nav: { to: 'nav' },
-    footer: { to: 'footer' },
-  }
-});
-
-AccountsTemplates.configure({
-  defaultLayout: 'myLayout',
-  showForgotPasswordLink: true
-});
 
 AccountsTemplates.configureRoute('signIn', {
   name: 'signin',
@@ -75,5 +74,5 @@ AccountsTemplates.configureRoute('verifyEmail', {
 AccountsTemplates.configureRoute('changePwd')
 
 Router.plugin('ensureSignedIn', {
-  except: ['signIn', 'signUp', 'changePwd', 'resetPwd', 'verifyEmail']
+  except: ['signin', 'join', 'changePwd', 'resetPwd', 'verifyEmail', 'home']
 });

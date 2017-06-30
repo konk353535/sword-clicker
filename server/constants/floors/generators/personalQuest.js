@@ -50,6 +50,33 @@ export const personalQuestMonsterGenerator = function(level, wave) {
   if (level >= 115) {
     rewardLevel = 12;
   }
+  if (level >= 130) {
+    rewardLevel = 13;
+  }
+  if (level >= 145) {
+    rewardLevel = 14;
+  }
+  if (level >= 160) {
+    rewardLevel = 15;
+  }
+  if (level >= 175) {
+    rewardLevel = 16;
+  }
+  if (level >= 190) {
+    rewardLevel = 17;
+  }
+  if (level >= 205) {
+    rewardLevel = 18;
+  }
+  if (level >= 220) {
+    rewardLevel = 19;
+  }
+  if (level >= 235) {
+    rewardLevel = 20;
+  }
+  if (level >= 250) {
+    rewardLevel = 21;
+  }
 
   const totalEnemies = possibleMonsters.length;
   const selectedMonsterId = possibleMonsters[((level * 5) + wave - 1) % totalEnemies];

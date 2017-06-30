@@ -1083,10 +1083,8 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        console.log(`Before health = ${caster.stats.health}`)
         caster.stats.health *= 1.5;
         caster.stats.healthMax *= 1.5;
-        console.log(`After health = ${caster.stats.health}`)
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -1119,10 +1117,8 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        console.log(`Before attack power = ${caster.stats.attack}`)
         caster.stats.attack *= 1.1;
         caster.stats.attackMax *= 1.1;
-        console.log(`After attack power = ${caster.stats.attack}`)
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -1155,9 +1151,7 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        console.log(`Before magic power = ${caster.stats.magicPower}`)
         caster.stats.magicPower *= 1.2;
-        console.log(`After magic power = ${caster.stats.magicPower}`)
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

@@ -140,7 +140,6 @@ Template.body.onCreated(function () {
     }
   }, 116 * 1000 + (Math.random() * 1000));
 
-  Meteor.call('adventures.gameUpdate');
   adventuresTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('adventures.gameUpdate');

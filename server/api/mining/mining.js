@@ -283,10 +283,6 @@ Meteor.methods({
         const oreConstants = MINING.ores[miningSpace.oreId];
         miningSpace.isDirty = true;
 
-        if (miningSpace.health < -1) {
-          console.log('Damage mining spaces 1')
-        }
-
         if (miningSpace.health <= damage) {
           damage -= miningSpace.health;
           miningSpace.oreId = null;
@@ -304,9 +300,6 @@ Meteor.methods({
           break;
         }
 
-        if (miningSpace.health < -1) {
-          console.log('Damage mining spaces 2')
-        }
       }
 
       return gainedXp;
@@ -384,10 +377,6 @@ Meteor.methods({
               miningSpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
               miningSpace.oreId = newOre.id;
               miningSpace.isDirty = true; // So we know to save this later
-            }
-
-            if (miningSpace.health < -1) {
-              console.log('simulation 1')
             }
           }
         });

@@ -25,7 +25,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     tickTracker[actualBattle._id] = 1;
   }
 
-  if (!actualBattle || tickTracker[actualBattle._id] > 6000) {
+  if (!actualBattle || (!actualBattle.startingBossHp && tickTracker[actualBattle._id] > 2000) || (actualBattle.startingBossHp && tickTracker[actualBattle._id] > 6000)) {
     console.log('I activate my trap card, tick tracker!');
     Meteor.clearInterval(battleIntervalId);
     if (actualBattle) {

@@ -39,7 +39,6 @@ Template.itemIcon.rendered = function () {
 }
 
 Template.itemIcon.onDestroyed(function () {
-  console.log(`Destroyed - ${Template.instance().data.item.quality}`);
   if (tooltip && tooltip.target) {
     tooltip.remove();
   }

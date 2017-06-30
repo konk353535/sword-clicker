@@ -1,4 +1,4 @@
-Router.route('/home', {
+Router.route('/', {
 
   name: 'home',
 
@@ -9,6 +9,14 @@ Router.route('/home', {
   yieldRegions: {
     'nav': { to: 'nav' },
     'footer': { to: 'footer' }
+  },
+
+  onBeforeAction: function () {
+    if (Meteor.user()) {
+      Router.go('mining');
+    } else {
+      this.next();
+    }
   }
 });
 
@@ -61,7 +69,7 @@ Router.route('/shop', {
   }
 });
 
-Router.route('/', {
+Router.route('/mining', {
 
   name: 'mining',
 

@@ -142,12 +142,12 @@ Meteor.methods({
 })
 
 const MINUTE = 60 * 1000;
-const userId = function userId(userId) {
-  return userId;
+const clientAddress = function clientAddress(clientAddress) {
+  return true;
 }
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', userId }, 3, 60 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', clientAddress }, 3, 60 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.initUiState' }, 10, 10 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.activeUsers' }, 10, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.setUiState' }, 50, 1 * MINUTE);

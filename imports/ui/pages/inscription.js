@@ -87,8 +87,6 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
     }
   })
 
-  // Show currently crafting items
-  Meteor.subscribe('inscription');
 });
 
 Template.inscriptionPage.events({

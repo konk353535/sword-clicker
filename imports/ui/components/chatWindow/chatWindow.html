@@ -90,7 +90,20 @@
           </button>
           <div class="dropdown-menu">
             {{#each availableChats}}
-              <a class="dropdown-item change-chat {{this.class}}" href="#" data-chat-id="{{this.id}}">{{this.name}}</a>
+              <div class="d-flex align-items-center">
+              <a class="dropdown-item change-chat {{this.class}}" href="#" data-chat-id="{{this.id}}">
+                {{this.name}}
+              </a>
+              {{#if this.show}}
+                <button class="btn btn-link mx-1 btn-hide-chat" data-id="{{this.id}}">
+                  <small>Hide</small>
+                </button>
+              {{else}}
+                <button class="btn btn-link mx-1 btn-show-chat" data-id="{{this.id}}">
+                  <small>Show</small>
+                </button>              
+              {{/if}}
+              </div>
             {{/each}}
           </div>
         </div>

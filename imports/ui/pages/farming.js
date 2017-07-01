@@ -14,7 +14,6 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
 
   Meteor.call('farming.gameUpdate', (err) => {
     this.state.set('tooltipsLoaded', false);
-    this.subscribe('farmingSpace');
 
     this.autorun(() => {
       if (Skills.findOne({ type: 'farming' })) {

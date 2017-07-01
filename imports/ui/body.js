@@ -210,6 +210,18 @@ Template.body.onCreated(function () {
   Meteor.subscribe('groups');
   // Show combat details for groups
   Meteor.subscribe('combat');
+  // Show woodcutting
+  Meteor.subscribe('woodcutting');
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+  // Mining data
+  Meteor.subscribe('mining');
+  // Show currently crafting items
+  Meteor.subscribe('crafting');
+  // Farming
+  Meteor.subscribe('farmingSpace');
+  // Show currently inscripting items
+  Meteor.subscribe('inscription');
 });
 
 Template.myLayout.helpers({

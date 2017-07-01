@@ -24,8 +24,6 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   }, 10000);
 
   Meteor.call('woodcutting.gameUpdate', (err, res) => {
-    this.subscribe('woodcutting');
-
     this.autorun(() => {
       // Only called when skills have loaded
       if (Skills.findOne()) {

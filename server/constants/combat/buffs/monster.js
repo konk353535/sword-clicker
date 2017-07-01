@@ -293,12 +293,15 @@ export const MONSTER_BUFFS = {
           buff.data.timeTillRabbit = 9 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
+          if (buff.data.timeTillRabbit <= 1000) {
+            buff.data.stacks = Math.round(buff.data.timeTillRabbit);
+          }
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
             const newRabbit = JSON.parse(JSON.stringify(target));
             newRabbit.id = Random.id();
             actualBattle.enemies.push(newRabbit);
-            buff.data.timeTillRabbit = 5000;
+            buff.data.timeTillRabbit = 6000;
           }
         }
       },

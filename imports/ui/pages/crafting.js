@@ -140,9 +140,6 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       }
     }
   })
-
-  // Show currently crafting items
-  Meteor.subscribe('crafting');
 });
 
 Template.craftingPage.events({

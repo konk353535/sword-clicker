@@ -240,42 +240,47 @@ export const completeBattle = function (actualBattle) {
       if (actualBattle.room !== 'boss') {
 
         let countTowerContributors = 0;
-        owners.forEach((owner) => {
-          // Find owner object
-          const ownerObject = _.findWhere(units, { owner });
-
-          if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            countTowerContributors++;
-          }
-        });
 
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
+
           if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            ownerObject.usedTowerContribution = true;
-
-            const updateSelector = { owner, floor: actualBattle.floor };
-
-            const updateModifier = {
-              $inc: {
-                points: pointsEarnt
-              },
-              $setOnInsert: {
-                points: pointsEarnt,
-                username: ownerObject.name // To do: Make this work when users have multiple units
-              }
-            };
-
-            finalTickEvents.push({
-              type: 'points',
-              amount: pointsEarnt.toFixed(1),
-              icon: 'tower',
+            // Double confirm that this is a contribution
+            const combatDoc = Combat.findOne({
               owner
             });
 
-            FloorWaveScores.upsert(updateSelector, updateModifier);
+            if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
+              ownerObject.usedTowerContribution = true;
+              countTowerContributors++;
+
+              const updateSelector = { owner, floor: actualBattle.floor };
+
+              const updateModifier = {
+                $inc: {
+                  points: pointsEarnt
+                },
+                $setOnInsert: {
+                  points: pointsEarnt,
+                  username: ownerObject.name // To do: Make this work when users have multiple units
+                }
+              };
+
+              finalTickEvents.push({
+                type: 'points',
+                amount: pointsEarnt.toFixed(1),
+                icon: 'tower',
+                owner
+              });
+
+              FloorWaveScores.upsert(updateSelector, updateModifier);
+            } else {
+              console.log('Unexpected Failure');
+              console.log(JSON.stringify(ownerObject));
+              console.log(JSON.stringify(combatDoc));
+            }
           }
         });
 

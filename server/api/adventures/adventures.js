@@ -417,7 +417,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
   userId(userId) {
     return userId;
   } 
-}, 10, 10000);
+}, 5, 15000);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'adventures' }, 40, 2 * MINUTE);
 
 Meteor.publish('adventures', function() {

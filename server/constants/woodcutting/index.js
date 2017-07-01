@@ -38,7 +38,7 @@ export const WOODCUTTING = {
     },
 
     copper_lumberjack: {
-      requiredWoodcuttingLevel: 5,
+      requiredWoodcuttingLevel: 4,
       icon: 'copperLumberJack',
       name: 'copper lumber jack',
       id: 'copper_lumberjack',
@@ -57,12 +57,12 @@ export const WOODCUTTING = {
       }, {
         type: 'skill',
         name: 'woodcutting',
-        level: 5
+        level: 4
       }]
     },
 
     tin_lumberjack: {
-      requiredWoodcuttingLevel: 10,
+      requiredWoodcuttingLevel: 9,
       icon: 'tinLumberJack',
       name: 'tin lumber jack',
       id: 'tin_lumberjack',
@@ -81,7 +81,7 @@ export const WOODCUTTING = {
       }, {
         type: 'skill',
         name: 'woodcutting',
-        level: 10
+        level: 9
       }]
     },
 

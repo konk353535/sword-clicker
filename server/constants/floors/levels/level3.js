@@ -32,7 +32,7 @@ export const LEVEL_THREE_MONSTERS = [{
 }];
 
 export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 128,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'tin_pickaxe', amount: 1 },
     { type: 'item', itemId: 'tin_axe', amount: 1 },
@@ -42,7 +42,7 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 },
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 4,
   rewards: [
     { type: 'item', itemId: 'ore_tin', amount: 1 },
     { type: 'gold', amount: 75 },

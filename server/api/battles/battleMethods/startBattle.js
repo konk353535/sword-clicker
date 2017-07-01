@@ -172,7 +172,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     newBattle.units.push({
       id: userCombat.owner,
       owner: userCombat.owner,
-      towerContributionsToday: userCombat.towerContributionsToday || 0,
+      towerContributionsToday: userCombat.towerContributionsToday,
       isTowerContribution: userCombat.isTowerContribution,
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',

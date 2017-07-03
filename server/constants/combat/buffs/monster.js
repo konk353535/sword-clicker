@@ -63,6 +63,8 @@ export const MONSTER_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
+        buff.data.stacks = Math.round(buff.data.timeTillSteal);
+
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
           const statsToSteal = ['health', 'healthMax', 'armor', 'attack'];
@@ -75,7 +77,8 @@ export const MONSTER_BUFFS = {
               totalDuration: 15,
               stats: {},
               name: 'Stolen Stats',
-              icon: 'goblin'
+              icon: 'goblin',
+              allowDuplicates: true
             }
           }
 
@@ -287,15 +290,18 @@ export const MONSTER_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // Blank
         if (!buff.data.timeTillRabbit) {
-          buff.data.timeTillRabbit = 5 + Math.random () * 5;
+          buff.data.timeTillRabbit = 9 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
+          if (buff.data.timeTillRabbit <= 1000) {
+            buff.data.stacks = Math.round(buff.data.timeTillRabbit);
+          }
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
             const newRabbit = JSON.parse(JSON.stringify(target));
             newRabbit.id = Random.id();
             actualBattle.enemies.push(newRabbit);
-            buff.data.timeTillRabbit = 5000;
+            buff.data.timeTillRabbit = 6000;
           }
         }
       },
@@ -390,6 +396,64 @@ export const MONSTER_BUFFS = {
 
         // cast earth dart
         addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  water_mage_monster: {
+    duplicateTag: 'water_mage_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'water mage',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.05 && !_.findWhere(attacker.buffs, { id: 'frosted_attacks' })) {
+          const newBuff = {
+            id: 'frosted_attacks',
+            data: {
+              duration: 10,
+              totalDuration: 10,
+              attackSpeedDecrease: 25,
+              icon: 'frostedAttacks',
+              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              name: 'Frosted Attacks'
+            }
+          }
+
+          // cast frost attack
+          addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.6) {
+          const newBuff = {
+            id: 'water_dart',
+            data: {
+              duration: 0,
+              totalDuration: 0,
+              icon: 'waterDart',
+              description: ''
+            },
+            constants: BUFFS['water_dart']
+          }
+
+          // cast water dart
+          addBuff({ buff: newBuff, target: attacker, caster: attacker, actualBattle });
+        }
       },
 
       onRemove({ buff, target, caster }) {
@@ -559,12 +623,13 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              dps: attacker.stats.attackMax / 30,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 15)),
+              caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
               icon: 'bleed',
               name: 'bleed',
-              description: `Bleed every second for ${Math.round(attacker.stats.attackMax / 10)} damage`
+              description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
           }
 
@@ -652,6 +717,7 @@ export const MONSTER_BUFFS = {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
+        buff.data.stacks = buff.data.hitsRequired;
 
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;

@@ -10,7 +10,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -27,9 +27,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -42,7 +42,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 20
+      level: 70
     }]
   },
 
@@ -55,7 +55,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 300,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -72,9 +72,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -87,7 +87,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   },
 
@@ -100,7 +100,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -117,9 +117,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -132,7 +132,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   },
 
@@ -145,7 +145,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 750,
     maxToCraft: 1,
-    requiredCraftingLevel: 22,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -162,9 +162,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -177,7 +177,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 22
+      level: 70
     }]
   },
 
@@ -190,7 +190,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 750,
     maxToCraft: 1,
-    requiredCraftingLevel: 22,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -207,9 +207,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -222,7 +222,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 22
+      level: 70
     }]
   },
 
@@ -235,7 +235,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -252,9 +252,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -267,7 +267,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   },
 
@@ -280,7 +280,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -297,9 +297,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -312,7 +312,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   },
 
@@ -325,7 +325,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -342,9 +342,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -357,7 +357,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   },
 
@@ -370,7 +370,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 21,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -387,9 +387,9 @@ export const ADAMANTIUM_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -402,7 +402,7 @@ export const ADAMANTIUM_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 21
+      level: 70
     }]
   }
 }

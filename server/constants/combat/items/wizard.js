@@ -52,6 +52,31 @@ export const WIZARD_ITEMS = {
     }]
   },
 
+  purple_wizard_hat: {
+    id: 'purple_wizard_hat',
+    icon: 'purpleWizardHat',
+    category: 'combat',
+    slot: 'head',
+    name: 'purple wizard hat',
+    sellPrice: 100,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      magicPower: 8,
+      magicArmor: 12
+    },
+    extraStats: {
+      healthMax: 20,
+      magicPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }]
+  },
+
   brown_wizard_shirt: {
     id: 'brown_wizard_shirt',
     icon: 'brownWizardShirt',
@@ -102,6 +127,31 @@ export const WIZARD_ITEMS = {
     }]
   },
 
+  purple_wizard_shirt: {
+    id: 'purple_wizard_shirt',
+    icon: 'purpleWizardShirt',
+    category: 'combat',
+    slot: 'chest',
+    name: 'purple wizard shirt',
+    sellPrice: 100,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      magicPower: 8,
+      magicArmor: 12
+    },
+    extraStats: {
+      healthMax: 20,
+      magicPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }]
+  },
+
   brown_wizard_shorts: {
     id: 'brown_wizard_shorts',
     icon: 'brownWizardShorts',
@@ -149,6 +199,31 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 15
+    }]
+  },
+
+  purple_wizard_shorts: {
+    id: 'purple_wizard_shorts',
+    icon: 'purpleWizardShorts',
+    category: 'combat',
+    slot: 'legs',
+    name: 'purple wizard shorts',
+    sellPrice: 100,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 65,
+      magicPower: 8,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 10,
+      magicPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25
     }]
   },
 }

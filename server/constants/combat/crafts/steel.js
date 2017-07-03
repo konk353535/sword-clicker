@@ -10,19 +10,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 130,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -35,7 +42,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -48,19 +55,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -73,7 +87,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -86,19 +100,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 250,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -111,7 +132,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -124,19 +145,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 420, // 60
     xp: 280,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -149,7 +177,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -162,19 +190,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 600, // 60
     xp: 320,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -187,7 +222,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -200,19 +235,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -225,7 +267,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -238,19 +280,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -263,7 +312,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -276,19 +325,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -301,7 +357,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   },
 
@@ -314,19 +370,26 @@ export const STEEL_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 8,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
-      itemId: 'iron_furnace',
-      icon: ITEMS['iron_furnace'].icon,
-      name: ITEMS['iron_furnace'].name,
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -339,7 +402,7 @@ export const STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 8
+      level: 35
     }]
   }
 }

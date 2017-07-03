@@ -10,12 +10,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -27,9 +27,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -42,7 +42,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -55,12 +55,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -72,9 +72,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -87,7 +87,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -100,12 +100,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 550,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -117,9 +117,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -132,7 +132,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -145,12 +145,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 32,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -162,9 +162,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -177,7 +177,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 32
+      level: 60
     }]
   },
 
@@ -190,12 +190,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 32,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -207,9 +207,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -222,7 +222,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 32
+      level: 60
     }]
   },
 
@@ -235,12 +235,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -252,9 +252,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -267,7 +267,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -280,12 +280,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -297,9 +297,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -312,7 +312,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -325,12 +325,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -342,9 +342,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -357,7 +357,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   },
 
@@ -370,12 +370,12 @@ export const COBALT_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
-      itemId: 'orichalcum_furnace',
-      icon: ITEMS['orichalcum_furnace'].icon,
-      name: ITEMS['orichalcum_furnace'].name,
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -387,9 +387,9 @@ export const COBALT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -402,7 +402,7 @@ export const COBALT_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 60
     }]
   }
 }

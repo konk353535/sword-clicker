@@ -4,6 +4,8 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './itemIcon.html';
 
+let tooltip;
+
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
@@ -16,24 +18,38 @@ Template.itemIcon.helpers({
   sellAmount() {
     const instance = Template.instance();
     return instance.state.get('sellAmount');
+  },
+
+  showSellModal() {
+    const instance = Template.instance();
+    return instance.state.get('showSellModal');
   }
 })
 
 Template.itemIcon.rendered = function () {
-  const minerTooltip = new Drop({
-    target: Template.instance().$('.item-icon-container')[0],
-    content: Template.instance().$('.item-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+
+    // var currentData = Template.currentData();
+    tooltip = new Drop({
+      target: Template.instance().$('.item-icon-container')[0],
+      content: Template.instance().$('.item-tooltip-content')[0],
+      openOn: 'hover',
+      position: 'top left',
+      remove: true
+    });
 }
+
+Template.itemIcon.onDestroyed(function () {
+  if (tooltip && tooltip.target) {
+    tooltip.remove();
+  }
+})
 
 const sellItem = function (event, instance) {
   Template.instance().$('.sellModal').modal('hide');
   const itemData = instance.data.item;
   Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
 }
+
 
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
@@ -52,7 +68,10 @@ Template.itemIcon.events({
       primaryAction.method();
     } else {
       instance.state.set('sellAmount', instance.data.item.amount);
-      Template.instance().$('.sellModal').modal('show');      
+      instance.state.set('showSellModal', true);
+      Meteor.setTimeout(() => {
+        instance.$('.sellModal').modal('show');
+      }, 10);
     }
   },
 

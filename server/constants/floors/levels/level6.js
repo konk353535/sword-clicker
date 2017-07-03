@@ -33,26 +33,26 @@ export const LEVEL_SIX_MONSTERS = [{
 export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   chance: 1 / 96,
   rewards: [
-    { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'carbon_axe', amount: 1 },
-    { type: 'item', itemId: 'carbon_dagger', amount: 1 }
+    { type: 'item', itemId: 'silver_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'silver_axe', amount: 1 },
+    { type: 'item', itemId: 'silver_dagger', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 32,
   rewards: [
-    { type: 'item', itemId: 'mithril_essence', amount: 1 }
+    { type: 'item', itemId: 'silver_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 8,
   rewards: [
-    { type: 'item', itemId: 'carbon_bar', amount: 1 },
-    { type: 'item', itemId: 'ore_mithril', amount: 1 }
+    { type: 'item', itemId: 'silver_bar', amount: 1 },
+    { type: 'item', itemId: 'ore_silver', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 250 },
-    { type: 'item', itemId: 'ore_carbon', amount: 1 },
+    { type: 'item', itemId: 'ore_silver', amount: 1 },
     { type: 'item', itemId: 'maple_log', amount: 1 }
   ]
 }]);

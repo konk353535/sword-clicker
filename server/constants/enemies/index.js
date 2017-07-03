@@ -77,6 +77,21 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  unicorn: {
+    id: 'unicorn',
+    icon: 'unicorn',
+    name: 'unicorn',
+    buffs: [{
+      id: 'ninja_reflexes',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'youngNinja',
+        name: 'Ninja Reflexes'
+      }
+    }]
+  },
+
   // When below 50% hp, goes berserk
   dwarf: {
     id: 'dwarf',
@@ -105,6 +120,12 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  angel: {
+    id: 'angel',
+    icon: 'angel',
+    name: 'angel'
+  },
+
   // Block ability, reduces damage of all attacks after armor by X
   spartan: {
     id: 'spartan',
@@ -118,6 +139,49 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'magicArmor',
       amount: 0.2
+    }]
+  },
+
+  octopus: {
+    id: 'octopus',
+    icon: 'octopus',
+    name: 'octopus',
+    statBuffs: [{
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 4
+    }, {
+      type: 'times',
+      key: 'attack',
+      amount: 0.25
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.25
+    }]
+  },
+
+  // Block ability, reduces damage of all attacks after armor by X
+  cut_purse: {
+    id: 'cut_purse',
+    icon: 'cutPurse',
+    name: 'cut purse',
+    statBuffs: [{
+      type: 'times',
+      key: 'armor',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 1.6
+    }, {
+      type: 'times',
+      key: 'accuracy',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'attack',
+      amount: 0.8
     }]
   },
 
@@ -141,6 +205,34 @@ export const ENEMIES = Object.assign({
     id: 'cursed_spirit',
     icon: 'cursedSpirit',
     name: 'cursed spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  meteorite_spirit: {
+    id: 'meteorite_spirit',
+    icon: 'meteoriteSpirit',
+    name: 'meteorite spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  elven_steel_spirit: {
+    id: 'elven_steel_spirit',
+    icon: 'elvenSteelSpirit',
+    name: 'elven steel spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
@@ -211,6 +303,118 @@ export const ENEMIES = Object.assign({
     id: 'mithril_spirit',
     icon: 'mithrilSpirit',
     name: 'mithril spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  obsidian_spirit: {
+    id: 'obsidian_spirit',
+    icon: 'obsidianSpirit',
+    name: 'obsidian spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  tungsten_spirit: {
+    id: 'tungsten_spirit',
+    icon: 'tungstenSpirit',
+    name: 'tungsten spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  titanium_spirit: {
+    id: 'titanium_spirit',
+    icon: 'titaniumSpirit',
+    name: 'titanium spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  platinum_spirit: {
+    id: 'platinum_spirit',
+    icon: 'platinumSpirit',
+    name: 'platinum spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  steel_spirit: {
+    id: 'steel_spirit',
+    icon: 'steelSpirit',
+    name: 'steel spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  carbon_spirit: {
+    id: 'carbon_spirit',
+    icon: 'carbonSpirit',
+    name: 'carbon spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  gold_spirit: {
+    id: 'gold_spirit',
+    icon: 'goldSpirit',
+    name: 'gold spirit',
+    buffs: [{
+      id: 'spirit_blink',
+      data: {
+        icon: 'spiritBlink',
+        name: 'Spirit Blink',
+        description: 'Will randomly fade into the ether, becoming invulnerable'
+      }
+    }]
+  },
+
+  silver_spirit: {
+    id: 'silver_spirit',
+    icon: 'silverSpirit',
+    name: 'silver spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
@@ -369,6 +573,22 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }]
+  },
+
+  fish: {
+    id: 'fish',
+    icon: 'fish',
+    name: 'fish',
+    swarmRange: [4, 5],
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.8
     }]
   },
 
@@ -534,6 +754,28 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  // Casts fire abilities
+  water_mage: {
+    id: 'water_mage',
+    icon: 'waterMage',
+    name: 'water mage',
+    buffs: [{
+      id: 'water_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.01
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.01
+    }]
+  },
+
   blue_mage: {
     id: 'blue_mage',
     icon: 'blue_mage',
@@ -557,7 +799,8 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'rabbit_monster',
       data: {
-        hideBuff: true
+        hideBuff: false,
+        icon: 'rabbit'
       }
     }],
     statBuffs: [{

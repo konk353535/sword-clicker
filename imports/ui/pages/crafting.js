@@ -140,9 +140,6 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       }
     }
   })
-
-  // Show currently crafting items
-  Meteor.subscribe('crafting');
 });
 
 Template.craftingPage.events({
@@ -360,20 +357,57 @@ Template.craftingPage.helpers({
 
   items() {
     const itemViewLimit = Template.instance().state.get('itemViewLimit');
+
+    // Get highest furnace tier
+    const allFurnaces = Items.find({
+      equipped: false,
+      name: {
+        $regex: /furnace/gi,
+      }
+    }, {
+      sort: {
+        tier: -1
+      }
+    }).fetch();
+    let highestFurnaceTier = 'stone_furnace';
+    if (allFurnaces.length > 0) {
+      highestFurnaceTier = allFurnaces[0].tier;
+    }
+
     if (itemViewLimit !== 0) {
-      return Items.find({ equipped: false }, {
+      return Items.find({
+        equipped: false,
+        $or: [{
+          tier: highestFurnaceTier,
+        }, {
+          name: {
+            $regex: /^((?!furnace).)*$/
+          }
+        }]
+      }, {
         limit: itemViewLimit,
         sort: {
           category: 1,
-          name: 1
+          name: 1,
+          quality: -1
         }
       }).map((itemModifier));
     }
 
-    return Items.find({ equipped: false }, {
+    return Items.find({
+      equipped: false,
+      $or: [{
+        tier: highestFurnaceTier,
+      }, {
+        name: {
+          $regex: /^((?!furnace).)*$/
+        }
+      }]
+    }, {
       sort: {
         category: 1,
-        name: 1
+        name: 1,
+        quality: -1
       }
     }).map((itemModifier));
   }

@@ -1,6 +1,6 @@
 <template name="battleUnit">
   <div class="d-flex flex-column">
-    <div class="d-flex flex-column align-items-center flex-wrap justify-content-center px-2" style="max-width: 100%;">
+    <div class="d-flex flex-column align-items-center flex-wrap justify-content-center px-2" style="max-width: 120px;">
       {{#if unit.name}}
         <span class="text-capitalize battle-unit-name">{{unit.name}}</span>
       {{/if}}
@@ -8,13 +8,21 @@
         src="/icons/{{unit.icon}}.svg"
         id={{unit.id}}
         data-unit-id={{unit.id}}
-        class="icon-box {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}} {{#if small}}item-icon-container small{{/if}}">
+        class="icon-box
+          {{#if unit.leader}}leader-icon{{/if}}
+          {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
+          {{#if small}}item-icon-container small{{/if}}">
       <div class="health-bar d-flex justify-content-center">
-        {{> formatNumber unit.stats.health}} / {{> formatNumber unit.stats.healthMax}}
-      </div>
+        {{> formatNumber number=unit.stats.health}} / {{> formatNumber number=unit.stats.healthMax}}
+      </div>      
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
+      {{#if showEnergy}}
+        <div class="progress health-bar mt-1" style="height: 5px">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{energyPercentage}}%" aria-valuenow="{{energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      {{/if}}
     </div>
     {{#if showBuffs}}
       <div class="d-flex flex-wrap" style="width: 120px">

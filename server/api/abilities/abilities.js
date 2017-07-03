@@ -247,6 +247,7 @@ Meteor.methods({
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
         cooldown: abilityConstant.cooldown,
+        requires: abilityConstant.requires,
         learntLevel,
         level: abilityLevel,
         id: abilityConstant.id
@@ -287,7 +288,8 @@ Meteor.publish('abilities', function() {
       ability.level = ability.level;
       ability.id = abilityConstant.id;
       ability.targettable = abilityConstant.targettable;
-      ability.target =abilityConstant.target;
+      ability.target = abilityConstant.target;
+      ability.requires = abilityConstant.requires;
 
       return ability;
     });

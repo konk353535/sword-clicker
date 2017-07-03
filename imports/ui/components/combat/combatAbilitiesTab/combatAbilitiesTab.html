@@ -5,7 +5,7 @@
     <div class="d-flex flex-wrap">
       <!-- Main Hand -->
       {{#if equippedAbilitiesMap.mainHand}}
-        {{> itemIcon item=equippedAbilitiesMap.mainHand}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
       {{else}}
         <div class="icon-box">
           Main Hand
@@ -13,7 +13,7 @@
       {{/if}}
       <!-- Off Hand -->
       {{#if equippedAbilitiesMap.offHand}}
-        {{> itemIcon item=equippedAbilitiesMap.offHand}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
       {{else}}
         <div class="icon-box">
           Off Hand
@@ -21,7 +21,7 @@
       {{/if}}
       <!-- Head -->
       {{#if equippedAbilitiesMap.head}}
-        {{> itemIcon item=equippedAbilitiesMap.head}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
       {{else}}
         <div class="icon-box">
           Head
@@ -29,7 +29,7 @@
       {{/if}}
       <!-- Chest -->
       {{#if equippedAbilitiesMap.chest}}
-        {{> itemIcon item=equippedAbilitiesMap.chest}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
       {{else}}
         <div class="icon-box">
           Chest
@@ -37,7 +37,7 @@
       {{/if}}
       <!-- Legs -->
       {{#if equippedAbilitiesMap.legs}}
-        {{> itemIcon item=equippedAbilitiesMap.legs}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
       {{else}}
         <div class="icon-box">
           Legs
@@ -48,7 +48,7 @@
   <div class="p-1">
     {{#if availableTomes}}
       <h1>Available Tomes</h1>
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         {{#each availableTomes}}
           {{> itemIcon item=this classes="small"}}
         {{/each}}
@@ -62,7 +62,7 @@
     </p>
     <div class="d-flex flex-wrap" style="max-width: 80%">
       {{#each abilityLibrary}}
-        {{> itemIcon item=this}}
+        {{> abilityLibraryIcon item=this}}
       {{/each}}
     </div>
   </div>

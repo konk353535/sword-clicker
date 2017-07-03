@@ -1,344 +1,323 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
-
 export const ORICHALCUM_ITEMS = {
-  orichalcum_dagger: {
-    id: 'orichalcum_dagger',
-    icon: 'orichalcumDagger',
-    category: 'combat',
-    weaponType: 'dagger',
-    slot: 'mainHand',
-    name: 'orichalcum dagger',
-    sellPrice: 750,
-    description: 'An okay dagger.',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 6,
-      attackMax: 17,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 27
-    },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 6
+  "orichalcum_dagger": {
+    "id": "orichalcum_dagger",
+    "icon": "orichalcumDagger",
+    "category": "combat",
+    "weaponType": "dagger",
+    "slot": "mainHand",
+    "name": "orichalcum dagger",
+    "sellPrice": 50,
+    "description": "A poorly made dagger.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 11.7,
+      "attackMax": 22,
+      "attackSpeed": 1,
+      "accuracy": 50.7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_spear: {
-    id: 'orichalcum_spear',
-    icon: 'orichalcumSpear',
-    category: 'combat',
-    weaponType: 'spear',
-    slot: 'mainHand',
-    name: 'orichalcum spear',
-    sellPrice: 750,
-    description: 'Often used for defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 16,
-      attackMax: 26,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 24,
-      defense: 28
+  "orichalcum_spear": {
+    "id": "orichalcum_spear",
+    "icon": "orichalcumSpear",
+    "category": "combat",
+    "weaponType": "spear",
+    "slot": "mainHand",
+    "name": "orichalcum spear",
+    "sellPrice": 75,
+    "description": "Used to train defense.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 44.7,
+      "attackMax": 56,
+      "attackSpeed": 0.5,
+      "accuracy": 56,
+      "defense": 22
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2,
-      defense: 5
+    "extraStats": {
+      "attack": 13.4,
+      "attackMax": 16.8,
+      "accuracy": 16.8,
+      "defense": 6.6
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_short_sword: {
-    id: 'orichalcum_short_sword',
-    icon: 'orichalcumShortSword',
-    category: 'combat',
-    weaponType: 'shortSword',
-    slot: 'mainHand',
-    name: 'orichalcum short sword',
-    sellPrice: 750,
-    description: 'A good balance between offense and defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 18,
-      attackMax: 29,
-      attackSpeed: FAST_SPEED,
-      accuracy: 41,
+  "orichalcum_short_sword": {
+    "id": "orichalcum_short_sword",
+    "icon": "orichalcumShortSword",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "orichalcum short sword",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 44.7,
+      "attackMax": 66.8,
+      "attackSpeed": 0.7,
+      "accuracy": 66.8
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 3,
-      accuracy: 4
+    "extraStats": {
+      "attack": 13.4,
+      "attackMax": 20,
+      "accuracy": 20
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_scimitar: {
-    id: 'orichalcum_scimitar',
-    icon: 'orichalcumScimitar',
-    category: 'combat',
-    weaponType: 'shortSword',
-    slot: 'mainHand',
-    name: 'orichalcum scimitar',
-    sellPrice: 1000,
-    description: 'A good balance between offense and defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 22,
-      attackMax: 33,
-      attackSpeed: FAST_SPEED,
-      accuracy: 45,
+  "orichalcum_scimitar": {
+    "id": "orichalcum_scimitar",
+    "icon": "orichalcumScimitar",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "orichalcum scimitar",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 49.5,
+      "attackMax": 78.3,
+      "attackSpeed": 0.7,
+      "accuracy": 66.8
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 3,
-      accuracy: 4
+    "extraStats": {
+      "attack": 14.9,
+      "attackMax": 23.5,
+      "accuracy": 20
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 80
     }]
   },
-
-  orichalcum_broad_sword: {
-    id: 'orichalcum_broad_sword',
-    icon: 'orichalcumBroadSword',
-    category: 'combat',
-    weaponType: 'longSword',
-    slot: 'mainHand',
-    name: 'orichalcum broad sword',
-    sellPrice: 1000,
-    description: 'A pure offensive weapon',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 35,
-      attackMax: 47,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 55,
+  "orichalcum_long_sword": {
+    "id": "orichalcum_long_sword",
+    "icon": "orichalcumLongSword",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "orichalcum long sword",
+    "sellPrice": 75,
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 78.3,
+      "attackMax": 134.5,
+      "attackSpeed": 0.5,
+      "accuracy": 89.9
     },
-    extraStats: {
-      attack: 3,
-      attackMax: 3,
-      accuracy: 3
+    "extraStats": {
+      "attack": 23.5,
+      "attackMax": 40.4,
+      "accuracy": 27
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_long_sword: {
-    id: 'orichalcum_long_sword',
-    icon: 'orichalcumLongSword',
-    category: 'combat',
-    weaponType: 'longSword',
-    slot: 'mainHand',
-    name: 'orichalcum long sword',
-    sellPrice: 1000,
-    description: 'A pure offensive weapon',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 29,
-      attackMax: 39,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 47,
+  "orichalcum_broad_sword": {
+    "id": "orichalcum_broad_sword",
+    "icon": "orichalcumBroadSword",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "orichalcum broad sword",
+    "sellPrice": 75,
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 112.4,
+      "attackMax": 157.1,
+      "attackSpeed": 0.5,
+      "accuracy": 89.9
     },
-    extraStats: {
-      attack: 4,
-      attackMax: 5,
-      accuracy: 5
+    "extraStats": {
+      "attack": 33.7,
+      "attackMax": 47.1,
+      "accuracy": 27
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 80
     }]
   },
-
-  orichalcum_battle_axe: {
-    id: 'orichalcum_battle_axe',
-    icon: 'orichalcumBattleAxe',
-    category: 'combat',
-    weaponType: 'battleAxe',
-    slot: 'mainHand',
-    name: 'orichalcum battle axe',
-    sellPrice: 750,
-    description: 'A slow pure offensive weapon.',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 28,
-      attackMax: 86,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 37,
+  "orichalcum_battle_axe": {
+    "id": "orichalcum_battle_axe",
+    "icon": "orichalcumBattleAxe",
+    "category": "combat",
+    "weaponType": "battleAxe",
+    "slot": "mainHand",
+    "name": "orichalcum battle axe",
+    "sellPrice": 75,
+    "description": "A slow pure offensive weapon.",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 56,
+      "attackMax": 201.3,
+      "attackSpeed": 0.3,
+      "accuracy": 89.9
     },
-    extraStats: {
-      attack: 4,
-      attackMax: 16
+    "extraStats": {
+      "attack": 16.8,
+      "attackMax": 60.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_helmet: {
-    id: 'orichalcum_helmet',
-    icon: 'orichalcumHelmet',
-    category: 'combat',
-    slot: 'head',
-    name: 'orichalcum helmet',
-    sellPrice: 750,
-    description: 'Protect your head',
-    isEquippable: true,
-    stats: {
-      healthMax: 19,
-      defense: 18,
-      armor: 40
+  "orichalcum_horned_helmet": {
+    "id": "orichalcum_horned_helmet",
+    "icon": "orichalcumHornedHelmet",
+    "category": "combat",
+    "slot": "head",
+    "name": "orichalcum horned helmet",
+    "sellPrice": 75,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 11.7,
+      "attackMax": 11.7,
+      "accuracy": 11.7
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 2,
-      armor: 7
+    "extraStats": {
+      "attack": 3.5,
+      "attackMax": 3.5,
+      "accuracy": 3.5
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_horned_helmet: {
-    id: 'orichalcum_horned_helmet',
-    icon: 'orichalcumHornedHelmet',
-    category: 'combat',
-    slot: 'head',
-    name: 'orichalcum horned helmet',
-    sellPrice: 750,
-    description: 'Headbut your enemies',
-    isEquippable: true,
-    stats: {
-      healthMax: 8,
-      armor: 10,
-      attack: 10,
-      attackMax: 10,
-      accuracy: 10
+  "orichalcum_helmet": {
+    "id": "orichalcum_helmet",
+    "icon": "orichalcumHelmet",
+    "category": "combat",
+    "slot": "head",
+    "name": "orichalcum helmet",
+    "sellPrice": 75,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
-    extraStats: {
-      healthMax: 2,
-      armor: 2,
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2
+    "extraStats": {
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_chest_plate: {
-    id: 'orichalcum_chest_plate',
-    icon: 'orichalcumChestPlate',
-    category: 'combat',
-    slot: 'chest',
-    name: 'orichalcum chestplate',
-    sellPrice: 700,
-    description: 'Protect your heart',
-    isEquippable: true,
-    stats: {
-      healthMax: 17,
-      defense: 20,
-      armor: 44
+  "orichalcum_chest_plate": {
+    "id": "orichalcum_chest_plate",
+    "icon": "orichalcumChestPlate",
+    "category": "combat",
+    "slot": "chest",
+    "name": "orichalcum chestplate",
+    "sellPrice": 75,
+    "description": "Protect your heart",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 4,
-      armor: 10
+    "extraStats": {
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_plate_legs: {
-    id: 'orichalcum_plate_legs',
-    icon: 'orichalcumPlateLegs',
-    category: 'combat',
-    slot: 'legs',
-    name: 'orichalcum platelegs',
-    sellPrice: 750,
-    description: 'Protect your legs',
-    isEquippable: true,
-    stats: {
-      healthMax: 18,
-      defense: 18,
-      armor: 36
+  "orichalcum_plate_legs": {
+    "id": "orichalcum_plate_legs",
+    "icon": "orichalcumPlateLegs",
+    "category": "combat",
+    "slot": "legs",
+    "name": "orichalcum platelegs",
+    "sellPrice": 75,
+    "description": "Protect your legs",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 11.7,
+      "defense": 11.7,
+      "armor": 56
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 2,
-      armor: 5
+    "extraStats": {
+      "healthMax": 3.5,
+      "defense": 3.5,
+      "armor": 16.8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   },
-
-  orichalcum_shield: {
-    id: 'orichalcum_shield',
-    icon: 'orichalcumShield',
-    category: 'combat',
-    slot: 'offHand',
-    name: 'orichalcum shield',
-    sellPrice: 750,
-    description: 'Provides large defense bonuses',
-    isEquippable: true,
-    stats: {
-      healthMax: 37,
-      defense: 18,
-      armor: 70
+  "orichalcum_shield": {
+    "id": "orichalcum_shield",
+    "icon": "orichalcumShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "orichalcum shield",
+    "sellPrice": 75,
+    "description": "Provides large defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 22,
+      "defense": 34.3,
+      "armor": 112.4
     },
-    extraStats: {
-      healthMax: 6,
-      defense: 4,
-      armor: 13
+    "extraStats": {
+      "healthMax": 6.6,
+      "defense": 10.3,
+      "armor": 33.7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 30
+      level: 75
     }]
   }
 }

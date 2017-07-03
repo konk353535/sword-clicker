@@ -26,6 +26,56 @@ export const PLANTS = {
     }]
   },
 
+  marigold: {
+    produces: 'marigold',
+    name: 'marigold',
+    id: 'marigold',
+    category: 'farming',
+    icon: ITEMS['marigold'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'marigold_seed',
+      icon: ITEMS['marigold_seed'].icon,
+      name: ITEMS['marigold_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 9
+    }]
+  },
+
+  cactus: {
+    produces: 'cactus',
+    name: 'cactus',
+    id: 'cactus',
+    category: 'farming',
+    icon: ITEMS['cactus'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60,
+    xp: 300,
+    required: [{
+      type: 'item',
+      itemId: 'cactus_seed',
+      icon: ITEMS['cactus_seed'].icon,
+      name: ITEMS['cactus_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 6
+    }]
+  },
+
   lemon: {
     produces: 'lemon',
     name: 'lemon',
@@ -101,6 +151,31 @@ export const PLANTS = {
     }]
   },
 
+  pear: {
+    produces: 'pear',
+    name: 'pear',
+    id: 'pear',
+    category: 'farming',
+    icon: ITEMS['pear'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 300,
+    xp: 20,
+    required: [{
+      type: 'item',
+      itemId: 'pear_seed',
+      icon: ITEMS['pear_seed'].icon,
+      name: ITEMS['pear_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 8
+    }]
+  },
+
   pineapple: {
     produces: 'pineapple',
     name: 'pineapple',
@@ -148,6 +223,106 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 15
+    }]
+  },
+
+  orange: {
+    produces: 'orange',
+    name: 'orange',
+    id: 'orange',
+    category: 'farming',
+    icon: ITEMS['orange'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 300,
+    growthTime: 15 * 60,
+    xp: 150,
+    required: [{
+      type: 'item',
+      itemId: 'orange_seed',
+      icon: ITEMS['orange_seed'].icon,
+      name: ITEMS['orange_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 30
+    }]
+  },
+
+  sweet_potato: {
+    produces: 'sweet_potato',
+    name: 'sweet_potato',
+    id: 'sweet_potato',
+    category: 'farming',
+    icon: ITEMS['sweet_potato'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 10 * 60,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'sweet_potato_seed',
+      icon: ITEMS['sweet_potato_seed'].icon,
+      name: ITEMS['sweet_potato_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 35
+    }]
+  },
+
+  banana: {
+    produces: 'banana',
+    name: 'banana',
+    id: 'banana',
+    category: 'farming',
+    icon: ITEMS['banana'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 10 * 60,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'banana_seed',
+      icon: ITEMS['banana_seed'].icon,
+      name: ITEMS['banana_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 40
+    }]
+  },
+
+  rockmelon: {
+    produces: 'rockmelon',
+    name: 'rockmelon',
+    id: 'rockmelon',
+    category: 'farming',
+    icon: ITEMS['rockmelon'].icon,
+    waterStorage: 100,
+    initialWater: 50,
+    requiredWater: 200,
+    growthTime: 17 * 60,
+    xp: 150,
+    required: [{
+      type: 'item',
+      itemId: 'rockmelon_seed',
+      icon: ITEMS['rockmelon_seed'].icon,
+      name: ITEMS['rockmelon_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 50
     }]
   },
 
@@ -321,7 +496,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 200,
+    xp: 300,
     required: [{
       type: 'item',
       itemId: 'pine_seed',
@@ -347,7 +522,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 400,
+    xp: 600,
     required: [{
       type: 'item',
       itemId: 'beech_seed',
@@ -373,7 +548,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 800,
+    xp: 1200,
     required: [{
       type: 'item',
       itemId: 'ash_seed',
@@ -399,7 +574,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1200,
+    xp: 1600,
     required: [{
       type: 'item',
       itemId: 'oak_seed',
@@ -411,6 +586,188 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 15
+    }]
+  },
+
+  maple_log: {
+    produces: 'maple_log',
+    name: 'maple tree',
+    produceAmount: 20,
+    id: 'maple_log',
+    category: 'farming',
+    icon: 'mapleTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 2000,
+    required: [{
+      type: 'item',
+      itemId: 'maple_seed',
+      icon: ITEMS['maple_seed'].icon,
+      name: ITEMS['maple_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 20
+    }]
+  },
+
+  walnut_log: {
+    produces: 'walnut_log',
+    name: 'walnut tree',
+    produceAmount: 20,
+    id: 'walnut_log',
+    category: 'farming',
+    icon: 'walnutTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 2200,
+    required: [{
+      type: 'item',
+      itemId: 'walnut_seed',
+      icon: ITEMS['walnut_seed'].icon,
+      name: ITEMS['walnut_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 25
+    }]
+  },
+
+  cherry_log: {
+    produces: 'cherry_log',
+    name: 'cherry tree',
+    produceAmount: 20,
+    id: 'cherry_log',
+    category: 'farming',
+    icon: 'cherryTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 2600,
+    required: [{
+      type: 'item',
+      itemId: 'cherry_seed',
+      icon: ITEMS['cherry_seed'].icon,
+      name: ITEMS['cherry_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 30
+    }]
+  },
+
+  mahogany_log: {
+    produces: 'mahogany_log',
+    name: 'mahogany tree',
+    produceAmount: 20,
+    id: 'mahogany_log',
+    category: 'farming',
+    icon: 'mahoganyTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 3000,
+    required: [{
+      type: 'item',
+      itemId: 'mahogany_seed',
+      icon: ITEMS['mahogany_seed'].icon,
+      name: ITEMS['mahogany_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 35
+    }]
+  },
+
+  elk_log: {
+    produces: 'elk_log',
+    name: 'elk tree',
+    produceAmount: 20,
+    id: 'elk_log',
+    category: 'farming',
+    icon: 'elkTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 3200,
+    required: [{
+      type: 'item',
+      itemId: 'elk_seed',
+      icon: ITEMS['elk_seed'].icon,
+      name: ITEMS['elk_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 40
+    }]
+  },
+
+  black_log: {
+    produces: 'black_log',
+    name: 'black tree',
+    produceAmount: 20,
+    id: 'black_log',
+    category: 'farming',
+    icon: 'blackTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 3600,
+    required: [{
+      type: 'item',
+      itemId: 'black_seed',
+      icon: ITEMS['black_seed'].icon,
+      name: ITEMS['black_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 45
+    }]
+  },
+
+  blue_gum_log: {
+    produces: 'blue_gum_log',
+    name: 'blue_gum tree',
+    produceAmount: 20,
+    id: 'blue_gum_log',
+    category: 'farming',
+    icon: 'blueGumTree',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 4000,
+    required: [{
+      type: 'item',
+      itemId: 'blue_gum_seed',
+      icon: ITEMS['blue_gum_seed'].icon,
+      name: ITEMS['blue_gum_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 50
     }]
   },
 
@@ -536,6 +893,31 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 15
+    }]
+  },
+
+  garlic: {
+    produces: 'garlic',
+    name: 'garlic',
+    id: 'garlic',
+    category: 'farming',
+    icon: ITEMS['garlic'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 300,
+    growthTime: 60 * 60 * 1,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'garlic_seed',
+      icon: ITEMS['garlic_seed'].icon,
+      name: ITEMS['garlic_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 35
     }]
   },
 

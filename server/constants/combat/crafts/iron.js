@@ -10,19 +10,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 60,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -35,7 +35,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -48,19 +48,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 180, // 60
     xp: 120,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -73,7 +73,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -86,19 +86,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 120,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -111,7 +111,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -124,19 +124,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 120,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -149,7 +149,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -162,19 +162,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -187,7 +187,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -200,19 +200,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -225,7 +225,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -238,19 +238,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -263,7 +263,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -276,19 +276,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -301,7 +301,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   },
 
@@ -314,19 +314,19 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'copper_furnace',
-      icon: ITEMS['copper_furnace'].icon,
-      name: ITEMS['copper_furnace'].name,
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'beech_log',
-      icon: ITEMS['beech_log'].icon,
-      name: ITEMS['beech_log'].name,
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -339,7 +339,7 @@ export const IRON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 15
     }]
   }
 }

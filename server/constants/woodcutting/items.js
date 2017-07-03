@@ -28,7 +28,47 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from copper. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 3,
+      attack: 5,
+      attackSpeed: 1,
+      accuracy: 1
+    },
+    extraStats: {
+      accuracy: 50,
+      attackSpeed: 1
+    }
+  },
+
+  tin_axe: {
+    id: 'tin_axe',
+    icon: 'tinAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'tin axe',
+    sellPrice: 50,
+    description: 'An axe forged from tin. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 10,
+      attackSpeed: 1,
+      accuracy: 1
+    },
+    extraStats: {
+      accuracy: 50,
+      attackSpeed: 1
+    }
+  },
+
+  bronze_axe: {
+    id: 'bronze_axe',
+    icon: 'bronzeAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'bronze axe',
+    sellPrice: 50,
+    description: 'An axe forged from bronze. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 15,
       attackSpeed: 1,
       accuracy: 1
     },
@@ -48,7 +88,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from iron. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 6,
+      attack: 20,
       attackSpeed: 1,
       accuracy: 25
     },
@@ -58,22 +98,42 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
-  steel_axe: {
-    id: 'steel_axe',
-    icon: 'steelAxe',
+  silver_axe: {
+    id: 'silver_axe',
+    icon: 'silverAxe',
     category: 'woodcutting',
     slot: 'axe',
-    name: 'steel axe',
-    sellPrice: 200,
-    description: 'An axe forged from steel. Used for woodcutting',
+    name: 'silver axe',
+    sellPrice: 100,
+    description: 'An axe forged from silver. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 9,
+      attack: 25,
       attackSpeed: 1,
-      accuracy: 50
+      accuracy: 25
     },
     extraStats: {
-      accuracy: 75,
+      accuracy: 50,
+      attackSpeed: 1
+    }
+  },
+
+  gold_axe: {
+    id: 'gold_axe',
+    icon: 'goldAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'gold axe',
+    sellPrice: 100,
+    description: 'An axe forged from gold. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 30,
+      attackSpeed: 1,
+      accuracy: 25
+    },
+    extraStats: {
+      accuracy: 50,
       attackSpeed: 1
     }
   },
@@ -88,12 +148,132 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 12,
+      attack: 35,
       attackSpeed: 1,
       accuracy: 1
     },
     extraStats: {
       accuracy: 24,
+      attackSpeed: 1
+    }
+  },
+
+  steel_axe: {
+    id: 'steel_axe',
+    icon: 'steelAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'steel axe',
+    sellPrice: 200,
+    description: 'An axe forged from steel. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 40,
+      attackSpeed: 1,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  platinum_axe: {
+    id: 'platinum_axe',
+    icon: 'platinumAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'platinum axe',
+    sellPrice: 200,
+    description: 'An axe forged from platinum. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 45,
+      attackSpeed: 1,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  titanium_axe: {
+    id: 'titanium_axe',
+    icon: 'titaniumAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'titanium axe',
+    sellPrice: 200,
+    description: 'An axe forged from titanium. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 50,
+      attackSpeed: 1,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  tungsten_axe: {
+    id: 'tungsten_axe',
+    icon: 'tungstenAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'tungsten axe',
+    sellPrice: 200,
+    description: 'An axe forged from tungsten. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 55,
+      attackSpeed: 1,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  obsidian_axe: {
+    id: 'obsidian_axe',
+    icon: 'obsidianAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'obsidian axe',
+    sellPrice: 200,
+    description: 'An axe forged from obsidian. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 60,
+      attackSpeed: 1,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  cobalt_axe: {
+    id: 'cobalt_axe',
+    icon: 'cobaltAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'cobalt axe',
+    sellPrice: 1500,
+    description: 'An axe forged from cobalt. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 65,
+      attackSpeed: 2,
+      accuracy: 25
+    },
+    extraStats: {
+      accuracy: 50,
       attackSpeed: 1
     }
   },
@@ -108,7 +288,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from mithril. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 15,
+      attack: 70,
       attackSpeed: 1,
       accuracy: 25
     },
@@ -128,7 +308,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from adamantium. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 18,
+      attack: 75,
       attackSpeed: 2,
       accuracy: 50
     },
@@ -148,7 +328,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from orichalcum. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 21,
+      attack: 80,
       attackSpeed: 2,
       accuracy: 75
     },
@@ -158,22 +338,22 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
-  cobalt_axe: {
-    id: 'cobalt_axe',
-    icon: 'cobaltAxe',
+  meteorite_axe: {
+    id: 'meteorite_axe',
+    icon: 'meteoriteAxe',
     category: 'woodcutting',
     slot: 'axe',
-    name: 'cobalt axe',
-    sellPrice: 1500,
-    description: 'An axe forged from cobalt. Used for woodcutting',
+    name: 'meteorite axe',
+    sellPrice: 1000,
+    description: 'An axe forged from meteorite. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 24,
+      attack: 85,
       attackSpeed: 2,
-      accuracy: 25
+      accuracy: 75
     },
     extraStats: {
-      accuracy: 50,
+      accuracy: 75,
       attackSpeed: 1
     }
   },
@@ -188,7 +368,27 @@ export const WOODCUTTING_ITEMS = {
     description: 'An axe forged from fairy steel. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 27,
+      attack: 90,
+      attackSpeed: 2,
+      accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  elven_steel_axe: {
+    id: 'elven_steel_axe',
+    icon: 'elvenSteelAxe',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'elven steel axe',
+    sellPrice: 2000,
+    description: 'An axe forged from elven steel. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 95,
       attackSpeed: 2,
       accuracy: 50
     },
@@ -208,7 +408,7 @@ export const WOODCUTTING_ITEMS = {
     description: 'A cursed axe. Used for woodcutting',
     isAxe: true,
     stats: {
-      attack: 30,
+      attack: 100,
       attackSpeed: 2,
       accuracy: 50
     },
@@ -239,7 +439,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ashLog',
     category: 'woodcutting',
     name: 'ash log',
-    sellPrice: 8
+    sellPrice: 7
   },
 
   oak_log: {
@@ -247,7 +447,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'oakLog',
     category: 'woodcutting',
     name: 'oak log',
-    sellPrice: 13
+    sellPrice: 11
   },
 
   maple_log: {
@@ -255,7 +455,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'mapleLog',
     category: 'woodcutting',
     name: 'maple log',
-    sellPrice: 20
+    sellPrice: 17
   },
 
   walnut_log: {
@@ -290,12 +490,100 @@ export const WOODCUTTING_ITEMS = {
     sellPrice: 60
   },
 
+  black_log: {
+    id: 'black_log',
+    icon: 'blackLog',
+    category: 'woodcutting',
+    name: 'black log',
+    sellPrice: 70
+  },
+
+  blue_gum_log: {
+    id: 'blue_gum_log',
+    icon: 'blueGumLog',
+    category: 'woodcutting',
+    name: 'blue gum log',
+    sellPrice: 80
+  },
+
+  cedar_log: {
+    id: 'cedar_log',
+    icon: 'cedarLog',
+    category: 'woodcutting',
+    name: 'cedar log',
+    sellPrice: 90
+  },
+
+  denya_log: {
+    id: 'denya_log',
+    icon: 'denyaLog',
+    category: 'woodcutting',
+    name: 'denya log',
+    sellPrice: 100
+  },
+
+  gombe_log: {
+    id: 'gombe_log',
+    icon: 'gombeLog',
+    category: 'woodcutting',
+    name: 'gombe log',
+    sellPrice: 110
+  },
+
+  hickory_log: {
+    id: 'hickory_log',
+    icon: 'hickoryLog',
+    category: 'woodcutting',
+    name: 'hickory log',
+    sellPrice: 120
+  },
+
+  larch_log: {
+    id: 'larch_log',
+    icon: 'larchLog',
+    category: 'woodcutting',
+    name: 'larch log',
+    sellPrice: 130
+  },
+
+  poplar_log: {
+    id: 'poplar_log',
+    icon: 'poplarLog',
+    category: 'woodcutting',
+    name: 'poplar log',
+    sellPrice: 140
+  },
+
+  tali_log: {
+    id: 'tali_log',
+    icon: 'taliLog',
+    category: 'woodcutting',
+    name: 'tali log',
+    sellPrice: 150
+  },
+
+  willow_log: {
+    id: 'willow_log',
+    icon: 'willowLog',
+    category: 'woodcutting',
+    name: 'willow log',
+    sellPrice: 160
+  },
+
+  teak_log: {
+    id: 'teak_log',
+    icon: 'teakLog',
+    category: 'woodcutting',
+    name: 'teak log',
+    sellPrice: 170
+  },
+
   fiery_log: {
     id: 'fiery_log',
     icon: 'fieryLog',
     category: 'woodcutting',
     name: 'fiery log',
-    sellPrice: 70
+    sellPrice: 180
   },
 
   magic_log: {
@@ -303,6 +591,6 @@ export const WOODCUTTING_ITEMS = {
     icon: 'magicLog',
     category: 'woodcutting',
     name: 'magic log',
-    sellPrice: 80
+    sellPrice: 190
   }
 }

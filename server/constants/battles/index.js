@@ -20,6 +20,12 @@ export const BATTLES = {
         attack: 0
       },
 
+      'wand': {
+        health: 1.0,
+        defense: 0,
+        attack: 0
+      },
+
       'longSword': {
         attack: 0.5,
         health: 0.5,
@@ -58,9 +64,22 @@ export const BATTLES = {
     const dmgReduction = this.dmgReduction(armor);
     const magicDmgReduction = this.dmgReduction(magicArmor);
 
+    let xpMultiplier = 1;
+    if (health > 5000) {
+      xpMultiplier = 0.75;
+    } else if (health > 2500) {
+      xpMultiplier = 0.8;
+    } else if (health > 1250) {
+      xpMultiplier = 0.85;
+    } else if (health > 625) {
+      xpMultiplier = 0.90;
+    } else if (health > 312) {
+      xpMultiplier = 0.95;
+    }
+
     const effectiveDefense = health * (1 + ((dmgReduction + magicDmgReduction) / 1.5)) * (1 + (defense / 50));
     const effectiveOffense = ((attack + attackMax) / 2) * (1 + attackSpeed) * (1 + (accuracy / 50));
-    return Math.round((effectiveOffense * 1.25) + (effectiveDefense * 0.75) * (1 + (buffs.length / 2)));
+    return xpMultiplier * Math.round((effectiveOffense * 1.25) + (effectiveDefense * 0.75) * (1 + (buffs.length / 2)));
   },
 
   dmgReduction(armor) {

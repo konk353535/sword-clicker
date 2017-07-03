@@ -1,344 +1,323 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
-
 export const ADAMANTIUM_ITEMS = {
-  adamantium_dagger: {
-    id: 'adamantium_dagger',
-    icon: 'adamantiumDagger',
-    category: 'combat',
-    weaponType: 'dagger',
-    slot: 'mainHand',
-    name: 'adamantium dagger',
-    sellPrice: 500,
-    description: 'An okay dagger.',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 5,
-      attackMax: 16,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 24
-    },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 6
+  "adamantium_dagger": {
+    "id": "adamantium_dagger",
+    "icon": "adamantiumDagger",
+    "category": "combat",
+    "weaponType": "dagger",
+    "slot": "mainHand",
+    "name": "adamantium dagger",
+    "sellPrice": 50,
+    "description": "A poorly made dagger.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 10.7,
+      "attackMax": 20.2,
+      "attackSpeed": 1,
+      "accuracy": 46.5
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_spear: {
-    id: 'adamantium_spear',
-    icon: 'adamantiumSpear',
-    category: 'combat',
-    weaponType: 'spear',
-    slot: 'mainHand',
-    name: 'adamantium spear',
-    sellPrice: 750,
-    description: 'Often used for defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 15,
-      attackMax: 24,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 22,
-      defense: 24
+  "adamantium_spear": {
+    "id": "adamantium_spear",
+    "icon": "adamantiumSpear",
+    "category": "combat",
+    "weaponType": "spear",
+    "slot": "mainHand",
+    "name": "adamantium spear",
+    "sellPrice": 75,
+    "description": "Used to train defense.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 41,
+      "attackMax": 51.4,
+      "attackSpeed": 0.5,
+      "accuracy": 51.4,
+      "defense": 20.2
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2,
-      defense: 4
+    "extraStats": {
+      "attack": 12.3,
+      "attackMax": 15.4,
+      "accuracy": 15.4,
+      "defense": 6.1
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_short_sword: {
-    id: 'adamantium_short_sword',
-    icon: 'adamantiumShortSword',
-    category: 'combat',
-    weaponType: 'shortSword',
-    slot: 'mainHand',
-    name: 'adamantium short sword',
-    sellPrice: 750,
-    description: 'A good balance between offense and defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 17,
-      attackMax: 27,
-      attackSpeed: FAST_SPEED,
-      accuracy: 36,
+  "adamantium_short_sword": {
+    "id": "adamantium_short_sword",
+    "icon": "adamantiumShortSword",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "adamantium short sword",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 41,
+      "attackMax": 61.3,
+      "attackSpeed": 0.7,
+      "accuracy": 61.3
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 3
+    "extraStats": {
+      "attack": 12.3,
+      "attackMax": 18.4,
+      "accuracy": 18.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_scimitar: {
-    id: 'adamantium_scimitar',
-    icon: 'adamantiumScimitar',
-    category: 'combat',
-    weaponType: 'shortSword',
-    slot: 'mainHand',
-    name: 'adamantium scimitar',
-    sellPrice: 1000,
-    description: 'A good balance between offense and defense',
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 20,
-      attackMax: 30,
-      attackSpeed: FAST_SPEED,
-      accuracy: 40,
+  "adamantium_scimitar": {
+    "id": "adamantium_scimitar",
+    "icon": "adamantiumScimitar",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "adamantium scimitar",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 45.4,
+      "attackMax": 71.8,
+      "attackSpeed": 0.7,
+      "accuracy": 61.3
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 3
+    "extraStats": {
+      "attack": 13.6,
+      "attackMax": 21.5,
+      "accuracy": 18.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 75
     }]
   },
-
-  adamantium_broad_sword: {
-    id: 'adamantium_broad_sword',
-    icon: 'adamantiumBroadSword',
-    category: 'combat',
-    weaponType: 'longSword',
-    slot: 'mainHand',
-    name: 'adamantium broad sword',
-    sellPrice: 1000,
-    description: 'A pure offensive weapon',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 32,
-      attackMax: 44,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 50,
+  "adamantium_long_sword": {
+    "id": "adamantium_long_sword",
+    "icon": "adamantiumLongSword",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "adamantium long sword",
+    "sellPrice": 75,
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 71.8,
+      "attackMax": 123.4,
+      "attackSpeed": 0.5,
+      "accuracy": 82.5
     },
-    extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2
+    "extraStats": {
+      "attack": 21.5,
+      "attackMax": 37,
+      "accuracy": 24.8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_long_sword: {
-    id: 'adamantium_long_sword',
-    icon: 'adamantiumLongSword',
-    category: 'combat',
-    weaponType: 'longSword',
-    slot: 'mainHand',
-    name: 'adamantium long sword',
-    sellPrice: 1000,
-    description: 'A pure offensive weapon',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 27,
-      attackMax: 37,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 43,
+  "adamantium_broad_sword": {
+    "id": "adamantium_broad_sword",
+    "icon": "adamantiumBroadSword",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "adamantium broad sword",
+    "sellPrice": 75,
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 103.1,
+      "attackMax": 144.1,
+      "attackSpeed": 0.5,
+      "accuracy": 82.5
     },
-    extraStats: {
-      attack: 3,
-      attackMax: 4,
-      accuracy: 4
+    "extraStats": {
+      "attack": 30.9,
+      "attackMax": 43.2,
+      "accuracy": 24.8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 75
     }]
   },
-
-  adamantium_battle_axe: {
-    id: 'adamantium_battle_axe',
-    icon: 'adamantiumBattleAxe',
-    category: 'combat',
-    weaponType: 'battleAxe',
-    slot: 'mainHand',
-    name: 'adamantium battle axe',
-    sellPrice: 750,
-    description: 'A slow pure offensive weapon.',
-    isTwoHanded: true,
-    isWeapon: true,
-    isEquippable: true,
-    stats: {
-      attack: 26,
-      attackMax: 80,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 33,
+  "adamantium_battle_axe": {
+    "id": "adamantium_battle_axe",
+    "icon": "adamantiumBattleAxe",
+    "category": "combat",
+    "weaponType": "battleAxe",
+    "slot": "mainHand",
+    "name": "adamantium battle axe",
+    "sellPrice": 75,
+    "description": "A slow pure offensive weapon.",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 51.4,
+      "attackMax": 184.7,
+      "attackSpeed": 0.3,
+      "accuracy": 82.5
     },
-    extraStats: {
-      attack: 3,
-      attackMax: 14
+    "extraStats": {
+      "attack": 15.4,
+      "attackMax": 55.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_helmet: {
-    id: 'adamantium_helmet',
-    icon: 'adamantiumHelmet',
-    category: 'combat',
-    slot: 'head',
-    name: 'adamantium helmet',
-    sellPrice: 500,
-    description: 'Protect your head',
-    isEquippable: true,
-    stats: {
-      healthMax: 18,
-      defense: 17,
-      armor: 37
+  "adamantium_horned_helmet": {
+    "id": "adamantium_horned_helmet",
+    "icon": "adamantiumHornedHelmet",
+    "category": "combat",
+    "slot": "head",
+    "name": "adamantium horned helmet",
+    "sellPrice": 75,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 10.7,
+      "attackMax": 10.7,
+      "accuracy": 10.7
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 2,
-      armor: 6
+    "extraStats": {
+      "attack": 3.2,
+      "attackMax": 3.2,
+      "accuracy": 3.2
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_horned_helmet: {
-    id: 'adamantium_horned_helmet',
-    icon: 'adamantiumHornedHelmet',
-    category: 'combat',
-    slot: 'head',
-    name: 'adamantium horned helmet',
-    sellPrice: 500,
-    description: 'Headbut your enemies',
-    isEquippable: true,
-    stats: {
-      healthMax: 7,
-      armor: 9,
-      attack: 9,
-      attackMax: 9,
-      accuracy: 9
+  "adamantium_helmet": {
+    "id": "adamantium_helmet",
+    "icon": "adamantiumHelmet",
+    "category": "combat",
+    "slot": "head",
+    "name": "adamantium helmet",
+    "sellPrice": 75,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.7,
+      "defense": 10.7,
+      "armor": 51.4
     },
-    extraStats: {
-      healthMax: 2,
-      armor: 2,
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2
+    "extraStats": {
+      "healthMax": 3.2,
+      "defense": 3.2,
+      "armor": 15.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_chest_plate: {
-    id: 'adamantium_chest_plate',
-    icon: 'adamantiumChestPlate',
-    category: 'combat',
-    slot: 'chest',
-    name: 'adamantium chestplate',
-    sellPrice: 700,
-    description: 'Protect your heart',
-    isEquippable: true,
-    stats: {
-      healthMax: 16,
-      defense: 19,
-      armor: 41
+  "adamantium_chest_plate": {
+    "id": "adamantium_chest_plate",
+    "icon": "adamantiumChestPlate",
+    "category": "combat",
+    "slot": "chest",
+    "name": "adamantium chestplate",
+    "sellPrice": 75,
+    "description": "Protect your heart",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.7,
+      "defense": 10.7,
+      "armor": 51.4
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 4,
-      armor: 10
+    "extraStats": {
+      "healthMax": 3.2,
+      "defense": 3.2,
+      "armor": 15.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_plate_legs: {
-    id: 'adamantium_plate_legs',
-    icon: 'adamantiumPlateLegs',
-    category: 'combat',
-    slot: 'legs',
-    name: 'adamantium platelegs',
-    sellPrice: 500,
-    description: 'Protect your legs',
-    isEquippable: true,
-    stats: {
-      healthMax: 17,
-      defense: 17,
-      armor: 33
+  "adamantium_plate_legs": {
+    "id": "adamantium_plate_legs",
+    "icon": "adamantiumPlateLegs",
+    "category": "combat",
+    "slot": "legs",
+    "name": "adamantium platelegs",
+    "sellPrice": 75,
+    "description": "Protect your legs",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.7,
+      "defense": 10.7,
+      "armor": 51.4
     },
-    extraStats: {
-      healthMax: 2,
-      defense: 2,
-      armor: 4
+    "extraStats": {
+      "healthMax": 3.2,
+      "defense": 3.2,
+      "armor": 15.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   },
-
-  adamantium_shield: {
-    id: 'adamantium_shield',
-    icon: 'adamantiumShield',
-    category: 'combat',
-    slot: 'offHand',
-    name: 'adamantium shield',
-    sellPrice: 500,
-    description: 'Provides large defense bonuses',
-    isEquippable: true,
-    stats: {
-      healthMax: 33,
-      defense: 16,
-      armor: 60
+  "adamantium_shield": {
+    "id": "adamantium_shield",
+    "icon": "adamantiumShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "adamantium shield",
+    "sellPrice": 75,
+    "description": "Provides large defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 20.2,
+      "defense": 31.5,
+      "armor": 103.1
     },
-    extraStats: {
-      healthMax: 6,
-      defense: 4,
-      armor: 11
+    "extraStats": {
+      "healthMax": 6.1,
+      "defense": 9.5,
+      "armor": 30.9
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 25
+      level: 70
     }]
   }
 }

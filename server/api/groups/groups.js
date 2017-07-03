@@ -94,7 +94,9 @@ Meteor.methods({
   'groups.findGroup'(floor) {
     // Is there one other user looking for this floor?
     // Can specify floor later when there is more users
-    const existingGroup = GroupFinder.findOne({});
+    const existingGroup = GroupFinder.findOne({
+      floor
+    });
 
     // Existing Group
     if (existingGroup) {
@@ -149,6 +151,79 @@ Meteor.methods({
     }
   },
 
+  'groups.ready'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    if (currentGroup.membersChecks[Meteor.userId()]) {
+      currentGroup.membersChecks[Meteor.userId()].ready = true;
+    }
+
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: currentGroup.membersChecks
+      }
+    });
+  },
+
+  'groups.notReady'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    if (currentGroup.membersChecks[Meteor.userId()]) {
+      currentGroup.membersChecks[Meteor.userId()].notReady = true;
+    }
+
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: currentGroup.membersChecks
+      }
+    });
+  },
+
+  'groups.readyCheck'() {
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    // Must be leader to ready check users
+    if (currentGroup && currentGroup.leader !== this.userId) {
+      return;
+    }
+
+    // Members Object
+    const membersObject = {};
+
+    currentGroup.members.forEach((memberId) => {
+      membersObject[memberId] = {
+        notReady: false,
+        ready: false
+      };
+    })
+
+    // Set ready checks
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        membersChecks: membersObject,
+        lastReadyCheck: new Date()
+      }
+    });
+  },
+
   'groups.stopFindingGroup'() {
     // Remove all records for this user
     GroupFinder.remove({
@@ -194,6 +269,11 @@ Meteor.methods({
 
   // Invite the user to your current group or create a group if not in one
   'groups.invite'(username) {
+    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
+      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+    }
+
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{

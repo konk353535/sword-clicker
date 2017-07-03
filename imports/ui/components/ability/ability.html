@@ -12,7 +12,7 @@
     </div>
     {{#if $gt ability.currentCooldown 0}}
       <span class="cooldown-text">
-        {{> formatNumber ability.currentCooldown}}
+        {{> formatNumber number=ability.currentCooldown decimal=0}}
       </span>
     {{/if}}
   </div>

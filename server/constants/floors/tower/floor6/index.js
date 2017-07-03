@@ -17,6 +17,11 @@ export const TOWER_FLOOR_6 = {
     name: 'Farmers Market',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'gold_hammer', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }
@@ -47,12 +52,12 @@ export const TOWER_FLOOR_6 = {
     }]))
   },
   4: {
-    name: 'Place of adamantium',
-    enemies: ['adamantium_spirit'],
+    name: 'Place of gold',
+    enemies: ['gold_spirit'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+        { type: 'item', itemId: 'gold_essence', amount: 1 }
       ]
     }]))
   },
@@ -62,7 +67,8 @@ export const TOWER_FLOOR_6 = {
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'angels_touch_tome', amount: 1 }
+        { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
+        { type: 'item', itemId: 'gold_wand', amount: 1 }
       ]
     }]))
   },
@@ -72,19 +78,19 @@ export const TOWER_FLOOR_6 = {
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_adamantium', amount: 1 },
+        { type: 'item', itemId: 'ore_gold', amount: 1 },
         { type: 'item', itemId: 'walnut_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'adamantium_bar', amount: 1 }
+        { type: 'item', itemId: 'gold_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'gold_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'gold_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -97,11 +103,16 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'dwarven_staff', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'gold_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'adamantium_scimitar', amount: 1 },
-        { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'adamantium_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'gold_scimitar', amount: 1 },
+        { type: 'item', itemId: 'gold_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'gold_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -114,11 +125,19 @@ export const TOWER_FLOOR_6 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'orichalcum_dwarven_idol',
-      icon: ITEMS['orichalcum_dwarven_idol'].icon,
-      name: ITEMS['orichalcum_dwarven_idol'].name,
-      baseStats: ITEMS['orichalcum_dwarven_idol'].stats,
-      extraStats: ITEMS['orichalcum_dwarven_idol'].extraStats
+      itemId: 'carbon_dwarven_idol',
+      icon: ITEMS['carbon_dwarven_idol'].icon,
+      name: ITEMS['carbon_dwarven_idol'].name,
+      baseStats: ITEMS['carbon_dwarven_idol'].stats,
+      extraStats: ITEMS['carbon_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

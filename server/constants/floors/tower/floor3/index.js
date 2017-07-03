@@ -28,7 +28,12 @@ export const TOWER_FLOOR_3 = {
   4: {
     name: 'Shallow Shore',
     enemies: ['crab'],
-    rewards: LEVEL_THREE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_kite_shield', amount: 1 }
+      ]
+    }]))
   },
   5: {
     name: 'Abandoned Dojo',
@@ -47,19 +52,24 @@ export const TOWER_FLOOR_3 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_coal', amount: 1 },
-        { type: 'item', itemId: 'ore_steel', amount: 1 },
+        { type: 'item', itemId: 'ore_bronze', amount: 1 },
         { type: 'item', itemId: 'ash_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'steel_bar', amount: 1 }
+        { type: 'item', itemId: 'bronze_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'bronze_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'bronze_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'lightning_dart_tome', amount: 1 }
       ]
     }]))
   },
@@ -74,9 +84,9 @@ export const TOWER_FLOOR_3 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'steel_scimitar', amount: 1 },
-        { type: 'item', itemId: 'steel_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'steel_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'bronze_scimitar', amount: 1 },
+        { type: 'item', itemId: 'bronze_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'bronze_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -89,11 +99,19 @@ export const TOWER_FLOOR_3 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'carbon_dwarven_idol',
-      icon: ITEMS['carbon_dwarven_idol'].icon,
-      name: ITEMS['carbon_dwarven_idol'].name,
-      baseStats: ITEMS['carbon_dwarven_idol'].stats,
-      extraStats: ITEMS['carbon_dwarven_idol'].extraStats
+      itemId: 'iron_dwarven_idol',
+      icon: ITEMS['iron_dwarven_idol'].icon,
+      name: ITEMS['iron_dwarven_idol'].name,
+      baseStats: ITEMS['iron_dwarven_idol'].stats,
+      extraStats: ITEMS['iron_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

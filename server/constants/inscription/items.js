@@ -98,6 +98,115 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription for marking pages'
   },
 
+  pigment_green_140: {
+    id: 'pigment_green_140',
+    icon: 'pigmentGreen140',
+    category: 'pigment',
+    name: 'pigment green 140',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  catnip: { // Green 140
+    id: 'catnip',
+    icon: 'catnip',
+    category: 'herb',
+    name: 'catnip',
+    sellPrice: 1250,
+    description: 'Used to make a green pigment.'
+  },
+
+  pigment_purple_150: {
+    id: 'pigment_purple_150',
+    icon: 'pigmentPurple150',
+    category: 'pigment',
+    name: 'pigment purple 150',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  chives: { // Purple 150
+    id: 'chives',
+    icon: 'chives',
+    category: 'herb',
+    name: 'chives',
+    sellPrice: 1250,
+    description: 'Used to make a purple pigment.'
+  },
+
+  pigment_white_190: {
+    id: 'pigment_white_190',
+    icon: 'pigmentWhite190',
+    category: 'pigment',
+    name: 'pigment white 190',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  garlic: { // White 190
+    id: 'garlic',
+    icon: 'garlic',
+    category: 'herb',
+    name: 'garlic',
+    sellPrice: 1250,
+    description: 'Used to make a white pigment.'
+  },
+
+  pigment_yellow_200: {
+    id: 'pigment_yellow_200',
+    icon: 'pigmentYellow200',
+    category: 'pigment',
+    name: 'pigment yellow 200',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  lemon_grass: { // Yellow 200
+    id: 'lemon_grass',
+    icon: 'lemonGrass',
+    category: 'herb',
+    name: 'lemon grass',
+    sellPrice: 1250,
+    description: 'Used to make a yellow pigment.'
+  },
+
+
+  pigment_red_100: {
+    id: 'pigment_red_100',
+    icon: 'pigmentRed100',
+    category: 'pigment',
+    name: 'pigment red 100',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  nasturtium: { // Red 100
+    id: 'nasturtium',
+    icon: 'nasturtium',
+    category: 'herb',
+    name: 'nasturtium',
+    sellPrice: 1250,
+    description: 'Used to make a red pigment.'
+  },
+
+  pigment_green_110: {
+    id: 'pigment_green_110',
+    icon: 'pigmentGreen110',
+    category: 'pigment',
+    name: 'pigment green 110',
+    sellPrice: 2000,
+    description: 'Used in inscription for marking pages'
+  },
+
+  sorrell: { // Green 110
+    id: 'sorrell',
+    icon: 'sorrell',
+    category: 'herb',
+    name: 'sorrell',
+    sellPrice: 1250,
+    description: 'Used to make a red pigment.'
+  },
+
   lavender: {
     id: 'lavender',
     icon: 'lavender',
@@ -179,6 +288,42 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  elk_paper: {
+    id: 'elk_paper',
+    icon: 'elkPaper',
+    category: 'paper',
+    name: 'elk paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  gombe_paper: {
+    id: 'gombe_paper',
+    icon: 'gombePaper',
+    category: 'paper',
+    name: 'gombe paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  denya_paper: {
+    id: 'denya_paper',
+    icon: 'denyaPaper',
+    category: 'paper',
+    name: 'denya paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  blue_gum_paper: {
+    id: 'blue_gum_paper',
+    icon: 'blueGumPaper',
+    category: 'paper',
+    name: 'blue_gum paper',
+    sellPrice: 450,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
   frost_armor_1_tome: {
     id: 'frost_armor_1_tome',
     icon: 'tomeUncommon',
@@ -190,6 +335,318 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the frost armor ability.'
+  },
+
+  frost_armor_2_tome: {
+    id: 'frost_armor_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Frost armor Lv 2',
+    teaches: {
+      abilityId: 'frost_armor',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the frost armor ability.'
+  },
+
+  frost_armor_3_tome: {
+    id: 'frost_armor_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Frost armor Lv 3',
+    teaches: {
+      abilityId: 'frost_armor',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the frost armor ability.'
+  },
+
+  water_wave_tome: {
+    id: 'water_wave_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Water wave',
+    teaches: {
+      abilityId: 'water_wave',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the water wave ability.'
+  },
+
+  mending_spring_tome: {
+    id: 'mending_spring_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Mending spring',
+    teaches: {
+      abilityId: 'mending_spring',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the mending spring ability.'
+  },
+
+  affliction_tome: {
+    id: 'affliction_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Affliction',
+    teaches: {
+      abilityId: 'affliction',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the affliction ability.'
+  },
+
+  wisdom_tome: {
+    id: 'wisdom_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'wisdom',
+    teaches: {
+      abilityId: 'magic_wisdom',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the magic wisdom ability.'
+  },
+
+  poison_dart_tome: {
+    id: 'poison_dart_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'poison dart tome',
+    teaches: {
+      abilityId: 'poison_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the poison dart ability.'
+  },
+
+  lightning_dart_tome: {
+    id: 'lightning_dart_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'lightning dart tome',
+    teaches: {
+      abilityId: 'lightning_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the lightning dart ability.'
+  },
+
+  lightning_storm_tome: {
+    id: 'lightning_storm_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'lightning storm tome',
+    teaches: {
+      abilityId: 'lightning_storm',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the lightning storm ability.'
+  },
+
+  blizzard_tome: {
+    id: 'blizzard_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'blizzard tome',
+    teaches: {
+      abilityId: 'blizzard',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the blizzard ability.'
+  },
+
+  health_up_1_tome: {
+    id: 'health_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'health up tome lv 1',
+    teaches: {
+      abilityId: 'health_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the health up ability.'
+  },
+
+  health_up_2_tome: {
+    id: 'health_up_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'health up tome lv 2',
+    teaches: {
+      abilityId: 'health_up',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the health up ability.'
+  },
+
+  health_up_3_tome: {
+    id: 'health_up_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'health up tome lv 3',
+    teaches: {
+      abilityId: 'health_up',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the health up ability.'
+  },
+
+  attack_up_1_tome: {
+    id: 'attack_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'damage up tome lv 1',
+    teaches: {
+      abilityId: 'attack_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the attack up ability.'
+  },
+
+  attack_up_2_tome: {
+    id: 'attack_up_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'damage up tome lv 2',
+    teaches: {
+      abilityId: 'attack_up',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the attack up ability.'
+  },
+
+  attack_up_3_tome: {
+    id: 'attack_up_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'damage up tome lv 3',
+    teaches: {
+      abilityId: 'attack_up',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the attack up ability.'
+  },
+
+  accuracy_up_1_tome: {
+    id: 'accuracy_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'accuracy up tome lv 1',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the accuracy up ability.'
+  },
+
+  accuracy_up_2_tome: {
+    id: 'accuracy_up_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'accuracy up tome lv 2',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the accuracy up ability.'
+  },
+
+  accuracy_up_3_tome: {
+    id: 'accuracy_up_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'accuracy up tome lv 3',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the accuracy up ability.'
+  },
+
+  defense_up_1_tome: {
+    id: 'defense_up_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'defense up tome lv 1',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the defense up ability.'
+  },
+
+  defense_up_2_tome: {
+    id: 'defense_up_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'defense up tome lv 2',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the defense up ability.'
+  },
+
+  defense_up_3_tome: {
+    id: 'defense_up_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'defense up tome lv 3',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the defense up ability.'
+  },
+
+  bleeding_spin_1_tome: {
+    id: 'bleeding_spin_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'bleeding spin tome lv 1',
+    teaches: {
+      abilityId: 'bleeding_spin',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the bleeding spin ability.'
+  },
+
+  double_edged_sword_1_tome: {
+    id: 'double_edged_sword_1_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'double edged sword tome lv 1',
+    teaches: {
+      abilityId: 'double_edged',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the doubled edged sword ability.'
   },
 
   spiked_armor_1_tome: {
@@ -216,6 +673,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the poisoned blade ability.'
+  },
+
+  poisoned_blade_2_tome: {
+    id: 'poisoned_blade_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Poisoned blade Lv 2',
+    teaches: {
+      abilityId: 'poisoned_blade',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the poisoned blade ability.'
+  },
+
+  poisoned_blade_3_tome: {
+    id: 'poisoned_blade_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'Poisoned blade Lv 3',
+    teaches: {
+      abilityId: 'poisoned_blade',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the poisoned blade ability.'
   },
 
   earth_dart_tome: {
@@ -374,6 +857,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the frenzied winds spell.'
   },
 
+  ice_dart_tome: {
+    id: 'ice_dart_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'ice Dart',
+    teaches: {
+      abilityId: 'ice_dart',
+      level: 1
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to learn the ice dart spell.'
+  },
+
   fire_dart_tome: {
     id: 'fire_dart_tome',
     icon: 'tome',
@@ -411,6 +907,84 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the air dart spell.'
+  },
+
+  fire_ball_tome: {
+    id: 'fire_ball_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'fire ball',
+    teaches: {
+      abilityId: 'fire_ball',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the fire ball spell.'
+  },
+
+  water_ball_tome: {
+    id: 'water_ball_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'water ball',
+    teaches: {
+      abilityId: 'water_ball',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the water ball spell.'
+  },
+
+  air_ball_tome: {
+    id: 'air_ball_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'air ball',
+    teaches: {
+      abilityId: 'air_ball',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the air ball spell.'
+  },
+
+  earth_ball_tome: {
+    id: 'earth_ball_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'earth ball',
+    teaches: {
+      abilityId: 'earth_ball',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the earth ball spell.'
+  },
+
+  meteor_tome: {
+    id: 'meteor_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'meteor',
+    teaches: {
+      abilityId: 'meteor_strike',
+      level: 1
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to learn the meteor spell.'
+  },
+
+  scream_tome: {
+    id: 'scream_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'scream',
+    teaches: {
+      abilityId: 'scream',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the scream spell.'
   },
 
   berserk_level_1_tome: {
@@ -543,6 +1117,45 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the execute ability.'
   },
 
+  penetrating_slash_level_1_tome: {
+    id: 'penetrating_slash_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'penetrating slash Lv 1',
+    teaches: {
+      abilityId: 'penetrating_slash',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the penetrating slash ability.'
+  },
+
+  vampirism_level_1_tome: {
+    id: 'vampirism_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'vampirism Lv 1',
+    teaches: {
+      abilityId: 'vampirism',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the vampirism ability.'
+  },
+
+  vampirism_level_2_tome: {
+    id: 'vampirism_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'vampirism Lv 2',
+    teaches: {
+      abilityId: 'vampirism',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the vampirism ability.'
+  },
+
   bleed_level_1_tome: {
     id: 'bleed_level_1_tome',
     icon: 'tome',
@@ -618,6 +1231,32 @@ export const INSCRIPTION_ITEMS = {
       level: 1
     },
     sellPrice: 100,
+    description: 'Can be consumed to learn the phantom strikes ability.'
+  },
+
+  phantom_strikes_level_2_tome: {
+    id: 'phantom_strikes_level_2_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'phantom strikes Lv 2',
+    teaches: {
+      abilityId: 'phantom_strikes',
+      level: 2
+    },
+    sellPrice: 200,
+    description: 'Can be consumed to learn the phantom strikes ability.'
+  },
+
+  phantom_strikes_level_3_tome: {
+    id: 'phantom_strikes_level_3_tome',
+    icon: 'tomeUncommon',
+    category: 'tome',
+    name: 'phantom strikes Lv 3',
+    teaches: {
+      abilityId: 'phantom_strikes',
+      level: 3
+    },
+    sellPrice: 300,
     description: 'Can be consumed to learn the phantom strikes ability.'
   },
 

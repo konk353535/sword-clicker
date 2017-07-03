@@ -7,8 +7,13 @@ import './formatNumber.html';
 
 Template.formatNumber.helpers({
   formattedNumber() {
-    const number = Template.instance().data;
+    const number = Template.instance().data.number;
+    const decimal = Template.instance().data.decimal || 0;
+
     if (number < 1000) {
+      if (decimal) {
+        return number.toFixed(decimal);
+      }
       return Math.floor(number);
     }
 

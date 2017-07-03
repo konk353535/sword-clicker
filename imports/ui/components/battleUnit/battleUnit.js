@@ -16,5 +16,13 @@ Template.battleUnit.helpers({
     const healthPercentage = (stats.health / stats.healthMax) * 100;
 
     return healthPercentage;
+  },
+
+  energyPercentage() {
+    const stats = Template.instance().data.unit.stats;
+    console.log(stats);
+    const energyPercentage = (stats.energy / stats.energyMax) * 100;
+
+    return energyPercentage;
   }
 });

@@ -10,19 +10,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 130,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -35,7 +42,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -48,19 +55,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -73,7 +87,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -86,19 +100,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 250,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -111,7 +132,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -124,19 +145,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 420, // 60
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -149,7 +177,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -162,19 +190,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 600, // 60
     xp: 320,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 8,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -187,7 +222,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -200,19 +235,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -225,7 +267,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -238,19 +280,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -263,7 +312,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -276,19 +325,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -301,7 +357,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   },
 
@@ -314,19 +370,26 @@ export const CARBON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 200,
     maxToCraft: 1,
-    requiredCraftingLevel: 11,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -339,7 +402,7 @@ export const CARBON_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 11
+      level: 30
     }]
   }
 }

@@ -8,7 +8,7 @@
       <div class="d-flex align-items-center">
         <div class="d-flex flex-column my-3" style="width: 200px">
           <div class="d-flex align-items-center">
-            <i class="lilIcon-energyPerHit extra-small-icon mr-1"></i> {{> formatNumber combat.stats.energy}} / {{combat.stats.energyMax}}
+            <i class="lilIcon-energyPerHit extra-small-icon mr-1"></i> {{> formatNumber number=combat.stats.energy}} / {{combat.stats.energyMax}}
           </div>
           <div class="progress mt-1" style="width: 100%">
             <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.energyPercentage}}%" aria-valuenow="{{combat.energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -16,7 +16,7 @@
         </div>
         <div class="d-flex flex-column m-3" style="width: 200px">
           <div class="d-flex align-items-center">
-            <i class="lilIcon-health extra-small-icon mr-1"></i> {{> formatNumber combat.stats.health}} / {{combat.stats.healthMax}}
+            <i class="lilIcon-health extra-small-icon mr-1"></i> {{> formatNumber number=combat.stats.health}} / {{combat.stats.healthMax}}
           </div>
           <div class="progress mt-1" style="width: 100%">
             <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -26,7 +26,7 @@
           <div class="d-flex flex-column m-3 combat-amulet-container" style="width: 200px">
             <div class="d-flex align-items-center">
               <img src="/icons/amulet.svg" class="extra-small-icon mr-1">
-              {{> formatNumber combat.amulet.energy}} / {{combat.amulet.energyStorage}}
+              {{> formatNumber number=combat.amulet.energy}} / {{combat.amulet.energyStorage}}
             </div>
             <div class="progress mt-1" style="width: 100%">
               <div class="progress-bar bg-warning" role="progressbar" style="width: {{combat.amuletPercentage}}%" aria-valuenow="{{combat.amuletPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -102,7 +102,7 @@
               {{#if $eq this.type 'gold'}}
                 <div class="ml-1 d-flex align-items-center">
                   +{{this.amount}}
-                  <img src="/icons/gold.svg" class="extra-small-icon">
+                  <img src="/icons/goldCoin.svg" class="extra-small-icon">
                 </div>
               {{/if}}
             {{/each}}

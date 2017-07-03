@@ -29,6 +29,90 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  marigold_seed: {
+    id: 'marigold_seed',
+    icon: 'marigoldSeed',
+    category: 'seed',
+    name: 'Marigold Seed',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 50,
+    produces: 'marigold'
+  },
+
+  marigold: {
+    id: 'marigold',
+    icon: 'marigold',
+    category: 'food',
+    name: 'Marigold',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 250
+  },
+
+  cactus_seed: {
+    id: 'cactus_seed',
+    icon: 'cactusSeed',
+    category: 'seed',
+    name: 'Cactus Seed',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'cactus'
+  },
+
+  cactus: {
+    id: 'cactus',
+    icon: 'cactus',
+    category: 'food',
+    name: 'Cactus',
+    description() {
+      return 'Looks prickly';
+    },
+    sellPrice: 1
+  },
+
+  pear_seed: {
+    id: 'pear_seed',
+    icon: 'pearSeed',
+    category: 'seed',
+    name: 'Pear Seed',
+    description() {
+      const buff = BUFFS.food_pear;
+      return buff.description({ buff });
+    },
+    sellPrice: 1,
+    produces: 'pear'
+  },
+
+  pear: {
+    id: 'pear',
+    icon: 'pear',
+    category: 'food',
+    name: 'Pear',
+    description() {
+      const buff = BUFFS.food_pear;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_pear'
+    }],
+    sellPrice: 70
+  },
+
+  garlic_seed: {
+    id: 'garlic_seed',
+    icon: 'garlicSeed',
+    category: 'seed',
+    name: 'garlic Seed',
+    description: 'Used to grow garlic. Useful for inscription.',
+    sellPrice: 500,
+    produces: 'garlic'
+  },
+
   lemon_seed: {
     id: 'lemon_seed',
     icon: 'lemonSeed',
@@ -129,6 +213,56 @@ export const FARMING_ITEMS = {
     sellPrice: 100
   },
 
+  banana_seed: {
+    id: 'banana_seed',
+    icon: 'bananaSeed',
+    category: 'seed',
+    name: 'banana seed',
+    description: 'Used to grow bananas. Useful for eating.',
+    sellPrice: 20,
+    produces: 'banana'
+  },
+
+  banana: {
+    id: 'banana',
+    icon: 'banana',
+    category: 'food',
+    name: 'banana',
+    description() {
+      const buff = BUFFS.food_banana;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_banana'
+    }],
+    sellPrice: 100
+  },
+
+  sweet_potato_seed: {
+    id: 'sweet_potato_seed',
+    icon: 'sweetPotatoSeed',
+    category: 'seed',
+    name: 'sweet potato seed',
+    description: 'Used to grow sweet potatos. Useful for eating.',
+    sellPrice: 20,
+    produces: 'sweet_potato'
+  },
+
+  sweet_potato: {
+    id: 'sweet_potato',
+    icon: 'sweetPotato',
+    category: 'food',
+    name: 'sweet potato',
+    description() {
+      const buff = BUFFS.food_sweet_potato;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_sweet_potato'
+    }],
+    sellPrice: 100
+  },
+
   carrot_seed: {
     id: 'carrot_seed',
     icon: 'carrotSeed',
@@ -204,6 +338,57 @@ export const FARMING_ITEMS = {
     sellPrice: 150
   },
 
+
+  orange_seed: {
+    id: 'orange_seed',
+    icon: 'orangeSeed',
+    category: 'seed',
+    name: 'orange seed',
+    description: 'Used to grow oranges. Useful for eating.',
+    sellPrice: 30,
+    produces: 'orange'
+  },
+
+  orange: { // Instant 500 HP heal
+    id: 'orange',
+    icon: 'orange',
+    category: 'food',
+    name: 'orange',
+    description() {
+      const buff = BUFFS.food_orange;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_orange'
+    }],
+    sellPrice: 200
+  },
+
+  rockmelon_seed: {
+    id: 'rockmelon_seed',
+    icon: 'rockmelonSeed',
+    category: 'seed',
+    name: 'rockmelon seed',
+    description: 'Used to grow rockmelons. Useful for eating.',
+    sellPrice: 30,
+    produces: 'rockmelon'
+  },
+
+  rockmelon: { // Upgrade dragonfruit
+    id: 'rockmelon',
+    icon: 'rockmelon',
+    category: 'food',
+    name: 'rockmelon',
+    description() {
+      const buff = BUFFS.food_rockmelon;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_rockmelon'
+    }],
+    sellPrice: 200
+  },
+
   basil_seed: {
     id: 'basil_seed',
     icon: 'basilSeed',
@@ -260,6 +445,76 @@ export const FARMING_ITEMS = {
     description: 'Used to grow oak log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'oak_log'
+  },
+
+  maple_seed: {
+    id: 'maple_seed',
+    icon: 'mapleSeed',
+    category: 'seed',
+    name: 'maple Seed',
+    description: 'Used to grow maple log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'maple_log'
+  },
+
+  walnut_seed: {
+    id: 'walnut_seed',
+    icon: 'walnutSeed',
+    category: 'seed',
+    name: 'walnut Seed',
+    description: 'Used to grow walnut log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'walnut_log'
+  },
+
+  cherry_seed: {
+    id: 'cherry_seed',
+    icon: 'cherrySeed',
+    category: 'seed',
+    name: 'cherry Seed',
+    description: 'Used to grow cherry log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'cherry_log'
+  },
+
+  mahogany_seed: {
+    id: 'mahogany_seed',
+    icon: 'mahoganySeed',
+    category: 'seed',
+    name: 'mahogany Seed',
+    description: 'Used to grow mahogany log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'mahogany_log'
+  },
+
+  elk_seed: {
+    id: 'elk_seed',
+    icon: 'elkSeed',
+    category: 'seed',
+    name: 'elk Seed',
+    description: 'Used to grow elk log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'elk_log'
+  },
+
+  black_seed: {
+    id: 'black_seed',
+    icon: 'blackSeed',
+    category: 'seed',
+    name: 'black Seed',
+    description: 'Used to grow black log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'black_log'
+  },
+
+  blue_gum_seed: {
+    id: 'blue_gum_seed',
+    icon: 'blueGumSeed',
+    category: 'seed',
+    name: 'blue gum Seed',
+    description: 'Used to grow blue gum log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'blue_gum_log'
   },
 
   pink_rose_seed: {
@@ -436,6 +691,21 @@ export const FARMING_ITEMS = {
     },
     buffs: [{
       id: 'food_grape_fruit'
+    }],
+    sellPrice: 20
+  },
+
+  lemon_honey: {
+    id: 'lemon_honey',
+    icon: 'lemonHoney',
+    category: 'food',
+    name: 'lemon honey',
+    description() {
+      const buff = BUFFS.food_lemon_honey;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_lemon_honey'
     }],
     sellPrice: 20
   },

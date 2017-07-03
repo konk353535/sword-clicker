@@ -1,25 +1,34 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Random } from 'meteor/random';
 
 import './home.html';
 
 Template.homePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  Meteor.call('battles.currentFloorHighscores', (err, res) => {
-    this.state.set('currentFloorHighscores', res);
-    this.state.set('currentFloor', res[0].floor);
-  });
+
 });
 
 Template.homePage.helpers({
-  currentFloorHighscores() {
-    return Template.instance().state.get('currentFloorHighscores').map((highscore, index) => {
-      highscore.rank = index + 1;
-      return highscore;
-    });
-  },
-
-  currentFloor() {
-    return Template.instance().state.get('currentFloor');
+  creatingGuest() {
+    return Template.instance().state.get('creatingGuest');
   }
-})
+});
+
+Template.homePage.events({
+  'click .play-as-guest-btn'(event, instance) {
+    const username = `guest_${parseInt(Math.random() * 1000000000)}`;
+    const password = Random.id();
+    instance.state.set('creatingGuest', true);
+
+    Meteor.call('users.createGuest', { username, password }, (err, res) => {
+      if (!err) {
+        Meteor.loginWithPassword(username, password, (err, res) => {
+          instance.state.get('creatingGuest', false);
+        });
+      } else {
+        instance.state.get('creatingGuest', false);
+      }
+    });
+  }
+});

@@ -16,15 +16,15 @@ Template.displayCombatStats.helpers({
 
     if (statsMap.attack) {
       if (statsMap.attackMax) {
-        let attackLabel = `(${statsMap.attack}`;
+        let attackLabel = `(${statsMap.attack.toFixed(1)}`;
         if (extraStatsMap.attack) {
-          attackLabel += ` - ${statsMap.attack + extraStatsMap.attack}`;
+          attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
         }
         attackLabel += ')';
 
-        let attackMaxLabel = `(${statsMap.attackMax}`;
+        let attackMaxLabel = `(${statsMap.attackMax.toFixed(1)}`;
         if (extraStatsMap.attackMax) {
-          attackMaxLabel += ` - ${statsMap.attackMax + extraStatsMap.attackMax}`;
+          attackMaxLabel += ` - ${(statsMap.attackMax + extraStatsMap.attackMax).toFixed(1)}`;
         }
         attackMaxLabel += ')';
 
@@ -35,7 +35,7 @@ Template.displayCombatStats.helpers({
       } else {
         let attackLabel = statsMap.attack;
         if (extraStatsMap.attack) {
-          attackLabel += ` - ${statsMap.attack + extraStatsMap.attack}`;
+          attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
         }
         statsArr.push({
           label: attackLabel,
@@ -49,9 +49,9 @@ Template.displayCombatStats.helpers({
         return;
       }
 
-      let statLabel = statsMap[key];
+      let statLabel = statsMap[key].toFixed(1);
       if (extraStatsMap[key]) {
-        statLabel += ` - ${statsMap[key] + extraStatsMap[key]}`;
+        statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(1)}`;
       }
 
       statsArr.push({
@@ -71,12 +71,12 @@ Template.displayCombatStats.helpers({
     if (statsMap.attack) {
       if (statsMap.attackMax) {
         statsArr.push({
-          label: `${statsMap.attack} - ${statsMap.attackMax}`,
+          label: `${statsMap.attack.toFixed(1)} - ${statsMap.attackMax.toFixed(1)}`,
           key: 'attack'
         });        
       } else {
         statsArr.push({
-          label: `${statsMap.attack}`,
+          label: `${statsMap.attack.toFixed(1)}`,
           key: 'attack'
         });
       }
@@ -88,7 +88,7 @@ Template.displayCombatStats.helpers({
       }
 
       statsArr.push({
-        label: statsMap[key],
+        label: statsMap[key].toFixed(1),
         key
       });
     });

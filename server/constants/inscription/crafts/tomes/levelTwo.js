@@ -1,6 +1,98 @@
 import { UTIL } from './util';
 
 export const LEVEL_TWO_CRAFTS = {
+
+  phantom_strikes_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'phantom_strikes_level_2_tome',
+    name: 'Phantom Strikes Lv 2.',
+    id: 'phantom_strikes_level_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  poisoned_blade_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'poisoned_blade_2_tome',
+    name: 'Poisoned Blade Lv 2.',
+    id: 'poisoned_blade_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  vampirism_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'vampirism_level_2_tome',
+    name: 'vampirism lv 2',
+    id: 'vampirism_level_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 35,
+    required: [UTIL.RED_100, UTIL.PURPLE_200, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_35]
+  },
+
+  health_up_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'health_up_2_tome',
+    name: 'Health Up Lv 2.',
+    id: 'health_up_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  defense_up_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'defense_up_2_tome',
+    name: 'defense Up Lv 2.',
+    id: 'defense_up_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  accuracy_up_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'accuracy_up_2_tome',
+    name: 'accuracy Up Lv 2.',
+    id: 'accuracy_up_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  attack_up_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'attack_up_2_tome',
+    name: 'damage Up Lv 2.',
+    id: 'attack_up_2_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
   berserk_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_2_tome',

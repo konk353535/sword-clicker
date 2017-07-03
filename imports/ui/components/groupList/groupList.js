@@ -10,6 +10,27 @@ import './groupList.html';
 
 Template.groupList.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  this.autorun(() => {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (currentGroup && currentGroup.membersChecks) {
+      const myStatus = currentGroup.membersChecks[Meteor.userId()];
+      if (!myStatus.ready && !myStatus.notReady) {
+        // Show Ready Check modal
+        this.state.set('showReadyCheck', true);
+        const oldTitle = document.title;
+        document.title = 'Ready Check';
+        Meteor.setTimeout(() => {
+          document.title = oldTitle;
+        }, 1000);
+      } else {
+        this.state.set('showReadyCheck', false);
+      }
+    }
+  });
 });
 
 Template.groupList.events({
@@ -33,6 +54,18 @@ Template.groupList.events({
 
   'click .leave-group'(event) {
     Meteor.call('groups.leave');
+  },
+
+  'click .ready-check'(event) {
+    Meteor.call('groups.readyCheck');
+  },
+
+  'click .is-ready-btn'(event) {
+    Meteor.call('groups.ready');
+  },
+
+  'click .not-ready-btn'(event) {
+    Meteor.call('groups.notReady');
   }
 })
 
@@ -42,6 +75,10 @@ Template.groupList.helpers({
     return Groups.findOne({
       members: Meteor.userId()
     });
+  },
+
+  showReadyCheck() {
+    return Template.instance().state.get('showReadyCheck');
   },
 
   currentGroupMembers() {
@@ -60,6 +97,16 @@ Template.groupList.helpers({
     });
 
     return combats.map((userCombat) => {
+      // Ready check info
+      if (currentGroup.membersChecks && currentGroup.membersChecks[userCombat.owner]) {
+        userCombat.readyCheck = currentGroup.membersChecks[userCombat.owner];
+      } else {
+        userCombat.readyCheck = {
+          ready: false,
+          notReady: false
+        }
+      }
+
       // Map stuff we want to read into stats
       userCombat.stats = {
         health: userCombat.stats.health,
@@ -67,8 +114,15 @@ Template.groupList.helpers({
         energy: userCombat.stats.energy,
         energyMax: userCombat.stats.energyMax
       }
+      if (userCombat.owner === currentGroup.leader) {
+        userCombat.leader = true;
+      } else {
+        userCombat.leader = false;
+      }
+
       userCombat.name = userCombat.username;
       userCombat.icon = 'character';
+
       return userCombat;
     });
   },

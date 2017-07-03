@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const ATTACK_BUFFS = {
 
@@ -48,6 +49,161 @@ export const ATTACK_BUFFS = {
 
       onRemove() {
 
+      }
+    }
+  },
+
+  attack_up: {
+    duplicateTag: 'attack_up', // Used to stop duplicate buffs
+    icon: 'attack',
+    name: 'attack up',
+    description({ buff, level }) {
+
+      const attackBase = buff.constants.attackBase;
+      const attackPerLevel = buff.constants.attackPerLevel * level;
+      const attackIncrease = attackBase + attackPerLevel;
+
+      return `
+        Increases attack by ${Math.round(attackIncrease * 100)}%. <br />
+        (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)<br />`;
+    },
+    constants: {
+      attackBase: 0.05,
+      attackPerLevel: 0.05
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const attackBase = constants.attackBase;
+        const attackPerLevel = constants.attackPerLevel * buff.data.level;
+        const attackIncrease = attackBase + attackPerLevel;
+
+        buff.data.attackIncrease = attackIncrease;
+        caster.stats.attack *= (1 + buff.data.attackIncrease);
+        caster.stats.attackMax *= (1 + buff.data.attackIncrease);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.attack /= (1 + buff.data.attackIncrease);
+        caster.stats.attackMax /= (1 + buff.data.attackIncrease);
+      }
+    }
+  },
+
+  accuracy_up: {
+    duplicateTag: 'accuracy_up', // Used to stop duplicate buffs
+    icon: 'accuracy',
+    name: 'accuracy up',
+    description({ buff, level }) {
+
+      const accuracyBase = buff.constants.accuracyBase;
+      const accuracyPerLevel = buff.constants.accuracyPerLevel * level;
+      const accuracyIncrease = accuracyBase + accuracyPerLevel;
+
+      return `
+        Increases accuracy by ${accuracyIncrease}. <br />
+        (+${buff.constants.accuracyPerLevel} accuracy per lvl)<br />`;
+    },
+    constants: {
+      accuracyBase: 2,
+      accuracyPerLevel: 6
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const accuracyBase = constants.accuracyBase;
+        const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
+        const accuracyIncrease = accuracyBase + accuracyPerLevel;
+
+        buff.data.accuracyIncrease = accuracyIncrease;
+        caster.stats.accuracy += buff.data.accuracyIncrease;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.accuracy -= buff.data.accuracyIncrease;
+      }
+    }
+  },
+
+  vampirism: {
+    duplicateTag: 'vampirism', // Used to stop duplicate buffs
+    icon: 'vampirism',
+    name: 'vampirism',
+    description({ buff, level }) {
+      const lifestealBase = buff.constants.lifestealBase;
+      const lifestealPerLevel = buff.constants.lifestealPerLevel;
+
+      const lifestealTotal = lifestealBase + (lifestealPerLevel * level);
+      return `Heal for ${Math.round(lifestealTotal * 100)}% of auto attack damage.<br />
+        Lasts 2 minutes.`;
+    },
+    constants: {
+      lifestealBase: 0.04,
+      lifestealPerLevel: 0.03,
+    },
+    data: {
+      duration: 120,
+      totalDuration: 120
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        const constants = buff.constants.constants;
+
+        const lifestealBase = constants.lifestealBase;
+        const lifestealPerLevel = constants.lifestealPerLevel;
+        buff.data.lifestealTotal = lifestealBase + (lifestealPerLevel * buff.data.level);
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        const totalHeal = (damageDealt * buff.data.lifestealTotal);
+
+        actualBattle.utils.healTarget(totalHeal, {
+          caster: attacker,
+          target: attacker,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
       }
     }
   },
@@ -205,18 +361,18 @@ export const ATTACK_BUFFS = {
       const duration = buff.data.totalDuration;
 
       return `
-        <b>+${damageIncrease}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
-        <b>+${damageTakenIncrease}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
-        You lose <b>${healthLostPerSecond}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
+        <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
+        <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
+        You lose <b>${healthLostPerSecond.toFixed(1)}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
         Duration <b>${duration}s</b><br />`;
     },
     constants: {
       damagePercentageIncreaseBase: 45,
       damagePercentageIncreasePerLevel: 5,
       damageTakenPercentageIncreaseBase: 20,
-      damageTakenPercentageIncreasePerLevel: 5,
-      healthLostPerSecondBase: 0.5,
-      healthLostPerSecondPerLevel: 0.5
+      damageTakenPercentageIncreasePerLevel: 4,
+      healthLostPerSecondBase: 0.8,
+      healthLostPerSecondPerLevel: 0.2
     },
     data: {
       duration: 10,
@@ -331,11 +487,11 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.damagePerLevel;
       const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
       return `
-        Auto attack for 0 - <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Execute enemies below 30% hp for up to <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
         Based on your targets missing health.`;
     },
     constants: {
-      damageBase: 1, // % Increase of damage for each % of health enemy is missing
+      damageBase: 2, // % Increase of damage for each % of health enemy is missing
       damagePerLevel: 0.5
     },
     data: {
@@ -344,6 +500,13 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+
+        // Target HP
+        const targetHp = (target.stats.health / target.stats.healthMax) * 100;
+        if (targetHp > 30) {
+          return;
+        }
+
         const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
@@ -357,6 +520,56 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents
         });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
+  penetrating_slash: {
+    duplicateTag: 'penetrating_slash', // Used to stop duplicate buffs
+    icon: 'penetratingSlash',
+    name: 'penetrating slash',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageBase = buff.constants.damageBase;
+      const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
+      return `
+        Slash for ${damageTotal}% damage. Ignores ${Math.round(buff.constants.armorPenetration * 100)}% of targets armor. <br />
+        (+${damagePerLevel * 100}% damage per lvl)`;
+    },
+    constants: {
+      damageBase: 0.8,
+      damagePerLevel: 0.2,
+      armorPenetration: 0.8,
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damagePerLevel = constants.damagePerLevel;
+        const damageBase = constants.damageBase;
+        const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
+  
+        const casterAttack = caster.stats.attack;
+        const casterAttackMax = caster.stats.attackMax;
+        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) / 2)) * damageTotalDecimal;
+
+        // Reduce armor by X% before hit
+        target.stats.armor *= (1 - constants.armorPenetration);
+        actualBattle.utils.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+        target.stats.armor /= (1 - constants.armorPenetration);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -529,7 +742,7 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
-        if (buff.constants && buff.constants.constants) {
+        if (buff.constants && buff.constants.constants && !buff.data.dps) {
           buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
           buff.data.dps *= caster.stats.accuracy;
         }
@@ -554,6 +767,7 @@ export const ATTACK_BUFFS = {
           const allUnits = actualBattle.units.concat(actualBattle.enemies, actualBattle.deadEnemies, actualBattle.deadUnits);
           const caster = _.findWhere(allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
+
           actualBattle.utils.dealDamage(buff.data.dps, { 
             attacker: caster,
             defender: target,

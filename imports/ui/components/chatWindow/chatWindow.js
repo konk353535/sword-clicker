@@ -21,22 +21,38 @@ const AVAILABLE_CHATS = {
   'General': {
     name: 'General',
     id: 'General',
-    class: 'chat-General'
+    class: 'chat-General',
+    show: true
   },
   'Party': {
     name: 'Party',
     id: 'Party',
-    class: 'chat-Party'
+    class: 'chat-Party',
+    show: true
   },
   'LFG': {
     name: 'LFG',
     id: 'LFG',
-    class: 'chat-LFG'
+    class: 'chat-LFG',
+    show: true
   },
   'Game': {
     name: 'Game',
     id: 'Game',
-    class: 'chat-Game'
+    class: 'chat-Game',
+    show: true
+  },
+  'Help': {
+    name: 'Help',
+    id: 'Help',
+    class: 'chat-Help',
+    show: true
+  },
+  'Offtopic': {
+    name: 'Off Topic',
+    id: 'Offtopic',
+    class: 'chat-Offtopic',
+    show: false
   }
 }
 
@@ -44,6 +60,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('minimized', true);
   this.state.set('currentChat', 'General');
+  this.state.set('availableChats', AVAILABLE_CHATS);
 
   this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
 
@@ -63,15 +80,37 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
   this.autorun(() => {
     const currentGroup = Groups.findOne();
-    Meteor.subscribe("simpleChats", 'General', this.limit.get());
-    if (currentGroup) {
+    const availableChats = this.state.get('availableChats');
+
+    if (availableChats.General.show) {
+      Meteor.subscribe("simpleChats", 'General', this.limit.get());
+    }
+
+    if (currentGroup && availableChats.Party.show) {
       // Current group messages
       Meteor.subscribe("simpleChats", currentGroup._id, this.limit.get());
     }
-    // People looking for group
-    Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
-    // Events relevant to you
-    Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
+
+    if (availableChats.LFG.show) {
+      // People looking for group
+      Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
+    }
+
+    if (availableChats.Game.show) {
+      // Events relevant to you
+      Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
+    }
+
+    if (availableChats.Offtopic.show) {
+      // Events relevant to you
+      Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
+    }
+
+    if (availableChats.Help.show) {
+      // Events relevant to you
+      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
+    }
+
     this.subscribing = true;
   });
 });
@@ -109,6 +148,22 @@ Template.chatWindow.events({
   'click .maximize-icon'(event, instance) {
     instance.state.set('minimized', false); // Do instantly in UI to avoid delay
     Meteor.call('users.setUiState', 'showChat', true)
+  },
+
+  'click .btn-hide-chat'(event, instance) {
+    const chatId = instance.$(event.target).closest('.btn-hide-chat').data('id');
+
+    const availableChats = instance.state.get('availableChats');
+    availableChats[chatId].show = false;
+    instance.state.set('availableChats', availableChats);
+  },
+
+  'click .btn-show-chat'(event, instance) {
+    const chatId = instance.$(event.target).closest('.btn-show-chat').data('id');
+
+    const availableChats = instance.state.get('availableChats');
+    availableChats[chatId].show = true;
+    instance.state.set('availableChats', availableChats);
   },
 
   'click .change-chat'(event, instance) {
@@ -214,12 +269,13 @@ Template.chatWindow.helpers({
 
   currentChat() {
     const instance = Template.instance();
-    return AVAILABLE_CHATS[instance.state.get('currentChat')];
+    return instance.state.get('availableChats')[instance.state.get('currentChat')];
   },
 
   availableChats() {
-    return Object.keys(AVAILABLE_CHATS).map((chatId) => {
-      return AVAILABLE_CHATS[chatId];
+    const instance = Template.instance();
+    return Object.keys(instance.state.get('availableChats')).map((chatId) => {
+      return instance.state.get('availableChats')[chatId];
     });
   },
 

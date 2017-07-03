@@ -87,8 +87,6 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
     }
   })
 
-  // Show currently crafting items
-  Meteor.subscribe('inscription');
 });
 
 Template.inscriptionPage.events({
@@ -126,7 +124,12 @@ Template.inscriptionPage.events({
       instance.$('.multiCraftModal').modal('show');
       instance.$('.craft-amount-input').focus();
     } else {
-      Meteor.call('inscription.craftItem', recipeId, 1);
+      Meteor.call('inscription.craftItem', recipeId, 1, (err) => {
+        console.log(err);
+        if (err) {
+          toastr.warning(err.reason);
+        }
+      });
     }
   },
 
@@ -137,7 +140,12 @@ Template.inscriptionPage.events({
     const amountToCraft = parseInt(instance.state.get('craftAmount'));
 
     instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('inscription.craftItem', recipeId, amountToCraft);
+    Meteor.call('inscription.craftItem', recipeId, amountToCraft, (err) => {
+      console.log(err);
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
   }
 })
 
@@ -207,7 +215,7 @@ Template.inscriptionPage.helpers({
     return Items.find({
       equipped: false,
       category: {
-        $in: ['herb', 'pigment', 'paper', 'page', 'tome']
+        $in: ['herb', 'pigment', 'paper', 'page', 'tome', 'woodcutting']
       } 
     });
   },

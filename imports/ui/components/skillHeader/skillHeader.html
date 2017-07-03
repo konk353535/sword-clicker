@@ -1,14 +1,21 @@
 <template name="skillHeader"> 
-  <div class="progress">
-    <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
+  {{#unless flipped}}
+    <div class="progress">
+      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  {{/unless}}
   <div class="d-flex my-3 align-items-center">
     <i class="lilIcon-{{skill.type}} medium-icon"></i>
     <h1 class="ml-1 mb-0">
       Level {{skill.level}}
     </h1>
     {{#if skill}}
-      <small class="ml-3">{{ > formatNumber skill.xp}} / {{ > formatNumber skill.xpToLevel}}XP</small>
+      <small class="ml-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
     {{/if}}
   </div>
+  {{#if flipped}}
+    <div class="progress">
+      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  {{/if}}
 </template>

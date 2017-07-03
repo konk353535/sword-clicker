@@ -27,6 +27,7 @@ export const LEVEL_TWO_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'copper_pickaxe', amount: 1 },
     { type: 'item', itemId: 'copper_axe', amount: 1 },
+    { type: 'item', itemId: 'defense_up_1_tome', amount: 1 },
     { type: 'item', itemId: 'copper_dagger', amount: 1 }
   ]
 }, {
@@ -40,6 +41,6 @@ export const LEVEL_TWO_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'ore_copper', amount: 1 },
     { type: 'item', itemId: 'copper_bar', amount: 1 },
     { type: 'gold', amount: 50 },
-    { type: 'item', itemId: 'beech_log', amount: 1 }
+    { type: 'item', itemId: 'pine_log', amount: 1 }
   ]
 }]);

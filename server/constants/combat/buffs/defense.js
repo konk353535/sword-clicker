@@ -7,7 +7,7 @@ export const DEFENSE_BUFFS = {
 
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
-    icon: 'frostArmor',
+    icon: 'frostedAttacks',
     name: 'forsted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
@@ -31,6 +31,69 @@ export const DEFENSE_BUFFS = {
         // Mutate targets attack speed
         target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+      }
+    }
+  },
+
+  phalanx: {
+    duplicateTag: 'phalanx', // Used to stop duplicate buffs
+    icon: 'phalanx',
+    name: 'phalanx',
+    description({ buff, level }) {
+    },
+    constants: {
+      armorPerAlly: 200
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        buff.data.extraArmor = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+
+        if (!buff.data.timeTillUpdate || buff.data.timeTillUpdate <= 0) {
+          let phalanxCount = 0;
+          if (buff.data.isEnemy) {
+            // Check for other enemies with buff
+            phalanxCount = actualBattle.enemies.filter((enemy) => {
+              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+            }).length;
+          } else {
+            // Check for other allies with buff
+            phalanxCount = actualBattle.enemies.filter((enemy) => {
+              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+            }).length;
+          }
+
+          if (buff.data.extraArmor) {
+            target.stats.armor -= buff.data.extraArmor;
+          }
+
+          if (phalanxCount > 1) {
+            buff.data.hideBuff = false;
+            buff.data.stacks = phalanxCount;
+            buff.data.extraArmor = phalanxCount * constants.armorPerAlly;
+            target.stats.armor += buff.data.extraArmor;
+          } else {
+            buff.data.hideBuff = true;
+            // Remove armor buff
+            buff.data.extraArmor = 0;
+          }
+
+          buff.data.timeTillUpdate = 10;
+        }
+
+        buff.data.timeTillUpdate -= secondsElapsed;
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
       }
     }
   },
@@ -81,9 +144,9 @@ export const DEFENSE_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostArmor',
+              icon: 'frostedAttacks',
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
-              name: 'Frost Armor'
+              name: 'Frosted Attacks'
             }
           }
 
@@ -100,6 +163,106 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         // Blank
+      }
+    }
+  },
+
+  health_up: {
+    duplicateTag: 'health_up', // Used to stop duplicate buffs
+    icon: 'health',
+    name: 'health up',
+    description({ buff, level }) {
+
+      const healthBase = buff.constants.healthBase;
+      const healthPerLevel = buff.constants.healthPerLevel * level;
+      const healthIncrease = healthBase + healthPerLevel;
+
+      return `
+        Increases health by ${Math.round(healthIncrease * 100)}%. <br />
+        (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)<br />`;
+    },
+    constants: {
+      healthBase: 0.04,
+      healthPerLevel: 0.02
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const healthBase = constants.healthBase;
+        const healthPerLevel = constants.healthPerLevel * buff.data.level;
+        const healthIncrease = healthBase + healthPerLevel;
+
+        buff.data.healthIncrease = healthIncrease;
+        caster.stats.health *= (1 + buff.data.healthIncrease);
+        caster.stats.healthMax *= (1 + buff.data.healthIncrease);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.health /= (1 + buff.data.healthIncrease);
+        caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+      }
+    }
+  },
+
+  defense_up: {
+    duplicateTag: 'defense_up', // Used to stop duplicate buffs
+    icon: 'defense',
+    name: 'defense up',
+    description({ buff, level }) {
+
+      const defenseBase = buff.constants.defenseBase;
+      const defensePerLevel = buff.constants.defensePerLevel * level;
+      const defenseIncrease = defenseBase + defensePerLevel;
+
+      return `
+        Increases defense by ${defenseIncrease}. <br />
+        (+${buff.constants.defensePerLevel} defense per lvl)<br />`;
+    },
+    constants: {
+      defenseBase: 2,
+      defensePerLevel: 4
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        const constants = buff.constants.constants;
+  
+        const defenseBase = constants.defenseBase;
+        const defensePerLevel = constants.defensePerLevel * buff.data.level;
+        const defenseIncrease = defenseBase + defensePerLevel;
+
+        buff.data.defenseIncrease = defenseIncrease;
+        caster.stats.defense += buff.data.defenseIncrease;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        caster.stats.defense -= buff.data.defenseIncrease;
       }
     }
   },
@@ -283,6 +446,7 @@ export const DEFENSE_BUFFS = {
           buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
         }
         target.stats.damageTaken *= (1 - (99.9 / 100));
+        target.stats.defense *= 100;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -307,6 +471,7 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.damageTaken /= (1 - (99.9 / 100));
+        target.stats.defense /= 100;
       }
     }
   },

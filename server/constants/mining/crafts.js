@@ -1,4 +1,5 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
+const MINUTE = 60;
 
 export const MINING_CRAFTS = {
   primitive_pickaxe: {
@@ -32,7 +33,7 @@ export const MINING_CRAFTS = {
     id: 'copper_pickaxe',
     category: 'mining',
     timeToCraft: 60, // 60
-    xp: 40,
+    xp: 20,
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{
@@ -63,14 +64,14 @@ export const MINING_CRAFTS = {
     }]
   },
 
-  iron_pickaxe: {
-    produces: 'iron_pickaxe',
+  tin_pickaxe: {
+    produces: 'tin_pickaxe',
     recipeFor: 'crafting',
-    name: 'iron pickaxe',
-    id: 'iron_pickaxe',
+    name: 'tin pickaxe',
+    id: 'tin_pickaxe',
     category: 'mining',
-    timeToCraft: 120, // 60
-    xp: 120,
+    timeToCraft: 1.5 * MINUTE, // 60
+    xp: 30,
     maxToCraft: 1,
     requiredCraftingLevel: 6,
     required: [{
@@ -85,6 +86,82 @@ export const MINING_CRAFTS = {
       itemId: 'beech_log',
       icon: ITEMS['beech_log'].icon,
       name: ITEMS['beech_log'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'tin_bar',
+      icon: ITEMS['tin_bar'].icon,
+      name: ITEMS['tin_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 6
+    }]
+  },
+
+  bronze_pickaxe: {
+    produces: 'bronze_pickaxe',
+    recipeFor: 'crafting',
+    name: 'bronze pickaxe',
+    id: 'bronze_pickaxe',
+    category: 'mining',
+    timeToCraft: 2 * MINUTE, // 60
+    xp: 45,
+    maxToCraft: 1,
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'tin_furnace',
+      icon: ITEMS['tin_furnace'].icon,
+      name: ITEMS['tin_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'bronze_bar',
+      icon: ITEMS['bronze_bar'].icon,
+      name: ITEMS['bronze_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }]
+  },
+
+  iron_pickaxe: {
+    produces: 'iron_pickaxe',
+    recipeFor: 'crafting',
+    name: 'iron pickaxe',
+    id: 'iron_pickaxe',
+    category: 'mining',
+    timeToCraft: 3 * MINUTE, // 60
+    xp: 65,
+    maxToCraft: 1,
+    requiredCraftingLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'bronze_furnace',
+      icon: ITEMS['bronze_furnace'].icon,
+      name: ITEMS['bronze_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'oak_log',
+      icon: ITEMS['oak_log'].icon,
+      name: ITEMS['oak_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -97,20 +174,20 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 6
+      level: 15
     }]
   },
 
-  steel_pickaxe: {
-    produces: 'steel_pickaxe',
+  silver_pickaxe: {
+    produces: 'silver_pickaxe',
     recipeFor: 'crafting',
-    name: 'steel pickaxe',
-    id: 'steel_pickaxe',
+    name: 'silver pickaxe',
+    id: 'silver_pickaxe',
     category: 'mining',
-    timeToCraft: 120, // 60
-    xp: 240,
+    timeToCraft: 4 * MINUTE, // 60
+    xp: 90,
     maxToCraft: 1,
-    requiredCraftingLevel: 9,
+    requiredCraftingLevel: 20,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -120,22 +197,74 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'ash_log',
-      icon: ITEMS['ash_log'].icon,
-      name: ITEMS['ash_log'].name,
-      amount: 15,
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
-      itemId: 'steel_bar',
-      icon: ITEMS['steel_bar'].icon,
-      name: ITEMS['steel_bar'].name,
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'silver_bar',
+      icon: ITEMS['silver_bar'].icon,
+      name: ITEMS['silver_bar'].name,
       amount: 5,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 20
+    }]
+  },
+
+  gold_pickaxe: {
+    produces: 'gold_pickaxe',
+    recipeFor: 'crafting',
+    name: 'gold pickaxe',
+    id: 'gold_pickaxe',
+    category: 'mining',
+    timeToCraft: 5 * MINUTE, // 60
+    xp: 120,
+    maxToCraft: 1,
+    requiredCraftingLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'silver_furnace',
+      icon: ITEMS['silver_furnace'].icon,
+      name: ITEMS['silver_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'gold_essence',
+      icon: ITEMS['gold_essence'].icon,
+      name: ITEMS['gold_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'walnut_log',
+      icon: ITEMS['walnut_log'].icon,
+      name: ITEMS['walnut_log'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'gold_bar',
+      icon: ITEMS['gold_bar'].icon,
+      name: ITEMS['gold_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 25
     }]
   },
 
@@ -145,22 +274,29 @@ export const MINING_CRAFTS = {
     name: 'carbon pickaxe',
     id: 'carbon_pickaxe',
     category: 'mining',
-    timeToCraft: 300,
-    xp: 500,
+    timeToCraft: 5 * MINUTE,
+    xp: 180,
     maxToCraft: 1,
-    requiredCraftingLevel: 12,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
-      itemId: 'steel_furnace',
-      icon: ITEMS['steel_furnace'].icon,
-      name: ITEMS['steel_furnace'].name,
+      itemId: 'gold_furnace',
+      icon: ITEMS['gold_furnace'].icon,
+      name: ITEMS['gold_furnace'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'item',
-      itemId: 'oak_log',
-      icon: ITEMS['oak_log'].icon,
-      name: ITEMS['oak_log'].name,
+      itemId: 'carbon_essence',
+      icon: ITEMS['carbon_essence'].icon,
+      name: ITEMS['carbon_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -173,10 +309,279 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 12
+      level: 30
     }]
   },
 
+  steel_pickaxe: {
+    produces: 'steel_pickaxe',
+    recipeFor: 'crafting',
+    name: 'steel pickaxe',
+    id: 'steel_pickaxe',
+    category: 'mining',
+    timeToCraft: 6 * MINUTE, // 60
+    xp: 280,
+    maxToCraft: 1,
+    requiredCraftingLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'carbon_furnace',
+      icon: ITEMS['carbon_furnace'].icon,
+      name: ITEMS['carbon_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'steel_essence',
+      icon: ITEMS['steel_essence'].icon,
+      name: ITEMS['steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mahogany_log',
+      icon: ITEMS['mahogany_log'].icon,
+      name: ITEMS['mahogany_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'steel_bar',
+      icon: ITEMS['steel_bar'].icon,
+      name: ITEMS['steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 35
+    }]
+  },
+
+  platinum_pickaxe: {
+    produces: 'platinum_pickaxe',
+    recipeFor: 'crafting',
+    name: 'platinum pickaxe',
+    id: 'platinum_pickaxe',
+    category: 'mining',
+    timeToCraft: 7 * MINUTE,
+    xp: 320,
+    maxToCraft: 1,
+    requiredCraftingLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'steel_furnace',
+      icon: ITEMS['steel_furnace'].icon,
+      name: ITEMS['steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'platinum_essence',
+      icon: ITEMS['platinum_essence'].icon,
+      name: ITEMS['platinum_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'platinum_bar',
+      icon: ITEMS['platinum_bar'].icon,
+      name: ITEMS['platinum_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
+    }]
+  },
+
+  titanium_pickaxe: {
+    produces: 'titanium_pickaxe',
+    recipeFor: 'crafting',
+    name: 'titanium pickaxe',
+    id: 'titanium_pickaxe',
+    category: 'mining',
+    timeToCraft: 8 * MINUTE,
+    xp: 380,
+    maxToCraft: 1,
+    requiredCraftingLevel: 45,
+    required: [{
+      type: 'item',
+      itemId: 'platinum_furnace',
+      icon: ITEMS['platinum_furnace'].icon,
+      name: ITEMS['platinum_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'titanium_essence',
+      icon: ITEMS['titanium_essence'].icon,
+      name: ITEMS['titanium_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'black_log',
+      icon: ITEMS['black_log'].icon,
+      name: ITEMS['black_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'titanium_bar',
+      icon: ITEMS['titanium_bar'].icon,
+      name: ITEMS['titanium_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 45
+    }]
+  },
+
+  tungsten_pickaxe: {
+    produces: 'tungsten_pickaxe',
+    recipeFor: 'crafting',
+    name: 'tungsten pickaxe',
+    id: 'tungsten_pickaxe',
+    category: 'mining',
+    timeToCraft: 9 * MINUTE,
+    xp: 450,
+    maxToCraft: 1,
+    requiredCraftingLevel: 50,
+    required: [{
+      type: 'item',
+      itemId: 'titanium_furnace',
+      icon: ITEMS['titanium_furnace'].icon,
+      name: ITEMS['titanium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'tungsten_essence',
+      icon: ITEMS['tungsten_essence'].icon,
+      name: ITEMS['tungsten_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'tungsten_bar',
+      icon: ITEMS['tungsten_bar'].icon,
+      name: ITEMS['tungsten_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 50
+    }]
+  },
+
+  obsidian_pickaxe: {
+    produces: 'obsidian_pickaxe',
+    recipeFor: 'crafting',
+    name: 'obsidian pickaxe',
+    id: 'obsidian_pickaxe',
+    category: 'mining',
+    timeToCraft: 10 * MINUTE,
+    xp: 550,
+    maxToCraft: 1,
+    requiredCraftingLevel: 55,
+    required: [{
+      type: 'item',
+      itemId: 'tungsten_furnace',
+      icon: ITEMS['tungsten_furnace'].icon,
+      name: ITEMS['tungsten_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'obsidian_essence',
+      icon: ITEMS['obsidian_essence'].icon,
+      name: ITEMS['obsidian_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cedar_log',
+      icon: ITEMS['cedar_log'].icon,
+      name: ITEMS['cedar_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'obsidian_bar',
+      icon: ITEMS['obsidian_bar'].icon,
+      name: ITEMS['obsidian_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 55
+    }]
+  },
+
+  cobalt_pickaxe: {
+    produces: 'cobalt_pickaxe',
+    recipeFor: 'crafting',
+    name: 'cobalt pickaxe',
+    id: 'cobalt_pickaxe',
+    category: 'mining',
+    timeToCraft: 11 * MINUTE,
+    xp: 650,
+    maxToCraft: 1,
+    requiredCraftingLevel: 60,
+    required: [{
+      type: 'item',
+      itemId: 'obsidian_furnace',
+      icon: ITEMS['obsidian_furnace'].icon,
+      name: ITEMS['obsidian_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'cobalt_essence',
+      icon: ITEMS['cobalt_essence'].icon,
+      name: ITEMS['cobalt_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cobalt_bar',
+      icon: ITEMS['cobalt_bar'].icon,
+      name: ITEMS['cobalt_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 60
+    }]
+  },
 
   mithril_pickaxe: {
     produces: 'mithril_pickaxe',
@@ -184,15 +589,15 @@ export const MINING_CRAFTS = {
     name: 'mithril pickaxe',
     id: 'mithril_pickaxe',
     category: 'mining',
-    timeToCraft: 300,
-    xp: 500,
+    timeToCraft: 12 * MINUTE,
+    xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
-      itemId: 'carbon_furnace',
-      icon: ITEMS['carbon_furnace'].icon,
-      name: ITEMS['carbon_furnace'].name,
+      itemId: 'cobalt_furnace',
+      icon: ITEMS['cobalt_furnace'].icon,
+      name: ITEMS['cobalt_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -204,9 +609,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'maple_log',
-      icon: ITEMS['maple_log'].icon,
-      name: ITEMS['maple_log'].name,
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -219,7 +624,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 65
     }]
   },
 
@@ -229,10 +634,10 @@ export const MINING_CRAFTS = {
     name: 'adamantium pickaxe',
     id: 'adamantium_pickaxe',
     category: 'mining',
-    timeToCraft: 300 * 5,
-    xp: 750,
+    timeToCraft: 11 * MINUTE,
+    xp: 950,
     maxToCraft: 1,
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -249,9 +654,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'walnut_log',
-      icon: ITEMS['walnut_log'].icon,
-      name: ITEMS['walnut_log'].name,
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -264,7 +669,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 20
+      level: 70
     }]
   },
 
@@ -274,10 +679,10 @@ export const MINING_CRAFTS = {
     name: 'orichalcum pickaxe',
     id: 'orichalcum_pickaxe',
     category: 'mining',
-    timeToCraft: 40 * 60,
+    timeToCraft: 15 * MINUTE,
     xp: 1000,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -294,9 +699,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cherry_log',
-      icon: ITEMS['cherry_log'].icon,
-      name: ITEMS['cherry_log'].name,
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -309,20 +714,20 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 75
     }]
   },
 
-  cobalt_pickaxe: {
-    produces: 'cobalt_pickaxe',
+  meteorite_pickaxe: {
+    produces: 'meteorite_pickaxe',
     recipeFor: 'crafting',
-    name: 'cobalt pickaxe',
-    id: 'cobalt_pickaxe',
+    name: 'meteorite pickaxe',
+    id: 'meteorite_pickaxe',
     category: 'mining',
-    timeToCraft: 80 * 60,
-    xp: 1250,
+    timeToCraft: 20 * MINUTE,
+    xp: 1500,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 80,
     required: [{
       type: 'item',
       itemId: 'orichalcum_furnace',
@@ -332,47 +737,47 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'cobalt_essence',
-      icon: ITEMS['cobalt_essence'].icon,
-      name: ITEMS['cobalt_essence'].name,
+      itemId: 'meteorite_essence',
+      icon: ITEMS['meteorite_essence'].icon,
+      name: ITEMS['meteorite_essence'].name,
       amount: 1,
       consumes: true
     }, {
       type: 'item',
-      itemId: 'mahogany_log',
-      icon: ITEMS['mahogany_log'].icon,
-      name: ITEMS['mahogany_log'].name,
+      itemId: 'poplar_log',
+      icon: ITEMS['poplar_log'].icon,
+      name: ITEMS['poplar_log'].name,
       amount: 10,
       consumes: true
     }, {
       type: 'item',
-      itemId: 'cobalt_bar',
-      icon: ITEMS['cobalt_bar'].icon,
-      name: ITEMS['cobalt_bar'].name,
+      itemId: 'meteorite_bar',
+      icon: ITEMS['meteorite_bar'].icon,
+      name: ITEMS['meteorite_bar'].name,
       amount: 5,
       consumes: true
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 80
     }]
   },
 
   fairy_steel_pickaxe: {
     produces: 'fairy_steel_pickaxe',
     recipeFor: 'crafting',
-    name: 'fairy_steel pickaxe',
+    name: 'fairy steel pickaxe',
     id: 'fairy_steel_pickaxe',
     category: 'mining',
-    timeToCraft: 120 * 60,
-    xp: 1250,
+    timeToCraft: 30 * MINUTE,
+    xp: 1750,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -384,9 +789,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -399,7 +804,52 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
+    }]
+  },
+
+  elven_steel_pickaxe: {
+    produces: 'elven_steel_pickaxe',
+    recipeFor: 'crafting',
+    name: 'elven steel pickaxe',
+    id: 'elven_steel_pickaxe',
+    category: 'mining',
+    timeToCraft: 45 * MINUTE,
+    xp: 2250,
+    maxToCraft: 1,
+    requiredCraftingLevel: 90,
+    required: [{
+      type: 'item',
+      itemId: 'fairy_steel_furnace',
+      icon: ITEMS['fairy_steel_furnace'].icon,
+      name: ITEMS['fairy_steel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'elven_steel_essence',
+      icon: ITEMS['elven_steel_essence'].icon,
+      name: ITEMS['elven_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'elven_steel_bar',
+      icon: ITEMS['elven_steel_bar'].icon,
+      name: ITEMS['elven_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 90
     }]
   },
 
@@ -409,15 +859,15 @@ export const MINING_CRAFTS = {
     name: 'cursed pickaxe',
     id: 'cursed_pickaxe',
     category: 'mining',
-    timeToCraft: 180 * 60,
-    xp: 2000,
+    timeToCraft: 60 * MINUTE,
+    xp: 3000,
     maxToCraft: 1,
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 95,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'elven_steel_furnace',
+      icon: ITEMS['elven_steel_furnace'].icon,
+      name: ITEMS['elven_steel_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -429,9 +879,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'fiery_log',
-      icon: ITEMS['fiery_log'].icon,
-      name: ITEMS['fiery_log'].name,
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -444,7 +894,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 40
+      level: 95
     }]
   }
 }

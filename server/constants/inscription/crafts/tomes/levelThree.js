@@ -1,6 +1,85 @@
 import { UTIL } from './util';
 
 export const LEVEL_THREE_CRAFTS = {
+
+  phantom_strikes_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'phantom_strikes_level_3_tome',
+    name: 'Phantom Strikes Lv 3.',
+    id: 'phantom_strikes_level_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.RED_100, UTIL.MANY_GREEN_140, UTIL.DENYA_PAPER, UTIL.LEVEL_40]
+  },
+
+  poisoned_blade_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'poisoned_blade_3_tome',
+    name: 'Poisoned Blade Lv 3.',
+    id: 'poisoned_blade_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 45,
+    required: [UTIL.PURPLE_150, UTIL.GOMBE_PAPER, UTIL.LEVEL_45]
+  },
+
+  health_up_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'health_up_3_tome',
+    name: 'Health Up Lv 3.',
+    id: 'health_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+  },
+
+  defense_up_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'defense_up_3_tome',
+    name: 'defense Up Lv 3.',
+    id: 'defense_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+  },
+
+  accuracy_up_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'accuracy_up_3_tome',
+    name: 'accuracy Up Lv 3.',
+    id: 'accuracy_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+  },
+
+  attack_up_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'attack_up_3_tome',
+    name: 'damage Up Lv 3.',
+    id: 'attack_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+  },
+
   berserk_level_3_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_3_tome',

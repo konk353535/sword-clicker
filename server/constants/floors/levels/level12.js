@@ -33,26 +33,26 @@ export const LEVEL_TWELVE_MONSTERS = [{
 export const LEVEL_TWELVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
-    { type: 'item', itemId: 'cursed_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'cursed_axe', amount: 1 },
-    { type: 'item', itemId: 'cursed_dagger', amount: 1 },
+    { type: 'item', itemId: 'tunsten_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'tunsten_axe', amount: 1 },
+    { type: 'item', itemId: 'tunsten_dagger', amount: 1 },
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'cursed_bar', amount: 1 }
+    { type: 'item', itemId: 'tunsten_bar', amount: 1 }
   ]
 }, {
   chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'cursed_essence', amount: 1 }
+    { type: 'item', itemId: 'tunsten_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 600 },
-    { type: 'item', itemId: 'ore_cursed', amount: 1 },
-    { type: 'item', itemId: 'fiery_log', amount: 2 }
+    { type: 'item', itemId: 'ore_tunsten', amount: 1 },
+    { type: 'item', itemId: 'blue_gum_log', amount: 2 }
   ]
 }]);
 

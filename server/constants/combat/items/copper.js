@@ -1,5 +1,3 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
-
 export const COPPER_ITEMS = {
   copper_dagger: {
     id: 'copper_dagger',
@@ -13,10 +11,10 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 1, // Deal a min of 1 damage
-      attackMax: 2, // Deal a max of 2 damage
-      attackSpeed: VERY_FAST_SPEED, // Attacks per second
-      accuracy: 1 // Chance for weapon to hit
+      attack: 1,
+      attackMax: 2,
+      attackSpeed: 1,
+      accuracy: 4.5
     }
   },
 
@@ -32,17 +30,17 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 2,
-      attackMax: 3,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 2,
-      defense: 4
+      attack: 4,
+      attackMax: 5,
+      attackSpeed: 0.5,
+      accuracy: 5,
+      defense: 2
     },
     extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 2,
-      defense: 4
+      attack: 1.2,
+      attackMax: 1.4,
+      accuracy: 1.2,
+      defense: 0.4
     }
   },
 
@@ -58,15 +56,15 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 2,
-      attackMax: 4,
-      attackSpeed: FAST_SPEED,
-      accuracy: 3,
+      attack: 4,
+      attackMax: 6,
+      attackSpeed: 0.7,
+      accuracy: 6,
     },
     extraStats: {
-      attack: 2,
-      attackMax: 2,
-      accuracy: 3
+      attack: 1,
+      attackMax: 1.5,
+      accuracy: 1.5
     }
   },
 
@@ -82,15 +80,15 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 4,
-      attackMax: 8,
-      attackSpeed: FAST_SPEED,
+      attack: 4.4,
+      attackMax: 7,
+      attackSpeed: 0.7,
       accuracy: 6,
     },
     extraStats: {
-      attack: 4,
-      attackMax: 4,
-      accuracy: 6
+      attack: 1.2,
+      attackMax: 2,
+      accuracy: 1.5
     }
   },
 
@@ -107,15 +105,15 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 4,
-      attackMax: 7,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 7,
+      attack: 7,
+      attackMax: 12,
+      attackSpeed: 0.5,
+      accuracy: 8,
     },
     extraStats: {
-      attack: 3,
-      attackMax: 5,
-      accuracy: 4
+      attack: 2.1,
+      attackMax: 3.6,
+      accuracy: 2
     }
   },
 
@@ -132,15 +130,15 @@ export const COPPER_ITEMS = {
     isWeapon: true,
     isEquippable: true,
     stats: {
-      attack: 8,
+      attack: 10,
       attackMax: 14,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 14,
+      attackSpeed: 0.5,
+      accuracy: 8,
     },
     extraStats: {
-      attack: 6,
-      attackMax: 8,
-      accuracy: 8
+      attack: 2,
+      attackMax: 4.2,
+      accuracy: 2.4
     }
   },
 
@@ -158,13 +156,14 @@ export const COPPER_ITEMS = {
     isEquippable: true,
     stats: {
       attack: 5,
-      attackMax: 15,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 5,
+      attackMax: 18,
+      attackSpeed: 0.3,
+      accuracy: 8,
     },
     extraStats: {
-      attack: 2,
-      attackMax: 10
+      attack: 1.2,
+      attackMax: 5.4,
+      accuracy: 2
     }
   },
 
@@ -204,9 +203,9 @@ export const COPPER_ITEMS = {
       armor: 5
     },
     extraStats: {
-      healthMax: 2,
+      healthMax: 1,
       defense: 1,
-      armor: 2
+      armor: 1
     }
   },
 
@@ -225,9 +224,9 @@ export const COPPER_ITEMS = {
       armor: 5
     },
     extraStats: {
-      healthMax: 2,
+      healthMax: 1,
       defense: 1,
-      armor: 2
+      armor: 1
     }
   },
 
@@ -246,9 +245,9 @@ export const COPPER_ITEMS = {
       armor: 5
     },
     extraStats: {
-      healthMax: 2,
+      healthMax: 1,
       defense: 1,
-      armor: 2
+      armor: 1
     }
   },
 
@@ -256,6 +255,7 @@ export const COPPER_ITEMS = {
     id: 'copper_shield',
     icon: 'copperShield',
     category: 'combat',
+    weaponType: 'shield',
     slot: 'offHand',
     name: 'copper shield',
     sellPrice: 75,
@@ -267,9 +267,9 @@ export const COPPER_ITEMS = {
       armor: 10
     },
     extraStats: {
-      healthMax: 4,
-      defense: 3,
-      armor: 5
+      healthMax: 1,
+      defense: 1,
+      armor: 3
     }
   }
 }

@@ -35,7 +35,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('combat.gameUpdate');
     }
-  }, 5000);
+  }, 8000);
 
   this.state.set('hasLearnRequirements', false);
 

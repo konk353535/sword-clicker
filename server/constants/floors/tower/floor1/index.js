@@ -5,7 +5,7 @@ import { LEVEL_ONE_LOOT_TABLE } from '/server/constants/floors/levels/level1';
 export const TOWER_FLOOR_1 = {
   1: {
     name: 'Grass Field',
-    enemies: ['grasshopper'],
+    enemies: ['grasshopper', 'fly'],
     rewards: [{
       chance: 1 / 4,
       rewards: [
@@ -27,6 +27,11 @@ export const TOWER_FLOOR_1 = {
     name: 'Flower Field',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'wisdom_tome', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'rubia_flower_seed', amount: 1 }
@@ -57,9 +62,14 @@ export const TOWER_FLOOR_1 = {
     }])
   },
   6: {
-    name: 'Bee Hive',
+    name: 'Honey Mine',
     enemies: ['bee'],
-    rewards: LEVEL_ONE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_hammer', amount: 1 }
+      ]
+    }])
   },
   7: {
     name: 'String Fortress',
@@ -82,11 +92,19 @@ export const TOWER_FLOOR_1 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'iron_dwarven_idol',
-      icon: ITEMS['iron_dwarven_idol'].icon,
-      name: ITEMS['iron_dwarven_idol'].name,
-      baseStats: ITEMS['iron_dwarven_idol'].stats,
-      extraStats: ITEMS['iron_dwarven_idol'].extraStats
+      itemId: 'tin_dwarven_idol',
+      icon: ITEMS['tin_dwarven_idol'].icon,
+      name: ITEMS['tin_dwarven_idol'].name,
+      baseStats: ITEMS['tin_dwarven_idol'].stats,
+      extraStats: ITEMS['tin_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

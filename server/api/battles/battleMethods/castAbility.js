@@ -3,9 +3,35 @@ import { ABILITIES, BUFFS } from '/server/constants/combat/index.js';
 import _ from 'underscore';
 
 export const castAbility = function({ ability, caster, targets, actualBattle }) {
+
+  // Does user have appropriate gear to cast this ability?
+  let canCast = true;
+  if (ability.requires) {
+    ability.requires.forEach((required) => {
+      let meetsRequirement = false;
+      if (required.type === 'weaponType') {
+        required.weaponTypes.forEach((weaponType) => {
+          if (caster.mainHandType === weaponType || caster.offHandType === weaponType) {
+            meetsRequirement = true;
+          }
+        })
+      }
+
+      if (!meetsRequirement) {
+        canCast = false;
+      }
+    });
+  }
+
+  if (!canCast) {
+    return true;
+  }
+
   if (ability.target === 'currentEnemy') {
     // Is current target alive
-    const currentEnemy = _.findWhere(actualBattle.allAliveUnits, { id: caster.target });
+    const currentEnemy = _.find(actualBattle.allAliveUnits, (unit) => {
+      return unit.id === caster.target
+    });
     if (currentEnemy) {
       targets = [currentEnemy];
     } else {
@@ -86,4 +112,6 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
     }
 
   });
+
+  return false;
 }

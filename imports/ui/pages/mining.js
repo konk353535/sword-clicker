@@ -80,10 +80,6 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   }, 7000);
 
-  // Show mining spaces
-  Meteor.subscribe('miningSpace');
-  // Do I even need this?
-  Meteor.subscribe('mining');
 });
 
 Template.miningPage.events({

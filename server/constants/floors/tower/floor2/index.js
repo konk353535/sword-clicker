@@ -22,6 +22,12 @@ export const TOWER_FLOOR_2 = {
     name: 'Minor Earth Alter',
     enemies: ['brown_mage'],
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_wand', amount: 1 },
+        { type: 'item', itemId: 'brown_trident', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'brown_wizard_hat', amount: 1 },
@@ -38,6 +44,11 @@ export const TOWER_FLOOR_2 = {
       rewards: [
         { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tin_buckler', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -47,19 +58,19 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_coal', amount: 1 },
-        { type: 'item', itemId: 'ore_iron', amount: 1 },
+        { type: 'item', itemId: 'ore_tin', amount: 1 },
         { type: 'item', itemId: 'beech_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'iron_bar', amount: 1 }
+        { type: 'item', itemId: 'tin_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'iron_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'tin_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'tin_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -74,9 +85,9 @@ export const TOWER_FLOOR_2 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'iron_scimitar', amount: 1 },
-        { type: 'item', itemId: 'iron_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'iron_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'tin_scimitar', amount: 1 },
+        { type: 'item', itemId: 'tin_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'tin_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -89,11 +100,19 @@ export const TOWER_FLOOR_2 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'steel_dwarven_idol',
-      icon: ITEMS['steel_dwarven_idol'].icon,
-      name: ITEMS['steel_dwarven_idol'].name,
-      baseStats: ITEMS['steel_dwarven_idol'].stats,
-      extraStats: ITEMS['steel_dwarven_idol'].extraStats
+      itemId: 'bronze_dwarven_idol',
+      icon: ITEMS['bronze_dwarven_idol'].icon,
+      name: ITEMS['bronze_dwarven_idol'].name,
+      baseStats: ITEMS['bronze_dwarven_idol'].stats,
+      extraStats: ITEMS['bronze_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

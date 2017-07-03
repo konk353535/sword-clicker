@@ -6,6 +6,7 @@ import moment from 'moment';
 import './farmSpace.html';
 
 let farmSpaceInterval;
+let tooltip;
 Template.farmSpace.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('finishedGrowing', false);
@@ -63,7 +64,7 @@ Template.farmSpace.events({
 });
 
 Template.farmSpace.rendered = function () {
-  const farmSpaceTooltip = new Drop({
+  tooltip = new Drop({
     target: Template.instance().$('.farm-space-container')[0],
     content: Template.instance().$('.farm-space-tooltip-content')[0],
     openOn: 'hover',
@@ -71,6 +72,12 @@ Template.farmSpace.rendered = function () {
     remove: true
   });
 }
+
+Template.farmSpace.onDestroyed(function () {
+  if (tooltip && tooltip.target) {
+    tooltip.destroy();
+  }
+})
 
 Template.farmSpace.helpers({
   isEmpty() {

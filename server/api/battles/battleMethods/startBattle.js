@@ -28,6 +28,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave);
   } else if (room === 0) {
     // Is tower explore (To Do)
+    // Does this do anything?
     battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
   } else if (room >= 1 && room <= 7) {
     // Is tower room specific
@@ -171,11 +172,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     newBattle.units.push({
       id: userCombat.owner,
       owner: userCombat.owner,
-      towerContributionsToday: userCombat.towerContributionsToday || 0,
+      towerContributionsToday: userCombat.towerContributionsToday,
       isTowerContribution: userCombat.isTowerContribution,
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',
       amulet: userCombat.amulet,
+      buffs: [],
+      mainHandType: userCombat.mainHandType,
+      offHandType: userCombat.offHandType,
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 5) + 4,

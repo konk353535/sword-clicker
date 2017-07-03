@@ -12,6 +12,8 @@ import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
+const math = require('mathjs');
+
 export const addItem = function (itemId, amount = 1, specificUserId) {
   let owner;
   if (specificUserId) {
@@ -37,12 +39,12 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
 
       // Roll for each of the stats
       Object.keys(itemConstants.extraStats).forEach((statName) => {
-        const extra = Math.round(itemConstants.extraStats[statName] * Math.random());
+        const extra = itemConstants.extraStats[statName] * Math.random();
         // Determine how good this roll was
         maxRoll += 1;
         if (extra > 0) {
-          extraStats[statName] = extra;
-          myRoll += (extra / itemConstants.extraStats[statName]);
+          extraStats[statName] = math.round(extra, 1);
+          myRoll += (extraStats[statName] / itemConstants.extraStats[statName]);
         }
       });
 
@@ -136,7 +138,7 @@ Meteor.methods({
     }, { multi: true });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username);
+      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -451,7 +453,7 @@ Meteor.methods({
     });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username);
+      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -519,8 +521,13 @@ Meteor.publish('items', function() {
   //Transform function
   var transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
+    if (!itemConstants) {
+      return;
+    }
+
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
+    doc.isTwoHanded = itemConstants.isTwoHanded;
     doc.sellPrice = itemConstants.sellPrice;
     if (itemConstants.stats) {
       doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
@@ -535,6 +542,10 @@ Meteor.publish('items', function() {
       }
     }
 
+    if (itemConstants.tier) {
+      doc.tier = itemConstants.tier;
+    }
+
     if (itemConstants.category === 'seed') {
       doc.plantingDetails = FARMING.plants[itemConstants.produces];
     }
@@ -545,10 +556,6 @@ Meteor.publish('items', function() {
 
     if (itemConstants.shiftActionData) {
       doc.shiftActionData = itemConstants.shiftActionData;
-    }
-
-    if (doc.enhanced) {
-      doc.name += ' (e)';
     }
 
     return doc;

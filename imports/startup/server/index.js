@@ -3,6 +3,7 @@ import { Random } from 'meteor/random';
 import moment from 'moment';
 
 import { Skills } from '../../api/skills/skills.js';
+import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Crafting } from '../../api/crafting/crafting.js';
@@ -338,7 +339,18 @@ Accounts.emailTemplates.verifyEmail = {
   }
 };
 
+Accounts.validateLoginAttempt((attempt) => {
+  const clientIp = attempt.connection.clientAddress;
+
+  if (BlackList.findOne({ clientIp })) {
+    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+  }
+
+  return true;
+});
+
 Accounts.onCreateUser((options, user) => {
+
   user._id = Random.id();
   const userId = user._id;
   user.uiState = {
@@ -348,52 +360,12 @@ Accounts.onCreateUser((options, user) => {
     user.isGuest = options.isGuest;
   }
 
+  // Mining stuff
   Skills.insert({
     type: 'mining',
     createdAt: new Date(),
     owner: userId,
     username: user.username
-  });
-
-  Skills.insert({
-    type: 'defense',
-    createdAt: new Date(),
-    owner: userId,
-    username: user.username
-  });
-
-  Skills.insert({
-    type: 'attack',
-    createdAt: new Date(),
-    owner: userId,
-    username: user.username
-  });
-
-  Skills.insert({
-    type: 'health',
-    createdAt: new Date(),
-    owner: userId,
-    level: SKILLS.health.baseLevel,
-    username: user.username
-  });
-
-  Skills.insert({
-    type: 'crafting',
-    createdAt: new Date(),
-    owner: userId,
-    username: user.username
-  });
-
-  Skills.insert({
-    type: 'total',
-    createdAt: new Date(),
-    owner: userId,
-    username: user.username
-  });
-
-  Crafting.insert({
-    owner: userId,
-    currentlyCrafting: []
   });
 
   Mining.insert({
@@ -406,33 +378,6 @@ Accounts.onCreateUser((options, user) => {
     prospectors: [{
       id: MINING.prospectors.stone.id,
       amount: 1
-    }]
-  });
-
-  Combat.insert({
-    owner: userId,
-    stats: {
-      health: 50,
-      healthMax: 50,
-      energy: 40
-    }
-  });
-
-  Adventures.insert({
-    owner: userId,
-    adventures: [],
-    lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
-    timeTillUpdate: 60 * 3
-  });
-
-  Abilities.insert({
-    owner: userId,
-    learntAbilities: [{
-      "abilityId": "execute",
-      "level": 1,
-      "equipped": true,
-      "slot": "mainHand",
-      "currentCooldown": 0
     }]
   });
 
@@ -449,14 +394,13 @@ Accounts.onCreateUser((options, user) => {
       oreId: MINING.ores.stone.id,
       health: MINING.ores.stone.healthMax,
       index: i
+    }, (err, res) => {
+      
     });
   }
 
   addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
-  addItem(ITEMS['copper_dagger'].id, 1, userId);
-  addItem(ITEMS['lettice'].id, 5, userId);
 
-  // Equip the pick axe
   Items.update({
     owner: userId,
     itemId: ITEMS['primitive_pickaxe'].id
@@ -467,21 +411,95 @@ Accounts.onCreateUser((options, user) => {
     }
   });
 
-  // Equip dagger
-  Items.update({
-    owner: userId,
-    itemId: ITEMS['copper_dagger'].id
-  }, {
-    $set: {
-      equipped: true,
-      slot: ITEMS['copper_dagger'].slot
-    }
-  });
-
   // Update mining stats
   updateMiningStats(userId, true);
-  // Update combat stats
-  updateCombatStats(userId, user.username);
+
+  // Non mining stuff
+  Skills.insert({
+    type: 'defense',
+    createdAt: new Date(),
+    owner: userId,
+    username: user.username
+  }, (err, res) => {
+    Skills.insert({
+      type: 'attack',
+      createdAt: new Date(),
+      owner: userId,
+      username: user.username
+    });
+
+    Skills.insert({
+      type: 'health',
+      createdAt: new Date(),
+      owner: userId,
+      level: SKILLS.health.baseLevel,
+      username: user.username
+    });
+
+    Skills.insert({
+      type: 'crafting',
+      createdAt: new Date(),
+      owner: userId,
+      username: user.username
+    });
+
+    Skills.insert({
+      type: 'total',
+      createdAt: new Date(),
+      owner: userId,
+      username: user.username
+    });
+
+    Crafting.insert({
+      owner: userId,
+      currentlyCrafting: []
+    });
+
+    Combat.insert({
+      owner: userId,
+      stats: {
+        health: 50,
+        healthMax: 50,
+        energy: 40
+      }
+    });
+
+    Adventures.insert({
+      owner: userId,
+      adventures: [],
+      lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
+      timeTillUpdate: 60 * 3
+    });
+
+    Abilities.insert({
+      owner: userId,
+      learntAbilities: [{
+        "abilityId": "berserk",
+        "level": 1,
+        "equipped": true,
+        "slot": "mainHand",
+        "currentCooldown": 0
+      }]
+    });
+
+    addItem(ITEMS['copper_dagger'].id, 1, userId);
+    addItem(ITEMS['lettice'].id, 5, userId);
+
+    // Equip dagger
+    Items.update({
+      owner: userId,
+      itemId: ITEMS['copper_dagger'].id
+    }, {
+      $set: {
+        equipped: true,
+        slot: ITEMS['copper_dagger'].slot
+      }
+    });
+
+    // Update combat stats
+    updateCombatStats(userId, user.username);
+  });
+
 
   return user;
 });

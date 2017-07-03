@@ -22,11 +22,11 @@ const craftItem = function (recipeId, amountToCraft) {
     return;
   }
 
-  const maxConcurrentCrafts = INSCRIPTION.baseMaxCrafts;
+  const maxConcurrentCrafts = INSCRIPTION.getMaxCrafts(inscription.inscriptionLevel);
 
   // Are we already crafting?
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length >= maxConcurrentCrafts) {
-    console.log('Already crafting');
+    throw new Meteor.Error("already-crafting", "Already crafting too many items.");
     return;
   }
 
@@ -54,7 +54,7 @@ const craftItem = function (recipeId, amountToCraft) {
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length > 0) {
     // Get latest crafting time and use that for next items crafting start time
     // This will make crafting sequential
-    startDate = _.sortBy(inscription.currentlyCrafting, 'endDate')[0].endDate;
+    startDate = _.sortBy(inscription.currentlyCrafting, 'endDate').reverse()[0].endDate;
   }
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
@@ -92,6 +92,71 @@ Meteor.methods({
     }
 
     craftItem(recipeId, amount);
+  },
+
+  'inscription.cancelCraft'(targetEndDate) {
+    // If existing crafts done, remove from crafting table
+    const inscription = Inscription.findOne({ owner: Meteor.userId() });
+
+    if (!inscription || !inscription.currentlyCrafting) {
+      return;
+    }
+
+    const newCrafting = JSON.parse(JSON.stringify(inscription.currentlyCrafting));
+
+    // Target Crafting Item
+    let targetCrafting;
+    newCrafting.forEach((currentCrafting, index) => {
+      if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
+        targetCrafting = currentCrafting;
+      }
+    });
+
+    // Remove targetCrafting from the array
+    const filteredCrafting = newCrafting.filter((crafting) => {
+      return crafting !== targetCrafting;
+    });
+
+    // Reorder crafts and recalculate start / end date
+    const sortedCrafts = _.sortBy(filteredCrafting, 'startDate');
+
+    // Reconstruct start and end dates
+    sortedCrafts.forEach((craft, index) => {
+      if (moment().isBefore(craft.startDate)) {
+        const craftDuration = craft.amount * CRAFTING.recipes[craft.recipeId].timeToCraft;
+        if (index === 0) {
+          craft.startDate = moment().toDate();
+          craft.endDate = moment().add(craftDuration, 'seconds').toDate();
+        } else {
+          craft.startDate = moment(sortedCrafts[index - 1].endDate).toDate();
+          craft.endDate = moment(craft.startDate).add(craftDuration, 'seconds').toDate();
+        }
+      }
+    });
+
+    // Remove targetCrafting from current crafting array
+    const updatedCount = Inscription.update({
+      _id: inscription._id,
+      currentlyCrafting: inscription.currentlyCrafting
+    }, {
+      $set: {
+        currentlyCrafting: sortedCrafts
+      }
+    });
+
+    if (updatedCount === 0) {
+      return;
+    }
+
+    // Refund resources for specified crat
+    const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
+    recipeConstants.required.forEach((required) => {
+      if (required.consumes) {
+        if (required.type === 'item') {
+          addItem(required.itemId, required.amount * targetCrafting.amount);
+        }
+      }
+    });
   },
 
   'inscription.fetchRecipes'() {

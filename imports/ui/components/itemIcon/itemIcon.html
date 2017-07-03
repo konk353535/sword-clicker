@@ -3,10 +3,16 @@
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
+
+    <!-- Abilities can have required items -->
+    {{#if item.requiredItem}}
+      <img src="/icons/{{item.requiredItem}}.svg" class="small-icon">
+    {{/if}}
+
     <img src="/icons/{{item.icon}}.svg" class="item-icon">
     {{#unless item.hideCount}}
-      {{#if item.amount}}
-        <div class="item-amount">{{> formatNumber item.amount}}</div>
+      {{#if $gt item.amount 1}}
+        <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
       {{/if}}
     {{/unless}}
   </div>
@@ -15,6 +21,9 @@
   <div class="item-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>
       {{item.name}}
+      {{#if item.enhanced}}
+        (E)
+      {{/if}}
     </h3>
     <div class='popover-content'>
       {{#if item.description}}
@@ -37,7 +46,11 @@
 
       {{#if item.required}}
         <b>Requires</b><br />
-        {{> requiredItems requiredItems=item.required}}
+        {{> requiredItems requiredItems=item.required}}        
+      {{/if}}
+
+      {{#if item.isTwoHanded}}
+        <b>Two Handed</b><br />
       {{/if}}
 
       {{#if item.primaryAction}}
@@ -47,8 +60,7 @@
           </div>
         {{/if}}
       {{else}}
-        <b>Sells for</b> {{item.sellPrice}} Gold<br />
-        <b>Left Click</b> to sell
+        <b>Left Click</b> to sell for {{item.sellPrice}}
       {{/if}}
 
       {{#if item.shiftAction}}
@@ -69,29 +81,31 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Selling Item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          How many to sell?
-          <form class="sell-form">
-            <input class="form-control sell-amount-input" value={{sellAmount}}><br />
-          </form>
-          +{{ totalPrice sellAmount item.sellPrice }} Gold
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger sell-btn">Sell</button>
+  {{#if showSellModal}}
+      <!-- Modal -->
+      <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Selling Item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              How many to sell?
+              <form class="sell-form">
+                <input class="form-control sell-amount-input" value={{sellAmount}}><br />
+              </form>
+              +{{ totalPrice sellAmount item.sellPrice }} Gold
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger sell-btn">Sell</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+  {{/if}}
 
 
 </template>

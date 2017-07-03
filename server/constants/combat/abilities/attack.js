@@ -49,13 +49,47 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  vampirism: {
+    icon: 'vampirism',
+    name: 'vampirism',
+    id: 'vampirism',
+    buffs: ['vampirism'],
+    cooldown: 600,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.vampirism;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  penetrating_slash: {
+    icon: 'penetratingSlash',
+    name: 'penetrating slash',
+    id: 'penetrating_slash',
+    buffs: ['penetrating_slash'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.penetrating_slash;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   shield_bash: {
     icon: 'shieldBash',
     name: 'shield bash',
     id: 'shield_bash',
     buffs: ['shield_bash'],
-    cooldown: 60,
+    cooldown: 15,
     slot: 'any',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['shield']
+    }],
     target: 'currentEnemy',
     isHidden: false,
     description(level) {
@@ -79,18 +113,34 @@ export const ATTACK_ABILITIES = {
     }
   },
 
-  taunt: {
-    icon: 'taunt',
-    name: 'taunt',
-    id: 'taunt',
-    buffs: ['taunt'],
-    cooldown: 10,
+  accuracy_up: {
+    icon: 'accuracy',
+    name: 'accuracy up',
+    id: 'accuracy_up',
+    buffs: ['accuracy_up'],
+    cooldown: 0,
+    isPassive: true,
     slot: 'any',
-    target: 'singleEnemy',
-    targettable: true,
-    isHidden: false,
+    target: 'self',
+    isHidden: true,
     description(level) {
-      const BUFF = BUFFS.taunt;
+      const BUFF = BUFFS.accuracy_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  attack_up: {
+    icon: 'attack',
+    name: 'attack up',
+    id: 'attack_up',
+    buffs: ['attack_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.attack_up;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -100,7 +150,7 @@ export const ATTACK_ABILITIES = {
     name: 'execute',
     id: 'execute',
     buffs: ['execute'],
-    cooldown: 40,
+    cooldown: 10,
     slot: 'any',
     isHidden: false,
     target: 'currentEnemy', // The curreny enemy who we are auto attacking
@@ -136,6 +186,25 @@ export const ATTACK_ABILITIES = {
     target: 'self', // The curreny enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.blade_frenzy;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  bleeding_spin: {
+    icon: 'bleedingSpin',
+    name: 'bleeding spin',
+    id: 'bleeding_spin',
+    buffs: ['bleed'],
+    cooldown: 60,
+    slot: 'any',
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['battleAxe']
+    }],
+    target: 'allEnemies', // The curreny enemy who we are auto attacking
+    description(level) {
+      const BUFF = BUFFS.bleed;
       return BUFF.description({ buff: BUFF, level });
     }
   },

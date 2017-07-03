@@ -17,6 +17,21 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  earth_ball: {
+    icon: 'earthBall',
+    name: 'earth ball',
+    id: 'earth_ball',
+    buffs: ['earth_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.earth_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   water_dart: {
     icon: 'waterDart',
     name: 'water dart',
@@ -27,8 +42,138 @@ export const MAGIC_ABILITIES = {
     target: 'singleFriendly',
     targettable: true,
     isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
     description(level) {
       const BUFF = BUFFS.water_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  water_ball: {
+    icon: 'waterBall',
+    name: 'water ball',
+    id: 'water_ball',
+    buffs: ['water_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.water_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  water_wave: {
+    icon: 'waterWave',
+    name: 'water wave',
+    id: 'water_wave',
+    buffs: ['water_wave'],
+    cooldown: 30,
+    slot: 'any',
+    target: 'allAllies',
+    isHidden: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.water_wave;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  ice_dart: {
+    icon: 'iceDart',
+    name: 'ice dart',
+    id: 'ice_dart',
+    buffs: ['ice_dart'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.ice_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  blizzard: {
+    icon: 'blizzard',
+    name: 'blizzard',
+    id: 'blizzard',
+    buffs: ['blizzard'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'allEnemies',
+    isHidden: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.blizzard;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  poison_dart: {
+    icon: 'poisonDart',
+    name: 'poison dart',
+    id: 'poison_dart',
+    buffs: ['poison_dart'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.poison_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  lightning_storm: {
+    icon: 'lightningStorm',
+    name: 'lighting storm',
+    id: 'lightning_storm',
+    buffs: ['lightning_storm'],
+    cooldown: 60,
+    slot: 'any',
+    target: 'allEnemies',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.lightning_storm;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  lightning_dart: {
+    icon: 'lightningDart',
+    name: 'lighting dart',
+    id: 'lightning_dart',
+    buffs: ['lightning_dart'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.lightning_dart;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -48,6 +193,21 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  air_ball: {
+    icon: 'airBall',
+    name: 'air ball',
+    id: 'air_ball',
+    buffs: ['air_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.air_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   fire_dart: {
     icon: 'fireDart',
     name: 'fire dart',
@@ -59,6 +219,81 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.fire_dart;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  fire_ball: {
+    icon: 'fireBall',
+    name: 'fire ball',
+    id: 'fire_ball',
+    buffs: ['fire_ball'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.fire_ball;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  magic_wisdom: {
+    icon: 'magicWisdom',
+    name: 'magic wisdom',
+    id: 'magic_wisdom',
+    buffs: ['magic_wisdom'],
+    cooldown: 60 * 60 * 24,
+    slot: 'any',
+    target: 'self',
+    isMagic: true,
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.magic_wisdom;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  affliction: {
+    icon: 'affliction',
+    name: 'affliction',
+    id: 'affliction',
+    buffs: ['affliction'],
+    cooldown: 300,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    isHidden: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.affliction;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  meteor_strike: {
+    icon: 'meteorStrike',
+    name: 'meteor strike',
+    id: 'meteor_strike',
+    buffs: ['meteor_strike'],
+    cooldown: 300,
+    isHidden: false,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.meteor_strike;
       return BUFF.description({ buff: BUFF, level });
     }
   },
@@ -76,6 +311,26 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.mud_armor;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  mending_spring: {
+    icon: 'mendingSpring',
+    name: 'mending spring',
+    id: 'mending_spring',
+    buffs: ['mending_spring'],
+    cooldown: 90,
+    slot: 'any',
+    isHidden: true,
+    target: 'allAllies',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.mending_spring;
       return BUFF.description({ buff: BUFF, level });
     }
   },

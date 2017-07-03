@@ -93,6 +93,467 @@ export const MISC_ITEMS = {
     }]
   },
 
+  /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
+  "bronze_kite_shield": {
+    "id": "bronze_kite_shield",
+    "icon": "bronzeKiteShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "bronze kite shield",
+    "sellPrice": 75,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 3.6,
+      "defense": 6.2,
+      "armor": 30.6,
+      "attackSpeed": -0.15
+    },
+    "extraStats": {
+      "healthMax": 1.1,
+      "defense": 1.3,
+      "armor": 5.0
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  "steel_kite_shield": {
+    "id": "steel_kite_shield",
+    "icon": "steelKiteShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "steel kite shield",
+    "sellPrice": 75,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 8.6,
+      "defense": 14.9,
+      "armor": 73.5,
+      "attackSpeed": -0.15
+    },
+    "extraStats": {
+      "healthMax": 2.6,
+      "defense": 4,
+      "armor": 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
+  },
+
+  "obsidian_kite_shield": {
+    "id": "obsidian_kite_shield",
+    "icon": "obsidianKiteShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "obsidian kite shield",
+    "sellPrice": 75,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 14.8,
+      "defense": 26,
+      "armor": 128.4,
+      "attackSpeed": -0.15
+    },
+    "extraStats": {
+      "healthMax": 4.4,
+      "defense": 6.9,
+      "armor": 15.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
+  },
+
+  "meteorite_kite_shield": {
+    "id": "meteorite_kite_shield",
+    "icon": "meteoriteKiteShield",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "meteorite kite shield",
+    "sellPrice": 75,
+    "description": "Provides large defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 24.4,
+      "defense": 43.1,
+      "armor": 210.8,
+      "attackSpeed": -0.15
+    },
+    "extraStats": {
+      "healthMax": 7.3,
+      "defense": 11.4,
+      "armor": 37.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
+  },
+
+  /* Buckler -30% armor, -10% defense, + small accuracy */
+
+  "tin_buckler": {
+    "id": "tin_buckler",
+    "icon": "tinBuckler",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "tin buckler",
+    "sellPrice": 75,
+    "description": "Provides average defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 2.8,
+      "defense": 3.8,
+      "armor": 10.4,
+      "accuracy": 2
+    },
+    "extraStats": {
+      "healthMax": 0.8,
+      "defense": 1.3,
+      "armor": 4.2,
+      "accuracy": 1.0
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
+  },
+
+  "gold_buckler": {
+    "id": "gold_buckler",
+    "icon": "goldBuckler",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "gold buckler",
+    "sellPrice": 75,
+    "description": "Provides average defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 6.5,
+      "defense": 8,
+      "armor": 26.9,
+      "accuracy": 4.5
+    },
+    "extraStats": {
+      "healthMax": 2,
+      "defense": 2.5,
+      "armor": 7.1,
+      "accuracy": 1.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
+  },
+
+  "tungsten_buckler": {
+    "id": "tungsten_buckler",
+    "icon": "tungstenBuckler",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "tungsten buckler",
+    "sellPrice": 75,
+    "description": "Provides average defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 13.2,
+      "defense": 16.5,
+      "armor": 45.3,
+      "accuracy": 5.5
+    },
+    "extraStats": {
+      "healthMax": 4,
+      "defense": 5.4,
+      "armor": 14,
+      "accuracy": 2.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
+  },
+
+  "mithril_buckler": {
+    "id": "mithril_buckler",
+    "icon": "mithrilBuckler",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "mithril buckler",
+    "sellPrice": 75,
+    "description": "Provides average defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 18.4,
+      "defense": 20.6,
+      "armor": 75.7,
+      "accuracy": 6.6
+    },
+    "extraStats": {
+      "healthMax": 5.5,
+      "defense": 6.6,
+      "armor": 19.6,
+      "accuracy": 2.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
+  },
+
+  "elven_steel_buckler": {
+    "id": "elven_steel_buckler",
+    "icon": "elvenSteelBuckler",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "elven steel buckler",
+    "sellPrice": 75,
+    "description": "Provides average defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 30,
+      "defense": 38.9,
+      "armor": 113.8,
+      "accuracy": 8.9
+    },
+    "extraStats": {
+      "healthMax": 9,
+      "defense": 12.1,
+      "armor": 32.1,
+      "accuracy": 3.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
+  },
+
+  /* Knife - Off handed weapon, minor accuracy and damage increases */
+  "silver_knife": {
+    "id": "silver_knife",
+    "icon": "silverKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "silver knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 3,
+      "attack": 2,
+      "attackMax": 3
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2,
+      "attackMax": 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
+  },
+
+  "titanium_knife": {
+    "id": "titanium_knife",
+    "icon": "titaniumKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "titanium knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 5,
+      "attack": 4,
+      "attackMax": 5
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2,
+      "attackMax": 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
+  },
+
+  "cobalt_knife": {
+    "id": "cobalt_knife",
+    "icon": "cobaltKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "cobalt knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 7,
+      "attack": 6,
+      "attackMax": 8
+    },
+    "extraStats": {
+      "accuracy": 3,
+      "attack": 3,
+      "attackMax": 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
+  },
+
+  "cursed_knife": {
+    "id": "cursed_knife",
+    "icon": "cursedKnife",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "cursed knife",
+    "sellPrice": 75,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 10,
+      "attack": 8,
+      "attackMax": 10
+    },
+    "extraStats": {
+      "accuracy": 4,
+      "attack": 4,
+      "attackMax": 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
+  },
+
+  /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
+  "iron_rapiers": {
+    "id": "iron_rapiers",
+    "icon": "ironRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "iron rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 10.1,
+      "attackMax": 13.9,
+      "attackSpeed": 1.0,
+      "defense": -10,
+      "accuracy": 10.8
+    },
+    "extraStats": {
+      "attack": 2.7,
+      "attackMax": 5.5,
+      "accuracy": 2.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
+  },
+
+  "adamantium_rapiers": {
+    "id": "adamantium_rapiers",
+    "icon": "adamantiumRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "adamantium rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 45.4,
+      "attackMax": 71.8,
+      "attackSpeed": 1.0,
+      "defense": -10,
+      "accuracy": 45.8
+    },
+    "extraStats": {
+      "attack": 12.3,
+      "attackMax": 24.8,
+      "accuracy": 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
+  },
+
+  "fairy_steel_rapiers": {
+    "id": "fairy_steel_rapiers",
+    "icon": "fairySteelRapiers",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "fairy steel rapiers",
+    "sellPrice": 75,
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 60.4,
+      "attackMax": 95.6,
+      "attackSpeed": 1.0,
+      "accuracy": 60.9,
+      "defense": -25
+    },
+    "extraStats": {
+      "attack": 16.4,
+      "attackMax": 32.9,
+      "accuracy": 18.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
+  },
+
+  /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',
     icon: 'spiritShield',
@@ -114,5 +575,104 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 1
     }]
-  }
+  },
+
+  fairy_spirit_shield: {
+    id: 'fairy_spirit_shield',
+    icon: 'fairySpiritShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'fairy spirit shield',
+    sellPrice: 500,
+    description: 'The shield pulls at your spirit.',
+    isEquippable: true,
+    stats: {
+      healthMax: 20,
+      magicArmor: 55,
+    },
+    extraStats: {
+      healthMax: 20,
+      magicArmor: 15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+
+  cursed_spirit_shield: {
+    id: 'cursed_spirit_shield',
+    icon: 'cursedSpiritShield',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'cursed spirit shield',
+    sellPrice: 500,
+    description: 'The shield pulls at your spirit.',
+    isEquippable: true,
+    stats: {
+      healthMax: 35,
+      magicArmor: 70,
+    },
+    extraStats: {
+      healthMax: 35,
+      magicArmor: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
+  },
+
+  /* Defensive Magic Armor */
+  opal_chest_plate: {
+    id: 'opal_chest_plate',
+    icon: 'opalChestPlate',
+    category: 'combat',
+    slot: 'chest',
+    name: 'opal chest plate',
+    sellPrice: 1000,
+    description: 'This seems to expensive to wear.',
+    isEquippable: true,
+    stats: {
+      healthMax: 35,
+      magicArmor: 20,
+      accuracy: 10
+    },
+    extraStats: {
+      healthMax: 15,
+      magicArmor: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  opal_pants: {
+    id: 'opal_pants',
+    icon: 'opalPants',
+    category: 'combat',
+    slot: 'legs',
+    name: 'opal pants',
+    sellPrice: 1000,
+    description: 'This seems to expensive to wear.',
+    isEquippable: true,
+    stats: {
+      healthMax: 20,
+      magicArmor: 15,
+      accuracy: 10,
+    },
+    extraStats: {
+      healthMax: 20,
+      magicArmor: 15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  }  
 }

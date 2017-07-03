@@ -3,6 +3,7 @@ import '/imports/startup/both';
 import '/imports/startup/server';
 
 import { ITEMS } from '/server/constants/items/index';
+import { ABILITIES } from '/server/constants/combat/abilities';
 import { resumeBattle } from '/server/api/battles/battles';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
@@ -17,8 +18,6 @@ import { addItem } from '/server/api/items/items';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
-
-  if (process.env['CLUSTER_WORKER_ID'] !== "1") return 
 
   /*
   Object.keys(ITEMS).forEach((itemId) => {
@@ -49,12 +48,15 @@ Meteor.startup(() => {
     }
   })*/
 
-  // Start processing abandoned battles
-  BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
-    Meteor.setTimeout(() => {
-      resumeBattle(existingBattle._id);
-    }, Math.random() * 1000);
-  });
+
+  if (process.env['CLUSTER_WORKER_ID'] == 1) {
+    // Start processing abandoned battles
+    BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
+      Meteor.setTimeout(() => {
+        resumeBattle(existingBattle._id);
+      }, Math.random() * 1000);
+    });
+  }
 
   // Ensure indexes on key databases
   Crafting._ensureIndex({ owner: 1 });

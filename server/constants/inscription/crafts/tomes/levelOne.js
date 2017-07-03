@@ -2,6 +2,19 @@ import { UTIL } from './util';
 
 export const LEVEL_ONE_CRAFTS = {
 
+  penetrating_slash_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'penetrating_slash_level_1_tome',
+    name: 'Penetrating slash Lv 1.',
+    id: 'penetrating_slash_level_1_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
+  },
+
   shield_bash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'shield_bash_level_1_tome',
@@ -26,6 +39,110 @@ export const LEVEL_ONE_CRAFTS = {
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
     required: [UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
+  },
+
+  ice_dart_tome: {
+    recipeFor: 'inscription',
+    produces: 'ice_dart_tome',
+    name: 'ice Dart',
+    id: 'ice_dart_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 4,
+    required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
+  },
+
+  water_ball_tome: {
+    recipeFor: 'inscription',
+    produces: 'water_ball_tome',
+    name: 'Water ball',
+    id: 'water_ball_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 14,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
+  },
+
+  fire_ball_tome: {
+    recipeFor: 'inscription',
+    produces: 'fire_ball_tome',
+    name: 'fire ball',
+    id: 'fire_ball_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 15,
+    required: [UTIL.MANY_RED_200, UTIL.OAK_PAPER, UTIL.LEVEL_15]
+  },
+
+  earth_ball_tome: {
+    recipeFor: 'inscription',
+    produces: 'earth_ball_tome',
+    name: 'earth ball',
+    id: 'earth_ball_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 16,
+    required: [UTIL.BLUE_255, UTIL.RED_255, UTIL.GREEN_255, UTIL.OAK_PAPER, UTIL.LEVEL_16]
+  },
+
+  air_ball_tome: {
+    recipeFor: 'inscription',
+    produces: 'air_ball_tome',
+    name: 'air ball',
+    id: 'air_ball_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 17,
+    required: [UTIL.BLUE_255, UTIL.PURPLE_255, UTIL.OAK_PAPER, UTIL.LEVEL_17]
+  },
+
+  vampirism_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'vampirism_level_1_tome',
+    name: 'vampirism lv 1',
+    id: 'vampirism_level_1_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 17,
+    required: [UTIL.BLUE_255, UTIL.PURPLE_255, UTIL.OAK_PAPER, UTIL.LEVEL_17]
+  },
+
+  meteor_tome: {
+    recipeFor: 'inscription',
+    produces: 'meteor_tome',
+    name: 'meteor',
+    id: 'meteor_tome',
+    category: 'tome',
+    timeToCraft: 900,
+    xp: 500,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 25,
+    required: [UTIL.YELLOW_255, UTIL.RED_150, UTIL.WALNUT_PAPER, UTIL.LEVEL_25]
+  },
+
+  scream_tome: {
+    recipeFor: 'inscription',
+    produces: 'scream_tome',
+    name: 'scream',
+    id: 'scream_tome',
+    category: 'tome',
+    timeToCraft: 900,
+    xp: 250,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 19,
+    required: [UTIL.MANY_RED_150, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_19]
   },
 
   berserk_level_1_tome: {

@@ -34,31 +34,26 @@ export const LEVEL_FIVE_MONSTERS = [{
 export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 256,
   rewards: [
-    { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 }
+    { type: 'item', itemId: 'attack_up_1_tome', amount: 1 },
   ]
 }, {
   chance: 1 / 128,
   rewards: [
-    { type: 'item', itemId: 'steel_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'steel_axe', amount: 1 },
-    { type: 'item', itemId: 'steel_dagger', amount: 1 }
+    { type: 'item', itemId: 'iron_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'iron_axe', amount: 1 },
+    { type: 'item', itemId: 'iron_dagger', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'ore_carbon', amount: 1 },
-    { type: 'item', itemId: 'steel_bar', amount: 1 }
-  ]
-}, {
-  chance: 1 / 32,
-  rewards: [
-    { type: 'item', itemId: 'mithril_essence', amount: 1 }
+    { type: 'item', itemId: 'ore_iron', amount: 1 },
+    { type: 'item', itemId: 'iron_bar', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
     { type: 'gold', amount: 125 },
-    { type: 'item', itemId: 'ore_steel', amount: 1 },
+    { type: 'item', itemId: 'ore_iron', amount: 1 },
     { type: 'item', itemId: 'oak_log', amount: 1 }
   ]
 }]);

@@ -8,12 +8,93 @@ export const MISC_ITEMS = {
     description: 'Not very useful'
   },
 
+  silver_essence: {
+    id: 'silver_essence',
+    icon: 'silverEssence',
+    category: 'mining',
+    name: 'silver essence',
+    sellPrice: 200,
+    description: 'Required to bond silver together.'
+  },
+
+  gold_essence: {
+    id: 'gold_essence',
+    icon: 'goldEssence',
+    category: 'mining',
+    name: 'gold essence',
+    sellPrice: 250,
+    description: 'Required to bond gold together.'
+  },
+
+  carbon_essence: {
+    id: 'carbon_essence',
+    icon: 'carbonEssence',
+    category: 'mining',
+    name: 'carbon essence',
+    sellPrice: 275,
+    description: 'Required to bond carbon together.'
+  },
+
+  steel_essence: {
+    id: 'steel_essence',
+    icon: 'steelEssence',
+    category: 'mining',
+    name: 'steel essence',
+    sellPrice: 300,
+    description: 'Required to bond steel together.'
+  },
+
+  platinum_essence: {
+    id: 'platinum_essence',
+    icon: 'platinumEssence',
+    category: 'mining',
+    name: 'platinum essence',
+    sellPrice: 325,
+    description: 'Required to bond platinum together.'
+  },
+
+  titanium_essence: {
+    id: 'titanium_essence',
+    icon: 'titaniumEssence',
+    category: 'mining',
+    name: 'titanium essence',
+    sellPrice: 350,
+    description: 'Required to bond titanium together.'
+  },
+
+  tungsten_essence: {
+    id: 'tungsten_essence',
+    icon: 'tungstenEssence',
+    category: 'mining',
+    name: 'tungsten essence',
+    sellPrice: 400,
+    description: 'Required to bond tungsten together.'
+  },
+
+  obsidian_essence: {
+    id: 'obsidian_essence',
+    icon: 'obsidianEssence',
+    category: 'mining',
+    name: 'obsidian essence',
+    sellPrice: 450,
+    description: 'Required to bond obsidian together.'
+  },
+
+  cobalt_essence: {
+    id: 'cobalt_essence',
+    icon: 'cobaltEssence',
+    category: 'mining',
+    name: 'cobalt essence',
+    sellPrice: 500,
+    description: 'Required to bond cobalt together.'
+  },
+
   mithril_essence: {
     id: 'mithril_essence',
     icon: 'mithrilEssence',
     category: 'mining',
     name: 'mithril essence',
-    sellPrice: 250,
+    sellPrice: 550,
     description: 'Required to bond mithril together.'
   },
 
@@ -22,7 +103,7 @@ export const MISC_ITEMS = {
     icon: 'adamantiumEssence',
     category: 'mining',
     name: 'adamantium essence',
-    sellPrice: 500,
+    sellPrice: 600,
     description: 'Required to bond adamantium together.'
   },
 
@@ -31,17 +112,17 @@ export const MISC_ITEMS = {
     icon: 'orichalcumEssence',
     category: 'mining',
     name: 'orichalcum essence',
-    sellPrice: 750,
+    sellPrice: 700,
     description: 'Required to bond orichalcum together.'
   },
 
-  cobalt_essence: {
-    id: 'cobalt_essence',
-    icon: 'cobaltEssence',
+  meteorite_essence: {
+    id: 'meteorite_essence',
+    icon: 'meteoriteEssence',
     category: 'mining',
-    name: 'cobalt essence',
-    sellPrice: 875,
-    description: 'Required to bond cobalt together.'
+    name: 'meteorite essence',
+    sellPrice: 800,
+    description: 'Required to bond meteorite together.'
   },
 
   fairy_steel_essence: {
@@ -49,8 +130,17 @@ export const MISC_ITEMS = {
     icon: 'fairySteelEssence',
     category: 'mining',
     name: 'fairy steel essence',
-    sellPrice: 1000,
+    sellPrice: 900,
     description: 'Required to bond fairy steel together.'
+  },
+
+  elven_steel_essence: {
+    id: 'elven_steel_essence',
+    icon: 'elvenSteelEssence',
+    category: 'mining',
+    name: 'elven steel essence',
+    sellPrice: 1000,
+    description: 'Required to bond elven_steel together.'
   },
 
   cursed_essence: {
@@ -59,6 +149,7 @@ export const MISC_ITEMS = {
     category: 'mining',
     name: 'cursed essence',
     sellPrice: 1250,
-    description: 'Required to bond cursed ore together.'
-  }
+    description: 'Required to bond cursed together.'
+  },
+
 }

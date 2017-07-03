@@ -64,7 +64,7 @@ Template.towerTab.events({
   },
 
   'click .battle-deeper'(event, instance) {
-    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 0, findBattleHandler);
   },
 
   'click .battle-room-1-row'(event, instance) {
@@ -164,7 +164,7 @@ Template.towerTab.helpers({
           reward.chance = 0;
         }
       } else if (reward.type === 'gold') {
-        reward.goldAmount = (1 - (percentRank / 100)) * reward.amount;
+        reward.goldAmount = Math.round((1 - (percentRank / 100)) * reward.amount);
       }
 
       return reward;
@@ -246,7 +246,7 @@ Template.towerTab.helpers({
     return Template.instance().state.get('maxFloor');
   },
 
-  currentCommunityfloor() {
+  currentCommunityFloor() {
     const instance = Template.instance();
     return instance.state.get('maxFloor') == instance.state.get('usersCurrentFloor');
   },

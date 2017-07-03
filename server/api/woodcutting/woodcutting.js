@@ -220,7 +220,8 @@ Meteor.methods({
           stats,
           icon: woodcutterConstants.icon,
           name: woodcutterConstants.name,
-          woodcutterId: woodcutterConstants.id
+          woodcutterId: woodcutterConstants.id,
+          quality: axeToUse.quality
         }
       }
     });
@@ -241,7 +242,6 @@ DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);
 
 Meteor.publish('woodcutting', function() {
-
   //Transform function
   var transform = function(doc) {
     doc.maxWoodcutters = WOODCUTTING.baseMaxWoodcutters;

@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
+import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
 import './components/accounts/accounts.html';
@@ -27,6 +28,7 @@ let astronomyTimer;
 let floatingTextTimer;
 
 let cachedSkills = {};
+let cachedAdventures = {};
 
 Template.body.onCreated(function () {
 
@@ -64,6 +66,25 @@ Template.body.onCreated(function () {
     }
   });
 
+  Tracker.autorun(() => {
+    const myAdventures = Adventures.findOne({});
+    if (!myAdventures) {
+      return;
+    }
+
+    // Iterate on adventures
+    myAdventures.adventures.forEach((adventure) => {
+      if (adventure.win != null && !cachedAdventures[adventure.id]) {
+        if (adventure.win) {
+          toastr.success('An adventure has succeeded')
+        } else {
+          toastr.danger('An adventure has failed')
+        }
+        cachedAdventures[adventure.id] = true;
+      }
+    });
+  })
+
   // Track exp and level drops
   Tracker.autorun(() => {
     const skills = Skills.find({}).fetch();
@@ -85,7 +106,7 @@ Template.body.onCreated(function () {
                 <p
                   class='floating-text'
                   data-count=1
-                  style='top: 75px; right: 25px; opacity: 1.0;'>
+                  style='top: 100px; right: 25px; opacity: 1.0;'>
                   +${xpGained} <i class="lilIcon-${skill.type}"></i>
                 </p>
               `);
@@ -140,7 +161,6 @@ Template.body.onCreated(function () {
     }
   }, 116 * 1000 + (Math.random() * 1000));
 
-  Meteor.call('adventures.gameUpdate');
   adventuresTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('adventures.gameUpdate');
@@ -211,6 +231,20 @@ Template.body.onCreated(function () {
   Meteor.subscribe('groups');
   // Show combat details for groups
   Meteor.subscribe('combat');
+  // Show woodcutting
+  Meteor.subscribe('woodcutting');
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+  // Mining data
+  Meteor.subscribe('mining');
+  // Show currently crafting items
+  Meteor.subscribe('crafting');
+  // Farming
+  Meteor.subscribe('farmingSpace');
+  // Show currently inscripting items
+  Meteor.subscribe('inscription');
+  // Adventures
+  Meteor.subscribe('adventures');
 });
 
 Template.myLayout.helpers({

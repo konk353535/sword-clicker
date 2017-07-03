@@ -1,0 +1,55 @@
+<template name="abilityLibraryIcon">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative" data-id="{{item._id}}">
+    {{#if item.quality}}
+      <div class="item-quality">{{item.quality}}%</div>    
+    {{/if}}
+
+    {{#each item.requires}}
+      {{#if $eq this.type 'weaponType'}}
+        <div style="position: absolute; left: 2px; top: 0px">
+          {{#each this.weaponTypes}}
+            <img
+              src="/icons/{{this}}.svg"
+              style="height: 20px; width: 20px;">
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/each}}
+
+    <!-- Abilities can have required items -->
+    {{#if item.requiredItem}}
+      <img src="/icons/{{item.requiredItem}}.svg" class="small-icon">
+    {{/if}}
+
+    <img src="/icons/{{item.icon}}.svg" class="item-icon">
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="item-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+      {{item.name}}
+    </h3>
+    <div class='popover-content'>
+      {{#if item.description}}
+        {{{item.description}}}<br />
+      {{/if}}
+
+      {{#if item.cooldown}}
+        Cooldown <b>{{item.cooldown}}s</b><br />
+      {{/if}}
+
+      {{#if item.isSpell}}
+        <b>{{item.casts}}</b> casts remaining.<br /><br />
+      {{/if}}
+
+      {{#if item.primaryAction}}
+        {{#if item.primaryAction.description}}
+          <div>
+            <b>Left Click</b> to {{item.primaryAction.description}}
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+
+</template>

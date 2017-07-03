@@ -4,18 +4,18 @@ import { LEVEL_TEN_LOOT_TABLE } from '/server/constants/floors/levels/level10';
 
 export const TOWER_FLOOR_10 = {
   1: {
-    name: 'Flaming House',
-    enemies: ['demon'],
+    name: 'abandoned lighthouse',
+    enemies: ['demon', 'crab'],
     rewards: []
   },
   2: {
-    name: 'Jungle',
-    enemies: ['lizard'],
+    name: 'Bush',
+    enemies: ['wombat', 'fly'],
     rewards: LEVEL_TEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
-    enemies: ['elephant'],
+    name: 'Turquoise Lake',
+    enemies: ['jellyfish', 'fish'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
@@ -25,22 +25,22 @@ export const TOWER_FLOOR_10 = {
     }]))
   },
   4: {
-    name: 'Cursed Place',
-    enemies: ['cursed_spirit'],
+    name: 'titanium Place',
+    enemies: ['titanium_spirit'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'cursed_essence', amount: 1 }
+        { type: 'item', itemId: 'titanium_essence', amount: 1 }
       ]
     }]))
   },
   5: {
-    name: 'Demonic Resonance',
-    enemies: ['demon'],
+    name: 'Bandit Camp',
+    enemies: ['rabbit', 'cut_purse'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'thirsting_saber', amount: 1 }
+        { type: 'item', itemId: 'titanium_knife', amount: 1 }
       ]
     }]))
   },
@@ -50,51 +50,60 @@ export const TOWER_FLOOR_10 = {
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_cursed', amount: 1 },
-        { type: 'item', itemId: 'fiery_log', amount: 1 }
+        { type: 'item', itemId: 'ore_titanium', amount: 1 },
+        { type: 'item', itemId: 'black_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'cursed_bar', amount: 1 }
+        { type: 'item', itemId: 'titanium_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'cursed_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'cursed_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'titanium_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'titanium_mining_hammer', amount: 1 }
       ]
     }]))
   },
+  // To do, some kind of herb garden drops
   7: {
-    name: 'Fire Mage',
-    enemies: ['fire_mage'],
+    name: 'Overgrown Grass',
+    enemies: ['grasshopper', 'spider'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
-      chance: 1 / 1024,
+      chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'inferno_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 4,
+      chance: 1 / 96,
       rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'catnip', amount: 1 } // Change to herb
       ]
     }]))
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
+    enemy: { id: 'boss_demon', amount: 1 }, // Change to another boss
     rewards: LEVEL_TEN_LOOT_TABLE
   },
 
   floorRewards: [
     {
       type: 'item',
-      itemId: 'cursed_dwarven_idol',
-      icon: ITEMS['cursed_dwarven_idol'].icon,
-      name: ITEMS['cursed_dwarven_idol'].name,
-      baseStats: ITEMS['cursed_dwarven_idol'].stats,
-      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
+      itemId: 'tungsten_dwarven_idol',
+      icon: ITEMS['tungsten_dwarven_idol'].icon,
+      name: ITEMS['tungsten_dwarven_idol'].name,
+      baseStats: ITEMS['tungsten_dwarven_idol'].stats,
+      extraStats: ITEMS['tungsten_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

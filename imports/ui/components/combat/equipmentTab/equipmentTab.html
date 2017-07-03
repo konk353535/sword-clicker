@@ -84,9 +84,9 @@
                 <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
               </div>
               <div class="d-flex align-items-center ml-1">
-                {{this.value}}
+                {{> formatNumber number=this.value decimal=1}}
                 {{#if this.maxValue}}
-                  - {{> formatNumber this.maxValue}}
+                  - {{> formatNumber number=this.maxValue decimal=1}}
                 {{/if}}
               </div>
             </div>
@@ -100,9 +100,9 @@
                 <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
               </div>
               <div class="d-flex align-items-center ml-1">
-                {{> formatNumber this.value}}
+                {{> formatNumber number=this.value decimal=1}}
                 {{#if this.maxValue}}
-                  / {{this.maxValue}}
+                  / {{> formatNumber number=this.maxValue decimal=0}}
                 {{/if}}
               </div>
             </div>
@@ -113,17 +113,17 @@
       <br />
       <h1>Skill Levels</h1>
       <div class="attackSkill-tooltip-container">
-        {{> skillHeader skill=attackSkill}}
+        {{> skillHeader skill=attackSkill flipped=true}}
       </div>
       <div class="defenseSkill-tooltip-container">
-        {{> skillHeader skill=defenseSkill color='bg-success'}}
+        {{> skillHeader skill=defenseSkill color='bg-success' flipped=true}}
       </div>
       <div class="healthSkill-tooltip-container">
-        {{> skillHeader skill=healthSkill color='bg-danger'}}
+        {{> skillHeader skill=healthSkill color='bg-danger' flipped=true}}
       </div>
       {{#if magicSkill}}
         <div class="magicSkill-tooltip-container">
-          {{> skillHeader skill=magicSkill color='bg-info'}}
+          {{> skillHeader skill=magicSkill color='bg-info' flipped=true}}
         </div>
       {{/if}}
     </div>

@@ -35,7 +35,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor) {
 
   if (type === 'magic' && combatSkills.magic) {
     // Level = Magic Level / 4
-    level = Math.ceil(combatSkills.magic.level / 5);
+    level = Math.ceil(combatSkills.magic.level / 4);
   } else {
     // Level = ((Attack + Defense) / 2) / 5
     level = Math.ceil(((combatSkills.attack.level + combatSkills.defense.level) / 2) / 5);
@@ -104,21 +104,21 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
   // Xp / hour lookup
   const xpLookup = {
     1: 2000,
-    2: 12000,
-    3: 20000,
-    4: 45000,
-    5: 65000,
-    6: 110000
+    2: 6000,
+    3: 10000,
+    4: 22000,
+    5: 33000,
+    6: 55000
   }
 
   const lengthXpLookup = {
     short: 1,
-    long: 0.8,
-    epic: 0.6
+    long: 0.7,
+    epic: 0.5
   }
 
   // Determine xp
-  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 20000);
+  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);
   const lengthXpDecimal = lengthXpLookup[adventure.length];
   const totalXp = xpPerHour * (adventure.duration / 3600) * lengthXpDecimal;
 
@@ -307,15 +307,21 @@ Meteor.methods({
     targetAdventure.endDate = moment(targetAdventure.startDate).add(targetAdventure.duration, 'seconds').toDate();
 
     Adventures.update({
-      owner: this.userId
+      owner: this.userId,
+      lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
         adventures: _.sortBy(myAdventures.adventures, 'startDate'),
+        lastGameUpdated: moment(myAdventures.lastGameUpdated).add(1, 'seconds').toDate()
       }
     });
   },
 
   'adventures.gameUpdate'() {
+    if (!this.userId) {
+      return;
+    }
+
     // Fetch all db data we need
     let myAdventures = Adventures.findOne({ owner: this.userId });
 
@@ -415,7 +421,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
   userId(userId) {
     return userId;
   } 
-}, 10, 10000);
+}, 5, 15000);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'adventures' }, 40, 2 * MINUTE);
 
 Meteor.publish('adventures', function() {

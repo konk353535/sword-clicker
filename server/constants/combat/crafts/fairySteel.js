@@ -10,12 +10,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 160,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -27,9 +27,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 3,
       consumes: true
     }, {
@@ -42,7 +42,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -55,12 +55,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 400,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -72,9 +72,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 20,
       consumes: true
     }, {
@@ -87,7 +87,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -100,12 +100,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 550,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -117,9 +117,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 10,
       consumes: true
     }, {
@@ -132,7 +132,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -145,12 +145,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 37,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -162,9 +162,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -177,7 +177,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 37
+      level: 85
     }]
   },
 
@@ -190,12 +190,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 850,
     maxToCraft: 1,
-    requiredCraftingLevel: 37,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -207,9 +207,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -222,7 +222,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 37
+      level: 85
     }]
   },
 
@@ -235,12 +235,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -252,9 +252,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -267,7 +267,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -280,12 +280,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -297,9 +297,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -312,7 +312,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -325,12 +325,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -342,9 +342,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 25,
       consumes: true
     }, {
@@ -357,7 +357,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   },
 
@@ -370,12 +370,12 @@ export const FAIRY_STEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 450,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
+      itemId: 'meteorite_furnace',
+      icon: ITEMS['meteorite_furnace'].icon,
+      name: ITEMS['meteorite_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -387,9 +387,9 @@ export const FAIRY_STEEL_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -402,7 +402,7 @@ export const FAIRY_STEEL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 85
     }]
   }
 }

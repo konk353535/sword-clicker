@@ -31,12 +31,12 @@ export const TOWER_FLOOR_7 = {
     }]))
   },
   4: {
-    name: 'Place of orichalcum',
-    enemies: ['orichalcum_spirit'],
+    name: 'Place of carbon',
+    enemies: ['carbon_spirit'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'orichalcum_essence', amount: 1 }
+        { type: 'item', itemId: 'carbon_essence', amount: 1 }
       ]
     }]))
   },
@@ -56,19 +56,19 @@ export const TOWER_FLOOR_7 = {
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'ore_orichalcum', amount: 1 },
+        { type: 'item', itemId: 'ore_carbon', amount: 1 },
         { type: 'item', itemId: 'cherry_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'orichalcum_bar', amount: 1 }
+        { type: 'item', itemId: 'carbon_bar', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 }
+        { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 }
       ]
     }]))
   },
@@ -78,14 +78,15 @@ export const TOWER_FLOOR_7 = {
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'spartan_shield', amount: 1 }
+        { type: 'item', itemId: 'steel_kite_shield', amount: 1 },
+        { type: 'item', itemId: 'water_wave_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'orichalcum_scimitar', amount: 1 },
-        { type: 'item', itemId: 'orichalcum_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'orichalcum_horned_helmet', amount: 1 }
+        { type: 'item', itemId: 'carbon_scimitar', amount: 1 },
+        { type: 'item', itemId: 'carbon_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'carbon_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -98,11 +99,19 @@ export const TOWER_FLOOR_7 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'cobalt_dwarven_idol',
-      icon: ITEMS['cobalt_dwarven_idol'].icon,
-      name: ITEMS['cobalt_dwarven_idol'].name,
-      baseStats: ITEMS['cobalt_dwarven_idol'].stats,
-      extraStats: ITEMS['cobalt_dwarven_idol'].extraStats
+      itemId: 'steel_dwarven_idol',
+      icon: ITEMS['steel_dwarven_idol'].icon,
+      name: ITEMS['steel_dwarven_idol'].name,
+      baseStats: ITEMS['steel_dwarven_idol'].stats,
+      extraStats: ITEMS['steel_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
+      itemId: 'enhancer_key',
+      icon: ITEMS['enhancer_key'].icon,
+      name: ITEMS['enhancer_key'].name,
+      baseStats: ITEMS['enhancer_key'].stats,
+      extraStats: ITEMS['enhancer_key'].extraStats
     },
     {
       type: 'gold',

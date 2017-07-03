@@ -177,16 +177,12 @@ export const completeBattle = function (actualBattle) {
     let floorRewards = [];
     if (actualBattle.floor) {
       if (win) {
-        console.log(`Is win applying rewards for ${actualBattle.room}`);
         floorRewards.push(...FLOORS[actualBattle.floor][actualBattle.room].rewards);
-      } else {
-        console.log(`Is loss no rewards for ${actualBattle.room}`);        
       }
 
       if (actualBattle.isExplorationRun) {
         // Add rewards from previous rooms
         for (let i = actualBattle.room - 1; i > 0; i--) {
-          console.log(`Applying rewards for room ${i}`);
           floorRewards.push(...FLOORS[actualBattle.floor][i].rewards);
         }
       }
@@ -278,8 +274,6 @@ export const completeBattle = function (actualBattle) {
               FloorWaveScores.upsert(updateSelector, updateModifier);
             } else {
               console.log('Unexpected Failure');
-              console.log(JSON.stringify(ownerObject));
-              console.log(JSON.stringify(combatDoc));
             }
           }
         });

@@ -446,6 +446,7 @@ export const DEFENSE_BUFFS = {
           buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
         }
         target.stats.damageTaken *= (1 - (99.9 / 100));
+        target.stats.defense *= 100;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -470,6 +471,7 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.damageTaken /= (1 - (99.9 / 100));
+        target.stats.defense /= 100;
       }
     }
   },

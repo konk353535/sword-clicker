@@ -1,4 +1,5 @@
 import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
+import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
@@ -21,11 +22,21 @@ SimpleChat.configure ({
 
   },
   allow: function(message, roomId, username, avatar, name){
-    if (message.length > 512) {
+    if (message.length > 140) {
       return;
     }
 
     const userDoc = Users.findOne(this.userId);
+
+    if (!userDoc.clientIp) {
+      Users.update({
+        _id: this.userId
+      }, {
+        $set: {
+          clientIp: this.connection.clientAddress
+        }
+      })
+    }
 
     if (userDoc.username !== username || userDoc.username !== name) {
       return;
@@ -45,7 +56,54 @@ SimpleChat.configure ({
     }
 
     if (userDoc.isMod) {
-      if (/\/hardmute/.test(message)) {
+      if (/\/ipban/.test(message) && userDoc.isSuperMod) {
+        // Find user
+        const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() })
+
+        // Set all users with this ip
+        Users.update({
+          clientIp: targetUser.clientIp
+        }, {
+          $set: {
+            isMutedExpiry: moment().add(10, 'years').toDate()
+          }
+        }, { multi: true });
+
+        const targetUsers = Users.find({
+          clientIp: targetUser.clientIp
+        }).fetch();
+
+        targetUsers.forEach((user) => {
+          // Remove muted users messages
+          Chats.remove({
+            userId: user._id
+          });        
+        });
+
+        // Add users ip to black list, to prevent further sign ups
+        BlackList.insert({
+          clientIp: targetUser.clientIp
+        });
+
+        return false;  
+      } else if (/\/permamute/.test(message)) {
+        // Find user
+        const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() })
+
+        // Set isMuted + Expiry
+        Users.update(targetUser._id, {
+          $set: {
+            isMutedExpiry: moment().add(10, 'years').toDate()
+          }
+        });
+
+        // Remove muted users messages
+        Chats.remove({
+          userId: targetUser._id
+        });
+
+        return false;
+      } else if (/\/hardmute/.test(message)) {
         // Find user
         const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() })
         

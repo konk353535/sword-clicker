@@ -29,7 +29,9 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
 
   if (ability.target === 'currentEnemy') {
     // Is current target alive
-    const currentEnemy = _.findWhere(actualBattle.allAliveUnits, { id: caster.target });
+    const currentEnemy = _.find(actualBattle.allAliveUnits, (unit) => {
+      return unit.id === caster.target
+    });
     if (currentEnemy) {
       targets = [currentEnemy];
     } else {

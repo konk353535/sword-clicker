@@ -234,8 +234,8 @@ export const BOSS_BUFFS = {
 
           for (let i = 0; i < 2; i++) {
             const spartanStats = JSON.parse(JSON.stringify(target.stats));
-            spartanStats.health = 300;
-            spartanStats.healthMax = 300;
+            spartanStats.health = 200;
+            spartanStats.healthMax = 200;
             spartanStats.attack *= 0.3;
             spartanStats.attackMax *= 0.3;
 

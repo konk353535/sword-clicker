@@ -3,6 +3,7 @@ import { Random } from 'meteor/random';
 import moment from 'moment';
 
 import { Skills } from '../../api/skills/skills.js';
+import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
 import { Crafting } from '../../api/crafting/crafting.js';
@@ -337,6 +338,16 @@ Accounts.emailTemplates.verifyEmail = {
     `
   }
 };
+
+Accounts.validateLoginAttempt((attempt) => {
+  const clientIp = attempt.connection.clientAddress;
+
+  if (BlackList.findOne({ clientIp })) {
+    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+  }
+
+  return true;
+});
 
 Accounts.onCreateUser((options, user) => {
 

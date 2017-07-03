@@ -318,6 +318,11 @@ Meteor.methods({
   },
 
   'adventures.gameUpdate'() {
+
+    if (!this.userId) {
+      return;
+    }
+
     // Fetch all db data we need
     let myAdventures = Adventures.findOne({ owner: this.userId });
 

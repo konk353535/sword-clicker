@@ -44,7 +44,12 @@ AccountsTemplates.addFields([
     type: "text",
     displayName: "username",
     required: true,
-    minLength: 3
+    func(value) {
+      return /[^a-zA-Z\d\s:_-]/.test(value)
+    },
+    errStr: 'username can only contain alphanumeric characters',
+    minLength: 3,
+    maxLength: 20
   },
   email,
   pwd

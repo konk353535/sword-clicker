@@ -284,14 +284,10 @@ Meteor.methods({
       }
     });
 
-    console.log(`Before length = ${newCrafting.length}`);
-
     // Remove targetCrafting from the array
     const filteredCrafting = newCrafting.filter((crafting) => {
       return crafting !== targetCrafting;
     });
-
-    console.log(`After length = ${filteredCrafting.length}`);
 
     // Reorder crafts and recalculate start / end date
     const sortedCrafts = _.sortBy(filteredCrafting, 'startDate');

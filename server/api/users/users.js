@@ -3,6 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
+import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
@@ -32,6 +33,13 @@ Meteor.methods({
   },
 
   'users.createGuest'({ username, password }) {
+
+    const clientIp = this.connection.clientAddress;
+
+    if (BlackList.findOne({ clientIp })) {
+      throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+    }
+
     return Accounts.createUser({
       username,
       password,
@@ -127,8 +135,15 @@ Meteor.methods({
     ];
 
     if (_.contains(validIds, id)) {
+
+      const username = Meteor.user().username.toLowerCase();
+
+      username.replace(' ', '_');
+      username.replace('-', '_');
+      username.replace('.', '_');
+
       const setObject = {
-        username: Meteor.user().username.toLowerCase()
+        username
       }
       setObject[`uiState.${id}`] = value;
 
@@ -147,7 +162,8 @@ const clientAddress = function clientAddress(clientAddress) {
 }
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
-DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', clientAddress }, 3, 60 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', clientAddress }, 3, 24 * 60 * MINUTE);
+DDPRateLimiter.addRule({ type: 'method', name: 'ATCreateUserServer', clientAddress }, 3, 24 * 60 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.initUiState' }, 10, 10 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.activeUsers' }, 10, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.setUiState' }, 50, 1 * MINUTE);

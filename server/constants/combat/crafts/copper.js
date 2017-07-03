@@ -232,7 +232,7 @@ export const COPPER_CRAFTS = {
   copper_chest_plate: {
     recipeFor: 'crafting',
     produces: 'copper_chest_plate',
-    name: 'copper chest plate',
+    name: 'copper chestplate',
     category: 'combat',
     id: 'copper_chest_plate',
     timeToCraft: 120, // 60

@@ -171,7 +171,7 @@ export const BOSS_ENEMIES = {
         totalDuration: Infinity,
         icon: 'bossMage',        
         name: 'boss mage',
-        timeTillSpawn: 15
+        timeTillSpawn: 10
       }
     }],
     rewards: []
@@ -202,7 +202,7 @@ export const BOSS_ENEMIES = {
         totalDuration: Infinity,
         icon: 'goblin',        
         name: 'boss goblin',
-        timeTillSpawn: 30
+        timeTillSpawn: 10
       }
     }],
     rewards: []
@@ -421,7 +421,7 @@ export const BOSS_ENEMIES = {
         totalDuration: Infinity,
         icon: 'vampire',        
         name: 'vampire',
-        timeTillBlood: 30
+        timeTillBlood: 15
       }
     }],
     rewards: []

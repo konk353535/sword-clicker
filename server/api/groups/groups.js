@@ -94,7 +94,9 @@ Meteor.methods({
   'groups.findGroup'(floor) {
     // Is there one other user looking for this floor?
     // Can specify floor later when there is more users
-    const existingGroup = GroupFinder.findOne({});
+    const existingGroup = GroupFinder.findOne({
+      floor
+    });
 
     // Existing Group
     if (existingGroup) {
@@ -267,6 +269,11 @@ Meteor.methods({
 
   // Invite the user to your current group or create a group if not in one
   'groups.invite'(username) {
+    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
+      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+    }
+
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{

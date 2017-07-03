@@ -132,6 +132,13 @@ SimpleChat.configure ({
         });
 
         return false;
+      } else if (/\/newUpdates/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+        Users.update({}, {
+          $set: {
+            newUpdates: true
+          }
+        }, { multi: true });
+        return false;
       }
     }
 

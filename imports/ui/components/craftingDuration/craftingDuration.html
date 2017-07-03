@@ -1,7 +1,16 @@
 <template name="craftingDuration">
-  <div class="d-flex bg-primary align-items-center text-white p-1 mx-1"
-    style="width: 75px; border-radius: 4px; cursor: pointer;"> 
-    <img style="background-color: white; border-radius: 2px" src="/icons/{{computedCraftingProcess.icon}}.svg" class="extra-small-icon mr-1">
-    {{> formatNumber number=computedCraftingProcess.percentage}}%
-  </div>
+  {{#if computedCraftingProcess.percentage}}
+    <div
+      class="d-flex align-items-center p-1 mx-1"
+      style="width: 75px; cursor: pointer; border: 1px solid #8e9194; border-radius: 2px;"> 
+
+      <img
+        src="/icons/{{computedCraftingProcess.icon}}.svg"
+        class="extra-small-icon mr-1">
+
+      {{> formatNumber number=computedCraftingProcess.percentage}}%
+    </div>
+  {{else}}
+    <img class="icon-box small-icon mr-1" src="/icons/{{computedCraftingProcess.icon}}.svg">
+  {{/if}}
 </template>

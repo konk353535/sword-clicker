@@ -37,14 +37,14 @@ export const FARMING_ITEMS = {
     description() {
       return 'Sells for $$$'
     },
-    sellPrice: 50,
+    sellPrice: 1,
     produces: 'marigold'
   },
 
   marigold: {
     id: 'marigold',
     icon: 'marigold',
-    category: 'food',
+    category: 'herb',
     name: 'Marigold',
     description() {
       return 'Sells for $$$'
@@ -67,7 +67,7 @@ export const FARMING_ITEMS = {
   cactus: {
     id: 'cactus',
     icon: 'cactus',
-    category: 'food',
+    category: 'herb',
     name: 'Cactus',
     description() {
       return 'Looks prickly';

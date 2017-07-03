@@ -1,15 +1,17 @@
 <template name="farmSpace">
-  <div class="icon-box farm-space-container align-items-center {{#if farmSpace.active}}{{else}}inactive{{/if}}">
-    {{#if isEmpty}}
-      <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
-    {{else if finishedGrowing}}
-      <img src="/icons/{{farmSpace.icon}}.svg" class="ore-icon">
-    {{else}}
-      <img src="/icons/sapling.svg" class="ore-icon">
-      <div class="progress mt-1" style="width: 100%">
-        <div class="progress-bar bg-success" role="progressbar" style="width: {{growthPercentage}}%; height: 5px;" aria-valuenow="{{growthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    {{/if}}
+  <div class="farm-space-container">
+    <div class="icon-box align-items-center {{#if farmSpace.active}}{{else}}inactive{{/if}} {{classes}}">
+      {{#if isEmpty}}
+        <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
+      {{else if finishedGrowing}}
+        <img src="/icons/{{farmSpace.icon}}.svg" class="ore-icon">
+      {{else}}
+        <img src="/icons/sapling.svg" class="ore-icon">
+        <div class="progress mt-1" style="width: 100%">
+          <div class="progress-bar bg-success" role="progressbar" style="width: {{growthPercentage}}%; height: 5px;" aria-valuenow="{{growthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      {{/if}}
+    </div>
   </div>
   
   <div class="farm-space-tooltip-content my-tooltip-inner">

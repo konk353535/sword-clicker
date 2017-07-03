@@ -20,6 +20,18 @@ Router.route('/', {
   }
 });
 
+Router.route('/updates', {
+
+  name: 'updatesPage',
+
+  template: 'updatesPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/guestSettings', {
 
   name: 'guestSettings',

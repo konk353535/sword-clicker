@@ -101,6 +101,14 @@ Meteor.methods({
     }, { multi: true });
   },
 
+  'users.readNewUpdates'() {
+    Users.update(this.userId, {
+      $set: {
+        newUpdates: false
+      }
+    });
+  },
+
   'users.setUiState'(id, value) {
     const validIds = [
       'showChat',
@@ -177,6 +185,7 @@ Meteor.publish("userData", function () {
       fields: {
         'gold': 1,
         'uiState': 1,
+        'newUpdates': 1,
         'gems': 1,
         'membershipTo': 1,
         'personalQuest': 1,

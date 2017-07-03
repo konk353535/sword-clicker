@@ -19,6 +19,8 @@ UserSchema = new SimpleSchema({
   astronomyUpgradeTo: { type: Date, optional: true },
   farmingUpgradeTo: { type: Date, optional: true },
 
+  newUpdates: { type: Boolean, optional: true, defaultValue: true },
+
   clientIp: { type: String, optional: true },
   gems: { type: Number, defaultValue: 0 },
   isMutedExpiry: { type: Date, optional: true },

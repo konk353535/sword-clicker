@@ -62,6 +62,11 @@
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">Chat</a>
             </li>
+            {{#if currentUser.newUpdates}}
+              <li class="nav-item">
+                <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+              </li>
+            {{/if}}
           {{/if}}
         </ul>
         <form class="form-inline my-2 my-lg-0">

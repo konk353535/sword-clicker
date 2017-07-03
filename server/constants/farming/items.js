@@ -29,6 +29,52 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  marigold_seed: {
+    id: 'marigold_seed',
+    icon: 'marigoldSeed',
+    category: 'seed',
+    name: 'Marigold Seed',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 50,
+    produces: 'marigold'
+  },
+
+  marigold: {
+    id: 'marigold',
+    icon: 'marigold',
+    category: 'food',
+    name: 'Marigold',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 250
+  },
+
+  cactus_seed: {
+    id: 'cactus_seed',
+    icon: 'cactusSeed',
+    category: 'seed',
+    name: 'Cactus Seed',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'cactus'
+  },
+
+  cactus: {
+    id: 'cactus',
+    icon: 'cactus',
+    category: 'food',
+    name: 'Cactus',
+    description() {
+      return 'Looks prickly';
+    },
+    sellPrice: 1
+  },
+
   pear_seed: {
     id: 'pear_seed',
     icon: 'pearSeed',

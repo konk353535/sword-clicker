@@ -85,11 +85,11 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
         }
       }
     } else if (requirement.type === 'gold') {
-      if (myUser.gold < requirement.amount) {
+      if (myUser.gold < requirement.amount * amountToCraft) {
         canCraft = false;
       } else {
         if (requirement.consumes) {
-          myUser.gold -= requirement.amount;
+          myUser.gold -= requirement.amount * amountToCraft;
           myUser.isDirty = true;
         }
       }
@@ -239,6 +239,7 @@ Meteor.methods({
 
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
+      recipeConstant.isTwoHanded = itemConstant.isTwoHanded;
 
       if (itemConstant.stats) {
         recipeConstant.baseStats = itemConstant.stats;

@@ -13,8 +13,6 @@ let updatingAdventures = false;
 Template.adventuresTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  Meteor.subscribe('adventures');
-
   const updateAdventures = function (self) {
     self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
       if (adventure.duration) {
@@ -43,7 +41,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         adventure.percentageComplete = Math.ceil((secondsSinceStart / totalSeconds) * 100);
       }
 
-      if (moment().isAfter(adventure.endDate) && !updatingAdventures) {
+      if (moment().isAfter(adventure.endDate) && !updatingAdventures && adventure.win == null) {
         updatingAdventures = true;
         Meteor.call('adventures.gameUpdate', (err, res) => {
           Meteor.setTimeout(() => {

@@ -114,7 +114,12 @@ export const MISC_ITEMS = {
       "healthMax": 1.1,
       "defense": 1.3,
       "armor": 5.0
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
   },
 
   "steel_kite_shield": {
@@ -137,7 +142,12 @@ export const MISC_ITEMS = {
       "healthMax": 2.6,
       "defense": 4,
       "armor": 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
   },
 
   "obsidian_kite_shield": {
@@ -160,7 +170,12 @@ export const MISC_ITEMS = {
       "healthMax": 4.4,
       "defense": 6.9,
       "armor": 15.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
   },
 
   "meteorite_kite_shield": {
@@ -183,7 +198,12 @@ export const MISC_ITEMS = {
       "healthMax": 7.3,
       "defense": 11.4,
       "armor": 37.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
   },
 
   /* Buckler -30% armor, -10% defense, + small accuracy */
@@ -209,7 +229,12 @@ export const MISC_ITEMS = {
       "defense": 1.3,
       "armor": 4.2,
       "accuracy": 1.0
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
   },
 
   "gold_buckler": {
@@ -233,7 +258,12 @@ export const MISC_ITEMS = {
       "defense": 2.5,
       "armor": 7.1,
       "accuracy": 1.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
   },
 
   "tungsten_buckler": {
@@ -257,7 +287,12 @@ export const MISC_ITEMS = {
       "defense": 5.4,
       "armor": 14,
       "accuracy": 2.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
   },
 
   "mithril_buckler": {
@@ -281,7 +316,12 @@ export const MISC_ITEMS = {
       "defense": 6.6,
       "armor": 19.6,
       "accuracy": 2.8
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
   },
 
   "elven_steel_buckler": {
@@ -305,7 +345,12 @@ export const MISC_ITEMS = {
       "defense": 12.1,
       "armor": 32.1,
       "accuracy": 3.6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
   },
 
   /* Knife - Off handed weapon, minor accuracy and damage increases */
@@ -328,7 +373,12 @@ export const MISC_ITEMS = {
       "accuracy": 2,
       "attack": 2,
       "attackMax": 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
   },
 
   "titanium_knife": {
@@ -350,7 +400,12 @@ export const MISC_ITEMS = {
       "accuracy": 2,
       "attack": 2,
       "attackMax": 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
   },
 
   "cobalt_knife": {
@@ -372,7 +427,12 @@ export const MISC_ITEMS = {
       "accuracy": 3,
       "attack": 3,
       "attackMax": 4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
   },
 
   "cursed_knife": {
@@ -394,7 +454,12 @@ export const MISC_ITEMS = {
       "accuracy": 4,
       "attack": 4,
       "attackMax": 6
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
   },
 
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
@@ -420,7 +485,12 @@ export const MISC_ITEMS = {
       "attack": 2.7,
       "attackMax": 5.5,
       "accuracy": 2.4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
   },
 
   "adamantium_rapiers": {
@@ -445,7 +515,12 @@ export const MISC_ITEMS = {
       "attack": 12.3,
       "attackMax": 24.8,
       "accuracy": 12
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
   },
 
   "fairy_steel_rapiers": {
@@ -470,7 +545,12 @@ export const MISC_ITEMS = {
       "attack": 16.4,
       "attackMax": 32.9,
       "accuracy": 18.7
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
   },
 
   /* Spirit shields */
@@ -517,7 +597,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 10
+      level: 20
     }]
   },
 
@@ -541,7 +621,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 10
+      level: 30
     }]
   },
 

@@ -18,6 +18,11 @@
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
+      {{#if showEnergy}}
+        <div class="progress health-bar mt-1" style="height: 5px">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{energyPercentage}}%" aria-valuenow="{{energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      {{/if}}
     </div>
     {{#if showBuffs}}
       <div class="d-flex flex-wrap" style="width: 120px">

@@ -318,7 +318,6 @@ Meteor.methods({
   },
 
   'adventures.gameUpdate'() {
-
     if (!this.userId) {
       return;
     }

@@ -42,6 +42,12 @@ const AVAILABLE_CHATS = {
     class: 'chat-Game',
     show: true
   },
+  'Help': {
+    name: 'Help',
+    id: 'Help',
+    class: 'chat-Help',
+    show: true
+  },
   'Offtopic': {
     name: 'Off Topic',
     id: 'Offtopic',
@@ -98,6 +104,11 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     if (availableChats.Offtopic.show) {
       // Events relevant to you
       Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
+    }
+
+    if (availableChats.Help.show) {
+      // Events relevant to you
+      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
     }
 
     this.subscribing = true;

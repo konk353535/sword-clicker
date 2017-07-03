@@ -46,7 +46,11 @@
 
       {{#if item.required}}
         <b>Requires</b><br />
-        {{> requiredItems requiredItems=item.required}}
+        {{> requiredItems requiredItems=item.required}}        
+      {{/if}}
+
+      {{#if item.isTwoHanded}}
+        <b>Two Handed</b><br />
       {{/if}}
 
       {{#if item.primaryAction}}
@@ -56,8 +60,7 @@
           </div>
         {{/if}}
       {{else}}
-        <b>Sells for</b> {{item.sellPrice}} Gold<br />
-        <b>Left Click</b> to sell
+        <b>Left Click</b> to sell for {{item.sellPrice}}
       {{/if}}
 
       {{#if item.shiftAction}}

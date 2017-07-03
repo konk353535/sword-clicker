@@ -48,12 +48,15 @@ Meteor.startup(() => {
     }
   })*/
 
-  // Start processing abandoned battles
-  BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
-    Meteor.setTimeout(() => {
-      resumeBattle(existingBattle._id);
-    }, Math.random() * 1000);
-  });
+
+  if (process.env['CLUSTER_WORKER_ID'] == 1) {
+    // Start processing abandoned battles
+    BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
+      Meteor.setTimeout(() => {
+        resumeBattle(existingBattle._id);
+      }, Math.random() * 1000);
+    });
+  }
 
   // Ensure indexes on key databases
   Crafting._ensureIndex({ owner: 1 });

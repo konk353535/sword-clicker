@@ -26,6 +26,56 @@ export const PLANTS = {
     }]
   },
 
+  marigold: {
+    produces: 'marigold',
+    name: 'marigold',
+    id: 'marigold',
+    category: 'farming',
+    icon: ITEMS['marigold'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'marigold_seed',
+      icon: ITEMS['marigold_seed'].icon,
+      name: ITEMS['marigold_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 9
+    }]
+  },
+
+  cactus: {
+    produces: 'cactus',
+    name: 'cactus',
+    id: 'cactus',
+    category: 'farming',
+    icon: ITEMS['cactus'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60,
+    xp: 300,
+    required: [{
+      type: 'item',
+      itemId: 'cactus_seed',
+      icon: ITEMS['cactus_seed'].icon,
+      name: ITEMS['cactus_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 6
+    }]
+  },
+
   lemon: {
     produces: 'lemon',
     name: 'lemon',
@@ -446,7 +496,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 200,
+    xp: 300,
     required: [{
       type: 'item',
       itemId: 'pine_seed',
@@ -472,7 +522,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 400,
+    xp: 600,
     required: [{
       type: 'item',
       itemId: 'beech_seed',
@@ -498,7 +548,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 800,
+    xp: 1200,
     required: [{
       type: 'item',
       itemId: 'ash_seed',
@@ -524,7 +574,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1200,
+    xp: 1600,
     required: [{
       type: 'item',
       itemId: 'oak_seed',
@@ -550,7 +600,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1400,
+    xp: 2000,
     required: [{
       type: 'item',
       itemId: 'maple_seed',
@@ -576,7 +626,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1400,
+    xp: 2200,
     required: [{
       type: 'item',
       itemId: 'walnut_seed',
@@ -602,7 +652,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1800,
+    xp: 2600,
     required: [{
       type: 'item',
       itemId: 'cherry_seed',
@@ -628,7 +678,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 1800,
+    xp: 3000,
     required: [{
       type: 'item',
       itemId: 'mahogany_seed',
@@ -654,7 +704,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 2200,
+    xp: 3200,
     required: [{
       type: 'item',
       itemId: 'elk_seed',
@@ -680,7 +730,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 2600,
+    xp: 3600,
     required: [{
       type: 'item',
       itemId: 'black_seed',
@@ -706,7 +756,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp: 3200,
+    xp: 4000,
     required: [{
       type: 'item',
       itemId: 'blue_gum_seed',

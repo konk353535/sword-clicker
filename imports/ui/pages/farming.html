@@ -58,24 +58,38 @@
           </button>
         </div>
         <div class="modal-body">
-          <table class="table table-bordered table-hover table-centered">
+          <table class="table table-bordered table-centered">
             <thead>
               <tr>
                 <th>Name</th>
                 <th>Icon</th>         
                 <th>Cost</th>
                 <th>Description</th>
+                <th>Buy</th>
               </tr>  
             </thead>
             <tbody>
               {{#each buyableSeeds}}
-                <tr class="craft-row text-center" style="cursor: pointer" data-shop-item-id={{this.id}}>
+                <tr class="text-center">
                   <td class="text-capitalize">{{this.name}}</td>
                   <td>
                     <img src="/icons/{{this.icon}}.svg" class="ore-icon">
                   </td>
                   <td>{{ > requiredItems requiredItems=this.required}}</td>
                   <td>{{{this.description}}}</td>
+                  <th>
+                    <div class="d-flex">
+                    <button class="btn btn-primary buy-1 btn-sm mr-1" data-shop-item-id={{this.id}}>
+                      1
+                    </button>
+                    <button class="btn btn-primary buy-10 btn-sm mr-1" data-shop-item-id={{this.id}}>
+                      10
+                    </button>
+                    <button class="btn btn-primary buy-100 btn-sm" data-shop-item-id={{this.id}}>
+                      100
+                    </button>
+                    </div>
+                  </th>
                 </tr>
               {{/each}}
             </tbody>

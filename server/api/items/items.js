@@ -527,6 +527,7 @@ Meteor.publish('items', function() {
 
     doc.icon = itemConstants.icon;
     doc.name = itemConstants.name;
+    doc.isTwoHanded = itemConstants.isTwoHanded;
     doc.sellPrice = itemConstants.sellPrice;
     if (itemConstants.stats) {
       doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));

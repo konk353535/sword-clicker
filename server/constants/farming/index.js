@@ -20,6 +20,36 @@ export const FARMING = {
       }]
     },
 
+    marigold_seed: {
+      id: 'marigold_seed',
+      itemId: 'marigold_seed',
+      requiredFarmingLevel: 9,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 9
+      }]
+    },
+
+    cactus_seed: {
+      id: 'cactus_seed',
+      itemId: 'cactus_seed',
+      requiredFarmingLevel: 6,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 6
+      }]
+    },
+
     pear_seed: {
       id: 'pear_seed',
       itemId: 'pear_seed',

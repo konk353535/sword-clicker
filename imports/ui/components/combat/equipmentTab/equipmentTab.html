@@ -113,17 +113,17 @@
       <br />
       <h1>Skill Levels</h1>
       <div class="attackSkill-tooltip-container">
-        {{> skillHeader skill=attackSkill}}
+        {{> skillHeader skill=attackSkill flipped=true}}
       </div>
       <div class="defenseSkill-tooltip-container">
-        {{> skillHeader skill=defenseSkill color='bg-success'}}
+        {{> skillHeader skill=defenseSkill color='bg-success' flipped=true}}
       </div>
       <div class="healthSkill-tooltip-container">
-        {{> skillHeader skill=healthSkill color='bg-danger'}}
+        {{> skillHeader skill=healthSkill color='bg-danger' flipped=true}}
       </div>
       {{#if magicSkill}}
         <div class="magicSkill-tooltip-container">
-          {{> skillHeader skill=magicSkill color='bg-info'}}
+          {{> skillHeader skill=magicSkill color='bg-info' flipped=true}}
         </div>
       {{/if}}
     </div>

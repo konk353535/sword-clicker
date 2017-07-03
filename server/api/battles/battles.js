@@ -119,12 +119,12 @@ Meteor.methods({
 
     if (floor > currentCommunityFloor.floor) {
       throw new Meteor.Error("no-sir", "Dont have access to that floor!");
-    } else if (room > 7 || room < 1) {
+    } else if (room > 7 || room < 0) {
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
     let isExplorationRun = false;
-    if (floor === currentCommunityFloor.floor && room !== 'boss') {
+    if (room === 0) {
       isExplorationRun = true;
       room = 1;
     }

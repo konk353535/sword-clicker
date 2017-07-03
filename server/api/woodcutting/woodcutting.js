@@ -220,7 +220,8 @@ Meteor.methods({
           stats,
           icon: woodcutterConstants.icon,
           name: woodcutterConstants.name,
-          woodcutterId: woodcutterConstants.id
+          woodcutterId: woodcutterConstants.id,
+          quality: axeToUse.quality
         }
       }
     });

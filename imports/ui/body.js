@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
+import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
 import './components/accounts/accounts.html';
@@ -27,6 +28,7 @@ let astronomyTimer;
 let floatingTextTimer;
 
 let cachedSkills = {};
+let cachedAdventures = {};
 
 Template.body.onCreated(function () {
 
@@ -63,6 +65,25 @@ Template.body.onCreated(function () {
       }
     }
   });
+
+  Tracker.autorun(() => {
+    const myAdventures = Adventures.findOne({});
+    if (!myAdventures) {
+      return;
+    }
+
+    // Iterate on adventures
+    myAdventures.adventures.forEach((adventure) => {
+      if (adventure.win != null && !cachedAdventures[adventure.id]) {
+        if (adventure.win) {
+          toastr.success('An adventure has succeeded')
+        } else {
+          toastr.danger('An adventure has failed')
+        }
+        cachedAdventures[adventure.id] = true;
+      }
+    });
+  })
 
   // Track exp and level drops
   Tracker.autorun(() => {
@@ -222,6 +243,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('farmingSpace');
   // Show currently inscripting items
   Meteor.subscribe('inscription');
+  // Adventures
+  Meteor.subscribe('adventures');
 });
 
 Template.myLayout.helpers({

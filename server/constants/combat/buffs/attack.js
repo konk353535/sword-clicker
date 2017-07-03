@@ -361,9 +361,9 @@ export const ATTACK_BUFFS = {
       const duration = buff.data.totalDuration;
 
       return `
-        <b>+${damageIncrease}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
-        <b>+${damageTakenIncrease}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
-        You lose <b>${healthLostPerSecond}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
+        <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
+        <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
+        You lose <b>${healthLostPerSecond.toFixed(1)}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
         Duration <b>${duration}s</b><br />`;
     },
     constants: {

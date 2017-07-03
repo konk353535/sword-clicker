@@ -330,7 +330,11 @@ Meteor.methods({
     }, { multi: true });
   },
 
-  'farming.buyShopItem'(seedId) {
+  'farming.buyShopItem'(seedId, amountToBuy = 1) {
+    if (amountToBuy < 1 || amountToBuy > 100 || !_.isFinite(amountToBuy)) {
+      return;
+    }
+
     // Is this a valid recipe?
     const shopItemConstants = FARMING.shopItems[seedId];
 
@@ -339,12 +343,12 @@ Meteor.methods({
     }
 
     // Do we have the requirements for this craft (items / levels / gold)
-    if (!requirementsUtility(shopItemConstants.required, 1)) {
+    if (!requirementsUtility(shopItemConstants.required, amountToBuy)) {
       return;
     }
 
     // Add specified item
-    addItem(shopItemConstants.itemId, 1);
+    addItem(shopItemConstants.itemId, amountToBuy);
   },
 
   'farming.fetchSeedShopSells'() {

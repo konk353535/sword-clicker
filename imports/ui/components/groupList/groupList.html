@@ -13,7 +13,7 @@
           <div class="
             {{#if this.readyCheck.ready}}user-ready{{/if}}
             {{#if this.readyCheck.notReady}}user-not-ready{{/if}}">
-          {{> battleUnit unit=this small=true}}
+          {{> battleUnit unit=this small=true showBuffs=true showEnergy=true}}
           </div>
         {{/each}}
 

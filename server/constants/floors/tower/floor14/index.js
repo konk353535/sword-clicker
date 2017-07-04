@@ -14,7 +14,7 @@ export const TOWER_FLOOR_14 = {
     rewards: LEVEL_FOURTEEN_LOOT_TABLE
   },
   3: {
-    name: 'Cliffs Edge',
+    name: 'cliff\'s Edge',
     enemies: ['dragonfly', 'butterfly'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,

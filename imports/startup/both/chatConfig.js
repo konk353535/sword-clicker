@@ -32,7 +32,7 @@ SimpleChat.configure ({
       return false;
     }
 
-    if (!userDoc.clientIp) {
+    if (!userDoc.clientIp && this.connection) {
       Users.update({
         _id: this.userId
       }, {

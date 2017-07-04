@@ -16,7 +16,7 @@
         </div>
         <div class="d-flex flex-column m-3" style="width: 200px">
           <div class="d-flex align-items-center">
-            <i class="lilIcon-health extra-small-icon mr-1"></i> {{> formatNumber number=combat.stats.health}} / {{combat.stats.healthMax}}
+            <i class="lilIcon-health extra-small-icon mr-1"></i> {{> formatNumber number=combat.stats.health}} / {{> formatNumber number=combat.stats.healthMax}}
           </div>
           <div class="progress mt-1" style="width: 100%">
             <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>

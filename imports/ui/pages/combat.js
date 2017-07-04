@@ -25,17 +25,8 @@ import './combat.html';
 
 const redis = new Meteor.RedisCollection('redis');
 
-let combatPageTimer;
-
 Template.combatPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-
-  combatPageTimer = Meteor.setInterval(function () {
-    const currentBattle = BattlesList.findOne({});
-    if (Meteor.user()) {
-      Meteor.call('combat.gameUpdate');
-    }
-  }, 8000);
 
   this.state.set('hasLearnRequirements', false);
 
@@ -53,7 +44,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('battles');
   Meteor.subscribe('abilities');
   Meteor.subscribe('floorWaveScores');
-  Meteor.subscribe('battlesList');
 
   // When new battle comes up, update our subscribe of redis-battles
   Tracker.autorun(() => {
@@ -140,10 +130,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
       }
     }
   });
-});
-
-Template.combatPage.onDestroyed(function bodyOnDestroyed() {
-  Meteor.clearInterval(combatPageTimer);
 });
 
 Template.combatPage.events({

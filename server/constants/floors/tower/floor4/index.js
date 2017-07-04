@@ -39,7 +39,7 @@ export const TOWER_FLOOR_4 = {
     }]))
   },
   5: {
-    name: 'Small Water Alter',
+    name: 'Small Water Altar',
     enemies: ['blue_mage'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 128,

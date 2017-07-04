@@ -9,7 +9,7 @@ export const TOWER_FLOOR_2 = {
     rewards: []
   },
   2: {
-    name: 'Cliffs Edge',
+    name: 'cliff\'s Edge',
     enemies: ['bird'],
     rewards: LEVEL_TWO_LOOT_TABLE
   },
@@ -19,7 +19,7 @@ export const TOWER_FLOOR_2 = {
     rewards: LEVEL_TWO_LOOT_TABLE
   },
   4: {
-    name: 'Minor Earth Alter',
+    name: 'Minor Earth Altar',
     enemies: ['brown_mage'],
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
       chance: 1 / 128,

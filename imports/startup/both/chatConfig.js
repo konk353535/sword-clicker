@@ -28,6 +28,10 @@ SimpleChat.configure ({
 
     const userDoc = Users.findOne(this.userId);
 
+    if (name !== userDoc.username || username !== userDoc.username) {
+      return false;
+    }
+
     if (!userDoc.clientIp) {
       Users.update({
         _id: this.userId
@@ -131,6 +135,13 @@ SimpleChat.configure ({
           }
         });
 
+        return false;
+      } else if (/\/newUpdates/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+        Users.update({}, {
+          $set: {
+            newUpdates: true
+          }
+        }, { multi: true });
         return false;
       }
     }

@@ -679,13 +679,13 @@ export const FOOD_BUFFS = {
     icon: 'lemonHoney',
     name: 'lemon honey',
     description({ buff, level }) {
-      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
       return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
       duration: 60, // How long the buff will last
       totalDuration: 60,
-      healthPerSecond: 0.5 // Healing it will do per second
+      energyPerSecond: 0.5 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -708,7 +708,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
 
         if (buff.data.duration < 0) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -718,8 +718,8 @@ export const FOOD_BUFFS = {
           });
         }
 
-        if (target.stats.health > target.stats.healthMax) {
-          target.stats.health = target.stats.healthMax;
+        if (target.stats.energy > target.stats.energyMax) {
+          target.stats.energy = target.stats.energyMax;
         }
       },
 

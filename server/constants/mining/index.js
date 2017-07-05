@@ -897,9 +897,11 @@ export const MINING = {
       xp: 2,
       id: 'stone',
       icon: 'stone',
+      clusterIcon: 'stoneCluster',
       name: 'stone',
       itemId: 'ore_stone',
-      chance: 0.06
+      chance: 0.06,
+      canCluster: true
     },
 
     copper: {

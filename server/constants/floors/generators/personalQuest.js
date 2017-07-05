@@ -94,15 +94,15 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     name: selectedMonster.name,
     buffs: JSON.parse(JSON.stringify(selectedMonster.buffs || [])),
     stats: {
-      health: 10 + (level * 7) + (extraStats * 20),
-      healthMax: 10 + (level * 7) + (extraStats * 20),
+      health: 10 + (level * 7) + (extraStats * 22),
+      healthMax: 10 + (level * 7) + (extraStats * 22),
       attack: 1 + Math.floor(level / 3) + (extraStats / 2),
       magicPower: 1 + Math.floor(level / 2.7),
       attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
       attackSpeed: 0.5,
-      accuracy: 1 + level + extraStats,
+      accuracy: 1 + level + (extraStats * 1.05),
       armor: 1 + (level * 2.5),
-      defense: 1 + (level * 0.8),
+      defense: 1 + (level * 0.85),
       magicArmor: 1 + (level * 1.2),
       criticalChance: 0,
       criticalDamage: 2,
@@ -128,7 +128,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);
     // Divide monsters health
     monster.stats.health /= unitCount; // Divide health evenly
-    monster.stats.health *= 1.3; // To account for aoe
+    monster.stats.health *= 1.4; // To account for aoe
     monster.stats.attack /= unitCount;
     monster.stats.attackMax /= unitCount;
     monster.stats.attack *= 1.2;

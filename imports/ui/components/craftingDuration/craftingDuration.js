@@ -31,11 +31,15 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
         called = true;
         if (this.data.isCrafting) {
           Meteor.call('crafting.updateGame', (err, res) => {
-            called = false;
+            setTimeout(() => {
+              called = false;              
+            }, 5000);
           });
         } else {
           Meteor.call('inscription.updateGame', (err, res) => {
-            called = false;
+            setTimeout(() => {
+              called = false;              
+            }, 5000);
           });      
         }
       }

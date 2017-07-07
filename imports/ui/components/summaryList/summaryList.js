@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Inscription } from '/imports/api/inscription/inscription.js';
@@ -16,9 +17,30 @@ Template.summaryList.onCreated(function bodyOnCreated() {
 });
 
 Template.summaryList.events({
+  'click .collect-adventure'(event, instance) {
+    const id = instance.$(event.target).closest('.collect-adventure').attr('data-id');
+    Meteor.call('adventures.collectAdventure', id, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .cancel-adventure'(event, instance) {
+    const id = instance.$(event.target).closest('.cancel-adventure').attr('data-id');
+    Meteor.call('adventures.cancelAdventure', id, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
 })
 
 Template.summaryList.helpers({
+
+  summaryListDisabled() {
+    return Session.get('summaryListDisabled');
+  },
 
   crafting() {
     return Crafting.findOne();

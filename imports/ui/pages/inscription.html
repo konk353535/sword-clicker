@@ -3,7 +3,7 @@
   {{#if inscriptionSkill}}
     {{> skillHeader skill=inscriptionSkill}}
 
-    <div class="my-3 hidden-xl-up">
+    <div class="my-3 {{#unless summaryListDisabled}}hidden-xl-up{{/unless}}">
       <div class="d-flex flex-row align-items-center">
         {{#each inscription.currentlyCrafting}}
           {{> craftingDuration craftingProcess=this isInscription=true}}

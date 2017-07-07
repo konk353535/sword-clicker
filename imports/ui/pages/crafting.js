@@ -347,6 +347,10 @@ Template.craftingPage.helpers({
     }
   },
 
+  summaryListDisabled() {
+    return Session.get('summaryListDisabled');
+  },
+
   itemViewLimit() {
     return Template.instance().state.get('itemViewLimit');
   },

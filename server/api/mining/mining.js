@@ -97,12 +97,12 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
   if (mineSpace.health - damage <= 0) {
     // Mine space has been destroyed
     MiningSpace.update(mineSpace._id, {
-      $set: { oreId: null }
+      $set: { oreId: null, isCluster: false }
     });
 
     let amount = 1;
     if (mineSpace.isCluster) {
-      amount = 100;
+      amount = 10;
     }
 
     addXp('mining', oreConstants.xp * amount);
@@ -294,7 +294,7 @@ Meteor.methods({
 
           let newAmount = 1;
           if (miningSpace.isCluster) {
-            newAmount = 100;
+            newAmount = 10;
           }
 
           if (gainedItems[oreConstants.itemId]) {
@@ -344,8 +344,8 @@ Meteor.methods({
         }
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
-          ore.chance /= 100;
-          ore.healthMax *= 100;
+          ore.chance /= 9;
+          ore.healthMax *= 10;
           ore.isCluster = true;
         } else {
           ore.isCluster = false;
@@ -474,7 +474,11 @@ Meteor.methods({
         miningSpaces.forEach((miningSpace) => {
           if (miningSpace.isDirty) {
             MiningSpace.update(miningSpace._id, {
-              $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+              $set: {
+                oreId: miningSpace.oreId,
+                health: miningSpace.health,
+                isCluster: miningSpace.isCluster
+              }
             }, function (err, res) {
               // Intentionally blank
             });
@@ -549,7 +553,7 @@ Meteor.publish('miningSpace', function() {
       doc.name = currentOreConstants.name;
       doc.xp = currentOreConstants.xp;
       if (doc.isCluster) {
-        doc.healthMax *= 100;
+        doc.healthMax *= 10;
         doc.icon = currentOreConstants.clusterIcon;
       } else {
         doc.icon = currentOreConstants.icon;

@@ -510,7 +510,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'attack_up_1_tome',
     icon: 'tomeUncommon',
     category: 'tome',
-    name: 'damage up tome lv 1',
+    name: 'attack up tome lv 1',
     teaches: {
       abilityId: 'attack_up',
       level: 1
@@ -523,7 +523,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'attack_up_2_tome',
     icon: 'tomeUncommon',
     category: 'tome',
-    name: 'damage up tome lv 2',
+    name: 'attack up tome lv 2',
     teaches: {
       abilityId: 'attack_up',
       level: 2
@@ -536,7 +536,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'attack_up_3_tome',
     icon: 'tomeUncommon',
     category: 'tome',
-    name: 'damage up tome lv 3',
+    name: 'attack up tome lv 3',
     teaches: {
       abilityId: 'attack_up',
       level: 3

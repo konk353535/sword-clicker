@@ -32,6 +32,14 @@ Template.nav.events({
     Session.set('floatingTextDisabled', false);
   },
 
+  'click .disable-summary-list'(event, instance) {
+    Session.set('summaryListDisabled', true);
+  },
+
+  'click .enable-summary-list'(event, instance) {
+    Session.set('summaryListDisabled', false);
+  },
+
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
     instance.$('.guestSignOffConfirmModal').modal('hide');
   }
@@ -52,6 +60,10 @@ Template.nav.helpers({
 
   floatingTextDisabled() {
     return Session.get('floatingTextDisabled');
+  },
+
+  summaryListDisabled() {
+    return Session.get('summaryListDisabled');
   },
 
   hasFarmingSkill() {

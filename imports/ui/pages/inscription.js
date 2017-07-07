@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -173,7 +174,11 @@ Template.inscriptionPage.helpers({
 
   levelFilter() {
     return Template.instance().state.get('levelFilter');
-  },  
+  },
+
+  summaryListDisabled() {
+    return Session.get('summaryListDisabled');
+  },
 
   recipes() {
     const instance = Template.instance();

@@ -115,8 +115,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     playerData.stats.attackSpeed = 0.5;
   }
 
+  const currentCombat = Combat.findOne({
+    owner: userId
+  });
+
   // If health is above healthMax, reset health
-  if (playerData.stats.health > playerData.stats.healthMax) {
+  if (currentCombat.stats.health > playerData.stats.healthMax) {
     playerData.stats.health = playerData.stats.healthMax;
   }
 

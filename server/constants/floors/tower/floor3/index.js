@@ -9,7 +9,7 @@ export const TOWER_FLOOR_3 = {
     rewards: []
   },
   2: {
-    name: 'Cliffs Edge',
+    name: 'cliff\'s Edge',
     enemies: ['bird'],
     rewards: LEVEL_THREE_LOOT_TABLE
   },

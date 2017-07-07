@@ -20,7 +20,6 @@ Template.battleUnit.helpers({
 
   energyPercentage() {
     const stats = Template.instance().data.unit.stats;
-    console.log(stats);
     const energyPercentage = (stats.energy / stats.energyMax) * 100;
 
     return energyPercentage;

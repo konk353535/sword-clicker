@@ -69,6 +69,11 @@ export const TOWER_FLOOR_15 = {
         { type: 'item', itemId: 'adamantium_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'adamantium_mining_hammer', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_rapiers', amount: 1 }
+      ]
     }]))
   },
   7: {

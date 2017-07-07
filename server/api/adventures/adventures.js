@@ -352,27 +352,28 @@ Meteor.methods({
     const now = moment();
     let secondsElapsed = moment.duration(now.diff(myAdventures.lastGameUpdated)).asSeconds();
 
-    // Fetch users combat skills
-    const rawCombatSkills = Skills.find({
-      owner: this.userId,
-      type: {
-        $in: ['attack', 'defense', 'magic']
-      }
-    }).fetch();
-
-    const combatSkills = {};
-
-    rawCombatSkills.forEach((combatSkill) => {
-      combatSkills[combatSkill.type] = combatSkill;
-    });
-
-    // Get max floor
-    const maxFloor = Floors.findOne({ floorComplete: false }).floor;
-
     // Decrement time till update
     myAdventures.timeTillUpdate -= secondsElapsed;
 
     if (myAdventures.timeTillUpdate <= 0) {
+
+      // Fetch users combat skills
+      const rawCombatSkills = Skills.find({
+        owner: this.userId,
+        type: {
+          $in: ['attack', 'defense', 'magic']
+        }
+      }).fetch();
+
+      const combatSkills = {};
+
+      rawCombatSkills.forEach((combatSkill) => {
+        combatSkills[combatSkill.type] = combatSkill;
+      });
+
+      // Get max floor
+      const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+
       let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / NEW_ADVENTURE_SECONDS) + 1);
       if (newAdventureCount >= MAX_ADVENTURES) {
         newAdventureCount = MAX_ADVENTURES;

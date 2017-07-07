@@ -168,18 +168,24 @@ export const MONSTER_BUFFS = {
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
         const constants = buff.constants.constants;
-        if (Math.random() <= 0.10) {
-          const newBuff = {
-            id: 'evasive_maneuvers',
-            data: {
-              duration: 3,
-              totalDuration: 3,
-              level: 1,
-              icon: 'evasiveManeuvers'
-            }
-          }
+        if (Math.random() <= 0.1) {
+          const hasEvasive = _.find(defender.buffs, (buff) => {
+            return buff.id === 'evasive_maneuvers';
+          });
 
-          addBuff({ buff: newBuff, target: defender, caster: defender });
+          if (!hasEvasive) {
+            const newBuff = {
+              id: 'evasive_maneuvers',
+              data: {
+                duration: 3,
+                totalDuration: 3,
+                level: 1,
+                icon: 'evasiveManeuvers'
+              }
+            }
+
+            addBuff({ buff: newBuff, target: defender, caster: defender });
+          }
         }
       },
 

@@ -46,7 +46,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         Meteor.call('adventures.gameUpdate', (err, res) => {
           Meteor.setTimeout(() => {
             updatingAdventures = false;
-          }, 15000)
+          }, 20000)
         });
       }
 

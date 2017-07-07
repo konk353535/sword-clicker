@@ -7,6 +7,8 @@ import moment from 'moment';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Groups } from '/imports/api/groups/groups.js';
+import { Combat } from '/imports/api/combat/combat.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -174,10 +176,25 @@ Template.body.onCreated(function () {
   }, 55 * 1000 + (Math.random() * 1000));
 
   combatTimer = Meteor.setInterval(function () {
-    if (Meteor.user()) {
+    const currentBattle = BattlesList.findOne({});
+    const combat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+
+    const inBattle = !!currentBattle;
+    const hasBuff = combat.buffs.length > 0;
+    const isFullHealth = combat.stats.health >= combat.stats.healthMax;
+    const isFullEnergy = combat.stats.energy >= combat.stats.energyMax;
+    let isFullAmuletEnergy = true;
+    if (combat.amulet) {
+      isFullAmuletEnergy = combat.amulet.energy >= combat.amulet.energyStorage;
+    }
+
+    if (Meteor.user() && !inBattle && (hasBuff || !isFullHealth || !isFullEnergy || !isFullAmuletEnergy)) {
+      console.log(`Calling combat update at - ${moment().toDate()}`);
       Meteor.call('combat.gameUpdate');
     }
-  }, 113 * 1000 + (Math.random() * 1000));
+  }, 8000);
 
   craftingTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
@@ -245,6 +262,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('inscription');
   // Adventures
   Meteor.subscribe('adventures');
+  // Battle List
+  Meteor.subscribe('battlesList');
 });
 
 Template.body.rendered = function() {

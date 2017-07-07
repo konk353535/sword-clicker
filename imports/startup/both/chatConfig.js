@@ -28,7 +28,11 @@ SimpleChat.configure ({
 
     const userDoc = Users.findOne(this.userId);
 
-    if (!userDoc.clientIp) {
+    if (name !== userDoc.username || username !== userDoc.username) {
+      return false;
+    }
+
+    if (!userDoc.clientIp && this.connection) {
       Users.update({
         _id: this.userId
       }, {

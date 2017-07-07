@@ -80,7 +80,7 @@ Template.body.onCreated(function () {
         if (adventure.win) {
           toastr.success('An adventure has succeeded')
         } else {
-          toastr.danger('An adventure has failed')
+          toastr.error('An adventure has failed')
         }
         cachedAdventures[adventure.id] = true;
       }

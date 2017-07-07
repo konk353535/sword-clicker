@@ -97,11 +97,16 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
   if (mineSpace.health - damage <= 0) {
     // Mine space has been destroyed
     MiningSpace.update(mineSpace._id, {
-      $set: { oreId: null }
+      $set: { oreId: null, isCluster: false }
     });
 
-    addXp('mining', oreConstants.xp);
-    addItem(oreConstants.itemId, 1);
+    let amount = 1;
+    if (mineSpace.isCluster) {
+      amount = 10;
+    }
+
+    addXp('mining', oreConstants.xp * amount);
+    addItem(oreConstants.itemId, 1 * amount);
   } else {
     MiningSpace.update(mineSpace._id, {
       $inc: { health: (-1 * damage) },
@@ -287,13 +292,18 @@ Meteor.methods({
           damage -= miningSpace.health;
           miningSpace.oreId = null;
 
-          if (gainedItems[oreConstants.itemId]) {
-            gainedItems[oreConstants.itemId].amount += 1
-          } else {
-            gainedItems[oreConstants.itemId] = { amount: 1 };
+          let newAmount = 1;
+          if (miningSpace.isCluster) {
+            newAmount = 10;
           }
 
-          gainedXp += oreConstants.xp;
+          if (gainedItems[oreConstants.itemId]) {
+            gainedItems[oreConstants.itemId].amount += newAmount;
+          } else {
+            gainedItems[oreConstants.itemId] = { amount: newAmount };
+          }
+
+          gainedXp += (oreConstants.xp * newAmount);
         } else {
           miningSpace.health -= damage;
           damage = 0;
@@ -332,6 +342,15 @@ Meteor.methods({
         if (prospectorsMap[ore.id]) {
           ore.chance *= prospectorsMap[ore.id];
         }
+
+        if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
+          ore.chance /= 9;
+          ore.healthMax *= 10;
+          ore.isCluster = true;
+        } else {
+          ore.isCluster = false;
+        }
+
         return ore;
       });
       const sortedChanceOres = _.sortBy(computedOres, 'chance');
@@ -376,6 +395,7 @@ Meteor.methods({
             if (newOre) {
               miningSpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
               miningSpace.oreId = newOre.id;
+              miningSpace.isCluster = newOre.isCluster;
               miningSpace.isDirty = true; // So we know to save this later
             }
           }
@@ -391,7 +411,11 @@ Meteor.methods({
         miningSpaces.forEach((miningSpace) => {
           if (miningSpace.isDirty) {
             MiningSpace.update(miningSpace._id, {
-              $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+              $set: {
+                oreId: miningSpace.oreId,
+                health: miningSpace.health,
+                isCluster: miningSpace.isCluster
+              },
             }, function (err, res) {
               // Intentionally blank
             });
@@ -422,12 +446,13 @@ Meteor.methods({
             if (newOre) {
               emptySpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
               emptySpace.oreId = newOre.id;
+              emptySpace.isCluster = newOre.isCluster;
               emptySpace.isDirty = true; // So we know to save this later
             }
           }
 
-          if (tick % 10) {
-            miningSpaces =_.shuffle(miningSpaces);
+          if (tick % 20) {
+            miningSpaces = _.shuffle(miningSpaces);
           }
 
           // Deal damage to ore
@@ -449,7 +474,11 @@ Meteor.methods({
         miningSpaces.forEach((miningSpace) => {
           if (miningSpace.isDirty) {
             MiningSpace.update(miningSpace._id, {
-              $set: { oreId: miningSpace.oreId, health: miningSpace.health },
+              $set: {
+                oreId: miningSpace.oreId,
+                health: miningSpace.health,
+                isCluster: miningSpace.isCluster
+              }
             }, function (err, res) {
               // Intentionally blank
             });
@@ -458,13 +487,8 @@ Meteor.methods({
       }
     }
 
-    if (secondsElapsed > 300) {
-      // To save CPU, use slightly longer ticks
-      simulateMining(secondsElapsed / 5, 5);
-    } else {
-      // Less then 5 minutes, use second based ticks
-      simulateMining(secondsElapsed, 1);
-    }
+    // Less then 5 minutes, use second based ticks
+    simulateMining(secondsElapsed / 5, 5);
   },
 
   'mining.fetchMiners'() {
@@ -528,7 +552,12 @@ Meteor.publish('miningSpace', function() {
       doc.healthMax = currentOreConstants.healthMax;
       doc.name = currentOreConstants.name;
       doc.xp = currentOreConstants.xp;
-      doc.icon = currentOreConstants.icon;
+      if (doc.isCluster) {
+        doc.healthMax *= 10;
+        doc.icon = currentOreConstants.clusterIcon;
+      } else {
+        doc.icon = currentOreConstants.icon;
+      }
     }
     return doc;
   }

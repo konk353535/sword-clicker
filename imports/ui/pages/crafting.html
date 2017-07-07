@@ -3,8 +3,8 @@
   {{#if craftingSkill}}
     {{> skillHeader skill=craftingSkill}}
 
-    <div class="my-3">
-      <div class="d-flex flex-row">
+    <div class="my-3 {{#unless summaryListDisabled}}hidden-xl-up{{/unless}}">
+      <div class="d-flex flex-row align-items-center">
         {{#each crafting.currentlyCrafting}}
           {{> craftingDuration craftingProcess=this isCrafting=true}}
         {{/each}}

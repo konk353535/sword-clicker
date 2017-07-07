@@ -11,8 +11,6 @@ import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './astronomyTab.html';
 
-let astronomyTabTimer;
-
 const descriptions = {
   attackSpeed: 'Shards per hour',
   criticalChance: '% chance to get 2x shards'
@@ -22,12 +20,6 @@ Template.astronomyTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   Meteor.subscribe('astronomy');
-
-  astronomyTabTimer = Meteor.setInterval(function () {
-    if (Meteor.user()) {
-      Meteor.call('astronomy.gameUpdate');
-    }
-  }, 10000);
 
   Meteor.call('astronomy.hireMageCost', (err, res) => {
     if (!err) {
@@ -54,7 +46,6 @@ Template.astronomyTab.onCreated(function bodyOnCreated() {
 });
 
 Template.astronomyTab.onDestroyed(function bodyOnDestroyed() {
-  Meteor.clearInterval(astronomyTabTimer);
 });
 
 Template.astronomyTab.events({

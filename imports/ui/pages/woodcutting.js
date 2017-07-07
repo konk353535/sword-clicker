@@ -94,7 +94,7 @@ Template.woodcuttingPage.helpers({
 
       // Append to description based on if the user is currently a member
       if (hasMiningUpgrade) {
-        let computedBonus = Math.floor(woodcutter.stats.accuracy * (DONATORS_BENEFITS.woodcuttingBonus / 100));
+        let computedBonus = Math.floor(20 + ((DONATORS_BENEFITS.woodcuttingBonus / 100) * woodcutter.stats.accuracy));
         woodcutter.description += `
           <div class="d-flex align-items-center">
             <i class="lilIcon-accuracy extra-small-icon mr-1"></i>

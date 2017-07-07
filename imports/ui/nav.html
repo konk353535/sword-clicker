@@ -100,6 +100,15 @@
                     Disable floating text
                   </a>
                 {{/if}}
+                {{#if summaryListDisabled}}
+                  <a class="dropdown-item enable-summary-list" style="cursor: pointer">
+                    Enable summary list
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-summary-list" style="cursor: pointer">
+                    Disable summary list
+                  </a>
+                {{/if}}
                 {{#if currentUser.isGuest}}
                   <label class="text-danger">Danger, your a guest</label>
                   <a class="dropdown-item" href="/guestSettings">

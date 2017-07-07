@@ -296,7 +296,7 @@ export const MONSTER_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // Blank
         if (!buff.data.timeTillRabbit) {
-          buff.data.timeTillRabbit = 9 + Math.random () * 3;
+          buff.data.timeTillRabbit = 8 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
           if (buff.data.timeTillRabbit <= 1000) {
@@ -741,7 +741,7 @@ export const MONSTER_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.hitsRequired == null) {
-          buff.data.hitsRequired = 50;
+          buff.data.hitsRequired = 45;
           target.stats.armor += 2000;
           target.stats.magicArmor += 2000;
         }
@@ -780,9 +780,9 @@ export const MONSTER_BUFFS = {
             buff.data.lastMissingHp = missingHp;
           } else {
             const decimal = (missingHp - buff.data.lastMissingHp) / target.stats.healthMax;
-            target.stats.attackMax *= 1 + (decimal / 2);
-            target.stats.attack *= 1 + (decimal / 2);
-            target.stats.accuracy *= 1 + (decimal / 2);
+            target.stats.attackMax *= 1 + (decimal / 1.75);
+            target.stats.attack *= 1 + (decimal / 1.75);
+            target.stats.accuracy *= 1 + (decimal / 1.75);
             buff.data.lastMissingHp = missingHp;
           }
 

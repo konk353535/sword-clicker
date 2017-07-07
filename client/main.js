@@ -18,6 +18,7 @@ import '/imports/ui/components/requiredItems/requiredItems.js';
 import '/imports/ui/components/displayCombatStats/displayCombatStats.js';
 import '/imports/ui/components/battleUnit/battleUnit.js';
 import '/imports/ui/components/skillHeader/skillHeader.js';
+import '/imports/ui/components/summaryList/summaryList.js';
 import '/imports/ui/components/memberBenefit/memberBenefit.js';
 
 // Pages / Core

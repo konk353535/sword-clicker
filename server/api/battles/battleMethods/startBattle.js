@@ -53,7 +53,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Ensure battle particiapnts aren't already in a battle
   const currentBattle = BattlesList.findOne({ owners: battleParticipants });
   if (currentBattle) {
-    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is still in one.');
+    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is still in one.');
   }
 
   // Ensure battle participants don't have any active adventures
@@ -71,7 +71,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   });
 
   if (activeAdventures) {
-    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in ur group is in an adventure');
+    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is in an adventure');
   }
 
   // Ensure group size is not too large

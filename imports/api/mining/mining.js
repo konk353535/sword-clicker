@@ -9,6 +9,7 @@ MiningSpaceSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   oreId: { type: String, optional: true },
   index: { type: Number },
+  isCluster: { type: Boolean, optional: true },
   health: { type: Number, defaultValue: 0, decimal: true }
 });
 

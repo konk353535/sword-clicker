@@ -56,7 +56,7 @@ Template.craftingDuration.events({
     if (instance.data.isCrafting) {
       // Cancel the craft for this
       Meteor.call('crafting.cancelCraft', instance.data.craftingProcess.endDate);
-    } else {
+    } else if (instance.data.isInscription) {
       // Cancel the craft for this
       Meteor.call('inscription.cancelCraft', instance.data.craftingProcess.endDate);      
     }

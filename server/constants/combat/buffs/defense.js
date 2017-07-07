@@ -199,7 +199,10 @@ export const DEFENSE_BUFFS = {
         const healthIncrease = healthBase + healthPerLevel;
 
         buff.data.healthIncrease = healthIncrease;
-        caster.stats.health *= (1 + buff.data.healthIncrease);
+        // Only mutate health if it's full
+        if (caster.stats.health === caster.stats.healthMax) {
+          caster.stats.health *= (1 + buff.data.healthIncrease);
+        }
         caster.stats.healthMax *= (1 + buff.data.healthIncrease);
       },
 

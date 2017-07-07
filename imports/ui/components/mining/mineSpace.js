@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './mineSpace.html';
 
@@ -28,6 +29,13 @@ Template.mineSpace.events({
       }
     }
 
+    let membershipMultiplier = 1.0;
+    const userDoc = Meteor.user();
+
+    if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+      membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
+    }
+
     if (instance.data.mineSpace.oreId) {
       if (myMining.stats.energy >= (myMining.stats.energyPerHit * multiplier)) {
         Meteor.call('mining.clickedMineSpace', instance.data.mineSpace._id, multiplier);
@@ -44,7 +52,7 @@ Template.mineSpace.events({
             data-count=1
             style='top: ${offset.top}px; left: ${offset.left}px; opacity: 1.0; color: ${color}'>
             <i class="lilIcon-mining"></i>
-            ${myMining.stats.attack * multiplier}
+            ${Math.round(myMining.stats.attack * multiplier * membershipMultiplier)}
           </p>
         `);
 

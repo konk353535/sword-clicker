@@ -182,7 +182,8 @@ Meteor.methods({
             // Stat percentage
             const statPercent = (currentStat / maxStat) * 100;
             // Smallest increment
-            const smallestIncrement = ((1 / maxStat) * 100) / extraStatKeys.length;
+            // Divide by 10, as smallest increment of stat is 0.1
+            const smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 10;
 
             if (smallestIncrement <= ENHANCER_KEY_INCREASE) {
               increaseOptions.push({
@@ -190,7 +191,7 @@ Meteor.methods({
                 smallestIncrement,
                 currentStat,
                 maxStat,
-                maxIncrease: maxStat - currentStat
+                maxIncrease: math.round(maxStat - currentStat, 1)
               });
             }
           }

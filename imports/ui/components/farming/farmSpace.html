@@ -1,6 +1,6 @@
 <template name="farmSpace">
-  <div class="farm-space-container">
-    <div class="icon-box align-items-center {{#if farmSpace.active}}{{else}}inactive{{/if}} {{classes}}">
+  <div class="farm-space-container {{#if farmSpace.active}}{{else}}inactive{{/if}}">
+    <div class="icon-box align-items-center {{classes}}">
       {{#if isEmpty}}
         <img src="/icons/emptyFarmSpace.svg" class="ore-icon">
       {{else if finishedGrowing}}

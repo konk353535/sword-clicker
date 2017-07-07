@@ -5,7 +5,7 @@
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Level {{usersCurrentLevel}}
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 300px; overflow-y: scroll">
         {{#each levelsList}}
           <a class="dropdown-item select-level" href="#" data-level={{this}}>Level {{this}}</a>
         {{/each}}

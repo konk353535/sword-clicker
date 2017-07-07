@@ -126,7 +126,7 @@
   cursor: pointer;
 }
 
-.farm-space-container.inactive {
+.farm-space-container.inactive > .icon-box {
   background-color: $gray-light;
   cursor: not-allowed;
 }

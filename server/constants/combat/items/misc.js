@@ -474,6 +474,7 @@ export const MISC_ITEMS = {
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
+    "isTwoHanded": true,
     "stats": {
       "attack": 10.1,
       "attackMax": 13.9,
@@ -504,6 +505,7 @@ export const MISC_ITEMS = {
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
+    "isTwoHanded": true,
     "stats": {
       "attack": 45.4,
       "attackMax": 71.8,
@@ -534,6 +536,7 @@ export const MISC_ITEMS = {
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
+    "isTwoHanded": true,
     "stats": {
       "attack": 60.4,
       "attackMax": 95.6,

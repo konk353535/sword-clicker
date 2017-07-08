@@ -152,6 +152,14 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
+
+  // If this is a hidden recipe, make sure we have access
+  if (recipeConstants.isHidden) {
+    if (!crafting.learntCrafts || !crafting.learntCrafts[recipeConstants.id]) {
+      throw new Meteor.Error("not-found", "Invalid recipe");
+    }
+  }
+
   if (!recipeConstants || recipeConstants.recipeFor !== 'crafting') {
     return;
   }
@@ -233,6 +241,10 @@ Meteor.methods({
       type: 'crafting'
     });
 
+    const crafting = Crafting.findOne({
+      owner: Meteor.userId()
+    });
+
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
       const recipeConstant = JSON.parse(JSON.stringify(CRAFTING.recipes[craftingKey]));
       const itemConstant = ITEMS[recipeConstant.produces];
@@ -253,6 +265,10 @@ Meteor.methods({
       return recipeConstant;
     }).filter((recipe) => {
       if (recipe.recipeFor !== 'crafting') {
+        return false;
+      }
+
+      if (recipe.isHidden && (!crafting.learntCrafts || !crafting.learntCrafts[recipe.id])) {
         return false;
       }
 

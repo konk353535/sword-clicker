@@ -12,7 +12,8 @@ CraftingSchema = new SimpleSchema({
   'currentlyCrafting.$.recipeId': { type: String },
   'currentlyCrafting.$.startDate': { type: Date },
   'currentlyCrafting.$.endDate': { type: Date },
-  'currentlyCrafting.$.amount': { type: Number }
+  'currentlyCrafting.$.amount': { type: Number },
+  learntCrafts: { type: Object, blackbox: true, optional: true }
 });
 
 Crafting.attachSchema(CraftingSchema);

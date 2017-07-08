@@ -44,6 +44,11 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'affliction_tome', amount: 1 }
   ]
 }, {
+  chance: 1 / 32,
+  rewards: [
+    { type: 'item', itemId: 'carbon_essence_scroll', amount: 1 }
+  ]
+}, {
   chance: 1 / 16,
   rewards: [
     { type: 'item', itemId: 'carbon_essence', amount: 1 }

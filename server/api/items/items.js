@@ -3,8 +3,10 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
+import { Crafting } from '/imports/api/crafting/crafting';
 import { Events } from '/imports/api/events/events';
 
+import { addXp } from '/server/api/skills/skills.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
 import { BUFFS } from '/server/constants/combat/index.js';
@@ -145,27 +147,38 @@ Meteor.methods({
   },
 
   'items.use'({ baseItemId, targetItemId }) {
+
     // Fetch both items
     const baseItem = Items.findOne({
       owner: Meteor.userId(),
       _id: baseItemId
     });
 
-    const targetItem = Items.findOne({
-      owner: Meteor.userId(),
-      _id: targetItemId
-    });
-
-    if (!baseItem || !targetItem || baseItem.amount <= 0 || targetItem.amount <= 0) {
+    if (!baseItem || baseItem.amount <= 0) {
       return;
     }
 
+    let targetItemConstants;
+    let targetItem;
+    if (targetItemId) {
+      targetItem = Items.findOne({
+        owner: Meteor.userId(),
+        _id: targetItemId
+      });
+
+      if (!targetItem || targetItem.amount <= 0) {
+        return;
+      }
+
+      targetItemConstants = ITEMS[targetItem.itemId];
+    }
+
     const baseItemConstants = ITEMS[baseItem.itemId];
-    const targetItemConstants = ITEMS[targetItem.itemId];
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
       const ENHANCER_KEY_INCREASE = 15;
+
       if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
         // Get the current quality
         const originalQuality = targetItem.quality
@@ -211,18 +224,21 @@ Meteor.methods({
 
           if (option.smallestIncrement <= upgradePercentLeft) {
             // Floor times left to add
-            let timesToAdd = Math.floor(upgradePercentLeft / option.smallestIncrement);
+            let timesToAdd = (Math.floor(upgradePercentLeft / option.smallestIncrement) / 10);
             if (timesToAdd > option.maxIncrease) {
               timesToAdd = option.maxIncrease;
             }
 
             // Keep track of current quality increases
-            currentQualityIncrease += timesToAdd * option.smallestIncrement;
+            // * 10 as smallest increment is 0.1
+            currentQualityIncrease += (timesToAdd * option.smallestIncrement * 10);
 
             // Handle edge case of this extra stat not existing
             if (!targetItemClone.extraStats[option.key]) {
               targetItemClone.extraStats[option.key] = 0;
             }
+
+            // Each add is 0.1 stat
             targetItemClone.extraStats[option.key] += timesToAdd;
           }
         });
@@ -271,6 +287,32 @@ Meteor.methods({
         }
       } else {
         throw new Meteor.Error("invalid-target", 'Invalid target item');
+      }
+    } else if (baseItemConstants.isCraftingScroll) {
+      // Learn the craft is we don't already have it
+      const crafting = Crafting.findOne({
+        owner: Meteor.userId()
+      });
+
+      if (!crafting.learntCrafts) {
+        crafting.learntCrafts = {};
+      }
+
+      if (!crafting.learntCrafts[baseItemConstants.teaches]) {
+        crafting.learntCrafts[baseItemConstants.teaches] = true;
+
+        const updatedCount = Crafting.update({
+          _id: crafting._id,
+          currentlyCrafting: crafting.currentlyCrafting
+        }, {
+          $set: {
+            learntCrafts: crafting.learntCrafts
+          }
+        });
+
+        if (updatedCount >= 1) {
+          consumeItem(baseItem, 1);
+        }
       }
     }
 

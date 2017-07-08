@@ -45,6 +45,13 @@ const itemModifier = function (item) {
               });
             }, 1);
           }
+        } else {
+          Meteor.call('items.use', { baseItemId: this.item._id }, (err, res) => {
+            if (/essence_scroll/.test(this.item.itemId)) {
+              // If this was an essence scroll, reload recipes
+              recipeCache = undefined;
+            }
+          });
         }
       }
     }

@@ -3,8 +3,9 @@ import { FURNACE_ITEMS } from './items/furnaces';
 import { GOLD_ITEMS } from './items/gold';
 import { XP_ITEMS } from './items/xp';
 import { MISC_ITEMS } from './items/misc';
+import { SCROLL_ITEMS } from './items/scrolls';
 
-export const CRAFTING_ITEMS = Object.assign(BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
+export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
   composite_wall: {
     id: 'composite_wall',
     icon: 'compositeWall',

@@ -38,6 +38,11 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'silver_dagger', amount: 1 }
   ]
 }, {
+  chance: 1 / 48,
+  rewards: [
+    { type: 'item', itemId: 'silver_essence_scroll', amount: 1 }
+  ]
+}, {
   chance: 1 / 32,
   rewards: [
     { type: 'item', itemId: 'silver_essence', amount: 1 }

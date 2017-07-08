@@ -191,7 +191,6 @@ Template.body.onCreated(function () {
     }
 
     if (Meteor.user() && !inBattle && (hasBuff || !isFullHealth || !isFullEnergy || !isFullAmuletEnergy)) {
-      console.log(`Calling combat update at - ${moment().toDate()}`);
       Meteor.call('combat.gameUpdate');
     }
   }, 8000);

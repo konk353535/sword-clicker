@@ -256,7 +256,13 @@ Meteor.methods({
     });
   },
 
-  'farming.plantAll'(plantId) {
+  'farming.plantAll'(plantId, specifiedAmount) {
+
+    if (specifiedAmount < 0) {
+      return;
+    } else if (specifiedAmount > 6) {
+      specifiedAmount = 6;
+    }
 
     const userDoc = Meteor.user();
 
@@ -310,15 +316,28 @@ Meteor.methods({
     // Fetch plant constants
     const plantConstants = FARMING.plants[plantId];
 
-    if (!plantConstants || !requirementsUtility(plantConstants.required, emptySpaces.length)) {
+    let plantAmount = specifiedAmount > emptySpaces.length ? emptySpaces.length : specifiedAmount;
+
+    if (!plantConstants || !requirementsUtility(plantConstants.required, plantAmount)) {
       throw new Meteor.Error("requirements-not-met", "You do not meet the requirements to plant this seed");
+    }
+
+    let indexesToMutate = [];
+    if (plantAmount === emptySpaces.length) {
+      indexesToMutate = emptySpaces.map((emptySpace) => { return emptySpace.index });
+    } else {
+      emptySpaces.forEach((emptySpace) => {
+        if (indexesToMutate.length < plantAmount) {
+          indexesToMutate.push(emptySpace.index);
+        }
+      });
     }
 
     // Modify farming space with growing sapling
     FarmingSpace.update({
       owner: Meteor.userId(),
       index: {
-        $in: emptySpaces.map((emptySpace) => { return emptySpace.index })
+        $in: indexesToMutate
       }
     }, {
       $set: {

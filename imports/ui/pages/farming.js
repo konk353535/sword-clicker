@@ -87,7 +87,7 @@ Template.farmingPage.helpers({
           item,
           method() {
             // Planting
-            Meteor.call('farming.plantAll', item.plantingDetails.produces, (err, res) => {
+            Meteor.call('farming.plantAll', item.plantingDetails.produces, this.item.amount, (err, res) => {
               if (err) {
                 toastr.warning(err.reason);
               }

@@ -11,6 +11,7 @@ import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users';
+import { BattlesList } from '/imports/api/battles/battles.js';
 
 // Component used in the template
 import './crafting.html';
@@ -270,6 +271,10 @@ Template.craftingPage.helpers({
   craftingSkill() {
     // Otherwise, return all of the tasks
     return Skills.findOne({ type: 'crafting' });
+  },
+
+  inCurrentBattle() {
+    return BattlesList.findOne({});
   },
 
   crafting() {

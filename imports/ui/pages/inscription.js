@@ -5,12 +5,15 @@ import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Session } from 'meteor/session';
 import moment from 'moment';
 
+import { determineRequiredItems } from '/imports/ui/utils.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
+
 
 // Component used in the template
 import './inscription.html';
@@ -118,23 +121,35 @@ Template.inscriptionPage.events({
 
     const recipeConstants = recipeListMap[recipeId];
 
+    let { maxCraftable, notMet } = determineRequiredItems(recipeConstants);
+
+    if (notMet) {
+      return toastr.warning('Not enough resources to craft');
+    }
+
+    if (maxCraftable > recipeConstants.maxToCraft) {
+      maxCraftable = JSON.parse(JSON.stringify(recipeConstants.maxToCraft));
+    }
+
     if (recipeConstants.maxToCraft > 1) {
+      instance.state.set('maxCraftableAmount', maxCraftable);
       instance.state.set('maxCraftAmount', recipeConstants.maxToCraft);
-      instance.state.set('craftAmount', 1);
+      instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
       instance.state.set('multiCraftRecipeId', recipeId);
       instance.$('.multiCraftModal').modal('show');
       instance.$('.craft-amount-input').focus();
     } else {
       Meteor.call('inscription.craftItem', recipeId, 1, (err) => {
-        console.log(err);
         if (err) {
           toastr.warning(err.reason);
+        } else {
+          toastr.success(`Crafting ${recipeConstants.name}`, null, { timeOut: 1000 });
         }
       });
     }
   },
 
-  'submit .craft-amount-form, click .craft-btn'(event, instance) {
+  'submit .craft-amount-form'(event, instance) {
     event.preventDefault();
 
     const recipeId = instance.state.get('multiCraftRecipeId');
@@ -145,6 +160,23 @@ Template.inscriptionPage.events({
       console.log(err);
       if (err) {
         toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .craft-btn'(event, instance) {
+    const recipeId = instance.state.get('multiCraftRecipeId');
+    const amountToCraft = parseInt($(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
+    
+    const recipeListMap = instance.state.get('recipeListMap');
+    const recipeConstants = recipeListMap[recipeId];
+
+    instance.$('.multiCraftModal').modal('hide');
+    Meteor.call('inscription.craftItem', recipeId, amountToCraft, (err) => {
+      if (err) {
+        toastr.warning('Failed to craft item');
+      } else {
+        toastr.success(`Started crafting ${recipeConstants.name}`)
       }
     });
   }
@@ -160,12 +192,20 @@ Template.inscriptionPage.helpers({
     return Inscription.findOne();
   },
 
+  inCurrentBattle() {
+    return BattlesList.findOne({});
+  },
+
   maxCraftAmount() {
     return Template.instance().state.get('maxCraftAmount');
   },
 
   craftAmount() {
     return Template.instance().state.get('craftAmount');
+  },
+
+  maxCraftableAmount() {
+    return Template.instance().state.get('maxCraftableAmount');
   },
 
   recipeFilter() {

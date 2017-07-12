@@ -120,7 +120,7 @@ Template.astronomyPage.helpers({
             instance.$('.mageUpgadeModal').modal('show');
           }
         }
-      } else {
+      } else if (mage) {
         mage.primaryAction = {
           description: 'Deposit / Withdraw',
           method() {

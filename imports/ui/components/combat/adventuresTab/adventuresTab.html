@@ -3,7 +3,7 @@
     {{#each adventures}}
       <div class="adventure-item-container d-flex flex-column my-1 mx-1 {{#if this.inactive}}inactive-adventure{{else}}active-adventure{{/if}}">
         <div class="d-flex">
-          <img src="icons/{{this.icon}}.svg" class="medium-icon">
+          <img src="/icons/{{this.icon}}.svg" class="medium-icon">
           <div class="d-flex flex-column ml-3 flex-grow hidden-xs-down">
             <div class="text-capitalize">{{this.name}}</div>
             <div class="text-capitalize">{{this.length}}</div>

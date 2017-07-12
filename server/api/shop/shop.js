@@ -28,7 +28,7 @@ Meteor.methods({
     }
 
     // Add X days to all upgrade types
-    const types = ['mining', 'crafting', 'combat', 'woodcutting', 'farming', 'inscription'];
+    const types = ['mining', 'crafting', 'combat', 'woodcutting', 'farming', 'inscription', 'astronomy'];
     const setModifier = {};
 
     types.forEach((type) => {
@@ -67,7 +67,7 @@ Meteor.methods({
       throw new Meteor.Error("not-valid-days", "Not valid day amount");
     }
 
-    if (!_.contains(['mining', 'crafting', 'combat', 'woodcutting', 'farming', 'inscription'], type)) {
+    if (!_.contains(['mining', 'crafting', 'combat', 'woodcutting', 'farming', 'inscription', 'astronomy'], type)) {
       throw new Meteor.Error("not-valid-type", "Not valid type");
     }
 

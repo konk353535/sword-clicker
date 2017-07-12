@@ -59,6 +59,10 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
               offset.top += 40;
             }
 
+            if (tickEvent.from === Meteor.userId()) {
+              color = 'black';
+            }
+
             let element = $(`
               <p
                 class='floating-text'

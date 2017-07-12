@@ -1,5 +1,5 @@
 <template name="abilityLibraryIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if $gt item.currentCooldown 0}}disabled{{/if}}" style="position: relative" data-id="{{item._id}}">
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
@@ -15,6 +15,12 @@
         </div>
       {{/if}}
     {{/each}}
+
+    {{#if $gt item.currentCooldown 0}}
+      <span class="cooldown-text">
+        {{> formatNumber number=item.currentCooldown decimal=0}}
+      </span>
+    {{/if}}
 
     <!-- Abilities can have required items -->
     {{#if item.requiredItem}}

@@ -30,13 +30,19 @@ export const addXp = function (skillType, xp, specificUserId) {
   }
 
   const skillConstants = SKILLS[skill.type];
+  const originalXp = skill.xp;
 
   skill.xp += xp;
+
   const xpToNextLevel = skillConstants.xpToLevel(skill.level);
 
   if (skill.xp >= xpToNextLevel) {
     // Update Level
-    Skills.update(skill._id, {
+    Skills.update({
+      _id: skill._id,
+      xp: originalXp,
+      level: skill.level
+    }, {
       $set: {
         level: skill.level + 1,
         totalXp: (skill.totalXp + xp),
@@ -233,6 +239,29 @@ Meteor.methods({
     if (SKILLS[skillName].requirementsToLearn) {
       return SKILLS[skillName].requirementsToLearn || [];
     }
+  },
+
+  'skills.fetchProfile'(username) {
+    // Ensure username is a string
+    if (!_.isString(username)) {
+      throw new Meteor.Error('not-string', 'username must be a string');
+    }
+
+    // Search for the user
+    const targetUser = Users.findOne({ username });
+
+    // Get all users skills
+    return Skills.find({
+      owner: targetUser._id
+    }).fetch().map((skill) => {
+      return {
+        xpToLevel: SKILLS[skill.type].xpToLevel(skill.level),
+        xp: skill.xp,
+        totalXp: skill.totalXp,
+        level: skill.level,
+        type: skill.type
+      };
+    });
   },
 
   'skills.highscores'(skillName, showAll200) {

@@ -106,4 +106,6 @@ SyncedCron.config({
   utc: true
 });
 
-SyncedCron.start();
+Meteor.setTimeout(() => {
+  SyncedCron.start();
+}, 60000);

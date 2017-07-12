@@ -8,6 +8,7 @@ import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
 import './combatAbilitiesTab.html';
+let abilityTimer;
 
 Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -26,11 +27,19 @@ Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
       // Store recipes
       this.state.set('abilityLibrary', results);
     }
-  })
+  });
+
+  abilityTimer = Meteor.setInterval(() => {
+    Meteor.call('abilities.gameUpdate');
+  }, 10000);
 });
 
 Template.combatAbilitiesTab.events({
-})
+});
+
+Template.combatAbilitiesTab.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(abilityTimer);
+});
 
 Template.combatAbilitiesTab.helpers({
 
@@ -98,8 +107,10 @@ Template.combatAbilitiesTab.helpers({
         });
       }
 
-      if (_.findWhere(myAbilities.learntAbilities, { abilityId: ability.id })) {
+      const learntAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id });
+      if (learntAbility) {
         ability.notLearnt = false;
+        ability.currentCooldown = learntAbility.currentCooldown;
         ability.primaryAction = {
           description: 'equip',
           ability,

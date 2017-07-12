@@ -31,7 +31,7 @@
             {{#if $eq currentSkill.type this.type}}select-skill-active{{/if}}"
             style="cursor: pointer"
             data-name="{{this.type}}">
-            <img src="icons/{{this.type}}.svg" class="extra-small-icon">
+            <img src="/icons/{{this.type}}.svg" class="extra-small-icon">
           </div>
         {{/each}}
         <!-- Quest Filter -->
@@ -40,7 +40,7 @@
           {{#if $eq currentSkill.type 'personalQuest'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="personalQuest">
-          <img src="icons/personalQuest.svg" class="extra-small-icon">
+          <img src="/icons/personalQuest.svg" class="extra-small-icon">
         </div>
         <!-- Tower Filter -->
         <div
@@ -48,7 +48,7 @@
           {{#if $eq currentSkill.type 'tower'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="tower">
-          <img src="icons/tower.svg" class="extra-small-icon">
+          <img src="/icons/tower.svg" class="extra-small-icon">
         </div>
         <!-- Boss Hp Filter -->
         <div
@@ -56,7 +56,7 @@
           {{#if $eq currentSkill.type 'boss'}}select-skill-active{{/if}}"
           style="cursor: pointer"
           data-name="boss">
-          <img src="icons/boss.svg" class="extra-small-icon">
+          <img src="/icons/boss.svg" class="extra-small-icon">
         </div>
       </div>
       {{#if showAll200}}
@@ -79,7 +79,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td>{{this.username}}</td>
+                <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 <td>{{this.personalQuest.level}}</td>
                 <td>{{this.personalQuest.wave}}</td>
               </tr>
@@ -99,7 +99,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td>{{this.username}}</td>
+                <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 <td>{{> formatNumber number=this.bossDamage}}</td>
               </tr>
             {{/each}}
@@ -118,7 +118,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td>{{this.username}}</td>
+                <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 <td>{{this.points}}</td>
               </tr>
             {{/each}}
@@ -140,7 +140,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td>{{this.username}}</td>
+                <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 {{#unless $eq currentSkill.type 'total'}}
                   <td>{{> ceilNumber this.totalXp}}</td>
                 {{/unless}}

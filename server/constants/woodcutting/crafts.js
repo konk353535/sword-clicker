@@ -155,7 +155,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'silver axe',
     id: 'silver_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60, // 60
+    timeToCraft: 180, // 60
     xp: 75,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
@@ -193,7 +193,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'gold axe',
     id: 'gold_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60, // 60
+    timeToCraft: 240, // 60
     xp: 100,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
@@ -269,7 +269,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'steel axe',
     id: 'steel_axe',
     category: 'woodcutting',
-    timeToCraft: 120, // 60
+    timeToCraft: 360, // 60
     xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
@@ -307,7 +307,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'platinum axe',
     id: 'platinum_axe',
     category: 'woodcutting',
-    timeToCraft: 120, // 60
+    timeToCraft: 600, // 60
     xp: 400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
@@ -345,7 +345,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'titanium axe',
     id: 'titanium_axe',
     category: 'woodcutting',
-    timeToCraft: 120, // 60
+    timeToCraft: 900, // 60
     xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
@@ -383,7 +383,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'tungsten axe',
     id: 'tungsten_axe',
     category: 'woodcutting',
-    timeToCraft: 120, // 60
+    timeToCraft: 900, // 60
     xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
@@ -421,7 +421,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'obsidian axe',
     id: 'obsidian_axe',
     category: 'woodcutting',
-    timeToCraft: 120, // 60
+    timeToCraft: 900, // 60
     xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 60,
@@ -459,7 +459,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'cobalt axe',
     id: 'cobalt_axe',
     category: 'woodcutting',
-    timeToCraft: 30 * 60, // 60
+    timeToCraft: 900, // 60
     xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
@@ -498,7 +498,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'mithril axe',
     id: 'mithril_axe',
     category: 'woodcutting',
-    timeToCraft: 30 * 60, // 60
+    timeToCraft: 900, // 60
     xp: 1500,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
@@ -536,7 +536,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'adamantium axe',
     id: 'adamantium_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 2, // 60
+    timeToCraft: 900, // 60
     xp: 1750,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
@@ -574,7 +574,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'orichalcum axe',
     id: 'orichalcum_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 4, // 60
+    timeToCraft: 1200, // 60
     xp: 2000,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
@@ -612,7 +612,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'meteorite axe',
     id: 'meteorite_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 4, // 60
+    timeToCraft: 1500, // 60
     xp: 3000,
     maxToCraft: 1,
     requiredCraftingLevel: 85,
@@ -650,7 +650,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'fairy steel axe',
     id: 'fairy_steel_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 6, // 60
+    timeToCraft: 1800, // 60
     xp: 4000,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
@@ -688,7 +688,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'elven steel axe',
     id: 'elven_steel_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 6, // 60
+    timeToCraft: 60 * 60 * 1, // 60
     xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
@@ -726,7 +726,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'cursed axe',
     id: 'cursed_axe',
     category: 'woodcutting',
-    timeToCraft: 60 * 60 * 6, // 60
+    timeToCraft: 60 * 60 * 1, // 60
     xp: 5000,
     maxToCraft: 1,
     requiredCraftingLevel: 100,

@@ -3,7 +3,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const PLANTS = {
   lettice: {
     produces: 'lettice',
-    name: 'lettice',
+    name: 'lettuce',
     id: 'lettice',
     category: 'farming',
     icon: ITEMS['lettice'].icon,

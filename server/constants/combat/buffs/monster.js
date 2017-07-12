@@ -544,7 +544,11 @@ export const MONSTER_BUFFS = {
         if (target.stats.armor <= 0) {
           buff.data.armorReduction = 1;
         }
-        target.stats.armor *= buff.data.armorReduction;
+
+        // Determine armor to take
+        const flatArmorReduction = target.stats.armor * (1 - buff.data.armorReduction);
+        buff.data.flatArmorReduction = flatArmorReduction;
+        target.stats.armor -= buff.data.flatArmorReduction;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -556,7 +560,7 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target }) {
-        target.stats.armor /= buff.data.armorReduction;
+        target.stats.armor += buff.data.flatArmorReduction;
       }
     }
   },

@@ -205,7 +205,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
     // Apply enemy attacks
     actualBattle.enemies.forEach((enemy) => {
-      if ((actualBattle.tick - enemy.tickOffset) % enemy.stats.attackSpeedTicks === 0) {
+      if ((actualBattle.tick - enemy.tickOffset) % enemy.stats.attackSpeedTicks === 0 && actualBattle.tick > enemy.tickOffset) {
         let defender = actualBattle.units[0];
         if (enemy.target) {
           const targetUnit = _.find(actualBattle.units, (unit) => {
@@ -461,7 +461,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
               target: randomUnitTarget.id,
               enemyId: monster.id,
               name: monster.name,
-              tickOffset: _.random(0, 5)
+              tickOffset: actualBattle.tick + 2
             });
           });
 

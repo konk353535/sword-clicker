@@ -528,9 +528,6 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.armor -= buff.data.totalArmor;
-        if (target.stats.armor <= 0) {
-          target.stats.armor = 0;
-        }
       }
     }
   },

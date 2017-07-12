@@ -386,7 +386,7 @@ export const MAGIC = {
         level: 20
       },  {
         type: 'skill',
-        name: 'astronomy',
+        name: 'magic',
         level: 20
       }]
     },

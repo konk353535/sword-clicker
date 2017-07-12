@@ -266,6 +266,20 @@ Template.body.onCreated(function () {
 });
 
 Template.body.rendered = function() {
+  const baseOptions = {
+    "newestOnTop": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": true,
+    "onclick": null,
+  }
+
+  if ($(window).width() < 768) {
+    baseOptions.positionClass = "toast-bottom-center";
+    toastr.options = baseOptions;
+  } else {
+    toastr.options = baseOptions;
+  }
+
   $(document).on('click','.navbar-collapse.show',function(e) {
     if( $(e.target).is('a') && ( $(e.target).attr('class') != 'dropdown-toggle' ) ) {
       $(this).collapse('hide');

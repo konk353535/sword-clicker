@@ -107,7 +107,7 @@ Template.astronomyTab.helpers({
             instance.$('.mageUpgadeModal').modal('show');
           }
         }
-      } else {
+      } else if (mage.type) {
         mage.primaryAction = {
           description: 'Deposit / Withdraw',
           method() {
@@ -117,6 +117,10 @@ Template.astronomyTab.helpers({
             instance.state.set('selectedMage', mage);
           }
         }
+      } else if (mage.id === 'donatorMage') {
+        mage.name = "Phantom Mage";
+        mage.icon = "phantomMage";
+        mage.primaryAction = {};
       }
 
     });

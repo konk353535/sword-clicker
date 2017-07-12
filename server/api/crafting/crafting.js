@@ -268,8 +268,13 @@ Meteor.methods({
         return false;
       }
 
-      if (recipe.isHidden && (!crafting.learntCrafts || !crafting.learntCrafts[recipe.id])) {
-        return false;
+      // If it's learnt show regardless of level
+      if (recipe.isHidden) {
+        if (!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]) {
+          return false;
+        } else {
+          return true;
+        }
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )

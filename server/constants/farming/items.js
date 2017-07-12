@@ -6,6 +6,7 @@ export const FARMING_ITEMS = {
     icon: 'letticeSeed',
     category: 'seed',
     name: 'Lettuce Seed',
+    seedType: 'food',
     description() {
       const buff = BUFFS.food_lettice;
       return buff.description({ buff });
@@ -34,6 +35,7 @@ export const FARMING_ITEMS = {
     icon: 'marigoldSeed',
     category: 'seed',
     name: 'Marigold Seed',
+    seedType: 'misc',
     description() {
       return 'Sells for $$$'
     },
@@ -57,6 +59,7 @@ export const FARMING_ITEMS = {
     icon: 'cactusSeed',
     category: 'seed',
     name: 'Cactus Seed',
+    seedType: 'misc',
     description() {
       return 'Good exp';
     },
@@ -80,6 +83,7 @@ export const FARMING_ITEMS = {
     icon: 'pearSeed',
     category: 'seed',
     name: 'Pear Seed',
+    seedType: 'food',
     description() {
       const buff = BUFFS.food_pear;
       return buff.description({ buff });
@@ -107,6 +111,7 @@ export const FARMING_ITEMS = {
     id: 'garlic_seed',
     icon: 'garlicSeed',
     category: 'seed',
+    seedType: 'herb',
     name: 'garlic Seed',
     description: 'Used to grow garlic. Useful for inscription.',
     sellPrice: 500,
@@ -118,6 +123,7 @@ export const FARMING_ITEMS = {
     icon: 'lemonSeed',
     category: 'seed',
     name: 'Lemon Seed',
+    seedType: 'food',
     description: 'Used to grow lemon. Useful for regenerating energy.',
     sellPrice: 50,
     produces: 'lemon'
@@ -142,6 +148,7 @@ export const FARMING_ITEMS = {
     id: 'red_apple_seed',
     icon: 'redAppleSeed',
     category: 'seed',
+    seedType: 'food',
     name: 'red apple seed',
     description: 'Used to grow red apples. Useful for eating.',
     sellPrice: 10,
@@ -170,6 +177,7 @@ export const FARMING_ITEMS = {
     name: 'pineapple seed',
     description: 'Used to grow pine apples. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'pineapple'
   },
 
@@ -195,6 +203,7 @@ export const FARMING_ITEMS = {
     name: 'potato seed',
     description: 'Used to grow potatos. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'potato'
   },
 
@@ -220,6 +229,7 @@ export const FARMING_ITEMS = {
     name: 'banana seed',
     description: 'Used to grow bananas. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'banana'
   },
 
@@ -245,6 +255,7 @@ export const FARMING_ITEMS = {
     name: 'sweet potato seed',
     description: 'Used to grow sweet potatos. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'sweet_potato'
   },
 
@@ -270,6 +281,7 @@ export const FARMING_ITEMS = {
     name: 'carrot seed',
     description: 'Used to grow carrots. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'carrot'
   },
 
@@ -295,6 +307,7 @@ export const FARMING_ITEMS = {
     name: 'dragonfruit seed',
     description: 'Used to grow dragonfruits. Useful for eating.',
     sellPrice: 20,
+    seedType: 'food',
     produces: 'dragonfruit'
   },
 
@@ -320,6 +333,7 @@ export const FARMING_ITEMS = {
     name: 'watermelon seed',
     description: 'Used to grow watermelons. Useful for eating.',
     sellPrice: 30,
+    seedType: 'food',
     produces: 'watermelon'
   },
 
@@ -346,6 +360,7 @@ export const FARMING_ITEMS = {
     name: 'orange seed',
     description: 'Used to grow oranges. Useful for eating.',
     sellPrice: 30,
+    seedType: 'food',
     produces: 'orange'
   },
 
@@ -371,6 +386,7 @@ export const FARMING_ITEMS = {
     name: 'rockmelon seed',
     description: 'Used to grow rockmelons. Useful for eating.',
     sellPrice: 30,
+    seedType: 'food',
     produces: 'rockmelon'
   },
 
@@ -396,6 +412,7 @@ export const FARMING_ITEMS = {
     name: 'Basil Seed',
     description: 'Used to grow basil. Useful for inscription',
     sellPrice: 100,
+    seedType: 'herb',
     produces: 'basil'
   },
 
@@ -414,6 +431,7 @@ export const FARMING_ITEMS = {
     name: 'Pine Seed',
     description: 'Used to grow pine log. Long time to grow, gives good exp.',
     sellPrice: 10,
+    seedType: 'tree',
     produces: 'pine_log'
   },
 
@@ -424,6 +442,7 @@ export const FARMING_ITEMS = {
     name: 'beech Seed',
     description: 'Used to grow beech log. Long time to grow, gives good exp.',
     sellPrice: 10,
+    seedType: 'tree',
     produces: 'beech_log'
   },
 
@@ -434,6 +453,7 @@ export const FARMING_ITEMS = {
     name: 'ash Seed',
     description: 'Used to grow ash log. Long time to grow, gives good exp.',
     sellPrice: 10,
+    seedType: 'tree',
     produces: 'ash_log'
   },
 
@@ -442,6 +462,7 @@ export const FARMING_ITEMS = {
     icon: 'oakSeed',
     category: 'seed',
     name: 'oak Seed',
+    seedType: 'tree',
     description: 'Used to grow oak log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'oak_log'
@@ -452,6 +473,7 @@ export const FARMING_ITEMS = {
     icon: 'mapleSeed',
     category: 'seed',
     name: 'maple Seed',
+    seedType: 'tree',
     description: 'Used to grow maple log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'maple_log'
@@ -462,6 +484,7 @@ export const FARMING_ITEMS = {
     icon: 'walnutSeed',
     category: 'seed',
     name: 'walnut Seed',
+    seedType: 'tree',
     description: 'Used to grow walnut log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'walnut_log'
@@ -472,6 +495,7 @@ export const FARMING_ITEMS = {
     icon: 'cherrySeed',
     category: 'seed',
     name: 'cherry Seed',
+    seedType: 'tree',
     description: 'Used to grow cherry log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'cherry_log'
@@ -482,6 +506,7 @@ export const FARMING_ITEMS = {
     icon: 'mahoganySeed',
     category: 'seed',
     name: 'mahogany Seed',
+    seedType: 'tree',
     description: 'Used to grow mahogany log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'mahogany_log'
@@ -492,6 +517,7 @@ export const FARMING_ITEMS = {
     icon: 'elkSeed',
     category: 'seed',
     name: 'elk Seed',
+    seedType: 'tree',
     description: 'Used to grow elk log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'elk_log'
@@ -502,6 +528,7 @@ export const FARMING_ITEMS = {
     icon: 'blackSeed',
     category: 'seed',
     name: 'black Seed',
+    seedType: 'tree',
     description: 'Used to grow black log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'black_log'
@@ -512,6 +539,7 @@ export const FARMING_ITEMS = {
     icon: 'blueGumSeed',
     category: 'seed',
     name: 'blue gum Seed',
+    seedType: 'tree',
     description: 'Used to grow blue gum log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'blue_gum_log'
@@ -521,6 +549,7 @@ export const FARMING_ITEMS = {
     id: 'pink_rose_seed',
     icon: 'pinkRoseSeed',
     category: 'seed',
+    seedType: 'herb',
     name: 'pink rose seed',
     description: 'Used to grow a pinkish rose. Useful for inscription',
     sellPrice: 200,
@@ -538,6 +567,7 @@ export const FARMING_ITEMS = {
   endive_seed: {
     id: 'endive_seed',
     icon: 'endiveSeed',
+    seedType: 'herb',
     category: 'seed',
     name: 'endive seed',
     description: 'Used to grow a endive. Useful for inscription',
@@ -557,6 +587,7 @@ export const FARMING_ITEMS = {
     id: 'juniper_seed',
     icon: 'juniperSeed',
     category: 'seed',
+    seedType: 'herb',
     name: 'juniper seed',
     description: 'Used to grow a juniper. Useful for inscription',
     sellPrice: 300,
@@ -575,6 +606,7 @@ export const FARMING_ITEMS = {
     id: 'agrimony_seed',
     icon: 'agrimonySeed',
     category: 'seed',
+    seedType: 'herb',
     name: 'agrimony seed',
     description: 'Used to grow a agrimony. Useful for inscription',
     sellPrice: 300,
@@ -594,6 +626,7 @@ export const FARMING_ITEMS = {
     icon: 'cardoonSeed',
     category: 'seed',
     name: 'cardoon seed',
+    seedType: 'herb',
     description: 'Used to grow a cardoon. Useful for inscription',
     sellPrice: 300,
     produces: 'cardoon'
@@ -614,6 +647,7 @@ export const FARMING_ITEMS = {
     name: 'chilli seed',
     description: 'Used to grow a chilli. Useful for inscription',
     sellPrice: 300,
+    seedType: 'herb',
     produces: 'chilli'
   },
 
@@ -632,6 +666,7 @@ export const FARMING_ITEMS = {
     name: 'celery seed',
     description: 'Used to grow a celery. Useful for inscription',
     sellPrice: 300,
+    seedType: 'herb',
     produces: 'celery'
   },
 
@@ -651,6 +686,7 @@ export const FARMING_ITEMS = {
     name: 'feverfew seed',
     description: 'Used to grow a feverfew. Useful for inscription',
     sellPrice: 1000,
+    seedType: 'herb',
     produces: 'feverfew'
   },
 
@@ -677,6 +713,7 @@ export const FARMING_ITEMS = {
     name: 'grapefruit seed',
     description: 'Used to grow grape fruit. Yum!',
     sellPrice: 3,
+    seedType: 'fruit',
     produces: 'grape_fruit'
   },
 
@@ -732,6 +769,7 @@ export const FARMING_ITEMS = {
     name: 'Rubia Flower Seed',
     description: 'Used to grow rubia flower. Useful for inscription.',
     sellPrice: 5,
+    seedType: 'herb',
     produces: 'rubia_flower'
   },
 

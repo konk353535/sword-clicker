@@ -20,6 +20,18 @@ Router.route('/', {
   }
 });
 
+Router.route('/profile/:username', {
+
+  name: 'profilePage',
+
+  template: 'profilePage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/updates', {
 
   name: 'updatesPage',

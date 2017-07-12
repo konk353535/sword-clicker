@@ -390,6 +390,7 @@ Meteor.methods({
       const producesConstants = ITEMS[itemConstants.produces];
       shopItem.icon = ITEMS[shopItem.itemId].icon;
       shopItem.name = ITEMS[shopItem.itemId].name;
+      shopItem.seedType = ITEMS[shopItem.itemId].seedType;
 
       if (_.isFunction(producesConstants.description)) {
         shopItem.description = producesConstants.description();

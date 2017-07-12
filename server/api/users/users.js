@@ -193,6 +193,7 @@ Meteor.publish("userData", function () {
         'craftingUpgradeTo': 1,
         'combatUpgradeTo': 1,
         'woodcuttingUpgradeTo': 1,
+        'astronomyUpgradeTo': 1,
         'farmingUpgradeTo': 1,
         'inscriptionUpgradeTo': 1,
         'isGuest': 1,

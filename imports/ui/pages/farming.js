@@ -9,8 +9,12 @@ import { FarmingSpace } from '/imports/api/farming/farming.js';
 import '../components/farming/farmSpace.js';
 import './farming.html';
 
+let lastFarmingLevel;
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  this.state.set('currentTab', 'plots');
+  this.state.set('seedsFilter', 'food');
 
   Meteor.call('farming.gameUpdate', (err) => {
     this.state.set('tooltipsLoaded', false);
@@ -24,6 +28,22 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
       }
     });
   });
+
+  this.autorun(() => {
+    const farmingSkill = Skills.findOne({ type: 'farming' });
+    if (!farmingSkill) {
+      return;
+    }
+
+    if (!lastFarmingLevel || farmingSkill.level !== lastFarmingLevel) {
+      // Pass level so that this is recalled when we get up a level
+      const results = ReactiveMethod.call('farming.fetchSeedShopSells', farmingSkill.level);
+
+      if (results) {
+        this.state.set('seeds', _.sortBy(results, 'requiredFarmingLevel'));
+      }
+    }
+  })
 });
 
 Template.farmingPage.events({
@@ -34,6 +54,30 @@ Template.farmingPage.events({
   'click .seed-shop'(event, instance) {
     // Open seed shop modal
     instance.$('.seedShopModal').modal('show');
+  },
+
+  'click .shopLink'(event, instance) {
+    instance.state.set('currentTab', 'shop');
+  },
+
+  'click .plotsLink'(event, instance) {
+    instance.state.set('currentTab', 'plots');
+  },
+
+  'click .foodLink'(event, instance) {
+    instance.state.set('seedsFilter', 'food');
+  },
+
+  'click .miscLink'(event, instance) {
+    instance.state.set('seedsFilter', 'misc');
+  },
+
+  'click .herbLink'(event, instance) {
+    instance.state.set('seedsFilter', 'herb');
+  },
+
+  'click .treeLink'(event, instance) {
+    instance.state.set('seedsFilter', 'tree');
   },
 
   'click .buy-1'(event, instance) {
@@ -64,7 +108,12 @@ Template.farmingPage.helpers({
   items() {
     return Items.find({
       category: {
-        $in: ['seed', 'herb', 'farming', 'food']
+        $in: ['seed', 'farming']
+      }
+    }, {
+      sort: {
+        category: -1,
+        name: 1,
       }
     }).map((item) => {
       if (item.category === 'seed') {
@@ -115,20 +164,24 @@ Template.farmingPage.helpers({
     });
   },
 
-  buyableSeeds() {
-    const farmingSkill = Skills.findOne({ type: 'farming' });
-    if (!farmingSkill) {
-      return;
-    }
-    // Pass level so that this is recalled when we get up a level
-    const results = ReactiveMethod.call('farming.fetchSeedShopSells', farmingSkill.level);
-
-    if (results) {
-      return _.sortBy(results, 'requiredFarmingLevel');
-    }
-
-    return [];
+  showShopTab() {
+    return Template.instance().state.get('currentTab') === 'shop';
   },
+
+  showPlotsTab() {
+    return Template.instance().state.get('currentTab') === 'plots';
+  },
+
+  seedsFilter() {
+    return Template.instance().state.get('seedsFilter');
+  },
+
+  seedsToShow() {
+    const instance = Template.instance();
+    return instance.state.get('seeds').filter((seed) => {
+      return seed.seedType === instance.state.get('seedsFilter');
+    });
+  }
 });
 
 const updateTooltips = function (instance, tooltipNames) {

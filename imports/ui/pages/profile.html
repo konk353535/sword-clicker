@@ -1,0 +1,24 @@
+<template name="profilePage">
+
+  <!-- List of all upgrades + Time Left on them -->
+  <h2 class="my-2 text-capitalize">{{username}}</h2>
+
+  <!-- Your Skills -->
+  <div class="d-flex player-skills-container flex-column" style="max-width: 500px">
+    <h3>Skills</h3>
+    {{#each skills}}
+      <div class="d-flex align-items-center my-1">
+        <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>
+        <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
+        {{#unless $eq this.type 'total'}}
+          <div class="progress" style="flex: 1 1 auto; height: 16px;">
+            <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
+              {{this.percentage}}%
+            </div>
+          </div>
+        {{/unless}}
+      </div>
+    {{/each}}
+  </div>
+
+</template>

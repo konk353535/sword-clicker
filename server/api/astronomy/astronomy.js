@@ -37,6 +37,18 @@ Meteor.methods({
 
     mainMage.stats[stat] += 1;
 
+    const userDoc = Meteor.user();
+
+    // Does user have astronomy upgrade
+    const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
+    if (hasAstronomyUpgrade && _.findWhere(astronomy.mages, { id: 'donatorMage' })) {
+      const donatorMage = _.findWhere(astronomy.mages, { id: 'donatorMage' });
+      donatorMage.stats = {
+        attackSpeed: Math.round(mainMage.stats.attackSpeed / 2),
+        criticalChance: mainMage.stats.criticalChance
+      }
+    }
+
     // Increment stat
     Astronomy.update(astronomy._id, {
       $set: {
@@ -82,7 +94,15 @@ Meteor.methods({
 
     // Do we have room for a new mage?
     const currentMages = astronomy.mages.length;
-    const maxMages = ASTRONOMY.baseMaxMages;
+    let maxMages = ASTRONOMY.baseMaxMages;
+
+    const userDoc = Meteor.user();
+
+    // Does user have astronomy upgrade
+    const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
+    if (hasAstronomyUpgrade) {
+      maxMages = maxMages + 1;
+    }
 
     if (currentMages >= maxMages) {
       throw new Meteor.Error("missed-requirmeents", "already have the max # of mages");
@@ -128,7 +148,7 @@ Meteor.methods({
     }
 
     // Does mage exist?
-    if (astronomy.mages[index]) {
+    if (astronomy.mages[index] && astronomy.mages[index].type) {
       const targetMage = astronomy.mages[index];
       targetMage.gold += amount;
     } else {
@@ -161,7 +181,7 @@ Meteor.methods({
     const userDoc = Meteor.user();
 
     // Does mage exist?
-    if (astronomy.mages[index]) {
+    if (astronomy.mages[index] && astronomy.mages[index].type && astronomy.mages[index].gold) {
       const targetMage = astronomy.mages[index];
       if (targetMage.gold < amount) {
         amount = targetMage.gold;
@@ -222,6 +242,35 @@ Meteor.methods({
     // Cost of mage per hour
     const mainMage = astronomy.mages[0];
     const costPerHour = ASTRONOMY.mageHireCost(mainMage)[0].amount;
+
+    // Does user have astronomy upgrade
+    const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
+
+    // Does user contain members mage?
+    if (_.findWhere(astronomy.mages, { id: 'donatorMage' })) {
+      // Is this user not a donator anymore? if not strip donatormage
+      if (!hasAstronomyUpgrade) {
+        astronomy.mages = astronomy.mages.filter((mage) => {
+          return mage.id !== 'donatorMage';
+        });
+      }
+    } else {
+      // Is this user a donator? If so add mage in
+      if (hasAstronomyUpgrade) {
+        // Get main mage
+        const mainMage = _.find(astronomy.mages, (mage) => {
+          return !mage.type
+        });
+
+        astronomy.mages.push({
+          id: 'donatorMage',
+          stats: {
+            attackSpeed: Math.round(mainMage.stats.attackSpeed / 2),
+            criticalChance: mainMage.stats.criticalChance
+          }
+        });
+      }
+    }
 
     // Iterate through all miners for minutesElapsed
     astronomy.mages.forEach((currentMage) => {

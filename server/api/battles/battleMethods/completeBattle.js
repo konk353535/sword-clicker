@@ -92,6 +92,15 @@ export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
   let win = actualBattle.units.length > 0;
 
+  // Remove from battle list
+  const battlesDeleted = BattlesList.remove(actualBattle._id);
+  // Remove from redis
+  redis.del(`battles-${actualBattle._id}`);
+
+  if (battlesDeleted <= 0) {
+    return;
+  }
+
   if (!win && actualBattle.isExplorationRun) {
     // Take back the xp values for the current wave (as they failed it)
     const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room);
@@ -495,9 +504,4 @@ export const completeBattle = function (actualBattle) {
     createdAt: new Date()
   });
 
-  // Remove from battle list
-  BattlesList.remove(actualBattle._id);
-
-  // Remove from redis
-  redis.del(`battles-${actualBattle._id}`);  
 }

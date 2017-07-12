@@ -109,6 +109,19 @@ Template.shopPage.events({
       }
       toastr.success('Successfully purchased.')
     });
+  },
+
+  'click .buy-astronomy-30'() {
+    if (Meteor.user().gems < 200) {
+      return;
+    }
+
+    Meteor.call('shop.buySingle', { days: 30, type: 'astronomy' }, (err, res) => {
+      if (err) {
+        toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
   }
 })
 
@@ -214,6 +227,10 @@ Template.shopPage.helpers({
       name: 'inscription',
       icon: 'inscription',
       description: '+20% speed'
+    }, {
+      name: 'astronomy',
+      icon: 'astronomy',
+      description: '+1 phantom mage'
     }];
 
     // Bind users upgradeto to each part in the map

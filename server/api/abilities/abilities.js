@@ -22,6 +22,7 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId) {
   }
 
   const myAbilities = Abilities.findOne({ owner });
+  const now = moment();
   const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
 
   myAbilities.learntAbilities.forEach((ability) => {
@@ -30,7 +31,7 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId) {
     }
   });
 
-  Ability.update(myAbilities._id, {
+  Abilities.update(myAbilities._id, {
     $set: {
       learntAbilities: myAbilities.learntAbilities,
       lastGameUpdated: new Date()
@@ -263,6 +264,10 @@ Meteor.methods({
     });
 
     return abilitiesArray;
+  },
+
+  'abilities.gameUpdate'() {
+    updateAbilityCooldowns(Meteor.userId());
   }
 });
 

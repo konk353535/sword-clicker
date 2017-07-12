@@ -2,30 +2,94 @@
   {{#if farmingSkill}}
     {{> skillHeader skill=farmingSkill}}
 
-    <div class="my-3">
-      <div class="d-flex flex-row">
-        {{#each crafting.currentlyCrafting}}
-          {{> craftingDuration craftingProcess=this}}
-        {{/each}}
-      </div>
-    </div>
+    <ul class="nav nav-tabs my-3">
+      <li class="nav-item plotsLink">
+        <a class="nav-link {{#if showPlotsTab}}active{{/if}}" href="#">Plots</a>
+      </li>
+      <li class="nav-item shopLink">
+        <a class="nav-link {{#if showShopTab}}active{{/if}}" href="#">Shop</a>
+      </li>
+    </ul>
 
-    <h2>Farming Items</h2>
-    <div class="d-flex flex-wrap">
-      <div class="icon-box seed-shop seed-shop-tooltip-container" style="cursor: pointer;">
-        <img src="/icons/shop.svg" class="ore-icon">
+    {{#if showPlotsTab}}
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Plots</h2>
+          <div class="d-flex flex-column flex-wrap" style="max-height: 210px; max-width: 310px;">
+            {{#each farmingSpaces}}
+              {{> farmSpace farmSpace=this}}
+            {{/each}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h2>Seeds</h2>
+          <div class="d-flex flex-wrap">
+            <!--
+            <div class="icon-box seed-shop seed-shop-tooltip-container" style="cursor: pointer;">
+              <img src="/icons/shop.svg" class="ore-icon">
+            </div>
+            -->
+            {{#each items}}
+              {{> itemIcon item=this classes="small"}}
+            {{/each}}
+          </div>
+        </div>
       </div>
-      {{#each items}}
-        {{> itemIcon item=this classes="small"}}
-      {{/each}}
-    </div>
+    {{else if showShopTab}}
 
-    <h2>Farming Plots</h2>
-    <div class="d-flex flex-column flex-wrap" style="max-height: 210px; max-width: 310px;">
-      {{#each farmingSpaces}}
-        {{> farmSpace farmSpace=this}}
-      {{/each}}
-    </div>
+      <ul class="nav nav-pills mb-3">
+        <li class="nav-item foodLink">
+          <a class="nav-link {{#if $eq seedsFilter 'food'}}active{{/if}}" href="#">Food</a>
+        </li>
+        <li class="nav-item herbLink">
+          <a class="nav-link {{#if $eq seedsFilter 'herb'}}active{{/if}}" href="#">Herbs</a>
+        </li>
+        <li class="nav-item treeLink">
+          <a class="nav-link {{#if $eq seedsFilter 'tree'}}active{{/if}}" href="#">Trees</a>
+        </li>
+        <li class="nav-item miscLink">
+          <a class="nav-link {{#if $eq seedsFilter 'misc'}}active{{/if}}" href="#">Misc</a>
+        </li>
+      </ul>
+
+      <table class="table table-bordered table-centered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Icon</th>         
+            <th>Cost</th>
+            <th>Description</th>
+            <th>Buy</th>
+          </tr>  
+        </thead>
+        <tbody>
+          {{#each seedsToShow}}
+            <tr class="text-center">
+              <td class="text-capitalize">{{this.name}}</td>
+              <td>
+                <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+              </td>
+              <td>{{ > requiredItems requiredItems=this.required}}</td>
+              <td>{{{this.description}}}</td>
+              <th>
+                <div class="d-flex">
+                <button class="btn btn-primary buy-1 btn-sm mr-1" data-shop-item-id={{this.id}}>
+                  1
+                </button>
+                <button class="btn btn-primary buy-10 btn-sm mr-1" data-shop-item-id={{this.id}}>
+                  10
+                </button>
+                <button class="btn btn-primary buy-100 btn-sm" data-shop-item-id={{this.id}}>
+                  100
+                </button>
+                </div>
+              </th>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+
   {{else}}
     <div 
       class="d-flex justify-content-center align-items-center flex-column"
@@ -35,67 +99,4 @@
     </div>
   {{/if}}
 
-  <div style="display: none">
-    <!-- Tooltip for seed shop icon -->
-    <div class="seed-shop-tooltip-content my-tooltip-inner">
-      <h3 class='popover-title text-capitalize'>Seed Shop</h3>
-      <div class='popover-content'>
-        Stocks a variety of seeds<br />
-
-        <b>Click</b> to access shop
-      </div>
-    </div>
-  </div>
-
-  <!-- Seed Shop Modal -->
-  <div class="modal seedShopModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Seed Shop</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-centered">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Icon</th>         
-                <th>Cost</th>
-                <th>Description</th>
-                <th>Buy</th>
-              </tr>  
-            </thead>
-            <tbody>
-              {{#each buyableSeeds}}
-                <tr class="text-center">
-                  <td class="text-capitalize">{{this.name}}</td>
-                  <td>
-                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
-                  </td>
-                  <td>{{ > requiredItems requiredItems=this.required}}</td>
-                  <td>{{{this.description}}}</td>
-                  <th>
-                    <div class="d-flex">
-                    <button class="btn btn-primary buy-1 btn-sm mr-1" data-shop-item-id={{this.id}}>
-                      1
-                    </button>
-                    <button class="btn btn-primary buy-10 btn-sm mr-1" data-shop-item-id={{this.id}}>
-                      10
-                    </button>
-                    <button class="btn btn-primary buy-100 btn-sm" data-shop-item-id={{this.id}}>
-                      100
-                    </button>
-                    </div>
-                  </th>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>

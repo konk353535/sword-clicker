@@ -430,7 +430,13 @@ export const ENEMIES = Object.assign({
     id: 'farmer',
     icon: 'farmer',
     name: 'farmer',
-    swarmRange: [2, 4]
+    swarmRange: [2, 4],
+    buffs: [{
+      id: 'farmer_monster',
+      data: {
+        hideBuff: true
+      }
+    }]
   },
 
   // Cuts through armor

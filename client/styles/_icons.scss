@@ -35,6 +35,18 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   padding: $spacer * 0.25;
 }
 
+@media screen and (max-width: 768px) {
+  .icon-box.battle-unit {
+    width: 48px;
+    height: 48px;
+  }
+
+  .buff-icon-container {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .user-ready .icon-box {
   border-color: $brand-success;
 }

@@ -468,6 +468,45 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  farmer_monster: {
+    duplicateTag: 'farmer_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'farmer monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() <= 0.01 && !_.findWhere(attacker.buffs, { id: 'ignite' })) {
+          const newBuff = {
+            id: 'ignite',
+            data: {
+              duration: 10,
+              totalDuration: 10,
+              icon: 'ignite',
+              description: ''
+            },
+            constants: BUFFS['ignite']
+          }
+
+          // cast ignite
+          addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   fire_mage_monster: {
     duplicateTag: 'fire_mage_monster', // Used to stop duplicate buffs
     icon: '',

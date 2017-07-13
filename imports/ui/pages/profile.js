@@ -7,7 +7,7 @@ Template.profilePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    const username = Router.current().params.username;
+    const username = Router.current().params.username.toLowerCase();
 
     // Fetch and load the profile
     Meteor.call('skills.fetchProfile', username, (err, { skills, equipment }) => {

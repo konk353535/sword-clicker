@@ -56,6 +56,42 @@
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+  .battle-unit-name {
+    font-size: 10px;
+  }
+}
+
+.battle-unit-container {
+  max-width: 120px;
+}
+
+.buff-container {
+  width: 120px;
+}
+
+.battle-units-container {
+  border-right: 1px solid #dfdfdf;
+}
+
+@media screen and (max-width: 768px) {
+  .battle-unit-container {
+    max-width: 80px;
+  }
+
+  .buff-container {
+    width: 80px;
+  }
+
+  .battle-units-container {
+    border-bottom: 1px solid #dfdfdf;
+    border-right: none;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
 #at-btn {
   margin-top: 20px;
 }
@@ -165,6 +201,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .floating-text {
+    font-size: 10px;
+  }
+}
+
+
 .floor-image {
   width: 96px;
 }
@@ -197,6 +240,17 @@
 
 .health-bar {
   width: 96px;
+}
+
+@media screen and (max-width: 768px) {
+  .health-bar {
+    width: 48px;
+    font-size: 10px;
+  }
+
+  .health-bar.progress {
+    height: 5px;
+  }
 }
 
 .my-tooltip-inner {

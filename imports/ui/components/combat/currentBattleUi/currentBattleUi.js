@@ -43,8 +43,11 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
           const offset = $(`#${tickEvent.to}`).offset();
           if (offset) {
             let color;
+            let fontSize = 'asdf';
+
             if (tickEvent.label == 0) {
               color = 'blue';
+              fontSize = '10px';
             } else if (tickEvent.customColor) {
               color = tickEvent.customColor;
             } else {
@@ -67,7 +70,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
               <p
                 class='floating-text'
                 data-count=1
-                style='top: ${offset.top}px; left: ${offset.left}px; opacity: 1.0; color: ${color}'>
+                style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
                 <i class="lilIcon-${tickEvent.customIcon ? tickEvent.customIcon : 'attack'}"></i>
                 ${tickEvent.label}
               </p>

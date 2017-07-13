@@ -48,7 +48,21 @@
                       <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                            id="{{_id}}">
                           <div class="direct-chat-info clearfix">
-                            <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">{{name}}</span>
+                              {{#if $eq name 'Game'}}
+                                <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                  {{name}}
+                                </span>
+                              {{else if $eq name 'SERVER'}}
+                                <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                  {{name}}
+                                </span>
+                              {{else}}
+                                <a href="/profile/{{name}}">
+                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                    {{name}}
+                                  </span>
+                                </a>
+                              {{/if}}
                             <span class="direct-chat-timestamp pull-right">
                               [{{moFormat date "h:mm A"}}]
                             </span>

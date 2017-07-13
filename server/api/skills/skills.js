@@ -14,6 +14,7 @@ import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 import { SKILLS } from '/server/constants/skills/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import _ from 'underscore';
 
 export const addXp = function (skillType, xp, specificUserId) {
@@ -250,18 +251,54 @@ Meteor.methods({
     // Search for the user
     const targetUser = Users.findOne({ username });
 
-    // Get all users skills
-    return Skills.find({
+    const equipment = Items.find({
+      equipped: true,
       owner: targetUser._id
-    }).fetch().map((skill) => {
-      return {
-        xpToLevel: SKILLS[skill.type].xpToLevel(skill.level),
-        xp: skill.xp,
-        totalXp: skill.totalXp,
-        level: skill.level,
-        type: skill.type
-      };
+    }, {
+      fields: {
+        itemId: 1,
+        slot: 1,
+        quality: 1,
+        enhanced: 1
+      }
+    }).fetch().map((item) => {
+      const itemConstants = ITEMS[item.itemId];
+      // Get name and Icon
+      item.icon = itemConstants.icon;
+      item.name = itemConstants.name;
+      delete item._id;
+      if (itemConstants.stats) {
+        item.stats = JSON.parse(JSON.stringify(itemConstants.stats));
+        item.isWeapon = itemConstants.isWeapon;
+        item.isEquippable = itemConstants.isEquippable;
+        if (item.extraStats) {
+          Object.keys(item.extraStats).forEach((statName) => {
+            if (item.stats[statName]) {
+              item.stats[statName] += item.extraStats[statName];
+            }
+          });
+        }
+      }
+
+      return item;
     });
+
+    // Get all users skills
+    return {
+      skills: Skills.find({
+        owner: targetUser._id
+      }).fetch().map((skill) => {
+        return {
+          xpToLevel: SKILLS[skill.type].xpToLevel(skill.level),
+          xp: skill.xp,
+          totalXp: skill.totalXp,
+          level: skill.level,
+          type: skill.type
+        };
+      }),
+
+      equipment
+    }
   },
 
   'skills.highscores'(skillName, showAll200) {

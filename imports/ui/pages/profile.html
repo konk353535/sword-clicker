@@ -4,21 +4,81 @@
   <h2 class="my-2 text-capitalize">{{username}}</h2>
 
   <!-- Your Skills -->
-  <div class="d-flex player-skills-container flex-column" style="max-width: 500px">
-    <h3>Skills</h3>
-    {{#each skills}}
-      <div class="d-flex align-items-center my-1">
-        <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>
-        <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
-        {{#unless $eq this.type 'total'}}
-          <div class="progress" style="flex: 1 1 auto; height: 16px;">
-            <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
-              {{this.percentage}}%
-            </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex player-skills-container flex-column">
+        <h3>Skills</h3>
+        {{#each skills}}
+          <div class="d-flex align-items-center my-1">
+            <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>
+            <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
+            {{#unless $eq this.type 'total'}}
+              <div class="progress" style="flex: 1 1 auto; height: 16px;">
+                <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
+                  {{this.percentage}}%
+                </div>
+              </div>
+            {{/unless}}
           </div>
-        {{/unless}}
+        {{/each}}
       </div>
-    {{/each}}
+    </div>
+    <div class="col-md-6">
+      <h3>Equipment</h3>
+      <div class="d-flex flex-wrap">
+        <div class="icon-box" style="border: none">
+          <img src="/icons/character.svg">
+        </div>
+        <!-- Main Hand -->
+        {{#if equippedItemsMap.mainHand}}
+          {{> itemIcon item=equippedItemsMap.mainHand}}
+        {{else}}
+          <div class="icon-box">
+            Main Hand
+          </div>
+        {{/if}}
+        <!-- Off Hand -->
+        {{#if equippedItemsMap.offHand}}
+          {{> itemIcon item=equippedItemsMap.offHand}}
+        {{else}}
+          <div class="icon-box">
+            Off Hand
+          </div>
+        {{/if}}
+        <!-- Head -->
+        {{#if equippedItemsMap.head}}
+          {{> itemIcon item=equippedItemsMap.head}}
+        {{else}}
+          <div class="icon-box">
+            Head
+          </div>
+        {{/if}}
+        <!-- Neck -->
+        {{#if equippedItemsMap.neck}}
+          {{> itemIcon item=equippedItemsMap.neck}}
+        {{else}}
+          <div class="icon-box">
+            Neck
+          </div>
+        {{/if}}
+        <!-- Chest -->
+        {{#if equippedItemsMap.chest}}
+          {{> itemIcon item=equippedItemsMap.chest}}
+        {{else}}
+          <div class="icon-box">
+            Chest
+          </div>
+        {{/if}}
+        <!-- Legs -->
+        {{#if equippedItemsMap.legs}}
+          {{> itemIcon item=equippedItemsMap.legs}}
+        {{else}}
+          <div class="icon-box">
+            Legs
+          </div>
+        {{/if}}
+      </div>
+    </div>
   </div>
 
 </template>

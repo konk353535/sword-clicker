@@ -3,13 +3,21 @@ import { ITEMS } from '/server/constants/items/index';
 export const SKILLS = {
   mining: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     }
   },
 
   magic: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     statsPerLevel: {
@@ -26,7 +34,11 @@ export const SKILLS = {
 
   inscription: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     requirementsToLearn: [{
@@ -40,7 +52,11 @@ export const SKILLS = {
 
   astronomy: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     requirementsToLearn: [{
@@ -54,19 +70,31 @@ export const SKILLS = {
 
   farming: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     }
   },
 
   crafting: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     }
   },
 
   woodcutting: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     requirementsToLearn: [{
@@ -80,7 +108,11 @@ export const SKILLS = {
 
   attack: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     requirementsToLearn: [{
@@ -99,7 +131,11 @@ export const SKILLS = {
 
   defense: {
     xpToLevel(level) {
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     statsPerLevel: {
@@ -111,7 +147,11 @@ export const SKILLS = {
   health: {
     xpToLevel(rawLevel) {
       let level = rawLevel - 4;
-      return 30 * level + ((level / 2) * (level / 2) * level * 10);
+      let extra = 0;
+      if (level > 65) {
+        extra = 25000 * (Math.pow(1.16, (level - 65)));
+      }
+      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
     },
 
     baseLevel: 5,

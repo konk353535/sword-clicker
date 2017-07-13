@@ -31,6 +31,8 @@
             -->
             {{#each items}}
               {{> itemIcon item=this classes="small"}}
+            {{else}}
+              No seeds, buy some in the shop
             {{/each}}
           </div>
         </div>
@@ -72,16 +74,16 @@
               <td>{{ > requiredItems requiredItems=this.required}}</td>
               <td>{{{this.description}}}</td>
               <th>
-                <div class="d-flex">
-                <button class="btn btn-primary buy-1 btn-sm mr-1" data-shop-item-id={{this.id}}>
-                  1
-                </button>
-                <button class="btn btn-primary buy-10 btn-sm mr-1" data-shop-item-id={{this.id}}>
-                  10
-                </button>
-                <button class="btn btn-primary buy-100 btn-sm" data-shop-item-id={{this.id}}>
-                  100
-                </button>
+                <div class="d-flex flex-wrap">
+                  <button class="btn btn-primary buy-1 btn-sm mr-1 my-1" data-shop-item-id={{this.id}}>
+                    Buy 1
+                  </button>
+                  <button class="btn btn-primary buy-10 btn-sm mr-1 my-1" data-shop-item-id={{this.id}}>
+                    Buy 10
+                  </button>
+                  <button class="btn btn-primary buy-100 btn-sm my-1" data-shop-item-id={{this.id}}>
+                    Buy 100
+                  </button>
                 </div>
               </th>
             </tr>

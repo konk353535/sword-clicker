@@ -16,6 +16,7 @@ let miningPageTimer;
 let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
+let oresCache;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -31,6 +32,10 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     minersCache = Session.get('minersCache')
   }
 
+  if (Session.get('oresCache')) {
+    oresCache = Session.get('oresCache');
+  }
+
   if (Session.get('prospectorsCache')) {
     prospectorsCache = Session.get('prospectorsCache')
   }
@@ -43,6 +48,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
     let minerResults;
     let prospectorResults;
+    let oreResults;
 
     if (minersCache && minersCache.data && minersCache.level === miningSkill.level &&
       moment().isBefore(moment(minersCache.date).add(30, 'minutes'))) {
@@ -70,6 +76,20 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       Session.set('prospectorsCache', prospectorsCache);
     }
 
+    if (oresCache && oresCache.data && oresCache.level === miningSkill.level &&
+      moment().isBefore(moment(oresCache.date).add(30, 'minutes'))) {
+      oreResults = oresCache.data;
+    } else {
+      oreResults = ReactiveMethod.call('mining.fetchOres', miningSkill.level);
+      oresCache = {
+        data: oreResults,
+        level: miningSkill.level,
+        date: moment().toDate()
+      }
+      Session.set('oresCache', oresCache);
+    }
+
+    this.state.set('rawOres', oreResults);
     this.state.set('rawBuyableMiners', minerResults);
     this.state.set('rawBuyableProspectors', prospectorResults);
   });
@@ -118,6 +138,16 @@ Template.miningPage.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(miningPageTimer);
 });
 
+Template.oreListItem.rendered = function () {
+  tooltip = new Drop({
+    target: Template.instance().$('.ore-list-item')[0],
+    content: Template.instance().$('.ore-list-item-tooltip-content')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+}
+
 Template.miningPage.rendered = function () {
   const prospectorTooltip = new Drop({
     target: Template.instance().$('.buy-prospector')[0],
@@ -144,6 +174,38 @@ Template.miningPage.helpers({
 
   miningSpaces() {
     return MiningSpace.find();
+  },
+
+  oresList() {
+    const instance = Template.instance();
+    const rawOres = Template.instance().state.get('rawOres');
+    const gems = rawOres.filter((ore) => {
+      return ore.isGem;
+    });
+
+    const ores = rawOres.filter((ore) => {
+      return !(/essence/.test(ore.name)) && !ore.isGem;
+    });
+
+    return ores.concat(gems).map((ore) => {
+      const targetItem = Items.findOne({
+        itemId: ore.itemId
+      });
+
+      if (targetItem) {
+        ore.amount = targetItem.amount;
+      } else {
+        ore.amount = 0;
+      }
+
+      return ore;
+    }).filter((ore) => {
+      if (ore.amount === 0 && ore.isGem) {
+        return false;
+      }
+
+      return true;
+    });
   },
 
   mining() {
@@ -208,6 +270,11 @@ Template.miningPage.helpers({
       count,
       max
     };
+  },
+
+  miningEnergyPercentage() {
+    const mining = Mining.findOne({});
+    return (mining.stats.energy / mining.stats.energyStorage) * 100;
   },
 
   summaryProspectors() {

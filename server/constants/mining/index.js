@@ -1321,6 +1321,7 @@ export const MINING = {
       id: 'jade',
       icon: 'jade',
       name: 'jade',
+      isGem: true,
       itemId: 'jade',
       chance: 0.0000009
     },
@@ -1332,6 +1333,7 @@ export const MINING = {
       id: 'lapislazuli',
       icon: 'lapislazuli',
       name: 'lapislazuli',
+      isGem: true,
       itemId: 'lapislazuli',
       chance: 0.0000008
     },
@@ -1344,6 +1346,7 @@ export const MINING = {
       icon: 'sapphire',
       name: 'sapphire',
       itemId: 'sapphire',
+      isGem: true,
       chance: 0.0000007
     },
 
@@ -1355,6 +1358,7 @@ export const MINING = {
       icon: 'emerald',
       name: 'emerald',
       itemId: 'emerald',
+      isGem: true,
       chance: 0.0000006
     },
 
@@ -1366,6 +1370,7 @@ export const MINING = {
       icon: 'ruby',
       name: 'ruby',
       itemId: 'ruby',
+      isGem: true,
       chance: 0.0000005
     },
 
@@ -1376,6 +1381,7 @@ export const MINING = {
       id: 'tanzanite',
       icon: 'tanzanite',
       name: 'tanzanite',
+      isGem: true,
       itemId: 'tanzanite',
       chance: 0.0000004
     }

@@ -22,8 +22,9 @@
               <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">Mining</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
+              <a class="nav-link new-update-color {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
             </li>
+            {{#if false}}
             {{#if hasCraftingSkill}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
@@ -66,6 +67,7 @@
               <li class="nav-item">
                 <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
               </li>
+            {{/if}}
             {{/if}}
           {{/if}}
         </ul>

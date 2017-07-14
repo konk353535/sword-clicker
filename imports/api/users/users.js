@@ -9,8 +9,9 @@ UserSchema = new SimpleSchema({
   services: { type: Object, blackbox: true },
   gold: { type: Number, defaultValue: 100 },
   floor: { type: Number, defaultValue: 1 },
-  membershipTo: { type: Date, optional: true },
+  gems: { type: Number, defaultValue: 0 },
 
+  membershipTo: { type: Date, optional: true },
   miningUpgradeTo: { type: Date, optional: true },
   craftingUpgradeTo: { type: Date, optional: true },
   combatUpgradeTo: { type: Date, optional: true },
@@ -22,11 +23,12 @@ UserSchema = new SimpleSchema({
   newUpdates: { type: Boolean, optional: true, defaultValue: true },
 
   clientIp: { type: String, optional: true },
-  gems: { type: Number, defaultValue: 0 },
+
   isMutedExpiry: { type: Date, optional: true },
   isMod: { type: Boolean, optional: true },
   isSuperMod: { type: Boolean, optional: true },
   isGuest: { type: Boolean, optional: true },
+
   logEvents: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
   username: {
@@ -35,10 +37,25 @@ UserSchema = new SimpleSchema({
     min: 3,
     max: 20
   },
+
+  tutorial: { type: Object, optional: true },
+  'tutorial.$.hideCrafting': { type: Boolean },
+  'tutorial.$.highlightCrafting': { type: Boolean },
+
+  'tutorial.$.hideWoodcutting': { type: Boolean },
+  'tutorial.$.highlightWoodcutting': { type: Boolean },
+
+  'tutorial.$.highlightMining': { type: Boolean },
+  'tutorial.$.hideMiningEquipment': { type: Boolean },
+  'tutorial.$.highlightMiningEquipment': { type: Boolean },
+  'tutorial.$.hideMiningUpgrades': { type: Boolean },  
+  'tutorial.$.highlightMiningUpgrades': { type: Boolean },
+
   emails: { type: Array, optional: true },
   'emails.$': { type: Object },
   'emails.$.address': { type: String },
   'emails.$.verified': { type: Boolean },
+
   personalQuest: { type: Object },
   'personalQuest.level': { type: Number, defaultValue: 1 },
   'personalQuest.wave': { type: Number, defaultValue: 1 }

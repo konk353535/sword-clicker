@@ -511,6 +511,30 @@ Meteor.methods({
     return minersArray;
   },
 
+  'mining.fetchOres'() {
+    const miningSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'mining'
+    });
+
+    const oresArray = Object.keys(MINING.ores).map((key) => {
+      const constants = MINING.ores[key]
+      return {
+        icon: constants.icon,
+        name: constants.name,
+        requiredLevel: constants.requiredLevel,
+        itemId: constants.itemId,
+        isGem: constants.isGem
+      };
+    }).filter((recipe) => {
+      return miningSkill.level >= recipe.requiredLevel;
+    }).sort((a, b) => {
+      return b.requiredLevel - a.requiredLevel;
+    });
+
+    return oresArray;
+  },
+
   'mining.fetchProspectors'() {
     const miningSkill = Skills.findOne({
       owner: Meteor.userId(),

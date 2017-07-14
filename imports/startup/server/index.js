@@ -399,15 +399,15 @@ Accounts.onCreateUser((options, user) => {
     });
   }
 
-  addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
+  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId);
 
   Items.update({
     owner: userId,
-    itemId: ITEMS['primitive_pickaxe'].id
+    itemId: ITEMS['sharp_rock_pickaxe'].id
   }, {
     $set: {
       equipped: true,
-      slot: ITEMS['primitive_pickaxe'].slot
+      slot: ITEMS['sharp_rock_pickaxe'].slot
     }
   });
 

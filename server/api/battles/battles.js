@@ -133,9 +133,12 @@ Meteor.methods({
     let canBossBattle = false;
 
     if (currentCommunityFloor.floor === floor) {
-      // If battling the current floor, this must be an exploration run
-      room = 1;
-      isExplorationRun = true;
+      // If battling the current floor, this must be an exploration run (if not boss)
+      if (room !== 'boss') {
+        room = 1;
+        isExplorationRun = true;
+      }
+
       // As this is the current floor, it can be possible to gain points
       isTowerContribution = true;
       if (currentCommunityFloor.points >= currentCommunityFloor.pointsMax) {

@@ -109,13 +109,62 @@ Meteor.methods({
     });
   },
 
+  'users.tutorialUpdate'(updateObject) {
+
+    const allKeys = Object.keys(updateObject);
+
+    const validIds = [
+      'hideCrafting',
+      'highlightCrafting',
+
+      'hideWoodcutting',
+      'highlightWoodcutting',
+
+      'hideMiningEquipment',
+      'highlightMiningEquipment',
+      'hideMiningMiners',
+      'highlightMiningMiners',
+      'hideMiningProspectors',
+      'highlightMiningProspectors',
+
+      'currentStep'
+    ];
+
+    const setObject = {}
+
+    let exitEarly = false;
+    allKeys.forEach((key) => {
+      if (!_.contains(validIds, key)) {
+        console.log(`rejecting - ${key}`)
+        exitEarly = true;
+      } else if (!_.isBoolean(updateObject[key] && !_.isFinite((updateObject[key])))) {
+        console.log(`rejecting - ${key}`)
+        exitEarly = true;
+      } else {
+        setObject[`tutorial.${key}`] = updateObject[key];
+      }
+    });
+
+    if (exitEarly) {
+      return;
+    }
+
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: setObject
+    });
+  },
+
   'users.setUiState'(id, value) {
     const validIds = [
       'showChat',
+      'showSummaryList',
       'inscriptionFilter',
       'inscriptionLevelFilter',
       'craftingFilter',
       'combatTab',
+      'miningTab',
       'magicTab',
       'towerFloor',
       'questLevel',
@@ -185,6 +234,7 @@ Meteor.publish("userData", function () {
       fields: {
         'gold': 1,
         'uiState': 1,
+        'tutorial': 1,
         'newUpdates': 1,
         'gems': 1,
         'membershipTo': 1,

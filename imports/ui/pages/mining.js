@@ -7,6 +7,7 @@ import _ from 'underscore';
 import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
+import { Users } from '/imports/api/users/users.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -25,6 +26,17 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     if (!hasInitGameUpdate && Mining.findOne()) {
       Meteor.call('mining.gameUpdate');
       hasInitGameUpdate = true;
+    }
+  });
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.miningTab !== undefined) {
+        this.state.set('currentTab', myUser.uiState.miningTab);
+      } else {
+        this.state.set('currentTab', 'minePit');
+      }
     }
   });
 
@@ -103,12 +115,29 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 });
 
 Template.miningPage.events({
-  'click .buy-miner'(event, instance) {
-    Template.instance().$('.minersModal').modal('show');      
+
+  'click .minePitLink'(event, instance) {
+    instance.state.set('currentTab', 'minePit');
+    Meteor.call('users.setUiState', 'miningTab', 'minePit');
   },
 
-  'click .miner-row'(event, instance) {
-    const minerId = instance.$(event.target).closest('.miner-row').data('miner');
+  'click .equipmentLink'(event, instance) {
+    instance.state.set('currentTab', 'equipment');
+    Meteor.call('users.setUiState', 'miningTab', 'equipment');
+  },
+
+  'click .prospectorsLink'(event, instance) {
+    instance.state.set('currentTab', 'prospectors');
+    Meteor.call('users.setUiState', 'miningTab', 'prospectors');
+  },
+
+  'click .minersLink'(event, instance) {
+    instance.state.set('currentTab', 'miners');
+    Meteor.call('users.setUiState', 'miningTab', 'miners');
+  },
+
+  'click .buy-miner'(event, instance) {
+    const minerId = instance.$(event.target).closest('.buy-miner').data('miner');
 
     Meteor.call('mining.buyMiner', minerId);
   },
@@ -127,10 +156,6 @@ Template.miningPage.events({
         toastr.error(err.reason);
       }
     });
-  },
-
-  'click .buy-prospector'(event, instance) {
-    Template.instance().$('.prospectorsModal').modal('show');
   }
 });
 
@@ -225,7 +250,7 @@ Template.miningPage.helpers({
     return Template.instance().state.get('nextProspectorCost');
   },
 
-  miningItems() {
+  miningPickaxes() {
     return Items.find({ category: 'mining', equipped: false }).map((item) => {
       if (item.isEquippable) {
         item.primaryAction = {
@@ -241,6 +266,8 @@ Template.miningPage.helpers({
         }        
       }
       return item;
+    }).filter((item) => {
+      return item.isEquippable;
     });
   },
 
@@ -347,6 +374,10 @@ Template.miningPage.helpers({
 
       return possibleProspector;
     });
+  },
+
+  currentTab() {
+    return Template.instance().state.get('currentTab');
   },
 
   hasMiningUpgrade() {

@@ -39,17 +39,21 @@ UserSchema = new SimpleSchema({
   },
 
   tutorial: { type: Object, optional: true },
-  'tutorial.$.hideCrafting': { type: Boolean },
-  'tutorial.$.highlightCrafting': { type: Boolean },
 
-  'tutorial.$.hideWoodcutting': { type: Boolean },
-  'tutorial.$.highlightWoodcutting': { type: Boolean },
+  'tutorial.currentStep': { type: Number },
 
-  'tutorial.$.highlightMining': { type: Boolean },
-  'tutorial.$.hideMiningEquipment': { type: Boolean },
-  'tutorial.$.highlightMiningEquipment': { type: Boolean },
-  'tutorial.$.hideMiningUpgrades': { type: Boolean },  
-  'tutorial.$.highlightMiningUpgrades': { type: Boolean },
+  'tutorial.hideCrafting': { type: Boolean },
+  'tutorial.highlightCrafting': { type: Boolean },
+
+  'tutorial.hideWoodcutting': { type: Boolean },
+  'tutorial.highlightWoodcutting': { type: Boolean },
+
+  'tutorial.hideMiningEquipment': { type: Boolean },
+  'tutorial.highlightMiningEquipment': { type: Boolean },
+  'tutorial.hideMiningMiners': { type: Boolean },  
+  'tutorial.highlightMiningMiners': { type: Boolean },
+  'tutorial.hideMiningProspectors': { type: Boolean },  
+  'tutorial.highlightMiningProspectors': { type: Boolean },
 
   emails: { type: Array, optional: true },
   'emails.$': { type: Object },

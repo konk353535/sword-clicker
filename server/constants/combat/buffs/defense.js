@@ -473,7 +473,6 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.damageTaken /= (1 - (99.9 / 100));
-        target.stats.defense /= 100;
       }
     }
   },
@@ -540,7 +539,7 @@ export const DEFENSE_BUFFS = {
       const defensePerLevel = buff.constants.defensePerLevel;
       const maxDefense = buff.constants.baseDefense + (defensePerLevel * level);
       return `
-        Increase defense by up to ${maxDefense}. (+${defensePerLevel} per lvl)<br />
+        Increase defense by 10 - ${maxDefense}. (+${defensePerLevel} per lvl)<br />
         Based on your missing health. Lasts for ${buff.data.totalDuration}s. <br />`;
     },
     constants: {
@@ -558,6 +557,9 @@ export const DEFENSE_BUFFS = {
         const maxDefense = buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level);
 
         buff.data.extraDefense = maxDefense * (1 - (target.stats.health / target.stats.healthMax));
+        if (buff.data.extraDefense < 10) {
+          buff.data.extraDefense = 10;
+        }
         target.stats.defense += buff.data.extraDefense;
       },
 

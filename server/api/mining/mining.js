@@ -488,7 +488,7 @@ Meteor.methods({
     }
 
     // Less then 5 minutes, use second based ticks
-    simulateMining(secondsElapsed / 5, 5);
+    simulateMining(secondsElapsed, 1);
   },
 
   'mining.fetchMiners'() {

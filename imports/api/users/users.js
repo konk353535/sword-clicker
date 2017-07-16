@@ -48,6 +48,22 @@ UserSchema = new SimpleSchema({
   'tutorial.hideWoodcutting': { type: Boolean },
   'tutorial.highlightWoodcutting': { type: Boolean },
 
+  'tutorial.hideCombat': { type: Boolean },
+  'tutorial.highlightCombat': { type: Boolean },
+  'tutorial.highlightCombatEquipment': { type: Boolean },
+  'tutorial.hideCombatEquipment': { type: Boolean },
+  'tutorial.hideCombatAbilities': { type: Boolean },
+  'tutorial.highlightCombatAbilities': { type: Boolean },
+  'tutorial.hideCombatTower': { type: Boolean },
+  'tutorial.highlightCombatTower': { type: Boolean },
+  'tutorial.hideCombatPersonalQuest': { type: Boolean },
+  'tutorial.highlightCombatPersonalQuest': { type: Boolean },
+  'tutorial.hideCombatAdventures': { type: Boolean },
+  'tutorial.highlightCombatAdventures': { type: Boolean },
+  'tutorial.hideCombatGroup': { type: Boolean },
+  'tutorial.hideCombatBattleLog': { type: Boolean },
+
+
   'tutorial.hideMiningEquipment': { type: Boolean },
   'tutorial.highlightMiningEquipment': { type: Boolean },
   'tutorial.hideMiningMiners': { type: Boolean },  

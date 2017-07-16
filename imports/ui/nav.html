@@ -62,6 +62,17 @@
                   </a>
                 </li>
               {{/unless}}
+              {{#unless currentUser.tutorial.hideCombat}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'combat'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightCombat}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/combat">Combat</a>
+                </li>
+              {{/unless}}
             {{else}}
               {{#if hasCraftingSkill}}
                 <li class="nav-item">

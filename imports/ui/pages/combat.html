@@ -38,34 +38,83 @@
         {{/each}}
       </div>
       <ul class="nav nav-tabs my-3">
-        <li class="nav-item personalQuestTabLink">
-          <a class="nav-link {{#if showPersonalQuestTab}}active{{/if}}" href="#">Personal Quest</a>
-        </li>
-        <li class="nav-item towerTabLink">
-          <a class="nav-link {{#if showTowerTab}}active{{/if}}" href="#">The Tower</a>
-        </li>
-        <li class="nav-item equipmentTabLink">
-          <a class="nav-link {{#if showEquipmentTab}}active{{/if}}" href="#">Equipment & Stats</a>
-        </li>
-        <li class="nav-item abilitiesTabLink">
-          <a class="nav-link {{#if showAbilitiesTab}}active{{/if}}" href="#">Abilities</a>
-        </li>
-        <li class="nav-item adventuresTabLink">
-          <a class="nav-link {{#if showAdventuresTab}}active{{/if}}" href="#">Adventures</a>
-        </li>
-        <li class="nav-item groupTabLink">
-          <a class="nav-link {{#if showCombatGroupTab}}active{{/if}}" href="#">
-            Group
-            {{#if currentGroup}}
-              ({{currentGroup.members.length}})
-            {{/if}}
-          </a>
-        </li>
-        <li class="nav-item battleLogTabLink">
-          <a class="nav-link {{#if showBattleLogTab}}active{{/if}}" href="#">
-            Battle Log
-          </a>
-        </li>
+        {{#unless currentUser.tutorial.hideCombatPersonalQuest}}
+          <li class="nav-item personalQuestTabLink">
+            <a class="nav-link
+              {{#if showPersonalQuestTab}}
+                active
+              {{else}}
+                {{#if currentUser.tutorial.highlightCombatPersonalQuest}}new-update-color{{/if}}
+              {{/if}}" href="#">
+              Personal Quest
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatTower}}
+          <li class="nav-item towerTabLink">
+            <a class="nav-link
+              {{#if showTowerTab}}
+                active
+              {{else}}
+                {{#if currentUser.tutorial.highlightCombatTower}}new-update-color{{/if}}
+              {{/if}}" href="#">
+              The Tower
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatEquipment}}
+          <li class="nav-item equipmentTabLink">
+            <a class="nav-link
+              {{#if showEquipmentTab}}
+                active
+              {{else}}
+                {{#if currentUser.tutorial.highlightCombatEquipment}}new-update-color{{/if}}
+              {{/if}}" href="#">
+              Equipment & Stats
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatAbilities}}
+          <li class="nav-item abilitiesTabLink">
+            <a class="nav-link
+              {{#if showAbilitiesTab}}
+                active
+              {{else}}
+                {{#if currentUser.tutorial.highlightCombatAbilities}}new-update-color{{/if}}
+              {{/if}}" href="#">
+              Abilities
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatAdventures}}
+          <li class="nav-item adventuresTabLink">
+            <a class="nav-link
+              {{#if showAdventuresTab}}
+                active
+              {{else}}
+                {{#if currentUser.tutorial.highlightCombatAdventures}}new-update-color{{/if}}
+              {{/if}}" href="#">
+              Adventures
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatGroup}}
+          <li class="nav-item groupTabLink">
+            <a class="nav-link {{#if showCombatGroupTab}}active{{/if}}" href="#">
+              Group
+              {{#if currentGroup}}
+                ({{currentGroup.members.length}})
+              {{/if}}
+            </a>
+          </li>
+        {{/unless}}
+        {{#unless currentUser.tutorial.hideCombatBattleLog}}
+          <li class="nav-item battleLogTabLink">
+            <a class="nav-link {{#if showBattleLogTab}}active{{/if}}" href="#">
+              Battle Log
+            </a>
+          </li>
+        {{/unless}}
       </ul>
 
       <!-- Post fight banner -->

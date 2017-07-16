@@ -9,7 +9,7 @@ export const MINING_CRAFTS = {
     id: 'primitive_pickaxe',
     category: 'mining',
     timeToCraft: 15,
-    xp: 3,
+    xp: 6,
     maxToCraft: 1,
     requiredCraftingLevel: 1,
     required: [{

@@ -120,6 +120,22 @@ Meteor.methods({
       'hideWoodcutting',
       'highlightWoodcutting',
 
+      'hideCombat',
+      'highlightCombat',
+      'highlightCombatEquipment',
+      'highlightCombatAbilities',
+      'highlightCombatTower',
+      'highlightCombatPersonalQuest',
+      'highlightCombatAdventures',
+
+      'hideCombatEquipment',
+      'hideCombatAbilities',
+      'hideCombatTower',
+      'hideCombatPersonalQuest',
+      'hideCombatAdventures',
+      'hideCombatGroup',
+      'hideCombatBattleLog',
+
       'hideMiningEquipment',
       'highlightMiningEquipment',
       'hideMiningMiners',

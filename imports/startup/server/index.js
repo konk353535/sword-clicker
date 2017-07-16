@@ -359,6 +359,22 @@ Accounts.onCreateUser((options, user) => {
     craftingFilter: 'mining'
   }
   user.tutorial = {
+    hideCombat: true,
+  
+    highlightCombat: false,
+    highlightCombatPersonalQuest: false,
+    highlightCombatTower: false,
+    highlightCombatAdventures: false,
+    highlightCombatAbilities: false,
+    highlightCombatEquipment: false,
+    hideCombatEquipment: true,
+    hideCombatAbilities: true,
+    hideCombatGroup: true,
+    hideCombatBattleLog: true,
+    hideCombatTower: true,
+    hideCombatPersonalQuest: true,
+    hideCombatAdventures: true,
+
     hideCrafting: true,
     highlightCrafting: false,
     hideWoodcutting: true,
@@ -492,23 +508,10 @@ Accounts.onCreateUser((options, user) => {
       learntAbilities: [{
         "abilityId": "berserk",
         "level": 1,
-        "equipped": true,
+        "equipped": false,
         "slot": "mainHand",
         "currentCooldown": 0
       }]
-    });
-
-    addItem(ITEMS['copper_dagger'].id, 1, userId);
-
-    // Equip dagger
-    Items.update({
-      owner: userId,
-      itemId: ITEMS['copper_dagger'].id
-    }, {
-      $set: {
-        equipped: true,
-        slot: ITEMS['copper_dagger'].slot
-      }
     });
 
     // Update combat stats

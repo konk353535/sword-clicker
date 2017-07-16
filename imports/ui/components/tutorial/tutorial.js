@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 import { Mining } from '/imports/api/mining/mining.js';
+import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 
 import './tutorial.html';
 
@@ -99,8 +100,66 @@ Template.tutorial.helpers({
 
         return 'Craft a primitive axe';
       } else if (currentStep === 7) {
+        const woodcutting = Woodcutting.findOne({});
+        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 8
+          });
+        }
+
 
         return 'Hire a woodcutter';
+      } else if (currentStep === 8) {
+        const woodcutting = Woodcutting.findOne({});
+        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
+          let isSuiciding = false;
+          woodcutting.woodcutters.forEach((woodcutter) => {
+            if (woodcutter.deathTime) {
+              isSuiciding = true;
+            }
+          })
+          if (isSuiciding) {
+            Meteor.call('users.tutorialUpdate', {
+              currentStep: 9,
+              highlightWoodcutting: false,
+              highlightCrafting: true
+            });
+            Meteor.call('users.setUiState', 'craftingFilter', 'all');
+          }
+        }
+
+        return 'Suicide a woodcutter';
+      } else if (currentStep === 9) {
+
+        const copperDagger = Items.findOne({ itemId: 'copper_dagger' });
+        if (copperDagger && copperDagger.amount >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            highlightCrafting: false,
+            hideCombat: false,
+            highlightCombat: true,
+            hideCombatEquipment: false,
+            highlightCombatEquipment: true,
+            currentStep: 10
+          });
+        }
+
+        return 'Craft a copper dagger';
+      } else if (currentStep === 10) {
+
+        const copperDagger = Items.findOne({ itemId: 'copper_dagger', equipped: true });
+        if (copperDagger && copperDagger.amount >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            highlightCombatEquipment: false,
+            highlightCombatAbilities: true,
+            hideCombatAbilities: false,
+            currentStep: 11
+          });
+        }
+
+        return 'Equip copper dagger';
+      } else if (currentStep === 11) {
+
+        return 'Equip berserk ability';
       }
     }
   }

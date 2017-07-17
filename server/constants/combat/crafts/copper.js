@@ -7,8 +7,8 @@ export const COPPER_CRAFTS = {
     recipeFor: 'crafting',
     category: 'combat',
     id: 'copper_dagger',
-    timeToCraft: 30, // 60
-    xp: 18,
+    timeToCraft: 15, // 60
+    xp: 10,
     maxToCraft: 1,
     requiredCraftingLevel: 2,
     required: [{
@@ -30,7 +30,7 @@ export const COPPER_CRAFTS = {
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',

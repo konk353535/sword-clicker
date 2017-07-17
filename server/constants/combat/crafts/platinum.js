@@ -8,7 +8,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_dagger',
     timeToCraft: 240, // 60
-    xp: 130,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -53,7 +53,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_spear',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -98,7 +98,7 @@ export const PLATINUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'platinum_short_sword',
     timeToCraft: 300, // 60
-    xp: 250,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -143,7 +143,7 @@ export const PLATINUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'platinum_long_sword',
     timeToCraft: 420, // 60
-    xp: 280,
+    xp: 850,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -188,7 +188,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_battle_axe',
     timeToCraft: 600, // 60
-    xp: 320,
+    xp: 850,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -233,7 +233,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_helmet',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -278,7 +278,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_chest_plate',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -323,7 +323,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_plate_legs',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -368,7 +368,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_shield',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 700,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{

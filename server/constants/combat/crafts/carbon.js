@@ -8,7 +8,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_dagger',
     timeToCraft: 240, // 60
-    xp: 130,
+    xp: 250,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -53,7 +53,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_spear',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -98,7 +98,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_short_sword',
     timeToCraft: 300, // 60
-    xp: 250,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -143,7 +143,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_long_sword',
     timeToCraft: 420, // 60
-    xp: 500,
+    xp: 550,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -188,7 +188,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_battle_axe',
     timeToCraft: 600, // 60
-    xp: 320,
+    xp: 550,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -233,7 +233,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_helmet',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -278,7 +278,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_chest_plate',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -323,7 +323,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_plate_legs',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -368,7 +368,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_shield',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{

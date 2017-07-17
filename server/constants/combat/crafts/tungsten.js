@@ -8,7 +8,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_dagger',
     timeToCraft: 240, // 60
-    xp: 130,
+    xp: 450,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -53,7 +53,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_spear',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -98,7 +98,7 @@ export const TUNGSTEN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'tungsten_short_sword',
     timeToCraft: 300, // 60
-    xp: 250,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -143,7 +143,7 @@ export const TUNGSTEN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'tungsten_long_sword',
     timeToCraft: 420, // 60
-    xp: 280,
+    xp: 1050,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -188,7 +188,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_battle_axe',
     timeToCraft: 600, // 60
-    xp: 320,
+    xp: 1050,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -233,7 +233,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_helmet',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -278,7 +278,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_chest_plate',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -323,7 +323,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_plate_legs',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -368,7 +368,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_shield',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 900,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{

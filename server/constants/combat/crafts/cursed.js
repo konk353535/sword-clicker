@@ -8,7 +8,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_dagger',
     timeToCraft: 30 * 60 * 2,
-    xp: 160,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -53,7 +53,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_spear',
     timeToCraft: 60 * 60 * 2,
-    xp: 400,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -98,7 +98,7 @@ export const CURSED_CRAFTS = {
     recipeFor: 'crafting',
     id: 'cursed_short_sword',
     timeToCraft: 60 * 60 * 2,
-    xp: 550,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -143,7 +143,7 @@ export const CURSED_CRAFTS = {
     recipeFor: 'crafting',
     id: 'cursed_long_sword',
     timeToCraft: 90 * 60,
-    xp: 850,
+    xp: 2000,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -188,7 +188,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 850,
+    xp: 2000,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -233,7 +233,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_helmet',
     timeToCraft: 60 * 60 * 2,
-    xp: 450,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -278,7 +278,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_chest_plate',
     timeToCraft: 60 * 60 * 2,
-    xp: 450,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -323,7 +323,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 450,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -368,7 +368,7 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_shield',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 450,
+    xp: 1800,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{

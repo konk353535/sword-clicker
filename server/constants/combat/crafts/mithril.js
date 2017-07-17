@@ -8,7 +8,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_dagger',
     timeToCraft: 30 * 60,
-    xp: 160,
+    xp: 550,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -38,51 +38,6 @@ export const MITHRIL_CRAFTS = {
       icon: ITEMS['mithril_bar'].icon,
       name: ITEMS['mithril_bar'].name,
       amount: 3,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'crafting',
-      level: 65
-    }]
-  },
-
-  mithril_amulet: {
-    produces: 'mithril_amulet',
-    name: 'mithril amulet',
-    recipeFor: 'crafting',
-    category: 'combat',
-    id: 'mithril_amulet',
-    timeToCraft: 60 * 60,
-    xp: 300,
-    maxToCraft: 1,
-    requiredCraftingLevel: 65,
-    required: [{
-      type: 'item',
-      itemId: 'cobalt_furnace',
-      icon: ITEMS['cobalt_furnace'].icon,
-      name: ITEMS['cobalt_furnace'].name,
-      amount: 1,
-      consumes: false
-    }, {
-      type: 'item',
-      itemId: 'mithril_essence',
-      icon: ITEMS['mithril_essence'].icon,
-      name: ITEMS['mithril_essence'].name,
-      amount: 4,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'gombe_log',
-      icon: ITEMS['gombe_log'].icon,
-      name: ITEMS['gombe_log'].name,
-      amount: 20,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'mithril_bar',
-      icon: ITEMS['mithril_bar'].icon,
-      name: ITEMS['mithril_bar'].name,
-      amount: 5,
       consumes: true
     }, {
       type: 'skill',
@@ -98,7 +53,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_spear',
     timeToCraft: 60 * 60,
-    xp: 300,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -143,7 +98,7 @@ export const MITHRIL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'mithril_short_sword',
     timeToCraft: 60 * 60,
-    xp: 500,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -188,7 +143,7 @@ export const MITHRIL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'mithril_long_sword',
     timeToCraft: 90 * 60,
-    xp: 750,
+    xp: 1350,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -233,7 +188,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 750,
+    xp: 1350,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -278,7 +233,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_helmet',
     timeToCraft: 60 * 60,
-    xp: 400,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -323,7 +278,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_chest_plate',
     timeToCraft: 60 * 60,
-    xp: 400,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -368,7 +323,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_plate_legs',
     timeToCraft: 60 * 60, // 60
-    xp: 400,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -413,7 +368,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_shield',
     timeToCraft: 60 * 60, // 60
-    xp: 400,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{

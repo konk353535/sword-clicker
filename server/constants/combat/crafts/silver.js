@@ -8,7 +8,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_dagger',
     timeToCraft: 120, // 60
-    xp: 60,
+    xp: 140,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -53,7 +53,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_spear',
     timeToCraft: 180, // 60
-    xp: 120,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -98,7 +98,7 @@ export const SILVER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'silver_short_sword',
     timeToCraft: 120, // 60
-    xp: 120,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -143,7 +143,7 @@ export const SILVER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'silver_long_sword',
     timeToCraft: 240, // 60
-    xp: 120,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -188,7 +188,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_battle_axe',
     timeToCraft: 300, // 60
-    xp: 160,
+    xp: 350,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -233,7 +233,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_helmet',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 200,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -278,7 +278,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_chest_plate',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 200,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -323,7 +323,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_plate_legs',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 200,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -368,7 +368,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_shield',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 200,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{

@@ -8,7 +8,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_dagger',
     timeToCraft: 240, // 60
-    xp: 130,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -53,7 +53,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_spear',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -98,7 +98,7 @@ export const STEEL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'steel_short_sword',
     timeToCraft: 300, // 60
-    xp: 250,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -143,7 +143,7 @@ export const STEEL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'steel_long_sword',
     timeToCraft: 420, // 60
-    xp: 280,
+    xp: 750,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -188,7 +188,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_battle_axe',
     timeToCraft: 600, // 60
-    xp: 320,
+    xp: 750,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -233,7 +233,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_helmet',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -278,7 +278,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_chest_plate',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -323,7 +323,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_plate_legs',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -368,7 +368,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_shield',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{

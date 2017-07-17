@@ -35,7 +35,7 @@ export const BAR_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 2
+      level: 1
     }]
   },
 

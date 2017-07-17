@@ -530,6 +530,52 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  slash: {
+    duplicateTag: 'slash', // Used to stop duplicate buffs
+    icon: 'slash',
+    name: 'slash',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageBase = buff.constants.damageBase;
+      const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
+      return `
+        Slash for ${damageTotal}% damage. <br />
+        (+${damagePerLevel * 100}% damage per lvl)`;
+    },
+    constants: {
+      damageBase: 0.8,
+      damagePerLevel: 0.2
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damagePerLevel = constants.damagePerLevel;
+        const damageBase = constants.damageBase;
+        const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
+  
+        const casterAttack = caster.stats.attack;
+        const casterAttackMax = caster.stats.attackMax;
+        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) * Math.random())) * damageTotalDecimal;
+
+        actualBattle.utils.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   penetrating_slash: {
     duplicateTag: 'penetrating_slash', // Used to stop duplicate buffs
     icon: 'penetratingSlash',

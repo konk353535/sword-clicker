@@ -375,10 +375,26 @@ Accounts.onCreateUser((options, user) => {
     hideCombatPersonalQuest: true,
     hideCombatAdventures: true,
 
+    hideInscription: true,
+    highlightInscription: false,
+    hideInscriptionAbilities: true,
+    highlightInscriptionAbilities: false,
+    hideInscriptionPigments: true,
+    highlightInscriptionPigments: false,
+    hideInscriptionPaper: true,
+    highlightInscriptionPaper: false,
+
+    hideFarming: true,
+    highlightFarming: false,
+    hideFarmingPlots: true,
+    highlightFarmingPlots: false,
+
     hideCrafting: true,
     highlightCrafting: false,
+
     hideWoodcutting: true,
     highlightWoodcutting: false,
+
     hideMiningEquipment: true,
     highlightMiningEquipment: false,
     hideMiningMiners: true,
@@ -397,6 +413,7 @@ Accounts.onCreateUser((options, user) => {
     type: 'mining',
     createdAt: new Date(),
     owner: userId,
+    xp: 0,
     username: user.username
   });
 
@@ -506,7 +523,7 @@ Accounts.onCreateUser((options, user) => {
     Abilities.insert({
       owner: userId,
       learntAbilities: [{
-        "abilityId": "berserk",
+        "abilityId": "slash",
         "level": 1,
         "equipped": false,
         "slot": "mainHand",

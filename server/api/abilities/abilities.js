@@ -15,7 +15,7 @@ import { MAGIC } from '/server/constants/magic/index';
 
 import { consumeItem } from '/server/api/items/items';
 
-export const updateAbilityCooldowns = function updateAbilityCooldowns(userId) {
+export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
   let owner = userId;
   if (!owner) {
     owner = this.userId;
@@ -36,7 +36,7 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId) {
       learntAbilities: myAbilities.learntAbilities,
       lastGameUpdated: new Date()
     }
-  });
+  }, callback);
 }
 
 Meteor.methods({
@@ -267,7 +267,9 @@ Meteor.methods({
   },
 
   'abilities.gameUpdate'() {
-    updateAbilityCooldowns(Meteor.userId());
+    updateAbilityCooldowns(Meteor.userId(), (err, res) => {
+
+    });
   }
 });
 

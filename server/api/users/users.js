@@ -8,6 +8,8 @@ import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
+import { addXp } from '/server/api/skills/skills';
+import { addItem } from '/server/api/items/items.js';
 
 Meteor.methods({
 
@@ -120,6 +122,20 @@ Meteor.methods({
       'hideWoodcutting',
       'highlightWoodcutting',
 
+      'hideFarming',
+      'highlightFarming',
+      'hideFarmingPlots',
+      'highlightFarmingPlots',
+
+      'hideInscription',
+      'highlightInscription',
+      'hideInscriptionAbilities',
+      'highlightInscriptionAbilities',
+      'hideInscriptionPaper',
+      'highlightInscriptionPaper',
+      'hideInscriptionPigments',
+      'highlightInscriptionPigments',
+
       'hideCombat',
       'highlightCombat',
       'highlightCombatEquipment',
@@ -161,8 +177,50 @@ Meteor.methods({
       }
     });
 
-    if (exitEarly) {
+    if (exitEarly || !Meteor.user().tutorial) {
       return;
+    }
+
+    if (setObject['tutorial.currentStep'] === 16) {
+      // Check users current farming level
+      const farmingSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'farming'
+      });
+
+      if (farmingSkill.level === 1) {
+        addXp('farming', 21);
+        addItem('pine_paper', 1, Meteor.userId());
+        addItem('rubia_flower_seed', 1, Meteor.userId());
+      }
+    } else if (setObject['tutorial.currentStep'] === 10) {
+      // Check users current farming level
+      const woodcuttingSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'woodcutting'
+      });
+
+      if (woodcuttingSkill.level === 1) {
+        addXp('woodcutting', 2);
+        addItem('pine_log', 1, Meteor.userId());
+      }
+    } else if (setObject['tutorial.currentStep'] === 2) {
+      const miningSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'mining'
+      });
+
+      if (miningSkill.level === 1) {
+        addXp('mining', 21);
+      }
+    } else if (setObject['tutorial.currentStep'] === 18) {
+      return Users.update({
+        _id: Meteor.userId()
+      }, {
+        $unset: {
+          tutorial: ""
+        }
+      });
     }
 
     Users.update({
@@ -181,6 +239,7 @@ Meteor.methods({
       'craftingFilter',
       'combatTab',
       'miningTab',
+      'farmingTab',
       'magicTab',
       'towerFloor',
       'questLevel',

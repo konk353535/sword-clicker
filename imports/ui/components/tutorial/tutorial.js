@@ -7,6 +7,10 @@ import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 import { Mining } from '/imports/api/mining/mining.js';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
+import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Battles } from '/imports/api/battles/battles.js';
+import { Combat } from '/imports/api/combat/combat.js';
+import { Farming, FarmingSpace } from '/imports/api/farming/farming.js';
 
 import './tutorial.html';
 
@@ -158,8 +162,107 @@ Template.tutorial.helpers({
 
         return 'Equip copper dagger';
       } else if (currentStep === 11) {
+        const myAbilities = Abilities.findOne({});
 
-        return 'Equip berserk ability';
+        myAbilities.learntAbilities.forEach((ability) => {
+          if (ability.abilityId === 'slash' && ability.equipped) {
+            Meteor.call('users.tutorialUpdate', {
+              highlightCombatPersonalQuest: true,
+              highlightCombatAbilities: false,
+              hideCombatPersonalQuest: false,
+              currentStep: 12
+            });
+          }
+        });
+
+        return 'Equip slash ability';
+      } else if (currentStep === 12) {
+
+        const allBattles = Battles.find({}, { limit: 10 });
+        allBattles.forEach((battle) => {
+          if (battle.level >= 1) {
+            Meteor.call('users.tutorialUpdate', {
+              highlightCombatPersonalQuest: false,
+              highlightCombatTower: false,
+              highlightCombat: false,
+              hideCombatTower: false,
+              hideFarming: false,
+              highlightFarming: true,
+              hideCombatGroup: false,
+              hideCombatBattleLog: false,
+              currentStep: 13
+            });
+          }
+        })
+
+        return 'Battle in personal quest';
+      } else if (currentStep === 13) {
+
+        const letticeSeeds = Items.findOne({ itemId: 'lettice_seed' });
+        if (letticeSeeds && letticeSeeds.amount >= 4) {
+          Meteor.call('users.tutorialUpdate', {
+            highlightFarmingPlots: true,
+            hideFarmingPlots: false,
+            currentStep: 14
+          });
+          Meteor.call('users.setUiState', 'farmingTab', 'plots');
+        }
+
+        return 'Buy 4 lettuce seeds';
+      } else if (currentStep === 14) {
+
+        const allFarmingSpaces = FarmingSpace.find().fetch();
+        const letticesCount = allFarmingSpaces.filter((farmingSpace) => {
+          return farmingSpace.plantId === 'lettice';
+        }).length;
+
+        if (letticesCount >= 4) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 15
+          });
+        }
+
+        return 'Plant 4 lettuces';
+      } else if (currentStep === 15) {
+
+        const lettices = Items.findOne({ itemId: 'lettice' });
+        if (lettices && lettices.amount >= 4) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 16,
+            hideInscription: false,
+            highlightInscription: true,
+            highlightFarming: false,
+            highlightFarmingPlots: false
+          });
+        }
+
+        return 'Pick 4 lettuces';
+      } else if (currentStep === 16) {
+
+        const berserk = Items.findOne({ itemId: 'berserk_level_1_tome' });
+        if (berserk && berserk.amount >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            highlightInscription: false,
+            highlightCombat: true,
+            highlightCombatAbilities: true,
+            currentStep: 17
+          });
+        }
+
+        return 'Craft berserk lv 1';
+      } else if (currentStep === 17) {
+        const myAbilities = Abilities.findOne({});
+
+        Meteor.call('users.setUiState', 'showChat', true);
+        myAbilities.learntAbilities.forEach((ability) => {
+          if (ability.abilityId === 'berserk') {
+            Meteor.call('users.tutorialUpdate', {
+              currentStep: 18
+            });
+          }
+        });
+
+        return 'Learn berserk lv 1';
       }
     }
   }

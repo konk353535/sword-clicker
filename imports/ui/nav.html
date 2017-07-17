@@ -73,10 +73,32 @@
                   " href="/combat">Combat</a>
                 </li>
               {{/unless}}
+              {{#unless currentUser.tutorial.hideFarming}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'farming'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightFarming}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/farming">Farming</a>
+                </li>
+              {{/unless}}
+              {{#unless currentUser.tutorial.hideInscription}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'inscription'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightInscription}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/inscription">Inscription</a>
+                </li>
+              {{/unless}}
             {{else}}
               {{#if hasCraftingSkill}}
                 <li class="nav-item">
-                  <a class="nav-link new-update-color {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
+                  <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>

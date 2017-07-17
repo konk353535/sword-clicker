@@ -324,6 +324,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  slash_level_1_tome: {
+    id: 'slash_level_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Slash Lv 1',
+    teaches: {
+      abilityId: 'slash',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the slash ability.'
+  },
+
   frost_armor_1_tome: {
     id: 'frost_armor_1_tome',
     icon: 'tomeUncommon',

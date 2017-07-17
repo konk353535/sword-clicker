@@ -8,6 +8,7 @@ import { BATTLES } from '/server/constants/battles/index.js'; // List of encount
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items';
+import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
@@ -368,31 +369,34 @@ export const completeBattle = function (actualBattle) {
     }, combatModifier, (err, res) => {
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
+      updateAbilityCooldowns(unit.owner, (err, res) => {
 
-      // Update ability cooldowns ect
-      const userAbilities = Abilities.findOne({
-        owner: unit.owner
-      });
+        // Update ability cooldowns ect
+        const userAbilities = Abilities.findOne({
+          owner: unit.owner
+        });
 
-      if (userAbilities) {
-        // Modify relevant abiltiy id cooldowns and update
-        userAbilities.learntAbilities.forEach((ability) => {
-          const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
-          if (abilityToUpdate) {
-            if (abilityToUpdate.isSpell) {
-              ability.casts = abilityToUpdate.casts;
+        if (userAbilities) {
+          // Modify relevant abiltiy id cooldowns and update
+          userAbilities.learntAbilities.forEach((ability) => {
+            const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
+            if (abilityToUpdate) {
+              if (abilityToUpdate.isSpell) {
+                ability.casts = abilityToUpdate.casts;
+              }
+              ability.currentCooldown = abilityToUpdate.currentCooldown;
             }
-            ability.currentCooldown = abilityToUpdate.currentCooldown;
-          }
-        });
+          });
 
-        Abilities.update(userAbilities._id, {
-          $set: {
-            learntAbilities: userAbilities.learntAbilities,
-            lastGameUpdated: new Date()
-          }
-        });
-      }
+          Abilities.update(userAbilities._id, {
+            $set: {
+              learntAbilities: userAbilities.learntAbilities,
+              lastGameUpdated: new Date()
+            }
+          });
+        }
+
+      });
     });
   });
 

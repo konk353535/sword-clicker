@@ -2,18 +2,42 @@
   {{#if farmingSkill}}
     {{> skillHeader skill=farmingSkill}}
 
+    <h2>Seeds</h2>
+    <div class="d-flex flex-wrap">
+      <!--
+      <div class="icon-box seed-shop seed-shop-tooltip-container" style="cursor: pointer;">
+        <img src="/icons/shop.svg" class="ore-icon">
+      </div>
+      -->
+      {{#each items}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No seeds, buy some in the shop
+      {{/each}}
+    </div>
+
     <ul class="nav nav-tabs my-3">
       <li class="nav-item plotsLink">
-        <a class="nav-link {{#if showPlotsTab}}active{{/if}}" href="#">Plots</a>
+        <a class="nav-link
+          {{#if showPlotsTab}}
+            active
+          {{else}}
+            {{#if currentUser.tutorial.highlightFarmingPlots}}new-update-color{{/if}}
+          {{/if}}" href="#">Plots</a>
       </li>
       <li class="nav-item shopLink">
-        <a class="nav-link {{#if showShopTab}}active{{/if}}" href="#">Shop</a>
+        <a class="nav-link
+          {{#if showShopTab}}
+            active
+          {{else}}
+            {{#if currentUser.tutorial.highlightFarmingShop}}new-update-color{{/if}}
+          {{/if}}" href="#">Shop</a>
       </li>
     </ul>
 
     {{#if showPlotsTab}}
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <h2>Plots</h2>
           <div class="d-flex flex-column flex-wrap" style="max-height: 210px; max-width: 310px;">
             {{#each farmingSpaces}}
@@ -21,25 +45,13 @@
             {{/each}}
           </div>
         </div>
-        <div class="col-md-6">
-          <h2>Seeds</h2>
-          <div class="d-flex flex-wrap">
-            <!--
-            <div class="icon-box seed-shop seed-shop-tooltip-container" style="cursor: pointer;">
-              <img src="/icons/shop.svg" class="ore-icon">
-            </div>
-            -->
-            {{#each items}}
-              {{> itemIcon item=this classes="small"}}
-            {{else}}
-              No seeds, buy some in the shop
-            {{/each}}
-          </div>
-        </div>
       </div>
     {{else if showShopTab}}
 
       <ul class="nav nav-pills mb-3">
+        <li class="nav-item allLink">
+          <a class="nav-link {{#if $eq seedsFilter 'all'}}active{{/if}}" href="#">All</a>
+        </li>
         <li class="nav-item foodLink">
           <a class="nav-link {{#if $eq seedsFilter 'food'}}active{{/if}}" href="#">Food</a>
         </li>

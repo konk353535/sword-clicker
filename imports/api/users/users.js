@@ -7,7 +7,7 @@ UserSchema = new SimpleSchema({
   _id: { type: String },
   createdAt: { type: Date },
   services: { type: Object, blackbox: true },
-  gold: { type: Number, defaultValue: 100 },
+  gold: { type: Number, defaultValue: 200 },
   floor: { type: Number, defaultValue: 1 },
   gems: { type: Number, defaultValue: 0 },
 
@@ -47,6 +47,21 @@ UserSchema = new SimpleSchema({
 
   'tutorial.hideWoodcutting': { type: Boolean },
   'tutorial.highlightWoodcutting': { type: Boolean },
+
+  'tutorial.hideFarming': { type: Boolean },
+  'tutorial.highlightFarming': { type: Boolean },
+  'tutorial.hideFarmingPlots': { type: Boolean },
+  'tutorial.highlightFarmingPlots': { type: Boolean },
+
+  'tutorial.hideInscription': { type: Boolean },
+  'tutorial.highlightInscription': { type: Boolean },
+  'tutorial.hideInscriptionAbilities': { type: Boolean },
+  'tutorial.highlightInscriptionAbilities': { type: Boolean },
+  'tutorial.hideInscriptionPigments': { type: Boolean },
+  'tutorial.highlightInscriptionPigments': { type: Boolean },
+  'tutorial.hideInscriptionPaper': { type: Boolean },
+  'tutorial.highlightInscriptionPaper': { type: Boolean },
+
 
   'tutorial.hideCombat': { type: Boolean },
   'tutorial.highlightCombat': { type: Boolean },

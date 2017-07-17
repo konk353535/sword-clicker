@@ -106,6 +106,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     this.state.set('rawBuyableProspectors', prospectorResults);
   });
 
+  Meteor.call('mining.gameUpdate');
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');

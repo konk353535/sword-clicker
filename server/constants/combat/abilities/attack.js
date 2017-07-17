@@ -64,6 +64,21 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  slash: {
+    icon: 'slash',
+    name: 'slash',
+    id: 'slash',
+    buffs: ['slash'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.slash;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   penetrating_slash: {
     icon: 'penetratingSlash',
     name: 'penetrating slash',

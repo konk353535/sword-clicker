@@ -243,6 +243,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('items');
   // Show skills
   Meteor.subscribe('skills');
+  // Show Abilities
+  Meteor.subscribe('abilities');
   // Show groups
   Meteor.subscribe('groups');
   // Show combat details for groups

@@ -1721,7 +1721,7 @@ export const MAGIC_BUFFS = {
 
   fire_ball: {
     duplicateTag: 'fire_ball', // Used to stop duplicate buffs
-    icon: 'fireball',
+    icon: 'fireBall',
     name: 'fire ball',
     description({ buff, level }) {
       const c = buff.constants;

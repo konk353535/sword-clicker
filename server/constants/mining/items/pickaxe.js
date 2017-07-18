@@ -1062,7 +1062,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 10, // Maximum energy stored
+      energyStorage: 25, // Maximum energy stored
       attack: 2, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 35, // Energy regen per minute

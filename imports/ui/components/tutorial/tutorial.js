@@ -236,7 +236,7 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Pick 4 lettuces';
+        return `Picked ${lettices ? lettices.amount : 0} / 4 lettuces`;
       } else if (currentStep === 16) {
 
         const berserk = Items.findOne({ itemId: 'berserk_level_1_tome' });
@@ -253,14 +253,16 @@ Template.tutorial.helpers({
       } else if (currentStep === 17) {
         const myAbilities = Abilities.findOne({});
 
-        Meteor.call('users.setUiState', 'showChat', true);
-        myAbilities.learntAbilities.forEach((ability) => {
-          if (ability.abilityId === 'berserk') {
-            Meteor.call('users.tutorialUpdate', {
-              currentStep: 18
-            });
-          }
-        });
+        if (myAbilities) {
+          Meteor.call('users.setUiState', 'showChat', true);
+          myAbilities.learntAbilities.forEach((ability) => {
+            if (ability.abilityId === 'berserk') {
+              Meteor.call('users.tutorialUpdate', {
+                currentStep: 18
+              });
+            }
+          });
+        }
 
         return 'Learn berserk lv 1';
       }

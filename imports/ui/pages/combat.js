@@ -42,7 +42,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
   });
 
   Meteor.subscribe('battles');
-  Meteor.subscribe('abilities');
   Meteor.subscribe('floorWaveScores');
 
   // When new battle comes up, update our subscribe of redis-battles

@@ -113,6 +113,7 @@ Meteor.methods({
 
   'users.tutorialUpdate'(updateObject) {
 
+    const userDoc = Meteor.user();
     const allKeys = Object.keys(updateObject);
 
     const validIds = [
@@ -173,11 +174,15 @@ Meteor.methods({
         console.log(`rejecting - ${key}`)
         exitEarly = true;
       } else {
-        setObject[`tutorial.${key}`] = updateObject[key];
+        if (key === 'currentStep' && updateObject[key] <= userDoc.tutorial.currentStep) {
+          exitEarly = true;
+        } else {
+          setObject[`tutorial.${key}`] = updateObject[key];
+        }
       }
     });
 
-    if (exitEarly || !Meteor.user().tutorial) {
+    if (exitEarly || !userDoc.tutorial) {
       return;
     }
 

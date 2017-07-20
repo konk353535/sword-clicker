@@ -96,6 +96,10 @@ Template.nav.helpers({
     }
   },
 
+  combinedGems() {
+    return Meteor.user().gems + (Meteor.user().fakeGems || 0);
+  },
+
   hasAttackSkill() {
     if (Skills.findOne()) {
       return Skills.findOne({ type: 'attack' });

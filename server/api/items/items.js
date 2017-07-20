@@ -14,6 +14,8 @@ import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
+import _ from 'underscore';
+
 const math = require('mathjs');
 
 export const addItem = function (itemId, amount = 1, specificUserId) {
@@ -106,6 +108,61 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       Items.insert(newItem);
     });
   }
+}
+
+export const addFakeGems = function (amount, userId) {
+  // Ensure amount is valid
+  if (!_.isFinite(amount) || amount < 0 || amount > 1000) {
+    return;
+  }
+
+  // Ensure user already has fakeGems count
+  Users.update({
+    _id: userId,
+    fakeGems: {
+      $exists: true
+    }
+  }, {
+    $inc: {
+      fakeGems: amount
+    }
+  });
+}
+
+export const hasGems = function (count, userObject) {
+  if (userObject.fakeGems == null || userObject.fakeGemsToday == null) {
+    return false;
+  }
+
+  const totalGems = userObject.gems + userObject.fakeGems;
+
+  return totalGems >= count;
+}
+
+export const consumeGems = function (count, userObject) {
+  let fakeConsumed = 0;
+  let realConsumed = 0;
+
+  // Remove the fake gems first
+  if (userObject.fakeGems >= count) {
+    fakeConsumed = count;
+  } else {
+    fakeConsumed = userObject.fakeGems || 0;
+    realConsumed = count - fakeConsumed;
+  }
+
+  if (fakeConsumed + realConsumed < count || !_.isFinite(fakeConsumed) || !_.isFinite(realConsumed)) {
+    return false;
+  }
+
+  Users.update(userObject._id, {
+    $inc: {
+      fakeGems: fakeConsumed * -1,
+      gems: realConsumed * -1
+    }
+  });
+
+  return true;
 }
 
 export const consumeItem = function (itemObject, amount) {

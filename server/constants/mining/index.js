@@ -983,6 +983,17 @@ export const MINING = {
       chance: 0.00004
     },
 
+    gem: {
+      requiredLevel: 1,
+      healthMax: 150,
+      xp: 40,
+      id: 'gem',
+      icon: 'gem',
+      name: 'gem',
+      itemId: 'gem',
+      chance: 0.002
+    },
+
     gold: {
       requiredLevel: 25,
       healthMax: 750,

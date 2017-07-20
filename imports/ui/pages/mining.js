@@ -210,7 +210,7 @@ Template.miningPage.helpers({
     });
 
     const ores = rawOres.filter((ore) => {
-      return !(/essence/.test(ore.name)) && !ore.isGem;
+      return !(/essence/.test(ore.name)) && !ore.isGem && ore.name !== 'gem';
     });
 
     return ores.concat(gems).map((ore) => {

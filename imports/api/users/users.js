@@ -9,7 +9,10 @@ UserSchema = new SimpleSchema({
   services: { type: Object, blackbox: true },
   gold: { type: Number, defaultValue: 200 },
   floor: { type: Number, defaultValue: 1 },
+
   gems: { type: Number, defaultValue: 0 },
+  fakeGems: { type: Number, defaultValue: 0 },
+  fakeGemsToday: { type: Number, defaultValue: 0 },
 
   membershipTo: { type: Date, optional: true },
   miningUpgradeTo: { type: Date, optional: true },

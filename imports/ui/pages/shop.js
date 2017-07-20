@@ -10,115 +10,128 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 
 Template.shopPage.events({
   'click .buy-all-15'() {
-    if (Meteor.user().gems < 500) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 500) {
       return;
     }
     Meteor.call('shop.buyMembership', 15, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error(err.reason);
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-all-30'() {
-    if (Meteor.user().gems < 900) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 900) {
       return;
     }
     Meteor.call('shop.buyMembership', 30, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error(err.reason);
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-mining-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'mining' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-crafting-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'crafting' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
+  'click .buy-enhancer-key'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 100) {
+      return;
+    }
+
+    Meteor.call('shop.buyEnhancerKey', (err, res) => {
+      if (err) {
+        return toastr.error(err.reason);
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-combat-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'combat' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-woodcutting-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'woodcutting' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-farming-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'farming' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-inscription-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'inscription' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-astronomy-30'() {
-    if (Meteor.user().gems < 200) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
     }
 
     Meteor.call('shop.buySingle', { days: 30, type: 'astronomy' }, (err, res) => {
       if (err) {
-        toastr.error('An unexpected error occured when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -200,6 +213,10 @@ Template.shopPage.rendered = function () {
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
+  },
+
+  totalGems() {
+    return Meteor.user().gems + Meteor.user().fakeGems;
   },
 
   currentUpgrades() {

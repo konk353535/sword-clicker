@@ -93,8 +93,10 @@ export const addXp = function (skillType, xp, specificUserId) {
   } else {
     // Just update exp
     Skills.update(skill._id, {
-      $set: { xp: skill.xp },
-      $inc: { totalXp: xp }
+      $inc: {
+        totalXp: xp,
+        xp: xp
+      }
     });
     
     // This can probably be optimized

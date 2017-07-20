@@ -355,12 +355,12 @@ export const BOSS_BUFFS = {
       onBeforeDeath({ buff, target, actualBattle }) {
         // cast ignite on all units
         actualBattle.units.forEach((unit) => {
-          target.stats.health = 200;
+          target.stats.health = 150;
           const newBuff = {
             id: 'ignite',
             data: {
-              duration: 25,
-              totalDuration: 25,
+              duration: 10,
+              totalDuration: 10,
               icon: 'ignite',
               description: 'Burns you each second'
             }

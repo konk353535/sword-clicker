@@ -317,6 +317,7 @@ Meteor.publish("userData", function () {
         'tutorial': 1,
         'newUpdates': 1,
         'gems': 1,
+        'fakeGems': 1,
         'membershipTo': 1,
         'personalQuest': 1,
         'miningUpgradeTo': 1,

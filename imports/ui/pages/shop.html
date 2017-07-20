@@ -88,11 +88,27 @@
           <li>+20% energy regen</li>
           <li>+1 phantom mage</li>
         </div>
-        <button class="buy-all-15 btn btn-secondary {{#if $gte currentUser.gems 500}}{{else}}disabled{{/if}}">
+        <button class="buy-all-15 btn btn-secondary {{#if $gte totalGems 500}}{{else}}disabled{{/if}}">
           15 days ( 500<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
-        <button class="buy-all-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 900}}{{else}}disabled{{/if}}">
+        <button class="buy-all-30 btn btn-secondary mt-1 {{#if $gte totalGems 900}}{{else}}disabled{{/if}}">
           30 days ( 900<img src="/icons/gems.svg" class="extra-small-icon"> )
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center mt-3 p-3">
+        <h4>Enhancer Key</h4>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/enhancerKey.svg" class="medium-icon my-3">
+        </div>
+        <div class="d-flex flex-column justify-content-start align-items-start mb-3">
+          <li>Increase item quality by up to 15%</li>
+          <li>Can only be applied to an item once</li>
+          <li>Key is consumed on use.</li>
+        </div>
+        <button class="buy-enhancer-key btn btn-secondary mt-1 {{#if $gte totalGems 100}}{{else}}disabled{{/if}}">
+          100<img src="/icons/gems.svg" class="extra-small-icon">
         </button>
       </div>
     </div>
@@ -100,12 +116,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Mining Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/mining.svg" class="large-icon my-3">
+          <img src="/icons/mining.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% damage</li>
         </div>
-        <button class="buy-mining-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 200}}{{else}}disabled{{/if}}">
+        <button class="buy-mining-30 btn btn-secondary mt-1 {{#if $gte totalGems 200}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -114,12 +130,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Crafting Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/crafting.svg" class="large-icon my-3">
+          <img src="/icons/crafting.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% crafting speed</li>
         </div>
-        <button class="buy-crafting-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 9}}{{else}}disabled{{/if}}">
+        <button class="buy-crafting-30 btn btn-secondary mt-1 {{#if $gte totalGems 9}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -128,12 +144,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Combat Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/attack.svg" class="large-icon my-3">
+          <img src="/icons/attack.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% energy regen</li>
         </div>
-        <button class="buy-combat-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 200}}{{else}}disabled{{/if}}">
+        <button class="buy-combat-30 btn btn-secondary mt-1 {{#if $gte totalGems 200}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -142,12 +158,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Woodcutting Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/woodcutting.svg" class="large-icon my-3">
+          <img src="/icons/woodcutting.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% gather speed</li>
         </div>
-        <button class="buy-woodcutting-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 200}}{{else}}disabled{{/if}}">
+        <button class="buy-woodcutting-30 btn btn-secondary mt-1 {{#if $gte totalGems 200}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -156,12 +172,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Farming Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/farming.svg" class="large-icon my-3">
+          <img src="/icons/farming.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+2 farming plots</li>
         </div>
-        <button class="buy-farming-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 200}}{{else}}disabled{{/if}}">
+        <button class="buy-farming-30 btn btn-secondary mt-1 {{#if $gte totalGems 200}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -170,12 +186,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Inscription Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/inscription.svg" class="large-icon my-3">
+          <img src="/icons/inscription.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% crafting speed</li>
         </div>
-        <button class="buy-inscription-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 9}}{{else}}disabled{{/if}}">
+        <button class="buy-inscription-30 btn btn-secondary mt-1 {{#if $gte totalGems 9}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>
@@ -184,12 +200,12 @@
       <div class="card text-center mt-3 p-3">
         <h4>Astronomy Upgrade</h4>
         <div class="d-flex justify-content-center">
-          <img src="/icons/astronomy.svg" class="large-icon my-3">
+          <img src="/icons/astronomy.svg" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+1 phantom mage</li>
         </div>
-        <button class="buy-astronomy-30 btn btn-secondary mt-1 {{#if $gte currentUser.gems 200}}{{else}}disabled{{/if}}">
+        <button class="buy-astronomy-30 btn btn-secondary mt-1 {{#if $gte totalGems 200}}{{else}}disabled{{/if}}">
           30 days ( 200<img src="/icons/gems.svg" class="extra-small-icon"> )
         </button>
       </div>

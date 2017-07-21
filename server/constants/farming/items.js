@@ -766,7 +766,7 @@ export const FARMING_ITEMS = {
     name: 'grapefruit seed',
     description: 'Used to grow grape fruit. Yum!',
     sellPrice: 3,
-    seedType: 'fruit',
+    seedType: 'food',
     produces: 'grape_fruit'
   },
 

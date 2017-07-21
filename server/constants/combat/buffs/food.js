@@ -66,9 +66,9 @@ export const FOOD_BUFFS = {
       return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
-      duration: 240, // How long the buff will last
-      totalDuration: 240,
-      instantHeal: 600,
+      duration: 180, // How long the buff will last
+      totalDuration: 180,
+      instantHeal: 700,
       energyPerSecond: 0.04, // energy it will do per second
       healthPerSecond: 3
     },
@@ -129,9 +129,9 @@ export const FOOD_BUFFS = {
       return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
-      duration: 240, // How long the buff will last
-      totalDuration: 240,
-      instantHeal: 300,
+      duration: 180, // How long the buff will last
+      totalDuration: 180,
+      instantHeal: 400,
       energyPerSecond: 0.02, // energy it will do per second
       healthPerSecond: 2.5
     },
@@ -296,9 +296,9 @@ export const FOOD_BUFFS = {
       return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
-      duration: 240, // How long the buff will last
-      totalDuration: 240,
-      healthPerSecond: 2 // Healing it will do per second
+      duration: 70, // How long the buff will last
+      totalDuration: 70,
+      healthPerSecond: 4.28 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -351,9 +351,9 @@ export const FOOD_BUFFS = {
       return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
-      duration: 240, // How long the buff will last
-      totalDuration: 240,
-      instantHeal: 500,
+      duration: 180, // How long the buff will last
+      totalDuration: 180,
+      instantHeal: 550,
       healthPerSecond: 0.1 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
@@ -407,9 +407,9 @@ export const FOOD_BUFFS = {
       return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
     },
     data: { // Data we require to persist
-      duration: 240, // How long the buff will last
-      totalDuration: 240,
-      instantHeal: 250,
+      duration: 180, // How long the buff will last
+      totalDuration: 180,
+      instantHeal: 400,
       healthPerSecond: 0.1 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
@@ -685,7 +685,7 @@ export const FOOD_BUFFS = {
     data: { // Data we require to persist
       duration: 10, // How long the buff will last
       totalDuration: 10,
-      healthPerSecond: 26 // Healing it will do per second
+      healthPerSecond: 35 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -850,7 +850,7 @@ export const FOOD_BUFFS = {
     data: { // Data we require to persist
       duration: 900, // How long the buff will last
       totalDuration: 900,
-      healthPerSecond: 2 // Healing it will do per second
+      healthPerSecond: 2.5 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

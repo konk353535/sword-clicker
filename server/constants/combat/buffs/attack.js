@@ -223,7 +223,7 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
 
       return `${chance}% chance to poison the enemy.<br />
-        Deals ${damage.toFixed(1)}% damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
+        Deals ${damage.toFixed(1)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
         Lasts 3 minutes.`;
     },
     constants: {
@@ -775,7 +775,7 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
       const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
-      return `Deals ${dps * 100}% of your accuracy as damage every second. (+3% per lvl) <br />
+      return `Deals ${dps * 100}% of your accuracy as physical damage every second. (+3% per lvl) <br />
       For ${buff.data.totalDuration}s.`;
     },
     constants: {

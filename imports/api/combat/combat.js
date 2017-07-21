@@ -34,6 +34,7 @@ CombatSchema = new SimpleSchema({
   buffs: { type: [Object], optional: true, defaultValue: [] },
   'buffs.$.id': { type: String },
   'buffs.$.data': { type: Object, blackbox: true },
+  enchantments: { type: [String], optional: true, defaultValue: [] },
   meditatingStartDate: { type: Date, optional: true },
   lastGameUpdated: { type: Date, defaultValue: new Date() },
   xpDistribution: { type: Object, blackbox: true, defaultValue: { attack: 0.5, health: 0.5 } }

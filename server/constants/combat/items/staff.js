@@ -156,6 +156,7 @@ export const STAFF_ITEMS = {
       accuracy: 7,
       magicPower: 1
     },
+    enchantments: ['magic_blade'],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -280,6 +281,7 @@ export const STAFF_ITEMS = {
       accuracy: 19,
       magicPower: 12
     },
+    enchantments: ['magic_blade'],
     extraStats: {
       attack: 3,
       attackMax: 3,
@@ -511,6 +513,7 @@ export const STAFF_ITEMS = {
       accuracy: 7,
       magicPower: 2
     },
+    enchantments: ['magic_blade'],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',

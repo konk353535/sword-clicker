@@ -53,6 +53,12 @@
         <b>Two Handed</b><br />
       {{/if}}
 
+      {{#if item.enchantments}}
+        {{#each enchantment in item.enchantments}}
+          {{enchantment}}<br />
+        {{/each}}
+      {{/if}}
+
       {{#if item.primaryAction}}
         {{#if item.primaryAction.description}}
           <div>

@@ -642,6 +642,15 @@ Meteor.publish('items', function() {
       }
     }
 
+    if (itemConstants.enchantments) {
+      doc.enchantments = [];
+      itemConstants.enchantments.forEach((buffId) => {
+        if (BUFFS[buffId]) {
+          doc.enchantments.push(BUFFS[buffId].description());
+        }
+      });
+    }
+
     if (itemConstants.tier) {
       doc.tier = itemConstants.tier;
     }

@@ -32,6 +32,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       armor: 0,
       magicArmor: 0
     },
+    enchantments: [],
     mainHandType: '',
     offHandType: '',
     xpDistribution: {}
@@ -57,6 +58,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       playerData.mainHandType = combatItem.constants.weaponType;
     } else if (combatItem.constants.slot === 'offHand') {
       playerData.offHandType = combatItem.constants.weaponType;
+    }
+
+    if (combatItem.constants.enchantments) {
+      playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
     }
 
     if (combatItem.constants.isAttackAmulet) {

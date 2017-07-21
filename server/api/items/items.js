@@ -143,6 +143,10 @@ export const consumeGems = function (count, userObject) {
   let fakeConsumed = 0;
   let realConsumed = 0;
 
+  if (!userObject || userObject.fakeGems + userObject.gems < count) {
+    return false;
+  }
+
   // Remove the fake gems first
   if (userObject.fakeGems >= count) {
     fakeConsumed = count;

@@ -253,15 +253,6 @@ Meteor.methods({
         const buffTarget = currentCombat;
         const buffCaster = currentCombat;
 
-        if (moment().isAfter(buff.data.endDate)) {
-
-          // Whats the duration remaining?
-          buff.data.duration -= moment().diff(buff.data.endDate);
-          if (buff.data.duration < 0) {
-            buff.data.duration = 0;
-          }
-        }
-
         buff.constants.events.onTick({
           secondsElapsed,
           buff,

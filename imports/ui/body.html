@@ -1,13 +1,16 @@
 <template name="myLayout">
   {{> yield 'nav'}}
 
-  <div class="body-content" id="content">
+  <div class="body-content" id="content" style="position: relative;">
 
     <div class="d-sm-flex flex-grow">
       {{> groupList}}
       <div class="flex-grow">
         {{> yield}}
       </div>
+      {{#if currentUser.tutorial}}
+        {{> tutorial}}
+      {{/if}}
       {{> summaryList}}
     </div>
 

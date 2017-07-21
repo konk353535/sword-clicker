@@ -8,7 +8,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_dagger',
     timeToCraft: 240, // 60
-    xp: 130,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -53,7 +53,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_spear',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -98,7 +98,7 @@ export const OBSIDIAN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'obsidian_short_sword',
     timeToCraft: 300, // 60
-    xp: 250,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -143,7 +143,7 @@ export const OBSIDIAN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'obsidian_long_sword',
     timeToCraft: 420, // 60
-    xp: 280,
+    xp: 1150,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -188,7 +188,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_battle_axe',
     timeToCraft: 600, // 60
-    xp: 320,
+    xp: 1150,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -233,7 +233,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_helmet',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -278,7 +278,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_chest_plate',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -323,7 +323,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_plate_legs',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -368,7 +368,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_shield',
     timeToCraft: 240, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{

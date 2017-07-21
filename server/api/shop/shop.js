@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
 import moment from 'moment';
 
-import { addItem } from '/server/api/items/items.js';
+import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
 
@@ -23,7 +23,7 @@ Meteor.methods({
       requiredGems = 500;
     }
 
-    if (Meteor.user().gems < requiredGems) {
+    if (!hasGems(requiredGems, Meteor.user())) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
@@ -45,21 +45,15 @@ Meteor.methods({
 
     });
 
-    // Update membership to and gems
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: setModifier,
-      $inc: {
-        gems: (requiredGems * -1)
-      }
-    });
+    if (consumeGems(requiredGems, Meteor.user())) {
+      // Update membership to
+      Users.update({
+        _id: Meteor.userId()
+      }, {
+        $set: setModifier
+      });
+    }
 
-    // To Do...
-    /*
-    if (unlockFarming) {
-      unlockFarmingSpaces(Meteor.userId());
-    }*/
   },
 
   'shop.buySingle'({ days, type }) {
@@ -78,7 +72,7 @@ Meteor.methods({
       requiredGems = 100;
     }
 
-    if (Meteor.user().gems < requiredGems) {
+    if (!hasGems(requiredGems, Meteor.user())) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
@@ -93,23 +87,31 @@ Meteor.methods({
     const setModifier = {}
     setModifier[`${type}UpgradeTo`] = membershipTo;
 
-    // Update membership to and gems
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: setModifier,
-      $inc: {
-        gems: (requiredGems * -1)
-      }
-    });
+    if (consumeGems(requiredGems, Meteor.user())) {
+      // Update membership to
+      Users.update({
+        _id: Meteor.userId()
+      }, {
+        $set: setModifier
+      });
+    }
 
-    // To Do...
-    /*
-    if (unlockFarming) {
-      unlockFarmingSpaces(Meteor.userId());
-    }*/
   },
 
+  'shop.buyEnhancerKey'() {
+
+    // Check user has the correct # of gems to key
+    let requiredGems = 100;
+
+    if (!hasGems(requiredGems, Meteor.user())) {
+      throw new Meteor.Error("no-gems", "Not enough gems");
+    }
+
+    if (consumeGems(requiredGems, Meteor.user())) {
+      addItem('enhancer_key', 1, Meteor.userId());
+    }
+
+  },
 
   'shop.purchase'({ token, currentPack }) {
     if (!_.contains(['bunch', 'bag', 'box'], currentPack)) {

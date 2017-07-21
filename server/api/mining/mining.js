@@ -12,7 +12,7 @@ import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 import { requirementsUtility } from '/server/api/crafting/crafting';
-import { addItem } from '/server/api/items/items';
+import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
 export const updateMiningStats = function (userId, isNewUser = false) {
@@ -106,7 +106,13 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
     }
 
     addXp('mining', oreConstants.xp * amount);
-    addItem(oreConstants.itemId, 1 * amount);
+
+    if (oreConstants.itemId === 'gem') {
+      addFakeGems(1, Meteor.userId());
+    } else {
+      addItem(oreConstants.itemId, 1 * amount);
+    }
+
   } else {
     MiningSpace.update(mineSpace._id, {
       $inc: { health: (-1 * damage) },
@@ -254,6 +260,8 @@ Meteor.methods({
       }
     });
 
+    const userDoc = Meteor.user();
+
     this.unblock();
 
     const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
@@ -265,8 +273,24 @@ Meteor.methods({
       let newOre;
       for (let i = 0; i < sortedChanceOres.length; i++) {
         const rollDice = Math.random();
-        if (rollDice <= sortedChanceOres[i].chance) {
-          newOre = sortedChanceOres[i];
+        const targetOre = sortedChanceOres[i];
+        if (rollDice <= targetOre.chance) {
+          if (targetOre.id === 'gem') {
+            if (userDoc.fakeGemsToday >= 15 || userDoc.fakeGemsToday == null) {
+              continue;
+            }
+
+            userDoc.fakeGemsToday += 1;
+            Users.update({
+              _id: Meteor.userId()
+            }, {
+              $inc: {
+                fakeGemsToday: 1
+              }
+            });
+          }
+
+          newOre = targetOre;
           break;
         }
       }
@@ -282,9 +306,11 @@ Meteor.methods({
       // Do damage
       for (let i = 0; i < miningSpaces.length; i++) {
         const miningSpace = miningSpaces[i];
-        if (!miningSpace.oreId) {
+
+        if (!miningSpace.oreId || miningSpace.oreId === 'gem') {
           continue;
         }
+
         const oreConstants = MINING.ores[miningSpace.oreId];
         miningSpace.isDirty = true;
 
@@ -377,7 +403,6 @@ Meteor.methods({
       }
 
       // Apply membership benefits
-      const userDoc = Meteor.user();
       if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
         damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
       }
@@ -426,7 +451,11 @@ Meteor.methods({
           addXp('mining', gainedXp);
         }
         Object.keys(gainedItems).forEach((key) => {
-          addItem(key, gainedItems[key].amount);
+          if (key === 'gem') {
+            addFakeGems(gainedItems[key].amount, Meteor.userId());
+          } else {
+            addItem(key, gainedItems[key].amount);
+          }
         });
       } else {
         // Evenly distribute when ores spawn
@@ -467,7 +496,11 @@ Meteor.methods({
           addXp('mining', gainedXp);
         }
         Object.keys(gainedItems).forEach((key) => {
-          addItem(key, gainedItems[key].amount);
+          if (key === 'gem') {
+            addFakeGems(gainedItems[key].amount, Meteor.userId());
+          } else {
+            addItem(key, gainedItems[key].amount);
+          }
         });
 
         // Save modified miningSpaces
@@ -488,7 +521,7 @@ Meteor.methods({
     }
 
     // Less then 5 minutes, use second based ticks
-    simulateMining(secondsElapsed / 5, 5);
+    simulateMining(secondsElapsed, 1);
   },
 
   'mining.fetchMiners'() {
@@ -509,6 +542,30 @@ Meteor.methods({
     });
 
     return minersArray;
+  },
+
+  'mining.fetchOres'() {
+    const miningSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'mining'
+    });
+
+    const oresArray = Object.keys(MINING.ores).map((key) => {
+      const constants = MINING.ores[key]
+      return {
+        icon: constants.icon,
+        name: constants.name,
+        requiredLevel: constants.requiredLevel,
+        itemId: constants.itemId,
+        isGem: constants.isGem
+      };
+    }).filter((recipe) => {
+      return miningSkill.level >= recipe.requiredLevel;
+    }).sort((a, b) => {
+      return b.requiredLevel - a.requiredLevel;
+    });
+
+    return oresArray;
   },
 
   'mining.fetchProspectors'() {

@@ -36,13 +36,12 @@ Template.combatPage.onCreated(function bodyOnCreated() {
       if (myUser.uiState && myUser.uiState.combatTab !== undefined) {
         this.state.set('currentTab', myUser.uiState.combatTab);
       } else {
-        this.state.set('currentTab', 'personalQuest');
+        this.state.set('currentTab', 'equipment');
       }
     }
   });
 
   Meteor.subscribe('battles');
-  Meteor.subscribe('abilities');
   Meteor.subscribe('floorWaveScores');
 
   // When new battle comes up, update our subscribe of redis-battles

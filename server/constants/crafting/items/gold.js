@@ -59,7 +59,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedGold',
     category: 'crafting',
     name: 'polished gold',
-    sellPrice: 625,
+    sellPrice: 700,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -68,7 +68,7 @@ export const GOLD_ITEMS = {
     icon: 'carbonSculpture',
     category: 'crafting',
     name: 'carbon sculpture',
-    sellPrice: 625,
+    sellPrice: 550,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -77,7 +77,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedSteel',
     category: 'crafting',
     name: 'polished steel',
-    sellPrice: 625,
+    sellPrice: 1100,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -86,7 +86,7 @@ export const GOLD_ITEMS = {
     icon: 'platinumSculpture',
     category: 'crafting',
     name: 'platinum sculpture',
-    sellPrice: 625,
+    sellPrice: 750,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -95,7 +95,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedTitanium',
     category: 'crafting',
     name: 'polished titanium',
-    sellPrice: 625,
+    sellPrice: 1500,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -104,7 +104,7 @@ export const GOLD_ITEMS = {
     icon: 'tungstenSculpture',
     category: 'crafting',
     name: 'tungsten sculpture',
-    sellPrice: 625,
+    sellPrice: 900,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -113,7 +113,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedObsidian',
     category: 'crafting',
     name: 'polished obsidian',
-    sellPrice: 625,
+    sellPrice: 1800,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -122,7 +122,7 @@ export const GOLD_ITEMS = {
     icon: 'cobaltSculpture',
     category: 'crafting',
     name: 'cobalt sculpture',
-    sellPrice: 625,
+    sellPrice: 1100,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -131,7 +131,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedMithril',
     category: 'crafting',
     name: 'polished mithril',
-    sellPrice: 625,
+    sellPrice: 2200,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -140,7 +140,7 @@ export const GOLD_ITEMS = {
     icon: 'adamantiumSculpture',
     category: 'crafting',
     name: 'adamantium sculpture',
-    sellPrice: 625,
+    sellPrice: 1300,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -149,7 +149,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedOrichalcum',
     category: 'crafting',
     name: 'polished orichalcum',
-    sellPrice: 625,
+    sellPrice: 2600,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -158,7 +158,7 @@ export const GOLD_ITEMS = {
     icon: 'meteoriteSculpture',
     category: 'crafting',
     name: 'meteorite sculpture',
-    sellPrice: 625,
+    sellPrice: 1500,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -167,7 +167,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedFairySteel',
     category: 'crafting',
     name: 'polished fairy steel',
-    sellPrice: 625,
+    sellPrice: 3000,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -176,7 +176,7 @@ export const GOLD_ITEMS = {
     icon: 'elvenSteelSculpture',
     category: 'crafting',
     name: 'elven steel sculpture',
-    sellPrice: 625,
+    sellPrice: 1800,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -185,7 +185,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedCursed',
     category: 'crafting',
     name: 'polished cursed',
-    sellPrice: 625,
+    sellPrice: 3600,
     description: 'Can be sold for a tidy sum'
   },
 }

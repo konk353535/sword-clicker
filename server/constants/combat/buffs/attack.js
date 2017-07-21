@@ -223,7 +223,7 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
 
       return `${chance}% chance to poison the enemy.<br />
-        Deals ${damage.toFixed(1)}% damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
+        Deals ${damage.toFixed(1)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
         Lasts 3 minutes.`;
     },
     constants: {
@@ -257,6 +257,8 @@ export const ATTACK_BUFFS = {
               totalDuration: 180,
               damage: Math.ceil(totalDamage),
               icon: 'poison',
+              name: 'Poison',
+              description: `Take ${Math.ceil(totalDamage)} damage every 5 seconds.`,
               sourceId: attacker.id
             }
           })
@@ -530,6 +532,52 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  slash: {
+    duplicateTag: 'slash', // Used to stop duplicate buffs
+    icon: 'slash',
+    name: 'slash',
+    description({ buff, level }) {
+      const damagePerLevel = buff.constants.damagePerLevel;
+      const damageBase = buff.constants.damageBase;
+      const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
+      return `
+        Slash for ${damageTotal}% damage. <br />
+        (+${damagePerLevel * 100}% damage per lvl)`;
+    },
+    constants: {
+      damageBase: 0.8,
+      damagePerLevel: 0.2
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const damagePerLevel = constants.damagePerLevel;
+        const damageBase = constants.damageBase;
+        const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
+  
+        const casterAttack = caster.stats.attack;
+        const casterAttackMax = caster.stats.attackMax;
+        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) * Math.random())) * damageTotalDecimal;
+
+        actualBattle.utils.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
+      }
+    }
+  },
+
   penetrating_slash: {
     duplicateTag: 'penetrating_slash', // Used to stop duplicate buffs
     icon: 'penetratingSlash',
@@ -727,7 +775,7 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
       const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
-      return `Deals ${dps * 100}% of your accuracy as damage every second. (+3% per lvl) <br />
+      return `Deals ${dps * 100}% of your accuracy as physical damage every second. (+3% per lvl) <br />
       For ${buff.data.totalDuration}s.`;
     },
     constants: {

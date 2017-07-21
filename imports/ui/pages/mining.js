@@ -7,6 +7,7 @@ import _ from 'underscore';
 import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
+import { Users } from '/imports/api/users/users.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -16,6 +17,7 @@ let miningPageTimer;
 let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
+let oresCache;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -27,8 +29,23 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   });
 
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.miningTab !== undefined) {
+        this.state.set('currentTab', myUser.uiState.miningTab);
+      } else {
+        this.state.set('currentTab', 'minePit');
+      }
+    }
+  });
+
   if (Session.get('minersCache')) {
     minersCache = Session.get('minersCache')
+  }
+
+  if (Session.get('oresCache')) {
+    oresCache = Session.get('oresCache');
   }
 
   if (Session.get('prospectorsCache')) {
@@ -43,6 +60,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
     let minerResults;
     let prospectorResults;
+    let oreResults;
 
     if (minersCache && minersCache.data && minersCache.level === miningSkill.level &&
       moment().isBefore(moment(minersCache.date).add(30, 'minutes'))) {
@@ -70,10 +88,25 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       Session.set('prospectorsCache', prospectorsCache);
     }
 
+    if (oresCache && oresCache.data && oresCache.level === miningSkill.level &&
+      moment().isBefore(moment(oresCache.date).add(30, 'minutes'))) {
+      oreResults = oresCache.data;
+    } else {
+      oreResults = ReactiveMethod.call('mining.fetchOres', miningSkill.level);
+      oresCache = {
+        data: oreResults,
+        level: miningSkill.level,
+        date: moment().toDate()
+      }
+      Session.set('oresCache', oresCache);
+    }
+
+    this.state.set('rawOres', oreResults);
     this.state.set('rawBuyableMiners', minerResults);
     this.state.set('rawBuyableProspectors', prospectorResults);
   });
 
+  Meteor.call('mining.gameUpdate');
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
@@ -83,12 +116,29 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 });
 
 Template.miningPage.events({
-  'click .buy-miner'(event, instance) {
-    Template.instance().$('.minersModal').modal('show');      
+
+  'click .minePitLink'(event, instance) {
+    instance.state.set('currentTab', 'minePit');
+    Meteor.call('users.setUiState', 'miningTab', 'minePit');
   },
 
-  'click .miner-row'(event, instance) {
-    const minerId = instance.$(event.target).closest('.miner-row').data('miner');
+  'click .equipmentLink'(event, instance) {
+    instance.state.set('currentTab', 'equipment');
+    Meteor.call('users.setUiState', 'miningTab', 'equipment');
+  },
+
+  'click .prospectorsLink'(event, instance) {
+    instance.state.set('currentTab', 'prospectors');
+    Meteor.call('users.setUiState', 'miningTab', 'prospectors');
+  },
+
+  'click .minersLink'(event, instance) {
+    instance.state.set('currentTab', 'miners');
+    Meteor.call('users.setUiState', 'miningTab', 'miners');
+  },
+
+  'click .buy-miner'(event, instance) {
+    const minerId = instance.$(event.target).closest('.buy-miner').data('miner');
 
     Meteor.call('mining.buyMiner', minerId);
   },
@@ -107,16 +157,22 @@ Template.miningPage.events({
         toastr.error(err.reason);
       }
     });
-  },
-
-  'click .buy-prospector'(event, instance) {
-    Template.instance().$('.prospectorsModal').modal('show');
   }
 });
 
 Template.miningPage.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(miningPageTimer);
 });
+
+Template.oreListItem.rendered = function () {
+  tooltip = new Drop({
+    target: Template.instance().$('.ore-list-item')[0],
+    content: Template.instance().$('.ore-list-item-tooltip-content')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+}
 
 Template.miningPage.rendered = function () {
   const prospectorTooltip = new Drop({
@@ -146,6 +202,38 @@ Template.miningPage.helpers({
     return MiningSpace.find();
   },
 
+  oresList() {
+    const instance = Template.instance();
+    const rawOres = Template.instance().state.get('rawOres');
+    const gems = rawOres.filter((ore) => {
+      return ore.isGem;
+    });
+
+    const ores = rawOres.filter((ore) => {
+      return !(/essence/.test(ore.name)) && !ore.isGem && ore.name !== 'gem';
+    });
+
+    return ores.concat(gems).map((ore) => {
+      const targetItem = Items.findOne({
+        itemId: ore.itemId
+      });
+
+      if (targetItem) {
+        ore.amount = targetItem.amount;
+      } else {
+        ore.amount = 0;
+      }
+
+      return ore;
+    }).filter((ore) => {
+      if (ore.amount === 0 && ore.isGem) {
+        return false;
+      }
+
+      return true;
+    });
+  },
+
   mining() {
     const mining = Mining.findOne();
     if (mining) {
@@ -163,7 +251,7 @@ Template.miningPage.helpers({
     return Template.instance().state.get('nextProspectorCost');
   },
 
-  miningItems() {
+  miningPickaxes() {
     return Items.find({ category: 'mining', equipped: false }).map((item) => {
       if (item.isEquippable) {
         item.primaryAction = {
@@ -179,6 +267,8 @@ Template.miningPage.helpers({
         }        
       }
       return item;
+    }).filter((item) => {
+      return item.isEquippable;
     });
   },
 
@@ -208,6 +298,11 @@ Template.miningPage.helpers({
       count,
       max
     };
+  },
+
+  miningEnergyPercentage() {
+    const mining = Mining.findOne({});
+    return (mining.stats.energy / mining.stats.energyStorage) * 100;
   },
 
   summaryProspectors() {
@@ -280,6 +375,10 @@ Template.miningPage.helpers({
 
       return possibleProspector;
     });
+  },
+
+  currentTab() {
+    return Template.instance().state.get('currentTab');
   },
 
   hasMiningUpgrade() {

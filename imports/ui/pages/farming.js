@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { FarmingSpace } from '/imports/api/farming/farming.js';
+import { Users } from '/imports/api/users/users.js';
 
 import '../components/farming/farmSpace.js';
 import './farming.html';
@@ -13,8 +14,19 @@ let lastFarmingLevel;
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  this.state.set('currentTab', 'plots');
+  this.state.set('currentTab', 'shop');
   this.state.set('seedsFilter', 'food');
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.farmingTab !== undefined) {
+        this.state.set('currentTab', myUser.uiState.farmingTab);
+      } else {
+        this.state.set('currentTab', 'shop');
+      }
+    }
+  });
 
   Meteor.call('farming.gameUpdate', (err) => {
     this.state.set('tooltipsLoaded', false);
@@ -57,11 +69,17 @@ Template.farmingPage.events({
   },
 
   'click .shopLink'(event, instance) {
+    Meteor.call('users.setUiState', 'farmingTab', 'shop');
     instance.state.set('currentTab', 'shop');
   },
 
   'click .plotsLink'(event, instance) {
+    Meteor.call('users.setUiState', 'farmingTab', 'plots');
     instance.state.set('currentTab', 'plots');
+  },
+
+  'click .allLink'(event, instance) {
+    instance.state.set('seedsFilter', 'all');
   },
 
   'click .foodLink'(event, instance) {
@@ -179,6 +197,9 @@ Template.farmingPage.helpers({
   seedsToShow() {
     const instance = Template.instance();
     return instance.state.get('seeds').filter((seed) => {
+      if (instance.state.get('seedsFilter') === 'all') {
+        return true;
+      }
       return seed.seedType === instance.state.get('seedsFilter');
     });
   }

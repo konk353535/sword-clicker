@@ -23,13 +23,23 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     const rawBattle = redis.get(`battles-${currentBattleList._id}`);
     if (!rawBattle) return;
     const currentBattle = JSON.parse(rawBattle);
-    this.state.set('currentBattle', currentBattle);
     if (!currentBattle) return;
 
     const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
     if (myUnit) {
       this.state.set('myUnit', myUnit);
     }
+
+    // Find enemies that are targetting my unit
+    currentBattle.enemies.forEach((enemy) => {
+      if (enemy.target === myUnit.id) {
+        enemy.targettingPlayer = true;
+      } else {
+        enemy.targettingPlayer = false;
+      }
+    });   
+
+    this.state.set('currentBattle', currentBattle);
 
     if (currentBattle) {
       if (currentBattle.tickEvents.length > 3) {

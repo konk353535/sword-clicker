@@ -1026,22 +1026,46 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  // Starter Pickaxe
+  sharp_rock_pickaxe: {
+    id: 'sharp_rock_pickaxe',
+    icon: 'sharpRock',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'sharp rock',
+    sellPrice: 10,
+    description: 'A sharp rock. Useful for mining.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 50, // Maximum energy stored
+      attack: 1, // Damage per hit
+      energyPerHit: 1, // Energy used per hit
+      energyRegen: 60, // Energy regen per minute
+      miner: 1 // Increases effeciency of miners
+    },
+    extraStats: {
+      energyStorage: 10,
+      energyRegen: 15
+    }
+  },
+
   // Main Line pickaxes
   primitive_pickaxe: {
     id: 'primitive_pickaxe',
     icon: 'primitivePickaxe',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'primitive pickaxe',
+    name: 'stone pickaxe',
     sellPrice: 10,
     description: 'A basic pickaxe. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 10, // Maximum energy stored
-      attack: 5, // Damage per hit
+      energyStorage: 25, // Maximum energy stored
+      attack: 2, // Damage per hit
       energyPerHit: 1, // Energy used per hit
-      energyRegen: 15, // Energy regen per minute
+      energyRegen: 35, // Energy regen per minute
       miner: 1 // Increases effeciency of miners
     },
     extraStats: {

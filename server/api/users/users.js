@@ -8,6 +8,8 @@ import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
+import { addXp } from '/server/api/skills/skills';
+import { addItem } from '/server/api/items/items.js';
 
 Meteor.methods({
 
@@ -109,13 +111,140 @@ Meteor.methods({
     });
   },
 
+  'users.tutorialUpdate'(updateObject) {
+
+    const userDoc = Meteor.user();
+    const allKeys = Object.keys(updateObject);
+
+    const validIds = [
+      'hideCrafting',
+      'highlightCrafting',
+
+      'hideWoodcutting',
+      'highlightWoodcutting',
+
+      'hideFarming',
+      'highlightFarming',
+      'hideFarmingPlots',
+      'highlightFarmingPlots',
+
+      'hideInscription',
+      'highlightInscription',
+      'hideInscriptionAbilities',
+      'highlightInscriptionAbilities',
+      'hideInscriptionPaper',
+      'highlightInscriptionPaper',
+      'hideInscriptionPigments',
+      'highlightInscriptionPigments',
+
+      'hideCombat',
+      'highlightCombat',
+      'highlightCombatEquipment',
+      'highlightCombatAbilities',
+      'highlightCombatTower',
+      'highlightCombatPersonalQuest',
+      'highlightCombatAdventures',
+
+      'hideCombatEquipment',
+      'hideCombatAbilities',
+      'hideCombatTower',
+      'hideCombatPersonalQuest',
+      'hideCombatAdventures',
+      'hideCombatGroup',
+      'hideCombatBattleLog',
+
+      'hideMiningEquipment',
+      'highlightMiningEquipment',
+      'hideMiningMiners',
+      'highlightMiningMiners',
+      'hideMiningProspectors',
+      'highlightMiningProspectors',
+
+      'currentStep'
+    ];
+
+    const setObject = {}
+
+    let exitEarly = false;
+    allKeys.forEach((key) => {
+      if (!_.contains(validIds, key)) {
+        console.log(`rejecting - ${key}`)
+        exitEarly = true;
+      } else if (!_.isBoolean(updateObject[key] && !_.isFinite((updateObject[key])))) {
+        console.log(`rejecting - ${key}`)
+        exitEarly = true;
+      } else {
+        if (key === 'currentStep' && updateObject[key] <= userDoc.tutorial.currentStep) {
+          exitEarly = true;
+        } else {
+          setObject[`tutorial.${key}`] = updateObject[key];
+        }
+      }
+    });
+
+    if (exitEarly || !userDoc.tutorial) {
+      return;
+    }
+
+    if (setObject['tutorial.currentStep'] === 16) {
+      // Check users current farming level
+      const farmingSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'farming'
+      });
+
+      if (farmingSkill.level === 1) {
+        addXp('farming', 21);
+        addItem('pine_paper', 1, Meteor.userId());
+        addItem('rubia_flower_seed', 1, Meteor.userId());
+      }
+    } else if (setObject['tutorial.currentStep'] === 10) {
+      // Check users current farming level
+      const woodcuttingSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'woodcutting'
+      });
+
+      if (woodcuttingSkill.level === 1) {
+        addXp('woodcutting', 2);
+        addItem('pine_log', 1, Meteor.userId());
+      }
+    } else if (setObject['tutorial.currentStep'] === 2) {
+      const miningSkill = Skills.findOne({
+        owner: Meteor.userId(),
+        type: 'mining'
+      });
+
+      if (miningSkill.level === 1) {
+        addXp('mining', 21);
+      }
+    } else if (setObject['tutorial.currentStep'] === 18) {
+      return Users.update({
+        _id: Meteor.userId()
+      }, {
+        $unset: {
+          tutorial: ""
+        }
+      });
+    }
+
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: setObject
+    });
+  },
+
   'users.setUiState'(id, value) {
     const validIds = [
       'showChat',
+      'showSummaryList',
       'inscriptionFilter',
       'inscriptionLevelFilter',
       'craftingFilter',
       'combatTab',
+      'miningTab',
+      'farmingTab',
       'magicTab',
       'towerFloor',
       'questLevel',
@@ -185,8 +314,10 @@ Meteor.publish("userData", function () {
       fields: {
         'gold': 1,
         'uiState': 1,
+        'tutorial': 1,
         'newUpdates': 1,
         'gems': 1,
+        'fakeGems': 1,
         'membershipTo': 1,
         'personalQuest': 1,
         'miningUpgradeTo': 1,

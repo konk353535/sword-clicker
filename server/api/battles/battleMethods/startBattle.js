@@ -2,6 +2,7 @@ import { BATTLES } from '/server/constants/battles/index.js'; // List of encount
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 import { COMBAT, ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 import { Random } from 'meteor/random'
 import moment from 'moment';
@@ -169,7 +170,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       }
     });
 
-    newBattle.units.push({
+
+    const newUnit = {
       id: userCombat.owner,
       owner: userCombat.owner,
       towerContributionsToday: userCombat.towerContributionsToday,
@@ -184,7 +186,30 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
       icon: 'character'
-    });
+    }
+
+    if (userCombat.enchantments) {
+      userCombat.enchantments.forEach((buffId) => {
+        const enchantConstants = BUFFS[buffId];
+        if (enchantConstants) {
+          const clonedConstants = JSON.parse(JSON.stringify(enchantConstants));
+          const newBuff = {
+            id: buffId,
+            data: {
+              duration: clonedConstants.durationTotal,
+              totalDuration: clonedConstants.durationTotal,
+              icon: clonedConstants.icon,
+              description: enchantConstants.description(),
+              name: clonedConstants.name
+            }
+          }
+
+          addBuff({ buff: newBuff, target: newUnit, caster: newUnit, actualBattle: null});
+        }
+      });
+    }
+
+    newBattle.units.push(newUnit);
 
   });
 

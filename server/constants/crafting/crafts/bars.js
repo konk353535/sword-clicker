@@ -10,7 +10,7 @@ export const BAR_CRAFTS = {
     timeToCraft: 3,
     xp: 2,
     maxToCraft: 100,
-    requiredCraftingLevel: 2,
+    requiredCraftingLevel: 1,
     required: [{
       type: 'item',
       itemId: 'stone_furnace',
@@ -35,7 +35,7 @@ export const BAR_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 2
+      level: 1
     }]
   },
 

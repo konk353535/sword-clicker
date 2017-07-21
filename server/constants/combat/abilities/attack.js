@@ -64,6 +64,21 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  slash: {
+    icon: 'slash',
+    name: 'slash',
+    id: 'slash',
+    buffs: ['slash'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.slash;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   penetrating_slash: {
     icon: 'penetratingSlash',
     name: 'penetrating slash',
@@ -165,7 +180,7 @@ export const ATTACK_ABILITIES = {
     name: 'blade spin',
     id: 'blade_spin',
     buffs: ['blade_spin'],
-    cooldown: 20,
+    cooldown: 15,
     slot: 'any',
     isHidden: false,
     target: 'allEnemies', // The curreny enemy who we are auto attacking

@@ -53,6 +53,12 @@
         <b>Two Handed</b><br />
       {{/if}}
 
+      {{#if item.enchantments}}
+        {{#each enchantment in item.enchantments}}
+          {{enchantment}}<br />
+        {{/each}}
+      {{/if}}
+
       {{#if item.primaryAction}}
         {{#if item.primaryAction.description}}
           <div>
@@ -94,10 +100,16 @@
             </div>
             <div class="modal-body">
               How many to sell?
-              <form class="sell-form">
-                <input class="form-control sell-amount-input" value={{sellAmount}}><br />
-              </form>
-              +{{ totalPrice sellAmount item.sellPrice }} Gold
+              <div class="row">
+                <div class="col-md-6">
+                  <form class="sell-form">
+                    <input class="form-control sell-amount-input" value={{sellAmount}}>
+                  </form>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                  +{{ totalPrice sellAmount item.sellPrice }} Gold
+                </div>
+              </div>
 
               <br /><br />
               <label>
@@ -106,6 +118,12 @@
               <input type="checkbox" class="toggle-quick-selling" checked={{enableQuickSelling}}>
             </div>
             <div class="modal-footer">
+              <!--
+              <div class="d-flex flex-grow">
+                <button type="button" class="btn btn-info primary-action">Equip</button>
+              </div>
+              -->
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-danger sell-btn">Sell</button>
             </div>
           </div>

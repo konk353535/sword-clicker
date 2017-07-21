@@ -354,8 +354,56 @@ Accounts.onCreateUser((options, user) => {
   user._id = Random.id();
   const userId = user._id;
   user.uiState = {
-    showChat: true
+    showChat: false,
+    showSummaryList: false,
+    craftingFilter: 'mining'
   }
+  user.tutorial = {
+    hideCombat: true,
+  
+    highlightCombat: false,
+    highlightCombatPersonalQuest: false,
+    highlightCombatTower: false,
+    highlightCombatAdventures: false,
+    highlightCombatAbilities: false,
+    highlightCombatEquipment: false,
+    hideCombatEquipment: true,
+    hideCombatAbilities: true,
+    hideCombatGroup: true,
+    hideCombatBattleLog: true,
+    hideCombatTower: true,
+    hideCombatPersonalQuest: true,
+    hideCombatAdventures: true,
+
+    hideInscription: true,
+    highlightInscription: false,
+    hideInscriptionAbilities: true,
+    highlightInscriptionAbilities: false,
+    hideInscriptionPigments: true,
+    highlightInscriptionPigments: false,
+    hideInscriptionPaper: true,
+    highlightInscriptionPaper: false,
+
+    hideFarming: true,
+    highlightFarming: false,
+    hideFarmingPlots: true,
+    highlightFarmingPlots: false,
+
+    hideCrafting: true,
+    highlightCrafting: false,
+
+    hideWoodcutting: true,
+    highlightWoodcutting: false,
+
+    hideMiningEquipment: true,
+    highlightMiningEquipment: false,
+    hideMiningMiners: true,
+    highlightMiningMiners: false,
+    hideMiningProspectors: true,
+    highlightMiningProspectors: false,
+    currentStep: 1
+  }
+
   if (options.isGuest) {
     user.isGuest = options.isGuest;
   }
@@ -365,6 +413,7 @@ Accounts.onCreateUser((options, user) => {
     type: 'mining',
     createdAt: new Date(),
     owner: userId,
+    xp: 0,
     username: user.username
   });
 
@@ -399,15 +448,15 @@ Accounts.onCreateUser((options, user) => {
     });
   }
 
-  addItem(ITEMS['primitive_pickaxe'].id, 1, userId);
+  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId);
 
   Items.update({
     owner: userId,
-    itemId: ITEMS['primitive_pickaxe'].id
+    itemId: ITEMS['sharp_rock_pickaxe'].id
   }, {
     $set: {
       equipped: true,
-      slot: ITEMS['primitive_pickaxe'].slot
+      slot: ITEMS['sharp_rock_pickaxe'].slot
     }
   });
 
@@ -474,26 +523,12 @@ Accounts.onCreateUser((options, user) => {
     Abilities.insert({
       owner: userId,
       learntAbilities: [{
-        "abilityId": "berserk",
+        "abilityId": "slash",
         "level": 1,
-        "equipped": true,
+        "equipped": false,
         "slot": "mainHand",
         "currentCooldown": 0
       }]
-    });
-
-    addItem(ITEMS['copper_dagger'].id, 1, userId);
-    addItem(ITEMS['lettice'].id, 5, userId);
-
-    // Equip dagger
-    Items.update({
-      owner: userId,
-      itemId: ITEMS['copper_dagger'].id
-    }, {
-      $set: {
-        equipped: true,
-        slot: ITEMS['copper_dagger'].slot
-      }
     });
 
     // Update combat stats

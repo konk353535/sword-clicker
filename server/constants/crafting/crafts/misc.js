@@ -7,7 +7,7 @@ export const MISC_CRAFTS = {
     name: 'enhancer key',
     category: 'crafting',
     id: 'enhancer_key',
-    requiredCraftingLevel: 10,
+    requiredCraftingLevel: 1000,
     required: [{
       type: 'item',
       itemId: 'ore_stone',
@@ -25,7 +25,7 @@ export const MISC_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 10
+      level: 1000
     }],
     timeToCraft: 15 * 60,
     xp: 100,

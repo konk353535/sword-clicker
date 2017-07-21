@@ -19,53 +19,131 @@
         <ul class="navbar-nav mr-auto">
           {{#if currentUser}}
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">Mining</a>
+              <a class="nav-link
+                {{#if $eq currentRoute 'mining'}}
+                  active
+                {{else}}
+                  {{#if currentUser.tutorial.highlightMiningEquipment}}
+                    new-update-color
+                  {{/if}}
+                  {{#if currentUser.tutorial.highlightMiningMiners}}
+                    new-update-color
+                  {{/if}}
+                  {{#if currentUser.tutorial.highlightMiningProspectors}}
+                    new-update-color
+                  {{/if}}
+                {{/if}}
+              " href="/mining">Mining</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
-            </li>
-            {{#if hasCraftingSkill}}
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">Woodcutting</a>
-              </li>
-              {{#if hasAttackSkill}}
+            {{#if currentUser.tutorial}}
+              {{#unless currentUser.tutorial.hideCrafting}}
                 <li class="nav-item">
-                  <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
-                    Farming
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'crafting'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightCrafting}}new-update-color{{/if}}
+                    {{/if}}"
+                    href="/crafting">
+                    Crafting
                   </a>
                 </li>
-                {{#if hasFarmingSkill}}
+              {{/unless}}
+              {{#unless currentUser.tutorial.hideWoodcutting}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'woodcutting'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightWoodcutting}}new-update-color{{/if}}
+                    {{/if}}"
+                    href="/woodcutting">
+                    Woodcutting
+                  </a>
+                </li>
+              {{/unless}}
+              {{#unless currentUser.tutorial.hideCombat}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'combat'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightCombat}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/combat">Combat</a>
+                </li>
+              {{/unless}}
+              {{#unless currentUser.tutorial.hideFarming}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'farming'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightFarming}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/farming">Farming</a>
+                </li>
+              {{/unless}}
+              {{#unless currentUser.tutorial.hideInscription}}
+                <li class="nav-item">
+                  <a class="nav-link
+                    {{#if $eq currentRoute 'inscription'}}
+                      active
+                    {{else}}
+                      {{#if currentUser.tutorial.highlightInscription}}new-update-color{{/if}}
+                    {{/if}}
+                  " href="/inscription">Inscription</a>
+                </li>
+              {{/unless}}
+            {{else}}
+              {{#if hasCraftingSkill}}
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">Woodcutting</a>
+                </li>
+                {{#if hasAttackSkill}}
                   <li class="nav-item">
-                    <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
-                      Inscription
+                    <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
+                      Farming
                     </a>
                   </li>
-                  {{#if hasInscriptionSkill}}
+                  {{#if hasFarmingSkill}}
                     <li class="nav-item">
-                      <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
-                        Magic
+                      <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
+                        Inscription
                       </a>
                     </li>
+                    {{#if hasInscriptionSkill}}
+                      <li class="nav-item">
+                        <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
+                          Magic
+                        </a>
+                      </li>
+                    {{/if}}
                   {{/if}}
                 {{/if}}
               {{/if}}
-            {{/if}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'patchNotes'}}active{{/if}}" href="/patchNotes">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">Chat</a>
-            </li>
-            {{#if currentUser.newUpdates}}
               <li class="nav-item">
-                <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+                <a class="nav-link {{#if $eq currentRoute 'patchNotes'}}active{{/if}}" href="/patchNotes">FAQ</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">Chat</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
+                  Skills
+                </a>
+              </li>
+              {{#if currentUser.newUpdates}}
+                <li class="nav-item">
+                  <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+                </li>
+              {{/if}}
             {{/if}}
           {{/if}}
         </ul>
@@ -83,7 +161,7 @@
               </span>
               <span>
                 <img src="/icons/gems.svg" class="extra-small-icon">
-                {{currentUser.gems}}
+                {{combinedGems}}
               </span>
             </div>
             <div class="dropdown ml-2">

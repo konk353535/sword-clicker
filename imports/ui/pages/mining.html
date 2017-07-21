@@ -2,202 +2,236 @@
 
   {{> skillHeader skill=miningSkill}}
 
-  <h2>Items</h2>
-  <div class="d-flex flex-wrap">
-    {{#each miningItems}}
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link minePitLink {{#if $eq currentTab 'minePit'}}active{{/if}}" href="#">Mine Pit</a>
+    </li>
+    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningEquipment}}
+      <li class="nav-item">
+        <a class="nav-link equipmentLink
+          {{#if $eq currentTab 'equipment'}}
+            active
+          {{else}}
+          {{#if currentUser.tutorial.highlightMiningEquipment}}new-update-color{{/if}}
+          {{/if}}" href="#">
+          Equipment
+        </a>
+      </li>
+    {{/unless}}
+    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningMiners}}
+      <li class="nav-item">
+        <a class="nav-link minersLink
+          {{#if $eq currentTab 'miners'}}
+            active
+          {{else}}
+            {{#if currentUser.tutorial.highlightMiningMiners}}new-update-color{{/if}}
+          {{/if}}" href="#">
+          Miners ({{summaryMiners.count}} / {{summaryMiners.max}})
+        </a>
+      </li>
+    {{/unless}}
+    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningProspectors}}
+      <li class="nav-item">
+        <a class="nav-link prospectorsLink
+          {{#if $eq currentTab 'prospectors'}}
+            active
+          {{else}}
+            {{#if currentUser.tutorial.highlightMiningProspectors}}new-update-color{{/if}}
+          {{/if}}" href="#">
+          Prospectors ({{summaryProspectors.count}} / {{summaryProspectors.max}})
+        </a>
+      </li>
+    {{/unless}}
+  </ul>
+
+
+  {{#if $eq currentTab 'minePit'}}
+    <div class="d-flex align-items-center">
+      <div class="d-flex flex-column mb-3" style="width: 200px">
+        <div class="d-flex align-items-center">
+          <i class="lilIcon-mining extra-small-icon mr-1"></i> 
+          {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+        </div>
+        <div class="progress mt-1" style="width: 100%">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{miningEnergyPercentage}}%" aria-valuenow="{{miningEnergyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
+          {{#each miningSpaces}}
+            {{> mineSpace mineSpace=this}}
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex flex-column flex-wrap" style="max-height: 420px">
+          {{#each oresList}}
+            {{> oreListItem ore=this}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{else if $eq currentTab 'equipment'}}
+
+    <h3>Inventory</h3>
+    {{#each miningPickaxes}}
       {{> itemIcon item=this classes="small"}}
-    {{/each}}
-  </div>
-
-  <h2>Mining Upgrades</h2>
-  <div class="d-flex flex-row flex-wrap">
-
-    <div class="d-flex flex-column align-items-center justify-content-center">
-      <div class="icon-box buy-miner" style="cursor: pointer;">
-        <img src="/icons/miner.svg" class="ore-icon">
-      </div>
-      <div class="d-flex">
-        {{summaryMiners.count}} / {{summaryMiners.max}}
-      </div>
-    </div>
-
-    <!-- Tooltip for buy miner icon -->
-    <div class="miners-tooltip-content my-tooltip-inner">
-      <h3 class='popover-title text-capitalize'>Miners</h3>
-      <div class='popover-content'>
-        Auto mine ores over time.<br /><br />
-        <b>Click</b> to view upgrades
-      </div>
-    </div>
-
-    <div class="d-flex flex-column align-items-center justify-content-center">
-      <div class="icon-box buy-prospector" style="cursor: pointer;">
-        <img src="/icons/prospector.svg" class="ore-icon">
-      </div>
-      <div class="d-flex">
-        {{summaryProspectors.count}} / {{summaryProspectors.max}}
-      </div>
-    </div>
-
-    <!-- Tooltip for buy prospector icon -->
-    <div class="prospectors-tooltip-content my-tooltip-inner">
-      <h3 class='popover-title text-capitalize'>Prospectors</h3>
-      <div class='popover-content'>
-        Increase the chance of finding specific ores<br /><br />
-        <b>Click</b> to view upgrades
-      </div>
-    </div>
-    {{#if equippedItemsMap.pickaxe}}
-      <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
-        {{> itemIcon item=equippedItemsMap.pickaxe}}
-        <div class="d-flex">
-          {{> formatNumber number=mining.stats.energy}} / {{mining.stats.energyStorage}}
-        </div>
-      </div>
-      <div class="d-flex flex-column ml-3">
-        <div class="d-flex align-items-center">
-          {{#if hasMiningUpgrade}}
-            ({{mining.stats.attack}}
-            {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
-          {{else}}
-            {{mining.stats.attack}}
-          {{/if}}
-          <i class="lilIcon-attack mx-1"></i> Damage per click.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
-        </div>
-        <div class="d-flex align-items-center">
-          {{#if hasMiningUpgrade}}
-            ({{mining.stats.miner}}
-            {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
-          {{else}}
-            {{mining.stats.miner}}%
-          {{/if}}
-          <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
-        </div>
-
-      </div>
     {{else}}
-      <div class="icon-box">
-        Pickaxe
-      </div>
-    {{/if}}
-  </div>
+      No pickaxes in inventory
+    {{/each}}
 
-  {{#if $lte miningSkill.level 1}}
-    <h2>How to mine</h2>
-    <div>1. Click on ores to deal damage.</div>
-    <div>2. Once an ore 'dies' it will appear in your inventory.</div>
-    <div>3. Use gathered ore to craft items.</div>
-    <div>?. Shift click to deal 10x damage, for 10x energy cost</div>
+    <h3 class="mt-3">Equipped</h3>
+    <div class="d-flex flex-row flex-wrap">
+      {{#if equippedItemsMap.pickaxe}}
+        <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
+          {{> itemIcon item=equippedItemsMap.pickaxe}}
+          <div class="d-flex">
+            {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+          </div>
+        </div>
+        <div class="d-flex flex-column ml-3">
+          <div class="d-flex align-items-center">
+            {{#if hasMiningUpgrade}}
+              ({{mining.stats.attack}}
+              {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
+            {{else}}
+              {{mining.stats.attack}}
+            {{/if}}
+            <i class="lilIcon-attack mx-1"></i> Damage per click.
+          </div>
+          <div class="d-flex align-items-center">
+            {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
+          </div>
+          <div class="d-flex align-items-center">
+            {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
+          </div>
+          <div class="d-flex align-items-center">
+            {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
+          </div>
+          <div class="d-flex align-items-center">
+            {{#if hasMiningUpgrade}}
+              ({{mining.stats.miner}}
+              {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
+            {{else}}
+              {{mining.stats.miner}}%
+            {{/if}}
+            <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
+          </div>
+
+        </div>
+      {{else}}
+        <div class="icon-box">
+          Pickaxe
+        </div>
+      {{/if}}
+    </div>
+  {{else if $eq currentTab 'miners'}}
+    <h3>Inventory</h3>
+    {{#each miningPickaxes}}
+      {{> itemIcon item=this classes="small"}}
+    {{else}}
+      No pickaxes in inventory
+    {{/each}}
+
+    {{#if $lte summaryMiners.count 3}}
+      <div class="my-3"><b>Miners passively collect ores for you, over time.</b></div>
+    {{/if}}
+
+    <table class="table table-bordered table-hover table-centered table-responsive mt-3">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="hidden-md-down">Icon</th>
+          <th>Requirements</th>
+          <th>Count</th>
+          <th>Damage / Hour</th>
+          <th>Actions</th>
+        </tr>  
+      </thead>
+      <tbody>
+        {{#each buyableMiners}}
+          <tr class="text-center" style="cursor: pointer">
+            <td class="text-capitalize">{{this.name}}</td>
+            <td class="hidden-md-down">
+              <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+            </td>
+            <td>{{ > requiredItems requiredItems=this.required}}</td>
+            <td>{{this.amount}} / {{this.max}}</td>
+            <td>
+              {{#if this.amount}}
+                {{> formatNumber number=this.damagePerHour}}
+              {{else}}
+                <span style="color: #DFDFDF">
+                  {{> formatNumber number=this.damagePerHour}}
+                </span>
+              {{/if}}
+            </td>
+            <td>
+              {{#if $gte this.amount 3}}
+                <button class="btn btn-primary" disabled=true>
+                  Hire
+                </button>
+              {{else}}
+                <button class="btn btn-primary buy-miner" data-miner={{this.id}}>
+                  Hire
+                </button>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else if $eq currentTab 'prospectors'}}
+
+    {{#if $gte summaryProspectors.count 3}}
+      <div class="my-3"><b>Prospectors increase the speed at which ores spawn.</b></div>
+    {{/if}}
+
+    <table class="table table-bordered table-centered table-responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="hidden-md-down">Icon</th>
+          <th>Requirements</th>
+          <th>Count</th>
+          <th>Actions</th>
+        </tr>  
+      </thead>
+      <tbody>
+        {{#each buyableProspectors}}
+          <tr class="prospector-row text-center">
+            <td class="text-capitalize">{{this.name}}</td>
+            <td class="hidden-md-down">
+              <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+            </td>
+            <td>{{ > requiredItems requiredItems=this.required}}</td>
+            <td>{{this.amount}} / {{this.max}}</td>
+            <td>
+              <button class="btn btn-primary m-1 prospector-hire" data-prospector={{this.id}}>
+                Hire
+              </button>
+              <button class="btn btn-danger m-1 prospector-fire" data-prospector={{this.id}}>
+                Fire
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
   {{/if}}
 
-  <h2>Mine Shaft</h2>
-  <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
-    {{#each miningSpaces}}
-      {{> mineSpace mineSpace=this}}
-    {{/each}}
+</template>
+
+<template name="oreListItem">
+  <div class="ore-list-item">
+    <img src="/icons/{{ore.icon}}.svg" class="icon-box small-icon"> {{ore.amount}}
   </div>
 
-  <!-- Miners Modal -->
-  <div class="modal minersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Miners</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-hover table-centered table-responsive">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th class="hidden-md-down">Icon</th>
-                <th>Requirements</th>
-                <th>Count</th>
-                <th>Damage / Hour</th>
-              </tr>  
-            </thead>
-            <tbody>
-              {{#each buyableMiners}}
-                <tr class="miner-row text-center" style="cursor: pointer" data-miner={{this.id}}>
-                  <td class="text-capitalize">{{this.name}}</td>
-                  <td class="hidden-md-down">
-                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
-                  </td>
-                  <td>{{ > requiredItems requiredItems=this.required}}</td>
-                  <td>{{this.amount}} / {{this.max}}</td>
-                  <td>
-                    {{#if this.amount}}
-                      {{> formatNumber number=this.damagePerHour}}
-                    {{else}}
-                      <span class="text-muted">
-                        {{> formatNumber number=this.damagePerHour}}
-                      </span>
-                    {{/if}}
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Prospectors Modal -->
-  <div class="modal prospectorsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Prospectors</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-centered table-responsive">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th class="hidden-md-down">Icon</th>
-                <th>Requirements</th>
-                <th>Count</th>
-                <th>Actions</th>
-              </tr>  
-            </thead>
-            <tbody>
-              {{#each buyableProspectors}}
-                <tr class="prospector-row text-center">
-                  <td class="text-capitalize">{{this.name}}</td>
-                  <td class="hidden-md-down">
-                    <img src="/icons/{{this.icon}}.svg" class="ore-icon">
-                  </td>
-                  <td>{{ > requiredItems requiredItems=this.required}}</td>
-                  <td>{{this.amount}} / {{this.max}}</td>
-                  <td>
-                    <button class="btn btn-primary m-1 prospector-hire" data-prospector={{this.id}}>
-                      Hire
-                    </button>
-                    <button class="btn btn-danger m-1 prospector-fire" data-prospector={{this.id}}>
-                      Fire
-                    </button>
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="ore-list-item-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>{{ore.name}}</h3>
   </div>
 </template>

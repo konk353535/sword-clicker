@@ -20,8 +20,8 @@ export const FURNACE_CRAFTS = {
       name: 'crafting',
       level: 1
     }],
-    timeToCraft: 60, // Time to craft item in seconds
-    xp: 20, // Xp earned once crafted
+    timeToCraft: 30, // Time to craft item in seconds
+    xp: 10, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 

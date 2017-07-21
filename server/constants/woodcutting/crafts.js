@@ -7,8 +7,8 @@ export const WOODCUTTING_CRAFTS = {
     name: 'primitive axe',
     id: 'primitive_axe',
     category: 'woodcutting',
-    timeToCraft: 15,
-    xp: 5,
+    timeToCraft: 20,
+    xp: 10,
     maxToCraft: 1,
     requiredCraftingLevel: 1,
     required: [{

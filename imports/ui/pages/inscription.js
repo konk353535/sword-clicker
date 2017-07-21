@@ -248,7 +248,7 @@ Template.inscriptionPage.helpers({
         return recipe;
       });
 
-      return _.sortBy(abilityRecipes, 'isLearnt');
+      return _.sortBy(_.sortBy(abilityRecipes, 'name'), 'isLearnt');
     } else {
       return instance.state.get('recipes').filter((item) => {
         return item.category === recipeFilter;

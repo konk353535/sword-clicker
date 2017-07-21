@@ -5,6 +5,7 @@
 @import "styles/colors.scss";
 @import "styles/chat.scss";
 @import "styles/adventures.scss";
+@import "styles/tutorial.scss";
 @import "styles/icons.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
@@ -47,6 +48,10 @@
 
 .flex-grow {
   flex: 1 1 auto;
+}
+
+.battle-unit-red {
+  color: $brand-danger;
 }
 
 .battle-unit-name {

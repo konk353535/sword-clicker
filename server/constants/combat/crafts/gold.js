@@ -8,7 +8,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_dagger',
     timeToCraft: 120, // 60
-    xp: 60,
+    xp: 200,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -53,7 +53,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_spear',
     timeToCraft: 180, // 60
-    xp: 120,
+    xp: 400,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -98,7 +98,7 @@ export const GOLD_CRAFTS = {
     recipeFor: 'crafting',
     id: 'gold_short_sword',
     timeToCraft: 120, // 60
-    xp: 120,
+    xp: 400,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -143,7 +143,7 @@ export const GOLD_CRAFTS = {
     recipeFor: 'crafting',
     id: 'gold_long_sword',
     timeToCraft: 240, // 60
-    xp: 120,
+    xp: 400,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -188,7 +188,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_battle_axe',
     timeToCraft: 300, // 60
-    xp: 160,
+    xp: 450,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -233,7 +233,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_helmet',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -278,7 +278,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_chest_plate',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -323,7 +323,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_plate_legs',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -368,7 +368,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_shield',
     timeToCraft: 120, // 60
-    xp: 100,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{

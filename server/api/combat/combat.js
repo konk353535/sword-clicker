@@ -254,8 +254,6 @@ Meteor.methods({
         const buffCaster = currentCombat;
 
         if (moment().isAfter(buff.data.endDate)) {
-          console.log(`original duration is ${buff.data.duration}`);
-          console.log(`taking ${moment().diff(buff.data.endDate)} seconds off`);
 
           // Whats the duration remaining?
           buff.data.duration -= moment().diff(buff.data.endDate);

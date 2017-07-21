@@ -257,6 +257,8 @@ export const ATTACK_BUFFS = {
               totalDuration: 180,
               damage: Math.ceil(totalDamage),
               icon: 'poison',
+              name: 'Poison',
+              description: `Take ${Math.ceil(totalDamage)} damage every 5 seconds.`,
               sourceId: attacker.id
             }
           })

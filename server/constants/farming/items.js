@@ -54,6 +54,30 @@ export const FARMING_ITEMS = {
     sellPrice: 250
   },
 
+  chrysanthemum_seed: {
+    id: 'chrysanthemum_seed',
+    icon: 'chrysanthemumSeed',
+    category: 'seed',
+    name: 'Chrysanthemum Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 400,
+    produces: 'chrysanthemum'
+  },
+
+  chrysanthemum: {
+    id: 'chrysanthemum',
+    icon: 'chrysanthemum',
+    category: 'herb',
+    name: 'chrysanthemum',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 4000
+  },
+
   cactus_seed: {
     id: 'cactus_seed',
     icon: 'cactusSeed',
@@ -105,6 +129,35 @@ export const FARMING_ITEMS = {
       id: 'food_pear'
     }],
     sellPrice: 70
+  },
+
+  acai_berry_seed: {
+    id: 'acai_berry_seed',
+    icon: 'acaiBerrySeed',
+    category: 'seed',
+    name: 'acai berry Seed',
+    seedType: 'food',
+    description() {
+      const buff = BUFFS.food_acai_berry;
+      return buff.description({ buff });
+    },
+    sellPrice: 10,
+    produces: 'acai_berry'
+  },
+
+  acai_berry: {
+    id: 'acai_berry',
+    icon: 'acaiBerry',
+    category: 'food',
+    name: 'acai berry',
+    description() {
+      const buff = BUFFS.food_acai_berry;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_acai_berry'
+    }],
+    sellPrice: 100
   },
 
   garlic_seed: {

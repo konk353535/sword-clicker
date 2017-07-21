@@ -51,6 +51,31 @@ export const PLANTS = {
     }]
   },
 
+  chrysanthemum: {
+    produces: 'chrysanthemum',
+    name: 'chrysanthemum',
+    id: 'chrysanthemum',
+    category: 'farming',
+    icon: ITEMS['chrysanthemum'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 8 * 60 * 60,
+    xp: 100,
+    required: [{
+      type: 'item',
+      itemId: 'chrysanthemum_seed',
+      icon: ITEMS['chrysanthemum_seed'].icon,
+      name: ITEMS['chrysanthemum_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 18
+    }]
+  },
+
   cactus: {
     produces: 'cactus',
     name: 'cactus',
@@ -176,6 +201,31 @@ export const PLANTS = {
     }]
   },
 
+  acai_berry: {
+    produces: 'acai_berry',
+    name: 'acai_berry',
+    id: 'acai_berry',
+    category: 'farming',
+    icon: ITEMS['acai_berry'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 300,
+    xp: 35,
+    required: [{
+      type: 'item',
+      itemId: 'acai_berry_seed',
+      icon: ITEMS['acai_berry_seed'].icon,
+      name: ITEMS['acai_berry_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 24
+    }]
+  },
+
   pineapple: {
     produces: 'pineapple',
     name: 'pineapple',
@@ -211,7 +261,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 300,
     growthTime: 15 * 60,
-    xp: 75,
+    xp: 110,
     required: [{
       type: 'item',
       itemId: 'watermelon_seed',
@@ -261,7 +311,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 10 * 60,
-    xp: 100,
+    xp: 200,
     required: [{
       type: 'item',
       itemId: 'sweet_potato_seed',
@@ -286,7 +336,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 10 * 60,
-    xp: 100,
+    xp: 300,
     required: [{
       type: 'item',
       itemId: 'banana_seed',
@@ -311,7 +361,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 17 * 60,
-    xp: 150,
+    xp: 400,
     required: [{
       type: 'item',
       itemId: 'rockmelon_seed',
@@ -336,7 +386,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 10 * 60,
-    xp: 75,
+    xp: 100,
     required: [{
       type: 'item',
       itemId: 'potato_seed',
@@ -361,7 +411,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 10 * 60,
-    xp: 100,
+    xp: 150,
     required: [{
       type: 'item',
       itemId: 'carrot_seed',
@@ -385,8 +435,8 @@ export const PLANTS = {
     waterStorage: 100,
     initialWater: 50,
     requiredWater: 200,
-    growthTime: 30 * 60,
-    xp: 150,
+    growthTime: 20 * 60,
+    xp: 500,
     required: [{
       type: 'item',
       itemId: 'dragonfruit_seed',

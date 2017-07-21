@@ -22,6 +22,11 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'gold_hammer', amount: 1 }
       ]
     }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'chrysanthemum_seed', amount: 3 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }

@@ -2,7 +2,9 @@
   <div class="d-flex flex-column">
     <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
       {{#if unit.name}}
-        <span class="text-capitalize battle-unit-name">{{unit.name}}</span>
+        <span
+          class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}
+        </span>
       {{/if}}
       <img
         src="/icons/{{unit.icon}}.svg"

@@ -298,7 +298,8 @@ export const BOSS_BUFFS = {
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 150;
           birdStats.healthMax = 150;
-          birdStats.defense *= 0.7;
+          birdStats.defense *= 0.6;
+          birdStats.armor *= 0.4;
           birdStats.attack *= 0.1;
           birdStats.attackMax *= 0.1;
           birdStats.accuracy *= 1.5;
@@ -355,19 +356,21 @@ export const BOSS_BUFFS = {
       onBeforeDeath({ buff, target, actualBattle }) {
         // cast ignite on all units
         actualBattle.units.forEach((unit) => {
-          target.stats.health = 150;
-          const newBuff = {
-            id: 'ignite',
-            data: {
-              duration: 10,
-              totalDuration: 10,
-              icon: 'ignite',
-              description: 'Burns you each second'
+          if (unit.id === target.target) {
+            target.stats.health = 150;
+            const newBuff = {
+              id: 'ignite',
+              data: {
+                duration: 25,
+                totalDuration: 25,
+                icon: 'ignite',
+                description: 'Burns you each second'
+              }
             }
-          }
 
-          addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
-          target.stats.health = 0;
+            addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            target.stats.health = 0;
+          }
         });
       }
     }

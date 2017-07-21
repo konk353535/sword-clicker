@@ -50,6 +50,10 @@
   flex: 1 1 auto;
 }
 
+.battle-unit-red {
+  color: $brand-danger;
+}
+
 .battle-unit-name {
   width: 100%;
   text-overflow: ellipsis;

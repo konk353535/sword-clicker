@@ -180,7 +180,7 @@ export const ATTACK_ABILITIES = {
     name: 'blade spin',
     id: 'blade_spin',
     buffs: ['blade_spin'],
-    cooldown: 20,
+    cooldown: 15,
     slot: 'any',
     isHidden: false,
     target: 'allEnemies', // The curreny enemy who we are auto attacking

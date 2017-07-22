@@ -101,7 +101,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "bronze kite shield",
-    "sellPrice": 75,
+    "sellPrice": 200,
     "description": "Provides high defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -129,7 +129,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "steel kite shield",
-    "sellPrice": 75,
+    "sellPrice": 500,
     "description": "Provides high defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -157,7 +157,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "obsidian kite shield",
-    "sellPrice": 75,
+    "sellPrice": 950,
     "description": "Provides high defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -185,7 +185,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "meteorite kite shield",
-    "sellPrice": 75,
+    "sellPrice": 1250,
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -244,7 +244,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "gold buckler",
-    "sellPrice": 75,
+    "sellPrice": 350,
     "description": "Provides average defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -273,7 +273,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "tungsten buckler",
-    "sellPrice": 75,
+    "sellPrice": 850,
     "description": "Provides average defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -302,7 +302,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "mithril buckler",
-    "sellPrice": 75,
+    "sellPrice": 950,
     "description": "Provides average defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -331,7 +331,7 @@ export const MISC_ITEMS = {
     "weaponType": "shield",
     "slot": "offHand",
     "name": "elven steel buckler",
-    "sellPrice": 75,
+    "sellPrice": 1350,
     "description": "Provides average defense bonuses",
     "isEquippable": true,
     "stats": {
@@ -361,7 +361,7 @@ export const MISC_ITEMS = {
     "weaponType": "knife",
     "slot": "offHand",
     "name": "silver knife",
-    "sellPrice": 75,
+    "sellPrice": 250,
     "description": "Provides minor offensive bonuses",
     "isEquippable": true,
     "stats": {
@@ -388,7 +388,7 @@ export const MISC_ITEMS = {
     "weaponType": "knife",
     "slot": "offHand",
     "name": "titanium knife",
-    "sellPrice": 75,
+    "sellPrice": 850,
     "description": "Provides minor offensive bonuses",
     "isEquippable": true,
     "stats": {
@@ -415,7 +415,7 @@ export const MISC_ITEMS = {
     "weaponType": "knife",
     "slot": "offHand",
     "name": "cobalt knife",
-    "sellPrice": 75,
+    "sellPrice": 950,
     "description": "Provides minor offensive bonuses",
     "isEquippable": true,
     "stats": {
@@ -442,7 +442,7 @@ export const MISC_ITEMS = {
     "weaponType": "knife",
     "slot": "offHand",
     "name": "cursed knife",
-    "sellPrice": 75,
+    "sellPrice": 1650,
     "description": "Provides minor offensive bonuses",
     "isEquippable": true,
     "stats": {
@@ -470,7 +470,7 @@ export const MISC_ITEMS = {
     "weaponType": "shortSword",
     "slot": "mainHand",
     "name": "iron rapiers",
-    "sellPrice": 75,
+    "sellPrice": 150,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
@@ -501,7 +501,7 @@ export const MISC_ITEMS = {
     "weaponType": "shortSword",
     "slot": "mainHand",
     "name": "adamantium rapiers",
-    "sellPrice": 75,
+    "sellPrice": 1050,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
@@ -532,7 +532,7 @@ export const MISC_ITEMS = {
     "weaponType": "shortSword",
     "slot": "mainHand",
     "name": "fairy steel rapiers",
-    "sellPrice": 75,
+    "sellPrice": 1250,
     "description": "A good balance between offense and defense",
     "isWeapon": true,
     "isEquippable": true,
@@ -586,7 +586,7 @@ export const MISC_ITEMS = {
     category: 'combat',
     slot: 'offHand',
     name: 'fairy spirit shield',
-    sellPrice: 500,
+    sellPrice: 1000,
     description: 'The shield pulls at your spirit.',
     isEquippable: true,
     stats: {
@@ -610,7 +610,7 @@ export const MISC_ITEMS = {
     category: 'combat',
     slot: 'offHand',
     name: 'cursed spirit shield',
-    sellPrice: 500,
+    sellPrice: 2500,
     description: 'The shield pulls at your spirit.',
     isEquippable: true,
     stats: {

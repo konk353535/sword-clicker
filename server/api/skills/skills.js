@@ -261,7 +261,8 @@ Meteor.methods({
         itemId: 1,
         slot: 1,
         quality: 1,
-        enhanced: 1
+        enhanced: 1,
+        extraStats: 1
       }
     }).fetch().map((item) => {
       const itemConstants = ITEMS[item.itemId];

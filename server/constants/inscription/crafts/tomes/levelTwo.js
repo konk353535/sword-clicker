@@ -9,7 +9,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'phantom_strikes_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -22,7 +22,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'poisoned_blade_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -48,7 +48,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'health_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -61,7 +61,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'defense_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -74,7 +74,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'accuracy_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -87,7 +87,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'attack_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 100,
     maxToCraft: 4,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
@@ -100,7 +100,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'berserk_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 4,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_RED_255, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -113,7 +113,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'iron_will_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 5,
     requiredInscriptionLevel: 5,
     required: [UTIL.RED_255, UTIL.GREEN_255, UTIL.RED_200, UTIL.BEECH_PAPER, UTIL.LEVEL_5]
@@ -126,7 +126,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'blade_spin_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.RED_200, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -139,7 +139,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'armor_up_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 50,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
     required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_6]
@@ -152,7 +152,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'execute_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
     required: [UTIL.BLUE_255, UTIL.MANY_GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_6]
@@ -165,7 +165,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'bleed_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
     required: [UTIL.MANY_GREEN_200, UTIL.RED_200, UTIL.MANY_ASH_PAPER, UTIL.LEVEL_6]
@@ -178,7 +178,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'blade_frenzy_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 80,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
     required: [UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_6]
@@ -191,7 +191,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'defensive_stance_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
     required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_5]
@@ -204,7 +204,7 @@ export const LEVEL_TWO_CRAFTS = {
     id: 'evasive_maneuvers_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
     required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_5]

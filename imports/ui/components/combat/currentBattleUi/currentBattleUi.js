@@ -32,7 +32,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 
     // Find enemies that are targetting my unit
     currentBattle.enemies.forEach((enemy) => {
-      if (enemy.target === myUnit.id) {
+      if (myUnit && enemy.target === myUnit.id) {
         enemy.targettingPlayer = true;
       } else {
         enemy.targettingPlayer = false;

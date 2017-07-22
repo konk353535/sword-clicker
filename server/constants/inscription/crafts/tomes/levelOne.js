@@ -48,7 +48,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'ice_dart_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 50,
     maxToCraft: 4,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -61,7 +61,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'water_ball_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 100,
+    xp: 120,
     maxToCraft: 1,
     requiredInscriptionLevel: 14,
     required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
@@ -74,7 +74,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'fire_ball_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 100,
+    xp: 120,
     maxToCraft: 1,
     requiredInscriptionLevel: 15,
     required: [UTIL.MANY_RED_200, UTIL.OAK_PAPER, UTIL.LEVEL_15]
@@ -87,7 +87,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'earth_ball_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 100,
+    xp: 120,
     maxToCraft: 1,
     requiredInscriptionLevel: 16,
     required: [UTIL.BLUE_255, UTIL.RED_255, UTIL.GREEN_255, UTIL.OAK_PAPER, UTIL.LEVEL_16]
@@ -100,7 +100,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'air_ball_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 100,
+    xp: 120,
     maxToCraft: 1,
     requiredInscriptionLevel: 17,
     required: [UTIL.BLUE_255, UTIL.PURPLE_255, UTIL.OAK_PAPER, UTIL.LEVEL_17]
@@ -113,7 +113,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'vampirism_level_1_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 100,
+    xp: 120,
     maxToCraft: 1,
     requiredInscriptionLevel: 17,
     required: [UTIL.BLUE_255, UTIL.PURPLE_255, UTIL.OAK_PAPER, UTIL.LEVEL_17]
@@ -126,7 +126,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'meteor_tome',
     category: 'tome',
     timeToCraft: 900,
-    xp: 500,
+    xp: 600,
     maxToCraft: 1,
     requiredInscriptionLevel: 25,
     required: [UTIL.YELLOW_255, UTIL.RED_150, UTIL.WALNUT_PAPER, UTIL.LEVEL_25]
@@ -139,7 +139,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'scream_tome',
     category: 'tome',
     timeToCraft: 900,
-    xp: 250,
+    xp: 600,
     maxToCraft: 1,
     requiredInscriptionLevel: 19,
     required: [UTIL.MANY_RED_150, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_19]
@@ -178,7 +178,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'air_dart_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 50,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.GREEN_255, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -191,7 +191,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'execute_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 50,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.GREEN_255, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -204,7 +204,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'fire_dart_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 50,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.RED_255, UTIL.RED_200, UTIL.GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -269,7 +269,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'bleed_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 45,
     maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.RED_255, UTIL.RED_200, UTIL.GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
@@ -282,7 +282,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'blade_spin_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 35,
     maxToCraft: 1,
     requiredInscriptionLevel: 2,
     required: [UTIL.MANY_RED_255, UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_2]
@@ -295,7 +295,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'blade_frenzy_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 45,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
     required: [UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_6]
@@ -308,7 +308,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'defensive_stance_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
     required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_5]
@@ -321,7 +321,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'evasive_maneuvers_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
     required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_5]
@@ -334,7 +334,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'armor_up_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 3,
     required: [UTIL.RED_200, UTIL.GREEN_255, UTIL.MANY_PINE_PAPER, UTIL.LEVEL_3]
@@ -347,7 +347,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'iron_will_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 20,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 1,
     required: [UTIL.RED_255, UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
@@ -360,7 +360,7 @@ export const LEVEL_ONE_CRAFTS = {
     id: 'taunt_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
-    xp: 30,
+    xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 3,
     required: [UTIL.GREEN_200, UTIL.RED_255, UTIL.BEECH_PAPER, UTIL.LEVEL_3]

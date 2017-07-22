@@ -97,21 +97,21 @@ export const STAFF_CRAFTS = {
     }]
   },
 
-  fiery_staff: {
-    produces: 'fiery_staff',
-    name: 'fiery staff',
+  black_staff: {
+    produces: 'black_staff',
+    name: 'black staff',
     recipeFor: 'crafting',
     category: 'combat',
-    id: 'fiery_staff',
+    id: 'black_staff',
     timeToCraft: 2 * 60 * 60, // 60
     xp: 600,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
       type: 'item',
-      itemId: 'fiery_log',
-      icon: ITEMS['fiery_log'].icon,
-      name: ITEMS['fiery_log'].name,
+      itemId: 'black_log',
+      icon: ITEMS['black_log'].icon,
+      name: ITEMS['black_log'].name,
       amount: 15,
       consumes: true
     }, {

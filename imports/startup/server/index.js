@@ -354,7 +354,7 @@ Accounts.onCreateUser((options, user) => {
   user._id = Random.id();
   const userId = user._id;
   user.uiState = {
-    showChat: false,
+    showChat: true,
     showSummaryList: false,
     craftingFilter: 'mining'
   }

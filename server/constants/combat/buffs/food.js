@@ -36,7 +36,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -96,7 +96,7 @@ export const FOOD_BUFFS = {
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -159,7 +159,7 @@ export const FOOD_BUFFS = {
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -212,7 +212,7 @@ export const FOOD_BUFFS = {
 
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -268,7 +268,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -323,7 +323,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -379,7 +379,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -435,7 +435,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -490,7 +490,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -545,7 +545,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -600,7 +600,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -655,7 +655,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -710,7 +710,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -765,7 +765,7 @@ export const FOOD_BUFFS = {
 
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -820,7 +820,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -875,7 +875,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -931,7 +931,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
 
-        if (buff.data.duration < 0) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {

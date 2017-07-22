@@ -361,8 +361,8 @@ export const BOSS_BUFFS = {
             const newBuff = {
               id: 'ignite',
               data: {
-                duration: 25,
-                totalDuration: 25,
+                duration: 10,
+                totalDuration: 10,
                 icon: 'ignite',
                 description: 'Burns you each second'
               }

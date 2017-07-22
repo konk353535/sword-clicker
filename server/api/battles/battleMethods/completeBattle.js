@@ -111,7 +111,7 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
-  if (win || actualBattle.isExplorationRun) {
+  if (win || actualBattle.isExplorationRun || actualBattle.startingBossHp) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
 
@@ -142,27 +142,34 @@ export const completeBattle = function (actualBattle) {
     const units = actualBattle.units.concat(actualBattle.deadUnits);
 
     // Apply xp gains, only if not a boss battle
-    const totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
+    let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
-    if (!actualBattle.startingBossHp) {
-      units.forEach((unit) => {
-        // Distribute xp gained evenly across units
-        const xpPortion = totalXpGain / units.length;
-        Object.keys(unit.xpDistribution).forEach((skillName) => {
-          // Distribute xp gained per player, per skill
-          // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
-          const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
+    if (actualBattle.startingBossHp) {
+      // XP is determine by damage dealt
+      const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
+      const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
+      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
 
-          addXp(skillName, skillXpPortion, unit.id);
-          finalTickEvents.push({
-            type: 'xp',
-            amount: skillXpPortion,
-            skill: skillName,
-            owner: unit.owner
-          })
-        });
-      });
+      totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
     }
+
+    units.forEach((unit) => {
+      // Distribute xp gained evenly across units
+      const xpPortion = totalXpGain / units.length;
+      Object.keys(unit.xpDistribution).forEach((skillName) => {
+        // Distribute xp gained per player, per skill
+        // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
+        const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
+
+        addXp(skillName, skillXpPortion, unit.id);
+        finalTickEvents.push({
+          type: 'xp',
+          amount: skillXpPortion,
+          skill: skillName,
+          owner: unit.owner
+        })
+      });
+    });
 
     // Apply rewards for killing monsters
     const rewardsGained = [];

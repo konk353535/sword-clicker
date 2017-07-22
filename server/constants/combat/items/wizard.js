@@ -33,7 +33,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'blue wizard hat',
-    sellPrice: 100,
+    sellPrice: 300,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
@@ -58,7 +58,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'purple wizard hat',
-    sellPrice: 100,
+    sellPrice: 1000,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
@@ -108,7 +108,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'blue wizard shirt',
-    sellPrice: 100,
+    sellPrice: 300,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
@@ -133,7 +133,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'purple wizard shirt',
-    sellPrice: 100,
+    sellPrice: 1000,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
@@ -183,7 +183,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'blue wizard shorts',
-    sellPrice: 100,
+    sellPrice: 300,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
@@ -208,7 +208,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'purple wizard shorts',
-    sellPrice: 100,
+    sellPrice: 1000,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {

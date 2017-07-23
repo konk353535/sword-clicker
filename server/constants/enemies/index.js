@@ -430,13 +430,7 @@ export const ENEMIES = Object.assign({
     id: 'farmer',
     icon: 'farmer',
     name: 'farmer',
-    swarmRange: [2, 4],
-    buffs: [{
-      id: 'farmer_monster',
-      data: {
-        hideBuff: true
-      }
-    }]
+    swarmRange: [2, 4]
   },
 
   // Cuts through armor
@@ -522,7 +516,7 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'plus',
       key: 'criticalChance',
-      amount: 0.1
+      amount: 10
     }]
   },
 
@@ -534,7 +528,7 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'plus',
       key: 'criticalChance',
-      amount: 0.1
+      amount: 10
     }]
   },
 
@@ -560,7 +554,7 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'plus',
       key: 'criticalChance',
-      amount: 0.05
+      amount: 5
     }, {
       type: 'plus',
       key: 'criticalDamage',
@@ -810,6 +804,10 @@ export const ENEMIES = Object.assign({
       }
     }],
     statBuffs: [{
+      type: 'plus',
+      key: 'magicArmor',
+      amount: 20
+    }, {
       type: 'times',
       key: 'attack',
       amount: 0.25

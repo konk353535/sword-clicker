@@ -203,7 +203,7 @@ export const PLANTS = {
 
   acai_berry: {
     produces: 'acai_berry',
-    name: 'acai_berry',
+    name: 'acai berry',
     id: 'acai_berry',
     category: 'farming',
     icon: ITEMS['acai_berry'].icon,

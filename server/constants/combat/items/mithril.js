@@ -182,7 +182,8 @@ export const MITHRIL_ITEMS = {
       "attack": 46.7,
       "attackMax": 167.9,
       "attackSpeed": 0.3,
-      "accuracy": 75
+      "accuracy": 75,
+      "criticalChance": 5
     },
     "extraStats": {
       "attack": 14,

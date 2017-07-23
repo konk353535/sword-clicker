@@ -392,15 +392,15 @@ export const STAFF_ITEMS = {
     }]
   },
 
-  fiery_staff: {
-    id: 'fiery_staff',
-    icon: 'fieryStaff',
+  black_staff: {
+    id: 'black_staff',
+    icon: 'blackStaff',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
-    name: 'fiery staff',
+    name: 'black staff',
     sellPrice: 1000,
-    description: 'What seems like a normal fiery staff',
+    description: 'What seems like a normal black staff',
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,

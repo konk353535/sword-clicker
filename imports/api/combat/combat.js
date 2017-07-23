@@ -15,6 +15,8 @@ CombatSchema = new SimpleSchema({
   'stats.attackMax': { type: Number, decimal: true, defaultValue: 1 },
   'stats.attackSpeed': { type: Number, decimal: true, defaultValue: 1 },
   'stats.accuracy': { type: Number, decimal: true, defaultValue: 1 },
+  'stats.criticalChance': { type: Number, decimal: true, defaultValue: 0 },
+  'stats.criticalDamage': { type: Number, decimal: true, defaultValue: 1 },
   'stats.health': { type: Number, decimal: true, defaultValue: 50, decimal: true },
   'stats.healthMax': { type: Number, decimal: true, defaultValue: 50 },
   'stats.energy': { type: Number, decimal: true, defaultValue: 20, decimal: true },

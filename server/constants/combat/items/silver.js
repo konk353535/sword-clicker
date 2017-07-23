@@ -182,7 +182,8 @@ export const SILVER_ITEMS = {
       "attack": 13.7,
       "attackMax": 49.2,
       "attackSpeed": 0.3,
-      "accuracy": 22
+      "accuracy": 22,
+      "criticalChance": 5
     },
     "extraStats": {
       "attack": 4.1,

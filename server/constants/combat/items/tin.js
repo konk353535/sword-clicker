@@ -182,7 +182,8 @@ export const TIN_ITEMS = {
       "attack": 7,
       "attackMax": 25.2,
       "attackSpeed": 0.3,
-      "accuracy": 11.2
+      "accuracy": 11.2,
+      "criticalChance": 5
     },
     "extraStats": {
       "attack": 2.1,

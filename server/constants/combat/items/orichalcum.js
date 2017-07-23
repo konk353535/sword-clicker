@@ -182,7 +182,8 @@ export const ORICHALCUM_ITEMS = {
       "attack": 56,
       "attackMax": 201.3,
       "attackSpeed": 0.3,
-      "accuracy": 89.9
+      "accuracy": 89.9,
+      "criticalChance": 5
     },
     "extraStats": {
       "attack": 16.8,

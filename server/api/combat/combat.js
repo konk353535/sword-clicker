@@ -30,6 +30,8 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       energyMax: COMBAT.baseEnergyMax,
       defense: 0,
       armor: 0,
+      criticalChance: 0,
+      criticalDamage: 2,
       magicArmor: 0
     },
     enchantments: [],

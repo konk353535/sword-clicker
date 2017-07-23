@@ -331,13 +331,12 @@ Template.craftingPage.helpers({
     const craftingTierFilter = instance.state.get('craftingTierFilter');
     Object.keys(craftingTierFilter).forEach((tierKey) => {
       if (craftingTierFilter[tierKey]) {
-        patterns.push(tierKey);
+        patterns.push(`^${tierKey}`);
       }
     });
 
     // Create regex exp to filter out based on current tier filter selection
     let filterTierRegex = new RegExp(patterns.join('|'), 'gi');
-
     let filteredRecipes = instance.state.get('recipes').filter((item) => {
       if (patterns.length > 0 && filterTierRegex) {
         // Filter out if it matches the pattern.

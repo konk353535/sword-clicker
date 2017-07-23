@@ -394,6 +394,10 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'singleFriendly',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
     targettable: true,
     isMagic: true,
     description(level) {
@@ -445,6 +449,10 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     isMagic: true,
     target: 'self',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
     description(level) {
       const BUFF = BUFFS.heavens_descent;
       return BUFF.description({ buff: BUFF, level });

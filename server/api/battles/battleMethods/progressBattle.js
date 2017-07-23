@@ -134,11 +134,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
       if (hitGap > 0) {
         // Favours attacker
-        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 30)) / 2;
         hitChance += extraChance;
       } else {
         // Favours defender
-        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 25)) / 2;
+        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 30)) / 2;
         hitChance -= extraChance;
       }
       if (hitChance >= Math.random()) {
@@ -148,7 +148,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
         // Is this a crit?
         let customIcon;
-        if (attacker.stats.criticalChance && Math.random() <= attacker.stats.criticalChance) {
+        if (attacker.stats.criticalChance && Math.random() <= (attacker.stats.criticalChance / 100)) {
           rawDamage *= attacker.stats.criticalDamage;
           customIcon = 'criticalStrike';
         }
@@ -161,7 +161,15 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
             buff.constants = BUFFS[buff.id];
             if (buff.constants.events.onDidDamage) {
               // Did Damage
-              buff.constants.events.onDidDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt })
+              buff.constants.events.onDidDamage({
+                secondsElapsed,
+                buff,
+                defender,
+                attacker,
+                actualBattle,
+                damageDealt,
+                rawDamage
+              })
             }
           });
         }

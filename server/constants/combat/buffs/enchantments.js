@@ -23,10 +23,10 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
         const constants = buff.constants.constants;
         const baseDamage = attacker.stats.attack;
-        const totalDamage = damageDealt * constants.damageDecimal;
+        const totalDamage = rawDamage * constants.damageDecimal;
 
         actualBattle.utils.dealDamage(totalDamage, {
           attacker,

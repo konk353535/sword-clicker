@@ -66,6 +66,13 @@ SyncedCron.add({
       }
     }, { multi: true });
 
+    // Reset gems today
+    Users.update({}, {
+      $set: {
+        fakeGemsToday: 0
+      }
+    }, { multi: true });
+
     console.log('All done for boss battle reset');
     return true;
   }

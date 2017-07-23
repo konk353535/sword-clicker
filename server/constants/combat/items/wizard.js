@@ -2,6 +2,33 @@ import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/c
 
 export const WIZARD_ITEMS = {
 
+  druids_hat: {
+    id: 'druids_hat',
+    icon: 'druidsHat',
+    category: 'combat',
+    slot: 'head',
+    name: 'druidic hat',
+    sellPrice: 600,
+    description: 'Helps emit healing energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 30,
+      magicPower: 3,
+      magicArmor: 5,
+      healingPower: 10
+    },
+    extraStats: {
+      healthMax: 10,
+      magicPower: 2,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
   brown_wizard_hat: {
     id: 'brown_wizard_hat',
     icon: 'brownWizardHat',

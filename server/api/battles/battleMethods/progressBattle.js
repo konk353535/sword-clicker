@@ -484,6 +484,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       }, 1000);
     }
   } catch(e) {
+    console.log(e);
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
   }

@@ -26,7 +26,8 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 15
-    }]
+    }],
+    enchantments: ['druidic_hat'],
   },
 
   brown_wizard_hat: {

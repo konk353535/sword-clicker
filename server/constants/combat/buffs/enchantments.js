@@ -51,4 +51,63 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  druidic_hat: {
+    duplicateTag: 'druidic_hat', // Used to stop duplicate buffs
+    icon: 'druidsHat',
+    name: 'druids blessing',
+    description() {
+      return `Emergency heal an ally below 30% hp for 250% MP`;
+    },
+    constants: {
+      healMagicPower: 2.5
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.timeTillHeal == null) {
+          buff.data.timeTillHeal = 1.5;
+        } else {
+          buff.data.timeTillHeal -= secondsElapsed;
+        }
+
+        if (buff.data.timeTillHeal <= 0) {
+          // Heal a random ally
+          let lowestHp = Infinity;
+          let targetUnit;
+          actualBattle.units.forEach((unit) => {
+            const hpPercentage = unit.stats.health / unit.stats.healthMax;
+            if (hpPercentage < lowestHp) {
+              lowestHp = hpPercentage;
+              targetUnit = unit;
+            }
+          });
+
+          if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
+            const totalHeal = target.stats.magicPower * 2.5;
+            actualBattle.utils.healTarget(totalHeal, {
+              caster: target,
+              target: targetUnit,
+              tickEvents: actualBattle.tickEvents
+            });
+
+            removeBuff({ buff, target, caster: target });
+          }
+
+          buff.data.timeTillHeal = 1.5;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  }
+
 }

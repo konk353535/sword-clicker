@@ -268,6 +268,9 @@ Meteor.methods({
     let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
     let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
     let fakeGemsSpawned = 0;
+    let existingFakeGems = miningSpaces.filter((miningSpace) => {
+      return miningSpace.oreId === 'gem';
+    }).length;
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
@@ -277,11 +280,11 @@ Meteor.methods({
         const targetOre = sortedChanceOres[i];
         if (rollDice <= targetOre.chance) {
           if (targetOre.id === 'gem') {
-            if (userDoc.fakeGemsToday >= 15 || userDoc.fakeGemsToday == null || fakeGemsSpawned > 3) {
+            if (userDoc.fakeGemsToday >= 15 || userDoc.fakeGemsToday == null || existingFakeGems > 3) {
               continue;
             }
 
-            fakeGemsSpawned += 1;
+            existingFakeGems += 1;
             userDoc.fakeGemsToday += 1;
             Users.update({
               _id: Meteor.userId()

@@ -3,6 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
+import { Users } from '/imports/api/users/users';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';

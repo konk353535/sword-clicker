@@ -948,6 +948,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the water ball spell.'
   },
 
+  healing_shield_tome: {
+    id: 'healing_shield_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'healing shield',
+    teaches: {
+      abilityId: 'healing_shield',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the healing shield spell.'
+  },
+
+  earthen_fist_tome: {
+    id: 'earthen_fist_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'earthen fist',
+    teaches: {
+      abilityId: 'earthen_fist',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the earthen fist spell.'
+  },
+
   air_ball_tome: {
     id: 'air_ball_tome',
     icon: 'tome',

@@ -34,19 +34,18 @@ export const TOWER_FLOOR_9 = {
     }]))
   },
   5: {
-    name: 'Fire Temple',
-    enemies: ['fire_mage'],
-    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
+    name: 'Carrot Patch',
+    enemies: ['rabbit'],
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'purple_trident', amount: 1 }
+        { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 },
+        { type: 'item', itemId: 'druids_hat', amount: 1 }
       ]
     }, {
-      chance: 1 / 32,
+      chance: 1 / 4,
       rewards: [
-        { type: 'item', itemId: 'purple_wizard_hat', amount: 1 },
-        { type: 'item', itemId: 'purple_wizard_shirt', amount: 1 },
-        { type: 'item', itemId: 'purple_wizard_shorts', amount: 1 }
+        { type: 'item', itemId: 'carrot', amount: 1 }
       ]
     }]))
   },

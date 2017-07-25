@@ -83,6 +83,10 @@ export const BATTLES = {
   },
 
   dmgReduction(armor) {
+    if (armor <= 0) {
+      return 0;
+    }
+
     return armor / (armor + 100);
   },
 

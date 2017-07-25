@@ -46,17 +46,19 @@ export const TOWER_FLOOR_8 = {
     }]))
   },
   5: {
-    name: 'Carrot Patch',
-    enemies: ['rabbit'],
-    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+    name: 'Fire Temple',
+    enemies: ['fire_mage'],
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 }
+        { type: 'item', itemId: 'purple_trident', amount: 1 }
       ]
     }, {
-      chance: 1 / 4,
+      chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'carrot', amount: 1 }
+        { type: 'item', itemId: 'purple_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'purple_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'purple_wizard_shorts', amount: 1 }
       ]
     }]))
   },

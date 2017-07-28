@@ -95,7 +95,7 @@ export const TOWER_FLOOR_2 = {
   boss: {
     enemy: { id: 'boss_cobra', amount: 1 },
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 2,
       rewards: [
         { type: 'item', itemId: 'snake_skin_chest', amount: 1 }
       ]

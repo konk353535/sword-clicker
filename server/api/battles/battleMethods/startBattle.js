@@ -116,6 +116,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   let hasEnergy = true;
   let battleEnergyCost = COMBAT.energyConsumption[room] || 1;
 
+  if (isOldBoss) {
+    battleEnergyCost = 5;
+  }
+
   // Ensure users have energy requirements + havent already fought boss
   usersCombatStats.forEach((userCombat) => {
     if (userCombat.stats.energy < battleEnergyCost) {

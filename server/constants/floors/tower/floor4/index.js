@@ -99,7 +99,7 @@ export const TOWER_FLOOR_4 = {
   boss: {
     enemy: { id: 'boss_spartan', amount: 1 },
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 2,
       rewards: [
         { type: 'item', itemId: 'spartan_spear', amount: 1 }
       ]

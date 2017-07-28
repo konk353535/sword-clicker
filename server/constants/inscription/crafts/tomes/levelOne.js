@@ -67,6 +67,58 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
   },
 
+  fire_wave_tome: {
+    recipeFor: 'inscription',
+    produces: 'fire_wave_tome',
+    name: 'Fire Wave',
+    id: 'fire_wave_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 400,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 32,
+    required: [UTIL.PURPLE_200, UTIL.WHITE_128, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_32]
+  },
+
+  furied_winds_tome: {
+    recipeFor: 'inscription',
+    produces: 'furied_winds_tome',
+    name: 'Furied Winds',
+    id: 'furied_winds_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 400,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 30,
+    required: [UTIL.GREEN_170, UTIL.WHITE_128, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_30]
+  },
+
+  healing_shield_tome: {
+    recipeFor: 'inscription',
+    produces: 'healing_shield_tome',
+    name: 'Healing Shield',
+    id: 'healing_shield_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 400,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 28,
+    required: [UTIL.RED_150, UTIL.MANY_RED_200, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_28]
+  },
+
+  earthen_fist_tome: {
+    recipeFor: 'inscription',
+    produces: 'earthen_fist_tome',
+    name: 'Earthen Fist',
+    id: 'earthen_fist_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 400,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 26,
+    required: [UTIL.RED_150, UTIL.WHITE_128, UTIL.CHERRY_PAPER, UTIL.LEVEL_26]
+  },
+
   fire_ball_tome: {
     recipeFor: 'inscription',
     produces: 'fire_ball_tome',

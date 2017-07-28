@@ -25,8 +25,7 @@ export const TOWER_FLOOR_7 = {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'ash_seed', amount: 3 },
-        { type: 'item', itemId: 'ash_log', amount: 20 },
-        { type: 'item', itemId: 'ash_staff', amount: 1 }
+        { type: 'item', itemId: 'ash_log', amount: 20 }
       ]
     }]))
   },
@@ -78,7 +77,6 @@ export const TOWER_FLOOR_7 = {
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'steel_kite_shield', amount: 1 },
         { type: 'item', itemId: 'water_wave_tome', amount: 1 }
       ]
     }, {

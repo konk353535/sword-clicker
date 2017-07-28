@@ -14,12 +14,20 @@ import '/imports/ui/components/magic/spellBookTab/spellBookTab.js';
 import './magic.html';
 
 let magicPageTimer;
+let astronomyPageTimer;
 
 Template.magicPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
 
   Meteor.subscribe('abilities');
+
+  Meteor.call('astronomy.gameUpdate');
+  astronomyPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('astronomy.gameUpdate');
+    }
+  }, 10000);
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -56,6 +64,7 @@ Template.magicPage.onCreated(function bodyOnCreated() {
 });
 
 Template.magicPage.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(astronomyPageTimer);
 });
 
 Template.magicPage.events({

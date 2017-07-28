@@ -21,6 +21,43 @@ export const MAGIC = {
       }]
     },
 
+    earthen_fist: {
+      id: 'earthen_fist',
+      abilityId: 'earthen_fist',
+      xp: 30,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 2,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'complete_earth_shard',
+        icon: ITEMS['complete_earth_shard'].icon,
+        name: ITEMS['complete_earth_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'earth_shard_fragment',
+        icon: ITEMS['earth_shard_fragment'].icon,
+        name: ITEMS['earth_shard_fragment'].name,
+        amount: 5,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 33
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 33
+      }]
+    },
+
     lightning_storm: {
       id: 'lightning_storm',
       abilityId: 'lightning_storm',
@@ -150,6 +187,96 @@ export const MAGIC = {
         type: 'skill',
         name: 'astronomy',
         level: 1
+      }]
+    },
+
+    furied_winds: {
+      id: 'furied_winds',
+      abilityId: 'furied_winds',
+      xp: 35,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_air_shard',
+        icon: ITEMS['complete_air_shard'].icon,
+        name: ITEMS['complete_air_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 7,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 31
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 31
+      }]
+    },
+
+    fire_wave: {
+      id: 'fire_wave',
+      abilityId: 'fire_wave',
+      xp: 35,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_fire_shard',
+        icon: ITEMS['complete_fire_shard'].icon,
+        name: ITEMS['complete_fire_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'fire_shard_fragment',
+        icon: ITEMS['fire_shard_fragment'].icon,
+        name: ITEMS['fire_shard_fragment'].name,
+        amount: 20,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 29
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 29
+      }]
+    },
+
+    healing_shield: {
+      id: 'healing_shield',
+      abilityId: 'healing_shield',
+      xp: 25,
+      maxToCraft: 10000,
+      required: [{
+        type: 'item',
+        itemId: 'complete_water_shard',
+        icon: ITEMS['complete_water_shard'].icon,
+        name: ITEMS['complete_water_shard'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'item',
+        itemId: 'water_shard_fragment',
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 20,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'astronomy',
+        level: 27
+      }, {
+        type: 'skill',
+        name: 'magic',
+        level: 27
       }]
     },
 

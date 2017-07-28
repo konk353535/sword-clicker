@@ -93,6 +93,94 @@ export const MISC_ITEMS = {
     }]
   },
 
+  snake_skin_chest: {
+    id: 'snake_skin_chest',
+    icon: 'snakeSkinChest',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'snake skin chest',
+    sellPrice: 2500,
+    description: 'A chest made from snake skin',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      defense: 5,
+      accuracy: 5
+    },
+    extraStats: {
+      healthMax: 50,
+      defense: 3,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+
+  "bone_kings_axe": {
+    "id": "bone_kings_axe",
+    "icon": "boneKingsAxe",
+    "category": "combat",
+    "weaponType": "battleAxe",
+    "slot": "mainHand",
+    "name": "bone kings axe",
+    "sellPrice": 350,
+    "description": "The axe from a fallen warrior.",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 25.8,
+      "attackMax": 88.8,
+      "attackSpeed": 0.3,
+      "accuracy": 40,
+      "criticalChance": 5
+    },
+    "extraStats": {
+      "attack": 7.7,
+      "attackMax": 13.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }],
+    enchantments: ['axe_cleave']
+  },
+
+  "spartan_spear": {
+    "id": "spartan_spear",
+    "icon": "spartanSpear",
+    "category": "combat",
+    "weaponType": "spear",
+    "slot": "mainHand",
+    "name": "spartans spear",
+    "sellPrice": 275,
+    "description": "Used to train defense.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 9.1,
+      "attackMax": 12.4,
+      "attackSpeed": 0.5,
+      "accuracy": 25.4,
+      "magicArmor": 20
+    },
+    "extraStats": {
+      "attack": 2.7,
+      "attackMax": 3.4,
+      "accuracy": 3.4,
+      "magicArmor": 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
+  },
+
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
   "bronze_kite_shield": {
     "id": "bronze_kite_shield",

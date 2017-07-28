@@ -21,6 +21,29 @@ export const AMULET_ITEMS = {
     }]
   },
 
+  shark_tooth_amulet: {
+    id: 'shark_tooth_amulet',
+    icon: 'sharkToothAmulet',
+    category: 'combat',
+    slot: 'neck',
+    name: 'shark tooth amulet',
+    sellPrice: 120,
+    description: 'An amulet with traces of magic. Click monsters to damage in combat.',
+    isEquippable: true,
+    isAttackAmulet: true,
+    stats: {
+      damage: 5, // Damage per click
+      energyStorage: 5, // Max energy stored
+      energyRegen: 5, // Per minute
+      criticalChance: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 1
+    }]
+  },
+
   copper_amulet: {
     id: 'copper_amulet',
     icon: 'copperAmulet',

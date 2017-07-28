@@ -72,6 +72,76 @@ export const MAGIC_ABILITIES = {
     }
   },
 
+  // Single target heal + armor increase (5s?)
+  healing_shield: {
+    icon: 'healingShield',
+    name: 'healing shield',
+    id: 'healing_shield',
+    buffs: ['healing_shield'],
+    cooldown: 45,
+    slot: 'any',
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['staff', 'wand']
+    }],
+    description(level) {
+      const BUFF = BUFFS.healing_shield;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  // Single target physical damage + stun
+  earthen_fist: {
+    icon: 'earthenFist',
+    name: 'earthen first',
+    id: 'earthen_fist',
+    buffs: ['earthen_fist'],
+    cooldown: 60,
+    slot: 'any',
+    target: 'currentEnemy',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.earthen_fist;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  // AOE semi spammable damage spell
+  fire_wave: {
+    icon: 'fireWave',
+    name: 'fire wave',
+    id: 'fire_wave',
+    buffs: ['fire_wave'],
+    cooldown: 45,
+    slot: 'any',
+    target: 'allEnemies',
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.fire_wave;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  // Increases targets attack speed by X for Y attacks OR?
+  furied_winds: {
+    icon: 'furiedWinds',
+    name: 'furied winds',
+    id: 'furied_winds',
+    buffs: ['furied_winds'],
+    cooldown: 180,
+    slot: 'any',
+    target: 'singleFriendly',
+    targettable: true,
+    isMagic: true,
+    description(level) {
+      const BUFF = BUFFS.furied_winds;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   water_wave: {
     icon: 'waterWave',
     name: 'water wave',

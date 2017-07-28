@@ -10,7 +10,7 @@
         <img class="extra-small-icon" src="/icons/{{this.icon}}.svg" alt="{{this.name}}">
         
         {{#if this.date}}
-          <span class="my-1">{{moFromNow this.date true}}</span>
+          <span class="my-1" alt="{{this.date}}">{{moFromNow this.date true}}</span>
         {{else}}
           <span class="my-1">Inactive</span>
         {{/if}}

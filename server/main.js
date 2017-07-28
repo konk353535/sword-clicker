@@ -62,6 +62,7 @@ Meteor.startup(() => {
   Crafting._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ type: 1 });
+  Skills._ensureIndex({ totalXp: -1 });
   Items._ensureIndex({ owner: 1 });
   Mining._ensureIndex({ owner: 1 });
   MiningSpace._ensureIndex({ owner: 1 });

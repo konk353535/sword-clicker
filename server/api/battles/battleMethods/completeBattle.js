@@ -111,7 +111,7 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
-  if (win || actualBattle.isExplorationRun || actualBattle.startingBossHp) {
+  if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
 
@@ -144,7 +144,7 @@ export const completeBattle = function (actualBattle) {
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
-    if (actualBattle.startingBossHp) {
+    if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
       const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
@@ -343,7 +343,7 @@ export const completeBattle = function (actualBattle) {
         'towerContributionsToday': unit.usedTowerContribution ? 1 : 0
       }
     };
-    if (actualBattle.startingBossHp) {
+    if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       combatModifier['$set'].foughtBoss = true;
     }
     if (unit.amulet) {
@@ -409,7 +409,7 @@ export const completeBattle = function (actualBattle) {
 
 
   // Is this a current boss battle?
-  if (actualBattle.startingBossHp) {
+  if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
     const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
     let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;

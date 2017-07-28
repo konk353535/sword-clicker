@@ -99,19 +99,19 @@ Template.farmingPage.events({
   },
 
   'click .buy-1'(event, instance) {
-    const shopItemId = instance.$(event.target).closest('.buy-1').data('shop-item-id');
+    const shopItemId = instance.$(event.target).closest('.buy-1').attr('data-shop-item-id');
 
     Meteor.call('farming.buyShopItem', shopItemId, 1);
   },
 
   'click .buy-10'(event, instance) {
-    const shopItemId = instance.$(event.target).closest('.buy-10').data('shop-item-id');
+    const shopItemId = instance.$(event.target).closest('.buy-10').attr('data-shop-item-id');
 
     Meteor.call('farming.buyShopItem', shopItemId, 10);
   },
 
   'click .buy-100'(event, instance) {
-    const shopItemId = instance.$(event.target).closest('.buy-100').data('shop-item-id');
+    const shopItemId = instance.$(event.target).closest('.buy-100').attr('data-shop-item-id');
 
     Meteor.call('farming.buyShopItem', shopItemId, 100);
   }

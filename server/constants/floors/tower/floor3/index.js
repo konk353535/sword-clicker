@@ -93,7 +93,12 @@ export const TOWER_FLOOR_3 = {
 
   boss: {
     enemy: { id: 'boss_bone_warrior', amount: 1 },
-    rewards: LEVEL_THREE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'bone_kings_axe', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

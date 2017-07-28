@@ -13,7 +13,9 @@ import './astronomyTab.html';
 
 const descriptions = {
   attackSpeed: 'Shards per hour',
-  criticalChance: '% chance to get 2x shards'
+  criticalChance: '% chance to get 2x shards',
+  ancientShard: 'extra % chance to get ancient shards',
+  completeShard: 'extra % chance to get complete shards'
 }
 
 Template.astronomyTab.onCreated(function bodyOnCreated() {
@@ -100,6 +102,8 @@ Template.astronomyTab.helpers({
 
     astronomy.mages.forEach((mage, mageIndex) => {
       mage.index = mageIndex
+      mage.amount = mage.gold;
+
       if (mageIndex === 0) {
         mage.primaryAction = {
           description: 'Upgrade',
@@ -156,14 +160,24 @@ Template.astronomyTab.helpers({
       return [];
     }
 
+    if (!mainMage.stats.ancientShard) {
+      mainMage.stats.ancientShard = 0;
+    }
+
+    if (!mainMage.stats.completeShard) {
+      mainMage.stats.completeShard = 0;
+    }
+
     // List of main mage stats
     const mainMageStats = Object.keys(mainMage.stats).map((statKey) => {
+
       return {
         cost: mageUpgrades[statKey],
         value: mainMage.stats[statKey],
         description: descriptions[statKey],
         nextValue: mainMage.stats[statKey] + 1,
-        key: statKey
+        key: statKey,
+        icon: statKey
       }
     });
 

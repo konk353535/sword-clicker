@@ -26,6 +26,62 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 15
+    }],
+    enchantments: ['druidic_hat'],
+  },
+
+  druids_shirt: {
+    id: 'druids_shirt',
+    icon: 'druidsShirt',
+    category: 'combat',
+    slot: 'head',
+    name: 'druidic shirt',
+    sellPrice: 600,
+    description: 'Helps emit healing energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      magicPower: 6,
+      magicArmor: 5,
+      healingPower: 10
+    },
+    extraStats: {
+      healthMax: 60,
+      magicPower: 2,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
+
+  druids_pants: {
+    id: 'druids_pants',
+    icon: 'druidsPants',
+    category: 'combat',
+    slot: 'head',
+    name: 'druidic pants',
+    sellPrice: 600,
+    description: 'Helps emit healing energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      magicPower: 6,
+      magicArmor: 5,
+      healingPower: 10
+    },
+    extraStats: {
+      healthMax: 60,
+      magicPower: 2,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
     }]
   },
 
@@ -104,6 +160,31 @@ export const WIZARD_ITEMS = {
     }]
   },
 
+  orange_wizard_hat: {
+    id: 'orange_wizard_hat',
+    icon: 'orangeWizardHat',
+    category: 'combat',
+    slot: 'head',
+    name: 'orange wizard hat',
+    sellPrice: 2000,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 15
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 35
+    }]
+  },
+
   brown_wizard_shirt: {
     id: 'brown_wizard_shirt',
     icon: 'brownWizardShirt',
@@ -179,6 +260,31 @@ export const WIZARD_ITEMS = {
     }]
   },
 
+  orange_wizard_shirt: {
+    id: 'orange_wizard_shirt',
+    icon: 'orangeWizardShirt',
+    category: 'combat',
+    slot: 'chest',
+    name: 'orange wizard shirt',
+    sellPrice: 2000,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 80,
+      magicPower: 12,
+      magicArmor: 14
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 35
+    }]
+  },
+
   brown_wizard_shorts: {
     id: 'brown_wizard_shorts',
     icon: 'brownWizardShorts',
@@ -251,6 +357,31 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 25
+    }]
+  },
+
+  orange_wizard_shorts: {
+    id: 'orange_wizard_shorts',
+    icon: 'orangeWizardShorts',
+    category: 'combat',
+    slot: 'legs',
+    name: 'orange wizard shorts',
+    sellPrice: 2000,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 80,
+      magicPower: 12,
+      magicArmor: 15
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 35
     }]
   },
 }

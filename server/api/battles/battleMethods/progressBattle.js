@@ -108,6 +108,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
     const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
 
+      if (caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
+        healAmount *= (1 + (caster.stats.healingPower / 100));
+      }
+
       if (target.stats.healingReduction != null) {
         healAmount *= target.stats.healingReduction;
       }
@@ -484,6 +488,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       }, 1000);
     }
   } catch(e) {
+    console.log(e);
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
   }

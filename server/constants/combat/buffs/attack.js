@@ -608,7 +608,7 @@ export const ATTACK_BUFFS = {
   
         const casterAttack = caster.stats.attack;
         const casterAttackMax = caster.stats.attackMax;
-        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) / 2)) * damageTotalDecimal;
+        const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) * Math.random())) * damageTotalDecimal;
 
         // Reduce armor by X% before hit
         target.stats.armor *= (1 - constants.armorPenetration);

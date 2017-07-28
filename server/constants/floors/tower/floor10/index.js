@@ -36,11 +36,18 @@ export const TOWER_FLOOR_10 = {
   },
   5: {
     name: 'Bandit Camp',
-    enemies: ['rabbit', 'cut_purse'],
+    enemies: ['water_mage', 'cut_purse'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'titanium_knife', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'orange_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'orange_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'orange_wizard_shorts', amount: 1 }
       ]
     }]))
   },

@@ -31,6 +31,11 @@ export const LEVEL_TEN_MONSTERS = [{
 }];
 
 export const LEVEL_TEN_LOOT_TABLE = orderLootTable([{
+  chance: 1 / 348,
+  rewards: [
+    { type: 'item', itemId: 'moon_cleaver', amount: 1 },
+  ]
+}, {
   chance: 1 / 256,
   rewards: [
     { type: 'item', itemId: 'platinum_pickaxe', amount: 1 },

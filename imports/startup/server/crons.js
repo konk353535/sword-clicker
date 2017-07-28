@@ -3,6 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
+import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
@@ -106,6 +107,45 @@ SyncedCron.add({
         redis.del(`battleActions-${battleList._id}`);
       }
     });
+    return true;
+  }
+});
+
+// Finish dead battles
+SyncedCron.add({
+  name: 'Update Rankings',
+  schedule: function(parser) {
+    return parser.text('every 60 minutes');
+  },
+  job: function() {
+
+    const stats = [
+      'mining',
+      'crafting',
+      'woodcutting',
+      'attack',
+      'defense',
+      'magic',
+      'health',
+      'farming',
+      'inscription',
+      'astronomy',
+      'total'
+    ];
+
+    stats.forEach((statName) => {
+      // Fetch all skills with that stat name by order
+      Skills.find({ type: statName }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
+        Skills.update(skill._id, {
+          $set: {
+            rank: skillIndex + 1
+          }
+        }, (err, res) => {
+
+        });
+      });
+    });
+
     return true;
   }
 });

@@ -86,7 +86,12 @@ export const TOWER_FLOOR_1 = {
 
   boss: {
     enemy: { id: 'boss_cougar', amount: 1 },
-    rewards: LEVEL_ONE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'shark_tooth_amulet', amount: 1 }
+      ]
+    }])
   },
 
   floorRewards: [

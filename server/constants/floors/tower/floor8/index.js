@@ -48,7 +48,7 @@ export const TOWER_FLOOR_8 = {
   5: {
     name: 'Fire Temple',
     enemies: ['fire_mage'],
-    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'purple_trident', amount: 1 }
@@ -81,6 +81,11 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'steel_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'steel_kite_shield', amount: 1 }
       ]
     }]))
   },

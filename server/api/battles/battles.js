@@ -13,6 +13,7 @@ import { Groups } from '/imports/api/groups/groups';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
+import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 
 import { startBattle } from './battleMethods/startBattle';
 import { progressBattle } from './battleMethods/progressBattle';
@@ -104,7 +105,6 @@ Meteor.methods({
   },
 
   'battles.findTowerBattle'(floor, room) {
-
     if (Meteor.user().logEvents) {
       Events.insert({
         owner: this.userId,
@@ -147,9 +147,19 @@ Meteor.methods({
     }
 
     if (room === 'boss') {
-      if (canBossBattle) {
+      if (currentCommunityFloor.floor === floor && canBossBattle) {
         const bossHealth = currentCommunityFloor.health;
-        return startBattle({ floor, room, health: bossHealth, isTowerContribution: true });
+        return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
+      } else if (floor < currentCommunityFloor.floor) {
+        const bossId = FLOORS[floor].boss.enemy.id;
+        if (bossId) {
+          const bossConstants = ENEMIES[bossId];
+          const bossHealth = bossConstants.stats.healthMax * 11;
+
+          return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
+        } else {
+          return;
+        }
       } else {
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
       }

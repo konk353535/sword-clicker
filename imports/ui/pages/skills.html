@@ -8,8 +8,11 @@
       <h1>Skills</h1>
       {{#each skills}}
         <div class="d-flex align-items-center my-1">
-          <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>
-          <span class="text-center mr-3" style="min-width: 40px">{{this.level}}</span>
+          <i class="lilIcon-{{this.type}} extra-small-icon mr-3"></i>          
+          <span class="text-center" style="min-width: 40px">{{this.level}}</span>
+          <span class="text-center mr-2" style="min-width: 40px;">
+            (#{{this.rank}})
+          </span>
           {{#unless $eq this.type 'total'}}
             <div class="progress" style="flex: 1 1 auto; height: 16px;">
               <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">

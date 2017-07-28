@@ -113,6 +113,8 @@ Template.astronomyPage.helpers({
 
     astronomy.mages.forEach((mage, mageIndex) => {
       mage.index = mageIndex
+      mage.amount = mage.gold;
+
       if (mageIndex === 0) {
         mage.primaryAction = {
           description: 'Upgrade',

@@ -19,7 +19,7 @@ import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
 
-export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
@@ -128,7 +128,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       throw new Meteor.Error("is-meditating", `${userCombat.username} is meditating. You cannot battle while meditating`);      
     }
 
-    if (health && userCombat.foughtBoss) {
+    if (health && !isOldBoss && userCombat.foughtBoss) {
       throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
       hasEnergy = false;
     }
@@ -237,6 +237,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       enemyStats.health = health;
       enemyStats.healthMax = health;
     }
+
+    if (enemyConstants.isBoss && isOldBoss) {
+      enemyStats.accuracy += 35;
+    }
+
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
 
     if (!enemy.amount) {
@@ -259,6 +264,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   });
 
+  if (isOldBoss) {
+    totalXpGain *= 0.5;
+  }
+
   // Make random targets for units
   newBattle.units.forEach((unit) => {
     const randomEnemyTarget = _.sample(newBattle.enemies);
@@ -266,6 +275,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   });
 
   newBattle.totalXpGain = totalXpGain;
+  newBattle.isOldBoss = isOldBoss;
   newBattle.deadUnits = [];
   newBattle.deadEnemies = [];
 

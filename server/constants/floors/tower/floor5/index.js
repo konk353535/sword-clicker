@@ -101,7 +101,12 @@ export const TOWER_FLOOR_5 = {
 
   boss: {
     enemy: { id: 'boss_mage', amount: 1 },
-    rewards: LEVEL_FIVE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'druids_hat', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

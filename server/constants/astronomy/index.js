@@ -27,6 +27,32 @@ export const ASTRONOMY = {
       }]
     },
 
+    ancientShard(current) {
+      if (!current) {
+        current = 0;
+      }
+
+      const goldAmount = current * 3000;
+      return [{
+        type: 'gold',
+        amount: Math.round(goldAmount),
+        consumes: true
+      }];
+    },
+
+    completeShard(current) {
+      if (!current) {
+        current = 0;
+      }
+
+      const goldAmount = current * 1500;
+      return [{
+        type: 'gold',
+        amount: Math.round(goldAmount),
+        consumes: true
+      }];
+    },
+
     criticalChance(current) {
       const goldAmount = (current - 1) * (current / 15) * 1000;
       return [{

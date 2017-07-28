@@ -19,7 +19,7 @@ Meteor.methods({
 
   // Upgrade the main mages stats
   'astronomy.upgradeMage'(stat) {
-    if (!_.contains(['attackSpeed', 'criticalChance'], stat)) {
+    if (!_.contains(['attackSpeed', 'criticalChance', 'ancientShard', 'completeShard'], stat)) {
       throw new Meteor.Error("invalid-stat", "Not a valid mage stat");
     }
 
@@ -35,6 +35,10 @@ Meteor.methods({
       return;
     }
 
+    if (mainMage.stats[stat] == null) {
+      mainMage.stats[stat] = 0;
+    }
+
     mainMage.stats[stat] += 1;
 
     const userDoc = Meteor.user();
@@ -45,7 +49,9 @@ Meteor.methods({
       const donatorMage = _.findWhere(astronomy.mages, { id: 'donatorMage' });
       donatorMage.stats = {
         attackSpeed: Math.round(mainMage.stats.attackSpeed / 2),
-        criticalChance: mainMage.stats.criticalChance
+        criticalChance: mainMage.stats.criticalChance,
+        completeShard: mainMage.stats.completeShard,
+        ancientShard: mainMage.stats.ancientShard
       }
     }
 
@@ -65,6 +71,14 @@ Meteor.methods({
 
     const mainMage = astronomy.mages[0];
     const upgrades = {};
+
+    if (!mainMage.stats.ancientShard) {
+      mainMage.stats.ancientShard = 0;
+    }
+
+    if (!mainMage.stats.completeShard) {
+      mainMage.stats.completeShard = 0;
+    }
     
     Object.keys(mainMage.stats).forEach((mageStat) => {
       upgrades[mageStat] = ASTRONOMY.upgradeCosts[mageStat](mainMage.stats[mageStat]);
@@ -306,12 +320,14 @@ Meteor.methods({
       const ancientChance = 1 / 10000;
       let foundComplete = false;
       let foundAncient = false;
+      let completeChanceExtra = currentMage.stats.completeShard ? currentMage.stats.completeShard : 0;
+      let ancientChanceExtra = currentMage.stats.ancientShard ? currentMage.stats.ancientShard : 0;
 
-      if (Math.random() <= completeChance * totalFound) {
+      if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
         foundComplete = true;
       }
 
-      if (Math.random() <= ancientChance * totalFound) {
+      if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
         foundAncient = true;
       }
 

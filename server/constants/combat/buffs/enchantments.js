@@ -4,6 +4,56 @@ import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const ENCHANTMENT_BUFFS = {
 
+  axe_cleave: {
+    duplicateTag: 'axe_cleave', // Used to stop duplicate buffs
+    icon: 'boneKingsAxe',
+    name: 'axe cleave',
+    description() {
+      return `Deal 50% weapon damage to another enemy.`;
+    },
+    constants: {
+      damageDecimal: 0.5,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+        const constants = buff.constants.constants;
+        const baseDamage = attacker.stats.attack;
+        const totalDamage = rawDamage * constants.damageDecimal;
+
+        let target;
+        actualBattle.enemies.forEach((enemy) => {
+          if (!target && enemy.id !== defender.id) {
+            target = enemy;
+          }
+        })
+
+        if (target) {
+         actualBattle.utils.dealDamage(totalDamage, {
+            attacker,
+            defender: target,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   magic_blade: {
     duplicateTag: 'magic_blade', // Used to stop duplicate buffs
     icon: 'magicBlade',

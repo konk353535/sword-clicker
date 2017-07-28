@@ -36,7 +36,7 @@ export const TOWER_FLOOR_9 = {
   5: {
     name: 'Carrot Patch',
     enemies: ['rabbit'],
-    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 },

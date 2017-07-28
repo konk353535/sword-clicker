@@ -19,7 +19,7 @@ export const LEVEL_TWO_CRAFTS = {
     recipeFor: 'inscription',
     produces: 'poisoned_blade_2_tome',
     name: 'Poisoned Blade Lv 2.',
-    id: 'poisoned_blade_2_tome',
+    id: 'poisoned_blade_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
     xp: 100,

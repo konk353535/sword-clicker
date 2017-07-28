@@ -974,6 +974,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the earthen fist spell.'
   },
 
+  fire_wave_tome: {
+    id: 'fire_wave_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'fire wave tome',
+    teaches: {
+      abilityId: 'fire_wave',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the fire wave spell.'
+  },
+
+  furied_winds_tome: {
+    id: 'furied_winds_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'furied winds tome',
+    teaches: {
+      abilityId: 'furied_winds',
+      level: 1
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to learn the furied winds spell.'
+  },
+
   air_ball_tome: {
     id: 'air_ball_tome',
     icon: 'tome',

@@ -133,9 +133,7 @@
             <tr>
               <th>Rank</th>
               <th>Username</th>
-              {{#unless $eq currentSkill.type 'total'}}
-                <th>Total XP</th>
-              {{/unless}}
+              <th>Total XP</th>
               <th>Level</th>
             </tr>
           </thead>
@@ -144,9 +142,7 @@
               <tr>
                 <td>{{this.rank}}</td>
                 <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
-                {{#unless $eq currentSkill.type 'total'}}
-                  <td>{{> ceilNumber this.totalXp}}</td>
-                {{/unless}}
+                <td>{{> ceilNumber this.totalXp}}</td>
                 <td>{{this.level}}</td>
               </tr>
             {{/each}}

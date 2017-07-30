@@ -706,6 +706,10 @@ export const ATTACK_BUFFS = {
         target.buffs = target.buffs.filter((targetBuff) => {
           return targetBuff.id !== buff.id
         });
+      },
+
+      onRemove() {
+        
       }
     }
   },

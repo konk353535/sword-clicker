@@ -124,7 +124,12 @@ export const TOWER_FLOOR_6 = {
 
   boss: {
     enemy: { id: 'boss_goblin', amount: 1 },
-    rewards: LEVEL_SIX_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'gold_crown_scroll', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

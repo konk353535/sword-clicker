@@ -243,7 +243,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
 
     if (enemyConstants.isBoss && isOldBoss) {
-      enemyStats.accuracy += 15;
+      enemyStats.accuracy += 20;
     }
 
     enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);

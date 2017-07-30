@@ -9,10 +9,10 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'boneKingsAxe',
     name: 'axe cleave',
     description() {
-      return `Deal 50% weapon damage to another enemy.`;
+      return `Deal 40% weapon damage to another enemy.`;
     },
     constants: {
-      damageDecimal: 0.5,
+      damageDecimal: 0.40,
     },
     data: {
       duration: Infinity,

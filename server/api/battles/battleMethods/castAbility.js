@@ -38,6 +38,8 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
       const firstEnemy = actualBattle.enemies[0];
       if (firstEnemy) {
         targets = [firstEnemy];
+      } else {
+        targets = [];
       }
     }
   } else if (ability.target === 'allEnemies') {

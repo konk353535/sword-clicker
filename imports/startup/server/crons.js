@@ -115,7 +115,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Update Rankings',
   schedule: function(parser) {
-    return parser.text('every 60 minutes');
+    return parser.text('every 4 hours');
   },
   job: function() {
 
@@ -129,20 +129,44 @@ SyncedCron.add({
       'health',
       'farming',
       'inscription',
-      'astronomy',
-      'total'
+      'astronomy'
     ];
+
+    const playersTotalXp = {}
 
     stats.forEach((statName) => {
       // Fetch all skills with that stat name by order
       Skills.find({ type: statName }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
+        if (!playersTotalXp[skill.owner]) {
+          playersTotalXp[skill.owner] = skill.totalXp;
+        } else {
+          playersTotalXp[skill.owner] += skill.totalXp;          
+        }
         Skills.update(skill._id, {
           $set: {
             rank: skillIndex + 1
           }
-        }, (err, res) => {
-
         });
+      });
+    });
+
+    Object.keys(playersTotalXp).forEach((playerId) => {
+      Skills.update({
+        owner: playerId,
+        type: 'total'
+      }, {
+        $set: {
+          totalXp: playersTotalXp[playerId]
+        }
+      })
+    });
+
+    // Fetch total
+    Skills.find({ type: 'total' }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
+      Skills.update(skill._id, {
+        $set: {
+          rank: skillIndex + 1
+        }
       });
     });
 

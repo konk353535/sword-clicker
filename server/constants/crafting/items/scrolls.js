@@ -27,6 +27,20 @@ export const SCROLL_ITEMS = {
     }
   },
 
+  gold_crown_scroll: {
+    id: 'gold_crown_scroll',
+    icon: 'goldEssenceScroll',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'gold crown scroll',
+    teaches: 'gold_crown',
+    sellPrice: 200,
+    description: `A lost scroll, made from gold.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
   carbon_essence_scroll: {
     id: 'carbon_essence_scroll',
     icon: 'carbonEssenceScroll',

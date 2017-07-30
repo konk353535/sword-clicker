@@ -94,8 +94,8 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     name: selectedMonster.name,
     buffs: JSON.parse(JSON.stringify(selectedMonster.buffs || [])),
     stats: {
-      health: 10 + (level * 7) + (extraStats * 22),
-      healthMax: 10 + (level * 7) + (extraStats * 22),
+      health: 10 + (level * 7) + (extraStats * 26),
+      healthMax: 10 + (level * 7) + (extraStats * 26),
       attack: 1 + Math.floor(level / 3) + (extraStats / 2),
       magicPower: 1 + Math.floor(level / 2.7),
       attackMax: ((1 + Math.floor(level / 3)) * 1.5) + (extraStats / 2),
@@ -103,7 +103,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
       accuracy: 1 + level + (extraStats * 0.7),
       armor: 1 + (level * 2.5),
       defense: 1 + (level * 0.74),
-      magicArmor: 1 + (level * 1.32),
+      magicArmor: 1 + (level * 1.34),
       criticalChance: 0,
       criticalDamage: 2,
       damageTaken: 1

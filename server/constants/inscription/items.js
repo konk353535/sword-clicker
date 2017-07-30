@@ -225,6 +225,24 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  pine_book: {
+    id: 'pine_book',
+    icon: 'pineBook',
+    category: 'paper',
+    name: 'pine book',
+    sellPrice: 50,
+    description: 'Gives decent xp'
+  },
+
+  beech_book: {
+    id: 'beech_book',
+    icon: 'beechBook',
+    category: 'paper',
+    name: 'beech book',
+    sellPrice: 50,
+    description: 'Gives decent xp'
+  },
+
   beech_paper: {
     id: 'beech_paper',
     icon: 'beechPaper',

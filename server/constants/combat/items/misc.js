@@ -97,13 +97,13 @@ export const MISC_ITEMS = {
     id: 'snake_skin_chest',
     icon: 'snakeSkinChest',
     category: 'combat',
-    slot: 'offHand',
+    slot: 'chest',
     name: 'snake skin chest',
-    sellPrice: 2500,
+    sellPrice: 400,
     description: 'A chest made from snake skin',
     isEquippable: true,
     stats: {
-      healthMax: 150,
+      healthMax: 50,
       defense: 5,
       accuracy: 5
     },
@@ -132,10 +132,10 @@ export const MISC_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 25.8,
-      "attackMax": 88.8,
+      "attack": 20.4,
+      "attackMax": 59,
       "attackSpeed": 0.3,
-      "accuracy": 40,
+      "accuracy": 26.4,
       "criticalChance": 5
     },
     "extraStats": {
@@ -145,7 +145,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 45
+      level: 30
     }],
     enchantments: ['axe_cleave']
   },

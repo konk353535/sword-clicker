@@ -233,12 +233,7 @@ Meteor.methods({
 
     const userDoc = Meteor.user();
 
-    // Update last updated immeditely
-    // incase an error occurs further on in the code, the users updated will not get set
-    // Giving them a lot of extra XP!
-    Astronomy.update(astronomy._id, {
-      $set: { lastGameUpdated: new Date() }
-    });
+    const originalMages = JSON.parse(JSON.stringify(astronomy.mages));
 
     // Determine time since last update
     const now = moment();
@@ -409,24 +404,30 @@ Meteor.methods({
       }
     });
 
-    Object.keys(gainedItems).forEach((itemId) => {
-      addItem(itemId, gainedItems[itemId]);
-    });
-
-    if (gainedXp >= 1) {
-      addXp('astronomy', gainedXp);
-    }
-
     // Update mages
     astronomy.mages = astronomy.mages.filter((mage) => {
       return !mage.type || mage.gold > 0;
     });
 
-    Astronomy.update(astronomy._id, {
+    const astronomyUpdated = Astronomy.update({
+      _id: astronomy._id,
+      mages: originalMages
+    }, {
       $set: {
-        mages: astronomy.mages
+        mages: astronomy.mages,
+        lastGameUpdated: new Date()
       }
     });
+
+    if (astronomyUpdated) {
+      Object.keys(gainedItems).forEach((itemId) => {
+        addItem(itemId, gainedItems[itemId]);
+      });
+
+      if (gainedXp >= 1) {
+        addXp('astronomy', gainedXp);
+      }
+    }
   }
 });
 

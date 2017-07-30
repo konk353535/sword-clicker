@@ -8,7 +8,7 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'druidic hat',
-    sellPrice: 600,
+    sellPrice: 500,
     description: 'Helps emit healing energy',
     isEquippable: true,
     stats: {

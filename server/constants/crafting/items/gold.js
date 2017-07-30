@@ -63,6 +63,15 @@ export const GOLD_ITEMS = {
     description: 'Can be sold for a tidy sum'
   },
 
+  gold_crown: {
+    id: 'gold_crown',
+    icon: 'goldCrown',
+    category: 'crafting',
+    name: 'gold crown',
+    sellPrice: 425,
+    description: 'Can be sold for a tidy sum'
+  },
+
   carbon_sculpture: {
     id: 'carbon_sculpture',
     icon: 'carbonSculpture',

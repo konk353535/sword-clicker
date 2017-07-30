@@ -169,6 +169,31 @@ export const GOLD_CRAFTS = {
     maxToCraft: 1
   },
 
+  gold_crown: {
+    produces: 'gold_crown',
+    recipeFor: 'crafting',
+    name: 'gold crown',
+    category: 'crafting',
+    id: 'gold_crown',
+    isHidden: true,
+    requiredCraftingLevel: 31,
+    required: [{
+      type: 'item',
+      itemId: 'ore_gold',
+      icon: ITEMS['ore_gold'].icon,
+      name: ITEMS['ore_gold'].name,
+      amount: 3,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 31
+    }],
+    timeToCraft: 60,
+    xp: 55,
+    maxToCraft: 30
+  },
+
   carbon_sculpture: {
     produces: 'carbon_sculpture',
     recipeFor: 'crafting',

@@ -25,6 +25,30 @@ export const PAPER_CRAFTS = {
     }]
   },
 
+  pine_book: {
+    recipeFor: 'inscription',
+    produces: 'pine_book',
+    name: 'pine book',
+    id: 'pine_book',
+    category: 'paper',
+    timeToCraft: 3600,
+    xp: 800,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'pine_paper',
+      icon: ITEMS['pine_paper'].icon,
+      name: ITEMS['pine_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 10
+    }]
+  },
+
   beech_paper: {
     recipeFor: 'inscription',
     produces: 'beech_paper',
@@ -46,6 +70,30 @@ export const PAPER_CRAFTS = {
       type: 'skill',
       name: 'inscription',
       level: 3
+    }]
+  },
+
+  beech_book: {
+    recipeFor: 'inscription',
+    produces: 'beech_book',
+    name: 'beech book',
+    id: 'beech_book',
+    category: 'paper',
+    timeToCraft: 300,
+    xp: 80,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'beech_paper',
+      icon: ITEMS['beech_paper'].icon,
+      name: ITEMS['beech_paper'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 15
     }]
   },
 

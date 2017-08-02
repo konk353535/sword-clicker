@@ -434,7 +434,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 10,
               attackSpeedDecrease: 25,
               icon: 'frostedAttacks',
-              description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
+              description: 'Reduces your attack speed by 25%',
               name: 'Frosted Attacks'
             }
           }
@@ -457,8 +457,10 @@ export const MONSTER_BUFFS = {
             constants: BUFFS['water_dart']
           }
 
+          const target = _.sample(actualBattle.enemies);
+
           // cast water dart
-          addBuff({ buff: newBuff, target: attacker, caster: attacker, actualBattle });
+          addBuff({ buff: newBuff, target, caster: attacker, actualBattle });
         }
       },
 

@@ -1271,4 +1271,115 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_old_tortoise: {
+    duplicateTag: 'boss_old_tortoise', // Used to stop duplicate buffs
+    icon: 'vampire',
+    name: 'vampire',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return 'quite an old dude';
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        // Healers spawned?
+        if (!buff.data.healersSpawned) {
+          for (let i = 0; i < 2; i++) {
+            const birdStats = JSON.parse(JSON.stringify(target.stats));
+            birdStats.health = 1000;
+            birdStats.healthMax = 1000;
+            birdStats.attackSpeed = 0.7;
+            birdStats.attackSpeedTicks = attackSpeedTicks(0.7);
+            birdStats.attackMax = 50;
+            birdStats.attack = 50;
+            birdStats.accuracy *= 1.5;
+            birdStats.armor /= 2;
+            birdStats.magicPower = 25;
+            birdStats.healingPower = 250;
+            birdStats.mageArmor = 500;
+
+            // Spawn bird
+            const bird = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'waterMage',
+              name: 'water mage',
+              stats: birdStats,
+              buffs: [{
+                id: 'water_mage_monster',
+                data: {
+                  hideBuff: true
+                }
+              }]
+            }
+
+            actualBattle.enemies.push(bird);
+          }
+
+
+          const birdStats = JSON.parse(JSON.stringify(target.stats));
+          birdStats.health = 100000;
+          birdStats.healthMax = 100000;
+          birdStats.attackSpeed = 0.01;
+          birdStats.attackSpeedTicks = attackSpeedTicks(0.01);
+          birdStats.attackMax = 1;
+          birdStats.attack = 1;
+
+          // Spawn wall
+          const wall = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'stoneWall',
+            name: 'stone wall',
+            stats: birdStats,
+            buffs: []
+          }
+
+          actualBattle.enemies.push(wall);
+
+          buff.data.healersSpawned = true;
+          buff.data.stacks = 0;
+        }
+
+        if (buff.data.stacks >= 0) {
+          buff.data.stacks -= secondsElapsed * 35;
+          buff.data.stacks = Math.round(buff.data.stacks);
+        } else {
+          buff.data.stacks = 0;
+        }
+
+        if (buff.data.stacks < 350 && buff.data.enraged) {
+          buff.data.enraged = false;
+          target.stats.attackSpeed /= 3;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+          buff.data.icon = 'oldTortoise';
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (buff.data.stacks != null) {
+          buff.data.stacks += damageDealt;
+          buff.data.stacks = Math.round(buff.data.stacks);
+        }
+
+        if (buff.data.stacks >= 350 && !buff.data.enraged) {
+          buff.data.enraged = true;
+          defender.stats.attackSpeed *= 3;
+          defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
+          buff.data.icon = 'enragedTortoise';
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 }

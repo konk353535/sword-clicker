@@ -514,4 +514,34 @@ export const BOSS_ENEMIES = {
     }],
     rewards: []
   },
+
+  boss_kraken: {
+    id: 'boss_kraken',
+    icon: 'kraken',
+    name: 'kraken',
+    isBoss: true,
+    stats: {
+      attack: 250,
+      attackMax: 300,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 255,
+      health: 2100,
+      healthMax: 2100,
+      defense: 255,
+      armor: 300,
+      magicArmor: 100,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_kraken',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'kraken',        
+        name: 'boss kraken',
+        timeTillSpawn: 15
+      }
+    }],
+    rewards: []
+  },
 }

@@ -1386,4 +1386,61 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_kraken: {
+    duplicateTag: 'boss_kraken', // Used to stop duplicate buffs
+    icon: 'kraken',
+    name: 'boss kraken',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Incrementally summons tentacles`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
+
+          const birdStats = JSON.parse(JSON.stringify(target.stats));
+          birdStats.health = 1500;
+          birdStats.healthMax = 1500;
+          birdStats.defense *= 0.6;
+          birdStats.armor *= 0.35;
+          birdStats.magicArmor *= 0.35;
+          birdStats.attack *= 3.5;
+          birdStats.attackMax *= 3.5;
+          birdStats.accuracy *= 1.5;
+          birdStats.magicPower = 20;
+
+          // Spawn little bird
+          const littlebird = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'tentacle',
+            name: 'tentacle',
+            buffs: [],
+            stats: birdStats
+          }
+
+          actualBattle.enemies.push(littlebird);
+
+          buff.data.timeTillSpawn = 180;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 }

@@ -1326,8 +1326,8 @@ export const BOSS_BUFFS = {
 
 
           const birdStats = JSON.parse(JSON.stringify(target.stats));
-          birdStats.health = 100000;
-          birdStats.healthMax = 100000;
+          birdStats.health = 5000;
+          birdStats.healthMax = 5000;
           birdStats.attackSpeed = 0.01;
           birdStats.attackSpeedTicks = attackSpeedTicks(0.01);
           birdStats.attackMax = 1;
@@ -1350,13 +1350,17 @@ export const BOSS_BUFFS = {
         }
 
         if (buff.data.stacks >= 0) {
-          buff.data.stacks -= secondsElapsed * 35;
+          let ratio = 1;
+          if (buff.data.enraged) { 
+            ratio = 0.3;
+          }
+          buff.data.stacks -= secondsElapsed * 66 * ratio;
           buff.data.stacks = Math.round(buff.data.stacks);
         } else {
           buff.data.stacks = 0;
         }
 
-        if (buff.data.stacks < 350 && buff.data.enraged) {
+        if (buff.data.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
           target.stats.attackSpeed /= 3;
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);

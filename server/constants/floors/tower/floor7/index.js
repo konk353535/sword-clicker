@@ -91,7 +91,12 @@ export const TOWER_FLOOR_7 = {
 
   boss: {
     enemy: { id: 'boss_ogre', amount: 1 },
-    rewards: LEVEL_SEVEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'oversized_club', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

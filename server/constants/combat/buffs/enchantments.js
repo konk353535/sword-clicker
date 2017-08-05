@@ -158,6 +158,58 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       }
     }
-  }
+  },
+
+  oversized_club: {
+    duplicateTag: 'oversized_club', // Used to stop duplicate buffs
+    icon: 'oversizedClub',
+    name: 'over side club',
+    description() {
+      return `35% chance to shred targets magic armor by 60`;
+    },
+    constants: {
+      chance: 0.35,
+      shred: 60
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
+        const constants = buff.constants.constants;
+
+        if (Math.random() <= constants.chance) {
+          const armorReduction = constants.shred;
+          const newBuff = {
+            id: 'magic_armor_reduction',
+            data: {
+              duration: 5,
+              allowDuplicates: true,
+              totalDuration: 5,
+              armorReduction,
+              icon: 'magicArmorReduction',
+              description: `Reduces your magic armor by ${armorReduction}%`
+            }
+          }
+
+          // Add magic armor debuff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 
 }

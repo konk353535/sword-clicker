@@ -181,6 +181,38 @@ export const MISC_ITEMS = {
     }]
   },
 
+  "oversized_club": {
+    "id": "oversized_club",
+    "icon": "oversizedClub",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "oversized club",
+    "sellPrice": 650,
+    "description": "An overly large club",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 1,
+      "attackMax": 100,
+      "attackSpeed": 0.3,
+      "accuracy": 30.9,
+      "criticalChance": 5
+    },
+    "extraStats": {
+      "attack": 5.5,
+      "attackMax": 21.1,
+      "accuracy": 10.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }],
+    enchantments: ['oversized_club']
+  },
+
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
   "bronze_kite_shield": {
     "id": "bronze_kite_shield",

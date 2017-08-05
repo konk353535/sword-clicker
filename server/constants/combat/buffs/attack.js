@@ -343,6 +343,72 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  thirsty_fangs: {
+    duplicateTag: 'thirsty_fangs', // Used to stop duplicate buffs
+    icon: 'thirstyFangs',
+    name: 'thirsty fangs',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const chance = buff.constants.extraAttackChance * 100;
+      const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
+      const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
+
+      return `When the target is bleeding<br />
+        Deal 20% extra damage and heal for the same amount.`;
+    },
+    constants: {
+      damageDecimal: 0.20
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const baseDamage = attacker.stats.attack;
+        const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
+        const totalDamage = (baseDamage + extraDamage) * constants.damageDecimal;
+
+        const hasBleed = _.findWhere(defender.buffs, { id: 'bleed' });
+
+        if (hasBleed) {
+          actualBattle.utils.healTarget(totalDamage, {
+            caster: attacker,
+            target: attacker,
+            tickEvents: actualBattle.tickEvents
+          });
+          actualBattle.utils.dealDamage(totalDamage, {
+            attacker,
+            defender,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   berserk: {
     duplicateTag: 'berserk', // Used to stop duplicate buffs
     icon: 'berserk',

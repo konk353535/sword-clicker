@@ -45,7 +45,8 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'gold_essence_scroll', amount: 1 }
+    { type: 'item', itemId: 'gold_essence_scroll', amount: 1 },
+    { type: 'item', itemId: 'thirsty_fang_tome_scroll', amount: 1 }
   ]
 }, {
   chance: 1 / 32,

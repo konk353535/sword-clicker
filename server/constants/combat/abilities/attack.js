@@ -18,6 +18,22 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  thirsty_fangs: {
+    icon: 'thirstyFangs',
+    name: 'thirsty fangs',
+    id: 'thirsty_fangs',
+    buffs: ['thirsty_fangs'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.thirsty_fangs;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   phantom_strikes: {
     icon: 'phantomStrikes',
     name: 'phantom strikes',

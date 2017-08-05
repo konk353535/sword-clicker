@@ -27,6 +27,20 @@ export const SCROLL_ITEMS = {
     }
   },
 
+  thirsty_fangs_1_tome_scroll: {
+    id: 'thirsty_fangs_1_tome_scroll',
+    icon: 'redEssenceScroll',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'thirsty fangs scroll',
+    teaches: 'thirsty_fangs_1_tome',
+    sellPrice: 750,
+    description: `A lost scroll, said to contain the secrets of vamprism.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
   gold_crown_scroll: {
     id: 'gold_crown_scroll',
     icon: 'goldEssenceScroll',

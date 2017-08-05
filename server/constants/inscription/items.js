@@ -342,6 +342,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  thirsty_fangs_1_tome: {
+    id: 'thirsty_fangs_1_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Thirsty Fangs Lv 1',
+    teaches: {
+      abilityId: 'thirsty_fangs',
+      level: 1
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to learn the thirsty fangs ability.'
+  },
+
   slash_level_1_tome: {
     id: 'slash_level_1_tome',
     icon: 'tome',

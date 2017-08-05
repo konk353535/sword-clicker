@@ -567,6 +567,46 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  magic_armor_reduction: {
+    duplicateTag: 'magic_armor_reduction', // Used to stop duplicate buffs
+    icon: 'magicArmorReduction',
+    name: 'magic armor reduction',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Reduces your magic armor`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        if (target.stats.armor <= 0) {
+          buff.data.armorReduction = 1;
+        }
+
+        // Determine armor to take
+        const flatArmorReduction = buff.data.armorReduction;
+        buff.data.flatArmorReduction = flatArmorReduction;
+        target.stats.magicArmor -= buff.data.flatArmorReduction;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target }) {
+        target.stats.magicArmor += buff.data.flatArmorReduction;
+      }
+    }
+  },
+
   demon_monster: {
     duplicateTag: 'demon_monster', // Used to stop duplicate buffs
     icon: '',

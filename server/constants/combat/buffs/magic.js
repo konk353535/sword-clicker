@@ -70,7 +70,7 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />`;
     },
     constants: {
-      attacksCount: 5,
+      attacksCount: 10,
       attackSpeedBase: 15,
       attackSpeedMPRatio: 0.6,
       healthCost: 15,

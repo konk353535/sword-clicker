@@ -593,7 +593,8 @@ export const BOSS_BUFFS = {
       },
 
       onBeforeDeath({ buff, target, actualBattle }) {
-        if (!buff.data.hasSpawned) {
+        // Only respawn if boss phoenix exists
+        if (!buff.data.hasSpawned && _.findWhere(actualBattle.enemies, { id: 'boss_phoenix' })) {
 
           const phoenixStats = JSON.parse(JSON.stringify(target.stats));
           phoenixStats.health = 10;

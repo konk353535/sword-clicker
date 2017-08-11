@@ -36,11 +36,13 @@ export const LEVEL_TEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'platinum_pickaxe', amount: 1 },
     { type: 'item', itemId: 'platinum_axe', amount: 1 },
     { type: 'item', itemId: 'platinum_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'platinum_bar', amount: 1 }
+    { type: 'item', itemId: 'platinum_bar', amount: 1 },
+    { type: 'item', itemId: 'shield_bash_level_2_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 48,

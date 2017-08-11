@@ -36,6 +36,7 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'steel_pickaxe', amount: 1 },
     { type: 'item', itemId: 'steel_axe', amount: 1 },
     { type: 'item', itemId: 'steel_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

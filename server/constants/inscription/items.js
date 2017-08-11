@@ -368,6 +368,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the slash ability.'
   },
 
+  slash_level_2_tome: {
+    id: 'slash_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'Slash Lv 2',
+    teaches: {
+      abilityId: 'slash',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the slash ability.'
+  },
+
   frost_armor_1_tome: {
     id: 'frost_armor_1_tome',
     icon: 'tomeUncommon',
@@ -1226,6 +1239,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the penetrating slash ability.'
   },
 
+  penetrating_slash_level_2_tome: {
+    id: 'penetrating_slash_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'penetrating slash Lv 2',
+    teaches: {
+      abilityId: 'penetrating_slash',
+      level: 2
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the penetrating slash ability.'
+  },
+
   vampirism_level_1_tome: {
     id: 'vampirism_level_1_tome',
     icon: 'tome',
@@ -1432,6 +1458,19 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 100,
     description: 'Can be consumed to learn the shield bash ability.'
+  },
+
+  shield_bash_level_2_tome: {
+    id: 'shield_bash_level_2_tome',
+    icon: 'tome',
+    category: 'tome',
+    name: 'shield bash Lv 2',
+    teaches: {
+      abilityId: 'shield_bash',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the shield bash ability.'
   },
 
   blade_frenzy_level_1_tome: {

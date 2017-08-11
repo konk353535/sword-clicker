@@ -175,6 +175,10 @@ Template.woodcuttingPage.helpers({
   },
 
   items() {
-    return Items.find({ category: 'woodcutting' });
+    return Items.find({ category: 'woodcutting' }, {
+      sort: {
+        quality: -1
+      }
+    });
   }
 });

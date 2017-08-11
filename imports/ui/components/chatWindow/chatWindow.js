@@ -12,9 +12,11 @@ import { Groups } from '/imports/api/groups/groups.js';
 import './chatWindow.html';
 
 SimpleChat.scrollToEnd = function () {
-  Template.chatWindow.endScroll = true;
-  $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
-  $('.direct-chat-messages').trigger('scroll');
+  if ($(window).width() > 500) {
+    Template.chatWindow.endScroll = true;
+    $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
+    $('.direct-chat-messages').trigger('scroll');
+  }
 }
 
 const AVAILABLE_CHATS = {

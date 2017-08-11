@@ -35,7 +35,8 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
     { type: 'item', itemId: 'carbon_axe', amount: 1 },
-    { type: 'item', itemId: 'carbon_dagger', amount: 1 }
+    { type: 'item', itemId: 'carbon_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

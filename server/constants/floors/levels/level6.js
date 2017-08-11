@@ -35,12 +35,14 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'silver_pickaxe', amount: 1 },
     { type: 'item', itemId: 'silver_axe', amount: 1 },
-    { type: 'item', itemId: 'silver_dagger', amount: 1 }
+    { type: 'item', itemId: 'silver_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'silver_essence_scroll', amount: 1 }
+    { type: 'item', itemId: 'silver_essence_scroll', amount: 1 },
+    { type: 'item', itemId: 'slash_level_2_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 32,

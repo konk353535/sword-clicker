@@ -36,6 +36,7 @@ export const LEVEL_TWELVE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'tunsten_pickaxe', amount: 1 },
     { type: 'item', itemId: 'tunsten_axe', amount: 1 },
     { type: 'item', itemId: 'tunsten_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

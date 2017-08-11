@@ -35,7 +35,8 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'gold_pickaxe', amount: 1 },
     { type: 'item', itemId: 'gold_axe', amount: 1 },
-    { type: 'item', itemId: 'gold_dagger', amount: 1 }
+    { type: 'item', itemId: 'gold_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
@@ -46,7 +47,7 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
   chance: 1 / 48,
   rewards: [
     { type: 'item', itemId: 'gold_essence_scroll', amount: 1 },
-    { type: 'item', itemId: 'thirsty_fang_tome_scroll', amount: 1 }
+    { type: 'item', itemId: 'thirsty_fangs_1_tome_scroll', amount: 1 }
   ]
 }, {
   chance: 1 / 32,

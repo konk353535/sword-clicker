@@ -36,6 +36,7 @@ export const LEVEL_FOURTEEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'cobalt_pickaxe', amount: 1 },
     { type: 'item', itemId: 'cobalt_axe', amount: 1 },
     { type: 'item', itemId: 'cobalt_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

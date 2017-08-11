@@ -50,6 +50,11 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'watermelon', amount: 1 }
       ]
     }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'lavender', amount: 1 }
+      ]
+    }, {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }

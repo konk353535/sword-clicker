@@ -36,6 +36,7 @@ export const LEVEL_THIRTEEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'obsidian_pickaxe', amount: 1 },
     { type: 'item', itemId: 'obsidian_axe', amount: 1 },
     { type: 'item', itemId: 'obsidian_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

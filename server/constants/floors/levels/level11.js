@@ -36,11 +36,13 @@ export const LEVEL_ELEVEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'titanium_pickaxe', amount: 1 },
     { type: 'item', itemId: 'titanium_axe', amount: 1 },
     { type: 'item', itemId: 'titanium_dagger', amount: 1 },
+    { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'titanium_bar', amount: 1 },
+    { type: 'item', itemId: 'penetrating_slash_level_2_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 48,

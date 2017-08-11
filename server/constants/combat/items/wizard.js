@@ -2,6 +2,32 @@ import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/c
 
 export const WIZARD_ITEMS = {
 
+  phoenix_hat: {
+    id: 'phoenix_hat',
+    icon: 'phoenixHat',
+    category: 'combat',
+    slot: 'head',
+    name: 'phoenix hat',
+    sellPrice: 750,
+    description: 'Seems to smother healing energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      magicPower: 15,
+      healingPower: -12
+    },
+    extraStats: {
+      healthMax: 40,
+      magicPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+    enchantments: ['phoenix_hat']
+  },
+
   druids_hat: {
     id: 'druids_hat',
     icon: 'druidsHat',
@@ -34,7 +60,7 @@ export const WIZARD_ITEMS = {
     id: 'druids_shirt',
     icon: 'druidsShirt',
     category: 'combat',
-    slot: 'head',
+    slot: 'chest',
     name: 'druidic shirt',
     sellPrice: 600,
     description: 'Helps emit healing energy',
@@ -62,7 +88,7 @@ export const WIZARD_ITEMS = {
     id: 'druids_pants',
     icon: 'druidsPants',
     category: 'combat',
-    slot: 'head',
+    slot: 'legs',
     name: 'druidic pants',
     sellPrice: 600,
     description: 'Helps emit healing energy',

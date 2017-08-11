@@ -833,6 +833,7 @@ export const MAGIC_BUFFS = {
           caster.stats.healthMax -= totalHealth;
         
           buff.data.totalHeal = totalHeal;
+          buff.data.healingPower = caster.stats.healingPower;
           actualBattle.utils.healTarget(buff.data.totalHeal, {
             caster,
             target,
@@ -847,7 +848,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
             caster,
             target,
             tickEvents: actualBattle.tickEvents
@@ -901,6 +902,7 @@ export const MAGIC_BUFFS = {
           caster.stats.healthMax -= totalHealth;
         
           buff.data.totalHeal = totalHeal;
+          buff.data.healingPower = caster.stats.healingPower;
           actualBattle.utils.healTarget(buff.data.totalHeal, {
             caster,
             target,
@@ -915,7 +917,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
             caster,
             target,
             tickEvents: actualBattle.tickEvents
@@ -1749,7 +1751,7 @@ export const MAGIC_BUFFS = {
       damageBase: 1,
       damageMPRatio: 0.4,
       healthCost: 5,
-      healthCostMPRatio: 0.3
+      healthCostMPRatio: 0.1
     },
     data: {
       duration: 25,

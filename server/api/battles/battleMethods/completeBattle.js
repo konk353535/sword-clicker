@@ -515,4 +515,5 @@ export const completeBattle = function (actualBattle) {
     createdAt: new Date()
   });
 
+  delete actualBattle;
 }

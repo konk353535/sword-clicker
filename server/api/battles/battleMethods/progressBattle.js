@@ -138,13 +138,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
       if (hitGap > 0) {
         // Favours attacker
-        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 30)) / 2;
+        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 50)) / 2;
         hitChance += extraChance;
       } else {
         // Favours defender
-        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 30)) / 2;
+        const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 50)) / 2;
         hitChance -= extraChance;
       }
+
       if (hitChance >= Math.random()) {
         // How much do we hit for
         const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
@@ -490,6 +491,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
   } catch(e) {
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
+    delete actualBattle;
     throw e;
   }
 }

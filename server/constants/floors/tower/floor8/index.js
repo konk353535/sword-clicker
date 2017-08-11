@@ -110,7 +110,12 @@ export const TOWER_FLOOR_8 = {
 
   boss: {
     enemy: { id: 'boss_phoenix', amount: 1 },
-    rewards: LEVEL_EIGHT_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'phoenix_hat', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
+import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
@@ -204,6 +205,58 @@ export const ENCHANTMENT_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  phoenix_hat: {
+    duplicateTag: 'phoenix_hat', // Used to stop duplicate buffs
+    icon: 'babyPhoenix',
+    name: 'phoneix hat',
+    description() {
+      return `Randomly ignites enemies. Fades away after 5 ignites.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!buff.data.stacks) {
+          buff.data.stacks = 5;
+        }
+
+        if (Math.random() <= 0.02) {
+          const targetEnemy = _.sample(actualBattle.enemies);
+          const newBuff = {
+            id: 'ignite',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              icon: 'ignite',
+              description: ''
+            },
+            constants: BUFFS['ignite']
+          }
+
+          // cast ignite
+          addBuff({ buff: newBuff, target: targetEnemy, caster: target, actualBattle });
+          buff.data.stacks -= 1;
+
+          if (buff.data.stacks <= 0) {
+            removeBuff({ buff, target, caster: target });
+          }
+        }
       },
 
       onRemove({ buff, target, caster }) {

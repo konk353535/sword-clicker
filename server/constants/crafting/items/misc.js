@@ -13,5 +13,14 @@ export const MISC_ITEMS = {
       description: 'increase an items quality by up to 15%',
       target: 'item'
     },
+  },
+
+  adventure_token: {
+    id: 'adventure_token',
+    icon: 'adventureToken',
+    category: 'crafting',
+    name: 'adventure token',
+    sellPrice: 10,
+    description: 'Can be traded for new adventures'
   }
 }

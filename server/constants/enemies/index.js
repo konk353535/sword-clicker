@@ -858,6 +858,35 @@ export const ENEMIES = Object.assign({
       key: 'attackSpeed',
       amount: 0.3
     }]
+  },
+
+  gorilla: {
+    id: 'gorilla',
+    icon: 'gorilla',
+    name: 'gorilla',
+    buffs: [{
+      id: 'boss_gorilla',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'gorilla',        
+        name: 'gorilla',
+        timeTillLearn: 7
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.66
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 1.0
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.0
+    }]
   }
 
 }, BOSS_ENEMIES);

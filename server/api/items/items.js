@@ -30,6 +30,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   const itemConstants = ITEMS[itemId];  
 
   if (!itemConstants) {
+    console.log(`Failed - ${itemId}`)
     return;
   }
 
@@ -183,8 +184,13 @@ export const consumeItem = function (itemObject, amount) {
 Meteor.methods({
 
   'items.unequip'(_id, itemId) {
+    const item = Items.findOne({
+      owner: Meteor.userId(),
+      _id: _id
+    });
+
     // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fix
-    const itemConstants = ITEMS[itemId];
+    const itemConstants = ITEMS[item.itemId];
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;
 
@@ -472,8 +478,14 @@ Meteor.methods({
 
   },
 
-  'items.equip'(_id, itemId) {
-    const itemConstants = ITEMS[itemId];
+  'items.equip'(_id) {
+
+    const item = Items.findOne({
+      owner: Meteor.userId(),
+      _id: _id
+    });
+
+    const itemConstants = ITEMS[item.itemId];
     // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fix
     const itemSlot = itemConstants.slot;
     const itemCategory = itemConstants.category;

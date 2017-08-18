@@ -51,7 +51,7 @@ export const TOWER_FLOOR_13 = {
   },
   6: {
     name: 'Old Mine',
-    enemies: ['dwarf'],
+    enemies: ['dwarf', 'gorilla'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [

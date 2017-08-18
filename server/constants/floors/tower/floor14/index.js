@@ -19,7 +19,7 @@ export const TOWER_FLOOR_14 = {
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [
-        { type: 'item', itemId: 'apple', amount: 15 }
+        { type: 'item', itemId: 'red_apple', amount: 15 }
       ]
     }]))
   },

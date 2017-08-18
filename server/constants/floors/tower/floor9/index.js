@@ -77,14 +77,19 @@ export const TOWER_FLOOR_9 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'celery_seed', amount: 1 },
-        { type: 'item', itemId: 'dragon_fruit', amount: 3 }
+        { type: 'item', itemId: 'dragonfruit', amount: 3 }
       ]
     }]))
   },
 
   boss: {
     enemy: { id: 'boss_gorilla', amount: 1 },
-    rewards: LEVEL_NINE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'thors_skull', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

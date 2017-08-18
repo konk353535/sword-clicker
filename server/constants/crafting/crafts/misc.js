@@ -1,6 +1,38 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
 export const MISC_CRAFTS = {
+
+  adventure_token: {
+    produces: 'adventure_token',
+    recipeFor: 'crafting',
+    name: 'adventure token',
+    category: 'crafting',
+    id: 'adventure_token',
+    requiredCraftingLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 75,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cactus',
+      icon: ITEMS['cactus'].icon,
+      name: ITEMS['cactus'].name,
+      amount: 1,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 15
+    }],
+    timeToCraft: 1 * 60,
+    xp: 10,
+    maxToCraft: 100
+  },
+
   enhancer_key: {
     produces: 'enhancer_key',
     recipeFor: 'crafting',

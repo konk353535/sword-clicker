@@ -44,37 +44,37 @@ export const personalQuestMonsterGenerator = function(level, wave) {
   if (level >= 85) {
     rewardLevel = 10;
   }
-  if (level >= 100) {
+  if (level >= 95) {
     rewardLevel = 11;
   }
-  if (level >= 115) {
+  if (level >= 105) {
     rewardLevel = 12;
   }
-  if (level >= 130) {
+  if (level >= 120) {
     rewardLevel = 13;
   }
-  if (level >= 145) {
+  if (level >= 130) {
     rewardLevel = 14;
   }
-  if (level >= 160) {
+  if (level >= 140) {
     rewardLevel = 15;
   }
-  if (level >= 175) {
+  if (level >= 150) {
     rewardLevel = 16;
   }
-  if (level >= 190) {
+  if (level >= 160) {
     rewardLevel = 17;
   }
-  if (level >= 205) {
+  if (level >= 170) {
     rewardLevel = 18;
   }
-  if (level >= 220) {
+  if (level >= 180) {
     rewardLevel = 19;
   }
-  if (level >= 235) {
+  if (level >= 190) {
     rewardLevel = 20;
   }
-  if (level >= 250) {
+  if (level >= 200) {
     rewardLevel = 21;
   }
 

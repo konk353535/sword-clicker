@@ -29,6 +29,36 @@
 
 export const PICKAXE_ITEMS = {
 
+  thors_skull: {
+    id: 'thors_skull',
+    icon: 'thorsSkull',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'thors skull',
+    sellPrice: 750,
+    description: 'The skull of a long dead god',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: { // DPM = (1000 * 5) / 20 = 250
+      energyStorage: 1000,
+      attack: 750,
+      energyPerHit: 20,
+      energyRegen: 4,
+      miner: 15
+    },
+    extraStats: {
+      energyStorage: 500,
+      attack: 250,
+      miner: 15,
+      energyRegen: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 30
+    }]
+  },
+
   // Over Powered Pickaxes ( 1 )
   dwarven_hammer: {
     id: 'dwarven_hammer',
@@ -1334,7 +1364,7 @@ export const PICKAXE_ITEMS = {
     description: 'A pickaxe forged from tungsten. Used for mining',
     isPickaxe: true,
     isEquippable: true,
-    stats: {
+    stats: { // 53 * 7 = 371 DPM
       energyStorage: 16, // Maximum energy stored
       attack: 48, // Damage per hit
       energyPerHit: 1, // Energy used per hit

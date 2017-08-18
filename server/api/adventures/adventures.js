@@ -16,7 +16,7 @@ import { Adventures } from '/imports/api/adventures/adventures';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 
-import { addItem } from '/server/api/items/items';
+import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 
@@ -268,6 +268,87 @@ Meteor.methods({
         addXp(reward.skill, reward.amount, Meteor.userId());
       }
     })
+  },
+
+  'adventures.cycleAdventure'(isGems = false) {
+    let adventureTokens;
+
+    if (isGems) {
+      if (!hasGems(10, Meteor.user())) {
+        return;
+      }
+    } else {
+      // Check for an adventure_token
+      adventureTokens = Items.findOne({
+        owner: Meteor.userId(),
+        itemId: 'adventure_token'
+      });
+
+      if (!adventureTokens || adventureTokens.amount < 1) {
+        return;
+      }
+    }
+
+    // Produce extra adventure
+    // Fetch all db data we need
+    let myAdventures = Adventures.findOne({ owner: Meteor.userId() });
+
+    if (!myAdventures) return;
+
+    // Fetch users combat skills
+    const rawCombatSkills = Skills.find({
+      owner: this.userId,
+      type: {
+        $in: ['attack', 'defense', 'magic']
+      }
+    }).fetch();
+
+    const combatSkills = {};
+
+    rawCombatSkills.forEach((combatSkill) => {
+      combatSkills[combatSkill.type] = combatSkill;
+    });
+
+    // Get max floor
+    const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+
+    // Add a new adventure entry
+    myAdventures.adventures.unshift(createAdventure(combatSkills, maxFloor - 1));
+
+    // Filter out so there is only 10
+    const inactiveAdventures = myAdventures.adventures.filter((adventure) => {
+      return !adventure.startDate;
+    });
+    const activeAdventures = myAdventures.adventures.filter((adventure) => {
+      return adventure.startDate;
+    });
+
+    if (myAdventures.adventures.length > MAX_ADVENTURES) {
+      inactiveAdventures.splice(MAX_ADVENTURES - 1, myAdventures.adventures.length - MAX_ADVENTURES);
+    }
+
+    myAdventures.adventures = activeAdventures.concat(inactiveAdventures);
+
+    // Needs to be more defensive, as there is a slight delay between fetching and resetting adventures
+    // Could be abused
+    const updated = Adventures.update({
+      owner: Meteor.userId(),
+      lastGameUpdated: myAdventures.lastGameUpdated
+    }, {
+      $set: {
+        timeTillUpdate: myAdventures.timeTillUpdate,
+        adventures: myAdventures.adventures,
+        lastGameUpdated: new Date()
+      }
+    });
+
+    if (updated > 0) {
+      if (isGems) {
+        consumeGems(10, Meteor.user());
+      } else {
+        consumeItem(adventureTokens, 1);
+      }
+    }
   },
 
   'adventures.startAdventure'(adventureId) {

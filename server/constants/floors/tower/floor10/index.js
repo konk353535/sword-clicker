@@ -15,7 +15,7 @@ export const TOWER_FLOOR_10 = {
   },
   3: {
     name: 'Turquoise Lake',
-    enemies: ['jellyfish', 'fish'],
+    enemies: ['jellyFish', 'fish'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,
       rewards: [

@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills.js';
+import { Items } from '/imports/api/items/items.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
@@ -85,6 +86,14 @@ Template.adventuresTab.events({
     });
   },
 
+  'click .buy-new-adventure'(event, instance) {
+    Meteor.call('adventures.cycleAdventure');
+  },
+
+  'click .buy-new-adventure-gems'(event, instance) {
+    Meteor.call('adventures.cycleAdventure', true);
+  },
+
   'click .cancel-adventure-btn'(event, instance) {
     const id = instance.$(event.target).closest('.cancel-adventure-btn').attr('data-id');
     Meteor.call('adventures.cancelAdventure', id, (err, res) => {
@@ -125,6 +134,24 @@ Template.adventuresTab.helpers({
     return instance.state.get('adventures').filter((adventure) => {
       return adventure.length === 'short' && !adventure.startDate;
     });
+  },
+
+  totalGems() {
+    return Meteor.user().gems + Meteor.user().fakeGems;
+  },
+
+  token() {
+    const token = Items.findOne({
+      itemId: 'adventure_token'
+    });
+
+    if (!token) {
+      return {
+        amount: 0
+      }
+    }
+
+    return token;
   },
 
   activeAdventures() {

@@ -46,7 +46,7 @@ export const TOWER_FLOOR_11 = {
   },
   6: {
     name: 'Suspicious Mine',
-    enemies: ['angry_miner'],
+    enemies: ['angry_miner', 'gorilla'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [

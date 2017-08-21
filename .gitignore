@@ -1,5 +1,5 @@
 node_modules/
-
+.meteor/local
 settings.json
 
 settings-development.json

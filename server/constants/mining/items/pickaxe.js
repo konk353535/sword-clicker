@@ -44,7 +44,7 @@ export const PICKAXE_ITEMS = {
       attack: 750,
       energyPerHit: 20,
       energyRegen: 4,
-      miner: 15
+      miner: 35
     },
     extraStats: {
       energyStorage: 500,

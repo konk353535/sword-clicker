@@ -98,6 +98,28 @@ Meteor.methods({
 
   },
 
+  'shop.buyItem'({ itemId }) {
+
+    const validItems = [{
+      id: 'lemonade',
+      cost: 10
+    }];
+
+    const itemToBuy = _.findWhere(validItems, { id: itemId });
+    if (!itemToBuy) {
+      throw new Meteor.Error("invalid-item", "Invalid item");
+    }
+
+    if (!hasGems(itemToBuy.cost, Meteor.user())) {
+      throw new Meteor.Error("no-gems", "Not enough gems");
+    }
+
+    if (consumeGems(itemToBuy.cost, Meteor.user())) {
+      addItem(itemToBuy.id, 1, Meteor.userId());
+    }
+
+  },
+
   'shop.buyEnhancerKey'() {
 
     // Check user has the correct # of gems to key

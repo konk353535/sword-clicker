@@ -181,6 +181,38 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_lemonade: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'lemonade',
+    name: 'eating lemonade',
+    description({ buff, level }) {
+      return `Gain 20 energy instantly.`;
+    },
+    data: { // Data we require to persist
+      duration: 0, // How long the buff will last
+      totalDuration: 0,
+      energyPerSecond: 0 // energy it will do per second
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        target.stats.energy += 20;
+        if (target.stats.energy > target.stats.energyMax) {
+          target.stats.energy = target.stats.energyMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Remove buff from the target
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id;
+        });
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
   food_lemon: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'lemon',

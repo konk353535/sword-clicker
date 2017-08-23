@@ -20,6 +20,18 @@ Router.route('/', {
   }
 });
 
+Router.route('/achievements', {
+
+  name: 'achievementsPage',
+
+  template: 'achievementsPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/profile/:username', {
 
   name: 'profilePage',

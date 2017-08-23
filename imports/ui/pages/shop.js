@@ -135,6 +135,19 @@ Template.shopPage.events({
       }
       toastr.success('Successfully purchased.')
     });
+  },
+
+  'click .buy-lemonade'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
+      return;
+    }
+
+    Meteor.call('shop.buyItem', { itemId: 'lemonade' }, (err, res) => {
+      if (err) {
+        return toastr.error('An unexpected error occured when buying item.');
+      }
+      toastr.success('Successfully purchased.')
+    });
   }
 })
 

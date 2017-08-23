@@ -95,13 +95,16 @@ SyncedCron.add({
       let currentBattle = redis.get(`battles-${battleList._id}`);
       currentBattle = currentBattle ? JSON.parse(currentBattle) : currentBattle;
 
-      let isUpdatedStale;
-      if (currentBattle) {
+      let isUpdatedStale = false;
+
+      if (battleList.useStreamy) {
+        isUpdatedStale = moment().isAfter(moment(battleList.createdAt).add(15, 'minutes'));
+      } else if (currentBattle) {
         isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
       }
 
 
-      if (isUpdatedStale || !currentBattle) {
+      if (isUpdatedStale || (!currentBattle && !battleList.useStreamy)) {
         BattlesList.remove(battleList._id);
         redis.del(`battles-${battleList._id}`);
         redis.del(`battleActions-${battleList._id}`);

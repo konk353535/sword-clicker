@@ -8,7 +8,8 @@ export const BattlesList = new Mongo.Collection('battlesList');
 
 BattlesListSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
-  createdAt: { type: Date }
+  createdAt: { type: Date },
+  useStreamy: { type: Boolean, defaultValue: false }
 });
 
 BattlesSchema = new SimpleSchema({

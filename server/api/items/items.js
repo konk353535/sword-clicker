@@ -468,6 +468,14 @@ Meteor.methods({
       return item.duplicateTag
     });
 
+    currentCombat.buffs.forEach((buff) => {
+      buff.constants.events.onTick({
+        secondsElapsed: 0,
+        buff,
+        target: currentCombat
+      });
+    });
+
     // Save buff and stat changes
     Combat.update(currentCombat._id, {
       $set: flattenObjectForMongo({

@@ -62,7 +62,6 @@ export const resumeBattle = function(id) {
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
 }
 
-
 Meteor.methods({
 
   'battles.findPersonalBattle'(level) {

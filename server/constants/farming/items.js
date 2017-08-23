@@ -815,6 +815,21 @@ export const FARMING_ITEMS = {
     sellPrice: 20
   },
 
+  lemonade: {
+    id: 'lemonade',
+    icon: 'lemonade',
+    category: 'food',
+    name: 'lemonade',
+    description() {
+      const buff = BUFFS.food_lemonade;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_lemonade'
+    }],
+    sellPrice: 100
+  },
+
   rubia_flower_seed: {
     id: 'rubia_flower_seed',
     icon: 'rubiaFlowerSeed',

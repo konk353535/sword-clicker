@@ -52,7 +52,7 @@ Template.combatPage.onCreated(function bodyOnCreated() {
       }
     });
 
-    if (currentBattle) {
+    if (currentBattle && !currentBattle.useStreamy) {
       Meteor.subscribe('redis-battles', currentBattle);
     }
   });
@@ -236,13 +236,10 @@ Template.combatPage.helpers({
   },
 
   inCurrentBattle() {
-    const currentBattles = redis.matching(`battles-*`).fetch();
-
-    if (currentBattles) {
-      return currentBattles[0];
-    }
-
-    return [];
+    const currentBattleList = BattlesList.findOne({
+      owners: Meteor.userId()
+    });
+    return !!currentBattleList;
   },
 
   finishedBattle() {

@@ -55,7 +55,7 @@ Template.personalQuestTab.events({
       if (err) {
         toastr.warning(err.reason);
       }
-    })
+    });
   }
 })
 

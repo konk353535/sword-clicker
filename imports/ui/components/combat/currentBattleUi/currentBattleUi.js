@@ -11,8 +11,80 @@ import './currentBattleUi.html';
 
 const redis = new Meteor.RedisCollection('redis');
 
+const startBattle = (currentBattle, self) => {
+  const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
+  if (myUnit) {
+    self.state.set('myUnit', myUnit);
+  }
+
+  // Find enemies that are targetting my unit
+  currentBattle.enemies.forEach((enemy) => {
+    if (myUnit && enemy.target === myUnit.id) {
+      enemy.targettingPlayer = true;
+    } else {
+      enemy.targettingPlayer = false;
+    }
+  });   
+
+  self.state.set('currentBattle', currentBattle);
+
+  if (currentBattle) {
+    if (currentBattle.tickEvents.length > 3) {
+      // Only show user owned ticks
+      currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
+        return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
+      });
+    }
+    if (!Session.get('floatingTextDisabled')) {
+      currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
+        const offset = $(`#${tickEvent.to}`).offset();
+        if (offset) {
+          let color;
+          let fontSize = 'asdf';
+
+          if (tickEvent.label == 0) {
+            color = 'blue';
+            fontSize = '10px';
+          } else if (tickEvent.customColor) {
+            color = tickEvent.customColor;
+          } else {
+            color = 'red';
+          }
+
+          // Determine left based on tick # + tickEventIndex
+          offset.left += -20 + ((tickEventIndex % 3) * 45); // -10 to 50
+
+          // Attempt to push floating text down when more then 3
+          if (tickEventIndex % 6 >= 3) {
+            offset.top += 40;
+          }
+
+          let element = $(`
+            <p
+              class='floating-text'
+              data-count=1
+              style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
+              <i class="lilIcon-${tickEvent.customIcon ? tickEvent.customIcon : 'attack'}"></i>
+              ${tickEvent.label}
+            </p>
+          `);
+
+          $('body').append(element);
+          $(element).animateCss('fadeOutUp');
+        }
+      });
+    }
+  }
+}
+
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  Streamy.on('battleFrame', (data, s) => {
+    const currentBattle = data;
+
+    startBattle(currentBattle, this);
+  });
 
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
@@ -25,69 +97,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     const currentBattle = JSON.parse(rawBattle);
     if (!currentBattle) return;
 
-    const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
-    if (myUnit) {
-      this.state.set('myUnit', myUnit);
-    }
-
-    // Find enemies that are targetting my unit
-    currentBattle.enemies.forEach((enemy) => {
-      if (myUnit && enemy.target === myUnit.id) {
-        enemy.targettingPlayer = true;
-      } else {
-        enemy.targettingPlayer = false;
-      }
-    });   
-
-    this.state.set('currentBattle', currentBattle);
-
-    if (currentBattle) {
-      if (currentBattle.tickEvents.length > 3) {
-        // Only show user owned ticks
-        currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
-          return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
-        });
-      }
-      if (!Session.get('floatingTextDisabled')) {
-        currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
-          const offset = $(`#${tickEvent.to}`).offset();
-          if (offset) {
-            let color;
-            let fontSize = 'asdf';
-
-            if (tickEvent.label == 0) {
-              color = 'blue';
-              fontSize = '10px';
-            } else if (tickEvent.customColor) {
-              color = tickEvent.customColor;
-            } else {
-              color = 'red';
-            }
-
-            // Determine left based on tick # + tickEventIndex
-            offset.left += -20 + ((tickEventIndex % 3) * 45); // -10 to 50
-
-            // Attempt to push floating text down when more then 3
-            if (tickEventIndex % 6 >= 3) {
-              offset.top += 40;
-            }
-
-            let element = $(`
-              <p
-                class='floating-text'
-                data-count=1
-                style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-                <i class="lilIcon-${tickEvent.customIcon ? tickEvent.customIcon : 'attack'}"></i>
-                ${tickEvent.label}
-              </p>
-            `);
-
-            $('body').append(element);
-            $(element).animateCss('fadeOutUp');
-          }
-        });
-      }
-    }
+    startBattle(currentBattle, this);
   })
 });
 

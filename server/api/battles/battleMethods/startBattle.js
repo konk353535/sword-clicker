@@ -57,6 +57,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is still in one.');
   }
 
+  let useStreamy = false;
+  if (battleParticipants.length === 1) {
+    useStreamy = true;
+  }
+
   // Ensure battle participants don't have any active adventures
   const activeAdventures = Adventures.findOne({
     owner: {
@@ -103,6 +108,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     isExplorationRun,
     tickEvents: [],
     units: [],
+    useStreamy,
     enemies: []
   }
 
@@ -289,11 +295,19 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   // Save battle
-  const actualBattleId = BattlesList.insert({ owners: newBattle.owners, createdAt: new Date () });
+  const actualBattleId = BattlesList.insert({
+    owners: newBattle.owners,
+    createdAt: new Date(),
+    useStreamy
+  });
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;
-  redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));
+
+  if (!useStreamy) {
+    redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));
+  }
+
   const actualBattle = newBattle;
 
   // Take energy from all members
@@ -307,8 +321,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }, { multi: true });
 
+  let emit;
+  if (useStreamy) {
+    const options = Streamy.sessionsForUsers(newBattle.owners);
+    emit = options.emit;
+  }
+
   // Progress battle
   const battleIntervalId = Meteor.setInterval(() => {
-    progressBattle(actualBattle, battleIntervalId);
+    progressBattle(actualBattle, battleIntervalId, emit);
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
 }

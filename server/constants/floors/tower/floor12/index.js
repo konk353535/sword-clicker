@@ -82,6 +82,13 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'obsidian_scimitar', amount: 1 },
+        { type: 'item', itemId: 'obsidian_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'obsidian_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

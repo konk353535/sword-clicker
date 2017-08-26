@@ -1,14 +1,81 @@
 import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import moment from 'moment';
 
 import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
+const redis = new Meteor.RedisCollection('redis');
 
 import { unlockFarmingSpaces } from '/server/api/farming/farming';
 
 Meteor.methods({
+
+  'shop.fetchGlobalBuffs'() {
+    return JSON.parse(redis.get('global-buffs-xpq'));
+  },
+
+  'shop.buyGlobalBuff'(type) {
+    if (!_.contains(['combat', 'gathering', 'crafting'], type)) {
+      throw new Meteor.Error("invalid-type", "Invalid type");
+    }
+
+    const GEM_COST = 100;
+
+    // Does the user have 100 gems?
+    const userDoc = Meteor.user();
+
+    if (userDoc.gems < GEM_COST) {
+      throw new Meteor.Error("gems-too-low", "You don't have enough gems");
+    }
+
+    // Fetch the redis doc
+    const rawGlobalBuffs = redis.get('global-buffs-xpq');
+    if (!rawGlobalBuffs) return;
+    const globalBuffs = JSON.parse(rawGlobalBuffs);
+
+    if (!globalBuffs[type]) {
+      return;
+    }
+
+    // Take me gems!
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $inc: {
+        gems: (GEM_COST * -1)
+      }
+    });
+
+    // Increment target buff by 1 hour
+    if (moment().isAfter(globalBuffs[type])) {
+      // Legend banner to all online users?
+      Chats.insert({
+        message: `${userDoc.username} has activated the ${type} buff for all players (1hr remaining)`,
+        username: 'SERVER',
+        name: 'SERVER',
+        date: new Date(),
+        custom: {
+          roomType: 'Game'
+        },
+        roomId: 'General'
+      });
+
+      /* TODO in mongo db
+      if (globalBuffs.users[userDoc.username]) {
+        globalBuffs.users[userDoc.username] += 1;
+      } else {
+        globalBuffs.users[userDoc.username] = 1;
+      }*/
+
+      globalBuffs[type] = moment().add(1, 'hour').toDate();
+    } else {      
+      globalBuffs[type] = moment(globalBuffs[type]).add(1, 'hour').toDate();
+    }
+
+    redis.set('global-buffs-xpq', JSON.stringify(globalBuffs));
+  },
 
   'shop.buyMembership'(days) {
     if (!_.contains([15, 30], days)) {

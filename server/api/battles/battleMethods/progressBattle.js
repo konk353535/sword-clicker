@@ -17,7 +17,7 @@ const redis = new Meteor.RedisCollection('redis');
 
 const tickTracker = {};
 
-export const progressBattle = function (actualBattle, battleIntervalId, emit) {
+export const progressBattle = function (actualBattle, battleIntervalId) {
 
   try {
     if (tickTracker[actualBattle._id]) {
@@ -451,6 +451,7 @@ export const progressBattle = function (actualBattle, battleIntervalId, emit) {
     delete actualBattle.allAliveUnits;
 
     if (actualBattle.useStreamy) {
+      const { emit } = Streamy.sessionsForUsers(actualBattle.owners);
       emit('battleFrame', actualBattle);
     } else {
       redis.set(`battles-${actualBattle._id}`, JSON.stringify(actualBattle));

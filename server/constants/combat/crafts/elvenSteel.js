@@ -8,7 +8,7 @@ export const ELVEN_STEEL_CRAFTS = {
     category: 'combat',
     id: 'elven_steel_dagger',
     timeToCraft: 30 * 60 * 2,
-    xp: 550,
+    xp: 5100,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -53,7 +53,7 @@ export const ELVEN_STEEL_CRAFTS = {
     category: 'combat',
     id: 'elven_steel_spear',
     timeToCraft: 60 * 60 * 2,
-    xp: 1700,
+    xp: 5100,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -98,7 +98,7 @@ export const ELVEN_STEEL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'elven_steel_short_sword',
     timeToCraft: 60 * 60 * 2,
-    xp: 1700,
+    xp: 5100,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -143,7 +143,7 @@ export const ELVEN_STEEL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'elven_steel_long_sword',
     timeToCraft: 90 * 60,
-    xp: 1850,
+    xp: 5500,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -188,7 +188,7 @@ export const ELVEN_STEEL_CRAFTS = {
     category: 'combat',
     id: 'elven_steel_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 1850,
+    xp: 5500,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{

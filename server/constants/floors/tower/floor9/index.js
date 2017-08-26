@@ -89,6 +89,13 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'thors_skull', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'platinum_scimitar', amount: 1 },
+        { type: 'item', itemId: 'platinum_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'platinum_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

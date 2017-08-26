@@ -13,16 +13,40 @@ export const XP_CRAFTS = {
       itemId: 'ore_stone',
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 2
     }],
-    timeToCraft: 60,
-    xp: 50,
+    timeToCraft: 120,
+    xp: 100,
     maxToCraft: 5
+  },
+
+  stone_wall: {
+    produces: 'stone_wall',
+    recipeFor: 'crafting',
+    name: 'stone wall',
+    category: 'crafting',
+    id: 'stone_wall',
+    requiredCraftingLevel: 5,
+    required: [{
+      type: 'item',
+      itemId: 'ore_stone',
+      icon: ITEMS['ore_stone'].icon,
+      name: ITEMS['ore_stone'].name,
+      amount: 3,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 5
+    }],
+    timeToCraft: 60,
+    xp: 20,
+    maxToCraft: 100
   },
 
   copper_wall: {
@@ -61,15 +85,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_tin',
       icon: ITEMS['ore_tin'].icon,
       name: ITEMS['ore_tin'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 12
     }],
-    timeToCraft: 60,
-    xp: 75,
+    timeToCraft: 120,
+    xp: 150,
     maxToCraft: 5
   },
 
@@ -109,15 +133,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_iron',
       icon: ITEMS['ore_iron'].icon,
       name: ITEMS['ore_iron'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 22
     }],
-    timeToCraft: 60,
-    xp: 100,
+    timeToCraft: 120,
+    xp: 200,
     maxToCraft: 5
   },
 
@@ -157,15 +181,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_gold',
       icon: ITEMS['ore_gold'].icon,
       name: ITEMS['ore_gold'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 32
     }],
-    timeToCraft: 60,
-    xp: 130,
+    timeToCraft: 120,
+    xp: 260,
     maxToCraft: 5
   },
 
@@ -205,15 +229,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_steel',
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 42
     }],
-    timeToCraft: 60,
-    xp: 160,
+    timeToCraft: 120,
+    xp: 320,
     maxToCraft: 5
   },
 
@@ -253,15 +277,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_titanium',
       icon: ITEMS['ore_titanium'].icon,
       name: ITEMS['ore_titanium'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 52
     }],
-    timeToCraft: 60,
-    xp: 200,
+    timeToCraft: 120,
+    xp: 400,
     maxToCraft: 5
   },
 
@@ -301,15 +325,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_obsidian',
       icon: ITEMS['ore_obsidian'].icon,
       name: ITEMS['ore_obsidian'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 62
     }],
-    timeToCraft: 60,
-    xp: 250,
+    timeToCraft: 120,
+    xp: 500,
     maxToCraft: 5
   },
 
@@ -349,15 +373,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_mithril',
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 72
     }],
-    timeToCraft: 60,
-    xp: 300,
+    timeToCraft: 120,
+    xp: 600,
     maxToCraft: 5
   },
 
@@ -397,15 +421,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_orichalcum',
       icon: ITEMS['ore_orichalcum'].icon,
       name: ITEMS['ore_orichalcum'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 82
     }],
-    timeToCraft: 60,
-    xp: 400,
+    timeToCraft: 120,
+    xp: 800,
     maxToCraft: 5
   },
 
@@ -445,15 +469,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_fairy_steel',
       icon: ITEMS['ore_fairy_steel'].icon,
       name: ITEMS['ore_fairy_steel'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 92
     }],
-    timeToCraft: 60,
-    xp: 500,
+    timeToCraft: 120,
+    xp: 1000,
     maxToCraft: 5
   },
 
@@ -493,15 +517,15 @@ export const XP_CRAFTS = {
       itemId: 'ore_cursed',
       icon: ITEMS['ore_cursed'].icon,
       name: ITEMS['ore_cursed'].name,
-      amount: 5,
+      amount: 10,
       consumes: true // If true, this required item will dissapear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
       level: 102
     }],
-    timeToCraft: 60,
-    xp: 600,
+    timeToCraft: 120,
+    xp: 1200,
     maxToCraft: 5
   },
   

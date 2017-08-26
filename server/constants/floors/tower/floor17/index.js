@@ -79,6 +79,13 @@ export const TOWER_FLOOR_17 = {
       rewards: [
         { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'meteorite_scimitar', amount: 1 },
+        { type: 'item', itemId: 'meteorite_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'meteorite_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

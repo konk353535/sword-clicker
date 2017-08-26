@@ -58,9 +58,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   let useStreamy = false;
-  if (battleParticipants.length === 1) {
-    useStreamy = true;
-  }
 
   // Ensure battle participants don't have any active adventures
   const activeAdventures = Adventures.findOne({
@@ -321,14 +318,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }, { multi: true });
 
-  let emit;
-  if (useStreamy) {
-    const options = Streamy.sessionsForUsers(newBattle.owners);
-    emit = options.emit;
-  }
-
   // Progress battle
   const battleIntervalId = Meteor.setInterval(() => {
-    progressBattle(actualBattle, battleIntervalId, emit);
+    progressBattle(actualBattle, battleIntervalId);
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
 }

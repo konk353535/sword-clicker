@@ -8,7 +8,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_dagger',
     timeToCraft: 30 * 60 * 2,
-    xp: 550,
+    xp: 1650,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -53,7 +53,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_spear',
     timeToCraft: 60 * 60 * 2,
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -98,7 +98,7 @@ export const ADAMANTIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'adamantium_short_sword',
     timeToCraft: 60 * 60 * 2,
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -143,7 +143,7 @@ export const ADAMANTIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'adamantium_long_sword',
     timeToCraft: 90 * 60,
-    xp: 1450,
+    xp: 4350,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -188,7 +188,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 1450,
+    xp: 4350,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -233,7 +233,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_helmet',
     timeToCraft: 60 * 60 * 2,
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -278,7 +278,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_chest_plate',
     timeToCraft: 60 * 60 * 2,
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -323,7 +323,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -368,7 +368,7 @@ export const ADAMANTIUM_CRAFTS = {
     category: 'combat',
     id: 'adamantium_shield',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1300,
+    xp: 3900,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{

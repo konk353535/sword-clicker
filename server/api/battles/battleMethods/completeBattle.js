@@ -93,6 +93,10 @@ export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
   let win = actualBattle.units.length > 0;
 
+  const rawGlobalBuffs = redis.get('global-buffs-xpq');
+  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+
   // Remove from battle list
   const battlesDeleted = BattlesList.remove(actualBattle._id);
   // Remove from redis
@@ -159,15 +163,30 @@ export const completeBattle = function (actualBattle) {
       Object.keys(unit.xpDistribution).forEach((skillName) => {
         // Distribute xp gained per player, per skill
         // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
-        const skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
+        let skillXpPortion = Math.round(xpPortion * unit.xpDistribution[skillName]);
 
-        addXp(skillName, skillXpPortion, unit.id);
-        finalTickEvents.push({
-          type: 'xp',
-          amount: skillXpPortion,
-          skill: skillName,
-          owner: unit.owner
-        })
+        if (skillXpPortion > 0) {
+          finalTickEvents.push({
+            type: 'xp',
+            amount: skillXpPortion,
+            skill: skillName,
+            owner: unit.owner
+          });
+
+          if (hasCombatGlobalBuff) {
+            skillXpPortion *= 1.2;
+
+            finalTickEvents.push({
+              type: 'xp',
+              amount: (skillXpPortion * 0.2).toFixed(1),
+              skill: skillName,
+              affectedGlobalBuff: true,
+              owner: unit.owner
+            });
+          }
+
+          addXp(skillName, skillXpPortion, unit.id);
+        }
       });
     });
 
@@ -216,6 +235,13 @@ export const completeBattle = function (actualBattle) {
         if (rewardsGained >= units.length) {
           break;
         }
+      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.2) >= diceRoll) {
+        rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
+          affectedGlobalBuff: true
+        }));
+        if (rewardsGained >= units.length) {
+          break;
+        }
       }
     }
 
@@ -229,6 +255,7 @@ export const completeBattle = function (actualBattle) {
           type: 'item',
           amount: rewardGained.amount,
           itemId: rewardGained.itemId,
+          affectedGlobalBuff: rewardGained.affectedGlobalBuff,
           icon: ITEMS[rewardGained.itemId].icon,
           owner: luckyOwner
         });
@@ -243,6 +270,7 @@ export const completeBattle = function (actualBattle) {
           type: 'gold',
           amount: rewardGained.amount,
           itemId: rewardGained.itemId,
+          affectedGlobalBuff: rewardGained.affectedGlobalBuff,
           icon: 'gold',
           owner: luckyOwner
         });

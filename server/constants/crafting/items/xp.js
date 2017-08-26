@@ -9,6 +9,15 @@ export const XP_ITEMS = {
     description: 'Can be crafted for decent xp'
   },
 
+  stone_wall: {
+    id: 'stone_wall',
+    icon: 'stoneWall',
+    category: 'crafting',
+    name: 'stone wall',
+    sellPrice: 1,
+    description: 'Can be crafted for decent xp'
+  },
+
   copper_wall: {
     id: 'copper_wall',
     icon: 'copperWall',

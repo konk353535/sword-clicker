@@ -17,6 +17,30 @@ import { SKILLS } from '/server/constants/skills/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import _ from 'underscore';
 
+const redis = new Meteor.RedisCollection('redis');
+
+let globalXpBuffs = {}
+
+const updateGlobalBuffs = () => {
+  const rawGlobalBuffs = redis.get('global-buffs-xpq');
+  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+  const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
+  const hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+  const hasGatheringGlobalBuff = globalBuffs.gathering && moment().isBefore(globalBuffs.gathering);
+
+  globalXpBuffs = {
+    astronomy: hasCombatGlobalBuff,
+    woodcutting: hasGatheringGlobalBuff,
+    mining: hasGatheringGlobalBuff,
+    farming: hasGatheringGlobalBuff,
+    crafting: hasCraftingGlobalBuff,
+    inscription: hasCraftingGlobalBuff
+  }
+};
+
+updateGlobalBuffs();
+Meteor.setInterval(updateGlobalBuffs, 30000);
+
 export const addXp = function (skillType, xp, specificUserId) {
   let owner;
   if (specificUserId) {
@@ -32,6 +56,10 @@ export const addXp = function (skillType, xp, specificUserId) {
 
   const skillConstants = SKILLS[skill.type];
   const originalXp = skill.xp;
+
+  if (globalXpBuffs[skill.type]) {
+    xp *= 1.2;
+  }
 
   skill.xp += xp;
 

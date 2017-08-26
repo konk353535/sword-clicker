@@ -31,7 +31,7 @@
               <div class="d-flex align-items-center" style="flex: 1 1 auto">
                 {{#each this.rewards}}
                   {{#if $eq this.type 'xp'}}
-                    <div class="ml-1">
+                    <div class="ml-1 {{#if this.affectedGlobalBuff}}text-info{{/if}}">
                       +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
                     </div>
                   {{/if}}

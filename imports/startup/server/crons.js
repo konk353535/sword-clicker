@@ -6,6 +6,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
@@ -76,6 +77,28 @@ SyncedCron.add({
     }, { multi: true });
 
     console.log('All done for boss battle reset');
+    return true;
+  }
+});
+
+SyncedCron.add({
+  name: 'Clean up battles and chat',
+  schedule: function(parser) {
+    return parser.cron('* * * * * * *');
+  },
+  job: function() {
+    Battles.remove({
+      updatedAt: {
+        $lt: moment().subtract(1, 'month').toDate()
+      }
+    });
+
+    Chats.remove({
+      date: {
+        $lt: moment().subtract(1, 'month').toDate()
+      }
+    });
+
     return true;
   }
 });

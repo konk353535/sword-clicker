@@ -7,6 +7,9 @@
       {{else if $eq this.type 'skill'}}
         <img src="/icons/{{this.name}}.svg" class="extra-small-icon">      
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
+      {{else if $eq this.type 'xp'}}
+        <img src="/icons/{{this.skill}}.svg" class="extra-small-icon">      
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount noDecimal=true}}</span>
       {{else}}
         <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
@@ -14,6 +17,7 @@
     {{/each}}
   </div>
 
+  {{#unless hideTooltip}}
   <div class="required-items-tooltip my-tooltip-inner">
     <h3 class='popover-title'>Requirements</h3>
     <div class='popover-content'>
@@ -67,4 +71,5 @@
       {{/each}}
     </div>
   </div>
+  {{/unless}}
 </template>

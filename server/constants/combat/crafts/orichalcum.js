@@ -8,7 +8,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_dagger',
     timeToCraft: 30 * 60 * 2,
-    xp: 550,
+    xp: 1700,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -53,7 +53,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_spear',
     timeToCraft: 60 * 60 * 2,
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -98,7 +98,7 @@ export const ORICHALCUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'orichalcum_short_sword',
     timeToCraft: 60 * 60 * 2,
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -143,7 +143,7 @@ export const ORICHALCUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'orichalcum_long_sword',
     timeToCraft: 90 * 60,
-    xp: 1550,
+    xp: 4650,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -188,7 +188,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 1550,
+    xp: 4650,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -233,7 +233,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_helmet',
     timeToCraft: 60 * 60 * 2,
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -278,7 +278,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_chest_plate',
     timeToCraft: 60 * 60 * 2,
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -323,7 +323,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -368,7 +368,7 @@ export const ORICHALCUM_CRAFTS = {
     category: 'combat',
     id: 'orichalcum_shield',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1400,
+    xp: 4200,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{

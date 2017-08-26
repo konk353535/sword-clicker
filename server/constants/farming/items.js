@@ -54,6 +54,54 @@ export const FARMING_ITEMS = {
     sellPrice: 250
   },
 
+  blue_rose_seed: {
+    id: 'blue_rose_seed',
+    icon: 'blueRoseSeed',
+    category: 'seed',
+    name: 'blue rose Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'blue_rose'
+  },
+
+  blue_rose: {
+    id: 'blue_rose',
+    icon: 'blueRose',
+    category: 'herb',
+    name: 'blue rose',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 400
+  },
+
+  hydrangea_seed: {
+    id: 'hydrangea_seed',
+    icon: 'hydrangeaSeed',
+    category: 'seed',
+    name: 'hydrangea Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'hydrangea'
+  },
+
+  hydrangea: {
+    id: 'hydrangea',
+    icon: 'hydrangea',
+    category: 'herb',
+    name: 'hydrangea',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 700
+  },
+
   chrysanthemum_seed: {
     id: 'chrysanthemum_seed',
     icon: 'chrysanthemumSeed',
@@ -98,6 +146,30 @@ export const FARMING_ITEMS = {
     name: 'Cactus',
     description() {
       return 'Looks prickly';
+    },
+    sellPrice: 1
+  },
+
+  bamboo_seed: {
+    id: 'bamboo_seed',
+    icon: 'bambooSeed',
+    category: 'seed',
+    name: 'bamboo Seed',
+    seedType: 'misc',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'bamboo'
+  },
+
+  bamboo: {
+    id: 'bamboo',
+    icon: 'bamboo',
+    category: 'herb',
+    name: 'bamboo',
+    description() {
+      return 'Looks useful';
     },
     sellPrice: 1
   },

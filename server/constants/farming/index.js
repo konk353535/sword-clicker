@@ -35,6 +35,36 @@ export const FARMING = {
       }]
     },
 
+    blue_rose_seed: {
+      id: 'blue_rose_seed',
+      itemId: 'blue_rose_seed',
+      requiredFarmingLevel: 19,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 19
+      }]
+    },
+
+    hydrangea_seed: {
+      id: 'hydrangea_seed',
+      itemId: 'hydrangea_seed',
+      requiredFarmingLevel: 39,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 39
+      }]
+    },
+
     cactus_seed: {
       id: 'cactus_seed',
       itemId: 'cactus_seed',
@@ -47,6 +77,21 @@ export const FARMING = {
         type: 'skill',
         name: 'farming',
         level: 6
+      }]
+    },
+
+    bamboo_seed: {
+      id: 'bamboo_seed',
+      itemId: 'bamboo_seed',
+      requiredFarmingLevel: 36,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 36
       }]
     },
 
@@ -341,12 +386,42 @@ export const FARMING = {
       requiredFarmingLevel: 40,
       required: [{
         type: 'gold',
-        amount: 400,
+        amount: 300,
         consumes: true
       }, {
         type: 'skill',
         name: 'farming',
         level: 40
+      }]
+    },
+
+    acai_berry_seed: {
+      id: 'acai_berry_seed',
+      itemId: 'acai_berry_seed',
+      requiredFarmingLevel: 30,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 30
+      }]
+    },
+
+    chrysanthemum_seed: {
+      id: 'chrysanthemum_seed',
+      itemId: 'chrysanthemum_seed',
+      requiredFarmingLevel: 25,
+      required: [{
+        type: 'gold',
+        amount: 600,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 25
       }]
     },
 

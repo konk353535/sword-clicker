@@ -8,7 +8,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_dagger',
     timeToCraft: 30 * 60,
-    xp: 550,
+    xp: 1700,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -53,7 +53,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_spear',
     timeToCraft: 60 * 60,
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -98,7 +98,7 @@ export const MITHRIL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'mithril_short_sword',
     timeToCraft: 60 * 60,
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -143,7 +143,7 @@ export const MITHRIL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'mithril_long_sword',
     timeToCraft: 90 * 60,
-    xp: 1350,
+    xp: 4050,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -188,7 +188,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 1350,
+    xp: 4050,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -233,7 +233,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_helmet',
     timeToCraft: 60 * 60,
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -278,7 +278,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_chest_plate',
     timeToCraft: 60 * 60,
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -323,7 +323,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_plate_legs',
     timeToCraft: 60 * 60, // 60
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -368,7 +368,7 @@ export const MITHRIL_CRAFTS = {
     category: 'combat',
     id: 'mithril_shield',
     timeToCraft: 60 * 60, // 60
-    xp: 1200,
+    xp: 3600,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{

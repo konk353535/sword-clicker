@@ -8,7 +8,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_dagger',
     timeToCraft: 30 * 60 * 2,
-    xp: 550,
+    xp: 1700,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -53,7 +53,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_spear',
     timeToCraft: 60 * 60 * 2,
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -98,7 +98,7 @@ export const METEORITE_CRAFTS = {
     recipeFor: 'crafting',
     id: 'meteorite_short_sword',
     timeToCraft: 60 * 60 * 2,
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -143,7 +143,7 @@ export const METEORITE_CRAFTS = {
     recipeFor: 'crafting',
     id: 'meteorite_long_sword',
     timeToCraft: 90 * 60,
-    xp: 1650,
+    xp: 4850,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -188,7 +188,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_battle_axe',
     timeToCraft: 90 * 60,
-    xp: 1650,
+    xp: 4850,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -233,7 +233,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_helmet',
     timeToCraft: 60 * 60 * 2,
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -278,7 +278,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_chest_plate',
     timeToCraft: 60 * 60 * 2,
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -323,7 +323,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -368,7 +368,7 @@ export const METEORITE_CRAFTS = {
     category: 'combat',
     id: 'meteorite_shield',
     timeToCraft: 60 * 60 * 2, // 60
-    xp: 1500,
+    xp: 4500,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{

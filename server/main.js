@@ -8,6 +8,9 @@ import { resumeBattle } from '/server/api/battles/battles';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Crafting } from '/imports/api/crafting/crafting';
+import { Combat } from '/imports/api/combat/combat';
+import { Abilities } from '/imports/api/abilities/abilities';
+import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
@@ -59,6 +62,9 @@ Meteor.startup(() => {
   }
 
   // Ensure indexes on key databases
+  Combat._ensureIndex({ owner: 1 });
+  Abilities._ensureIndex({ owner: 1 });
+  Woodcutting._ensureIndex({ owner: 1 });
   Crafting._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ type: 1 });

@@ -129,15 +129,15 @@
           <div class="d-flex align-items-center" style="flex: 1 1 auto">
             {{#each finishedBattle.finalTickEvents}}
               {{#if $eq this.type 'xp'}}
-                <div class="ml-1">
+                <div class="ml-1 {{#if this.affectedGlobalBuff}}text-info{{/if}}">
                   +{{this.amount}} <i class="lilIcon-{{this.skill}}"></i>
                 </div>
               {{/if}}
 
               {{#if $eq this.type 'item'}}
-                <div class="ml-1 d-flex align-items-center">
+                <div class="ml-1 d-flex align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
                   +{{this.amount}}
-                  <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+                  <img src="/icons/{{this.icon}}.svg" class="ml-1 extra-small-icon">
                 </div>
               {{/if}}
 

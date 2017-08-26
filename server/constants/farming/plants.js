@@ -51,6 +51,56 @@ export const PLANTS = {
     }]
   },
 
+  blue_rose: {
+    produces: 'blue_rose',
+    name: 'blue rose',
+    id: 'blue_rose',
+    category: 'farming',
+    icon: ITEMS['blue_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'blue_rose_seed',
+      icon: ITEMS['blue_rose_seed'].icon,
+      name: ITEMS['blue_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 19
+    }]
+  },
+
+  hydrangea: {
+    produces: 'hydrangea',
+    name: 'hydrangea',
+    id: 'hydrangea',
+    category: 'farming',
+    icon: ITEMS['hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'hydrangea_seed',
+      icon: ITEMS['hydrangea_seed'].icon,
+      name: ITEMS['hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 39
+    }]
+  },
+
   chrysanthemum: {
     produces: 'chrysanthemum',
     name: 'chrysanthemum',
@@ -98,6 +148,31 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 6
+    }]
+  },
+
+  bamboo: {
+    produces: 'bamboo',
+    name: 'bamboo',
+    id: 'bamboo',
+    category: 'farming',
+    icon: ITEMS['bamboo'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60,
+    xp: 1500,
+    required: [{
+      type: 'item',
+      itemId: 'bamboo_seed',
+      icon: ITEMS['bamboo_seed'].icon,
+      name: ITEMS['bamboo_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 36
     }]
   },
 
@@ -436,7 +511,7 @@ export const PLANTS = {
     initialWater: 50,
     requiredWater: 200,
     growthTime: 20 * 60,
-    xp: 500,
+    xp: 400,
     required: [{
       type: 'item',
       itemId: 'dragonfruit_seed',

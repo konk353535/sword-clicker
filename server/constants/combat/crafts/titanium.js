@@ -8,7 +8,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_dagger',
     timeToCraft: 240, // 60
-    xp: 400,
+    xp: 1200,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -53,7 +53,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_spear',
     timeToCraft: 300, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -98,7 +98,7 @@ export const TITANIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'titanium_short_sword',
     timeToCraft: 300, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -143,7 +143,7 @@ export const TITANIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'titanium_long_sword',
     timeToCraft: 420, // 60
-    xp: 950,
+    xp: 2800,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -188,7 +188,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_battle_axe',
     timeToCraft: 600, // 60
-    xp: 950,
+    xp: 2800,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -233,7 +233,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_helmet',
     timeToCraft: 240, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -278,7 +278,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_chest_plate',
     timeToCraft: 240, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -323,7 +323,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_plate_legs',
     timeToCraft: 240, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -368,7 +368,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_shield',
     timeToCraft: 240, // 60
-    xp: 800,
+    xp: 2400,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{

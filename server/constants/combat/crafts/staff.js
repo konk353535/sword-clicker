@@ -119,5 +119,78 @@ export const STAFF_CRAFTS = {
       name: 'crafting',
       level: 40
     }]
+  },
+
+  blue_gum_staff: {
+    produces: 'blue_gum_staff',
+    name: 'blue gum staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'blue_gum_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 800,
+    maxToCraft: 1,
+    requiredCraftingLevel: 45,
+    required: [{
+      type: 'item',
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 45
+    }]
+  },
+
+  cedar_staff: {
+    produces: 'cedar_staff',
+    name: 'cedar staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'cedar_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 1000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 50,
+    required: [{
+      type: 'item',
+      itemId: 'cedar_log',
+      icon: ITEMS['cedar_log'].icon,
+      name: ITEMS['cedar_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 50
+    }]
+  },
+
+  denya_staff: {
+    produces: 'denya_staff',
+    name: 'denya staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'denya_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 1200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 55,
+    required: [{
+      type: 'item',
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 55
+    }]
   }
+
 }

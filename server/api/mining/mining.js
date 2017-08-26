@@ -15,6 +15,8 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
+const redis = new Meteor.RedisCollection('redis');
+
 export const updateMiningStats = function (userId, isNewUser = false) {
 
   let owner;
@@ -272,13 +274,21 @@ Meteor.methods({
       return miningSpace.oreId === 'gem';
     }).length;
 
+    const rawGlobalBuffs = redis.get('global-buffs-xpq');
+    const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+    const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
+
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
       let newOre;
       for (let i = 0; i < sortedChanceOres.length; i++) {
         const rollDice = Math.random();
         const targetOre = sortedChanceOres[i];
-        if (rollDice <= targetOre.chance) {
+        let extraChance = 1;
+        if (targetOre.isGem && hasCraftingGlobalBuff) {
+          extraChance = 1.5;
+        }
+        if (rollDice <= targetOre.chance * extraChance) {
           if (targetOre.id === 'gem') {
             if (userDoc.fakeGemsToday >= 15 || userDoc.fakeGemsToday == null || existingFakeGems > 3) {
               continue;

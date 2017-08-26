@@ -39,13 +39,15 @@ Template.requiredItems.onCreated(function bodyOnCreated() {
 });
 
 Template.requiredItems.rendered = function () {
-  tooltip = new Drop({
-    target: Template.instance().$('.required-items-container')[0],
-    content: Template.instance().$('.required-items-tooltip')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+  if (!Template.instance().data.hideTooltip) {
+    tooltip = new Drop({
+      target: Template.instance().$('.required-items-container')[0],
+      content: Template.instance().$('.required-items-tooltip')[0],
+      openOn: 'hover',
+      position: 'top left',
+      remove: true
+    });
+  }
 }
 
 Template.requiredItems.onDestroyed(function () {

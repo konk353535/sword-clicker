@@ -87,6 +87,13 @@ export const TOWER_FLOOR_10 = {
       rewards: [
         { type: 'item', itemId: 'catnip', amount: 1 } // Change to herb
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'titanium_scimitar', amount: 1 },
+        { type: 'item', itemId: 'titanium_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'titanium_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

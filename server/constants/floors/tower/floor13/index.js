@@ -85,6 +85,13 @@ export const TOWER_FLOOR_13 = {
       rewards: [
         { type: 'item', itemId: 'air_shard_fragment', amount: 50 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_scimitar', amount: 1 },
+        { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'cobalt_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

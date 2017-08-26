@@ -6,6 +6,10 @@ import './shop.html';
 Template.shopPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('processing', false);
+
+  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+    this.state.set('globalBuffs', res);
+  })
 });
 
 Template.shopPage.events({
@@ -124,6 +128,30 @@ Template.shopPage.events({
     });
   },
 
+  'click .buy-global-crafting'(event, instance) {
+    Meteor.call('shop.buyGlobalBuff', 'crafting', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
+    });
+  },
+
+  'click .buy-global-gathering'(event, instance) {
+    Meteor.call('shop.buyGlobalBuff', 'gathering', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
+    });
+  },
+
+  'click .buy-global-combat'(event, instance) {
+    Meteor.call('shop.buyGlobalBuff', 'combat', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
+    });
+  },
+
   'click .buy-astronomy-30'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
@@ -230,6 +258,24 @@ Template.shopPage.helpers({
 
   totalGems() {
     return Meteor.user().gems + Meteor.user().fakeGems;
+  },
+
+  globalBuffs() {
+    const globalBuffs = Template.instance().state.get('globalBuffs');
+
+    if (moment().isAfter(globalBuffs.combat)) {
+      globalBuffs.combat = null;
+    }
+
+    if (moment().isAfter(globalBuffs.gathering)) {
+      globalBuffs.gathering = null;
+    }
+
+    if (moment().isAfter(globalBuffs.crafting)) {
+      globalBuffs.crafting = null;
+    }
+
+    return globalBuffs;
   },
 
   currentUpgrades() {

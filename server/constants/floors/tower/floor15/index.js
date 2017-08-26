@@ -89,6 +89,13 @@ export const TOWER_FLOOR_15 = {
       rewards: [
         { type: 'item', itemId: 'complete_fire_shard', amount: 50 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_scimitar', amount: 1 },
+        { type: 'item', itemId: 'adamantium_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'adamantium_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

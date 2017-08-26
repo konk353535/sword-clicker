@@ -20,6 +20,8 @@ import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/it
 import { addXp } from '/server/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 
+const redis = new Meteor.RedisCollection('redis');
+
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
 const MAX_ACTIVE_ADVENTURES = 3;
@@ -117,6 +119,10 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     epic: 0.5
   }
 
+  const rawGlobalBuffs = redis.get('global-buffs-xpq');
+  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+
   // Determine xp
   let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);
   const lengthXpDecimal = lengthXpLookup[adventure.length];
@@ -127,9 +133,18 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal), skill: 'attack' });
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal), skill: 'health' });
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal), skill: 'defense' });
+    if (hasCombatGlobalBuff) {
+      adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal * 0.2), skill: 'attack', affectedGlobalBuff: true });
+      adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal * 0.2), skill: 'health', affectedGlobalBuff: true });
+      adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.33 * completionDecimal * 0.2), skill: 'defense', affectedGlobalBuff: true });
+    }
   } else {
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.03 * completionDecimal), skill: 'magic' });
     adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.97 * completionDecimal), skill: 'health' }); 
+    if (hasCombatGlobalBuff) {
+      adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.03 * completionDecimal * 0.2), skill: 'magic', affectedGlobalBuff: true });
+      adventure.rewards.push({ type: 'xp', amount: Math.round(totalXp * 0.97 * completionDecimal * 0.2), skill: 'health', affectedGlobalBuff: true }); 
+    }
   }
 
   // Determine loot

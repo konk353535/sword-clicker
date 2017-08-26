@@ -424,6 +424,102 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  blue_gum_staff: {
+    id: 'blue_gum_staff',
+    icon: 'blueGumStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'blue gum staff',
+    sellPrice: 1000,
+    description: 'What seems like a normal blue gum staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 18,
+      attackMax: 28,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 33,
+      magicPower: 26
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 23
+    }]
+  },
+
+  cedar_staff: {
+    id: 'cedar_staff',
+    icon: 'cedarStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'cedar staff',
+    sellPrice: 1000,
+    description: 'What seems like a normal cedar staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 20,
+      attackMax: 32,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 36,
+      magicPower: 28
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 26
+    }]
+  },
+
+  denya_staff: {
+    id: 'denya_staff',
+    icon: 'denyaStaff',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'denya staff',
+    sellPrice: 1000,
+    description: 'What seems like a normal denya staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 23,
+      attackMax: 36,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 40,
+      magicPower: 30
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 29
+    }]
+  },
+
   mithril_wand: {
     id: 'mithril_wand',
     icon: 'mithrilWand',

@@ -84,6 +84,13 @@ export const TOWER_FLOOR_11 = {
       rewards: [
         { type: 'item', itemId: 'water_shard_fragment', amount: 50 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_scimitar', amount: 1 },
+        { type: 'item', itemId: 'tungsten_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'tungsten_horned_helmet', amount: 1 }
+      ]
     }]))
   },
 

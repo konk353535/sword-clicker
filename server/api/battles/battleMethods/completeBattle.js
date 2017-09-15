@@ -235,7 +235,7 @@ export const completeBattle = function (actualBattle) {
         if (rewardsGained >= units.length) {
           break;
         }
-      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.2) >= diceRoll) {
+      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
         rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
           affectedGlobalBuff: true
         }));
@@ -388,14 +388,25 @@ export const completeBattle = function (actualBattle) {
     });
 
     if (totalMagicXp > 0) {
-      addXp('magic', totalMagicXp, unit.owner);
-
       finalTickEvents.push({
         type: 'xp',
         amount: totalMagicXp,
         skill: 'magic',
         owner: unit.owner
       });
+
+      if (hasCombatGlobalBuff) {
+        finalTickEvents.push({
+          type: 'xp',
+          amount: (totalMagicXp * 0.2).toFixed(1),
+          skill: 'magic',
+          owner: unit.owner,
+          affectedGlobalBuff: true,
+        });
+        totalMagicXp *= 1.2;
+      }
+
+      addXp('magic', totalMagicXp, unit.owner);
     }
 
     // Update relevant stuff, use callback so this is non blocking

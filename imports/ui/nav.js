@@ -26,6 +26,10 @@ Template.nav.events({
     instance.$('.guestSignOffConfirmModal').modal('show');
   },
 
+  'click .skip-tutorial'() {
+    Meteor.call('users.skipTutorial');
+  },
+
   'click .nav-link'(event, instance) {
     // Clear free floating tooltips
     $('.drop.drop-element.drop-enabled').remove();

@@ -192,6 +192,10 @@ export const ACHIEVEMENTS = {
     }, {
       type: 'gold',
       amount: 100000
+    }, {
+      type: 'item',
+      itemId: 'ore_carbon',
+      amount: 2500
     }]
   },
 

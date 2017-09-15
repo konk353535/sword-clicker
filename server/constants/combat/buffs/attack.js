@@ -438,9 +438,9 @@ export const ATTACK_BUFFS = {
       damagePercentageIncreaseBase: 45,
       damagePercentageIncreasePerLevel: 5,
       damageTakenPercentageIncreaseBase: 20,
-      damageTakenPercentageIncreasePerLevel: 4,
-      healthLostPerSecondBase: 0.8,
-      healthLostPerSecondPerLevel: 0.2
+      damageTakenPercentageIncreasePerLevel: 3,
+      healthLostPerSecondBase: 0.9,
+      healthLostPerSecondPerLevel: 0.1
     },
     data: {
       duration: 10,

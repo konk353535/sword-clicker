@@ -14,17 +14,16 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Increases your magic power by ${c.magicPowerBase}% <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
-      magicPowerBase: 20,
-      healthCost: 15,
-      healthCostMPRatio: 0.2
+      magicPowerBase: 50,
+      healthCost: 0,
+      healthCostMPRatio: 0
     },
     data: {
-      duration: 300,
-      totalDuration: 300,
+      duration: 600,
+      totalDuration: 600,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -71,10 +70,10 @@ export const MAGIC_BUFFS = {
     },
     constants: {
       attacksCount: 10,
-      attackSpeedBase: 15,
+      attackSpeedBase: 25,
       attackSpeedMPRatio: 0.6,
-      healthCost: 15,
-      healthCostMPRatio: 0.2
+      healthCost: 10,
+      healthCostMPRatio: 0.1
     },
     data: {
       duration: 15,
@@ -533,10 +532,10 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per ally`;
     },
     constants: {
-      healBase: 3,
-      healMPRatio: 0.5,
-      healthCost: 5,
-      healthCostMPRatio: 0.15
+      healBase: 5,
+      healMPRatio: 0.7,
+      healthCost: 2,
+      healthCostMPRatio: 0.1
     },
     data: {
       duration: 0,
@@ -586,10 +585,10 @@ export const MAGIC_BUFFS = {
     },
     constants: {
       healBase: 3,
-      healMPRatio: 1.1,
+      healMPRatio: 1.2,
       duration: 15,
       armorBase: 20,
-      armorMPRatio: 0.3,
+      armorMPRatio: 0.7,
       healthCost: 5,
       healthCostMPRatio: 0.15
     },
@@ -756,10 +755,10 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
-      healBase: 100,
-      healMPRatio: 12,
-      healthCost: 100,
-      healthCostMPRatio: 0.75
+      healBase: 50,
+      healMPRatio: 4,
+      healthCost: 50,
+      healthCostMPRatio: 0.5
     },
     data: {
       duration: 0,
@@ -1067,9 +1066,9 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
-      magicArmorReductionBase: 10,
+      magicArmorReductionBase: 35,
       magicArmorReductionMPRatio: 1.1,
-      damageMPRatio: 1,
+      damageMPRatio: 1.5,
       healthCost: 10,
       healthCostMPRatio: 0.1,
       totalDuration: 3
@@ -1679,7 +1678,7 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
-      damageMPRatio: 2.5,
+      damageMPRatio: 1,
       healthCost: 3,
       healthCostMPRatio: 0.1,
       totalDuration: 3

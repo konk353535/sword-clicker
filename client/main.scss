@@ -16,6 +16,10 @@
   margin-bottom: 100px;
 }
 
+.ignore-not-met-text .text-danger {
+  color: initial !important;
+}
+
 @media (min-width: 1200px) {
   .inactive-adventure {
     flex: 0 1 32.33%;

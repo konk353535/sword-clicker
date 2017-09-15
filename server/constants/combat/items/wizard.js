@@ -39,6 +39,7 @@ export const WIZARD_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 30,
+      accuracy: -25,
       magicPower: 5,
       magicArmor: 5,
       healingPower: 10

@@ -172,6 +172,11 @@
                 <a class="dropdown-item" href="/achievements" style="cursor: pointer">
                   Achievements
                 </a>
+                {{#if currentUser.tutorial}}
+                  <a class="dropdown-item skip-tutorial" style="cursor: pointer">
+                    Skip Tutorial
+                  </a>
+                {{/if}}
                 {{#if floatingTextDisabled}}
                   <a class="dropdown-item enable-floating-text" style="cursor: pointer">
                     Enable floating text

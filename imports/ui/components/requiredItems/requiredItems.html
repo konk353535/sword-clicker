@@ -1,5 +1,5 @@
 <template name="requiredItems">
-  <div class="d-flex align-items-center justify-content-center required-items-container">
+  <div class="d-flex align-items-center justify-content-center required-items-container {{#if ignoreRequired}}ignore-not-met-text{{/if}}">
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
         <img src="/icons/goldCoin.svg" class="extra-small-icon">

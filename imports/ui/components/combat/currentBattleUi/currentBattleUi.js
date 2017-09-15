@@ -80,12 +80,6 @@ const startBattle = (currentBattle, self) => {
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  Streamy.on('battleFrame', (data, s) => {
-    const currentBattle = data;
-
-    startBattle(currentBattle, this);
-  });
-
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({

@@ -158,7 +158,7 @@ export const TITANIUM_CRAFTS = {
       itemId: 'titanium_essence',
       icon: ITEMS['titanium_essence'].icon,
       name: ITEMS['titanium_essence'].name,
-      amount: 4,
+      amount: 8,
       consumes: true
     }, {
       type: 'item',
@@ -203,7 +203,7 @@ export const TITANIUM_CRAFTS = {
       itemId: 'titanium_essence',
       icon: ITEMS['titanium_essence'].icon,
       name: ITEMS['titanium_essence'].name,
-      amount: 4,
+      amount: 8,
       consumes: true
     }, {
       type: 'item',

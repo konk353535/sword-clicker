@@ -265,4 +265,54 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  demons_heart: {
+    duplicateTag: 'demons_heart', // Used to stop duplicate buffs
+    icon: 'demonsHeart',
+    name: 'demons heart',
+    description() {
+      return `
+        When you fall below 20% hp become cursed.<br />
+        Cursed: +150% damage, +50% attack speed, +150 hybrid armor<br />
+        Take increasing damage each second.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!buff.data.active) {
+          const decimalHp = target.stats.health / target.stats.healthMax;
+          if (decimalHp < 0.2) {
+
+            target.stats.attackMax *= 2.5;
+            target.stats.attack *= 2.5;
+            target.stats.armor += 150;
+            target.stats.magicArmor += 150;
+            target.stats.attackSpeed *= 1.5;
+            target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+
+            target.icon = 'demon';
+            buff.data.active = true;
+            buff.data.deathStacks = 0.5;
+            buff.data.stacks = 0;
+          }
+        } else {
+          buff.data.deathStacks += secondsElapsed / 10;
+          buff.data.stacks = Math.round(buff.data.deathStacks);
+          target.stats.health -= buff.data.deathStacks
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 }

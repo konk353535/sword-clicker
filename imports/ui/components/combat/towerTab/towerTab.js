@@ -67,31 +67,31 @@ Template.towerTab.events({
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 0, findBattleHandler);
   },
 
-  'click .battle-room-1-btn'(event, instance) {
+  'click .battle-room-1-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 1, findBattleHandler);
   },
 
-  'click .battle-room-2-btn'(event, instance) {
+  'click .battle-room-2-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 2, findBattleHandler);
   },
 
-  'click .battle-room-3-btn'(event, instance) {
+  'click .battle-room-3-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 3, findBattleHandler);
   },
 
-  'click .battle-room-4-btn'(event, instance) {
+  'click .battle-room-4-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 4, findBattleHandler);
   },
 
-  'click .battle-room-5-btn'(event, instance) {
+  'click .battle-room-5-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 5, findBattleHandler);
   },
 
-  'click .battle-room-6-btn'(event, instance) {
+  'click .battle-room-6-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 6, findBattleHandler);
   },
 
-  'click .battle-room-7-btn'(event, instance) {
+  'click .battle-room-7-row'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 7, findBattleHandler);
   },
 

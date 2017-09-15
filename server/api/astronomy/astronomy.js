@@ -320,9 +320,11 @@ Meteor.methods({
 
       if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
         foundComplete = true;
+        gainedXp += 100;
       }
 
       if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
+        gainedXp += 1000;
         foundAncient = true;
       }
 

@@ -77,7 +77,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 400,
     maxToCraft: 1,
     requiredInscriptionLevel: 32,
-    required: [UTIL.PURPLE_200, UTIL.WHITE_128, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_32]
+    required: [UTIL.PURPLE_200, UTIL.WHITE_128, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_32]
   },
 
   furied_winds_tome: {
@@ -90,7 +90,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 400,
     maxToCraft: 1,
     requiredInscriptionLevel: 30,
-    required: [UTIL.GREEN_170, UTIL.WHITE_128, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_30]
+    required: [UTIL.GREEN_170, UTIL.WHITE_128, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_30]
   },
 
   healing_shield_tome: {
@@ -103,7 +103,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 400,
     maxToCraft: 1,
     requiredInscriptionLevel: 28,
-    required: [UTIL.RED_150, UTIL.MANY_RED_200, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_28]
+    required: [UTIL.RED_150, UTIL.MANY_RED_200, UTIL.CHERRY_PAPER, UTIL.LEVEL_28]
   },
 
   earthen_fist_tome: {

@@ -446,16 +446,12 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     });
 
     actualBattle.updatedAt = new Date();
+
     // Strip util &  all alive
     delete actualBattle.utils;
     delete actualBattle.allAliveUnits;
 
-    if (actualBattle.useStreamy) {
-      const { emit } = Streamy.sessionsForUsers(actualBattle.owners);
-      emit('battleFrame', actualBattle);
-    } else {
-      redis.set(`battles-${actualBattle._id}`, JSON.stringify(actualBattle));
-    }
+    redis.set(`battles-${actualBattle._id}`, JSON.stringify(actualBattle));
 
     actualBattle.updatedAt = new Date();
 
@@ -495,6 +491,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       }, 1000);
     }
   } catch(e) {
+    console.log('An error in combat occured!!!!');
+    console.log(e);
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];
     delete actualBattle;

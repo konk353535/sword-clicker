@@ -45,7 +45,7 @@ export const XP_CRAFTS = {
       level: 5
     }],
     timeToCraft: 60,
-    xp: 20,
+    xp: 25,
     maxToCraft: 100
   },
 

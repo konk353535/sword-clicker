@@ -99,7 +99,12 @@ export const TOWER_FLOOR_10 = {
 
   boss: {
     enemy: { id: 'boss_demon', amount: 1 }, // Change to another boss
-    rewards: LEVEL_TEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'demons_heart', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

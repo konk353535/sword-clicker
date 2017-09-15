@@ -74,10 +74,17 @@ export const TOWER_FLOOR_9 = {
     name: 'Master Farmers Market',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
-      chance: 1 / 32,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'celery_seed', amount: 1 },
         { type: 'item', itemId: 'dragonfruit', amount: 3 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'platinum_scimitar', amount: 1 },
+        { type: 'item', itemId: 'platinum_broad_sword', amount: 1 },
+        { type: 'item', itemId: 'platinum_horned_helmet', amount: 1 }
       ]
     }]))
   },
@@ -88,13 +95,6 @@ export const TOWER_FLOOR_9 = {
       chance: 1 / 2,
       rewards: [
         { type: 'item', itemId: 'thors_skull', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'platinum_scimitar', amount: 1 },
-        { type: 'item', itemId: 'platinum_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'platinum_horned_helmet', amount: 1 }
       ]
     }]))
   },

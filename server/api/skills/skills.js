@@ -58,7 +58,7 @@ export const addXp = function (skillType, xp, specificUserId) {
   const originalXp = skill.xp;
 
   if (globalXpBuffs[skill.type]) {
-    xp *= 1.2;
+    xp *= 1.35;
   }
 
   skill.xp += xp;

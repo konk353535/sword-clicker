@@ -683,6 +683,7 @@ export const MISC_ITEMS = {
     category: 'combat',
     slot: 'offHand',
     name: 'spirit shield',
+    weaponType: 'shield',
     sellPrice: 500,
     description: 'The shield pulls at your spirit.',
     isEquippable: true,
@@ -704,6 +705,7 @@ export const MISC_ITEMS = {
     id: 'fairy_spirit_shield',
     icon: 'fairySpiritShield',
     category: 'combat',
+    weaponType: 'shield',
     slot: 'offHand',
     name: 'fairy spirit shield',
     sellPrice: 1000,
@@ -729,6 +731,7 @@ export const MISC_ITEMS = {
     icon: 'cursedSpiritShield',
     category: 'combat',
     slot: 'offHand',
+    weaponType: 'shield',
     name: 'cursed spirit shield',
     sellPrice: 2500,
     description: 'The shield pulls at your spirit.',
@@ -746,6 +749,34 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 30
     }]
+  },
+
+  demons_heart: {
+    id: 'demons_heart',
+    icon: 'demonsHeart',
+    category: 'combat',
+    slot: 'chest',
+    name: 'demons heart',
+    sellPrice: 1000,
+    description: 'Cursed for all eternity.',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      criticalChance: 1,
+      accuracy: 5,
+      armor: 10
+    },
+    extraStats: {
+      healthMax: 50,
+      armor: 5,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }],
+    enchantments: ['demons_heart']
   },
 
   /* Defensive Magic Armor */
@@ -797,5 +828,32 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 10
     }]
-  }  
+  },
+
+  bamboo_roof: {
+    id: 'bamboo_roof',
+    icon: 'bambooRoof',
+    category: 'crafting',
+    name: 'bamboo roof',
+    sellPrice: 100,
+    description: 'Used to make a bamboo shack'
+  },
+
+  bamboo_wall: {
+    id: 'bamboo_wall',
+    icon: 'bambooWall',
+    category: 'crafting',
+    name: 'bamboo wall',
+    sellPrice: 100,
+    description: 'Used to make a bamboo shack'
+  },
+
+  bamboo_shack: {
+    id: 'bamboo_shack',
+    icon: 'bambooShack',
+    category: 'crafting',
+    name: 'bamboo shack',
+    sellPrice: 400,
+    description: 'Looks cozy (lots of xp)'
+  },
 }

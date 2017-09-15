@@ -235,6 +235,16 @@ Meteor.methods({
     });
   },
 
+  'users.skipTutorial'() {
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $unset: {
+        tutorial: ""
+      }
+    });
+  },
+
   'users.setUiState'(id, value) {
     const validIds = [
       'showChat',

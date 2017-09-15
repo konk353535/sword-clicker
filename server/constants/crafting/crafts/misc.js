@@ -101,5 +101,98 @@ export const MISC_CRAFTS = {
     timeToCraft: 15 * 60,
     xp: 100,
     maxToCraft: 1
-  }
+  },
+
+  bamboo_roof: {
+    produces: 'bamboo_roof',
+    recipeFor: 'crafting',
+    name: 'bamboo roof',
+    category: 'crafting',
+    id: 'bamboo_roof',
+    requiredCraftingLevel: 42,
+    required: [{
+      type: 'item',
+      itemId: 'bamboo',
+      icon: ITEMS['bamboo'].icon,
+      name: ITEMS['bamboo'].name,
+      amount: 12,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'steel_pylon',
+      icon: ITEMS['steel_pylon'].icon,
+      name: ITEMS['steel_pylon'].name,
+      amount: 20,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 42
+    }],
+    timeToCraft: 60 * 10,
+    xp: 1,
+    maxToCraft: 100
+  },
+
+  bamboo_wall: {
+    produces: 'bamboo_wall',
+    recipeFor: 'crafting',
+    name: 'bamboo wall',
+    category: 'crafting',
+    id: 'bamboo_wall',
+    requiredCraftingLevel: 42,
+    required: [{
+      type: 'item',
+      itemId: 'bamboo',
+      icon: ITEMS['bamboo'].icon,
+      name: ITEMS['bamboo'].name,
+      amount: 12,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'carbon_wall',
+      icon: ITEMS['carbon_wall'].icon,
+      name: ITEMS['carbon_wall'].name,
+      amount: 60,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 42
+    }],
+    timeToCraft: 60 * 10,
+    xp: 1,
+    maxToCraft: 100
+  },
+
+  bamboo_shack: {
+    produces: 'bamboo_shack',
+    recipeFor: 'crafting',
+    name: 'bamboo shack',
+    category: 'crafting',
+    id: 'bamboo_shack',
+    requiredCraftingLevel: 42,
+    required: [{
+      type: 'item',
+      itemId: 'bamboo_roof',
+      icon: ITEMS['bamboo_roof'].icon,
+      name: ITEMS['bamboo_roof'].name,
+      amount: 1,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'bamboo_wall',
+      icon: ITEMS['bamboo_wall'].icon,
+      name: ITEMS['bamboo_wall'].name,
+      amount: 1,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 42
+    }],
+    timeToCraft: 3 * 60 * 60,
+    xp: 40000,
+    maxToCraft: 100
+  },
 }

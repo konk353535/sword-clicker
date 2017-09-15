@@ -286,7 +286,7 @@ Meteor.methods({
         const targetOre = sortedChanceOres[i];
         let extraChance = 1;
         if (targetOre.isGem && hasCraftingGlobalBuff) {
-          extraChance = 1.5;
+          extraChance = 2;
         }
         if (rollDice <= targetOre.chance * extraChance) {
           if (targetOre.id === 'gem') {

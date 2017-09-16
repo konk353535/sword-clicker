@@ -981,7 +981,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 2000,
     growthTime: 15 * 60 * 1,
-    xp: 100,
+    xp: 1000,
     required: [{
       type: 'item',
       itemId: 'cardoon_seed',
@@ -1006,7 +1006,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 200,
     growthTime: 60 * 60 * 1,
-    xp: 50,
+    xp: 1200,
     required: [{
       type: 'item',
       itemId: 'chilli_seed',
@@ -1056,7 +1056,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 300,
     growthTime: 60 * 60 * 1,
-    xp: 50,
+    xp: 3000,
     required: [{
       type: 'item',
       itemId: 'celery_seed',
@@ -1081,7 +1081,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 300,
     growthTime: 24 * 60 * 1,
-    xp: 50,
+    xp: 700,
     required: [{
       type: 'item',
       itemId: 'feverfew_seed',

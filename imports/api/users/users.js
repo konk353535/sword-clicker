@@ -14,6 +14,8 @@ UserSchema = new SimpleSchema({
   fakeGems: { type: Number, defaultValue: 0 },
   fakeGemsToday: { type: Number, defaultValue: 0 },
 
+  banned: { type: Boolean, optional: true },
+
   membershipTo: { type: Date, optional: true },
   miningUpgradeTo: { type: Date, optional: true },
   craftingUpgradeTo: { type: Date, optional: true },

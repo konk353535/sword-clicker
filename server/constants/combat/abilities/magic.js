@@ -313,7 +313,7 @@ export const MAGIC_ABILITIES = {
     name: 'magic wisdom',
     id: 'magic_wisdom',
     buffs: ['magic_wisdom'],
-    cooldown: 60 * 5,
+    cooldown: 60 * 10,
     slot: 'any',
     target: 'self',
     isMagic: true,

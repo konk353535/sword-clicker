@@ -339,7 +339,11 @@ Meteor.methods({
     }
 
     if (skillName === 'personalQuest') {
-      return Users.find({}, {
+      return Users.find({
+        banned: {
+          $ne: true
+        }
+      }, {
         sort: {
           'personalQuest.level': -1,
           'personalQuest.wave': -1
@@ -351,7 +355,11 @@ Meteor.methods({
         limit
       }).fetch();
     } else if (skillName === 'boss') {
-      return BossHealthScores.find({}, {
+      return BossHealthScores.find({
+        banned: {
+          $ne: true
+        }
+      }, {
         sort: {
           bossDamage: -1
         },
@@ -363,7 +371,10 @@ Meteor.methods({
       }).fetch();
     } else {
       return Skills.find({
-        type: skillName
+        type: skillName,
+        banned: {
+          $ne: true
+        }
       }, {
         sort: {
           level: -1,

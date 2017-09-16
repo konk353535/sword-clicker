@@ -1,6 +1,7 @@
 import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
+import { Skills } from '/imports/api/skills/skills';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 import moment from 'moment';
@@ -142,6 +143,33 @@ SimpleChat.configure ({
             newUpdates: true
           }
         }, { multi: true });
+        return false;
+      } else if (/\/ban/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+
+        const targetUser = Users.findOne({
+          username: message.split('/ban')[1].toLowerCase().trim()
+        });
+
+        console.log(targetUser);
+
+        Users.update({
+          _id: targetUser._id
+        }, {
+          $set: {
+            banned: true
+          }
+        });
+
+        Skills.update({
+          owner: targetUser._id
+        }, {
+          $set: {
+            banned: true
+          }
+        }, {
+          multi: true
+        });
+
         return false;
       }
     }

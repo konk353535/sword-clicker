@@ -272,7 +272,7 @@ export const ENCHANTMENT_BUFFS = {
     description() {
       return `
         When you fall below 20% hp become cursed.<br />
-        Cursed: +150% damage, +50% attack speed, +150 hybrid armor<br />
+        Cursed: +100% damage, +50% attack speed, +50 hybrid armor<br />
         Take increasing damage each second.`;
     },
     constants: {
@@ -291,10 +291,10 @@ export const ENCHANTMENT_BUFFS = {
           const decimalHp = target.stats.health / target.stats.healthMax;
           if (decimalHp < 0.2) {
 
-            target.stats.attackMax *= 2.5;
-            target.stats.attack *= 2.5;
-            target.stats.armor += 150;
-            target.stats.magicArmor += 150;
+            target.stats.attackMax *= 2;
+            target.stats.attack *= 2;
+            target.stats.armor += 50;
+            target.stats.magicArmor += 50;
             target.stats.attackSpeed *= 1.5;
             target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
 

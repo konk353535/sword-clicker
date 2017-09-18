@@ -166,8 +166,8 @@ export const ATTACK_BUFFS = {
         Lasts 2 minutes.`;
     },
     constants: {
-      lifestealBase: 0.04,
-      lifestealPerLevel: 0.03,
+      lifestealBase: 0.08,
+      lifestealPerLevel: 0.04,
     },
     data: {
       duration: 120,
@@ -358,10 +358,11 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
       return `When the target is bleeding<br />
-        Deal 20% extra damage and heal for the same amount.`;
+        Deal 25% extra damage.<br />
+        While below 75% hp, heal for the same amount.`;
     },
     constants: {
-      damageDecimal: 0.20
+      damageDecimal: 0.25
     },
     data: {
       duration: Infinity,
@@ -381,11 +382,15 @@ export const ATTACK_BUFFS = {
         const hasBleed = _.findWhere(defender.buffs, { id: 'bleed' });
 
         if (hasBleed) {
-          actualBattle.utils.healTarget(totalDamage, {
-            caster: attacker,
-            target: attacker,
-            tickEvents: actualBattle.tickEvents
-          });
+          // My current hp
+          const hpDecimal = attacker.stats.health / attacker.stats.healthMax;
+          if (hpDecimal <= 0.75) {
+            actualBattle.utils.healTarget(totalDamage, {
+              caster: attacker,
+              target: attacker,
+              tickEvents: actualBattle.tickEvents
+            }); 
+          }
           actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,

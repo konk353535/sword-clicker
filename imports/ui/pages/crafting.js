@@ -258,6 +258,7 @@ Template.craftingPage.helpers({
       return [];
     }
 
+    /*
     const patterns = [];
     const craftingTierFilter = instance.state.get('craftingTierFilter');
     Object.keys(craftingTierFilter).forEach((tierKey) => {
@@ -278,12 +279,12 @@ Template.craftingPage.helpers({
       }
 
       return true;
-    });
+    });*/
 
     if (recipeFilter === 'all') {
-      return filteredRecipes;
+      return instance.state.get('recipes');
     } else {
-      return filteredRecipes.filter((item) => {
+      return instance.state.get('recipes').filter((item) => {
         return item.category === recipeFilter;
       });
     }

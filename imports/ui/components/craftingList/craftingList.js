@@ -108,6 +108,10 @@ Template.craftingList.helpers({
     });
   },
 
+  isInscription() {
+    return Template.instance().data.isInscription;
+  },
+
   staffRecipes() {
     const instance = Template.instance();
 

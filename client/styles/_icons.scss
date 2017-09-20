@@ -38,10 +38,16 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   }
 
   .recipe-tooltip {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0px;
+    transition: visibility 0s, opacity 0.1s linear;
   }
 
   &:hover .recipe-tooltip {
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
     display: flex;
     position: absolute;
     top: 0px;

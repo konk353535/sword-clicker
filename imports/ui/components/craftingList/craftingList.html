@@ -1,22 +1,22 @@
 <template name="craftingList">
 
-  {{#if goldRecipes}}
-    <div class="mb-1">
-      <h3>Sculptures & Stones <small>(Gold)</small></h3>
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        {{#each goldRecipes}}
-          {{ > recipeIcon recipe=this}}
-        {{/each}}
-      </div>
-    </div>
-  {{/if}}
-
   {{#if xpRecipes}}
     <div class="mb-1">
       <h3>Walls & Pylons <small>(XP)</small></h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each xpRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if goldRecipes}}
+    <div class="mb-1">
+      <h3>Sculptures & Stones <small>(Gold)</small></h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each goldRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -27,7 +27,7 @@
       <h3>Bars</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each barRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -38,7 +38,7 @@
       <h3>Misc</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each miscRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -50,7 +50,7 @@
     {{/if}}
     <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
       {{#each miningRecipes}}
-        {{ > recipeIcon recipe=this}}
+        {{ > recipeIcon recipe=this isInscription=isInscription}}
       {{/each}}
     </div>
   {{/if}}
@@ -61,7 +61,7 @@
     {{/if}}
     <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
       {{#each woodcuttingRecipes}}
-        {{ > recipeIcon recipe=this}}
+        {{ > recipeIcon recipe=this isInscription=isInscription}}
       {{/each}}
     </div>
   {{/if}} 
@@ -71,7 +71,7 @@
       <h3>Furnaces</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each furnaceRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -82,7 +82,7 @@
       <h3>Armor</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each armorRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -93,7 +93,7 @@
       <h3>Weapons</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each weaponRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -104,7 +104,7 @@
       <h3>Staffs</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each staffRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>
@@ -115,7 +115,7 @@
       <h3>Amulets</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each amuletRecipes}}
-          {{ > recipeIcon recipe=this}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
         {{/each}}
       </div>
     </div>

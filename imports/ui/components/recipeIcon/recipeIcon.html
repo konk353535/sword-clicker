@@ -3,7 +3,10 @@
     <div class="d-flex" style="overflow: hidden">
       <img src="/icons/{{recipe.icon}}.svg" class="ore-icon">
       <div class="d-flex flex-column mx-2" style="overflow: hidden">
-        <span class="text-capitalize">{{recipe.name}}</span>
+        <!-- If isLearnt is for inscription, if the ability has already been learnt -->
+        <span class="text-capitalize {{#if recipe.isLearnt}}text-success{{/if}}">
+          {{recipe.name}}
+        </span>
         <span class="{{#if maxCraftableAmount}}text-success{{else}}text-danger{{/if}}">
           {{maxCraftableAmount}}
         </span>
@@ -13,7 +16,7 @@
       <div class="single-craft">
         Craft
       </div>
-      <div class="craft-btn" data-amount={{maxCraftableAtOnce}}>
+      <div class="quick-craft" data-amount={{maxCraftableAtOnce}}>
         Craft Max
       </div>
     </div>
@@ -49,7 +52,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <div class="d-flex flex-column">
-            <h5 class="modal-title text-capitalize" id="recipeModal">{{recipe.name}}</h5>
+            <h5 class="modal-title text-capitalize" id="recipeModal">
+              {{recipe.name}} ({{recipe.calculatedTimeToCraft}}s)
+            </h5>
             <small>{{recipe.description}}</small>
           </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -62,40 +62,8 @@
       </div>
     {{/if}}
 
-    <table class="table table-bordered table-hover table-centered table-responsive">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Icon</th>
-          {{#if $eq recipeFilter 'abilities'}}
-            <th>Teaches</th>
-          {{/if}}
-          <th>Craft Time</th>          
-          <th>Requirements</th>
-          <th>Description</th>
-        </tr>  
-      </thead>
-      <tbody>
-        {{#each recipes}}
-          <tr class="craft-row" style="cursor: pointer" data-recipe={{this.id}}>
-            <td class="text-capitalize {{#if this.isLearnt}}text-success{{/if}}">
-              {{this.name}}
-            </td>
-            <td>
-              {{ > recipeIcon recipe=this}}
-            </td>
-            {{#if $eq recipeFilter 'abilities'}}
-              <td class="no-box-border">
-                {{> itemIcon item=this.ability}}
-              </td>
-            {{/if}}
-            <td>{{this.calculatedTimeToCraft}}s</td>
-            <td>{{ > requiredItems requiredItems=this.required}}</td>
-            <td>{{this.description}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    {{> craftingList recipes=recipes recipeFilter=recipeFilter isInscription=isInscription}}
+
   {{else}}
     <div 
       class="d-flex justify-content-center align-items-center flex-column"

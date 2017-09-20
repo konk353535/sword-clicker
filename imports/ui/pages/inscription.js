@@ -106,79 +106,6 @@ Template.inscriptionPage.events({
   'click .level-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.level-filter').data('filter');
     Meteor.call('users.setUiState', 'inscriptionLevelFilter', filter);
-  },
-
-  'keyup .craft-amount-input'(event, instance) {
-    let newValue = parseInt($(event.target).val());
-    if (newValue && !isNaN(newValue)) {
-      instance.state.set('craftAmount', newValue);
-    }
-  },
-
-  'click .craft-row'(event, instance) {
-    const recipeId = $(event.target).closest('.craft-row')[0].getAttribute('data-recipe');
-    const recipeListMap = instance.state.get('recipeListMap');
-
-    const recipeConstants = recipeListMap[recipeId];
-
-    let { maxCraftable, notMet } = determineRequiredItems(recipeConstants);
-
-    if (notMet) {
-      return toastr.warning('Not enough resources to craft');
-    }
-
-    if (maxCraftable > recipeConstants.maxToCraft) {
-      maxCraftable = JSON.parse(JSON.stringify(recipeConstants.maxToCraft));
-    }
-
-    if (recipeConstants.maxToCraft > 1) {
-      instance.state.set('maxCraftableAmount', maxCraftable);
-      instance.state.set('maxCraftAmount', recipeConstants.maxToCraft);
-      instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
-      instance.state.set('multiCraftRecipeId', recipeId);
-      instance.$('.multiCraftModal').modal('show');
-      instance.$('.craft-amount-input').focus();
-    } else {
-      Meteor.call('inscription.craftItem', recipeId, 1, (err) => {
-        if (err) {
-          toastr.warning(err.reason);
-        } else {
-          toastr.success(`Crafting ${recipeConstants.name}`, null, { timeOut: 1000 });
-        }
-      });
-    }
-  },
-
-  'submit .craft-amount-form'(event, instance) {
-    event.preventDefault();
-
-    const recipeId = instance.state.get('multiCraftRecipeId');
-    const amountToCraft = parseInt(instance.state.get('craftAmount'));
-
-    instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('inscription.craftItem', recipeId, amountToCraft, (err) => {
-      console.log(err);
-      if (err) {
-        toastr.warning(err.reason);
-      }
-    });
-  },
-
-  'click .craft-btn'(event, instance) {
-    const recipeId = instance.state.get('multiCraftRecipeId');
-    const amountToCraft = parseInt($(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
-    
-    const recipeListMap = instance.state.get('recipeListMap');
-    const recipeConstants = recipeListMap[recipeId];
-
-    instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('inscription.craftItem', recipeId, amountToCraft, (err) => {
-      if (err) {
-        toastr.warning('Failed to craft item');
-      } else {
-        toastr.success(`Started crafting ${recipeConstants.name}`)
-      }
-    });
   }
 })
 
@@ -239,10 +166,11 @@ Template.inscriptionPage.helpers({
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {
-            recipe.ability = abilityMap[recipeTeaches];
-            recipe.isLearnt = recipe.teaches.level <= recipe.ability.learntLevel;
-
-            recipe.ability.primaryAction = {};
+            return Object.assign({}, {
+              ability: abilityMap[recipeTeaches],
+              isLearnt: recipe.ability ? recipe.teaches.level <= recipe.ability.learntLevel : false,
+              primaryAction: {}
+            }, recipe);
           }
         }
         return recipe;
@@ -263,6 +191,10 @@ Template.inscriptionPage.helpers({
         $in: ['herb', 'pigment', 'paper', 'page', 'tome', 'woodcutting']
       } 
     });
+  },
+
+  isInscription() {
+    return true;
   },
 
   learnRequirements() {

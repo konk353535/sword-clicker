@@ -40,13 +40,16 @@ Template.requiredItemsList.onCreated(function bodyOnCreated() {
 
 Template.requiredItemsList.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
-    tooltip = new Drop({
-      target: Template.instance().$('.required-items-container')[0],
-      content: Template.instance().$('.required-items-tooltip')[0],
-      openOn: 'hover',
-      position: 'top left',
-      remove: true
-    });
+    const target = Template.instance().$('.required-items-container')[0];
+    if (target) {
+      tooltip = new Drop({
+        target,
+        content: Template.instance().$('.required-items-tooltip')[0],
+        openOn: 'hover',
+        position: 'top left',
+        remove: true
+      });
+    }
   }
 }
 

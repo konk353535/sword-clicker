@@ -7,29 +7,62 @@ import './recipeIcon.html';
 
 Template.recipeIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  console.log('Created');
 });
 
-Template.recipeIcon.rendered = function () {
-  const instance = Template.instance();
+const updateCraftable = function (instance) {
   const recipe = instance.data.recipe;
   let { maxCraftable, notMet } = determineRequiredItems(recipe);
 
   instance.state.set('maxCraftableAmount', maxCraftable);
   instance.state.set('maxCraftAmount', recipe.maxToCraft);
-  instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
 
+  let maxCraftableAtOnce = maxCraftable;
   if (maxCraftable > recipe.maxToCraft) {
-    instance.state.set('maxCraftableAtOnce', recipe.maxToCraft);
-  } else {
-    instance.state.set('maxCraftableAtOnce', maxCraftable);
+    maxCraftableAtOnce = recipe.maxToCraft;
   }
+
+  instance.state.set('craftAmount', Math.ceil(maxCraftableAtOnce / 2));
+  instance.state.set('maxCraftableAtOnce', maxCraftableAtOnce);
+}
+
+Template.recipeIcon.rendered = function () {
+  console.log('Rendered');
+  const instance = Template.instance();
+  updateCraftable(instance);
 }
 
 Template.recipeIcon.events({
-  'mouseup .single-craft'(event, instance) {
-    // Open the new modal!
-    instance.$('.recipeModal').modal('show');
-    instance.$('.craft-amount-input').focus();
+
+  'click .quick-craft'(event, instance) {
+    if (instance.$('.recipe-tooltip').css('opacity') > 0.9) {
+      // Copy PASTA cause im lazy
+      const recipeId = instance.data.recipe.id;
+      const amountToCraft = parseInt(instance.$(event.target).closest('.quick-craft')[0].getAttribute('data-amount'));
+      const recipeConstants = instance.data.recipe;
+      if (amountToCraft <= 0) {
+        return;
+      }
+
+      instance.$('.recipeModal').modal('hide');
+      const isInscription = instance.data.isInscription;
+      Meteor.call(`${isInscription ? 'inscription' : 'crafting'}.craftItem`, recipeId, amountToCraft, (err) => {
+        if (err) {
+          toastr.warning(`Failed to craft ${recipeConstants.name}`);
+        } else {
+          updateCraftable(instance);
+        }
+      });
+      toastr.success(`Crafting ${recipeConstants.name}`)
+    }
+  },
+
+  'click .single-craft'(event, instance) {
+    if (instance.$('.recipe-tooltip').css('opacity') > 0.9) {
+      // Open the new modal!
+      instance.$('.recipeModal').modal('show');
+      instance.$('.craft-amount-input').focus();
+    }
   },
 
   'keyup .craft-amount-input'(event, instance) {
@@ -43,6 +76,7 @@ Template.recipeIcon.events({
   },
 
   'click .craft-btn'(event, instance) {
+    // Note this is all copy pasta'd above
     const recipeId = instance.data.recipe.id;
     const amountToCraft = parseInt(instance.$(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
     const recipeConstants = instance.data.recipe;
@@ -51,9 +85,12 @@ Template.recipeIcon.events({
     }
 
     instance.$('.recipeModal').modal('hide');
-    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
+    const isInscription = instance.data.isInscription;
+    Meteor.call(`${isInscription ? 'inscription' : 'crafting'}.craftItem`, recipeId, amountToCraft, (err) => {
       if (err) {
         toastr.warning(`Failed to craft ${recipeConstants.name}`);
+      } else {
+        updateCraftable(instance);
       }
     });
     toastr.success(`Crafting ${recipeConstants.name}`)
@@ -80,4 +117,5 @@ Template.recipeIcon.helpers({
 });
 
 Template.recipeIcon.onDestroyed(function () {
+  console.log('Destroyed');
 })

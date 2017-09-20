@@ -14,7 +14,7 @@ export const TOWER_FLOOR_19 = {
     rewards: LEVEL_NINETEEN_LOOT_TABLE
   },
   3: {
-    name: 'savannah',
+    name: 'Savannah',
     enemies: ['elephant'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
       chance: 1 / 8,

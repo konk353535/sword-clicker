@@ -10,6 +10,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 1800,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -55,6 +56,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 5400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -100,6 +102,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 5400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -145,6 +148,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 6000,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -190,6 +194,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 6000,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -235,6 +240,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 5400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -280,6 +286,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 5400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -325,6 +332,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 5400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -370,6 +378,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 5400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',

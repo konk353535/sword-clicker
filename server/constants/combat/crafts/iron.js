@@ -10,6 +10,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 60,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -48,6 +49,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 180, // 60
     xp: 120,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -86,6 +88,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 120,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -124,6 +127,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 120,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -162,6 +166,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 160,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -200,6 +205,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -238,6 +244,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -276,6 +283,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -314,6 +322,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',

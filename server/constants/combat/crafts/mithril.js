@@ -10,6 +10,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 30 * 60,
     xp: 1700,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -55,6 +56,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 3600,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -100,6 +102,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 3600,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -145,6 +148,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 4050,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -190,6 +194,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 4050,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -235,6 +240,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 3600,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -280,6 +286,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60,
     xp: 3600,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -325,6 +332,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60, // 60
     xp: 3600,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',
@@ -370,6 +378,7 @@ export const MITHRIL_CRAFTS = {
     timeToCraft: 60 * 60, // 60
     xp: 3600,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',

@@ -4,7 +4,7 @@ import { LEVEL_TEN_LOOT_TABLE } from '/server/constants/floors/levels/level10';
 
 export const TOWER_FLOOR_10 = {
   1: {
-    name: 'abandoned lighthouse',
+    name: 'Abandoned Lighthouse',
     enemies: ['demon', 'crab'],
     rewards: []
   },
@@ -25,7 +25,7 @@ export const TOWER_FLOOR_10 = {
     }]))
   },
   4: {
-    name: 'titanium Place',
+    name: 'Titanium Place',
     enemies: ['titanium_spirit'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 8,

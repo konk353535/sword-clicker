@@ -16,6 +16,7 @@ import { BattlesList } from '/imports/api/battles/battles.js';
 // Component used in the template
 import './crafting.html';
 import '../components/craftingDuration/craftingDuration.js';
+import '../components/craftingList/craftingList.js';
 
 let gameUpdateTimer;
 let recipeCache;
@@ -186,40 +187,6 @@ Template.craftingPage.events({
     }
   },
 
-  'click .craft-row'(event, instance) {
-    const recipeId = $(event.target).closest('.craft-row')[0].getAttribute('data-recipe');
-    const recipeListMap = instance.state.get('recipeListMap');
-
-    const recipeConstants = recipeListMap[recipeId];
-
-    let { maxCraftable, notMet } = determineRequiredItems(recipeConstants);
-
-    if (notMet) {
-      return toastr.warning('Not enough resources to craft');
-    }
-
-    if (maxCraftable > recipeConstants.maxToCraft) {
-      maxCraftable = JSON.parse(JSON.stringify(recipeConstants.maxToCraft));
-    }
-
-    if (recipeConstants.maxToCraft > 1) {
-      instance.state.set('maxCraftableAmount', maxCraftable);
-      instance.state.set('maxCraftAmount', recipeConstants.maxToCraft);
-      instance.state.set('craftAmount', Math.ceil(maxCraftable / 2));
-      instance.state.set('multiCraftRecipeId', recipeId);
-      instance.$('.multiCraftModal').modal('show');
-      instance.$('.craft-amount-input').focus();
-    } else {
-      Meteor.call('crafting.craftItem', recipeId, 1, (err) => {
-        if (err) {
-          toastr.warning(err.reason);
-        } else {
-          toastr.success(`Crafting ${recipeConstants.name}`, null, { timeOut: 1000 });
-        }
-      });
-    }
-  },
-
   'click .show-all-items'(event, instance) {
     Session.set('itemViewLimit', 0);
     instance.state.set('itemViewLimit', 0);
@@ -228,42 +195,6 @@ Template.craftingPage.events({
   'click .show-less-items'(event, instance) {
     Session.set('itemViewLimit', 10);
     instance.state.set('itemViewLimit', 10);
-  },
-
-  'submit .craft-amount-form'(event, instance) {
-    event.preventDefault();
-
-    const recipeId = instance.state.get('multiCraftRecipeId');
-    const amountToCraft = instance.state.get('craftAmount');
-    
-    const recipeListMap = instance.state.get('recipeListMap');
-    const recipeConstants = recipeListMap[recipeId];
-
-    instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
-      if (err) {
-        toastr.warning('Failed to craft item');
-      } else {
-        toastr.success(`Started crafting ${recipeConstants.name}`)
-      }
-    });
-  },
-
-  'click .craft-btn'(event, instance) {
-    const recipeId = instance.state.get('multiCraftRecipeId');
-    const amountToCraft = parseInt($(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
-    
-    const recipeListMap = instance.state.get('recipeListMap');
-    const recipeConstants = recipeListMap[recipeId];
-
-    instance.$('.multiCraftModal').modal('hide');
-    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
-      if (err) {
-        toastr.warning('Failed to craft item');
-      } else {
-        toastr.success(`Started crafting ${recipeConstants.name}`)
-      }
-    });
   }
 })
 

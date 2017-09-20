@@ -22,6 +22,64 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   border-color: $red;
 }
 
+.recipe-container {
+  border: 1px solid black;
+  margin: $spacer * 0.5;
+  padding: $spacer * 0.5;
+  width: 220px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  & span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .recipe-tooltip {
+    display: none;
+  }
+
+  &:hover .recipe-tooltip {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+
+    & > .single-craft {
+      border-right: 1px solid black;
+    }
+
+    & > div {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 50%;
+    }
+
+    & > div:hover {
+      background-color: $gray-lightest;
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .recipe-container {
+    width: 100%;
+  }
+}
+
+.recipe-container.uncraftable {
+  border: 1px solid $gray-light;
+  background-color: $gray-lightest;
+  color: $gray-light;
+  cursor: default;
+}
+
 .icon-box {
   user-select: none;
   width: 96px;

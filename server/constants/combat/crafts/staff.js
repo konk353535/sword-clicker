@@ -10,6 +10,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 60, // 60
     xp: 10,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 5,
     required: [{
       type: 'item',
@@ -34,6 +35,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 50,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 10,
     required: [{
       type: 'item',
@@ -58,6 +60,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 60 * 15, // 60
     xp: 200,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 20,
     required: [{
       type: 'item',
@@ -82,6 +85,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 60 * 60, // 60
     xp: 300,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 30,
     required: [{
       type: 'item',
@@ -106,6 +110,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 2 * 60 * 60, // 60
     xp: 600,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 40,
     required: [{
       type: 'item',
@@ -130,6 +135,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 2 * 60 * 60, // 60
     xp: 800,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -154,6 +160,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 2 * 60 * 60, // 60
     xp: 1000,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 50,
     required: [{
       type: 'item',
@@ -178,6 +185,7 @@ export const STAFF_CRAFTS = {
     timeToCraft: 2 * 60 * 60, // 60
     xp: 1200,
     maxToCraft: 1,
+    tags: ['staff'],
     requiredCraftingLevel: 55,
     required: [{
       type: 'item',

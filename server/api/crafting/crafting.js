@@ -285,7 +285,7 @@ Meteor.methods({
       return false;
     });
 
-    return _.sortBy(recipesArray, 'requiredCraftingLevel');
+    return _.sortBy(recipesArray, 'requiredCraftingLevel').reverse();
   },
 
   'crafting.cancelCraft'(targetEndDate) {

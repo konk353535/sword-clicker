@@ -16,6 +16,7 @@ import '/imports/ui/components/recipeIcon/recipeIcon.js';
 import '/imports/ui/components/formatNumber/formatNumber.js';
 import '/imports/ui/components/ceilNumber/ceilNumber.js';
 import '/imports/ui/components/requiredItems/requiredItems.js';
+import '/imports/ui/components/requiredItemsList/requiredItemsList.js';
 import '/imports/ui/components/displayCombatStats/displayCombatStats.js';
 import '/imports/ui/components/battleUnit/battleUnit.js';
 import '/imports/ui/components/skillHeader/skillHeader.js';

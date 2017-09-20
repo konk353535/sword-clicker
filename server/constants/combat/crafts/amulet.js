@@ -9,6 +9,7 @@ export const AMULET_CRAFTS = {
     id: 'stone_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 3,
     required: [{
@@ -33,6 +34,7 @@ export const AMULET_CRAFTS = {
     id: 'copper_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 10,
     required: [{
@@ -64,6 +66,7 @@ export const AMULET_CRAFTS = {
     id: 'tin_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 15,
     required: [{
@@ -95,6 +98,7 @@ export const AMULET_CRAFTS = {
     id: 'bronze_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -126,6 +130,7 @@ export const AMULET_CRAFTS = {
     id: 'silver_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -157,6 +162,7 @@ export const AMULET_CRAFTS = {
     id: 'gold_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -188,6 +194,7 @@ export const AMULET_CRAFTS = {
     id: 'carbon_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -219,6 +226,7 @@ export const AMULET_CRAFTS = {
     id: 'steel_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -250,6 +258,7 @@ export const AMULET_CRAFTS = {
     id: 'platinum_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -281,6 +290,7 @@ export const AMULET_CRAFTS = {
     id: 'titanium_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -312,6 +322,7 @@ export const AMULET_CRAFTS = {
     id: 'tungsten_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -343,6 +354,7 @@ export const AMULET_CRAFTS = {
     id: 'obsidian_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 60,
     required: [{
@@ -374,6 +386,7 @@ export const AMULET_CRAFTS = {
     id: 'cobalt_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -405,6 +418,7 @@ export const AMULET_CRAFTS = {
     id: 'mithril_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -436,6 +450,7 @@ export const AMULET_CRAFTS = {
     id: 'adamantium_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -467,6 +482,7 @@ export const AMULET_CRAFTS = {
     id: 'orichalcum_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -498,6 +514,7 @@ export const AMULET_CRAFTS = {
     id: 'meteorite_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 85,
     required: [{
@@ -529,6 +546,7 @@ export const AMULET_CRAFTS = {
     id: 'fairy_steel_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -560,6 +578,7 @@ export const AMULET_CRAFTS = {
     id: 'elven_steel_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -591,6 +610,7 @@ export const AMULET_CRAFTS = {
     id: 'cursed_amulet',
     timeToCraft: 40, // 60
     xp: 1,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 100,
     required: [{
@@ -622,6 +642,7 @@ export const AMULET_CRAFTS = {
     id: 'jade_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 15,
     required: [{
@@ -653,6 +674,7 @@ export const AMULET_CRAFTS = {
     id: 'lapislazuli_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -684,6 +706,7 @@ export const AMULET_CRAFTS = {
     id: 'sapphire_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -715,6 +738,7 @@ export const AMULET_CRAFTS = {
     id: 'emerald_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 60,
     required: [{
@@ -746,6 +770,7 @@ export const AMULET_CRAFTS = {
     id: 'ruby_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -777,6 +802,7 @@ export const AMULET_CRAFTS = {
     id: 'tanzanite_amulet',
     timeToCraft: 120, // 60
     xp: 10,
+    tags: ['amulet'],
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{

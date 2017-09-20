@@ -1,0 +1,50 @@
+<template name="requiredItemsList">
+
+  <div class="d-flex">
+    <div class="d-flex flex-column" style="flex: 1 1 auto;">
+      <b>Consumes</b>
+      {{#each computedRequiredItems}}
+        {{#if this.consumes}}
+          <div class="d-flex align-items-center {{#unless $eq this.type 'skill'}}mb-2{{/unless}}">
+            {{#if $eq this.type 'gold'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
+              <img src="/icons/goldCoin.svg" class="extra-small-icon">
+              <span class="ml-1 text-capitalize">Gold</span><br />            
+            {{else if $eq this.type 'item'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+              <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+            {{/if}}
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+    <div class="d-flex flex-column" style="flex: 1 1 auto;">
+      <b>Requires</b>
+      {{#each computedRequiredItems}}
+        {{#unless this.consumes}}
+          <div class="d-flex align-items-center {{#unless $eq this.type 'skill'}}mb-2{{/unless}}">
+            {{#if $eq this.type 'gold'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <img src="/icons/goldCoin.svg" class="extra-small-icon">
+              <span class="ml-1 text-capitalize">Gold</span><br />            
+            {{else if $eq this.type 'item'}}
+              <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+              <img src="/icons/{{this.icon}}.svg" class="extra-small-icon">
+              <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+            {{/if}}
+          </div>
+        {{/unless}}
+      {{/each}}
+      {{#each computedRequiredItems}}
+        {{#if $eq this.type 'skill'}}
+          <div class="d-flex align-items-center mb-2">
+            <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">Level {{this.level}}</span>
+            <img src="/icons/{{this.name}}.svg" class="extra-small-icon">
+            <span class="ml-1 text-capitalize">{{this.name}}</span><br />
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</template>

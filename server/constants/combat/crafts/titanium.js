@@ -10,6 +10,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 1200,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -55,6 +56,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -100,6 +102,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -145,6 +148,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 420, // 60
     xp: 2800,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -190,6 +194,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 600, // 60
     xp: 2800,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -235,6 +240,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -280,6 +286,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -325,6 +332,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['armor'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',
@@ -370,6 +378,7 @@ export const TITANIUM_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 2400,
     maxToCraft: 1,
+    tags: ['weapon'],
     requiredCraftingLevel: 45,
     required: [{
       type: 'item',

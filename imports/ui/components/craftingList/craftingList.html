@@ -1,0 +1,123 @@
+<template name="craftingList">
+
+  {{#if goldRecipes}}
+    <div class="mb-1">
+      <h3>Sculptures & Stones <small>(Gold)</small></h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each goldRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if xpRecipes}}
+    <div class="mb-1">
+      <h3>Walls & Pylons <small>(XP)</small></h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each xpRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if barRecipes}}
+    <div class="mb-1">
+      <h3>Bars</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each barRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if miscRecipes}}
+    <div class="mb-1">
+      <h3>Misc</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each miscRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if miningRecipes}}
+    {{#if $eq recipeFilter 'all'}}
+      <h3>Mining</h3>
+    {{/if}}
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      {{#each miningRecipes}}
+        {{ > recipeIcon recipe=this}}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{#if woodcuttingRecipes}}
+    {{#if $eq recipeFilter 'all'}}
+      <h3>Woodcutting</h3>
+    {{/if}}
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      {{#each woodcuttingRecipes}}
+        {{ > recipeIcon recipe=this}}
+      {{/each}}
+    </div>
+  {{/if}} 
+
+  {{#if furnaceRecipes}}
+    <div class="mb-1">
+      <h3>Furnaces</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each furnaceRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}   
+
+  {{#if armorRecipes}}
+    <div class="mb-1">
+      <h3>Armor</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each armorRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if weaponRecipes}}
+    <div class="mb-1">
+      <h3>Weapons</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each weaponRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if staffRecipes}}
+    <div class="mb-1">
+      <h3>Staffs</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each staffRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if amuletRecipes}}
+    <div class="mb-1">
+      <h3>Amulets</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each amuletRecipes}}
+          {{ > recipeIcon recipe=this}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+</template>

@@ -34,13 +34,37 @@ Template.craftingList.helpers({
         } else if (/furnace/.test(recipe.name)) {
           return false;
         }
-      } else if (recipe.category === 'mining' || recipe.category === 'woodcutting') {
+      } else if (_.contains(['mining', 'woodcutting', 'pigment', 'paper', 'tome'], recipe.category)) {
         return false;
       } else if (_.intersection(recipe.tags, ['armor', 'weapon', 'staff', 'amulet']).length > 0) {
         return false;
       }
 
       return true;
+    });
+  },
+
+  paperRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return recipe.category === 'paper';
+    });
+  },
+
+  pigmentRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return recipe.category === 'pigment';
+    });
+  },
+
+  abilityRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return recipe.category === 'tome';
     });
   },
 

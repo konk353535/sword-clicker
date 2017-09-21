@@ -1,5 +1,5 @@
 <template name="recipeIcon">
-  <div class="recipe-container {{#unless maxCraftableAmount}}uncraftable{{/unless}}">
+  <div class="recipe-container {{#unless maxCraftableAmount}}uncraftable{{/unless}}" data-recipe="{{recipe.id}}">
     <div class="d-flex" style="overflow: hidden">
       <img src="/icons/{{recipe.icon}}.svg" class="ore-icon">
       <div class="d-flex flex-column mx-2" style="overflow: hidden">
@@ -22,63 +22,61 @@
     </div>
   </div>
 
-  <!-- Icon Tooltip -->
-  <!--
-  <div class="recipe-tooltip-content">
-    <div class="my-tooltip-inner">
-      <h3 class='popover-title text-capitalize'>{{recipe.name}}</h3>
-      <div class='popover-content'>
-        {{#if recipe.baseStats}}
-          {{> displayCombatStats stats=recipe.baseStats extraStats=recipe.extraStats}}
-          {{#if recipe.requiredEquip}}
-            <b>Equip Requirements</b>
-            <div class="d-flex flex-wrap">
-              {{#each recipe.requiredEquip}}
-                <i class="lilIcon-{{this.name}} extra-small-icon mx-1"></i>
-                {{this.level}}
-              {{/each}}
+  {{#if showModal}}
+    <div class="modal recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex flex-column">
+              <h5 class="modal-title text-capitalize" id="recipeModal">
+                {{recipe.name}}
+              </h5>
+              <small>{{recipe.description}}</small>
             </div>
-          {{/if}}
-          {{#if recipe.isTwoHanded}}
-            <b>Two Handed</b>
-          {{/if}}
-        {{/if}}
-      </div>
-    </div>
-  </div>-->
-
-  <div class="modal recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="d-flex flex-column">
-            <h5 class="modal-title text-capitalize" id="recipeModal">
-              {{recipe.name}} ({{recipe.calculatedTimeToCraft}}s)
-            </h5>
-            <small>{{recipe.description}}</small>
-          </div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form class="craft-amount-form">
-          <div class="modal-body">
-            {{ > requiredItemsList requiredItems=recipe.required recipeName=recipe.name}}
-          </div>
-          <div class="modal-footer">
-            <div style="display: flex; flex: 1 1 auto;">
-              <input class="form-control craft-amount-input mr-1" value={{craftAmount}} style="max-width: 100px">
-              <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
-                Craft X ({{craftAmount}})
-              </button>
-            </div>
-            <button type="button" class="btn btn-danger craft-btn" data-amount={{maxCraftableAtOnce}}>
-              Craft All ({{maxCraftableAtOnce}})
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        </form>
+          <form class="craft-amount-form">
+            <div class="modal-body">
+              {{ > requiredItemsList requiredItems=recipe.required recipeName=recipe.name duration=recipe.calculatedTimeToCraft}}
+
+              {{#if recipe.baseStats}}
+                {{#if showStats}}
+                  <a href="#" class="hide-stats">Hide Stat Range</a>
+                  {{> displayCombatStats stats=recipe.baseStats extraStats=recipe.extraStats}}
+                  {{#if recipe.requiredEquip}}
+                    <b>Equip Requirements</b>
+                    <div class="d-flex flex-wrap">
+                      {{#each recipe.requiredEquip}}
+                        <i class="lilIcon-{{this.name}} extra-small-icon mx-1"></i>
+                        {{this.level}}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                  {{#if recipe.isTwoHanded}}
+                    <b>Two Handed</b>
+                  {{/if}}
+                {{else}}
+                  <a href="#" class="show-stats">Show Stat Range</a>
+                {{/if}}
+              {{/if}}          
+            </div>
+            <div class="modal-footer">
+              <div style="display: flex; flex: 1 1 auto;">
+                <input class="form-control craft-amount-input mr-1" value={{craftAmount}} style="max-width: 100px">
+                <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
+                  Craft X ({{craftAmount}})
+                </button>
+              </div>
+              <button type="button" class="btn btn-danger craft-btn" data-amount={{maxCraftableAtOnce}}>
+                Craft All ({{maxCraftableAtOnce}})
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 
 </template>

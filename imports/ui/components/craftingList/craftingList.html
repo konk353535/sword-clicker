@@ -1,5 +1,38 @@
 <template name="craftingList">
 
+  {{#if abilityRecipes}}
+    <div class="mb-1">
+      <h3>Abilities</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each abilityRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if pigmentRecipes}}
+    <div class="mb-1">
+      <h3>Pigments</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each pigmentRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if paperRecipes}}
+    <div class="mb-1">
+      <h3>Paper</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each paperRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
   {{#if xpRecipes}}
     <div class="mb-1">
       <h3>Walls & Pylons <small>(XP)</small></h3>

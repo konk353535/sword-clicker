@@ -7,7 +7,8 @@ import './recipeIcon.html';
 
 Template.recipeIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  console.log('Created');
+  this.state.set('showStats', false);
+  this.state.set('showModal', false);
 });
 
 const updateCraftable = function (instance) {
@@ -33,6 +34,14 @@ Template.recipeIcon.rendered = function () {
 }
 
 Template.recipeIcon.events({
+
+  'click .show-stats'(event, instance) {
+    instance.state.set('showStats', true);
+  },
+
+  'click .hide-stats'(event, instance) {
+    instance.state.set('showStats', false);
+  },
 
   'click .quick-craft'(event, instance) {
     if (instance.$('.recipe-tooltip').css('opacity') > 0.9) {
@@ -60,8 +69,11 @@ Template.recipeIcon.events({
   'click .single-craft'(event, instance) {
     if (instance.$('.recipe-tooltip').css('opacity') > 0.9) {
       // Open the new modal!
-      instance.$('.recipeModal').modal('show');
-      instance.$('.craft-amount-input').focus();
+      instance.state.set('showModal', true);
+      setTimeout(() => {
+        instance.$('.recipeModal').modal('show');
+        instance.$('.craft-amount-input').focus();
+      });
     }
   },
 
@@ -105,6 +117,14 @@ Template.recipeIcon.helpers({
 
   craftAmount() {
     return Template.instance().state.get('craftAmount');
+  },
+
+  showStats() {
+    return Template.instance().state.get('showStats');
+  },
+
+  showModal() {
+    return Template.instance().state.get('showModal');
   },
 
   maxCraftableAmount() {

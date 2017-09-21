@@ -27,7 +27,7 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
 
   myAbilities.learntAbilities.forEach((ability) => {
     if (ability.currentCooldown > 0) {
-      ability.currentCooldown -= secondsElapsed;
+      ability.currentCooldown -= secondsElapsed * 2;
     }
   });
 

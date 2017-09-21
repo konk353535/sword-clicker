@@ -166,11 +166,9 @@ Template.inscriptionPage.helpers({
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {
-            return Object.assign({}, {
-              ability: abilityMap[recipeTeaches],
-              isLearnt: recipe.ability ? recipe.teaches.level <= recipe.ability.learntLevel : false,
-              primaryAction: {}
-            }, recipe);
+            recipe.ability = abilityMap[recipeTeaches];
+            recipe.isLearnt = recipe.ability ? recipe.teaches.level <= recipe.ability.learntLevel : false;
+            recipe.primaryAction = {};
           }
         }
         return recipe;

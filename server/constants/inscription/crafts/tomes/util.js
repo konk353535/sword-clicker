@@ -445,7 +445,7 @@ export const UTIL = {
     consumes: true
   },
 
-  MANY_BLUE_GUM_PAPER: {
+  MANY_ELK_PAPER: {
     type: 'item',
     itemId: 'elk_paper',
     icon: ITEMS['elk_paper'].icon,
@@ -454,7 +454,7 @@ export const UTIL = {
     consumes: true
   },
 
-  BLUE_GUM_PAPER: {
+  ELK_PAPER: {
     type: 'item',
     itemId: 'elk_paper',
     icon: ITEMS['elk_paper'].icon,

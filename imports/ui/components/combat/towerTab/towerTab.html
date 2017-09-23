@@ -173,9 +173,7 @@
           <img src="/icons/treasureChest.svg" class="large-icon">
           {{#each estimatedRewards}}
             {{#if $eq this.type 'item'}}
-              <div class="icon-box item-icon-container small ml-3">
-                {{ > recipeIcon recipe=this}}
-              </div>
+              {{ > itemIcon item=this classes="small" hideTooltip=true}}
               {{this.chance}}% chance
             {{else}}
               <img src="/icons/goldCoin.svg" class="small-icon"> {{this.goldAmount}}

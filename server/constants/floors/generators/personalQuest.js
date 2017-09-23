@@ -42,9 +42,11 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     rewardLevel = 9;
   }
   if (level >= 85) {
+    possibleMonsters.push(...['vampire']);
     rewardLevel = 10;
   }
   if (level >= 95) {
+    possibleMonsters.push(...['monk']);
     rewardLevel = 11;
   }
   if (level >= 105) {

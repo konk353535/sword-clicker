@@ -61,6 +61,35 @@ export const ENEMIES = Object.assign({
     }]
   },
 
+  vampire: {
+    id: 'vampire',
+    icon: 'vampire',
+    name: 'vampire',
+    buffs: [{
+      id: 'thirsty_fangs',
+      data: {
+        duration: 1,
+        totalDuration: 1,
+        icon: 'thirstyFangs',
+        name: 'thirsty fangs'
+      }
+    }, {
+      id: 'vampire_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.5
+    }, {
+      type: 'plus',
+      key: 'accuracy',
+      amount: 25
+    }]
+  },
+
   // Chance to activate dodging
   young_ninja: {
     id: 'young_ninja',
@@ -74,6 +103,36 @@ export const ENEMIES = Object.assign({
         icon: 'youngNinja',
         name: 'Ninja Reflexes'
       }
+    }]
+  },
+
+  // Gains attack, each time he is attacked
+  monk: {
+    id: 'monk',
+    icon: 'monk',
+    name: 'monk ninja',
+    buffs: [{
+      id: 'monk',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        stacks: 0,
+        icon: 'monk',
+        name: 'monk'
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.3
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.3
+    }, {
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 2
     }]
   },
 

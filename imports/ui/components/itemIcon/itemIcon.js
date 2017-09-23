@@ -35,7 +35,7 @@ Template.itemIcon.helpers({
 })
 
 Template.itemIcon.rendered = function () {
-
+  if (!Template.instance().data.hideTooltip) {
     // var currentData = Template.currentData();
     tooltip = new Drop({
       target: Template.instance().$('.item-icon-container')[0],
@@ -44,6 +44,7 @@ Template.itemIcon.rendered = function () {
       position: 'top left',
       remove: true
     });
+  }
 }
 
 Template.itemIcon.onDestroyed(function () {
@@ -53,6 +54,8 @@ Template.itemIcon.onDestroyed(function () {
 })
 
 const sellItem = function (event, instance) {
+  if (instance.data.hideTooltip) return;
+
   Template.instance().$('.sellModal').modal('hide');
   const itemData = instance.data.item;
   if (instance.state.get('quickSelling')) {

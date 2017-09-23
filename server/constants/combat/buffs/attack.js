@@ -130,16 +130,16 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster }) {
         // Blank
         const constants = buff.constants.constants;
-  
         const accuracyBase = constants.accuracyBase;
         const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
         const accuracyIncrease = accuracyBase + accuracyPerLevel;
-
         buff.data.accuracyIncrease = accuracyIncrease;
         caster.stats.accuracy += buff.data.accuracyIncrease;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
+
         // Blank
         if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster: target })
@@ -148,7 +148,10 @@ export const ATTACK_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         // Blank
-        caster.stats.accuracy -= buff.data.accuracyIncrease;
+        console.log(`${caster.stats.accuracy} -= ${buff.data.accuracyIncrease}`);
+        if (buff.data.accuracyIncrease) {
+          caster.stats.accuracy -= buff.data.accuracyIncrease;
+        }
       }
     }
   },

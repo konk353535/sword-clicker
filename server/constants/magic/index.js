@@ -163,11 +163,11 @@ export const MAGIC = {
       }, {
         type: 'skill',
         name: 'astronomy',
-        level: 10
+        level: 14
       }, {
         type: 'skill',
         name: 'magic',
-        level: 20
+        level: 14
       }]
     },
 
@@ -295,11 +295,11 @@ export const MAGIC = {
       }, {
         type: 'skill',
         name: 'astronomy',
-        level: 20
+        level: 19
       }, {
         type: 'skill',
         name: 'magic',
-        level: 20
+        level: 19
       }]
     },
 
@@ -582,11 +582,11 @@ export const MAGIC = {
       }, {
         type: 'skill',
         name: 'astronomy',
-        level: 20
+        level: 17
       }, {
         type: 'skill',
         name: 'magic',
-        level: 20
+        level: 17
       }]
     },
 

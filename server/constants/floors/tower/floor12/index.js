@@ -44,7 +44,7 @@ export const TOWER_FLOOR_12 = {
     name: 'Shivering Tree',
     enemies: ['bird', 'grasshopper'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'obsidian_kite_shield', amount: 1 },
         { type: 'item', itemId: 'obsidian_hammer', amount: 1 },
@@ -54,7 +54,7 @@ export const TOWER_FLOOR_12 = {
   },
   6: {
     name: 'Beach Pit',
-    enemies: ['angry_miner', 'crab'],
+    enemies: ['monk', 'crab'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 4,
       rewards: [

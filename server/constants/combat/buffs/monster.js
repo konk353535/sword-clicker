@@ -120,7 +120,7 @@ export const MONSTER_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         if (!buff.data.timeTillBlink) {
-          buff.data.timeTillBlink = 5 + (Math.random() * 7);
+          buff.data.timeTillBlink = 6 + (Math.random() * 7);
         }
 
         buff.data.timeTillBlink -= secondsElapsed;
@@ -137,7 +137,7 @@ export const MONSTER_BUFFS = {
             }
           }
 
-          buff.data.timeTillBlink = 5 + (Math.random() * 7);
+          buff.data.timeTillBlink = 6 + (Math.random() * 7);
 
           addBuff({ buff: newBuff, target, caster: target });
         }
@@ -700,6 +700,69 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  vampire_monster: {
+    duplicateTag: 'vampire_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'vampire monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const bleedChance = 0.66;
+
+        if (Math.random() <= bleedChance) {
+          const newBuff = {
+            id: 'bleed',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 6)),
+              caster: attacker.id,
+              timeTillDamage: 1,
+              icon: 'bleed',
+              name: 'bleed',
+              description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
+            }
+          }
+
+          const accuracyBuff = {
+            id: 'accuracy_up',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              allowDuplicates: true,
+              level: 2,
+              icon: 'accuracy',
+              name: 'accuracy'
+            }
+          }
+
+          // Add bleed debuff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+          // Add accuracy buff
+          addBuff({ buff: accuracyBuff, target: attacker, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   lizard_monster: {
     duplicateTag: 'lizard_monster', // Used to stop duplicate buffs
     icon: '',
@@ -742,6 +805,36 @@ export const MONSTER_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  monk: {
+    duplicateTag: 'monk', // Used to stop duplicate buffs
+    icon: '',
+    name: 'monk',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        defender.stats.attack *= 1.03;
+        defender.stats.attackMax *= 1.03;
+        buff.data.stacks += 1;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
       },
 
       onRemove({ buff, target, caster }) {

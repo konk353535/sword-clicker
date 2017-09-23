@@ -44,7 +44,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     transition: visibility 0s, opacity 0.1s linear;
   }
 
-  &:hover .recipe-tooltip {
+  &:hover .recipe-tooltip, &:active .recipe-tooltip {
     height: 100%;
     visibility: visible;
     opacity: 1;

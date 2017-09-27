@@ -9,7 +9,7 @@ export const MONSTER_BUFFS = {
 
   stolen_stats: {
     duplicateTag: 'stolen_stats', // Used to stop duplicate buffs
-    icon: 'goblin',
+    icon: 'goblin.svg',
     name: 'stolen stats',
     description({ buff, level }) {
       const c = buff.constants;
@@ -44,7 +44,7 @@ export const MONSTER_BUFFS = {
 
   goblin_stat_stealer: {
     duplicateTag: 'goblin_stat_stealer', // Used to stop duplicate buffs
-    icon: 'goblin',
+    icon: 'goblin.svg',
     name: 'stat stealer',
     description({ buff, level }) {
       const c = buff.constants;
@@ -77,7 +77,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 15,
               stats: {},
               name: 'Stolen Stats',
-              icon: 'goblin',
+              icon: 'goblin.svg',
               allowDuplicates: true
             }
           }
@@ -103,7 +103,7 @@ export const MONSTER_BUFFS = {
 
   spirit_blink: {
     duplicateTag: 'spirit_blink', // Used to stop duplicate buffs
-    icon: 'spiritBlink',
+    icon: 'spiritBlink.svg',
     name: 'spirit blink',
     description({ buff, level }) {
     },
@@ -133,7 +133,7 @@ export const MONSTER_BUFFS = {
               duration: 4,
               totalDuration: 4,
               level: 1,
-              icon: 'invulnerable'
+              icon: 'invulnerable.svg'
             }
           }
 
@@ -151,7 +151,7 @@ export const MONSTER_BUFFS = {
 
   ninja_reflexes: {
     duplicateTag: 'ninja_reflexes', // Used to stop duplicate buffs
-    icon: 'youngNinja',
+    icon: 'youngNinja.svg',
     name: 'ninja reflexes',
     description({ buff, level }) {
     },
@@ -180,7 +180,7 @@ export const MONSTER_BUFFS = {
                 duration: 3,
                 totalDuration: 3,
                 level: 1,
-                icon: 'evasiveManeuvers'
+                icon: 'evasiveManeuvers.svg'
               }
             }
 
@@ -201,7 +201,7 @@ export const MONSTER_BUFFS = {
 
   dwarfs_rage: {
     duplicateTag: 'berserk', // Used to stop duplicate buffs
-    icon: 'berserk',
+    icon: 'berserk.svg',
     name: 'dwarfs rage',
     description({ buff, level }) {
     },
@@ -254,7 +254,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: Infinity,
               totalDuration: Infinity,
-              icon: 'dwarfsRage',
+              icon: 'dwarfsRage.svg',
               description: 'Massively increased offensive stats. More vulnerable to magic.'
             }
           }
@@ -320,7 +320,7 @@ export const MONSTER_BUFFS = {
 
   healing_reduction: {
     duplicateTag: 'healing_reduction', // Used to stop duplicate buffs
-    icon: 'healingReduction',
+    icon: 'healingReduction.svg',
     name: 'healing reduction',
     description({ buff, level }) {
       const c = buff.constants;
@@ -377,7 +377,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              icon: 'mudArmor',
+              icon: 'mudArmor.svg',
               description: ''
             },
             constants: BUFFS['mud_armor']
@@ -394,7 +394,7 @@ export const MONSTER_BUFFS = {
           data: {
             duration: 0,
             totalDuration: 0,
-            icon: 'earthDart',
+            icon: 'earthDart.svg',
             description: ''
           },
           constants: BUFFS['earth_dart']
@@ -433,7 +433,7 @@ export const MONSTER_BUFFS = {
               duration: 10,
               totalDuration: 10,
               attackSpeedDecrease: 25,
-              icon: 'frostedAttacks',
+              icon: 'frostedAttacks.svg',
               description: 'Reduces your attack speed by 25%',
               name: 'Frosted Attacks'
             }
@@ -451,7 +451,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 0,
               totalDuration: 0,
-              icon: 'waterDart',
+              icon: 'waterDart.svg',
               description: ''
             },
             constants: BUFFS['water_dart']
@@ -492,7 +492,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              icon: 'ignite',
+              icon: 'ignite.svg',
               description: ''
             },
             constants: BUFFS['ignite']
@@ -510,7 +510,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 0,
               totalDuration: 0,
-              icon: 'fireDart',
+              icon: 'fireDart.svg',
               description: ''
             },
             constants: BUFFS['fire_dart']
@@ -529,7 +529,7 @@ export const MONSTER_BUFFS = {
 
   armor_reduction: {
     duplicateTag: 'armor_reduction', // Used to stop duplicate buffs
-    icon: 'armorReduction',
+    icon: 'armorReduction.svg',
     name: 'armor reduction',
     description({ buff, level }) {
       const c = buff.constants;
@@ -569,7 +569,7 @@ export const MONSTER_BUFFS = {
 
   magic_armor_reduction: {
     duplicateTag: 'magic_armor_reduction', // Used to stop duplicate buffs
-    icon: 'magicArmorReduction',
+    icon: 'magicArmorReduction.svg',
     name: 'magic armor reduction',
     description({ buff, level }) {
       const c = buff.constants;
@@ -631,7 +631,7 @@ export const MONSTER_BUFFS = {
             duration: 20,
             totalDuration: 20,
             healingReduction,
-            icon: 'healingReduction',
+            icon: 'healingReduction.svg',
             description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
           }
         }
@@ -679,7 +679,7 @@ export const MONSTER_BUFFS = {
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
-              icon: 'bleed',
+              icon: 'bleed.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
@@ -728,7 +728,7 @@ export const MONSTER_BUFFS = {
               dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 6)),
               caster: attacker.id,
               timeTillDamage: 1,
-              icon: 'bleed',
+              icon: 'bleed.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
             }
@@ -741,7 +741,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 3,
               allowDuplicates: true,
               level: 2,
-              icon: 'accuracy',
+              icon: 'accuracy.svg',
               name: 'accuracy'
             }
           }
@@ -964,7 +964,7 @@ export const MONSTER_BUFFS = {
               allowDuplicates: true,
               totalDuration: 10,
               armorReduction,
-              icon: 'armorReduction',
+              icon: 'armorReduction.svg',
               description: `Reduces your armor by ${Math.round((1 - armorReduction) * 100)}%`
             }
           }

@@ -5,7 +5,7 @@ export const STAFF_ITEMS = {
 
   copper_wand: {
     id: 'copper_wand',
-    icon: 'copperWand',
+    icon: 'copperWand.svg',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -36,7 +36,7 @@ export const STAFF_ITEMS = {
 
   copper_hammer: {
     id: 'copper_hammer',
-    icon: 'copperHammer',
+    icon: 'copperHammer.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -69,7 +69,7 @@ export const STAFF_ITEMS = {
 
   beech_staff: {
     id: 'beech_staff',
-    icon: 'beechStaff',
+    icon: 'beechStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -101,7 +101,7 @@ export const STAFF_ITEMS = {
 
   oak_staff: {
     id: 'oak_staff',
-    icon: 'oakStaff',
+    icon: 'oakStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -133,7 +133,7 @@ export const STAFF_ITEMS = {
 
   brown_trident: {
     id: 'brown_trident',
-    icon: 'brownTrident',
+    icon: 'brownTrident.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -166,7 +166,7 @@ export const STAFF_ITEMS = {
 
   gold_wand: {
     id: 'gold_wand',
-    icon: 'goldWand',
+    icon: 'goldWand.svg',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -198,7 +198,7 @@ export const STAFF_ITEMS = {
 
   gold_hammer: {
     id: 'gold_hammer',
-    icon: 'goldHammer',
+    icon: 'goldHammer.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -232,7 +232,7 @@ export const STAFF_ITEMS = {
 
   walnut_staff: {
     id: 'walnut_staff',
-    icon: 'walnutStaff',
+    icon: 'walnutStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -264,7 +264,7 @@ export const STAFF_ITEMS = {
 
   blue_trident: {
     id: 'blue_trident',
-    icon: 'blueTrident',
+    icon: 'blueTrident.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -297,7 +297,7 @@ export const STAFF_ITEMS = {
 
   obsidian_wand: {
     id: 'obsidian_wand',
-    icon: 'obsidianWand',
+    icon: 'obsidianWand.svg',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -329,7 +329,7 @@ export const STAFF_ITEMS = {
 
   obsidian_hammer: {
     id: 'obsidian_hammer',
-    icon: 'obsidianHammer',
+    icon: 'obsidianHammer.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -362,7 +362,7 @@ export const STAFF_ITEMS = {
 
   mahogany_staff: {
     id: 'mahogany_staff',
-    icon: 'mahoganyStaff',
+    icon: 'mahoganyStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -394,7 +394,7 @@ export const STAFF_ITEMS = {
 
   black_staff: {
     id: 'black_staff',
-    icon: 'blackStaff',
+    icon: 'blackStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -426,7 +426,7 @@ export const STAFF_ITEMS = {
 
   blue_gum_staff: {
     id: 'blue_gum_staff',
-    icon: 'blueGumStaff',
+    icon: 'blueGumStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -458,7 +458,7 @@ export const STAFF_ITEMS = {
 
   cedar_staff: {
     id: 'cedar_staff',
-    icon: 'cedarStaff',
+    icon: 'cedarStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -490,7 +490,7 @@ export const STAFF_ITEMS = {
 
   denya_staff: {
     id: 'denya_staff',
-    icon: 'denyaStaff',
+    icon: 'denyaStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -522,7 +522,7 @@ export const STAFF_ITEMS = {
 
   mithril_wand: {
     id: 'mithril_wand',
-    icon: 'mithrilWand',
+    icon: 'mithrilWand.svg',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -553,7 +553,7 @@ export const STAFF_ITEMS = {
 
   mithril_hammer: {
     id: 'mithril_hammer',
-    icon: 'mithrilHammer',
+    icon: 'mithrilHammer.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -586,7 +586,7 @@ export const STAFF_ITEMS = {
 
   purple_trident: {
     id: 'purple_trident',
-    icon: 'purpleTrident',
+    icon: 'purpleTrident.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -619,7 +619,7 @@ export const STAFF_ITEMS = {
 
   dwarven_staff: {
     id: 'dwarven_staff',
-    icon: 'dwarvenStaff',
+    icon: 'dwarvenStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -652,7 +652,7 @@ export const STAFF_ITEMS = {
 
   ruby_staff: {
     id: 'ruby_staff',
-    icon: 'rubyStaff',
+    icon: 'rubyStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',

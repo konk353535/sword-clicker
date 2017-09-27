@@ -2,7 +2,7 @@
 export const XP_ITEMS = {
   stone_pylon: {
     id: 'stone_pylon',
-    icon: 'stonePylon',
+    icon: 'stonePylon.svg',
     category: 'crafting',
     name: 'stone pylon',
     sellPrice: 1,
@@ -11,7 +11,7 @@ export const XP_ITEMS = {
 
   stone_wall: {
     id: 'stone_wall',
-    icon: 'stoneWall',
+    icon: 'stoneWall.svg',
     category: 'crafting',
     name: 'stone wall',
     sellPrice: 1,
@@ -20,7 +20,7 @@ export const XP_ITEMS = {
 
   copper_wall: {
     id: 'copper_wall',
-    icon: 'copperWall',
+    icon: 'copperWall.svg',
     category: 'crafting',
     name: 'copper wall',
     sellPrice: 5,
@@ -29,7 +29,7 @@ export const XP_ITEMS = {
 
   tin_pylon: {
     id: 'tin_pylon',
-    icon: 'tinPylon',
+    icon: 'tinPylon.svg',
     category: 'crafting',
     name: 'tin pylon',
     sellPrice: 1,
@@ -38,7 +38,7 @@ export const XP_ITEMS = {
 
   bronze_wall: {
     id: 'bronze_wall',
-    icon: 'bronzeWall',
+    icon: 'bronzeWall.svg',
     category: 'crafting',
     name: 'bronze wall',
     sellPrice: 5,
@@ -47,7 +47,7 @@ export const XP_ITEMS = {
 
   iron_pylon: {
     id: 'iron_pylon',
-    icon: 'ironPylon',
+    icon: 'ironPylon.svg',
     category: 'crafting',
     name: 'iron pylon',
     sellPrice: 1,
@@ -56,7 +56,7 @@ export const XP_ITEMS = {
 
   silver_wall: {
     id: 'silver_wall',
-    icon: 'silverWall',
+    icon: 'silverWall.svg',
     category: 'crafting',
     name: 'silver wall',
     sellPrice: 5,
@@ -65,7 +65,7 @@ export const XP_ITEMS = {
 
   gold_pylon: {
     id: 'gold_pylon',
-    icon: 'goldPylon',
+    icon: 'goldPylon.svg',
     category: 'crafting',
     name: 'gold pylon',
     sellPrice: 1,
@@ -74,7 +74,7 @@ export const XP_ITEMS = {
 
   carbon_wall: {
     id: 'carbon_wall',
-    icon: 'carbonWall',
+    icon: 'carbonWall.svg',
     category: 'crafting',
     name: 'carbon wall',
     sellPrice: 5,
@@ -83,7 +83,7 @@ export const XP_ITEMS = {
 
   steel_pylon: {
     id: 'steel_pylon',
-    icon: 'steelPylon',
+    icon: 'steelPylon.svg',
     category: 'crafting',
     name: 'steel pylon',
     sellPrice: 1,
@@ -92,7 +92,7 @@ export const XP_ITEMS = {
 
   platinum_wall: {
     id: 'platinum_wall',
-    icon: 'platinumWall',
+    icon: 'platinumWall.svg',
     category: 'crafting',
     name: 'platinum wall',
     sellPrice: 5,
@@ -101,7 +101,7 @@ export const XP_ITEMS = {
 
   titanium_pylon: {
     id: 'titanium_pylon',
-    icon: 'titaniumPylon',
+    icon: 'titaniumPylon.svg',
     category: 'crafting',
     name: 'titanium pylon',
     sellPrice: 1,
@@ -110,7 +110,7 @@ export const XP_ITEMS = {
 
   tungsten_wall: {
     id: 'tungsten_wall',
-    icon: 'tungstenWall',
+    icon: 'tungstenWall.svg',
     category: 'crafting',
     name: 'tungsten wall',
     sellPrice: 5,
@@ -119,7 +119,7 @@ export const XP_ITEMS = {
 
   obsidian_pylon: {
     id: 'obsidian_pylon',
-    icon: 'obsidianPylon',
+    icon: 'obsidianPylon.svg',
     category: 'crafting',
     name: 'obsidian pylon',
     sellPrice: 1,
@@ -128,7 +128,7 @@ export const XP_ITEMS = {
 
   cobalt_wall: {
     id: 'cobalt_wall',
-    icon: 'cobaltWall',
+    icon: 'cobaltWall.svg',
     category: 'crafting',
     name: 'cobalt wall',
     sellPrice: 5,
@@ -137,7 +137,7 @@ export const XP_ITEMS = {
 
   mithril_pylon: {
     id: 'mithril_pylon',
-    icon: 'mithrilPylon',
+    icon: 'mithrilPylon.svg',
     category: 'crafting',
     name: 'mithril pylon',
     sellPrice: 1,
@@ -146,7 +146,7 @@ export const XP_ITEMS = {
 
   adamantium_wall: {
     id: 'adamantium_wall',
-    icon: 'adamantiumWall',
+    icon: 'adamantiumWall.svg',
     category: 'crafting',
     name: 'adamantium wall',
     sellPrice: 5,
@@ -155,7 +155,7 @@ export const XP_ITEMS = {
 
   orichalcum_pylon: {
     id: 'orichalcum_pylon',
-    icon: 'orichalcumPylon',
+    icon: 'orichalcumPylon.svg',
     category: 'crafting',
     name: 'orichalcum pylon',
     sellPrice: 1,
@@ -164,7 +164,7 @@ export const XP_ITEMS = {
 
   meteorite_wall: {
     id: 'meteorite_wall',
-    icon: 'meteoriteWall',
+    icon: 'meteoriteWall.svg',
     category: 'crafting',
     name: 'meteorite wall',
     sellPrice: 5,
@@ -173,7 +173,7 @@ export const XP_ITEMS = {
 
   fairy_steel_pylon: {
     id: 'fairy_steel_pylon',
-    icon: 'fairySteelPylon',
+    icon: 'fairySteelPylon.svg',
     category: 'crafting',
     name: 'fairy steel pylon',
     sellPrice: 1,
@@ -182,7 +182,7 @@ export const XP_ITEMS = {
 
   elven_steel_wall: {
     id: 'elven_steel_wall',
-    icon: 'elvenSteelWall',
+    icon: 'elvenSteelWall.svg',
     category: 'crafting',
     name: 'elven steel wall',
     sellPrice: 5,
@@ -191,7 +191,7 @@ export const XP_ITEMS = {
 
   cursed_pylon: {
     id: 'cursed_pylon',
-    icon: 'cursedPylon',
+    icon: 'cursedPylon.svg',
     category: 'crafting',
     name: 'cursed pylon',
     sellPrice: 1,

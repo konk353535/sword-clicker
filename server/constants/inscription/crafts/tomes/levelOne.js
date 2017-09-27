@@ -54,6 +54,19 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
 
+  volcanic_shield_tome: {
+    recipeFor: 'inscription',
+    produces: 'volcanic_shield_1_tome',
+    name: 'Volcanic shield',
+    id: 'volcanic_shield_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 120,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 14,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
+  },
+
   water_ball_tome: {
     recipeFor: 'inscription',
     produces: 'water_ball_tome',

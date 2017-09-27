@@ -192,7 +192,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
-      icon: 'character'
+      icon: 'character.svg'
     }
 
     if (userCombat.enchantments) {

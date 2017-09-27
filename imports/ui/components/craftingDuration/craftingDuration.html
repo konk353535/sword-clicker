@@ -5,12 +5,12 @@
       style="width: 75px; cursor: pointer; border: 1px solid #8e9194; border-radius: 2px;"> 
 
       <img
-        src="/icons/{{computedCraftingProcess.icon}}.svg"
+        src="/icons/{{computedCraftingProcess.icon}}"
         class="extra-small-icon mr-1">
 
       {{> formatNumber number=computedCraftingProcess.percentage}}%
     </div>
   {{else}}
-    <img class="icon-box small-icon mr-1" src="/icons/{{computedCraftingProcess.icon}}.svg" style="pointer-events: all">
+    <img class="icon-box small-icon mr-1" src="/icons/{{computedCraftingProcess.icon}}" style="pointer-events: all">
   {{/if}}
 </template>

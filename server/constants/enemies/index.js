@@ -11,7 +11,7 @@ export const ENEMIES = Object.assign({
 
   grasshopper: {
     id: 'grasshopper',
-    icon: 'grasshopper',
+    icon: 'grasshopper.svg',
     name: 'grasshopper',
     statBuffs: [{
       type: 'plus',
@@ -27,7 +27,7 @@ export const ENEMIES = Object.assign({
 
   fly: {
     id: 'fly',
-    icon: 'fly',
+    icon: 'fly.svg',
     name: 'fly',
     statBuffs: [{
       type: 'plus',
@@ -48,14 +48,14 @@ export const ENEMIES = Object.assign({
   // Steals ur stats
   goblin: {
     id: 'goblin',
-    icon: 'goblin',
+    icon: 'goblin.svg',
     name: 'goblin',
     buffs: [{
       id: 'goblin_stat_stealer',
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'goblin',
+        icon: 'goblin.svg',
         name: 'stat stealer'
       }
     }]
@@ -63,14 +63,14 @@ export const ENEMIES = Object.assign({
 
   vampire: {
     id: 'vampire',
-    icon: 'vampire',
+    icon: 'vampire.svg',
     name: 'vampire',
     buffs: [{
       id: 'thirsty_fangs',
       data: {
         duration: 1,
         totalDuration: 1,
-        icon: 'thirstyFangs',
+        icon: 'thirstyFangs.svg',
         name: 'thirsty fangs'
       }
     }, {
@@ -82,7 +82,7 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'attack',
-      amount: 0.5
+      amount: 0.7
     }, {
       type: 'plus',
       key: 'accuracy',
@@ -93,14 +93,14 @@ export const ENEMIES = Object.assign({
   // Chance to activate dodging
   young_ninja: {
     id: 'young_ninja',
-    icon: 'youngNinja',
+    icon: 'youngNinja.svg',
     name: 'young ninja',
     buffs: [{
       id: 'ninja_reflexes',
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'youngNinja',
+        icon: 'youngNinja.svg',
         name: 'Ninja Reflexes'
       }
     }]
@@ -109,7 +109,7 @@ export const ENEMIES = Object.assign({
   // Gains attack, each time he is attacked
   monk: {
     id: 'monk',
-    icon: 'monk',
+    icon: 'monk.svg',
     name: 'monk ninja',
     buffs: [{
       id: 'monk',
@@ -117,18 +117,18 @@ export const ENEMIES = Object.assign({
         duration: Infinity,
         totalDuration: Infinity,
         stacks: 0,
-        icon: 'monk',
+        icon: 'monk.svg',
         name: 'monk'
       }
     }],
     statBuffs: [{
       type: 'times',
       key: 'attack',
-      amount: 0.3
+      amount: 0.5
     }, {
       type: 'times',
       key: 'attackMax',
-      amount: 0.3
+      amount: 0.5
     }, {
       type: 'times',
       key: 'attackSpeed',
@@ -138,14 +138,14 @@ export const ENEMIES = Object.assign({
 
   unicorn: {
     id: 'unicorn',
-    icon: 'unicorn',
+    icon: 'unicorn.svg',
     name: 'unicorn',
     buffs: [{
       id: 'ninja_reflexes',
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'youngNinja',
+        icon: 'youngNinja.svg',
         name: 'Ninja Reflexes'
       }
     }]
@@ -154,7 +154,7 @@ export const ENEMIES = Object.assign({
   // When below 50% hp, goes berserk
   dwarf: {
     id: 'dwarf',
-    icon: 'dwarf',
+    icon: 'dwarf.svg',
     name: 'dwarf',
     buffs: [{
       id: 'dwarfs_pre_rage',
@@ -169,7 +169,7 @@ export const ENEMIES = Object.assign({
   // Randomly casts spell, which reduces healing
   demon: {
     id: 'demon',
-    icon: 'demon',
+    icon: 'demon.svg',
     name: 'demon',
     buffs: [{
       id: 'demon_monster',
@@ -181,14 +181,14 @@ export const ENEMIES = Object.assign({
 
   angel: {
     id: 'angel',
-    icon: 'angel',
+    icon: 'angel.svg',
     name: 'angel'
   },
 
   // Block ability, reduces damage of all attacks after armor by X
   spartan: {
     id: 'spartan',
-    icon: 'spartan',
+    icon: 'spartan.svg',
     name: 'spartan',
     statBuffs: [{
       type: 'plus',
@@ -203,7 +203,7 @@ export const ENEMIES = Object.assign({
 
   octopus: {
     id: 'octopus',
-    icon: 'octopus',
+    icon: 'octopus.svg',
     name: 'octopus',
     statBuffs: [{
       type: 'times',
@@ -223,7 +223,7 @@ export const ENEMIES = Object.assign({
   // Block ability, reduces damage of all attacks after armor by X
   cut_purse: {
     id: 'cut_purse',
-    icon: 'cutPurse',
+    icon: 'cutPurse.svg',
     name: 'cut purse',
     statBuffs: [{
       type: 'times',
@@ -247,14 +247,14 @@ export const ENEMIES = Object.assign({
   // Frost armor buff
   ice_giant: {
     id: 'ice_giant',
-    icon: 'iceGiant',
+    icon: 'iceGiant.svg',
     name: 'ice giant',
     buffs: [{
       id: 'frost_armor',
       data: {
         level: 10,
         name: 'Frost Armor',
-        icon: 'frostArmor'
+        icon: 'frostArmor.svg'
       }
     }]
   },
@@ -262,12 +262,12 @@ export const ENEMIES = Object.assign({
   // Spirits will randomly 'Blink', turning invulnrable for 10s
   cursed_spirit: {
     id: 'cursed_spirit',
-    icon: 'cursedSpirit',
+    icon: 'cursedSpirit.svg',
     name: 'cursed spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -276,12 +276,12 @@ export const ENEMIES = Object.assign({
 
   meteorite_spirit: {
     id: 'meteorite_spirit',
-    icon: 'meteoriteSpirit',
+    icon: 'meteoriteSpirit.svg',
     name: 'meteorite spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -290,12 +290,12 @@ export const ENEMIES = Object.assign({
 
   elven_steel_spirit: {
     id: 'elven_steel_spirit',
-    icon: 'elvenSteelSpirit',
+    icon: 'elvenSteelSpirit.svg',
     name: 'elven steel spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -304,12 +304,12 @@ export const ENEMIES = Object.assign({
 
   fairy_steel_spirit: {
     id: 'fairy_steel_spirit',
-    icon: 'fairySteelSpirit',
+    icon: 'fairySteelSpirit.svg',
     name: 'fairy steel spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -318,12 +318,12 @@ export const ENEMIES = Object.assign({
 
   cobalt_spirit: {
     id: 'cobalt_spirit',
-    icon: 'cobaltSpirit',
+    icon: 'cobaltSpirit.svg',
     name: 'cobalt spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -332,12 +332,12 @@ export const ENEMIES = Object.assign({
 
   orichalcum_spirit: {
     id: 'orichalcum_spirit',
-    icon: 'orichalcumSpirit',
+    icon: 'orichalcumSpirit.svg',
     name: 'orichalcum spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -346,12 +346,12 @@ export const ENEMIES = Object.assign({
 
   adamantium_spirit: {
     id: 'adamantium_spirit',
-    icon: 'adamantiumSpirit',
+    icon: 'adamantiumSpirit.svg',
     name: 'adamantium spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -360,12 +360,12 @@ export const ENEMIES = Object.assign({
 
   mithril_spirit: {
     id: 'mithril_spirit',
-    icon: 'mithrilSpirit',
+    icon: 'mithrilSpirit.svg',
     name: 'mithril spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -374,12 +374,12 @@ export const ENEMIES = Object.assign({
 
   obsidian_spirit: {
     id: 'obsidian_spirit',
-    icon: 'obsidianSpirit',
+    icon: 'obsidianSpirit.svg',
     name: 'obsidian spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -388,12 +388,12 @@ export const ENEMIES = Object.assign({
 
   tungsten_spirit: {
     id: 'tungsten_spirit',
-    icon: 'tungstenSpirit',
+    icon: 'tungstenSpirit.svg',
     name: 'tungsten spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -402,12 +402,12 @@ export const ENEMIES = Object.assign({
 
   titanium_spirit: {
     id: 'titanium_spirit',
-    icon: 'titaniumSpirit',
+    icon: 'titaniumSpirit.svg',
     name: 'titanium spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -416,12 +416,12 @@ export const ENEMIES = Object.assign({
 
   platinum_spirit: {
     id: 'platinum_spirit',
-    icon: 'platinumSpirit',
+    icon: 'platinumSpirit.svg',
     name: 'platinum spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -430,12 +430,12 @@ export const ENEMIES = Object.assign({
 
   steel_spirit: {
     id: 'steel_spirit',
-    icon: 'steelSpirit',
+    icon: 'steelSpirit.svg',
     name: 'steel spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -444,12 +444,12 @@ export const ENEMIES = Object.assign({
 
   carbon_spirit: {
     id: 'carbon_spirit',
-    icon: 'carbonSpirit',
+    icon: 'carbonSpirit.svg',
     name: 'carbon spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -458,12 +458,12 @@ export const ENEMIES = Object.assign({
 
   gold_spirit: {
     id: 'gold_spirit',
-    icon: 'goldSpirit',
+    icon: 'goldSpirit.svg',
     name: 'gold spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -472,12 +472,12 @@ export const ENEMIES = Object.assign({
 
   silver_spirit: {
     id: 'silver_spirit',
-    icon: 'silverSpirit',
+    icon: 'silverSpirit.svg',
     name: 'silver spirit',
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink',
+        icon: 'spiritBlink.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -487,7 +487,7 @@ export const ENEMIES = Object.assign({
   // Can spawn multiple farmers
   farmer: {
     id: 'farmer',
-    icon: 'farmer',
+    icon: 'farmer.svg',
     name: 'farmer',
     swarmRange: [2, 4]
   },
@@ -495,7 +495,7 @@ export const ENEMIES = Object.assign({
   // Cuts through armor
   beaver: {
     id: 'beaver',
-    icon: 'beaver',
+    icon: 'beaver.svg',
     name: 'beaver',
     buffs: [{
       id: 'beaver_teeth',
@@ -508,13 +508,13 @@ export const ENEMIES = Object.assign({
   // Has poisoned blades ability
   snake: {
     id: 'snake',
-    icon: 'snake',
+    icon: 'snake.svg',
     name: 'snake',
     buffs: [{
       id: 'poisoned_blade',
       data: {
         level: 1,
-        icon: 'poisonedBlade'
+        icon: 'poisonedBlade.svg'
       }
     }]
   },
@@ -522,14 +522,14 @@ export const ENEMIES = Object.assign({
   // Can spawn multiple worms
   worm: {
     id: 'worm',
-    icon: 'worm',
+    icon: 'worm.svg',
     name: 'worm',
     swarmRange: [3, 5]
   },
 
   butterfly: {
     id: 'butterfly',
-    icon: 'butterfly',
+    icon: 'butterfly.svg',
     name: 'butterfly',
     statBuffs: [{
       type: 'plus',
@@ -549,7 +549,7 @@ export const ENEMIES = Object.assign({
   // Swarm
   dragonfly: {
     id: 'dragonfly',
-    icon: 'dragonfly',
+    icon: 'dragonfly.svg',
     name: 'dragonfly',
     statBuffs: [{
       type: 'times',
@@ -569,7 +569,7 @@ export const ENEMIES = Object.assign({
   // Crit Chance
   bee: {
     id: 'bee',
-    icon: 'bee',
+    icon: 'bee.svg',
     name: 'bee',
     swarmRange: [1, 7],
     statBuffs: [{
@@ -582,7 +582,7 @@ export const ENEMIES = Object.assign({
   // Crit chance
   wasp: {
     id: 'wasp',
-    icon: 'wasp',
+    icon: 'wasp.svg',
     name: 'wasp',
     statBuffs: [{
       type: 'plus',
@@ -594,12 +594,12 @@ export const ENEMIES = Object.assign({
   // Gains attack speed, the more damage taken
   angry_miner: {
     id: 'angry_miner',
-    icon: 'angryMiner',
+    icon: 'angryMiner.svg',
     name: 'angry miner',
     buffs: [{
       id: 'angry_miner_monster',
       data: {
-        icon: 'angryMiner',
+        icon: 'angryMiner.svg',
         name: 'angry miner'
       }
     }]
@@ -608,7 +608,7 @@ export const ENEMIES = Object.assign({
   // Low Crit chance, high crit damage
   bird: {
     id: 'bird',
-    icon: 'bird',
+    icon: 'bird.svg',
     name: 'bird',
     statBuffs: [{
       type: 'plus',
@@ -624,7 +624,7 @@ export const ENEMIES = Object.assign({
   // Chance to bleed
   rat: {
     id: 'rat',
-    icon: 'rat',
+    icon: 'rat.svg',
     name: 'rat',
     swarmRange: [1, 3],
     buffs: [{
@@ -637,7 +637,7 @@ export const ENEMIES = Object.assign({
 
   fish: {
     id: 'fish',
-    icon: 'fish',
+    icon: 'fish.svg',
     name: 'fish',
     swarmRange: [4, 5],
     statBuffs: [{
@@ -654,12 +654,12 @@ export const ENEMIES = Object.assign({
   // Heals from poison
   lizard: {
     id: 'lizard',
-    icon: 'lizard',
+    icon: 'lizard.svg',
     name: 'lizard',
     buffs: [{
       id: 'lizard_monster',
       data: {
-        icon: 'lizard',
+        icon: 'lizard.svg',
         name: 'thirst for poison'
       }
     }]
@@ -668,7 +668,7 @@ export const ENEMIES = Object.assign({
   // Lots of health
   elephant: {
     id: 'elephant',
-    icon: 'elephant',
+    icon: 'elephant.svg',
     name: 'elephant',
     statBuffs: [{
       type: 'times',
@@ -692,12 +692,12 @@ export const ENEMIES = Object.assign({
   // Gains shit tons of armor, each attack reduces it by one
   crab: {
     id: 'crab',
-    icon: 'crab',
+    icon: 'crab.svg',
     name: 'crab',
     buffs: [{
       id: 'crab_monster',
       data: {
-        icon: 'armor',
+        icon: 'armor.svg',
         name: 'Crab Armor'
       }
     }]
@@ -706,13 +706,13 @@ export const ENEMIES = Object.assign({
   // Spiked armor ability
   echidna: {
     id: 'echidna',
-    icon: 'echidna',
+    icon: 'echidna.svg',
     name: 'echidna',
     buffs: [{
       id: 'spiked_armor',
       data: {
         level: 3,
-        icon: 'spikedArmor'
+        icon: 'spikedArmor.svg'
       }
     }]
   },
@@ -720,7 +720,7 @@ export const ENEMIES = Object.assign({
   // Lots of armor
   snail: {
     id: 'snail',
-    icon: 'snail',
+    icon: 'snail.svg',
     name: 'snail',
     statBuffs: [{
       type: 'times',
@@ -740,7 +740,7 @@ export const ENEMIES = Object.assign({
   // Randomly burrows, healing for X health
   wombat: {
     id: 'wombat',
-    icon: 'wombat',
+    icon: 'wombat.svg',
     name: 'wombat',
     statBuffs: [{
       type: 'times',
@@ -756,7 +756,7 @@ export const ENEMIES = Object.assign({
   // Resistance to magic
   brown_mage: {
     id: 'brown_mage',
-    icon: 'brown_mage',
+    icon: 'brown_mage.svg',
     name: 'brown mage',
     statBuffs: [{
       type: 'times',
@@ -772,7 +772,7 @@ export const ENEMIES = Object.assign({
   // Casts earthen armor abilities
   earth_mage: {
     id: 'earth_mage',
-    icon: 'earthMage',
+    icon: 'earthMage.svg',
     name: 'earth mage',
     buffs: [{
       id: 'earth_mage_monster',
@@ -794,7 +794,7 @@ export const ENEMIES = Object.assign({
   // Casts fire abilities
   fire_mage: {
     id: 'fire_mage',
-    icon: 'fireMage',
+    icon: 'fireMage.svg',
     name: 'fire mage',
     buffs: [{
       id: 'fire_mage_monster',
@@ -816,7 +816,7 @@ export const ENEMIES = Object.assign({
   // Casts fire abilities
   water_mage: {
     id: 'water_mage',
-    icon: 'waterMage',
+    icon: 'waterMage.svg',
     name: 'water mage',
     buffs: [{
       id: 'water_mage_monster',
@@ -837,7 +837,7 @@ export const ENEMIES = Object.assign({
 
   blue_mage: {
     id: 'blue_mage',
-    icon: 'blue_mage',
+    icon: 'blue_mage.svg',
     name: 'blue mage',
     statBuffs: [{
       type: 'times',
@@ -853,13 +853,13 @@ export const ENEMIES = Object.assign({
   // Breeds, has a chance each second to spawn another rabbit
   rabbit: {
     id: 'rabbit',
-    icon: 'rabbit',
+    icon: 'rabbit.svg',
     name: 'rabbit',
     buffs: [{
       id: 'rabbit_monster',
       data: {
         hideBuff: false,
-        icon: 'rabbit'
+        icon: 'rabbit.svg'
       }
     }],
     statBuffs: [{
@@ -888,14 +888,14 @@ export const ENEMIES = Object.assign({
   // Venom + Swarm
   spider: {
     id: 'spider',
-    icon: 'spider',
+    icon: 'spider.svg',
     name: 'spider',
     swarmRange: [1, 3],
     buffs: [{
       id: 'poisoned_blade',
       data: {
         level: 1,
-        icon: 'poisonedBlade'
+        icon: 'poisonedBlade.svg'
       }
     }]
   },
@@ -903,13 +903,13 @@ export const ENEMIES = Object.assign({
   // Stronger venom, lower chance
   jellyFish: {
     id: 'jellyFish',
-    icon: 'jellyFish',
+    icon: 'jellyFish.svg',
     name: 'jellyFish',
     buffs: [{
       id: 'poisoned_blade',
       data: {
         level: 10,
-        icon: 'poisonedBlade'
+        icon: 'poisonedBlade.svg'
       }
     }],
     statBuffs: [{
@@ -921,14 +921,14 @@ export const ENEMIES = Object.assign({
 
   gorilla: {
     id: 'gorilla',
-    icon: 'gorilla',
+    icon: 'gorilla.svg',
     name: 'gorilla',
     buffs: [{
       id: 'boss_gorilla',
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'gorilla',        
+        icon: 'gorilla.svg',        
         name: 'gorilla',
         timeTillLearn: 7
       }

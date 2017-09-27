@@ -3,7 +3,7 @@ import { BUFFS } from '/server/constants/combat/index';
 
 export const ATTACK_ABILITIES = {
   poisoned_blade: {
-    icon: 'poisonedBlade',
+    icon: 'poisonedBlade.svg',
     name: 'poisoned blade',
     id: 'poisoned_blade',
     buffs: ['poisoned_blade'],
@@ -19,7 +19,7 @@ export const ATTACK_ABILITIES = {
   },
 
   thirsty_fangs: {
-    icon: 'thirstyFangs',
+    icon: 'thirstyFangs.svg',
     name: 'thirsty fangs',
     id: 'thirsty_fangs',
     buffs: ['thirsty_fangs'],
@@ -35,7 +35,7 @@ export const ATTACK_ABILITIES = {
   },
 
   phantom_strikes: {
-    icon: 'phantomStrikes',
+    icon: 'phantomStrikes.svg',
     name: 'phantom strikes',
     id: 'phantom_strikes',
     buffs: ['phantom_strikes'],
@@ -51,7 +51,7 @@ export const ATTACK_ABILITIES = {
   },
 
   double_edged_sword: {
-    icon: 'doubleEdgedSword',
+    icon: 'doubleEdgedSword.svg',
     name: 'doubled edged sword',
     id: 'double_edged_sword',
     buffs: ['double_edged_sword'],
@@ -66,7 +66,7 @@ export const ATTACK_ABILITIES = {
   },
 
   vampirism: {
-    icon: 'vampirism',
+    icon: 'vampirism.svg',
     name: 'vampirism',
     id: 'vampirism',
     buffs: ['vampirism'],
@@ -81,7 +81,7 @@ export const ATTACK_ABILITIES = {
   },
 
   slash: {
-    icon: 'slash',
+    icon: 'slash.svg',
     name: 'slash',
     id: 'slash',
     buffs: ['slash'],
@@ -96,7 +96,7 @@ export const ATTACK_ABILITIES = {
   },
 
   penetrating_slash: {
-    icon: 'penetratingSlash',
+    icon: 'penetratingSlash.svg',
     name: 'penetrating slash',
     id: 'penetrating_slash',
     buffs: ['penetrating_slash'],
@@ -111,7 +111,7 @@ export const ATTACK_ABILITIES = {
   },
 
   shield_bash: {
-    icon: 'shieldBash',
+    icon: 'shieldBash.svg',
     name: 'shield bash',
     id: 'shield_bash',
     buffs: ['shield_bash'],
@@ -130,7 +130,7 @@ export const ATTACK_ABILITIES = {
   },
 
   berserk: {
-    icon: 'berserk',
+    icon: 'berserk.svg',
     name: 'Berserk',
     id: 'berserk',
     buffs: ['berserk'],
@@ -145,7 +145,7 @@ export const ATTACK_ABILITIES = {
   },
 
   accuracy_up: {
-    icon: 'accuracy',
+    icon: 'accuracy.svg',
     name: 'accuracy up',
     id: 'accuracy_up',
     buffs: ['accuracy_up'],
@@ -161,7 +161,7 @@ export const ATTACK_ABILITIES = {
   },
 
   attack_up: {
-    icon: 'attack',
+    icon: 'attack.svg',
     name: 'attack up',
     id: 'attack_up',
     buffs: ['attack_up'],
@@ -177,7 +177,7 @@ export const ATTACK_ABILITIES = {
   },
 
   execute: {
-    icon: 'execute',
+    icon: 'execute.svg',
     name: 'execute',
     id: 'execute',
     buffs: ['execute'],
@@ -192,7 +192,7 @@ export const ATTACK_ABILITIES = {
   },
 
   blade_spin: {
-    icon: 'bladeSpin',
+    icon: 'bladeSpin.svg',
     name: 'blade spin',
     id: 'blade_spin',
     buffs: ['blade_spin'],
@@ -207,7 +207,7 @@ export const ATTACK_ABILITIES = {
   },
 
   blade_frenzy: {
-    icon: 'bladeFrenzy',
+    icon: 'bladeFrenzy.svg',
     name: 'blade frenzy',
     id: 'blade_frenzy',
     buffs: ['blade_frenzy'],
@@ -222,7 +222,7 @@ export const ATTACK_ABILITIES = {
   },
 
   bleeding_spin: {
-    icon: 'bleedingSpin',
+    icon: 'bleedingSpin.svg',
     name: 'bleeding spin',
     id: 'bleeding_spin',
     buffs: ['bleed'],
@@ -241,7 +241,7 @@ export const ATTACK_ABILITIES = {
   },
 
   bleed: {
-    icon: 'bleed',
+    icon: 'bleed.svg',
     name: 'bleed',
     id: 'bleed',
     buffs: ['bleed'],

@@ -8,7 +8,7 @@ import { SCROLL_ITEMS } from './items/scrolls';
 export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
   composite_wall: {
     id: 'composite_wall',
-    icon: 'compositeWall',
+    icon: 'compositeWall.svg',
     category: 'crafting',
     name: 'composite wall',
     sellPrice: 1000,
@@ -17,7 +17,7 @@ export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITE
 
   polished_black_stone: {
     id: 'polished_black_stone',
-    icon: 'polishedBlackStone',
+    icon: 'polishedBlackStone.svg',
     category: 'crafting',
     name: 'polished black stone',
     sellPrice: 300,
@@ -26,7 +26,7 @@ export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITE
 
   polished_blue_stone: {
     id: 'polished_blue_stone',
-    icon: 'polishedBlueStone',
+    icon: 'polishedBlueStone.svg',
     category: 'crafting',
     name: 'polished blue stone',
     sellPrice: 600,

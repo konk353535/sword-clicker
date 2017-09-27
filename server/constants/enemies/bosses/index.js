@@ -9,7 +9,7 @@ export const BOSS_ENEMIES = {
 
   boss_cougar: {
     id: 'boss_cougar',
-    icon: 'puma',
+    icon: 'puma.svg',
     name: 'Boss Cougar',
     isBoss: true,
     stats: {
@@ -41,7 +41,7 @@ export const BOSS_ENEMIES = {
   // The adds are easy to kill, but can poison people so must be killed quickly
   boss_cobra: {
     id: 'boss_cobra',
-    icon: 'cobra',
+    icon: 'cobra.svg',
     name: 'Boss cobra',
     isBoss: true,
     stats: {
@@ -61,7 +61,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'cobra',        
+        icon: 'cobra.svg',        
         name: 'boss cobra',
         timeTillSpawn: 45,
         phase: 1
@@ -73,7 +73,7 @@ export const BOSS_ENEMIES = {
   // Cleave
   boss_bone_warrior: {
     id: 'boss_bone_warrior',
-    icon: 'boneWarrior',
+    icon: 'boneWarrior.svg',
     name: 'Boss Bone Warrior',
     isBoss: true,
     stats: {
@@ -93,7 +93,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'boneWarrior',        
+        icon: 'boneWarrior.svg',        
         name: 'bone warrior'
       }
     }],
@@ -106,7 +106,7 @@ export const BOSS_ENEMIES = {
   // Once the boss is alone, this buff is lost
   boss_spartan: {
     id: 'boss_spartan',
-    icon: 'spartan',
+    icon: 'spartan.svg',
     name: 'Spartan',
     isBoss: true,
     stats: {
@@ -126,7 +126,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'bossSpartan',        
+        icon: 'bossSpartan.svg',        
         name: 'boss spartan',
         hideBuff: true
       }
@@ -135,7 +135,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'phalanx',  
+        icon: 'phalanx.svg',  
         isEnemy: true,
         extraArmor: 0,
         name: 'phalanx'
@@ -149,7 +149,7 @@ export const BOSS_ENEMIES = {
   // Casts aoe ignite on all enemies, every 60 seconds.
   boss_mage: {
     id: 'boss_mage',
-    icon: 'bossMage',
+    icon: 'bossMage.svg',
     name: 'mage',
     isBoss: true,
     stats: {
@@ -169,7 +169,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'bossMage',        
+        icon: 'bossMage.svg',        
         name: 'boss mage',
         timeTillSpawn: 10
       }
@@ -180,7 +180,7 @@ export const BOSS_ENEMIES = {
   // Summons goblins incrementally which steal yo stats (low hp, spawn quickly)
   boss_goblin: {
     id: 'boss_goblin',
-    icon: 'goblin',
+    icon: 'goblin.svg',
     name: 'goblin',
     isBoss: true,
     stats: {
@@ -200,7 +200,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'goblin',        
+        icon: 'goblin.svg',        
         name: 'boss goblin',
         timeTillSpawn: 10
       }
@@ -211,7 +211,7 @@ export const BOSS_ENEMIES = {
   // Changes target every attack
   boss_ogre: {
     id: 'boss_ogre',
-    icon: 'iceGiant',
+    icon: 'iceGiant.svg',
     name: 'ogre',
     isBoss: true,
     stats: {
@@ -231,7 +231,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'ogre',        
+        icon: 'ogre.svg',        
         name: 'boss ogre',
         hideBuff: true
       }
@@ -246,7 +246,7 @@ export const BOSS_ENEMIES = {
   // Killing these little phenoixes spawns eggs with a longer cooldown then initially
   boss_phoenix: {
     id: 'boss_phoenix',
-    icon: 'phoenix',
+    icon: 'phoenix.svg',
     name: 'phoenix',
     isBoss: true,
     stats: {
@@ -266,7 +266,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'phenoix',        
+        icon: 'phenoix.svg',        
         name: 'boss phenoix',
         hideBuff: true
       }
@@ -278,7 +278,7 @@ export const BOSS_ENEMIES = {
   // Stat gain is based on who they are fighting
   boss_gorilla: {
     id: 'boss_gorilla',
-    icon: 'gorilla',
+    icon: 'gorilla.svg',
     name: 'gorilla',
     isBoss: true,
     stats: {
@@ -298,7 +298,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'gorilla',        
+        icon: 'gorilla.svg',        
         name: 'boss gorilla',
         timeTillLearn: 15
       }
@@ -309,7 +309,7 @@ export const BOSS_ENEMIES = {
   // Demon
   boss_demon: {
     id: 'boss_demon',
-    icon: 'bossDemon',
+    icon: 'bossDemon.svg',
     name: 'demon',
     isBoss: true,
     stats: {
@@ -329,7 +329,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'demon',        
+        icon: 'demon.svg',        
         name: 'demon',
         hideBuff: true
       }
@@ -339,7 +339,7 @@ export const BOSS_ENEMIES = {
 
   boss_genie_lamp: {
     id: 'boss_genie_lamp',
-    icon: 'bossGenieLamp',
+    icon: 'bossGenieLamp.svg',
     name: 'Genies Lamp',
     isBoss: true,
     stats: {
@@ -359,7 +359,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'bossGenieLamp',        
+        icon: 'bossGenieLamp.svg',        
         name: 'genies lamp',
         hideBuff: true
       }
@@ -369,7 +369,7 @@ export const BOSS_ENEMIES = {
 
   boss_living_tree: {
     id: 'boss_living_tree',
-    icon: 'livingTree',
+    icon: 'livingTree.svg',
     name: 'Living Tree',
     isBoss: true,
     stats: {
@@ -389,7 +389,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'livingTree',
+        icon: 'livingTree.svg',
         damageTillSpawn: 100,
         name: 'genies lamp'
       }
@@ -399,7 +399,7 @@ export const BOSS_ENEMIES = {
 
   boss_vampire: {
     id: 'boss_vampire',
-    icon: 'vampire',
+    icon: 'vampire.svg',
     name: 'vampire',
     isBoss: true,
     stats: {
@@ -419,7 +419,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'vampire',        
+        icon: 'vampire.svg',        
         name: 'vampire',
         timeTillBlood: 15
       }
@@ -429,7 +429,7 @@ export const BOSS_ENEMIES = {
 
   boss_frankenstein: {
     id: 'boss_frankenstein',
-    icon: 'frankenstein',
+    icon: 'frankenstein.svg',
     name: 'frankenstein',
     isBoss: true,
     stats: {
@@ -449,7 +449,7 @@ export const BOSS_ENEMIES = {
 
   boss_cassiopeia: {
     id: 'boss_cassiopeia',
-    icon: 'cassiopeia',
+    icon: 'cassiopeia.svg',
     name: 'cassiopeia',
     isBoss: true,
     stats: {
@@ -469,7 +469,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'ogre',        
+        icon: 'ogre.svg',        
         name: 'boss ogre',
         hideBuff: true
       }
@@ -478,7 +478,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: 10000,
         totalDuration: 10000,
-        icon: 'poisonedBlade',
+        icon: 'poisonedBlade.svg',
         name: 'poisoned blade',
         level: 1
       }
@@ -488,7 +488,7 @@ export const BOSS_ENEMIES = {
 
   boss_old_tortoise: {
     id: 'boss_old_tortoise',
-    icon: 'oldTortoise',
+    icon: 'oldTortoise.svg',
     name: 'old tortoise',
     isBoss: true,
     stats: {
@@ -508,7 +508,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'oldTortoise',        
+        icon: 'oldTortoise.svg',        
         name: 'boss old tortoise'
       }
     }],
@@ -517,7 +517,7 @@ export const BOSS_ENEMIES = {
 
   boss_kraken: {
     id: 'boss_kraken',
-    icon: 'kraken',
+    icon: 'kraken.svg',
     name: 'kraken',
     isBoss: true,
     stats: {
@@ -537,7 +537,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'kraken',        
+        icon: 'kraken.svg',        
         name: 'boss kraken',
         timeTillSpawn: 15
       }

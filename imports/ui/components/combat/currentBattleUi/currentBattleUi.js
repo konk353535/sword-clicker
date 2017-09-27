@@ -130,7 +130,7 @@ Template.currentBattleUi.helpers({
   changeTargetAbility() {
     return {
       id: 'changeTarget',
-      icon: 'changeTarget',
+      icon: 'changeTarget.svg',
       description: 'Select a target to attack',
       name: 'Attack Target',
       slot: 'changeTarget',

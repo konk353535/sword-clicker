@@ -3,7 +3,7 @@ import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/c
 export const MISC_ITEMS = {
   thirsting_saber: {
     id: 'thirsting_saber',
-    icon: 'thirstingSaber',
+    icon: 'thirstingSaber.svg',
     category: 'combat',
     weaponType: 'sword',
     slot: 'mainHand',
@@ -35,7 +35,7 @@ export const MISC_ITEMS = {
 
   enchanted_long_sword: {
     id: 'enchanted_long_sword',
-    icon: 'enchantedLongSword',
+    icon: 'enchantedLongSword.svg',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
@@ -68,7 +68,7 @@ export const MISC_ITEMS = {
 
   spartan_shield: {
     id: 'spartan_shield',
-    icon: 'spartanShield',
+    icon: 'spartanShield.svg',
     category: 'combat',
     slot: 'offHand',
     name: 'spartan shield',
@@ -95,7 +95,7 @@ export const MISC_ITEMS = {
 
   snake_skin_chest: {
     id: 'snake_skin_chest',
-    icon: 'snakeSkinChest',
+    icon: 'snakeSkinChest.svg',
     category: 'combat',
     slot: 'chest',
     name: 'snake skin chest',
@@ -121,7 +121,7 @@ export const MISC_ITEMS = {
 
   "bone_kings_axe": {
     "id": "bone_kings_axe",
-    "icon": "boneKingsAxe",
+    "icon": "boneKingsAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -152,7 +152,7 @@ export const MISC_ITEMS = {
 
   "spartan_spear": {
     "id": "spartan_spear",
-    "icon": "spartanSpear",
+    "icon": "spartanSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -183,7 +183,7 @@ export const MISC_ITEMS = {
 
   "oversized_club": {
     "id": "oversized_club",
-    "icon": "oversizedClub",
+    "icon": "oversizedClub.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -216,7 +216,7 @@ export const MISC_ITEMS = {
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
   "bronze_kite_shield": {
     "id": "bronze_kite_shield",
-    "icon": "bronzeKiteShield",
+    "icon": "bronzeKiteShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -244,7 +244,7 @@ export const MISC_ITEMS = {
 
   "steel_kite_shield": {
     "id": "steel_kite_shield",
-    "icon": "steelKiteShield",
+    "icon": "steelKiteShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -272,7 +272,7 @@ export const MISC_ITEMS = {
 
   "obsidian_kite_shield": {
     "id": "obsidian_kite_shield",
-    "icon": "obsidianKiteShield",
+    "icon": "obsidianKiteShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -300,7 +300,7 @@ export const MISC_ITEMS = {
 
   "meteorite_kite_shield": {
     "id": "meteorite_kite_shield",
-    "icon": "meteoriteKiteShield",
+    "icon": "meteoriteKiteShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -330,7 +330,7 @@ export const MISC_ITEMS = {
 
   "tin_buckler": {
     "id": "tin_buckler",
-    "icon": "tinBuckler",
+    "icon": "tinBuckler.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -359,7 +359,7 @@ export const MISC_ITEMS = {
 
   "gold_buckler": {
     "id": "gold_buckler",
-    "icon": "goldBuckler",
+    "icon": "goldBuckler.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -388,7 +388,7 @@ export const MISC_ITEMS = {
 
   "tungsten_buckler": {
     "id": "tungsten_buckler",
-    "icon": "tungstenBuckler",
+    "icon": "tungstenBuckler.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -417,7 +417,7 @@ export const MISC_ITEMS = {
 
   "mithril_buckler": {
     "id": "mithril_buckler",
-    "icon": "mithrilBuckler",
+    "icon": "mithrilBuckler.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -446,7 +446,7 @@ export const MISC_ITEMS = {
 
   "elven_steel_buckler": {
     "id": "elven_steel_buckler",
-    "icon": "elvenSteelBuckler",
+    "icon": "elvenSteelBuckler.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -476,7 +476,7 @@ export const MISC_ITEMS = {
   /* Knife - Off handed weapon, minor accuracy and damage increases */
   "silver_knife": {
     "id": "silver_knife",
-    "icon": "silverKnife",
+    "icon": "silverKnife.svg",
     "category": "combat",
     "weaponType": "knife",
     "slot": "offHand",
@@ -503,7 +503,7 @@ export const MISC_ITEMS = {
 
   "titanium_knife": {
     "id": "titanium_knife",
-    "icon": "titaniumKnife",
+    "icon": "titaniumKnife.svg",
     "category": "combat",
     "weaponType": "knife",
     "slot": "offHand",
@@ -530,7 +530,7 @@ export const MISC_ITEMS = {
 
   "cobalt_knife": {
     "id": "cobalt_knife",
-    "icon": "cobaltKnife",
+    "icon": "cobaltKnife.svg",
     "category": "combat",
     "weaponType": "knife",
     "slot": "offHand",
@@ -557,7 +557,7 @@ export const MISC_ITEMS = {
 
   "cursed_knife": {
     "id": "cursed_knife",
-    "icon": "cursedKnife",
+    "icon": "cursedKnife.svg",
     "category": "combat",
     "weaponType": "knife",
     "slot": "offHand",
@@ -585,7 +585,7 @@ export const MISC_ITEMS = {
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
   "iron_rapiers": {
     "id": "iron_rapiers",
-    "icon": "ironRapiers",
+    "icon": "ironRapiers.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -616,7 +616,7 @@ export const MISC_ITEMS = {
 
   "adamantium_rapiers": {
     "id": "adamantium_rapiers",
-    "icon": "adamantiumRapiers",
+    "icon": "adamantiumRapiers.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -647,7 +647,7 @@ export const MISC_ITEMS = {
 
   "fairy_steel_rapiers": {
     "id": "fairy_steel_rapiers",
-    "icon": "fairySteelRapiers",
+    "icon": "fairySteelRapiers.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -679,7 +679,7 @@ export const MISC_ITEMS = {
   /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',
-    icon: 'spiritShield',
+    icon: 'spiritShield.svg',
     category: 'combat',
     slot: 'offHand',
     name: 'spirit shield',
@@ -703,7 +703,7 @@ export const MISC_ITEMS = {
 
   fairy_spirit_shield: {
     id: 'fairy_spirit_shield',
-    icon: 'fairySpiritShield',
+    icon: 'fairySpiritShield.svg',
     category: 'combat',
     weaponType: 'shield',
     slot: 'offHand',
@@ -728,7 +728,7 @@ export const MISC_ITEMS = {
 
   cursed_spirit_shield: {
     id: 'cursed_spirit_shield',
-    icon: 'cursedSpiritShield',
+    icon: 'cursedSpiritShield.svg',
     category: 'combat',
     slot: 'offHand',
     weaponType: 'shield',
@@ -753,7 +753,7 @@ export const MISC_ITEMS = {
 
   demons_heart: {
     id: 'demons_heart',
-    icon: 'demonsHeart',
+    icon: 'demonsHeart.svg',
     category: 'combat',
     slot: 'chest',
     name: 'demons heart',
@@ -782,7 +782,7 @@ export const MISC_ITEMS = {
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',
-    icon: 'opalChestPlate',
+    icon: 'opalChestPlate.svg',
     category: 'combat',
     slot: 'chest',
     name: 'opal chest plate',
@@ -807,7 +807,7 @@ export const MISC_ITEMS = {
 
   opal_pants: {
     id: 'opal_pants',
-    icon: 'opalPants',
+    icon: 'opalPants.svg',
     category: 'combat',
     slot: 'legs',
     name: 'opal pants',
@@ -832,7 +832,7 @@ export const MISC_ITEMS = {
 
   bamboo_roof: {
     id: 'bamboo_roof',
-    icon: 'bambooRoof',
+    icon: 'bambooRoof.svg',
     category: 'crafting',
     name: 'bamboo roof',
     sellPrice: 100,
@@ -841,7 +841,7 @@ export const MISC_ITEMS = {
 
   bamboo_wall: {
     id: 'bamboo_wall',
-    icon: 'bambooWall',
+    icon: 'bambooWall.svg',
     category: 'crafting',
     name: 'bamboo wall',
     sellPrice: 100,
@@ -850,7 +850,7 @@ export const MISC_ITEMS = {
 
   bamboo_shack: {
     id: 'bamboo_shack',
-    icon: 'bambooShack',
+    icon: 'bambooShack.svg',
     category: 'crafting',
     name: 'bamboo shack',
     sellPrice: 400,

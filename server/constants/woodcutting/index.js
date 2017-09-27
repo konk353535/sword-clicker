@@ -15,7 +15,7 @@ export const WOODCUTTING = {
   woodcutters: {
     farmer: {
       requiredWoodcuttingLevel: 1,
-      icon: 'farmer',
+      icon: 'farmer.svg',
       name: 'farmer',
       id: 'farmer',
       axeId: 'primitive_axe',
@@ -39,7 +39,7 @@ export const WOODCUTTING = {
 
     copper_lumberjack: {
       requiredWoodcuttingLevel: 4,
-      icon: 'copperLumberJack',
+      icon: 'copperLumberJack.svg',
       name: 'copper lumber jack',
       id: 'copper_lumberjack',
       axeId: 'copper_axe',
@@ -63,7 +63,7 @@ export const WOODCUTTING = {
 
     tin_lumberjack: {
       requiredWoodcuttingLevel: 9,
-      icon: 'tinLumberJack',
+      icon: 'tinLumberJack.svg',
       name: 'tin lumber jack',
       id: 'tin_lumberjack',
       axeId: 'tin_axe',
@@ -87,7 +87,7 @@ export const WOODCUTTING = {
 
     bronze_lumberjack: {
       requiredWoodcuttingLevel: 15,
-      icon: 'bronzeLumberJack',
+      icon: 'bronzeLumberJack.svg',
       name: 'bronze lumber jack',
       id: 'bronze_lumberjack',
       axeId: 'bronze_axe',
@@ -111,7 +111,7 @@ export const WOODCUTTING = {
 
     iron_lumberjack: {
       requiredWoodcuttingLevel: 20,
-      icon: 'ironLumberJack',
+      icon: 'ironLumberJack.svg',
       name: 'iron lumber jack',
       id: 'iron_lumberjack',
       axeId: 'iron_axe',
@@ -135,7 +135,7 @@ export const WOODCUTTING = {
 
     silver_lumberjack: {
       requiredWoodcuttingLevel: 25,
-      icon: 'silverLumberJack',
+      icon: 'silverLumberJack.svg',
       name: 'silver lumber jack',
       id: 'silver_lumberjack',
       axeId: 'silver_axe',
@@ -159,7 +159,7 @@ export const WOODCUTTING = {
 
     gold_lumberjack: {
       requiredWoodcuttingLevel: 30,
-      icon: 'goldLumberJack',
+      icon: 'goldLumberJack.svg',
       name: 'gold lumber jack',
       id: 'gold_lumberjack',
       axeId: 'gold_axe',
@@ -183,7 +183,7 @@ export const WOODCUTTING = {
 
     carbon_lumberjack: {
       requiredWoodcuttingLevel: 35,
-      icon: 'carbonLumberJack',
+      icon: 'carbonLumberJack.svg',
       name: 'carbon lumber jack',
       id: 'carbon_lumberjack',
       axeId: 'carbon_axe',
@@ -207,7 +207,7 @@ export const WOODCUTTING = {
 
     steel_lumberjack: {
       requiredWoodcuttingLevel: 40,
-      icon: 'steelLumberJack',
+      icon: 'steelLumberJack.svg',
       name: 'steel lumber jack',
       id: 'steel_lumberjack',
       axeId: 'steel_axe',
@@ -231,7 +231,7 @@ export const WOODCUTTING = {
 
     platinum_lumberjack: {
       requiredWoodcuttingLevel: 45,
-      icon: 'platinumLumberJack',
+      icon: 'platinumLumberJack.svg',
       name: 'platinum lumber jack',
       id: 'platinum_lumberjack',
       axeId: 'platinum_axe',
@@ -255,7 +255,7 @@ export const WOODCUTTING = {
 
     titanium_lumberjack: {
       requiredWoodcuttingLevel: 50,
-      icon: 'titaniumLumberJack',
+      icon: 'titaniumLumberJack.svg',
       name: 'titanium lumber jack',
       id: 'titanium_lumberjack',
       axeId: 'titanium_axe',
@@ -279,7 +279,7 @@ export const WOODCUTTING = {
 
     tungsten_lumberjack: {
       requiredWoodcuttingLevel: 55,
-      icon: 'tungstenLumberJack',
+      icon: 'tungstenLumberJack.svg',
       name: 'tungsten lumber jack',
       id: 'tungsten_lumberjack',
       axeId: 'tungsten_axe',
@@ -303,7 +303,7 @@ export const WOODCUTTING = {
 
     obsidian_lumberjack: {
       requiredWoodcuttingLevel: 60,
-      icon: 'obsidianLumberJack',
+      icon: 'obsidianLumberJack.svg',
       name: 'obsidian lumber jack',
       id: 'obsidian_lumberjack',
       axeId: 'obsidian_axe',
@@ -327,7 +327,7 @@ export const WOODCUTTING = {
 
     cobalt_lumberjack: {
       requiredWoodcuttingLevel: 65,
-      icon: 'cobaltLumberJack',
+      icon: 'cobaltLumberJack.svg',
       name: 'cobalt lumber jack',
       id: 'cobalt_lumberjack',
       axeId: 'cobalt_axe',
@@ -351,7 +351,7 @@ export const WOODCUTTING = {
 
     mithril_lumberjack: {
       requiredWoodcuttingLevel: 70,
-      icon: 'mithrilLumberJack',
+      icon: 'mithrilLumberJack.svg',
       name: 'mithril lumber jack',
       id: 'mithril_lumberjack',
       axeId: 'mithril_axe',
@@ -375,7 +375,7 @@ export const WOODCUTTING = {
 
     adamantium_lumberjack: {
       requiredWoodcuttingLevel: 75,
-      icon: 'adamantiumLumberJack',
+      icon: 'adamantiumLumberJack.svg',
       name: 'adamantium lumber jack',
       id: 'adamantium_lumberjack',
       axeId: 'adamantium_axe',
@@ -399,7 +399,7 @@ export const WOODCUTTING = {
 
     orichalcum_lumberjack: {
       requiredWoodcuttingLevel: 80,
-      icon: 'orichalcumLumberJack',
+      icon: 'orichalcumLumberJack.svg',
       name: 'orichalcum lumber jack',
       id: 'orichalcum_lumberjack',
       axeId: 'orichalcum_axe',
@@ -423,7 +423,7 @@ export const WOODCUTTING = {
 
     meteorite_lumberjack: {
       requiredWoodcuttingLevel: 85,
-      icon: 'meteoriteLumberJack',
+      icon: 'meteoriteLumberJack.svg',
       name: 'meteorite lumber jack',
       id: 'meteorite_lumberjack',
       axeId: 'meteorite_axe',
@@ -447,7 +447,7 @@ export const WOODCUTTING = {
 
     fairy_steel_lumberjack: {
       requiredWoodcuttingLevel: 90,
-      icon: 'fairySteelLumberJack',
+      icon: 'fairySteelLumberJack.svg',
       name: 'fairy steel lumber jack',
       id: 'fairy_steel_lumberjack',
       axeId: 'fairy_steel_axe',
@@ -471,7 +471,7 @@ export const WOODCUTTING = {
 
     elven_steel_lumberjack: {
       requiredWoodcuttingLevel: 95,
-      icon: 'elvenSteelLumberJack',
+      icon: 'elvenSteelLumberJack.svg',
       name: 'elven steel lumber jack',
       id: 'elven_steel_lumberjack',
       axeId: 'elven_steel_axe',
@@ -495,7 +495,7 @@ export const WOODCUTTING = {
 
     cursed_lumberjack: {
       requiredWoodcuttingLevel: 100,
-      icon: 'cursedLumberJack',
+      icon: 'cursedLumberJack.svg',
       name: 'cursed lumber jack',
       id: 'cursed_lumberjack',
       axeId: 'cursed_axe',
@@ -524,7 +524,7 @@ export const WOODCUTTING = {
       requiredAttack: 1,
       xp: 3,
       id: 'pine_log',
-      icon: 'pineLog',
+      icon: 'pineLog.svg',
       name: 'pine log',
       itemId: 'pine_log',
       chance: 0.16 // Base chance to chop this log
@@ -534,7 +534,7 @@ export const WOODCUTTING = {
       requiredAttack: 5,
       xp: 6,
       id: 'beech_log',
-      icon: 'beechLog',
+      icon: 'beechLog.svg',
       name: 'beech log',
       itemId: 'beech_log',
       chance: 0.035
@@ -544,7 +544,7 @@ export const WOODCUTTING = {
       requiredAttack: 10,
       xp: 18,
       id: 'ash_log',
-      icon: 'ashLog',
+      icon: 'ashLog.svg',
       name: 'ash log',
       itemId: 'ash_log',
       chance: 0.025
@@ -554,7 +554,7 @@ export const WOODCUTTING = {
       requiredAttack: 15,
       xp: 50,
       id: 'oak_log',
-      icon: 'oakLog',
+      icon: 'oakLog.svg',
       name: 'oak log',
       itemId: 'oak_log',
       chance: 0.025
@@ -564,7 +564,7 @@ export const WOODCUTTING = {
       requiredAttack: 20,
       xp: 70,
       id: 'maple_log',
-      icon: 'mapleLog',
+      icon: 'mapleLog.svg',
       name: 'maple log',
       itemId: 'maple_log',
       chance: 0.01
@@ -574,7 +574,7 @@ export const WOODCUTTING = {
       requiredAttack: 25,
       xp: 90,
       id: 'walnut_log',
-      icon: 'walnutLog',
+      icon: 'walnutLog.svg',
       name: 'walnut log',
       itemId: 'walnut_log',
       chance: 0.01
@@ -584,7 +584,7 @@ export const WOODCUTTING = {
       requiredAttack: 30,
       xp: 120,
       id: 'cherry_log',
-      icon: 'cherryLog',
+      icon: 'cherryLog.svg',
       name: 'cherry log',
       itemId: 'cherry_log',
       chance: 0.01
@@ -594,7 +594,7 @@ export const WOODCUTTING = {
       requiredAttack: 35,
       xp: 120,
       id: 'mahogany_log',
-      icon: 'mahoganyLog',
+      icon: 'mahoganyLog.svg',
       name: 'mahogany log',
       itemId: 'mahogany_log',
       chance: 0.01
@@ -604,7 +604,7 @@ export const WOODCUTTING = {
       requiredAttack: 40,
       xp: 180,
       id: 'elk_log',
-      icon: 'elkLog',
+      icon: 'elkLog.svg',
       name: 'elk log',
       itemId: 'elk_log',
       chance: 0.01
@@ -614,7 +614,7 @@ export const WOODCUTTING = {
       requiredAttack: 45,
       xp: 220,
       id: 'black_log',
-      icon: 'blackLog',
+      icon: 'blackLog.svg',
       name: 'black log',
       itemId: 'black_log',
       chance: 0.01
@@ -624,7 +624,7 @@ export const WOODCUTTING = {
       requiredAttack: 50,
       xp: 260,
       id: 'blue_gum_log',
-      icon: 'blueGumLog',
+      icon: 'blueGumLog.svg',
       name: 'blue_gum log',
       itemId: 'blue_gum_log',
       chance: 0.01
@@ -634,7 +634,7 @@ export const WOODCUTTING = {
       requiredAttack: 55,
       xp: 300,
       id: 'cedar_log',
-      icon: 'cedarLog',
+      icon: 'cedarLog.svg',
       name: 'cedar log',
       itemId: 'cedar_log',
       chance: 0.01
@@ -644,7 +644,7 @@ export const WOODCUTTING = {
       requiredAttack: 60,
       xp: 340,
       id: 'denya_log',
-      icon: 'denyaLog',
+      icon: 'denyaLog.svg',
       name: 'denya log',
       itemId: 'denya_log',
       chance: 0.01
@@ -654,7 +654,7 @@ export const WOODCUTTING = {
       requiredAttack: 65,
       xp: 380,
       id: 'gombe_log',
-      icon: 'gombeLog',
+      icon: 'gombeLog.svg',
       name: 'gombe log',
       itemId: 'gombe_log',
       chance: 0.01
@@ -664,7 +664,7 @@ export const WOODCUTTING = {
       requiredAttack: 70,
       xp: 420,
       id: 'hickory_log',
-      icon: 'hickoryLog',
+      icon: 'hickoryLog.svg',
       name: 'hickory log',
       itemId: 'hickory_log',
       chance: 0.01
@@ -674,7 +674,7 @@ export const WOODCUTTING = {
       requiredAttack: 75,
       xp: 480,
       id: 'larch_log',
-      icon: 'larchLog',
+      icon: 'larchLog.svg',
       name: 'larch log',
       itemId: 'larch_log',
       chance: 0.01
@@ -684,7 +684,7 @@ export const WOODCUTTING = {
       requiredAttack: 80,
       xp: 520,
       id: 'poplar_log',
-      icon: 'poplarLog',
+      icon: 'poplarLog.svg',
       name: 'poplar log',
       itemId: 'poplar_log',
       chance: 0.01
@@ -694,7 +694,7 @@ export const WOODCUTTING = {
       requiredAttack: 85,
       xp: 560,
       id: 'tali_log',
-      icon: 'taliLog',
+      icon: 'taliLog.svg',
       name: 'tali log',
       itemId: 'tali_log',
       chance: 0.01
@@ -704,7 +704,7 @@ export const WOODCUTTING = {
       requiredAttack: 90,
       xp: 600,
       id: 'willow_log',
-      icon: 'willowLog',
+      icon: 'willowLog.svg',
       name: 'willow log',
       itemId: 'willow_log',
       chance: 0.01
@@ -714,7 +714,7 @@ export const WOODCUTTING = {
       requiredAttack: 95,
       xp: 620,
       id: 'teak_log',
-      icon: 'teakLog',
+      icon: 'teakLog.svg',
       name: 'teak log',
       itemId: 'teak_log',
       chance: 0.01
@@ -724,7 +724,7 @@ export const WOODCUTTING = {
       requiredAttack: 100,
       xp: 640,
       id: 'fiery_log',
-      icon: 'fieryLog',
+      icon: 'fieryLog.svg',
       name: 'fiery log',
       itemId: 'fiery_log',
       chance: 0.01
@@ -734,7 +734,7 @@ export const WOODCUTTING = {
       requiredAttack: 105,
       xp: 690,
       id: 'magic_log',
-      icon: 'magicLog',
+      icon: 'magicLog.svg',
       name: 'magic log',
       itemId: 'magic_log',
       chance: 0.01

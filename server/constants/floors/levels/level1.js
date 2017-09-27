@@ -2,23 +2,23 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
 export const LEVEL_ONE_MONSTERS = [{
   id: 'fly',
-  icon: 'fly',
+  icon: 'fly.svg',
   name: 'fly'
 }, {
   id: 'bee',
-  icon: 'bee',
+  icon: 'bee.svg',
   name: 'bee'
 }, {
   id: 'mouse',
-  icon: 'mouse',
+  icon: 'mouse.svg',
   name: 'mouse'
 }, {
   id: 'grasshopper',
-  icon: 'grasshopper',
+  icon: 'grasshopper.svg',
   name: 'grasshopper'
 }, {
   id: 'bird',
-  icon: 'bird',
+  icon: 'bird.svg',
   name: 'bird'
 }];
 

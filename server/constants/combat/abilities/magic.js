@@ -3,7 +3,7 @@ import { BUFFS } from '/server/constants/combat/index';
 
 export const MAGIC_ABILITIES = {
   earth_dart: {
-    icon: 'earthDart',
+    icon: 'earthDart.svg',
     name: 'earth dart',
     id: 'earth_dart',
     buffs: ['earth_dart'],
@@ -18,7 +18,7 @@ export const MAGIC_ABILITIES = {
   },
 
   earth_ball: {
-    icon: 'earthBall',
+    icon: 'earthBall.svg',
     name: 'earth ball',
     id: 'earth_ball',
     buffs: ['earth_ball'],
@@ -33,7 +33,7 @@ export const MAGIC_ABILITIES = {
   },
 
   water_dart: {
-    icon: 'waterDart',
+    icon: 'waterDart.svg',
     name: 'water dart',
     id: 'water_dart',
     buffs: ['water_dart'],
@@ -53,7 +53,7 @@ export const MAGIC_ABILITIES = {
   },
 
   water_ball: {
-    icon: 'waterBall',
+    icon: 'waterBall.svg',
     name: 'water ball',
     id: 'water_ball',
     buffs: ['water_ball'],
@@ -74,7 +74,7 @@ export const MAGIC_ABILITIES = {
 
   // Single target heal + armor increase (5s?)
   healing_shield: {
-    icon: 'healingShield',
+    icon: 'healingShield.svg',
     name: 'healing shield',
     id: 'healing_shield',
     buffs: ['healing_shield'],
@@ -95,7 +95,7 @@ export const MAGIC_ABILITIES = {
 
   // Single target physical damage + stun
   earthen_fist: {
-    icon: 'earthenFist',
+    icon: 'earthenFist.svg',
     name: 'earthen first',
     id: 'earthen_fist',
     buffs: ['earthen_fist'],
@@ -111,7 +111,7 @@ export const MAGIC_ABILITIES = {
 
   // AOE semi spammable damage spell
   fire_wave: {
-    icon: 'fireWave',
+    icon: 'fireWave.svg',
     name: 'fire wave',
     id: 'fire_wave',
     buffs: ['fire_wave'],
@@ -127,7 +127,7 @@ export const MAGIC_ABILITIES = {
 
   // Increases targets attack speed by X for Y attacks OR?
   furied_winds: {
-    icon: 'furiedWinds',
+    icon: 'furiedWinds.svg',
     name: 'furied winds',
     id: 'furied_winds',
     buffs: ['furied_winds'],
@@ -143,7 +143,7 @@ export const MAGIC_ABILITIES = {
   },
 
   water_wave: {
-    icon: 'waterWave',
+    icon: 'waterWave.svg',
     name: 'water wave',
     id: 'water_wave',
     buffs: ['water_wave'],
@@ -163,7 +163,7 @@ export const MAGIC_ABILITIES = {
   },
 
   ice_dart: {
-    icon: 'iceDart',
+    icon: 'iceDart.svg',
     name: 'ice dart',
     id: 'ice_dart',
     buffs: ['ice_dart'],
@@ -179,11 +179,11 @@ export const MAGIC_ABILITIES = {
   },
 
   blizzard: {
-    icon: 'blizzard',
+    icon: 'blizzard.svg',
     name: 'blizzard',
     id: 'blizzard',
     buffs: ['blizzard'],
-    cooldown: 300,
+    cooldown: 120,
     slot: 'any',
     target: 'allEnemies',
     isHidden: true,
@@ -199,11 +199,11 @@ export const MAGIC_ABILITIES = {
   },
 
   poison_dart: {
-    icon: 'poisonDart',
+    icon: 'poisonDart.svg',
     name: 'poison dart',
     id: 'poison_dart',
     buffs: ['poison_dart'],
-    cooldown: 300,
+    cooldown: 180,
     slot: 'any',
     target: 'currentEnemy',
     isHidden: true,
@@ -219,7 +219,7 @@ export const MAGIC_ABILITIES = {
   },
 
   lightning_storm: {
-    icon: 'lightningStorm',
+    icon: 'lightningStorm.svg',
     name: 'lighting storm',
     id: 'lightning_storm',
     buffs: ['lightning_storm'],
@@ -234,7 +234,7 @@ export const MAGIC_ABILITIES = {
   },
 
   lightning_dart: {
-    icon: 'lightningDart',
+    icon: 'lightningDart.svg',
     name: 'lighting dart',
     id: 'lightning_dart',
     buffs: ['lightning_dart'],
@@ -249,7 +249,7 @@ export const MAGIC_ABILITIES = {
   },
 
   air_dart: {
-    icon: 'airDart',
+    icon: 'airDart.svg',
     name: 'air dart',
     id: 'air_dart',
     buffs: ['air_dart'],
@@ -264,7 +264,7 @@ export const MAGIC_ABILITIES = {
   },
 
   air_ball: {
-    icon: 'airBall',
+    icon: 'airBall.svg',
     name: 'air ball',
     id: 'air_ball',
     buffs: ['air_ball'],
@@ -279,7 +279,7 @@ export const MAGIC_ABILITIES = {
   },
 
   fire_dart: {
-    icon: 'fireDart',
+    icon: 'fireDart.svg',
     name: 'fire dart',
     id: 'fire_dart',
     buffs: ['fire_dart'],
@@ -294,7 +294,7 @@ export const MAGIC_ABILITIES = {
   },
 
   fire_ball: {
-    icon: 'fireBall',
+    icon: 'fireBall.svg',
     name: 'fire ball',
     id: 'fire_ball',
     buffs: ['fire_ball'],
@@ -309,7 +309,7 @@ export const MAGIC_ABILITIES = {
   },
 
   magic_wisdom: {
-    icon: 'magicWisdom',
+    icon: 'magicWisdom.svg',
     name: 'magic wisdom',
     id: 'magic_wisdom',
     buffs: ['magic_wisdom'],
@@ -329,7 +329,7 @@ export const MAGIC_ABILITIES = {
   },
 
   affliction: {
-    icon: 'affliction',
+    icon: 'affliction.svg',
     name: 'affliction',
     id: 'affliction',
     buffs: ['affliction'],
@@ -349,7 +349,7 @@ export const MAGIC_ABILITIES = {
   },
 
   meteor_strike: {
-    icon: 'meteorStrike',
+    icon: 'meteorStrike.svg',
     name: 'meteor strike',
     id: 'meteor_strike',
     buffs: ['meteor_strike'],
@@ -369,7 +369,7 @@ export const MAGIC_ABILITIES = {
   },
 
   mud_armor: {
-    icon: 'mudArmor',
+    icon: 'mudArmor.svg',
     name: 'mud armor',
     id: 'mud_armor',
     buffs: ['mud_armor'],
@@ -386,7 +386,7 @@ export const MAGIC_ABILITIES = {
   },
 
   mending_spring: {
-    icon: 'mendingSpring',
+    icon: 'mendingSpring.svg',
     name: 'mending spring',
     id: 'mending_spring',
     buffs: ['mending_spring'],
@@ -406,7 +406,7 @@ export const MAGIC_ABILITIES = {
   },
 
   mending_water: {
-    icon: 'mendingWater',
+    icon: 'mendingWater.svg',
     name: 'mending water',
     id: 'mending_water',
     buffs: ['mending_water'],
@@ -423,7 +423,7 @@ export const MAGIC_ABILITIES = {
   },
 
   ignite: {
-    icon: 'ignite',
+    icon: 'ignite.svg',
     name: 'ignite',
     id: 'ignite',
     buffs: ['ignite'],
@@ -439,7 +439,7 @@ export const MAGIC_ABILITIES = {
   },
 
   frenzied_winds: {
-    icon: 'frenziedWinds',
+    icon: 'frenziedWinds.svg',
     name: 'frenzied winds',
     id: 'frenzied_winds',
     buffs: ['frenzied_winds'],
@@ -456,7 +456,7 @@ export const MAGIC_ABILITIES = {
   },
 
   angels_touch: {
-    icon: 'angelsTouch',
+    icon: 'angelsTouch.svg',
     name: 'angels touch',
     id: 'angels_touch',
     buffs: ['angels_touch'],
@@ -477,7 +477,7 @@ export const MAGIC_ABILITIES = {
   },
 
   elemental_shield: {
-    icon: 'elementalShield',
+    icon: 'elementalShield.svg',
     name: 'elemental_shield',
     id: 'elemental_shield',
     buffs: ['elemental_shield'],
@@ -494,7 +494,7 @@ export const MAGIC_ABILITIES = {
   },
 
   feeding_frenzy: {
-    icon: 'feedingFrenzy',
+    icon: 'feedingFrenzy.svg',
     name: 'feeding frenzy',
     id: 'feeding_frenzy',
     buffs: ['feeding_frenzy'],
@@ -510,7 +510,7 @@ export const MAGIC_ABILITIES = {
   },
 
   heavens_descent: {
-    icon: 'heavensDescent',
+    icon: 'heavensDescent.svg',
     name: 'heavens descent',
     id: 'heavens_descent',
     buffs: ['heavens_descent'],
@@ -530,7 +530,7 @@ export const MAGIC_ABILITIES = {
   },
 
   lightning_speed: {
-    icon: 'lightningSpeed',
+    icon: 'lightningSpeed.svg',
     name: 'lightning speed',
     id: 'lightning_speed',
     buffs: ['lightning_speed'],
@@ -546,7 +546,7 @@ export const MAGIC_ABILITIES = {
   },
 
   diamond_skin: {
-    icon: 'diamondSkin',
+    icon: 'diamondSkin.svg',
     name: 'diamond skin',
     id: 'diamond_skin',
     buffs: ['diamond_skin'],
@@ -562,7 +562,7 @@ export const MAGIC_ABILITIES = {
   },
 
   inferno: {
-    icon: 'inferno',
+    icon: 'inferno.svg',
     name: 'inferno',
     id: 'inferno',
     buffs: ['inferno'],

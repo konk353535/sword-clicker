@@ -2,7 +2,7 @@
 export const GOLD_ITEMS = {
   polished_stone: {
     id: 'polished_stone',
-    icon: 'polishedStone',
+    icon: 'polishedStone.svg',
     category: 'crafting',
     name: 'polished stone',
     sellPrice: 100,
@@ -11,7 +11,7 @@ export const GOLD_ITEMS = {
 
   copper_sculpture: {
     id: 'copper_sculpture',
-    icon: 'copperSculpture',
+    icon: 'copperSculpture.svg',
     category: 'crafting',
     name: 'copper sculpture',
     sellPrice: 75,
@@ -20,7 +20,7 @@ export const GOLD_ITEMS = {
 
   polished_tin: {
     id: 'polished_tin',
-    icon: 'polishedTin',
+    icon: 'polishedTin.svg',
     category: 'crafting',
     name: 'polished tin',
     sellPrice: 200,
@@ -29,7 +29,7 @@ export const GOLD_ITEMS = {
 
   bronze_sculpture: {
     id: 'bronze_sculpture',
-    icon: 'bronzeSculpture',
+    icon: 'bronzeSculpture.svg',
     category: 'crafting',
     name: 'bronze sculpture',
     sellPrice: 175,
@@ -38,7 +38,7 @@ export const GOLD_ITEMS = {
 
   polished_iron: {
     id: 'polished_iron',
-    icon: 'polishedIron',
+    icon: 'polishedIron.svg',
     category: 'crafting',
     name: 'polished iron',
     sellPrice: 375,
@@ -47,7 +47,7 @@ export const GOLD_ITEMS = {
 
   silver_sculpture: {
     id: 'silver_sculpture',
-    icon: 'silverSculpture',
+    icon: 'silverSculpture.svg',
     category: 'crafting',
     name: 'silver sculpture',
     sellPrice: 350,
@@ -56,7 +56,7 @@ export const GOLD_ITEMS = {
 
   polished_gold: {
     id: 'polished_gold',
-    icon: 'polishedGold',
+    icon: 'polishedGold.svg',
     category: 'crafting',
     name: 'polished gold',
     sellPrice: 700,
@@ -65,7 +65,7 @@ export const GOLD_ITEMS = {
 
   gold_crown: {
     id: 'gold_crown',
-    icon: 'goldCrown',
+    icon: 'goldCrown.svg',
     category: 'crafting',
     name: 'gold crown',
     sellPrice: 425,
@@ -74,7 +74,7 @@ export const GOLD_ITEMS = {
 
   carbon_sculpture: {
     id: 'carbon_sculpture',
-    icon: 'carbonSculpture',
+    icon: 'carbonSculpture.svg',
     category: 'crafting',
     name: 'carbon sculpture',
     sellPrice: 550,
@@ -83,7 +83,7 @@ export const GOLD_ITEMS = {
 
   polished_steel: {
     id: 'polished_steel',
-    icon: 'polishedSteel',
+    icon: 'polishedSteel.svg',
     category: 'crafting',
     name: 'polished steel',
     sellPrice: 1100,
@@ -92,7 +92,7 @@ export const GOLD_ITEMS = {
 
   platinum_sculpture: {
     id: 'platinum_sculpture',
-    icon: 'platinumSculpture',
+    icon: 'platinumSculpture.svg',
     category: 'crafting',
     name: 'platinum sculpture',
     sellPrice: 750,
@@ -101,7 +101,7 @@ export const GOLD_ITEMS = {
 
   polished_titanium: {
     id: 'polished_titanium',
-    icon: 'polishedTitanium',
+    icon: 'polishedTitanium.svg',
     category: 'crafting',
     name: 'polished titanium',
     sellPrice: 1500,
@@ -110,7 +110,7 @@ export const GOLD_ITEMS = {
 
   tungsten_sculpture: {
     id: 'tungsten_sculpture',
-    icon: 'tungstenSculpture',
+    icon: 'tungstenSculpture.svg',
     category: 'crafting',
     name: 'tungsten sculpture',
     sellPrice: 900,
@@ -119,7 +119,7 @@ export const GOLD_ITEMS = {
 
   polished_obsidian: {
     id: 'polished_obsidian',
-    icon: 'polishedObsidian',
+    icon: 'polishedObsidian.svg',
     category: 'crafting',
     name: 'polished obsidian',
     sellPrice: 1800,
@@ -128,7 +128,7 @@ export const GOLD_ITEMS = {
 
   cobalt_sculpture: {
     id: 'cobalt_sculpture',
-    icon: 'cobaltSculpture',
+    icon: 'cobaltSculpture.svg',
     category: 'crafting',
     name: 'cobalt sculpture',
     sellPrice: 1100,
@@ -137,7 +137,7 @@ export const GOLD_ITEMS = {
 
   polished_mithril: {
     id: 'polished_mithril',
-    icon: 'polishedMithril',
+    icon: 'polishedMithril.svg',
     category: 'crafting',
     name: 'polished mithril',
     sellPrice: 2200,
@@ -146,7 +146,7 @@ export const GOLD_ITEMS = {
 
   adamantium_sculpture: {
     id: 'adamantium_sculpture',
-    icon: 'adamantiumSculpture',
+    icon: 'adamantiumSculpture.svg',
     category: 'crafting',
     name: 'adamantium sculpture',
     sellPrice: 1300,
@@ -155,7 +155,7 @@ export const GOLD_ITEMS = {
 
   polished_orichalcum: {
     id: 'polished_orichalcum',
-    icon: 'polishedOrichalcum',
+    icon: 'polishedOrichalcum.svg',
     category: 'crafting',
     name: 'polished orichalcum',
     sellPrice: 2600,
@@ -164,7 +164,7 @@ export const GOLD_ITEMS = {
 
   meteorite_sculpture: {
     id: 'meteorite_sculpture',
-    icon: 'meteoriteSculpture',
+    icon: 'meteoriteSculpture.svg',
     category: 'crafting',
     name: 'meteorite sculpture',
     sellPrice: 1500,
@@ -173,7 +173,7 @@ export const GOLD_ITEMS = {
 
   polished_fairy_steel: {
     id: 'polished_fairy_steel',
-    icon: 'polishedFairySteel',
+    icon: 'polishedFairySteel.svg',
     category: 'crafting',
     name: 'polished fairy steel',
     sellPrice: 3000,
@@ -182,7 +182,7 @@ export const GOLD_ITEMS = {
 
   elven_steel_sculpture: {
     id: 'elven_steel_sculpture',
-    icon: 'elvenSteelSculpture',
+    icon: 'elvenSteelSculpture.svg',
     category: 'crafting',
     name: 'elven steel sculpture',
     sellPrice: 1800,
@@ -191,7 +191,7 @@ export const GOLD_ITEMS = {
 
   polished_cursed: {
     id: 'polished_cursed',
-    icon: 'polishedCursed',
+    icon: 'polishedCursed.svg',
     category: 'crafting',
     name: 'polished cursed',
     sellPrice: 3600,

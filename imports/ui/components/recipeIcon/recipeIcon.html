@@ -1,7 +1,7 @@
 <template name="recipeIcon">
   <div class="recipe-container {{#unless maxCraftableAmount}}uncraftable{{/unless}}" data-recipe="{{recipe.id}}">
     <div class="d-flex" style="overflow: hidden">
-      <img src="/icons/{{recipe.icon}}.svg" class="ore-icon">
+      <img src="/icons/{{recipe.icon}}" class="ore-icon">
       <div class="d-flex flex-column mx-2" style="overflow: hidden">
         <!-- If isLearnt is for inscription, if the ability has already been learnt -->
         <span class="text-capitalize {{#if recipe.isLearnt}}text-success{{/if}}">

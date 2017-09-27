@@ -1,7 +1,7 @@
 export const FOOD_BUFFS = {
   food_lettice: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'lettice',
+    icon: 'lettice.svg',
     name: 'eating lettuce',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
@@ -57,7 +57,7 @@ export const FOOD_BUFFS = {
 
   food_rockmelon: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'rockmelon',
+    icon: 'rockmelon.svg',
     name: 'eating rockmelon',
     description({ buff, level }) {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
@@ -120,7 +120,7 @@ export const FOOD_BUFFS = {
 
   food_dragonfruit: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'dragonfruit',
+    icon: 'dragonfruit.svg',
     name: 'eating dragonfruit',
     description({ buff, level }) {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
@@ -183,7 +183,7 @@ export const FOOD_BUFFS = {
 
   food_lemonade: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'lemonade',
+    icon: 'lemonade.svg',
     name: 'eating lemonade',
     description({ buff, level }) {
       return `Gain 20 energy instantly.`;
@@ -215,7 +215,7 @@ export const FOOD_BUFFS = {
 
   food_lemon: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'lemon',
+    icon: 'lemon.svg',
     name: 'eating lemon',
     description({ buff, level }) {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
@@ -265,7 +265,7 @@ export const FOOD_BUFFS = {
 
   food_grape_fruit: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'grapeFruit',
+    icon: 'grapeFruit.svg',
     name: 'eating grapefruit',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
@@ -321,7 +321,7 @@ export const FOOD_BUFFS = {
 
   food_red_apple: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'redApple',
+    icon: 'redApple.svg',
     name: 'eating red apple',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -376,7 +376,7 @@ export const FOOD_BUFFS = {
 
   food_orange: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'orange',
+    icon: 'orange.svg',
     name: 'eating orange',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
@@ -432,7 +432,7 @@ export const FOOD_BUFFS = {
 
   food_pineapple: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'pineapple',
+    icon: 'pineapple.svg',
     name: 'eating pineapple',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
@@ -488,7 +488,7 @@ export const FOOD_BUFFS = {
 
   food_pear: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'pear',
+    icon: 'pear.svg',
     name: 'eating pear',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -543,7 +543,7 @@ export const FOOD_BUFFS = {
 
   food_acai_berry: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'acaiBerry',
+    icon: 'acaiBerry.svg',
     name: 'eating acai berry',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -598,7 +598,7 @@ export const FOOD_BUFFS = {
 
   food_watermelon: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'watermelon',
+    icon: 'watermelon.svg',
     name: 'eating watermelon',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -653,7 +653,7 @@ export const FOOD_BUFFS = {
 
   food_banana: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'banana',
+    icon: 'banana.svg',
     name: 'eating banana',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -708,7 +708,7 @@ export const FOOD_BUFFS = {
 
   food_carrot: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'carrot',
+    icon: 'carrot.svg',
     name: 'eating carrot',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -763,7 +763,7 @@ export const FOOD_BUFFS = {
 
   food_lemon_honey: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'lemonHoney',
+    icon: 'lemonHoney.svg',
     name: 'lemon honey',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
@@ -818,7 +818,7 @@ export const FOOD_BUFFS = {
 
   food_tamarind_honey: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'tamarindHoney',
+    icon: 'tamarindHoney.svg',
     name: 'tamarind honey',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -873,7 +873,7 @@ export const FOOD_BUFFS = {
 
   food_potato: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'potato',
+    icon: 'potato.svg',
     name: 'eating potato',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
@@ -928,7 +928,7 @@ export const FOOD_BUFFS = {
 
   food_sweet_potato: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
-    icon: 'sweetPotato',
+    icon: 'sweetPotato.svg',
     name: 'eating sweet potato',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);

@@ -103,6 +103,7 @@ Template.astronomyTab.helpers({
     astronomy.mages.forEach((mage, mageIndex) => {
       mage.index = mageIndex
       mage.amount = mage.gold;
+      mage.icon += '.svg';
 
       if (mageIndex === 0) {
         mage.primaryAction = {
@@ -123,7 +124,7 @@ Template.astronomyTab.helpers({
         }
       } else if (mage.id === 'donatorMage') {
         mage.name = "Phantom Mage";
-        mage.icon = "phantomMage";
+        mage.icon = "phantomMage.svg";
         mage.primaryAction = {};
       }
 

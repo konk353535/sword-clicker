@@ -10,7 +10,7 @@ export const MINING = {
   prospectors: {
     stone: {
       requiredMiningLevel: 1,
-      icon: 'stoneProspector',
+      icon: 'stoneProspector.svg',
       name: 'stone prospector',
       id: 'stone',
       required: [{
@@ -26,7 +26,7 @@ export const MINING = {
     },
     copper: {
       requiredMiningLevel: 2,
-      icon: 'copperProspector',
+      icon: 'copperProspector.svg',
       name: 'copper prospector',
       id: 'copper',
       required: [{
@@ -42,7 +42,7 @@ export const MINING = {
     },
     coal: {
       requiredMiningLevel: 2,
-      icon: 'carbonProspector',
+      icon: 'carbonProspector.svg',
       name: 'coal prospector',
       id: 'coal',
       required: [{
@@ -58,7 +58,7 @@ export const MINING = {
     },
     tin: {
       requiredMiningLevel: 5,
-      icon: 'tinProspector',
+      icon: 'tinProspector.svg',
       name: 'tin prospector',
       id: 'tin',
       required: [{
@@ -74,7 +74,7 @@ export const MINING = {
     },
     bronze: {
       requiredMiningLevel: 10,
-      icon: 'bronzeProspector',
+      icon: 'bronzeProspector.svg',
       name: 'bronze prospector',
       id: 'bronze',
       required: [{
@@ -90,7 +90,7 @@ export const MINING = {
     },
     iron: {
       requiredMiningLevel: 15,
-      icon: 'ironProspector',
+      icon: 'ironProspector.svg',
       name: 'iron prospector',
       id: 'iron',
       required: [{
@@ -106,7 +106,7 @@ export const MINING = {
     },
     silver: {
       requiredMiningLevel: 20,
-      icon: 'silverProspector',
+      icon: 'silverProspector.svg',
       name: 'silver prospector',
       id: 'silver',
       required: [{
@@ -122,7 +122,7 @@ export const MINING = {
     },
     gold: {
       requiredMiningLevel: 25,
-      icon: 'goldProspector',
+      icon: 'goldProspector.svg',
       name: 'gold prospector',
       id: 'gold',
       required: [{
@@ -138,7 +138,7 @@ export const MINING = {
     },
     carbon: {
       requiredMiningLevel: 30,
-      icon: 'carbonProspector',
+      icon: 'carbonProspector.svg',
       name: 'carbon prospector',
       id: 'carbon',
       required: [{
@@ -154,7 +154,7 @@ export const MINING = {
     },
     steel: {
       requiredMiningLevel: 35,
-      icon: 'steelProspector',
+      icon: 'steelProspector.svg',
       name: 'steel prospector',
       id: 'steel',
       required: [{
@@ -170,7 +170,7 @@ export const MINING = {
     },
     platinum: {
       requiredMiningLevel: 40,
-      icon: 'platinumProspector',
+      icon: 'platinumProspector.svg',
       name: 'platinum prospector',
       id: 'platinum',
       required: [{
@@ -186,7 +186,7 @@ export const MINING = {
     },
     titanium: {
       requiredMiningLevel: 45,
-      icon: 'titaniumProspector',
+      icon: 'titaniumProspector.svg',
       name: 'titanium prospector',
       id: 'titanium',
       required: [{
@@ -202,7 +202,7 @@ export const MINING = {
     },
     tungsten: {
       requiredMiningLevel: 50,
-      icon: 'tungstenProspector',
+      icon: 'tungstenProspector.svg',
       name: 'tungsten prospector',
       id: 'tungsten',
       required: [{
@@ -218,7 +218,7 @@ export const MINING = {
     },
     obsidian: {
       requiredMiningLevel: 55,
-      icon: 'obsidianProspector',
+      icon: 'obsidianProspector.svg',
       name: 'obsidian prospector',
       id: 'obsidian',
       required: [{
@@ -234,7 +234,7 @@ export const MINING = {
     },
     cobalt: {
       requiredMiningLevel: 60,
-      icon: 'cobaltProspector',
+      icon: 'cobaltProspector.svg',
       name: 'cobalt prospector',
       id: 'cobalt',
       required: [{
@@ -250,7 +250,7 @@ export const MINING = {
     },
     mithril: {
       requiredMiningLevel: 65,
-      icon: 'mithrilProspector',
+      icon: 'mithrilProspector.svg',
       name: 'mithril prospector',
       id: 'mithril',
       required: [{
@@ -266,7 +266,7 @@ export const MINING = {
     },
     adamantium: {
       requiredMiningLevel: 70,
-      icon: 'adamantiumProspector',
+      icon: 'adamantiumProspector.svg',
       name: 'adamantium prospector',
       id: 'adamantium',
       required: [{
@@ -282,7 +282,7 @@ export const MINING = {
     },
     orichalcum: {
       requiredMiningLevel: 75,
-      icon: 'orichalcumProspector',
+      icon: 'orichalcumProspector.svg',
       name: 'orichalcum prospector',
       id: 'orichalcum',
       required: [{
@@ -298,7 +298,7 @@ export const MINING = {
     },
     meteorite: {
       requiredMiningLevel: 80,
-      icon: 'meteoriteProspector',
+      icon: 'meteoriteProspector.svg',
       name: 'meteorite prospector',
       id: 'meteorite',
       required: [{
@@ -314,7 +314,7 @@ export const MINING = {
     },
     fairy_steel: {
       requiredMiningLevel: 85,
-      icon: 'fairySteelProspector',
+      icon: 'fairySteelProspector.svg',
       name: 'fairy steel prospector',
       id: 'fairy_steel',
       required: [{
@@ -330,7 +330,7 @@ export const MINING = {
     },
     fairy_steel: {
       requiredMiningLevel: 90,
-      icon: 'fairySteelProspector',
+      icon: 'fairySteelProspector.svg',
       name: 'fairy steel prospector',
       id: 'fairy_steel',
       required: [{
@@ -346,7 +346,7 @@ export const MINING = {
     },
     cursed: {
       requiredMiningLevel: 95,
-      icon: 'cursedProspector',
+      icon: 'cursedProspector.svg',
       name: 'cursed prospector',
       id: 'cursed',
       required: [{
@@ -364,7 +364,7 @@ export const MINING = {
   miners: {
     primitive_miner: {
       requiredMiningLevel: 1,
-      icon: 'primitiveMiner',
+      icon: 'primitiveMiner.svg',
       name: 'primitive miner',
       id: 'primitive_miner',
       required: [{
@@ -389,7 +389,7 @@ export const MINING = {
 
     copper_miner: {
       requiredMiningLevel: 2,
-      icon: 'copperMiner',
+      icon: 'copperMiner.svg',
       name: 'copper miner',
       id: 'copper_miner',
       required: [{
@@ -414,7 +414,7 @@ export const MINING = {
 
     tin_miner: {
       requiredMiningLevel: 5,
-      icon: 'tinMiner',
+      icon: 'tinMiner.svg',
       name: 'tin miner',
       id: 'tin_miner',
       required: [{
@@ -439,7 +439,7 @@ export const MINING = {
 
     bronze_miner: {
       requiredMiningLevel: 10,
-      icon: 'bronzeMiner',
+      icon: 'bronzeMiner.svg',
       name: 'bronze miner',
       id: 'bronze_miner',
       required: [{
@@ -464,7 +464,7 @@ export const MINING = {
 
     iron_miner: {
       requiredMiningLevel: 15,
-      icon: 'ironMiner',
+      icon: 'ironMiner.svg',
       name: 'iron miner',
       id: 'iron_miner',
       required: [{
@@ -490,7 +490,7 @@ export const MINING = {
 
     silver_miner: {
       requiredMiningLevel: 20,
-      icon: 'silverMiner',
+      icon: 'silverMiner.svg',
       name: 'silver miner',
       id: 'silver_miner',
       required: [{
@@ -515,7 +515,7 @@ export const MINING = {
 
     gold_miner: {
       requiredMiningLevel: 25,
-      icon: 'goldMiner',
+      icon: 'goldMiner.svg',
       name: 'gold miner',
       id: 'gold_miner',
       required: [{
@@ -540,7 +540,7 @@ export const MINING = {
 
     carbon_miner: {
       requiredMiningLevel: 30,
-      icon: 'carbonMiner',
+      icon: 'carbonMiner.svg',
       name: 'carbon miner',
       id: 'carbon_miner',
       required: [{
@@ -565,7 +565,7 @@ export const MINING = {
 
     steel_miner: {
       requiredMiningLevel: 35,
-      icon: 'steelMiner',
+      icon: 'steelMiner.svg',
       name: 'steel miner',
       id: 'steel_miner',
       required: [{
@@ -590,7 +590,7 @@ export const MINING = {
 
     platinum_miner: {
       requiredMiningLevel: 40,
-      icon: 'platinumMiner',
+      icon: 'platinumMiner.svg',
       name: 'platinum miner',
       id: 'platinum_miner',
       required: [{
@@ -616,7 +616,7 @@ export const MINING = {
 
     titanium_miner: {
       requiredMiningLevel: 45,
-      icon: 'titaniumMiner',
+      icon: 'titaniumMiner.svg',
       name: 'titanium miner',
       id: 'titanium_miner',
       required: [{
@@ -642,7 +642,7 @@ export const MINING = {
 
     tungsten_miner: {
       requiredMiningLevel: 50,
-      icon: 'tungstenMiner',
+      icon: 'tungstenMiner.svg',
       name: 'tungsten miner',
       id: 'tungsten_miner',
       required: [{
@@ -667,7 +667,7 @@ export const MINING = {
 
     obsidian_miner: {
       requiredMiningLevel: 55,
-      icon: 'obsidianMiner',
+      icon: 'obsidianMiner.svg',
       name: 'obsidian miner',
       id: 'obsidian_miner',
       required: [{
@@ -692,7 +692,7 @@ export const MINING = {
 
     cobalt_miner: {
       requiredMiningLevel: 60,
-      icon: 'cobaltMiner',
+      icon: 'cobaltMiner.svg',
       name: 'cobalt miner',
       id: 'cobalt_miner',
       required: [{
@@ -717,7 +717,7 @@ export const MINING = {
 
     mithril_miner: {
       requiredMiningLevel: 65,
-      icon: 'mithrilMiner',
+      icon: 'mithrilMiner.svg',
       name: 'mithril miner',
       id: 'mithril_miner',
       required: [{
@@ -742,7 +742,7 @@ export const MINING = {
 
     adamantium_miner: {
       requiredMiningLevel: 70,
-      icon: 'adamantiumMiner',
+      icon: 'adamantiumMiner.svg',
       name: 'adamantium miner',
       id: 'adamantium_miner',
       required: [{
@@ -767,7 +767,7 @@ export const MINING = {
 
     orichalcum_miner: {
       requiredMiningLevel: 75,
-      icon: 'orichalcumMiner',
+      icon: 'orichalcumMiner.svg',
       name: 'orichalcum miner',
       id: 'orichalcum_miner',
       required: [{
@@ -792,7 +792,7 @@ export const MINING = {
 
     orichalcum_miner: {
       requiredMiningLevel: 80,
-      icon: 'orichalcumMiner',
+      icon: 'orichalcumMiner.svg',
       name: 'orichalcum miner',
       id: 'orichalcum_miner',
       required: [{
@@ -817,7 +817,7 @@ export const MINING = {
 
     fairy_steel_miner: {
       requiredMiningLevel: 85,
-      icon: 'fairySteelMiner',
+      icon: 'fairySteelMiner.svg',
       name: 'fairy steel miner',
       id: 'fairy_steel_miner',
       required: [{
@@ -842,7 +842,7 @@ export const MINING = {
 
     elven_steel_miner: {
       requiredMiningLevel: 90,
-      icon: 'elvenSteelMiner',
+      icon: 'elvenSteelMiner.svg',
       name: 'elven steel miner',
       id: 'elven_steel_miner',
       required: [{
@@ -867,7 +867,7 @@ export const MINING = {
 
     cursed_miner: {
       requiredMiningLevel: 95,
-      icon: 'cursedMiner',
+      icon: 'cursedMiner.svg',
       name: 'cursed miner',
       id: 'cursed_miner',
       required: [{
@@ -896,8 +896,8 @@ export const MINING = {
       healthMax: 10,
       xp: 2,
       id: 'stone',
-      icon: 'stone',
-      clusterIcon: 'stoneCluster',
+      icon: 'stone.png',
+      clusterIcon: 'stoneCluster.png',
       canCluster: true,
       name: 'stone',
       itemId: 'ore_stone',
@@ -909,8 +909,8 @@ export const MINING = {
       healthMax: 20,
       xp: 5,
       id: 'copper',
-      icon: 'copper',
-      clusterIcon: 'copperCluster',
+      icon: 'copper.png',
+      clusterIcon: 'copperCluster.png',
       canCluster: true,
       name: 'copper',
       itemId: 'ore_copper',
@@ -922,9 +922,9 @@ export const MINING = {
       healthMax: 35,
       xp: 10,
       id: 'coal',
-      clusterIcon: 'coalCluster',
+      clusterIcon: 'coalCluster.png',
       canCluster: true,
-      icon: 'coal',
+      icon: 'coal.png',
       name: 'coal',
       itemId: 'ore_coal',
       chance: 0.02
@@ -935,9 +935,9 @@ export const MINING = {
       healthMax: 75,
       xp: 15,
       id: 'tin',
-      clusterIcon: 'tinCluster',
+      clusterIcon: 'tinCluster.png',
       canCluster: true,
-      icon: 'tin',
+      icon: 'tin.png',
       name: 'tin',
       itemId: 'ore_tin',
       chance: 0.025
@@ -947,10 +947,10 @@ export const MINING = {
       requiredLevel: 10,
       healthMax: 150,
       xp: 20,
-      clusterIcon: 'bronzeCluster',
+      clusterIcon: 'bronzeCluster.png',
       canCluster: true,
       id: 'bronze',
-      icon: 'bronze',
+      icon: 'bronze.png',
       name: 'bronze',
       itemId: 'ore_bronze',
       chance: 0.02
@@ -961,7 +961,7 @@ export const MINING = {
       healthMax: 300,
       xp: 35,
       id: 'iron',
-      icon: 'iron',
+      icon: 'iron.png',
       name: 'iron',
       itemId: 'ore_iron',
       chance: 0.008
@@ -972,7 +972,7 @@ export const MINING = {
       healthMax: 500,
       xp: 50,
       id: 'silver',
-      icon: 'silver',
+      icon: 'silver.png',
       name: 'silver',
       itemId: 'ore_silver',
       chance: 0.004
@@ -983,7 +983,7 @@ export const MINING = {
       healthMax: 500,
       xp: 50,
       id: 'silver_essence',
-      icon: 'silverEssence',
+      icon: 'silverEssence.png',
       name: 'silver_essence',
       itemId: 'silver_essence',
       chance: 0.00004
@@ -994,7 +994,7 @@ export const MINING = {
       healthMax: 150,
       xp: 40,
       id: 'gem',
-      icon: 'gem',
+      icon: 'gem.png',
       name: 'gem',
       itemId: 'gem',
       chance: 0.002
@@ -1005,7 +1005,7 @@ export const MINING = {
       healthMax: 750,
       xp: 70,
       id: 'gold',
-      icon: 'gold',
+      icon: 'gold.png',
       name: 'gold',
       itemId: 'ore_gold',
       chance: 0.002
@@ -1016,7 +1016,7 @@ export const MINING = {
       healthMax: 750,
       xp: 70,
       id: 'gold_essence',
-      icon: 'goldEssence',
+      icon: 'goldEssence.png',
       name: 'gold_essence',
       itemId: 'gold_essence',
       chance: 0.00002
@@ -1027,7 +1027,7 @@ export const MINING = {
       healthMax: 1250,
       xp: 90,
       id: 'carbon',
-      icon: 'carbon',
+      icon: 'carbon.png',
       name: 'carbon',
       itemId: 'ore_carbon',
       chance: 0.0015
@@ -1038,7 +1038,7 @@ export const MINING = {
       healthMax: 1250,
       xp: 90,
       id: 'carbon_essence',
-      icon: 'carbonEssence',
+      icon: 'carbonEssence.png',
       name: 'carbon_essence',
       itemId: 'carbon_essence',
       chance: 0.000015
@@ -1049,7 +1049,7 @@ export const MINING = {
       healthMax: 2000,
       xp: 120,
       id: 'steel',
-      icon: 'steel',
+      icon: 'steel.png',
       name: 'steel',
       itemId: 'ore_steel',
       chance: 0.001
@@ -1060,7 +1060,7 @@ export const MINING = {
       healthMax: 2000,
       xp: 120,
       id: 'steel_essence',
-      icon: 'steelEssence',
+      icon: 'steelEssence.png',
       name: 'steel_essence',
       itemId: 'steel_essence',
       chance: 0.00001
@@ -1071,7 +1071,7 @@ export const MINING = {
       healthMax: 4000,
       xp: 150,
       id: 'platinum',
-      icon: 'platinum',
+      icon: 'platinum.png',
       name: 'platinum',
       itemId: 'ore_platinum',
       chance: 0.0009
@@ -1082,7 +1082,7 @@ export const MINING = {
       healthMax: 4000,
       xp: 150,
       id: 'platinum_essence',
-      icon: 'platinumEssence',
+      icon: 'platinumEssence.png',
       name: 'platinum_essence',
       itemId: 'platinum_essence',
       chance: 0.000009
@@ -1093,7 +1093,7 @@ export const MINING = {
       healthMax: 6000,
       xp: 180,
       id: 'titanium',
-      icon: 'titanium',
+      icon: 'titanium.png',
       name: 'titanium',
       itemId: 'ore_titanium',
       chance: 0.0008
@@ -1104,7 +1104,7 @@ export const MINING = {
       healthMax: 6000,
       xp: 180,
       id: 'titanium_essence',
-      icon: 'titaniumEssence',
+      icon: 'titaniumEssence.png',
       name: 'titanium_essence',
       itemId: 'titanium_essence',
       chance: 0.000008
@@ -1115,7 +1115,7 @@ export const MINING = {
       healthMax: 8000,
       xp: 250,
       id: 'tungsten',
-      icon: 'tungsten',
+      icon: 'tungsten.png',
       name: 'tungsten',
       itemId: 'ore_tungsten',
       chance: 0.0007
@@ -1126,7 +1126,7 @@ export const MINING = {
       healthMax: 8000,
       xp: 250,
       id: 'tungsten_essence',
-      icon: 'tungstenEssence',
+      icon: 'tungstenEssence.png',
       name: 'tungsten_essence',
       itemId: 'tungsten_essence',
       chance: 0.000007
@@ -1137,7 +1137,7 @@ export const MINING = {
       healthMax: 11000,
       xp: 300,
       id: 'obsidian',
-      icon: 'obsidian',
+      icon: 'obsidian.png',
       name: 'obsidian',
       itemId: 'ore_obsidian',
       chance: 0.0006
@@ -1148,7 +1148,7 @@ export const MINING = {
       healthMax: 11000,
       xp: 300,
       id: 'obsidian_essence',
-      icon: 'obsidianEssence',
+      icon: 'obsidianEssence.png',
       name: 'obsidian_essence',
       itemId: 'obsidian_essence',
       chance: 0.000006
@@ -1159,7 +1159,7 @@ export const MINING = {
       healthMax: 14000,
       xp: 400,
       id: 'cobalt',
-      icon: 'cobalt',
+      icon: 'cobalt.png',
       name: 'cobalt',
       itemId: 'ore_cobalt',
       chance: 0.0005
@@ -1170,7 +1170,7 @@ export const MINING = {
       healthMax: 14000,
       xp: 400,
       id: 'cobalt_essence',
-      icon: 'cobaltEssence',
+      icon: 'cobaltEssence.png',
       name: 'cobalt_essence',
       itemId: 'cobalt_essence',
       chance: 0.000005
@@ -1181,7 +1181,7 @@ export const MINING = {
       healthMax: 20000,
       xp: 500,
       id: 'mithril',
-      icon: 'mithril',
+      icon: 'mithril.png',
       name: 'mithril',
       itemId: 'ore_mithril',
       chance: 0.0004
@@ -1192,7 +1192,7 @@ export const MINING = {
       healthMax: 20000,
       xp: 500,
       id: 'mithril_essence',
-      icon: 'mithrilEssence',
+      icon: 'mithrilEssence.png',
       name: 'mithril_essence',
       itemId: 'mithril_essence',
       chance: 0.000004
@@ -1203,7 +1203,7 @@ export const MINING = {
       healthMax: 30000,
       xp: 600,
       id: 'adamantium',
-      icon: 'adamantium',
+      icon: 'adamantium.png',
       name: 'adamantium',
       itemId: 'ore_adamantium',
       chance: 0.0003
@@ -1214,7 +1214,7 @@ export const MINING = {
       healthMax: 30000,
       xp: 600,
       id: 'adamantium_essence',
-      icon: 'adamantiumEssence',
+      icon: 'adamantiumEssence.png',
       name: 'adamantium_essence',
       itemId: 'adamantium_essence',
       chance: 0.000003
@@ -1225,7 +1225,7 @@ export const MINING = {
       healthMax: 45000,
       xp: 700,
       id: 'orichalcum',
-      icon: 'orichalcum',
+      icon: 'orichalcum.png',
       name: 'orichalcum',
       itemId: 'ore_orichalcum',
       chance: 0.0002
@@ -1236,7 +1236,7 @@ export const MINING = {
       healthMax: 45000,
       xp: 700,
       id: 'orichalcum_essence',
-      icon: 'orichalcumEssence',
+      icon: 'orichalcumEssence.png',
       name: 'orichalcum_essence',
       itemId: 'orichalcum_essence',
       chance: 0.000002
@@ -1247,7 +1247,7 @@ export const MINING = {
       healthMax: 60000,
       xp: 800,
       id: 'meteorite',
-      icon: 'meteorite',
+      icon: 'meteorite.png',
       name: 'meteorite',
       itemId: 'ore_meteorite',
       chance: 0.0001
@@ -1258,7 +1258,7 @@ export const MINING = {
       healthMax: 60000,
       xp: 800,
       id: 'meteorite_essence',
-      icon: 'meteoriteEssence',
+      icon: 'meteoriteEssence.png',
       name: 'meteorite_essence',
       itemId: 'meteorite_essence',
       chance: 0.000001
@@ -1269,7 +1269,7 @@ export const MINING = {
       healthMax: 75000,
       xp: 900,
       id: 'fairy_steel',
-      icon: 'fairySteel',
+      icon: 'fairySteel.png',
       name: 'fairy_steel',
       itemId: 'ore_fairy_steel',
       chance: 0.00009
@@ -1280,7 +1280,7 @@ export const MINING = {
       healthMax: 75000,
       xp: 900,
       id: 'fairy_steel_essence',
-      icon: 'fairySteelEssence',
+      icon: 'fairySteelEssence.png',
       name: 'fairy_steel_essence',
       itemId: 'fairy_steel_essence',
       chance: 0.0000009
@@ -1291,7 +1291,7 @@ export const MINING = {
       healthMax: 100000,
       xp: 1000,
       id: 'elven_steel',
-      icon: 'elvenSteel',
+      icon: 'elvenSteel.png',
       name: 'elven_steel',
       itemId: 'ore_elven_steel',
       chance: 0.00008
@@ -1302,7 +1302,7 @@ export const MINING = {
       healthMax: 100000,
       xp: 1000,
       id: 'elven_steel_essence',
-      icon: 'elvenSteelEssence',
+      icon: 'elvenSteelEssence.png',
       name: 'elven_steel_essence',
       itemId: 'elven_steel_essence',
       chance: 0.0000008
@@ -1313,7 +1313,7 @@ export const MINING = {
       healthMax: 125000,
       xp: 1250,
       id: 'cursed',
-      icon: 'cursed',
+      icon: 'cursed.png',
       name: 'cursed',
       itemId: 'ore_cursed',
       chance: 0.00006
@@ -1324,7 +1324,7 @@ export const MINING = {
       healthMax: 125000,
       xp: 1250,
       id: 'cursed_essence',
-      icon: 'cursedEssence',
+      icon: 'cursedEssence.png',
       name: 'cursed_essence',
       itemId: 'cursed_essence',
       chance: 0.0000006
@@ -1336,7 +1336,7 @@ export const MINING = {
       healthMax: 1000,
       xp: 333,
       id: 'jade',
-      icon: 'jade',
+      icon: 'jade.svg',
       name: 'jade',
       isGem: true,
       itemId: 'jade',
@@ -1348,7 +1348,7 @@ export const MINING = {
       healthMax: 15000,
       xp: 1000,
       id: 'lapislazuli',
-      icon: 'lapislazuli',
+      icon: 'lapislazuli.png',
       name: 'lapislazuli',
       isGem: true,
       itemId: 'lapislazuli',
@@ -1360,7 +1360,7 @@ export const MINING = {
       healthMax: 45000,
       xp: 3000,
       id: 'sapphire',
-      icon: 'sapphire',
+      icon: 'sapphire.svg',
       name: 'sapphire',
       itemId: 'sapphire',
       isGem: true,
@@ -1372,7 +1372,7 @@ export const MINING = {
       healthMax: 135000,
       xp: 9000,
       id: 'emerald',
-      icon: 'emerald',
+      icon: 'emerald.png',
       name: 'emerald',
       itemId: 'emerald',
       isGem: true,
@@ -1384,7 +1384,7 @@ export const MINING = {
       healthMax: 350000,
       xp: 21000,
       id: 'ruby',
-      icon: 'ruby',
+      icon: 'ruby.svg',
       name: 'ruby',
       itemId: 'ruby',
       isGem: true,
@@ -1396,7 +1396,7 @@ export const MINING = {
       healthMax: 800000,
       xp: 31000,
       id: 'tanzanite',
-      icon: 'tanzanite',
+      icon: 'tanzanite.png',
       name: 'tanzanite',
       isGem: true,
       itemId: 'tanzanite',

@@ -4,7 +4,7 @@ import { BUFFS } from '/server/constants/combat/index';
 export const DEFENSE_ABILITIES = {
 
   scream: {
-    icon: 'scream',
+    icon: 'scream.svg',
     name: 'scream',
     id: 'scream',
     buffs: ['taunt'],
@@ -19,7 +19,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   taunt: {
-    icon: 'taunt',
+    icon: 'taunt.svg',
     name: 'taunt',
     id: 'taunt',
     buffs: ['taunt'],
@@ -33,8 +33,27 @@ export const DEFENSE_ABILITIES = {
     }
   },
 
+  volcanic_shield: {
+    icon: 'volcanicShield.svg',
+    name: 'volcanic shield',
+    id: 'volcanic_shield',
+    buffs: ['volcanic_shield'],
+    cooldown: 40,
+    slot: 'any',
+    isHidden: false,
+    target: 'self',
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['shield']
+    }],
+    description(level) {
+      const BUFF = BUFFS.volcanic_shield;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   defensive_stance: {
-    icon: 'defensiveStance',
+    icon: 'defensiveStance.svg',
     name: 'defensive stance',
     id: 'defensive_stance',
     buffs: ['defensive_stance'],
@@ -49,7 +68,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   evasive_maneuvers: {
-    icon: 'evasiveManeuvers',
+    icon: 'evasiveManeuvers.svg',
     name: 'evasive maneuvers',
     id: 'evasive_maneuvers',
     buffs: ['evasive_maneuvers'],
@@ -64,7 +83,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   health_up: {
-    icon: 'health',
+    icon: 'health.svg',
     name: 'health up',
     id: 'health_up',
     buffs: ['health_up'],
@@ -80,7 +99,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   defense_up: {
-    icon: 'defense',
+    icon: 'defense.svg',
     name: 'defense up',
     id: 'defense_up',
     buffs: ['defense_up'],
@@ -96,7 +115,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   spiked_armor: {
-    icon: 'spikedArmor',
+    icon: 'spikedArmor.svg',
     name: 'spiked armor',
     id: 'spiked_armor',
     buffs: ['spiked_armor'],
@@ -112,7 +131,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   frost_armor: {
-    icon: 'frostArmor',
+    icon: 'frostArmor.svg',
     name: 'frost armor',
     id: 'frost_armor',
     buffs: ['frost_armor'],
@@ -128,7 +147,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   armor_up: {
-    icon: 'armorUp',
+    icon: 'armorUp.svg',
     name: 'armor up',
     id: 'armor_up',
     buffs: ['armor_up'],
@@ -143,7 +162,7 @@ export const DEFENSE_ABILITIES = {
   },
 
   iron_will: {
-    icon: 'ironWill',
+    icon: 'ironWill.svg',
     name: 'iron will',
     id: 'iron_will',
     buffs: ['iron_will'],

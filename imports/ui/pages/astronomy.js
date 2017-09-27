@@ -114,6 +114,8 @@ Template.astronomyPage.helpers({
     astronomy.mages.forEach((mage, mageIndex) => {
       mage.index = mageIndex
       mage.amount = mage.gold;
+      console.log(mage);
+      mage.icon += '.svg';
 
       if (mageIndex === 0) {
         mage.primaryAction = {

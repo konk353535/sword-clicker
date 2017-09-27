@@ -1,7 +1,7 @@
 export const COPPER_ITEMS = {
   copper_dagger: {
     id: 'copper_dagger',
-    icon: 'copperDagger',
+    icon: 'copperDagger.svg',
     category: 'combat',
     weaponType: 'dagger',
     slot: 'mainHand',
@@ -20,7 +20,7 @@ export const COPPER_ITEMS = {
 
   copper_spear: {
     id: 'copper_spear',
-    icon: 'copperSpear',
+    icon: 'copperSpear.svg',
     category: 'combat',
     weaponType: 'spear',
     slot: 'mainHand',
@@ -46,7 +46,7 @@ export const COPPER_ITEMS = {
 
   copper_short_sword: {
     id: 'copper_short_sword',
-    icon: 'copperShortSword',
+    icon: 'copperShortSword.svg',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',
@@ -70,7 +70,7 @@ export const COPPER_ITEMS = {
 
   copper_scimitar: {
     id: 'copper_scimitar',
-    icon: 'copperScimitar',
+    icon: 'copperScimitar.svg',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',
@@ -94,7 +94,7 @@ export const COPPER_ITEMS = {
 
   copper_long_sword: {
     id: 'copper_long_sword',
-    icon: 'copperLongSword',
+    icon: 'copperLongSword.svg',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
@@ -119,7 +119,7 @@ export const COPPER_ITEMS = {
 
   copper_broad_sword: {
     id: 'copper_broad_sword',
-    icon: 'copperBroadSword',
+    icon: 'copperBroadSword.svg',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
@@ -144,7 +144,7 @@ export const COPPER_ITEMS = {
 
   copper_battle_axe: {
     id: 'copper_battle_axe',
-    icon: 'copperBattleAxe',
+    icon: 'copperBattleAxe.svg',
     category: 'combat',
     weaponType: 'battleAxe',
     slot: 'mainHand',
@@ -170,7 +170,7 @@ export const COPPER_ITEMS = {
 
   copper_horned_helmet: {
     id: 'copper_horned_helmet',
-    icon: 'copperHornedHelmet',
+    icon: 'copperHornedHelmet.svg',
     category: 'combat',
     slot: 'head',
     name: 'copper horned helmet',
@@ -191,7 +191,7 @@ export const COPPER_ITEMS = {
 
   copper_helmet: {
     id: 'copper_helmet',
-    icon: 'copperHelmet',
+    icon: 'copperHelmet.svg',
     category: 'combat',
     slot: 'head',
     name: 'copper helmet',
@@ -212,7 +212,7 @@ export const COPPER_ITEMS = {
 
   copper_chest_plate: {
     id: 'copper_chest_plate',
-    icon: 'copperChestPlate',
+    icon: 'copperChestPlate.svg',
     category: 'combat',
     slot: 'chest',
     name: 'copper chestplate',
@@ -233,7 +233,7 @@ export const COPPER_ITEMS = {
 
   copper_plate_legs: {
     id: 'copper_plate_legs',
-    icon: 'copperPlateLegs',
+    icon: 'copperPlateLegs.svg',
     category: 'combat',
     slot: 'legs',
     name: 'copper platelegs',
@@ -254,7 +254,7 @@ export const COPPER_ITEMS = {
 
   copper_shield: {
     id: 'copper_shield',
-    icon: 'copperShield',
+    icon: 'copperShield.svg',
     category: 'combat',
     weaponType: 'shield',
     slot: 'offHand',

@@ -33,7 +33,7 @@ export const TOWER_FLOOR_18 = {
     name: 'Fairy Steel Place',
     enemies: ['fairy_steel_spirit'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
       ]

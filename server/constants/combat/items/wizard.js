@@ -4,7 +4,7 @@ export const WIZARD_ITEMS = {
 
   phoenix_hat: {
     id: 'phoenix_hat',
-    icon: 'phoenixHat',
+    icon: 'phoenixHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'phoenix hat',
@@ -30,7 +30,7 @@ export const WIZARD_ITEMS = {
 
   druids_hat: {
     id: 'druids_hat',
-    icon: 'druidsHat',
+    icon: 'druidsHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'druidic hat',
@@ -59,7 +59,7 @@ export const WIZARD_ITEMS = {
 
   druids_shirt: {
     id: 'druids_shirt',
-    icon: 'druidsShirt',
+    icon: 'druidsShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'druidic shirt',
@@ -87,7 +87,7 @@ export const WIZARD_ITEMS = {
 
   druids_pants: {
     id: 'druids_pants',
-    icon: 'druidsPants',
+    icon: 'druidsPants.svg',
     category: 'combat',
     slot: 'legs',
     name: 'druidic pants',
@@ -114,7 +114,7 @@ export const WIZARD_ITEMS = {
 
   brown_wizard_hat: {
     id: 'brown_wizard_hat',
-    icon: 'brownWizardHat',
+    icon: 'brownWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'brown wizard hat',
@@ -139,7 +139,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_hat: {
     id: 'blue_wizard_hat',
-    icon: 'blueWizardHat',
+    icon: 'blueWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'blue wizard hat',
@@ -164,7 +164,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_hat: {
     id: 'purple_wizard_hat',
-    icon: 'purpleWizardHat',
+    icon: 'purpleWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'purple wizard hat',
@@ -189,7 +189,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_hat: {
     id: 'orange_wizard_hat',
-    icon: 'orangeWizardHat',
+    icon: 'orangeWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'orange wizard hat',
@@ -214,7 +214,7 @@ export const WIZARD_ITEMS = {
 
   brown_wizard_shirt: {
     id: 'brown_wizard_shirt',
-    icon: 'brownWizardShirt',
+    icon: 'brownWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'brown wizard shirt',
@@ -239,7 +239,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_shirt: {
     id: 'blue_wizard_shirt',
-    icon: 'blueWizardShirt',
+    icon: 'blueWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'blue wizard shirt',
@@ -264,7 +264,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_shirt: {
     id: 'purple_wizard_shirt',
-    icon: 'purpleWizardShirt',
+    icon: 'purpleWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'purple wizard shirt',
@@ -289,7 +289,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_shirt: {
     id: 'orange_wizard_shirt',
-    icon: 'orangeWizardShirt',
+    icon: 'orangeWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'orange wizard shirt',
@@ -314,7 +314,7 @@ export const WIZARD_ITEMS = {
 
   brown_wizard_shorts: {
     id: 'brown_wizard_shorts',
-    icon: 'brownWizardShorts',
+    icon: 'brownWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'brown wizard shorts',
@@ -339,7 +339,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_shorts: {
     id: 'blue_wizard_shorts',
-    icon: 'blueWizardShorts',
+    icon: 'blueWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'blue wizard shorts',
@@ -364,7 +364,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_shorts: {
     id: 'purple_wizard_shorts',
-    icon: 'purpleWizardShorts',
+    icon: 'purpleWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'purple wizard shorts',
@@ -389,7 +389,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_shorts: {
     id: 'orange_wizard_shorts',
-    icon: 'orangeWizardShorts',
+    icon: 'orangeWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'orange wizard shorts',

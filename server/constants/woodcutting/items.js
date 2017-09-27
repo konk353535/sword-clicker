@@ -1,7 +1,7 @@
 export const WOODCUTTING_ITEMS = {
   primitive_axe: {
     id: 'primitive_axe',
-    icon: 'primitiveAxe',
+    icon: 'primitiveAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'primitive axe',
@@ -20,7 +20,7 @@ export const WOODCUTTING_ITEMS = {
 
   copper_axe: {
     id: 'copper_axe',
-    icon: 'copperAxe',
+    icon: 'copperAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'copper axe',
@@ -40,7 +40,7 @@ export const WOODCUTTING_ITEMS = {
 
   tin_axe: {
     id: 'tin_axe',
-    icon: 'tinAxe',
+    icon: 'tinAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'tin axe',
@@ -60,7 +60,7 @@ export const WOODCUTTING_ITEMS = {
 
   bronze_axe: {
     id: 'bronze_axe',
-    icon: 'bronzeAxe',
+    icon: 'bronzeAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'bronze axe',
@@ -80,7 +80,7 @@ export const WOODCUTTING_ITEMS = {
 
   iron_axe: {
     id: 'iron_axe',
-    icon: 'ironAxe',
+    icon: 'ironAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'iron axe',
@@ -100,7 +100,7 @@ export const WOODCUTTING_ITEMS = {
 
   silver_axe: {
     id: 'silver_axe',
-    icon: 'silverAxe',
+    icon: 'silverAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'silver axe',
@@ -120,7 +120,7 @@ export const WOODCUTTING_ITEMS = {
 
   gold_axe: {
     id: 'gold_axe',
-    icon: 'goldAxe',
+    icon: 'goldAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'gold axe',
@@ -140,7 +140,7 @@ export const WOODCUTTING_ITEMS = {
 
   carbon_axe: {
     id: 'carbon_axe',
-    icon: 'carbonAxe',
+    icon: 'carbonAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'carbon axe',
@@ -160,7 +160,7 @@ export const WOODCUTTING_ITEMS = {
 
   steel_axe: {
     id: 'steel_axe',
-    icon: 'steelAxe',
+    icon: 'steelAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'steel axe',
@@ -180,7 +180,7 @@ export const WOODCUTTING_ITEMS = {
 
   platinum_axe: {
     id: 'platinum_axe',
-    icon: 'platinumAxe',
+    icon: 'platinumAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'platinum axe',
@@ -200,7 +200,7 @@ export const WOODCUTTING_ITEMS = {
 
   titanium_axe: {
     id: 'titanium_axe',
-    icon: 'titaniumAxe',
+    icon: 'titaniumAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'titanium axe',
@@ -220,7 +220,7 @@ export const WOODCUTTING_ITEMS = {
 
   tungsten_axe: {
     id: 'tungsten_axe',
-    icon: 'tungstenAxe',
+    icon: 'tungstenAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'tungsten axe',
@@ -240,7 +240,7 @@ export const WOODCUTTING_ITEMS = {
 
   obsidian_axe: {
     id: 'obsidian_axe',
-    icon: 'obsidianAxe',
+    icon: 'obsidianAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'obsidian axe',
@@ -260,7 +260,7 @@ export const WOODCUTTING_ITEMS = {
 
   cobalt_axe: {
     id: 'cobalt_axe',
-    icon: 'cobaltAxe',
+    icon: 'cobaltAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'cobalt axe',
@@ -280,7 +280,7 @@ export const WOODCUTTING_ITEMS = {
 
   mithril_axe: {
     id: 'mithril_axe',
-    icon: 'mithrilAxe',
+    icon: 'mithrilAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'mithril axe',
@@ -300,7 +300,7 @@ export const WOODCUTTING_ITEMS = {
 
   adamantium_axe: {
     id: 'adamantium_axe',
-    icon: 'adamantiumAxe',
+    icon: 'adamantiumAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'adamantium axe',
@@ -320,7 +320,7 @@ export const WOODCUTTING_ITEMS = {
 
   orichalcum_axe: {
     id: 'orichalcum_axe',
-    icon: 'orichalcumAxe',
+    icon: 'orichalcumAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'orichalcum axe',
@@ -340,7 +340,7 @@ export const WOODCUTTING_ITEMS = {
 
   meteorite_axe: {
     id: 'meteorite_axe',
-    icon: 'meteoriteAxe',
+    icon: 'meteoriteAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'meteorite axe',
@@ -360,7 +360,7 @@ export const WOODCUTTING_ITEMS = {
 
   fairy_steel_axe: {
     id: 'fairy_steel_axe',
-    icon: 'fairySteelAxe',
+    icon: 'fairySteelAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'fairy steel axe',
@@ -380,7 +380,7 @@ export const WOODCUTTING_ITEMS = {
 
   elven_steel_axe: {
     id: 'elven_steel_axe',
-    icon: 'elvenSteelAxe',
+    icon: 'elvenSteelAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'elven steel axe',
@@ -400,7 +400,7 @@ export const WOODCUTTING_ITEMS = {
 
   cursed_axe: {
     id: 'cursed_axe',
-    icon: 'cursedAxe',
+    icon: 'cursedAxe.svg',
     category: 'woodcutting',
     slot: 'axe',
     name: 'cursed axe',
@@ -420,7 +420,7 @@ export const WOODCUTTING_ITEMS = {
 
   pine_log: {
     id: 'pine_log',
-    icon: 'pineLog',
+    icon: 'pineLog.svg',
     category: 'woodcutting',
     name: 'pine log',
     sellPrice: 1
@@ -428,7 +428,7 @@ export const WOODCUTTING_ITEMS = {
 
   beech_log: {
     id: 'beech_log',
-    icon: 'beechLog',
+    icon: 'beechLog.svg',
     category: 'woodcutting',
     name: 'beech log',
     sellPrice: 4
@@ -436,7 +436,7 @@ export const WOODCUTTING_ITEMS = {
 
   ash_log: {
     id: 'ash_log',
-    icon: 'ashLog',
+    icon: 'ashLog.svg',
     category: 'woodcutting',
     name: 'ash log',
     sellPrice: 7
@@ -444,7 +444,7 @@ export const WOODCUTTING_ITEMS = {
 
   oak_log: {
     id: 'oak_log',
-    icon: 'oakLog',
+    icon: 'oakLog.svg',
     category: 'woodcutting',
     name: 'oak log',
     sellPrice: 11
@@ -452,7 +452,7 @@ export const WOODCUTTING_ITEMS = {
 
   maple_log: {
     id: 'maple_log',
-    icon: 'mapleLog',
+    icon: 'mapleLog.svg',
     category: 'woodcutting',
     name: 'maple log',
     sellPrice: 17
@@ -460,7 +460,7 @@ export const WOODCUTTING_ITEMS = {
 
   walnut_log: {
     id: 'walnut_log',
-    icon: 'walnutLog',
+    icon: 'walnutLog.svg',
     category: 'woodcutting',
     name: 'walnut log',
     sellPrice: 30
@@ -468,7 +468,7 @@ export const WOODCUTTING_ITEMS = {
 
   cherry_log: {
     id: 'cherry_log',
-    icon: 'cherryLog',
+    icon: 'cherryLog.svg',
     category: 'woodcutting',
     name: 'cherry log',
     sellPrice: 40
@@ -476,7 +476,7 @@ export const WOODCUTTING_ITEMS = {
 
   mahogany_log: {
     id: 'mahogany_log',
-    icon: 'mahoganyLog',
+    icon: 'mahoganyLog.svg',
     category: 'woodcutting',
     name: 'mahogany log',
     sellPrice: 50
@@ -484,7 +484,7 @@ export const WOODCUTTING_ITEMS = {
 
   elk_log: {
     id: 'elk_log',
-    icon: 'elkLog',
+    icon: 'elkLog.svg',
     category: 'woodcutting',
     name: 'elk log',
     sellPrice: 60
@@ -492,7 +492,7 @@ export const WOODCUTTING_ITEMS = {
 
   black_log: {
     id: 'black_log',
-    icon: 'blackLog',
+    icon: 'blackLog.svg',
     category: 'woodcutting',
     name: 'black log',
     sellPrice: 70
@@ -500,7 +500,7 @@ export const WOODCUTTING_ITEMS = {
 
   blue_gum_log: {
     id: 'blue_gum_log',
-    icon: 'blueGumLog',
+    icon: 'blueGumLog.svg',
     category: 'woodcutting',
     name: 'blue gum log',
     sellPrice: 80
@@ -508,7 +508,7 @@ export const WOODCUTTING_ITEMS = {
 
   cedar_log: {
     id: 'cedar_log',
-    icon: 'cedarLog',
+    icon: 'cedarLog.svg',
     category: 'woodcutting',
     name: 'cedar log',
     sellPrice: 90
@@ -516,7 +516,7 @@ export const WOODCUTTING_ITEMS = {
 
   denya_log: {
     id: 'denya_log',
-    icon: 'denyaLog',
+    icon: 'denyaLog.svg',
     category: 'woodcutting',
     name: 'denya log',
     sellPrice: 100
@@ -524,7 +524,7 @@ export const WOODCUTTING_ITEMS = {
 
   gombe_log: {
     id: 'gombe_log',
-    icon: 'gombeLog',
+    icon: 'gombeLog.svg',
     category: 'woodcutting',
     name: 'gombe log',
     sellPrice: 110
@@ -532,7 +532,7 @@ export const WOODCUTTING_ITEMS = {
 
   hickory_log: {
     id: 'hickory_log',
-    icon: 'hickoryLog',
+    icon: 'hickoryLog.svg',
     category: 'woodcutting',
     name: 'hickory log',
     sellPrice: 120
@@ -540,7 +540,7 @@ export const WOODCUTTING_ITEMS = {
 
   larch_log: {
     id: 'larch_log',
-    icon: 'larchLog',
+    icon: 'larchLog.svg',
     category: 'woodcutting',
     name: 'larch log',
     sellPrice: 130
@@ -548,7 +548,7 @@ export const WOODCUTTING_ITEMS = {
 
   poplar_log: {
     id: 'poplar_log',
-    icon: 'poplarLog',
+    icon: 'poplarLog.svg',
     category: 'woodcutting',
     name: 'poplar log',
     sellPrice: 140
@@ -556,7 +556,7 @@ export const WOODCUTTING_ITEMS = {
 
   tali_log: {
     id: 'tali_log',
-    icon: 'taliLog',
+    icon: 'taliLog.svg',
     category: 'woodcutting',
     name: 'tali log',
     sellPrice: 150
@@ -564,7 +564,7 @@ export const WOODCUTTING_ITEMS = {
 
   willow_log: {
     id: 'willow_log',
-    icon: 'willowLog',
+    icon: 'willowLog.svg',
     category: 'woodcutting',
     name: 'willow log',
     sellPrice: 160
@@ -572,7 +572,7 @@ export const WOODCUTTING_ITEMS = {
 
   teak_log: {
     id: 'teak_log',
-    icon: 'teakLog',
+    icon: 'teakLog.svg',
     category: 'woodcutting',
     name: 'teak log',
     sellPrice: 170
@@ -580,7 +580,7 @@ export const WOODCUTTING_ITEMS = {
 
   fiery_log: {
     id: 'fiery_log',
-    icon: 'fieryLog',
+    icon: 'fieryLog.svg',
     category: 'woodcutting',
     name: 'fiery log',
     sellPrice: 180
@@ -588,7 +588,7 @@ export const WOODCUTTING_ITEMS = {
 
   magic_log: {
     id: 'magic_log',
-    icon: 'magicLog',
+    icon: 'magicLog.svg',
     category: 'woodcutting',
     name: 'magic log',
     sellPrice: 190

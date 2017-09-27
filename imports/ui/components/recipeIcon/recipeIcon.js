@@ -28,7 +28,6 @@ const updateCraftable = function (instance) {
 }
 
 Template.recipeIcon.rendered = function () {
-  console.log('Rendered');
   const instance = Template.instance();
   updateCraftable(instance);
 }
@@ -137,5 +136,4 @@ Template.recipeIcon.helpers({
 });
 
 Template.recipeIcon.onDestroyed(function () {
-  console.log('Destroyed');
 })

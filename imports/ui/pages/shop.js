@@ -281,31 +281,31 @@ Template.shopPage.helpers({
   currentUpgrades() {
     const upgrades = [{
       name: 'mining',
-      icon: 'mining',
+      icon: 'mining.svg',
       description: '+20% damage'
     }, {
       name: 'crafting',
-      icon: 'crafting',
+      icon: 'crafting.svg',
       description: '+20% speed'
     }, {
       name: 'combat',
-      icon: 'attack',
+      icon: 'attack.svg',
       description: '+20% energy regen'
     }, {
       name: 'woodcutting',
-      icon: 'woodcutting',
+      icon: 'woodcutting.svg',
       description: '+20% speed'
     }, {
       name: 'farming',
-      icon: 'farming',
+      icon: 'farming.svg',
       description: '+2 spaces'
     }, {
       name: 'inscription',
-      icon: 'inscription',
+      icon: 'inscription.svg',
       description: '+20% speed'
     }, {
       name: 'astronomy',
-      icon: 'astronomy',
+      icon: 'astronomy.svg',
       description: '+1 phantom mage'
     }];
 

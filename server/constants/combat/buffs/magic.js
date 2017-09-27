@@ -8,7 +8,7 @@ export const MAGIC_BUFFS = {
 
   magic_wisdom: {
     duplicateTag: 'magic_wisdom', // Used to stop duplicate buffs
-    icon: 'magicWisdom',
+    icon: 'magicWisdom.svg',
     name: 'magic wisdom',
     description({ buff, level }) {
       const c = buff.constants;
@@ -59,7 +59,7 @@ export const MAGIC_BUFFS = {
 
   furied_winds: {
     duplicateTag: 'furied_winds', // Used to stop duplicate buffs
-    icon: 'furiedWinds',
+    icon: 'furiedWinds.svg',
     name: 'furied winds',
     description({ buff, level }) {
       const c = buff.constants;
@@ -126,7 +126,7 @@ export const MAGIC_BUFFS = {
 
   frenzied_winds: {
     duplicateTag: 'frenzied_winds', // Used to stop duplicate buffs
-    icon: 'frenziedWinds',
+    icon: 'frenziedWinds.svg',
     name: 'frenzied winds',
     description({ buff, level }) {
       const c = buff.constants;
@@ -201,7 +201,7 @@ export const MAGIC_BUFFS = {
 
   lightning_speed: {
     duplicateTag: 'lightning_speed', // Used to stop duplicate buffs
-    icon: 'lightningSpeed',
+    icon: 'lightningSpeed.svg',
     name: 'lightning speed',
     description({ buff, level }) {
       const c = buff.constants;
@@ -261,7 +261,7 @@ export const MAGIC_BUFFS = {
 
   mud_armor: {
     duplicateTag: 'mud_armor', // Used to stop duplicate buffs
-    icon: 'mudArmor',
+    icon: 'mudArmor.svg',
     name: 'mud armor',
     description({ buff, level }) {
       const c = buff.constants;
@@ -318,7 +318,7 @@ export const MAGIC_BUFFS = {
 
   elemental_shield: {
     duplicateTag: 'elemental_shield', // Used to stop duplicate buffs
-    icon: 'elementalShield',
+    icon: 'elementalShield.svg',
     name: 'elemental shield',
     description({ buff, level }) {
       const c = buff.constants;
@@ -388,7 +388,7 @@ export const MAGIC_BUFFS = {
 
   diamond_skin: {
     duplicateTag: 'diamond_skin', // Used to stop duplicate buffs
-    icon: 'diamondSkin',
+    icon: 'diamondSkin.svg',
     name: 'diamond skin',
     description({ buff, level }) {
       const c = buff.constants;
@@ -458,7 +458,7 @@ export const MAGIC_BUFFS = {
 
   feeding_frenzy: {
     duplicateTag: 'feeding_frenzy', // Used to stop duplicate buffs
-    icon: 'feedingFrenzy',
+    icon: 'feedingFrenzy.svg',
     name: 'feeding frenzy',
     description({ buff, level }) {
       const c = buff.constants;
@@ -523,7 +523,7 @@ export const MAGIC_BUFFS = {
 
   water_wave: {
     duplicateTag: 'water_wave', // Used to stop duplicate buffs
-    icon: 'waterWave',
+    icon: 'waterWave.svg',
     name: 'water wave',
     description({ buff, level }) {
       const c = buff.constants;
@@ -574,7 +574,7 @@ export const MAGIC_BUFFS = {
 
   healing_shield: {
     duplicateTag: 'healing_shield', // Used to stop duplicate buffs
-    icon: 'healingShield',
+    icon: 'healingShield.svg',
     name: 'healing shield',
     description({ buff, level }) {
       const c = buff.constants;
@@ -644,7 +644,7 @@ export const MAGIC_BUFFS = {
 
   water_dart: {
     duplicateTag: 'water_dart', // Used to stop duplicate buffs
-    icon: 'waterDart',
+    icon: 'waterDart.svg',
     name: 'water dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -695,7 +695,7 @@ export const MAGIC_BUFFS = {
 
   water_ball: {
     duplicateTag: 'water_ball', // Used to stop duplicate buffs
-    icon: 'waterBall',
+    icon: 'waterBall.svg',
     name: 'water ball',
     description({ buff, level }) {
       const c = buff.constants;
@@ -746,7 +746,7 @@ export const MAGIC_BUFFS = {
 
   angels_touch: {
     duplicateTag: 'angels_touch', // Used to stop duplicate buffs
-    icon: 'angelsTouch',
+    icon: 'angelsTouch.svg',
     name: 'angels touch',
     description({ buff, level }) {
       const c = buff.constants;
@@ -797,7 +797,7 @@ export const MAGIC_BUFFS = {
 
   mending_water: {
     duplicateTag: 'mending_water', // Used to stop duplicate buffs
-    icon: 'mendingWater',
+    icon: 'mendingWater.svg',
     name: 'mending water',
     description({ buff, level }) {
       const c = buff.constants;
@@ -866,7 +866,7 @@ export const MAGIC_BUFFS = {
 
   mending_spring: {
     duplicateTag: 'mending_spring', // Used to stop duplicate buffs
-    icon: 'mendingSpring',
+    icon: 'mendingSpring.svg',
     name: 'mending spring',
     description({ buff, level }) {
       const c = buff.constants;
@@ -935,7 +935,7 @@ export const MAGIC_BUFFS = {
 
   heavens_descent: {
     duplicateTag: 'heavens_descent', // Used to stop duplicate buffs
-    icon: 'heavensDescent',
+    icon: 'heavensDescent.svg',
     name: 'heavens descent',
     description({ buff, level }) {
       const c = buff.constants;
@@ -983,7 +983,7 @@ export const MAGIC_BUFFS = {
 
   poison_dart: {
     duplicateTag: 'poison_dart', // Used to stop duplicate buffs
-    icon: 'poisonDart',
+    icon: 'poisonDart.svg',
     name: 'poison dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1023,7 +1023,7 @@ export const MAGIC_BUFFS = {
               duration: 180,
               totalDuration: 180,
               damage: Math.ceil(magicDamageTotal),
-              icon: 'poison',
+              icon: 'poison.svg',
               sourceId: caster.id
             }
           });
@@ -1055,7 +1055,7 @@ export const MAGIC_BUFFS = {
 
   affliction: {
     duplicateTag: 'affliction', // Used to stop duplicate buffs
-    icon: 'affliction',
+    icon: 'affliction.svg',
     name: 'affliction',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1134,7 +1134,7 @@ export const MAGIC_BUFFS = {
 
   air_dart: {
     duplicateTag: 'air_dart', // Used to stop duplicate buffs
-    icon: 'airDart',
+    icon: 'airDart.svg',
     name: 'air dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1196,7 +1196,7 @@ export const MAGIC_BUFFS = {
 
   lightning_dart: {
     duplicateTag: 'lightning_dart', // Used to stop duplicate buffs
-    icon: 'lightningDart',
+    icon: 'lightningDart.svg',
     name: 'lightning dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1268,7 +1268,7 @@ export const MAGIC_BUFFS = {
 
   lightning_storm: {
     duplicateTag: 'lightning_storm', // Used to stop duplicate buffs
-    icon: 'lightningStorm',
+    icon: 'lightningStorm.svg',
     name: 'lightning storm',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1340,7 +1340,7 @@ export const MAGIC_BUFFS = {
 
   air_ball: {
     duplicateTag: 'air_ball', // Used to stop duplicate buffs
-    icon: 'airBall',
+    icon: 'airBall.svg',
     name: 'air ball',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1402,7 +1402,7 @@ export const MAGIC_BUFFS = {
 
   blizzard: {
     duplicateTag: 'blizzard', // Used to stop duplicate buffs
-    icon: 'blizzard',
+    icon: 'blizzard.svg',
     name: 'blizzard',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1454,7 +1454,7 @@ export const MAGIC_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostedAttacks',
+              icon: 'frostedAttacks.svg',
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
@@ -1482,7 +1482,7 @@ export const MAGIC_BUFFS = {
 
   ice_dart: {
     duplicateTag: 'ice_dart', // Used to stop duplicate buffs
-    icon: 'iceDart',
+    icon: 'iceDart.svg',
     name: 'ice dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1534,7 +1534,7 @@ export const MAGIC_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostedAttacks',
+              icon: 'frostedAttacks.svg',
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
@@ -1565,7 +1565,7 @@ export const MAGIC_BUFFS = {
 
   earth_dart: {
     duplicateTag: 'earth_dart', // Used to stop duplicate buffs
-    icon: 'earthDart',
+    icon: 'earthDart.svg',
     name: 'earth dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1616,7 +1616,7 @@ export const MAGIC_BUFFS = {
 
   earth_ball: {
     duplicateTag: 'earth_ball', // Used to stop duplicate buffs
-    icon: 'earthball',
+    icon: 'earthBall.svg',
     name: 'earth ball',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1667,7 +1667,7 @@ export const MAGIC_BUFFS = {
 
   earthen_fist: {
     duplicateTag: 'earthen_fist', // Used to stop duplicate buffs
-    icon: 'earthenFist',
+    icon: 'earthenFist.svg',
     name: 'earthen fist',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1737,7 +1737,7 @@ export const MAGIC_BUFFS = {
 
   ignite: {
     duplicateTag: 'ignite', // Used to stop duplicate buffs
-    icon: 'ignite',
+    icon: 'ignite.svg',
     name: 'ignite',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1807,7 +1807,7 @@ export const MAGIC_BUFFS = {
 
   inferno: {
     duplicateTag: 'inferno', // Used to stop duplicate buffs
-    icon: 'inferno',
+    icon: 'inferno.svg',
     name: 'inferno',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1877,7 +1877,7 @@ export const MAGIC_BUFFS = {
 
   fire_wave: {
     duplicateTag: 'fire_wave', // Used to stop duplicate buffs
-    icon: 'fireWave',
+    icon: 'fireWave.svg',
     name: 'fire wave',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1929,7 +1929,7 @@ export const MAGIC_BUFFS = {
 
   fire_dart: {
     duplicateTag: 'fire_dart', // Used to stop duplicate buffs
-    icon: 'fireDart',
+    icon: 'fireDart.svg',
     name: 'fire dart',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1981,7 +1981,7 @@ export const MAGIC_BUFFS = {
 
   fire_ball: {
     duplicateTag: 'fire_ball', // Used to stop duplicate buffs
-    icon: 'fireBall',
+    icon: 'fireBall.svg',
     name: 'fire ball',
     description({ buff, level }) {
       const c = buff.constants;
@@ -2033,7 +2033,7 @@ export const MAGIC_BUFFS = {
 
   meteor_strike: {
     duplicateTag: 'meteor_strike', // Used to stop duplicate buffs
-    icon: 'meteorStrike',
+    icon: 'meteorStrike.svg',
     name: 'meteor strike',
     description({ buff, level }) {
       const c = buff.constants;

@@ -271,7 +271,7 @@ export const completeBattle = function (actualBattle) {
           amount: rewardGained.amount,
           itemId: rewardGained.itemId,
           affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-          icon: 'gold',
+          icon: 'gold.svg',
           owner: luckyOwner
         });
       }
@@ -312,7 +312,7 @@ export const completeBattle = function (actualBattle) {
               finalTickEvents.push({
                 type: 'points',
                 amount: pointsEarnt.toFixed(1),
-                icon: 'tower',
+                icon: 'tower.svg',
                 owner
               });
 

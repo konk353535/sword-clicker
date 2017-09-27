@@ -2,24 +2,24 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
 export const LEVEL_FOUR_MONSTERS = [{
   id: 'cat',
-  icon: 'cat',
+  icon: 'cat.svg',
   name: 'cat'
 }, {
   id: 'turtle',
-  icon: 'turtle',
+  icon: 'turtle.svg',
   name: 'turtle',
   heavilyArmored: true
 }, {
   id: 'goat',
-  icon: 'goat',
+  icon: 'goat.svg',
   name: 'goat'
 }, {
   id: 'boar',
-  icon: 'boar',
+  icon: 'boar.svg',
   name: 'boar'
 }, {
   id: 'fox',
-  icon: 'fox',
+  icon: 'fox.svg',
   name: 'fox'
 }];
 

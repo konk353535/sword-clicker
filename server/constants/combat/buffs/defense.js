@@ -5,9 +5,53 @@ import { BATTLES } from '/server/constants/battles/index.js'; // List of encount
 
 export const DEFENSE_BUFFS = {
 
+  volcanic_shield: {
+    duplicateTag: 'volcanic_shield', // Used to stop duplicate buffs
+    icon: 'volcanicShield.svg',
+    name: 'volcanic shield',
+    description({ buff, level }) {
+      return `Increases armor & magic armor by 100.<br />
+        After 10 seconds, erupts dealing 250% weapon damage to all enemies`;
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Increase armor & magic armor by 100
+        target.stats.armor += 100;
+        target.stats.magicArmor += 100;
+        buff.data.duration = 10;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        // Mutate targets attack speed
+        target.stats.armor -= 100;
+        target.stats.magicArmor -= 100;
+
+        const attack = target.stats.attack;
+        const attackMax = target.stats.attackMax;
+        const actualDamage = (attack + ((attackMax - attack) * Math.random())) * 2.5;
+
+        actualBattle.enemies.forEach((enemy) => {
+          actualBattle.utils.dealDamage(actualDamage, {
+            attacker: target,
+            defender: enemy,
+            tickEvents: actualBattle.tickEvents
+          });
+        });
+      }
+    }
+  },
+
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
-    icon: 'frostedAttacks',
+    icon: 'frostedAttacks.svg',
     name: 'forsted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
@@ -37,7 +81,7 @@ export const DEFENSE_BUFFS = {
 
   phalanx: {
     duplicateTag: 'phalanx', // Used to stop duplicate buffs
-    icon: 'phalanx',
+    icon: 'phalanx.svg',
     name: 'phalanx',
     description({ buff, level }) {
     },
@@ -100,7 +144,7 @@ export const DEFENSE_BUFFS = {
 
   frost_armor: {
     duplicateTag: 'frost_armor', // Used to stop duplicate buffs
-    icon: 'frostArmor',
+    icon: 'frostArmor.svg',
     name: 'frost armor',
     description({ buff, level }) {
       let localLevel = JSON.parse(JSON.stringify(level));
@@ -144,7 +188,7 @@ export const DEFENSE_BUFFS = {
               duration: durationTotal,
               totalDuration: durationTotal,
               attackSpeedDecrease,
-              icon: 'frostedAttacks',
+              icon: 'frostedAttacks.svg',
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
@@ -169,7 +213,7 @@ export const DEFENSE_BUFFS = {
 
   health_up: {
     duplicateTag: 'health_up', // Used to stop duplicate buffs
-    icon: 'health',
+    icon: 'health.svg',
     name: 'health up',
     description({ buff, level }) {
 
@@ -223,7 +267,7 @@ export const DEFENSE_BUFFS = {
 
   defense_up: {
     duplicateTag: 'defense_up', // Used to stop duplicate buffs
-    icon: 'defense',
+    icon: 'defense.svg',
     name: 'defense up',
     description({ buff, level }) {
 
@@ -272,7 +316,7 @@ export const DEFENSE_BUFFS = {
 
   spiked_armor: {
     duplicateTag: 'spiked_armor', // Used to stop duplicate buffs
-    icon: 'spikedArmor',
+    icon: 'spikedArmor.svg',
     name: 'spiked armor',
     description({ buff, level }) {
 
@@ -329,7 +373,7 @@ export const DEFENSE_BUFFS = {
 
   taunt: {
     duplicateTag: 'taunt', // Used to stop duplicate buffs
-    icon: 'taunt',
+    icon: 'taunt.svg',
     name: 'taunt',
     description({ buff, level }) {
       return 'Force the target to attack you';
@@ -357,7 +401,7 @@ export const DEFENSE_BUFFS = {
 
   defensive_stance: {
     duplicateTag: 'defensiveStance', // Used to stop duplicate buffs
-    icon: 'defensiveStance',
+    icon: 'defensiveStance.svg',
     name: 'defensive stance',
     description({ buff, level }) {
       const damageDecreasePerLevel = buff.constants.damageDealtPercentagePerLevel;
@@ -426,7 +470,7 @@ export const DEFENSE_BUFFS = {
 
   evasive_maneuvers: {
     duplicateTag: 'evasiveManeuvers', // Used to stop duplicate buffs
-    icon: 'evasiveManeuvers',
+    icon: 'evasiveManeuvers.svg',
     name: 'evasive maneuvers',
     description({ buff, level }) {
       const durationPerLevel = buff.constants.durationPerLevel;
@@ -479,7 +523,7 @@ export const DEFENSE_BUFFS = {
 
   armor_up: {
     duplicateTag: 'armorUp',
-    icon: 'armorUp',
+    icon: 'armorUp.svg',
     name: 'armor up',
     description({ buff, level }) {
       const armorPerLevel = buff.constants.armorPerLevel;
@@ -533,7 +577,7 @@ export const DEFENSE_BUFFS = {
 
   iron_will: {
     duplicateTag: 'ironWill',
-    icon: 'ironWill',
+    icon: 'ironWill.svg',
     name: 'iron will',
     description({ buff, level }) {
       const defensePerLevel = buff.constants.defensePerLevel;

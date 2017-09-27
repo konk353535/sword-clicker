@@ -1,7 +1,7 @@
 export const STEEL_ITEMS = {
   "steel_dagger": {
     "id": "steel_dagger",
-    "icon": "steelDagger",
+    "icon": "steelDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const STEEL_ITEMS = {
   },
   "steel_spear": {
     "id": "steel_spear",
-    "icon": "steelSpear",
+    "icon": "steelSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const STEEL_ITEMS = {
   },
   "steel_short_sword": {
     "id": "steel_short_sword",
-    "icon": "steelShortSword",
+    "icon": "steelShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const STEEL_ITEMS = {
   },
   "steel_scimitar": {
     "id": "steel_scimitar",
-    "icon": "steelScimitar",
+    "icon": "steelScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const STEEL_ITEMS = {
   },
   "steel_long_sword": {
     "id": "steel_long_sword",
-    "icon": "steelLongSword",
+    "icon": "steelLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const STEEL_ITEMS = {
   },
   "steel_broad_sword": {
     "id": "steel_broad_sword",
-    "icon": "steelBroadSword",
+    "icon": "steelBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const STEEL_ITEMS = {
   },
   "steel_battle_axe": {
     "id": "steel_battle_axe",
-    "icon": "steelBattleAxe",
+    "icon": "steelBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const STEEL_ITEMS = {
   },
   "steel_horned_helmet": {
     "id": "steel_horned_helmet",
-    "icon": "steelHornedHelmet",
+    "icon": "steelHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "steel horned helmet",
@@ -222,7 +222,7 @@ export const STEEL_ITEMS = {
   },
   "steel_helmet": {
     "id": "steel_helmet",
-    "icon": "steelHelmet",
+    "icon": "steelHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "steel helmet",
@@ -247,7 +247,7 @@ export const STEEL_ITEMS = {
   },
   "steel_chest_plate": {
     "id": "steel_chest_plate",
-    "icon": "steelChestPlate",
+    "icon": "steelChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "steel chestplate",
@@ -272,7 +272,7 @@ export const STEEL_ITEMS = {
   },
   "steel_plate_legs": {
     "id": "steel_plate_legs",
-    "icon": "steelPlateLegs",
+    "icon": "steelPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "steel platelegs",
@@ -297,7 +297,7 @@ export const STEEL_ITEMS = {
   },
   "steel_shield": {
     "id": "steel_shield",
-    "icon": "steelShield",
+    "icon": "steelShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

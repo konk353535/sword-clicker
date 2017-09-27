@@ -156,7 +156,7 @@
           <tr class="text-center buy-miner" style="cursor: pointer" data-miner={{this.id}}>
             <td class="text-capitalize">{{this.name}}</td>
             <td class="hidden-md-down">
-              <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+              <img src="/icons/{{this.icon}}" class="ore-icon">
             </td>
             <td>{{ > requiredItems requiredItems=this.required}}</td>
             <td>{{this.amount}} / {{this.max}}</td>
@@ -205,7 +205,7 @@
           <tr class="prospector-row text-center">
             <td class="text-capitalize">{{this.name}}</td>
             <td class="hidden-md-down">
-              <img src="/icons/{{this.icon}}.svg" class="ore-icon">
+              <img src="/icons/{{this.icon}}" class="ore-icon">
             </td>
             <td>{{ > requiredItems requiredItems=this.required}}</td>
             <td>{{this.amount}} / {{this.max}}</td>
@@ -228,7 +228,7 @@
 
 <template name="oreListItem">
   <div class="ore-list-item">
-    <img src="/icons/{{ore.icon}}.svg" class="icon-box small-icon"> {{ore.amount}}
+    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{ore.amount}}
   </div>
 
   <div class="ore-list-item-tooltip-content my-tooltip-inner">

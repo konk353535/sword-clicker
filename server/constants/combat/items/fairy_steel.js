@@ -1,7 +1,7 @@
 export const FAIRY_STEEL_ITEMS = {
   "fairy_steel_dagger": {
     "id": "fairy_steel_dagger",
-    "icon": "fairySteelDagger",
+    "icon": "fairySteelDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_spear": {
     "id": "fairy_steel_spear",
-    "icon": "fairySteelSpear",
+    "icon": "fairySteelSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_short_sword": {
     "id": "fairy_steel_short_sword",
-    "icon": "fairySteelShortSword",
+    "icon": "fairySteelShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_scimitar": {
     "id": "fairy_steel_scimitar",
-    "icon": "fairySteelScimitar",
+    "icon": "fairySteelScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_long_sword": {
     "id": "fairy_steel_long_sword",
-    "icon": "fairySteelLongSword",
+    "icon": "fairySteelLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_broad_sword": {
     "id": "fairy_steel_broad_sword",
-    "icon": "fairySteelBroadSword",
+    "icon": "fairySteelBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_battle_axe": {
     "id": "fairy_steel_battle_axe",
-    "icon": "fairySteelBattleAxe",
+    "icon": "fairySteelBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_horned_helmet": {
     "id": "fairy_steel_horned_helmet",
-    "icon": "fairySteelHornedHelmet",
+    "icon": "fairySteelHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel horned helmet",
@@ -222,7 +222,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_helmet": {
     "id": "fairy_steel_helmet",
-    "icon": "fairySteelHelmet",
+    "icon": "fairySteelHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel helmet",
@@ -247,7 +247,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_chest_plate": {
     "id": "fairy_steel_chest_plate",
-    "icon": "fairySteelChestPlate",
+    "icon": "fairySteelChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "fairy steel chestplate",
@@ -272,7 +272,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_plate_legs": {
     "id": "fairy_steel_plate_legs",
-    "icon": "fairySteelPlateLegs",
+    "icon": "fairySteelPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",
@@ -297,7 +297,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_shield": {
     "id": "fairy_steel_shield",
-    "icon": "fairySteelShield",
+    "icon": "fairySteelShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

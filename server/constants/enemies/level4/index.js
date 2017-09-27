@@ -30,7 +30,7 @@ export const LEVEL_FOUR_ENEMIES = {
 
   cat: {
     id: 'cat',
-    icon: 'cat',
+    icon: 'cat.svg',
     name: 'cat',
     stats: {
       attack: 1,
@@ -48,7 +48,7 @@ export const LEVEL_FOUR_ENEMIES = {
 
   turtle: {
     id: 'turtle',
-    icon: 'turtle',
+    icon: 'turtle.svg',
     name: 'turtle',
     stats: {
       attack: 0.5,
@@ -66,7 +66,7 @@ export const LEVEL_FOUR_ENEMIES = {
 
   boar: {
     id: 'boar',
-    icon: 'boar',
+    icon: 'boar.svg',
     name: 'boar',
     stats: {
       attack: 1,
@@ -84,7 +84,7 @@ export const LEVEL_FOUR_ENEMIES = {
 
   goat: {
     id: 'goat',
-    icon: 'goat',
+    icon: 'goat.svg',
     name: 'goat',
     stats: {
       attack: 1,
@@ -102,7 +102,7 @@ export const LEVEL_FOUR_ENEMIES = {
 
   fox: {
     id: 'fox',
-    icon: 'fox',
+    icon: 'fox.svg',
     name: 'fox',
     stats: {
       attack: 1,

@@ -128,20 +128,20 @@ Template.equipmentTab.helpers({
     } else {
       Template.instance().state.set('defenseStats', [{
         name: 'health',
-        icon: 'health',
+        icon: 'health.svg',
         value: combat.stats.health,
         maxValue: combat.stats.healthMax
       }, {
         name: 'defense',
-        icon: 'defense',
+        icon: 'defense.svg',
         value: combat.stats.defense
       }, {
         name: 'armor',
-        icon: 'armor',
+        icon: 'armor.svg',
         value: combat.stats.armor
       }, {
         name: 'magic armor',
-        icon: 'magicArmor',
+        icon: 'magicArmor.svg',
         value: combat.stats.magicArmor
       }]);
     }
@@ -158,20 +158,20 @@ Template.equipmentTab.helpers({
     } else {
       Template.instance().state.set('offenseStats', [{
         name: 'attack',
-        icon: 'attack',
+        icon: 'attack.svg',
         value: combat.stats.attack,
         maxValue: combat.stats.attackMax
       }, {
         name: 'attack speed',
-        icon: 'attackSpeed',
+        icon: 'attackSpeed.svg',
         value: combat.stats.attackSpeed
       }, {
         name: 'magic power',
-        icon: 'magicPower',
+        icon: 'magicPower.svg',
         value: combat.stats.magicPower
       }, {
         name: 'accuracy',
-        icon: 'accuracy',
+        icon: 'accuracy.svg',
         value: combat.stats.accuracy
       }]);   
     }

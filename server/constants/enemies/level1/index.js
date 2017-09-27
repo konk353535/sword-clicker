@@ -30,7 +30,7 @@ export const LEVEL_ONE_ENEMIES = {
 
   fly: {
     id: 'fly',
-    icon: 'fly',
+    icon: 'fly.svg',
     name: 'fly',
     stats: {
       attack: 0.5,
@@ -48,7 +48,7 @@ export const LEVEL_ONE_ENEMIES = {
 
   grasshopper: {
     id: 'grasshopper',
-    icon: 'grasshopper',
+    icon: 'grasshopper.svg',
     name: 'grasshopper',
     stats: {
       attack: 0.6,
@@ -66,7 +66,7 @@ export const LEVEL_ONE_ENEMIES = {
 
   mouse: {
     id: 'mouse',
-    icon: 'mouse',
+    icon: 'mouse.svg',
     name: 'mouse',
     stats: {
       attack: 1,
@@ -84,7 +84,7 @@ export const LEVEL_ONE_ENEMIES = {
 
   bee: {
     id: 'bee',
-    icon: 'bee',
+    icon: 'bee.svg',
     name: 'bee',
     stats: {
       attack: 1,
@@ -102,7 +102,7 @@ export const LEVEL_ONE_ENEMIES = {
 
   bird: {
     id: 'bird',
-    icon: 'bird',
+    icon: 'bird.svg',
     name: 'bird',
     stats: {
       attack: 1,

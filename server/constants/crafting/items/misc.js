@@ -1,7 +1,7 @@
 export const MISC_ITEMS = {
   enhancer_key: {
     id: 'enhancer_key',
-    icon: 'enhancerKey',
+    icon: 'enhancerKey.svg',
     category: 'crafting',
     name: 'enhancer key',
     sellPrice: 250,
@@ -17,7 +17,7 @@ export const MISC_ITEMS = {
 
   adventure_token: {
     id: 'adventure_token',
-    icon: 'adventureToken',
+    icon: 'adventureToken.svg',
     category: 'crafting',
     name: 'adventure token',
     sellPrice: 10,

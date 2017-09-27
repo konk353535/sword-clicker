@@ -34,7 +34,7 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'druids_pants', amount: 1 }        
       ]
     }, {
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'obsidian_essence', amount: 1 }
       ]

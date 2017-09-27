@@ -33,7 +33,7 @@ export const TOWER_FLOOR_15 = {
         { type: 'item', itemId: 'cursed_spirit_shield', amount: 1 }
       ]
     }, {
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }
       ]

@@ -30,7 +30,7 @@ export const LEVEL_FIVE_ENEMIES = {
 
   wolf: {
     id: 'wolf',
-    icon: 'wolf',
+    icon: 'wolf.svg',
     name: 'wolf',
     stats: {
       attack: 1,
@@ -48,7 +48,7 @@ export const LEVEL_FIVE_ENEMIES = {
 
   beaver: {
     id: 'beaver',
-    icon: 'beaver',
+    icon: 'beaver.svg',
     name: 'beaver',
     stats: {
       attack: 0.5,
@@ -66,7 +66,7 @@ export const LEVEL_FIVE_ENEMIES = {
 
   eagle: {
     id: 'eagle',
-    icon: 'eagle',
+    icon: 'eagle.svg',
     name: 'eagle',
     stats: {
       attack: 1,
@@ -84,7 +84,7 @@ export const LEVEL_FIVE_ENEMIES = {
 
   kangaroo: {
     id: 'kangaroo',
-    icon: 'kangaroo',
+    icon: 'kangaroo.svg',
     name: 'kangaroo',
     stats: {
       attack: 1,
@@ -102,7 +102,7 @@ export const LEVEL_FIVE_ENEMIES = {
 
   jellyFish: {
     id: 'jellyFish',
-    icon: 'jellyFish',
+    icon: 'jellyFish.svg',
     name: 'jellyFish',
     stats: {
       attack: 0.3,

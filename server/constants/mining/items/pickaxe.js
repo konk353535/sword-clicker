@@ -31,7 +31,7 @@ export const PICKAXE_ITEMS = {
 
   thors_skull: {
     id: 'thors_skull',
-    icon: 'thorsSkull',
+    icon: 'thorsSkull.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'thors skull',
@@ -62,7 +62,7 @@ export const PICKAXE_ITEMS = {
   // Over Powered Pickaxes ( 1 )
   dwarven_hammer: {
     id: 'dwarven_hammer',
-    icon: 'dwarvenHammer',
+    icon: 'dwarvenHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'dwarven hammer',
@@ -87,7 +87,7 @@ export const PICKAXE_ITEMS = {
 
   the_malleo: {
     id: 'the_malleo',
-    icon: 'theMalleo',
+    icon: 'theMalleo.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'the malleo',
@@ -113,7 +113,7 @@ export const PICKAXE_ITEMS = {
   // High Storage pickaxes
   copper_mining_hammer: {
     id: 'copper_mining_hammer',
-    icon: 'copperMiningHammer',
+    icon: 'copperMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'copper mining hammer',
@@ -138,7 +138,7 @@ export const PICKAXE_ITEMS = {
 
   tin_mining_hammer: {
     id: 'tin_mining_hammer',
-    icon: 'tinMiningHammer',
+    icon: 'tinMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tin mining hammer',
@@ -163,7 +163,7 @@ export const PICKAXE_ITEMS = {
 
   bronze_mining_hammer: {
     id: 'bronze_mining_hammer',
-    icon: 'bronzeMiningHammer',
+    icon: 'bronzeMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'bronze mining hammer',
@@ -188,7 +188,7 @@ export const PICKAXE_ITEMS = {
 
   iron_mining_hammer: {
     id: 'iron_mining_hammer',
-    icon: 'ironMiningHammer',
+    icon: 'ironMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'iron mining hammer',
@@ -213,7 +213,7 @@ export const PICKAXE_ITEMS = {
 
   silver_mining_hammer: {
     id: 'silver_mining_hammer',
-    icon: 'silverMiningHammer',
+    icon: 'silverMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'silver mining hammer',
@@ -238,7 +238,7 @@ export const PICKAXE_ITEMS = {
 
   gold_mining_hammer: {
     id: 'gold_mining_hammer',
-    icon: 'goldMiningHammer',
+    icon: 'goldMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'gold mining hammer',
@@ -263,7 +263,7 @@ export const PICKAXE_ITEMS = {
 
   carbon_mining_hammer: {
     id: 'carbon_mining_hammer',
-    icon: 'carbonMiningHammer',
+    icon: 'carbonMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'carbon mining hammer',
@@ -288,7 +288,7 @@ export const PICKAXE_ITEMS = {
 
   steel_mining_hammer: {
     id: 'steel_mining_hammer',
-    icon: 'steelMiningHammer',
+    icon: 'steelMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'steel mining hammer',
@@ -313,7 +313,7 @@ export const PICKAXE_ITEMS = {
 
   platinum_mining_hammer: {
     id: 'platinum_mining_hammer',
-    icon: 'platinumMiningHammer',
+    icon: 'platinumMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'platinum mining hammer',
@@ -338,7 +338,7 @@ export const PICKAXE_ITEMS = {
 
   titanium_mining_hammer: {
     id: 'titanium_mining_hammer',
-    icon: 'titaniumMiningHammer',
+    icon: 'titaniumMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'titanium mining hammer',
@@ -363,7 +363,7 @@ export const PICKAXE_ITEMS = {
 
   tungsten_mining_hammer: {
     id: 'tungsten_mining_hammer',
-    icon: 'tungstenMiningHammer',
+    icon: 'tungstenMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tungsten mining hammer',
@@ -388,7 +388,7 @@ export const PICKAXE_ITEMS = {
 
   obsidian_mining_hammer: {
     id: 'obsidian_mining_hammer',
-    icon: 'obsidianMiningHammer',
+    icon: 'obsidianMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'obsidian mining hammer',
@@ -413,7 +413,7 @@ export const PICKAXE_ITEMS = {
 
   cobalt_mining_hammer: {
     id: 'cobalt_mining_hammer',
-    icon: 'cobaltMiningHammer',
+    icon: 'cobaltMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cobalt mining hammer',
@@ -438,7 +438,7 @@ export const PICKAXE_ITEMS = {
 
   mithril_mining_hammer: {
     id: 'mithril_mining_hammer',
-    icon: 'mithrilMiningHammer',
+    icon: 'mithrilMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'mithril mining hammer',
@@ -463,7 +463,7 @@ export const PICKAXE_ITEMS = {
 
   adamantium_mining_hammer: {
     id: 'adamantium_mining_hammer',
-    icon: 'adamantiumMiningHammer',
+    icon: 'adamantiumMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'adamantium mining hammer',
@@ -488,7 +488,7 @@ export const PICKAXE_ITEMS = {
 
   orichalcum_mining_hammer: {
     id: 'orichalcum_mining_hammer',
-    icon: 'orichalcumMiningHammer',
+    icon: 'orichalcumMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'orichalcum mining hammer',
@@ -513,7 +513,7 @@ export const PICKAXE_ITEMS = {
 
   meteorite_mining_hammer: {
     id: 'meteorite_mining_hammer',
-    icon: 'meteoriteMiningHammer',
+    icon: 'meteoriteMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'meteorite mining hammer',
@@ -538,7 +538,7 @@ export const PICKAXE_ITEMS = {
 
   fairy_steel_mining_hammer: {
     id: 'fairy_steel_mining_hammer',
-    icon: 'fairySteelMiningHammer',
+    icon: 'fairySteelMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy_steel mining hammer',
@@ -563,7 +563,7 @@ export const PICKAXE_ITEMS = {
 
   elven_steel_mining_hammer: {
     id: 'elven_steel_mining_hammer',
-    icon: 'elvenSteelMiningHammer',
+    icon: 'elvenSteelMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'elven_steel mining hammer',
@@ -588,7 +588,7 @@ export const PICKAXE_ITEMS = {
 
   cursed_mining_hammer: {
     id: 'cursed_mining_hammer',
-    icon: 'cursedMiningHammer',
+    icon: 'cursedMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cursed mining hammer',
@@ -614,7 +614,7 @@ export const PICKAXE_ITEMS = {
   // Passive heavy pickaxes
   copper_dwarven_idol: {
     id: 'copper_dwarven_idol',
-    icon: 'copperDwarvenIdol',
+    icon: 'copperDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'Copper Dwarven Idol',
@@ -636,7 +636,7 @@ export const PICKAXE_ITEMS = {
 
   tin_dwarven_idol: {
     id: 'tin_dwarven_idol',
-    icon: 'tinDwarvenIdol',
+    icon: 'tinDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tin Dwarven Idol',
@@ -658,7 +658,7 @@ export const PICKAXE_ITEMS = {
 
   bronze_dwarven_idol: {
     id: 'bronze_dwarven_idol',
-    icon: 'bronzeDwarvenIdol',
+    icon: 'bronzeDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'bronze Dwarven Idol',
@@ -680,7 +680,7 @@ export const PICKAXE_ITEMS = {
 
   iron_dwarven_idol: {
     id: 'iron_dwarven_idol',
-    icon: 'ironDwarvenIdol',
+    icon: 'ironDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'iron Dwarven Idol',
@@ -702,7 +702,7 @@ export const PICKAXE_ITEMS = {
 
   silver_dwarven_idol: {
     id: 'silver_dwarven_idol',
-    icon: 'silverDwarvenIdol',
+    icon: 'silverDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'silver Dwarven Idol',
@@ -724,7 +724,7 @@ export const PICKAXE_ITEMS = {
 
   gold_dwarven_idol: {
     id: 'gold_dwarven_idol',
-    icon: 'goldDwarvenIdol',
+    icon: 'goldDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'gold Dwarven Idol',
@@ -747,7 +747,7 @@ export const PICKAXE_ITEMS = {
 
   carbon_dwarven_idol: {
     id: 'carbon_dwarven_idol',
-    icon: 'carbonDwarvenIdol',
+    icon: 'carbonDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'carbon Dwarven Idol',
@@ -770,7 +770,7 @@ export const PICKAXE_ITEMS = {
 
   steel_dwarven_idol: {
     id: 'steel_dwarven_idol',
-    icon: 'steelDwarvenIdol',
+    icon: 'steelDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'steel Dwarven Idol',
@@ -792,7 +792,7 @@ export const PICKAXE_ITEMS = {
 
   platinum_dwarven_idol: {
     id: 'platinum_dwarven_idol',
-    icon: 'platinumDwarvenIdol',
+    icon: 'platinumDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'platinum Dwarven Idol',
@@ -814,7 +814,7 @@ export const PICKAXE_ITEMS = {
 
   titanium_dwarven_idol: {
     id: 'titanium_dwarven_idol',
-    icon: 'titaniumDwarvenIdol',
+    icon: 'titaniumDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'titanium Dwarven Idol',
@@ -836,7 +836,7 @@ export const PICKAXE_ITEMS = {
 
   tungsten_dwarven_idol: {
     id: 'tungsten_dwarven_idol',
-    icon: 'tungstenDwarvenIdol',
+    icon: 'tungstenDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tungsten Dwarven Idol',
@@ -858,7 +858,7 @@ export const PICKAXE_ITEMS = {
 
   obsidian_dwarven_idol: {
     id: 'obsidian_dwarven_idol',
-    icon: 'obsidianDwarvenIdol',
+    icon: 'obsidianDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'obsidian Dwarven Idol',
@@ -880,7 +880,7 @@ export const PICKAXE_ITEMS = {
 
   cobalt_dwarven_idol: {
     id: 'cobalt_dwarven_idol',
-    icon: 'cobaltDwarvenIdol',
+    icon: 'cobaltDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cobalt Dwarven Idol',
@@ -902,7 +902,7 @@ export const PICKAXE_ITEMS = {
 
   mithril_dwarven_idol: {
     id: 'mithril_dwarven_idol',
-    icon: 'mithrilDwarvenIdol',
+    icon: 'mithrilDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'mithril Dwarven Idol',
@@ -924,7 +924,7 @@ export const PICKAXE_ITEMS = {
 
   adamantium_dwarven_idol: {
     id: 'adamantium_dwarven_idol',
-    icon: 'adamantiumDwarvenIdol',
+    icon: 'adamantiumDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'adamantium Dwarven Idol',
@@ -946,7 +946,7 @@ export const PICKAXE_ITEMS = {
 
   orichalcum_dwarven_idol: {
     id: 'orichalcum_dwarven_idol',
-    icon: 'orichalcumDwarvenIdol',
+    icon: 'orichalcumDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'orichalcum Dwarven Idol',
@@ -969,7 +969,7 @@ export const PICKAXE_ITEMS = {
 
   meteorite_dwarven_idol: {
     id: 'meteorite_dwarven_idol',
-    icon: 'meteoriteDwarvenIdol',
+    icon: 'meteoriteDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'meteorite Dwarven Idol',
@@ -992,7 +992,7 @@ export const PICKAXE_ITEMS = {
 
   fairy_steel_dwarven_idol: {
     id: 'fairy_steel_dwarven_idol',
-    icon: 'fairySteelDwarvenIdol',
+    icon: 'fairySteelDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy steel Dwarven Idol',
@@ -1014,7 +1014,7 @@ export const PICKAXE_ITEMS = {
 
   elven_steel_dwarven_idol: {
     id: 'elven_steel_dwarven_idol',
-    icon: 'elvenSteelDwarvenIdol',
+    icon: 'elvenSteelDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'elven steel Dwarven Idol',
@@ -1036,7 +1036,7 @@ export const PICKAXE_ITEMS = {
 
   cursed_dwarven_idol: {
     id: 'cursed_dwarven_idol',
-    icon: 'cursedDwarvenIdol',
+    icon: 'cursedDwarvenIdol.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cursed dwarven Idol',
@@ -1059,7 +1059,7 @@ export const PICKAXE_ITEMS = {
   // Starter Pickaxe
   sharp_rock_pickaxe: {
     id: 'sharp_rock_pickaxe',
-    icon: 'sharpRock',
+    icon: 'sharpRock.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'sharp rock',
@@ -1083,7 +1083,7 @@ export const PICKAXE_ITEMS = {
   // Main Line pickaxes
   primitive_pickaxe: {
     id: 'primitive_pickaxe',
-    icon: 'primitivePickaxe',
+    icon: 'primitivePickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'stone pickaxe',
@@ -1106,7 +1106,7 @@ export const PICKAXE_ITEMS = {
 
   copper_pickaxe: {
     id: 'copper_pickaxe',
-    icon: 'copperPickaxe',
+    icon: 'copperPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'copper pickaxe',
@@ -1131,7 +1131,7 @@ export const PICKAXE_ITEMS = {
 
   tin_pickaxe: {
     id: 'tin_pickaxe',
-    icon: 'tinPickaxe',
+    icon: 'tinPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tin pickaxe',
@@ -1156,7 +1156,7 @@ export const PICKAXE_ITEMS = {
 
   bronze_pickaxe: {
     id: 'bronze_pickaxe',
-    icon: 'bronzePickaxe',
+    icon: 'bronzePickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'bronze pickaxe',
@@ -1181,7 +1181,7 @@ export const PICKAXE_ITEMS = {
 
   iron_pickaxe: {
     id: 'iron_pickaxe',
-    icon: 'ironPickaxe',
+    icon: 'ironPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'iron pickaxe',
@@ -1206,7 +1206,7 @@ export const PICKAXE_ITEMS = {
 
   silver_pickaxe: {
     id: 'silver_pickaxe',
-    icon: 'silverPickaxe',
+    icon: 'silverPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'silver pickaxe',
@@ -1231,7 +1231,7 @@ export const PICKAXE_ITEMS = {
 
   gold_pickaxe: {
     id: 'gold_pickaxe',
-    icon: 'goldPickaxe',
+    icon: 'goldPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'gold pickaxe',
@@ -1256,7 +1256,7 @@ export const PICKAXE_ITEMS = {
 
   carbon_pickaxe: {
     id: 'carbon_pickaxe',
-    icon: 'carbonPickaxe',
+    icon: 'carbonPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'carbon pickaxe',
@@ -1281,7 +1281,7 @@ export const PICKAXE_ITEMS = {
 
   steel_pickaxe: {
     id: 'steel_pickaxe',
-    icon: 'steelPickaxe',
+    icon: 'steelPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'steel pickaxe',
@@ -1306,7 +1306,7 @@ export const PICKAXE_ITEMS = {
 
   platinum_pickaxe: {
     id: 'platinum_pickaxe',
-    icon: 'platinumPickaxe',
+    icon: 'platinumPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'platinum pickaxe',
@@ -1331,7 +1331,7 @@ export const PICKAXE_ITEMS = {
 
   titanium_pickaxe: {
     id: 'titanium_pickaxe',
-    icon: 'titaniumPickaxe',
+    icon: 'titaniumPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'titanium pickaxe',
@@ -1356,7 +1356,7 @@ export const PICKAXE_ITEMS = {
 
   tungsten_pickaxe: {
     id: 'tungsten_pickaxe',
-    icon: 'tungstenPickaxe',
+    icon: 'tungstenPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'tungsten pickaxe',
@@ -1381,7 +1381,7 @@ export const PICKAXE_ITEMS = {
 
   obsidian_pickaxe: {
     id: 'obsidian_pickaxe',
-    icon: 'obsidianPickaxe',
+    icon: 'obsidianPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'obsidian pickaxe',
@@ -1406,7 +1406,7 @@ export const PICKAXE_ITEMS = {
 
   cobalt_pickaxe: {
     id: 'cobalt_pickaxe',
-    icon: 'cobaltPickaxe',
+    icon: 'cobaltPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cobalt pickaxe',
@@ -1431,7 +1431,7 @@ export const PICKAXE_ITEMS = {
 
   mithril_pickaxe: {
     id: 'mithril_pickaxe',
-    icon: 'mithrilPickaxe',
+    icon: 'mithrilPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'mithril pickaxe',
@@ -1456,7 +1456,7 @@ export const PICKAXE_ITEMS = {
 
   adamantium_pickaxe: {
     id: 'adamantium_pickaxe',
-    icon: 'adamantiumPickaxe',
+    icon: 'adamantiumPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'adamantium pickaxe',
@@ -1481,7 +1481,7 @@ export const PICKAXE_ITEMS = {
 
   orichalcum_pickaxe: {
     id: 'orichalcum_pickaxe',
-    icon: 'orichalcumPickaxe',
+    icon: 'orichalcumPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'orichalcum pickaxe',
@@ -1506,7 +1506,7 @@ export const PICKAXE_ITEMS = {
 
   meteorite_pickaxe: {
     id: 'meteorite_pickaxe',
-    icon: 'meteoritePickaxe',
+    icon: 'meteoritePickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'meteorite pickaxe',
@@ -1531,7 +1531,7 @@ export const PICKAXE_ITEMS = {
 
   fairy_steel_pickaxe: {
     id: 'fairy_steel_pickaxe',
-    icon: 'fairySteelPickaxe',
+    icon: 'fairySteelPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy steel pickaxe',
@@ -1556,7 +1556,7 @@ export const PICKAXE_ITEMS = {
 
   elven_steel_pickaxe: {
     id: 'elven_steel_pickaxe',
-    icon: 'elvenSteelPickaxe',
+    icon: 'elvenSteelPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'elven steel pickaxe',
@@ -1581,7 +1581,7 @@ export const PICKAXE_ITEMS = {
 
   cursed_pickaxe: {
     id: 'cursed_pickaxe',
-    icon: 'cursedPickaxe',
+    icon: 'cursedPickaxe.svg',
     category: 'mining',
     slot: 'pickaxe',
     name: 'cursed pickaxe',

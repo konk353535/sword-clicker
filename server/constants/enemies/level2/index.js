@@ -31,7 +31,7 @@ export const LEVEL_TWO_ENEMIES = {
   // Floor 1 - Hard - 1
   rat: {
     id: 'rat',
-    icon: 'rat',
+    icon: 'rat.svg',
     name: 'rat',
     stats: {
       attack: 0.5,
@@ -49,7 +49,7 @@ export const LEVEL_TWO_ENEMIES = {
   // Floor 1 - Hard - 2
   rabbit: {
     id: 'rabbit',
-    icon: 'rabbit',
+    icon: 'rabbit.svg',
     name: 'rabbit',
     stats: {
       attack: 1,
@@ -67,7 +67,7 @@ export const LEVEL_TWO_ENEMIES = {
   // Floor 1 - Hard - 3
   crab: {
     id: 'crab',
-    icon: 'crab',
+    icon: 'crab.svg',
     name: 'crab',
     stats: {
       attack: 0.5,
@@ -85,7 +85,7 @@ export const LEVEL_TWO_ENEMIES = {
   // Floor 1 - Hard - 4
   snail: {
     id: 'snail',
-    icon: 'snail',
+    icon: 'snail.svg',
     name: 'snail',
     stats: {
       attack: 0.3,
@@ -103,7 +103,7 @@ export const LEVEL_TWO_ENEMIES = {
   // Floor 1 - Hard - 5
   wasp: {
     id: 'wasp',
-    icon: 'wasp',
+    icon: 'wasp.svg',
     name: 'wasp',
     stats: {
       attack: 0.4,

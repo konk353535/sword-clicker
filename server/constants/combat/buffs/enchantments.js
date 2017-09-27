@@ -7,7 +7,7 @@ export const ENCHANTMENT_BUFFS = {
 
   axe_cleave: {
     duplicateTag: 'axe_cleave', // Used to stop duplicate buffs
-    icon: 'boneKingsAxe',
+    icon: 'boneKingsAxe.svg',
     name: 'axe cleave',
     description() {
       return `Deal 40% weapon damage to another enemy.`;
@@ -57,7 +57,7 @@ export const ENCHANTMENT_BUFFS = {
 
   magic_blade: {
     duplicateTag: 'magic_blade', // Used to stop duplicate buffs
-    icon: 'magicBlade',
+    icon: 'magicBlade.svg',
     name: 'magic blade',
     description() {
       return `Deals 25% magic damage on hit`;
@@ -104,7 +104,7 @@ export const ENCHANTMENT_BUFFS = {
 
   druidic_hat: {
     duplicateTag: 'druidic_hat', // Used to stop duplicate buffs
-    icon: 'druidsHat',
+    icon: 'druidsHat.svg',
     name: 'druids blessing',
     description() {
       return `Emergency heal an ally below 30% hp for 250% MP`;
@@ -163,7 +163,7 @@ export const ENCHANTMENT_BUFFS = {
 
   oversized_club: {
     duplicateTag: 'oversized_club', // Used to stop duplicate buffs
-    icon: 'oversizedClub',
+    icon: 'oversizedClub.svg',
     name: 'over side club',
     description() {
       return `35% chance to shred targets magic armor by 60`;
@@ -193,7 +193,7 @@ export const ENCHANTMENT_BUFFS = {
               allowDuplicates: true,
               totalDuration: 5,
               armorReduction,
-              icon: 'magicArmorReduction',
+              icon: 'magicArmorReduction.svg',
               description: `Reduces your magic armor by ${armorReduction}%`
             }
           }
@@ -215,7 +215,7 @@ export const ENCHANTMENT_BUFFS = {
 
   phoenix_hat: {
     duplicateTag: 'phoenix_hat', // Used to stop duplicate buffs
-    icon: 'babyPhoenix',
+    icon: 'babyPhoenix.svg',
     name: 'phoneix hat',
     description() {
       return `Randomly ignites enemies. Fades away after 5 ignites.`;
@@ -243,7 +243,7 @@ export const ENCHANTMENT_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              icon: 'ignite',
+              icon: 'ignite.svg',
               description: ''
             },
             constants: BUFFS['ignite']
@@ -267,12 +267,12 @@ export const ENCHANTMENT_BUFFS = {
 
   demons_heart: {
     duplicateTag: 'demons_heart', // Used to stop duplicate buffs
-    icon: 'demonsHeart',
+    icon: 'demonsHeart.svg',
     name: 'demons heart',
     description() {
       return `
         When you fall below 20% hp become cursed.<br />
-        Cursed: +100% damage, +50% attack speed, +50 hybrid armor<br />
+        Cursed: +50% damage, +50% attack speed, +50 hybrid armor<br />
         Take increasing damage each second.`;
     },
     constants: {
@@ -291,14 +291,14 @@ export const ENCHANTMENT_BUFFS = {
           const decimalHp = target.stats.health / target.stats.healthMax;
           if (decimalHp < 0.2) {
 
-            target.stats.attackMax *= 2;
-            target.stats.attack *= 2;
+            target.stats.attackMax *= 1.5;
+            target.stats.attack *= 1.5;
             target.stats.armor += 50;
             target.stats.magicArmor += 50;
             target.stats.attackSpeed *= 1.5;
             target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
 
-            target.icon = 'demon';
+            target.icon = 'demon.svg';
             buff.data.active = true;
             buff.data.deathStacks = 0.5;
             buff.data.stacks = 0;

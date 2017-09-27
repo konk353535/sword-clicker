@@ -127,7 +127,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         eventType: 'heal',
         label: (healAmount).toFixed(1),
         customColor: '#d9534f',
-        customIcon: 'health'
+        customicon: 'health.svg'
       });
     }
 

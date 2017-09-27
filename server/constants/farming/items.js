@@ -3,7 +3,7 @@ import { BUFFS } from '/server/constants/combat';
 export const FARMING_ITEMS = {
   lettice_seed: {
     id: 'lettice_seed',
-    icon: 'letticeSeed',
+    icon: 'letticeSeed.svg',
     category: 'seed',
     name: 'Lettuce Seed',
     seedType: 'food',
@@ -17,7 +17,7 @@ export const FARMING_ITEMS = {
 
   lettice: {
     id: 'lettice',
-    icon: 'lettice',
+    icon: 'lettice.svg',
     category: 'food',
     name: 'Lettuce',
     description() {
@@ -32,7 +32,7 @@ export const FARMING_ITEMS = {
 
   marigold_seed: {
     id: 'marigold_seed',
-    icon: 'marigoldSeed',
+    icon: 'marigoldSeed.svg',
     category: 'seed',
     name: 'Marigold Seed',
     seedType: 'misc',
@@ -45,7 +45,7 @@ export const FARMING_ITEMS = {
 
   marigold: {
     id: 'marigold',
-    icon: 'marigold',
+    icon: 'marigold.svg',
     category: 'herb',
     name: 'Marigold',
     description() {
@@ -56,7 +56,7 @@ export const FARMING_ITEMS = {
 
   blue_rose_seed: {
     id: 'blue_rose_seed',
-    icon: 'blueRoseSeed',
+    icon: 'blueRoseSeed.svg',
     category: 'seed',
     name: 'blue rose Seed',
     seedType: 'misc',
@@ -69,7 +69,7 @@ export const FARMING_ITEMS = {
 
   blue_rose: {
     id: 'blue_rose',
-    icon: 'blueRose',
+    icon: 'blueRose.svg',
     category: 'herb',
     name: 'blue rose',
     description() {
@@ -80,7 +80,7 @@ export const FARMING_ITEMS = {
 
   hydrangea_seed: {
     id: 'hydrangea_seed',
-    icon: 'hydrangeaSeed',
+    icon: 'hydrangeaSeed.svg',
     category: 'seed',
     name: 'hydrangea Seed',
     seedType: 'misc',
@@ -93,7 +93,7 @@ export const FARMING_ITEMS = {
 
   hydrangea: {
     id: 'hydrangea',
-    icon: 'hydrangea',
+    icon: 'hydrangea.svg',
     category: 'herb',
     name: 'hydrangea',
     description() {
@@ -104,7 +104,7 @@ export const FARMING_ITEMS = {
 
   chrysanthemum_seed: {
     id: 'chrysanthemum_seed',
-    icon: 'chrysanthemumSeed',
+    icon: 'chrysanthemumSeed.svg',
     category: 'seed',
     name: 'Chrysanthemum Seed',
     seedType: 'misc',
@@ -117,7 +117,7 @@ export const FARMING_ITEMS = {
 
   chrysanthemum: {
     id: 'chrysanthemum',
-    icon: 'chrysanthemum',
+    icon: 'chrysanthemum.svg',
     category: 'herb',
     name: 'chrysanthemum',
     description() {
@@ -128,7 +128,7 @@ export const FARMING_ITEMS = {
 
   cactus_seed: {
     id: 'cactus_seed',
-    icon: 'cactusSeed',
+    icon: 'cactusSeed.svg',
     category: 'seed',
     name: 'Cactus Seed',
     seedType: 'misc',
@@ -141,7 +141,7 @@ export const FARMING_ITEMS = {
 
   cactus: {
     id: 'cactus',
-    icon: 'cactus',
+    icon: 'cactus.svg',
     category: 'herb',
     name: 'Cactus',
     description() {
@@ -152,7 +152,7 @@ export const FARMING_ITEMS = {
 
   bamboo_seed: {
     id: 'bamboo_seed',
-    icon: 'bambooSeed',
+    icon: 'bambooSeed.svg',
     category: 'seed',
     name: 'bamboo Seed',
     seedType: 'misc',
@@ -165,7 +165,7 @@ export const FARMING_ITEMS = {
 
   bamboo: {
     id: 'bamboo',
-    icon: 'bamboo',
+    icon: 'bamboo.svg',
     category: 'herb',
     name: 'bamboo',
     description() {
@@ -176,7 +176,7 @@ export const FARMING_ITEMS = {
 
   pear_seed: {
     id: 'pear_seed',
-    icon: 'pearSeed',
+    icon: 'pearSeed.svg',
     category: 'seed',
     name: 'Pear Seed',
     seedType: 'food',
@@ -190,7 +190,7 @@ export const FARMING_ITEMS = {
 
   pear: {
     id: 'pear',
-    icon: 'pear',
+    icon: 'pear.svg',
     category: 'food',
     name: 'Pear',
     description() {
@@ -205,7 +205,7 @@ export const FARMING_ITEMS = {
 
   acai_berry_seed: {
     id: 'acai_berry_seed',
-    icon: 'acaiBerrySeed',
+    icon: 'acaiBerrySeed.svg',
     category: 'seed',
     name: 'acai berry Seed',
     seedType: 'food',
@@ -219,7 +219,7 @@ export const FARMING_ITEMS = {
 
   acai_berry: {
     id: 'acai_berry',
-    icon: 'acaiBerry',
+    icon: 'acaiBerry.svg',
     category: 'food',
     name: 'acai berry',
     description() {
@@ -234,7 +234,7 @@ export const FARMING_ITEMS = {
 
   garlic_seed: {
     id: 'garlic_seed',
-    icon: 'garlicSeed',
+    icon: 'garlicSeed.svg',
     category: 'seed',
     seedType: 'herb',
     name: 'garlic Seed',
@@ -245,7 +245,7 @@ export const FARMING_ITEMS = {
 
   lemon_seed: {
     id: 'lemon_seed',
-    icon: 'lemonSeed',
+    icon: 'lemonSeed.svg',
     category: 'seed',
     name: 'Lemon Seed',
     seedType: 'food',
@@ -256,7 +256,7 @@ export const FARMING_ITEMS = {
 
   lemon: {
     id: 'lemon',
-    icon: 'lemon',
+    icon: 'lemon.svg',
     category: 'food',
     name: 'lemon',
     description() {
@@ -271,7 +271,7 @@ export const FARMING_ITEMS = {
 
   red_apple_seed: {
     id: 'red_apple_seed',
-    icon: 'redAppleSeed',
+    icon: 'redAppleSeed.svg',
     category: 'seed',
     seedType: 'food',
     name: 'red apple seed',
@@ -282,7 +282,7 @@ export const FARMING_ITEMS = {
 
   red_apple: {
     id: 'red_apple',
-    icon: 'redApple',
+    icon: 'redApple.svg',
     category: 'food',
     name: 'red apple',
     description() {
@@ -297,7 +297,7 @@ export const FARMING_ITEMS = {
 
   pineapple_seed: {
     id: 'pineapple_seed',
-    icon: 'pineappleSeed',
+    icon: 'pineappleSeed.svg',
     category: 'seed',
     name: 'pineapple seed',
     description: 'Used to grow pine apples. Useful for eating.',
@@ -308,7 +308,7 @@ export const FARMING_ITEMS = {
 
   pineapple: {
     id: 'pineapple',
-    icon: 'pineapple',
+    icon: 'pineapple.svg',
     category: 'food',
     name: 'pineapple',
     description() {
@@ -323,7 +323,7 @@ export const FARMING_ITEMS = {
 
   potato_seed: {
     id: 'potato_seed',
-    icon: 'potatoSeed',
+    icon: 'potatoSeed.svg',
     category: 'seed',
     name: 'potato seed',
     description: 'Used to grow potatos. Useful for eating.',
@@ -334,7 +334,7 @@ export const FARMING_ITEMS = {
 
   potato: {
     id: 'potato',
-    icon: 'potato',
+    icon: 'potato.svg',
     category: 'food',
     name: 'potato',
     description() {
@@ -349,7 +349,7 @@ export const FARMING_ITEMS = {
 
   banana_seed: {
     id: 'banana_seed',
-    icon: 'bananaSeed',
+    icon: 'bananaSeed.svg',
     category: 'seed',
     name: 'banana seed',
     description: 'Used to grow bananas. Useful for eating.',
@@ -360,7 +360,7 @@ export const FARMING_ITEMS = {
 
   banana: {
     id: 'banana',
-    icon: 'banana',
+    icon: 'banana.svg',
     category: 'food',
     name: 'banana',
     description() {
@@ -375,7 +375,7 @@ export const FARMING_ITEMS = {
 
   sweet_potato_seed: {
     id: 'sweet_potato_seed',
-    icon: 'sweetPotatoSeed',
+    icon: 'sweetPotatoSeed.svg',
     category: 'seed',
     name: 'sweet potato seed',
     description: 'Used to grow sweet potatos. Useful for eating.',
@@ -386,7 +386,7 @@ export const FARMING_ITEMS = {
 
   sweet_potato: {
     id: 'sweet_potato',
-    icon: 'sweetPotato',
+    icon: 'sweetPotato.svg',
     category: 'food',
     name: 'sweet potato',
     description() {
@@ -401,7 +401,7 @@ export const FARMING_ITEMS = {
 
   carrot_seed: {
     id: 'carrot_seed',
-    icon: 'carrotSeed',
+    icon: 'carrotSeed.svg',
     category: 'seed',
     name: 'carrot seed',
     description: 'Used to grow carrots. Useful for eating.',
@@ -412,7 +412,7 @@ export const FARMING_ITEMS = {
 
   carrot: {
     id: 'carrot',
-    icon: 'carrot',
+    icon: 'carrot.svg',
     category: 'food',
     name: 'carrot',
     description() {
@@ -427,7 +427,7 @@ export const FARMING_ITEMS = {
 
   dragonfruit_seed: {
     id: 'dragonfruit_seed',
-    icon: 'dragonfruitSeed',
+    icon: 'dragonfruitSeed.svg',
     category: 'seed',
     name: 'dragonfruit seed',
     description: 'Used to grow dragonfruits. Useful for eating.',
@@ -438,7 +438,7 @@ export const FARMING_ITEMS = {
 
   dragonfruit: {
     id: 'dragonfruit',
-    icon: 'dragonfruit',
+    icon: 'dragonfruit.svg',
     category: 'food',
     name: 'dragonfruit',
     description() {
@@ -453,7 +453,7 @@ export const FARMING_ITEMS = {
 
   watermelon_seed: {
     id: 'watermelon_seed',
-    icon: 'watermelonSeed',
+    icon: 'watermelonSeed.svg',
     category: 'seed',
     name: 'watermelon seed',
     description: 'Used to grow watermelons. Useful for eating.',
@@ -464,7 +464,7 @@ export const FARMING_ITEMS = {
 
   watermelon: {
     id: 'watermelon',
-    icon: 'watermelon',
+    icon: 'watermelon.svg',
     category: 'food',
     name: 'watermelon',
     description() {
@@ -480,7 +480,7 @@ export const FARMING_ITEMS = {
 
   orange_seed: {
     id: 'orange_seed',
-    icon: 'orangeSeed',
+    icon: 'orangeSeed.svg',
     category: 'seed',
     name: 'orange seed',
     description: 'Used to grow oranges. Useful for eating.',
@@ -491,7 +491,7 @@ export const FARMING_ITEMS = {
 
   orange: { // Instant 500 HP heal
     id: 'orange',
-    icon: 'orange',
+    icon: 'orange.svg',
     category: 'food',
     name: 'orange',
     description() {
@@ -506,7 +506,7 @@ export const FARMING_ITEMS = {
 
   rockmelon_seed: {
     id: 'rockmelon_seed',
-    icon: 'rockmelonSeed',
+    icon: 'rockmelonSeed.svg',
     category: 'seed',
     name: 'rockmelon seed',
     description: 'Used to grow rockmelons. Useful for eating.',
@@ -517,7 +517,7 @@ export const FARMING_ITEMS = {
 
   rockmelon: { // Upgrade dragonfruit
     id: 'rockmelon',
-    icon: 'rockmelon',
+    icon: 'rockmelon.svg',
     category: 'food',
     name: 'rockmelon',
     description() {
@@ -532,7 +532,7 @@ export const FARMING_ITEMS = {
 
   basil_seed: {
     id: 'basil_seed',
-    icon: 'basilSeed',
+    icon: 'basilSeed.svg',
     category: 'seed',
     name: 'Basil Seed',
     description: 'Used to grow basil. Useful for inscription',
@@ -543,7 +543,7 @@ export const FARMING_ITEMS = {
 
   basil: {
     id: 'basil',
-    icon: 'basil',
+    icon: 'basil.svg',
     category: 'herb',
     name: 'basil',
     sellPrice: 100
@@ -551,7 +551,7 @@ export const FARMING_ITEMS = {
 
   pine_seed: {
     id: 'pine_seed',
-    icon: 'pineSeed',
+    icon: 'pineSeed.svg',
     category: 'seed',
     name: 'Pine Seed',
     description: 'Used to grow pine log. Long time to grow, gives good exp.',
@@ -562,7 +562,7 @@ export const FARMING_ITEMS = {
 
   beech_seed: {
     id: 'beech_seed',
-    icon: 'beechSeed',
+    icon: 'beechSeed.svg',
     category: 'seed',
     name: 'beech Seed',
     description: 'Used to grow beech log. Long time to grow, gives good exp.',
@@ -573,7 +573,7 @@ export const FARMING_ITEMS = {
 
   ash_seed: {
     id: 'ash_seed',
-    icon: 'ashSeed',
+    icon: 'ashSeed.svg',
     category: 'seed',
     name: 'ash Seed',
     description: 'Used to grow ash log. Long time to grow, gives good exp.',
@@ -584,7 +584,7 @@ export const FARMING_ITEMS = {
 
   oak_seed: {
     id: 'oak_seed',
-    icon: 'oakSeed',
+    icon: 'oakSeed.svg',
     category: 'seed',
     name: 'oak Seed',
     seedType: 'tree',
@@ -595,7 +595,7 @@ export const FARMING_ITEMS = {
 
   maple_seed: {
     id: 'maple_seed',
-    icon: 'mapleSeed',
+    icon: 'mapleSeed.svg',
     category: 'seed',
     name: 'maple Seed',
     seedType: 'tree',
@@ -606,7 +606,7 @@ export const FARMING_ITEMS = {
 
   walnut_seed: {
     id: 'walnut_seed',
-    icon: 'walnutSeed',
+    icon: 'walnutSeed.svg',
     category: 'seed',
     name: 'walnut Seed',
     seedType: 'tree',
@@ -617,7 +617,7 @@ export const FARMING_ITEMS = {
 
   cherry_seed: {
     id: 'cherry_seed',
-    icon: 'cherrySeed',
+    icon: 'cherrySeed.svg',
     category: 'seed',
     name: 'cherry Seed',
     seedType: 'tree',
@@ -628,7 +628,7 @@ export const FARMING_ITEMS = {
 
   mahogany_seed: {
     id: 'mahogany_seed',
-    icon: 'mahoganySeed',
+    icon: 'mahoganySeed.svg',
     category: 'seed',
     name: 'mahogany Seed',
     seedType: 'tree',
@@ -639,7 +639,7 @@ export const FARMING_ITEMS = {
 
   elk_seed: {
     id: 'elk_seed',
-    icon: 'elkSeed',
+    icon: 'elkSeed.svg',
     category: 'seed',
     name: 'elk Seed',
     seedType: 'tree',
@@ -650,7 +650,7 @@ export const FARMING_ITEMS = {
 
   black_seed: {
     id: 'black_seed',
-    icon: 'blackSeed',
+    icon: 'blackSeed.svg',
     category: 'seed',
     name: 'black Seed',
     seedType: 'tree',
@@ -661,7 +661,7 @@ export const FARMING_ITEMS = {
 
   blue_gum_seed: {
     id: 'blue_gum_seed',
-    icon: 'blueGumSeed',
+    icon: 'blueGumSeed.svg',
     category: 'seed',
     name: 'blue gum Seed',
     seedType: 'tree',
@@ -672,7 +672,7 @@ export const FARMING_ITEMS = {
 
   pink_rose_seed: {
     id: 'pink_rose_seed',
-    icon: 'pinkRoseSeed',
+    icon: 'pinkRoseSeed.svg',
     category: 'seed',
     seedType: 'herb',
     name: 'pink rose seed',
@@ -683,7 +683,7 @@ export const FARMING_ITEMS = {
 
   pink_rose: {
     id: 'pink_rose',
-    icon: 'pinkRose',
+    icon: 'pinkRose.svg',
     category: 'herb',
     name: 'pink rose',
     sellPrice: 200
@@ -691,7 +691,7 @@ export const FARMING_ITEMS = {
 
   endive_seed: {
     id: 'endive_seed',
-    icon: 'endiveSeed',
+    icon: 'endiveSeed.svg',
     seedType: 'herb',
     category: 'seed',
     name: 'endive seed',
@@ -702,7 +702,7 @@ export const FARMING_ITEMS = {
 
   endive: {
     id: 'endive',
-    icon: 'endive',
+    icon: 'endive.svg',
     category: 'herb',
     name: 'endive',
     sellPrice: 200
@@ -710,7 +710,7 @@ export const FARMING_ITEMS = {
 
   juniper_seed: {
     id: 'juniper_seed',
-    icon: 'juniperSeed',
+    icon: 'juniperSeed.svg',
     category: 'seed',
     seedType: 'herb',
     name: 'juniper seed',
@@ -721,7 +721,7 @@ export const FARMING_ITEMS = {
 
   juniper: {
     id: 'juniper',
-    icon: 'juniper',
+    icon: 'juniper.svg',
     category: 'herb',
     name: 'juniper',
     sellPrice: 300
@@ -729,7 +729,7 @@ export const FARMING_ITEMS = {
 
   agrimony_seed: {
     id: 'agrimony_seed',
-    icon: 'agrimonySeed',
+    icon: 'agrimonySeed.svg',
     category: 'seed',
     seedType: 'herb',
     name: 'agrimony seed',
@@ -740,7 +740,7 @@ export const FARMING_ITEMS = {
 
   agrimony: {
     id: 'agrimony',
-    icon: 'agrimony',
+    icon: 'agrimony.svg',
     category: 'herb',
     name: 'agrimony',
     sellPrice: 1000
@@ -748,7 +748,7 @@ export const FARMING_ITEMS = {
 
   cardoon_seed: {
     id: 'cardoon_seed',
-    icon: 'cardoonSeed',
+    icon: 'cardoonSeed.svg',
     category: 'seed',
     name: 'cardoon seed',
     seedType: 'herb',
@@ -759,7 +759,7 @@ export const FARMING_ITEMS = {
 
   cardoon: {
     id: 'cardoon',
-    icon: 'cardoon',
+    icon: 'cardoon.svg',
     category: 'herb',
     name: 'cardoon',
     sellPrice: 1000
@@ -767,7 +767,7 @@ export const FARMING_ITEMS = {
 
   chilli_seed: {
     id: 'chilli_seed',
-    icon: 'chilliSeed',
+    icon: 'chilliSeed.svg',
     category: 'seed',
     name: 'chilli seed',
     description: 'Used to grow a chilli. Useful for inscription',
@@ -778,7 +778,7 @@ export const FARMING_ITEMS = {
 
   chilli: {
     id: 'chilli',
-    icon: 'chilli',
+    icon: 'chilli.svg',
     category: 'herb',
     name: 'chilli',
     sellPrice: 1000
@@ -786,7 +786,7 @@ export const FARMING_ITEMS = {
 
   celery_seed: {
     id: 'celery_seed',
-    icon: 'celerySeed',
+    icon: 'celerySeed.svg',
     category: 'seed',
     name: 'celery seed',
     description: 'Used to grow a celery. Useful for inscription',
@@ -797,7 +797,7 @@ export const FARMING_ITEMS = {
 
   celery: {
     id: 'celery',
-    icon: 'celery',
+    icon: 'celery.svg',
     category: 'herb',
     name: 'celery',
     sellPrice: 1000
@@ -806,7 +806,7 @@ export const FARMING_ITEMS = {
 
   feverfew_seed: {
     id: 'feverfew_seed',
-    icon: 'feverfewSeed',
+    icon: 'feverfewSeed.svg',
     category: 'seed',
     name: 'feverfew seed',
     description: 'Used to grow a feverfew. Useful for inscription',
@@ -817,7 +817,7 @@ export const FARMING_ITEMS = {
 
   feverfew: {
     id: 'feverfew',
-    icon: 'feverfew',
+    icon: 'feverfew.svg',
     category: 'herb',
     name: 'feverfew',
     sellPrice: 5000
@@ -825,7 +825,7 @@ export const FARMING_ITEMS = {
 
   dead_plant: {
     id: 'dead_plant',
-    icon: 'deadPlant',
+    icon: 'deadPlant.svg',
     category: 'farming',
     name: 'dead plant',
     sellPrice: 0
@@ -833,7 +833,7 @@ export const FARMING_ITEMS = {
 
   grape_fruit_seed: {
     id: 'grape_fruit_seed',
-    icon: 'grapeFruitSeed',
+    icon: 'grapeFruitSeed.svg',
     category: 'seed',
     name: 'grapefruit seed',
     description: 'Used to grow grape fruit. Yum!',
@@ -844,7 +844,7 @@ export const FARMING_ITEMS = {
 
   grape_fruit: {
     id: 'grape_fruit',
-    icon: 'grapeFruit',
+    icon: 'grapeFruit.svg',
     category: 'food',
     name: 'grapefruit',
     description() {
@@ -859,7 +859,7 @@ export const FARMING_ITEMS = {
 
   lemon_honey: {
     id: 'lemon_honey',
-    icon: 'lemonHoney',
+    icon: 'lemonHoney.svg',
     category: 'food',
     name: 'lemon honey',
     description() {
@@ -874,7 +874,7 @@ export const FARMING_ITEMS = {
 
   tamarind_honey: {
     id: 'tamarind_honey',
-    icon: 'tamarindHoney',
+    icon: 'tamarindHoney.svg',
     category: 'food',
     name: 'tamarind honey',
     description() {
@@ -889,7 +889,7 @@ export const FARMING_ITEMS = {
 
   lemonade: {
     id: 'lemonade',
-    icon: 'lemonade',
+    icon: 'lemonade.svg',
     category: 'food',
     name: 'lemonade',
     description() {
@@ -904,7 +904,7 @@ export const FARMING_ITEMS = {
 
   rubia_flower_seed: {
     id: 'rubia_flower_seed',
-    icon: 'rubiaFlowerSeed',
+    icon: 'rubiaFlowerSeed.svg',
     category: 'seed',
     name: 'Rubia Flower Seed',
     description: 'Used to grow rubia flower. Useful for inscription.',
@@ -915,7 +915,7 @@ export const FARMING_ITEMS = {
 
   rubia_flower: {
     id: 'rubia_flower',
-    icon: 'rubiaFlower',
+    icon: 'rubiaFlower.svg',
     category: 'herb',
     name: 'Rubia Flower',
     sellPrice: 10

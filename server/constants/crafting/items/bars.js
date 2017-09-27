@@ -2,7 +2,7 @@
 export const BAR_ITEMS = {
   copper_bar: {
     id: 'copper_bar',
-    icon: 'copperBar',
+    icon: 'copperBar.svg',
     category: 'crafting',
     name: 'copper bar',
     sellPrice: 7,
@@ -11,7 +11,7 @@ export const BAR_ITEMS = {
 
   tin_bar: {
     id: 'tin_bar',
-    icon: 'tinBar',
+    icon: 'tinBar.svg',
     category: 'crafting',
     name: 'tin bar',
     sellPrice: 15,
@@ -20,7 +20,7 @@ export const BAR_ITEMS = {
 
   bronze_bar: {
     id: 'bronze_bar',
-    icon: 'bronzeBar',
+    icon: 'bronzeBar.svg',
     category: 'crafting',
     name: 'bronze bar',
     sellPrice: 20,
@@ -29,7 +29,7 @@ export const BAR_ITEMS = {
 
   iron_bar: {
     id: 'iron_bar',
-    icon: 'ironBar',
+    icon: 'ironBar.svg',
     category: 'crafting',
     name: 'iron bar',
     sellPrice: 25,
@@ -38,7 +38,7 @@ export const BAR_ITEMS = {
 
   silver_bar: {
     id: 'silver_bar',
-    icon: 'silverBar',
+    icon: 'silverBar.svg',
     category: 'crafting',
     name: 'silver bar',
     sellPrice: 30,
@@ -47,7 +47,7 @@ export const BAR_ITEMS = {
 
   gold_bar: {
     id: 'gold_bar',
-    icon: 'goldBar',
+    icon: 'goldBar.svg',
     category: 'crafting',
     name: 'gold bar',
     sellPrice: 35,
@@ -56,7 +56,7 @@ export const BAR_ITEMS = {
 
   carbon_bar: {
     id: 'carbon_bar',
-    icon: 'carbonBar',
+    icon: 'carbonBar.svg',
     category: 'crafting',
     name: 'carbon bar',
     sellPrice: 40,
@@ -65,7 +65,7 @@ export const BAR_ITEMS = {
 
   steel_bar: {
     id: 'steel_bar',
-    icon: 'steelBar',
+    icon: 'steelBar.svg',
     category: 'crafting',
     name: 'steel bar',
     sellPrice: 45,
@@ -74,7 +74,7 @@ export const BAR_ITEMS = {
 
   platinum_bar: {
     id: 'platinum_bar',
-    icon: 'platinumBar',
+    icon: 'platinumBar.svg',
     category: 'crafting',
     name: 'platinum bar',
     sellPrice: 50,
@@ -83,7 +83,7 @@ export const BAR_ITEMS = {
 
   titanium_bar: {
     id: 'titanium_bar',
-    icon: 'titaniumBar',
+    icon: 'titaniumBar.svg',
     category: 'crafting',
     name: 'titanium bar',
     sellPrice: 55,
@@ -92,7 +92,7 @@ export const BAR_ITEMS = {
 
   tungsten_bar: {
     id: 'tungsten_bar',
-    icon: 'tungstenBar',
+    icon: 'tungstenBar.svg',
     category: 'crafting',
     name: 'tungsten bar',
     sellPrice: 60,
@@ -101,7 +101,7 @@ export const BAR_ITEMS = {
 
   obsidian_bar: {
     id: 'obsidian_bar',
-    icon: 'obsidianBar',
+    icon: 'obsidianBar.svg',
     category: 'crafting',
     name: 'obsidian bar',
     sellPrice: 65,
@@ -110,7 +110,7 @@ export const BAR_ITEMS = {
 
   cobalt_bar: {
     id: 'cobalt_bar',
-    icon: 'cobaltBar',
+    icon: 'cobaltBar.svg',
     category: 'crafting',
     name: 'cobalt bar',
     sellPrice: 70,
@@ -119,7 +119,7 @@ export const BAR_ITEMS = {
 
   mithril_bar: {
     id: 'mithril_bar',
-    icon: 'mithrilBar',
+    icon: 'mithrilBar.svg',
     category: 'crafting',
     name: 'mithril bar',
     sellPrice: 75,
@@ -128,7 +128,7 @@ export const BAR_ITEMS = {
 
   adamantium_bar: {
     id: 'adamantium_bar',
-    icon: 'adamantiumBar',
+    icon: 'adamantiumBar.svg',
     category: 'crafting',
     name: 'adamantium bar',
     sellPrice: 80,
@@ -137,7 +137,7 @@ export const BAR_ITEMS = {
 
   orichalcum_bar: {
     id: 'orichalcum_bar',
-    icon: 'orichalcumBar',
+    icon: 'orichalcumBar.svg',
     category: 'crafting',
     name: 'orichalcum bar',
     sellPrice: 85,
@@ -146,7 +146,7 @@ export const BAR_ITEMS = {
 
   meteorite_bar: {
     id: 'meteorite_bar',
-    icon: 'meteoriteBar',
+    icon: 'meteoriteBar.svg',
     category: 'crafting',
     name: 'meteorite bar',
     sellPrice: 90,
@@ -155,7 +155,7 @@ export const BAR_ITEMS = {
 
   fairy_steel_bar: {
     id: 'fairy_steel_bar',
-    icon: 'fairySteelBar',
+    icon: 'fairySteelBar.svg',
     category: 'crafting',
     name: 'fairy steel bar',
     sellPrice: 100,
@@ -164,7 +164,7 @@ export const BAR_ITEMS = {
 
   elven_steel_bar: {
     id: 'elven_steel_bar',
-    icon: 'fairySteelBar',
+    icon: 'fairySteelBar.svg',
     category: 'crafting',
     name: 'elven steel bar',
     sellPrice: 110,
@@ -173,7 +173,7 @@ export const BAR_ITEMS = {
 
   cursed_bar: {
     id: 'cursed_bar',
-    icon: 'cursedBar',
+    icon: 'cursedBar.svg',
     category: 'crafting',
     name: 'cursed bar',
     sellPrice: 120,

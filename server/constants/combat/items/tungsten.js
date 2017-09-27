@@ -1,7 +1,7 @@
 export const TUNGSTEN_ITEMS = {
   "tungsten_dagger": {
     "id": "tungsten_dagger",
-    "icon": "tungstenDagger",
+    "icon": "tungstenDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_spear": {
     "id": "tungsten_spear",
-    "icon": "tungstenSpear",
+    "icon": "tungstenSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_short_sword": {
     "id": "tungsten_short_sword",
-    "icon": "tungstenShortSword",
+    "icon": "tungstenShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_scimitar": {
     "id": "tungsten_scimitar",
-    "icon": "tungstenScimitar",
+    "icon": "tungstenScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_long_sword": {
     "id": "tungsten_long_sword",
-    "icon": "tungstenLongSword",
+    "icon": "tungstenLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_broad_sword": {
     "id": "tungsten_broad_sword",
-    "icon": "tungstenBroadSword",
+    "icon": "tungstenBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_battle_axe": {
     "id": "tungsten_battle_axe",
-    "icon": "tungstenBattleAxe",
+    "icon": "tungstenBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_horned_helmet": {
     "id": "tungsten_horned_helmet",
-    "icon": "tungstenHornedHelmet",
+    "icon": "tungstenHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "tungsten horned helmet",
@@ -222,7 +222,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_helmet": {
     "id": "tungsten_helmet",
-    "icon": "tungstenHelmet",
+    "icon": "tungstenHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "tungsten helmet",
@@ -247,7 +247,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_chest_plate": {
     "id": "tungsten_chest_plate",
-    "icon": "tungstenChestPlate",
+    "icon": "tungstenChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "tungsten chestplate",
@@ -272,7 +272,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_plate_legs": {
     "id": "tungsten_plate_legs",
-    "icon": "tungstenPlateLegs",
+    "icon": "tungstenPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "tungsten platelegs",
@@ -297,7 +297,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_shield": {
     "id": "tungsten_shield",
-    "icon": "tungstenShield",
+    "icon": "tungstenShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

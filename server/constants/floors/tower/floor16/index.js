@@ -27,7 +27,7 @@ export const TOWER_FLOOR_16 = {
     name: 'Orichalcum Place',
     enemies: ['orichalcum_spirit'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'orichalcum_essence', amount: 1 }
       ]

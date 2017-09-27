@@ -1,7 +1,7 @@
 export const MISC_ITEMS = {
   rat_head: {
     id: 'rat_head',
-    icon: 'ratHead',
+    icon: 'ratHead.svg',
     category: 'misc',
     name: 'rat head',
     sellPrice: 5,
@@ -10,7 +10,7 @@ export const MISC_ITEMS = {
 
   silver_essence: {
     id: 'silver_essence',
-    icon: 'silverEssence',
+    icon: 'silverEssence.png',
     category: 'mining',
     name: 'silver essence',
     sellPrice: 200,
@@ -19,7 +19,7 @@ export const MISC_ITEMS = {
 
   gold_essence: {
     id: 'gold_essence',
-    icon: 'goldEssence',
+    icon: 'goldEssence.png',
     category: 'mining',
     name: 'gold essence',
     sellPrice: 250,
@@ -28,7 +28,7 @@ export const MISC_ITEMS = {
 
   carbon_essence: {
     id: 'carbon_essence',
-    icon: 'carbonEssence',
+    icon: 'carbonEssence.png',
     category: 'mining',
     name: 'carbon essence',
     sellPrice: 275,
@@ -37,7 +37,7 @@ export const MISC_ITEMS = {
 
   steel_essence: {
     id: 'steel_essence',
-    icon: 'steelEssence',
+    icon: 'steelEssence.png',
     category: 'mining',
     name: 'steel essence',
     sellPrice: 300,
@@ -46,7 +46,7 @@ export const MISC_ITEMS = {
 
   platinum_essence: {
     id: 'platinum_essence',
-    icon: 'platinumEssence',
+    icon: 'platinumEssence.png',
     category: 'mining',
     name: 'platinum essence',
     sellPrice: 325,
@@ -55,7 +55,7 @@ export const MISC_ITEMS = {
 
   titanium_essence: {
     id: 'titanium_essence',
-    icon: 'titaniumEssence',
+    icon: 'titaniumEssence.png',
     category: 'mining',
     name: 'titanium essence',
     sellPrice: 350,
@@ -64,7 +64,7 @@ export const MISC_ITEMS = {
 
   tungsten_essence: {
     id: 'tungsten_essence',
-    icon: 'tungstenEssence',
+    icon: 'tungstenEssence.png',
     category: 'mining',
     name: 'tungsten essence',
     sellPrice: 400,
@@ -73,7 +73,7 @@ export const MISC_ITEMS = {
 
   obsidian_essence: {
     id: 'obsidian_essence',
-    icon: 'obsidianEssence',
+    icon: 'obsidianEssence.png',
     category: 'mining',
     name: 'obsidian essence',
     sellPrice: 450,
@@ -82,7 +82,7 @@ export const MISC_ITEMS = {
 
   cobalt_essence: {
     id: 'cobalt_essence',
-    icon: 'cobaltEssence',
+    icon: 'cobaltEssence.png',
     category: 'mining',
     name: 'cobalt essence',
     sellPrice: 500,
@@ -91,7 +91,7 @@ export const MISC_ITEMS = {
 
   mithril_essence: {
     id: 'mithril_essence',
-    icon: 'mithrilEssence',
+    icon: 'mithrilEssence.png',
     category: 'mining',
     name: 'mithril essence',
     sellPrice: 550,
@@ -100,7 +100,7 @@ export const MISC_ITEMS = {
 
   adamantium_essence: {
     id: 'adamantium_essence',
-    icon: 'adamantiumEssence',
+    icon: 'adamantiumEssence.png',
     category: 'mining',
     name: 'adamantium essence',
     sellPrice: 600,
@@ -109,7 +109,7 @@ export const MISC_ITEMS = {
 
   orichalcum_essence: {
     id: 'orichalcum_essence',
-    icon: 'orichalcumEssence',
+    icon: 'orichalcumEssence.png',
     category: 'mining',
     name: 'orichalcum essence',
     sellPrice: 700,
@@ -118,7 +118,7 @@ export const MISC_ITEMS = {
 
   meteorite_essence: {
     id: 'meteorite_essence',
-    icon: 'meteoriteEssence',
+    icon: 'meteoriteEssence.png',
     category: 'mining',
     name: 'meteorite essence',
     sellPrice: 800,
@@ -127,7 +127,7 @@ export const MISC_ITEMS = {
 
   fairy_steel_essence: {
     id: 'fairy_steel_essence',
-    icon: 'fairySteelEssence',
+    icon: 'fairySteelEssence.png',
     category: 'mining',
     name: 'fairy steel essence',
     sellPrice: 900,
@@ -136,7 +136,7 @@ export const MISC_ITEMS = {
 
   elven_steel_essence: {
     id: 'elven_steel_essence',
-    icon: 'elvenSteelEssence',
+    icon: 'elvenSteelEssence.png',
     category: 'mining',
     name: 'elven steel essence',
     sellPrice: 1000,
@@ -145,7 +145,7 @@ export const MISC_ITEMS = {
 
   cursed_essence: {
     id: 'cursed_essence',
-    icon: 'cursedEssence',
+    icon: 'cursedEssence.png',
     category: 'mining',
     name: 'cursed essence',
     sellPrice: 1250,

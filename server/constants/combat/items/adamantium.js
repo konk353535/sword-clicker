@@ -1,7 +1,7 @@
 export const ADAMANTIUM_ITEMS = {
   "adamantium_dagger": {
     "id": "adamantium_dagger",
-    "icon": "adamantiumDagger",
+    "icon": "adamantiumDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_spear": {
     "id": "adamantium_spear",
-    "icon": "adamantiumSpear",
+    "icon": "adamantiumSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_short_sword": {
     "id": "adamantium_short_sword",
-    "icon": "adamantiumShortSword",
+    "icon": "adamantiumShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_scimitar": {
     "id": "adamantium_scimitar",
-    "icon": "adamantiumScimitar",
+    "icon": "adamantiumScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_long_sword": {
     "id": "adamantium_long_sword",
-    "icon": "adamantiumLongSword",
+    "icon": "adamantiumLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_broad_sword": {
     "id": "adamantium_broad_sword",
-    "icon": "adamantiumBroadSword",
+    "icon": "adamantiumBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_battle_axe": {
     "id": "adamantium_battle_axe",
-    "icon": "adamantiumBattleAxe",
+    "icon": "adamantiumBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_horned_helmet": {
     "id": "adamantium_horned_helmet",
-    "icon": "adamantiumHornedHelmet",
+    "icon": "adamantiumHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "adamantium horned helmet",
@@ -222,7 +222,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_helmet": {
     "id": "adamantium_helmet",
-    "icon": "adamantiumHelmet",
+    "icon": "adamantiumHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "adamantium helmet",
@@ -247,7 +247,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_chest_plate": {
     "id": "adamantium_chest_plate",
-    "icon": "adamantiumChestPlate",
+    "icon": "adamantiumChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "adamantium chestplate",
@@ -272,7 +272,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_plate_legs": {
     "id": "adamantium_plate_legs",
-    "icon": "adamantiumPlateLegs",
+    "icon": "adamantiumPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "adamantium platelegs",
@@ -297,7 +297,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_shield": {
     "id": "adamantium_shield",
-    "icon": "adamantiumShield",
+    "icon": "adamantiumShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

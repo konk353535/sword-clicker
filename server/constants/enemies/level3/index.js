@@ -30,7 +30,7 @@ export const LEVEL_THREE_ENEMIES = {
 
   spider: {
     id: 'spider',
-    icon: 'spider',
+    icon: 'spider.svg',
     name: 'spider',
     stats: {
       attack: 1,
@@ -48,7 +48,7 @@ export const LEVEL_THREE_ENEMIES = {
 
   snake: {
     id: 'snake',
-    icon: 'snake',
+    icon: 'snake.svg',
     name: 'snake',
     stats: {
       attack: 1,
@@ -66,7 +66,7 @@ export const LEVEL_THREE_ENEMIES = {
 
   falcon: {
     id: 'falcon',
-    icon: 'falcon',
+    icon: 'falcon.svg',
     name: 'falcon',
     stats: {
       attack: 2,
@@ -84,7 +84,7 @@ export const LEVEL_THREE_ENEMIES = {
 
   skunk: {
     id: 'skunk',
-    icon: 'skunk',
+    icon: 'skunk.svg',
     name: 'skunk',
     stats: {
       attack: 1,
@@ -102,7 +102,7 @@ export const LEVEL_THREE_ENEMIES = {
 
   lizard: {
     id: 'lizard',
-    icon: 'lizard',
+    icon: 'lizard.svg',
     name: 'lizard',
     stats: {
       attack: 1,

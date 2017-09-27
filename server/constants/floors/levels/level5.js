@@ -2,30 +2,30 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
 export const LEVEL_FIVE_MONSTERS = [{
   id: 'wolf',
-  icon: 'wolf',
+  icon: 'wolf.svg',
   name: 'wolf'
 }, {
   id: 'beaver',
-  icon: 'beaver',
+  icon: 'beaver.svg',
   name: 'beaver'
 }, {
   id: 'eagle',
-  icon: 'eagle',
+  icon: 'eagle.svg',
   name: 'eagle'
 }, {
   id: 'kangaroo',
-  icon: 'kangaroo',
+  icon: 'kangaroo.svg',
   name: 'kangaroo'
 }, {
   id: 'jellyFish',
-  icon: 'jellyFish',
+  icon: 'jellyFish.svg',
   name: 'jellyfish',
   magicArmored: true,
   buffs: [{
     id: 'poisoned_blade',
     data: {
       level: 1,
-      icon: 'poisonedBlade',
+      icon: 'poisonedBlade.svg',
       name: 'poisoned blade'
     }
   }]

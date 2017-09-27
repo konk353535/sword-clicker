@@ -2,7 +2,7 @@ export const FURNACE_ITEMS = {
 
   stone_furnace: {
     id: 'stone_furnace',
-    icon: 'stoneFurnace',
+    icon: 'stoneFurnace.svg',
     category: 'crafting',
     name: 'stone furnace',
     sellPrice: 1,
@@ -12,7 +12,7 @@ export const FURNACE_ITEMS = {
 
   copper_furnace: {
     id: 'copper_furnace',
-    icon: 'copperFurnace',
+    icon: 'copperFurnace.svg',
     category: 'crafting',
     name: 'copper furnace',
     sellPrice: 1,
@@ -22,7 +22,7 @@ export const FURNACE_ITEMS = {
 
   tin_furnace: {
     id: 'tin_furnace',
-    icon: 'tinFurnace',
+    icon: 'tinFurnace.svg',
     category: 'crafting',
     name: 'tin furnace',
     sellPrice: 1,
@@ -32,7 +32,7 @@ export const FURNACE_ITEMS = {
 
   bronze_furnace: {
     id: 'bronze_furnace',
-    icon: 'bronzeFurnace',
+    icon: 'bronzeFurnace.svg',
     category: 'crafting',
     name: 'bronze furnace',
     tier: 4,
@@ -42,7 +42,7 @@ export const FURNACE_ITEMS = {
 
   iron_furnace: {
     id: 'iron_furnace',
-    icon: 'ironFurnace',
+    icon: 'ironFurnace.svg',
     category: 'crafting',
     name: 'iron furnace',
     sellPrice: 1,
@@ -52,7 +52,7 @@ export const FURNACE_ITEMS = {
 
   silver_furnace: {
     id: 'silver_furnace',
-    icon: 'silverFurnace',
+    icon: 'silverFurnace.svg',
     category: 'crafting',
     name: 'silver furnace',
     sellPrice: 1,
@@ -62,7 +62,7 @@ export const FURNACE_ITEMS = {
 
   gold_furnace: {
     id: 'gold_furnace',
-    icon: 'goldFurnace',
+    icon: 'goldFurnace.svg',
     category: 'crafting',
     name: 'gold furnace',
     sellPrice: 1,
@@ -72,7 +72,7 @@ export const FURNACE_ITEMS = {
 
   carbon_furnace: {
     id: 'carbon_furnace',
-    icon: 'carbonFurnace',
+    icon: 'carbonFurnace.svg',
     category: 'crafting',
     name: 'carbon furnace',
     tier: 8,
@@ -82,7 +82,7 @@ export const FURNACE_ITEMS = {
 
   steel_furnace: {
     id: 'steel_furnace',
-    icon: 'steelFurnace',
+    icon: 'steelFurnace.svg',
     category: 'crafting',
     name: 'steel furnace',
     tier: 9,
@@ -92,7 +92,7 @@ export const FURNACE_ITEMS = {
 
   platinum_furnace: {
     id: 'platinum_furnace',
-    icon: 'platinumFurnace',
+    icon: 'platinumFurnace.svg',
     category: 'crafting',
     name: 'platinum furnace',
     tier: 10,
@@ -102,7 +102,7 @@ export const FURNACE_ITEMS = {
 
   titanium_furnace: {
     id: 'titanium_furnace',
-    icon: 'titaniumFurnace',
+    icon: 'titaniumFurnace.svg',
     category: 'crafting',
     name: 'titanium furnace',
     tier: 11,
@@ -112,7 +112,7 @@ export const FURNACE_ITEMS = {
 
   tungsten_furnace: {
     id: 'tungsten_furnace',
-    icon: 'tungstenFurnace',
+    icon: 'tungstenFurnace.svg',
     category: 'crafting',
     name: 'tungsten furnace',
     tier: 12,
@@ -122,7 +122,7 @@ export const FURNACE_ITEMS = {
 
   obsidian_furnace: {
     id: 'obsidian_furnace',
-    icon: 'obsidianFurnace',
+    icon: 'obsidianFurnace.svg',
     category: 'crafting',
     name: 'obsidian furnace',
     sellPrice: 1,
@@ -132,7 +132,7 @@ export const FURNACE_ITEMS = {
 
   cobalt_furnace: {
     id: 'cobalt_furnace',
-    icon: 'cobaltFurnace',
+    icon: 'cobaltFurnace.svg',
     category: 'crafting',
     name: 'cobalt furnace',
     sellPrice: 1,
@@ -143,7 +143,7 @@ export const FURNACE_ITEMS = {
 
   mithril_furnace: {
     id: 'mithril_furnace',
-    icon: 'mithrilFurnace',
+    icon: 'mithrilFurnace.svg',
     category: 'crafting',
     name: 'mithril furnace',
     sellPrice: 1,
@@ -153,7 +153,7 @@ export const FURNACE_ITEMS = {
 
   adamantium_furnace: {
     id: 'adamantium_furnace',
-    icon: 'adamantiumFurnace',
+    icon: 'adamantiumFurnace.svg',
     category: 'crafting',
     name: 'adamantium furnace',
     sellPrice: 1,
@@ -163,7 +163,7 @@ export const FURNACE_ITEMS = {
 
   orichalcum_furnace: {
     id: 'orichalcum_furnace',
-    icon: 'orichalcumFurnace',
+    icon: 'orichalcumFurnace.svg',
     category: 'crafting',
     name: 'orichalcum furnace',
     sellPrice: 1,
@@ -173,7 +173,7 @@ export const FURNACE_ITEMS = {
 
   meteorite_furnace: {
     id: 'meteorite_furnace',
-    icon: 'meteoriteFurnace',
+    icon: 'meteoriteFurnace.svg',
     category: 'crafting',
     name: 'meteorite furnace',
     sellPrice: 1,
@@ -183,7 +183,7 @@ export const FURNACE_ITEMS = {
 
   fairy_steel_furnace: {
     id: 'fairy_steel_furnace',
-    icon: 'fairySteelFurnace',
+    icon: 'fairySteelFurnace.svg',
     category: 'crafting',
     name: 'fairy steel furnace',
     sellPrice: 1,
@@ -193,7 +193,7 @@ export const FURNACE_ITEMS = {
 
   elven_steel_furnace: {
     id: 'elven_steel_furnace',
-    icon: 'elvenSteelFurnace',
+    icon: 'elvenSteelFurnace.svg',
     category: 'crafting',
     name: 'elven steel furnace',
     sellPrice: 1,
@@ -203,7 +203,7 @@ export const FURNACE_ITEMS = {
 
   cursed_furnace: {
     id: 'cursed_furnace',
-    icon: 'cursedFurnace',
+    icon: 'cursedFurnace.svg',
     category: 'crafting',
     name: 'cursed furnace',
     sellPrice: 1,

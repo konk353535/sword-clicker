@@ -33,7 +33,7 @@ export const TOWER_FLOOR_7 = {
     name: 'Place of carbon',
     enemies: ['carbon_spirit'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
-      chance: 1 / 4,
+      chance: 1 / 3,
       rewards: [
         { type: 'item', itemId: 'carbon_essence', amount: 1 }
       ]

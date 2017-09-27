@@ -1,7 +1,7 @@
 export const CURSED_ITEMS = {
   "cursed_dagger": {
     "id": "cursed_dagger",
-    "icon": "cursedDagger",
+    "icon": "cursedDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_spear": {
     "id": "cursed_spear",
-    "icon": "cursedSpear",
+    "icon": "cursedSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_short_sword": {
     "id": "cursed_short_sword",
-    "icon": "cursedShortSword",
+    "icon": "cursedShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_scimitar": {
     "id": "cursed_scimitar",
-    "icon": "cursedScimitar",
+    "icon": "cursedScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_long_sword": {
     "id": "cursed_long_sword",
-    "icon": "cursedLongSword",
+    "icon": "cursedLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_broad_sword": {
     "id": "cursed_broad_sword",
-    "icon": "cursedBroadSword",
+    "icon": "cursedBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_battle_axe": {
     "id": "cursed_battle_axe",
-    "icon": "cursedBattleAxe",
+    "icon": "cursedBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_horned_helmet": {
     "id": "cursed_horned_helmet",
-    "icon": "cursedHornedHelmet",
+    "icon": "cursedHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel horned helmet",
@@ -222,7 +222,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_helmet": {
     "id": "cursed_helmet",
-    "icon": "cursedHelmet",
+    "icon": "cursedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel helmet",
@@ -247,7 +247,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_chest_plate": {
     "id": "cursed_chest_plate",
-    "icon": "cursedChestPlate",
+    "icon": "cursedChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "fairy steel chestplate",
@@ -272,7 +272,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_plate_legs": {
     "id": "cursed_plate_legs",
-    "icon": "cursedPlateLegs",
+    "icon": "cursedPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",
@@ -297,7 +297,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_shield": {
     "id": "cursed_shield",
-    "icon": "cursedShield",
+    "icon": "cursedShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

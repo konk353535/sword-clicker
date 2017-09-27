@@ -33,7 +33,7 @@ export const TOWER_FLOOR_13 = {
     name: 'Cobalt Place',
     enemies: ['cobalt_spirit'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'cobalt_essence', amount: 1 }
       ]

@@ -9,7 +9,7 @@ export const BOSS_BUFFS = {
 
   deep_wounds: {
     duplicateTag: 'deep_wounds', // Used to stop duplicate buffs
-    icon: 'deepWounds',
+    icon: 'deepWounds.svg',
     name: 'deep wounds',
     description({ buff, level }) {
       const c = buff.constants;
@@ -53,7 +53,7 @@ export const BOSS_BUFFS = {
 
   boss_cougar: {
     duplicateTag: 'boss_cougar', // Used to stop duplicate buffs
-    icon: 'puma',
+    icon: 'puma.svg',
     name: 'boss cougar',
     description({ buff, level }) {
       const c = buff.constants;
@@ -86,7 +86,7 @@ export const BOSS_BUFFS = {
               duration: DEEP_WOUNDS_DURATION,
               totalDuration: DEEP_WOUNDS_DURATION,
               stacks: 1,
-              icon: 'deepWounds',
+              icon: 'deepWounds.svg',
               description: ''
             }
           }
@@ -135,13 +135,13 @@ export const BOSS_BUFFS = {
           const littleSnake = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'snake',
+            icon: 'snake.svg',
             name: 'snake',
             stats: snakeStats,
             buffs: [{
               id: 'poisoned_blade',
               data: {
-                icon: 'poisonedBlade',
+                icon: 'poisonedBlade.svg',
                 duration: Infinity,
                 totalDuration: Infinity,
                 level: 25
@@ -168,7 +168,7 @@ export const BOSS_BUFFS = {
 
   boss_bone_warrior: {
     duplicateTag: 'boss_bone_warrior', // Used to stop duplicate buffs
-    icon: 'boneWarrior',
+    icon: 'boneWarrior.svg',
     name: 'boss bone warrior',
     description({ buff, level }) {
       const c = buff.constants;
@@ -195,7 +195,7 @@ export const BOSS_BUFFS = {
                 duration: 0,
                 totalDuration: 0,
                 level: 1,
-                icon: 'bladeSpin',
+                icon: 'bladeSpin.svg',
                 description: ''
               },
               constants: BUFFS['blade_spin']
@@ -214,7 +214,7 @@ export const BOSS_BUFFS = {
 
   boss_spartan: {
     duplicateTag: 'boss_spartan', // Used to stop duplicate buffs
-    icon: 'spartan',
+    icon: 'spartan.svg',
     name: 'boss spartan',
     description({ buff, level }) {
       const c = buff.constants;
@@ -243,7 +243,7 @@ export const BOSS_BUFFS = {
             const littleSpartan = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'spartan',
+              icon: 'spartan.svg',
               name: 'spartan',
               stats: spartanStats,
               buffs: [{
@@ -252,7 +252,7 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   isEnemy: true,
-                  icon: 'phalanx',        
+                  icon: 'phalanx.svg',        
                   name: 'phalanx'
                 }
               }]
@@ -309,12 +309,12 @@ export const BOSS_BUFFS = {
           const littlebird = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'bird',
+            icon: 'bird.svg',
             name: 'bird',
             buffs: [{
               id: 'boss_mage_bird',
               data: {
-                icon: 'bird'
+                icon: 'bird.svg'
               }
             }],
             stats: birdStats
@@ -333,7 +333,7 @@ export const BOSS_BUFFS = {
 
   boss_mage_bird: {
     duplicateTag: 'boss_mage_bird', // Used to stop duplicate buffs
-    icon: 'bossMageBird',
+    icon: 'bossMageBird.svg',
     name: 'boss mage bird',
     description({ buff, level }) {
       const c = buff.constants;
@@ -363,7 +363,7 @@ export const BOSS_BUFFS = {
               data: {
                 duration: 10,
                 totalDuration: 10,
-                icon: 'ignite',
+                icon: 'ignite.svg',
                 description: 'Burns you each second'
               }
             }
@@ -378,7 +378,7 @@ export const BOSS_BUFFS = {
 
   boss_goblin: {
     duplicateTag: 'boss_goblin', // Used to stop duplicate buffs
-    icon: 'goblin',
+    icon: 'goblin.svg',
     name: 'boss goblin',
     description({ buff, level }) {
       const c = buff.constants;
@@ -414,7 +414,7 @@ export const BOSS_BUFFS = {
             const littleGoblin = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'goblin',
+              icon: 'goblin.svg',
               name: 'goblin',
               stats: goblinStats,
               buffs: [{
@@ -423,7 +423,7 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   timeTillSteal: 15,
-                  icon: 'goblin',        
+                  icon: 'goblin.svg',        
                   name: 'goblin stat stealer'
                 }
               }]
@@ -443,7 +443,7 @@ export const BOSS_BUFFS = {
 
   boss_ogre: {
     duplicateTag: 'boss_ogre', // Used to stop duplicate buffs
-    icon: 'ogre',
+    icon: 'ogre.svg',
     name: 'boss ogre',
     description({ buff, level }) {
       const c = buff.constants;
@@ -472,7 +472,7 @@ export const BOSS_BUFFS = {
 
   boss_phoenix: {
     duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
-    icon: 'spartan',
+    icon: 'spartan.svg',
     name: 'boss phenoix',
     description({ buff, level }) {
       const c = buff.constants;
@@ -504,7 +504,7 @@ export const BOSS_BUFFS = {
             const phoenixEgg = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'phoenixEgg',
+              icon: 'phoenixEgg.svg',
               name: 'phoenix egg',
               stats: phoenixStats,
               buffs: [{
@@ -514,7 +514,7 @@ export const BOSS_BUFFS = {
                   totalDuration: Infinity,
                   timeTillSpawn: 60,
                   isEnemy: true,
-                  icon: 'babyPhoenix',        
+                  icon: 'babyPhoenix.svg',        
                   name: 'baby phoenix'
                 }
               }]
@@ -534,7 +534,7 @@ export const BOSS_BUFFS = {
 
   phoenix_egg: {
     duplicateTag: 'phoenix_egg', // Used to stop duplicate buffs
-    icon: 'phoenixEgg',
+    icon: 'phoenixEgg.svg',
     name: 'phoenix egg',
     description({ buff, level }) {
       const c = buff.constants;
@@ -568,7 +568,7 @@ export const BOSS_BUFFS = {
           const littlePhoenix = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'babyPhoenix',
+            icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
             buffs: [{
@@ -576,7 +576,7 @@ export const BOSS_BUFFS = {
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
-                icon: 'phoenixEgg',        
+                icon: 'phoenixEgg.svg',        
                 name: 'phoenix egg'
               }
             }]
@@ -607,7 +607,7 @@ export const BOSS_BUFFS = {
           const littlePhoenix = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'babyPhoenix',
+            icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
             buffs: [{
@@ -615,7 +615,7 @@ export const BOSS_BUFFS = {
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
-                icon: 'phoenixEgg',        
+                icon: 'phoenixEgg.svg',        
                 name: 'phoenix egg'
               }
             }]
@@ -629,7 +629,7 @@ export const BOSS_BUFFS = {
 
   baby_phoenix: {
     duplicateTag: 'baby_phoenix', // Used to stop duplicate buffs
-    icon: 'babyPhoenix',
+    icon: 'babyPhoenix.svg',
     name: 'baby phoenix',
     description({ buff, level }) {
       const c = buff.constants;
@@ -662,7 +662,7 @@ export const BOSS_BUFFS = {
         const phoenixEgg = {
           id: Random.id(),
           tickOffset: 0,
-          icon: 'phoenixEgg',
+          icon: 'phoenixEgg.svg',
           name: 'phoenix egg',
           stats: phoenixStats,
           buffs: [{
@@ -672,7 +672,7 @@ export const BOSS_BUFFS = {
               totalDuration: Infinity,
               timeTillSpawn: 120,
               isEnemy: true,
-              icon: 'babyPhoenix',  
+              icon: 'babyPhoenix.svg',  
               name: 'baby phoenix'
             }
           }]
@@ -740,7 +740,7 @@ export const BOSS_BUFFS = {
                 duration: LEARNT_DURATION,
                 totalDuration: LEARNT_DURATION,
                 stacks: 1,
-                icon: 'gorillaLearning',
+                icon: 'gorillaLearning.svg',
                 description: 'Increases damage taken, and decrease damage dealt by 1% per stack'
               }
             }
@@ -760,7 +760,7 @@ export const BOSS_BUFFS = {
 
   gorilla_learning: {
     duplicateTag: 'gorilla_learning', // Used to stop duplicate buffs
-    icon: 'gorillaLearning',
+    icon: 'gorillaLearning.svg',
     name: 'gorilla learning',
     description({ buff, level }) {
       const c = buff.constants;
@@ -804,7 +804,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_lamp: {
     duplicateTag: 'boss_genie_lamp', // Used to stop duplicate buffs
-    icon: 'bossGenieLamp',
+    icon: 'bossGenieLamp.svg',
     name: 'boss genie lamp',
     description({ buff, level }) {
       const c = buff.constants;
@@ -825,7 +825,7 @@ export const BOSS_BUFFS = {
             const powerLamp = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'bossGeniePowerLamp',
+              icon: 'bossGeniePowerLamp.svg',
               name: 'power',
               isLamp: true,
               stats: {
@@ -846,7 +846,7 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   isEnemy: true,
-                  icon: 'bossGeniePowerLamp',        
+                  icon: 'bossGeniePowerLamp.svg',        
                   name: 'power lap'
                 }
               }]
@@ -855,7 +855,7 @@ export const BOSS_BUFFS = {
             const wisdomLamp = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'bossGenieWisdomLamp',
+              icon: 'bossGenieWisdomLamp.svg',
               name: 'wisdom',
               isLamp: true,
               stats: {
@@ -876,7 +876,7 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   isEnemy: true,
-                  icon: 'bossGenieWisdomLamp',        
+                  icon: 'bossGenieWisdomLamp.svg',        
                   name: 'wisdom lamp'
                 }
               }]
@@ -885,7 +885,7 @@ export const BOSS_BUFFS = {
             const healthLamp = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'bossGenieHealthLamp',
+              icon: 'bossGenieHealthLamp.svg',
               name: 'Vitality',
               isLamp: true,
               stats: {
@@ -906,7 +906,7 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   isEnemy: true,
-                  icon: 'bossGenieHealthLamp',        
+                  icon: 'bossGenieHealthLamp.svg',        
                   name: 'health lamp'
                 }
               }]
@@ -927,7 +927,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_power_lamp: {
     duplicateTag: 'boss_genie_power_lamp', // Used to stop duplicate buffs
-    icon: 'bossGeniePowerLamp',
+    icon: 'bossGeniePowerLamp.svg',
     name: 'boss genie power lamp',
     description({ buff, level }) {
       const c = buff.constants;
@@ -956,7 +956,7 @@ export const BOSS_BUFFS = {
               duration: Infinity,
               totalDuration: Infinity,
               description: 'Increases damage by 10%',
-              icon: 'bossGeniePowerLamp',        
+              icon: 'bossGeniePowerLamp.svg',        
               name: 'power up'
             }
           }
@@ -976,7 +976,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_wisdom_lamp: {
     duplicateTag: 'boss_genie_wisdom_lamp', // Used to stop duplicate buffs
-    icon: 'bossGenieWisdomLamp',
+    icon: 'bossGenieWisdomLamp.svg',
     name: 'boss genie wisdom lamp',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1004,7 +1004,7 @@ export const BOSS_BUFFS = {
             data: {
               duration: Infinity,
               totalDuration: Infinity,
-              icon: 'bossGenieWisdomLamp',
+              icon: 'bossGenieWisdomLamp.svg',
               description: 'Increases magic power by 20%',      
               name: 'wisdom up'
             }
@@ -1025,7 +1025,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_health_lamp: {
     duplicateTag: 'boss_genie_health_lamp', // Used to stop duplicate buffs
-    icon: 'bossGenieHealthLamp',
+    icon: 'bossGenieHealthLamp.svg',
     name: 'health',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1054,7 +1054,7 @@ export const BOSS_BUFFS = {
               description: 'Increase health by 50%',
               duration: Infinity,
               totalDuration: Infinity,
-              icon: 'bossGenieHealthLamp',        
+              icon: 'bossGenieHealthLamp.svg',        
               name: 'health up'
             }
           }
@@ -1074,7 +1074,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_health_up: {
     duplicateTag: 'boss_genie_health_up', // Used to stop duplicate buffs
-    icon: 'bossGenieHealthLamp',
+    icon: 'bossGenieHealthLamp.svg',
     name: 'health up',
     description({ buff, level }) {
       return `Increases health by 50%`;
@@ -1108,7 +1108,7 @@ export const BOSS_BUFFS = {
 
   boss_genie_power_up: {
     duplicateTag: 'boss_genie_power_up', // Used to stop duplicate buffs
-    icon: 'bossGeniePowerLamp',
+    icon: 'bossGeniePowerLamp.svg',
     name: 'power up',
     description({ buff, level }) {
       return `Increases damage by 10%`;
@@ -1142,7 +1142,7 @@ export const BOSS_BUFFS = {
 
  boss_genie_wisdom_up: {
     duplicateTag: 'boss_genie_wisdom_up', // Used to stop duplicate buffs
-    icon: 'bossGenieWisdomLamp',
+    icon: 'bossGenieWisdomLamp.svg',
     name: 'wisdom up',
     description({ buff, level }) {
       return `Increases magic power by 20%`;
@@ -1173,7 +1173,7 @@ export const BOSS_BUFFS = {
 
   boss_living_tree: {
     duplicateTag: 'boss_living_tree', // Used to stop duplicate buffs
-    icon: 'livingTree',
+    icon: 'livingTree.svg',
     name: 'boss tree',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1213,7 +1213,7 @@ export const BOSS_BUFFS = {
           const bird = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'bird',
+            icon: 'bird.svg',
             name: 'bird',
             stats: birdStats,
             buffs: []
@@ -1231,7 +1231,7 @@ export const BOSS_BUFFS = {
 
   boss_vampire: {
     duplicateTag: 'boss_vampire', // Used to stop duplicate buffs
-    icon: 'vampire',
+    icon: 'vampire.svg',
     name: 'vampire',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1255,7 +1255,7 @@ export const BOSS_BUFFS = {
           const newBuff = {
             id: 'vampirism',
             data: {
-              icon: 'vampirism',
+              icon: 'vampirism.svg',
               description: 'Gains healtl equal to the damage you deal.',
               level: 32,
               totalDuration: 10,
@@ -1275,7 +1275,7 @@ export const BOSS_BUFFS = {
 
   boss_old_tortoise: {
     duplicateTag: 'boss_old_tortoise', // Used to stop duplicate buffs
-    icon: 'vampire',
+    icon: 'vampire.svg',
     name: 'vampire',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1311,7 +1311,7 @@ export const BOSS_BUFFS = {
             const bird = {
               id: Random.id(),
               tickOffset: 0,
-              icon: 'waterMage',
+              icon: 'waterMage.svg',
               name: 'water mage',
               stats: birdStats,
               buffs: [{
@@ -1338,7 +1338,7 @@ export const BOSS_BUFFS = {
           const wall = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'stoneWall',
+            icon: 'stoneWall.svg',
             name: 'stone wall',
             stats: birdStats,
             buffs: []
@@ -1390,7 +1390,7 @@ export const BOSS_BUFFS = {
 
   boss_kraken: {
     duplicateTag: 'boss_kraken', // Used to stop duplicate buffs
-    icon: 'kraken',
+    icon: 'kraken.svg',
     name: 'boss kraken',
     description({ buff, level }) {
       const c = buff.constants;
@@ -1428,7 +1428,7 @@ export const BOSS_BUFFS = {
           const littlebird = {
             id: Random.id(),
             tickOffset: 0,
-            icon: 'tentacle',
+            icon: 'tentacle.svg',
             name: 'tentacle',
             buffs: [],
             stats: birdStats

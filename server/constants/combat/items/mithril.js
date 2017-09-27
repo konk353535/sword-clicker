@@ -1,7 +1,7 @@
 export const MITHRIL_ITEMS = {
   "mithril_dagger": {
     "id": "mithril_dagger",
-    "icon": "mithrilDagger",
+    "icon": "mithrilDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_spear": {
     "id": "mithril_spear",
-    "icon": "mithrilSpear",
+    "icon": "mithrilSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_short_sword": {
     "id": "mithril_short_sword",
-    "icon": "mithrilShortSword",
+    "icon": "mithrilShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_scimitar": {
     "id": "mithril_scimitar",
-    "icon": "mithrilScimitar",
+    "icon": "mithrilScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_long_sword": {
     "id": "mithril_long_sword",
-    "icon": "mithrilLongSword",
+    "icon": "mithrilLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_broad_sword": {
     "id": "mithril_broad_sword",
-    "icon": "mithrilBroadSword",
+    "icon": "mithrilBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_battle_axe": {
     "id": "mithril_battle_axe",
-    "icon": "mithrilBattleAxe",
+    "icon": "mithrilBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -197,7 +197,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_horned_helmet": {
     "id": "mithril_horned_helmet",
-    "icon": "mithrilHornedHelmet",
+    "icon": "mithrilHornedHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "mithril horned helmet",
@@ -222,7 +222,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_helmet": {
     "id": "mithril_helmet",
-    "icon": "mithrilHelmet",
+    "icon": "mithrilHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "mithril helmet",
@@ -247,7 +247,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_chest_plate": {
     "id": "mithril_chest_plate",
-    "icon": "mithrilChestPlate",
+    "icon": "mithrilChestPlate.svg",
     "category": "combat",
     "slot": "chest",
     "name": "mithril chestplate",
@@ -272,7 +272,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_plate_legs": {
     "id": "mithril_plate_legs",
-    "icon": "mithrilPlateLegs",
+    "icon": "mithrilPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "mithril platelegs",
@@ -297,7 +297,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_shield": {
     "id": "mithril_shield",
-    "icon": "mithrilShield",
+    "icon": "mithrilShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

@@ -28,7 +28,7 @@ export const TOWER_FLOOR_17 = {
     name: 'Meteorite Place',
     enemies: ['meteorite_spirit'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 8,
+      chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'meteorite_essence', amount: 1 }
       ]

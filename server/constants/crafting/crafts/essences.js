@@ -32,7 +32,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_silver',
       icon: ITEMS['ore_silver'].icon,
       name: ITEMS['ore_silver'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -71,7 +71,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_gold',
       icon: ITEMS['ore_gold'].icon,
       name: ITEMS['ore_gold'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -110,7 +110,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_carbon',
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -149,7 +149,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_steel',
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -188,7 +188,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_platinum',
       icon: ITEMS['ore_platinum'].icon,
       name: ITEMS['ore_platinum'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -227,7 +227,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_titanium',
       icon: ITEMS['ore_titanium'].icon,
       name: ITEMS['ore_titanium'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -266,7 +266,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_tungsten',
       icon: ITEMS['ore_tungsten'].icon,
       name: ITEMS['ore_tungsten'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -305,7 +305,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_obsidian',
       icon: ITEMS['ore_obsidian'].icon,
       name: ITEMS['ore_obsidian'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -337,7 +337,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_cobalt',
       icon: ITEMS['ore_cobalt'].icon,
       name: ITEMS['ore_cobalt'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -369,7 +369,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_mithril',
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -401,7 +401,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_adamantium',
       icon: ITEMS['ore_adamantium'].icon,
       name: ITEMS['ore_adamantium'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -433,7 +433,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_orichalcum',
       icon: ITEMS['ore_orichalcum'].icon,
       name: ITEMS['ore_orichalcum'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -465,7 +465,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_meteorite',
       icon: ITEMS['ore_meteorite'].icon,
       name: ITEMS['ore_meteorite'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -497,7 +497,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_fairy_steel',
       icon: ITEMS['ore_fairy_steel'].icon,
       name: ITEMS['ore_fairy_steel'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -529,7 +529,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_elven_steel',
       icon: ITEMS['ore_elven_steel'].icon,
       name: ITEMS['ore_elven_steel'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',
@@ -561,7 +561,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'ore_cursed',
       icon: ITEMS['ore_cursed'].icon,
       name: ITEMS['ore_cursed'].name,
-      amount: 75,
+      amount: 50,
       consumes: true
     }, {
       type: 'skill',

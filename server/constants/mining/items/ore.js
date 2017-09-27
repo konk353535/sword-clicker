@@ -1,7 +1,7 @@
 export const ORE_ITEMS = {
   ore_stone: {
     id: 'ore_stone',
-    icon: 'stone',
+    icon: 'stone.png',
     category: 'mining',
     name: 'stone',
     sellPrice: 1
@@ -9,7 +9,7 @@ export const ORE_ITEMS = {
 
   ore_copper: {
     id: 'ore_copper',
-    icon: 'copper',
+    icon: 'copper.png',
     category: 'mining',
     name: 'copper',
     sellPrice: 2
@@ -17,7 +17,7 @@ export const ORE_ITEMS = {
 
   ore_tin: {
     id: 'ore_tin',
-    icon: 'tin',
+    icon: 'tin.png',
     category: 'mining',
     name: 'tin',
     sellPrice: 3
@@ -25,7 +25,7 @@ export const ORE_ITEMS = {
 
   ore_bronze: {
     id: 'ore_bronze',
-    icon: 'bronze',
+    icon: 'bronze.png',
     category: 'mining',
     name: 'bronze',
     sellPrice: 5
@@ -33,7 +33,7 @@ export const ORE_ITEMS = {
 
   ore_coal: {
     id: 'ore_coal',
-    icon: 'coal',
+    icon: 'coal.png',
     category: 'mining',
     name: 'coal',
     sellPrice: 5
@@ -41,7 +41,7 @@ export const ORE_ITEMS = {
 
   ore_iron: {
     id: 'ore_iron',
-    icon: 'iron',
+    icon: 'iron.png',
     category: 'mining',
     name: 'iron',
     sellPrice: 10
@@ -49,7 +49,7 @@ export const ORE_ITEMS = {
 
   ore_silver: {
     id: 'ore_silver',
-    icon: 'silver',
+    icon: 'silver.png',
     category: 'mining',
     name: 'silver',
     sellPrice: 20
@@ -57,7 +57,7 @@ export const ORE_ITEMS = {
 
   ore_gold: {
     id: 'ore_gold',
-    icon: 'gold',
+    icon: 'gold.png',
     category: 'mining',
     name: 'gold',
     sellPrice: 30
@@ -65,7 +65,7 @@ export const ORE_ITEMS = {
 
   ore_carbon: {
     id: 'ore_carbon',
-    icon: 'carbon',
+    icon: 'carbon.png',
     category: 'mining',
     name: 'carbon',
     sellPrice: 40
@@ -73,7 +73,7 @@ export const ORE_ITEMS = {
 
   ore_steel: {
     id: 'ore_steel',
-    icon: 'steel',
+    icon: 'steel.png',
     category: 'mining',
     name: 'steel',
     sellPrice: 50
@@ -81,7 +81,7 @@ export const ORE_ITEMS = {
 
   ore_platinum: {
     id: 'ore_platinum',
-    icon: 'platinum',
+    icon: 'platinum.png',
     category: 'mining',
     name: 'platinum',
     sellPrice: 60
@@ -89,7 +89,7 @@ export const ORE_ITEMS = {
 
   ore_titanium: {
     id: 'ore_titanium',
-    icon: 'titanium',
+    icon: 'titanium.png',
     category: 'mining',
     name: 'titanium',
     sellPrice: 70
@@ -97,7 +97,7 @@ export const ORE_ITEMS = {
 
   ore_tungsten: {
     id: 'ore_tungsten',
-    icon: 'tungsten',
+    icon: 'tungsten.png',
     category: 'mining',
     name: 'tungsten',
     sellPrice: 80
@@ -105,7 +105,7 @@ export const ORE_ITEMS = {
 
   ore_obsidian: {
     id: 'ore_obsidian',
-    icon: 'obsidian',
+    icon: 'obsidian.png',
     category: 'mining',
     name: 'obsidian',
     sellPrice: 90
@@ -113,7 +113,7 @@ export const ORE_ITEMS = {
 
   ore_cobalt: {
     id: 'ore_cobalt',
-    icon: 'cobalt',
+    icon: 'cobalt.png',
     category: 'mining',
     name: 'cobalt',
     sellPrice: 100
@@ -121,7 +121,7 @@ export const ORE_ITEMS = {
 
   ore_mithril: {
     id: 'ore_mithril',
-    icon: 'mithril',
+    icon: 'mithril.png',
     category: 'mining',
     name: 'mithril',
     sellPrice: 110
@@ -129,7 +129,7 @@ export const ORE_ITEMS = {
 
   ore_adamantium: {
     id: 'ore_adamantium',
-    icon: 'adamantium',
+    icon: 'adamantium.png',
     category: 'mining',
     name: 'adamantium',
     sellPrice: 120
@@ -137,7 +137,7 @@ export const ORE_ITEMS = {
 
   ore_orichalcum: {
     id: 'ore_orichalcum',
-    icon: 'orichalcum',
+    icon: 'orichalcum.png',
     category: 'mining',
     name: 'orichalcum',
     sellPrice: 130
@@ -145,7 +145,7 @@ export const ORE_ITEMS = {
 
   ore_meteorite: {
     id: 'ore_meteorite',
-    icon: 'meteorite',
+    icon: 'meteorite.png',
     category: 'mining',
     name: 'meteorite',
     sellPrice: 140
@@ -153,7 +153,7 @@ export const ORE_ITEMS = {
 
   ore_fairy_steel: {
     id: 'ore_fairy_steel',
-    icon: 'fairySteel',
+    icon: 'fairySteel.png',
     category: 'mining',
     name: 'fairy steel',
     sellPrice: 150
@@ -161,7 +161,7 @@ export const ORE_ITEMS = {
 
   ore_elven_steel: {
     id: 'ore_elven_steel',
-    icon: 'elvenSteel',
+    icon: 'elvenSteel.png',
     category: 'mining',
     name: 'elven steel',
     sellPrice: 160
@@ -169,7 +169,7 @@ export const ORE_ITEMS = {
 
   ore_cursed: {
     id: 'ore_cursed',
-    icon: 'cursed',
+    icon: 'cursed.png',
     category: 'mining',
     name: 'cursed ore',
     sellPrice: 175
@@ -177,7 +177,7 @@ export const ORE_ITEMS = {
 
   jade: {
     id: 'jade',
-    icon: 'jade',
+    icon: 'jade.svg',
     category: 'mining',
     name: 'jade',
     sellPrice: 500
@@ -185,7 +185,7 @@ export const ORE_ITEMS = {
 
   lapislazuli: {
     id: 'lapislazuli',
-    icon: 'lapislazuli',
+    icon: 'lapislazuli.png',
     category: 'mining',
     name: 'lapis lazuli',
     sellPrice: 2500
@@ -193,7 +193,7 @@ export const ORE_ITEMS = {
 
   sapphire: {
     id: 'sapphire',
-    icon: 'sapphire',
+    icon: 'sapphire.svg',
     category: 'mining',
     name: 'sapphire',
     sellPrice: 2500
@@ -201,7 +201,7 @@ export const ORE_ITEMS = {
 
   emerald: {
     id: 'emerald',
-    icon: 'emerald',
+    icon: 'emerald.png',
     category: 'mining',
     name: 'emerald',
     sellPrice: 2500
@@ -209,7 +209,7 @@ export const ORE_ITEMS = {
 
   ruby: {
     id: 'ruby',
-    icon: 'ruby',
+    icon: 'ruby.svg',
     category: 'mining',
     name: 'ruby',
     sellPrice: 2500
@@ -217,7 +217,7 @@ export const ORE_ITEMS = {
 
   tanzanite: {
     id: 'tanzanite',
-    icon: 'tanzanite',
+    icon: 'tanzanite.png',
     category: 'mining',
     name: 'tanzanite',
     sellPrice: 2500

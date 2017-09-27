@@ -6,7 +6,7 @@ export const ATTACK_BUFFS = {
 
   basic_poison: {
     duplicateTag: 'basic_poison', // Used to stop duplicate buffs
-    icon: 'poison',
+    icon: 'poison.svg',
     name: 'basic poison',
     description({ buff, level }) {
       return 'Deals poison damage over time';
@@ -31,7 +31,7 @@ export const ATTACK_BUFFS = {
           actualBattle.utils.dealDamage(poisonDamage, {
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            customIcon: 'poison',
+            customicon: 'poison.svg',
             customColor: '#229b00'
           });
         }
@@ -55,7 +55,7 @@ export const ATTACK_BUFFS = {
 
   attack_up: {
     duplicateTag: 'attack_up', // Used to stop duplicate buffs
-    icon: 'attack',
+    icon: 'attack.svg',
     name: 'attack up',
     description({ buff, level }) {
 
@@ -106,7 +106,7 @@ export const ATTACK_BUFFS = {
 
   accuracy_up: {
     duplicateTag: 'accuracy_up', // Used to stop duplicate buffs
-    icon: 'accuracy',
+    icon: 'accuracy.svg',
     name: 'accuracy up',
     description({ buff, level }) {
 
@@ -158,7 +158,7 @@ export const ATTACK_BUFFS = {
 
   vampirism: {
     duplicateTag: 'vampirism', // Used to stop duplicate buffs
-    icon: 'vampirism',
+    icon: 'vampirism.svg',
     name: 'vampirism',
     description({ buff, level }) {
       const lifestealBase = buff.constants.lifestealBase;
@@ -213,7 +213,7 @@ export const ATTACK_BUFFS = {
 
   poisoned_blade: {
     duplicateTag: 'poisoned_blade', // Used to stop duplicate buffs
-    icon: 'poisonedBlade',
+    icon: 'poisonedBlade.svg',
     name: 'poisoned blade',
     description({ buff, level }) {
       let localLevel = JSON.parse(JSON.stringify(level));
@@ -259,7 +259,7 @@ export const ATTACK_BUFFS = {
               duration: 180,
               totalDuration: 180,
               damage: Math.ceil(totalDamage),
-              icon: 'poison',
+              icon: 'poison.svg',
               name: 'Poison',
               description: `Take ${Math.ceil(totalDamage)} damage every 5 seconds.`,
               sourceId: attacker.id
@@ -285,7 +285,7 @@ export const ATTACK_BUFFS = {
 
   phantom_strikes: {
     duplicateTag: 'phantom_strikes', // Used to stop duplicate buffs
-    icon: 'phantomStrikes',
+    icon: 'phantomStrikes.svg',
     name: 'phantom strikes',
     description({ buff, level }) {
       let localLevel = JSON.parse(JSON.stringify(level));
@@ -348,7 +348,7 @@ export const ATTACK_BUFFS = {
 
   thirsty_fangs: {
     duplicateTag: 'thirsty_fangs', // Used to stop duplicate buffs
-    icon: 'thirstyFangs',
+    icon: 'thirstyFangs.svg',
     name: 'thirsty fangs',
     description({ buff, level }) {
       let localLevel = JSON.parse(JSON.stringify(level));
@@ -361,11 +361,11 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
       return `When the target is bleeding<br />
-        Deal 25% extra damage.<br />
+        Deal 20% extra damage.<br />
         While below 75% hp, heal for the same amount.`;
     },
     constants: {
-      damageDecimal: 0.25
+      damageDecimal: 0.20
     },
     data: {
       duration: Infinity,
@@ -419,7 +419,7 @@ export const ATTACK_BUFFS = {
 
   berserk: {
     duplicateTag: 'berserk', // Used to stop duplicate buffs
-    icon: 'berserk',
+    icon: 'berserk.svg',
     name: 'berserk',
     description({ buff, level }) {
       let localLevel = JSON.parse(JSON.stringify(level));
@@ -509,7 +509,7 @@ export const ATTACK_BUFFS = {
 
   double_edged_sword: {
     duplicateTag: 'double_edged_sword', // Used to stop duplicate buffs
-    icon: 'doubleEdgedSword',
+    icon: 'doubleEdgedSword.svg',
     name: 'double edged sword',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -557,7 +557,7 @@ export const ATTACK_BUFFS = {
 
   execute: {
     duplicateTag: 'execute', // Used to stop duplicate buffs
-    icon: 'execute',
+    icon: 'execute.svg',
     name: 'execute',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -608,7 +608,7 @@ export const ATTACK_BUFFS = {
 
   slash: {
     duplicateTag: 'slash', // Used to stop duplicate buffs
-    icon: 'slash',
+    icon: 'slash.svg',
     name: 'slash',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -654,7 +654,7 @@ export const ATTACK_BUFFS = {
 
   penetrating_slash: {
     duplicateTag: 'penetrating_slash', // Used to stop duplicate buffs
-    icon: 'penetratingSlash',
+    icon: 'penetratingSlash.svg',
     name: 'penetrating slash',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -704,7 +704,7 @@ export const ATTACK_BUFFS = {
 
   shield_bash: {
     duplicateTag: 'shield_bash', // Used to stop duplicate buffs
-    icon: 'shieldBash',
+    icon: 'shieldBash.svg',
     name: 'shield bash',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -746,7 +746,7 @@ export const ATTACK_BUFFS = {
 
   blade_spin: {
     duplicateTag: 'blade_spin', // Used to stop duplicate buffs
-    icon: 'bladeSpin',
+    icon: 'bladeSpin.svg',
     name: 'blade spin',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
@@ -790,7 +790,7 @@ export const ATTACK_BUFFS = {
 
   blade_frenzy: {
     duplicateTag: 'blade_frenzy', // Used to stop duplicate buffs
-    icon: 'bladeFrenzy',
+    icon: 'bladeFrenzy.svg',
     name: 'blade frenzy',
     description({ buff, level }) {
       const duration = buff.data.totalDuration;
@@ -848,7 +848,7 @@ export const ATTACK_BUFFS = {
 
   bleed: {
     duplicateTag: 'bleed', // Used to stop duplicate buffs
-    icon: 'bleed',
+    icon: 'bleed.svg',
     name: 'bleed',
     description({ buff, level }) {
       const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;

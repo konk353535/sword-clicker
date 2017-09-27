@@ -2,32 +2,32 @@ import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
 export const LEVEL_THREE_MONSTERS = [{
   id: 'spider',
-  icon: 'spider',
+  icon: 'spider.svg',
   name: 'spider'
 }, {
   id: 'snake',
-  icon: 'snake',
+  icon: 'snake.svg',
   name: 'snake',
   buffs: [{
     id: 'poisoned_blade',
     data: {
       level: 1,
-      icon: 'poisonedBlade',
+      icon: 'poisonedBlade.svg',
       name: 'poisoned blade'
     }
   }]
 }, {
   id: 'falcon',
-  icon: 'falcon',
+  icon: 'falcon.svg',
   name: 'falcon',
   magicArmored: true
 }, {
   id: 'lizard',
-  icon: 'lizard',
+  icon: 'lizard.svg',
   name: 'lizard'
 }, {
   id: 'skunk',
-  icon: 'skunk',
+  icon: 'skunk.svg',
   name: 'skunk'
 }];
 

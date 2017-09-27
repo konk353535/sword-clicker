@@ -65,7 +65,7 @@ export const TOWER_FLOOR_6 = {
     name: 'Place of gold',
     enemies: ['gold_spirit'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
-      chance: 1 / 4,
+      chance: 1 / 3,
       rewards: [
         { type: 'item', itemId: 'gold_essence', amount: 1 }
       ]

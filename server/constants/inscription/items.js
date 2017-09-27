@@ -1,7 +1,7 @@
 export const INSCRIPTION_ITEMS = {
   pigment_red_255: {
     id: 'pigment_red_255',
-    icon: 'pigmentRed255',
+    icon: 'pigmentRed255.svg',
     category: 'pigment',
     name: 'pigment red 255',
     sellPrice: 50,
@@ -10,7 +10,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_200: {
     id: 'pigment_red_200',
-    icon: 'pigmentRed200',
+    icon: 'pigmentRed200.svg',
     category: 'pigment',
     name: 'pigment red 200',
     sellPrice: 50,
@@ -19,7 +19,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_150: {
     id: 'pigment_red_150',
-    icon: 'pigmentRed150',
+    icon: 'pigmentRed150.svg',
     category: 'pigment',
     name: 'pigment red 150',
     sellPrice: 50,
@@ -28,7 +28,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_255: {
     id: 'pigment_green_255',
-    icon: 'pigmentGreen255',
+    icon: 'pigmentGreen255.svg',
     category: 'pigment',
     name: 'pigment green 255',
     sellPrice: 100,
@@ -37,7 +37,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_200: {
     id: 'pigment_green_200',
-    icon: 'pigmentGreen200',
+    icon: 'pigmentGreen200.svg',
     category: 'pigment',
     name: 'pigment green 200',
     sellPrice: 100,
@@ -46,7 +46,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_170: {
     id: 'pigment_green_170',
-    icon: 'pigmentGreen170',
+    icon: 'pigmentGreen170.svg',
     category: 'pigment',
     name: 'pigment green 170',
     sellPrice: 100,
@@ -55,7 +55,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_blue_255: {
     id: 'pigment_blue_255',
-    icon: 'pigmentBlue255',
+    icon: 'pigmentBlue255.svg',
     category: 'pigment',
     name: 'pigment blue 255',
     sellPrice: 250,
@@ -64,7 +64,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_255: {
     id: 'pigment_purple_255',
-    icon: 'pigmentPurple255',
+    icon: 'pigmentPurple255.svg',
     category: 'pigment',
     name: 'pigment purple 255',
     sellPrice: 2000,
@@ -73,7 +73,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_yellow_255: {
     id: 'pigment_yellow_255',
-    icon: 'pigmentYellow255',
+    icon: 'pigmentYellow255.svg',
     category: 'pigment',
     name: 'pigment yellow 255',
     sellPrice: 3000,
@@ -82,7 +82,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_200: {
     id: 'pigment_purple_200',
-    icon: 'pigmentPurple200',
+    icon: 'pigmentPurple200.svg',
     category: 'pigment',
     name: 'pigment purple 200',
     sellPrice: 3000,
@@ -91,7 +91,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_white_128: {
     id: 'pigment_white_128',
-    icon: 'pigmentWhite128',
+    icon: 'pigmentWhite128.svg',
     category: 'pigment',
     name: 'pigment white 128',
     sellPrice: 2000,
@@ -100,7 +100,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_140: {
     id: 'pigment_green_140',
-    icon: 'pigmentGreen140',
+    icon: 'pigmentGreen140.svg',
     category: 'pigment',
     name: 'pigment green 140',
     sellPrice: 2000,
@@ -109,7 +109,7 @@ export const INSCRIPTION_ITEMS = {
 
   catnip: { // Green 140
     id: 'catnip',
-    icon: 'catnip',
+    icon: 'catnip.svg',
     category: 'herb',
     name: 'catnip',
     sellPrice: 1250,
@@ -118,7 +118,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_150: {
     id: 'pigment_purple_150',
-    icon: 'pigmentPurple150',
+    icon: 'pigmentPurple150.svg',
     category: 'pigment',
     name: 'pigment purple 150',
     sellPrice: 2000,
@@ -127,7 +127,7 @@ export const INSCRIPTION_ITEMS = {
 
   chives: { // Purple 150
     id: 'chives',
-    icon: 'chives',
+    icon: 'chives.svg',
     category: 'herb',
     name: 'chives',
     sellPrice: 1250,
@@ -136,7 +136,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_white_190: {
     id: 'pigment_white_190',
-    icon: 'pigmentWhite190',
+    icon: 'pigmentWhite190.svg',
     category: 'pigment',
     name: 'pigment white 190',
     sellPrice: 2000,
@@ -145,7 +145,7 @@ export const INSCRIPTION_ITEMS = {
 
   garlic: { // White 190
     id: 'garlic',
-    icon: 'garlic',
+    icon: 'garlic.svg',
     category: 'herb',
     name: 'garlic',
     sellPrice: 1250,
@@ -154,7 +154,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_yellow_200: {
     id: 'pigment_yellow_200',
-    icon: 'pigmentYellow200',
+    icon: 'pigmentYellow200.svg',
     category: 'pigment',
     name: 'pigment yellow 200',
     sellPrice: 2000,
@@ -163,7 +163,7 @@ export const INSCRIPTION_ITEMS = {
 
   lemon_grass: { // Yellow 200
     id: 'lemon_grass',
-    icon: 'lemonGrass',
+    icon: 'lemonGrass.svg',
     category: 'herb',
     name: 'lemon grass',
     sellPrice: 1250,
@@ -173,7 +173,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_100: {
     id: 'pigment_red_100',
-    icon: 'pigmentRed100',
+    icon: 'pigmentRed100.svg',
     category: 'pigment',
     name: 'pigment red 100',
     sellPrice: 2000,
@@ -182,7 +182,7 @@ export const INSCRIPTION_ITEMS = {
 
   nasturtium: { // Red 100
     id: 'nasturtium',
-    icon: 'nasturtium',
+    icon: 'nasturtium.svg',
     category: 'herb',
     name: 'nasturtium',
     sellPrice: 1250,
@@ -191,7 +191,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_110: {
     id: 'pigment_green_110',
-    icon: 'pigmentGreen110',
+    icon: 'pigmentGreen110.svg',
     category: 'pigment',
     name: 'pigment green 110',
     sellPrice: 2000,
@@ -200,7 +200,7 @@ export const INSCRIPTION_ITEMS = {
 
   sorrell: { // Green 110
     id: 'sorrell',
-    icon: 'sorrell',
+    icon: 'sorrell.svg',
     category: 'herb',
     name: 'sorrell',
     sellPrice: 1250,
@@ -209,7 +209,7 @@ export const INSCRIPTION_ITEMS = {
 
   lavender: {
     id: 'lavender',
-    icon: 'lavender',
+    icon: 'lavender.svg',
     category: 'herb',
     name: 'lavender',
     sellPrice: 1250,
@@ -218,7 +218,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_paper: {
     id: 'pine_paper',
-    icon: 'pinePaper',
+    icon: 'pinePaper.svg',
     category: 'paper',
     name: 'pine paper',
     sellPrice: 50,
@@ -227,7 +227,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_book: {
     id: 'pine_book',
-    icon: 'pineBook',
+    icon: 'pineBook.svg',
     category: 'paper',
     name: 'pine book',
     sellPrice: 50,
@@ -236,7 +236,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_book: {
     id: 'beech_book',
-    icon: 'beechBook',
+    icon: 'beechBook.svg',
     category: 'paper',
     name: 'beech book',
     sellPrice: 50,
@@ -245,7 +245,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_paper: {
     id: 'beech_paper',
-    icon: 'beechPaper',
+    icon: 'beechPaper.svg',
     category: 'paper',
     name: 'beech paper',
     sellPrice: 100,
@@ -254,7 +254,7 @@ export const INSCRIPTION_ITEMS = {
 
   ash_paper: {
     id: 'ash_paper',
-    icon: 'ashPaper',
+    icon: 'ashPaper.svg',
     category: 'paper',
     name: 'ash paper',
     sellPrice: 200,
@@ -263,7 +263,7 @@ export const INSCRIPTION_ITEMS = {
 
   oak_paper: {
     id: 'oak_paper',
-    icon: 'oakPaper',
+    icon: 'oakPaper.svg',
     category: 'paper',
     name: 'oak paper',
     sellPrice: 250,
@@ -272,7 +272,7 @@ export const INSCRIPTION_ITEMS = {
 
   maple_paper: {
     id: 'maple_paper',
-    icon: 'maplePaper',
+    icon: 'maplePaper.svg',
     category: 'paper',
     name: 'maple paper',
     sellPrice: 300,
@@ -281,7 +281,7 @@ export const INSCRIPTION_ITEMS = {
 
   walnut_paper: {
     id: 'walnut_paper',
-    icon: 'walnutPaper',
+    icon: 'walnutPaper.svg',
     category: 'paper',
     name: 'walnut paper',
     sellPrice: 350,
@@ -290,7 +290,7 @@ export const INSCRIPTION_ITEMS = {
 
   cherry_paper: {
     id: 'cherry_paper',
-    icon: 'cherryPaper',
+    icon: 'cherryPaper.svg',
     category: 'paper',
     name: 'cherry paper',
     sellPrice: 400,
@@ -299,7 +299,7 @@ export const INSCRIPTION_ITEMS = {
 
   mahogany_paper: {
     id: 'mahogany_paper',
-    icon: 'mahoganyPaper',
+    icon: 'mahoganyPaper.svg',
     category: 'paper',
     name: 'mahogany paper',
     sellPrice: 450,
@@ -308,7 +308,7 @@ export const INSCRIPTION_ITEMS = {
 
   elk_paper: {
     id: 'elk_paper',
-    icon: 'elkPaper',
+    icon: 'elkPaper.svg',
     category: 'paper',
     name: 'elk paper',
     sellPrice: 450,
@@ -317,7 +317,7 @@ export const INSCRIPTION_ITEMS = {
 
   gombe_paper: {
     id: 'gombe_paper',
-    icon: 'gombePaper',
+    icon: 'gombePaper.svg',
     category: 'paper',
     name: 'gombe paper',
     sellPrice: 450,
@@ -326,7 +326,7 @@ export const INSCRIPTION_ITEMS = {
 
   denya_paper: {
     id: 'denya_paper',
-    icon: 'denyaPaper',
+    icon: 'denyaPaper.svg',
     category: 'paper',
     name: 'denya paper',
     sellPrice: 450,
@@ -335,16 +335,29 @@ export const INSCRIPTION_ITEMS = {
 
   blue_gum_paper: {
     id: 'blue_gum_paper',
-    icon: 'blueGumPaper',
+    icon: 'blueGumPaper.svg',
     category: 'paper',
     name: 'blue_gum paper',
     sellPrice: 450,
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  volcanic_shield_1_tome: {
+    id: 'volcanic_shield_1_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv 1',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 1
+    },
+    sellPrice: 450,
+    description: 'Can be consumed to learn the volcanic shield ability.'
+  },
+
   thirsty_fangs_1_tome: {
     id: 'thirsty_fangs_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Thirsty Fangs Lv 1',
     teaches: {
@@ -357,7 +370,7 @@ export const INSCRIPTION_ITEMS = {
 
   slash_level_1_tome: {
     id: 'slash_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Slash Lv 1',
     teaches: {
@@ -370,7 +383,7 @@ export const INSCRIPTION_ITEMS = {
 
   slash_level_2_tome: {
     id: 'slash_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Slash Lv 2',
     teaches: {
@@ -383,7 +396,7 @@ export const INSCRIPTION_ITEMS = {
 
   frost_armor_1_tome: {
     id: 'frost_armor_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Frost armor Lv 1',
     teaches: {
@@ -396,7 +409,7 @@ export const INSCRIPTION_ITEMS = {
 
   frost_armor_2_tome: {
     id: 'frost_armor_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Frost armor Lv 2',
     teaches: {
@@ -409,7 +422,7 @@ export const INSCRIPTION_ITEMS = {
 
   frost_armor_3_tome: {
     id: 'frost_armor_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Frost armor Lv 3',
     teaches: {
@@ -422,7 +435,7 @@ export const INSCRIPTION_ITEMS = {
 
   water_wave_tome: {
     id: 'water_wave_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Water wave',
     teaches: {
@@ -435,7 +448,7 @@ export const INSCRIPTION_ITEMS = {
 
   mending_spring_tome: {
     id: 'mending_spring_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mending spring',
     teaches: {
@@ -448,7 +461,7 @@ export const INSCRIPTION_ITEMS = {
 
   affliction_tome: {
     id: 'affliction_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Affliction',
     teaches: {
@@ -461,7 +474,7 @@ export const INSCRIPTION_ITEMS = {
 
   wisdom_tome: {
     id: 'wisdom_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'wisdom',
     teaches: {
@@ -474,7 +487,7 @@ export const INSCRIPTION_ITEMS = {
 
   poison_dart_tome: {
     id: 'poison_dart_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'poison dart tome',
     teaches: {
@@ -487,7 +500,7 @@ export const INSCRIPTION_ITEMS = {
 
   lightning_dart_tome: {
     id: 'lightning_dart_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'lightning dart tome',
     teaches: {
@@ -500,7 +513,7 @@ export const INSCRIPTION_ITEMS = {
 
   lightning_storm_tome: {
     id: 'lightning_storm_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'lightning storm tome',
     teaches: {
@@ -513,7 +526,7 @@ export const INSCRIPTION_ITEMS = {
 
   blizzard_tome: {
     id: 'blizzard_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'blizzard tome',
     teaches: {
@@ -526,7 +539,7 @@ export const INSCRIPTION_ITEMS = {
 
   health_up_1_tome: {
     id: 'health_up_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'health up tome lv 1',
     teaches: {
@@ -539,7 +552,7 @@ export const INSCRIPTION_ITEMS = {
 
   health_up_2_tome: {
     id: 'health_up_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'health up tome lv 2',
     teaches: {
@@ -552,7 +565,7 @@ export const INSCRIPTION_ITEMS = {
 
   health_up_3_tome: {
     id: 'health_up_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'health up tome lv 3',
     teaches: {
@@ -565,7 +578,7 @@ export const INSCRIPTION_ITEMS = {
 
   attack_up_1_tome: {
     id: 'attack_up_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'attack up tome lv 1',
     teaches: {
@@ -578,7 +591,7 @@ export const INSCRIPTION_ITEMS = {
 
   attack_up_2_tome: {
     id: 'attack_up_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'attack up tome lv 2',
     teaches: {
@@ -591,7 +604,7 @@ export const INSCRIPTION_ITEMS = {
 
   attack_up_3_tome: {
     id: 'attack_up_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'attack up tome lv 3',
     teaches: {
@@ -604,7 +617,7 @@ export const INSCRIPTION_ITEMS = {
 
   accuracy_up_1_tome: {
     id: 'accuracy_up_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'accuracy up tome lv 1',
     teaches: {
@@ -617,7 +630,7 @@ export const INSCRIPTION_ITEMS = {
 
   accuracy_up_2_tome: {
     id: 'accuracy_up_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'accuracy up tome lv 2',
     teaches: {
@@ -630,7 +643,7 @@ export const INSCRIPTION_ITEMS = {
 
   accuracy_up_3_tome: {
     id: 'accuracy_up_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'accuracy up tome lv 3',
     teaches: {
@@ -643,7 +656,7 @@ export const INSCRIPTION_ITEMS = {
 
   defense_up_1_tome: {
     id: 'defense_up_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'defense up tome lv 1',
     teaches: {
@@ -656,7 +669,7 @@ export const INSCRIPTION_ITEMS = {
 
   defense_up_2_tome: {
     id: 'defense_up_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'defense up tome lv 2',
     teaches: {
@@ -669,7 +682,7 @@ export const INSCRIPTION_ITEMS = {
 
   defense_up_3_tome: {
     id: 'defense_up_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'defense up tome lv 3',
     teaches: {
@@ -682,7 +695,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleeding_spin_1_tome: {
     id: 'bleeding_spin_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'bleeding spin tome lv 1',
     teaches: {
@@ -695,7 +708,7 @@ export const INSCRIPTION_ITEMS = {
 
   double_edged_sword_1_tome: {
     id: 'double_edged_sword_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'double edged sword tome lv 1',
     teaches: {
@@ -708,7 +721,7 @@ export const INSCRIPTION_ITEMS = {
 
   spiked_armor_1_tome: {
     id: 'spiked_armor_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Spiked armor Lv 1',
     teaches: {
@@ -721,7 +734,7 @@ export const INSCRIPTION_ITEMS = {
 
   poisoned_blade_1_tome: {
     id: 'poisoned_blade_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Poisoned blade Lv 1',
     teaches: {
@@ -734,7 +747,7 @@ export const INSCRIPTION_ITEMS = {
 
   poisoned_blade_2_tome: {
     id: 'poisoned_blade_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Poisoned blade Lv 2',
     teaches: {
@@ -747,7 +760,7 @@ export const INSCRIPTION_ITEMS = {
 
   poisoned_blade_3_tome: {
     id: 'poisoned_blade_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Poisoned blade Lv 3',
     teaches: {
@@ -760,7 +773,7 @@ export const INSCRIPTION_ITEMS = {
 
   earth_dart_tome: {
     id: 'earth_dart_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Earth Dart',
     teaches: {
@@ -773,7 +786,7 @@ export const INSCRIPTION_ITEMS = {
 
   mud_armor_tome: {
     id: 'mud_armor_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'mud armor',
     teaches: {
@@ -786,7 +799,7 @@ export const INSCRIPTION_ITEMS = {
 
   mending_water_tome: {
     id: 'mending_water_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'mending water',
     teaches: {
@@ -799,7 +812,7 @@ export const INSCRIPTION_ITEMS = {
 
   ignite_tome: {
     id: 'ignite_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'ignite',
     teaches: {
@@ -812,7 +825,7 @@ export const INSCRIPTION_ITEMS = {
 
   angels_touch_tome: {
     id: 'angels_touch_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'angels touch',
     teaches: {
@@ -825,7 +838,7 @@ export const INSCRIPTION_ITEMS = {
 
   feeding_frenzy_tome: {
     id: 'feeding_frenzy_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'feeding frenzy',
     teaches: {
@@ -838,7 +851,7 @@ export const INSCRIPTION_ITEMS = {
 
   elemental_shield_tome: {
     id: 'elemental_shield_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'elemental shield',
     teaches: {
@@ -851,7 +864,7 @@ export const INSCRIPTION_ITEMS = {
 
   heavens_descent_tome: {
     id: 'heavens_descent_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'heavens descent',
     teaches: {
@@ -864,7 +877,7 @@ export const INSCRIPTION_ITEMS = {
 
   inferno_tome: {
     id: 'inferno_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'inferno',
     teaches: {
@@ -877,7 +890,7 @@ export const INSCRIPTION_ITEMS = {
 
   lightning_speed_tome: {
     id: 'lightning_speed_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'lightning_speed',
     teaches: {
@@ -890,7 +903,7 @@ export const INSCRIPTION_ITEMS = {
 
   diamond_skin_tome: {
     id: 'diamond_skin_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'diamond_skin',
     teaches: {
@@ -903,7 +916,7 @@ export const INSCRIPTION_ITEMS = {
 
   frenzied_winds_tome: {
     id: 'frenzied_winds_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'frenzied winds',
     teaches: {
@@ -916,7 +929,7 @@ export const INSCRIPTION_ITEMS = {
 
   ice_dart_tome: {
     id: 'ice_dart_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'ice Dart',
     teaches: {
@@ -929,7 +942,7 @@ export const INSCRIPTION_ITEMS = {
 
   fire_dart_tome: {
     id: 'fire_dart_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'fire Dart',
     teaches: {
@@ -942,7 +955,7 @@ export const INSCRIPTION_ITEMS = {
 
   water_dart_tome: {
     id: 'water_dart_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'water Dart',
     teaches: {
@@ -955,7 +968,7 @@ export const INSCRIPTION_ITEMS = {
 
   air_dart_tome: {
     id: 'air_dart_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'air Dart',
     teaches: {
@@ -968,7 +981,7 @@ export const INSCRIPTION_ITEMS = {
 
   fire_ball_tome: {
     id: 'fire_ball_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'fire ball',
     teaches: {
@@ -981,7 +994,7 @@ export const INSCRIPTION_ITEMS = {
 
   water_ball_tome: {
     id: 'water_ball_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'water ball',
     teaches: {
@@ -994,7 +1007,7 @@ export const INSCRIPTION_ITEMS = {
 
   healing_shield_tome: {
     id: 'healing_shield_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'healing shield',
     teaches: {
@@ -1007,7 +1020,7 @@ export const INSCRIPTION_ITEMS = {
 
   earthen_fist_tome: {
     id: 'earthen_fist_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'earthen fist',
     teaches: {
@@ -1020,7 +1033,7 @@ export const INSCRIPTION_ITEMS = {
 
   fire_wave_tome: {
     id: 'fire_wave_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'fire wave tome',
     teaches: {
@@ -1033,7 +1046,7 @@ export const INSCRIPTION_ITEMS = {
 
   furied_winds_tome: {
     id: 'furied_winds_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'furied winds tome',
     teaches: {
@@ -1046,7 +1059,7 @@ export const INSCRIPTION_ITEMS = {
 
   air_ball_tome: {
     id: 'air_ball_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'air ball',
     teaches: {
@@ -1059,7 +1072,7 @@ export const INSCRIPTION_ITEMS = {
 
   earth_ball_tome: {
     id: 'earth_ball_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'earth ball',
     teaches: {
@@ -1072,7 +1085,7 @@ export const INSCRIPTION_ITEMS = {
 
   meteor_tome: {
     id: 'meteor_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'meteor',
     teaches: {
@@ -1085,7 +1098,7 @@ export const INSCRIPTION_ITEMS = {
 
   scream_tome: {
     id: 'scream_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'scream',
     teaches: {
@@ -1098,7 +1111,7 @@ export const INSCRIPTION_ITEMS = {
 
   berserk_level_1_tome: {
     id: 'berserk_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Berserk Lv 1',
     teaches: {
@@ -1111,7 +1124,7 @@ export const INSCRIPTION_ITEMS = {
 
   berserk_level_2_tome: {
     id: 'berserk_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Berserk Lv 2',
     teaches: {
@@ -1124,7 +1137,7 @@ export const INSCRIPTION_ITEMS = {
 
   berserk_level_3_tome: {
     id: 'berserk_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Berserk Lv 3',
     teaches: {
@@ -1137,7 +1150,7 @@ export const INSCRIPTION_ITEMS = {
 
   berserk_level_4_tome: {
     id: 'berserk_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Berserk Lv 4',
     teaches: {
@@ -1150,7 +1163,7 @@ export const INSCRIPTION_ITEMS = {
 
   berserk_level_5_tome: {
     id: 'berserk_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'Berserk Lv 5',
     teaches: {
@@ -1163,7 +1176,7 @@ export const INSCRIPTION_ITEMS = {
 
   execute_level_1_tome: {
     id: 'execute_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'execute Lv 1',
     teaches: {
@@ -1176,7 +1189,7 @@ export const INSCRIPTION_ITEMS = {
 
   execute_level_2_tome: {
     id: 'execute_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'execute Lv 2',
     teaches: {
@@ -1189,7 +1202,7 @@ export const INSCRIPTION_ITEMS = {
 
   execute_level_3_tome: {
     id: 'execute_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'execute Lv 3',
     teaches: {
@@ -1202,7 +1215,7 @@ export const INSCRIPTION_ITEMS = {
 
   execute_level_4_tome: {
     id: 'execute_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'execute Lv 4',
     teaches: {
@@ -1215,7 +1228,7 @@ export const INSCRIPTION_ITEMS = {
 
   execute_level_5_tome: {
     id: 'execute_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'execute Lv 5',
     teaches: {
@@ -1228,7 +1241,7 @@ export const INSCRIPTION_ITEMS = {
 
   penetrating_slash_level_1_tome: {
     id: 'penetrating_slash_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'penetrating slash Lv 1',
     teaches: {
@@ -1241,7 +1254,7 @@ export const INSCRIPTION_ITEMS = {
 
   penetrating_slash_level_2_tome: {
     id: 'penetrating_slash_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'penetrating slash Lv 2',
     teaches: {
@@ -1254,7 +1267,7 @@ export const INSCRIPTION_ITEMS = {
 
   vampirism_level_1_tome: {
     id: 'vampirism_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'vampirism Lv 1',
     teaches: {
@@ -1267,7 +1280,7 @@ export const INSCRIPTION_ITEMS = {
 
   vampirism_level_2_tome: {
     id: 'vampirism_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'vampirism Lv 2',
     teaches: {
@@ -1280,7 +1293,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleed_level_1_tome: {
     id: 'bleed_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'bleed Lv 1',
     teaches: {
@@ -1293,7 +1306,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleed_level_2_tome: {
     id: 'bleed_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'bleed Lv 2',
     teaches: {
@@ -1306,7 +1319,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleed_level_3_tome: {
     id: 'bleed_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'bleed Lv 3',
     teaches: {
@@ -1319,7 +1332,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleed_level_4_tome: {
     id: 'bleed_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'bleed Lv 4',
     teaches: {
@@ -1332,7 +1345,7 @@ export const INSCRIPTION_ITEMS = {
 
   bleed_level_5_tome: {
     id: 'bleed_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'bleed Lv 5',
     teaches: {
@@ -1345,7 +1358,7 @@ export const INSCRIPTION_ITEMS = {
 
   phantom_strikes_level_1_tome: {
     id: 'phantom_strikes_level_1_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'phantom strikes Lv 1',
     teaches: {
@@ -1358,7 +1371,7 @@ export const INSCRIPTION_ITEMS = {
 
   phantom_strikes_level_2_tome: {
     id: 'phantom_strikes_level_2_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'phantom strikes Lv 2',
     teaches: {
@@ -1371,7 +1384,7 @@ export const INSCRIPTION_ITEMS = {
 
   phantom_strikes_level_3_tome: {
     id: 'phantom_strikes_level_3_tome',
-    icon: 'tomeUncommon',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'phantom strikes Lv 3',
     teaches: {
@@ -1384,7 +1397,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_spin_level_1_tome: {
     id: 'blade_spin_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade spin Lv 1',
     teaches: {
@@ -1397,7 +1410,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_spin_level_2_tome: {
     id: 'blade_spin_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade spin Lv 2',
     teaches: {
@@ -1410,7 +1423,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_spin_level_3_tome: {
     id: 'blade_spin_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade spin Lv 3',
     teaches: {
@@ -1423,7 +1436,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_spin_level_4_tome: {
     id: 'blade_spin_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade spin Lv 4',
     teaches: {
@@ -1436,7 +1449,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_spin_level_5_tome: {
     id: 'blade_spin_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade spin Lv 5',
     teaches: {
@@ -1449,7 +1462,7 @@ export const INSCRIPTION_ITEMS = {
 
   shield_bash_level_1_tome: {
     id: 'shield_bash_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'shield bash Lv 1',
     teaches: {
@@ -1462,7 +1475,7 @@ export const INSCRIPTION_ITEMS = {
 
   shield_bash_level_2_tome: {
     id: 'shield_bash_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'shield bash Lv 2',
     teaches: {
@@ -1475,7 +1488,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_frenzy_level_1_tome: {
     id: 'blade_frenzy_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade frenzy Lv 1',
     teaches: {
@@ -1488,7 +1501,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_frenzy_level_2_tome: {
     id: 'blade_frenzy_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade frenzy Lv 2',
     teaches: {
@@ -1501,7 +1514,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_frenzy_level_3_tome: {
     id: 'blade_frenzy_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade frenzy Lv 3',
     teaches: {
@@ -1514,7 +1527,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_frenzy_level_4_tome: {
     id: 'blade_frenzy_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade frenzy Lv 4',
     teaches: {
@@ -1527,7 +1540,7 @@ export const INSCRIPTION_ITEMS = {
 
   blade_frenzy_level_5_tome: {
     id: 'blade_frenzy_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'blade frenzy Lv 5',
     teaches: {
@@ -1540,7 +1553,7 @@ export const INSCRIPTION_ITEMS = {
 
   defensive_stance_level_1_tome: {
     id: 'defensive_stance_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'defensive stance Lv 1',
     teaches: {
@@ -1553,7 +1566,7 @@ export const INSCRIPTION_ITEMS = {
 
   defensive_stance_level_2_tome: {
     id: 'defensive_stance_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'defensive stance Lv 2',
     teaches: {
@@ -1566,7 +1579,7 @@ export const INSCRIPTION_ITEMS = {
 
   defensive_stance_level_3_tome: {
     id: 'defensive_stance_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'defensive stance Lv 3',
     teaches: {
@@ -1579,7 +1592,7 @@ export const INSCRIPTION_ITEMS = {
 
   defensive_stance_level_4_tome: {
     id: 'defensive_stance_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'defensive stance Lv 4',
     teaches: {
@@ -1592,7 +1605,7 @@ export const INSCRIPTION_ITEMS = {
 
   defensive_stance_level_5_tome: {
     id: 'defensive_stance_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'defensive stance Lv 5',
     teaches: {
@@ -1605,7 +1618,7 @@ export const INSCRIPTION_ITEMS = {
 
   evasive_maneuvers_level_1_tome: {
     id: 'evasive_maneuvers_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'evasive maneuvers Lv 1',
     teaches: {
@@ -1618,7 +1631,7 @@ export const INSCRIPTION_ITEMS = {
 
   evasive_maneuvers_level_2_tome: {
     id: 'evasive_maneuvers_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'evasive maneuvers Lv 2',
     teaches: {
@@ -1631,7 +1644,7 @@ export const INSCRIPTION_ITEMS = {
 
   evasive_maneuvers_level_3_tome: {
     id: 'evasive_maneuvers_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'evasive maneuvers Lv 3',
     teaches: {
@@ -1644,7 +1657,7 @@ export const INSCRIPTION_ITEMS = {
 
   evasive_maneuvers_level_4_tome: {
     id: 'evasive_maneuvers_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'evasive maneuvers Lv 4',
     teaches: {
@@ -1657,7 +1670,7 @@ export const INSCRIPTION_ITEMS = {
 
   evasive_maneuvers_level_5_tome: {
     id: 'evasive_maneuvers_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'evasive maneuvers Lv 5',
     teaches: {
@@ -1670,7 +1683,7 @@ export const INSCRIPTION_ITEMS = {
 
   armor_up_level_1_tome: {
     id: 'armor_up_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'armor up Lv 1',
     teaches: {
@@ -1683,7 +1696,7 @@ export const INSCRIPTION_ITEMS = {
 
   armor_up_level_2_tome: {
     id: 'armor_up_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'armor up Lv 2',
     teaches: {
@@ -1696,7 +1709,7 @@ export const INSCRIPTION_ITEMS = {
 
   armor_up_level_3_tome: {
     id: 'armor_up_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'armor up Lv 3',
     teaches: {
@@ -1709,7 +1722,7 @@ export const INSCRIPTION_ITEMS = {
 
   armor_up_level_4_tome: {
     id: 'armor_up_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'armor up Lv 4',
     teaches: {
@@ -1722,7 +1735,7 @@ export const INSCRIPTION_ITEMS = {
 
   armor_up_level_5_tome: {
     id: 'armor_up_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'armor up Lv 5',
     teaches: {
@@ -1735,7 +1748,7 @@ export const INSCRIPTION_ITEMS = {
 
   iron_will_level_1_tome: {
     id: 'iron_will_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'iron will Lv 1',
     teaches: {
@@ -1748,7 +1761,7 @@ export const INSCRIPTION_ITEMS = {
 
   iron_will_level_2_tome: {
     id: 'iron_will_level_2_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'iron will Lv 2',
     teaches: {
@@ -1761,7 +1774,7 @@ export const INSCRIPTION_ITEMS = {
 
   iron_will_level_3_tome: {
     id: 'iron_will_level_3_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'iron will Lv 3',
     teaches: {
@@ -1774,7 +1787,7 @@ export const INSCRIPTION_ITEMS = {
 
   iron_will_level_4_tome: {
     id: 'iron_will_level_4_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'iron will Lv 4',
     teaches: {
@@ -1787,7 +1800,7 @@ export const INSCRIPTION_ITEMS = {
 
   iron_will_level_5_tome: {
     id: 'iron_will_level_5_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'iron will Lv 5',
     teaches: {
@@ -1800,7 +1813,7 @@ export const INSCRIPTION_ITEMS = {
 
   taunt_level_1_tome: {
     id: 'taunt_level_1_tome',
-    icon: 'tome',
+    icon: 'tome.svg',
     category: 'tome',
     name: 'taunt Lv 1',
     teaches: {

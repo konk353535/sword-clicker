@@ -1,7 +1,7 @@
 export const SCROLL_ITEMS = {
   silver_essence_scroll: {
     id: 'silver_essence_scroll',
-    icon: 'silverEssenceScroll',
+    icon: 'silverEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost silver scroll',
@@ -15,7 +15,7 @@ export const SCROLL_ITEMS = {
 
   gold_essence_scroll: {
     id: 'gold_essence_scroll',
-    icon: 'goldEssenceScroll',
+    icon: 'goldEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost gold scroll',
@@ -29,7 +29,7 @@ export const SCROLL_ITEMS = {
 
   thirsty_fangs_1_tome_scroll: {
     id: 'thirsty_fangs_1_tome_scroll',
-    icon: 'redEssenceScroll',
+    icon: 'redEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'thirsty fangs scroll',
@@ -43,7 +43,7 @@ export const SCROLL_ITEMS = {
 
   gold_crown_scroll: {
     id: 'gold_crown_scroll',
-    icon: 'goldEssenceScroll',
+    icon: 'goldEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'gold crown scroll',
@@ -57,7 +57,7 @@ export const SCROLL_ITEMS = {
 
   carbon_essence_scroll: {
     id: 'carbon_essence_scroll',
-    icon: 'carbonEssenceScroll',
+    icon: 'carbonEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost carbon scroll',
@@ -71,7 +71,7 @@ export const SCROLL_ITEMS = {
 
   steel_essence_scroll: {
     id: 'steel_essence_scroll',
-    icon: 'steelEssenceScroll',
+    icon: 'steelEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost steel scroll',
@@ -85,7 +85,7 @@ export const SCROLL_ITEMS = {
 
   platinum_essence_scroll: {
     id: 'platinum_essence_scroll',
-    icon: 'platinumEssenceScroll',
+    icon: 'platinumEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost platinum scroll',
@@ -99,7 +99,7 @@ export const SCROLL_ITEMS = {
 
   titanium_essence_scroll: {
     id: 'titanium_essence_scroll',
-    icon: 'titaniumEssenceScroll',
+    icon: 'titaniumEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost titanium scroll',
@@ -113,7 +113,7 @@ export const SCROLL_ITEMS = {
 
   tungsten_essence_scroll: {
     id: 'tungsten_essence_scroll',
-    icon: 'tungstenEssenceScroll',
+    icon: 'tungstenEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost tungsten scroll',
@@ -127,7 +127,7 @@ export const SCROLL_ITEMS = {
 
   obsidian_essence_scroll: {
     id: 'obsidian_essence_scroll',
-    icon: 'obsidianEssenceScroll',
+    icon: 'obsidianEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost obsidian scroll',
@@ -141,7 +141,7 @@ export const SCROLL_ITEMS = {
 
   cobalt_essence_scroll: {
     id: 'cobalt_essence_scroll',
-    icon: 'cobaltEssenceScroll',
+    icon: 'cobaltEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost cobalt scroll',
@@ -155,7 +155,7 @@ export const SCROLL_ITEMS = {
 
   mithril_essence_scroll: {
     id: 'mithril_essence_scroll',
-    icon: 'mithrilEssenceScroll',
+    icon: 'mithrilEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost mithril scroll',
@@ -169,7 +169,7 @@ export const SCROLL_ITEMS = {
 
   adamantium_essence_scroll: {
     id: 'adamantium_essence_scroll',
-    icon: 'adamantiumEssenceScroll',
+    icon: 'adamantiumEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost adamantium scroll',
@@ -183,7 +183,7 @@ export const SCROLL_ITEMS = {
 
   orichalcum_essence_scroll: {
     id: 'orichalcum_essence_scroll',
-    icon: 'orichalcumEssenceScroll',
+    icon: 'orichalcumEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost orichalcum scroll',
@@ -197,7 +197,7 @@ export const SCROLL_ITEMS = {
 
   meteorite_essence_scroll: {
     id: 'meteorite_essence_scroll',
-    icon: 'meteoriteEssenceScroll',
+    icon: 'meteoriteEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost meteorite scroll',
@@ -211,7 +211,7 @@ export const SCROLL_ITEMS = {
 
   fairy_steel_essence_scroll: {
     id: 'fairy_steel_essence_scroll',
-    icon: 'fairySteelEssenceScroll',
+    icon: 'fairySteelEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost fairy steel scroll',
@@ -225,7 +225,7 @@ export const SCROLL_ITEMS = {
 
   elven_steel_essence_scroll: {
     id: 'elven_steel_essence_scroll',
-    icon: 'elvenSteelEssenceScroll',
+    icon: 'elvenSteelEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost elven steel scroll',
@@ -239,7 +239,7 @@ export const SCROLL_ITEMS = {
 
   cursed_essence_scroll: {
     id: 'cursed_essence_scroll',
-    icon: 'cursedEssenceScroll',
+    icon: 'cursedEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'lost cursed scroll',

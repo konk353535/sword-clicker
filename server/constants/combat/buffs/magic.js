@@ -654,7 +654,7 @@ export const MAGIC_BUFFS = {
     },
     constants: {
       healBase: 3,
-      healMPRatio: 1.1,
+      healMPRatio: 1,
       healthCost: 5,
       healthCostMPRatio: 0.15
     },
@@ -705,7 +705,7 @@ export const MAGIC_BUFFS = {
     },
     constants: {
       healBase: 10,
-      healMPRatio: 1.4,
+      healMPRatio: 1.25,
       healthCost: 10,
       healthCostMPRatio: 0.13
     },

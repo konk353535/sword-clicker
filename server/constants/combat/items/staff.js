@@ -83,8 +83,8 @@ export const STAFF_ITEMS = {
       attack: 4,
       attackMax: 6,
       attackSpeed: SLOW_SPEED,
-      accuracy: 5,
-      magicPower: 10
+      accuracy: 7,
+      magicPower: 12
     },
     extraStats: {
       attack: 3,
@@ -116,7 +116,8 @@ export const STAFF_ITEMS = {
       attackMax: 10,
       attackSpeed: SLOW_SPEED,
       accuracy: 8,
-      magicPower: 13
+      magicPower: 13,
+      healingPower: 8
     },
     extraStats: {
       attack: 3,
@@ -246,8 +247,8 @@ export const STAFF_ITEMS = {
       attack: 8,
       attackMax: 15,
       attackSpeed: SLOW_SPEED,
-      accuracy: 15,
-      magicPower: 16
+      accuracy: 18,
+      magicPower: 21
     },
     extraStats: {
       attack: 3,
@@ -377,6 +378,7 @@ export const STAFF_ITEMS = {
       attackMax: 17,
       attackSpeed: SLOW_SPEED,
       accuracy: 23,
+      healingPower: 8,
       magicPower: 19
     },
     extraStats: {
@@ -408,8 +410,8 @@ export const STAFF_ITEMS = {
       attack: 15,
       attackMax: 25,
       attackSpeed: SLOW_SPEED,
-      accuracy: 30,
-      magicPower: 24
+      accuracy: 33,
+      magicPower: 26
     },
     extraStats: {
       attack: 3,
@@ -441,6 +443,7 @@ export const STAFF_ITEMS = {
       attackMax: 28,
       attackSpeed: SLOW_SPEED,
       accuracy: 33,
+      healingPower: 8,
       magicPower: 26
     },
     extraStats: {
@@ -472,8 +475,8 @@ export const STAFF_ITEMS = {
       attack: 20,
       attackMax: 32,
       attackSpeed: SLOW_SPEED,
-      accuracy: 36,
-      magicPower: 28
+      accuracy: 39,
+      magicPower: 30
     },
     extraStats: {
       attack: 3,
@@ -504,6 +507,7 @@ export const STAFF_ITEMS = {
       attack: 23,
       attackMax: 36,
       attackSpeed: SLOW_SPEED,
+      healingPower: 8,
       accuracy: 40,
       magicPower: 30
     },

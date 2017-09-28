@@ -60,6 +60,9 @@
                 Boss {{> formatNumber number=waveDetails.health}} / {{> formatNumber number=waveDetails.healthMax}}
               </div>
             {{/unless}}
+            <span>
+              Earn 50 x points earnt in official attempt as XP in a random skill.
+            </span>
             {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
               Resets in {{moDiff bossResetDate moNow 'hours'}} hours
             {{else}}

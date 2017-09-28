@@ -11,7 +11,7 @@ export const ATTACK_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
-    isHidden: true,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.poisoned_blade;
       return BUFF.description({ buff: BUFF, level });
@@ -27,7 +27,7 @@ export const ATTACK_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
-    isHidden: true,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.thirsty_fangs;
       return BUFF.description({ buff: BUFF, level });
@@ -43,9 +43,28 @@ export const ATTACK_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
-    isHidden: true,
+    isHidden: false,
     description(level) {
       const BUFF = BUFFS.phantom_strikes;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  furied_defense: {
+    icon: 'furiedDefense.svg',
+    name: 'furied defense',
+    id: 'furied_defense',
+    buffs: ['furied_defense'],
+    cooldown: 120,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['shield']
+    }],
+    description(level) {
+      const BUFF = BUFFS.furied_defense;
       return BUFF.description({ buff: BUFF, level });
     }
   },

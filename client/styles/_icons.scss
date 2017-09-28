@@ -179,7 +179,18 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   user-select: none;
 }
 
+@media screen and (max-width: 468px) {
+  .mine-space-container {
+    width: 22%;
+    height: auto;
+    min-width: 70px;
 
+    .ore-icon {
+      width: calc(100% - 12px);
+      height: auto;
+    }
+  }
+}
 
 .item-icon-container {
   position: relative;
@@ -301,7 +312,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 .ore-icon {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   pointer-events: none;
 }

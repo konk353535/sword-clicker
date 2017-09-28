@@ -4,6 +4,53 @@ import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const ATTACK_BUFFS = {
 
+  furied_defense: {
+    duplicateTag: 'furied_defense', // Used to stop duplicate buffs
+    icon: 'furiedDefense.svg',
+    name: 'furied defense',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Counter attack for 100% attack damage. <br />
+        Lasts for 25 seconds. <br />`;
+    },
+    constants: {
+      damageDecimal: 1
+    },
+    data: {
+      duration: 25,
+      totalDuration: 25,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const defenderAttack = defender.stats.attack;
+        const defenderAttackMax = defender.stats.attackMax;
+        const actualDamage = (defenderAttack + ((defenderAttackMax - defenderAttack) * Math.random())) * constants.damageDecimal;
+
+        actualBattle.utils.dealDamage(actualDamage, {
+          defender: attacker,
+          tickEvents: actualBattle.tickEvents,
+          customicon: 'counterAttack.svg',
+          customColor: '#f7750f'
+        });
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
+
   basic_poison: {
     duplicateTag: 'basic_poison', // Used to stop duplicate buffs
     icon: 'poison.svg',

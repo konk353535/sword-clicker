@@ -80,7 +80,9 @@ Template.woodcuttingPage.helpers({
     const hasMiningUpgrade = userDoc.woodcuttingUpgradeTo && moment().isBefore(userDoc.woodcuttingUpgradeTo);
 
     woodcutting.woodcutters.forEach((woodcutter, woodcutterIndex) => {
-      woodcutter.icon += '.svg';
+      if (!/.svg/.test(woodcutter.icon)) {
+        woodcutter.icon += '.svg';
+      }
       // Incoming hacks!
       woodcutter.description = `
         <div class="d-flex align-items-center">

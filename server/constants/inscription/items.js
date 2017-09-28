@@ -342,6 +342,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  furied_defense_tome: {
+    id: 'furied_defense_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Furied defense Lv 1',
+    teaches: {
+      abilityId: 'furied_defense',
+      level: 1
+    },
+    sellPrice: 200,
+    description: 'Can be consumed to learn the furied defense ability.'
+  },
+
   volcanic_shield_1_tome: {
     id: 'volcanic_shield_1_tome',
     icon: 'tome.svg',

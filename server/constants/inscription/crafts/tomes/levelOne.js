@@ -54,6 +54,19 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
 
+  furied_defense_tome: {
+    recipeFor: 'inscription',
+    produces: 'furied_defense_tome',
+    name: 'furied defense',
+    id: 'furied_defense_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 50,
+    maxToCraft: 4,
+    requiredInscriptionLevel: 4,
+    required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
+  },
+
   volcanic_shield_tome: {
     recipeFor: 'inscription',
     produces: 'volcanic_shield_1_tome',

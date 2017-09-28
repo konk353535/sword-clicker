@@ -309,6 +309,25 @@ export const completeBattle = function (actualBattle) {
                 }
               };
 
+              const possibleStats = [
+                'mining',
+                'crafting',
+                'woodcutting',
+                'farming',
+                'inscription',
+                'astronomy'
+              ];
+
+              const targetStat = _.sample(possibleStats);
+              addXp(targetStat, Math.round(pointsEarnt * 50), owner);
+
+              finalTickEvents.push({
+                type: 'xp',
+                amount: Math.round(pointsEarnt * 50),
+                skill: targetStat,
+                owner
+              });
+
               finalTickEvents.push({
                 type: 'points',
                 amount: pointsEarnt.toFixed(1),

@@ -116,7 +116,7 @@ Template.combatGroupTab.helpers({
         energyMax: userCombat.stats.energyMax
       }
       userCombat.name = userCombat.username;
-      userCombat.icon = 'character.svg';
+      userCombat.icon = userCombat.characterIcon || 'character.svg';
       return userCombat;
     });
   },

@@ -149,6 +149,12 @@ Template.equipmentTab.helpers({
     return Template.instance().state.get('defenseStats');
   },
 
+  characterIcon() {
+    return Combat.findOne({
+      owner: Meteor.userId()
+    }).characterIcon || 'character.svg';
+  },
+
   offenseStats() {
     const combat = Combat.findOne({
       owner: Meteor.userId()

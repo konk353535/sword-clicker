@@ -29,7 +29,7 @@
               {{#if $eq this.type 'item'}}
                 <div class="ml-1 d-flex align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
                   +{{this.amount}}
-                  <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon">
+                  <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
                 </div>
               {{/if}}
 

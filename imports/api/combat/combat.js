@@ -8,6 +8,8 @@ CombatSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   username: { type: String, optional: true },
   foughtBoss: { type: Boolean, defaultValue: false },
+  boughtIcons: { type: [String], optional: true },
+  characterIcon: { type: String, defaultValue: 'character.svg' },
   stats: { type: Object },
   isTowerContribution: { type: Boolean, defaultValue: false, optional: true },
   towerContributionsToday: { type: Number, defaultValue: 0, optional: true },

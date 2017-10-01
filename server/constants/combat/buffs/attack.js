@@ -41,7 +41,7 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(actualDamage, {
           defender: attacker,
           tickEvents: actualBattle.tickEvents,
-          customicon: 'counterAttack.svg',
+          customIcon: 'counterAttack.svg',
           customColor: '#f7750f'
         });
       },
@@ -78,7 +78,7 @@ export const ATTACK_BUFFS = {
           actualBattle.utils.dealDamage(poisonDamage, {
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            customicon: 'poison.svg',
+            customIcon: 'poison.svg',
             customColor: '#229b00'
           });
         }

@@ -71,6 +71,7 @@ export const MISC_ITEMS = {
     icon: 'spartanShield.svg',
     category: 'combat',
     slot: 'offHand',
+    weaponType: 'shield',
     name: 'spartan shield',
     sellPrice: 2500,
     description: 'The shield from a fallen spartan.',

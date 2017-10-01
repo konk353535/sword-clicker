@@ -355,6 +355,7 @@ Meteor.publish('groups', function() {
       fields: {
         username: 1,
         stats: 1,
+        characterIcon: 1,
         owner: 1,
         _id: 1
       }
@@ -365,7 +366,7 @@ Meteor.publish('groups', function() {
       delete member.stats;
       member.name = member.username;
       member.owner = member.owner;
-      member.icon = "character";
+      member.icon = member.characterIcon || "character.svg";
       member.stats = {
         health: orginalStats.health,
         healthMax: orginalStats.healthMax

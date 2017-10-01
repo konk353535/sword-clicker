@@ -219,8 +219,8 @@ Meteor.methods({
 
     existingTargetProspector.amount -= 1;
 
-    if (existingTargetProspector.amount < 1) {
-      throw new Meteor.Error("too-few-prospectors", "You cannot fire your last prospector");
+    if (existingTargetProspector.amount < 0) {
+      throw new Meteor.Error("too-few-prospectors", "You cannot have negative prospectors");
     }
 
     Mining.update(mining._id, {

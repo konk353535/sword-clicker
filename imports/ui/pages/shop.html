@@ -288,5 +288,47 @@
         </button>
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="card text-center mt-3 p-3">
+        <h4>T2 Tank Icon</h4>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/tankT2HD.png" class="medium-icon my-3">
+        </div>
+        <div class="d-flex flex-column justify-content-start align-items-start mb-3">
+          <li>Displays when wielding a shield and defense exceeds level 60</li>
+        </div>
+        <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="tank_t2">
+          300<img src="/icons/gems.svg" class="extra-small-icon">
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center mt-3 p-3">
+        <h4>T2 DPS Icon</h4>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/damageT2HD.png" class="medium-icon my-3">
+        </div>
+        <div class="d-flex flex-column justify-content-start align-items-start mb-3">
+          <li>Displays when wielding longSword, axe or sword + dagger and attack exceeds level 60</li>
+        </div>
+        <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="damage_t2">
+          300<img src="/icons/gems.svg" class="extra-small-icon">
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center mt-3 p-3">
+        <h4>T2 Mage Icon</h4>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/mageT2HD.png" class="medium-icon my-3">
+        </div>
+        <div class="d-flex flex-column justify-content-start align-items-start mb-3">
+          <li>Displays when wielding a staff and magic exceeds level 20</li>
+        </div>
+        <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="mage_t2">
+          300<img src="/icons/gems.svg" class="extra-small-icon">
+        </button>
+      </div>
+    </div>
   </div>
 </template>

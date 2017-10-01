@@ -1,9 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
+import { Combat } from '/imports/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import moment from 'moment';
 
 import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
+import _ from 'underscore';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
 const redis = new Meteor.RedisCollection('redis');
@@ -162,6 +164,55 @@ Meteor.methods({
         $set: setModifier
       });
     }
+
+  },
+
+  'shop.buyIcon'(iconId) {
+
+    const validIcons = [
+      { id: 'mage_t1', cost: 150 },
+      { id: 'mage_t2', cost: 300 },
+      { id: 'damage_t1', cost: 150 },
+      { id: 'damage_t2', cost: 300 },
+      { id: 'tank_t1', cost: 150 },
+      { id: 'tank_t2', cost: 300 },
+    ];
+
+    const iconToBuy = _.findWhere(validIcons, { id: iconId });
+    if (!iconToBuy) {
+      throw new Meteor.Error("invalid-item", "Invalid item");
+    }
+
+    if (!hasGems(iconToBuy.cost, Meteor.user())) {
+      throw new Meteor.Error("no-gems", "Not enough gems");
+    }
+
+    // Make sure user doesn't already have target icon
+    const userCombat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+
+    if (userCombat.boughtIcons && _.contains(userCombat.boughtIcons, iconToBuy.id)) {
+      throw new Meteor.Error("already-own", "Already own that icon");
+    }
+
+    if (consumeGems(iconToBuy.cost, Meteor.user())) {
+      // Add the icon
+      if (!userCombat.boughtIcons) {
+        userCombat.boughtIcons = [iconToBuy.id];
+      } else {
+        userCombat.boughtIcons.push(iconToBuy.id);
+      }
+    }
+
+    // Update combat
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        boughtIcons: userCombat.boughtIcons
+      }
+    });
 
   },
 

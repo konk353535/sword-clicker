@@ -13,6 +13,33 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 });
 
 Template.shopPage.events({
+
+  'click .buy-icon'(event, instance) {
+    console.log('here');
+    // Get the type we are buying
+    const iconId = instance.$(event.target).closest('.buy-icon').data('icon-id');
+
+    const costs = {
+      mage_t1: 150,
+      mage_t2: 300,
+      damage_t1: 150,
+      damage_t2: 300,
+      tank_t1: 150,
+      tank_t2: 300
+    }
+
+    if (Meteor.user().gems + Meteor.user().fakeGems < costs[iconId]) {
+      // return;
+    }
+
+    Meteor.call('shop.buyIcon', iconId, (err, res) => {
+      if (err) {
+        return toastr.error(err.reason);
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+
   'click .buy-all-15'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 500) {
       return;

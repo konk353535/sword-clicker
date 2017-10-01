@@ -121,7 +121,7 @@ Template.groupList.helpers({
       }
 
       userCombat.name = userCombat.username;
-      userCombat.icon = 'character.svg';
+      userCombat.icon = userCombat.characterIcon || 'character.svg';
 
       return userCombat;
     });

@@ -10,12 +10,13 @@ Template.profilePage.onCreated(function bodyOnCreated() {
     const username = Router.current().params.username.toLowerCase();
 
     // Fetch and load the profile
-    Meteor.call('skills.fetchProfile', username, (err, { skills, equipment }) => {
+    Meteor.call('skills.fetchProfile', username, (err, { skills, equipment, characterIcon }) => {
       if (err) {
         return toastr.error(err.reason);
       }
 
       this.state.set('equipment', equipment);
+      this.state.set('characterIcon', characterIcon);
 
       this.state.set('skills', skills.map((skill) => {
         skill.percentage = Math.round((skill.xp / skill.xpToLevel) * 100);
@@ -72,6 +73,11 @@ Template.profilePage.helpers({
 
     return equippedMap;
   },
+
+  characterIcon() {
+    const instance = Template.instance();
+    return instance.state.get('characterIcon');
+  },  
 
   username() {
     const instance = Template.instance();

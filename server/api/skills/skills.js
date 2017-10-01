@@ -5,6 +5,7 @@ import { Items } from '/imports/api/items/items';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Astronomy } from '/imports/api/astronomy/astronomy';
 import { Inscription } from '/imports/api/inscription/inscription';
+import { Combat } from '/imports/api/combat/combat';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Users } from '/imports/api/users/users';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
@@ -314,6 +315,9 @@ Meteor.methods({
       return item;
     });
 
+    // Fetch icon from combat
+    const targetUserCombat = Combat.findOne({ owner: targetUser._id });
+
     // Get all users skills
     return {
       skills: Skills.find({
@@ -328,7 +332,9 @@ Meteor.methods({
         };
       }),
 
-      equipment
+      equipment,
+
+      characterIcon: targetUserCombat.characterIcon || 'character.svg'
     }
   },
 

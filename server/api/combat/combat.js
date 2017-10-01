@@ -127,6 +127,59 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     owner: userId
   });
 
+  // Determine user icon based off bought icons + equipped weapons
+  let availableIcons = currentCombat.boughtIcons;
+  if (!availableIcons) {
+    availableIcons = [];
+  }
+  // Target Spec
+  let targetSpec = '';
+  if (playerData.mainHandType === 'staff') {
+    targetSpec = 'mage';
+  } else if (playerData.offHandType === 'shield') {
+    targetSpec = 'tank';
+  } else if (playerData.mainHandType === 'longSword') {
+    targetSpec = 'damage'
+  } else if (playerData.mainHandType === 'battleAxe') {
+    targetSpec = 'damage';
+  } else if (playerData.offHandType === 'knife') {
+    targetSpec = 'damage';
+  }
+
+  if (!targetSpec) {
+    playerData.characterIcon = 'character.svg';
+  } else if (targetSpec === 'mage') {
+    // Do we have mage?
+    playerData.characterIcon = 'mageT1HD.png';
+
+    if (_.contains(availableIcons, 'mage_t2')) {
+      const mageSkill = _.findWhere(combatSkills, { type: 'magic' });
+      if (mageSkill.level >= 20) {
+        playerData.characterIcon = 'mageT2HD.png';
+      }
+    }
+  } else if (targetSpec === 'tank') {
+    // Do we have tank?
+    playerData.characterIcon = 'tankT1HD.png';
+
+    if (_.contains(availableIcons, 'tank_t2')) {
+      const defenseSkill = _.findWhere(combatSkills, { type: 'defense' });
+      if (defenseSkill.level >= 60) {
+        playerData.characterIcon = 'tankT2HD.png';
+      }
+    }
+  } else if (targetSpec === 'damage') {
+    // Do we have a damage?
+    playerData.characterIcon = 'damageT1HD.png';
+
+    if (_.contains(availableIcons, 'damage_t2')) {
+      const attackSkill = _.findWhere(combatSkills, { type: 'attack' });
+      if (attackSkill.level >= 60) {
+        playerData.characterIcon = 'damageT2HD.png';
+      }
+    }
+  }
+
   // If health is above healthMax, reset health
   if (currentCombat.stats.health > playerData.stats.healthMax) {
     playerData.stats.health = playerData.stats.healthMax;

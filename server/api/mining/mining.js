@@ -18,7 +18,6 @@ import { addXp } from '/server/api/skills/skills';
 const redis = new Meteor.RedisCollection('redis');
 
 export const updateMiningStats = function (userId, isNewUser = false) {
-
   let owner;
   if (userId) {
     owner = userId;
@@ -27,34 +26,67 @@ export const updateMiningStats = function (userId, isNewUser = false) {
   }
 
   // Fetch equipped pick axe
-  const pickaxe = Items.findOne({
+  let pickaxe = Items.findOne({
     owner,
     slot: 'pickaxe',
     equipped: true
   });
 
-  let pickaxeStats = {};
-  if (pickaxe) {
-    // Apply pickaxe stats
-    pickaxe.constants = ITEMS[pickaxe.itemId];
-    if (pickaxe.constants && pickaxe.constants.stats) {
-      pickaxeStats = JSON.parse(JSON.stringify(pickaxe.constants.stats));
-      if (pickaxe.extraStats) {
-        Object.keys(pickaxe.extraStats).forEach((extraStatName) => {
-          if (pickaxeStats[extraStatName]) {
-            pickaxeStats[extraStatName] += pickaxe.extraStats[extraStatName];
-          }
-        });
+  const offhand = Items.findOne({
+    owner,
+    slot: 'mining_offhand',
+    equipped: true
+  })
+
+  let miningStats = {
+  };
+
+  if (pickaxe && ITEMS[pickaxe.itemId].slot === 'mining_offhand') {
+    Items.update(pickaxe._id, {
+      $set: {
+        equipped: false
       }
-    }
+    });
+    pickaxe = undefined;
   }
 
+  [pickaxe, offhand].forEach((equipment) => {
+    if (equipment) {
+      // Apply equipment stats
+      equipment.constants = ITEMS[equipment.itemId];
+      if (equipment.constants && equipment.constants.stats) {
+        Object.keys(equipment.constants.stats).forEach((stat) => {
+          if (miningStats[stat]) {
+            miningStats[stat] += equipment.constants.stats[stat];
+          } else {
+            miningStats[stat] = equipment.constants.stats[stat] + 0;
+          }
+        });
+        if (equipment.extraStats) {
+          Object.keys(equipment.extraStats).forEach((extraStatName) => {
+            if (miningStats[extraStatName]) {
+              miningStats[extraStatName] += equipment.extraStats[extraStatName];
+            }
+          });
+        }
+      }
+    }
+  });
 
-  pickaxeStats.energy = 0;
+  if (!miningStats.miner) {
+    miningStats.miner = 0;
+  }
+
+  if (!miningStats.attack) { miningStats.attack = 1; }
+  if (!miningStats.energyStorage) { miningStats.energyStorage = 10; }
+  if (!miningStats.energyRegen) { miningStats.energyRegen = 10; }
+  if (!miningStats.energyPerHit) { miningStats.energyPerHit = 1; }
+
+  miningStats.energy = 0;
 
   // New users get full energy on there pick instantly.
   if (isNewUser) {
-    pickaxeStats.energy = pickaxeStats.energyStorage;
+    miningStats.energy = miningStats.energyStorage;
   }
 
   // Set player stats
@@ -62,7 +94,7 @@ export const updateMiningStats = function (userId, isNewUser = false) {
     owner
   }, {
     $set: {
-      stats: pickaxeStats
+      stats: miningStats
     }
   });
 };
@@ -101,6 +133,42 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
     MiningSpace.update(mineSpace._id, {
       $set: { oreId: null, isCluster: false }
     });
+
+    // Check if we own this miner, add xp to that miner
+    const minerName = oreConstants.id !== 'stone' ? `${oreConstants.id}_miner` : 'primitive_miner';
+    const targetMiner = _.findWhere(mining.miners, { id: minerName });
+    if (targetMiner) {
+      if (targetMiner.xp >= MINING.miners.xpToLevel(targetMiner.level) && targetMiner.level < 20) {
+        Mining.update({
+          owner: Meteor.userId(),
+          miners: {
+            $elemMatch: {
+              id: minerName
+            }
+          }
+        }, {
+          $inc: {
+            'miners.$.level': 1
+          },
+          $set: {
+            'miners.$.xp': 0
+          }
+        });
+      } else {
+        Mining.update({
+          owner: Meteor.userId(),
+          miners: {
+            $elemMatch: {
+              id: minerName
+            }
+          }
+        }, {
+          $inc: {
+            'miners.$.xp': mineSpace.isCluster ? 2 : 1
+          }
+        });
+      }
+    }
 
     let amount = 1;
     if (mineSpace.isCluster) {
@@ -161,13 +229,16 @@ Meteor.methods({
     } else {
       mining.miners.push({
         id: minerId,
-        amount: 1
+        amount: 1,
+        level: 1,
+        xp: 0
       });
     }
 
     Mining.update(mining._id, {
       $set: {
-        miners: mining.miners
+        miners: mining.miners,
+        lastGameUpdated: new Date()
       }
     });
   },
@@ -255,9 +326,10 @@ Meteor.methods({
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
+    const newLastGameUpdated = new Date();
     Mining.update(mining._id, {
       $set: {
-        lastGameUpdated: new Date(),
+        lastGameUpdated: newLastGameUpdated,
         'stats.energy': mining.stats.energy
       }
     });
@@ -406,12 +478,32 @@ Meteor.methods({
         newOresCount = Math.floor(newOresCount);
       }
 
+      // Migrate miners if required!
+      let migrateMiners = false;
+
       // Determine how much damage your miners do
       let damagePerTick = 0;
       mining.miners.forEach((miner) => {
-        const minerTypeDPS = MINING.miners[miner.id].damagePerSecond;
-        damagePerTick += (minerTypeDPS * miner.amount * tickStrength);
+        if (!miner.level) {
+          migrateMiners = true;
+          miner.level = 1;
+          miner.xp = 0;
+        }
+        const baseDPS = MINING.miners[miner.id].damagePerSecond;
+        const groupDPS = (baseDPS * miner.amount * tickStrength);
+        const levelAdjustedDPS = groupDPS * (1 + (miner.level * 0.025));
+        damagePerTick += levelAdjustedDPS;
       });
+
+      if (migrateMiners) {
+        Mining.update({
+          owner: Meteor.userId()
+        }, {
+          $set: {
+            miners: mining.miners
+          }
+        }); 
+      }
 
       if (mining.stats.miner) {
         damagePerTick *=  (1 + (mining.stats.miner / 100));
@@ -447,31 +539,6 @@ Meteor.methods({
           gainedItems
         });
 
-        // Save modified miningSpaces
-        miningSpaces.forEach((miningSpace) => {
-          if (miningSpace.isDirty) {
-            MiningSpace.update(miningSpace._id, {
-              $set: {
-                oreId: miningSpace.oreId,
-                health: miningSpace.health,
-                isCluster: miningSpace.isCluster
-              },
-            }, function (err, res) {
-              // Intentionally blank
-            });
-          }
-        });
-
-        if (gainedXp > 0) {
-          addXp('mining', gainedXp);
-        }
-        Object.keys(gainedItems).forEach((key) => {
-          if (key === 'gem') {
-            addFakeGems(gainedItems[key].amount, Meteor.userId());
-          } else {
-            addItem(key, gainedItems[key].amount);
-          }
-        });
       } else {
         // Evenly distribute when ores spawn
         let genOreEvery = Math.ceil(tickCount / newOresCount);
@@ -506,33 +573,60 @@ Meteor.methods({
             gainedItems
           });
         }
+      }
 
-        if (gainedXp > 0) {
-          addXp('mining', gainedXp);
+      if (gainedXp > 0) {
+        addXp('mining', gainedXp);
+      }
+
+      Object.keys(gainedItems).forEach((key) => {
+        if (key === 'gem') {
+          addFakeGems(gainedItems[key].amount, Meteor.userId());
+        } else {
+          addItem(key, gainedItems[key].amount);
         }
-        Object.keys(gainedItems).forEach((key) => {
-          if (key === 'gem') {
-            addFakeGems(gainedItems[key].amount, Meteor.userId());
-          } else {
-            addItem(key, gainedItems[key].amount);
-          }
-        });
+      });
 
-        // Save modified miningSpaces
-        miningSpaces.forEach((miningSpace) => {
-          if (miningSpace.isDirty) {
-            MiningSpace.update(miningSpace._id, {
-              $set: {
-                oreId: miningSpace.oreId,
-                health: miningSpace.health,
-                isCluster: miningSpace.isCluster
-              }
-            }, function (err, res) {
-              // Intentionally blank
-            });
+      let mutateMiners = false;
+      mining.miners.forEach((miner) => {
+        const minerName = miner.id === 'primitive_miner' ? 'stone' : miner.id.replace('_miner', '');
+        const targetItem = gainedItems[`ore_${minerName}`];
+        if (targetItem) {
+          mutateMiners = true;
+          miner.xp += (targetItem.amount / 10);
+          if (miner.xp >= MINING.miners.xpToLevel(miner.level) && miner.level < 20) {
+            miner.level += 1;
+            miner.xp = 0;
+          }
+        }
+      });
+
+      if (mutateMiners) {
+        Mining.update({
+          owner: Meteor.userId(),
+          lastGameUpdated: newLastGameUpdated
+        }, {
+          $set: {
+            miners: mining.miners
           }
         });
       }
+
+      // Save modified miningSpaces
+      miningSpaces.forEach((miningSpace) => {
+        if (miningSpace.isDirty) {
+          MiningSpace.update(miningSpace._id, {
+            $set: {
+              oreId: miningSpace.oreId,
+              health: miningSpace.health,
+              isCluster: miningSpace.isCluster
+            }
+          }, function (err, res) {
+            // Intentionally blank
+          });
+        }
+      });
+
     }
 
     // Less then 5 minutes, use second based ticks
@@ -662,6 +756,10 @@ Meteor.publish('mining', function() {
 
   //Transform function
   var transform = function(doc) {
+    doc.miners.map((miner) => {
+      miner.xpToLevel = MINING.miners.xpToLevel(miner.level || 1);
+      return miner;
+    });
     return doc;
   }
 

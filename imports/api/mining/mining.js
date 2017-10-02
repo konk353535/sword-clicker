@@ -18,7 +18,9 @@ MiningSpace.attachSchema(MiningSpaceSchema);
 MiningSchema = new SimpleSchema({
   miners: { type: [Object] },
   'miners.$.id': { type: String },
-  'miners.$.amount': { type: Number },
+  'miners.$.amount': { type: Number, decimal: true },
+  'miners.$.level': { type: Number, defaultValue: 1 },
+  'miners.$.xp': { type: Number, decimal: true, defaultValue: 0 },
   prospectors: { type: [Object] },
   'prospectors.$.id': { type: String },
   'prospectors.$.amount': { type: Number },  

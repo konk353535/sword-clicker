@@ -13,7 +13,7 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
-
+import { updateMiningStats } from '/server/api/mining/mining.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import _ from 'underscore';
@@ -110,6 +110,8 @@ export const addXp = function (skillType, xp, specificUserId) {
           inscriptionLevel: skill.level + 1
         }
       });
+    } else if (skill.type === 'mining') {
+      updateMiningStats(owner, true);
     }
 
     // Can probably be optimized

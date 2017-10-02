@@ -8,6 +8,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -137,12 +138,6 @@ Template.miningPage.events({
     Meteor.call('users.setUiState', 'miningTab', 'miners');
   },
 
-  'click .buy-miner'(event, instance) {
-    const minerId = instance.$(event.target).closest('.buy-miner').data('miner');
-
-    Meteor.call('mining.buyMiner', minerId);
-  },
-
   'click .prospector-hire'(event, instance) {
     const prospectorId = instance.$(event.target).closest('.prospector-hire').data('prospector');
 
@@ -164,10 +159,45 @@ Template.miningPage.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(miningPageTimer);
 });
 
+
+Template.hireMinerButton.onCreated(function onCreated() {
+  this.state = new ReactiveDict();
+});
+
+Template.hireMinerButton.events({
+  'click .hire-miner'(event, instance) {
+    instance.state.set('showModal', true);
+    setTimeout(() => {
+      instance.$('.hireMinerModal').modal('show');
+    }, 0);
+  },
+
+  'click .confirm-hire-miner'(event, instance) {
+    Meteor.call('mining.buyMiner', instance.data.recipe.id);
+    instance.$('.hireMinerModal').modal('hide');
+  }
+});
+
+Template.hireMinerButton.helpers({
+  showModal() {
+    return Template.instance().state.get('showModal');
+  }
+})
+
 Template.oreListItem.rendered = function () {
   tooltip = new Drop({
     target: Template.instance().$('.ore-list-item')[0],
     content: Template.instance().$('.ore-list-item-tooltip-content')[0],
+    openOn: 'hover',
+    position: 'top left',
+    remove: true
+  });
+}
+
+Template.buyableMiner.rendered = function () {
+  const dpsBreakdownTooltio = new Drop({
+    target: Template.instance().$('.damage-per-hour-container')[0],
+    content: Template.instance().$('.dps-breakdown-tooltip-content')[0],
     openOn: 'hover',
     position: 'top left',
     remove: true
@@ -338,23 +368,54 @@ Template.miningPage.helpers({
   buyableMiners() {
     const mining = Mining.findOne({});
     const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
+    const userDoc = Meteor.user();
 
     if (!mining || !rawBuyableMiners) {
       return;
     }
 
-    return rawBuyableMiners.map((possibleMiner) => {
+    let hasMiningUpgrade = false;
+    if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+      hasMiningUpgrade = true;
+    }
+
+    let totalDPH = 0;
+    const finalBuyableMiners = rawBuyableMiners.map((possibleMiner) => {
       const localMiner = _.findWhere(mining.miners, { id: possibleMiner.id });
       if (localMiner) {
         possibleMiner.amount = localMiner.amount;
+        possibleMiner.baseDamagePerHour = localMiner.amount * possibleMiner.damagePerSecond * 3600;
         possibleMiner.damagePerHour = localMiner.amount * possibleMiner.damagePerSecond * 3600;
+        // Mutate damagePerHour by (level - 1) * 2.5%
+        possibleMiner.levelDps = possibleMiner.damagePerHour * (localMiner.level * 0.025);
+        possibleMiner.damagePerHour += possibleMiner.levelDps;
+        // Mutate damagePerHour by base passive miner damage
+        possibleMiner.minerStatDps = possibleMiner.damagePerHour * (mining.stats.miner / 100);
+        possibleMiner.damagePerHour += possibleMiner.minerStatDps;
+        // Mutate damagePerHour by donator bonus (to passive miner damage)
+        if (hasMiningUpgrade) {
+          possibleMiner.donatorDps = possibleMiner.damagePerHour * (DONATORS_BENEFITS.miningBonus / 100);
+          possibleMiner.damagePerHour += possibleMiner.donatorDps;
+        }
+        totalDPH += possibleMiner.damagePerHour;
       } else {
         possibleMiner.amount = 0;
         possibleMiner.damagePerHour = possibleMiner.damagePerSecond * 3600;
       }
 
+      possibleMiner.level = localMiner ? localMiner.level : 1;
+      possibleMiner.xp = localMiner ? localMiner.xp : 0;
+      possibleMiner.xpToLevel = localMiner ? localMiner.xpToLevel : 10;
+      possibleMiner.xpPercentage = localMiner ? (localMiner.xp / localMiner.xpToLevel * 100) : 0;
       return possibleMiner;
     });
+
+    Template.instance().state.set('totalDPH', totalDPH);
+    return finalBuyableMiners;
+  },
+
+  totalDPH() {
+    return Template.instance().state.get('totalDPH');
   },
 
   buyableProspectors() {

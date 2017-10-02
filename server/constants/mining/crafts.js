@@ -64,6 +64,30 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  pine_idol: {
+    produces: 'pine_idol',
+    recipeFor: 'crafting',
+    name: 'pine idol',
+    id: 'pine_idol',
+    category: 'mining',
+    timeToCraft: 60, // 60
+    xp: 100,
+    maxToCraft: 1,
+    requiredCraftingLevel: 3,
+    required: [{
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 100,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 3
+    }]
+  },
+
   tin_pickaxe: {
     produces: 'tin_pickaxe',
     recipeFor: 'crafting',
@@ -132,6 +156,30 @@ export const MINING_CRAFTS = {
       icon: ITEMS['bronze_bar'].icon,
       name: ITEMS['bronze_bar'].name,
       amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }]
+  },
+
+  ash_idol: {
+    produces: 'ash_idol',
+    recipeFor: 'crafting',
+    name: 'ash idol',
+    id: 'ash_idol',
+    category: 'mining',
+    timeToCraft: 2 * MINUTE, // 60
+    xp: 450,
+    maxToCraft: 1,
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
+      amount: 100,
       consumes: true
     }, {
       type: 'skill',
@@ -215,6 +263,30 @@ export const MINING_CRAFTS = {
       icon: ITEMS['silver_bar'].icon,
       name: ITEMS['silver_bar'].name,
       amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }]
+  },
+
+  maple_idol: {
+    produces: 'maple_idol',
+    recipeFor: 'crafting',
+    name: 'maple idol',
+    id: 'maple_idol',
+    category: 'mining',
+    timeToCraft: 4 * MINUTE, // 60
+    xp: 900,
+    maxToCraft: 1,
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 100,
       consumes: true
     }, {
       type: 'skill',
@@ -313,6 +385,30 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  cherry_idol: {
+    produces: 'cherry_idol',
+    recipeFor: 'crafting',
+    name: 'cherry idol',
+    id: 'cherry_idol',
+    category: 'mining',
+    timeToCraft: 5 * MINUTE,
+    xp: 1800,
+    maxToCraft: 1,
+    requiredCraftingLevel: 30,
+    required: [{
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
+      amount: 100,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 30
+    }]
+  },
+
   steel_pickaxe: {
     produces: 'steel_pickaxe',
     recipeFor: 'crafting',
@@ -395,6 +491,30 @@ export const MINING_CRAFTS = {
       icon: ITEMS['platinum_bar'].icon,
       name: ITEMS['platinum_bar'].name,
       amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
+    }]
+  },
+
+  elk_idol: {
+    produces: 'elk_idol',
+    recipeFor: 'crafting',
+    name: 'elk idol',
+    id: 'elk_idol',
+    category: 'mining',
+    timeToCraft: 7 * MINUTE,
+    xp: 3200,
+    maxToCraft: 1,
+    requiredCraftingLevel: 40,
+    required: [{
+      type: 'item',
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
+      amount: 100,
       consumes: true
     }, {
       type: 'skill',
@@ -493,6 +613,30 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  blue_gum_idol: {
+    produces: 'blue_gum_idol',
+    recipeFor: 'crafting',
+    name: 'blue gum idol',
+    id: 'blue_gum_idol',
+    category: 'mining',
+    timeToCraft: 9 * MINUTE,
+    xp: 4500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 50,
+    required: [{
+      type: 'item',
+      itemId: 'blue_gum_log',
+      icon: ITEMS['blue_gum_log'].icon,
+      name: ITEMS['blue_gum_log'].name,
+      amount: 100,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 50
+    }]
+  },
+
   obsidian_pickaxe: {
     produces: 'obsidian_pickaxe',
     recipeFor: 'crafting',
@@ -575,6 +719,30 @@ export const MINING_CRAFTS = {
       icon: ITEMS['cobalt_bar'].icon,
       name: ITEMS['cobalt_bar'].name,
       amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 60
+    }]
+  },
+
+  denya_idol: {
+    produces: 'denya_idol',
+    recipeFor: 'crafting',
+    name: 'denya idol',
+    id: 'denya_idol',
+    category: 'mining',
+    timeToCraft: 11 * MINUTE,
+    xp: 6500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 60,
+    required: [{
+      type: 'item',
+      itemId: 'denya_log',
+      icon: ITEMS['denya_log'].icon,
+      name: ITEMS['denya_log'].name,
+      amount: 100,
       consumes: true
     }, {
       type: 'skill',
@@ -673,6 +841,30 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  hickory_idol: {
+    produces: 'hickory_idol',
+    recipeFor: 'crafting',
+    name: 'hickory idol',
+    id: 'hickory_idol',
+    category: 'mining',
+    timeToCraft: 11 * MINUTE,
+    xp: 9500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 70,
+    required: [{
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 100,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 70
+    }]
+  },
+
   orichalcum_pickaxe: {
     produces: 'orichalcum_pickaxe',
     recipeFor: 'crafting',
@@ -763,6 +955,30 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  poplar_idol: {
+    produces: 'poplar_idol',
+    recipeFor: 'crafting',
+    name: 'poplar idol',
+    id: 'poplar_idol',
+    category: 'mining',
+    timeToCraft: 20 * MINUTE,
+    xp: 15000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 80,
+    required: [{
+      type: 'item',
+      itemId: 'poplar_log',
+      icon: ITEMS['poplar_log'].icon,
+      name: ITEMS['poplar_log'].name,
+      amount: 100,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 80
+    }]
+  },
+
   fairy_steel_pickaxe: {
     produces: 'fairy_steel_pickaxe',
     recipeFor: 'crafting',
@@ -845,6 +1061,30 @@ export const MINING_CRAFTS = {
       icon: ITEMS['elven_steel_bar'].icon,
       name: ITEMS['elven_steel_bar'].name,
       amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 90
+    }]
+  },
+
+  willow_idol: {
+    produces: 'willow_idol',
+    recipeFor: 'crafting',
+    name: 'willow idol',
+    id: 'willow_idol',
+    category: 'mining',
+    timeToCraft: 45 * MINUTE,
+    xp: 22500,
+    maxToCraft: 1,
+    requiredCraftingLevel: 90,
+    required: [{
+      type: 'item',
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
+      amount: 100,
       consumes: true
     }, {
       type: 'skill',

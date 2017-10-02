@@ -362,6 +362,12 @@ export const MINING = {
     }
   },
   miners: {
+    xpToLevel(level) {
+      if (level > 5) {
+        return Math.pow(level, 3) + 9 + (level * level * 50);
+      }
+      return Math.pow(level, 3) + 9;
+    },
     primitive_miner: {
       requiredMiningLevel: 1,
       icon: 'primitiveMiner.svg',
@@ -907,7 +913,7 @@ export const MINING = {
     copper: {
       requiredLevel: 2,
       healthMax: 20,
-      xp: 5,
+      xp: 4,
       id: 'copper',
       icon: 'copper.png',
       clusterIcon: 'copperCluster.png',
@@ -920,7 +926,7 @@ export const MINING = {
     coal: {
       requiredLevel: 2,
       healthMax: 35,
-      xp: 10,
+      xp: 8,
       id: 'coal',
       clusterIcon: 'coalCluster.png',
       canCluster: true,
@@ -933,7 +939,7 @@ export const MINING = {
     tin: {
       requiredLevel: 5,
       healthMax: 75,
-      xp: 15,
+      xp: 13,
       id: 'tin',
       clusterIcon: 'tinCluster.png',
       canCluster: true,
@@ -946,7 +952,7 @@ export const MINING = {
     bronze: {
       requiredLevel: 10,
       healthMax: 150,
-      xp: 20,
+      xp: 17,
       clusterIcon: 'bronzeCluster.png',
       canCluster: true,
       id: 'bronze',
@@ -959,7 +965,7 @@ export const MINING = {
     iron: {
       requiredLevel: 15,
       healthMax: 300,
-      xp: 35,
+      xp: 33,
       id: 'iron',
       icon: 'iron.png',
       name: 'iron',
@@ -1336,7 +1342,7 @@ export const MINING = {
       healthMax: 1000,
       xp: 333,
       id: 'jade',
-      icon: 'jade.svg',
+      icon: 'jade.png',
       name: 'jade',
       isGem: true,
       itemId: 'jade',
@@ -1360,7 +1366,7 @@ export const MINING = {
       healthMax: 45000,
       xp: 3000,
       id: 'sapphire',
-      icon: 'sapphire.svg',
+      icon: 'sapphire.png',
       name: 'sapphire',
       itemId: 'sapphire',
       isGem: true,
@@ -1384,7 +1390,7 @@ export const MINING = {
       healthMax: 350000,
       xp: 21000,
       id: 'ruby',
-      icon: 'ruby.svg',
+      icon: 'ruby.png',
       name: 'ruby',
       itemId: 'ruby',
       isGem: true,

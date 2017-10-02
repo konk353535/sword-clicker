@@ -21,14 +21,12 @@ import { addItem } from '/server/api/items/items';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
-
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);
     addItem(itemId, 1, 'dwh6m5aWF5bT8bDyq');
   });
   */
-
   // Process combat items with extra stats beyond normal values
 
   /*

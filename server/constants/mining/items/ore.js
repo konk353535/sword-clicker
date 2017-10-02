@@ -177,7 +177,7 @@ export const ORE_ITEMS = {
 
   jade: {
     id: 'jade',
-    icon: 'jade.svg',
+    icon: 'jade.png',
     category: 'mining',
     name: 'jade',
     sellPrice: 500
@@ -193,7 +193,7 @@ export const ORE_ITEMS = {
 
   sapphire: {
     id: 'sapphire',
-    icon: 'sapphire.svg',
+    icon: 'sapphire.png',
     category: 'mining',
     name: 'sapphire',
     sellPrice: 2500
@@ -209,7 +209,7 @@ export const ORE_ITEMS = {
 
   ruby: {
     id: 'ruby',
-    icon: 'ruby.svg',
+    icon: 'ruby.png',
     category: 'mining',
     name: 'ruby',
     sellPrice: 2500

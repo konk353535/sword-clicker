@@ -44,12 +44,10 @@ export const PICKAXE_ITEMS = {
       attack: 750,
       energyPerHit: 20,
       energyRegen: 4,
-      miner: 35
     },
     extraStats: {
       energyStorage: 500,
       attack: 250,
-      miner: 15,
       energyRegen: 1
     },
     requiredEquip: [{
@@ -75,12 +73,10 @@ export const PICKAXE_ITEMS = {
       attack: 15,
       energyPerHit: 1,
       energyRegen: 8,
-      miner: 65
     },
     extraStats: {
       energyStorage: 10,
       attack: 5,
-      miner: 5,
       energyRegen: 3
     }
   },
@@ -100,12 +96,10 @@ export const PICKAXE_ITEMS = {
       attack: 25,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 110
     },
     extraStats: {
       energyStorage: 10,
       attack: 5,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -126,12 +120,10 @@ export const PICKAXE_ITEMS = {
       attack: 8, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
-      miner: 4 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
-      miner: 5,
       energyRegen: 3
     }
   },
@@ -151,12 +143,10 @@ export const PICKAXE_ITEMS = {
       attack: 12,
       energyPerHit: 1,
       energyRegen: 8,
-      miner: 5
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
-      miner: 5,
       energyRegen: 3
     }
   },
@@ -176,12 +166,10 @@ export const PICKAXE_ITEMS = {
       attack: 16,
       energyPerHit: 1,
       energyRegen: 8,
-      miner: 7
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
-      miner: 5,
       energyRegen: 3
     }
   },
@@ -198,15 +186,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 85,
-      attack: 20,
+      attack: 24,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 10
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 10,
       energyRegen: 2
     }
   },
@@ -223,15 +209,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 85,
-      attack: 24,
+      attack: 30,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 12
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 10,
       energyRegen: 2
     }
   },
@@ -248,15 +232,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 85,
-      attack: 28,
+      attack: 36,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 14
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 10,
       energyRegen: 2
     }
   },
@@ -273,15 +255,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 95,
-      attack: 32,
+      attack: 42,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 16
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 20,
       energyRegen: 2
     }
   },
@@ -298,15 +278,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 90,
-      attack: 36,
+      attack: 50,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 18
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -323,15 +301,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 90,
-      attack: 40,
+      attack: 58,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 20
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -348,15 +324,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 90,
-      attack: 44,
+      attack: 66,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 22
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -373,15 +347,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 90,
-      attack: 48,
+      attack: 76,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 24
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -398,15 +370,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 90,
-      attack: 52,
+      attack: 85,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 26
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 15,
       energyRegen: 2
     }
   },
@@ -423,15 +393,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 56,
+      attack: 93,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 28
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -448,15 +416,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 100,
-      attack: 60,
+      attack: 100,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 30
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -473,15 +439,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 64,
+      attack: 110,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 32
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -498,15 +462,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 68,
+      attack: 120,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 34
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -523,15 +485,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 72,
+      attack: 130,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 36
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -548,15 +508,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 76,
+      attack: 140,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 38
     },
     extraStats: {
       energyStorage: 10,
       attack: 4,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -573,15 +531,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 105,
-      attack: 80,
+      attack: 150,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 40
     },
     extraStats: {
       energyStorage: 10,
       attack: 4,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -598,15 +554,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 110,
-      attack: 84,
+      attack: 130,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 42
     },
     extraStats: {
       energyStorage: 10,
       attack: 5,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -616,21 +570,36 @@ export const PICKAXE_ITEMS = {
     id: 'copper_dwarven_idol',
     icon: 'copperDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'Copper Dwarven Idol',
     sellPrice: 50,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2, // Maximum energy stored
-      attack: 5, // Damage per hit
-      energyPerHit: 1, // Energy used per hit
-      energyRegen: 1, // Energy regen per minute
-      miner: 40 // Increases effeciency of miners
+      miner: 25 // Increases effeciency of miners
     },
     extraStats: {
       miner: 10
+    }
+  },
+
+  // Passive heavy pickaxes
+  pine_idol: {
+    id: 'pine_idol',
+    icon: 'pineIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'Pine Idol',
+    sellPrice: 50,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 15 // Increases effeciency of miners
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -638,18 +607,14 @@ export const PICKAXE_ITEMS = {
     id: 'tin_dwarven_idol',
     icon: 'tinDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'tin Dwarven Idol',
     sellPrice: 50,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2, // Maximum energy stored
-      attack: 7, // Damage per hit
-      energyPerHit: 1, // Energy used per hit
-      energyRegen: 1, // Energy regen per minute
-      miner: 50 // Increases effeciency of miners
+      miner: 35 // Increases effeciency of miners
     },
     extraStats: {
       miner: 10
@@ -660,21 +625,35 @@ export const PICKAXE_ITEMS = {
     id: 'bronze_dwarven_idol',
     icon: 'bronzeDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'bronze Dwarven Idol',
     sellPrice: 50,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2, // Maximum energy stored
-      attack: 5, // Damage per hit
-      energyPerHit: 1, // Energy used per hit
-      energyRegen: 1, // Energy regen per minute
-      miner: 60 // Increases effeciency of miners
+      miner: 45 // Increases effeciency of miners
     },
     extraStats: {
       miner: 10
+    }
+  },
+
+  ash_idol: {
+    id: 'ash_idol',
+    icon: 'ashIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'Ash Idol',
+    sellPrice: 50,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 35 // Increases effeciency of miners
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -682,18 +661,14 @@ export const PICKAXE_ITEMS = {
     id: 'iron_dwarven_idol',
     icon: 'ironDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'iron Dwarven Idol',
     sellPrice: 100,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 10,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 70
+      miner: 55
     },
     extraStats: {
       miner: 10
@@ -704,21 +679,35 @@ export const PICKAXE_ITEMS = {
     id: 'silver_dwarven_idol',
     icon: 'silverDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'silver Dwarven Idol',
     sellPrice: 100,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 10,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 85
+      miner: 65
     },
     extraStats: {
       miner: 10
+    }
+  },
+
+  maple_idol: {
+    id: 'maple_idol',
+    icon: 'mapleIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'Maple Idol',
+    sellPrice: 100,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 55
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -726,18 +715,14 @@ export const PICKAXE_ITEMS = {
     id: 'gold_dwarven_idol',
     icon: 'goldDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'gold Dwarven Idol',
     sellPrice: 100,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 10,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 100
+      miner: 75
     },
     extraStats: {
       miner: 10
@@ -749,41 +734,50 @@ export const PICKAXE_ITEMS = {
     id: 'carbon_dwarven_idol',
     icon: 'carbonDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'carbon Dwarven Idol',
     sellPrice: 300,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 15,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 115
+      miner: 85
     },
     extraStats: {
       miner: 15
     }
   },
 
+  cherry_idol: {
+    id: 'cherry_idol',
+    icon: 'cherryIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'Cherry Idol',
+    sellPrice: 300,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 75
+    },
+    extraStats: {
+      miner: 5
+    }
+  },
 
   steel_dwarven_idol: {
     id: 'steel_dwarven_idol',
     icon: 'steelDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'steel Dwarven Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 20,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 130
+      miner: 95
     },
     extraStats: {
       miner: 10
@@ -794,21 +788,35 @@ export const PICKAXE_ITEMS = {
     id: 'platinum_dwarven_idol',
     icon: 'platinumDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'platinum Dwarven Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 15,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 145
+      miner: 105
     },
     extraStats: {
       miner: 10
+    }
+  },
+
+  elk_idol: {
+    id: 'elk_idol',
+    icon: 'elkIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'elk Idol',
+    sellPrice: 200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 95
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -816,18 +824,14 @@ export const PICKAXE_ITEMS = {
     id: 'titanium_dwarven_idol',
     icon: 'titaniumDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'titanium Dwarven Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 15,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 160
+      miner: 115
     },
     extraStats: {
       miner: 10
@@ -838,21 +842,35 @@ export const PICKAXE_ITEMS = {
     id: 'tungsten_dwarven_idol',
     icon: 'tungstenDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'tungsten Dwarven Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 15,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 175
+      miner: 125
     },
     extraStats: {
       miner: 10
+    }
+  },
+
+  blue_gum_idol: {
+    id: 'blue_gum_idol',
+    icon: 'blueGumIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'blue gum Idol',
+    sellPrice: 200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 115
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -860,18 +878,14 @@ export const PICKAXE_ITEMS = {
     id: 'obsidian_dwarven_idol',
     icon: 'obsidianDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'obsidian Dwarven Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 2,
-      attack: 15,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 190
+      miner: 135
     },
     extraStats: {
       miner: 10
@@ -882,40 +896,51 @@ export const PICKAXE_ITEMS = {
     id: 'cobalt_dwarven_idol',
     icon: 'cobaltDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'cobalt Dwarven Idol',
     sellPrice: 1250,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 40,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 210
+      miner: 145
     },
     extraStats: {
       miner: 27
     }
   },
 
+  denya_idol: {
+    id: 'denya_idol',
+    icon: 'denyaIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'denya Idol',
+    sellPrice: 1250,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 113
+    },
+    extraStats: {
+      miner: 5
+    }
+  },
+
+
   mithril_dwarven_idol: {
     id: 'mithril_dwarven_idol',
     icon: 'mithrilDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'mithril Dwarven Idol',
     sellPrice: 500,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 25,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 230
+      miner: 155
     },
     extraStats: {
       miner: 18
@@ -926,21 +951,35 @@ export const PICKAXE_ITEMS = {
     id: 'adamantium_dwarven_idol',
     icon: 'adamantiumDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'adamantium Dwarven Idol',
     sellPrice: 750,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 30,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 250
+      miner: 165
     },
     extraStats: {
       miner: 21
+    }
+  },
+
+  hickory_idol: {
+    id: 'hickory_idol',
+    icon: 'hickoryIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'hickory Idol',
+    sellPrice: 750,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 139
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -948,18 +987,14 @@ export const PICKAXE_ITEMS = {
     id: 'orichalcum_dwarven_idol',
     icon: 'orichalcumDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'orichalcum Dwarven Idol',
     sellPrice: 1000,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 35,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 270
+      miner: 175
     },
     extraStats: {
       miner: 24
@@ -971,21 +1006,35 @@ export const PICKAXE_ITEMS = {
     id: 'meteorite_dwarven_idol',
     icon: 'meteoriteDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'meteorite Dwarven Idol',
     sellPrice: 1000,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 35,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 290
+      miner: 185
     },
     extraStats: {
       miner: 24
+    }
+  },
+
+  poplar_idol: {
+    id: 'poplar_idol',
+    icon: 'poplarIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'poplar Idol',
+    sellPrice: 1000,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 155
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -994,18 +1043,14 @@ export const PICKAXE_ITEMS = {
     id: 'fairy_steel_dwarven_idol',
     icon: 'fairySteelDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'fairy steel Dwarven Idol',
     sellPrice: 1500,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 45,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 310
+      miner: 195
     },
     extraStats: {
       miner: 30
@@ -1016,21 +1061,35 @@ export const PICKAXE_ITEMS = {
     id: 'elven_steel_dwarven_idol',
     icon: 'elvenSteelDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'elven steel Dwarven Idol',
     sellPrice: 1500,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 45,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 330
+      miner: 215
     },
     extraStats: {
       miner: 30
+    }
+  },
+
+  willow_idol: {
+    id: 'willow_idol',
+    icon: 'willowIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'willow Idol',
+    sellPrice: 1500,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 180
+    },
+    extraStats: {
+      miner: 5
     }
   },
 
@@ -1038,18 +1097,14 @@ export const PICKAXE_ITEMS = {
     id: 'cursed_dwarven_idol',
     icon: 'cursedDwarvenIdol.svg',
     category: 'mining',
-    slot: 'pickaxe',
+    slot: 'mining_offhand',
     name: 'cursed dwarven Idol',
     sellPrice: 2000,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 1,
-      attack: 50,
-      energyPerHit: 1,
-      energyRegen: 1,
-      miner: 350
+      miner: 225
     },
     extraStats: {
       miner: 33
@@ -1072,7 +1127,6 @@ export const PICKAXE_ITEMS = {
       attack: 1, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 60, // Energy regen per minute
-      miner: 1 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 10,
@@ -1096,7 +1150,6 @@ export const PICKAXE_ITEMS = {
       attack: 2, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 35, // Energy regen per minute
-      miner: 1 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 10,
@@ -1118,13 +1171,11 @@ export const PICKAXE_ITEMS = {
       energyStorage: 12, // Maximum energy stored
       attack: 8, // Damage per hit
       energyPerHit: 1, // Energy used per hit
-      energyRegen: 8, // Energy regen per minute
-      miner: 10 // Increases effeciency of miners
+      energyRegen: 8 // Energy regen per minute
     },
     extraStats: {
       energyStorage: 12,
       attack: 3,
-      miner: 10,
       energyRegen: 3
     }
   },
@@ -1144,12 +1195,10 @@ export const PICKAXE_ITEMS = {
       attack: 12, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
-      miner: 15 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 12,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -1169,12 +1218,10 @@ export const PICKAXE_ITEMS = {
       attack: 16, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
-      miner: 18 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 12,
       attack: 3,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -1191,15 +1238,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 14,
-      attack: 20,
+      attack: 25,
       energyPerHit: 1,
       energyRegen: 7,
-      miner: 20
     },
     extraStats: {
       energyStorage: 14,
       attack: 5,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -1216,15 +1261,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 14,
-      attack: 24,
+      attack: 29,
       energyPerHit: 1,
       energyRegen: 6,
-      miner: 25
     },
     extraStats: {
       energyStorage: 14,
       attack: 5,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -1241,15 +1284,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 14,
-      attack: 28,
+      attack: 36,
       energyPerHit: 1,
       energyRegen: 6,
-      miner: 25
     },
     extraStats: {
       energyStorage: 14,
       attack: 5,
-      miner: 25,
       energyRegen: 3
     }
   },
@@ -1266,15 +1307,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 20,
-      attack: 32,
+      attack: 42,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 30
     },
     extraStats: {
       energyStorage: 20,
       attack: 5,
-      miner: 30,
       energyRegen: 2
     }
   },
@@ -1291,15 +1330,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 16, // Maximum energy stored
-      attack: 36, // Damage per hit
+      attack: 52, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
-      miner: 30 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 16,
       attack: 5,
-      miner: 25,
       energyRegen: 2
     }
   },
@@ -1316,15 +1353,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 16, // Maximum energy stored
-      attack: 40, // Damage per hit
+      attack: 62, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
-      miner: 35 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 16,
       attack: 5,
-      miner: 25,
       energyRegen: 2
     }
   },
@@ -1341,15 +1376,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 16, // Maximum energy stored
-      attack: 44, // Damage per hit
+      attack: 74, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
-      miner: 40 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 16,
       attack: 5,
-      miner: 25,
       energyRegen: 2
     }
   },
@@ -1366,15 +1399,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: { // 53 * 7 = 371 DPM
       energyStorage: 16, // Maximum energy stored
-      attack: 48, // Damage per hit
+      attack: 84, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
-      miner: 45 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 16,
       attack: 5,
-      miner: 25,
       energyRegen: 2
     }
   },
@@ -1391,15 +1422,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 16, // Maximum energy stored
-      attack: 52, // Damage per hit
+      attack: 100, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
-      miner: 50 // Increases effeciency of miners
     },
     extraStats: {
       energyStorage: 16,
       attack: 5,
-      miner: 25,
       energyRegen: 2
     }
   },
@@ -1416,15 +1445,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 28,
-      attack: 56,
+      attack: 110,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 55
     },
     extraStats: {
       energyStorage: 28,
       attack: 5,
-      miner: 50,
       energyRegen: 2
     }
   },
@@ -1441,15 +1468,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 22,
-      attack: 60,
+      attack: 120,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 60
     },
     extraStats: {
       energyStorage: 22,
       attack: 5,
-      miner: 35,
       energyRegen: 2
     }
   },
@@ -1466,15 +1491,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 25,
-      attack: 64,
+      attack: 130,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 65
     },
     extraStats: {
       energyStorage: 25,
       attack: 5,
-      miner: 40,
       energyRegen: 2
     }
   },
@@ -1491,15 +1514,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 28,
-      attack: 68,
+      attack: 145,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 70
     },
     extraStats: {
       energyStorage: 28,
       attack: 5,
-      miner: 45,
       energyRegen: 2
     }
   },
@@ -1516,15 +1537,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 28,
-      attack: 72,
+      attack: 160,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 75
     },
     extraStats: {
       energyStorage: 28,
       attack: 5,
-      miner: 45,
       energyRegen: 2
     }
   },
@@ -1541,15 +1560,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 31,
-      attack: 76,
+      attack: 180,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 80
     },
     extraStats: {
       energyStorage: 31,
       attack: 5,
-      miner: 55,
       energyRegen: 2
     }
   },
@@ -1566,15 +1583,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 31,
-      attack: 80,
+      attack: 205,
       energyPerHit: 1,
       energyRegen: 5,
-      miner: 85
     },
     extraStats: {
       energyStorage: 31,
       attack: 5,
-      miner: 55,
       energyRegen: 2
     }
   },
@@ -1591,15 +1606,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 31,
-      attack: 84,
+      attack: 220,
       energyPerHit: 1,
       energyRegen: 4,
-      miner: 90
     },
     extraStats: {
       energyStorage: 31,
       attack: 6,
-      miner: 60,
       energyRegen: 3
     }
   }

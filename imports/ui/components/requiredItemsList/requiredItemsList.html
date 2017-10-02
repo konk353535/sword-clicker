@@ -45,7 +45,9 @@
           </div>
         {{/if}}
       {{/each}}
-      Craft Time {{duration}}s
+      {{#if duration}}
+        Craft Time {{duration}}s
+      {{/if}}
     </div>
   </div>
 </template>

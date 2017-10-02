@@ -20,6 +20,8 @@
   color: initial !important;
 }
 
+body { padding-right: 0 !important }
+
 @media (min-width: 1200px) {
   .inactive-adventure {
     flex: 0 1 32.33%;
@@ -177,17 +179,23 @@
 }
 
 @keyframes fadeOutUp {
-  from {
-    opacity: 1;
+  0% {
+    opacity: 1
   }
 
-  to {
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -150%, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -300%, 0);
   }
 }
 
 .fadeOutUp {
+  animation-timing-function: linear;
   animation-name: fadeOutUp;
 }
 
@@ -201,7 +209,7 @@
   user-select: none;
   background-color: white;
   padding: $spacer * 0.25;
-  border: 1px solid $gray;
+  border: 1px solid $gray-lighter;
   border-radius: 4px;
 
   & > i {

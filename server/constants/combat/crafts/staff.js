@@ -199,6 +199,31 @@ export const STAFF_CRAFTS = {
       name: 'crafting',
       level: 55
     }]
+  },
+
+  gombe_staff: {
+    produces: 'gombe_staff',
+    name: 'gombe staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'gombe_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 2000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 60,
+    required: [{
+      type: 'item',
+      itemId: 'gombe_log',
+      icon: ITEMS['gombe_log'].icon,
+      name: ITEMS['gombe_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 60
+    }]
   }
 
 }

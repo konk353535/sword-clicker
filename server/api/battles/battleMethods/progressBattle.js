@@ -18,7 +18,6 @@ const redis = new Meteor.RedisCollection('redis');
 const tickTracker = {};
 
 export const progressBattle = function (actualBattle, battleIntervalId) {
-
   try {
     if (tickTracker[actualBattle._id]) {
       tickTracker[actualBattle._id] += 1;
@@ -41,6 +40,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
     actualBattle.tickEvents = [];
     actualBattle.allAliveUnits = actualBattle.units.concat(actualBattle.enemies);
+    actualBattle.allUnits = actualBattle.units.concat(actualBattle.enemies, actualBattle.deadEnemies, actualBattle.deadUnits);
 
     // If this is the first tick apply all passives to appropriate units
     if (actualBattle.tick === 0) {
@@ -75,7 +75,19 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       redis.del(`battleActions-${actualBattle._id}`);
     }
 
-    const dealDamage = function(rawDamage, { attacker, defender, tickEvents, customColor, customIcon, isMagic, isTrueDamage }) {
+    const dealDamage = function(rawDamage, {
+      attacker,
+      defender,
+      tickEvents,
+      customColor,
+      customIcon,
+      isMagic,
+      isTrueDamage,
+      historyStats 
+    }) {
+      if (!attacker) {
+        return 0;
+      }
 
       let damage = rawDamage;
       if (damage > 0 && damage) {
@@ -94,6 +106,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         defender.stats.health -= damage;
       }
 
+      if (historyStats[attacker.id]) {
+        historyStats[attacker.id].damageDone += damage;
+      }
+
+      if (historyStats[defender.id]) {
+        historyStats[defender.id].damageTaken += damage;
+      }
+
       tickEvents.push({
         from: attacker ? attacker.id : '',
         to: defender.id,
@@ -106,8 +126,14 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       return damage;
     }
 
-    const healTarget = function(healAmount, { target, caster, tickEvents, customColor, customIcon }) {
-
+    const healTarget = function(healAmount, {
+      target,
+      caster,
+      tickEvents,
+      customColor,
+      customIcon,
+      historyStats
+    }) {
       if (caster && caster.stats && caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
         healAmount *= (1 + (caster.stats.healingPower / 100));
       }
@@ -121,6 +147,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         target.stats.health = target.stats.healthMax;
       }
 
+      if (caster && historyStats[caster.id]) {
+        historyStats[caster.id].healingDone += healAmount;
+      }
+
       tickEvents.push({
         from: caster ? caster.id : '',
         to: target.id,
@@ -131,7 +161,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       });
     }
 
-    const autoAttack = function({ attacker, defender, tickEvents }) {
+    const autoAttack = function({ attacker, defender, tickEvents, historyStats }) {
       // Do we hit?
       let hitGap = attacker.stats.accuracy - defender.stats.defense;
       let hitChance = 0.5;
@@ -158,7 +188,13 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           customIcon = 'criticalStrike';
         }
 
-        const damageDealt = dealDamage(rawDamage, { attacker, defender, tickEvents, customIcon });
+        const damageDealt = dealDamage(rawDamage, {
+          attacker,
+          defender,
+          tickEvents,
+          customIcon,
+          historyStats
+        });
 
         // Tick didDamage event on attacker
         if (attacker.buffs) {
@@ -191,7 +227,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         }
 
       } else {
-        dealDamage(0, { attacker, defender, tickEvents });
+        dealDamage(0, { attacker, defender, tickEvents, historyStats });
       }
     }
 
@@ -232,7 +268,12 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         } else {
           enemy.target = defender.id;
         }
-        autoAttack({ attacker: enemy, defender, tickEvents: actualBattle.tickEvents });
+        autoAttack({
+          attacker: enemy,
+          defender,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
+        });
       }
     });
 
@@ -277,7 +318,12 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           }
         }
         if (defender) {
-          autoAttack({ attacker: unit, defender, tickEvents: actualBattle.tickEvents });
+          autoAttack({
+            attacker: unit,
+            defender,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
         }
       }
     });
@@ -333,7 +379,8 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           dealDamage(casterUnit.amulet.damage, {
             attacker: casterUnit,
             defender: targetUnit,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
           });
         }
       } else {
@@ -450,6 +497,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     // Strip util &  all alive
     delete actualBattle.utils;
     delete actualBattle.allAliveUnits;
+    delete actualBattle.allUnits;
 
     redis.set(`battles-${actualBattle._id}`, JSON.stringify(actualBattle));
 

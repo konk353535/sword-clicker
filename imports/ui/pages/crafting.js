@@ -64,6 +64,10 @@ const itemModifier = function (item) {
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
+  // Show currently crafting items
+  Meteor.subscribe('crafting');
+
   if (Session.get('itemViewLimit') !== undefined) {
     this.state.set('itemViewLimit', Session.get('itemViewLimit'));
   } else {

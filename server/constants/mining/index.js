@@ -364,7 +364,7 @@ export const MINING = {
   miners: {
     xpToLevel(level) {
       if (level > 5) {
-        return Math.pow(level, 3) + 9 + (level * level * 50);
+        return (Math.pow(level, 3) + 9) * 2;
       }
       return Math.pow(level, 3) + 9;
     },

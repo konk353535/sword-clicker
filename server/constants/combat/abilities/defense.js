@@ -57,7 +57,7 @@ export const DEFENSE_ABILITIES = {
     name: 'defensive stance',
     id: 'defensive_stance',
     buffs: ['defensive_stance'],
-    cooldown: 300,
+    cooldown: 180,
     slot: 'any',
     isHidden: false,
     target: 'self',
@@ -166,7 +166,7 @@ export const DEFENSE_ABILITIES = {
     name: 'iron will',
     id: 'iron_will',
     buffs: ['iron_will'],
-    cooldown: 180,
+    cooldown: 150,
     slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking

@@ -23,6 +23,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
 import './crons.js';
+import './chatConfig.js';
 
 Accounts.emailTemplates.siteName = "Eternity Tower";
 Accounts.emailTemplates.from = "Admin Eternity Tower <admin@eternitytower.net>";

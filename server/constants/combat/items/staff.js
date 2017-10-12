@@ -509,7 +509,40 @@ export const STAFF_ITEMS = {
       attackSpeed: SLOW_SPEED,
       healingPower: 8,
       accuracy: 40,
-      magicPower: 30
+      magicPower: 32
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 29
+    }]
+  },
+
+  gombe_staff: {
+    id: 'gombe_staff',
+    icon: 'gombeStaff.svg',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'gombe staff',
+    sellPrice: 1000,
+    description: 'What seems like a normal gombe staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 23,
+      attackMax: 36,
+      attackSpeed: SLOW_SPEED,
+      healingPower: 8,
+      accuracy: 40,
+      magicPower: 34
     },
     extraStats: {
       attack: 3,

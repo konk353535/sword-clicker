@@ -41,6 +41,26 @@ Template.body.onCreated(function () {
     }
   });
 
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().uiState && Meteor.user().uiState.showSummaryList) {
+      // Make sure not on mobile
+      if ($(window).width() > 1150) {
+        // Show woodcutting
+        Meteor.subscribe('woodcutting');
+        // Show mining spaces
+        Meteor.subscribe('miningSpace');
+        // Mining data
+        Meteor.subscribe('mining');
+        // Show currently crafting items
+        Meteor.subscribe('crafting');
+        // Farming
+        Meteor.subscribe('farmingSpace');
+        // Show currently inscripting items
+        Meteor.subscribe('inscription');
+      }
+    }
+  });
+
   // Auto tracker for invites to groups
   Tracker.autorun(() => {
     const invitedToGroups = Groups.find({
@@ -249,22 +269,13 @@ Template.body.onCreated(function () {
   Meteor.subscribe('groups');
   // Show combat details for groups
   Meteor.subscribe('combat');
-  // Show woodcutting
-  Meteor.subscribe('woodcutting');
-  // Show mining spaces
-  Meteor.subscribe('miningSpace');
-  // Mining data
-  Meteor.subscribe('mining');
-  // Show currently crafting items
-  Meteor.subscribe('crafting');
-  // Farming
-  Meteor.subscribe('farmingSpace');
-  // Show currently inscripting items
-  Meteor.subscribe('inscription');
   // Adventures
   Meteor.subscribe('adventures');
   // Battle List
   Meteor.subscribe('battlesList');
+
+  // Only use these if summary list is showing & not mobile
+
 });
 
 Template.body.rendered = function() {

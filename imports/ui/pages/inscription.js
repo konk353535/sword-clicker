@@ -26,6 +26,9 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
 
   this.state.set('hasLearnRequirements', false);
 
+  // Show currently inscripting items
+  Meteor.subscribe('inscription');
+
   Meteor.call('abilities.fetchLibrary', (err, abilityResults) => {
     if (abilityResults) {
       const abilityResultsMap = {};

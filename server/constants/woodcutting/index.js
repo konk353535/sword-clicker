@@ -524,7 +524,7 @@ export const WOODCUTTING = {
       requiredAttack: 1,
       xp: 3,
       id: 'pine_log',
-      icon: 'pineLog.svg',
+      icon: 'pineLog.png',
       name: 'pine log',
       itemId: 'pine_log',
       chance: 0.16 // Base chance to chop this log
@@ -534,7 +534,7 @@ export const WOODCUTTING = {
       requiredAttack: 5,
       xp: 6,
       id: 'beech_log',
-      icon: 'beechLog.svg',
+      icon: 'beechLog.png',
       name: 'beech log',
       itemId: 'beech_log',
       chance: 0.035
@@ -544,7 +544,7 @@ export const WOODCUTTING = {
       requiredAttack: 10,
       xp: 18,
       id: 'ash_log',
-      icon: 'ashLog.svg',
+      icon: 'ashLog.png',
       name: 'ash log',
       itemId: 'ash_log',
       chance: 0.025
@@ -554,7 +554,7 @@ export const WOODCUTTING = {
       requiredAttack: 15,
       xp: 50,
       id: 'oak_log',
-      icon: 'oakLog.svg',
+      icon: 'oakLog.png',
       name: 'oak log',
       itemId: 'oak_log',
       chance: 0.025
@@ -564,7 +564,7 @@ export const WOODCUTTING = {
       requiredAttack: 20,
       xp: 70,
       id: 'maple_log',
-      icon: 'mapleLog.svg',
+      icon: 'mapleLog.png',
       name: 'maple log',
       itemId: 'maple_log',
       chance: 0.01
@@ -574,7 +574,7 @@ export const WOODCUTTING = {
       requiredAttack: 25,
       xp: 90,
       id: 'walnut_log',
-      icon: 'walnutLog.svg',
+      icon: 'walnutLog.png',
       name: 'walnut log',
       itemId: 'walnut_log',
       chance: 0.01
@@ -584,7 +584,7 @@ export const WOODCUTTING = {
       requiredAttack: 30,
       xp: 120,
       id: 'cherry_log',
-      icon: 'cherryLog.svg',
+      icon: 'cherryLog.png',
       name: 'cherry log',
       itemId: 'cherry_log',
       chance: 0.01
@@ -594,7 +594,7 @@ export const WOODCUTTING = {
       requiredAttack: 35,
       xp: 120,
       id: 'mahogany_log',
-      icon: 'mahoganyLog.svg',
+      icon: 'mahoganyLog.png',
       name: 'mahogany log',
       itemId: 'mahogany_log',
       chance: 0.01
@@ -604,7 +604,7 @@ export const WOODCUTTING = {
       requiredAttack: 40,
       xp: 180,
       id: 'elk_log',
-      icon: 'elkLog.svg',
+      icon: 'elkLog.png',
       name: 'elk log',
       itemId: 'elk_log',
       chance: 0.01
@@ -614,7 +614,7 @@ export const WOODCUTTING = {
       requiredAttack: 45,
       xp: 220,
       id: 'black_log',
-      icon: 'blackLog.svg',
+      icon: 'blackLog.png',
       name: 'black log',
       itemId: 'black_log',
       chance: 0.01
@@ -624,7 +624,7 @@ export const WOODCUTTING = {
       requiredAttack: 50,
       xp: 260,
       id: 'blue_gum_log',
-      icon: 'blueGumLog.svg',
+      icon: 'blueGumLog.png',
       name: 'blue_gum log',
       itemId: 'blue_gum_log',
       chance: 0.01
@@ -634,7 +634,7 @@ export const WOODCUTTING = {
       requiredAttack: 55,
       xp: 300,
       id: 'cedar_log',
-      icon: 'cedarLog.svg',
+      icon: 'cedarLog.png',
       name: 'cedar log',
       itemId: 'cedar_log',
       chance: 0.01
@@ -644,7 +644,7 @@ export const WOODCUTTING = {
       requiredAttack: 60,
       xp: 340,
       id: 'denya_log',
-      icon: 'denyaLog.svg',
+      icon: 'denyaLog.png',
       name: 'denya log',
       itemId: 'denya_log',
       chance: 0.01
@@ -654,7 +654,7 @@ export const WOODCUTTING = {
       requiredAttack: 65,
       xp: 380,
       id: 'gombe_log',
-      icon: 'gombeLog.svg',
+      icon: 'gombeLog.png',
       name: 'gombe log',
       itemId: 'gombe_log',
       chance: 0.01
@@ -664,7 +664,7 @@ export const WOODCUTTING = {
       requiredAttack: 70,
       xp: 420,
       id: 'hickory_log',
-      icon: 'hickoryLog.svg',
+      icon: 'hickoryLog.png',
       name: 'hickory log',
       itemId: 'hickory_log',
       chance: 0.01
@@ -674,7 +674,7 @@ export const WOODCUTTING = {
       requiredAttack: 75,
       xp: 480,
       id: 'larch_log',
-      icon: 'larchLog.svg',
+      icon: 'larchLog.png',
       name: 'larch log',
       itemId: 'larch_log',
       chance: 0.01
@@ -684,7 +684,7 @@ export const WOODCUTTING = {
       requiredAttack: 80,
       xp: 520,
       id: 'poplar_log',
-      icon: 'poplarLog.svg',
+      icon: 'poplarLog.png',
       name: 'poplar log',
       itemId: 'poplar_log',
       chance: 0.01
@@ -694,7 +694,7 @@ export const WOODCUTTING = {
       requiredAttack: 85,
       xp: 560,
       id: 'tali_log',
-      icon: 'taliLog.svg',
+      icon: 'taliLog.png',
       name: 'tali log',
       itemId: 'tali_log',
       chance: 0.01
@@ -704,7 +704,7 @@ export const WOODCUTTING = {
       requiredAttack: 90,
       xp: 600,
       id: 'willow_log',
-      icon: 'willowLog.svg',
+      icon: 'willowLog.png',
       name: 'willow log',
       itemId: 'willow_log',
       chance: 0.01
@@ -714,7 +714,7 @@ export const WOODCUTTING = {
       requiredAttack: 95,
       xp: 620,
       id: 'teak_log',
-      icon: 'teakLog.svg',
+      icon: 'teakLog.png',
       name: 'teak log',
       itemId: 'teak_log',
       chance: 0.01
@@ -724,7 +724,7 @@ export const WOODCUTTING = {
       requiredAttack: 100,
       xp: 640,
       id: 'fiery_log',
-      icon: 'fieryLog.svg',
+      icon: 'fieryLog.png',
       name: 'fiery log',
       itemId: 'fiery_log',
       chance: 0.01
@@ -734,7 +734,7 @@ export const WOODCUTTING = {
       requiredAttack: 105,
       xp: 690,
       id: 'magic_log',
-      icon: 'magicLog.svg',
+      icon: 'magicLog.png',
       name: 'magic log',
       itemId: 'magic_log',
       chance: 0.01

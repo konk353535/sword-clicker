@@ -71,9 +71,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
     });
 
     if (finishedBattle) {
-      finishedBattle.finalTickEvents = finishedBattle.finalTickEvents.filter((tickEvent) => {
-        return tickEvent.owner === Meteor.userId();
-      });
       this.state.set('finishedBattle', finishedBattle);
       if (this.state.get('waveDetails') && finishedBattle.win) {
         const isBossWin = finishedBattle.difficulty === 'boss';

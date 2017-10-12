@@ -40,7 +40,9 @@ export const ATTACK_BUFFS = {
 
         actualBattle.utils.dealDamage(actualDamage, {
           defender: attacker,
+          attacker: defender,
           tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
           customIcon: 'counterAttack.svg',
           customColor: '#f7750f'
         });
@@ -77,7 +79,9 @@ export const ATTACK_BUFFS = {
           const poisonDamage = buff.data.damage;
           actualBattle.utils.dealDamage(poisonDamage, {
             defender: target,
+            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
             customIcon: 'poison.svg',
             customColor: '#229b00'
           });
@@ -238,7 +242,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.healTarget(totalHeal, {
           caster: attacker,
           target: attacker,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -373,7 +378,8 @@ export const ATTACK_BUFFS = {
           actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
           });
         }
       },
@@ -438,13 +444,15 @@ export const ATTACK_BUFFS = {
             actualBattle.utils.healTarget(totalDamage, {
               caster: attacker,
               target: attacker,
-              tickEvents: actualBattle.tickEvents
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats,
             }); 
           }
           actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
           });
         }
       },
@@ -584,13 +592,15 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
 
         actualBattle.utils.dealDamage(totalDamage / 2, {
           attacker: caster,
           defender: caster,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -641,7 +651,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -687,7 +698,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -736,7 +748,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
         target.stats.armor /= (1 - constants.armorPenetration);
       },
@@ -779,7 +792,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -819,7 +833,8 @@ export const ATTACK_BUFFS = {
         actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
         });
       },
 
@@ -937,14 +952,14 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.data.timeTillDamage < 0) {
-          const allUnits = actualBattle.units.concat(actualBattle.enemies, actualBattle.deadEnemies, actualBattle.deadUnits);
-          const caster = _.findWhere(allUnits, { id: buff.data.caster });
+          const caster = _.findWhere(actualBattle.allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
 
           actualBattle.utils.dealDamage(buff.data.dps, { 
             attacker: caster,
             defender: target,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
           });
         }
 

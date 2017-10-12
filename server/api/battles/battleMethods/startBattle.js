@@ -101,6 +101,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     room,
     wave,
     level,
+    historyStats: {},
     isTowerContribution,
     isExplorationRun,
     tickEvents: [],
@@ -217,7 +218,12 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
 
     newBattle.units.push(newUnit);
-
+    newBattle.historyStats[newUnit.id] = {
+      damageDone: 0,
+      damageTaken: 0,
+      healingDone: 0,
+      name: newUnit.name
+    };
   });
 
   if (!hasEnergy) {

@@ -109,6 +109,12 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   myItems.forEach((item) => {
     if (item.deleteMe) {
       Items.remove(item._id);
+      Events.insert({
+        owner: this.userId,
+        event: 'crafting.item.removal',
+        date: new Date(),
+        data: { itemId: item.itemId, id: item._id, owner: item.owner }
+      }, () => {});
     } else {
       Items.update(item._id, {
         $set: { amount: item.amount }

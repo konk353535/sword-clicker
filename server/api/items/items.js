@@ -173,6 +173,12 @@ export const consumeGems = function (count, userObject) {
 export const consumeItem = function (itemObject, amount) {
   // Use up item
   if (itemObject.amount === amount) {
+    Events.insert({
+      owner: itemObject.owner,
+      event: 'items.consumeItem',
+      date: new Date(),
+      data: { itemId: itemObject.itemId, id: itemObject._id, owner: itemObject.owner }
+    }, () => {});
     Items.remove(itemObject._id);
   } else {
     Items.update(itemObject._id, {
@@ -323,6 +329,12 @@ Meteor.methods({
 
           // Remove the key
           if (baseItem.amount === 1) {
+            Events.insert({
+              owner: Meteor.userId(),
+              event: 'items.consumeItem',
+              date: new Date(),
+              data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+            }, () => {});
             Items.remove({
               owner: Meteor.userId(),
               _id: baseItem._id
@@ -602,7 +614,12 @@ Meteor.methods({
       amountToSell = currentItem.amount;
       // Remove item
       const itemsUpdated = Items.remove(currentItem._id);
-
+      Events.insert({
+        owner: Meteor.userId(),
+        event: 'items.sell',
+        date: new Date(),
+        data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner }
+      }, () => {});
       if (itemsUpdated <= 0) {
         return;
       }

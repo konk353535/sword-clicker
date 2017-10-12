@@ -13,6 +13,7 @@ import '/imports/ui/components/itemIcon/itemIcon.js';
 import '/imports/ui/components/abilityLibraryIcon/abilityLibraryIcon.js';
 import '/imports/ui/components/tutorial/tutorial.js';
 import '/imports/ui/components/recipeIcon/recipeIcon.js';
+import '/imports/ui/components/battleLogRow/battleLogRow.js';
 import '/imports/ui/components/formatNumber/formatNumber.js';
 import '/imports/ui/components/ceilNumber/ceilNumber.js';
 import '/imports/ui/components/requiredItems/requiredItems.js';

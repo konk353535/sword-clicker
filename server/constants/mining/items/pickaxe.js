@@ -40,7 +40,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: { // DPM = (1000 * 5) / 20 = 250
-      energyStorage: 1000,
+      energyStorage: 1500,
       attack: 750,
       energyPerHit: 20,
       energyRegen: 4,
@@ -116,15 +116,39 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 12, // Maximum energy stored
-      attack: 8, // Damage per hit
+      energyStorage: 300, // Maximum energy stored
+      attack: 7, // Damage per hit
       energyPerHit: 1, // Energy used per hit
-      energyRegen: 8, // Energy regen per minute
+      energyRegen: 7, // Energy regen per minute
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
       energyRegen: 3
+    }
+  },
+
+  copper_mining_anvil: {
+    id: 'copper_mining_anvil',
+    icon: 'copperMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'copper mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 70, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 10
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -139,15 +163,39 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 80,
-      attack: 12,
+      energyStorage: 320,
+      attack: 8,
       energyPerHit: 1,
-      energyRegen: 8,
+      energyRegen: 6,
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
       energyRegen: 3
+    }
+  },
+
+  tin_mining_anvil: {
+    id: 'tin_mining_anvil',
+    icon: 'tinMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tin mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 150, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 14
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -162,15 +210,39 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 80,
-      attack: 16,
+      energyStorage: 320,
+      attack: 12,
       energyPerHit: 1,
-      energyRegen: 8,
+      energyRegen: 6,
     },
     extraStats: {
       energyStorage: 10,
       attack: 2,
       energyRegen: 3
+    }
+  },
+
+  bronze_mining_anvil: {
+    id: 'bronze_mining_anvil',
+    icon: 'bronzeMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'bronze mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 200, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 18
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -185,15 +257,39 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 85,
-      attack: 24,
+      energyStorage: 330,
+      attack: 20,
       energyPerHit: 1,
-      energyRegen: 5,
+      energyRegen: 4,
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  iron_mining_anvil: {
+    id: 'iron_mining_anvil',
+    icon: 'ironMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'iron mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 240, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 22
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -208,15 +304,39 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 85,
-      attack: 30,
+      energyStorage: 360,
+      attack: 24,
       energyPerHit: 1,
-      energyRegen: 5,
+      energyRegen: 4,
     },
     extraStats: {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  silver_mining_anvil: {
+    id: 'silver_mining_anvil',
+    icon: 'silverMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'silver mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 300, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 26
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -231,8 +351,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 85,
-      attack: 36,
+      energyStorage: 370,
+      attack: 28,
       energyPerHit: 1,
       energyRegen: 5,
     },
@@ -240,6 +360,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  gold_mining_anvil: {
+    id: 'gold_mining_anvil',
+    icon: 'goldMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'gold mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 400, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 30
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -254,8 +398,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 95,
-      attack: 42,
+      energyStorage: 400,
+      attack: 32,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -263,6 +407,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  carbon_mining_anvil: {
+    id: 'carbon_mining_anvil',
+    icon: 'carbonMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'carbon mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 500, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 34
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -277,8 +445,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 90,
-      attack: 50,
+      energyStorage: 410,
+      attack: 36,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -286,6 +454,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  steel_mining_anvil: {
+    id: 'steel_mining_anvil',
+    icon: 'steelMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'steel mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 600, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 36
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -300,8 +492,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 90,
-      attack: 58,
+      energyStorage: 420,
+      attack: 40,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -309,6 +501,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  platinum_mining_anvil: {
+    id: 'platinum_mining_anvil',
+    icon: 'platinumMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'platinum mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 600, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 36
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -323,8 +539,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 90,
-      attack: 66,
+      energyStorage: 430,
+      attack: 50,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -332,6 +548,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  titanium_mining_anvil: {
+    id: 'titanium_mining_anvil',
+    icon: 'titaniumMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanium mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 700, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 40
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -346,8 +586,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 90,
-      attack: 76,
+      energyStorage: 440,
+      attack: 60,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -355,6 +595,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  tungsten_mining_anvil: {
+    id: 'tungsten_mining_anvil',
+    icon: 'tungstenMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'tungsten mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 800, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 44
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -369,8 +633,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 90,
-      attack: 85,
+      energyStorage: 450,
+      attack: 70,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -378,6 +642,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
+    }
+  },
+
+  obsidian_mining_anvil: {
+    id: 'obsidian_mining_anvil',
+    icon: 'obsidianMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'obsidian mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 900, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 48
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -392,8 +680,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
-      attack: 93,
+      energyStorage: 460,
+      attack: 80,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -401,6 +689,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
+    }
+  },
+
+  cobalt_mining_anvil: {
+    id: 'cobalt_mining_anvil',
+    icon: 'cobaltMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'cobalt mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1000, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 52
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -415,8 +727,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 100,
-      attack: 100,
+      energyStorage: 470,
+      attack: 90,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -424,6 +736,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
+    }
+  },
+
+  mithril_mining_anvil: {
+    id: 'mithril_mining_anvil',
+    icon: 'mithrilMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'mithril mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1100, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 56
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -438,8 +774,8 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
-      attack: 110,
+      energyStorage: 480,
+      attack: 100,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -447,6 +783,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
+    }
+  },
+
+  adamantium_mining_anvil: {
+    id: 'adamantium_mining_anvil',
+    icon: 'adamantiumMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'adamantium mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1200, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 60
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -461,7 +821,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
+      energyStorage: 490,
       attack: 120,
       energyPerHit: 1,
       energyRegen: 4,
@@ -470,6 +830,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
+    }
+  },
+
+  orichalcum_mining_anvil: {
+    id: 'orichalcum_mining_anvil',
+    icon: 'orichalcumMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'orichalcum mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1300, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 64
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -484,7 +868,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
+      energyStorage: 500,
       attack: 130,
       energyPerHit: 1,
       energyRegen: 4,
@@ -493,6 +877,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
+    }
+  },
+
+  meteorite_mining_anvil: {
+    id: 'meteorite_mining_anvil',
+    icon: 'meteoriteMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'meteorite mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1400, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 68
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -507,7 +915,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
+      energyStorage: 510,
       attack: 140,
       energyPerHit: 1,
       energyRegen: 4,
@@ -516,6 +924,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 4,
       energyRegen: 3
+    }
+  },
+
+  fairy_steel_mining_anvil: {
+    id: 'fairy_steel_mining_anvil',
+    icon: 'fairySteelMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'fairy_steel mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1500, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 72
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -530,7 +962,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 105,
+      energyStorage: 520,
       attack: 150,
       energyPerHit: 1,
       energyRegen: 4,
@@ -539,6 +971,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 4,
       energyRegen: 3
+    }
+  },
+
+  elven_steel_mining_anvil: {
+    id: 'elven_steel_mining_anvil',
+    icon: 'elvenSteelMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'elven steel mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1600, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 76
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -553,7 +1009,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 110,
+      energyStorage: 530,
       attack: 130,
       energyPerHit: 1,
       energyRegen: 4,
@@ -562,6 +1018,30 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 5,
       energyRegen: 3
+    }
+  },
+
+  cursed_mining_anvil: {
+    id: 'cursed_mining_anvil',
+    icon: 'cursedMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'cursed mining anvil',
+    sellPrice: 50,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1700, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 80
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
     }
   },
 
@@ -921,7 +1401,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 113
+      miner: 125
     },
     extraStats: {
       miner: 5
@@ -1146,7 +1626,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 25, // Maximum energy stored
+      energyStorage: 100, // Maximum energy stored
       attack: 2, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 35, // Energy regen per minute
@@ -1168,7 +1648,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 12, // Maximum energy stored
+      energyStorage: 112, // Maximum energy stored
       attack: 8, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8 // Energy regen per minute
@@ -1191,7 +1671,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 12, // Maximum energy stored
+      energyStorage: 112, // Maximum energy stored
       attack: 12, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
@@ -1214,7 +1694,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 12, // Maximum energy stored
+      energyStorage: 112, // Maximum energy stored
       attack: 16, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 8, // Energy regen per minute
@@ -1237,7 +1717,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 14,
+      energyStorage: 114,
       attack: 25,
       energyPerHit: 1,
       energyRegen: 7,
@@ -1260,7 +1740,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 14,
+      energyStorage: 114,
       attack: 29,
       energyPerHit: 1,
       energyRegen: 6,
@@ -1283,7 +1763,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 14,
+      energyStorage: 114,
       attack: 36,
       energyPerHit: 1,
       energyRegen: 6,
@@ -1306,7 +1786,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 20,
+      energyStorage: 120,
       attack: 42,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1329,7 +1809,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 16, // Maximum energy stored
+      energyStorage: 116, // Maximum energy stored
       attack: 52, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
@@ -1352,7 +1832,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 16, // Maximum energy stored
+      energyStorage: 116, // Maximum energy stored
       attack: 62, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
@@ -1375,7 +1855,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 16, // Maximum energy stored
+      energyStorage: 116, // Maximum energy stored
       attack: 74, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
@@ -1398,7 +1878,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: { // 53 * 7 = 371 DPM
-      energyStorage: 16, // Maximum energy stored
+      energyStorage: 116, // Maximum energy stored
       attack: 84, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
@@ -1421,7 +1901,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 16, // Maximum energy stored
+      energyStorage: 116, // Maximum energy stored
       attack: 100, // Damage per hit
       energyPerHit: 1, // Energy used per hit
       energyRegen: 5, // Energy regen per minute
@@ -1444,7 +1924,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 28,
+      energyStorage: 128,
       attack: 110,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1467,7 +1947,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 22,
+      energyStorage: 122,
       attack: 120,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1490,7 +1970,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 25,
+      energyStorage: 125,
       attack: 130,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1513,7 +1993,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 28,
+      energyStorage: 128,
       attack: 145,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1536,7 +2016,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 28,
+      energyStorage: 128,
       attack: 160,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1559,7 +2039,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 31,
+      energyStorage: 131,
       attack: 180,
       energyPerHit: 1,
       energyRegen: 5,
@@ -1582,7 +2062,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 31,
+      energyStorage: 131,
       attack: 205,
       energyPerHit: 1,
       energyRegen: 5,

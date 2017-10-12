@@ -568,6 +568,7 @@ export const completeBattle = function (actualBattle) {
     room: actualBattle.room,
     isExplorationRun: actualBattle.isExplorationRun,
     win,
+    historyStats: actualBattle.historyStats,
     finalTickEvents,
     updatedAt: new Date(),
     createdAt: new Date()

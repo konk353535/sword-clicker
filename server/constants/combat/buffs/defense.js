@@ -42,7 +42,8 @@ export const DEFENSE_BUFFS = {
           actualBattle.utils.dealDamage(actualDamage, {
             attacker: target,
             defender: enemy,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
           });
         });
       }
@@ -354,7 +355,8 @@ export const DEFENSE_BUFFS = {
           attacker: defender,
           defender: attacker,
           isMagic: true,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
         });
       },
 

@@ -420,7 +420,7 @@ export const WOODCUTTING_ITEMS = {
 
   pine_log: {
     id: 'pine_log',
-    icon: 'pineLog.svg',
+    icon: 'pineLog.png',
     category: 'woodcutting',
     name: 'pine log',
     sellPrice: 1
@@ -428,7 +428,7 @@ export const WOODCUTTING_ITEMS = {
 
   beech_log: {
     id: 'beech_log',
-    icon: 'beechLog.svg',
+    icon: 'beechLog.png',
     category: 'woodcutting',
     name: 'beech log',
     sellPrice: 4
@@ -436,7 +436,7 @@ export const WOODCUTTING_ITEMS = {
 
   ash_log: {
     id: 'ash_log',
-    icon: 'ashLog.svg',
+    icon: 'ashLog.png',
     category: 'woodcutting',
     name: 'ash log',
     sellPrice: 7
@@ -444,7 +444,7 @@ export const WOODCUTTING_ITEMS = {
 
   oak_log: {
     id: 'oak_log',
-    icon: 'oakLog.svg',
+    icon: 'oakLog.png',
     category: 'woodcutting',
     name: 'oak log',
     sellPrice: 11
@@ -452,7 +452,7 @@ export const WOODCUTTING_ITEMS = {
 
   maple_log: {
     id: 'maple_log',
-    icon: 'mapleLog.svg',
+    icon: 'mapleLog.png',
     category: 'woodcutting',
     name: 'maple log',
     sellPrice: 17
@@ -460,7 +460,7 @@ export const WOODCUTTING_ITEMS = {
 
   walnut_log: {
     id: 'walnut_log',
-    icon: 'walnutLog.svg',
+    icon: 'walnutLog.png',
     category: 'woodcutting',
     name: 'walnut log',
     sellPrice: 30
@@ -468,7 +468,7 @@ export const WOODCUTTING_ITEMS = {
 
   cherry_log: {
     id: 'cherry_log',
-    icon: 'cherryLog.svg',
+    icon: 'cherryLog.png',
     category: 'woodcutting',
     name: 'cherry log',
     sellPrice: 40
@@ -476,7 +476,7 @@ export const WOODCUTTING_ITEMS = {
 
   mahogany_log: {
     id: 'mahogany_log',
-    icon: 'mahoganyLog.svg',
+    icon: 'mahoganyLog.png',
     category: 'woodcutting',
     name: 'mahogany log',
     sellPrice: 50
@@ -484,7 +484,7 @@ export const WOODCUTTING_ITEMS = {
 
   elk_log: {
     id: 'elk_log',
-    icon: 'elkLog.svg',
+    icon: 'elkLog.png',
     category: 'woodcutting',
     name: 'elk log',
     sellPrice: 60
@@ -492,7 +492,7 @@ export const WOODCUTTING_ITEMS = {
 
   black_log: {
     id: 'black_log',
-    icon: 'blackLog.svg',
+    icon: 'blackLog.png',
     category: 'woodcutting',
     name: 'black log',
     sellPrice: 70
@@ -500,7 +500,7 @@ export const WOODCUTTING_ITEMS = {
 
   blue_gum_log: {
     id: 'blue_gum_log',
-    icon: 'blueGumLog.svg',
+    icon: 'blueGumLog.png',
     category: 'woodcutting',
     name: 'blue gum log',
     sellPrice: 80
@@ -508,7 +508,7 @@ export const WOODCUTTING_ITEMS = {
 
   cedar_log: {
     id: 'cedar_log',
-    icon: 'cedarLog.svg',
+    icon: 'cedarLog.png',
     category: 'woodcutting',
     name: 'cedar log',
     sellPrice: 90
@@ -516,7 +516,7 @@ export const WOODCUTTING_ITEMS = {
 
   denya_log: {
     id: 'denya_log',
-    icon: 'denyaLog.svg',
+    icon: 'denyaLog.png',
     category: 'woodcutting',
     name: 'denya log',
     sellPrice: 100
@@ -524,7 +524,7 @@ export const WOODCUTTING_ITEMS = {
 
   gombe_log: {
     id: 'gombe_log',
-    icon: 'gombeLog.svg',
+    icon: 'gombeLog.png',
     category: 'woodcutting',
     name: 'gombe log',
     sellPrice: 110
@@ -532,7 +532,7 @@ export const WOODCUTTING_ITEMS = {
 
   hickory_log: {
     id: 'hickory_log',
-    icon: 'hickoryLog.svg',
+    icon: 'hickoryLog.png',
     category: 'woodcutting',
     name: 'hickory log',
     sellPrice: 120
@@ -540,7 +540,7 @@ export const WOODCUTTING_ITEMS = {
 
   larch_log: {
     id: 'larch_log',
-    icon: 'larchLog.svg',
+    icon: 'larchLog.png',
     category: 'woodcutting',
     name: 'larch log',
     sellPrice: 130
@@ -548,7 +548,7 @@ export const WOODCUTTING_ITEMS = {
 
   poplar_log: {
     id: 'poplar_log',
-    icon: 'poplarLog.svg',
+    icon: 'poplarLog.png',
     category: 'woodcutting',
     name: 'poplar log',
     sellPrice: 140
@@ -556,7 +556,7 @@ export const WOODCUTTING_ITEMS = {
 
   tali_log: {
     id: 'tali_log',
-    icon: 'taliLog.svg',
+    icon: 'taliLog.png',
     category: 'woodcutting',
     name: 'tali log',
     sellPrice: 150
@@ -564,7 +564,7 @@ export const WOODCUTTING_ITEMS = {
 
   willow_log: {
     id: 'willow_log',
-    icon: 'willowLog.svg',
+    icon: 'willowLog.png',
     category: 'woodcutting',
     name: 'willow log',
     sellPrice: 160
@@ -572,7 +572,7 @@ export const WOODCUTTING_ITEMS = {
 
   teak_log: {
     id: 'teak_log',
-    icon: 'teakLog.svg',
+    icon: 'teakLog.png',
     category: 'woodcutting',
     name: 'teak log',
     sellPrice: 170
@@ -580,7 +580,7 @@ export const WOODCUTTING_ITEMS = {
 
   fiery_log: {
     id: 'fiery_log',
-    icon: 'fieryLog.svg',
+    icon: 'fieryLog.png',
     category: 'woodcutting',
     name: 'fiery log',
     sellPrice: 180
@@ -588,7 +588,7 @@ export const WOODCUTTING_ITEMS = {
 
   magic_log: {
     id: 'magic_log',
-    icon: 'magicLog.svg',
+    icon: 'magicLog.png',
     category: 'woodcutting',
     name: 'magic log',
     sellPrice: 190

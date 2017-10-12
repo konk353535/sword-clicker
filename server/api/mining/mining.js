@@ -172,7 +172,7 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 
     let amount = 1;
     if (mineSpace.isCluster) {
-      amount = 10;
+      amount = 8 + Math.round(Math.random() * 4);
     }
 
     addXp('mining', oreConstants.xp * amount);
@@ -407,7 +407,7 @@ Meteor.methods({
 
           let newAmount = 1;
           if (miningSpace.isCluster) {
-            newAmount = 10;
+            newAmount = 8 + Math.round(Math.random() * 4);
           }
 
           if (gainedItems[oreConstants.itemId]) {
@@ -458,7 +458,7 @@ Meteor.methods({
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
           ore.chance /= 9;
-          ore.healthMax *= 10;
+          ore.healthMax *= 15;
           ore.isCluster = true;
         } else {
           ore.isCluster = false;
@@ -719,7 +719,7 @@ Meteor.publish('miningSpace', function() {
       doc.name = currentOreConstants.name;
       doc.xp = currentOreConstants.xp;
       if (doc.isCluster) {
-        doc.healthMax *= 10;
+        doc.healthMax *= 15;
         doc.icon = currentOreConstants.clusterIcon;
       } else {
         doc.icon = currentOreConstants.icon;

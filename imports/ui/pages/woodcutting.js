@@ -17,6 +17,9 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
 
+  // Show woodcutting
+  Meteor.subscribe('woodcutting');
+
   woodcuttingPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('woodcutting.gameUpdate');

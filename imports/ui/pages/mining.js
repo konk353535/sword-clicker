@@ -23,6 +23,11 @@ let oresCache;
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+  // Mining data
+  Meteor.subscribe('mining');
+
   this.autorun(() => {
     if (!hasInitGameUpdate && Mining.findOne()) {
       Meteor.call('mining.gameUpdate');

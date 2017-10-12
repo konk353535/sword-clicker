@@ -17,11 +17,6 @@ Template.battleLogTab.helpers({
       sort: {
         updatedAt: -1
       }
-    }).map((battle) => {
-      battle.finalTickEvents = battle.finalTickEvents.filter((tickEvent) => {
-        return tickEvent.owner === Meteor.userId();
-      });
-      return battle;
-    })
+    });
   }
 });

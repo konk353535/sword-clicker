@@ -42,7 +42,8 @@ export const BOSS_BUFFS = {
         actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
         });
       },
 
@@ -793,7 +794,8 @@ export const BOSS_BUFFS = {
         actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
         });
       },
 

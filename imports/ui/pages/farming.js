@@ -14,6 +14,9 @@ let lastFarmingLevel;
 Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  // Farming
+  Meteor.subscribe('farmingSpace');
+
   this.state.set('currentTab', 'shop');
   this.state.set('seedsFilter', 'food');
 

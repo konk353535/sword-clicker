@@ -40,7 +40,8 @@ export const ENCHANTMENT_BUFFS = {
          actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender: target,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
           });
         }
       },
@@ -83,7 +84,8 @@ export const ENCHANTMENT_BUFFS = {
           attacker,
           defender,
           isMagic: true,
-          tickEvents: actualBattle.tickEvents
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
         });
       },
 
@@ -145,7 +147,8 @@ export const ENCHANTMENT_BUFFS = {
             actualBattle.utils.healTarget(totalHeal, {
               caster: target,
               target: targetUnit,
-              tickEvents: actualBattle.tickEvents
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
             });
 
             removeBuff({ buff, target, caster: target });

@@ -3,6 +3,7 @@ import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
+import { addItem } from '/server/api/items/items.js';
 
 import moment from 'moment';
 
@@ -150,8 +151,6 @@ SimpleChat.configure ({
           username: message.split('/ban')[1].toLowerCase().trim()
         });
 
-        console.log(targetUser);
-
         Users.update({
           _id: targetUser._id
         }, {
@@ -171,6 +170,17 @@ SimpleChat.configure ({
         });
 
         return false;
+      } else if (/\/giveItem/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+        const splitMessage = message.split(' ');
+        const targetUsername = splitMessage[1];
+        const targetItem = splitMessage[2];
+        const targetAmount = parseInt(splitMessage[3]);
+
+        const targetUser = Users.findOne({
+          username: targetUsername.toLowerCase().trim()
+        });
+
+        addItem(targetItem, targetAmount, targetUser._id);
       }
     }
 

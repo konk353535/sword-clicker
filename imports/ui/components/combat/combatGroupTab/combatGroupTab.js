@@ -3,13 +3,21 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Groups } from '/imports/api/groups/groups.js';
+import { Friends } from '/imports/api/friends/friends.js';
 import { Combat } from '/imports/api/combat/combat.js';
+
+import moment from 'moment';
+import _ from 'underscore';
 
 import './combatGroupTab.html';
 
 Template.combatGroupTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
+
+Template.combatGroupTab.rendered = function () {
+  Meteor.subscribe('friends');
+};
 
 Template.combatGroupTab.events({
   'click .btn-invite'(event) {
@@ -30,6 +38,16 @@ Template.combatGroupTab.events({
     Template.instance().$('.group-user-input').val('');
   },
 
+  'click .invite-friend-to-group'(event, instance) {
+    const name = $(event.currentTarget).data('username');
+    // Send invite request
+    Meteor.call('groups.invite', name, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
   'submit .invite-user'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -40,6 +58,25 @@ Template.combatGroupTab.events({
  
     // Send invite request
     Meteor.call('groups.invite', text, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+ 
+    // Clear input
+    target.text.value = '';
+  },
+
+  'submit .invite-friend'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+ 
+    // Get value from form element
+    const target = event.target;
+    const text = target.text.value;
+ 
+    // Send invite request
+    Meteor.call('friends.invite', text, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }
@@ -125,6 +162,14 @@ Template.combatGroupTab.helpers({
     return Groups.find({
       invites: Meteor.userId()
     });
+  },
+
+  friends() {
+    return _.sortBy(Friends.findOne({}).friends.map((friend) => {
+      friend.isOnline = moment().diff(friend.lastGameUpdated) < 1000 * 60 * 5;
+
+      return friend;
+    }), 'lastGameUpdated').reverse();
   },
 
   currentUserId() {

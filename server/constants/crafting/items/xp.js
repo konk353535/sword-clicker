@@ -63,6 +63,15 @@ export const XP_ITEMS = {
     description: 'Can be crafted for decent xp'
   },
 
+  silver_essence_wall: {
+    id: 'silver_essence_wall',
+    icon: 'silverEssenceWall.svg',
+    category: 'crafting',
+    name: 'silver essence wall',
+    sellPrice: 10,
+    description: 'Can be crafted for decent xp'
+  },
+
   gold_pylon: {
     id: 'gold_pylon',
     icon: 'goldPylon.svg',

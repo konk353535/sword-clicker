@@ -98,6 +98,22 @@ export const DEFENSE_ABILITIES = {
     }
   },
 
+  sixth_sense: {
+    icon: 'sixthSense.svg',
+    name: 'sixth sense',
+    id: 'sixth_sense',
+    buffs: ['sixth_sense'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.sixth_sense;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   defense_up: {
     icon: 'defense.svg',
     name: 'defense up',

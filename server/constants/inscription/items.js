@@ -342,6 +342,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Used in inscription with pigments to make ability books'
   },
 
+  sixth_sense_tome: {
+    id: 'sixth_sense_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Sixth Sense Lv 1',
+    teaches: {
+      abilityId: 'sixth_sense',
+      level: 1
+    },
+    sellPrice: 200,
+    description: 'Can be consumed to learn the sixth sense ability.'
+  },
+
   furied_defense_tome: {
     id: 'furied_defense_tome',
     icon: 'tome.svg',

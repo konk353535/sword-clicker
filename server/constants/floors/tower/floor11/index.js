@@ -96,7 +96,13 @@ export const TOWER_FLOOR_11 = {
 
   boss: {
     enemy: { id: 'boss_genie_lamp', amount: 1 },
-    rewards: LEVEL_ELEVEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'shadow_knife', amount: 1 },
+        { type: 'item', itemId: 'smoke_dagger', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

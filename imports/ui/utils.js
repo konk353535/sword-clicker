@@ -35,8 +35,16 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
       const hasItem = Items.findOne({ itemId: requiredItem.itemId, equipped: false });
 
       if (!hasItem || hasItem.amount < requiredItem.amount) {
+        requiredItem.currentAmount = 0;
         requiredItem.notMet = true;
         notMet = true;
+        if (!hasItem) {
+          requiredItem.currentAmount = 0;
+        } else {
+          requiredItem.currentAmount = hasItem.amount;
+        }
+      } else {
+        requiredItem.currentAmount = hasItem.amount;
       }
 
       if (requiredItem.consumes) {

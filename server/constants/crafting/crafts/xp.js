@@ -117,7 +117,7 @@ export const XP_CRAFTS = {
       level: 17
     }],
     timeToCraft: 60,
-    xp: 45,
+    xp: 60,
     maxToCraft: 100
   },
 
@@ -141,7 +141,7 @@ export const XP_CRAFTS = {
       level: 22
     }],
     timeToCraft: 120,
-    xp: 200,
+    xp: 250,
     maxToCraft: 5
   },
 
@@ -165,7 +165,38 @@ export const XP_CRAFTS = {
       level: 27
     }],
     timeToCraft: 60,
-    xp: 70,
+    xp: 100,
+    maxToCraft: 100
+  },
+
+  silver_essence_wall: {
+    produces: 'silver_essence_wall',
+    recipeFor: 'crafting',
+    name: 'silver essence wall',
+    category: 'crafting',
+    id: 'silver_essence_wall',
+    requiredCraftingLevel: 37,
+    required: [{
+      type: 'item',
+      itemId: 'ore_silver',
+      icon: ITEMS['ore_silver'].icon,
+      name: ITEMS['ore_silver'].name,
+      amount: 15,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'silver_essence',
+      icon: ITEMS['silver_essence'].icon,
+      name: ITEMS['silver_essence'].name,
+      amount: 3,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 37
+    }],
+    timeToCraft: 15,
+    xp: 1000,
     maxToCraft: 100
   },
 
@@ -189,7 +220,7 @@ export const XP_CRAFTS = {
       level: 32
     }],
     timeToCraft: 120,
-    xp: 260,
+    xp: 350,
     maxToCraft: 5
   },
 
@@ -213,7 +244,7 @@ export const XP_CRAFTS = {
       level: 37
     }],
     timeToCraft: 60,
-    xp: 80,
+    xp: 130,
     maxToCraft: 100
   },
 
@@ -237,7 +268,7 @@ export const XP_CRAFTS = {
       level: 42
     }],
     timeToCraft: 120,
-    xp: 320,
+    xp: 500,
     maxToCraft: 5
   },
 
@@ -261,7 +292,7 @@ export const XP_CRAFTS = {
       level: 47
     }],
     timeToCraft: 60,
-    xp: 100,
+    xp: 170,
     maxToCraft: 100
   },
 
@@ -285,7 +316,7 @@ export const XP_CRAFTS = {
       level: 52
     }],
     timeToCraft: 120,
-    xp: 400,
+    xp: 650,
     maxToCraft: 5
   },
 
@@ -309,7 +340,7 @@ export const XP_CRAFTS = {
       level: 57
     }],
     timeToCraft: 60,
-    xp: 120,
+    xp: 200,
     maxToCraft: 100
   },
 
@@ -333,7 +364,7 @@ export const XP_CRAFTS = {
       level: 62
     }],
     timeToCraft: 120,
-    xp: 500,
+    xp: 800,
     maxToCraft: 5
   },
 
@@ -357,7 +388,7 @@ export const XP_CRAFTS = {
       level: 67
     }],
     timeToCraft: 60,
-    xp: 150,
+    xp: 250,
     maxToCraft: 100
   },
 
@@ -381,7 +412,7 @@ export const XP_CRAFTS = {
       level: 72
     }],
     timeToCraft: 120,
-    xp: 600,
+    xp: 1100,
     maxToCraft: 5
   },
 
@@ -405,7 +436,7 @@ export const XP_CRAFTS = {
       level: 77
     }],
     timeToCraft: 60,
-    xp: 200,
+    xp: 300,
     maxToCraft: 100
   },
 
@@ -429,7 +460,7 @@ export const XP_CRAFTS = {
       level: 82
     }],
     timeToCraft: 120,
-    xp: 800,
+    xp: 1500,
     maxToCraft: 5
   },
 
@@ -453,7 +484,7 @@ export const XP_CRAFTS = {
       level: 87
     }],
     timeToCraft: 60,
-    xp: 250,
+    xp: 400,
     maxToCraft: 100
   },
 
@@ -477,7 +508,7 @@ export const XP_CRAFTS = {
       level: 92
     }],
     timeToCraft: 120,
-    xp: 1000,
+    xp: 2000,
     maxToCraft: 5
   },
 
@@ -501,7 +532,7 @@ export const XP_CRAFTS = {
       level: 97
     }],
     timeToCraft: 60,
-    xp: 300,
+    xp: 600,
     maxToCraft: 100
   },
 
@@ -525,7 +556,7 @@ export const XP_CRAFTS = {
       level: 102
     }],
     timeToCraft: 120,
-    xp: 1200,
+    xp: 2500,
     maxToCraft: 5
   },
   

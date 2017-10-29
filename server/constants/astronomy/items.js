@@ -22,7 +22,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'completeFireShard.svg',
     category: 'astronomy',
     name: 'complete fire shard',
-    sellPrice: 100,
+    sellPrice: 75,
     description: 'A complete fire shard'
   },
 
@@ -31,7 +31,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'ancientFireShard.svg',
     category: 'astronomy',
     name: 'ancient fire shard',
-    sellPrice: 1000,
+    sellPrice: 750,
     description: 'A magic fire shard, a relic from ancient times'
   },
 
@@ -49,7 +49,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'completeWaterShard.svg',
     category: 'astronomy',
     name: 'complete water shard',
-    sellPrice: 100,
+    sellPrice: 75,
     description: 'A complete water shard'
   },
 
@@ -58,7 +58,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'ancientWaterShard.svg',
     category: 'astronomy',
     name: 'ancient water shard',
-    sellPrice: 1000,
+    sellPrice: 750,
     description: 'A magic water shard, a relic from ancient times'
   },
 
@@ -76,7 +76,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'completeEarthShard.svg',
     category: 'astronomy',
     name: 'complete earth shard',
-    sellPrice: 100,
+    sellPrice: 75,
     description: 'A complete earth shard'
   },
 
@@ -85,7 +85,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'ancientEarthShard.svg',
     category: 'astronomy',
     name: 'ancient earth shard',
-    sellPrice: 1000,
+    sellPrice: 750,
     description: 'A magic earth shard, a relic from ancient times'
   },
 
@@ -103,7 +103,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'completeAirShard.svg',
     category: 'astronomy',
     name: 'complete air shard',
-    sellPrice: 100,
+    sellPrice: 75,
     description: 'A complete air shard'
   },
 
@@ -112,7 +112,7 @@ export const ASTRONOMY_ITEMS = {
     icon: 'ancientAirShard.svg',
     category: 'astronomy',
     name: 'ancient air shard',
-    sellPrice: 1000,
+    sellPrice: 750,
     description: 'A magic air shard, a relic from ancient times'
   }
 }

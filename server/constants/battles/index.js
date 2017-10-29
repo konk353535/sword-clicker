@@ -87,7 +87,7 @@ export const BATTLES = {
       return 0;
     }
 
-    return armor / (armor + 150);
+    return armor / (armor + 100);
   },
 
   tickDuration: 250, // How long each tick lasts

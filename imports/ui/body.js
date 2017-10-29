@@ -212,6 +212,8 @@ Template.body.onCreated(function () {
 
     if (Meteor.user() && !inBattle && (hasBuff || !isFullHealth || !isFullEnergy || !isFullAmuletEnergy)) {
       Meteor.call('combat.gameUpdate');
+    } else if (Math.random() * 10 > 8) {
+      Meteor.call('combat.gameUpdate');      
     }
   }, 8000);
 

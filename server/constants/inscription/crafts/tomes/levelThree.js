@@ -38,7 +38,7 @@ export const LEVEL_THREE_CRAFTS = {
     xp: 300,
     maxToCraft: 4,
     requiredInscriptionLevel: 40,
-    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.DENYA_PAPER, UTIL.LEVEL_40]
   },
 
   defense_up_3_tome: {
@@ -51,7 +51,7 @@ export const LEVEL_THREE_CRAFTS = {
     xp: 300,
     maxToCraft: 4,
     requiredInscriptionLevel: 40,
-    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+    required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.DENYA_PAPER, UTIL.LEVEL_40]
   },
 
   accuracy_up_3_tome: {
@@ -64,7 +64,7 @@ export const LEVEL_THREE_CRAFTS = {
     xp: 300,
     maxToCraft: 4,
     requiredInscriptionLevel: 40,
-    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.DENYA_PAPER, UTIL.LEVEL_40]
   },
 
   attack_up_3_tome: {
@@ -77,7 +77,7 @@ export const LEVEL_THREE_CRAFTS = {
     xp: 300,
     maxToCraft: 4,
     requiredInscriptionLevel: 40,
-    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.ELK_PAPER, UTIL.LEVEL_40]
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.DENYA_PAPER, UTIL.LEVEL_40]
   },
 
   berserk_level_3_tome: {

@@ -311,8 +311,8 @@ Meteor.methods({
       }
 
       // Based on total found see if we get complete / ful shard
-      const completeChance = 1 / 1000;
-      const ancientChance = 1 / 10000;
+      const completeChance = 1 / 500;
+      const ancientChance = 1 / 5000;
       let foundComplete = false;
       let foundAncient = false;
       let completeChanceExtra = currentMage.stats.completeShard ? currentMage.stats.completeShard : 0;

@@ -142,7 +142,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     targetSpec = 'damage'
   } else if (playerData.mainHandType === 'battleAxe') {
     targetSpec = 'damage';
-  } else if (playerData.offHandType === 'knife') {
+  } else if (playerData.mainHandType === 'shortSword') {
     targetSpec = 'damage';
   }
 

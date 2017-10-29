@@ -2,6 +2,23 @@ import moment from 'moment';
 import { BUFFS } from '/server/constants/combat/index';
 
 export const MAGIC_ABILITIES = {
+
+  summon_skeleton: {
+    icon: 'summonSkeleton.svg',
+    name: 'summon skeleton',
+    id: 'summon_skeleton',
+    buffs: ['summon_skeleton'],
+    cooldown: 180,
+    slot: 'any',
+    target: 'self',
+    isMagic: true,
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.summon_skeleton;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   earth_dart: {
     icon: 'earthDart.svg',
     name: 'earth dart',
@@ -78,7 +95,7 @@ export const MAGIC_ABILITIES = {
     name: 'healing shield',
     id: 'healing_shield',
     buffs: ['healing_shield'],
-    cooldown: 30,
+    cooldown: 25,
     slot: 'any',
     target: 'singleFriendly',
     targettable: true,
@@ -99,7 +116,7 @@ export const MAGIC_ABILITIES = {
     name: 'earthen first',
     id: 'earthen_fist',
     buffs: ['earthen_fist'],
-    cooldown: 30,
+    cooldown: 25,
     slot: 'any',
     target: 'currentEnemy',
     isMagic: true,
@@ -115,7 +132,7 @@ export const MAGIC_ABILITIES = {
     name: 'fire wave',
     id: 'fire_wave',
     buffs: ['fire_wave'],
-    cooldown: 45,
+    cooldown: 30,
     slot: 'any',
     target: 'allEnemies',
     isMagic: true,
@@ -131,7 +148,7 @@ export const MAGIC_ABILITIES = {
     name: 'furied winds',
     id: 'furied_winds',
     buffs: ['furied_winds'],
-    cooldown: 180,
+    cooldown: 90,
     slot: 'any',
     target: 'singleFriendly',
     targettable: true,

@@ -264,7 +264,10 @@ Meteor.methods({
 
       // Total Rankings
       const totalRankings = FloorWaveScores.find({
-        floor: currentCommunityFloor.floor
+        floor: currentCommunityFloor.floor,
+        points: {
+          $gte: 25
+        }
       }).count();
 
       return {

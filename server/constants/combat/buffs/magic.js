@@ -6,6 +6,50 @@ export const MAGIC_BUFFS = {
 
   /* BUFFS */
 
+  summon_skeleton: {
+    duplicateTag: 'summon_skeleton', // Used to stop duplicate buffs
+    icon: 'summonSkeleton.svg',
+    name: 'summon skeleton',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Summons a skeleton`;
+    },
+    constants: {
+      magicPowerBase: 50,
+      healthCost: 0,
+      healthCostMPRatio: 0
+    },
+    data: {
+      duration: 600,
+      totalDuration: 600,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const magicPowerBase = constants.magicPowerBase;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+
+          buff.data.magicPowerBase = 1 + (magicPowerBase / 100);
+          target.stats.magicPower *= buff.data.magicPowerBase;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
+
   magic_wisdom: {
     duplicateTag: 'magic_wisdom', // Used to stop duplicate buffs
     icon: 'magicWisdom.svg',

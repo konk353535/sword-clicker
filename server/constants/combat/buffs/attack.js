@@ -829,6 +829,22 @@ export const ATTACK_BUFFS = {
         const percentDamage = buff.constants.constants.damagePercentage + (buff.data.level * buff.constants.constants.damagePerLevel);
         const totalDamage = (baseDamage + extraDamage) * (percentDamage / 100);
 
+        // Do we have smoke_dagger buff?
+        if (_.findWhere(caster.buffs, { id: 'smoke_dagger' })) {
+          // Apply smoke_debuff to target
+          const newBuff = {
+            id: 'smoke_dagger_debuff',
+            data: {
+              duration: 7,
+              totalDuration: 7,
+              icon: 'smoke.svg',
+              description: 'reduces accuracy',
+              accuracyReduction: target.stats.accuracy * 0.25
+            }
+          }
+          addBuff({ buff: newBuff, target, caster, actualBattle });
+        }
+
         buff.data.endDate = moment().add(0, 'seconds').toDate();
         actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,

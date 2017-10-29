@@ -5,6 +5,108 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  shadow_knife: {
+    duplicateTag: 'shadow_knife', // Used to stop duplicate buffs
+    icon: 'shadowKnife.svg',
+    name: 'shadow knife',
+    description() {
+      return `Reduce cd of blade spin by 0.5s for each successfull auto attack.`;
+    },
+    constants: {
+      accuracyDecimal: 0.85,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+        const bladeSpin = _.findWhere(attacker.abilities, { id: 'blade_spin' });
+        if (bladeSpin && bladeSpin.currentCooldown > 0) {
+          bladeSpin.currentCooldown -= 0.5;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  smoke_dagger: {
+    duplicateTag: 'smoke_dagger', // Used to stop duplicate buffs
+    icon: 'smokeDagger.svg',
+    name: 'smoke dagger',
+    description() {
+      return `Apply 25% accuracy debuff to enemies damaged by bladespin.`;
+    },
+    constants: {
+      accuracyDecimal: 0.75,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  smoke_dagger_debuff: {
+    duplicateTag: 'smoke', // Used to stop duplicate buffs
+    icon: 'smoke.svg',
+    name: 'smoke',
+    description() {
+      return `Reduce accuracy`;
+    },
+    constants: {
+      accuracyDecimal: 0.75,
+    },
+    data: {
+      duration: 7,
+      totalDuration: 7
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        target.stats.accuracy -= buff.data.accuracyReduction;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
+        if (buff.data.duration <= 0) {
+          removeBuff({ target, buff, caster: target })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        target.stats.accuracy += buff.data.accuracyReduction;
+      }
+    }
+  },
+
   axe_cleave: {
     duplicateTag: 'axe_cleave', // Used to stop duplicate buffs
     icon: 'boneKingsAxe.svg',

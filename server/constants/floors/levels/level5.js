@@ -41,7 +41,8 @@ export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'iron_pickaxe', amount: 1 },
     { type: 'item', itemId: 'iron_axe', amount: 1 },
-    { type: 'item', itemId: 'iron_dagger', amount: 1 }
+    { type: 'item', itemId: 'iron_dagger', amount: 1 },
+    { type: 'item', itemId: 'sixth_sense_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

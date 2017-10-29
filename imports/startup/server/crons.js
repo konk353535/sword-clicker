@@ -16,7 +16,7 @@ const redis = new Meteor.RedisCollection('redis');
 SyncedCron.add({
   name: 'Reset boss health',
   schedule: function(parser) {
-    return parser.cron('0 0 * * * * *');
+    return parser.cron('* * * * * * *');
   },
   job: function() {
     // Fetch current active floor
@@ -30,15 +30,18 @@ SyncedCron.add({
     const activeTowerUsers = FloorWaveScores.find({
       floor: currentFloor.floor,
       points: {
-        $gte: 1
+        $gte: 25
       }
     }).count();
     console.log(`active tower users ${activeTowerUsers}`);
     console.log(`boss enemy constants`);
     console.log(bossEnemyConstants);
+    const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
+    console.log(`new health max is ${newHealthMax}`)
     Floors.update({ floorComplete: false }, {
       $set: {
-        health: currentFloor.healthMax
+        health: newHealthMax,
+        healthMax: newHealthMax
       }
     });
 
@@ -107,12 +110,12 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.text('every 2 minutes');
+    return parser.cron('* * * * * * *');
   },
   job: function() {
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(2, 'minutes').toDate()   
+        $lte: moment().subtract(1, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
       let currentBattle = redis.get(`battles-${battleList._id}`);

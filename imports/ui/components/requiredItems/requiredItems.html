@@ -12,7 +12,7 @@
         <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount noDecimal=true}}</span>
       {{else}}
         <img src="/icons/{{this.icon}}" class="extra-small-icon">
-        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.currentAmount}} / {{this.amount}}</span>
       {{/if}}
     {{/each}}
   </div>

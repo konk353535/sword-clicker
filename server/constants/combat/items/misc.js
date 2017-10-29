@@ -780,6 +780,60 @@ export const MISC_ITEMS = {
     enchantments: ['demons_heart']
   },
 
+  "smoke_dagger": {
+    "id": "smoke_dagger",
+    "icon": "smokeDagger.svg",
+    "category": "combat",
+    "weaponType": "dagger",
+    "slot": "mainHand",
+    "name": "smoke",
+    "sellPrice": 850,
+    "description": "A slither of smoke.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 11,
+      "attackMax": 20.2,
+      "attackSpeed": 1,
+      "accuracy": 35.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }],
+    enchantments: ['smoke_dagger']
+  },
+
+  "shadow_knife": {
+    "id": "shadow_knife",
+    "icon": "shadowKnife.svg",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "shadow",
+    "sellPrice": 850,
+    "description": "A slither of shadow.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 5,
+      "attack": 4,
+      "attackMax": 5
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2,
+      "attackMax": 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }],
+    enchantments: ['shadow_knife']
+  },
+
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',

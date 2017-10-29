@@ -55,7 +55,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 1,
+      damage: 2,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 20,
@@ -79,7 +79,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 1,
+      damage: 3,
       energyStorage: 10,
       energyRegen: 10,
       magicPower: 5,
@@ -103,7 +103,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 1,
+      damage: 4,
       energyStorage: 10,
       energyRegen: 10,
       attack: 2,
@@ -128,7 +128,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 1,
+      damage: 5,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 10,
@@ -155,7 +155,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 6,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 20,
@@ -182,7 +182,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 7,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 50,
@@ -206,7 +206,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 8,
       energyStorage: 10,
       energyRegen: 10,
       magicPower: 10,
@@ -230,7 +230,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 9,
       energyStorage: 10,
       energyRegen: 10,
       attack: 5,
@@ -255,7 +255,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 10,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 40,
@@ -282,7 +282,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 11,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 100,
@@ -306,7 +306,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 12,
       energyStorage: 10,
       energyRegen: 10,
       magicPower: 15,
@@ -330,7 +330,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 13,
       energyStorage: 10,
       energyRegen: 10,
       attack: 10,
@@ -355,7 +355,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 2,
+      damage: 14,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 70,
@@ -382,7 +382,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 15,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 150,
@@ -406,7 +406,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 16,
       energyStorage: 10,
       energyRegen: 10,
       magicPower: 20,
@@ -430,7 +430,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 17,
       energyStorage: 10,
       energyRegen: 10,
       attackMax: 15,
@@ -455,7 +455,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 18,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 100,
@@ -483,7 +483,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 19,
       energyStorage: 10,
       energyRegen: 10,
       healthMax: 400,
@@ -507,7 +507,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 20,
       energyStorage: 10,
       energyRegen: 10,
       magicPower: 25,
@@ -531,7 +531,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 4,
+      damage: 21,
       energyStorage: 10,
       energyRegen: 10,
       attackMax: 25,
@@ -557,7 +557,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 5, // Damage per click
+      damage: 6, // Damage per click
       energyStorage: 20, // Max energy stored
       energyRegen: 2, // Per minute
       accuracy: 15
@@ -581,7 +581,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 10,
+      damage: 12,
       energyStorage: 20,
       energyRegen: 2,
       healthMax: 100,
@@ -606,7 +606,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 15,
+      damage: 18,
       energyStorage: 20,
       magicPower: 20,
       energyRegen: 2
@@ -630,8 +630,8 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 20,
-      health: 300,
+      damage: 24,
+      healthMax: 300,
       energyStorage: 20,
       energyRegen: 2
     },
@@ -654,7 +654,7 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 20,
+      damage: 30,
       attack: 20,
       attackMax: 30,
       energyStorage: 20,
@@ -679,12 +679,12 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 15,
+      damage: 36,
       attack: 10,
       attackMax: 10,
       accuracy: 10,
       defense: 10,
-      health: 100,
+      healthMax: 100,
       magicPower: 5,
       magicArmor: 20,
       energyStorage: 20,

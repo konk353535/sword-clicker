@@ -176,6 +176,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         hitChance -= extraChance;
       }
 
+      if (defender.stats.minimumHitChance && hitChance > (1 - defender.stats.minimumHitChance)) {
+        hitChance = 1 - defender.stats.minimumHitChance;
+      }
+
       if (hitChance >= Math.random()) {
         // How much do we hit for
         const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));

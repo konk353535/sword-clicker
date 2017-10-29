@@ -19,16 +19,16 @@ export const FLOORS = Object.assign({
       8: 5, // Cobalt
       9: 6, // Fairy Steel
       10: 7, // Cursed
-      11: 10,
-      12: 12,
-      13: 13,
-      14: 15,
-      15: 18,
-      16: 21,
-      17: 23,
-      18: 25,
-      19: 27,
-      20: 30
+      11: 7,
+      12: 7,
+      13: 7,
+      14: 7,
+      15: 7,
+      16: 7,
+      17: 7,
+      18: 7,
+      19: 7,
+      20: 7
     }
 
     // Max points per player, per day

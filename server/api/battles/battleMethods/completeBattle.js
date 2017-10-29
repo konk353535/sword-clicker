@@ -47,7 +47,10 @@ const distributeRewards = function distributeRewards({ floor }) {
 
   // Fetch all users by tower points
   const sortedFloorWaveScores = FloorWaveScores.find({
-    floor
+    floor,
+    points: {
+      $gte: 25
+    }
   }, {
     sort: [
       ['points', 'desc']
@@ -522,7 +525,12 @@ export const completeBattle = function (actualBattle) {
           });
 
           // Insert the next floor (To do, make this pass a valid active tower users number)
-          const activeTowerUsers = FloorWaveScores.find({ floor: actualBattle.floor }).count();
+          const activeTowerUsers = FloorWaveScores.find({
+            floor: actualBattle.floor,
+            points: {
+              $gte: 25
+            }
+          }).count();
           const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, activeTowerUsers);
 
           // Get bosses hp

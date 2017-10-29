@@ -266,6 +266,32 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  sixth_sense: {
+    duplicateTag: 'sixth_sense', // Used to stop duplicate buffs
+    icon: 'sixthSense.svg',
+    name: 'sixth sense',
+    description({ buff, level }) {
+      return `Dodge rate from defense cannot go below 20%`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        target.stats.minimumHitChance = 0.20;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
   defense_up: {
     duplicateTag: 'defense_up', // Used to stop duplicate buffs
     icon: 'defense.svg',
@@ -326,7 +352,7 @@ export const DEFENSE_BUFFS = {
       const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
       return `
-        Reflect ${Math.round(damageReflection * 100)}% of attack damage taken as magic damage. <br />
+        Reflect (${Math.round(damageReflection * 100)}% of attack damage taken) + 10 as magic damage. <br />
         (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
     },
     constants: {
@@ -351,7 +377,7 @@ export const DEFENSE_BUFFS = {
 
         const totalDamage = damageDealt;
 
-        actualBattle.utils.dealDamage(totalDamage * damageReflection, {
+        actualBattle.utils.dealDamage((totalDamage * damageReflection) + 10, {
           attacker: defender,
           defender: attacker,
           isMagic: true,

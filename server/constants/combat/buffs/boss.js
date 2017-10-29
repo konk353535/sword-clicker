@@ -1207,9 +1207,9 @@ export const BOSS_BUFFS = {
           birdStats.healthMax = 250;
           birdStats.attackSpeed = 1;
           birdStats.attackSpeedTicks = attackSpeedTicks(1);
-          birdStats.attackMax = 150;
-          birdStats.attack = 150;
-          birdStats.armor /= 2;
+          birdStats.attackMax = 100;
+          birdStats.attack = 100;
+          birdStats.armor /= 2.5;
 
           // Spawn bird
           const bird = {

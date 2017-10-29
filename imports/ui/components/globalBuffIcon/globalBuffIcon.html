@@ -1,0 +1,43 @@
+<template name="globalBuffIcon">
+  <div class="buff-icon-container icon-box medium-icon" style="position: relative">
+    <img src="/icons/{{type}}.svg" class="small-icon">
+    <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
+      line-height: 10px;">
+      {{#if $gte (moDiff date moNow 'minutes') 60}}
+        {{moDiff date moNow 'hours'}}h
+      {{else}}
+        {{moDiff date moNow 'minutes'}}m
+      {{/if}}
+    </span>
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="buff-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+      Global {{type}} buff
+      {{#if $gte (moDiff date moNow 'minutes') 60}}
+        <small>({{moDiff date moNow 'hours'}} hours remaining)</small>
+      {{else}}
+        <small>({{moDiff date moNow 'minutes'}} minutes remaining)</small>
+      {{/if}}
+    </h3>
+    <div class='popover-content'>
+      {{#if $eq type 'crafting'}}
+        <p class="mb-1">+35% Crafting XP</p>
+        <p class="mb-1">+35% Inscription XP</p>
+        <p class="mb-1">+100% Gem Drop Rate</p>
+      {{else if $eq type 'combat'}}
+        <p class="mb-1">+20% Combat XP</p>
+        <p class="mb-1">+50% Drop Chance</p>
+        <p class="mb-1">+35% Astronomy XP</p>
+      {{else if $eq type 'gathering'}}
+        <p class="mb-1">+35% Mining XP</p>
+        <p class="mb-1">+35% Woodcutting XP</p>
+        <p class="mb-1">+35% Farming XP</p>
+      {{/if}}
+      <small>Global buffs affect all players.</small><br />
+      <small>Buffs can be purchased with bought gems, in the shop</small><br />
+    </div>
+  </div>
+
+</template>

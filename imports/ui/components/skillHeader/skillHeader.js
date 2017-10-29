@@ -9,9 +9,24 @@ Template.skillHeader.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('currentXp');
   this.state.set('currentLevel');
+
+  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+    this.state.set('globalBuffs', res);
+  });
 });
 
 Template.skillHeader.helpers({
+
+  globalBuffs() {
+    const instance = Template.instance();
+    const type = instance.data.skill.type;
+    if (type === 'magic' || type === 'defense' || type === 'attack' || type === 'health') {
+      return false;
+    }
+
+    return Template.instance().state.get('globalBuffs');
+  },
+
   xpPercentage() {
     const instance = Template.instance();
     if (instance.data.skill) {

@@ -1,4 +1,5 @@
 <template name="skillHeader"> 
+
   {{#unless flipped}}
     <div class="progress">
       <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -10,7 +11,16 @@
       Level {{skill.level}}
     </h1>
     {{#if skill}}
-      <small class="ml-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
+      <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
+    {{/if}}
+    {{#if $gte (moDiff globalBuffs.combat moNow 'seconds') 0}}
+      {{> globalBuffIcon type='combat' date=globalBuffs.combat}}
+    {{/if}}
+    {{#if $gte (moDiff globalBuffs.gathering moNow 'seconds') 0}}
+      {{> globalBuffIcon type='gathering' date=globalBuffs.gathering}}
+    {{/if}}
+    {{#if $gte (moDiff globalBuffs.crafting moNow 'seconds') 0}}
+      {{> globalBuffIcon type='crafting' date=globalBuffs.crafting}}
     {{/if}}
   </div>
   {{#if flipped}}

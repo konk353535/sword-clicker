@@ -72,7 +72,7 @@ Meteor.methods({
       }*/
 
       globalBuffs[type] = moment().add(1, 'hour').toDate();
-    } else {      
+    } else {
       globalBuffs[type] = moment(globalBuffs[type]).add(1, 'hour').toDate();
     }
 

@@ -16,7 +16,7 @@ const redis = new Meteor.RedisCollection('redis');
 SyncedCron.add({
   name: 'Reset boss health',
   schedule: function(parser) {
-    return parser.cron('* * * * * * *');
+    return parser.cron('0 0 * * * * *');
   },
   job: function() {
     // Fetch current active floor

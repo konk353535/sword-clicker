@@ -15,6 +15,7 @@ import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
 import '/imports/ui/components/combat/adventuresTab/adventuresTab.js';
 import '/imports/ui/components/combat/battleLogTab/battleLogTab.js';
+import '/imports/ui/components/combat/skinTab/skinTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
 import '/imports/ui/components/combat/towerTab/towerTab.js';
 import '/imports/ui/components/combat/equipmentTab/equipmentTab.js';
@@ -158,6 +159,11 @@ Template.combatPage.events({
     Meteor.call('users.setUiState', 'combatTab', 'abilities');
   },
 
+  'click .skinsTabLink'(event, instance) {
+    instance.state.set('currentTab', 'skins');
+    Meteor.call('users.setUiState', 'combatTab', 'skins');
+  },
+
   'click .battleLogTabLink'(event, instance) {
     instance.state.set('currentTab', 'battleLog');
     Meteor.call('users.setUiState', 'combatTab', 'battleLog');
@@ -230,6 +236,10 @@ Template.combatPage.helpers({
 
   showAbilitiesTab() {
     return Template.instance().state.get('currentTab') === 'abilities';
+  },
+
+  showSkinsTab() {
+    return Template.instance().state.get('currentTab') === 'skins';
   },
 
   inCurrentBattle() {

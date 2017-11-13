@@ -10,7 +10,8 @@ import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
 import { attackSpeedTicks } from '/server/api/battles/battles';
-import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+
+import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
@@ -127,59 +128,6 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     owner: userId
   });
 
-  // Determine user icon based off bought icons + equipped weapons
-  let availableIcons = currentCombat.boughtIcons;
-  if (!availableIcons) {
-    availableIcons = [];
-  }
-  // Target Spec
-  let targetSpec = '';
-  if (playerData.mainHandType === 'staff') {
-    targetSpec = 'mage';
-  } else if (playerData.offHandType === 'shield') {
-    targetSpec = 'tank';
-  } else if (playerData.mainHandType === 'longSword') {
-    targetSpec = 'damage'
-  } else if (playerData.mainHandType === 'battleAxe') {
-    targetSpec = 'damage';
-  } else if (playerData.mainHandType === 'shortSword') {
-    targetSpec = 'damage';
-  }
-
-  if (!targetSpec) {
-    playerData.characterIcon = 'character.svg';
-  } else if (targetSpec === 'mage') {
-    // Do we have mage?
-    playerData.characterIcon = 'mageT1HD.png';
-
-    if (_.contains(availableIcons, 'mage_t2')) {
-      const mageSkill = _.findWhere(combatSkills, { type: 'magic' });
-      if (mageSkill.level >= 20) {
-        playerData.characterIcon = 'mageT2HD.png';
-      }
-    }
-  } else if (targetSpec === 'tank') {
-    // Do we have tank?
-    playerData.characterIcon = 'tankT1HD.png';
-
-    if (_.contains(availableIcons, 'tank_t2')) {
-      const defenseSkill = _.findWhere(combatSkills, { type: 'defense' });
-      if (defenseSkill.level >= 60) {
-        playerData.characterIcon = 'tankT2HD.png';
-      }
-    }
-  } else if (targetSpec === 'damage') {
-    // Do we have a damage?
-    playerData.characterIcon = 'damageT1HD.png';
-
-    if (_.contains(availableIcons, 'damage_t2')) {
-      const attackSkill = _.findWhere(combatSkills, { type: 'attack' });
-      if (attackSkill.level >= 60) {
-        playerData.characterIcon = 'damageT2HD.png';
-      }
-    }
-  }
-
   // If health is above healthMax, reset health
   if (currentCombat.stats.health > playerData.stats.healthMax) {
     playerData.stats.health = playerData.stats.healthMax;
@@ -213,6 +161,63 @@ Meteor.methods({
         isTowerContribution: newValue
       }
     });
+  },
+
+  'combat.updateCharacterIcon'(id) {
+    const myCombat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+
+    const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+
+    // Check if we own it
+    if (!_.contains(availableIcons, id)) {
+      return;
+    }
+
+    const targetIcon = PLAYER_ICONS[id];
+    if (!targetIcon) { return; }
+
+    // Can we equip the specified item?
+    if (targetIcon.requiredEquip) {
+      // Make sure we have the correct stats
+      const statNames = targetIcon.requiredEquip.map((skill) => skill.name);
+      const usersStats = Skills.find({
+        owner: Meteor.userId(),
+        type: {
+          $in: statNames
+        }
+      }).fetch();
+
+      let hasEquipRequirements = true;
+      let requirementString;
+      targetIcon.requiredEquip.forEach((requirement) => {
+        const mySkill = _.findWhere(usersStats, { type: requirement.name });
+
+        if (!mySkill) {
+          hasEquipRequirements = false;
+          requirementString = 'You must have atleast level ';
+          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+        } else if (mySkill.level < requirement.level) {
+          hasEquipRequirements = false;
+          requirementString = 'You must have atleast level ';
+          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+        }
+      });
+
+      if (!hasEquipRequirements) {
+        throw new Meteor.Error("equip-requirement", requirementString);
+      }
+    }
+
+    // Equip it!
+    Combat.update({
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        characterIcon: targetIcon.icon
+      }
+    })
   },
 
   'combat.stopMeditation'() {

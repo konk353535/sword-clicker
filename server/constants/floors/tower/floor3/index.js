@@ -39,7 +39,7 @@ export const TOWER_FLOOR_3 = {
     name: 'Abandoned Dojo',
     enemies: ['young_ninja'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
       ]
@@ -67,7 +67,7 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'bronze_mining_hammer', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'lightning_dart_tome', amount: 1 }
       ]

@@ -25,6 +25,11 @@ export const TOWER_FLOOR_5 = {
     name: 'Dark Ally',
     enemies: ['cut_purse'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'icon', iconId: 'crow_t1' }
+      ]
+    }, {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'silver_knife', amount: 1 }
@@ -79,7 +84,7 @@ export const TOWER_FLOOR_5 = {
     name: 'Snake',
     enemies: ['snake'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 },
         { type: 'item', itemId: 'poison_dart_tome', amount: 1 }

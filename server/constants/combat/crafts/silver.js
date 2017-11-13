@@ -8,7 +8,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_dagger',
     timeToCraft: 120, // 60
-    xp: 140,
+    xp: 600,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -54,7 +54,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_spear',
     timeToCraft: 180, // 60
-    xp: 300,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -100,7 +100,7 @@ export const SILVER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'silver_short_sword',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -146,7 +146,7 @@ export const SILVER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'silver_long_sword',
     timeToCraft: 240, // 60
-    xp: 300,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -192,7 +192,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_battle_axe',
     timeToCraft: 300, // 60
-    xp: 350,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -238,7 +238,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_helmet',
     timeToCraft: 120, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 20,
@@ -284,7 +284,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_chest_plate',
     timeToCraft: 120, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 20,
@@ -330,7 +330,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_plate_legs',
     timeToCraft: 120, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 20,
@@ -376,7 +376,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_shield',
     timeToCraft: 120, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,

@@ -1,7 +1,7 @@
 export const INSCRIPTION_ITEMS = {
   pigment_red_255: {
     id: 'pigment_red_255',
-    icon: 'pigmentRed255.svg',
+    icon: 'pigmentRed255.png',
     category: 'pigment',
     name: 'pigment red 255',
     sellPrice: 50,
@@ -10,7 +10,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_200: {
     id: 'pigment_red_200',
-    icon: 'pigmentRed200.svg',
+    icon: 'pigmentRed200.png',
     category: 'pigment',
     name: 'pigment red 200',
     sellPrice: 50,
@@ -19,7 +19,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_150: {
     id: 'pigment_red_150',
-    icon: 'pigmentRed150.svg',
+    icon: 'pigmentRed150.png',
     category: 'pigment',
     name: 'pigment red 150',
     sellPrice: 50,
@@ -28,7 +28,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_255: {
     id: 'pigment_green_255',
-    icon: 'pigmentGreen255.svg',
+    icon: 'pigmentGreen255.png',
     category: 'pigment',
     name: 'pigment green 255',
     sellPrice: 100,
@@ -37,7 +37,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_200: {
     id: 'pigment_green_200',
-    icon: 'pigmentGreen200.svg',
+    icon: 'pigmentGreen200.png',
     category: 'pigment',
     name: 'pigment green 200',
     sellPrice: 100,
@@ -46,7 +46,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_170: {
     id: 'pigment_green_170',
-    icon: 'pigmentGreen170.svg',
+    icon: 'pigmentGreen170.png',
     category: 'pigment',
     name: 'pigment green 170',
     sellPrice: 100,
@@ -55,7 +55,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_blue_255: {
     id: 'pigment_blue_255',
-    icon: 'pigmentBlue255.svg',
+    icon: 'pigmentBlue255.png',
     category: 'pigment',
     name: 'pigment blue 255',
     sellPrice: 250,
@@ -64,7 +64,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_255: {
     id: 'pigment_purple_255',
-    icon: 'pigmentPurple255.svg',
+    icon: 'pigmentPurple255.png',
     category: 'pigment',
     name: 'pigment purple 255',
     sellPrice: 2000,
@@ -73,7 +73,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_yellow_255: {
     id: 'pigment_yellow_255',
-    icon: 'pigmentYellow255.svg',
+    icon: 'pigmentYellow255.png',
     category: 'pigment',
     name: 'pigment yellow 255',
     sellPrice: 3000,
@@ -82,7 +82,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_200: {
     id: 'pigment_purple_200',
-    icon: 'pigmentPurple200.svg',
+    icon: 'pigmentPurple200.png',
     category: 'pigment',
     name: 'pigment purple 200',
     sellPrice: 3000,
@@ -91,7 +91,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_white_128: {
     id: 'pigment_white_128',
-    icon: 'pigmentWhite128.svg',
+    icon: 'pigmentWhite128.png',
     category: 'pigment',
     name: 'pigment white 128',
     sellPrice: 2000,
@@ -100,7 +100,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_140: {
     id: 'pigment_green_140',
-    icon: 'pigmentGreen140.svg',
+    icon: 'pigmentGreen140.png',
     category: 'pigment',
     name: 'pigment green 140',
     sellPrice: 2000,
@@ -118,7 +118,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_purple_150: {
     id: 'pigment_purple_150',
-    icon: 'pigmentPurple150.svg',
+    icon: 'pigmentPurple150.png',
     category: 'pigment',
     name: 'pigment purple 150',
     sellPrice: 2000,
@@ -136,7 +136,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_white_190: {
     id: 'pigment_white_190',
-    icon: 'pigmentWhite190.svg',
+    icon: 'pigmentWhite190.png',
     category: 'pigment',
     name: 'pigment white 190',
     sellPrice: 2000,
@@ -154,7 +154,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_yellow_200: {
     id: 'pigment_yellow_200',
-    icon: 'pigmentYellow200.svg',
+    icon: 'pigmentYellow200.png',
     category: 'pigment',
     name: 'pigment yellow 200',
     sellPrice: 2000,
@@ -173,7 +173,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_red_100: {
     id: 'pigment_red_100',
-    icon: 'pigmentRed100.svg',
+    icon: 'pigmentRed100.png',
     category: 'pigment',
     name: 'pigment red 100',
     sellPrice: 2000,
@@ -191,7 +191,7 @@ export const INSCRIPTION_ITEMS = {
 
   pigment_green_110: {
     id: 'pigment_green_110',
-    icon: 'pigmentGreen110.svg',
+    icon: 'pigmentGreen110.png',
     category: 'pigment',
     name: 'pigment green 110',
     sellPrice: 2000,
@@ -311,7 +311,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'elkPaper.svg',
     category: 'paper',
     name: 'elk paper',
-    sellPrice: 450,
+    sellPrice: 650,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -320,7 +320,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'gombePaper.svg',
     category: 'paper',
     name: 'gombe paper',
-    sellPrice: 450,
+    sellPrice: 600,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -329,7 +329,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'denyaPaper.svg',
     category: 'paper',
     name: 'denya paper',
-    sellPrice: 450,
+    sellPrice: 550,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -338,8 +338,21 @@ export const INSCRIPTION_ITEMS = {
     icon: 'blueGumPaper.svg',
     category: 'paper',
     name: 'blue_gum paper',
-    sellPrice: 450,
+    sellPrice: 500,
     description: 'Used in inscription with pigments to make ability books'
+  },
+
+  twin_blades_tome: {
+    id: 'twin_blades_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Twin Blades',
+    teaches: {
+      abilityId: 'twin_blades',
+      level: 1
+    },
+    sellPrice: 200,
+    description: 'Can be consumed to learn the twin blades ability.'
   },
 
   sixth_sense_tome: {
@@ -738,7 +751,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'tome',
     name: 'double edged sword tome lv 1',
     teaches: {
-      abilityId: 'double_edged',
+      abilityId: 'double_edged_sword',
       level: 1
     },
     sellPrice: 250,

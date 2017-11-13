@@ -8,7 +8,7 @@ export const DEFENSE_ABILITIES = {
     name: 'scream',
     id: 'scream',
     buffs: ['taunt'],
-    cooldown: 90,
+    cooldown: 60,
     slot: 'any',
     target: 'allEnemies',
     isHidden: false,
@@ -182,7 +182,7 @@ export const DEFENSE_ABILITIES = {
     name: 'iron will',
     id: 'iron_will',
     buffs: ['iron_will'],
-    cooldown: 150,
+    cooldown: 90,
     slot: 'any',
     isHidden: false,
     target: 'self', // The curreny enemy who we are auto attacking

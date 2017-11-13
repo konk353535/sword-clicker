@@ -791,6 +791,7 @@ export const MONSTER_BUFFS = {
           actualBattle.utils.healTarget(totalHeal, {
             caster: defender,
             target: defender,
+            historyStats: actualBattle.historyStats,
             tickEvents: actualBattle.tickEvents
           });
 

@@ -8,7 +8,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_dagger',
     timeToCraft: 240, // 60
-    xp: 250,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -54,7 +54,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_spear',
     timeToCraft: 300, // 60
-    xp: 500,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -100,7 +100,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_short_sword',
     timeToCraft: 300, // 60
-    xp: 500,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -146,7 +146,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_long_sword',
     timeToCraft: 420, // 60
-    xp: 550,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -192,7 +192,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_battle_axe',
     timeToCraft: 600, // 60
-    xp: 550,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -238,7 +238,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_helmet',
     timeToCraft: 240, // 60
-    xp: 350,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 30,
@@ -284,7 +284,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_chest_plate',
     timeToCraft: 240, // 60
-    xp: 350,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 30,
@@ -330,7 +330,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_plate_legs',
     timeToCraft: 240, // 60
-    xp: 350,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 30,
@@ -376,7 +376,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_shield',
     timeToCraft: 240, // 60
-    xp: 350,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,

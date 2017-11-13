@@ -27,7 +27,7 @@ export const TOWER_FLOOR_1 = {
     name: 'Flower Field',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'wisdom_tome', amount: 1 }
       ]

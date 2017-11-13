@@ -2,6 +2,27 @@ import moment from 'moment';
 import { BUFFS } from '/server/constants/combat/index';
 
 export const ATTACK_ABILITIES = {
+
+  twin_blades: {
+    icon: 'twinBlades.svg',
+    name: 'twin blades',
+    id: 'twin_blades',
+    buffs: ['twin_blades'],
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['dagger']
+    }],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.twin_blades;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   poisoned_blade: {
     icon: 'poisonedBlade.svg',
     name: 'poisoned blade',
@@ -55,7 +76,7 @@ export const ATTACK_ABILITIES = {
     name: 'furied defense',
     id: 'furied_defense',
     buffs: ['furied_defense'],
-    cooldown: 120,
+    cooldown: 90,
     slot: 'any',
     target: 'self',
     isHidden: false,
@@ -74,7 +95,7 @@ export const ATTACK_ABILITIES = {
     name: 'doubled edged sword',
     id: 'double_edged_sword',
     buffs: ['double_edged_sword'],
-    cooldown: 180,
+    cooldown: 90,
     slot: 'any',
     target: 'currentEnemy',
     isHidden: true,
@@ -89,7 +110,7 @@ export const ATTACK_ABILITIES = {
     name: 'vampirism',
     id: 'vampirism',
     buffs: ['vampirism'],
-    cooldown: 600,
+    cooldown: 150,
     slot: 'any',
     target: 'self',
     isHidden: false,

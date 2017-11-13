@@ -248,7 +248,7 @@ export const PAPER_CRAFTS = {
     id: 'blue_gum_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 200,
+    xp: 250,
     maxToCraft: 100,
     requiredInscriptionLevel: 35,
     required: [{
@@ -272,7 +272,7 @@ export const PAPER_CRAFTS = {
     id: 'denya_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 200,
+    xp: 300,
     maxToCraft: 100,
     requiredInscriptionLevel: 40,
     required: [{
@@ -296,7 +296,7 @@ export const PAPER_CRAFTS = {
     id: 'gombe_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 200,
+    xp: 350,
     maxToCraft: 100,
     requiredInscriptionLevel: 45,
     required: [{
@@ -320,7 +320,7 @@ export const PAPER_CRAFTS = {
     id: 'elk_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 200,
+    xp: 400,
     maxToCraft: 100,
     requiredInscriptionLevel: 45,
     required: [{

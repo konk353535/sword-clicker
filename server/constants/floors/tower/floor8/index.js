@@ -60,6 +60,11 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'purple_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'purple_wizard_shorts', amount: 1 }
       ]
+    }, {
+      chance: 1 / 24,
+      rewards: [
+        { type: 'icon', iconId: 'phoenix_t1' }
+      ]
     }]))
   },
   6: {

@@ -1201,7 +1201,7 @@ export const BOSS_BUFFS = {
         }
 
         if (buff.data.damageTillSpawn <= 0) {
-          buff.data.damageTillSpawn = 100;
+          buff.data.damageTillSpawn = 250;
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 250;
           birdStats.healthMax = 250;
@@ -1214,7 +1214,7 @@ export const BOSS_BUFFS = {
           // Spawn bird
           const bird = {
             id: Random.id(),
-            tickOffset: 0,
+            tickOffset: actualBattle.tick + 4,
             icon: 'bird.svg',
             name: 'bird',
             stats: birdStats,

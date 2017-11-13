@@ -156,7 +156,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'silver_axe',
     category: 'woodcutting',
     timeToCraft: 180, // 60
-    xp: 75,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -194,7 +194,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'gold_axe',
     category: 'woodcutting',
     timeToCraft: 240, // 60
-    xp: 100,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -232,7 +232,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'carbon_axe',
     category: 'woodcutting',
     timeToCraft: 300, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -270,7 +270,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'steel_axe',
     category: 'woodcutting',
     timeToCraft: 360, // 60
-    xp: 300,
+    xp: 1500,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -308,7 +308,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'platinum_axe',
     category: 'woodcutting',
     timeToCraft: 600, // 60
-    xp: 400,
+    xp: 2500,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -346,7 +346,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'titanium_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 500,
+    xp: 3700,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -384,7 +384,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'tungsten_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 600,
+    xp: 6250,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -422,7 +422,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'obsidian_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     requiredCraftingLevel: 60,
     required: [{
@@ -460,7 +460,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'cobalt_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 1000,
+    xp: 15000,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -499,7 +499,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'mithril_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 1500,
+    xp: 25000,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -537,7 +537,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'adamantium_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 1750,
+    xp: 42000,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -575,7 +575,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'orichalcum_axe',
     category: 'woodcutting',
     timeToCraft: 1200, // 60
-    xp: 2000,
+    xp: 62000,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -613,7 +613,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'meteorite_axe',
     category: 'woodcutting',
     timeToCraft: 1500, // 60
-    xp: 3000,
+    xp: 125000,
     maxToCraft: 1,
     requiredCraftingLevel: 85,
     required: [{
@@ -651,7 +651,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'fairy_steel_axe',
     category: 'woodcutting',
     timeToCraft: 1800, // 60
-    xp: 4000,
+    xp: 200000,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -689,7 +689,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'elven_steel_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 1, // 60
-    xp: 4500,
+    xp: 300000,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{
@@ -727,7 +727,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'cursed_axe',
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 1, // 60
-    xp: 5000,
+    xp: 500000,
     maxToCraft: 1,
     requiredCraftingLevel: 100,
     required: [{

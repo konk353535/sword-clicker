@@ -44,6 +44,10 @@ body { padding-right: 0 !important }
   flex: 1 1 100%;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

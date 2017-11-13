@@ -5,9 +5,10 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { MAGIC } from '/server/constants/magic/index.js';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 
 import { addXp } from '/server/api/skills/skills';
-import { addItem } from '/server/api/items/items';
+import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
@@ -277,6 +278,31 @@ export const completeBattle = function (actualBattle) {
           icon: 'gold.svg',
           owner: luckyOwner
         });
+      } else if (rewardGained.type === 'icon') {
+        const luckyOwner = _.sample(owners);
+        const luckyOwnerCombat = Combat.findOne({
+          owner: luckyOwner
+        });
+
+        if (luckyOwnerCombat && luckyOwnerCombat.boughtIcons == null) {
+          luckyOwnerCombat.boughtIcons = [];
+        }
+
+        if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
+          finalTickEvents.push({
+            type: 'icon',
+            iconId: rewardGained.iconId,
+            icon: PLAYER_ICONS[rewardGained.iconId].icon,
+            owner: luckyOwner
+          });
+          Combat.update({
+            owner: luckyOwner
+          }, {
+            $set: {
+              boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+            }
+          });
+        }
       }
     });
 
@@ -323,6 +349,10 @@ export const completeBattle = function (actualBattle) {
 
               const targetStat = _.sample(possibleStats);
               addXp(targetStat, Math.round(pointsEarnt * 50), owner);
+
+              if (pointsEarnt > 10) {
+                addFakeGems(5, owner);
+              }
 
               finalTickEvents.push({
                 type: 'xp',

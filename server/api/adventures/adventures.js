@@ -26,7 +26,7 @@ const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
 const MAX_ACTIVE_ADVENTURES = 3;
 
-const createAdventure = function createAdventure(combatSkills, maxFloor) {
+const createAdventure = function createAdventure(combatSkills, maxFloor, forceEpic = false) {
   if (maxFloor < 1) {
     maxFloor = 1;
   }
@@ -57,10 +57,10 @@ const createAdventure = function createAdventure(combatSkills, maxFloor) {
   let length;
   let room;
   const lengthRoll = Math.random();
-  if (lengthRoll <= 0.33) {
+  if (lengthRoll <= 0.33 && !forceEpic) {
     room = _.sample([1, 2, 3]);
     length = 'short';
-  } else if (lengthRoll <= 0.66) {
+  } else if (lengthRoll <= 0.66 && !forceEpic) {
     room = _.sample([4, 5]);
     length = 'long';
   } else {
@@ -328,7 +328,8 @@ Meteor.methods({
     const maxFloor = Floors.findOne({ floorComplete: false }).floor;
 
     // Add a new adventure entry
-    myAdventures.adventures.unshift(createAdventure(combatSkills, maxFloor - 1));
+    const forceEpic = true;
+    myAdventures.adventures.unshift(createAdventure(combatSkills, maxFloor - 1, forceEpic));
 
     // Filter out so there is only 10
     const inactiveAdventures = myAdventures.adventures.filter((adventure) => {

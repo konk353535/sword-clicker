@@ -104,6 +104,13 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   }
 }
 
+.icon-box.disabled {
+  background-color: $gray-lighter;
+  img {
+    opacity: 0.5;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .icon-box.battle-unit {
     width: 48px;
@@ -114,6 +121,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     width: 24px;
     height: 24px;
   }
+}
+
+.icon-box.equipped-icon {
+  border-color: $brand-primary;
+  border-width: 2px;
 }
 
 .user-ready .icon-box {

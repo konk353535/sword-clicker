@@ -224,6 +224,106 @@ export const STAFF_CRAFTS = {
       name: 'crafting',
       level: 60
     }]
+  },
+
+  hickory_staff: {
+    produces: 'hickory_staff',
+    name: 'hickory staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'hickory_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 5000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 65,
+    required: [{
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 65
+    }]
+  },
+
+  larch_staff: {
+    produces: 'larch_staff',
+    name: 'larch staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'larch_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 10000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 70,
+    required: [{
+      type: 'item',
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 70
+    }]
+  },
+
+  poplar_staff: {
+    produces: 'poplar_staff',
+    name: 'poplar staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'poplar_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 25000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 75,
+    required: [{
+      type: 'item',
+      itemId: 'poplar_log',
+      icon: ITEMS['poplar_log'].icon,
+      name: ITEMS['poplar_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 75
+    }]
+  },
+
+  tali_staff: {
+    produces: 'tali_staff',
+    name: 'tali staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'tali_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 50000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 80,
+    required: [{
+      type: 'item',
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 80
+    }]
   }
 
 }

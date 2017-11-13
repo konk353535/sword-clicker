@@ -8,7 +8,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_dagger',
     timeToCraft: 240, // 60
-    xp: 1500,
+    xp: 20000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -54,7 +54,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_spear',
     timeToCraft: 300, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -100,7 +100,7 @@ export const OBSIDIAN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'obsidian_short_sword',
     timeToCraft: 300, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -146,7 +146,7 @@ export const OBSIDIAN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'obsidian_long_sword',
     timeToCraft: 420, // 60
-    xp: 3450,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -192,7 +192,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_battle_axe',
     timeToCraft: 600, // 60
-    xp: 3450,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -238,7 +238,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_helmet',
     timeToCraft: 240, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 55,
@@ -284,7 +284,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_chest_plate',
     timeToCraft: 240, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 55,
@@ -330,7 +330,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_plate_legs',
     timeToCraft: 240, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 55,
@@ -376,7 +376,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_shield',
     timeToCraft: 240, // 60
-    xp: 3000,
+    xp: 40000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,

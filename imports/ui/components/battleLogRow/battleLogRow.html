@@ -45,6 +45,13 @@
             </div>
           {{/if}}
 
+          {{#if $eq this.type 'icon'}}
+            <div class="ml-1 d-flex align-items-center">
+              +1
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+            </div>
+          {{/if}}
+
         {{/each}}
 
         <span class="d-flex justify-content-end flex-grow">

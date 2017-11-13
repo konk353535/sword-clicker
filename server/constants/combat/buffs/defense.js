@@ -162,8 +162,8 @@ export const DEFENSE_BUFFS = {
         Lowers enemy attack speed by ${attackSpeedDecrease}% for ${durationTotal}s. (+${durationPerLevel}s per lvl).<br />`;
     },
     constants: {
-      frostChance: 0.15,
-      attackSpeedDecrease: 0.25,
+      frostChance: 0.2,
+      attackSpeedDecrease: 0.35,
       durationBase: 9,
       durationPerLevel: 1
     },

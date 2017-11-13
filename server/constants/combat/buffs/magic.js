@@ -1888,8 +1888,8 @@ export const MAGIC_BUFFS = {
     constants: {
       damageBase: 7,
       damageMPRatio: 0.1,
-      healthCost: 100,
-      healthCostMPRatio: 0.25
+      healthCost: 20,
+      healthCostMPRatio: 0.1
     },
     data: {
       duration: 60,

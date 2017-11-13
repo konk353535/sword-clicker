@@ -25,7 +25,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       tickTracker[actualBattle._id] = 1;
     }
 
-    if (!actualBattle || (!actualBattle.startingBossHp && tickTracker[actualBattle._id] > 2000) || (actualBattle.startingBossHp && tickTracker[actualBattle._id] > 6000)) {
+    if (!actualBattle || (!actualBattle.startingBossHp && tickTracker[actualBattle._id] > 4800) || (actualBattle.startingBossHp && tickTracker[actualBattle._id] > 6000)) {
       console.log('I activate my trap card, tick tracker!');
       Meteor.clearInterval(battleIntervalId);
       if (actualBattle) {
@@ -147,7 +147,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         target.stats.health = target.stats.healthMax;
       }
 
-      if (caster && historyStats[caster.id]) {
+      if (caster && historyStats && historyStats[caster.id]) {
         historyStats[caster.id].healingDone += healAmount;
       }
 
@@ -161,7 +161,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       });
     }
 
-    const autoAttack = function({ attacker, defender, tickEvents, historyStats }) {
+    const autoAttack = function({ attacker, defender, tickEvents, historyStats, originalAutoAttack = true }) {
       // Do we hit?
       let hitGap = attacker.stats.accuracy - defender.stats.defense;
       let hitChance = 0.5;
@@ -207,6 +207,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
             if (buff.constants.events.onDidDamage) {
               // Did Damage
               buff.constants.events.onDidDamage({
+                originalAutoAttack,
                 secondsElapsed,
                 buff,
                 defender,
@@ -411,6 +412,11 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         if (unitAbility && (!unitAbility.isSpell || unitAbility.casts > 0)) {
           // Cast it! and put it on cooldown
           const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
+
+          if (abilityToCast.isPassive) {
+            return;
+          }
+
           const unitsAndEnemies = actualBattle.units.concat(actualBattle.enemies);
           const actionTargets = unitsAndEnemies.filter((unit) => {
             return _.contains(action.targets, unit.id);

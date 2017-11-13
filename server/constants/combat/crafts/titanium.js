@@ -8,7 +8,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_dagger',
     timeToCraft: 240, // 60
-    xp: 1200,
+    xp: 7500,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -54,7 +54,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_spear',
     timeToCraft: 300, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -100,7 +100,7 @@ export const TITANIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'titanium_short_sword',
     timeToCraft: 300, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -146,7 +146,7 @@ export const TITANIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'titanium_long_sword',
     timeToCraft: 420, // 60
-    xp: 2800,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -192,7 +192,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_battle_axe',
     timeToCraft: 600, // 60
-    xp: 2800,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -238,7 +238,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_helmet',
     timeToCraft: 240, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 45,
@@ -284,7 +284,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_chest_plate',
     timeToCraft: 240, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 45,
@@ -330,7 +330,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_plate_legs',
     timeToCraft: 240, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 45,
@@ -376,7 +376,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_shield',
     timeToCraft: 240, // 60
-    xp: 2400,
+    xp: 15000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,

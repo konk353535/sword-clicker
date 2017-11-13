@@ -43,7 +43,7 @@ export const TOWER_FLOOR_7 = {
     name: 'Frozen Peak',
     enemies: ['ice_giant'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
       ]
@@ -75,7 +75,7 @@ export const TOWER_FLOOR_7 = {
     name: 'Sparta',
     enemies: ['spartan'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'water_wave_tome', amount: 1 }
       ]
@@ -92,6 +92,11 @@ export const TOWER_FLOOR_7 = {
   boss: {
     enemy: { id: 'boss_ogre', amount: 1 },
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 5,
+      rewards: [
+        { type: 'icon', iconId: 'valla_t1' }
+      ]
+    }, {
       chance: 1 / 2,
       rewards: [
         { type: 'item', itemId: 'oversized_club', amount: 1 }

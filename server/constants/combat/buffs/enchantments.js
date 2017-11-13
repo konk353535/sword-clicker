@@ -5,6 +5,62 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  living_helmet: {
+    duplicateTag: 'living_helmet', // Used to stop duplicate buffs
+    icon: 'livingHelmet.svg',
+    name: 'living helmet',
+    description() {
+      return `When above 75% hp living helmet takes over. <br />
+        Granting +10 defense, and healing allies for 5hp when you take damage`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        buff.data.isActive = false;
+        buff.data.hideBuff = true;
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (buff.data.isActive) {
+          actualBattle.units.forEach((unit) => {
+            if (unit.id !== defender.id) {
+              actualBattle.utils.healTarget(5, {
+                caster: defender,
+                target: unit,
+                tickEvents: actualBattle.tickEvents,
+                historyStats: actualBattle.historyStats
+              });              
+            }
+          })
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        const decimal = target.stats.health / target.stats.healthMax;
+        if (decimal >= 0.75 && !buff.data.isActive) {
+          buff.data.isActive = true;
+          buff.data.hideBuff = false;
+          target.stats.defense += 10;
+        } else if (decimal < 0.75 && buff.data.isActive) {
+          buff.data.isActive = false;
+          buff.data.hideBuff = true;
+          target.stats.defense -= 10;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   shadow_knife: {
     duplicateTag: 'shadow_knife', // Used to stop duplicate buffs
     icon: 'shadowKnife.svg',

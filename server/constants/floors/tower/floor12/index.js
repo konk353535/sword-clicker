@@ -78,9 +78,14 @@ export const TOWER_FLOOR_12 = {
     name: 'Bloody River',
     enemies: ['elephant', 'rat', 'spartan'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 512,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 35,
+      rewards: [
+        { type: 'icon', iconId: 'adalgar_t1' }
       ]
     }, {
       chance: 1 / 32,
@@ -94,7 +99,12 @@ export const TOWER_FLOOR_12 = {
 
   boss: {
     enemy: { id: 'boss_living_tree', amount: 1 },
-    rewards: LEVEL_TWELVE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'living_helmet', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

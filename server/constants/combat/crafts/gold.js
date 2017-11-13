@@ -8,7 +8,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_dagger',
     timeToCraft: 120, // 60
-    xp: 200,
+    xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -54,7 +54,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_spear',
     timeToCraft: 180, // 60
-    xp: 400,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -100,7 +100,7 @@ export const GOLD_CRAFTS = {
     recipeFor: 'crafting',
     id: 'gold_short_sword',
     timeToCraft: 120, // 60
-    xp: 400,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -146,7 +146,7 @@ export const GOLD_CRAFTS = {
     recipeFor: 'crafting',
     id: 'gold_long_sword',
     timeToCraft: 240, // 60
-    xp: 400,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -192,7 +192,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_battle_axe',
     timeToCraft: 300, // 60
-    xp: 450,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -238,7 +238,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_helmet',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 25,
@@ -284,7 +284,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_chest_plate',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 25,
@@ -330,7 +330,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_plate_legs',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 25,
@@ -376,7 +376,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_shield',
     timeToCraft: 120, // 60
-    xp: 300,
+    xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,

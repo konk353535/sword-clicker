@@ -834,6 +834,35 @@ export const MISC_ITEMS = {
     enchantments: ['shadow_knife']
   },
 
+  "living_helmet": {
+    "id": "living_helmet",
+    "icon": "livingHelmet.svg",
+    "category": "combat",
+    "slot": "head",
+    "name": "living helmet",
+    "sellPrice": 850,
+    "description": "A helmet fashioned from a living tree.",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 7.8,
+      "attackMax": -25,
+      "defense": 7.8,
+      "armor": 37.6
+    },
+    "extraStats": {
+      "healthMax": 2.3,
+      "defense": 2.3,
+      "armor": 11.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }],
+    enchantments: ['living_helmet']
+  },
+
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',

@@ -172,6 +172,8 @@ Meteor.methods({
     const validIcons = [
       { id: 'mage_t1', cost: 150 },
       { id: 'mage_t2', cost: 300 },
+      { id: 'phoenix_t2', cost: 300 },
+      { id: 'crow_t2', cost: 300 },
       { id: 'damage_t1', cost: 150 },
       { id: 'damage_t2', cost: 300 },
       { id: 'tank_t1', cost: 150 },
@@ -202,6 +204,16 @@ Meteor.methods({
         userCombat.boughtIcons = [iconToBuy.id];
       } else {
         userCombat.boughtIcons.push(iconToBuy.id);
+      }
+    }
+
+    if (iconToBuy.id === 'crow_t2') {
+      if (!_.contains(userCombat.boughtIcons, 'crow_t1')) {
+        userCombat.boughtIcons.push('crow_t1');
+      }
+    } else if (iconToBuy.id === 'phoenix_t2') {
+      if (!_.contains(userCombat.boughtIcons, 'phoenix_t1')) {
+        userCombat.boughtIcons.push('phoenix_t1');
       }
     }
 

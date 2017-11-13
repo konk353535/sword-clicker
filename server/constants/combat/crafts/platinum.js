@@ -8,7 +8,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_dagger',
     timeToCraft: 240, // 60
-    xp: 350,
+    xp: 5000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -54,7 +54,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_spear',
     timeToCraft: 300, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -100,7 +100,7 @@ export const PLATINUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'platinum_short_sword',
     timeToCraft: 300, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -146,7 +146,7 @@ export const PLATINUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'platinum_long_sword',
     timeToCraft: 420, // 60
-    xp: 850,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -192,7 +192,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_battle_axe',
     timeToCraft: 600, // 60
-    xp: 850,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -238,7 +238,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_helmet',
     timeToCraft: 240, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 40,
@@ -284,7 +284,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_chest_plate',
     timeToCraft: 240, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 40,
@@ -330,7 +330,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_plate_legs',
     timeToCraft: 240, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 40,
@@ -376,7 +376,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_shield',
     timeToCraft: 240, // 60
-    xp: 700,
+    xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,

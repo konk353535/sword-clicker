@@ -115,6 +115,11 @@
             </a>
           </li>
         {{/unless}}
+        <li class="nav-item skinsTabLink">
+          <a class="nav-link {{#if showSkinsTab}}active{{/if}}" href="#">
+            Skins
+          </a>
+        </li>
       </ul>
 
       <!-- Post fight banner -->
@@ -136,6 +141,8 @@
         {{> battleLogTab}}
       {{else if showAbilitiesTab}}
         {{> combatAbilitiesTab}}
+      {{else if showSkinsTab}}
+        {{> skinTab}}
       {{/if}}
     </div>
   {{else}}

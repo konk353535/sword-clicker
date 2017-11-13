@@ -416,7 +416,7 @@ const userId = function userId(userId) {
   return userId;
 }
 
-DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 5, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 10, 20000);
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes', userId }, 5, 10000);
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 5, 10000);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);

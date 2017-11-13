@@ -2,6 +2,19 @@ import { UTIL } from './util';
 
 export const LEVEL_ONE_CRAFTS = {
 
+  twin_blades_tome: {
+    recipeFor: 'inscription',
+    produces: 'twin_blades_tome',
+    name: 'Twin blades',
+    id: 'twin_blades_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 7,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_7]
+  },
+
   penetrating_slash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'penetrating_slash_level_1_tome',

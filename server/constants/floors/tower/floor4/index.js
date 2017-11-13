@@ -82,7 +82,7 @@ export const TOWER_FLOOR_4 = {
     name: 'Earthen Mage',
     enemies: ['earth_mage'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
       ]

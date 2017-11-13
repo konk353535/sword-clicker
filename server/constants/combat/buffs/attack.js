@@ -220,7 +220,7 @@ export const ATTACK_BUFFS = {
         Lasts 2 minutes.`;
     },
     constants: {
-      lifestealBase: 0.08,
+      lifestealBase: 0.16,
       lifestealPerLevel: 0.04,
     },
     data: {
@@ -277,12 +277,12 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.poisonDamagePerLevel * 100;
       const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
 
-      return `${chance}% chance to poison the enemy.<br />
+      return `${chance.toFixed(1)}% chance to poison the enemy.<br />
         Deals ${damage.toFixed(1)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
-        Lasts 3 minutes.`;
+        Lasts 5 minutes.`;
     },
     constants: {
-      poisonChance: 0.05,
+      poisonChance: 0.07,
       poisonDamageBase: 0.17,
       poisonDamagePerLevel: 0.03
     },
@@ -308,8 +308,8 @@ export const ATTACK_BUFFS = {
           defender.buffs.push({
             id: 'basic_poison',
             data: {
-              duration: 180,
-              totalDuration: 180,
+              duration: 300,
+              totalDuration: 300,
               damage: Math.ceil(totalDamage),
               icon: 'poison.svg',
               name: 'Poison',
@@ -353,9 +353,9 @@ export const ATTACK_BUFFS = {
         Extra attack deals ${damage}% damage (+${damagePerLevel}% per lvl) <br />`;
     },
     constants: {
-      extraAttackChance: 0.1,
-      extraAttackDamageBase: 0.6,
-      extraAttackDamagePerLevel: 0.1
+      extraAttackChance: 0.2,
+      extraAttackDamageBase: 0.8,
+      extraAttackDamagePerLevel: 0.2
     },
     data: {
       duration: Infinity,
@@ -399,6 +399,93 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  twin_blades: {
+    duplicateTag: 'twin_blades', // Used to stop duplicate buffs
+    icon: 'twinBlades.svg',
+    name: 'twin blades',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const chance = buff.constants.extraAttackChance * 100;
+      const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
+      const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
+
+      return `
+        Auto attacks hit enemies adjacent to your target (applies on hit effects).<br />
+        Consumes one stack when triggered. Stacks generated every 3 seconds (caps at 20). <br />`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+        buff.data.stacks = 1;
+        buff.data.timeTillStack = 3;
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, originalAutoAttack }) {
+        if (buff.data.stacks <= 0 || !originalAutoAttack) {
+          return;
+        }
+
+        const baseDamage = attacker.stats.attack;
+        const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
+        const damage = baseDamage + extraDamage;
+
+        // Get the defender, get enemies both side of him
+        const targetIndex = actualBattle.enemies.indexOf(defender);
+
+        if (targetIndex >= 0) {
+          const adjacentTargets = []
+          
+          const leftTarget = actualBattle.enemies[targetIndex - 1];
+          const rightTarget = actualBattle.enemies[targetIndex + 1];
+          if (leftTarget) { adjacentTargets.push(leftTarget); }
+          if (rightTarget) { adjacentTargets.push(rightTarget); }
+
+          if (adjacentTargets.length > 0) {
+            adjacentTargets.forEach((newTarget) => {
+              // Call auto attack on them as well
+              actualBattle.utils.autoAttack({
+                attacker,
+                defender: newTarget,
+                tickEvents: actualBattle.tickEvents,
+                historyStats: actualBattle.historyStats,
+                originalAutoAttack: false
+              });
+            });
+
+            // Apply a cooldown to our ability
+            buff.data.stacks -= 1;
+          }
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+        buff.data.timeTillStack -= secondsElapsed;
+        if (buff.data.timeTillStack <= 0) {
+          buff.data.timeTillStack = 3;
+          buff.data.stacks++;
+          if (buff.data.stacks >= 20) {
+            buff.data.stacks = 20;
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   thirsty_fangs: {
     duplicateTag: 'thirsty_fangs', // Used to stop duplicate buffs
     icon: 'thirstyFangs.svg',
@@ -415,7 +502,7 @@ export const ATTACK_BUFFS = {
 
       return `When the target is bleeding<br />
         Deal 20% extra damage.<br />
-        While below 75% hp, heal for the same amount.`;
+        While below 60% hp, heal for the same amount.`;
     },
     constants: {
       damageDecimal: 0.20
@@ -440,7 +527,7 @@ export const ATTACK_BUFFS = {
         if (hasBleed) {
           // My current hp
           const hpDecimal = attacker.stats.health / attacker.stats.healthMax;
-          if (hpDecimal <= 0.75) {
+          if (hpDecimal <= 0.60) {
             actualBattle.utils.healTarget(totalDamage, {
               caster: attacker,
               target: attacker,
@@ -815,7 +902,7 @@ export const ATTACK_BUFFS = {
       return `Deals ${damagePercentage}% weapon damage to all enemies. (+${damagePerLevel}% per lvl)`;
     },
     constants: {
-      damagePercentage: 35,
+      damagePercentage: 55,
       damagePerLevel: 5
     },
     data: {

@@ -195,4 +195,196 @@ export const MISC_CRAFTS = {
     xp: 40000,
     maxToCraft: 100
   },
+
+  ancient_earth_shard: {
+    produces: 'ancient_earth_shard',
+    recipeFor: 'crafting',
+    name: 'ancient earth shard',
+    category: 'astronomy',
+    id: 'ancient_earth_shard',
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'earth_shard_fragment',
+      icon: ITEMS['earth_shard_fragment'].icon,
+      name: ITEMS['earth_shard_fragment'].name,
+      amount: 1000,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }],
+    timeToCraft: 30,
+    xp: 1000,
+    maxToCraft: 100
+  },
+
+  ancient_fire_shard: {
+    produces: 'ancient_fire_shard',
+    recipeFor: 'crafting',
+    name: 'ancient fire shard',
+    category: 'astronomy',
+    id: 'ancient_fire_shard',
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'fire_shard_fragment',
+      icon: ITEMS['fire_shard_fragment'].icon,
+      name: ITEMS['fire_shard_fragment'].name,
+      amount: 1000,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }],
+    timeToCraft: 30,
+    xp: 1000,
+    maxToCraft: 100
+  },
+
+  ancient_air_shard: {
+    produces: 'ancient_air_shard',
+    recipeFor: 'crafting',
+    name: 'ancient air shard',
+    category: 'astronomy',
+    id: 'ancient_air_shard',
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'air_shard_fragment',
+      icon: ITEMS['air_shard_fragment'].icon,
+      name: ITEMS['air_shard_fragment'].name,
+      amount: 1000,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }],
+    timeToCraft: 30,
+    xp: 1000,
+    maxToCraft: 100
+  },
+
+  ancient_water_shard: {
+    produces: 'ancient_water_shard',
+    recipeFor: 'crafting',
+    name: 'ancient water shard',
+    category: 'astronomy',
+    id: 'ancient_water_shard',
+    requiredCraftingLevel: 20,
+    required: [{
+      type: 'item',
+      itemId: 'water_shard_fragment',
+      icon: ITEMS['water_shard_fragment'].icon,
+      name: ITEMS['water_shard_fragment'].name,
+      amount: 1000,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 20
+    }],
+    timeToCraft: 30,
+    xp: 1000,
+    maxToCraft: 100
+  },
+
+  complete_earth_shard: {
+    produces: 'complete_earth_shard',
+    recipeFor: 'crafting',
+    name: 'complete earth shard',
+    category: 'astronomy',
+    id: 'complete_earth_shard',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'earth_shard_fragment',
+      icon: ITEMS['earth_shard_fragment'].icon,
+      name: ITEMS['earth_shard_fragment'].name,
+      amount: 100,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 15,
+    xp: 100,
+    maxToCraft: 100
+  },
+
+  complete_fire_shard: {
+    produces: 'complete_fire_shard',
+    recipeFor: 'crafting',
+    name: 'complete fire shard',
+    category: 'astronomy',
+    id: 'complete_fire_shard',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'fire_shard_fragment',
+      icon: ITEMS['fire_shard_fragment'].icon,
+      name: ITEMS['fire_shard_fragment'].name,
+      amount: 100,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 15,
+    xp: 100,
+    maxToCraft: 100
+  },
+
+  complete_air_shard: {
+    produces: 'complete_air_shard',
+    recipeFor: 'crafting',
+    name: 'complete air shard',
+    category: 'astronomy',
+    id: 'complete_air_shard',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'air_shard_fragment',
+      icon: ITEMS['air_shard_fragment'].icon,
+      name: ITEMS['air_shard_fragment'].name,
+      amount: 100,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 15,
+    xp: 100,
+    maxToCraft: 100
+  },
+
+  complete_water_shard: {
+    produces: 'complete_water_shard',
+    recipeFor: 'crafting',
+    name: 'complete water shard',
+    category: 'astronomy',
+    id: 'complete_water_shard',
+    requiredCraftingLevel: 10,
+    required: [{
+      type: 'item',
+      itemId: 'water_shard_fragment',
+      icon: ITEMS['water_shard_fragment'].icon,
+      name: ITEMS['water_shard_fragment'].name,
+      amount: 100,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 10
+    }],
+    timeToCraft: 15,
+    xp: 100,
+    maxToCraft: 100
+  },
 }

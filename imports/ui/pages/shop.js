@@ -15,7 +15,6 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 Template.shopPage.events({
 
   'click .buy-icon'(event, instance) {
-    console.log('here');
     // Get the type we are buying
     const iconId = instance.$(event.target).closest('.buy-icon').data('icon-id');
 

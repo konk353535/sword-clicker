@@ -233,7 +233,7 @@ export const MINING_CRAFTS = {
     id: 'silver_pickaxe',
     category: 'mining',
     timeToCraft: 4 * MINUTE, // 60
-    xp: 90,
+    xp: 300,
     maxToCraft: 1,
     requiredCraftingLevel: 20,
     required: [{
@@ -302,7 +302,7 @@ export const MINING_CRAFTS = {
     id: 'gold_pickaxe',
     category: 'mining',
     timeToCraft: 5 * MINUTE, // 60
-    xp: 120,
+    xp: 500,
     maxToCraft: 1,
     requiredCraftingLevel: 25,
     required: [{
@@ -347,7 +347,7 @@ export const MINING_CRAFTS = {
     id: 'carbon_pickaxe',
     category: 'mining',
     timeToCraft: 5 * MINUTE,
-    xp: 180,
+    xp: 1000,
     maxToCraft: 1,
     requiredCraftingLevel: 30,
     required: [{
@@ -416,7 +416,7 @@ export const MINING_CRAFTS = {
     id: 'steel_pickaxe',
     category: 'mining',
     timeToCraft: 6 * MINUTE, // 60
-    xp: 280,
+    xp: 1500,
     maxToCraft: 1,
     requiredCraftingLevel: 35,
     required: [{
@@ -461,7 +461,7 @@ export const MINING_CRAFTS = {
     id: 'platinum_pickaxe',
     category: 'mining',
     timeToCraft: 7 * MINUTE,
-    xp: 320,
+    xp: 2500,
     maxToCraft: 1,
     requiredCraftingLevel: 40,
     required: [{
@@ -530,7 +530,7 @@ export const MINING_CRAFTS = {
     id: 'titanium_pickaxe',
     category: 'mining',
     timeToCraft: 8 * MINUTE,
-    xp: 380,
+    xp: 3700,
     maxToCraft: 1,
     requiredCraftingLevel: 45,
     required: [{
@@ -575,7 +575,7 @@ export const MINING_CRAFTS = {
     id: 'tungsten_pickaxe',
     category: 'mining',
     timeToCraft: 9 * MINUTE,
-    xp: 450,
+    xp: 6250,
     maxToCraft: 1,
     requiredCraftingLevel: 50,
     required: [{
@@ -644,7 +644,7 @@ export const MINING_CRAFTS = {
     id: 'obsidian_pickaxe',
     category: 'mining',
     timeToCraft: 10 * MINUTE,
-    xp: 550,
+    xp: 10000,
     maxToCraft: 1,
     requiredCraftingLevel: 55,
     required: [{
@@ -689,7 +689,7 @@ export const MINING_CRAFTS = {
     id: 'cobalt_pickaxe',
     category: 'mining',
     timeToCraft: 11 * MINUTE,
-    xp: 650,
+    xp: 15000,
     maxToCraft: 1,
     requiredCraftingLevel: 60,
     required: [{
@@ -758,7 +758,7 @@ export const MINING_CRAFTS = {
     id: 'mithril_pickaxe',
     category: 'mining',
     timeToCraft: 12 * MINUTE,
-    xp: 850,
+    xp: 25000,
     maxToCraft: 1,
     requiredCraftingLevel: 65,
     required: [{
@@ -803,7 +803,7 @@ export const MINING_CRAFTS = {
     id: 'adamantium_pickaxe',
     category: 'mining',
     timeToCraft: 11 * MINUTE,
-    xp: 950,
+    xp: 42000,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -872,7 +872,7 @@ export const MINING_CRAFTS = {
     id: 'orichalcum_pickaxe',
     category: 'mining',
     timeToCraft: 15 * MINUTE,
-    xp: 1000,
+    xp: 62000,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -917,7 +917,7 @@ export const MINING_CRAFTS = {
     id: 'meteorite_pickaxe',
     category: 'mining',
     timeToCraft: 20 * MINUTE,
-    xp: 1500,
+    xp: 125000,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -986,7 +986,7 @@ export const MINING_CRAFTS = {
     id: 'fairy_steel_pickaxe',
     category: 'mining',
     timeToCraft: 30 * MINUTE,
-    xp: 1750,
+    xp: 200000,
     maxToCraft: 1,
     requiredCraftingLevel: 85,
     required: [{
@@ -1031,7 +1031,7 @@ export const MINING_CRAFTS = {
     id: 'elven_steel_pickaxe',
     category: 'mining',
     timeToCraft: 45 * MINUTE,
-    xp: 2250,
+    xp: 300000,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -1100,7 +1100,7 @@ export const MINING_CRAFTS = {
     id: 'cursed_pickaxe',
     category: 'mining',
     timeToCraft: 60 * MINUTE,
-    xp: 3000,
+    xp: 500000,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{

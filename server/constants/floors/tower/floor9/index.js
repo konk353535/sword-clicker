@@ -24,7 +24,7 @@ export const TOWER_FLOOR_9 = {
     }]))
   },
   4: {
-    name: 'Place of fairies',
+    name: 'Place of Platinum',
     enemies: ['platinum_spirit'],
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 4,

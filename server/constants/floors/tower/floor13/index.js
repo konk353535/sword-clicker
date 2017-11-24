@@ -97,7 +97,12 @@ export const TOWER_FLOOR_13 = {
 
   boss: {
     enemy: { id: 'boss_vampire', amount: 1 },
-    rewards: LEVEL_THIRTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'bloody_plate_legs', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

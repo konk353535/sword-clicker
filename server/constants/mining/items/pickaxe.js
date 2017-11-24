@@ -1423,7 +1423,7 @@ export const PICKAXE_ITEMS = {
       miner: 155
     },
     extraStats: {
-      miner: 18
+      miner: 27
     }
   },
 
@@ -1441,7 +1441,7 @@ export const PICKAXE_ITEMS = {
       miner: 165
     },
     extraStats: {
-      miner: 21
+      miner: 27
     }
   },
 
@@ -1496,7 +1496,7 @@ export const PICKAXE_ITEMS = {
       miner: 185
     },
     extraStats: {
-      miner: 24
+      miner: 27
     }
   },
 

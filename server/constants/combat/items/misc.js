@@ -863,6 +863,33 @@ export const MISC_ITEMS = {
     enchantments: ['living_helmet']
   },
 
+  "bloody_plate_legs": {
+    "id": "bloody_plate_legs",
+    "icon": "bloodyPlateLegs.svg",
+    "category": "combat",
+    "slot": "legs",
+    "name": "bloody platelegs",
+    "sellPrice": 1500,
+    "description": "Injures your legs",
+    "isEquippable": true,
+    "stats": {
+      "armor": -20,
+      "defense": -2,
+      "accuracy": 2,
+      "attack": 2
+    },
+    "extraStats": {
+      "accuracy": 2,
+      "attack": 2
+    },
+    enchantments: ['bloody_plate_legs'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
+  },
+
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',

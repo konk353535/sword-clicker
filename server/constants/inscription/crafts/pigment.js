@@ -296,7 +296,7 @@ export const PIGMENT_CRAFTS = {
     name: 'pigment red(100)',
     id: 'pigment_red_100',
     category: 'pigment',
-    timeToCraft: 600,
+    timeToCraft: 10,
     xp: 550,
     maxToCraft: 1,
     requiredInscriptionLevel: 37,

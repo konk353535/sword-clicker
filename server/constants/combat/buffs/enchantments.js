@@ -5,6 +5,57 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  bloody_plate_legs: {
+    duplicateTag: 'bloody_plate_legs', // Used to stop duplicate buffs
+    icon: 'bloodyPlateLegs.svg',
+    name: 'bloody plate legs',
+    description() {
+      return `10% chance on hit to inflict 3s bleed.<br />(10% of max damage / second)`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = buff.constants.constants;
+        const bleedChance = 0.1;
+
+        if (Math.random() <= bleedChance) {
+          const newBuff = {
+            id: 'bleed',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 10)),
+              caster: attacker.id,
+              timeTillDamage: 1,
+              allowDuplicates: true,
+              icon: 'bleed.svg',
+              name: 'bleed',
+              description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
+            }
+          }
+
+          // Add bleed debuff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   living_helmet: {
     duplicateTag: 'living_helmet', // Used to stop duplicate buffs
     icon: 'livingHelmet.svg',

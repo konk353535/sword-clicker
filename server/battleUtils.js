@@ -9,6 +9,9 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
     target.buffs = [];
   }
 
+  // Quick sort of buffs to ascending by duration
+  target.buffs = _.sortBy(target.buffs, 'data.duration');
+
   target.buffs = target.buffs.filter((ownerBuff) => {
     if (ownerBuff.id === buff.id && !hasRemoved) {
       buffConstants.events.onRemove({ buff, target, caster, actualBattle });

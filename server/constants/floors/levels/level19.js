@@ -55,7 +55,7 @@ export const LEVEL_NINETEEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 4000 },
     { type: 'item', itemId: 'ore_fairy_steel', amount: 1 },
     { type: 'item', itemId: 'tali_log', amount: 2 }
   ]

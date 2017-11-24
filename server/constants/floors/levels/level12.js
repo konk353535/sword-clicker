@@ -56,7 +56,7 @@ export const LEVEL_TWELVE_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 1500 },
     { type: 'item', itemId: 'ore_tungsten', amount: 1 },
     { type: 'item', itemId: 'blue_gum_log', amount: 2 }
   ]

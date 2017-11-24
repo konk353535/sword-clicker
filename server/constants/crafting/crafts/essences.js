@@ -330,7 +330,7 @@ export const ESSENCE_CRAFTS = {
       itemId: 'obsidian_furnace',
       icon: ITEMS['obsidian_furnace'].icon,
       name: ITEMS['obsidian_furnace'].name,
-      amount: 50,
+      amount: 1,
       consumes: false
     }, {
       type: 'item',

@@ -55,7 +55,7 @@ export const LEVEL_TWENTY_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 5000 },
     { type: 'item', itemId: 'ore_elven_steel', amount: 1 },
     { type: 'item', itemId: 'willow_log', amount: 2 }
   ]

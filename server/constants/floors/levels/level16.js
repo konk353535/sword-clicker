@@ -55,7 +55,7 @@ export const LEVEL_SIXTEEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 2750 },
     { type: 'item', itemId: 'ore_adamantium', amount: 1 },
     { type: 'item', itemId: 'hickory_log', amount: 2 }
   ]

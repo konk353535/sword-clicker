@@ -57,7 +57,7 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 800 },
     { type: 'item', itemId: 'acai_berry_seed', amount: 6 },
     { type: 'item', itemId: 'ore_steel', amount: 1 },
     { type: 'item', itemId: 'mahogany_log', amount: 2 }

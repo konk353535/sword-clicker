@@ -56,7 +56,7 @@ export const LEVEL_THIRTEEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 1750 },
     { type: 'item', itemId: 'ore_obsidian', amount: 1 },
     { type: 'item', itemId: 'cedar_log', amount: 2 }
   ]

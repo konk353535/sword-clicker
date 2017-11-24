@@ -55,7 +55,7 @@ export const LEVEL_SEVENTEEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 600 },
+    { type: 'gold', amount: 3000 },
     { type: 'item', itemId: 'ore_orichalcum', amount: 1 },
     { type: 'item', itemId: 'larch_log', amount: 2 }
   ]

@@ -113,7 +113,7 @@ export const MAGIC_ABILITIES = {
   // Single target physical damage + stun
   earthen_fist: {
     icon: 'earthenFist.svg',
-    name: 'earthen first',
+    name: 'earthen fist',
     id: 'earthen_fist',
     buffs: ['earthen_fist'],
     cooldown: 25,

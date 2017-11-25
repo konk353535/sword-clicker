@@ -687,6 +687,72 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  willow_staff: {
+    id: 'tali_staff',
+    icon: 'taliStaff.svg',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'tali staff',
+    sellPrice: 2000,
+    description: 'What seems like a normal tali staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 26,
+      attackMax: 42,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 50,
+      healingPower: 8,
+      magicPower: 38
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 39
+    }]
+  },
+
+  willow_staff: {
+    id: 'tali_staff',
+    icon: 'taliStaff.svg',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'tali staff',
+    sellPrice: 2000,
+    description: 'What seems like a normal tali staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 26,
+      attackMax: 42,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 50,
+      healingPower: 8,
+      magicPower: 38
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 39
+    }]
+  },
+
   mithril_wand: {
     id: 'mithril_wand',
     icon: 'mithrilWand.svg',

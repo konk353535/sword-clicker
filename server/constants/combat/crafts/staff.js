@@ -323,6 +323,54 @@ export const STAFF_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 80
+    }],
+
+    teak_staff: {
+    produces: 'teak_staff',
+    name: 'teak staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'teak_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 75000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 85,
+    required: [{
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 85
+    }]
+
+    willow_staff: {
+    produces: 'willow_staff',
+    name: 'willow staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'willow_staff',
+    timeToCraft: 2 * 60 * 60, // 60
+    xp: 100000,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 90,
+    required: [{
+      type: 'item',
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 90
     }]
   }
 

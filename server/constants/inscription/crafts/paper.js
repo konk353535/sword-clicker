@@ -292,7 +292,7 @@ export const PAPER_CRAFTS = {
   blue_gum_paper: {
     recipeFor: 'inscription',
     produces: 'blue_gum_paper',
-    name: 'blue_gum paper',
+    name: 'blue gum paper',
     id: 'blue_gum_paper',
     category: 'paper',
     timeToCraft: 120,

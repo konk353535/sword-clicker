@@ -253,9 +253,9 @@ export const PAPER_CRAFTS = {
     requiredInscriptionLevel: 32,
     required: [{
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'black_log',
+      icon: ITEMS['black_log'].icon,
+      name: ITEMS['black_log'].name,
       amount: 50,
       consumes: true
     }, {

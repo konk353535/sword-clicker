@@ -237,7 +237,7 @@ export const MAGIC_ABILITIES = {
 
   lightning_storm: {
     icon: 'lightningStorm.svg',
-    name: 'lighting storm',
+    name: 'lightning storm',
     id: 'lightning_storm',
     buffs: ['lightning_storm'],
     cooldown: 60,

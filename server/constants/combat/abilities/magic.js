@@ -252,7 +252,7 @@ export const MAGIC_ABILITIES = {
 
   lightning_dart: {
     icon: 'lightningDart.svg',
-    name: 'lighting dart',
+    name: 'lightning dart',
     id: 'lightning_dart',
     buffs: ['lightning_dart'],
     cooldown: 10,
@@ -495,7 +495,7 @@ export const MAGIC_ABILITIES = {
 
   elemental_shield: {
     icon: 'elementalShield.svg',
-    name: 'elemental_shield',
+    name: 'elemental shield',
     id: 'elemental_shield',
     buffs: ['elemental_shield'],
     cooldown: 300,

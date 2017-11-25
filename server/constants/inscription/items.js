@@ -866,7 +866,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'angels_touch_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'angels touch',
+    name: 'angel\'s touch',
     teaches: {
       abilityId: 'angels_touch',
       level: 1

@@ -474,7 +474,7 @@ export const MAGIC_ABILITIES = {
 
   angels_touch: {
     icon: 'angelsTouch.svg',
-    name: 'angels touch',
+    name: 'angel\'s touch',
     id: 'angels_touch',
     buffs: ['angels_touch'],
     cooldown: 120,

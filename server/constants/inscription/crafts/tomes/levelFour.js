@@ -9,7 +9,7 @@ export const LEVEL_FOUR_CRAFTS = {
     category: 'tome',
     timeToCraft: 30 * 60,
     xp: 140,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 12,
     required: [UTIL.MANY_PURPLE_255, UTIL.WHITE_128, UTIL.OAK_PAPER, UTIL.LEVEL_12]
   },
@@ -22,7 +22,7 @@ export const LEVEL_FOUR_CRAFTS = {
     category: 'tome',
     timeToCraft: 30 * 60,
     xp: 140,
-    maxToCraft: 9,
+    maxToCraft: 1,
     requiredInscriptionLevel: 12,
     required: [UTIL.MANY_WHITE_128, UTIL.MANY_GREEN_255, UTIL.OAK_PAPER, UTIL.LEVEL_12]
   },

@@ -200,7 +200,7 @@ export const LEVEL_ONE_CRAFTS = {
   vampirism_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'vampirism_level_1_tome',
-    name: 'vampirism lv 1',
+    name: 'vampirism lv. 1',
     id: 'vampirism_level_1_tome',
     category: 'tome',
     timeToCraft: 300,
@@ -421,7 +421,7 @@ export const LEVEL_ONE_CRAFTS = {
   armor_up_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_1_tome',
-    name: 'armor up Lv 1',
+    name: 'armor up Lv. 1',
     id: 'armor_up_level_1_tome',
     category: 'tome',
     timeToCraft: 180,

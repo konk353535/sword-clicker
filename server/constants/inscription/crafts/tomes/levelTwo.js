@@ -5,7 +5,7 @@ export const LEVEL_TWO_CRAFTS = {
   phantom_strikes_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'phantom_strikes_level_2_tome',
-    name: 'Phantom Strikes Lv 2.',
+    name: 'Phantom Strikes Lv. 2',
     id: 'phantom_strikes_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -18,7 +18,7 @@ export const LEVEL_TWO_CRAFTS = {
   poisoned_blade_2_tome: {
     recipeFor: 'inscription',
     produces: 'poisoned_blade_2_tome',
-    name: 'Poisoned Blade Lv 2.',
+    name: 'Poisoned Blade Lv. 2',
     id: 'poisoned_blade_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -31,7 +31,7 @@ export const LEVEL_TWO_CRAFTS = {
   vampirism_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'vampirism_level_2_tome',
-    name: 'vampirism lv 2',
+    name: 'vampirism Lv. 2',
     id: 'vampirism_level_2_tome',
     category: 'tome',
     timeToCraft: 300,
@@ -44,7 +44,7 @@ export const LEVEL_TWO_CRAFTS = {
   health_up_2_tome: {
     recipeFor: 'inscription',
     produces: 'health_up_2_tome',
-    name: 'Health Up Lv 2.',
+    name: 'Health Up Lv. 2',
     id: 'health_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -57,7 +57,7 @@ export const LEVEL_TWO_CRAFTS = {
   defense_up_2_tome: {
     recipeFor: 'inscription',
     produces: 'defense_up_2_tome',
-    name: 'defense Up Lv 2.',
+    name: 'defense Up Lv. 2',
     id: 'defense_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -70,7 +70,7 @@ export const LEVEL_TWO_CRAFTS = {
   accuracy_up_2_tome: {
     recipeFor: 'inscription',
     produces: 'accuracy_up_2_tome',
-    name: 'accuracy Up Lv 2.',
+    name: 'accuracy Up Lv. 2',
     id: 'accuracy_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -83,7 +83,7 @@ export const LEVEL_TWO_CRAFTS = {
   attack_up_2_tome: {
     recipeFor: 'inscription',
     produces: 'attack_up_2_tome',
-    name: 'damage Up Lv 2.',
+    name: 'damage Up Lv. 2',
     id: 'attack_up_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -96,7 +96,7 @@ export const LEVEL_TWO_CRAFTS = {
   berserk_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_2_tome',
-    name: 'Berserk Lv 2.',
+    name: 'Berserk Lv. 2',
     id: 'berserk_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -109,7 +109,7 @@ export const LEVEL_TWO_CRAFTS = {
   iron_will_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'iron_will_level_2_tome',
-    name: 'iron will Lv 2.',
+    name: 'iron will Lv. 2',
     id: 'iron_will_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -122,7 +122,7 @@ export const LEVEL_TWO_CRAFTS = {
   blade_spin_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'blade_spin_level_2_tome',
-    name: 'blade spin Lv 2.',
+    name: 'blade spin Lv. 2',
     id: 'blade_spin_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -135,7 +135,7 @@ export const LEVEL_TWO_CRAFTS = {
   armor_up_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_2_tome',
-    name: 'armor up Lv 2',
+    name: 'armor up Lv. 2',
     id: 'armor_up_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -148,7 +148,7 @@ export const LEVEL_TWO_CRAFTS = {
   execute_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'execute_level_2_tome',
-    name: 'execute Lv 2.',
+    name: 'execute Lv. 2',
     id: 'execute_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -161,7 +161,7 @@ export const LEVEL_TWO_CRAFTS = {
   bleed_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'bleed_level_2_tome',
-    name: 'bleed Lv 2.',
+    name: 'bleed Lv. 2',
     id: 'bleed_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -174,7 +174,7 @@ export const LEVEL_TWO_CRAFTS = {
   blade_frenzy_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'blade_frenzy_level_2_tome',
-    name: 'blade frenzy Lv 2.',
+    name: 'blade frenzy Lv. 2',
     id: 'blade_frenzy_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -187,7 +187,7 @@ export const LEVEL_TWO_CRAFTS = {
   defensive_stance_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'defensive_stance_level_2_tome',
-    name: 'defensive stance Lv 2.',
+    name: 'defensive stance Lv. 2',
     id: 'defensive_stance_level_2_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -200,7 +200,7 @@ export const LEVEL_TWO_CRAFTS = {
   evasive_maneuvers_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'evasive_maneuvers_level_2_tome',
-    name: 'evasive maneuvers Lv 2.',
+    name: 'evasive maneuvers Lv. 2',
     id: 'evasive_maneuvers_level_2_tome',
     category: 'tome',
     timeToCraft: 180,

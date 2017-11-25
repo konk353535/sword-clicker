@@ -4,7 +4,7 @@ export const LEVEL_FIVE_CRAFTS = {
   berserk_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_5_tome',
-    name: 'Berserk Lv 5.',
+    name: 'Berserk Lv. 5',
     id: 'berserk_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -17,7 +17,7 @@ export const LEVEL_FIVE_CRAFTS = {
   iron_will_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'iron_will_level_5_tome',
-    name: 'iron will Lv 5.',
+    name: 'iron will Lv. 5',
     id: 'iron_will_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -30,7 +30,7 @@ export const LEVEL_FIVE_CRAFTS = {
   blade_spin_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'blade_spin_level_5_tome',
-    name: 'blade spin Lv 5.',
+    name: 'blade spin Lv. 5',
     id: 'blade_spin_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -43,7 +43,7 @@ export const LEVEL_FIVE_CRAFTS = {
   armor_up_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_5_tome',
-    name: 'armor up Lv 5',
+    name: 'armor up Lv. 5',
     id: 'armor_up_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -56,7 +56,7 @@ export const LEVEL_FIVE_CRAFTS = {
   execute_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'execute_level_5_tome',
-    name: 'execute Lv 5.',
+    name: 'execute Lv. 5',
     id: 'execute_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -69,7 +69,7 @@ export const LEVEL_FIVE_CRAFTS = {
   bleed_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'bleed_level_5_tome',
-    name: 'bleed Lv 5.',
+    name: 'bleed Lv. 5',
     id: 'bleed_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -82,7 +82,7 @@ export const LEVEL_FIVE_CRAFTS = {
   blade_frenzy_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'blade_frenzy_level_5_tome',
-    name: 'blade frenzy Lv 5.',
+    name: 'blade frenzy Lv. 5',
     id: 'blade_frenzy_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -95,7 +95,7 @@ export const LEVEL_FIVE_CRAFTS = {
   defensive_stance_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'defensive_stance_level_5_tome',
-    name: 'defensive stance Lv 5.',
+    name: 'defensive stance Lv. 5',
     id: 'defensive_stance_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
@@ -108,7 +108,7 @@ export const LEVEL_FIVE_CRAFTS = {
   evasive_maneuvers_level_5_tome: {
     recipeFor: 'inscription',
     produces: 'evasive_maneuvers_level_5_tome',
-    name: 'evasive maneuvers Lv 5.',
+    name: 'evasive maneuvers Lv. 5',
     id: 'evasive_maneuvers_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,

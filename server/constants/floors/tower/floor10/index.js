@@ -25,7 +25,7 @@ export const TOWER_FLOOR_10 = {
     }]))
   },
   4: {
-    name: 'Titanium Place',
+    name: 'Place of Titanium',
     enemies: ['titanium_spirit'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

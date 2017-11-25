@@ -30,7 +30,7 @@ export const TOWER_FLOOR_7 = {
     }]))
   },
   4: {
-    name: 'Place of carbon',
+    name: 'Place of Carbon',
     enemies: ['carbon_spirit'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 3,

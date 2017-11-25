@@ -9,7 +9,7 @@ export const LEVEL_FIVE_CRAFTS = {
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
     xp: 1000,
-    maxToCraft: 5,
+    maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.GREEN_170, UTIL.RED_200, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
   },
@@ -22,7 +22,7 @@ export const LEVEL_FIVE_CRAFTS = {
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
     xp: 1000,
-    maxToCraft: 9,
+    maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.GREEN_170, UTIL.MANY_GREEN_200, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
   },

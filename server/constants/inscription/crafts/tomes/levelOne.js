@@ -62,7 +62,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 50,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
@@ -75,7 +75,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 50,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
@@ -309,7 +309,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 90,
-    maxToCraft: 9,
+    maxToCraft: 1,
     requiredInscriptionLevel: 9,
     required: [UTIL.PURPLE_255, UTIL.MANY_GREEN_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },

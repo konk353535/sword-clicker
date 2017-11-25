@@ -10,7 +10,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -23,7 +23,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -49,7 +49,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -62,7 +62,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -75,7 +75,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -88,7 +88,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 100,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
@@ -101,7 +101,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 40,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_RED_255, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
@@ -114,7 +114,7 @@ export const LEVEL_TWO_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 40,
-    maxToCraft: 5,
+    maxToCraft: 1,
     requiredInscriptionLevel: 5,
     required: [UTIL.RED_255, UTIL.GREEN_255, UTIL.RED_200, UTIL.BEECH_PAPER, UTIL.LEVEL_5]
   },

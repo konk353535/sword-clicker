@@ -24,7 +24,7 @@ export const TOWER_FLOOR_16 = {
     }]))
   },
   4: {
-    name: 'Orichalcum Place',
+    name: 'Place of Orichalcum',
     enemies: ['orichalcum_spirit'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

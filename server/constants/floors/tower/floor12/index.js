@@ -25,7 +25,7 @@ export const TOWER_FLOOR_12 = {
     }]))
   },
   4: {
-    name: 'Obsidian Place',
+    name: 'Place of Obsidian',
     enemies: ['obsidian_spirit'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 64,

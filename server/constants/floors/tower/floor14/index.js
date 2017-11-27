@@ -24,7 +24,7 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   4: {
-    name: 'Mithril Place',
+    name: 'Place of Mithril',
     enemies: ['mithril_spirit'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

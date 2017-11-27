@@ -323,9 +323,10 @@ export const STAFF_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 80
-    }],
+    }]
+  },
 
-    teak_staff: {
+  teak_staff: {
     produces: 'teak_staff',
     name: 'teak staff',
     recipeFor: 'crafting',
@@ -348,8 +349,9 @@ export const STAFF_CRAFTS = {
       name: 'crafting',
       level: 85
     }]
+  },
 
-    willow_staff: {
+  willow_staff: {
     produces: 'willow_staff',
     name: 'willow staff',
     recipeFor: 'crafting',

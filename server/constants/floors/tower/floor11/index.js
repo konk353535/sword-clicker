@@ -25,7 +25,7 @@ export const TOWER_FLOOR_11 = {
     }]))
   },
   4: {
-    name: 'tungsten Place',
+    name: 'Place of Tungsten',
     enemies: ['tungsten_spirit'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

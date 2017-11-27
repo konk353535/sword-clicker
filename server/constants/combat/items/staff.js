@@ -606,8 +606,8 @@ export const STAFF_ITEMS = {
       attackMax: 40,
       attackSpeed: SLOW_SPEED,
       healingPower: 8,
-      accuracy: 46,
-      magicPower: 36
+      accuracy: 50,
+      magicPower: 38
     },
     extraStats: {
       attack: 3,
@@ -670,9 +670,9 @@ export const STAFF_ITEMS = {
       attack: 26,
       attackMax: 42,
       attackSpeed: SLOW_SPEED,
-      accuracy: 50,
+      accuracy: 56,
       healingPower: 8,
-      magicPower: 38
+      magicPower: 42
     },
     extraStats: {
       attack: 3,
@@ -684,6 +684,71 @@ export const STAFF_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 39
+    }]
+  },
+
+  teak_staff: {
+    id: 'teak_staff',
+    icon: 'teakStaff.svg',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'teak staff',
+    sellPrice: 2000,
+    description: 'What seems like a normal teak staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 30,
+      attackMax: 50,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 60,
+      magicPower: 50
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 44
+    }]
+  },
+
+  willow_staff: {
+    id: 'willow_staff',
+    icon: 'willowStaff.svg',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'willow staff',
+    sellPrice: 2000,
+    description: 'What seems like a normal willow staff',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 35,
+      attackMax: 50,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 60,
+      healingPower: 8,
+      magicPower: 55
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 3,
+      accuracy: 7,
+      magicPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 44
     }]
   },
 

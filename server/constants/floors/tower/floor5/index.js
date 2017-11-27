@@ -37,7 +37,7 @@ export const TOWER_FLOOR_5 = {
     }]))
   },
   4: {
-    name: 'Place of silver',
+    name: 'Place of Silver',
     enemies: ['vampire'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 3,

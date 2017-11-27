@@ -30,7 +30,7 @@ export const TOWER_FLOOR_13 = {
     }]))
   },
   4: {
-    name: 'Cobalt Place',
+    name: 'Place of Cobalt',
     enemies: ['cobalt_spirit'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

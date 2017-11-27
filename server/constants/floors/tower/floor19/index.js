@@ -25,7 +25,7 @@ export const TOWER_FLOOR_19 = {
     }]))
   },
   4: {
-    name: 'Elven Steel Place',
+    name: 'Place of Elven Steel',
     enemies: ['elven_steel_spirit'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

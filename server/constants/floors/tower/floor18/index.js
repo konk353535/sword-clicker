@@ -30,7 +30,7 @@ export const TOWER_FLOOR_18 = {
     }]))
   },
   4: {
-    name: 'Fairy Steel Place',
+    name: 'Place of Fairy Steel',
     enemies: ['fairy_steel_spirit'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,

@@ -25,7 +25,7 @@ export const TOWER_FLOOR_15 = {
     }]))
   },
   4: {
-    name: 'Adamantium Place',
+    name: 'Place of Adamantium',
     enemies: ['adamantium_spirit'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 128,

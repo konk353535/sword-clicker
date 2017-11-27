@@ -241,11 +241,13 @@ export const PAPER_CRAFTS = {
     }]
   },
 
-  black_paper: {
+
+
+  elk_paper: {
     recipeFor: 'inscription',
-    produces: 'black_paper',
-    name: 'black paper',
-    id: 'black_paper',
+    produces: 'elk_paper',
+    name: 'elk paper',
+    id: 'elk_paper',
     category: 'paper',
     timeToCraft: 120,
     xp: 320,
@@ -253,9 +255,9 @@ export const PAPER_CRAFTS = {
     requiredInscriptionLevel: 32,
     required: [{
       type: 'item',
-      itemId: 'black_log',
-      icon: ITEMS['black_log'].icon,
-      name: ITEMS['black_log'].name,
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
       amount: 50,
       consumes: true
     }, {
@@ -265,11 +267,11 @@ export const PAPER_CRAFTS = {
     }]
   },
 
-  elk_paper: {
+  black_paper: {
     recipeFor: 'inscription',
-    produces: 'elk_paper',
-    name: 'elk paper',
-    id: 'elk_paper',
+    produces: 'black_paper',
+    name: 'black paper',
+    id: 'black_paper',
     category: 'paper',
     timeToCraft: 120,
     xp: 340,
@@ -277,9 +279,9 @@ export const PAPER_CRAFTS = {
     requiredInscriptionLevel: 34,
     required: [{
       type: 'item',
-      itemId: 'elk_log',
-      icon: ITEMS['elk_log'].icon,
-      name: ITEMS['elk_log'].name,
+      itemId: 'black_log',
+      icon: ITEMS['black_log'].icon,
+      name: ITEMS['black_log'].name,
       amount: 50,
       consumes: true
     }, {

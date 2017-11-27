@@ -76,6 +76,14 @@ Template.craftingList.helpers({
     });
   },
 
+  enchantmentArmorRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return _.contains(recipe.tags, 'enchant_armor');
+    });
+  },
+
   abilityRecipes() {
     const instance = Template.instance();
 

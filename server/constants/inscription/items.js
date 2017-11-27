@@ -1861,5 +1861,20 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 100,
     description: 'Can be consumed to learn the taunt ability.'
+  },
+  enchantment_fire: {
+    id: 'enchantment_fire',
+    icon: 'enchantmentFire.svg',
+    category: 'enchantment',
+    name: 'lesser fire',
+    sellPrice: 50,
+    description: `
+      Can be consumed to increase an items quality by up to 15%.<br />
+      Can only be applied once per item. <br />
+      Item quality can not be increased beyond 100%.`,
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%',
+      target: 'item'
+    },
   }
 }

@@ -237,7 +237,7 @@ export const MAGIC_ABILITIES = {
 
   lightning_storm: {
     icon: 'lightningStorm.svg',
-    name: 'lighting storm',
+    name: 'lightning storm',
     id: 'lightning_storm',
     buffs: ['lightning_storm'],
     cooldown: 60,
@@ -252,7 +252,7 @@ export const MAGIC_ABILITIES = {
 
   lightning_dart: {
     icon: 'lightningDart.svg',
-    name: 'lighting dart',
+    name: 'lightning dart',
     id: 'lightning_dart',
     buffs: ['lightning_dart'],
     cooldown: 10,
@@ -474,7 +474,7 @@ export const MAGIC_ABILITIES = {
 
   angels_touch: {
     icon: 'angelsTouch.svg',
-    name: 'angels touch',
+    name: 'angel\'s touch',
     id: 'angels_touch',
     buffs: ['angels_touch'],
     cooldown: 120,
@@ -495,7 +495,7 @@ export const MAGIC_ABILITIES = {
 
   elemental_shield: {
     icon: 'elementalShield.svg',
-    name: 'elemental_shield',
+    name: 'elemental shield',
     id: 'elemental_shield',
     buffs: ['elemental_shield'],
     cooldown: 300,

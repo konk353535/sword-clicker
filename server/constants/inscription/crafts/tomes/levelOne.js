@@ -18,7 +18,7 @@ export const LEVEL_ONE_CRAFTS = {
   penetrating_slash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'penetrating_slash_level_1_tome',
-    name: 'Penetrating slash Lv 1.',
+    name: 'Penetrating slash Lv. 1',
     id: 'penetrating_slash_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -31,7 +31,7 @@ export const LEVEL_ONE_CRAFTS = {
   shield_bash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'shield_bash_level_1_tome',
-    name: 'Shield bash Lv 1.',
+    name: 'Shield bash Lv. 1',
     id: 'shield_bash_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -62,7 +62,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 50,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
@@ -75,7 +75,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 50,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 4,
     required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_4]
   },
@@ -200,7 +200,7 @@ export const LEVEL_ONE_CRAFTS = {
   vampirism_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'vampirism_level_1_tome',
-    name: 'vampirism lv 1',
+    name: 'vampirism lv. 1',
     id: 'vampirism_level_1_tome',
     category: 'tome',
     timeToCraft: 300,
@@ -239,7 +239,7 @@ export const LEVEL_ONE_CRAFTS = {
   slash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'slash_level_1_tome',
-    name: 'Slash Lv 1.',
+    name: 'Slash Lv. 1',
     id: 'slash_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -252,7 +252,7 @@ export const LEVEL_ONE_CRAFTS = {
   berserk_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_1_tome',
-    name: 'Berserk Lv 1.',
+    name: 'Berserk Lv. 1',
     id: 'berserk_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -278,7 +278,7 @@ export const LEVEL_ONE_CRAFTS = {
   execute_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'execute_level_1_tome',
-    name: 'execute Lv 1.',
+    name: 'execute Lv. 1',
     id: 'execute_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -309,7 +309,7 @@ export const LEVEL_ONE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 90,
-    maxToCraft: 9,
+    maxToCraft: 1,
     requiredInscriptionLevel: 9,
     required: [UTIL.PURPLE_255, UTIL.MANY_GREEN_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },
@@ -356,7 +356,7 @@ export const LEVEL_ONE_CRAFTS = {
   bleed_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'bleed_level_1_tome',
-    name: 'bleed Lv 1.',
+    name: 'bleed Lv. 1',
     id: 'bleed_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -369,7 +369,7 @@ export const LEVEL_ONE_CRAFTS = {
   blade_spin_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'blade_spin_level_1_tome',
-    name: 'blade spin Lv 1.',
+    name: 'blade spin Lv. 1',
     id: 'blade_spin_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -382,7 +382,7 @@ export const LEVEL_ONE_CRAFTS = {
   blade_frenzy_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'blade_frenzy_level_1_tome',
-    name: 'blade frenzy Lv 1.',
+    name: 'blade frenzy Lv. 1',
     id: 'blade_frenzy_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -395,7 +395,7 @@ export const LEVEL_ONE_CRAFTS = {
   defensive_stance_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'defensive_stance_level_1_tome',
-    name: 'defensive stance Lv 1.',
+    name: 'defensive stance Lv. 1',
     id: 'defensive_stance_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -408,7 +408,7 @@ export const LEVEL_ONE_CRAFTS = {
   evasive_maneuvers_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'evasive_maneuvers_level_1_tome',
-    name: 'evasive maneuvers Lv 1.',
+    name: 'evasive maneuvers Lv. 1',
     id: 'evasive_maneuvers_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -421,7 +421,7 @@ export const LEVEL_ONE_CRAFTS = {
   armor_up_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_1_tome',
-    name: 'armor up Lv 1',
+    name: 'armor up Lv. 1',
     id: 'armor_up_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -434,7 +434,7 @@ export const LEVEL_ONE_CRAFTS = {
   iron_will_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'iron_will_level_1_tome',
-    name: 'iron will Lv 1.',
+    name: 'iron will Lv. 1',
     id: 'iron_will_level_1_tome',
     category: 'tome',
     timeToCraft: 180,
@@ -447,7 +447,7 @@ export const LEVEL_ONE_CRAFTS = {
   taunt_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'taunt_level_1_tome',
-    name: 'taunt Lv 1.',
+    name: 'taunt Lv. 1',
     id: 'taunt_level_1_tome',
     category: 'tome',
     timeToCraft: 180,

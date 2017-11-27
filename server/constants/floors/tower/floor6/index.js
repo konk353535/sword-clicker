@@ -62,7 +62,7 @@ export const TOWER_FLOOR_6 = {
     }]))
   },
   4: {
-    name: 'Place of gold',
+    name: 'Place of Gold',
     enemies: ['gold_spirit'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
       chance: 1 / 3,

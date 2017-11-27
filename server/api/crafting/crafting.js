@@ -143,7 +143,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
     });
   }
 
-  // Are we crafting atleast one item
+  // Are we crafting at least one item
   if (amountToCraft <= 0) {
     return;
   }

@@ -164,7 +164,7 @@ export const BAR_ITEMS = {
 
   elven_steel_bar: {
     id: 'elven_steel_bar',
-    icon: 'fairySteelBar.svg',
+    icon: 'elvenSteelBar.svg',
     category: 'crafting',
     name: 'elven steel bar',
     sellPrice: 110,

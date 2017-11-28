@@ -146,7 +146,7 @@ export const OBSIDIAN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'obsidian_long_sword',
     timeToCraft: 420, // 60
-    xp: 40000,
+    xp: 80000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,
@@ -192,7 +192,7 @@ export const OBSIDIAN_CRAFTS = {
     category: 'combat',
     id: 'obsidian_battle_axe',
     timeToCraft: 600, // 60
-    xp: 40000,
+    xp: 80000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 55,

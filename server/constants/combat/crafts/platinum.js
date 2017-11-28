@@ -146,7 +146,7 @@ export const PLATINUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'platinum_long_sword',
     timeToCraft: 420, // 60
-    xp: 10000,
+    xp: 20000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,
@@ -192,7 +192,7 @@ export const PLATINUM_CRAFTS = {
     category: 'combat',
     id: 'platinum_battle_axe',
     timeToCraft: 600, // 60
-    xp: 10000,
+    xp: 20000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 40,

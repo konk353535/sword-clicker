@@ -553,7 +553,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 29
+      level: 32
     }]
   },
 
@@ -585,7 +585,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 34
+      level: 36
     }]
   },
 
@@ -618,7 +618,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 34
+      level: 39
     }]
   },
 
@@ -650,7 +650,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 39
+      level: 42
     }]
   },
 
@@ -683,7 +683,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 39
+      level: 45
     }]
   },
 

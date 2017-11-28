@@ -1261,7 +1261,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
 
       return `
-        Strikes the target with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
+        Strikes the target with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage. <br />
         And reducing their armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },

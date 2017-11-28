@@ -507,7 +507,7 @@ export const MAGIC_BUFFS = {
     description({ buff, level }) {
       const c = buff.constants;
       return `
-        Increases all allies attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP). <br />
+        Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP). <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },

@@ -277,7 +277,7 @@ Meteor.methods({
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{
-        username: username.toLowerCase()
+        username: username.toLowerCase().replace(/ /g,'')
       }, {
         email: username.toLowerCase()
       }]

@@ -297,6 +297,11 @@ Meteor.methods({
       return;
     }
 
+    // Cannot invite self into group
+    if (targetUser._id == this.userId) {
+      return;
+    }
+
     // Can't invite / add already added / invited users
     if (currentGroup && (_.contains(currentGroup.invites, targetUser._id) ||
       _.contains(currentGroup.members, targetUser._id))) {

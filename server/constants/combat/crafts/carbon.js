@@ -146,7 +146,7 @@ export const CARBON_CRAFTS = {
     recipeFor: 'crafting',
     id: 'carbon_long_sword',
     timeToCraft: 420, // 60
-    xp: 4000,
+    xp: 8000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,
@@ -192,7 +192,7 @@ export const CARBON_CRAFTS = {
     category: 'combat',
     id: 'carbon_battle_axe',
     timeToCraft: 600, // 60
-    xp: 4000,
+    xp: 8000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 30,

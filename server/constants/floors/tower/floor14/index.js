@@ -46,7 +46,7 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   6: {
-    name: 'Hells Quarry',
+    name: 'Hell\'s Quarry',
     enemies: ['goblin', 'demon'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 4,
@@ -68,7 +68,7 @@ export const TOWER_FLOOR_14 = {
     }]))
   },
   7: {
-    name: 'Thieves Guild',
+    name: 'Thieves\' Guild',
     enemies: ['cut_purse', 'cut_purse'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
       chance: 1 / 256,

@@ -311,7 +311,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'elkPaper.svg',
     category: 'paper',
     name: 'elk paper',
-    sellPrice: 490,
+    sellPrice: 470,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -321,7 +321,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'blackPaper.svg',
     category: 'paper',
     name: 'black paper',
-    sellPrice: 470,
+    sellPrice: 490,
     description: 'Used in inscription with pigments to make ability books'
   },
 

@@ -9,7 +9,7 @@ export const TOWER_FLOOR_5 = {
     rewards: []
   },
   2: {
-    name: 'Farmers Market',
+    name: 'Farmer\'s Market',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 4,

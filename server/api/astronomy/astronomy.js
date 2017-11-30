@@ -438,7 +438,16 @@ Meteor.publish('astronomy', function() {
 
   //Transform function
   var transform = function(doc) {
-    doc.maxMages = ASTRONOMY.baseMaxMages;
+
+    const userDoc = Meteor.user();
+    
+    let maxMages = ASTRONOMY.baseMaxMages;
+    const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
+    if (hasAstronomyUpgrade) {
+      maxMages = maxMages + 1;
+    }
+
+    doc.maxMages = maxMages;
     doc.mages = doc.mages.map((mage) => {
       if (!mage.type) {
         mage.icon = 'mage';

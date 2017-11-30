@@ -415,7 +415,7 @@ export const ATTACK_BUFFS = {
 
       return `
         Auto attacks hit enemies adjacent to your target (applies on hit effects).<br />
-        Consumes one stack when triggered. Stacks generated every 3 seconds (caps at 20). <br />`;
+        Consumes one stack when triggered. Stacks generate every 3 seconds, maximum of 20. <br />`;
     },
     constants: {
     },

@@ -10,7 +10,7 @@ export const DEFENSE_BUFFS = {
     icon: 'volcanicShield.svg',
     name: 'volcanic shield',
     description({ buff, level }) {
-      return `Increases armor & magic armor by 100.<br />
+      return `Increase armor & magic armor by 100.<br />
         After 10 seconds, erupts dealing 250% weapon damage to all enemies`;
     },
     events: { // This can be rebuilt from the buff id
@@ -223,7 +223,7 @@ export const DEFENSE_BUFFS = {
       const healthIncrease = healthBase + healthPerLevel;
 
       return `
-        Increases health by ${Math.round(healthIncrease * 100)}%. <br />
+        Increase health by ${Math.round(healthIncrease * 100)}%. <br />
         (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)<br />`;
     },
     constants: {
@@ -303,7 +303,7 @@ export const DEFENSE_BUFFS = {
       const defenseIncrease = defenseBase + defensePerLevel;
 
       return `
-        Increases defense by ${defenseIncrease}. <br />
+        Increase defense by ${defenseIncrease}. <br />
         (+${buff.constants.defensePerLevel} defense per lvl)<br />`;
     },
     constants: {

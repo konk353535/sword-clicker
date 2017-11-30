@@ -277,8 +277,8 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.poisonDamagePerLevel * 100;
       const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
 
-      return `${chance.toFixed(1)}% chance to poison the enemy.<br />
-        Deals ${damage.toFixed(1)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
+      return `${chance.toFixed(0)}% chance to poison the enemy.<br />
+        Deals ${damage.toFixed(0)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
         Lasts 5 minutes.`;
     },
     constants: {
@@ -350,7 +350,7 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
       return `${chance}% chance to attack twice.<br />
-        Extra attack deals ${damage}% damage (+${damagePerLevel}% per lvl) <br />`;
+        Extra attack deals ${damage.toFixed(0)}% damage (+${damagePerLevel}% per lvl) <br />`;
     },
     constants: {
       extraAttackChance: 0.2,

@@ -412,12 +412,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_hat: {
-    id: 'crimson_wizard_hat',
-    icon: 'crimsonWizardHat.svg',
+  yellow_wizard_hat: {
+    id: 'yellow_wizard_hat',
+    icon: 'yellowWizardHat.svg',
     category: 'combat',
     slot: 'head',
-    name: 'crimson wizard hat',
+    name: 'yellow wizard hat',
     sellPrice: 1500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -437,9 +437,9 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_shirt: {
-    id: 'crimson_wizard_shirt',
-    icon: 'crimsonWizardShirt.svg',
+  yellow_wizard_shirt: {
+    id: 'yellow_wizard_shirt',
+    icon: 'yellowWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'crimson wizard shirt',
@@ -462,12 +462,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_shorts: {
-    id: 'crimson_wizard_shorts',
-    icon: 'crimsonWizardShorts.svg',
+  yellow_wizard_shorts: {
+    id: 'yellow_wizard_shorts',
+    icon: 'yellowWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
-    name: 'crimson wizard shorts',
+    name: 'yellow wizard shorts',
     sellPrice: 1500,
     description: 'Protect your legs',
     isEquippable: true,
@@ -487,12 +487,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_hat: {
-    id: 'crimson_wizard_hat',
-    icon: 'crimsonWizardHat.svg',
+  violet_wizard_hat: {
+    id: 'violet_wizard_hat',
+    icon: 'violetWizardHat.svg',
     category: 'combat',
     slot: 'head',
-    name: 'crimson wizard hat',
+    name: 'violet wizard hat',
     sellPrice: 1500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -512,12 +512,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_shirt: {
-    id: 'crimson_wizard_shirt',
-    icon: 'crimsonWizardShirt.svg',
+  violet_wizard_shirt: {
+    id: 'violet_wizard_shirt',
+    icon: 'violetWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
-    name: 'crimson wizard shirt',
+    name: 'violet wizard shirt',
     sellPrice: 1500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -537,12 +537,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  crimson_wizard_shorts: {
-    id: 'crimson_wizard_shorts',
-    icon: 'crimsonWizardShorts.svg',
+  violet_wizard_shorts: {
+    id: 'violet_wizard_shorts',
+    icon: 'violetWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
-    name: 'crimson wizard shorts',
+    name: 'violet wizard shorts',
     sellPrice: 1500,
     description: 'Protect your legs',
     isEquippable: true,
@@ -561,4 +561,229 @@ export const WIZARD_ITEMS = {
       level: 30
     }]
   }
+
+  crimson_wizard_hat: {
+    id: 'crimson_wizard_hat',
+    icon: 'crimsonWizardHat.svg',
+    category: 'combat',
+    slot: 'head',
+    name: 'crimson wizard hat',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 65,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  crimson_wizard_shirt: {
+    id: 'crimson_wizard_shirt',
+    icon: 'crimsonWizardShirt.svg',
+    category: 'combat',
+    slot: 'chest',
+    name: 'crimson wizard shirt',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  crimson_wizard_shorts: {
+    id: 'crimson_wizard_shorts',
+    icon: 'crimsonWizardShorts.svg',
+    category: 'combat',
+    slot: 'legs',
+    name: 'crimson wizard shorts',
+    sellPrice: 1500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 14
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  azure_wizard_hat: {
+    id: 'azure_wizard_hat',
+    icon: 'azureWizardHat.svg',
+    category: 'combat',
+    slot: 'head',
+    name: 'azure wizard hat',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 65,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  azure_wizard_shirt: {
+    id: 'azure_wizard_shirt',
+    icon: 'azureWizardShirt.svg',
+    category: 'combat',
+    slot: 'chest',
+    name: 'azure wizard shirt',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  azure_wizard_shorts: {
+    id: 'azure_wizard_shorts',
+    icon: 'azureWizardShorts.svg',
+    category: 'combat',
+    slot: 'legs',
+    name: 'azure wizard shorts',
+    sellPrice: 1500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 14
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  gold_wizard_hat: {
+    id: 'goldwizard_hat',
+    icon: 'goldWizardHat.svg',
+    category: 'combat',
+    slot: 'head',
+    name: 'gold wizard hat',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 65,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  gold_wizard_shirt: {
+    id: 'gold_wizard_shirt',
+    icon: 'goldWizardShirt.svg',
+    category: 'combat',
+    slot: 'chest',
+    name: 'gold wizard shirt',
+    sellPrice: 1500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 13
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  gold_wizard_shorts: {
+    id: 'gold_wizard_shorts',
+    icon: 'goldWizardShorts.svg',
+    category: 'combat',
+    slot: 'legs',
+    name: 'gold wizard shorts',
+    sellPrice: 1500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 70,
+      magicPower: 12,
+      magicArmor: 14
+    },
+    extraStats: {
+      healthMax: 25,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
 }

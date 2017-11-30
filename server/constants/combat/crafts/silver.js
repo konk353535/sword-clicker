@@ -146,7 +146,7 @@ export const SILVER_CRAFTS = {
     recipeFor: 'crafting',
     id: 'silver_long_sword',
     timeToCraft: 240, // 60
-    xp: 2000,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,
@@ -192,7 +192,7 @@ export const SILVER_CRAFTS = {
     category: 'combat',
     id: 'silver_battle_axe',
     timeToCraft: 300, // 60
-    xp: 2000,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 20,

@@ -146,7 +146,7 @@ export const TUNGSTEN_CRAFTS = {
     recipeFor: 'crafting',
     id: 'tungsten_long_sword',
     timeToCraft: 420, // 60
-    xp: 25000,
+    xp: 50000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 50,
@@ -192,7 +192,7 @@ export const TUNGSTEN_CRAFTS = {
     category: 'combat',
     id: 'tungsten_battle_axe',
     timeToCraft: 600, // 60
-    xp: 25000,
+    xp: 50000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 50,

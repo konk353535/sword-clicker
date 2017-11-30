@@ -146,7 +146,7 @@ export const TITANIUM_CRAFTS = {
     recipeFor: 'crafting',
     id: 'titanium_long_sword',
     timeToCraft: 420, // 60
-    xp: 15000,
+    xp: 30000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,
@@ -192,7 +192,7 @@ export const TITANIUM_CRAFTS = {
     category: 'combat',
     id: 'titanium_battle_axe',
     timeToCraft: 600, // 60
-    xp: 15000,
+    xp: 30000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 45,

@@ -14,7 +14,7 @@ export const TOWER_FLOOR_13 = {
     rewards: LEVEL_THIRTEEN_LOOT_TABLE
   },
   3: {
-    name: 'Venoms Place',
+    name: 'Venom\'s Place',
     enemies: ['jellyFish', 'spider', 'snake'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
       chance: 1 / 64,

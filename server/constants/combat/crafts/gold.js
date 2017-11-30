@@ -146,7 +146,7 @@ export const GOLD_CRAFTS = {
     recipeFor: 'crafting',
     id: 'gold_long_sword',
     timeToCraft: 240, // 60
-    xp: 2000,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,
@@ -192,7 +192,7 @@ export const GOLD_CRAFTS = {
     category: 'combat',
     id: 'gold_battle_axe',
     timeToCraft: 300, // 60
-    xp: 2000,
+    xp: 4000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 25,

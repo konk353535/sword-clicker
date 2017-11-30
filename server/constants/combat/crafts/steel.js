@@ -146,7 +146,7 @@ export const STEEL_CRAFTS = {
     recipeFor: 'crafting',
     id: 'steel_long_sword',
     timeToCraft: 420, // 60
-    xp: 6000,
+    xp: 12000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 35,
@@ -192,7 +192,7 @@ export const STEEL_CRAFTS = {
     category: 'combat',
     id: 'steel_battle_axe',
     timeToCraft: 600, // 60
-    xp: 6000,
+    xp: 12000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 35,

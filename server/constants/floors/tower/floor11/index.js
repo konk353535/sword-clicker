@@ -35,7 +35,7 @@ export const TOWER_FLOOR_11 = {
     }]))
   },
   5: {
-    name: 'Warlocks Palace',
+    name: 'Warlock\'s Palace',
     enemies: ['demon', 'fire_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 256,
@@ -67,7 +67,7 @@ export const TOWER_FLOOR_11 = {
     }]))
   },
   7: {
-    name: 'Mages Guild',
+    name: 'Mage\'s Guild',
     enemies: ['water_mage', 'fire_mage', 'earth_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
       chance: 1 / 128,

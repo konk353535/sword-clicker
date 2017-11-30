@@ -71,7 +71,7 @@ export const TOWER_FLOOR_9 = {
     }]))
   },
   7: {
-    name: 'Master Farmers Market',
+    name: 'Master Farmer\'s Market',
     enemies: ['farmer'],
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 48,

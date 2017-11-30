@@ -95,7 +95,7 @@ export const TOWER_FLOOR_8 = {
     }]))
   },
   7: {
-    name: 'Magicians Headquarters',
+    name: 'Magician\'s Headquarters',
     enemies: ['blue_mage'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 256,

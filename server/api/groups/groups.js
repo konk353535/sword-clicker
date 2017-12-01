@@ -277,7 +277,7 @@ Meteor.methods({
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{
-        username: username.toLowerCase()
+        username: username.toLowerCase().replace(/ /g,'')
       }, {
         email: username.toLowerCase()
       }]
@@ -294,6 +294,11 @@ Meteor.methods({
 
     // Must be leader to invite users
     if (currentGroup && currentGroup.leader !== this.userId) {
+      return;
+    }
+
+    // Cannot invite self into group
+    if (targetUser._id == this.userId) {
       return;
     }
 

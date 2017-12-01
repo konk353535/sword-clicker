@@ -14,7 +14,7 @@ import { Adventures } from '/imports/api/adventures/adventures';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
-
+import { Users } from '/imports/api/users/users';
 import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
@@ -51,7 +51,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     battleParticipants = currentGroup.members;
   }
 
-  // Ensure battle particiapnts aren't already in a battle
+  // Ensure battle participants aren't already in a battle
   const currentBattle = BattlesList.findOne({ owners: battleParticipants });
   if (currentBattle) {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is still in one.');
@@ -60,6 +60,37 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   let useStreamy = false;
 
   // Ensure battle participants don't have any active adventures
+
+  let adventurePlayers = "";
+
+  // Loop through each participant, check for adventure adventures.
+  battleParticipants.forEach((participant) => {
+
+    const activeAdventures = Adventures.findOne({
+      owner: {
+        $in: [participant]
+      },
+      adventures: {
+        $elemMatch :{
+          endDate: {
+            $gt: new Date()
+          }        
+        }
+      }
+    });
+
+    // If active adventure found, add name to string displayed to leader
+    if (activeAdventures) {
+      const userDoc = Users.findOne({ _id: participant });
+
+      if ( activeAdventures ) {
+        adventurePlayers += adventurePlayers == "" ? userDoc.username : ", " + userDoc.username;
+      }
+    }
+  });
+
+  /*
+  // Original method, checks all participants at once, but doesn't identify them.
   const activeAdventures = Adventures.findOne({
     owner: {
       $in: battleParticipants
@@ -72,9 +103,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       }
     }
   });
+  */
 
-  if (activeAdventures) {
-    throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is in an adventure');
+  if (adventurePlayers != "") {
+    throw new Meteor.Error('in-battle', 'You cannot start a battle while ' + adventurePlayers + ' in your group is in an adventure');
   }
 
   // Ensure group size is not too large

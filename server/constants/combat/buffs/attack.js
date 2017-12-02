@@ -212,11 +212,11 @@ export const ATTACK_BUFFS = {
     icon: 'vampirism.svg',
     name: 'vampirism',
     description({ buff, level }) {
-      const lifestealBase = buff.constants.lifestealBase;
-      const lifestealPerLevel = buff.constants.lifestealPerLevel;
+      const lifestealBase = buff.constants.lifestealBase * 100;
+      const lifestealPerLevel = buff.constants.lifestealPerLevel * 100;
 
       const lifestealTotal = lifestealBase + (lifestealPerLevel * level);
-      return `Heal for ${Math.round(lifestealTotal * 100)}% of auto attack damage.<br />
+      return `Heal for ${lifestealTotal.toFixed(0)}% of auto attack damage. (+${lifestealPerLevel.toFixed(0)}% damage per lvl)<br />
         Lasts 2 minutes.`;
     },
     constants: {

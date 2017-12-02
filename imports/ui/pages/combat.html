@@ -33,6 +33,15 @@
             </div>
           </div>
         {{/if}}
+        {{#if $gte (moDiff globalBuffs.combat moNow 'seconds') 0}}
+          {{> globalBuffIcon type='combat' date=globalBuffs.combat}}
+        {{/if}}
+        {{#if $gte (moDiff globalBuffs.gathering moNow 'seconds') 0}}
+          {{> globalBuffIcon type='gathering' date=globalBuffs.gathering}}
+        {{/if}}
+        {{#if $gte (moDiff globalBuffs.crafting moNow 'seconds') 0}}
+          {{> globalBuffIcon type='crafting' date=globalBuffs.crafting}}
+        {{/if}}
         {{#each combat.buffs}}
           {{> buffIcon buff=this}}
         {{/each}}

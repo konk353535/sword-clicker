@@ -74,7 +74,7 @@ export const TOWER_FLOOR_3 = {
     }]))
   },
   7: {
-    name: 'Spiders Web',
+    name: 'Spider\'s Web',
     enemies: ['spider'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 64,

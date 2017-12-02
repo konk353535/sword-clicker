@@ -274,7 +274,7 @@ Meteor.methods({
         points: Math.round(userWaveScores.points),
         rank: userRanking,
         total: totalRankings,
-        rankingPercentage: Math.round((userRanking / totalRankings) * 100)
+        rankingPercentage: Math.min(Math.round((userRanking / totalRankings) * 100), 100)
       }
     }
   },

@@ -31,6 +31,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   this.state.set('hasLearnRequirements', false);
 
+  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+    this.state.set('globalBuffs', res);
+  });
+
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
     if (myUser) {
@@ -208,6 +212,10 @@ Template.combatPage.helpers({
       currentCombat.amuletPercentage = currentCombat.amulet.energy / currentCombat.amulet.energyStorage * 100;
     }
     return currentCombat;
+  },
+
+  globalBuffs() {
+    return Template.instance().state.get('globalBuffs');
   },
 
   showEquipmentTab() {

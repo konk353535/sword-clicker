@@ -218,7 +218,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_paper: {
     id: 'pine_paper',
-    icon: 'pinePaper.svg',
+    icon: 'pinePaper.png',
     category: 'paper',
     name: 'pine paper',
     sellPrice: 50,
@@ -227,7 +227,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_book: {
     id: 'pine_book',
-    icon: 'pineBook.svg',
+    icon: 'pineBook.png',
     category: 'paper',
     name: 'pine book',
     sellPrice: 50,
@@ -236,7 +236,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_book: {
     id: 'beech_book',
-    icon: 'beechBook.svg',
+    icon: 'beechBook.png',
     category: 'paper',
     name: 'beech book',
     sellPrice: 50,
@@ -245,7 +245,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_paper: {
     id: 'beech_paper',
-    icon: 'beechPaper.svg',
+    icon: 'beechPaper.png',
     category: 'paper',
     name: 'beech paper',
     sellPrice: 100,
@@ -254,7 +254,7 @@ export const INSCRIPTION_ITEMS = {
 
   ash_paper: {
     id: 'ash_paper',
-    icon: 'ashPaper.svg',
+    icon: 'ashPaper.png',
     category: 'paper',
     name: 'ash paper',
     sellPrice: 200,
@@ -263,7 +263,7 @@ export const INSCRIPTION_ITEMS = {
 
   oak_paper: {
     id: 'oak_paper',
-    icon: 'oakPaper.svg',
+    icon: 'oakPaper.png',
     category: 'paper',
     name: 'oak paper',
     sellPrice: 250,
@@ -272,7 +272,7 @@ export const INSCRIPTION_ITEMS = {
 
   maple_paper: {
     id: 'maple_paper',
-    icon: 'maplePaper.svg',
+    icon: 'maplePaper.png',
     category: 'paper',
     name: 'maple paper',
     sellPrice: 300,
@@ -281,7 +281,7 @@ export const INSCRIPTION_ITEMS = {
 
   walnut_paper: {
     id: 'walnut_paper',
-    icon: 'walnutPaper.svg',
+    icon: 'walnutPaper.png',
     category: 'paper',
     name: 'walnut paper',
     sellPrice: 350,
@@ -290,7 +290,7 @@ export const INSCRIPTION_ITEMS = {
 
   cherry_paper: {
     id: 'cherry_paper',
-    icon: 'cherryPaper.svg',
+    icon: 'cherryPaper.png',
     category: 'paper',
     name: 'cherry paper',
     sellPrice: 400,
@@ -299,7 +299,7 @@ export const INSCRIPTION_ITEMS = {
 
   mahogany_paper: {
     id: 'mahogany_paper',
-    icon: 'mahoganyPaper.svg',
+    icon: 'mahoganyPaper.png',
     category: 'paper',
     name: 'mahogany paper',
     sellPrice: 450,
@@ -308,7 +308,7 @@ export const INSCRIPTION_ITEMS = {
 
   elk_paper: {
     id: 'elk_paper',
-    icon: 'elkPaper.svg',
+    icon: 'elkPaper.png',
     category: 'paper',
     name: 'elk paper',
     sellPrice: 470,
@@ -318,7 +318,7 @@ export const INSCRIPTION_ITEMS = {
 
   black_paper: {
     id: 'black_paper',
-    icon: 'blackPaper.svg',
+    icon: 'blackPaper.png',
     category: 'paper',
     name: 'black paper',
     sellPrice: 490,
@@ -327,7 +327,7 @@ export const INSCRIPTION_ITEMS = {
 
   gombe_paper: {
     id: 'gombe_paper',
-    icon: 'gombePaper.svg',
+    icon: 'gombePaper.png',
     category: 'paper',
     name: 'gombe paper',
     sellPrice: 600,
@@ -336,7 +336,7 @@ export const INSCRIPTION_ITEMS = {
 
   denya_paper: {
     id: 'denya_paper',
-    icon: 'denyaPaper.svg',
+    icon: 'denyaPaper.png',
     category: 'paper',
     name: 'denya paper',
     sellPrice: 550,
@@ -345,7 +345,7 @@ export const INSCRIPTION_ITEMS = {
 
   blue_gum_paper: {
     id: 'blue_gum_paper',
-    icon: 'blueGumPaper.svg',
+    icon: 'blueGumPaper.png',
     category: 'paper',
     name: 'blue_gum paper',
     sellPrice: 500,

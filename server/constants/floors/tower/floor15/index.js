@@ -85,9 +85,9 @@ export const TOWER_FLOOR_15 = {
         { type: 'item', itemId: 'chives', amount: 1 }
       ]
     }, {
-      chance: 1 / 8,
+      chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'complete_fire_shard', amount: 50 }
+        { type: 'item', itemId: 'complete_fire_shard', amount: 25 }
       ]
     }, {
       chance: 1 / 32,

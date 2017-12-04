@@ -75,9 +75,9 @@ export const TOWER_FLOOR_17 = {
         { type: 'item', itemId: 'sorrell', amount: 1 }
       ]
     }, {
-      chance: 1 / 4,
+      chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'complete_air_shard', amount: 25 }
       ]
     }, {
       chance: 1 / 32,

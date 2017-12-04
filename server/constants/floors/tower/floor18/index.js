@@ -80,9 +80,9 @@ export const TOWER_FLOOR_18 = {
         { type: 'item', itemId: 'heavens_descent_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 4,
+      chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'fire_shard_fragment', amount: 50 }
+        { type: 'item', itemId: 'complete_earth_shard', amount: 25 }
       ]
     }, {
       chance: 1 / 32,

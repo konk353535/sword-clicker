@@ -71,6 +71,12 @@ Meteor.methods({
       });
     }
 
+    // If leader kicks himself, trigger a group.leave instead so leader status tranfers
+    if (ownerId == this.userId ) {
+      Meteor.call('groups.leave');
+      return;
+    }
+
     const memberFilter = function (member) {
       if (targetUser) {
         return member !== targetUser._id

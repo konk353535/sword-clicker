@@ -76,6 +76,7 @@ export const PLANTS = {
     }]
   },
 
+  // 0.25 hours, 2800g/hr
   hydrangea: {
     produces: 'hydrangea',
     name: 'hydrangea',
@@ -101,6 +102,85 @@ export const PLANTS = {
     }]
   },
 
+  // 4 hours, 800g/hr
+  poppy: {
+    produces: 'poppy',
+    name: 'poppy',
+    id: 'poppy',
+    category: 'farming',
+    icon: ITEMS['poppy'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 4,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'poppy_seed',
+      icon: ITEMS['poppy_seed'].icon,
+      name: ITEMS['poppy_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 49
+    }]
+  },
+
+  // 8 hours, 700/hr
+  zinnia: {
+    produces: 'zinnia',
+    name: 'zinnia',
+    id: 'zinnia',
+    category: 'farming',
+    icon: ITEMS['zinnia'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 8,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'zinnia_seed',
+      icon: ITEMS['zinnia_seed'].icon,
+      name: ITEMS['zinnia_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 59
+    }]
+  },
+
+  // 0.16 hr, 3450/hr
+  tulip: {
+    produces: 'tulip',
+    name: 'tulip',
+    id: 'tulip',
+    category: 'farming',
+    icon: ITEMS['zinnia'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 10 * 60,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'tulip_seed',
+      icon: ITEMS['tulip_seed'].icon,
+      name: ITEMS['tulip_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 69
+    }]
+  },
+
+  // 8 hours, 500g/hr
   chrysanthemum: {
     produces: 'chrysanthemum',
     name: 'chrysanthemum',

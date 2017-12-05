@@ -102,6 +102,78 @@ export const FARMING_ITEMS = {
     sellPrice: 700
   },
 
+  poppy_seed: {
+    id: 'poppy_seed',
+    icon: 'poppySeed.svg',
+    category: 'seed',
+    name: 'poppy Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'hydrangea'
+  },
+
+  poppy: {
+    id: 'poppy',
+    icon: 'poppy.svg',
+    category: 'herb',
+    name: 'poppy',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 3200
+  },
+
+  zinnia_seed: {
+    id: 'zinnia_seed',
+    icon: 'zinniaSeed.svg',
+    category: 'seed',
+    name: 'zinnia Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'zinnia'
+  },
+
+  zinnia: {
+    id: 'zinnia',
+    icon: 'zinnia.svg',
+    category: 'herb',
+    name: 'zinnia',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 5600
+  },
+
+  tulip_seed: {
+    id: 'tulip_seed',
+    icon: 'tulipSeed.svg',
+    category: 'seed',
+    name: 'tulip Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'tulip'
+  },
+
+  tulip: {
+    id: 'tulip',
+    icon: 'tulip.svg',
+    category: 'herb',
+    name: 'tulip',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 575
+  },
+
   chrysanthemum_seed: {
     id: 'chrysanthemum_seed',
     icon: 'chrysanthemumSeed.svg',

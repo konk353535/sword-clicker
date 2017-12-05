@@ -65,6 +65,51 @@ export const FARMING = {
       }]
     },
 
+    poppy_seed: {
+      id: 'poppy_seed',
+      itemId: 'poppy_seed',
+      requiredFarmingLevel: 49,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 49
+      }]
+    },
+
+    zinnia_seed: {
+      id: 'zinnia_seed',
+      itemId: 'zinnia_seed',
+      requiredFarmingLevel: 59,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 59
+      }]
+    },
+
+    tulip_seed: {
+      id: 'tulip_seed',
+      itemId: 'tulip_seed',
+      requiredFarmingLevel: 69,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 69
+      }]
+    },
+
     cactus_seed: {
       id: 'cactus_seed',
       itemId: 'cactus_seed',

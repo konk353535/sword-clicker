@@ -347,7 +347,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blue_gum_paper',
     icon: 'blueGumPaper.png',
     category: 'paper',
-    name: 'blue_gum paper',
+    name: 'blue gum paper',
     sellPrice: 500,
     description: 'Used in inscription with pigments to make ability books'
   },

@@ -246,6 +246,56 @@ export const FARMING_ITEMS = {
     sellPrice: 1
   },
 
+  kenaf: {
+    id: 'kenaf',
+    icon: 'kenaf.svg',
+    category: 'herb',
+    name: 'kenaf',
+    description() {
+      return 'Looks useful';
+    },
+    sellPrice: 1
+  },
+
+  kenaf_seed: {
+    id: 'kenaf_seed',
+    icon: 'kenafSeed.svg',
+    category: 'seed',
+    name: 'kenaf Seed',
+    seedType: 'misc',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'kenaf'
+  },
+
+  palm: {
+    id: 'palm',
+    icon: 'palm.svg',
+    category: 'herb',
+    name: 'palm',
+    description() {
+      return 'Looks useful';
+    },
+    sellPrice: 1
+  },
+
+  palm_seed: {
+    id: 'palm_seed',
+    icon: 'palmSeed.svg',
+    category: 'seed',
+    name: 'palm Seed',
+    seedType: 'misc',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'palm'
+  },
+
+
+
   pear_seed: {
     id: 'pear_seed',
     icon: 'pearSeed.svg',

@@ -670,6 +670,106 @@ export const FARMING_ITEMS = {
     produces: 'blue_gum_log'
   },
 
+  cedar_seed: {
+    id: 'cedar_seed',
+    icon: 'cedarSeed.svg',
+    category: 'seed',
+    name: 'cedar Seed',
+    seedType: 'tree',
+    description: 'Used to grow cedar log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'cedar_log'
+  },
+
+  denya_seed: {
+    id: 'denya_seed',
+    icon: 'denyaSeed.svg',
+    category: 'seed',
+    name: 'denya Seed',
+    seedType: 'tree',
+    description: 'Used to grow denya log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'denya_log'
+  },
+
+  gombe_seed: {
+    id: 'gombe_seed',
+    icon: 'gombeSeed.svg',
+    category: 'seed',
+    name: 'gombe Seed',
+    seedType: 'tree',
+    description: 'Used to grow gombe log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'gombe_log'
+  },
+
+  hickory_seed: {
+    id: 'hickory_seed',
+    icon: 'hickorySeed.svg',
+    category: 'seed',
+    name: 'hickory Seed',
+    seedType: 'tree',
+    description: 'Used to grow hickory log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'hickory_log'
+  },
+
+  larch_seed: {
+    id: 'larch_seed',
+    icon: 'larchSeed.svg',
+    category: 'seed',
+    name: 'larch Seed',
+    seedType: 'tree',
+    description: 'Used to grow larch log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'larch_log'
+  },
+
+  poplar_seed: {
+    id: 'poplar_seed',
+    icon: 'poplarSeed.svg',
+    category: 'seed',
+    name: 'poplar Seed',
+    seedType: 'tree',
+    description: 'Used to grow poplar log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'poplar_log'
+  },
+
+  tali_seed: {
+    id: 'tali_seed',
+    icon: 'taliSeed.svg',
+    category: 'seed',
+    name: 'tali Seed',
+    seedType: 'tree',
+    description: 'Used to grow tali log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'tali_log'
+  },
+
+  teak_seed: {
+    id: 'teak_seed',
+    icon: 'teakSeed.svg',
+    category: 'seed',
+    name: 'teak Seed',
+    seedType: 'tree',
+    description: 'Used to grow teak log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'teak_log'
+  },
+
+  willow_seed: {
+    id: 'willow_seed',
+    icon: 'willowSeed.svg',
+    category: 'seed',
+    name: 'willow Seed',
+    seedType: 'tree',
+    description: 'Used to grow willow log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'willow_log'
+  },
+
+
   pink_rose_seed: {
     id: 'pink_rose_seed',
     icon: 'pinkRoseSeed.svg',

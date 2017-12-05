@@ -155,9 +155,9 @@ export const FARMING = {
       }]
     },
 
-    blue_gum_seed: {
-      id: 'blue_gum_seed',
-      itemId: 'blue_gum_seed',
+    oak_seed: {
+      id: 'oak_seed',
+      itemId: 'oak_seed',
       requiredFarmingLevel: 15,
       required: [{
         type: 'gold',

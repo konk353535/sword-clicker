@@ -256,6 +256,56 @@ export const PLANTS = {
     }]
   },
 
+  kenaf: {
+    produces: 'kenaf',
+    name: 'kenaf',
+    id: 'kenaf',
+    category: 'farming',
+    icon: ITEMS['kenaf'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 30,
+    xp: 2000,
+    required: [{
+      type: 'item',
+      itemId: 'kenaf_seed',
+      icon: ITEMS['kenaf_seed'].icon,
+      name: ITEMS['kenaf_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 56
+    }]
+  },
+
+  palm: {
+    produces: 'palm',
+    name: 'palm',
+    id: 'palm',
+    category: 'farming',
+    icon: ITEMS['v'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 2,
+    xp: 10000,
+    required: [{
+      type: 'item',
+      itemId: 'palm_seed',
+      icon: ITEMS['palm_seed'].icon,
+      name: ITEMS['palm_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 76
+    }]
+  },
+
   lemon: {
     produces: 'lemon',
     name: 'lemon',

@@ -141,32 +141,32 @@ export const FARMING = {
     },
 
     kenaf_seed: {
-      id: 'bamboo_seed',
-      itemId: 'bamboo_seed',
-      requiredFarmingLevel: 36,
+      id: 'kenaf_seed',
+      itemId: 'kenaf_seed',
+      requiredFarmingLevel: 56,
       required: [{
         type: 'gold',
-        amount: 25,
+        amount: 100,
         consumes: true
       }, {
         type: 'skill',
         name: 'farming',
-        level: 36
+        level: 56
       }]
     },
 
     palm_seed: {
       id: 'palm_seed',
       itemId: 'palm_seed',
-      requiredFarmingLevel: 36,
+      requiredFarmingLevel: 76,
       required: [{
         type: 'gold',
-        amount: 25,
+        amount: 250,
         consumes: true
       }, {
         type: 'skill',
         name: 'farming',
-        level: 36
+        level: 76
       }]
     },
 

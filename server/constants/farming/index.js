@@ -350,6 +350,66 @@ export const FARMING = {
       }]
     },
 
+    poplar_seed: {
+      id: 'poplar_seed',
+      itemId: 'poplar_seed',
+      requiredFarmingLevel: 80,
+      required: [{
+        type: 'gold',
+        amount: 1700,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 80
+      }]
+    },
+
+    tali_seed: {
+      id: 'tali_seed',
+      itemId: 'tali_seed',
+      requiredFarmingLevel: 85,
+      required: [{
+        type: 'gold',
+        amount: 1800,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 85
+      }]
+    },
+
+    teak_seed: {
+      id: 'teak_seed',
+      itemId: 'teak_seed',
+      requiredFarmingLevel: 90,
+      required: [{
+        type: 'gold',
+        amount: 1900,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 90
+      }]
+    },
+
+    willow_seed: {
+      id: 'willow_seed',
+      itemId: 'willow_seed',
+      requiredFarmingLevel: 95,
+      required: [{
+        type: 'gold',
+        amount: 2000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 95
+      }]
+    },
+
 
 
     lemon_seed: {

@@ -275,6 +275,83 @@ export const FARMING = {
       }]
     },
 
+    cedar_seed: {
+      id: 'cedar_seed',
+      itemId: 'cedar_seed',
+      requiredFarmingLevel: 55,
+      required: [{
+        type: 'gold',
+        amount: 1200,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 55
+      }]
+    },
+
+    denya_seed: {
+      id: 'denya_seed',
+      itemId: 'denya_seed',
+      requiredFarmingLevel: 60,
+      required: [{
+        type: 'gold',
+        amount: 1300,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 60
+      }]
+    },
+
+    gombe_seed: {
+      id: 'gombe_seed',
+      itemId: 'gombe_seed',
+      requiredFarmingLevel: 65,
+      required: [{
+        type: 'gold',
+        amount: 1400,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 65
+      }]
+    },
+
+    hickory_seed: {
+      id: 'hickory_seed',
+      itemId: 'hickory_seed',
+      requiredFarmingLevel: 70,
+      required: [{
+        type: 'gold',
+        amount: 1500,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 70
+      }]
+    },
+
+    larch_seed: {
+      id: 'larch_seed',
+      itemId: 'larch_seed',
+      requiredFarmingLevel: 75,
+      required: [{
+        type: 'gold',
+        amount: 1600,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 75
+      }]
+    },
+
+
+
     lemon_seed: {
       id: 'lemon_seed',
       itemId: 'lemon_seed',

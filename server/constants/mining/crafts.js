@@ -803,7 +803,7 @@ export const MINING_CRAFTS = {
     id: 'adamantium_pickaxe',
     category: 'mining',
     timeToCraft: 11 * MINUTE,
-    xp: 42000,
+    xp: 43750,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{
@@ -1747,7 +1747,7 @@ export const MINING_CRAFTS = {
     id: 'adamantium_mining_anvil',
     category: 'mining',
     timeToCraft: 11 * MINUTE,
-    xp: 950,
+    xp: 43500,
     maxToCraft: 1,
     requiredCraftingLevel: 70,
     required: [{

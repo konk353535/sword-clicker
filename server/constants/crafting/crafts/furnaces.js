@@ -69,7 +69,7 @@ export const FURNACE_CRAFTS = {
       level: 9
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 35, // Xp earned once crafted
+    xp: 45, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -93,7 +93,7 @@ export const FURNACE_CRAFTS = {
       level: 14
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 35, // Xp earned once crafted
+    xp: 60, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -117,7 +117,7 @@ export const FURNACE_CRAFTS = {
       level: 19
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 50, // Xp earned once crafted
+    xp: 80, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -141,7 +141,7 @@ export const FURNACE_CRAFTS = {
       level: 24
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 50, // Xp earned once crafted
+    xp: 100, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -165,7 +165,7 @@ export const FURNACE_CRAFTS = {
       level: 29
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 50, // Xp earned once crafted
+    xp: 115, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -189,7 +189,7 @@ export const FURNACE_CRAFTS = {
       level: 34
     }],
     timeToCraft: 120,
-    xp: 80,
+    xp: 130,
     maxToCraft: 1
   },
 
@@ -213,7 +213,7 @@ export const FURNACE_CRAFTS = {
       level: 39
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 70, // Xp earned once crafted
+    xp: 150, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -237,7 +237,7 @@ export const FURNACE_CRAFTS = {
       level: 44
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 70, // Xp earned once crafted
+    xp: 170, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -261,7 +261,7 @@ export const FURNACE_CRAFTS = {
       level: 49
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 70, // Xp earned once crafted
+    xp: 185, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -285,7 +285,7 @@ export const FURNACE_CRAFTS = {
       level: 54
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 70, // Xp earned once crafted
+    xp: 200, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -309,7 +309,7 @@ export const FURNACE_CRAFTS = {
       level: 59
     }],
     timeToCraft: 120, // Time to craft item in seconds
-    xp: 70, // Xp earned once crafted
+    xp: 225, // Xp earned once crafted
     maxToCraft: 1 // Maximum number of this that can be crafted together
   },
 
@@ -357,7 +357,7 @@ export const FURNACE_CRAFTS = {
       level: 69
     }],
     timeToCraft: 15 * 60,
-    xp: 100,
+    xp: 275,
     maxToCraft: 1
   },
 
@@ -381,7 +381,7 @@ export const FURNACE_CRAFTS = {
       level: 74
     }],
     timeToCraft: 20 * 60,
-    xp: 150,
+    xp: 300,
     maxToCraft: 1
   },
 
@@ -405,7 +405,7 @@ export const FURNACE_CRAFTS = {
       level: 79
     }],
     timeToCraft: 25 * 60,
-    xp: 200,
+    xp: 350,
     maxToCraft: 1
   },
 
@@ -429,7 +429,7 @@ export const FURNACE_CRAFTS = {
       level: 84
     }],
     timeToCraft: 30 * 60,
-    xp: 250,
+    xp: 400,
     maxToCraft: 1
   },
 
@@ -453,7 +453,7 @@ export const FURNACE_CRAFTS = {
       level: 89
     }],
     timeToCraft: 35 * 60,
-    xp: 300,
+    xp: 500,
     maxToCraft: 1
   },
 
@@ -477,7 +477,7 @@ export const FURNACE_CRAFTS = {
       level: 94
     }],
     timeToCraft: 30 * 60,
-    xp: 250,
+    xp: 600,
     maxToCraft: 1
   },
 
@@ -501,7 +501,7 @@ export const FURNACE_CRAFTS = {
       level: 99
     }],
     timeToCraft: 40 * 60,
-    xp: 350,
+    xp: 800,
     maxToCraft: 1
   }
 }

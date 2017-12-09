@@ -164,7 +164,7 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
           }
         }, {
           $inc: {
-            'miners.$.xp': mineSpace.isCluster ? 2 : 1
+            'miners.$.xp': mineSpace.isCluster ? 10 : 1
           }
         });
       }
@@ -458,7 +458,7 @@ Meteor.methods({
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
           ore.chance /= 9;
-          ore.healthMax *= 15;
+          ore.healthMax *= 10;
           ore.isCluster = true;
         } else {
           ore.isCluster = false;

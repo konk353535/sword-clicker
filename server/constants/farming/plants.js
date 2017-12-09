@@ -266,7 +266,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 50,
     growthTime: 60 * 30,
-    xp: 2000,
+    xp: 1250,
     required: [{
       type: 'item',
       itemId: 'kenaf_seed',
@@ -286,12 +286,12 @@ export const PLANTS = {
     name: 'palm',
     id: 'palm',
     category: 'farming',
-    icon: ITEMS['v'].icon,
+    icon: ITEMS['palm '].icon,
     waterStorage: 100,
     initialWater: 100,
     requiredWater: 50,
     growthTime: 60 * 60 * 2,
-    xp: 10000,
+    xp: 8000,
     required: [{
       type: 'item',
       itemId: 'palm_seed',

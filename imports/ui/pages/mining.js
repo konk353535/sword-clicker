@@ -357,7 +357,7 @@ Template.miningPage.helpers({
         max += possibleProspector.max;
       }
 
-      if (localProspector && localProspector.amount) {
+      if (localProspector && localProspector.amount > -1) {
         count += localProspector.amount;
       } else {
         count += 1;

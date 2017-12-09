@@ -537,7 +537,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'adamantium_axe',
     category: 'woodcutting',
     timeToCraft: 900, // 60
-    xp: 42000,
+    xp: 43500,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{

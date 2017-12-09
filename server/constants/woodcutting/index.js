@@ -625,7 +625,7 @@ export const WOODCUTTING = {
       xp: 260,
       id: 'blue_gum_log',
       icon: 'blueGumLog.png',
-      name: 'blue_gum log',
+      name: 'blue gum log',
       itemId: 'blue_gum_log',
       chance: 0.01
     },

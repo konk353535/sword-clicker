@@ -872,7 +872,7 @@ export const PLANTS = {
 
   blue_gum_log: {
     produces: 'blue_gum_log',
-    name: 'blue_gum tree',
+    name: 'blue gum tree',
     produceAmount: 20,
     id: 'blue_gum_log',
     category: 'farming',

@@ -30,7 +30,7 @@ Meteor.startup(() => {
   */
   // Process combat items with extra stats beyond normal values
 
-  /*
+  /* 
   Items.find({
     category: 'combat'
   }).fetch().map((item) => {

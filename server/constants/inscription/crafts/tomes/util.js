@@ -463,6 +463,24 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_BLACK_PAPER: {
+    type: 'item',
+    itemId: 'black_paper',
+    icon: ITEMS['black_paper'].icon,
+    name: ITEMS['black_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  BLACK_PAPER: {
+    type: 'item',
+    itemId: 'black_paper',
+    icon: ITEMS['black_paper'].icon,
+    name: ITEMS['black_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
   MANY_BLUE_GUM_PAPER: {
     type: 'item',
     itemId: 'blue_gum_paper',

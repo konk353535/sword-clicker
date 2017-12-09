@@ -12,7 +12,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 30,
     maxToCraft: 1,
     requiredInscriptionLevel: 7,
-    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_7]
+    required: [UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_7]
   },
 
   penetrating_slash_level_1_tome: {
@@ -389,7 +389,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 45,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
-    required: [UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_6]
+    required: [UTIL.PURPLE_255, UTIL.BEECH_PAPER, UTIL.LEVEL_6]
   },
 
   defensive_stance_level_1_tome: {
@@ -402,7 +402,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_5]
+    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.BEECH_PAPER, UTIL.LEVEL_5]
   },
 
   evasive_maneuvers_level_1_tome: {
@@ -415,7 +415,7 @@ export const LEVEL_ONE_CRAFTS = {
     xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_5]
+    required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.BEECH_PAPER, UTIL.LEVEL_5]
   },
 
   armor_up_level_1_tome: {

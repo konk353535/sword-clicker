@@ -38,7 +38,7 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     requiredInscriptionLevel: 35,
-    required: [UTIL.RED_100, UTIL.PURPLE_200, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_35]
+    required: [UTIL.RED_100, UTIL.PURPLE_200, UTIL.ELK_PAPER, UTIL.LEVEL_35]
   },
 
   health_up_2_tome: {
@@ -142,7 +142,7 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 50,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
-    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_6]
+    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_7]
   },
 
   execute_level_2_tome: {
@@ -168,7 +168,7 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
-    required: [UTIL.MANY_GREEN_200, UTIL.RED_200, UTIL.MANY_ASH_PAPER, UTIL.LEVEL_6]
+    required: [UTIL.MANY_GREEN_200, UTIL.RED_200, UTIL.MANY_ASH_PAPER, UTIL.LEVEL_7]
   },
 
   blade_frenzy_level_2_tome: {
@@ -181,7 +181,7 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 80,
     maxToCraft: 1,
     requiredInscriptionLevel: 6,
-    required: [UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_6]
+    required: [UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_7]
   },
 
   defensive_stance_level_2_tome: {
@@ -194,7 +194,7 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_5]
+    required: [UTIL.BLUE_255, UTIL.GREEN_200, UTIL.ASH_PAPER, UTIL.LEVEL_7]
   },
 
   evasive_maneuvers_level_2_tome: {
@@ -207,6 +207,6 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 40,
     maxToCraft: 1,
     requiredInscriptionLevel: 5,
-    required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_5]
+    required: [UTIL.RED_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_7]
   },
 }

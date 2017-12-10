@@ -412,12 +412,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  yellow_wizard_hat: {
-    id: 'yellow_wizard_hat',
-    icon: 'yellowWizardHat.svg',
+  amber_wizard_hat: {
+    id: 'amber_wizard_hat',
+    icon: 'amberWizardHat.svg',
     category: 'combat',
     slot: 'head',
-    name: 'yellow wizard hat',
+    name: 'amber wizard hat',
     sellPrice: 2500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -437,12 +437,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  yellow_wizard_shirt: {
-    id: 'yellow_wizard_shirt',
-    icon: 'yellowWizardShirt.svg',
+  amber_wizard_shirt: {
+    id: 'amber_wizard_shirt',
+    icon: 'amberWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
-    name: 'yellow wizard shirt',
+    name: 'amber wizard shirt',
     sellPrice: 2500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -462,12 +462,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  yellow_wizard_shorts: {
-    id: 'yellow_wizard_shorts',
-    icon: 'yellowWizardShorts.svg',
+ amber_wizard_shorts: {
+    id: 'amber_wizard_shorts',
+    icon: 'amberWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
-    name: 'yellow wizard shorts',
+    name: 'amber wizard shorts',
     sellPrice: 2500,
     description: 'Protect your legs',
     isEquippable: true,

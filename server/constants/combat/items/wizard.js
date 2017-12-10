@@ -712,12 +712,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  gold_wizard_hat: {
-    id: 'goldwizard_hat',
-    icon: 'goldWizardHat.svg',
+  verdant_wizard_hat: {
+    id: 'verdantwizard_hat',
+    icon: 'verdantWizardHat.svg',
     category: 'combat',
     slot: 'head',
-    name: 'gold wizard hat',
+    name: 'verdant wizard hat',
     sellPrice: 3500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -737,12 +737,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  gold_wizard_shirt: {
-    id: 'gold_wizard_shirt',
-    icon: 'goldWizardShirt.svg',
+  verdant_wizard_shirt: {
+    id: 'verdant_wizard_shirt',
+    icon: 'verdantWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
-    name: 'gold wizard shirt',
+    name: 'verdant wizard shirt',
     sellPrice: 3500,
     description: 'Helps emit magical energy',
     isEquippable: true,
@@ -762,12 +762,12 @@ export const WIZARD_ITEMS = {
     }]
   },
 
-  gold_wizard_shorts: {
-    id: 'gold_wizard_shorts',
-    icon: 'goldWizardShorts.svg',
+  verdant_wizard_shorts: {
+    id: 'verdant_wizard_shorts',
+    icon: 'verdantWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
-    name: 'gold wizard shorts',
+    name: 'verdant wizard shorts',
     sellPrice: 3500,
     description: 'Protect your legs',
     isEquippable: true,

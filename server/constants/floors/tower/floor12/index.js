@@ -50,6 +50,13 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'obsidian_hammer', amount: 1 },
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'amber_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'amber_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'amber_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {

@@ -560,7 +560,7 @@ export const WIZARD_ITEMS = {
       name: 'magic',
       level: 48
     }]
-  }
+  },
 
   crimson_wizard_hat: {
     id: 'crimson_wizard_hat',
@@ -785,5 +785,5 @@ export const WIZARD_ITEMS = {
       name: 'magic',
       level: 55
     }]
-  },
+  }
 }

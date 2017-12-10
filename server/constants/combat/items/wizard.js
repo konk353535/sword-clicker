@@ -172,7 +172,7 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 60,
+      healthMax: 70,
       magicPower: 8,
       magicArmor: 12
     },
@@ -197,7 +197,7 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 70,
+      healthMax: 80,
       magicPower: 15,
       magicArmor: 15
     },
@@ -272,7 +272,7 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 60,
+      healthMax: 70,
       magicPower: 10,
       magicArmor: 12
     },
@@ -372,7 +372,7 @@ export const WIZARD_ITEMS = {
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 65,
+      healthMax: 70,
       magicPower: 10,
       magicArmor: 13
     },

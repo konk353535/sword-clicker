@@ -493,22 +493,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'violet wizard hat',
-    sellPrice: 1500,
+    sellPrice: 2750,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 65,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 100,
+      magicPower: 25,
+      magicArmor: 25
     },
     extraStats: {
       healthMax: 50,
-      magicPower: 3
+      magicPower: 5
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 48
     }]
   },
 
@@ -518,22 +518,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'violet wizard shirt',
-    sellPrice: 1500,
+    sellPrice: 2750,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 100,
+      magicPower: 25,
+      magicArmor: 25
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 5
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 48
     }]
   },
 
@@ -543,22 +543,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'violet wizard shorts',
-    sellPrice: 1500,
+    sellPrice: 2750,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 14
+      healthMax: 100,
+      magicPower: 25,
+      magicArmor: 25
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 5
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 48
     }]
   }
 
@@ -568,22 +568,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'crimson wizard hat',
-    sellPrice: 1500,
+    sellPrice: 3000,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 65,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 110,
+      magicPower: 30,
+      magicArmor: 28
     },
     extraStats: {
       healthMax: 50,
-      magicPower: 3
+      magicPower: 7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 51
     }]
   },
 
@@ -593,22 +593,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'crimson wizard shirt',
-    sellPrice: 1500,
+    sellPrice: 3000,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 110,
+      magicPower: 30,
+      magicArmor: 28
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 51
     }]
   },
 
@@ -618,22 +618,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'crimson wizard shorts',
-    sellPrice: 1500,
+    sellPrice: 3000,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 14
+      healthMax: 110,
+      magicPower: 30,
+      magicArmor: 28
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 7
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 51
     }]
   },
 
@@ -643,22 +643,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'azure wizard hat',
-    sellPrice: 1500,
+    sellPrice: 3250,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 65,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 120,
+      magicPower: 35,
+      magicArmor: 32
     },
     extraStats: {
       healthMax: 50,
-      magicPower: 3
+      magicPower: 8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 53
     }]
   },
 
@@ -668,22 +668,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'azure wizard shirt',
-    sellPrice: 1500,
+    sellPrice: 3250,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 120,
+      magicPower: 35,
+      magicArmor: 32
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 53
     }]
   },
 
@@ -693,22 +693,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'azure wizard shorts',
-    sellPrice: 1500,
+    sellPrice: 3250,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 14
+      healthMax: 120,
+      magicPower: 35,
+      magicArmor: 32
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 8
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 53
     }]
   },
 
@@ -718,22 +718,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'gold wizard hat',
-    sellPrice: 1500,
+    sellPrice: 3500,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 65,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 130,
+      magicPower: 40,
+      magicArmor: 35
     },
     extraStats: {
       healthMax: 50,
-      magicPower: 3
+      magicPower: 10
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 55
     }]
   },
 
@@ -743,22 +743,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'chest',
     name: 'gold wizard shirt',
-    sellPrice: 1500,
+    sellPrice: 3500,
     description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 13
+      healthMax: 130,
+      magicPower: 40,
+      magicArmor: 35
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 10
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 55
     }]
   },
 
@@ -768,22 +768,22 @@ export const WIZARD_ITEMS = {
     category: 'combat',
     slot: 'legs',
     name: 'gold wizard shorts',
-    sellPrice: 1500,
+    sellPrice: 3500,
     description: 'Protect your legs',
     isEquippable: true,
     stats: {
-      healthMax: 70,
-      magicPower: 12,
-      magicArmor: 14
+      healthMax: 130,
+      magicPower: 40,
+      magicArmor: 35
     },
     extraStats: {
-      healthMax: 25,
-      magicPower: 3
+      healthMax: 50,
+      magicPower: 10
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 30
+      level: 55
     }]
   },
 }

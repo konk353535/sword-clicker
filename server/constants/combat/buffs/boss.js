@@ -1446,4 +1446,232 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_bison: {
+    duplicateTag: 'boss_bison', // Used to stop duplicate buffs
+    icon: 'bisonRed.svg',
+    name: 'boss bison',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Charges every 45 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillCharge -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+
+        if (!buff.data.timeTillCharge || buff.data.timeTillCharge <= 0) {
+
+          const unitToAttack = _.findWhere(actualBattle.units, { id: target.target });
+
+          const attackMax = target.stats.attackMax;
+          const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
+          actualBattle.utils.dealDamage(damageToDeal, {
+            attacker: target,
+            defender: unitToAttack,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+            isMagic: buff.data.magic
+          });
+
+          buff.data.timeTillCharge = 100;
+          
+          // Switch to magic / physical
+          buff.data.magic = !buff.data.magic;
+
+          if (buff.data.magic) {
+            buff.data.icon = 'bisonBlue.svg';
+          } else {
+            buff.data.icon = 'bisonRed.svg';
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_wolf: {
+    duplicateTag: 'boss_wolf', // Used to stop duplicate buffs
+    icon: 'bossPoodle.svg',
+    name: 'defensive poodle',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Protects poodle every 5 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.poodleSpawned) {
+          // Add poodle to the game
+
+          const poodleStats = JSON.parse(JSON.stringify(target.stats));
+          poodleStats.health *= 0.33;
+          poodleStats.healthMax *= 0.33;
+          poodleStats.defense *= 0.5;
+          poodleStats.armor *= 0.5;
+          poodleStats.magicArmor *= 0.5;
+          poodleStats.attack *= 0.1;
+          poodleStats.attackMax *= 0.1;
+          poodleStats.accuracy *= 2;
+          poodleStats.magicPower = 20;
+
+          // Spawn little bird
+          const poodle = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'bossPoodle.svg',
+            name: 'poodle',
+            buffs: [{
+              id: 'boss_poodle',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'glasses.svg',        
+                name: 'smarty pants',
+                timeTillSwitch: 30
+              }
+            }],
+            stats: poodleStats
+          }
+
+          actualBattle.enemies.push(poodle);
+
+          buff.data.poodleSpawned = true;
+        }
+
+        buff.data.timeTillDefensive -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillDefensive);
+
+        if (!buff.data.timeTillDefensive || buff.data.timeTillDefensive <= 0) {
+          // Find poodle
+          const poodle = _.findWhere(actualBattle.enemies, { name: 'poodle' });
+
+          // Aggro the unit that did the most damage to poodle in the last 5 seconds
+          let max = -Infinity;
+          let unitToKill;
+          // Access poodle buff
+          const poodleBuff = _.findWhere(poodle.buffs, { id: 'boss_poodle' });
+
+          if (poodleBuff.data.damageMap) {
+            Object.keys(poodleBuff.data.damageMap).forEach((key) => {
+              const damageDone = poodleBuff.data.damageMap[key]
+              if (damageDone > max) {
+                max = damageDone;
+                unitToKill = key;
+              }
+              // Remove targetting of poodle to units that damaged poodle
+              const targetUnit = _.findWhere(actualBattle.units, { id: key });
+              targetUnit.target = target.id;
+            });
+          }
+          poodleBuff.data.damageMap = {};
+  
+          // Attack whoever did most damage to poodle
+          if (unitToKill) {
+            target.target = unitToKill
+          }
+
+          buff.data.timeTillDefensive = 15;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_poodle: {
+    duplicateTag: 'boss_poodle', // Used to stop duplicate buffs
+    icon: 'bossPoodle.svg',
+    name: 'poodle',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Breaks down the target over time`;
+    },
+    constants: {
+    },
+    data: {
+      damageMap: {}
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() * 100 <= 33) {
+          // Reduces target attack, attackMax, magicPower
+          const newBuff = {
+            id: 'attack_reduction',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              allowDuplicates: true,
+              attack: 25,
+              icon: 'attackReduction.svg',
+              description: 'Reduces your attack by 25, for 30 seconds'
+            }
+          }
+
+          // cast attack reduction
+          addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+
+          // Refresh existing attack_duration buffs
+          defender.buffs.forEach((buff) => {
+            if (buff.id === 'attack_duration') {
+              buff.data.duration = 10;
+            }
+          });
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (!buff.data.damageMap) {
+          buff.data.damageMap = {};
+        }
+
+        if (!buff.data.damageMap[attacker.id]) {
+          buff.data.damageMap[attacker.id] = damageDealt;
+        } else {
+          buff.data.damageMap[attacker.id] += damageDealt;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSwitch -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSwitch);
+
+        if (!buff.data.timeTillSwitch || buff.data.timeTillSwitch <= 0) {
+          // Target a random unit
+          target.target = _.sample(actualBattle.units).id
+          buff.data.timeTillSwitch = 30;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  }
 }

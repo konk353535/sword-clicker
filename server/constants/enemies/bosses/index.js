@@ -499,7 +499,7 @@ export const BOSS_ENEMIES = {
       health: 2050,
       healthMax: 2050,
       defense: 250,
-      armor: 300,
+      armor: 330,
       magicArmor: 100,
       damageTaken: 1
     },
@@ -521,14 +521,14 @@ export const BOSS_ENEMIES = {
     name: 'kraken',
     isBoss: true,
     stats: {
-      attack: 250,
-      attackMax: 300,
+      attack: 300,
+      attackMax: 350,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 255,
-      health: 2100,
-      healthMax: 2100,
+      accuracy: 275,
+      health: 3000,
+      healthMax: 3000,
       defense: 255,
-      armor: 300,
+      armor: 370,
       magicArmor: 100,
       damageTaken: 1
     },
@@ -540,6 +540,66 @@ export const BOSS_ENEMIES = {
         icon: 'kraken.svg',        
         name: 'boss kraken',
         timeTillSpawn: 15
+      }
+    }],
+    rewards: []
+  },
+
+  boss_bison: {
+    id: 'boss_bison',
+    icon: 'bison.svg',
+    name: 'bison',
+    isBoss: true,
+    stats: {
+      attack: 325,
+      attackMax: 400,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 300,
+      health: 3500,
+      healthMax: 3500,
+      defense: 275,
+      armor: 400,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_bison',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'bisonRed.svg',        
+        name: 'boss bison',
+        timeTillCharge: 20
+      }
+    }],
+    rewards: []
+  },
+
+  boss_wolf: {
+    id: 'boss_wolf',
+    icon: 'bossWolf.svg',
+    name: 'wolf',
+    isBoss: true,
+    stats: {
+      attack: 325,
+      attackMax: 400,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 300,
+      health: 3500,
+      healthMax: 3500,
+      defense: 275,
+      armor: 400,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_wolf',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'bossPoodle.svg',
+        name: 'poodle defense',
+        timeTillDefensive: 5
       }
     }],
     rewards: []

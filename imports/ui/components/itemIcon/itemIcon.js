@@ -5,8 +5,6 @@ import { Session } from 'meteor/session';
 
 import './itemIcon.html';
 
-let tooltip;
-
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
@@ -31,25 +29,6 @@ Template.itemIcon.helpers({
   quickSelling() {
     const instance = Template.instance();
     return instance.state.get('quickSelling');
-  }
-})
-
-Template.itemIcon.rendered = function () {
-  if (!Template.instance().data.hideTooltip) {
-    // var currentData = Template.currentData();
-    tooltip = new Drop({
-      target: Template.instance().$('.item-icon-container')[0],
-      content: Template.instance().$('.item-tooltip-content')[0],
-      openOn: 'hover',
-      position: 'top left',
-      remove: true
-    });
-  }
-}
-
-Template.itemIcon.onDestroyed(function () {
-  if (tooltip && tooltip.target) {
-    tooltip.remove();
   }
 })
 

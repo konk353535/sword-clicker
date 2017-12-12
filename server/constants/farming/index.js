@@ -65,6 +65,51 @@ export const FARMING = {
       }]
     },
 
+    poppy_seed: {
+      id: 'poppy_seed',
+      itemId: 'poppy_seed',
+      requiredFarmingLevel: 49,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 49
+      }]
+    },
+
+    zinnia_seed: {
+      id: 'zinnia_seed',
+      itemId: 'zinnia_seed',
+      requiredFarmingLevel: 59,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 59
+      }]
+    },
+
+    tulip_seed: {
+      id: 'tulip_seed',
+      itemId: 'tulip_seed',
+      requiredFarmingLevel: 69,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 69
+      }]
+    },
+
     cactus_seed: {
       id: 'cactus_seed',
       itemId: 'cactus_seed',
@@ -92,6 +137,36 @@ export const FARMING = {
         type: 'skill',
         name: 'farming',
         level: 36
+      }]
+    },
+
+    kenaf_seed: {
+      id: 'kenaf_seed',
+      itemId: 'kenaf_seed',
+      requiredFarmingLevel: 56,
+      required: [{
+        type: 'gold',
+        amount: 100,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 56
+      }]
+    },
+
+    palm_seed: {
+      id: 'palm_seed',
+      itemId: 'palm_seed',
+      requiredFarmingLevel: 76,
+      required: [{
+        type: 'gold',
+        amount: 250,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 76
       }]
     },
 
@@ -155,9 +230,9 @@ export const FARMING = {
       }]
     },
 
-    blue_gum_seed: {
-      id: 'blue_gum_seed',
-      itemId: 'blue_gum_seed',
+    oak_seed: {
+      id: 'oak_seed',
+      itemId: 'oak_seed',
       requiredFarmingLevel: 15,
       required: [{
         type: 'gold',
@@ -274,6 +349,143 @@ export const FARMING = {
         level: 50
       }]
     },
+
+    cedar_seed: {
+      id: 'cedar_seed',
+      itemId: 'cedar_seed',
+      requiredFarmingLevel: 55,
+      required: [{
+        type: 'gold',
+        amount: 1200,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 55
+      }]
+    },
+
+    denya_seed: {
+      id: 'denya_seed',
+      itemId: 'denya_seed',
+      requiredFarmingLevel: 60,
+      required: [{
+        type: 'gold',
+        amount: 1300,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 60
+      }]
+    },
+
+    gombe_seed: {
+      id: 'gombe_seed',
+      itemId: 'gombe_seed',
+      requiredFarmingLevel: 65,
+      required: [{
+        type: 'gold',
+        amount: 1400,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 65
+      }]
+    },
+
+    hickory_seed: {
+      id: 'hickory_seed',
+      itemId: 'hickory_seed',
+      requiredFarmingLevel: 70,
+      required: [{
+        type: 'gold',
+        amount: 1500,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 70
+      }]
+    },
+
+    larch_seed: {
+      id: 'larch_seed',
+      itemId: 'larch_seed',
+      requiredFarmingLevel: 75,
+      required: [{
+        type: 'gold',
+        amount: 1600,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 75
+      }]
+    },
+
+    poplar_seed: {
+      id: 'poplar_seed',
+      itemId: 'poplar_seed',
+      requiredFarmingLevel: 80,
+      required: [{
+        type: 'gold',
+        amount: 1700,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 80
+      }]
+    },
+
+    tali_seed: {
+      id: 'tali_seed',
+      itemId: 'tali_seed',
+      requiredFarmingLevel: 85,
+      required: [{
+        type: 'gold',
+        amount: 1800,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 85
+      }]
+    },
+
+    teak_seed: {
+      id: 'teak_seed',
+      itemId: 'teak_seed',
+      requiredFarmingLevel: 90,
+      required: [{
+        type: 'gold',
+        amount: 1900,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 90
+      }]
+    },
+
+    willow_seed: {
+      id: 'willow_seed',
+      itemId: 'willow_seed',
+      requiredFarmingLevel: 95,
+      required: [{
+        type: 'gold',
+        amount: 2000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 95
+      }]
+    },
+
+
 
     lemon_seed: {
       id: 'lemon_seed',

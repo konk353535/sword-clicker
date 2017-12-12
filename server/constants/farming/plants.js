@@ -76,6 +76,7 @@ export const PLANTS = {
     }]
   },
 
+  // 0.25 hours, 2800g/hr
   hydrangea: {
     produces: 'hydrangea',
     name: 'hydrangea',
@@ -101,6 +102,85 @@ export const PLANTS = {
     }]
   },
 
+  // 4 hours, 800g/hr
+  poppy: {
+    produces: 'poppy',
+    name: 'poppy',
+    id: 'poppy',
+    category: 'farming',
+    icon: ITEMS['poppy'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 4,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'poppy_seed',
+      icon: ITEMS['poppy_seed'].icon,
+      name: ITEMS['poppy_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 49
+    }]
+  },
+
+  // 8 hours, 700/hr
+  zinnia: {
+    produces: 'zinnia',
+    name: 'zinnia',
+    id: 'zinnia',
+    category: 'farming',
+    icon: ITEMS['zinnia'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 8,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'zinnia_seed',
+      icon: ITEMS['zinnia_seed'].icon,
+      name: ITEMS['zinnia_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 59
+    }]
+  },
+
+  // 0.16 hr, 3450/hr
+  tulip: {
+    produces: 'tulip',
+    name: 'tulip',
+    id: 'tulip',
+    category: 'farming',
+    icon: ITEMS['zinnia'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 10 * 60,
+    xp: 1,
+    required: [{
+      type: 'item',
+      itemId: 'tulip_seed',
+      icon: ITEMS['tulip_seed'].icon,
+      name: ITEMS['tulip_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 69
+    }]
+  },
+
+  // 8 hours, 500g/hr
   chrysanthemum: {
     produces: 'chrysanthemum',
     name: 'chrysanthemum',
@@ -173,6 +253,56 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 36
+    }]
+  },
+
+  kenaf: {
+    produces: 'kenaf',
+    name: 'kenaf',
+    id: 'kenaf',
+    category: 'farming',
+    icon: ITEMS['kenaf'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 30,
+    xp: 1250,
+    required: [{
+      type: 'item',
+      itemId: 'kenaf_seed',
+      icon: ITEMS['kenaf_seed'].icon,
+      name: ITEMS['kenaf_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 56
+    }]
+  },
+
+  palm: {
+    produces: 'palm',
+    name: 'palm',
+    id: 'palm',
+    category: 'farming',
+    icon: ITEMS['palm'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 60 * 60 * 2,
+    xp: 8000,
+    required: [{
+      type: 'item',
+      itemId: 'palm_seed',
+      icon: ITEMS['palm_seed'].icon,
+      name: ITEMS['palm_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 76
     }]
   },
 
@@ -872,7 +1002,7 @@ export const PLANTS = {
 
   blue_gum_log: {
     produces: 'blue_gum_log',
-    name: 'blue_gum tree',
+    name: 'blue gum tree',
     produceAmount: 20,
     id: 'blue_gum_log',
     category: 'farming',
@@ -895,6 +1025,249 @@ export const PLANTS = {
       level: 50
     }]
   },
+
+  cedar_log: {
+    produces: 'cedar_log',
+    name: 'cedar tree',
+    produceAmount: 20,
+    id: 'cedar_log',
+    category: 'farming',
+    icon: 'cedarTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 4500,
+    required: [{
+      type: 'item',
+      itemId: 'cedar_seed',
+      icon: ITEMS['cedar_seed'].icon,
+      name: ITEMS['cedar_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 55
+    }]
+  },
+
+  denya_log: {
+    produces: 'denya_log',
+    name: 'denya tree',
+    produceAmount: 20,
+    id: 'denya_log',
+    category: 'farming',
+    icon: 'denyaTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 5000,
+    required: [{
+      type: 'item',
+      itemId: 'denya_seed',
+      icon: ITEMS['denya_seed'].icon,
+      name: ITEMS['denya_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 60
+    }]
+  },
+
+  gombe_log: {
+    produces: 'gombe_log',
+    name: 'gombe tree',
+    produceAmount: 20,
+    id: 'gombe_log',
+    category: 'farming',
+    icon: 'gombeTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 5600,
+    required: [{
+      type: 'item',
+      itemId: 'gombe_seed',
+      icon: ITEMS['gombe_seed'].icon,
+      name: ITEMS['gombe_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 65
+    }]
+  },
+
+  hickory_log: {
+    produces: 'hickory_log',
+    name: 'hickory tree',
+    produceAmount: 20,
+    id: 'hickory_log',
+    category: 'farming',
+    icon: 'hickoryTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 6200,
+    required: [{
+      type: 'item',
+      itemId: 'hickory_seed',
+      icon: ITEMS['hickory_seed'].icon,
+      name: ITEMS['hickory_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 70
+    }]
+  },
+
+  larch_log: {
+    produces: 'larch_log',
+    name: 'larch tree',
+    produceAmount: 20,
+    id: 'larch_log',
+    category: 'farming',
+    icon: 'larchTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 6900,
+    required: [{
+      type: 'item',
+      itemId: 'larch_seed',
+      icon: ITEMS['larch_seed'].icon,
+      name: ITEMS['larch_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 75
+    }]
+  },
+
+  poplar_log: {
+    produces: 'poplar_log',
+    name: 'poplar tree',
+    produceAmount: 20,
+    id: 'poplar_log',
+    category: 'farming',
+    icon: 'poplarTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 7600,
+    required: [{
+      type: 'item',
+      itemId: 'poplar_seed',
+      icon: ITEMS['poplar_seed'].icon,
+      name: ITEMS['poplar_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 80
+    }]
+  },
+
+  tali_log: {
+    produces: 'tali_log',
+    name: 'tali tree',
+    produceAmount: 20,
+    id: 'tali_log',
+    category: 'farming',
+    icon: 'taliTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp: 8400,
+    required: [{
+      type: 'item',
+      itemId: 'tali_seed',
+      icon: ITEMS['tali_seed'].icon,
+      name: ITEMS['tali_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 85
+    }]
+  },
+
+  teak_log: {
+    produces: 'teak_log',
+    name: 'teak tree',
+    produceAmount: 20,
+    id: 'teak_log',
+    category: 'farming',
+    icon: 'teakTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp:9000,
+    required: [{
+      type: 'item',
+      itemId: 'teak_seed',
+      icon: ITEMS['teak_seed'].icon,
+      name: ITEMS['teak_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 90
+    }]
+  },
+
+  willow_log: {
+    produces: 'willow_log',
+    name: 'willow tree',
+    produceAmount: 20,
+    id: 'willow_log',
+    category: 'farming',
+    icon: 'willowTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp:10000,
+    required: [{
+      type: 'item',
+      itemId: 'willow_seed',
+      icon: ITEMS['willow_seed'].icon,
+      name: ITEMS['willow_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 95
+    }]
+  },
+
+
+
+
+
+
+
+
+
 
   endive: {
     produces: 'endive',

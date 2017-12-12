@@ -286,7 +286,7 @@ export const PLANTS = {
     name: 'palm',
     id: 'palm',
     category: 'farming',
-    icon: ITEMS['palm '].icon,
+    icon: ITEMS['palm'].icon,
     waterStorage: 100,
     initialWater: 100,
     requiredWater: 50,

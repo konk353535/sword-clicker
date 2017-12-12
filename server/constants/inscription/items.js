@@ -2121,8 +2121,8 @@ export const INSCRIPTION_ITEMS = {
     name: 'lesser fire',
     sellPrice: 50,
     description: `
-      Can be consumed to increase an items quality by up to 15%.<br />
-      Can only be applied once per item. <br />
+      Can be consumed to increase an items quality by up to 15%.\n
+      Can only be applied once per item.\n
       Item quality can not be increased beyond 100%.`,
     shiftActionData: {
       description: 'increase an items quality by up to 15%',

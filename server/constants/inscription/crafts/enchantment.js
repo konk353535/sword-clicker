@@ -17,7 +17,7 @@ export const ENCHANTMENT_CRAFTS = {
       icon: ITEMS['pigment_red_255'].icon,
       name: ITEMS['pigment_red_255'].name,
       amount: 1,
-      consumes: false
+      consumes: true
     }, {
       type: 'skill',
       name: 'inscription',

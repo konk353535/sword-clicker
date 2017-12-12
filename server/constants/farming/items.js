@@ -102,6 +102,78 @@ export const FARMING_ITEMS = {
     sellPrice: 700
   },
 
+  poppy_seed: {
+    id: 'poppy_seed',
+    icon: 'poppySeed.svg',
+    category: 'seed',
+    name: 'poppy Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'hydrangea'
+  },
+
+  poppy: {
+    id: 'poppy',
+    icon: 'poppy.svg',
+    category: 'herb',
+    name: 'poppy',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 3200
+  },
+
+  zinnia_seed: {
+    id: 'zinnia_seed',
+    icon: 'zinniaSeed.svg',
+    category: 'seed',
+    name: 'zinnia Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'zinnia'
+  },
+
+  zinnia: {
+    id: 'zinnia',
+    icon: 'zinnia.svg',
+    category: 'herb',
+    name: 'zinnia',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 5600
+  },
+
+  tulip_seed: {
+    id: 'tulip_seed',
+    icon: 'tulipSeed.svg',
+    category: 'seed',
+    name: 'tulip Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'tulip'
+  },
+
+  tulip: {
+    id: 'tulip',
+    icon: 'tulip.svg',
+    category: 'herb',
+    name: 'tulip',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 575
+  },
+
   chrysanthemum_seed: {
     id: 'chrysanthemum_seed',
     icon: 'chrysanthemumSeed.svg',
@@ -173,6 +245,56 @@ export const FARMING_ITEMS = {
     },
     sellPrice: 1
   },
+
+  kenaf: {
+    id: 'kenaf',
+    icon: 'kenaf.svg',
+    category: 'herb',
+    name: 'kenaf',
+    description() {
+      return 'Looks useful';
+    },
+    sellPrice: 1
+  },
+
+  kenaf_seed: {
+    id: 'kenaf_seed',
+    icon: 'kenafSeed.svg',
+    category: 'seed',
+    name: 'kenaf Seed',
+    seedType: 'misc',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'kenaf'
+  },
+
+  palm: {
+    id: 'palm',
+    icon: 'palm.svg',
+    category: 'herb',
+    name: 'palm',
+    description() {
+      return 'Looks useful';
+    },
+    sellPrice: 1
+  },
+
+  palm_seed: {
+    id: 'palm_seed',
+    icon: 'palmSeed.svg',
+    category: 'seed',
+    name: 'palm Seed',
+    seedType: 'misc',
+    description() {
+      return 'Good exp';
+    },
+    sellPrice: 1,
+    produces: 'palm'
+  },
+
+
 
   pear_seed: {
     id: 'pear_seed',
@@ -669,6 +791,106 @@ export const FARMING_ITEMS = {
     sellPrice: 10,
     produces: 'blue_gum_log'
   },
+
+  cedar_seed: {
+    id: 'cedar_seed',
+    icon: 'cedarSeed.svg',
+    category: 'seed',
+    name: 'cedar Seed',
+    seedType: 'tree',
+    description: 'Used to grow cedar log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'cedar_log'
+  },
+
+  denya_seed: {
+    id: 'denya_seed',
+    icon: 'denyaSeed.svg',
+    category: 'seed',
+    name: 'denya Seed',
+    seedType: 'tree',
+    description: 'Used to grow denya log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'denya_log'
+  },
+
+  gombe_seed: {
+    id: 'gombe_seed',
+    icon: 'gombeSeed.svg',
+    category: 'seed',
+    name: 'gombe Seed',
+    seedType: 'tree',
+    description: 'Used to grow gombe log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'gombe_log'
+  },
+
+  hickory_seed: {
+    id: 'hickory_seed',
+    icon: 'hickorySeed.svg',
+    category: 'seed',
+    name: 'hickory Seed',
+    seedType: 'tree',
+    description: 'Used to grow hickory log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'hickory_log'
+  },
+
+  larch_seed: {
+    id: 'larch_seed',
+    icon: 'larchSeed.svg',
+    category: 'seed',
+    name: 'larch Seed',
+    seedType: 'tree',
+    description: 'Used to grow larch log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'larch_log'
+  },
+
+  poplar_seed: {
+    id: 'poplar_seed',
+    icon: 'poplarSeed.svg',
+    category: 'seed',
+    name: 'poplar Seed',
+    seedType: 'tree',
+    description: 'Used to grow poplar log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'poplar_log'
+  },
+
+  tali_seed: {
+    id: 'tali_seed',
+    icon: 'taliSeed.svg',
+    category: 'seed',
+    name: 'tali Seed',
+    seedType: 'tree',
+    description: 'Used to grow tali log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'tali_log'
+  },
+
+  teak_seed: {
+    id: 'teak_seed',
+    icon: 'teakSeed.svg',
+    category: 'seed',
+    name: 'teak Seed',
+    seedType: 'tree',
+    description: 'Used to grow teak log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'teak_log'
+  },
+
+  willow_seed: {
+    id: 'willow_seed',
+    icon: 'willowSeed.svg',
+    category: 'seed',
+    name: 'willow Seed',
+    seedType: 'tree',
+    description: 'Used to grow willow log. Long time to grow, gives good exp.',
+    sellPrice: 10,
+    produces: 'willow_log'
+  },
+
 
   pink_rose_seed: {
     id: 'pink_rose_seed',

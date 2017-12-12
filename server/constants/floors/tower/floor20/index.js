@@ -42,6 +42,13 @@ export const TOWER_FLOOR_20 = {
       rewards: [
         { type: 'item', itemId: 'cursed_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'verdant_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'verdant_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'verdant_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {

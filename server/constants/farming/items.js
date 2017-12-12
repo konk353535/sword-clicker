@@ -112,7 +112,7 @@ export const FARMING_ITEMS = {
       return 'Sells for $$$'
     },
     sellPrice: 1,
-    produces: 'hydrangea'
+    produces: 'poppy'
   },
 
   poppy: {

@@ -387,6 +387,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
         // Blank
         if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster })

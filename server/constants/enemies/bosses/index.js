@@ -604,4 +604,34 @@ export const BOSS_ENEMIES = {
     }],
     rewards: []
   },
+
+  boss_fox: {
+    id: 'boss_fox',
+    icon: 'fireFox.svg',
+    name: 'fox',
+    isBoss: true,
+    stats: {
+      attack: 325,
+      attackMax: 400,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 325,
+      health: 4500,
+      healthMax: 4500,
+      defense: 325,
+      armor: 400,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_fox',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'fireFox.svg',
+        name: 'fire',
+        phase: 2 // starts on air phase
+      }
+    }],
+    rewards: []
+  },
 }

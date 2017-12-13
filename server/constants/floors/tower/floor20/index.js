@@ -85,7 +85,7 @@ export const TOWER_FLOOR_20 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
+    enemy: { id: 'boss_fox', amount: 1 },
     rewards: LEVEL_TWENTY_LOOT_TABLE
   },
 

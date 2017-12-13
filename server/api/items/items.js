@@ -396,11 +396,11 @@ Meteor.methods({
           consumeItem(baseItem, 1);
         }
       }
-    } else if (baseItem.itemId === 'enchantment_fire') {
+    } else if (baseItem.category === 'enchantment') {
 
       console.log('Enchanted Activated.' + targetItem.itemId);
 
-      if (targetItem.enchanted) {
+      if (targetItem.enchantmentId) {
         console.log('Already enchanted.');
         throw new Meteor.Error("invalid-target", 'Item already enchanted');
       }
@@ -424,7 +424,17 @@ Meteor.methods({
         console.log('Enchantment slot doesn\'t match target slot');
         throw new Meteor.Error("invalid-target", 'Item is not crafted.');
       }
-      
+
+      console.log(targetItem);
+      Items.update({
+        owner: Meteor.userId(),
+        _id: targetItem._id
+      }, {
+        $set: {
+         enchantmentId : baseItem.itemId
+        }
+      });
+
 /*
       const targetItemClone = JSON.parse(JSON.stringify(targetItem));
 

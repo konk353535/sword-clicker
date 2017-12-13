@@ -10,9 +10,12 @@ import { addXp } from '/server/api/skills/skills.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
 import { BUFFS } from '/server/constants/combat/index.js';
+import { COMBAT_CRAFTS } from '/server/constants/combat/crafts.js';
 import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
+
+
 
 import _ from 'underscore';
 
@@ -395,15 +398,33 @@ Meteor.methods({
       }
     } else if (baseItem.itemId === 'enchantment_fire') {
 
-      if(targetItem.enchanted) {
+      console.log('Enchanted Activated.' + targetItem.itemId);
+
+      if (targetItem.enchanted) {
+        console.log('Already enchanted.');
         throw new Meteor.Error("invalid-target", 'Item already enchanted');
       }
 
-      if(!CRAFTING.recipes[targetItem.id]) {
+      if (!COMBAT_CRAFTS[targetItem.itemId]) {
+        console.log('Not a recipe');
         throw new Meteor.Error("invalid-target", 'Item is not crafted.');
       }
 
-      console.log('=== Key here');
+      if (!baseItemConstants.enchantSlot) {
+        console.log('Enchant Slot not set');
+        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
+      }
+
+      if (!targetItemConstants.slot) {
+        console.log('Target item slot not defined');
+        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
+      }
+
+      if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
+        console.log('Enchantment slot doesn\'t match target slot');
+        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
+      }
+      
 /*
       const targetItemClone = JSON.parse(JSON.stringify(targetItem));
 

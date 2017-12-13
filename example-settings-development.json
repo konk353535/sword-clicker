@@ -1,0 +1,17 @@
+{
+  "kadira": {
+    "KADIRA_PROFILE_LOCALLY": true
+  },
+  "redisConfigureKeyspaceNotifications": 1,
+  "public": {
+    "stripe": "-or-this"
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MAIL_URL": "probs-dont-needthis-"
+    }
+  },
+  "private": {
+    "stripe": "-or-this"
+  }
+}

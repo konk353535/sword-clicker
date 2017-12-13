@@ -2120,6 +2120,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'enchantment',
     name: 'lesser fire',
     sellPrice: 50,
+    enchantSlot: ['mainHand'],
     description: `
       Can be consumed to increase an items quality by up to 15%.\n
       Can only be applied once per item.\n

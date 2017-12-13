@@ -434,51 +434,6 @@ Meteor.methods({
          enchantmentId : baseItem.itemId
         }
       });
-
-/*
-      const targetItemClone = JSON.parse(JSON.stringify(targetItem));
-
-          // Remove the key
-          if (baseItem.amount === 1) {
-            Events.insert({
-              owner: Meteor.userId(),
-              event: 'items.consumeItem',
-              date: new Date(),
-              data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
-            }, () => {});
-            Items.remove({
-              owner: Meteor.userId(),
-              _id: baseItem._id
-            });
-          } else {
-            Items.update({
-              owner: Meteor.userId(),
-              _id: baseItem._id
-            }, {
-              $inc: {
-                amount: -1
-              }
-            });
-          }
-
-          // Update the stats of the item
-          Items.update({
-            owner: Meteor.userId(),
-            _id: targetItem._id
-          }, {
-            $set: {
-              extraStats: targetItemClone.extraStats,
-              quality: targetItemClone.quality,
-              enchanted: true
-            }
-          });
-        } else {
-          throw new Meteor.Error("invalid-target", 'Invalid target item');
-        }
-      } else {
-        throw new Meteor.Error("invalid-target", 'Invalid target item');
-      }
-      */
     }
 
     // To Do: Make this more generic

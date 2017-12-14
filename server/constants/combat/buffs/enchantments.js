@@ -5,6 +5,59 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  krakens_tentacle: {
+    duplicateTag: 'krakens_tentacle', // Used to stop duplicate buffs
+    icon: 'tentacle.svg',
+    name: 'krakens tentacle',
+    description() {
+      return `Each auto attack gives 1 charge. <br />At 20 charges increases attack speed by 50% for 3 seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.charges = 0;
+      },
+
+      onDidDamage({ buff, attacker }) {
+        if (!buff.data.isActive) {
+          buff.data.charges += 1;
+          buff.data.stacks = buff.data.charges;
+        }
+
+        if (buff.data.charges >= 20 && !buff.data.isActive) {
+          attacker.stats.attackSpeed *= 1.5;
+          attacker.stats.attackSpeed = attackSpeedTicks(attacker.stats.attackSpeed);
+          buff.data.timeTillEnd = 3;
+          buff.data.isActive = true;
+          buff.data.stacks = undefined;
+          buff.data.icon = 'tentacleRed.svg';
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.isActive) {
+          buff.data.timeTillEnd -= secondsElapsed;
+          if (buff.data.timeTillEnd <= 0) {
+            buff.data.isActive = false;
+            buff.data.charges = 0;
+            target.stats.attackSpeed /= 1.5;
+            target.stats.attackSpeed = attackSpeedTicks(target.stats.attackSpeed);
+            buff.data.icon = 'tentacle.svg';
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   rich_snake_skin: {
     duplicateTag: 'rich_snake_skin', // Used to stop duplicate buffs
     icon: 'richSnakeSkin.svg',

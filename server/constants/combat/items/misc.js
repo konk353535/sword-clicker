@@ -1021,4 +1021,32 @@ export const MISC_ITEMS = {
     }],
     "enchantments": ['rich_snake_skin']
   },
+
+  "krakens_tentacle": {
+    "id": "krakens_tentacle",
+    "icon": "tentacle.svg",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "cobalt knife",
+    "sellPrice": 950,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 7,
+      "attack": 6,
+      "attackMax": 8
+    },
+    "extraStats": {
+      "accuracy": 3,
+      "attack": 3,
+      "attackMax": 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }],
+    enchantments: ['krakens_tentacle']
+  },
 }

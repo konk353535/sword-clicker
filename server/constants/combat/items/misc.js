@@ -994,4 +994,31 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['frankensteins_heart']
   },
+
+  "rich_snake_skin": {
+    "id": "rich_snake_skin",
+    "icon": "richSnakeSkin.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "rich snake skin",
+    "sellPrice": 1800,
+    "description": "Protect your chest",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.7,
+      "defense": 10.7,
+      "armor": 51.4
+    },
+    "extraStats": {
+      "healthMax": 3.2,
+      "defense": 3.2,
+      "armor": 15.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }],
+    "enchantments": ['rich_snake_skin']
+  },
 }

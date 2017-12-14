@@ -5,6 +5,37 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  rich_snake_skin: {
+    duplicateTag: 'rich_snake_skin', // Used to stop duplicate buffs
+    icon: 'richSnakeSkin.svg',
+    name: 'rich snake skin',
+    description() {
+      return `Converts 10% of armor into defense.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        const amountToAdd = target.stats.armor * 0.1;
+        buff.data.defense = amountToAdd;
+        target.stats.defense += buff.data.defense;
+        buff.data.stacks = Math.round(buff.data.defense);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+        target.stats.defense -= buff.data.defense;
+      }
+    }
+  },
+
   frankensteins_heart: {
     duplicateTag: 'frankensteins_heart', // Used to stop duplicate buffs
     icon: 'frankensteinsHeart.svg',

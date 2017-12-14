@@ -967,4 +967,31 @@ export const MISC_ITEMS = {
     sellPrice: 400,
     description: 'Looks cozy (lots of xp)'
   },
+
+  "frankensteins_heart": {
+    "id": "frankensteins_heart",
+    "icon": "frankensteinsHeart.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "frankensteins heart",
+    "sellPrice": 2500,
+    "description": "Protect your heart",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 9.7,
+      "defense": 9.7,
+      "armor": 46.7
+    },
+    "extraStats": {
+      "healthMax": 2.9,
+      "defense": 2.9,
+      "armor": 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }],
+    enchantments: ['frankensteins_heart']
+  },
 }

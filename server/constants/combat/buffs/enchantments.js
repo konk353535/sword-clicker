@@ -5,6 +5,46 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  frankensteins_heart: {
+    duplicateTag: 'frankensteins_heart', // Used to stop duplicate buffs
+    icon: 'frankensteinsHeart.svg',
+    name: 'frankensteins heart',
+    description() {
+      return `Increases attack by 1% (of max attack) every 7 seconds. <br />Caps at +35% damage.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.totalTime = 0;
+        buff.data.totalDamage = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.totalTime += secondsElapsed;
+        if (actualBattle.tick % 4 === 0) {
+          target.stats.attack -= buff.data.totalDamage;
+          target.stats.attackMax -= buff.data.totalDamage;
+          // Extra damage
+          const roundedTime = Math.ceil(buff.data.totalTime / 7)
+          const extraDamagePercentage = roundedTime < 35 ? roundedTime : 35;
+          buff.data.totalDamage = target.stats.attackMax * (extraDamagePercentage / 100);
+          target.stats.attackMax += buff.data.totalDamage;
+          target.stats.attack += buff.data.totalDamage;
+          buff.data.stacks = Math.round(buff.data.totalDamage);
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   bloody_plate_legs: {
     duplicateTag: 'bloody_plate_legs', // Used to stop duplicate buffs
     icon: 'bloodyPlateLegs.svg',

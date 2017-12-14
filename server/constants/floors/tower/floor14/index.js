@@ -88,7 +88,12 @@ export const TOWER_FLOOR_14 = {
 
   boss: {
     enemy: { id: 'boss_frankenstein', amount: 1 },
-    rewards: LEVEL_FOURTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'frankensteins_heart', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

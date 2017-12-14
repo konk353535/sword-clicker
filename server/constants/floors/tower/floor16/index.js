@@ -85,7 +85,12 @@ export const TOWER_FLOOR_16 = {
 
   boss: {
     enemy: { id: 'boss_old_tortoise', amount: 1 },
-    rewards: LEVEL_SIXTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'war_cry_tome', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

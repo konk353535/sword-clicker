@@ -932,6 +932,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the accuracy up ability.'
   },
 
+  war_cry_tome: {
+    id: 'war_cry_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'war cry tome',
+    teaches: {
+      abilityId: 'war_cry',
+      level: 1
+    },
+    sellPrice: 3000,
+    description: 'Can be consumed to learn the war cry ability.'
+  },
+
   accuracy_up_3_tome: {
     id: 'accuracy_up_3_tome',
     icon: 'tomeUncommon.svg',

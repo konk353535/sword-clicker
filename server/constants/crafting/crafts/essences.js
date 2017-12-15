@@ -477,7 +477,7 @@ export const ESSENCE_CRAFTS = {
   fairy_steel_essence: {
     produces: 'fairy_steel_essence',
     recipeFor: 'crafting',
-    name: 'fairy_steel essence',
+    name: 'fairy steel essence',
     id: 'fairy_steel_essence',
     category: 'crafting',
     timeToCraft: 900,
@@ -509,7 +509,7 @@ export const ESSENCE_CRAFTS = {
   elven_steel_essence: {
     produces: 'elven_steel_essence',
     recipeFor: 'crafting',
-    name: 'elven_steel essence',
+    name: 'elven steel essence',
     id: 'elven_steel_essence',
     category: 'crafting',
     timeToCraft: 900,

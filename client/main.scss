@@ -290,3 +290,21 @@ body { padding-right: 0 !important }
   opacity: 1.0;
 }
 
+.item-icon-container .item-tooltip-content {
+  z-index: 1050;
+  visibility: hidden;
+  position: absolute;
+  bottom: 105%;
+  left: 0;
+  min-width: 150px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  background-color: white;
+  white-space: nowrap;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.item-icon-container:hover .item-tooltip-content {
+  visibility: visible;
+}

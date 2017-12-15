@@ -5,6 +5,56 @@ import { BUFFS } from '/server/constants/combat/index.js';
 
 export const ENCHANTMENT_BUFFS = {
 
+  bison_axe: {
+    duplicateTag: 'bison_axe', // Used to stop duplicate buffs
+    icon: 'bisonAxe.svg',
+    name: 'bison axe',
+    description() {
+      return `Every 5 seconds an auto attacks becomes charged. Dealing it's damage to all enemies.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.timeTillCharge = 5;
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+      },
+
+      onTick({ secondsElapsed, buff }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (buff.data.timeTillCharge <= 0) {
+          buff.data.timeTillCharge = 5;
+          actualBattle.enemies.forEach((enemy) => {
+            if (enemy.id !== defender.id) {
+              actualBattle.utils.dealDamage(damageDealt, {
+                attacker: attacker,
+                defender: enemy,
+                // Need to make sure this is required
+                isTrueDamage: true,
+                tickEvents: actualBattle.tickEvents,
+                historyStats: actualBattle.historyStats,
+              });
+            }
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
   krakens_tentacle: {
     duplicateTag: 'krakens_tentacle', // Used to stop duplicate buffs
     icon: 'tentacle.svg',

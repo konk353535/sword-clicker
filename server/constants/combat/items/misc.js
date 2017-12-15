@@ -1049,4 +1049,35 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['krakens_tentacle']
   },
+
+  "bison_axe": {
+    "id": "bison_axe",
+    "icon": "bisonAxe.svg",
+    "category": "combat",
+    "weaponType": "battleAxe",
+    "slot": "mainHand",
+    "name": "Bisons axe",
+    "sellPrice": 2250,
+    "description": "Fix for a bison to wield",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 68.4,
+      "attackMax": 245.7,
+      "attackSpeed": 0.3,
+      "accuracy": 109.8,
+      "criticalChance": 5
+    },
+    "extraStats": {
+      "attack": 20.5,
+      "attackMax": 73.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }],
+    enchantments: ['bison_axe']
+  },
 }

@@ -5,7 +5,7 @@ export const FOOD_BUFFS = {
     name: 'eating lettuce',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> But takes ${buff.data.totalDuration}s to finish digesting.`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Takes ${buff.data.totalDuration}s to finish digesting.`;
     },
     data: { // Data we require to persist
       duration: 30, // How long the buff will last
@@ -34,7 +34,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -63,7 +63,7 @@ export const FOOD_BUFFS = {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health <br /> over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 120, // How long the buff will last
@@ -93,8 +93,8 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -126,7 +126,7 @@ export const FOOD_BUFFS = {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health <br /> over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 120, // How long the buff will last
@@ -156,8 +156,8 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -219,7 +219,7 @@ export const FOOD_BUFFS = {
     name: 'eating lemon',
     description({ buff, level }) {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
-      return `Regenerates ${totalEnergy} energy over ${buff.data.totalDuration}s`;
+      return `Regenerates ${totalEnergy} energy over a ${buff.data.totalDuration}s digestion period`.;
     },
     data: { // Data we require to persist
       duration: 300, // How long the buff will last
@@ -242,7 +242,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -269,7 +269,7 @@ export const FOOD_BUFFS = {
     name: 'eating grapefruit',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Takes ${buff.data.totalDuration}s to finish digesting.`;
     },
     data: { // Data we require to persist
       duration: 45, // How long the buff will last
@@ -298,7 +298,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -325,7 +325,7 @@ export const FOOD_BUFFS = {
     name: 'eating red apple',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 35, // How long the buff will last
@@ -353,7 +353,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -380,7 +380,7 @@ export const FOOD_BUFFS = {
     name: 'eating orange',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Takes ${buff.data.totalDuration}s to finish digesting.`;
     },
     data: { // Data we require to persist
       duration: 80, // How long the buff will last
@@ -409,7 +409,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -436,7 +436,7 @@ export const FOOD_BUFFS = {
     name: 'eating pineapple',
     description({ buff, level }) {
       const instantHeal = buff.data.instantHeal;
-      return `Heals for ${instantHeal}hp instantly. <br /> Digests over ${buff.data.totalDuration}s`;
+      return `Heals for ${instantHeal}hp instantly. <br /> Takes ${buff.data.totalDuration}s to finish digesting.`;
     },
     data: { // Data we require to persist
       duration: 80, // How long the buff will last
@@ -465,7 +465,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -492,7 +492,7 @@ export const FOOD_BUFFS = {
     name: 'eating pear',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 25, // How long the buff will last
@@ -520,7 +520,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -547,7 +547,7 @@ export const FOOD_BUFFS = {
     name: 'eating acai berry',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 25, // How long the buff will last
@@ -575,7 +575,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -602,7 +602,7 @@ export const FOOD_BUFFS = {
     name: 'eating watermelon',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 10, // How long the buff will last
@@ -630,7 +630,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -657,7 +657,7 @@ export const FOOD_BUFFS = {
     name: 'eating banana',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 13, // How long the buff will last
@@ -685,7 +685,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -712,7 +712,7 @@ export const FOOD_BUFFS = {
     name: 'eating carrot',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 10, // How long the buff will last
@@ -740,7 +740,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -767,7 +767,7 @@ export const FOOD_BUFFS = {
     name: 'lemon honey',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 60, // How long the buff will last
@@ -795,7 +795,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond)
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -822,7 +822,7 @@ export const FOOD_BUFFS = {
     name: 'tamarind honey',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 15 * 60, // How long the buff will last
@@ -850,7 +850,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -877,7 +877,7 @@ export const FOOD_BUFFS = {
     name: 'eating potato',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 900, // How long the buff will last
@@ -905,7 +905,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -932,7 +932,7 @@ export const FOOD_BUFFS = {
     name: 'eating sweet potato',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
-      return `Heals for ${totalHeal}hp over ${buff.data.totalDuration}s`;
+      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 900, // How long the buff will last
@@ -961,7 +961,7 @@ export const FOOD_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond)
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
         if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
@@ -981,4 +981,4 @@ export const FOOD_BUFFS = {
       }
     }
   }
-}
+};

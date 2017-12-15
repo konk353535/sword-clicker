@@ -219,7 +219,7 @@ export const FOOD_BUFFS = {
     name: 'eating lemon',
     description({ buff, level }) {
       const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
-      return `Regenerates ${totalEnergy} energy over a ${buff.data.totalDuration}s digestion period`.;
+      return `Regenerates ${totalEnergy} energy over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 300, // How long the buff will last

@@ -3,7 +3,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const ELVEN_STEEL_CRAFTS = {
   elven_steel_dagger: {
     produces: 'elven_steel_dagger',
-    name: 'elven_steel dagger',
+    name: 'elven steel dagger',
     recipeFor: 'crafting',
     category: 'combat',
     id: 'elven_steel_dagger',
@@ -49,7 +49,7 @@ export const ELVEN_STEEL_CRAFTS = {
 
   elven_steel_spear: {
     produces: 'elven_steel_spear',
-    name: 'elven_steel spear',
+    name: 'elven steel spear',
     recipeFor: 'crafting',
     category: 'combat',
     id: 'elven_steel_spear',
@@ -95,7 +95,7 @@ export const ELVEN_STEEL_CRAFTS = {
 
   elven_steel_short_sword: {
     produces: 'elven_steel_short_sword',
-    name: 'elven_steel short sword',
+    name: 'elven steel short sword',
     category: 'combat',
     recipeFor: 'crafting',
     id: 'elven_steel_short_sword',
@@ -141,7 +141,7 @@ export const ELVEN_STEEL_CRAFTS = {
 
   elven_steel_long_sword: {
     produces: 'elven_steel_long_sword',
-    name: 'elven_steel long sword',
+    name: 'elven steel long sword',
     category: 'combat',
     recipeFor: 'crafting',
     id: 'elven_steel_long_sword',
@@ -188,7 +188,7 @@ export const ELVEN_STEEL_CRAFTS = {
   elven_steel_battle_axe: {
     recipeFor: 'crafting',
     produces: 'elven_steel_battle_axe',
-    name: 'elven_steel battle axe',
+    name: 'elven steel battle axe',
     category: 'combat',
     id: 'elven_steel_battle_axe',
     timeToCraft: 90 * 60,
@@ -234,7 +234,7 @@ export const ELVEN_STEEL_CRAFTS = {
   elven_steel_helmet: {
     recipeFor: 'crafting',
     produces: 'elven_steel_helmet',
-    name: 'elven_steel helmet',
+    name: 'elven steel helmet',
     category: 'combat',
     id: 'elven_steel_helmet',
     timeToCraft: 60 * 60 * 2,
@@ -280,7 +280,7 @@ export const ELVEN_STEEL_CRAFTS = {
   elven_steel_chest_plate: {
     recipeFor: 'crafting',
     produces: 'elven_steel_chest_plate',
-    name: 'elven_steel chest plate',
+    name: 'elven steel chest plate',
     category: 'combat',
     id: 'elven_steel_chest_plate',
     timeToCraft: 60 * 60 * 2,
@@ -326,7 +326,7 @@ export const ELVEN_STEEL_CRAFTS = {
   elven_steel_plate_legs: {
     recipeFor: 'crafting',
     produces: 'elven_steel_plate_legs',
-    name: 'elven_steel plate legs',
+    name: 'elven steel plate legs',
     category: 'combat',
     id: 'elven_steel_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
@@ -372,7 +372,7 @@ export const ELVEN_STEEL_CRAFTS = {
   elven_steel_shield: {
     recipeFor: 'crafting',
     produces: 'elven_steel_shield',
-    name: 'elven_steel shield',
+    name: 'elven steel shield',
     category: 'combat',
     id: 'elven_steel_shield',
     timeToCraft: 60 * 60 * 2, // 60

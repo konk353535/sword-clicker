@@ -6,7 +6,7 @@ export const FAIRY_STEEL_CRAFTS = {
     name: 'fairy_steel dagger',
     recipeFor: 'crafting',
     category: 'combat',
-    id: 'fairy_steel_dagger',
+    id: 'fairy steel_dagger',
     timeToCraft: 30 * 60 * 2,
     xp: 400000,
     maxToCraft: 1,
@@ -49,7 +49,7 @@ export const FAIRY_STEEL_CRAFTS = {
 
   fairy_steel_spear: {
     produces: 'fairy_steel_spear',
-    name: 'fairy_steel spear',
+    name: 'fairy steel spear',
     recipeFor: 'crafting',
     category: 'combat',
     id: 'fairy_steel_spear',
@@ -95,7 +95,7 @@ export const FAIRY_STEEL_CRAFTS = {
 
   fairy_steel_short_sword: {
     produces: 'fairy_steel_short_sword',
-    name: 'fairy_steel short sword',
+    name: 'fairy steel short sword',
     category: 'combat',
     recipeFor: 'crafting',
     id: 'fairy_steel_short_sword',
@@ -141,7 +141,7 @@ export const FAIRY_STEEL_CRAFTS = {
 
   fairy_steel_long_sword: {
     produces: 'fairy_steel_long_sword',
-    name: 'fairy_steel long sword',
+    name: 'fairy steel long sword',
     category: 'combat',
     recipeFor: 'crafting',
     id: 'fairy_steel_long_sword',
@@ -188,7 +188,7 @@ export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_battle_axe: {
     recipeFor: 'crafting',
     produces: 'fairy_steel_battle_axe',
-    name: 'fairy_steel battle axe',
+    name: 'fairy steel battle axe',
     category: 'combat',
     id: 'fairy_steel_battle_axe',
     timeToCraft: 90 * 60,
@@ -234,7 +234,7 @@ export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_helmet: {
     recipeFor: 'crafting',
     produces: 'fairy_steel_helmet',
-    name: 'fairy_steel helmet',
+    name: 'fairy steel helmet',
     category: 'combat',
     id: 'fairy_steel_helmet',
     timeToCraft: 60 * 60 * 2,
@@ -280,7 +280,7 @@ export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_chest_plate: {
     recipeFor: 'crafting',
     produces: 'fairy_steel_chest_plate',
-    name: 'fairy_steel chest plate',
+    name: 'fairy steel chest plate',
     category: 'combat',
     id: 'fairy_steel_chest_plate',
     timeToCraft: 60 * 60 * 2,
@@ -326,7 +326,7 @@ export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_plate_legs: {
     recipeFor: 'crafting',
     produces: 'fairy_steel_plate_legs',
-    name: 'fairy_steel plate legs',
+    name: 'fairy steel plate legs',
     category: 'combat',
     id: 'fairy_steel_plate_legs',
     timeToCraft: 60 * 60 * 2, // 60
@@ -372,7 +372,7 @@ export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_shield: {
     recipeFor: 'crafting',
     produces: 'fairy_steel_shield',
-    name: 'fairy_steel shield',
+    name: 'fairy steel shield',
     category: 'combat',
     id: 'fairy_steel_shield',
     timeToCraft: 60 * 60 * 2, // 60

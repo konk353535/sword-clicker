@@ -2,8 +2,266 @@ import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from '/server/constants/combat/index.js';
+import { Random } from 'meteor/random'
 
 export const ENCHANTMENT_BUFFS = {
+
+  baby_earth_fox: {
+    duplicateTag: 'baby_earth_fox', // Used to stop duplicate buffs
+    icon: 'babyEarthFox.svg',
+    name: 'earth fox',
+    description() {
+      return `Taunts every 15 seconds`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          buff.data.timeTillCharge = 15;
+          const targetsToTaunt = actualBattle.enemies.filter((enemy) => {
+            return enemy.target !== target.id;
+          });
+
+          if (targetsToTaunt.length > 0) {
+            const targetToTaunt = _.sample(targetsToTaunt);
+            targetToTaunt.target = target.id;
+          }
+        }
+
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  baby_water_fox: {
+    duplicateTag: 'baby_water_fox', // Used to stop duplicate buffs
+    icon: 'babyWaterFox.svg',
+    name: 'water fox',
+    description() {
+      return `Heals for 50% of magic power every 5 seconds`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          buff.data.timeTillCharge = 5;
+          const targetToHeal = _.sample(actualBattle.units);
+          actualBattle.utils.healTarget(target.stats.magicPower * 0.5, {
+            caster: target,
+            target: targetToHeal,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+          });
+        }
+
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  baby_fire_fox: {
+    duplicateTag: 'baby_fire_fox', // Used to stop duplicate buffs
+    icon: 'babyFireFox.svg',
+    name: 'fire fox',
+    description() {
+      return `Deals 50% of magic power every 5 seconds`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          buff.data.timeTillCharge = 5;
+          const targetToAttack = _.sample(actualBattle.enemies);
+          actualBattle.utils.dealDamage(target.stats.magicPower * 0.5, {
+            attacker: target,
+            defender: targetToAttack,
+            isMagic: true,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+          });
+        }
+
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  baby_fox: {
+    duplicateTag: 'baby_fox', // Used to stop duplicate buffs
+    icon: 'babyFox.svg',
+    name: 'babyFox',
+    description() {
+      return `Summons a baby fox`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.isSpawned) {
+          buff.data.isSpawned = true;
+          buff.data.hideBuff = true;
+          // Spawn our fox
+          const foxToSpawn = _.sample(['fire', 'water', 'air', 'earth']);
+          let fox = {
+            id: Random.id(),
+            tickOffset: 0,
+          }
+
+          if (foxToSpawn === 'fire') {
+            fox.icon = 'babyFireFox.svg';
+            fox.name = 'Fire fox';
+            fox.stats = {
+              attack: 1,
+              attackMax: 1,
+              attackSpeed: 1,
+              accuracy: 1,
+              health: target.stats.healthMax * 0.1,
+              healthMax: target.stats.healthMax * 0.1,
+              defense: target.stats.defense * 0.5,
+              armor: target.stats.armor * 0.5,
+              magicArmor: target.stats.magicArmor * 0.5,
+              magicPower: target.stats.magicPower,
+              damageTaken: 1
+            }
+            fox.buffs = [{
+              id: 'baby_fire_fox',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'baby fire fox',
+                timeTillCharge: 5,
+                icon: 'babyFireFox.svg'
+              }
+            }]
+          } else if (foxToSpawn === 'earth') {
+            fox.icon = 'babyEarthFox.svg';
+            fox.name = 'Earth fox';
+            fox.stats = {
+              attack: target.stats.attackMax * 0.05,
+              attackMax: target.stats.attackMax * 0.05,
+              attackSpeed: 0.5,
+              attackSpeedTicks: attackSpeedTicks(0.5),
+              accuracy: target.stats.accuracy * 0.5,
+              health: target.stats.healthMax * 0.25,
+              healthMax: target.stats.healthMax * 0.25,
+              defense: target.stats.defense,
+              armor: target.stats.armor,
+              magicArmor: target.stats.magicArmor,
+              magicPower: target.stats.magicPower * 0.5,
+              damageTaken: 1
+            }
+            fox.buffs = [{
+              id: 'baby_earth_fox',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'baby earth fox',
+                timeTillCharge: 2,
+                icon: 'babyEarthFox.svg'
+              }
+            }]
+          } else if (foxToSpawn === 'air') {
+            fox.icon = 'babyAirFox.svg';
+            fox.name = 'Air fox';
+            fox.stats = {
+              attack: target.stats.attackMax * 0.1,
+              attackMax: target.stats.attackMax * 0.1,
+              attackSpeed: 1,
+              attackSpeedTicks: attackSpeedTicks(1),
+              accuracy: target.stats.accuracy,
+              health: target.stats.healthMax * 0.15,
+              healthMax: target.stats.healthMax * 0.15,
+              defense: target.stats.defense * 0.6,
+              armor: target.stats.armor * 0.6,
+              magicArmor: target.stats.magicArmor * 0.6,
+              magicPower: target.stats.magicPower * 0.6,
+              damageTaken: 1
+            }
+            fox.buffs = [];
+          } else if (foxToSpawn === 'water') {
+            fox.icon = 'babyWaterFox.svg';
+            fox.name = 'Water fox';
+            fox.stats = {
+              attack: 1,
+              attackMax: 1,
+              attackSpeed: 0.001,
+              accuracy: 1,
+              health: target.stats.healthMax * 0.1,
+              healthMax: target.stats.healthMax * 0.1,
+              defense: target.stats.defense * 0.5,
+              armor: target.stats.armor * 0.5,
+              magicArmor: target.stats.magicArmor * 0.5,
+              magicPower: target.stats.magicPower,
+              healingPower: target.stats.healingPower,
+              damageTaken: 1
+            }
+            fox.buffs = [{
+              id: 'baby_water_fox',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'baby water fox',
+                icon: 'babyWaterFox.svg',
+                timeTillCharge: 5                
+              }
+            }]
+          }
+
+          actualBattle.units.push(fox);
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 
   bison_axe: {
     duplicateTag: 'bison_axe', // Used to stop duplicate buffs

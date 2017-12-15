@@ -147,7 +147,9 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
-    const units = actualBattle.units.concat(actualBattle.deadUnits);
+    const units = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+      return !!unit.owner;
+    });
 
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
@@ -412,7 +414,9 @@ export const completeBattle = function (actualBattle) {
   }
 
   // Update all player units healths
-  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits);
+  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+    return !!unit.owner;
+  });
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {

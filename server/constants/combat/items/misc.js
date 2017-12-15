@@ -1080,4 +1080,27 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['bison_axe']
   },
+
+  "baby_fox": {
+    "id": "baby_fox",
+    "icon": "babyFox.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "baby fox",
+    "sellPrice": 1800,
+    "description": "Summons a fox",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 1
+    },
+    "extraStats": {
+      "healthMax": 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }],
+    "enchantments": ['baby_fox']
+  },
 }

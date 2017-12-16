@@ -1028,7 +1028,7 @@ export const MISC_ITEMS = {
     "category": "combat",
     "weaponType": "knife",
     "slot": "offHand",
-    "name": "cobalt knife",
+    "name": "krakens tentacle",
     "sellPrice": 950,
     "description": "Provides minor offensive bonuses",
     "isEquippable": true,

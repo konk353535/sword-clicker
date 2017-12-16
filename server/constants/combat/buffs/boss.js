@@ -1332,7 +1332,6 @@ export const BOSS_BUFFS = {
             actualBattle.enemies.push(bird);
           }
 
-
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
@@ -1370,7 +1369,7 @@ export const BOSS_BUFFS = {
 
         if (buff.data.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
-          target.stats.attackSpeed /= 3;
+          target.stats.attackSpeed /= 2;
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.icon = 'oldTortoise';
         }
@@ -1384,9 +1383,9 @@ export const BOSS_BUFFS = {
 
         if (buff.data.stacks >= 350 && !buff.data.enraged) {
           buff.data.enraged = true;
-          defender.stats.attackSpeed *= 3;
+          defender.stats.attackSpeed *= 2;
           defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
-          buff.data.icon = 'enragedTortoise';
+          buff.data.icon = 'enragedTortoise.svg';
         }
       },
 

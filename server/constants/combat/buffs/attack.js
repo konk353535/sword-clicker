@@ -661,8 +661,11 @@ export const ATTACK_BUFFS = {
         buff.data.damageTakenIncrease = damageTaken;
         buff.data.healthLost = (-1 * healthLost);
 
-        target.stats.attackMax *= (1 + (buff.data.damageIncrease / 100));
-        target.stats.attack *= (1 + (buff.data.damageIncrease / 100));
+        buff.data.extraAttackMax =  target.stats.attackMax * (buff.data.damageIncrease / 100);
+        buff.data.extraAttack =  target.stats.attack * (buff.data.damageIncrease / 100);
+
+        target.stats.attack += buff.data.extraAttack;
+        target.stats.attackMax += buff.data.extraAttackMax;
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
@@ -691,8 +694,8 @@ export const ATTACK_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.attackMax /= (1 + (buff.data.damageIncrease / 100));
-        target.stats.attack /= (1 + (buff.data.damageIncrease / 100));
+        target.stats.attack -= buff.data.extraAttack;
+        target.stats.attackMax -= buff.data.extraAttackMax;
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);

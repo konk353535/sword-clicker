@@ -388,7 +388,7 @@ export const MAGIC_BUFFS = {
         const baseShield = constants.baseShield;
         const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
         const totalShield = baseShield + shieldMP;
-        const damageDecimal = 1 + (constants.damageBase / 100);
+        const damageDecimal = (constants.damageBase / 100);
         const healthBase = constants.healthCost;
         const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
         const totalHealth = healthBase + healthMP;
@@ -400,8 +400,10 @@ export const MAGIC_BUFFS = {
 
           buff.data.damageDecimal = damageDecimal;
           buff.data.shieldHp = totalShield;
-          target.stats.attack *= buff.data.damageDecimal;
-          target.stats.attackMax *= buff.data.damageDecimal;
+          buff.data.attack = target.stats.attack * buff.data.damageDecimal;
+          buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal;
+          target.stats.attack += buff.data.attack;
+          target.stats.attackMax += buff.data.attackMax;
         } else {
           buff.data.shieldHp = 0;
         }
@@ -423,8 +425,8 @@ export const MAGIC_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         if (buff.data.damageDecimal) {
-          target.stats.attack /= buff.data.damageDecimal;
-          target.stats.attackMax /= buff.data.damageDecimal;
+          target.stats.attack -= buff.data.attack;
+          target.stats.attackMax -= buff.data.attackMax;
         }
       }
     }
@@ -458,7 +460,7 @@ export const MAGIC_BUFFS = {
         const baseShield = constants.baseShield;
         const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
         const totalShield = baseShield + shieldMP;
-        const damageDecimal = 1 + (constants.damageBase / 100);
+        const damageDecimal = (constants.damageBase / 100);
         const healthBase = constants.healthCost;
         const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
         const totalHealth = healthBase + healthMP;
@@ -470,8 +472,10 @@ export const MAGIC_BUFFS = {
 
           buff.data.damageDecimal = damageDecimal;
           buff.data.shieldHp = totalShield;
-          target.stats.attack *= buff.data.damageDecimal;
-          target.stats.attackMax *= buff.data.damageDecimal;
+          buff.data.attack = target.stats.attack * buff.data.damageDecimal;
+          buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal;
+          target.stats.attack += buff.data.attack;
+          target.stats.attackMax += buff.data.attackMax;
         } else {
           buff.data.shieldHp = 0;
         }
@@ -493,8 +497,8 @@ export const MAGIC_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         if (buff.data.damageDecimal) {
-          target.stats.attack /= buff.data.damageDecimal;
-          target.stats.attackMax /= buff.data.damageDecimal;
+          target.stats.attack -= buff.data.attack;
+          target.stats.attackMax -= buff.data.attackMax;
         }
       }
     }
@@ -536,11 +540,13 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          buff.data.increaseDecimal = 1 + (totalIncrease / 100);
+          buff.data.increaseDecimal = (totalIncrease / 100);
           target.stats.attackSpeed *= buff.data.increaseDecimal;
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
-          target.stats.attack *= buff.data.increaseDecimal;
-          target.stats.attackMax *= buff.data.increaseDecimal;
+          buff.data.attack = target.stats.attack * buff.data.increaseDecimal;
+          buff.data.attackMax = target.stats.attack * buff.data.increaseDecimal;
+          target.stats.attack += buff.data.attack;
+          target.stats.attackMax += buff.data.attackMax;
         }
       },
 
@@ -556,8 +562,8 @@ export const MAGIC_BUFFS = {
         if (buff.data.increaseDecimal) {
           target.stats.attackSpeed /= buff.data.increaseDecimal;
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
-          target.stats.attack /= buff.data.increaseDecimal;
-          target.stats.attackMax /= buff.data.increaseDecimal;
+          target.stats.attack -= buff.data.attack;
+          target.stats.attackMax -= buff.data.attackMax;
         }
       }
     }

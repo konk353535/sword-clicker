@@ -55,6 +55,10 @@ export const attackSpeedTicks = function(attackSpeed) {
 
   // Convert attack speed seconds to attack speed ticks
   if (attackSpeed !== undefined) {
+    // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
+    if (attackSpeed >= 8) {
+      return 1;
+    }
     return Math.round(ticksPerSecond / attackSpeed);
   } else {
     return 0;

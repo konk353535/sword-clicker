@@ -577,8 +577,10 @@ export const DEFENSE_BUFFS = {
         buff.data.damageDecrease = damageDecrease;
         buff.data.damageReduction = damageReduction;
 
-        target.stats.attackMax *= (1 - (buff.data.damageDecrease / 100));
-        target.stats.attack *= (1 - (buff.data.damageDecrease / 100));
+        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100)
+        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100)
+        target.stats.attackMax -= buff.data.attackMax;
+        target.stats.attack -= buff.data.attack;
         target.stats.damageTaken *= (1 - (buff.data.damageReduction / 100));
       },
 
@@ -603,8 +605,8 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.attackMax /= (1 - (buff.data.damageDecrease / 100));
-        target.stats.attack /= (1 - (buff.data.damageDecrease / 100));
+        target.stats.attackMax += buff.data.attackMax;
+        target.stats.attack += buff.data.attack;
         target.stats.damageTaken /= (1 - (buff.data.damageReduction / 100));
       }
     }

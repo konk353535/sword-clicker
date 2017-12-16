@@ -541,7 +541,7 @@ export const MAGIC_BUFFS = {
           caster.stats.healthMax -= totalHealth;
 
           buff.data.increaseDecimal = (totalIncrease / 100);
-          target.stats.attackSpeed *= buff.data.increaseDecimal;
+          target.stats.attackSpeed *= (1 + buff.data.increaseDecimal);
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.attack = target.stats.attack * buff.data.increaseDecimal;
           buff.data.attackMax = target.stats.attack * buff.data.increaseDecimal;
@@ -560,7 +560,7 @@ export const MAGIC_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         if (buff.data.increaseDecimal) {
-          target.stats.attackSpeed /= buff.data.increaseDecimal;
+          target.stats.attackSpeed /= (1 + buff.data.increaseDecimal);
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           target.stats.attack -= buff.data.attack;
           target.stats.attackMax -= buff.data.attackMax;

@@ -559,6 +559,57 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  war_cry: {
+    duplicateTag: 'war_cry', // Used to stop duplicate buffs
+    icon: 'warCry.svg',
+    name: 'war cry',
+    description({ buff, level }) {
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      return `Increases max attack by 150% for 10 seconds<br />`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 10,
+      totalDuration: 10,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        const extraAttack = target.stats.attackMax * 1.5;
+        buff.data.extraAttack = extraAttack;
+        target.stats.attackMax += extraAttack;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = secondsElapsed;
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.attackMax -= buff.data.extraAttack;
+      }
+    }
+  },
+
   berserk: {
     duplicateTag: 'berserk', // Used to stop duplicate buffs
     icon: 'berserk.svg',
@@ -610,8 +661,11 @@ export const ATTACK_BUFFS = {
         buff.data.damageTakenIncrease = damageTaken;
         buff.data.healthLost = (-1 * healthLost);
 
-        target.stats.attackMax *= (1 + (buff.data.damageIncrease / 100));
-        target.stats.attack *= (1 + (buff.data.damageIncrease / 100));
+        buff.data.extraAttackMax =  target.stats.attackMax * (buff.data.damageIncrease / 100);
+        buff.data.extraAttack =  target.stats.attack * (buff.data.damageIncrease / 100);
+
+        target.stats.attack += buff.data.extraAttack;
+        target.stats.attackMax += buff.data.extraAttackMax;
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
@@ -640,8 +694,8 @@ export const ATTACK_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.attackMax /= (1 + (buff.data.damageIncrease / 100));
-        target.stats.attack /= (1 + (buff.data.damageIncrease / 100));
+        target.stats.attack -= buff.data.extraAttack;
+        target.stats.attackMax -= buff.data.extraAttackMax;
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
         target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);

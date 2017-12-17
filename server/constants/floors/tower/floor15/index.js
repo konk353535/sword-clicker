@@ -101,7 +101,12 @@ export const TOWER_FLOOR_15 = {
 
   boss: {
     enemy: { id: 'boss_cassiopeia', amount: 1 },
-    rewards: LEVEL_FIFTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'rich_snake_skin', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

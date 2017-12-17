@@ -594,6 +594,45 @@ export const INSCRIPTION_ITEMS = {
     description: 'Gives decent xp'
   },
 
+  eel_taunt_tome: {
+    id: 'eel_taunt_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Eel taunt',
+    teaches: {
+      abilityId: 'eel_taunt',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the eel taunt ability.'
+  },
+
+  lion_taunt_tome: {
+    id: 'lion_taunt_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Lion taunt',
+    teaches: {
+      abilityId: 'lion_taunt',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the lion taunt ability.'
+  },
+
+  bear_taunt_tome: {
+    id: 'bear_taunt_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Bear taunt tome',
+    teaches: {
+      abilityId: 'bear_taunt',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the bear taunt ability.'
+  },
+
   twin_blades_tome: {
     id: 'twin_blades_tome',
     icon: 'tome.svg',
@@ -930,6 +969,19 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 250,
     description: 'Can be consumed to learn the accuracy up ability.'
+  },
+
+  war_cry_tome: {
+    id: 'war_cry_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'war cry tome',
+    teaches: {
+      abilityId: 'war_cry',
+      level: 1
+    },
+    sellPrice: 3000,
+    description: 'Can be consumed to learn the war cry ability.'
   },
 
   accuracy_up_3_tome: {

@@ -967,4 +967,140 @@ export const MISC_ITEMS = {
     sellPrice: 400,
     description: 'Looks cozy (lots of xp)'
   },
+
+  "frankensteins_heart": {
+    "id": "frankensteins_heart",
+    "icon": "frankensteinsHeart.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "frankensteins heart",
+    "sellPrice": 2500,
+    "description": "Protect your heart",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 9.7,
+      "defense": 9.7,
+      "armor": 46.7
+    },
+    "extraStats": {
+      "healthMax": 2.9,
+      "defense": 2.9,
+      "armor": 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }],
+    enchantments: ['frankensteins_heart']
+  },
+
+  "rich_snake_skin": {
+    "id": "rich_snake_skin",
+    "icon": "richSnakeSkin.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "rich snake skin",
+    "sellPrice": 1800,
+    "description": "Protect your chest",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.7,
+      "defense": 10.7,
+      "armor": 51.4
+    },
+    "extraStats": {
+      "healthMax": 3.2,
+      "defense": 3.2,
+      "armor": 15.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }],
+    "enchantments": ['rich_snake_skin']
+  },
+
+  "krakens_tentacle": {
+    "id": "krakens_tentacle",
+    "icon": "tentacle.svg",
+    "category": "combat",
+    "weaponType": "knife",
+    "slot": "offHand",
+    "name": "krakens tentacle",
+    "sellPrice": 950,
+    "description": "Provides minor offensive bonuses",
+    "isEquippable": true,
+    "stats": {
+      "accuracy": 7,
+      "attack": 6,
+      "attackMax": 8
+    },
+    "extraStats": {
+      "accuracy": 3,
+      "attack": 3,
+      "attackMax": 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }],
+    enchantments: ['krakens_tentacle']
+  },
+
+  "bison_axe": {
+    "id": "bison_axe",
+    "icon": "bisonAxe.svg",
+    "category": "combat",
+    "weaponType": "battleAxe",
+    "slot": "mainHand",
+    "name": "Bisons axe",
+    "sellPrice": 2250,
+    "description": "Fix for a bison to wield",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 68.4,
+      "attackMax": 245.7,
+      "attackSpeed": 0.3,
+      "accuracy": 109.8,
+      "criticalChance": 5
+    },
+    "extraStats": {
+      "attack": 20.5,
+      "attackMax": 73.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }],
+    enchantments: ['bison_axe']
+  },
+
+  "baby_fox": {
+    "id": "baby_fox",
+    "icon": "babyFox.svg",
+    "category": "combat",
+    "slot": "chest",
+    "name": "baby fox",
+    "sellPrice": 1800,
+    "description": "Summons a fox",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 1
+    },
+    "extraStats": {
+      "healthMax": 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }],
+    "enchantments": ['baby_fox']
+  },
 }

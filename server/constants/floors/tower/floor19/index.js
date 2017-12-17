@@ -91,7 +91,14 @@ export const TOWER_FLOOR_19 = {
 
   boss: {
     enemy: { id: 'boss_wolf', amount: 1 },
-    rewards: LEVEL_NINETEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'eel_taunt_tome', amount: 1 },
+        { type: 'item', itemId: 'lion_taunt_tome', amount: 1 },
+        { type: 'item', itemId: 'bear_taunt_tome', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

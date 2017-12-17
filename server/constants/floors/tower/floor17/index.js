@@ -91,7 +91,12 @@ export const TOWER_FLOOR_17 = {
 
   boss: {
     enemy: { id: 'boss_kraken', amount: 1 },
-    rewards: LEVEL_SEVENTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'krakens_tentacle', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

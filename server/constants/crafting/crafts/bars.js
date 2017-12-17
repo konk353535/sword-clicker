@@ -615,7 +615,7 @@ export const BAR_CRAFTS = {
   fairy_steel_bar: {
     produces: 'fairy_steel_bar',
     recipeFor: 'crafting',
-    name: 'fairy_steel bar',
+    name: 'fairy steel bar',
     id: 'fairy_steel_bar',
     category: 'crafting',
     timeToCraft: 45,
@@ -646,7 +646,7 @@ export const BAR_CRAFTS = {
   elven_steel_bar: {
     produces: 'elven_steel_bar',
     recipeFor: 'crafting',
-    name: 'elven_steel bar',
+    name: 'elven steel bar',
     id: 'elven_steel_bar',
     category: 'crafting',
     timeToCraft: 50,

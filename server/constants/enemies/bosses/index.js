@@ -554,12 +554,12 @@ export const BOSS_ENEMIES = {
       attack: 325,
       attackMax: 400,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 300,
+      accuracy: 360,
       health: 3500,
       healthMax: 3500,
-      defense: 275,
-      armor: 400,
-      magicArmor: 150,
+      defense: 360,
+      armor: 600,
+      magicArmor: 225,
       damageTaken: 1
     },
     buffs: [{
@@ -581,15 +581,15 @@ export const BOSS_ENEMIES = {
     name: 'wolf',
     isBoss: true,
     stats: {
-      attack: 325,
-      attackMax: 400,
+      attack: 375,
+      attackMax: 425,
       attackSpeed: MEDIUM_SPEED,
-      accuracy: 300,
-      health: 3500,
-      healthMax: 3500,
-      defense: 275,
-      armor: 400,
-      magicArmor: 150,
+      accuracy: 380,
+      health: 4000,
+      healthMax: 4000,
+      defense: 380,
+      armor: 800,
+      magicArmor: 300,
       damageTaken: 1
     },
     buffs: [{
@@ -600,6 +600,36 @@ export const BOSS_ENEMIES = {
         icon: 'bossPoodle.svg',
         name: 'poodle defense',
         timeTillDefensive: 5
+      }
+    }],
+    rewards: []
+  },
+
+  boss_fox: {
+    id: 'boss_fox',
+    icon: 'fireFox.svg',
+    name: 'fox',
+    isBoss: true,
+    stats: {
+      attack: 325,
+      attackMax: 400,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 400,
+      health: 6000,
+      healthMax: 6000,
+      defense: 400,
+      armor: 1000,
+      magicArmor: 375,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_fox',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        icon: 'fireFox.svg',
+        name: 'fire',
+        phase: 2 // starts on air phase
       }
     }],
     rewards: []

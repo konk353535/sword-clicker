@@ -25,7 +25,7 @@ export const LEVEL_THREE_CRAFTS = {
     xp: 300,
     maxToCraft: 4,
     requiredInscriptionLevel: 45,
-    required: [UTIL.PURPLE_150, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_45]
+    required: [UTIL.YELLOW_200, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_45]
   },
 
   health_up_3_tome: {

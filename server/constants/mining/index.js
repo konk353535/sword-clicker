@@ -359,6 +359,22 @@ export const MINING = {
         level: 95
       }],
       max: 5
+    },
+    jewel: {
+      requiredMiningLevel: 10,
+      icon: 'jewelProspector.svg',
+      name: 'jewel prospector',
+      id: 'jewel',
+      required: [{
+        type: 'gold',
+        amount: 50000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 10
+      }],
+      max: 5
     }
   },
   miners: {
@@ -1389,7 +1405,7 @@ export const MINING = {
       xp: 1500,
       id: 'lapislazuli',
       icon: 'lapislazuli.png',
-      name: 'lapislazuli',
+      name: 'lapis lazuli',
       isGem: true,
       itemId: 'lapislazuli',
       chance: 0.0000008

@@ -10,7 +10,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 40,
     required: [UTIL.RED_100, UTIL.MANY_GREEN_140, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
@@ -23,7 +23,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 45,
     required: [UTIL.YELLOW_200, UTIL.BLUE_GUM_PAPER, UTIL.LEVEL_45]
   },
@@ -36,7 +36,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 40,
     required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
@@ -49,7 +49,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 40,
     required: [UTIL.YELLOW_255, UTIL.GREEN_140, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
@@ -62,7 +62,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 40,
     required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
@@ -75,7 +75,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 300,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 40,
     required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
@@ -88,7 +88,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 90,
-    maxToCraft: 4,
+    maxToCraft: 1,
     requiredInscriptionLevel: 9,
     required: [UTIL.MANY_BLUE_255, UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },
@@ -101,7 +101,7 @@ export const LEVEL_THREE_CRAFTS = {
     category: 'tome',
     timeToCraft: 180,
     xp: 90,
-    maxToCraft: 9,
+    maxToCraft: 1,
     requiredInscriptionLevel: 9,
     required: [UTIL.PURPLE_255, UTIL.MANY_GREEN_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },

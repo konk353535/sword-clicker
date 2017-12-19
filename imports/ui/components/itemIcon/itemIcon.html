@@ -15,79 +15,79 @@
         <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
       {{/if}}
     {{/unless}}
-  </div>
 
-  <!-- Icon Tooltip -->
-  {{#unless hideTooltip}}
-    <div class="item-tooltip-content my-tooltip-inner">
-      <h3 class='popover-title text-capitalize'>
-        {{item.name}}
-        {{#if item.enhanced}}
-          (E)
-        {{/if}}
-      </h3>
-      <div class='popover-content'>
-        {{#if item.description}}
-          {{{item.description}}}<br />
-        {{/if}}
-
-        {{#if item.cooldown}}
-          Cooldown <b>{{item.cooldown}}s</b><br />
-        {{/if}}
-
-        {{#if item.isSpell}}
-          <b>{{item.casts}}</b> casts remaining.<br /><br />
-        {{/if}}
-
-        {{#unless item.hideStats}}
-          {{#if item.stats}}
-            {{> displayCombatStats stats=item.stats}}
+    <!-- Icon Tooltip -->
+    {{#unless hideTooltip}}
+      <div class="item-tooltip-content my-tooltip-inner">
+        <h3 class='popover-title text-capitalize'>
+          {{item.name}}
+          {{#if item.enhanced}}
+            (E)
           {{/if}}
-        {{/unless}}
-
-        {{#if item.required}}
-          <b>Requires</b><br />
-          {{> requiredItems requiredItems=item.required}}        
-        {{/if}}
-
-        {{#if item.isTwoHanded}}
-          <b>Two Handed</b><br />
-        {{/if}}
-
-        {{#if item.enchantments}}
-          {{#each enchantment in item.enchantments}}
-            {{{enchantment}}}<br />
-          {{/each}}
-        {{/if}}
-
-        {{#if item.primaryAction}}
-          {{#if item.primaryAction.description}}
-            <div>
-              <b>Left Click</b> to {{item.primaryAction.description}}
-            </div>
+        </h3>
+        <div class='popover-content'>
+          {{#if item.description}}
+            {{{item.description}}}<br />
           {{/if}}
-        {{else}}
-          <b>Left Click</b> to sell for {{item.sellPrice}}
-        {{/if}}
 
-        {{#if item.shiftAction}}
-          {{#if item.shiftAction.description}}
-            <div>
-              <b>Shift Click</b> to {{item.shiftAction.description}}
-            </div>
+          {{#if item.cooldown}}
+            Cooldown <b>{{item.cooldown}}s</b><br />
           {{/if}}
-        {{/if}}
 
-        {{#if item.ctrlAction}}
-          {{#if item.ctrlAction.description}}
-            <div>
-              <b>Ctrl Click</b> to {{item.ctrlAction.description}}
-            </div>
+          {{#if item.isSpell}}
+            <b>{{item.casts}}</b> casts remaining.<br /><br />
           {{/if}}
-        {{/if}}
+
+          {{#unless item.hideStats}}
+            {{#if item.stats}}
+              {{> displayCombatStats stats=item.stats}}
+            {{/if}}
+          {{/unless}}
+
+          {{#if item.required}}
+            <b>Requires</b><br />
+            {{> requiredItems requiredItems=item.required}}
+          {{/if}}
+
+          {{#if item.isTwoHanded}}
+            <b>Two Handed</b><br />
+          {{/if}}
+
+          {{#if item.enchantments}}
+            {{#each enchantment in item.enchantments}}
+              {{{enchantment}}}<br />
+            {{/each}}
+          {{/if}}
+
+          {{#if item.primaryAction}}
+            {{#if item.primaryAction.description}}
+              <div>
+                <b>Left Click</b> to {{item.primaryAction.description}}
+              </div>
+            {{/if}}
+          {{else}}
+            <b>Left Click</b> to sell for {{item.sellPrice}}
+          {{/if}}
+
+          {{#if item.shiftAction}}
+            {{#if item.shiftAction.description}}
+              <div>
+                <b>Shift Click</b> to {{item.shiftAction.description}}
+              </div>
+            {{/if}}
+          {{/if}}
+
+          {{#if item.ctrlAction}}
+            {{#if item.ctrlAction.description}}
+              <div>
+                <b>Ctrl Click</b> to {{item.ctrlAction.description}}
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
       </div>
-    </div>
-  {{/unless}}
+    {{/unless}}
+  </div>
 
   {{#if showSellModal}}
       <!-- Modal -->

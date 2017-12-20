@@ -10,18 +10,20 @@ Template.abilityLibraryIcon.onCreated(function bodyOnCreated() {
 });
 
 Template.abilityLibraryIcon.rendered = function () {
-  tooltip = new Drop({
-    target: Template.instance().$('.item-icon-container')[0],
-    content: Template.instance().$('.item-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+  if (!Template.instance().data.hideTooltip) {
+    tooltip = tippy(Template.instance().$('.item-icon-container')[0],
+        {
+          html: Template.instance().$('.item-tooltip-content')[0],
+          performance: true,
+          animateFill: false,
+          distance: 5
+        })
+  }
 }
 
 Template.abilityLibraryIcon.onDestroyed(function () {
-  if (tooltip && tooltip.target) {
-    tooltip.destroy();
+  if (tooltip) {
+    Template.instance().$('.item-icon-container')[0]._tippy.destroy();
   }
 })
 

@@ -290,3 +290,27 @@ body { padding-right: 0 !important }
   opacity: 1.0;
 }
 
+.popover-title {
+  text-align: left;
+}
+
+.tippy-backdrop, .tippy-tooltip {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.tippy-tooltip {
+  font-size: 1rem;
+}
+
+.item-tooltip-content {
+  color: #292b2c;
+}
+
+.item-tooltip-content {
+  display: none;
+  text-align: left;
+}
+
+.tippy-popper .item-tooltip-content {
+  display: block;
+}

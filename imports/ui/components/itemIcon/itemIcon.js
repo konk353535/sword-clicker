@@ -36,22 +36,21 @@ Template.itemIcon.helpers({
 
 Template.itemIcon.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
-    // var currentData = Template.currentData();
-    tooltip = new Drop({
-      target: Template.instance().$('.item-icon-container')[0],
-      content: Template.instance().$('.item-tooltip-content')[0],
-      openOn: 'hover',
-      position: 'top left',
-      remove: true
-    });
+    tooltip = tippy(Template.instance().$('.item-icon-container')[0],
+        {
+          html: Template.instance().$('.item-tooltip-content')[0],
+          performance: true,
+          animateFill: false,
+          distance: 5
+        })
   }
 }
 
 Template.itemIcon.onDestroyed(function () {
-  if (tooltip && tooltip.target) {
-    tooltip.remove();
+  if (tooltip) {
+    Template.instance().$('.item-icon-container')[0]._tippy.destroy();
   }
-})
+});
 
 const sellItem = function (event, instance) {
   if (instance.data.hideTooltip) return;

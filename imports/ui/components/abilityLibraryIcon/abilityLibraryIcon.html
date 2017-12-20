@@ -28,33 +28,33 @@
     {{/if}}
 
     <img src="/icons/{{item.icon}}" class="item-icon">
-  </div>
 
-  <!-- Icon Tooltip -->
-  <div class="item-tooltip-content my-tooltip-inner">
-    <h3 class='popover-title text-capitalize'>
-      {{item.name}}
-    </h3>
-    <div class='popover-content'>
-      {{#if item.description}}
-        {{{item.description}}}<br />
-      {{/if}}
-
-      {{#if item.cooldown}}
-        Cooldown <b>{{item.cooldown}}s</b><br />
-      {{/if}}
-
-      {{#if item.isSpell}}
-        <b>{{item.casts}}</b> casts remaining.<br /><br />
-      {{/if}}
-
-      {{#if item.primaryAction}}
-        {{#if item.primaryAction.description}}
-          <div>
-            <b>Left Click</b> to {{item.primaryAction.description}}
-          </div>
+    <!-- Icon Tooltip -->
+    <div class="item-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>
+        {{item.name}}
+      </h3>
+      <div class='popover-content'>
+        {{#if item.description}}
+          {{{item.description}}}<br />
         {{/if}}
-      {{/if}}
+
+        {{#if item.cooldown}}
+          Cooldown <b>{{item.cooldown}}s</b><br />
+        {{/if}}
+
+        {{#if item.isSpell}}
+          <b>{{item.casts}}</b> casts remaining.<br /><br />
+        {{/if}}
+
+        {{#if item.primaryAction}}
+          {{#if item.primaryAction.description}}
+            <div>
+              <b>Left Click</b> to {{item.primaryAction.description}}
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
     </div>
   </div>
 

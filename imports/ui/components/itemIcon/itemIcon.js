@@ -5,6 +5,8 @@ import { Session } from 'meteor/session';
 
 import './itemIcon.html';
 
+let tooltip;
+
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
@@ -31,6 +33,24 @@ Template.itemIcon.helpers({
     return instance.state.get('quickSelling');
   }
 })
+
+Template.itemIcon.rendered = function () {
+  if (!Template.instance().data.hideTooltip) {
+    tooltip = tippy(Template.instance().$('.item-icon-container')[0],
+        {
+          html: Template.instance().$('.item-tooltip-content')[0],
+          performance: true,
+          animateFill: false,
+          distance: 5
+        })
+  }
+}
+
+Template.itemIcon.onDestroyed(function () {
+  if (tooltip) {
+    Template.instance().$('.item-icon-container')[0]._tippy.destroy();
+  }
+});
 
 const sellItem = function (event, instance) {
   if (instance.data.hideTooltip) return;

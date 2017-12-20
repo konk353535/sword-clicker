@@ -3,6 +3,26 @@ import { BUFFS } from '/server/constants/combat/index';
 
 export const ATTACK_ABILITIES = {
 
+  war_cry: {
+    icon: 'warCry.svg',
+    name: 'war cry',
+    id: 'war_cry',
+    buffs: ['war_cry'],
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['battleAxe']
+    }],
+    cooldown: 60,
+    isPassive: false,
+    slot: 'any',
+    target: 'allAllies',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.war_cry;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   twin_blades: {
     icon: 'twinBlades.svg',
     name: 'twin blades',

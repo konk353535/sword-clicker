@@ -387,6 +387,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
+        buff.data.duration -= secondsElapsed;
         // Blank
         if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster })
@@ -395,6 +396,119 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         // Blank
+      }
+    }
+  },
+
+  eel_taunt: {
+    duplicateTag: 'eel_taunt', // Used to stop duplicate buffs
+    icon: 'eelTaunt.svg',
+    name: 'eel taunt',
+    description({ buff, level }) {
+      return 'Taunts the target, and ignites the target for (200% MP) after 3 seconds.';
+    },
+    constants: {
+    },
+    data: {
+      duration: 3,
+      totalDuration: 3,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.target = caster.id;
+        buff.data.damage = caster.stats.magicPower * 2;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, actualBattle }) {
+        actualBattle.utils.dealDamage(buff.data.damage, {
+          defender: target,
+          attacker: target,
+          isMagic: true,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
+        });
+      }
+    }
+  },
+
+  lion_taunt: {
+    duplicateTag: 'lion_taunt', // Used to stop duplicate buffs
+    icon: 'lionTaunt.svg',
+    name: 'lion taunt',
+    description({ buff, level }) {
+      return 'Taunts the target, and deals 75% max attack damage after 3 seconds.';
+    },
+    constants: {
+    },
+    data: {
+      duration: 3,
+      totalDuration: 3,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.target = caster.id;
+        buff.data.damage = caster.stats.attackMax * 0.75;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, actualBattle }) {
+        actualBattle.utils.dealDamage(buff.data.damage, {
+          defender: target,
+          attacker: target,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
+        });
+      }
+    }
+  },
+
+  bear_taunt: {
+    duplicateTag: 'bear_taunt', // Used to stop duplicate buffs
+    icon: 'bearTaunt.svg',
+    name: 'bear taunt',
+    description({ buff, level }) {
+      return 'Taunts the target, and reduces it\'s attack by 10% for 5 seconds';
+    },
+    constants: {
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.target = caster.id;
+        buff.data.attack = target.stats.attackMax * 0.1;
+        target.stats.attack -= buff.data.attack;
+        target.stats.attackMax -= buff.data.attack;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target }) {
+        target.stats.attack += buff.data.attack;
+        target.stats.attackMax += buff.data.attack;
       }
     }
   },
@@ -463,8 +577,10 @@ export const DEFENSE_BUFFS = {
         buff.data.damageDecrease = damageDecrease;
         buff.data.damageReduction = damageReduction;
 
-        target.stats.attackMax *= (1 - (buff.data.damageDecrease / 100));
-        target.stats.attack *= (1 - (buff.data.damageDecrease / 100));
+        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100)
+        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100)
+        target.stats.attackMax -= buff.data.attackMax;
+        target.stats.attack -= buff.data.attack;
         target.stats.damageTaken *= (1 - (buff.data.damageReduction / 100));
       },
 
@@ -489,8 +605,8 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.attackMax /= (1 - (buff.data.damageDecrease / 100));
-        target.stats.attack /= (1 - (buff.data.damageDecrease / 100));
+        target.stats.attackMax += buff.data.attackMax;
+        target.stats.attack += buff.data.attack;
         target.stats.damageTaken /= (1 - (buff.data.damageReduction / 100));
       }
     }

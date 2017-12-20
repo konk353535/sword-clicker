@@ -42,6 +42,13 @@ export const TOWER_FLOOR_20 = {
       rewards: [
         { type: 'item', itemId: 'cursed_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'verdant_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'verdant_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'verdant_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -85,8 +92,13 @@ export const TOWER_FLOOR_20 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
-    rewards: LEVEL_TWENTY_LOOT_TABLE
+    enemy: { id: 'boss_fox', amount: 1 },
+    rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'baby_fox', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

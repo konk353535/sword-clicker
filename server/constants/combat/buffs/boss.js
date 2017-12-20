@@ -5,6 +5,11 @@ import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from '/server/constants/combat/index.js';
 import { Random } from 'meteor/random'
 
+const WATER_PHASE = 0;
+const EARTH_PHASE = 1;
+const FIRE_PHASE = 2;
+const AIR_PHASE = 3;
+
 export const BOSS_BUFFS = {
 
   deep_wounds: {
@@ -1327,7 +1332,6 @@ export const BOSS_BUFFS = {
             actualBattle.enemies.push(bird);
           }
 
-
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
@@ -1365,7 +1369,7 @@ export const BOSS_BUFFS = {
 
         if (buff.data.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
-          target.stats.attackSpeed /= 3;
+          target.stats.attackSpeed /= 2;
           target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.icon = 'oldTortoise';
         }
@@ -1379,9 +1383,9 @@ export const BOSS_BUFFS = {
 
         if (buff.data.stacks >= 350 && !buff.data.enraged) {
           buff.data.enraged = true;
-          defender.stats.attackSpeed *= 3;
+          defender.stats.attackSpeed *= 2;
           defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
-          buff.data.icon = 'enragedTortoise';
+          buff.data.icon = 'enragedTortoise.svg';
         }
       },
 
@@ -1440,6 +1444,503 @@ export const BOSS_BUFFS = {
 
           buff.data.timeTillSpawn = 180;
         }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_bison: {
+    duplicateTag: 'boss_bison', // Used to stop duplicate buffs
+    icon: 'bisonRed.svg',
+    name: 'boss bison',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Charges every 45 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillCharge -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+
+        if (!buff.data.timeTillCharge || buff.data.timeTillCharge <= 0) {
+
+          const unitToAttack = _.findWhere(actualBattle.units, { id: target.target });
+
+          const attackMax = target.stats.attackMax;
+          const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
+          actualBattle.utils.dealDamage(damageToDeal, {
+            attacker: target,
+            defender: unitToAttack,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+            isMagic: buff.data.magic
+          });
+
+          buff.data.timeTillCharge = 100;
+          
+          // Switch to magic / physical
+          buff.data.magic = !buff.data.magic;
+
+          if (buff.data.magic) {
+            buff.data.icon = 'bisonBlue.svg';
+          } else {
+            buff.data.icon = 'bisonRed.svg';
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_wolf: {
+    duplicateTag: 'boss_wolf', // Used to stop duplicate buffs
+    icon: 'bossPoodle.svg',
+    name: 'defensive poodle',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Protects poodle every 5 seconds`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.poodleSpawned) {
+          // Add poodle to the game
+
+          const poodleStats = JSON.parse(JSON.stringify(target.stats));
+          poodleStats.health *= 0.33;
+          poodleStats.healthMax *= 0.33;
+          poodleStats.defense *= 0.5;
+          poodleStats.armor *= 0.5;
+          poodleStats.magicArmor *= 0.5;
+          poodleStats.attack *= 0.1;
+          poodleStats.attackMax *= 0.1;
+          poodleStats.accuracy *= 2;
+          poodleStats.magicPower = 20;
+
+          // Spawn little bird
+          const poodle = {
+            id: Random.id(),
+            tickOffset: 0,
+            icon: 'bossPoodle.svg',
+            name: 'poodle',
+            buffs: [{
+              id: 'boss_poodle',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'glasses.svg',        
+                name: 'smarty pants',
+                timeTillSwitch: 30
+              }
+            }],
+            stats: poodleStats
+          }
+
+          actualBattle.enemies.push(poodle);
+
+          buff.data.poodleSpawned = true;
+        }
+
+        buff.data.timeTillDefensive -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillDefensive);
+
+        if (!buff.data.timeTillDefensive || buff.data.timeTillDefensive <= 0) {
+          // Find poodle
+          const poodle = _.findWhere(actualBattle.enemies, { name: 'poodle' });
+
+          // Aggro the unit that did the most damage to poodle in the last 5 seconds
+          let max = -Infinity;
+          let unitToKill;
+          // Access poodle buff
+          const poodleBuff = _.findWhere(poodle.buffs, { id: 'boss_poodle' });
+
+          if (poodleBuff.data.damageMap) {
+            Object.keys(poodleBuff.data.damageMap).forEach((key) => {
+              const damageDone = poodleBuff.data.damageMap[key]
+              if (damageDone > max) {
+                max = damageDone;
+                unitToKill = key;
+              }
+              // Remove targetting of poodle to units that damaged poodle
+              const targetUnit = _.findWhere(actualBattle.units, { id: key });
+              targetUnit.target = target.id;
+            });
+          }
+          poodleBuff.data.damageMap = {};
+  
+          // Attack whoever did most damage to poodle
+          if (unitToKill) {
+            target.target = unitToKill
+          }
+
+          buff.data.timeTillDefensive = 15;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_poodle: {
+    duplicateTag: 'boss_poodle', // Used to stop duplicate buffs
+    icon: 'bossPoodle.svg',
+    name: 'poodle',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Breaks down the target over time`;
+    },
+    constants: {
+    },
+    data: {
+      damageMap: {}
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (Math.random() * 100 <= 33) {
+          // Reduces target attack, attackMax, magicPower
+          const newBuff = {
+            id: 'attack_reduction',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              allowDuplicates: true,
+              attack: 25,
+              icon: 'attackReduction.svg',
+              description: 'Reduces your attack by 25, for 30 seconds'
+            }
+          }
+
+          // cast attack reduction
+          addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
+
+          // Refresh existing attack_duration buffs
+          defender.buffs.forEach((buff) => {
+            if (buff.id === 'attack_duration') {
+              buff.data.duration = 10;
+            }
+          });
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (!buff.data.damageMap) {
+          buff.data.damageMap = {};
+        }
+
+        if (!buff.data.damageMap[attacker.id]) {
+          buff.data.damageMap[attacker.id] = damageDealt;
+        } else {
+          buff.data.damageMap[attacker.id] += damageDealt;
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSwitch -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.data.stacks = Math.round(buff.data.timeTillSwitch);
+
+        if (!buff.data.timeTillSwitch || buff.data.timeTillSwitch <= 0) {
+          // Target a random unit
+          target.target = _.sample(actualBattle.units).id
+          buff.data.timeTillSwitch = 30;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_fox: {
+    duplicateTag: 'boss_fox', // Used to stop duplicate buffs
+    icon: 'waterFox.svg',
+    name: 'water fox',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `A blend of all the elements`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (buff.data.phase === EARTH_PHASE) {
+          buff.data.stacks -= 1;
+          if (buff.data.stacks < 0) {
+            if (buff.data.refreshes > 0) {
+              buff.data.refreshes -= 1;
+              buff.data.stacks = 35;
+            } else if (buff.data.initPhase) {
+              // End EARTH phase
+              buff.data.phase += 1;
+              buff.data.initPhase = false;
+              buff.data.icon = 'fireFox.svg';
+              defender.icon = 'fireFox.svg';
+              return;
+            }
+            // Apply damage reflection buff for 10s
+            const newBuff = {
+              id: 'spiked_armor',
+              data: {
+                level: 10,
+                duration: 5,
+                totalDuration: 5,
+                icon: 'spikedArmor.svg',
+                description: 'Reflect damage back at you.'
+              }
+            }
+
+            // cast earth dart
+            addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
+          }
+        } else if (buff.data.phase === AIR_PHASE) {
+          buff.data.stacks -= Math.round(damageDealt);
+          if (buff.data.stacks <= 0 && buff.data.initPhase) {
+            // Next phase
+            buff.data.phase = 0;
+            buff.data.initPhase = false;
+            buff.data.icon = 'waterFox.svg';
+            defender.icon = 'waterFox.svg';
+          }
+        }
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+        if (buff.data.phase === WATER_PHASE) {
+          // Init water phase
+          if (!buff.data.initPhase) {
+            buff.data.initPhase = true;
+
+            for (let i = 0; i < 3; i++) {
+              // Create two fountains that heal fox rather quickly
+              const fountainStats = JSON.parse(JSON.stringify(target.stats));
+              fountainStats.health = 750;
+              fountainStats.healthMax = 750;
+              fountainStats.defense = 150;
+              fountainStats.armor *= 0.5;
+              fountainStats.magicArmor *= 0.5;
+              fountainStats.attack = 1;
+              fountainStats.attackMax = 1;
+              fountainStats.attackSpeedTicks = 100;
+
+              // Spawn little bird
+              const fountain = {
+                id: Random.id(),
+                tickOffset: 0,
+                icon: 'fountain.svg',
+                name: 'fountain',
+                buffs: [{
+                  id: 'healing_fountain',
+                  data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: 'fountain.svg',        
+                    name: 'healing water'
+                  }
+                }],
+                stats: fountainStats
+              }
+
+              actualBattle.enemies.push(fountain);
+            }
+          }
+
+          // Check if fountains are still alive, if dead move to next phase
+          const fountain = _.findWhere(actualBattle.enemies, { name: 'fountain' });
+          if (!fountain && buff.data.initPhase) {
+            // Next Phase!
+            buff.data.phase += 1;
+            buff.data.initPhase = false;
+            buff.data.icon = 'earthFox.svg';
+            target.icon = 'earthFox.svg';
+          }
+        } else if (buff.data.phase === EARTH_PHASE) {
+          if (!buff.data.initPhase) {
+            buff.data.initPhase = true;
+            // Earth phase ends with an earth blast at 0 stacks
+            buff.data.stacks = 35;
+            // 2 refreshes of shield
+            buff.data.refreshes = 2;
+            // Casts earth shield every 35 stacks (reflects damage at target for 3 seconds)
+          }
+        } else if (buff.data.phase === FIRE_PHASE) {
+          if (!buff.data.initPhase) {
+            buff.data.initPhase = true;
+            // Start timer till phase ends
+            buff.data.stacks = 65;
+            buff.data.timeTillNextPhase = 65;
+          }
+
+          buff.data.timeTillNextPhase -= secondsElapsed;
+          buff.data.stacks = Math.floor(buff.data.timeTillNextPhase);
+
+          if (buff.data.stacks === 60 || buff.data.stacks === 30) {
+            actualBattle.units.forEach((unit) => {
+              // Fire wave
+              const newBuff = {
+                id: 'ignite',
+                data: {
+                  duration: 10,
+                  totalDuration: 10,
+                  timeTillDamage: 1,
+                  totalDamage: 30,
+                  sourceId: target.id,
+                  icon: 'ignite.svg',
+                  description: ''
+                },
+                constants: BUFFS['ignite']
+              }
+
+              // cast ignite
+              addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            })
+          } else if (buff.data.stacks <= 0) {
+            // Fire blast
+            const newBuff = {
+              id: 'ignite',
+              data: {
+                duration: 3,
+                totalDuration: 3,
+                timeTillDamage: 1,
+                sourceId: target.id,
+                totalDamage: 100,
+                icon: 'ignite.svg',
+                description: ''
+              },
+              constants: BUFFS['ignite']
+            }
+
+            const unit = _.findWhere(actualBattle.units, { id: target.target });
+            // cast ignite
+            addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+
+            actualBattle.utils.dealDamage(500, {
+              attacker: target,
+              defender: unit,
+              isMagic: true,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+
+            // Next Phase!
+            if (buff.data.initPhase) {
+              buff.data.phase += 1;
+              buff.data.initPhase = false;
+              buff.data.icon = 'airFox.svg';
+              target.icon = 'airFox.svg';              
+            }
+          }
+        } else if (buff.data.phase === AIR_PHASE) {
+          if (!buff.data.initPhase) {
+            buff.data.initPhase = true;
+            // Damage to take until phase ends
+            buff.data.stacks = 2000;
+            buff.data.mirages = 9;
+            buff.data.timeTillMirage = Math.random() * 5;
+          }
+
+          buff.data.timeTillMirage -= secondsElapsed;
+          if (buff.data.timeTillMirage <= 0 && buff.data.mirages > 0) {
+            buff.data.timeTillMirage = Math.random() * 3;
+            buff.data.mirages -= 1;
+            // Spawn 3 mirages
+
+            for (let i = 0; i < 1; i++) {
+              // Create two fountains that heal fox rather quickly
+              const mirageStats = JSON.parse(JSON.stringify(target.stats));
+              mirageStats.health = 250;
+              mirageStats.healthMax = 250;
+              mirageStats.defense = 150;
+              mirageStats.armor *= 0.5;
+              mirageStats.magicArmor *= 0.5;
+              mirageStats.attack = 100;
+              mirageStats.attackMax = 100;
+
+              // Spawn little bird
+              const mirage = {
+                id: Random.id(),
+                tickOffset: 0,
+                icon: 'airFox.svg',
+                name: 'mirage',
+                buffs: [],
+                stats: mirageStats
+              }
+
+              actualBattle.enemies.push(mirage);
+            }
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  healing_fountain: {
+    duplicateTag: 'healing_fountain', // Used to stop duplicate buffs
+    icon: 'fountain.svg',
+    name: 'fountain',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Heals the all mighty fox.`;
+    },
+    constants: {
+    },
+    data: {
+      damageMap: {}
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (Math.random() * 100 >= 10) return;
+
+        // Find fox
+        const fox = _.findWhere(actualBattle.enemies, { name: 'fox' });
+
+        // Heal Fox, reduce health by healed amount
+        target.stats.health -= 50;
+        actualBattle.utils.healTarget(50, {
+          caster: target,
+          target: fox,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+        });
       },
 
       onRemove({ buff, target }) {

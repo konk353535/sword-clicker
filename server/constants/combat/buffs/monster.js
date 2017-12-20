@@ -527,6 +527,51 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  attack_reduction: {
+    duplicateTag: 'attack_reduction', // Used to stop duplicate buffs
+    icon: 'attackReduction.svg',
+    name: 'attack reduction',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Reduces your attack`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+      allowDuplicates: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        if (target.stats.attack <= 0) {
+          buff.data.attack = 0;
+          return;
+        }
+
+        if (target.stats.attack - buff.data.attack <= 0) {
+          buff.data.attack -= Math.abs(target.stats.attack - buff.data.attack);
+        }
+
+        target.stats.attack -= buff.data.attack;
+        target.stats.attackMax -= buff.data.attack;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration < 0) {
+          removeBuff({ buff, target, caster });
+        }
+      },
+
+      onRemove({ buff, target }) {
+        target.stats.attack += buff.data.attack;
+        target.stats.attackMax += buff.data.attack;
+      }
+    }
+  },
+
   armor_reduction: {
     duplicateTag: 'armor_reduction', // Used to stop duplicate buffs
     icon: 'armorReduction.svg',

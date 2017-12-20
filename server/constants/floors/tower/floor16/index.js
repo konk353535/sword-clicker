@@ -41,6 +41,13 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'meteor_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'crimson_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'crimson_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'crimson_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -85,7 +92,12 @@ export const TOWER_FLOOR_16 = {
 
   boss: {
     enemy: { id: 'boss_old_tortoise', amount: 1 },
-    rewards: LEVEL_SIXTEEN_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'war_cry_tome', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

@@ -47,6 +47,13 @@ export const TOWER_FLOOR_18 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_rapiers', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'azure_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'azure_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'azure_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -95,8 +102,13 @@ export const TOWER_FLOOR_18 = {
   },
 
   boss: {
-    enemy: { id: 'boss_gorilla', amount: 1 },
-    rewards: LEVEL_EIGHTEEN_LOOT_TABLE
+    enemy: { id: 'boss_bison', amount: 1 },
+    rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'bison_axe', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

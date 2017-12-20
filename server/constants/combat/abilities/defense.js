@@ -18,6 +18,51 @@ export const DEFENSE_ABILITIES = {
     }
   },
 
+  eel_taunt: {
+    icon: 'eelTaunt.svg',
+    name: 'eel taunt',
+    id: 'eel_taunt',
+    buffs: ['eel_taunt'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.eel_taunt;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  lion_taunt: {
+    icon: 'lionTaunt.svg',
+    name: 'lion taunt',
+    id: 'lion_taunt',
+    buffs: ['lion_taunt'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.lion_taunt;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  bear_taunt: {
+    icon: 'bearTaunt.svg',
+    name: 'bear taunt',
+    id: 'bear_taunt',
+    buffs: ['bear_taunt'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.bear_taunt;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   taunt: {
     icon: 'taunt.svg',
     name: 'taunt',

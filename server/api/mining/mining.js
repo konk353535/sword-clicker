@@ -443,16 +443,16 @@ Meteor.methods({
 
       // Prepare easy arrays for which ore is about to spawn
       const availableOres = rawOresArray.filter((ore) => {
-        if (ore.requiredLevel > miningSkill.level) {
-          return false;
-        }
-        return true;
+        return ore.requiredLevel <= miningSkill.level;
       });
 
       // Increase or decrease chance of finding ore based on owned prospectors
       // Clone so we don't mutatet the constants
       const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
-        if (prospectorsMap[ore.id]) {
+        // Jewel prospectors cover all available jewel types in one prospector
+        if(ore.isGem && prospectorsMap['jewel']) {
+          ore.chance *= prospectorsMap['jewel'];
+        } else if (prospectorsMap[ore.id]) {
           ore.chance *= prospectorsMap[ore.id];
         }
 

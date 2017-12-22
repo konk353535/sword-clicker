@@ -71,6 +71,12 @@ Meteor.methods({
       });
     }
 
+    // If leader kicks himself, trigger a group.leave instead so leader status tranfers
+    if (ownerId == this.userId ) {
+      Meteor.call('groups.leave');
+      return;
+    }
+
     const memberFilter = function (member) {
       if (targetUser) {
         return member !== targetUser._id
@@ -277,7 +283,7 @@ Meteor.methods({
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{
-        username: username.toLowerCase()
+        username: username.toLowerCase().replace(/ /g,'')
       }, {
         email: username.toLowerCase()
       }]
@@ -294,6 +300,11 @@ Meteor.methods({
 
     // Must be leader to invite users
     if (currentGroup && currentGroup.leader !== this.userId) {
+      return;
+    }
+
+    // Cannot invite self into group
+    if (targetUser._id == this.userId) {
       return;
     }
 

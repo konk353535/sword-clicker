@@ -10,7 +10,6 @@ export const MAGIC_BOOK_CRAFTS = {
     category: 'magic_book',
     timeToCraft: 1,
     xp: 100,
-    magicXp: 500,
     maxToCraft: 5,
     requiredInscriptionLevel: 3,
     required: [{

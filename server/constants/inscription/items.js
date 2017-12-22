@@ -2173,6 +2173,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'magic_book',
     name: 'Codex of Tutoring',
     sellPrice: 100,
+    magicXp: 500,
     description: 'Can be consumed to learn the taunt ability.',
     shiftActionData: {
       description: 'increase an items quality by up to 15%'

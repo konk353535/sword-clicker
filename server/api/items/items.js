@@ -249,8 +249,31 @@ Meteor.methods({
     const baseItemConstants = ITEMS[baseItem.itemId];
 
     if(baseItem.category = "magic_book") {
-      console.log(baseItemConstants);
-      console.log(baseItem);
+      console.log(baseItemConstants.magicXp);
+      addXp('magic', baseItemConstants.magicXp);
+
+      // Remove the key
+      if (baseItem.amount === 1) {
+        Events.insert({
+          owner: Meteor.userId(),
+          event: 'items.consumeItem',
+          date: new Date(),
+          data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+        }, () => {});
+        Items.remove({
+          owner: Meteor.userId(),
+          _id: baseItem._id
+        });
+      } else {
+        Items.update({
+          owner: Meteor.userId(),
+          _id: baseItem._id
+        }, {
+          $inc: {
+            amount: -1
+          }
+        });
+      }
     }
 
     // Check what the behaviour is for the baseItem, targetting that targetItem

@@ -249,7 +249,7 @@ Meteor.methods({
     FarmingSpace.update(emptySpace._id, {
       $set: {
         plantId: plantConstants.id,
-        maturityDate: moment().add(1/*plantConstants.growthTime*/, 'seconds').toDate(),
+        maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
         plantDate: new Date(),
         growing: true
       }

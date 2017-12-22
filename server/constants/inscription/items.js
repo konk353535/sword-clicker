@@ -2167,13 +2167,39 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the taunt ability.'
   },
 
-    pine_magic_book: {
+  pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'tome.svg',
     category: 'magic_book',
     name: 'Codex of Tutoring',
     sellPrice: 100,
     magicXp: 500,
+    description: 'Can be consumed to learn the taunt ability.',
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%'
+    }
+  },
+
+  beech_magic_book: {
+    id: 'beech_magic_book',
+    icon: 'tome.svg',
+    category: 'magic_book',
+    name: 'Codex of Learning',
+    sellPrice: 200,
+    magicXp: 1000,
+    description: 'Can be consumed to learn the taunt ability.',
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%'
+    }
+  },
+
+  ash_magic_book: {
+    id: 'ash_magic_book',
+    icon: 'tome.svg',
+    category: 'magic_book',
+    name: 'Codex of Knowledge',
+    sellPrice: 300,
+    magicXp: 1500,
     description: 'Can be consumed to learn the taunt ability.',
     shiftActionData: {
       description: 'increase an items quality by up to 15%'

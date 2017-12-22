@@ -22,6 +22,11 @@ export const ENCHANTMENT_CRAFTS = {
       type: 'skill',
       name: 'inscription',
       level: 1
+    },
+    {
+      type: 'skill',
+      name: 'astronomy',
+      level: 1
     }]
   }
 }

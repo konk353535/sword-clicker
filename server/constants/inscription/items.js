@@ -2165,5 +2165,17 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 100,
     description: 'Can be consumed to learn the taunt ability.'
+  },
+
+    pine_magic_book: {
+    id: 'pine_magic_book',
+    icon: 'tome.svg',
+    category: 'magic_book',
+    name: 'Codex of Tutoring',
+    sellPrice: 100,
+    description: 'Can be consumed to learn the taunt ability.',
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%'
+    }
   }
 }

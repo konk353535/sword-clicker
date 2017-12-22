@@ -248,6 +248,11 @@ Meteor.methods({
 
     const baseItemConstants = ITEMS[baseItem.itemId];
 
+    if(baseItem.category = "magic_book") {
+      console.log(baseItemConstants);
+      console.log(baseItem);
+    }
+
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
       const ENHANCER_KEY_INCREASE = 15;

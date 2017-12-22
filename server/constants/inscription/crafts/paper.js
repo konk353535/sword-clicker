@@ -31,7 +31,7 @@ export const PAPER_CRAFTS = {
     name: 'pine book',
     id: 'pine_book',
     category: 'paper',
-    timeToCraft: 900,
+    timeToCraft: 1,
     xp: 250,
     maxToCraft: 1,
     requiredInscriptionLevel: 3,
@@ -41,7 +41,7 @@ export const PAPER_CRAFTS = {
       icon: ITEMS['pine_paper'].icon,
       name: ITEMS['pine_paper'].name,
       amount: 10,
-      consumes: true
+      consumes: false
     }, {
       type: 'skill',
       name: 'inscription',

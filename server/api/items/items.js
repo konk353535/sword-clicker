@@ -248,8 +248,18 @@ Meteor.methods({
 
     const baseItemConstants = ITEMS[baseItem.itemId];
 
-    if(baseItem.category = "magic_book") {
-      console.log(baseItemConstants.magicXp);
+
+
+    //
+    // Magic books
+    //
+    if ( baseItem.category = "magic_book" ) {
+
+      if( !baseItemConstants.magicXp) {
+        console.log('magic xp not set');
+        return;
+      }
+      //todo - ensure magicxp is set
       addXp('magic', baseItemConstants.magicXp);
 
       // Remove the key
@@ -275,6 +285,8 @@ Meteor.methods({
         });
       }
     }
+
+
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {

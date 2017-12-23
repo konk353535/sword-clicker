@@ -8,7 +8,7 @@ export const MAGIC_BOOK_CRAFTS = {
     name: 'codex of tutoring',
     id: 'pine_magic_book',
     category: 'magic_book',
-    timeToCraft: 1,
+    timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
     requiredInscriptionLevel: 3,
@@ -18,14 +18,14 @@ export const MAGIC_BOOK_CRAFTS = {
       icon: ITEMS['pine_book'].icon,
       name: ITEMS['pine_book'].name,
       amount: 1,
-      consumes: false
+      consumes: true
     }, {
       type: 'item',
-      itemId: 'fire_shard_fragment',
-      icon: ITEMS['fire_shard_fragment'].icon,
-      name: ITEMS['fire_shard_fragment'].name,
-      amount: 100,
-      consumes: false
+      itemId: 'complete_fire_shard',
+      icon: ITEMS['complete_fire_shard'].icon,
+      name: ITEMS['complete_fire_shard'].name,
+      amount: 1,
+      consumes: true
     }, {
       type: 'skill',
       name: 'inscription',
@@ -43,7 +43,7 @@ export const MAGIC_BOOK_CRAFTS = {
     name: 'codex of learning',
     id: 'beech_magic_book',
     category: 'magic_book',
-    timeToCraft: 1,
+    timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
     requiredInscriptionLevel: 7,
@@ -53,14 +53,14 @@ export const MAGIC_BOOK_CRAFTS = {
       icon: ITEMS['beech_book'].icon,
       name: ITEMS['beech_book'].name,
       amount: 1,
-      consumes: false
+      consumes: true
     }, {
       type: 'item',
-      itemId: 'earth_shard_fragment',
-      icon: ITEMS['earth_shard_fragment'].icon,
-      name: ITEMS['earth_shard_fragment'].name,
-      amount: 100,
-      consumes: false
+      itemId: 'complete_earth_shard',
+      icon: ITEMS['complete_earth_shard'].icon,
+      name: ITEMS['complete_earth_shard'].name,
+      amount: 1,
+      consumes: true
     }, {
       type: 'skill',
       name: 'inscription',
@@ -76,9 +76,9 @@ export const MAGIC_BOOK_CRAFTS = {
     recipeFor: 'inscription',
     produces: 'ash_magic_book',
     name: 'codex of knowledge',
-    id: 'beech_magic_book',
+    id: 'ash_magic_book',
     category: 'magic_book',
-    timeToCraft: 1,
+    timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
     requiredInscriptionLevel: 10,
@@ -88,14 +88,14 @@ export const MAGIC_BOOK_CRAFTS = {
       icon: ITEMS['ash_book'].icon,
       name: ITEMS['ash_book'].name,
       amount: 1,
-      consumes: false
+      consumes: true
     }, {
       type: 'item',
-      itemId: 'water_shard_fragment',
-      icon: ITEMS['water_shard_fragment'].icon,
-      name: ITEMS['water_shard_fragment'].name,
-      amount: 100,
-      consumes: false
+      itemId: 'complete_water_shard',
+      icon: ITEMS['complete_water_shard'].icon,
+      name: ITEMS['complete_water_shard'].name,
+      amount: 1,
+      consumes: true
     }, {
       type: 'skill',
       name: 'inscription',
@@ -104,6 +104,41 @@ export const MAGIC_BOOK_CRAFTS = {
       type: 'skill',
       name: 'astronomy',
       level: 10
+    }]
+  },
+
+ oak_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'oak_magic_book',
+    name: 'codex of magic',
+    id: 'oak_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'ash_book',
+      icon: ITEMS['ash_book'].icon,
+      name: ITEMS['ash_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_air_shard',
+      icon: ITEMS['complete_air_shard'].icon,
+      name: ITEMS['complete_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 15
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 15
     }]
   }
 };

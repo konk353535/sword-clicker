@@ -558,7 +558,7 @@ export const PAPER_CRAFTS = {
     produces: 'cedar_book',
     name: 'cedar book',
     id: 'cedar_book',
-    category: 'paper',
+    category: 'book',
     timeToCraft: 900,
     xp: 2300,
     maxToCraft: 5,

@@ -119,9 +119,9 @@ export const MAGIC_BOOK_CRAFTS = {
     requiredInscriptionLevel: 15,
     required: [{
       type: 'item',
-      itemId: 'ash_book',
-      icon: ITEMS['ash_book'].icon,
-      name: ITEMS['ash_book'].name,
+      itemId: 'oak_book',
+      icon: ITEMS['oak_book'].icon,
+      name: ITEMS['oak_book'].name,
       amount: 1,
       consumes: true
     }, {

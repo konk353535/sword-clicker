@@ -33,7 +33,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 1,
     xp: 250,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 3,
     required: [{
       type: 'item',
@@ -81,7 +81,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 475,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 7,
     required: [{
       type: 'item',
@@ -129,7 +129,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 10,
     required: [{
       type: 'item',
@@ -177,7 +177,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 650,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 15,
     required: [{
       type: 'item',
@@ -225,7 +225,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 20,
     required: [{
       type: 'item',
@@ -273,7 +273,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 950,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 25,
     required: [{
       type: 'item',
@@ -321,7 +321,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 1100,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 30,
     required: [{
       type: 'item',
@@ -369,7 +369,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 1500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 35,
     required: [{
       type: 'item',
@@ -417,7 +417,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 1650,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 40,
     required: [{
       type: 'item',
@@ -465,7 +465,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 1800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 45,
     required: [{
       type: 'item',
@@ -513,7 +513,7 @@ export const PAPER_CRAFTS = {
     category: 'book',
     timeToCraft: 900,
     xp: 1950,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 50,
     required: [{
       type: 'item',
@@ -529,6 +529,54 @@ export const PAPER_CRAFTS = {
     }]
   },
 
+  cedar_paper: {
+    recipeFor: 'inscription',
+    produces: 'cedar_paper',
+    name: 'cedar paper',
+    id: 'cedar_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 120,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 50,
+    required: [{
+      type: 'item',
+      itemId: 'cedar_log',
+      icon: ITEMS['cedar_log'].icon,
+      name: ITEMS['cedar_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 50
+    }]
+  },
+
+  cedar_book: {
+    recipeFor: 'inscription',
+    produces: 'cedar_book',
+    name: 'cedar book',
+    id: 'cedar_book',
+    category: 'paper',
+    timeToCraft: 900,
+    xp: 2300,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 55,
+    required: [{
+      type: 'item',
+      itemId: 'cedar_paper',
+      icon: ITEMS['cedar_paper'].icon,
+      name: ITEMS['cedar_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 55
+    }]
+  },  
+  
   denya_paper: {
     recipeFor: 'inscription',
     produces: 'denya_paper',
@@ -536,9 +584,9 @@ export const PAPER_CRAFTS = {
     id: 'denya_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 120,
+    xp: 140,
     maxToCraft: 100,
-    requiredInscriptionLevel: 50,
+    requiredInscriptionLevel: 55,
     required: [{
       type: 'item',
       itemId: 'denya_log',
@@ -549,7 +597,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 50
+      level: 55
     }]
   },
 
@@ -560,9 +608,9 @@ export const PAPER_CRAFTS = {
     id: 'denya_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 2300,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 55,
+    xp: 2600,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 60,
     required: [{
       type: 'item',
       itemId: 'denya_paper',
@@ -573,7 +621,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 55
+      level: 60
     }]
   },
 
@@ -584,9 +632,9 @@ export const PAPER_CRAFTS = {
     id: 'gombe_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 140,
+    xp: 160,
     maxToCraft: 100,
-    requiredInscriptionLevel: 55,
+    requiredInscriptionLevel: 60,
     required: [{
       type: 'item',
       itemId: 'gombe_log',
@@ -597,7 +645,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 55
+      level: 60
     }]
   },
 
@@ -608,9 +656,9 @@ export const PAPER_CRAFTS = {
     id: 'gombe_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 2600,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 60,
+    xp: 2900,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 65,
     required: [{
       type: 'item',
       itemId: 'gombe_paper',
@@ -621,7 +669,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 60
+      level: 65
     }]
   },
 
@@ -632,9 +680,9 @@ export const PAPER_CRAFTS = {
     id: 'hickory_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 160,
+    xp: 180,
     maxToCraft: 100,
-    requiredInscriptionLevel: 60,
+    requiredInscriptionLevel: 65,
     required: [{
       type: 'item',
       itemId: 'hickory_log',
@@ -645,7 +693,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 60
+      level: 65
     }]
   },
 
@@ -656,9 +704,9 @@ export const PAPER_CRAFTS = {
     id: 'hickory_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 2900,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 65,
+    xp: 3200,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 70,
     required: [{
       type: 'item',
       itemId: 'hickory_paper',
@@ -669,7 +717,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 65
+      level: 70
     }]
   },
 
@@ -680,9 +728,9 @@ export const PAPER_CRAFTS = {
     id: 'larch_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 180,
+    xp: 200,
     maxToCraft: 100,
-    requiredInscriptionLevel: 65,
+    requiredInscriptionLevel: 70,
     required: [{
       type: 'item',
       itemId: 'larch_log',
@@ -693,7 +741,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 65
+      level: 70
     }]
   },
 
@@ -704,9 +752,9 @@ export const PAPER_CRAFTS = {
     id: 'larch_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 3200,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 70,
+    xp: 3500,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 75,
     required: [{
       type: 'item',
       itemId: 'larch_paper',
@@ -717,7 +765,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 70
+      level: 75
     }]
   },
 
@@ -728,9 +776,9 @@ export const PAPER_CRAFTS = {
     id: 'poplar_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 200,
+    xp: 220,
     maxToCraft: 100,
-    requiredInscriptionLevel: 70,
+    requiredInscriptionLevel: 75,
     required: [{
       type: 'item',
       itemId: 'poplar_log',
@@ -741,7 +789,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 70
+      level: 75
     }]
   },
 
@@ -752,9 +800,9 @@ export const PAPER_CRAFTS = {
     id: 'poplar_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 3500,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 75,
+    xp: 3800,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 80,
     required: [{
       type: 'item',
       itemId: 'poplar_paper',
@@ -765,7 +813,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 75
+      level: 80
     }]
   },
 
@@ -776,9 +824,9 @@ export const PAPER_CRAFTS = {
     id: 'tali_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 220,
+    xp: 240,
     maxToCraft: 100,
-    requiredInscriptionLevel: 75,
+    requiredInscriptionLevel: 80,
     required: [{
       type: 'item',
       itemId: 'tali_log',
@@ -789,7 +837,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 75
+      level: 80
     }]
   },
 
@@ -800,9 +848,9 @@ export const PAPER_CRAFTS = {
     id: 'tali_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 3800,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 80,
+    xp: 4100,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 85,
     required: [{
       type: 'item',
       itemId: 'tali_paper',
@@ -813,7 +861,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 80
+      level: 85
     }]
   },
 
@@ -824,9 +872,9 @@ export const PAPER_CRAFTS = {
     id: 'willow_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 240,
+    xp: 260,
     maxToCraft: 100,
-    requiredInscriptionLevel: 80,
+    requiredInscriptionLevel: 85,
     required: [{
       type: 'item',
       itemId: 'willow_log',
@@ -837,7 +885,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 80
+      level: 85
     }]
   },
 
@@ -848,9 +896,9 @@ export const PAPER_CRAFTS = {
     id: 'willow_book',
     category: 'book',
     timeToCraft: 900,
-    xp: 4100,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 85,
+    xp: 4400,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 90,
     required: [{
       type: 'item',
       itemId: 'willow_paper',
@@ -861,7 +909,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 85
+      level: 90
     }]
   },
 
@@ -872,9 +920,9 @@ export const PAPER_CRAFTS = {
     id: 'teak_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 260,
+    xp: 280,
     maxToCraft: 100,
-    requiredInscriptionLevel: 85,
+    requiredInscriptionLevel: 90,
     required: [{
       type: 'item',
       itemId: 'teak_log',
@@ -885,7 +933,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 85
+      level: 90
     }]
   },
 
@@ -896,9 +944,9 @@ export const PAPER_CRAFTS = {
     id: 'teak_book',
     category: 'paper',
     timeToCraft: 900,
-    xp: 4400,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 90,
+    xp: 4700,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 95,
     required: [{
       type: 'item',
       itemId: 'teak_paper',
@@ -909,7 +957,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 90
+      level: 95
     }]
   },
 
@@ -920,9 +968,9 @@ export const PAPER_CRAFTS = {
     id: 'fiery_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 280,
+    xp: 300,
     maxToCraft: 100,
-    requiredInscriptionLevel: 90,
+    requiredInscriptionLevel: 95,
     required: [{
       type: 'item',
       itemId: 'fiery_log',
@@ -933,7 +981,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 90
+      level: 95
     }]
   },
 
@@ -944,9 +992,9 @@ export const PAPER_CRAFTS = {
     id: 'fiery_book',
     category: 'paper',
     timeToCraft: 900,
-    xp: 4700,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 95,
+    xp: 5000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 100,
     required: [{
       type: 'item',
       itemId: 'fiery_paper',
@@ -957,7 +1005,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 95
+      level: 100
     }]
   },
 
@@ -968,9 +1016,9 @@ export const PAPER_CRAFTS = {
     id: 'magic_paper',
     category: 'paper',
     timeToCraft: 120,
-    xp: 300,
+    xp: 320,
     maxToCraft: 100,
-    requiredInscriptionLevel: 95,
+    requiredInscriptionLevel: 100,
     required: [{
       type: 'item',
       itemId: 'magic_log',
@@ -981,7 +1029,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 95
+      level: 100
     }]
   },
 
@@ -993,8 +1041,8 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 5000,
-    maxToCraft: 1,
-    requiredInscriptionLevel: 100,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 105,
     required: [{
       type: 'item',
       itemId: 'magic_paper',
@@ -1005,7 +1053,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 100
+      level: 105
     }]
   },
 };

@@ -33,7 +33,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 250,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 3,
     required: [{
       type: 'item',
@@ -81,7 +81,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 475,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 7,
     required: [{
       type: 'item',
@@ -129,7 +129,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 10,
     required: [{
       type: 'item',
@@ -177,7 +177,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 650,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 15,
     required: [{
       type: 'item',
@@ -225,7 +225,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 20,
     required: [{
       type: 'item',
@@ -273,7 +273,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 950,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 25,
     required: [{
       type: 'item',
@@ -321,7 +321,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 1100,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 30,
     required: [{
       type: 'item',
@@ -369,7 +369,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 1500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 35,
     required: [{
       type: 'item',
@@ -417,7 +417,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 1650,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 40,
     required: [{
       type: 'item',
@@ -465,7 +465,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 1800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 45,
     required: [{
       type: 'item',
@@ -513,7 +513,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 1950,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 50,
     required: [{
       type: 'item',
@@ -561,7 +561,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 2300,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 55,
     required: [{
       type: 'item',
@@ -609,7 +609,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 2600,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 60,
     required: [{
       type: 'item',
@@ -657,7 +657,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 2900,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 65,
     required: [{
       type: 'item',
@@ -705,7 +705,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 3200,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 70,
     required: [{
       type: 'item',
@@ -753,7 +753,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 3500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 75,
     required: [{
       type: 'item',
@@ -801,7 +801,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 3800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 80,
     required: [{
       type: 'item',
@@ -849,7 +849,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 4100,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 85,
     required: [{
       type: 'item',
@@ -897,7 +897,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 4400,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 90,
     required: [{
       type: 'item',
@@ -945,7 +945,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 4700,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 95,
     required: [{
       type: 'item',
@@ -993,7 +993,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 5000,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 100,
     required: [{
       type: 'item',
@@ -1041,7 +1041,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 5000,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 105,
     required: [{
       type: 'item',

@@ -31,7 +31,7 @@ export const PAPER_CRAFTS = {
     name: 'pine book',
     id: 'pine_book',
     category: 'book',
-    timeToCraft: 1,
+    timeToCraft: 900,
     xp: 250,
     maxToCraft: 5,
     requiredInscriptionLevel: 3,

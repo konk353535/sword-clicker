@@ -588,8 +588,8 @@ export const BOSS_ENEMIES = {
       health: 4000,
       healthMax: 4000,
       defense: 380,
-      armor: 800,
-      magicArmor: 300,
+      armor: 1000,
+      magicArmor: 400,
       damageTaken: 1
     },
     buffs: [{
@@ -611,15 +611,15 @@ export const BOSS_ENEMIES = {
     name: 'fox',
     isBoss: true,
     stats: {
-      attack: 325,
-      attackMax: 400,
+      attack: 350,
+      attackMax: 425,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 400,
       health: 6000,
       healthMax: 6000,
       defense: 400,
-      armor: 1000,
-      magicArmor: 375,
+      armor: 1250,
+      magicArmor: 450,
       damageTaken: 1
     },
     buffs: [{

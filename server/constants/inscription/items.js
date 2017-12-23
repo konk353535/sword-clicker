@@ -414,12 +414,30 @@ export const INSCRIPTION_ITEMS = {
     description: 'Gives decent xp'
   },
 
+  cedar_paper: {
+    id: 'cedar_paper',
+    icon: 'cedarPaper.png',
+    category: 'paper',
+    name: 'cedar paper',
+    sellPrice: 575,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  cedar_book: {
+    id: 'cedar_book',
+    icon: 'cedarBook.png',
+    category: 'paper',
+    name: 'cedar book',
+    sellPrice: 2850,
+    description: 'Gives decent xp'
+  },  
+  
   blue_gum_paper: {
     id: 'blue_gum_paper',
     icon: 'blueGumPaper.png',
     category: 'paper',
     name: 'blue gum paper',
-    sellPrice: 575,
+    sellPrice: 600,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -428,7 +446,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'blueGumBook.png',
     category: 'paper',
     name: 'blue gum book',
-    sellPrice: 2850,
+    sellPrice: 3000,
     description: 'Gives decent xp'
   },
 
@@ -437,7 +455,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'gombePaper.png',
     category: 'paper',
     name: 'gombe paper',
-    sellPrice: 600,
+    sellPrice: 650,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -446,7 +464,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'gombeBook.png',
     category: 'paper',
     name: 'gombe book',
-    sellPrice: 3000,
+    sellPrice: 3250,
     description: 'Gives decent xp'
   },
 
@@ -455,7 +473,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'hickoryPaper.png',
     category: 'paper',
     name: 'hickory paper',
-    sellPrice: 650,
+    sellPrice: 700,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -464,7 +482,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'hickoryBook.png',
     category: 'paper',
     name: 'hickory book',
-    sellPrice: 3250,
+    sellPrice: 3500,
     description: 'Gives decent xp'
   },
 
@@ -473,7 +491,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'larchPaper.png',
     category: 'paper',
     name: 'larch paper',
-    sellPrice: 700,
+    sellPrice: 800,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -482,7 +500,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'larchBook.png',
     category: 'paper',
     name: 'larch book',
-    sellPrice: 3500,
+    sellPrice: 4000,
     description: 'Gives decent xp'
   },
 
@@ -491,7 +509,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'poplarPaper.png',
     category: 'paper',
     name: 'poplar paper',
-    sellPrice: 800,
+    sellPrice: 900,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -500,7 +518,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'poplarBook.png',
     category: 'paper',
     name: 'poplar book',
-    sellPrice: 4000,
+    sellPrice: 4500,
     description: 'Gives decent xp'
   },
 
@@ -509,7 +527,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'taliPaper.png',
     category: 'paper',
     name: 'tali paper',
-    sellPrice: 900,
+    sellPrice: 1000,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -518,7 +536,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'taliBook.png',
     category: 'paper',
     name: 'tali book',
-    sellPrice: 4500,
+    sellPrice: 5000,
     description: 'Gives decent xp'
   },
 
@@ -527,7 +545,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'willowPaper.png',
     category: 'paper',
     name: 'willow paper',
-    sellPrice: 1000,
+    sellPrice: 1100,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -536,7 +554,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'willowBook.png',
     category: 'paper',
     name: 'willow book',
-    sellPrice: 5000,
+    sellPrice: 5500,
     description: 'Gives decent xp'
   },
 
@@ -545,7 +563,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'teakPaper.png',
     category: 'paper',
     name: 'teak paper',
-    sellPrice: 1100,
+    sellPrice: 1200,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -554,7 +572,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'teakBook.png',
     category: 'paper',
     name: 'teak book',
-    sellPrice: 5500,
+    sellPrice: 6000,
     description: 'Gives decent xp'
   },
 
@@ -563,7 +581,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'fieryPaper.png',
     category: 'paper',
     name: 'fiery paper',
-    sellPrice: 1200,
+    sellPrice: 1300,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -572,7 +590,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'fieryBook.png',
     category: 'paper',
     name: 'fiery book',
-    sellPrice: 6000,
+    sellPrice: 6500,
     description: 'Gives decent xp'
   },
 
@@ -581,7 +599,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magicPaper.png',
     category: 'paper',
     name: 'magic paper',
-    sellPrice: 1300,
+    sellPrice: 1400,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -590,7 +608,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magicBook.png',
     category: 'paper',
     name: 'magic book',
-    sellPrice: 6500,
+    sellPrice: 7000,
     description: 'Gives decent xp'
   },
 

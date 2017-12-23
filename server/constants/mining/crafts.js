@@ -1792,7 +1792,7 @@ export const MINING_CRAFTS = {
     id: 'orichalcum_mining_anvil',
     category: 'mining',
     timeToCraft: 15 * MINUTE,
-    xp: 1000,
+    xp: 62000,
     maxToCraft: 1,
     requiredCraftingLevel: 75,
     required: [{
@@ -1837,7 +1837,7 @@ export const MINING_CRAFTS = {
     id: 'meteorite_mining_anvil',
     category: 'mining',
     timeToCraft: 20 * MINUTE,
-    xp: 1500,
+    xp: 125000,
     maxToCraft: 1,
     requiredCraftingLevel: 80,
     required: [{
@@ -1882,7 +1882,7 @@ export const MINING_CRAFTS = {
     id: 'fairy_steel_mining_anvil',
     category: 'mining',
     timeToCraft: 30 * MINUTE,
-    xp: 1750,
+    xp: 200000,
     maxToCraft: 1,
     requiredCraftingLevel: 85,
     required: [{
@@ -1927,7 +1927,7 @@ export const MINING_CRAFTS = {
     id: 'elven_steel_mining_anvil',
     category: 'mining',
     timeToCraft: 45 * MINUTE,
-    xp: 2250,
+    xp: 300000,
     maxToCraft: 1,
     requiredCraftingLevel: 90,
     required: [{
@@ -1972,7 +1972,7 @@ export const MINING_CRAFTS = {
     id: 'cursed_mining_anvil',
     category: 'mining',
     timeToCraft: 60 * MINUTE,
-    xp: 3000,
+    xp: 500000,
     maxToCraft: 1,
     requiredCraftingLevel: 95,
     required: [{

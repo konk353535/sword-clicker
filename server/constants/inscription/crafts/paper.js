@@ -561,7 +561,7 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 2300,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 55,
     required: [{
       type: 'item',
@@ -656,15 +656,9 @@ export const PAPER_CRAFTS = {
     id: 'gombe_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 2600,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 60,
-=======
     xp: 2900,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 65,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'gombe_paper',
@@ -710,15 +704,9 @@ export const PAPER_CRAFTS = {
     id: 'hickory_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 2900,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 65,
-=======
     xp: 3200,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 70,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'hickory_paper',
@@ -764,15 +752,9 @@ export const PAPER_CRAFTS = {
     id: 'larch_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 3200,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 70,
-=======
     xp: 3500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 75,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'larch_paper',
@@ -818,15 +800,9 @@ export const PAPER_CRAFTS = {
     id: 'poplar_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 3500,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 75,
-=======
     xp: 3800,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 80,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'poplar_paper',
@@ -872,15 +848,9 @@ export const PAPER_CRAFTS = {
     id: 'tali_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 3800,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 80,
-=======
     xp: 4100,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 85,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'tali_paper',
@@ -926,15 +896,9 @@ export const PAPER_CRAFTS = {
     id: 'willow_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 4100,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 85,
-=======
     xp: 4400,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 90,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'willow_paper',
@@ -980,15 +944,9 @@ export const PAPER_CRAFTS = {
     id: 'teak_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 4400,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 90,
-=======
     xp: 4700,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 95,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'teak_paper',
@@ -1034,15 +992,9 @@ export const PAPER_CRAFTS = {
     id: 'fiery_book',
     category: 'paper',
     timeToCraft: 900,
-<<<<<<< HEAD
-    xp: 4700,
-    maxToCraft: 5,
-    requiredInscriptionLevel: 95,
-=======
     xp: 5000,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 100,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'fiery_paper',
@@ -1089,13 +1041,8 @@ export const PAPER_CRAFTS = {
     category: 'paper',
     timeToCraft: 900,
     xp: 5000,
-<<<<<<< HEAD
     maxToCraft: 5,
-    requiredInscriptionLevel: 100,
-=======
-    maxToCraft: 1,
     requiredInscriptionLevel: 105,
->>>>>>> develop
     required: [{
       type: 'item',
       itemId: 'magic_paper',

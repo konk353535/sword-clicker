@@ -2174,9 +2174,9 @@ export const INSCRIPTION_ITEMS = {
     name: 'Codex of Tutoring',
     sellPrice: 100,
     magicXp: 500,
-    description: 'Can be consumed to learn the taunt ability.',
+    description: 'Can be consumed for 500 Magic XP.',
     shiftActionData: {
-      description: 'increase an items quality by up to 15%'
+      description: 'to consume for 500 Magic XP.'
     }
   },
 
@@ -2187,9 +2187,9 @@ export const INSCRIPTION_ITEMS = {
     name: 'Codex of Learning',
     sellPrice: 200,
     magicXp: 1000,
-    description: 'Can be consumed to learn the taunt ability.',
+    description: 'Can be consumed for 1000 Magic XP.',
     shiftActionData: {
-      description: 'increase an items quality by up to 15%'
+      description: 'to consume for 1000 Magic XP.'
     }
   },
 
@@ -2200,9 +2200,22 @@ export const INSCRIPTION_ITEMS = {
     name: 'Codex of Knowledge',
     sellPrice: 300,
     magicXp: 1500,
-    description: 'Can be consumed to learn the taunt ability.',
+    description: 'Can be consumed for 1500 Magic XP.',
     shiftActionData: {
-      description: 'increase an items quality by up to 15%'
+      description: 'to consume for 1500 Magic XP.'
+    }
+  },
+
+  oak_magic_book: {
+    id: 'oak_magic_book',
+    icon: 'tome.svg',
+    category: 'magic_book',
+    name: 'Codex of Magic',
+    sellPrice: 400,
+    magicXp: 2000,
+    description: 'Can be consumed for 2000 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 2000 Magic XP.'
     }
   }
 }

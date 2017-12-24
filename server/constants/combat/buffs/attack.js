@@ -725,11 +725,6 @@ export const ATTACK_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
 
-         let localLevel = JSON.parse(JSON.stringify(level));
-        if (!localLevel) {
-          localLevel = 1;
-        }
-
         const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const baseDamage = caster.stats.attackMax;

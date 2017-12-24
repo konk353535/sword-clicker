@@ -1132,7 +1132,7 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the doubled edged sword ability.'
   },
 
-  spiked_armor_1=3_tome: {
+  spiked_armor_1_tome: {
     id: 'spiked_armor_1_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
@@ -1318,13 +1318,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'diamond_skin_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'diamond_skin',
+    name: 'diamond skin',
     teaches: {
       abilityId: 'diamond_skin',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the diamond_skin spell.'
+    description: 'Can be consumed to learn the diamond skin spell.'
   },
 
   frenzied_winds_tome: {

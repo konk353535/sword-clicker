@@ -22,8 +22,9 @@ Template.abilityLibraryIcon.rendered = function () {
 }
 
 Template.abilityLibraryIcon.onDestroyed(function () {
-  if (tooltip) {
-    Template.instance().$('.item-icon-container')[0]._tippy.destroy();
+  let tooltipInstance = Template.instance().$('.item-icon-container')[0];
+  if (tooltip && tooltipInstance.hasOwnProperty('_tippy')) {
+    tooltipInstance._tippy.destroy();
   }
 })
 

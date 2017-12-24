@@ -30,6 +30,11 @@ export const TOWER_FLOOR_5 = {
         { type: 'icon', iconId: 'crow_t1' }
       ]
     }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
+      ]
+    },{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'silver_knife', amount: 1 }

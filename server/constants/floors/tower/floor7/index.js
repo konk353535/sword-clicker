@@ -80,6 +80,11 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'water_wave_tome', amount: 1 }
       ]
     }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'double_edged_sword_3_tome', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'carbon_scimitar', amount: 1 },

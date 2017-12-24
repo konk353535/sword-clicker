@@ -1094,7 +1094,7 @@ export const INSCRIPTION_ITEMS = {
   },
 
   double_edged_sword_3_tome: {
-    id: 'double_edged_sword_1_tome',
+    id: 'double_edged_sword_3_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'double edged sword tome Lv. 3',
@@ -1107,7 +1107,7 @@ export const INSCRIPTION_ITEMS = {
   },
 
   double_edged_sword_4_tome: {
-    id: 'double_edged_sword_1_tome',
+    id: 'double_edged_sword_4_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'double edged sword tome Lv. 4',

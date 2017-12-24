@@ -124,8 +124,8 @@ export const LEVEL_FOUR_CRAFTS = {
     name: 'Double Edged Sword Lv. 4',
     id: 'double_edged_sword_4_tome',
     category: 'tome',
-    timeToCraft: 180,
-    xp: 100,
+    timeToCraft: 30 * 60,
+    xp: 140,
     maxToCraft: 1,
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_WHITE_128, UTIL.MANY_GREEN_140, UTIL.OAK_PAPER, UTIL.LEVEL_20]

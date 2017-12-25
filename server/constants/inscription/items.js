@@ -716,6 +716,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the thirsty fangs ability.'
   },
 
+  thirsty_fangs_2_tome: {
+    id: 'thirsty_fangs_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Thirsty Fangs Lv. 2',
+    teaches: {
+      abilityId: 'thirsty_fangs',
+      level: 2
+    },
+    sellPrice: 5000,
+    description: 'Can be consumed to upgrade the thirsty fangs ability.'
+  },
+
   slash_level_1_tome: {
     id: 'slash_level_1_tome',
     icon: 'tome.svg',

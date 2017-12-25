@@ -48,6 +48,11 @@ export const TOWER_FLOOR_18 = {
         { type: 'item', itemId: 'fairy_steel_rapiers', amount: 1 }
       ]
     }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'thirsty_fangs_2_tome_scroll', amount: 1 }
+      ]
+    },{
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'azure_wizard_hat', amount: 1 },

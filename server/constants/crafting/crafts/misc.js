@@ -103,6 +103,45 @@ export const MISC_CRAFTS = {
     maxToCraft: 1
   },
 
+  thirsty_fangs_2_tome: {
+    produces: 'thirsty_fangs_2_tome',
+    recipeFor: 'crafting',
+    name: 'thirsty fangs lv 2',
+    category: 'combat',
+    id: 'thirsty_fangs_2_tome',
+    requiredCraftingLevel: 40,
+    isHidden: true,
+    required: [{
+      type: 'item',
+      itemId: 'lemon_honey',
+      icon: ITEMS['lemon_honey'].icon,
+      name: ITEMS['lemon_honey'].name,
+      amount: 1,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'dragonfruit',
+      icon: ITEMS['dragonfruit'].icon,
+      name: ITEMS['dragonfruit'].name,
+      amount: 50,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'silver_essence_wall',
+      icon: ITEMS['silver_essence_wall'].icon,
+      name: ITEMS['silver_essence_wall'].name,
+      amount: 20,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 40
+    }],
+    timeToCraft: 15 * 60,
+    xp: 1000,
+    maxToCraft: 1
+  },
+
   bamboo_roof: {
     produces: 'bamboo_roof',
     recipeFor: 'crafting',

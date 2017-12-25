@@ -117,4 +117,17 @@ export const LEVEL_FOUR_CRAFTS = {
     requiredInscriptionLevel: 12,
     required: [UTIL.WHITE_128, UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_12]
   },
+
+  double_edged_sword_4_tome: {
+    recipeFor: 'inscription',
+    produces: 'double_edged_sword_4_tome',
+    name: 'Double Edged Sword Lv. 4',
+    id: 'double_edged_sword_4_tome',
+    category: 'tome',
+    timeToCraft: 30 * 60,
+    xp: 140,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_WHITE_128, UTIL.MANY_GREEN_140, UTIL.OAK_PAPER, UTIL.LEVEL_20]
+  }
 }

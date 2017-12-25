@@ -722,8 +722,8 @@ export const ATTACK_BUFFS = {
         Deal half of this damage to yourself.`;
     },
     constants: {
-      damageBase: 4.5, // 7.5x damage
-      damagePerLevel: 0.5
+      damageBase: 0, // 7.5x damage
+      damagePerLevel: 1
     },
     data: {
       duration: 0,
@@ -731,6 +731,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+
         const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const baseDamage = caster.stats.attackMax;

@@ -1093,6 +1093,58 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the doubled edged sword ability.'
   },
 
+  double_edged_sword_2_tome: {
+    id: 'double_edged_sword_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 2',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_3_tome: {
+    id: 'double_edged_sword_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 3',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 3
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_4_tome: {
+    id: 'double_edged_sword_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 4',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 4
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_5_tome: {
+    id: 'double_edged_sword_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 5',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 5
+    },
+    sellPrice: 1250,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
   spiked_armor_1_tome: {
     id: 'spiked_armor_1_tome',
     icon: 'tomeUncommon.svg',
@@ -1279,13 +1331,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'diamond_skin_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'diamond_skin',
+    name: 'diamond skin',
     teaches: {
       abilityId: 'diamond_skin',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the diamond_skin spell.'
+    description: 'Can be consumed to learn the diamond skin spell.'
   },
 
   frenzied_winds_tome: {

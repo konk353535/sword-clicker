@@ -35,7 +35,21 @@ export const SCROLL_ITEMS = {
     name: 'thirsty fangs scroll',
     teaches: 'thirsty_fangs_1_tome',
     sellPrice: 750,
-    description: `A lost scroll, said to contain the secrets of vamprism.`,
+    description: `A lost scroll, said to contain the secrets of vampirism.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  thirsty_fangs_2_tome_scroll: {
+    id: 'thirsty_fangs_2_tome_scroll',
+    icon: 'redEssenceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'thirsty fangs scroll',
+    teaches: 'thirsty_fangs_2_tome',
+    sellPrice: 1750,
+    description: `A lost scroll, said to contain the secrets of vampirism.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }

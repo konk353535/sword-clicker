@@ -138,7 +138,8 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
     const minerName = oreConstants.id !== 'stone' ? `${oreConstants.id}_miner` : 'primitive_miner';
     const targetMiner = _.findWhere(mining.miners, { id: minerName });
     if (targetMiner) {
-      if (targetMiner.xp >= MINING.miners.xpToLevel(targetMiner.level) && targetMiner.level < 20) {
+      let xpToAdd = mineSpace.isCluster ? 10 : 1;
+      if (targetMiner.xp + xpToAdd >= MINING.miners.xpToLevel(targetMiner.level) && targetMiner.level < 20) {
         Mining.update({
           owner: Meteor.userId(),
           miners: {

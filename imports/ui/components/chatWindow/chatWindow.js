@@ -206,27 +206,36 @@ Template.chatWindow.events({
   },
 
   'click button#message-send': function () {
-    let template = Template.instance()
-    var $message = template.$('#simple-chat-message')
-    var text = $message.val()
+    let template = Template.instance();
+    let $message = template.$('#simple-chat-message');
+    let text = $message.val();
 
     // Check for client commands
-    if (text.trim().toLowerCase() === '/party') {
+    const trimmedText = text.trim().toLowerCase();
+    if (trimmedText === '/party' || trimmedText === '/p') {
       $message.val('');
-      template.state.set('currentChat', 'Party')
+      template.state.set('currentChat', 'Party');
       return;
-    } else if (text.trim().toLowerCase() === '/general') {
+    } else if (trimmedText === '/general' || trimmedText === '/g') {
       $message.val('');
-      template.state.set('currentChat', 'General')
+      template.state.set('currentChat', 'General');
       return;
-    } else if (text.trim().toLowerCase() === '/lfg') {
+    } else if (trimmedText === '/lfg') {
       $message.val('');
-      template.state.set('currentChat', 'LFG')
+      template.state.set('currentChat', 'LFG');
+      return;
+    } else if (trimmedText === '/help' || trimmedText === '/h') {
+      $message.val('');
+      template.state.set('currentChat', 'Help');
+      return;
+    } else if (trimmedText === '/offtopic' || trimmedText === '/ot') {
+      $message.val('');
+      template.state.set('currentChat', 'Offtopic');
       return;
     }
 
     if ($message.val() != '') {
-      var text = $message.val()
+      let text = $message.val()
       $message.val('');
       SimpleChat.scrollToEnd(template)
       const currentChatId = template.state.get('currentChat');

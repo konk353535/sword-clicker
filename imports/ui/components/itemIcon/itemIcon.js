@@ -41,14 +41,15 @@ Template.itemIcon.rendered = function () {
           html: Template.instance().$('.item-tooltip-content')[0],
           performance: true,
           animateFill: false,
-          distance: 5
+          distance: 5,
         })
   }
 }
 
 Template.itemIcon.onDestroyed(function () {
-  if (tooltip) {
-    Template.instance().$('.item-icon-container')[0]._tippy.destroy();
+  let tooltipInstance = Template.instance().$('.item-icon-container')[0];
+  if (tooltip && tooltipInstance.hasOwnProperty('_tippy')) {
+    tooltipInstance._tippy.destroy();
   }
 });
 

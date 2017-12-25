@@ -496,16 +496,18 @@ export const ATTACK_BUFFS = {
         localLevel = 1;
       }
 
-      const chance = buff.constants.extraAttackChance * 100;
       const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
-      const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
+      const damage = (buff.constants.damageDecimal + (buff.constants.extraAttackDamagePerLevel * localLevel)) * 100;
+      const healing = buff.constants.healingDecimal * 100;
 
       return `When the target is bleeding<br />
-        Deal 20% extra damage.<br />
-        While below 60% hp, heal for the same amount.`;
+        Deal ${damage.toFixed(0)}% extra damage (+${damagePerLevel}% per lvl).<br />
+        While below 60% hp, heal for ${healing.toFixed(0)}% of damage dealt.`;
     },
     constants: {
-      damageDecimal: 0.20
+      damageDecimal: 0.15,
+      extraAttackDamagePerLevel: 0.05,
+      healingDecimal: 0.20
     },
     data: {
       duration: Infinity,
@@ -517,24 +519,29 @@ export const ATTACK_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
+
         const constants = buff.constants.constants;
         const baseDamage = attacker.stats.attack;
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-        const totalDamage = (baseDamage + extraDamage) * constants.damageDecimal;
+        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level))
+        const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
+        const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
         const hasBleed = _.findWhere(defender.buffs, { id: 'bleed' });
 
         if (hasBleed) {
           // My current hp
           const hpDecimal = attacker.stats.health / attacker.stats.healthMax;
+
           if (hpDecimal <= 0.60) {
-            actualBattle.utils.healTarget(totalDamage, {
+            actualBattle.utils.healTarget(totalHealing, {
               caster: attacker,
               target: attacker,
               tickEvents: actualBattle.tickEvents,
               historyStats: actualBattle.historyStats,
             }); 
           }
+
           actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,
@@ -715,8 +722,8 @@ export const ATTACK_BUFFS = {
         Deal half of this damage to yourself.`;
     },
     constants: {
-      damageBase: 4.5, // 7.5x damage
-      damagePerLevel: 0.5
+      damageBase: 0, // 7.5x damage
+      damagePerLevel: 1
     },
     data: {
       duration: 0,
@@ -724,6 +731,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+
         const damageIncreasePerPercentage = buff.constants.constants.damageBase + (buff.constants.constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const baseDamage = caster.stats.attackMax;

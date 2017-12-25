@@ -2185,22 +2185,6 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the taunt ability.'
   },
 
-  enchantment_fire: {
-    id: 'enchantment_fire',
-    icon: 'enchantmentFire.svg',
-    category: 'enchantment',
-    name: 'lesser fire',
-    sellPrice: 50,
-    enchantSlot: ['mainHand'],
-    description: `
-      Can be consumed to increase an items quality by up to 15%.\n
-      Can only be applied once per item.\n
-      Item quality can not be increased beyond 100%.`,
-    shiftActionData: {
-      description: 'increase an items quality by up to 15%',
-      target: 'item'
-    },
-
   pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'tome.svg',
@@ -2251,5 +2235,22 @@ export const INSCRIPTION_ITEMS = {
     shiftActionData: {
       description: 'to consume for 2000 Magic XP.'
     }
-  }
+  },
+
+  enchantment_fire: {
+    id: 'enchantment_fire',
+    icon: 'enchantmentFire.svg',
+    category: 'enchantment',
+    name: 'lesser fire',
+    sellPrice: 50,
+    enchantSlot: ['mainHand'],
+    description: `
+      Can be consumed to increase an items quality by up to 15%.\n
+      Can only be applied once per item.\n
+      Item quality can not be increased beyond 100%.`,
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%',
+      target: 'item'
+    }
+  },
 }

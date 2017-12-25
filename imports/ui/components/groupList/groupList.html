@@ -13,14 +13,14 @@
           <div class="
             {{#if this.readyCheck.ready}}user-ready{{/if}}
             {{#if this.readyCheck.notReady}}user-not-ready{{/if}}">
-          {{> battleUnit unit=this small=true showBuffs=true showEnergy=true}}
+          {{> battleUnit unit=this small=true showBuffs=true showEnergy=true viewProfile=true}}
           </div>
         {{/each}}
 
         {{#if currentGroup.invitesDetails}}
           <div class="mt-3 text-center"><b>Pending</b></div>
           {{#each currentGroup.invitesDetails}}
-            {{> battleUnit unit=this small=true}}
+            {{> battleUnit unit=this small=true viewProfile=true}}
           {{/each}}
         {{/if}}
 

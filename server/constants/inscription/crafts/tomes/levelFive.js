@@ -8,7 +8,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'berserk_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.GREEN_170, UTIL.RED_200, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
@@ -21,7 +21,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'iron_will_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.GREEN_170, UTIL.MANY_GREEN_200, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
@@ -34,7 +34,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'blade_spin_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.PURPLE_200, UTIL.RED_150, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_18]
@@ -47,7 +47,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'armor_up_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.GREEN_170, UTIL.RED_150, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_18]
@@ -60,7 +60,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'execute_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.WHITE_128, UTIL.YELLOW_255, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
@@ -73,7 +73,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'bleed_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.YELLOW_255, UTIL.RED_200, UTIL.RED_255, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_18]
@@ -86,7 +86,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'blade_frenzy_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.YELLOW_255, UTIL.RED_255, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_18]
@@ -99,7 +99,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'defensive_stance_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.PURPLE_200, UTIL.BLUE_255, UTIL.WHITE_128, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
@@ -112,7 +112,7 @@ export const LEVEL_FIVE_CRAFTS = {
     id: 'evasive_maneuvers_level_5_tome',
     category: 'tome',
     timeToCraft: 24 * 60 * 60,
-    xp: 1000,
+    xp: 2500,
     maxToCraft: 1,
     requiredInscriptionLevel: 18,
     required: [UTIL.PURPLE_200, UTIL.BLUE_255, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]

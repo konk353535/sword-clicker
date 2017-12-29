@@ -1,4 +1,4 @@
-import { UTIL } from './util';
+fimport { UTIL } from './util';
 
 export const LEVEL_FOUR_CRAFTS = {
   berserk_level_4_tome: {
@@ -86,7 +86,7 @@ export const LEVEL_FOUR_CRAFTS = {
     id: 'blade_frenzy_level_4_tome',
     category: 'tome',
     timeToCraft: 30 * 60,
-    xp: 140,
+    xp: 1000,
     maxToCraft: 1,
     requiredInscriptionLevel: 12,
     required: [UTIL.WHITE_128, UTIL.PURPLE_255, UTIL.MANY_OAK_PAPER, UTIL.LEVEL_12]
@@ -99,7 +99,7 @@ export const LEVEL_FOUR_CRAFTS = {
     id: 'defensive_stance_level_4_tome',
     category: 'tome',
     timeToCraft: 30 * 60,
-    xp: 140,
+    xp: 1000,
     maxToCraft: 1,
     requiredInscriptionLevel: 12,
     required: [UTIL.RED_200, UTIL.BLUE_255, UTIL.WHITE_128, UTIL.OAK_PAPER, UTIL.LEVEL_12]
@@ -112,7 +112,7 @@ export const LEVEL_FOUR_CRAFTS = {
     id: 'evasive_maneuvers_level_4_tome',
     category: 'tome',
     timeToCraft: 30 * 60,
-    xp: 140,
+    xp: 1000,
     maxToCraft: 1,
     requiredInscriptionLevel: 12,
     required: [UTIL.WHITE_128, UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_12]
@@ -125,9 +125,9 @@ export const LEVEL_FOUR_CRAFTS = {
     id: 'double_edged_sword_4_tome',
     category: 'tome',
     timeToCraft: 30 * 60,
-    xp: 140,
+    xp: 1000,
     maxToCraft: 1,
     requiredInscriptionLevel: 20,
-    required: [UTIL.MANY_WHITE_128, UTIL.MANY_GREEN_140, UTIL.OAK_PAPER, UTIL.LEVEL_20]
+    required: [UTIL.MANY_WHITE_128, UTIL.GREEN_140, UTIL.OAK_PAPER, UTIL.LEVEL_20]
   }
 }

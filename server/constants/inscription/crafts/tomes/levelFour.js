@@ -1,4 +1,4 @@
-fimport { UTIL } from './util';
+import { UTIL } from './util';
 
 export const LEVEL_FOUR_CRAFTS = {
   berserk_level_4_tome: {

@@ -8,10 +8,12 @@ import { Inscription } from '/imports/api/inscription/inscription.js';
 import { FarmingSpace } from '/imports/api/farming/farming.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { BattlesList } from '/imports/api/battles/battles.js';
+import { Abilities } from '/imports/api/abilities/abilities.js';
 
 import '../farming/farmSpace.js';
 import '../craftingDuration/craftingDuration.js';
 import './summaryList.html';
+
 
 Template.summaryList.onCreated(function bodyOnCreated() {
 });
@@ -79,6 +81,23 @@ Template.summaryList.helpers({
     return myAdventures.adventures.filter((adventure) => {
       return adventure.startDate;
     });
-  }
+  },
 
+  equippedAbilitiesMap() {
+    const myAbilities = Abilities.findOne();
+    if (!myAbilities) {
+      return;
+    }
+
+    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+      return ability.equipped;
+    });
+
+    const equippedMap = {};
+    equippedAbilities.forEach((item) => {
+      equippedMap[item.slot] = item;
+    });
+
+    return equippedMap;
+  },
 });

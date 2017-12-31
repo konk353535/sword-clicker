@@ -11,6 +11,7 @@
     "babel-runtime": "^6.20.0",
     "bootstrap": "^4.0.0-alpha.6",
     "js-object-parser": "^1.0.1",
+    "rai-checkout": "0.0.0",
     "json-parser": "^1.1.5",
     "jsonic": "^0.3.0",
     "lodash": "^4.17.4",

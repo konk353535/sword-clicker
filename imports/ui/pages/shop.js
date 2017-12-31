@@ -1,10 +1,14 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import RaiCheckout from 'rai-checkout';
+
+import 'rai-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+
   this.state.set('processing', false);
 
   Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
@@ -280,6 +284,25 @@ Template.shopPage.rendered = function () {
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
+  },
+
+  RaiCheckout() {
+    return RaiCheckout;
+  },
+
+  token() {
+    const instance = Template.instance();
+    return ({ paymentId, itemId }) => {
+      Meteor.call('shop.purchaseWithRaiBlocks', { paymentId, itemId }, (err, res) => {
+        if (err) {
+          toastr.error('An error occured while purchasing gems.');
+        } else {
+          toastr.success('Successfully purchased');
+        }
+
+        instance.state.set('processing', false);
+      });
+    }
   },
 
   totalGems() {

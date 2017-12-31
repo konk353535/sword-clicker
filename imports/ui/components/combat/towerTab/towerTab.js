@@ -25,6 +25,10 @@ Template.towerTab.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('usersCurrentFloor', 1);
       }
+
+      if (myUser.uiState && myUser.uiState.battleAgain !== undefined) {
+        this.state.set('battleAgain', myUser.uiState.battleAgain);
+      }
     }
   });
 
@@ -65,6 +69,10 @@ Template.towerTab.events({
 
   'click .battle-deeper'(event, instance) {
     Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 0, findBattleHandler);
+  },
+
+  'click .battle-again'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('battleAgain').floor, instance.state.get('battleAgain').room, findBattleHandler);
   },
 
   'click .battle-room-1-row'(event, instance) {
@@ -260,5 +268,10 @@ Template.towerTab.helpers({
     }
 
     return floorsList;
+  },
+
+  battleAgain() {
+    const instance = Template.instance();
+    return instance.state.get('battleAgain') !== undefined;
   }
 })

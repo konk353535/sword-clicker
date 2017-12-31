@@ -909,7 +909,7 @@ export const PICKAXE_ITEMS = {
     icon: 'fairySteelMiningHammer.svg',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'fairy_steel mining hammer',
+    name: 'fairy steel mining hammer',
     sellPrice: 1500,
     description: 'A hammer forged from fairy steel. Used for mining',
     isPickaxe: true,

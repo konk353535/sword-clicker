@@ -5,7 +5,6 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
-import { Combat } from '/imports/api/combat/combat.js';
 import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
@@ -13,26 +12,15 @@ import './spellBookTab.html';
 
 Template.spellBookTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  const anAbility = Abilities.findOne();
 
   this.autorun(() => {
-    const anAbility = Abilities.findOne();
-    // Pass ability so when a new abilitiy is learnt this is reactive
-    const results = ReactiveMethod.call('abilities.fetchLibrary', anAbility);
-    const spellCrafting = ReactiveMethod.call('abilities.fetchSpellCrafting', anAbility);
-
-    this.state.set('spellCrafting', spellCrafting);
+    const results = ReactiveMethod.call('abilities.fetchSpellCrafting', anAbility);
 
     if (results) {
-      const resultsMap = {};
-      results.forEach((result) => {
-        resultsMap[result.id] = result;
-      });
-      this.state.set('abilityLibraryListMap', resultsMap);
-
-      // Store recipes
-      this.state.set('abilityLibrary', results);
+      this.state.set('spellCrafting', results);
     }
-  })
+  });
 });
 
 Template.spellBookTab.events({
@@ -106,53 +94,6 @@ Template.spellBookTab.events({
 })
 
 Template.spellBookTab.helpers({
-
-  availableTomes() {
-    return Items.find({ category: 'magicTome' }).map((item) => {
-      item.primaryAction = {
-        description: 'learn',
-        item,
-        method() {
-          Meteor.call('abilities.learn', this.item._id, this.item.itemId, (err, res) => {
-            if (err) {
-              toastr.warning(err.reason);
-            } else {
-              toastr.success(`Successfully learnt ${item.name}`)
-            }
-          });
-        }
-      }
-      return item;
-    });
-  },
-
-  equippedAbilitiesMap() {
-    const myAbilities = Abilities.findOne();
-    if (!myAbilities) {
-      return;
-    }
-
-    const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
-      // To do add unequipping for abilities
-      ability.primaryAction = {
-        description: 'unequip',
-        ability,
-        method() {
-          Meteor.call('abilities.unequip', this.ability.slot);
-        }
-      };
-
-      return ability.equipped;
-    });
-
-    const equippedMap = {};
-    equippedAbilities.forEach((item) => {
-      equippedMap[item.slot] = item;
-    });
-
-    return equippedMap;
-  },
-
   spellCrafting() {
     const instance = Template.instance();
     return instance.state.get('spellCrafting');

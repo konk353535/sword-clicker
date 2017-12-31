@@ -3,12 +3,10 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
-import { Combat } from '/imports/api/combat/combat.js';
 import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
 import './combatAbilitiesTab.html';
-let abilityTimer;
 
 Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -28,21 +26,12 @@ Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
       this.state.set('abilityLibrary', results);
     }
   });
-
-  abilityTimer = Meteor.setInterval(() => {
-    Meteor.call('abilities.gameUpdate');
-  }, 10000);
 });
 
 Template.combatAbilitiesTab.events({
 });
 
-Template.combatAbilitiesTab.onDestroyed(function bodyOnDestroyed() {
-  Meteor.clearInterval(abilityTimer);
-});
-
 Template.combatAbilitiesTab.helpers({
-
   availableTomes() {
     return Items.find({ category: 'tome' }).map((item) => {
       item.primaryAction = {

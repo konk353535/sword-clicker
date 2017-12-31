@@ -5,8 +5,6 @@ import { Users } from '/imports/api/users/users.js';
 import { Meteor } from "meteor/meteor";
 
 import './nav.html';
-import {Battles} from "../api/battles/battles";
-
 
 Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
@@ -21,39 +19,6 @@ Template.nav.onCreated(function bodyOnCreated() {
       }
     }
   });
-
-  Tracker.autorun(() => {
-    const finishedBattle = Battles.findOne({
-      finished: true,
-      updatedAt: {
-        $gte: moment().subtract(15, 'second').toDate()
-      }
-    }, {
-      sort: {
-        updatedAt: -1
-      }
-    });
-
-    if (finishedBattle) {
-      subAbilityTimer()
-    }
-  });
-
-  let subAbilityTimer = function() {
-    console.log('subbing');
-    let abilityTimer = Meteor.setInterval(() => {
-      console.log('interval running');
-      Meteor.call('abilities.gameUpdate', (err, res) => {
-        // clear if all abilities are cooled down
-        if (res) {
-          console.log('cooled down, unsubbing');
-          Meteor.clearInterval(abilityTimer);
-        }
-      });
-    }, 2500);
-  };
-
-  subAbilityTimer();
 });
 
 Template.nav.events({

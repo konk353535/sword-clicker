@@ -722,8 +722,8 @@ export const ATTACK_BUFFS = {
         Deal half of this damage to yourself.`;
     },
     constants: {
-      damageBase: 0, // 7.5x damage
-      damagePerLevel: 1
+      damageBase: 1.25, // 200, 275, 350, 425, 500
+      damagePerLevel: .75
     },
     data: {
       duration: 0,

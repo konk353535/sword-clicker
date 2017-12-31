@@ -8,7 +8,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Combat } from '/imports/api/combat/combat.js';
-import { BattlesList } from '/imports/api/battles/battles.js';
+import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -28,9 +28,16 @@ let woodcuttingTimer;
 let combatTimer;
 let astronomyTimer;
 let floatingTextTimer;
+let abilityTimer;
 
 let cachedSkills = {};
 let cachedAdventures = {};
+
+// track user's input type for tooltip wrangling
+Session.set('tooltipInput', 'mouse');
+tippy.browser.onUserInputChange = function (type) {
+  Session.set('tooltipInput', type);
+};
 
 Template.body.onCreated(function () {
 
@@ -60,6 +67,38 @@ Template.body.onCreated(function () {
       }
     }
   });
+
+  // auto tracker for detecting battle completion to begin cd cooldown interval
+  Tracker.autorun(() => {
+    const finishedBattle = Battles.findOne({
+      finished: true,
+      updatedAt: {
+        $gte: moment().subtract(15, 'second').toDate()
+      }
+    }, {
+      sort: {
+        updatedAt: -1
+      }
+    });
+
+    if (finishedBattle) {
+      subAbilityTimer()
+    }
+  });
+
+  let subAbilityTimer = function() {
+    abilityTimer = Meteor.setInterval(() => {
+      Meteor.call('abilities.gameUpdate', (err, res) => {
+        // clear if all abilities are cooled down
+        if (res) {
+          Meteor.clearInterval(abilityTimer);
+        }
+      });
+    }, 2500);
+  };
+
+  // call initially in case of preexisting cooldowns
+  subAbilityTimer();
 
   // Auto tracker for invites to groups
   Tracker.autorun(() => {

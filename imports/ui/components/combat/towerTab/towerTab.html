@@ -36,6 +36,14 @@
             </button>
           </div>
         {{/unless}}
+
+        {{#if battleAgain}}
+          <div class="ml-3">
+            <button class="btn btn-primary battle-again">
+              Battle Again
+            </button>
+          </div>
+        {{/if}}
       </h1>
 
       {{#unless equippedItemsMap.mainHand}}

@@ -84,7 +84,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       const userDoc = Users.findOne({ _id: participant });
 
       if ( activeAdventures ) {
-        adventurePlayers += adventurePlayers == "" ? userDoc.username : ", " + userDoc.username;
+        adventurePlayers += adventurePlayers === "" ? userDoc.username : ", " + userDoc.username;
       }
     }
   });

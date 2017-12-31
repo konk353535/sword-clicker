@@ -284,6 +284,10 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     width: 32px;
     height: 32px;
 
+    .required-weapon {
+      display: none;
+    }
+
     .item-icon {
       width: 24px;
       height: 24px;

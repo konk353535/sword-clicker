@@ -36,20 +36,27 @@ Template.itemIcon.helpers({
 
 Template.itemIcon.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
+    const vm = this;
+    vm.state.set('tooltipOpen', false);
     tooltip = tippy(Template.instance().$('.item-icon-container')[0],
         {
           html: Template.instance().$('.item-tooltip-content')[0],
           performance: true,
           animateFill: false,
           distance: 5,
+          onHide: function() {
+            vm.state.set('tooltipOpen', false);
+          }
         })
   }
-}
+};
 
 Template.itemIcon.onDestroyed(function () {
-  let tooltipInstance = Template.instance().$('.item-icon-container')[0];
-  if (tooltip && tooltipInstance.hasOwnProperty('_tippy')) {
-    tooltipInstance._tippy.destroy();
+  if (tooltip) {
+    const tooltipInstance = Template.instance().$('.item-icon-container')[0];
+    if (tooltipInstance && tooltipInstance.hasOwnProperty('_tippy')) {
+      tooltipInstance._tippy.destroy();
+    }
   }
 });
 
@@ -86,6 +93,27 @@ Template.itemIcon.events({
 
     if ($('body').hasClass('targetting-item')) {
       return;
+    }
+
+    if(Session.get('tooltipInput') === 'touch') {
+      if (!Template.instance().data.hideTooltip) {
+        if (instance.state.get('tooltipOpen')) {
+          // close tooltip
+          let tooltipInstance = Template.instance().$('.item-icon-container')[0];
+          if (tooltipInstance) {
+            tooltipInstance._tippy.hide();
+            instance.state.set('tooltipOpen', false);
+          }
+        } else {
+          // open tooltip
+          let tooltipInstance = Template.instance().$('.item-icon-container')[0];
+          if (tooltipInstance) {
+            tooltipInstance._tippy.show();
+            instance.state.set('tooltipOpen', true);
+          }
+          return;
+        }
+      }
     }
 
     const primaryAction = instance.data.item.primaryAction;

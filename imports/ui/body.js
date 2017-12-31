@@ -32,6 +32,12 @@ let floatingTextTimer;
 let cachedSkills = {};
 let cachedAdventures = {};
 
+// track user's input type for tooltip wrangling
+Session.set('tooltipInput', 'mouse');
+tippy.browser.onUserInputChange = function (type) {
+  Session.set('tooltipInput', type);
+};
+
 Template.body.onCreated(function () {
 
   this.autorun(() => {

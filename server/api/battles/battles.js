@@ -170,6 +170,14 @@ Meteor.methods({
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
       }
     }
+    
+    // if floor doesn't unlock, start at room 1 always
+    if (FLOORS[floor].floorDetails.hasOwnProperty('unlocks') && !FLOORS[floor].floorDetails.unlocks) {
+      isExplorationRun = true;
+      room = 1;
+      setBattleAgain(floor, room);
+      return startBattle({ floor, room, isTowerContribution, isExplorationRun });
+    }
 
     // Eventually select a random battle appropriate to users level
     setBattleAgain(floor, room);

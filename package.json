@@ -11,7 +11,6 @@
     "babel-runtime": "^6.20.0",
     "bootstrap": "^4.0.0-alpha.6",
     "js-object-parser": "^1.0.1",
-    "rai-checkout": "0.0.0",
     "json-parser": "^1.1.5",
     "jsonic": "^0.3.0",
     "lodash": "^4.17.4",
@@ -20,6 +19,9 @@
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
     "parse-json": "^2.2.0",
+    "rai-checkout": "git://github.com/konk353535/rai-checkout.git#master",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "stripe": "^4.17.1",
     "underscore": "^1.8.3",
     "weighted-random": "^0.1.0"

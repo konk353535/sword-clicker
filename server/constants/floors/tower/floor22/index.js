@@ -3,6 +3,7 @@ import { ITEMS } from '/server/constants/items/index';
 import { LEVEL_TWENTY_TWO_LOOT_TABLE } from '/server/constants/floors/levels/level22';
 
 export const TOWER_FLOOR_22 = {
+  unlocks: false,
   1: {
     name: 'Desert',
     enemies: ['lizard'],

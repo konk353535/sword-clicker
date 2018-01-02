@@ -207,6 +207,7 @@ Meteor.methods({
         },
         floorDetails: {
           rewards: specifiedFloorConstants.floorRewards,
+          unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
           1: { name: specifiedFloorConstants[1].name },
           2: { name: specifiedFloorConstants[2].name },
           3: { name: specifiedFloorConstants[3].name },
@@ -221,6 +222,7 @@ Meteor.methods({
 
     return {
       floorDetails: {
+        unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
         1: { name: specifiedFloorConstants[1].name },
         2: { name: specifiedFloorConstants[2].name },
         3: { name: specifiedFloorConstants[3].name },

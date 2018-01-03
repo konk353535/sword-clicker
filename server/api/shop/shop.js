@@ -278,30 +278,26 @@ Meteor.methods({
       throw new Meteor.Error("Invalid item id given");
     }
 
-    const expectedUsdPriceCents = ITEMS[itemId].price;
+    const amount = ITEMS[itemId].price;
 
-    const handleCharge = HTTP.post("https://pays.eternitytower.net/methods/handleCharge", {
-      data: [paymentId, itemId, 'asdf0345dsf1'] // paymentId, itemId, secret
+    const handleCharge = HTTP.post("https://pays.eternitytower.net/api/payment/handle", {
+      data: {
+        amount, // How much moola we're expecting
+        paymentId, // Determines if this is a valid payment
+        description: itemId, // Optional
+        secret: 'asdf0345dsf1' // Used to verify this guy
+      }
     });
 
-    if (handleCharge && handleCharge.data && handleCharge.data.firstComplete) {
-      const amountUsdCents = handleCharge.data.amountUsdCents;
-      const itemId = handleCharge.data.itemId;
-
-      // Ensure that usd cents matches expected
-      if (amountUsdCents >= expectedUsdPriceCents) {
-        // Credit our account!
-        Users.update({
-          _id: Meteor.userId(),
-        }, {
-          $inc: {
-            gems: ITEMS[itemId].gems
-          }
-        });        
-      } else {
-        // Throw an err
-        throw new Meteor.Error("Incorrect price was payed for this product");
-      }
+    if (handleCharge && handleCharge.data && handleCharge.data.id) {
+      // Credit our account!
+      Users.update({
+        _id: Meteor.userId(),
+      }, {
+        $inc: {
+          gems: ITEMS[itemId].gems
+        }
+      });        
     } else {
       // Throw an err
       throw new Meteor.Error("rai blocks payment failed");

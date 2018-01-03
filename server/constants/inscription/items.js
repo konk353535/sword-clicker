@@ -2353,4 +2353,23 @@ export const INSCRIPTION_ITEMS = {
       description: 'to consume for 20,000 Magic XP.'
     }
   },
+
+  /*
+  enchantment_fire: {
+    id: 'enchantment_fire',
+    icon: 'enchantmentFire.svg',
+    category: 'enchantment',
+    name: 'lesser fire',
+    sellPrice: 50,
+    enchantSlot: ['mainHand'],
+    description: `
+      Can be consumed to increase an items quality by up to 15%.\n
+      Can only be applied once per item.\n
+      Item quality can not be increased beyond 100%.`,
+    shiftActionData: {
+      description: 'increase an items quality by up to 15%',
+      target: 'item'
+    }
+  }
+  */
 }

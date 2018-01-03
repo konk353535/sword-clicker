@@ -22,6 +22,17 @@
     </div>
   {{/if}}
 
+  {{#if enchantmentRecipes}}
+    <div class="mb-1">
+      <h3>Enchantments</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each enchantmentRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
   {{#if paperRecipes}}
     <div class="mb-1">
       <h3>Paper</h3>

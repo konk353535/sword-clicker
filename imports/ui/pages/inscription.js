@@ -189,7 +189,7 @@ Template.inscriptionPage.helpers({
     return Items.find({
       equipped: false,
       category: {
-        $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book']
+        $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book', 'enchantment']
       } 
     });
   },

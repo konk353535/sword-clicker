@@ -2252,7 +2252,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_magic_book: {
     id: 'pine_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_1.svg',
     category: 'magic_book',
     name: 'Codex of Tutoring',
     sellPrice: 100,
@@ -2265,7 +2265,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_magic_book: {
     id: 'beech_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_2.svg',
     category: 'magic_book',
     name: 'Codex of Learning',
     sellPrice: 200,
@@ -2278,7 +2278,7 @@ export const INSCRIPTION_ITEMS = {
 
   ash_magic_book: {
     id: 'ash_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_3.svg',
     category: 'magic_book',
     name: 'Codex of Knowledge',
     sellPrice: 300,
@@ -2291,7 +2291,7 @@ export const INSCRIPTION_ITEMS = {
 
   oak_magic_book: {
     id: 'oak_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_4.svg',
     category: 'magic_book',
     name: 'Codex of Magic',
     sellPrice: 400,

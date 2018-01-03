@@ -18,6 +18,7 @@ import { TOWER_FLOOR_17 } from './floor17/index';
 import { TOWER_FLOOR_18 } from './floor18/index';
 import { TOWER_FLOOR_19 } from './floor19/index';
 import { TOWER_FLOOR_20 } from './floor20/index';
+import { TOWER_FLOOR_21 } from './floor21/index';
 
 export const TOWER_FLOORS = {
   1: TOWER_FLOOR_1,
@@ -39,5 +40,6 @@ export const TOWER_FLOORS = {
   17: TOWER_FLOOR_17,
   18: TOWER_FLOOR_18,
   19: TOWER_FLOOR_19,
-  20: TOWER_FLOOR_20
+  20: TOWER_FLOOR_20,
+  21: TOWER_FLOOR_21
 }

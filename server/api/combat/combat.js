@@ -70,9 +70,9 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
     playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
 
-    if(combatItem.enchantmentId) {
-      playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId);
-    }
+    //if(combatItem.enchantmentId) {
+    //  playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId);
+    //}
 
     if (combatItem.constants.isAttackAmulet) {
       // Fetch existing energy

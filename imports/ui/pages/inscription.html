@@ -35,6 +35,9 @@
       <li class="nav-item crafting-filter" data-filter="magic_book">
         <a class="nav-link {{#if $eq recipeFilter 'magic_book'}}active{{/if}}" href="#">Magic Books</a>
       </li>
+      <li class="nav-item crafting-filter" data-filter="enchantment">
+        <a class="nav-link {{#if $eq recipeFilter 'enchantment'}}active{{/if}}" href="#">Enchantments</a>
+      </li>
     </ul>
 
     {{#if $eq recipeFilter 'abilities'}}
@@ -65,6 +68,38 @@
           data-filter="5">
             5
         </span>
+      </div>
+    {{/if}}
+
+    {{#if $eq recipeFilter 'enchantment'}}
+      <div class="mb-3">
+        <b>Type: </b>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 1}}primary{{else}}default{{/if}}"
+          data-filter="enchant_weapon">
+            Weapon
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 5}}primary{{else}}default{{/if}}"
+          data-filter="enchant_magic">
+            Staff
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 2}}primary{{else}}default{{/if}}"
+          data-filter="enchant_chest">
+            Chest
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 3}}primary{{else}}default{{/if}}"
+          data-filter="enchant_head">
+            Head
+        </span>
+        <span class="level-filter badge
+          badge-{{#if $eq levelFilter 4}}primary{{else}}default{{/if}}"
+          data-filter="enchant_legs">
+            Legs
+        </span>
+        
       </div>
     {{/if}}
 

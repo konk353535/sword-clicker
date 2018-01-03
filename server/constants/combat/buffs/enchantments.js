@@ -958,5 +958,5 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       }
     }
-  },
+  }
 }

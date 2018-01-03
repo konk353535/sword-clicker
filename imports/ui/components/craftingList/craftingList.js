@@ -34,7 +34,7 @@ Template.craftingList.helpers({
         } else if (/furnace/.test(recipe.name)) {
           return false;
         }
-      } else if (_.contains(['mining', 'woodcutting', 'pigment', 'paper', 'tome'], recipe.category)) {
+      } else if (_.contains(['mining', 'woodcutting', 'pigment', 'paper', 'tome', 'enchantment'], recipe.category)) {
         return false;
       } else if (_.intersection(recipe.tags, ['armor', 'weapon', 'staff', 'amulet']).length > 0) {
         return false;
@@ -57,6 +57,30 @@ Template.craftingList.helpers({
 
     return instance.data.recipes.filter((recipe) => {
       return recipe.category === 'pigment';
+    });
+  },
+
+  pigmentRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return recipe.category === 'pigment';
+    });
+  },
+
+  enchantmentRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return recipe.category === 'enchantment';
+    });
+  },
+
+  enchantmentArmorRecipes() {
+    const instance = Template.instance();
+
+    return instance.data.recipes.filter((recipe) => {
+      return _.contains(recipe.tags, 'enchant_armor');
     });
   },
 

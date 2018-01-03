@@ -20,6 +20,10 @@ import { progressBattle } from './battleMethods/progressBattle';
 
 const redis = new Meteor.RedisCollection('redis');
 
+const setBattleAgain = function(floor, room) {
+  Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
+};
+
 export const resumeBattle = function(id) {
   // Find the battle
   const rawBattle = redis.get(`battles-${id}`);
@@ -148,6 +152,8 @@ Meteor.methods({
     if (room === 'boss') {
       if (currentCommunityFloor.floor === floor && canBossBattle) {
         const bossHealth = currentCommunityFloor.health;
+
+        setBattleAgain(floor, room);
         return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
         const bossId = FLOORS[floor].boss.enemy.id;
@@ -155,6 +161,7 @@ Meteor.methods({
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
+          setBattleAgain(floor, room);
           return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else {
           return;
@@ -165,6 +172,7 @@ Meteor.methods({
     }
 
     // Eventually select a random battle appropriate to users level
+    setBattleAgain(floor, room);
     startBattle({ floor, room, isTowerContribution, isExplorationRun });
   },
 

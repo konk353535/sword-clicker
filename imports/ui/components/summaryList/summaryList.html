@@ -50,6 +50,49 @@
                 Nothing to see here
               {{/each}}
             </div>
+
+            <h6 class="mt-3">Abilities</h6>
+            <div class="d-flex flex-wrap align-items-center">
+              {{#if equippedAbilitiesMap.mainHand}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  1
+                </div>
+              {{/if}}
+              <!-- Off Hand -->
+              {{#if equippedAbilitiesMap.offHand}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  2
+                </div>
+              {{/if}}
+              <!-- Head -->
+              {{#if equippedAbilitiesMap.head}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.head classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  3
+                </div>
+              {{/if}}
+              <!-- Chest -->
+              {{#if equippedAbilitiesMap.chest}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.chest classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  4
+                </div>
+              {{/if}}
+              <!-- Legs -->
+              {{#if equippedAbilitiesMap.legs}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.legs classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  5
+                </div>
+              {{/if}}
+            </div>
           </div>
         </div>
       {{/unless}}

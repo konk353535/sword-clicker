@@ -598,7 +598,7 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 9
+      level: 95
     }]
   },
 

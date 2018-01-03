@@ -2,18 +2,37 @@
   <div class="d-flex flex-column">
     <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
       {{#if unit.name}}
-        <span
-          class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}
-        </span>
+        {{#if viewProfile}}
+          <a href="/profile/{{unit.name}}">
+            <span class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+          </a>
+        {{else}}
+          <span class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+        {{/if}}
       {{/if}}
-      <img
-        src="/icons/{{unit.icon}}"
-        id={{unit.id}}
-        data-unit-id={{unit.id}}
-        class="icon-box battle-unit
-          {{#if unit.leader}}leader-icon{{/if}}
-          {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
-          {{#if small}}item-icon-container small{{/if}}">
+      {{#if viewProfile}}
+        <a href="/profile/{{unit.name}}">
+          <img
+              src="/icons/{{unit.icon}}"
+              id={{unit.id}}
+              data-unit-id={{unit.id}}
+              class="icon-box battle-unit
+                {{#if unit.leader}}leader-icon{{/if}}
+                {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
+                {{#if small}}item-icon-container small{{/if}}"
+          >
+        </a>
+      {{else}}
+        <img
+            src="/icons/{{unit.icon}}"
+            id={{unit.id}}
+            data-unit-id={{unit.id}}
+            class="icon-box battle-unit
+              {{#if unit.leader}}leader-icon{{/if}}
+              {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
+              {{#if small}}item-icon-container small{{/if}}"
+        >
+      {{/if}}
       <div class="health-bar d-flex justify-content-center">
         {{> formatNumber number=unit.stats.health}} / {{> formatNumber number=unit.stats.healthMax}}
       </div>      

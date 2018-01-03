@@ -6,7 +6,7 @@
 
     {{#each item.requires}}
       {{#if $eq this.type 'weaponType'}}
-        <div style="position: absolute; left: 2px; top: 0px">
+        <div style="position: absolute; left: 2px; top: 0" class="required-weapon">
           {{#each this.weaponTypes}}
             <img
               src="/icons/{{this}}.svg"

@@ -19,6 +19,9 @@
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
     "parse-json": "^2.2.0",
+    "rai-checkout": "git://github.com/konk353535/rai-checkout.git#master",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "stripe": "^4.17.1",
     "underscore": "^1.8.3",
     "weighted-random": "^0.1.0"

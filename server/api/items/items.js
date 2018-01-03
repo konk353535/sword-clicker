@@ -256,7 +256,7 @@ Meteor.methods({
     //
     // Magic books
     //
-    if ( baseItem.category = "magic_book" ) {
+    if ( baseItem.category == "magic_book" ) {
 
       if( !baseItemConstants.magicXp) {
         console.log('magic xp not set');

@@ -1570,33 +1570,34 @@ export const BOSS_BUFFS = {
         if (!buff.data.timeTillDefensive || buff.data.timeTillDefensive <= 0) {
           // Find poodle
           const poodle = _.findWhere(actualBattle.enemies, { name: 'poodle' });
+          if (poodle) {
+            // Aggro the unit that did the most damage to poodle in the last 5 seconds
+            let max = -Infinity;
+            let unitToKill;
+            // Access poodle buff
+            const poodleBuff = _.findWhere(poodle.buffs, { id: 'boss_poodle' });
 
-          // Aggro the unit that did the most damage to poodle in the last 5 seconds
-          let max = -Infinity;
-          let unitToKill;
-          // Access poodle buff
-          const poodleBuff = _.findWhere(poodle.buffs, { id: 'boss_poodle' });
+            if (poodleBuff.data.damageMap) {
+              Object.keys(poodleBuff.data.damageMap).forEach((key) => {
+                const damageDone = poodleBuff.data.damageMap[key]
+                if (damageDone > max) {
+                  max = damageDone;
+                  unitToKill = key;
+                }
+                // Remove targetting of poodle to units that damaged poodle
+                const targetUnit = _.findWhere(actualBattle.units, { id: key });
+                targetUnit.target = target.id;
+              });
+            }
+            poodleBuff.data.damageMap = {};
+    
+            // Attack whoever did most damage to poodle
+            if (unitToKill) {
+              target.target = unitToKill
+            }
 
-          if (poodleBuff.data.damageMap) {
-            Object.keys(poodleBuff.data.damageMap).forEach((key) => {
-              const damageDone = poodleBuff.data.damageMap[key]
-              if (damageDone > max) {
-                max = damageDone;
-                unitToKill = key;
-              }
-              // Remove targetting of poodle to units that damaged poodle
-              const targetUnit = _.findWhere(actualBattle.units, { id: key });
-              targetUnit.target = target.id;
-            });
+            buff.data.timeTillDefensive = 15;
           }
-          poodleBuff.data.damageMap = {};
-  
-          // Attack whoever did most damage to poodle
-          if (unitToKill) {
-            target.target = unitToKill
-          }
-
-          buff.data.timeTillDefensive = 15;
         }
       },
 

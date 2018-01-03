@@ -206,34 +206,39 @@ Template.chatWindow.events({
   },
 
   'click button#message-send': function () {
-    let template = Template.instance()
-    var $message = template.$('#simple-chat-message')
-    var text = $message.val()
+    let template = Template.instance();
+    let $message = template.$('#simple-chat-message');
+    const contents = $message.val().split(' ');
+    const command = contents[0].trim().toLowerCase();
+    const text = contents.length > 1 ? contents.slice(1).join(' ') : '';
 
     // Check for client commands
-    if (text.trim().toLowerCase() === '/party') {
-      $message.val('');
-      template.state.set('currentChat', 'Party')
-      return;
-    } else if (text.trim().toLowerCase() === '/general') {
-      $message.val('');
-      template.state.set('currentChat', 'General')
-      return;
-    } else if (text.trim().toLowerCase() === '/lfg') {
-      $message.val('');
-      template.state.set('currentChat', 'LFG')
-      return;
+    if (command === '/party' || command === '/p') {
+      $message.val(text);
+      template.state.set('currentChat', 'Party');
+    } else if (command === '/general' || command === '/g') {
+      $message.val(text);
+      template.state.set('currentChat', 'General');
+    } else if (command === '/lfg') {
+      $message.val(text);
+      template.state.set('currentChat', 'LFG');
+    } else if (command === '/help' || command === '/h') {
+      $message.val(text);
+      template.state.set('currentChat', 'Help');
+    } else if (command === '/offtopic' || command === '/ot') {
+      $message.val(text);
+      template.state.set('currentChat', 'Offtopic');
     }
 
-    if ($message.val() != '') {
-      var text = $message.val()
+    if ($message.val() !== '') {
+      let text = $message.val();
       $message.val('');
-      SimpleChat.scrollToEnd(template)
+      SimpleChat.scrollToEnd(template);
       const currentChatId = template.state.get('currentChat');
       // Room id is based
       const custom = {
         roomType: currentChatId
-      }
+      };
 
       let roomId;
       if (currentChatId === 'Party') {

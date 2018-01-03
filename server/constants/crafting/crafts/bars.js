@@ -175,7 +175,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',
@@ -213,7 +213,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',
@@ -251,14 +251,14 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',
       itemId: 'ore_carbon',
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -289,14 +289,14 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 2,
       consumes: true
     }, {
       type: 'item',
       itemId: 'ore_steel',
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -327,7 +327,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 3,
       consumes: true
     }, {
       type: 'item',
@@ -365,7 +365,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 3,
       consumes: true
     }, {
       type: 'item',
@@ -403,7 +403,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 3,
       consumes: true
     }, {
       type: 'item',
@@ -441,7 +441,7 @@ export const BAR_CRAFTS = {
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
-      amount: 1,
+      amount: 3,
       consumes: true
     }, {
       type: 'item',
@@ -476,10 +476,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_cobalt',
       icon: ITEMS['ore_cobalt'].icon,
       name: ITEMS['ore_cobalt'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -507,10 +514,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_mithril',
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -538,10 +552,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_adamantium',
       icon: ITEMS['ore_adamantium'].icon,
       name: ITEMS['ore_adamantium'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -569,10 +590,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_orichalcum',
       icon: ITEMS['ore_orichalcum'].icon,
       name: ITEMS['ore_orichalcum'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -600,10 +628,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_meteorite',
       icon: ITEMS['ore_meteorite'].icon,
       name: ITEMS['ore_meteorite'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -631,10 +666,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_fairy_steel',
       icon: ITEMS['ore_fairy_steel'].icon,
       name: ITEMS['ore_fairy_steel'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -662,10 +704,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_elven_steel',
       icon: ITEMS['ore_elven_steel'].icon,
       name: ITEMS['ore_elven_steel'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',
@@ -693,10 +742,17 @@ export const BAR_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
+      itemId: 'ore_coal',
+      icon: ITEMS['ore_coal'].icon,
+      name: ITEMS['ore_coal'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'ore_cursed',
       icon: ITEMS['ore_cursed'].icon,
       name: ITEMS['ore_cursed'].name,
-      amount: 2,
+      amount: 1,
       consumes: true
     }, {
       type: 'skill',

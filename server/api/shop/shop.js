@@ -265,6 +265,49 @@ Meteor.methods({
 
   },
 
+  'shop.purchaseWithRaiBlocks'({ paymentId, itemId }) {
+    // Lookup itemId, confirm that its price matches what was paid
+    const ITEMS = {
+      'someGems': {
+        price: 5,
+        gems: 5
+      }
+    }
+
+    if (!ITEMS[itemId]) {
+      throw new Meteor.Error("Invalid item id given");
+    }
+
+    const expectedUsdPriceCents = ITEMS[itemId].price;
+
+    const handleCharge = HTTP.post("https://pays.eternitytower.net/methods/handleCharge", {
+      data: [paymentId, itemId, 'asdf0345dsf1'] // paymentId, itemId, secret
+    });
+
+    if (handleCharge && handleCharge.data && handleCharge.data.firstComplete) {
+      const amountUsdCents = handleCharge.data.amountUsdCents;
+      const itemId = handleCharge.data.itemId;
+
+      // Ensure that usd cents matches expected
+      if (amountUsdCents >= expectedUsdPriceCents) {
+        // Credit our account!
+        Users.update({
+          _id: Meteor.userId(),
+        }, {
+          $inc: {
+            gems: ITEMS[itemId].gems
+          }
+        });        
+      } else {
+        // Throw an err
+        throw new Meteor.Error("Incorrect price was payed for this product");
+      }
+    } else {
+      // Throw an err
+      throw new Meteor.Error("rai blocks payment failed");
+    }
+  },
+
   'shop.purchase'({ token, currentPack }) {
     if (!_.contains(['bunch', 'bag', 'box'], currentPack)) {
       throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box");

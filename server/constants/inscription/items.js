@@ -716,6 +716,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the thirsty fangs ability.'
   },
 
+  thirsty_fangs_2_tome: {
+    id: 'thirsty_fangs_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Thirsty Fangs Lv. 2',
+    teaches: {
+      abilityId: 'thirsty_fangs',
+      level: 2
+    },
+    sellPrice: 5000,
+    description: 'Can be consumed to upgrade the thirsty fangs ability.'
+  },
+
   slash_level_1_tome: {
     id: 'slash_level_1_tome',
     icon: 'tome.svg',
@@ -1080,6 +1093,58 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the doubled edged sword ability.'
   },
 
+  double_edged_sword_2_tome: {
+    id: 'double_edged_sword_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 2',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 2
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_3_tome: {
+    id: 'double_edged_sword_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 3',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 3
+    },
+    sellPrice: 750,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_4_tome: {
+    id: 'double_edged_sword_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 4',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 4
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
+  double_edged_sword_5_tome: {
+    id: 'double_edged_sword_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'double edged sword tome Lv. 5',
+    teaches: {
+      abilityId: 'double_edged_sword',
+      level: 5
+    },
+    sellPrice: 1250,
+    description: 'Can be consumed to upgrade the doubled edged sword ability.'
+  },
+
   spiked_armor_1_tome: {
     id: 'spiked_armor_1_tome',
     icon: 'tomeUncommon.svg',
@@ -1266,13 +1331,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'diamond_skin_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'diamond_skin',
+    name: 'diamond skin',
     teaches: {
       abilityId: 'diamond_skin',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the diamond_skin spell.'
+    description: 'Can be consumed to learn the diamond skin spell.'
   },
 
   frenzied_winds_tome: {
@@ -2187,7 +2252,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_magic_book: {
     id: 'pine_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_1.svg',
     category: 'magic_book',
     name: 'Codex of Tutoring',
     sellPrice: 100,
@@ -2200,7 +2265,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_magic_book: {
     id: 'beech_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_2.svg',
     category: 'magic_book',
     name: 'Codex of Learning',
     sellPrice: 200,
@@ -2213,7 +2278,7 @@ export const INSCRIPTION_ITEMS = {
 
   ash_magic_book: {
     id: 'ash_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_3.svg',
     category: 'magic_book',
     name: 'Codex of Knowledge',
     sellPrice: 300,
@@ -2226,7 +2291,7 @@ export const INSCRIPTION_ITEMS = {
 
   oak_magic_book: {
     id: 'oak_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_4.svg',
     category: 'magic_book',
     name: 'Codex of Magic',
     sellPrice: 400,
@@ -2236,6 +2301,59 @@ export const INSCRIPTION_ITEMS = {
       description: 'to consume for 2000 Magic XP.'
     }
   },
+
+  maple_magic_book: {
+    id: 'maple_magic_book',
+    icon: 'magic_tome_5.svg',
+    category: 'magic_book',
+    name: 'Codex of Illusion',
+    sellPrice: 1000,
+    magicXp: 12500,
+    description: 'Can be consumed for 12,500 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 12,500 Magic XP.'
+    }
+  },
+
+  walnut_magic_book: {
+    id: 'walnut_magic_book',
+    icon: 'magic_tome_6.svg',
+    category: 'magic_book',
+    name: 'Codex of Sorcery',
+    sellPrice: 1200,
+    magicXp: 15000,
+    description: 'Can be consumed for 15,000 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 15,000 Magic XP.'
+    }
+  },
+
+  cherry_magic_book: {
+    id: 'cherry_magic_book',
+    icon: 'magic_tome_7.svg',
+    category: 'magic_book',
+    name: 'Codex of Rituals',
+    sellPrice: 1400,
+    magicXp: 17500,
+    description: 'Can be consumed for 17,500 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 17,500 Magic XP.'
+    }
+  },
+
+  mahogany_magic_book: {
+    id: 'mahogany_magic_book',
+    icon: 'magic_tome_8.svg',
+    category: 'magic_book',
+    name: 'Codex of Prophecy',
+    sellPrice: 1800,
+    magicXp: 20000,
+    description: 'Can be consumed for 20,000 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 20,000 Magic XP.'
+    }
+  },
+
 
   enchantment_fire: {
     id: 'enchantment_fire',
@@ -2252,5 +2370,5 @@ export const INSCRIPTION_ITEMS = {
       description: 'increase an items quality by up to 15%',
       target: 'item'
     }
-  },
+  }
 }

@@ -1051,7 +1051,8 @@ export const MAGIC_BUFFS = {
 
       return `
         Poisons the enemy dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage every 5 seconds.<br />
-        Lasts 3 minutes.`;
+        Lasts for ${c.totalDuration}s. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
       damageMPRatio: 0.4,

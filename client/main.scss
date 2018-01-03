@@ -302,6 +302,10 @@ body { padding-right: 0 !important }
   font-size: 1rem;
 }
 
+.tippy-popper {
+  min-width: 150px;
+}
+
 .item-tooltip-content {
   color: #292b2c;
 }

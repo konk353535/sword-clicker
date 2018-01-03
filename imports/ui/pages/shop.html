@@ -24,7 +24,26 @@
 
   <h2 class="my-2">Buy Gems</h2>
   <div class="row mb-3">
-    <div class="col-md-4">
+    <div class="col-md-3">
+      <div class="card text-center mt-3 p-3">
+        <h4>Some Gems</h4>
+        <p class="mb-1">5 <img src="/icons/gems.svg" class="extra-small-icon"></p>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/bunchOfGems.svg" class="large-icon my-3">
+        </div>
+        <div>
+          {{> React
+            component=RaiCheckout
+            token=token
+            cost=5
+            subTitle='Some Gems'
+            title='Eternity Tower'
+            itemId='someGems'
+            text='Pay with RaiBlocks $0.05'}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
       <div class="card text-center mt-3 p-3">
         <h4>Bunch Of Gems</h4>
         <p class="mb-1">500 <img src="/icons/gems.svg" class="extra-small-icon"></p>
@@ -40,7 +59,7 @@
         </button>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card text-center mt-3 p-3">
         <h4>Bag Of Gems</h4>
         <p class="mb-1">2300 <img src="/icons/gems.svg" class="extra-small-icon"></p>
@@ -56,7 +75,7 @@
         </button>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card text-center mt-3 p-3">
         <h4>Box Of Gems</h4>
         <p class="mb-1">6200 <img src="/icons/gems.svg" class="extra-small-icon"></p>

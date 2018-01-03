@@ -22,12 +22,19 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
   }
 
   const myAbilities = Abilities.findOne({ owner });
+  if (!myAbilities) {
+    console.log('unlogged in user');
+    return;
+  }
+
   const now = moment();
   const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
 
   myAbilities.learntAbilities.forEach((ability) => {
     if (ability.currentCooldown > 0) {
       ability.currentCooldown -= secondsElapsed * 2;
+    } else if (ability.cooldown < 0) {
+      ability.currentCooldown = 0;
     }
   });
 
@@ -37,7 +44,16 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
       lastGameUpdated: new Date()
     }
   }, callback);
-}
+};
+
+const allAbilitiesCooledDown = function(userId) {
+  let owner = userId;
+  if (!owner) {
+    owner = this.userId;
+  }
+  const myAbilities = Abilities.findOne({ owner });
+  return _.isUndefined(_.find(myAbilities.learntAbilities, (ability) => { return ability.currentCooldown > 0}))
+};
 
 Meteor.methods({
 
@@ -267,9 +283,15 @@ Meteor.methods({
   },
 
   'abilities.gameUpdate'() {
-    updateAbilityCooldowns(Meteor.userId(), (err, res) => {
-
-    });
+    return new Promise(function(resolve, reject) {
+      updateAbilityCooldowns(Meteor.userId(), (err, res) => {
+        if (_.isNull(err)) {
+          resolve(allAbilitiesCooledDown(Meteor.userId()));
+        } else {
+          reject(err);
+        }
+      });
+    })
   }
 });
 

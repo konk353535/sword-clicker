@@ -2252,7 +2252,7 @@ export const INSCRIPTION_ITEMS = {
 
   pine_magic_book: {
     id: 'pine_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_1.svg',
     category: 'magic_book',
     name: 'Codex of Tutoring',
     sellPrice: 100,
@@ -2265,7 +2265,7 @@ export const INSCRIPTION_ITEMS = {
 
   beech_magic_book: {
     id: 'beech_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_2.svg',
     category: 'magic_book',
     name: 'Codex of Learning',
     sellPrice: 200,
@@ -2278,7 +2278,7 @@ export const INSCRIPTION_ITEMS = {
 
   ash_magic_book: {
     id: 'ash_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_3.svg',
     category: 'magic_book',
     name: 'Codex of Knowledge',
     sellPrice: 300,
@@ -2291,7 +2291,7 @@ export const INSCRIPTION_ITEMS = {
 
   oak_magic_book: {
     id: 'oak_magic_book',
-    icon: 'tome.svg',
+    icon: 'magic_tome_4.svg',
     category: 'magic_book',
     name: 'Codex of Magic',
     sellPrice: 400,
@@ -2300,5 +2300,57 @@ export const INSCRIPTION_ITEMS = {
     shiftActionData: {
       description: 'to consume for 2000 Magic XP.'
     }
-  }
+  },
+
+  maple_magic_book: {
+    id: 'maple_magic_book',
+    icon: 'magic_tome_5.svg',
+    category: 'magic_book',
+    name: 'Codex of Illusion',
+    sellPrice: 1000,
+    magicXp: 12500,
+    description: 'Can be consumed for 12,500 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 12,500 Magic XP.'
+    }
+  },
+
+  walnut_magic_book: {
+    id: 'walnut_magic_book',
+    icon: 'magic_tome_6.svg',
+    category: 'magic_book',
+    name: 'Codex of Sorcery',
+    sellPrice: 1200,
+    magicXp: 15000,
+    description: 'Can be consumed for 15,000 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 15,000 Magic XP.'
+    }
+  },
+
+  cherry_magic_book: {
+    id: 'cherry_magic_book',
+    icon: 'magic_tome_7.svg',
+    category: 'magic_book',
+    name: 'Codex of Rituals',
+    sellPrice: 1400,
+    magicXp: 17500,
+    description: 'Can be consumed for 17,500 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 17,500 Magic XP.'
+    }
+  },
+
+  mahogany_magic_book: {
+    id: 'mahogany_magic_book',
+    icon: 'magic_tome_8.svg',
+    category: 'magic_book',
+    name: 'Codex of Prophecy',
+    sellPrice: 1800,
+    magicXp: 20000,
+    description: 'Can be consumed for 20,000 Magic XP.',
+    shiftActionData: {
+      description: 'to consume for 20,000 Magic XP.'
+    }
+  },
 }

@@ -2354,7 +2354,7 @@ export const INSCRIPTION_ITEMS = {
     }
   },
 
-
+  /*
   enchantment_fire: {
     id: 'enchantment_fire',
     icon: 'enchantmentFire.svg',
@@ -2371,4 +2371,5 @@ export const INSCRIPTION_ITEMS = {
       target: 'item'
     }
   }
+  */
 }

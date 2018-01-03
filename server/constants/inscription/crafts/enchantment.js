@@ -1,6 +1,7 @@
 import { ITEMS } from '/server/constants/items/index.js'; 
 
 export const ENCHANTMENT_CRAFTS = {
+  /*
   enchantment_fire: {
     recipeFor: 'inscription',
     produces: 'enchantment_fire',
@@ -29,4 +30,5 @@ export const ENCHANTMENT_CRAFTS = {
       level: 1
     }]
   }
+  */
 }

@@ -2304,7 +2304,7 @@ export const INSCRIPTION_ITEMS = {
 
   maple_magic_book: {
     id: 'maple_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_5.svg',
     category: 'magic_book',
     name: 'Codex of Illusion',
     sellPrice: 1000,
@@ -2317,7 +2317,7 @@ export const INSCRIPTION_ITEMS = {
 
   walnut_magic_book: {
     id: 'walnut_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_6.svg',
     category: 'magic_book',
     name: 'Codex of Sorcery',
     sellPrice: 1200,
@@ -2330,7 +2330,7 @@ export const INSCRIPTION_ITEMS = {
 
   cherry_magic_book: {
     id: 'cherry_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_7.svg',
     category: 'magic_book',
     name: 'Codex of Rituals',
     sellPrice: 1400,
@@ -2343,7 +2343,7 @@ export const INSCRIPTION_ITEMS = {
 
   mahogany_magic_book: {
     id: 'mahogany_magic_book',
-    icon: 'magic_tome.svg',
+    icon: 'magic_tome_8.svg',
     category: 'magic_book',
     name: 'Codex of Prophecy',
     sellPrice: 1800,

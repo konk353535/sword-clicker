@@ -68,9 +68,9 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
     }
 
-    playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
-
-    if(combatItem.enchantmentId) {
+    if (combatItem.enchantmentId
+      && combatItem.enchantmentId !== 'undefined'
+      && combatItem.enchantmentId !== '' ) {
       playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId);
     }
 

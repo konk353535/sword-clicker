@@ -65,14 +65,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
 
     if (combatItem.constants.enchantments) {
-      console.log('1. Added: ' + combatItem.enchantments);
       playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
     }
 
     if (combatItem.enchantmentId
       && combatItem.enchantmentId !== 'undefined'
       && combatItem.enchantmentId !== '' ) {
-      console.log('2. Added: ' + combatItem.enchantmentId);
       playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId);
     }
 

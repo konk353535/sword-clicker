@@ -202,7 +202,7 @@ export const PLANTS = {
     }, {
       type: 'skill',
       name: 'farming',
-      level: 18
+      level: 25
     }]
   },
 

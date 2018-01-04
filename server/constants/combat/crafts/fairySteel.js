@@ -3,10 +3,10 @@ import { ITEMS } from '/server/constants/items/index.js';
 export const FAIRY_STEEL_CRAFTS = {
   fairy_steel_dagger: {
     produces: 'fairy_steel_dagger',
-    name: 'fairy_steel dagger',
+    name: 'fairy steel dagger',
     recipeFor: 'crafting',
     category: 'combat',
-    id: 'fairy steel_dagger',
+    id: 'fairy_steel_dagger',
     timeToCraft: 30 * 60 * 2,
     xp: 400000,
     maxToCraft: 1,

@@ -690,8 +690,8 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the furied defense ability.'
   },
 
-  volcanic_shield_1_tome: {
-    id: 'volcanic_shield_1_tome',
+  volcanic_shield_tome: {
+    id: 'volcanic_shield_tome',
     icon: 'tome.svg',
     category: 'tome',
     name: 'Volcanic Shield Lv. 1',
@@ -703,8 +703,8 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the volcanic shield ability.'
   },
 
-  volcanic_shield_2_tome: {
-    id: 'volcanic_shield_2_tome',
+  volcanic_shield_level_2_tome: {
+    id: 'volcanic_shield_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
     name: 'Volcanic Shield Lv. 2',
@@ -716,8 +716,8 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the volcanic shield ability.'
   },
 
-  volcanic_shield_3_tome: {
-    id: 'volcanic_shield_3_tome',
+  volcanic_shield_level_3_tome: {
+    id: 'volcanic_shield_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
     name: 'Volcanic Shield Lv. 3',

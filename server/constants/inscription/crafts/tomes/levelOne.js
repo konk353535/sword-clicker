@@ -93,6 +93,7 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
   },
 
+
   water_ball_tome: {
     recipeFor: 'inscription',
     produces: 'water_ball_tome',

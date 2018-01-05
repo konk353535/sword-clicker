@@ -196,4 +196,17 @@ export const LEVEL_THREE_CRAFTS = {
     requiredInscriptionLevel: 9,
     required: [UTIL.MANY_PURPLE_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },
+
+    volcanic_shield_level_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'volcanic_shield_level_3_tome',
+    name: 'Volcanic shield Lv. 3',
+    id: 'volcanic_shield_level_3_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 250,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 24,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
+  }
 }

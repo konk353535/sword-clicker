@@ -222,4 +222,17 @@ export const LEVEL_TWO_CRAFTS = {
     requiredInscriptionLevel: 10,
     required: [UTIL.MANY_RED_150, UTIL.PURPLE_255, UTIL.ASH_PAPER, UTIL.LEVEL_10]
   },
+
+  volcanic_shield_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'volcanic_shield_level_2_tome',
+    name: 'Volcanic shield Lv. 2',
+    id: 'volcanic_shield_level_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 250,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 24,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
+  }
 }

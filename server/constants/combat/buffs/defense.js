@@ -1,4 +1,4 @@
-timport moment from 'moment';
+import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
@@ -16,24 +16,31 @@ export const DEFENSE_BUFFS = {
       if (!localLevel) {
         localLevel = 1;
       }
+
+      const constants = buff.constants;
+
+      let armorBuff  = constants.armorBase  + (constants.armorPerLevel  * localLevel);
+      let damageBuff = (constants.damageBase + (constants.damagePerLevel * localLevel)) * 100;
       
-      return `Increase armor & magic armor by ${buff.data.attackSpeedDecrease}%.<br />
-        After 10 seconds, erupts dealing 250% weapon damage to all enemies`;
+      return `Increase armor & magic armor by ${armorBuff}%. (25 per lvl)<br />
+        After 10 seconds, erupts dealing ${damageBuff}% (50% per lvl) weapon damage to all enemies`;
     },
     constants: {
       armorBase: 75,
-      armorPerLevel: 25
+      armorPerLevel: 25,
+      damageBase: 2,
+      damagePerLevel: .5
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-
-
         const constants = buff.constants.constants;
+        let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
+        let damageBuff = constants.damageBase + (constants.damagePerLevel * buff.data.level);
 
         // Increase armor & magic armor by 100
-        target.stats.armor += constants.armorBase + ();
-        target.stats.magicArmor += 100;
+        target.stats.armor += armorBuff;
+        target.stats.magicArmor += armorBuff;
         buff.data.duration = 10;
       },
 
@@ -47,12 +54,17 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster, actualBattle }) {
         // Mutate targets attack speed
-        target.stats.armor -= 100;
-        target.stats.magicArmor -= 100;
+
+        const constants = buff.constants.constants;
+        let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
+        let damageBuff = constants.damageBase + (constants.damagePerLevel * buff.data.level);
+
+        target.stats.armor -= armorBuff;
+        target.stats.magicArmor -= armorBuff;
 
         const attack = target.stats.attack;
         const attackMax = target.stats.attackMax;
-        const actualDamage = (attack + ((attackMax - attack) * Math.random())) * 2.5;
+        const actualDamage = (attack + ((attackMax - attack) * Math.random())) * damageBuff;
 
         actualBattle.enemies.forEach((enemy) => {
           actualBattle.utils.dealDamage(actualDamage, {

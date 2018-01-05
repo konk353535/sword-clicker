@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import RaiCheckout from 'rai-checkout';
+import RaiCheckout from 'rais-pays-checkout';
 
-import 'rai-checkout/build/css/index.css';
+import 'rais-pays-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
@@ -325,6 +325,10 @@ Template.shopPage.helpers({
     }
 
     return globalBuffs;
+  },
+
+  publicKey() {
+    return Meteor.settings.public.RAI_PAYS_PUBLIC_KEY;
   },
 
   currentUpgrades() {

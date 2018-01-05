@@ -285,7 +285,7 @@ Meteor.methods({
         amount, // How much moola we're expecting
         paymentId, // Determines if this is a valid payment
         description: itemId, // Optional
-        secret: 'asdf0345dsf1' // Used to verify this guy
+        privateKey: Meteor.settings.private.RAI_PAYS_PRIVATE_KEY
       }
     });
 

@@ -1688,7 +1688,20 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 1000,
-    description: 'Can be consumed to learn the penetrating slash ability.'
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
+  },
+
+  penetrating_slash_level_3_tome: {
+    id: 'penetrating_slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'penetrating slash Lv. 3',
+    teaches: {
+      abilityId: 'penetrating_slash',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
   },
 
   vampirism_level_1_tome: {

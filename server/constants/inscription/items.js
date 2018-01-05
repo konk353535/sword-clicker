@@ -751,7 +751,20 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'slash',
       level: 2
     },
-    sellPrice: 100,
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the slash ability.'
+  },
+
+  slash_level_3_tome: {
+    id: 'slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Slash Lv. 3',
+    teaches: {
+      abilityId: 'slash',
+      level: 3
+    },
+    sellPrice: 2500,
     description: 'Can be consumed to upgrade the slash ability.'
   },
 

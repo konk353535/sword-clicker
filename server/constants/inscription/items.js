@@ -1938,6 +1938,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the shield bash ability.'
   },
 
+  shield_bash_level_3_tome: {
+    id: 'shield_bash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'shield bash Lv. 3',
+    teaches: {
+      abilityId: 'shield_bash',
+      level: 3
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the shield bash ability.'
+  },
+
   blade_frenzy_level_1_tome: {
     id: 'blade_frenzy_level_1_tome',
     icon: 'tome.svg',

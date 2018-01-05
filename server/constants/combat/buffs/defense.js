@@ -1,4 +1,4 @@
-import moment from 'moment';
+timport moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
@@ -9,14 +9,30 @@ export const DEFENSE_BUFFS = {
     duplicateTag: 'volcanic_shield', // Used to stop duplicate buffs
     icon: 'volcanicShield.svg',
     name: 'volcanic shield',
+
     description({ buff, level }) {
-      return `Increase armor & magic armor by 100.<br />
+
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+      
+      return `Increase armor & magic armor by ${buff.data.attackSpeedDecrease}%.<br />
         After 10 seconds, erupts dealing 250% weapon damage to all enemies`;
+    },
+    constants: {
+      armorBase: 75,
+      armorPerLevel: 25
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
+
+
+
+        const constants = buff.constants.constants;
+
         // Increase armor & magic armor by 100
-        target.stats.armor += 100;
+        target.stats.armor += constants.armorBase + ();
         target.stats.magicArmor += 100;
         buff.data.duration = 10;
       },

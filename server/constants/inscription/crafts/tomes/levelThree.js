@@ -206,7 +206,7 @@ export const LEVEL_THREE_CRAFTS = {
     timeToCraft: 300,
     xp: 250,
     maxToCraft: 1,
-    requiredInscriptionLevel: 24,
-    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
+    requiredInscriptionLevel: 34,
+    required: [UTIL.BLUE_255, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_34]
   }
 }

@@ -88,12 +88,14 @@ Template.body.onCreated(function () {
 
   let subAbilityTimer = function() {
     abilityTimer = Meteor.setInterval(() => {
-      Meteor.call('abilities.gameUpdate', (err, res) => {
-        // clear if all abilities are cooled down
-        if (res) {
-          Meteor.clearInterval(abilityTimer);
-        }
-      });
+      if (Meteor.userId()) {
+        Meteor.call('abilities.gameUpdate', (err, res) => {
+          // clear if all abilities are cooled down
+          if (res) {
+            Meteor.clearInterval(abilityTimer);
+          }
+        }); 
+      }
     }, 2500);
   };
 

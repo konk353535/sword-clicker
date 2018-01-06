@@ -22,6 +22,11 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
   }
 
   const myAbilities = Abilities.findOne({ owner });
+  if (!myAbilities) {
+    console.log('unlogged in user');
+    return;
+  }
+
   const now = moment();
   const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
 

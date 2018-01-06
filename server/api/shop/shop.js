@@ -280,7 +280,7 @@ Meteor.methods({
 
     const expectedUsdPriceCents = ITEMS[itemId].price;
 
-    const handleCharge = HTTP.post("http://159.203.90.175/methods/handleCharge", {
+    const handleCharge = HTTP.post("https://pays.eternitytower.net/methods/handleCharge", {
       data: [paymentId, itemId, 'asdf0345dsf1'] // paymentId, itemId, secret
     });
 

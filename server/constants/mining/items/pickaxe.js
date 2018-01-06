@@ -2085,7 +2085,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 31,
+      energyStorage: 131,
       attack: 220,
       energyPerHit: 1,
       energyRegen: 4,

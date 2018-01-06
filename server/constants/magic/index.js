@@ -24,7 +24,7 @@ export const MAGIC = {
     earthen_fist: {
       id: 'earthen_fist',
       abilityId: 'earthen_fist',
-      xp: 30,
+      xp: 107,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -61,7 +61,7 @@ export const MAGIC = {
     lightning_storm: {
       id: 'lightning_storm',
       abilityId: 'lightning_storm',
-      xp: 25,
+      xp: 200,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -193,7 +193,7 @@ export const MAGIC = {
     furied_winds: {
       id: 'furied_winds',
       abilityId: 'furied_winds',
-      xp: 35,
+      xp: 107,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -223,7 +223,7 @@ export const MAGIC = {
     fire_wave: {
       id: 'fire_wave',
       abilityId: 'fire_wave',
-      xp: 35,
+      xp: 120,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -253,7 +253,7 @@ export const MAGIC = {
     healing_shield: {
       id: 'healing_shield',
       abilityId: 'healing_shield',
-      xp: 25,
+      xp: 120,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -306,7 +306,7 @@ export const MAGIC = {
     water_wave: {
       id: 'water_wave',
       abilityId: 'water_wave',
-      xp: 10,
+      xp: 105,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -366,7 +366,7 @@ export const MAGIC = {
     affliction: {
       id: 'affliction',
       abilityId: 'affliction',
-      xp: 10,
+      xp: 105,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -396,7 +396,7 @@ export const MAGIC = {
   magic_wisdom: {
       id: 'magic_wisdom',
       abilityId: 'magic_wisdom',
-      xp: 100,
+      xp: 400,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -426,7 +426,7 @@ export const MAGIC = {
     blizzard: {
       id: 'blizzard',
       abilityId: 'blizzard',
-      xp: 25,
+      xp: 110,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -540,7 +540,7 @@ export const MAGIC = {
     meteor_strike: {
       id: 'meteor_strike',
       abilityId: 'meteor_strike',
-      xp: 50,
+      xp: 105,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -593,7 +593,7 @@ export const MAGIC = {
     mud_armor: {
       id: 'mud_armor',
       abilityId: 'mud_armor',
-      xp: 5,
+      xp: 4,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -623,7 +623,7 @@ export const MAGIC = {
     mending_water: {
       id: 'mending_water',
       abilityId: 'mending_water',
-      xp: 5,
+      xp: 4,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -653,7 +653,7 @@ export const MAGIC = {
     ignite: {
       id: 'ignite',
       abilityId: 'ignite',
-      xp: 10,
+      xp: 7,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -683,7 +683,7 @@ export const MAGIC = {
     frenzied_winds: {
       id: 'frenzied_winds',
       abilityId: 'frenzied_winds',
-      xp: 10,
+      xp: 6,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -713,7 +713,7 @@ export const MAGIC = {
     angels_touch: {
       id: 'angels_touch',
       abilityId: 'angels_touch',
-      xp: 50,
+      xp: 103,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -743,7 +743,7 @@ export const MAGIC = {
     feeding_frenzy: {
       id: 'feeding_frenzy',
       abilityId: 'feeding_frenzy',
-      xp: 50,
+      xp: 200,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -773,7 +773,7 @@ export const MAGIC = {
     elemental_shield: {
       id: 'elemental_shield',
       abilityId: 'elemental_shield',
-      xp: 50,
+      xp: 103,
       maxToCraft: 10000,
       required: [{
         type: 'item',
@@ -819,7 +819,7 @@ export const MAGIC = {
     heavens_descent: {
       id: 'heavens_descent',
       abilityId: 'heavens_descent',
-      xp: 500,
+      xp: 1000,
       maxToCraft: 2,
       required: [{
         type: 'item',
@@ -843,7 +843,7 @@ export const MAGIC = {
     lightning_speed: {
       id: 'lightning_speed',
       abilityId: 'lightning_speed',
-      xp: 500,
+      xp: 1000,
       maxToCraft: 2,
       required: [{
         type: 'item',
@@ -867,7 +867,7 @@ export const MAGIC = {
     diamond_skin: {
       id: 'diamond_skin',
       abilityId: 'diamond_skin',
-      xp: 500,
+      xp: 1000,
       maxToCraft: 2,
       required: [{
         type: 'item',
@@ -891,7 +891,7 @@ export const MAGIC = {
     inferno: {
       id: 'inferno',
       abilityId: 'inferno',
-      xp: 500,
+      xp: 1000,
       maxToCraft: 2,
       required: [{
         type: 'item',

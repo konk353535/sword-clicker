@@ -144,16 +144,16 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'carbon axe',
-    sellPrice: 300,
+    sellPrice: 150,
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
       attack: 35,
       attackSpeed: 1,
-      accuracy: 1
+      accuracy: 50
     },
     extraStats: {
-      accuracy: 24,
+      accuracy: 25,
       attackSpeed: 1
     }
   },

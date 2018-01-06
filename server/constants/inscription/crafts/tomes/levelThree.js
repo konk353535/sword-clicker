@@ -70,7 +70,7 @@ export const LEVEL_THREE_CRAFTS = {
   attack_up_3_tome: {
     recipeFor: 'inscription',
     produces: 'attack_up_3_tome',
-    name: 'damage Up Lv. 3',
+    name: 'attack Up Lv. 3',
     id: 'attack_up_3_tome',
     category: 'tome',
     timeToCraft: 180,

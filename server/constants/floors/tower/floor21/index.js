@@ -5,38 +5,38 @@ import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '/server/constants/floors/levels/lev
 export const TOWER_FLOOR_21 = {
   unlocks: false,
   1: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Bees?',
+    enemies: ['bee', 'bee'],
     rewards: []
   },
   2: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Swampy Grove',
+    enemies: ['gelatinous cube'],
     rewards: []
   },
   3: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Tangled Undergrowth',
+    enemies: ['wasp'],
     rewards: []
   },
   4: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Peaceful Hillock',
+    enemies: ['echinda', 'water mage'],
     rewards: []
   },
   5: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Old Tree',
+    enemies: ['bird', 'bird', 'cut purse'],
     rewards: []
   },
   6: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Abandoned Manor',
+    enemies: ['vampire'],
     rewards: []
   },
   7: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Dark Cave',
+    enemies: ['goblin', 'monk'],
     rewards: []
   },
 

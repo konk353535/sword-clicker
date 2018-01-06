@@ -946,6 +946,38 @@ export const ENEMIES = Object.assign({
       key: 'healthMax',
       amount: 1.0
     }]
+  },
+
+  gelatinous_cube: {
+    id: 'gelatinous_cube',
+    icon: 'gelatinous_cube.svg',
+    name: 'gelatinous cube',
+    buffs: [{
+      id: 'gelatinous_cube_monster',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        stacks: 2,
+        icon: 'cubeSplit.svg',
+        name: 'gelatinous_cube',
+        splitHealthPercentage: 15,
+        splitAmount: 3,
+        hasSplit: false
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.75
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.5
+    }]
   }
 
 }, BOSS_ENEMIES);

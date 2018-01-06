@@ -172,7 +172,7 @@ Meteor.methods({
     }
     
     // if floor doesn't unlock, start at room 1 always
-    if (FLOORS[floor].floorDetails.hasOwnProperty('unlocks') && !FLOORS[floor].floorDetails.unlocks) {
+    if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
       setBattleAgain(floor, room);

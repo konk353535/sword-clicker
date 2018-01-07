@@ -11,6 +11,10 @@
               {{#if $eq currentGroup.leader currentUserId}}
                 <button class="btn btn-danger btn-sm kick-unit mt-1"
                 style="max-width: 100px" data-owner={{this.owner}}>Kick</button>
+                {{#if $neq this.owner currentUserId}}
+                <button class="btn btn-info btn-sm transfer-unit mt-1"
+                style="max-width: 100px" data-owner={{this.owner}}>Make Leader</button>
+                {{/if}}
               {{/if}}
             </div>
           {{/each}}

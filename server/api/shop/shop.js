@@ -280,7 +280,7 @@ Meteor.methods({
 
     const amount = ITEMS[itemId].price;
 
-    const handleCharge = HTTP.post("https://pays.eternitytower.net/api/payment/handle", {
+    const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
       data: {
         amount, // How much moola we're expecting
         paymentId, // Determines if this is a valid payment

@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import RaiCheckout from 'rais-pays-checkout';
+import RaiCheckout from 'arrowpay-react-checkout';
 
-import 'rais-pays-checkout/build/css/index.css';
+import 'arrowpay-react-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {

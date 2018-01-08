@@ -1,53 +1,48 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { ITEMS } from '/server/constants/items/index';
-import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '/server/constants/floors/levels/level21';
+import { LEVEL_TWENTY_TWO_LOOT_TABLE } from '/server/constants/floors/levels/level22';
 
-export const TOWER_FLOOR_21 = {
+export const TOWER_FLOOR_22 = {
   unlocks: false,
   1: {
-    name: 'Bees?',
-    enemies: ['bee', 'bee'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   2: {
-    name: 'Swampy Grove',
-    enemies: ['gelatinous cube'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   3: {
-    name: 'Tangled Undergrowth',
-    enemies: ['wasp'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   4: {
-    name: 'Peaceful Hillock',
-    enemies: ['echinda', 'water mage'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   5: {
-    name: 'Old Tree',
-    enemies: ['bird', 'bird', 'cut purse'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   6: {
-    name: 'Abandoned Manor',
-    enemies: ['vampire'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   7: {
-    name: 'Dark Cave',
-    enemies: ['goblin', 'monk'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
 
   boss: {
-    enemy: { id: 'boss_fox', amount: 1 },
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
-      chance: 1 / 2,
-      rewards: [
-        { type: 'item', itemId: 'baby_fox', amount: 1 }
-      ]
-    }]))
+    enemy: { id: 'boss_fox', amount: 10 },
+    rewards: []
   },
 
   floorRewards: [

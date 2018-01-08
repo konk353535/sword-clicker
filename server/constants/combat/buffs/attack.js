@@ -1104,7 +1104,7 @@ export const ATTACK_BUFFS = {
         buff.data.caster = caster.id;
       },
 
-      onTick({ secondsElapsed, buff, target, actualBattle }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;
@@ -1130,7 +1130,10 @@ export const ATTACK_BUFFS = {
 
         if (buff.data.duration < 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
+            if (targetBuff === buff) {
+              return false;
+            }
+            return true;
           });
         }
       },

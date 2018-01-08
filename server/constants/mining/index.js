@@ -910,6 +910,30 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.29
+    },
+    darksteel_miner: {
+      requiredMiningLevel: 100,
+      icon: 'cursedMiner.png',
+      name: 'cursed miner',
+      id: 'cursed_miner',
+      required: [{
+        type: 'item',
+        itemId: 'darksteel_pickaxe',
+        icon: ITEMS['darksteel_pickaxe'].icon,
+        name: ITEMS['darksteel_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 100
+      }],
+      max: 3,
+      damagePerSecond: 0.30
     }
   },
   ores: {

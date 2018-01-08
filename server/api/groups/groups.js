@@ -336,8 +336,57 @@ Meteor.methods({
         invites: [targetUser._id]
       });
     }
+  },
+
+
+
+// Transfer leaderhip role to another party member
+
+  'groups.transfer'({ ownerId }) {
+    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
+      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+    }
+
+    // Fetch and confirm group exists
+    const currentGroup = Groups.findOne({
+      leader: this.userId,
+      members: this.userId
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+
+    // Fetch and confirm target user exists
+    let targetUser;
+      targetUser = Users.findOne({
+        _id: ownerId
+      });
+
+    if (!targetUser) {
+      return;
+    }
+
+
+    // Cannot transfer to self into group
+    if (targetUser._id == this.userId) {
+      return;
+    }
+
+    // Set target user as leader of the group
+    Groups.update(currentGroup._id, {
+      $set: {
+        leaderName: targetUser.username,
+        leader: targetUser._id
+      }
+    });
   }
 });
+
+
+
 
 const MINUTE = 60 * 1000;
 

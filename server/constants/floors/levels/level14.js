@@ -41,7 +41,8 @@ export const LEVEL_FOURTEEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'cobalt_bar', amount: 1 }
+    { type: 'item', itemId: 'cobalt_bar', amount: 1 },
+    { type: 'item', itemId: 'slash_level_3_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 24,

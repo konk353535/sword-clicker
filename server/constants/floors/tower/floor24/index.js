@@ -5,101 +5,44 @@ import { LEVEL_TWENTY_FOUR_LOOT_TABLE } from '/server/constants/floors/levels/le
 export const TOWER_FLOOR_24 = {
   unlocks: false,
   1: {
-    name: 'Desert',
-    enemies: ['lizard'],
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
     rewards: []
   },
   2: {
-    name: 'Grassy Paddock',
-    enemies: ['fly'],
-    rewards: LEVEL_TWENTY_FOUR_LOOT_TABLE
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
   3: {
-    name: 'Wooden Dam',
-    enemies: ['beaver'],
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'lettice', amount: 50 },
-        { type: 'item', itemId: 'feverfew_seed', amount: 1 }
-      ]
-    }]))
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
   4: {
-    name: 'Cursed Place',
-    enemies: ['cursed_spirit'],
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'cursed_essence', amount: 1 }
-      ]
-    }]))
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
   5: {
-    name: 'Winding River',
-    enemies: ['fish', 'jellyFish'],
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 256,
-      rewards: [
-        { type: 'item', itemId: 'cursed_knife', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 48,
-      rewards: [
-        { type: 'item', itemId: 'verdant_wizard_hat', amount: 1 },
-        { type: 'item', itemId: 'verdant_wizard_shirt', amount: 1 },
-        { type: 'item', itemId: 'verdant_wizard_shorts', amount: 1 }
-      ]
-    }]))
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
   6: {
-    name: 'Suspicious Mine',
-    enemies: ['angry_miner', 'angry_miner'],
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 4,
-      rewards: [
-        { type: 'item', itemId: 'ore_cursed', amount: 1 },
-        { type: 'item', itemId: 'poplar_log', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'cursed_bar', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'cursed_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'cursed_mining_hammer', amount: 1 }
-      ]
-    }]))
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
   7: {
-    name: 'Down Under',
-    enemies: ['echidna', 'wombat', 'snake', 'spider'],
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 256,
-      rewards: [
-        { type: 'item', itemId: 'diamond_skin_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'cursed_scimitar', amount: 1 },
-        { type: 'item', itemId: 'cursed_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'cursed_horned_helmet', amount: 1 }
-      ]
-    }]))
+    name: 'Do not try.',
+    enemies: ['unicorn','angel','demon','spartan'],
+    rewards: []
   },
 
   boss: {
-    enemy: { id: 'boss_fox', amount: 1 },
-    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 2,
-      rewards: [
-        { type: 'item', itemId: 'baby_fox', amount: 1 }
-      ]
-    }]))
+    enemy: { id: 'boss_fox', amount: 10 },
+    rewards: []
   },
 
   floorRewards: [

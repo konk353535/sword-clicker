@@ -1948,4 +1948,73 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_dragon: {
+    duplicateTag: 'boss_dragon', // Used to stop duplicate buffs
+    icon: 'dragon.svg',
+    name: 'boss dragon',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Swipes and bathes the battlefield in flame`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        // stacks build up every tick without an attack and reset after attack
+        buff.data.stackTimer += secondsElapsed;
+        if (buff.data.stackTimer > 1) {
+          buff.data.stackTimer = 0;
+          buff.data.stacks += 1;
+        }
+
+        if (Math.random() < (buff.data.attackChance + buff.data.stacks / 100)) {
+          buff.data.stacks = 0;
+          // alternate attack types every time
+          if (buff.data.lastAttack === 'flamebreath')
+          {
+            // cast 'swipe' (blade spin)
+            buff.data.lastAttack = 'swipe';
+            actualBattle.units.forEach((unit) => {
+              const newBuff = {
+                id: 'blade_spin',
+                data: {
+                  level: 10,
+                  icon: 'swipe.svg',
+                  description: '',
+                },
+                constants: BUFFS['blade_spin']
+              };
+              addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            });
+          } else {
+            // cast 'flamebreath' (magic blade spin)
+            buff.data.lastAttack = 'flamebreath';
+            actualBattle.units.forEach((unit) => {
+              // Blade Spin
+              const newBuff = {
+                id: 'blade_spin',
+                data: {
+                  level: 10,
+                  icon: 'flamebreath.svg',
+                  description: '',
+                  isMagic: true
+                },
+                constants: BUFFS['blade_spin']
+              };
+              addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            });
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 }

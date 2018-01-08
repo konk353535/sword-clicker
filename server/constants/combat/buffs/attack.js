@@ -1000,6 +1000,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          isMagic: buff.data.hasOwnProperty('isMagic') ? buff.data.isMagic : false
         });
       },
 

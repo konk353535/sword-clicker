@@ -78,101 +78,103 @@
             {{/if}}
           </div>
         </div>
-      {{else if floorDetails.unlocks}}
-        <table class="table table-responsive table-hover">
-          <thead>
-          <tr>
-            <th class="align-middle text-center">Room #</th>
-            <th class="align-middle text-center">Name</th>
-            <th class="align-middle text-center">Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="text-center battle-room-1-row cursor-pointer">
-            <td class="align-middle">Room 1</td>
-            <td class="align-middle">{{floorDetails.[1].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-1-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-2-row cursor-pointer">
-            <td class="align-middle">Room 2</td>
-            <td class="align-middle">{{floorDetails.[2].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-2-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-3-row cursor-pointer">
-            <td class="align-middle">Room 3</td>
-            <td class="align-middle">{{floorDetails.[3].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-3-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-4-row cursor-pointer">
-            <td class="align-middle">Room 4</td>
-            <td class="align-middle">{{floorDetails.[4].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-4-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-5-row cursor-pointer">
-            <td class="align-middle">Room 5</td>
-            <td class="align-middle">{{floorDetails.[5].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-5-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-6-row cursor-pointer">
-            <td class="align-middle">Room 6</td>
-            <td class="align-middle">{{floorDetails.[6].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-6-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center battle-room-7-row cursor-pointer">
-            <td class="align-middle">Room 7</td>
-            <td class="align-middle">{{floorDetails.[7].name}}</td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-room-7-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          <tr class="text-center cursor-pointer">
-            <td class="align-middle">Boss</td>
-            <td class="align-middle"></td>
-            <td class="align-middle">
-              <button class="btn btn-secondary battle-boss-btn">
-                Battle
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
       {{else}}
-        <div class="d-flex flex-column flex-grow mt-3">
-          <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
-            <h3>Floor {{usersCurrentFloor}}</h3>
-            <p>This floor can only be fought from the starting room</p>
-            <button class="btn btn-primary battle-deeper mt-1">Battle R1 - R7</button>
-            <button class="btn btn-danger battle-boss-btn mt-4">
-              Battle Boss
-            </button>
-          </div>
-        </div>
+        {{#if floorDetails.unlocks}}
+          <table class="table table-responsive table-hover">
+            <thead>
+            <tr>
+              <th class="align-middle text-center">Room #</th>
+              <th class="align-middle text-center">Name</th>
+              <th class="align-middle text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center battle-room-1-row cursor-pointer">
+              <td class="align-middle">Room 1</td>
+              <td class="align-middle">{{floorDetails.[1].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-1-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-2-row cursor-pointer">
+              <td class="align-middle">Room 2</td>
+              <td class="align-middle">{{floorDetails.[2].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-2-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-3-row cursor-pointer">
+              <td class="align-middle">Room 3</td>
+              <td class="align-middle">{{floorDetails.[3].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-3-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-4-row cursor-pointer">
+              <td class="align-middle">Room 4</td>
+              <td class="align-middle">{{floorDetails.[4].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-4-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-5-row cursor-pointer">
+              <td class="align-middle">Room 5</td>
+              <td class="align-middle">{{floorDetails.[5].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-5-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-6-row cursor-pointer">
+              <td class="align-middle">Room 6</td>
+              <td class="align-middle">{{floorDetails.[6].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-6-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center battle-room-7-row cursor-pointer">
+              <td class="align-middle">Room 7</td>
+              <td class="align-middle">{{floorDetails.[7].name}}</td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-room-7-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            <tr class="text-center cursor-pointer">
+              <td class="align-middle">Boss</td>
+              <td class="align-middle"></td>
+              <td class="align-middle">
+                <button class="btn btn-secondary battle-boss-btn">
+                  Battle
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          {{else}}
+            <div class="d-flex flex-column flex-grow mt-3">
+              <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
+                <h3>Floor {{usersCurrentFloor}}</h3>
+                <p>This floor can only be fought from the starting room</p>
+                <button class="btn btn-primary battle-deeper mt-1">Battle R1 - R7</button>
+                <button class="btn btn-danger battle-boss-btn mt-4">
+                  Battle Boss
+                </button>
+              </div>
+            </div>
+          {{/if}}
       {{/if}}
 
     </div>

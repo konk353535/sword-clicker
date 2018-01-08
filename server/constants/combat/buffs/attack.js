@@ -1104,7 +1104,7 @@ export const ATTACK_BUFFS = {
         buff.data.caster = caster.id;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;

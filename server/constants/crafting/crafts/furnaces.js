@@ -504,13 +504,13 @@ export const FURNACE_CRAFTS = {
     xp: 800,
     maxToCraft: 1
   },
-  /*
+  
   darksteel_furnace: {
     produces: 'darksteel_furnace',
     recipeFor: 'crafting',
     name: 'darksteel furnace',
     id: 'darksteel_furnace',
-    isHidden: falsethat ,
+    isHidden: false,
     category: 'crafting',
     requiredCraftingLevel: 104,
     required: [{
@@ -536,5 +536,4 @@ export const FURNACE_CRAFTS = {
     xp: 1000,
     maxToCraft: 1
   }
-  */
 }

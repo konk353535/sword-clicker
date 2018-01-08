@@ -1045,6 +1045,30 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  darksteel_mining_anvil: {
+    id: 'darksteel_mining_anvil',
+    icon: 'darksteelMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'darksteel mining anvil',
+    sellPrice: 1000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1900, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 88
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
+    }
+  },
+
   // Passive heavy pickaxes
   copper_dwarven_idol: {
     id: 'copper_dwarven_idol',
@@ -2093,6 +2117,29 @@ export const PICKAXE_ITEMS = {
     extraStats: {
       energyStorage: 31,
       attack: 6,
+      energyRegen: 3
+    }
+  },
+
+  darksteel_pickaxe: {
+    id: 'darksteel_pickaxe',
+    icon: 'darksteelPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'darksteel pickaxe',
+    sellPrice: 750,
+    description: 'A darksteel pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 135,
+      attack: 235,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 35,
+      attack: 7,
       energyRegen: 3
     }
   }

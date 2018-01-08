@@ -911,11 +911,12 @@ export const MINING = {
       max: 3,
       damagePerSecond: 0.29
     },
+    
     darksteel_miner: {
       requiredMiningLevel: 100,
       icon: 'cursedMiner.png',
-      name: 'cursed miner',
-      id: 'cursed_miner',
+      name: 'darksteel miner',
+      id: 'darksteel_miner',
       required: [{
         type: 'item',
         itemId: 'darksteel_pickaxe',

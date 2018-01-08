@@ -96,7 +96,7 @@ Template.body.onCreated(function () {
           }
         }); 
       }
-    }, 2500);
+    }, 10000);
   };
 
   // call initially in case of preexisting cooldowns

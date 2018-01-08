@@ -170,7 +170,7 @@ SimpleChat.configure ({
         });
 
         return false;
-      } else if (/\/giveItem/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+      } else if (/\/giveItem/.test(message)) {
         const splitMessage = message.split(' ');
         const targetUsername = splitMessage[1];
         const targetItem = splitMessage[2];

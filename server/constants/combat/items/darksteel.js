@@ -10,7 +10,7 @@ export const DARKSTEEL_ITEMS = {
     "slot": "mainHand",
     "name": "darksteel dagger",
     "sellPrice": 1650,
-    "description": "Af poorly made dagger.",
+    "description": "A poorly made dagger.",
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
@@ -83,34 +83,6 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   },
-  "darksteel_scimitar": {
-    "id": "darksteel_scimitar",
-    "icon": "darksteelScimitar.svg",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "darksteel scimitar",
-    "sellPrice": 3000,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 73.7 * DARKSTEEL_MULTIPLIER,
-      "attackMax": 116.7 * DARKSTEEL_MULTIPLIER,
-      "attackSpeed": 0.7,
-      "accuracy": 99.5 * DARKSTEEL_MULTIPLIER
-    },
-    "extraStats": {
-      "attack": 22.1 * DARKSTEEL_MULTIPLIER,
-      "attackMax": 35 * DARKSTEEL_MULTIPLIER,
-      "accuracy": 29.8 * DARKSTEEL_MULTIPLIER
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 105
-    }]
-  },
   "darksteel_long_sword": {
     "id": "darksteel_long_sword",
     "icon": "darksteelLongSword.svg",
@@ -170,31 +142,7 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   },
-  "darksteel_horned_helmet": {
-    "id": "darksteel_horned_helmet",
-    "icon": "darksteelHornedHelmet.svg",
-    "category": "combat",
-    "slot": "head",
-    "name": "darksteel horned helmet",
-    "sellPrice": 3000,
-    "description": "Protect your head",
-    "isEquippable": true,
-    "stats": {
-      "attack": 17.4 * DARKSTEEL_MULTIPLIER,
-      "attackMax": 17.4 * DARKSTEEL_MULTIPLIER,
-      "accuracy": 17.4 * DARKSTEEL_MULTIPLIER
-    },
-    "extraStats": {
-      "attack": 5.2 * DARKSTEEL_MULTIPLIER,
-      "attackMax": 5.2 * DARKSTEEL_MULTIPLIER,
-      "accuracy": 5.2 * DARKSTEEL_MULTIPLIER
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 100
-    }]
-  },
+
   "darksteel_helmet": {
     "id": "darksteel_helmet",
     "icon": "darksteelHelmet.svg",

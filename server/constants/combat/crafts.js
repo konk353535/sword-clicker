@@ -18,6 +18,7 @@ import { METEORITE_CRAFTS } from './crafts/meteorite';
 import { GOLD_CRAFTS } from './crafts/gold';
 import { TITANIUM_CRAFTS } from './crafts/titanium';
 import { CURSED_CRAFTS } from './crafts/cursed';
+import { DARKSTEEL_CRAFTS } from './crafts/darksteel';
 
 import { AMULET_CRAFTS } from './crafts/amulet';
 import { STAFF_CRAFTS } from './crafts/staff';
@@ -43,5 +44,6 @@ export const COMBAT_CRAFTS = Object.assign(
   FAIRY_STEEL_CRAFTS,
   ELVEN_STEEL_CRAFTS,
   CURSED_CRAFTS,
+  DARKSTEEL_CRAFTS,
   AMULET_CRAFTS,
   STAFF_CRAFTS);

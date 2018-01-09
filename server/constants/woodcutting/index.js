@@ -721,7 +721,7 @@ export const WOODCUTTING = {
     },
 
     fiery_log: { // 21
-      requiredAttack: 100,
+      requiredAttack: 200,
       xp: 640,
       id: 'fiery_log',
       icon: 'fieryLog.png',
@@ -731,7 +731,7 @@ export const WOODCUTTING = {
     },
 
     magic_log: { // 22
-      requiredAttack: 105,
+      requiredAttack: 205,
       xp: 690,
       id: 'magic_log',
       icon: 'magicLog.png',

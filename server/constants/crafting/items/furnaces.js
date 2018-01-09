@@ -209,5 +209,15 @@ export const FURNACE_ITEMS = {
     sellPrice: 1,
     tier: 21,
     description: 'Used to melt ores into bars'
+  },
+
+  darksteel_furnace: {
+    id: 'darksteel_furnace',
+    icon: 'darksteelFurnace.svg',
+    category: 'crafting',
+    name: 'darksteel furnace',
+    sellPrice: 1,
+    tier: 22,
+    description: 'Used to combine bars'
   }
 }

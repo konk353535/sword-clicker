@@ -404,13 +404,33 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'cursed axe',
-    sellPrice: 750,
+    sellPrice: 2500,
     description: 'A cursed axe. Used for woodcutting',
     isAxe: true,
     stats: {
       attack: 100,
       attackSpeed: 2,
       accuracy: 50
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  darksteel_axe: {
+    id: 'darksteel_axe',
+    icon: 'darksteelAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'darksteel axe',
+    sellPrice: 3000,
+    description: 'A darksteel axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 105,
+      attackSpeed: 2,
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,

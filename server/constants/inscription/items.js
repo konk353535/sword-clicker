@@ -777,7 +777,20 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'slash',
       level: 2
     },
-    sellPrice: 100,
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the slash ability.'
+  },
+
+  slash_level_3_tome: {
+    id: 'slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Slash Lv. 3',
+    teaches: {
+      abilityId: 'slash',
+      level: 3
+    },
+    sellPrice: 2500,
     description: 'Can be consumed to upgrade the slash ability.'
   },
 
@@ -1714,7 +1727,20 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 1000,
-    description: 'Can be consumed to learn the penetrating slash ability.'
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
+  },
+
+  penetrating_slash_level_3_tome: {
+    id: 'penetrating_slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'penetrating slash Lv. 3',
+    teaches: {
+      abilityId: 'penetrating_slash',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
   },
 
   vampirism_level_1_tome: {
@@ -1935,6 +1961,19 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 100,
+    description: 'Can be consumed to upgrade the shield bash ability.'
+  },
+
+  shield_bash_level_3_tome: {
+    id: 'shield_bash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'shield bash Lv. 3',
+    teaches: {
+      abilityId: 'shield_bash',
+      level: 3
+    },
+    sellPrice: 1000,
     description: 'Can be consumed to upgrade the shield bash ability.'
   },
 

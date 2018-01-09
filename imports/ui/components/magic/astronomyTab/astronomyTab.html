@@ -29,10 +29,12 @@
     {{/each}}
 
     <!-- Click to buy a mage -->
+    {{#if $lt astronomy.mages.length astronomy.maxMages}}
     <div class="icon-box buy-mage" style="cursor: pointer">
       <img src="/icons/mage.svg" class="ore-icon">
       Buy
     </div>
+    {{/if}}
   </div>
 
   <!-- Upgrade Mage Modal -->

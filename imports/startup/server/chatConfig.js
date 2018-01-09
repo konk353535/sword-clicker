@@ -170,17 +170,15 @@ SimpleChat.configure ({
         });
 
         return false;
-      } else if (/\/giveItem/.test(message)) {
+      } else if (/\/giveItem/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
         const splitMessage = message.split(' ');
-        const targetUsername = "nickbreslin";//splitMessage[1];
-        const targetItem = splitMessage[1];
-        let targetAmount = parseInt(splitMessage[2]);
+        const targetUsername = splitMessage[1];
+        const targetItem = splitMessage[2];
+        const targetAmount = parseInt(splitMessage[3]);
 
         const targetUser = Users.findOne({
           username: targetUsername.toLowerCase().trim()
         });
-
-        targetAmount = isNaN(targetAmount) ? 1 : targetAmount;
 
         addItem(targetItem, targetAmount, targetUser._id);
       }

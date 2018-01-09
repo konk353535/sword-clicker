@@ -349,8 +349,8 @@ export const SCROLL_ITEMS = {
     }
   },
 
-  darksteel_forge_scroll: {
-    id: 'darksteel_forge_scroll',
+  darksteel_furnace_scroll: {
+    id: 'darksteel_furnace_scroll',
     icon: 'darksteelFurnaceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,

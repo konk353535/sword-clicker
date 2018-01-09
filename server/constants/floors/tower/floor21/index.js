@@ -12,32 +12,69 @@ export const TOWER_FLOOR_21 = {
   2: {
     name: 'Swampy Grove',
     enemies: ['gelatinous cube'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_dagger_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_furnace_scroll', amount: 1 }
+      ]
+    }]))
   },
   3: {
     name: 'Tangled Undergrowth',
     enemies: ['wasp'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_shield_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_short_sword_scroll', amount: 1 }
+      ]
+    }]))
   },
   4: {
     name: 'Peaceful Hillock',
     enemies: ['echinda', 'water mage'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_helmet_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_chest_plate_scroll', amount: 1 }
+      ]
+    }]))
   },
   5: {
     name: 'Old Tree',
     enemies: ['bird', 'bird', 'cut purse'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_axe_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_pickaxe_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_mining_anvil_scroll', amount: 1 }
+      ]
+    }]))
   },
   6: {
     name: 'Abandoned Manor',
     enemies: ['vampire'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_spear_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_plate_legs_scroll', amount: 1 }
+      ]
+    }]))
   },
   7: {
     name: 'Dark Cave',
     enemies: ['goblin', 'monk'],
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_long_sword_scroll', amount: 1 },
+        { type: 'item', itemId: 'darksteel_battle_axe_scroll', amount: 1 }
+      ]
+    }]))
   },
 
   boss: {

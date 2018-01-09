@@ -1158,9 +1158,9 @@ export const MINING_CRAFTS = {
       consumes: false
     }, {
       type: 'item',
-      itemId: 'cursed_essence',
-      icon: ITEMS['cursed_essence'].icon,
-      name: ITEMS['cursed_essence'].name,
+      itemId: 'adamantium_essence',
+      icon: ITEMS['adamantium_essence'].icon,
+      name: ITEMS['adamantium_essence'].name,
       amount: 1,
       consumes: true
     }, {

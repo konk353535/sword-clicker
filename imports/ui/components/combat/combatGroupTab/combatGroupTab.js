@@ -91,6 +91,11 @@ Template.combatGroupTab.events({
     Meteor.call('groups.kick', { ownerId });
   },
 
+  'click .transfer-unit'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.transfer-unit').data('owner');
+    Meteor.call('groups.transfer', { ownerId });
+  },
+
   'click .accept-btn'(event) {
     // Get target data
     const $target = Template.instance().$(event.target);

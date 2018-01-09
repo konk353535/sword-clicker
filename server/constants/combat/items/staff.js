@@ -687,15 +687,15 @@ export const STAFF_ITEMS = {
     }]
   },
 
-  teak_staff: {
-    id: 'teak_staff',
-    icon: 'teakStaff.svg',
+  willow_staff: {
+    id: 'willow_staff',
+    icon: 'willowStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
-    name: 'teak staff',
+    name: 'willow staff',
     sellPrice: 2000,
-    description: 'What seems like a normal teak staff',
+    description: 'What seems like a normal willow staff',
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -715,19 +715,19 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 44
+      level: 48
     }]
   },
 
-  willow_staff: {
-    id: 'willow_staff',
-    icon: 'willowStaff.svg',
+  teak_staff: {
+    id: 'teak_staff',
+    icon: 'teakStaff.svg',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
-    name: 'willow staff',
+    name: 'teak staff',
     sellPrice: 2000,
-    description: 'What seems like a normal willow staff',
+    description: 'What seems like a normal teak staff',
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -748,7 +748,7 @@ export const STAFF_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 44
+      level: 51
     }]
   },
 

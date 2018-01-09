@@ -1165,6 +1165,13 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'hickory_log',
       icon: ITEMS['hickory_log'].icon,
       name: ITEMS['hickory_log'].name,

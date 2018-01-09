@@ -763,6 +763,7 @@ export const WOODCUTTING_CRAFTS = {
     recipeFor: 'crafting',
     name: 'darksteel axe',
     id: 'darksteel_axe',
+    isHidden: true,
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 1, // 60
     xp: 543750,

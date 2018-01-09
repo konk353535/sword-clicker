@@ -265,4 +265,129 @@ export const SCROLL_ITEMS = {
     }
   },
 
+  darksteel_pickaxe_scroll: {
+    id: 'darksteel_pickaxe_scroll',
+    icon: 'darksteelPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel pickaxe scroll',
+    teaches: 'darksteel_pickaxe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_anvil_scroll: {
+    id: 'darksteel_anvil_scroll',
+    icon: 'darksteelAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel anvil scroll',
+    teaches: 'darksteel_anvil',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_axe_scroll: {
+    id: 'darksteel_axe_scroll',
+    icon: 'darksteelAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel axe scroll',
+    teaches: 'darksteel_axe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_battle_axe_scroll: {
+    id: 'darksteel_battle_axe_scroll',
+    icon: 'darksteelBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel battle axe scroll',
+    teaches: 'darksteel_battle_axe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_chestplate_scroll: {
+    id: 'darksteel_chestplate_scroll',
+    icon: 'darksteelChestplateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel chestplate scroll',
+    teaches: 'darksteel_chestplate_scroll',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_dagger_scroll: {
+    id: 'darksteel_dagger_scroll',
+    icon: 'darksteelDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel dagger scroll',
+    teaches: 'darksteel_dagger_scroll',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_furnace_scroll: {
+    id: 'darksteel_furnace_scroll',
+    icon: 'darksteelFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel furnace scroll',
+    teaches: 'darksteel_furnace_scroll',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_helmet_scroll: {
+    id: 'darksteel_helmet_scroll',
+    icon: 'darksteelHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel helmet scroll',
+    teaches: 'darksteel_helmet_scroll',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_long_sword_scroll: {
+    id: 'darksteel_long_sword_scroll',
+    icon: 'darksteelLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel helmet scroll',
+    teaches: 'darksteel_long_sword_scroll',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
 }

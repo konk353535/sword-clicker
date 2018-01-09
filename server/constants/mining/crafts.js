@@ -1143,6 +1143,7 @@ export const MINING_CRAFTS = {
     recipeFor: 'crafting',
     name: 'darksteel pickaxe',
     id: 'darksteel_pickaxe',
+    isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,
     xp: 543750,
@@ -2074,6 +2075,7 @@ export const MINING_CRAFTS = {
     recipeFor: 'crafting',
     name: 'darksteel mining anvil',
     id: 'darksteel_mining_anvil',
+    isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,
     xp: 543750,
@@ -2081,9 +2083,9 @@ export const MINING_CRAFTS = {
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
-      itemId: 'elven_steel_furnace',
-      icon: ITEMS['elven_steel_furnace'].icon,
-      name: ITEMS['elven_steel_furnace'].name,
+      itemId: 'cursed_furnace',
+      icon: ITEMS['cursed_furnace'].icon,
+      name: ITEMS['cursed_furnace'].name,
       amount: 1,
       consumes: false
     }, {

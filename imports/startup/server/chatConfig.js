@@ -172,13 +172,15 @@ SimpleChat.configure ({
         return false;
       } else if (/\/giveItem/.test(message)) {
         const splitMessage = message.split(' ');
-        const targetUsername = splitMessage[1];
-        const targetItem = splitMessage[2];
-        const targetAmount = parseInt(splitMessage[3]);
+        const targetUsername = "nickbreslin";//splitMessage[1];
+        const targetItem = splitMessage[1];
+        let targetAmount = parseInt(splitMessage[2]);
 
         const targetUser = Users.findOne({
           username: targetUsername.toLowerCase().trim()
         });
+
+        targetAmount = isNaN(targetAmount) ? 1 : targetAmount;
 
         addItem(targetItem, targetAmount, targetUser._id);
       }

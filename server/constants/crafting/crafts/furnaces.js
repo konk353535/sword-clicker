@@ -510,7 +510,7 @@ export const FURNACE_CRAFTS = {
     recipeFor: 'crafting',
     name: 'darksteel furnace',
     id: 'darksteel_furnace',
-    isHidden: false,
+    isHidden: true,
     category: 'crafting',
     requiredCraftingLevel: 104,
     required: [{

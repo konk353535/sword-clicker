@@ -633,46 +633,7 @@ export const AMULET_CRAFTS = {
       level: 100
     }]
   },
-  /*
-  darksteel_amulet: {
-    produces: 'darksteel_amulet',
-    name: 'darksteel amulet',
-    recipeFor: 'crafting',
-    category: 'combat',
-    id: 'darksteel_amulet',
-    timeToCraft: 40, // 60
-    xp: 1,
-    tags: ['amulet'],
-    maxToCraft: 1,
-    requiredCraftingLevel: 105,
-    required: [{
-      type: 'item',
-      itemId: 'ore_adamantium',
-      icon: ITEMS['ore_adamantium'].icon,
-      name: ITEMS['ore_adamantium'].name,
-      amount: 500,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'ore_cursed',
-      icon: ITEMS['ore_cursed'].icon,
-      name: ITEMS['ore_cursed'].name,
-      amount: 500,
-      consumes: true
-    }, {
-      type: 'item',
-      itemId: 'ore_stone',
-      icon: ITEMS['ore_stone'].icon,
-      name: ITEMS['ore_stone'].name,
-      amount: 25000,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'crafting',
-      level: 105
-    }]
-  },
-  */
+  
 
   jade_amulet: {
     produces: 'jade_amulet',

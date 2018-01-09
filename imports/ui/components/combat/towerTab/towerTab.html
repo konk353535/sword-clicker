@@ -53,8 +53,6 @@
       {{/unless}}
 
       {{#if currentCommunityFloor}}
-      Currently under construction. Importing new magical beasts and fancy new hats.
-<!--
         <div class="d-flex flex-column flex-grow mt-3">
           <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
             <button class="btn btn-primary battle-deeper mt-1">Battle Deeper</button>
@@ -80,17 +78,17 @@
             {{/if}}
           </div>
         </div>
-      -->
       {{else}}
-        <table class="table table-responsive table-hover">
-          <thead>
+        {{#if floorDetails.unlocks}}
+          <table class="table table-responsive table-hover">
+            <thead>
             <tr>
               <th class="align-middle text-center">Room #</th>
               <th class="align-middle text-center">Name</th>
               <th class="align-middle text-center">Action</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             <tr class="text-center battle-room-1-row cursor-pointer">
               <td class="align-middle">Room 1</td>
               <td class="align-middle">{{floorDetails.[1].name}}</td>
@@ -163,13 +161,24 @@
                 </button>
               </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+          {{else}}
+            <div class="d-flex flex-column flex-grow mt-3">
+              <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
+                <h3>Floor {{usersCurrentFloor}}</h3>
+                <p>This floor can only be fought from the starting room</p>
+                <button class="btn btn-primary battle-deeper mt-1">Battle R1 - R7</button>
+                <button class="btn btn-danger battle-boss-btn mt-4">
+                  Battle Boss
+                </button>
+              </div>
+            </div>
+          {{/if}}
       {{/if}}
 
     </div>
     {{#if currentCommunityFloor}}
-    <!--
       <div class="flex-grow">
         <h1>Stats</h1>
         <h2 class="my-3">Progress</h2>
@@ -196,7 +205,6 @@
           {{/each}}
         </div>
       </div>
-    -->
     {{/if}}
   </div>
 </template>

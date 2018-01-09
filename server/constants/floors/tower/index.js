@@ -19,6 +19,10 @@ import { TOWER_FLOOR_18 } from './floor18/index';
 import { TOWER_FLOOR_19 } from './floor19/index';
 import { TOWER_FLOOR_20 } from './floor20/index';
 import { TOWER_FLOOR_21 } from './floor21/index';
+import { TOWER_FLOOR_22 } from './floor22/index';
+import { TOWER_FLOOR_23 } from './floor23/index';
+import { TOWER_FLOOR_24 } from './floor24/index';
+import { TOWER_FLOOR_25 } from './floor25/index';
 
 export const TOWER_FLOORS = {
   1: TOWER_FLOOR_1,
@@ -41,5 +45,9 @@ export const TOWER_FLOORS = {
   18: TOWER_FLOOR_18,
   19: TOWER_FLOOR_19,
   20: TOWER_FLOOR_20,
-  21: TOWER_FLOOR_21
-}
+  21: TOWER_FLOOR_21,
+  22: TOWER_FLOOR_22,
+  23: TOWER_FLOOR_23,
+  24: TOWER_FLOOR_24,
+  25: TOWER_FLOOR_25,
+};

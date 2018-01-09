@@ -968,7 +968,11 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'attack',
-      amount: 0.75
+      amount: 0.35
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.35
     }, {
       type: 'times',
       key: 'health',

@@ -10,8 +10,8 @@ export const TOWER_FLOOR_21 = {
     rewards: []
   },
   2: {
-    name: 'Swampy Grove',
-    enemies: ['gelatinous cube'],
+    name: 'Tangled Undergrowth',
+    enemies: ['wasp'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -21,8 +21,8 @@ export const TOWER_FLOOR_21 = {
     }]))
   },
   3: {
-    name: 'Tangled Undergrowth',
-    enemies: ['wasp'],
+    name: 'Swampy Grove',
+    enemies: ['gelatinous_cube'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -32,8 +32,8 @@ export const TOWER_FLOOR_21 = {
     }]))
   },
   4: {
-    name: 'Peaceful Hillock',
-    enemies: ['echinda', 'water mage'],
+    name: 'Abandoned Manor',
+    enemies: ['vampire'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -44,7 +44,7 @@ export const TOWER_FLOOR_21 = {
   },
   5: {
     name: 'Old Tree',
-    enemies: ['bird', 'bird', 'cut purse'],
+    enemies: ['bird', 'cut_purse'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -55,8 +55,8 @@ export const TOWER_FLOOR_21 = {
     }]))
   },
   6: {
-    name: 'Abandoned Manor',
-    enemies: ['vampire'],
+    name: 'Peaceful Hillock',
+    enemies: ['echidna', 'water_mage'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -67,7 +67,7 @@ export const TOWER_FLOOR_21 = {
   },
   7: {
     name: 'Dark Cave',
-    enemies: ['goblin', 'monk'],
+    enemies: ['goblin'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -90,14 +90,6 @@ export const TOWER_FLOOR_21 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'cursed_dwarven_idol',
-      icon: ITEMS['cursed_dwarven_idol'].icon,
-      name: ITEMS['cursed_dwarven_idol'].name,
-      baseStats: ITEMS['cursed_dwarven_idol'].stats,
-      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
-    },
-    {
-      type: 'item',
       itemId: 'enhancer_key',
       icon: ITEMS['enhancer_key'].icon,
       name: ITEMS['enhancer_key'].name,
@@ -106,7 +98,7 @@ export const TOWER_FLOOR_21 = {
     },
     {
       type: 'gold',
-      amount: 150000
+      amount: 500000
     }
   ]
 }

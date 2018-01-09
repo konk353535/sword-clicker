@@ -1130,7 +1130,8 @@ export const ATTACK_BUFFS = {
 
         if (buff.data.duration < 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
+
+            return targetBuff !== buff;
           });
         }
       },

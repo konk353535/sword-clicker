@@ -279,13 +279,13 @@ export const SCROLL_ITEMS = {
     }
   },
 
-  darksteel_anvil_scroll: {
-    id: 'darksteel_anvil_scroll',
-    icon: 'darksteelAnvilScroll.svg',
+  darksteel_mining_anvil_scroll: {
+    id: 'darksteel_mining_anvil_scroll',
+    icon: 'darksteelMiningAnvilScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'darksteel anvil scroll',
-    teaches: 'darksteel_anvil',
+    name: 'darksteel mining anvil scroll',
+    teaches: 'darksteel_mining_anvil',
     sellPrice: 1000,
     description: `A darksteel scroll, made from cursed adamantium.`,
     shiftActionData: {
@@ -321,13 +321,13 @@ export const SCROLL_ITEMS = {
     }
   },
 
-  darksteel_chestplate_scroll: {
-    id: 'darksteel_chestplate_scroll',
-    icon: 'darksteelChestplateScroll.svg',
+  darksteel_chest_plate_scroll: {
+    id: 'darksteel_chest_plate_scroll',
+    icon: 'darksteelChestPlateScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'darksteel chestplate scroll',
-    teaches: 'darksteel_chestplate',
+    name: 'darksteel chest plate scroll',
+    teaches: 'darksteel_chest_plate',
     sellPrice: 1000,
     description: `A darksteel scroll, made from cursed adamantium.`,
     shiftActionData: {
@@ -349,12 +349,12 @@ export const SCROLL_ITEMS = {
     }
   },
 
-  darksteel_furnace_scroll: {
-    id: 'darksteel_furnace_scroll',
+  darksteel_forge_scroll: {
+    id: 'darksteel_forge_scroll',
     icon: 'darksteelFurnaceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'darksteel furnace scroll',
+    name: 'darksteel forge scroll',
     teaches: 'darksteel_furnace',
     sellPrice: 1000,
     description: `A darksteel scroll, made from cursed adamantium.`,
@@ -391,13 +391,13 @@ export const SCROLL_ITEMS = {
     }
   },
 
-  darksteel_pants_scroll: {
-    id: 'darksteel_pants_scroll',
-    icon: 'darksteelPantsScroll.svg',
+  darksteel_plate_legs_scroll: {
+    id: 'darksteel_plate_legs_scroll',
+    icon: 'darksteelPlateLegsScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'darksteel pants scroll',
-    teaches: 'darksteel_pants',
+    name: 'darksteel plate legs scroll',
+    teaches: 'darksteel_plate_legs',
     sellPrice: 1000,
     description: `A darksteel scroll, made from cursed adamantium.`,
     shiftActionData: {

@@ -29,7 +29,11 @@ export const FLOORS = Object.assign({
       18: 7,
       19: 7,
       20: 7,
-      21: 7
+      21: 8,
+      22: 8,
+      23: 9,
+      24: 9,
+      25: 10
     }
 
     // Max points per player, per day

@@ -633,6 +633,7 @@ export const AMULET_CRAFTS = {
       level: 100
     }]
   },
+  
 
   jade_amulet: {
     produces: 'jade_amulet',

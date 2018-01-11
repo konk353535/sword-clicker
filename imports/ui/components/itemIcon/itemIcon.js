@@ -160,6 +160,9 @@ Template.itemIcon.events({
 
     Template.instance().$('.sellModal').modal('hide');
     const shiftAction = instance.data.item.shiftAction;
-    shiftAction.method();
+
+    if(shiftAction) {
+      shiftAction.method();
+    }
   }
 })

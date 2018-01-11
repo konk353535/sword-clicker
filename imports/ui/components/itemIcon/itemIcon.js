@@ -154,5 +154,12 @@ Template.itemIcon.events({
 
   'click .sell-btn'(event, instance) {
     sellItem(event, instance);
+  },
+
+  'click .use-btn'(event, instance) {
+
+    Template.instance().$('.sellModal').modal('hide');
+    const shiftAction = instance.data.item.shiftAction;
+    shiftAction.method();
   }
 })

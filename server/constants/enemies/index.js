@@ -959,7 +959,7 @@ export const ENEMIES = Object.assign({
         totalDuration: Infinity,
         stacks: 2,
         icon: 'cubeSplit.svg',
-        name: 'gelatinous_cube',
+        name: 'gelatinous cube',
         splitHealthPercentage: 15,
         splitAmount: 3,
         hasSplit: false

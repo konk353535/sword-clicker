@@ -1331,13 +1331,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'lightning_speed_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'lightning_speed',
+    name: 'lightning speed',
     teaches: {
       abilityId: 'lightning_speed',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the lightning_speed spell.'
+    description: 'Can be consumed to learn the lightning speed spell.'
   },
 
   diamond_skin_tome: {

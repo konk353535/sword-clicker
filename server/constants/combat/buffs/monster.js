@@ -1075,7 +1075,7 @@ export const MONSTER_BUFFS = {
                   totalDuration: Infinity,
                   stacks: buff.data.stacks,
                   icon: 'cubeSplit.svg',
-                  name: 'gelatinous_cube',
+                  name: 'gelatinous cube',
                   splitHealthPercentage: 15,
                   splitAmount: 3,
                   hasSplit: false

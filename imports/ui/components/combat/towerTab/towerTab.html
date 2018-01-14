@@ -56,10 +56,13 @@
         <div class="d-flex flex-column flex-grow mt-3">
           <div class="d-flex flex-column flex-grow align-items-center justify-content-center">
             <button class="btn btn-primary battle-deeper mt-1">Battle Deeper</button>
-            <label class="official-attempt mt-1">
-              Official Attempt ({{combat.towerContributionsToday}} / 3)
+
+            <div class="d-flex flex-row align-items-center mt-4 mb-2">
+              <label class="official-attempt mb-0 mr-4">
+                Official Attempt ({{combat.towerContributionsToday}} / 3)
+              </label>
               <input type="checkbox" checked={{combat.isTowerContribution}}>
-            </label>
+            </div>
             {{#unless cantBossBattle}}
               <button class="btn btn-danger battle-boss-btn my-1 {{#if cantBossBattle}}disabled{{/if}}">
                 Battle

@@ -756,5 +756,65 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 100
     }]
+  },
+
+  darksteel_axe: {
+    produces: 'darksteel_axe',
+    recipeFor: 'crafting',
+    name: 'darksteel axe',
+    id: 'darksteel_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 543750,
+    maxToCraft: 1,
+    requiredCraftingLevel: 100,
+    required: [{
+      type: 'item',
+      itemId: 'adamantium_essence',
+      icon: ITEMS['adamantium_essence'].icon,
+      name: ITEMS['adamantium_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 100
+    }]
   }
 }

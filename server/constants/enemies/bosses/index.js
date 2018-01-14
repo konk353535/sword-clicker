@@ -634,4 +634,37 @@ export const BOSS_ENEMIES = {
     }],
     rewards: []
   },
+
+  boss_dragon: {
+    id: 'boss_dragon',
+    icon: 'dragon.svg',
+    name: 'Boss Dragon',
+    isBoss: true,
+    stats: {
+      attack: 250,
+      attackMax: 300,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 400,
+      health: 6500,
+      healthMax: 6500,
+      defense: 450,
+      armor: 1650,
+      magicArmor: 500,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_dragon',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'boss dragon',
+        icon: 'dragon.svg',
+        stackTimer: 0,
+        stacks: 0,
+        lastAttack: 0,
+        attackChance: 1 / 50
+      }
+    }],
+    rewards: []
+  },
 }

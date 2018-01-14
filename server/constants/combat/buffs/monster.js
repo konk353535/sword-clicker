@@ -1047,48 +1047,39 @@ export const MONSTER_BUFFS = {
         // Blank
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
-        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit) {
-          buff.data.hasSplit = true;
+        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
           buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            const cubeStats = JSON.parse(JSON.stringify(defender.stats));
-            cubeStats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
-            cubeStats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
-
-            const newCube = {
-              id: Random.id(),
-              tickOffset: i % 4,
-              icon: 'gelatinous_cube.svg',
-              name: 'gelatinous cube',
-              stats: cubeStats,
-              buffs: []
-            };
-
-            if (buff.data.stacks > 0) {
-              newCube.buffs = [{
-                id: 'gelatinous_cube_monster',
-                data: {
-                  duration: Infinity,
-                  totalDuration: Infinity,
-                  stacks: buff.data.stacks,
-                  icon: 'cubeSplit.svg',
-                  name: 'gelatinous cube',
-                  splitHealthPercentage: 15,
-                  splitAmount: 3,
-                  hasSplit: false
-                }
-              }]
-            }
+            let newCube = JSON.parse(JSON.stringify(defender));
+            newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.id = Random.id();
             actualBattle.enemies.push(newCube);
           }
+          buff.data.hasSplit = true;
+        }
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // spawn cubes if mob is killed without spawning previously
+        if (!buff.data.hasSplit) {
+          buff.data.stacks -= 1;
+          for(let i = 0; i < buff.data.splitAmount; i++) {
+            let newCube = JSON.parse(JSON.stringify(target));
+            newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.id = Random.id();
+            actualBattle.enemies.push(newCube);
+          }
+          buff.data.hasSplit = true;
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
+        // blank
       }
     }
   }

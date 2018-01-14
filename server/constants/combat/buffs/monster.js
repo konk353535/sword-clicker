@@ -1047,7 +1047,7 @@ export const MONSTER_BUFFS = {
         // Blank
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+      onTookDamage({ buff, defender, actualBattle }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {

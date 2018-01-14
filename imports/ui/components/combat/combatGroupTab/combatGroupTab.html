@@ -86,11 +86,16 @@
             {{this.username}}
           </div>
           <div>Online {{moFromNow this.lastGameUpdated}}</div>
-          <button
-            class="btn btn-primary btn-sm invite-friend-to-group"
-            data-username="{{this.username}}">
-            Invite to group
-          </button>
+          <div>
+            <button
+                class="btn btn-primary btn-sm invite-friend-to-group"
+                data-username="{{this.username}}">
+              Invite to group
+            </button>
+            <button class="btn btn-warning btn-sm remove-friend-click" data-username="{{this.username}}">
+              x
+            </button>
+          </div>
         </div>
       {{/each}}
     </div>

@@ -9,7 +9,6 @@ export const DEFENSE_BUFFS = {
     duplicateTag: 'volcanic_shield', // Used to stop duplicate buffs
     icon: 'volcanicShield.svg',
     name: 'volcanic shield',
-
     description({ buff, level }) {
 
       let localLevel = JSON.parse(JSON.stringify(level));

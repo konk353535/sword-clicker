@@ -36,7 +36,6 @@ export const DEFENSE_BUFFS = {
 
         const constants = buff.constants.constants;
         let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
-        let damageBuff = constants.damageBase + (constants.damagePerLevel * buff.data.level);
 
         // Increase armor & magic armor by 100
         target.stats.armor += armorBuff;

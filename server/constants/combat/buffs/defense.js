@@ -22,8 +22,8 @@ export const DEFENSE_BUFFS = {
       let armorBuff  = constants.armorBase  + (constants.armorPerLevel  * localLevel);
       let damageBuff = (constants.damageBase + (constants.damagePerLevel * localLevel)) * 100;
       
-      return `Increase armor & magic armor by ${armorBuff}. (25 per lvl)<br />
-        After 10 seconds, erupts dealing ${damageBuff}% (50% per lvl) weapon damage to all enemies`;
+      return `Increase armor & magic armor by ${armorBuff}. (+${constants.armorPerLevel } per lvl)<br />
+        After 10 seconds, erupts dealing ${damageBuff}% (+${constants.damagePerLevel * 100}% per lvl) weapon damage to all enemies`;
     },
     constants: {
       armorBase: 75,

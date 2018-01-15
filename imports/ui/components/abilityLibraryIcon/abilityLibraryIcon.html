@@ -47,26 +47,10 @@
           <b>{{item.casts}}</b> casts remaining.<br /><br />
         {{/if}}
 
-        {{#if item.primaryAction}}
-          {{#if item.primaryAction.description}}
-            {{#if item.shiftAction}}
-              {{#if item.shiftAction.description}}
-                <div>
-                  <b>Left Click</b> to Use or {{item.primaryAction.description}}
-                </div>
-              {{/if}}
-            {{/if}}
-          {{#else}}
-            <div>
-              <b>Left Click</b> to {{item.primaryAction.description}}
-            </div>
-          {{/else}}
-        {{/if}}
-
         {{#if item.shiftAction}}
           {{#if item.shiftAction.description}}
             <div>
-              <b>Shift Click</b> to {{item.shiftAction.description}}
+              <b>Shift Click</b> _to {{item.shiftAction.description}}
             </div>
           {{/if}}
         {{/if}}

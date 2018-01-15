@@ -233,6 +233,6 @@ export const LEVEL_TWO_CRAFTS = {
     xp: 250,
     maxToCraft: 1,
     requiredInscriptionLevel: 24,
-    required: [UTIL.BLUE_255, UTIL.WALNUT_PAPER, UTIL.LEVEL_24]
+    required: [UTIL.RED_150, UTIL.PURPLE_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_24]
   }
 }

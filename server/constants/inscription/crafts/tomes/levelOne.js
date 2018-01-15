@@ -82,7 +82,7 @@ export const LEVEL_ONE_CRAFTS = {
 
   volcanic_shield_tome: {
     recipeFor: 'inscription',
-    produces: 'volcanic_shield_1_tome',
+    produces: 'volcanic_shield_tome',
     name: 'Volcanic shield',
     id: 'volcanic_shield_tome',
     category: 'tome',

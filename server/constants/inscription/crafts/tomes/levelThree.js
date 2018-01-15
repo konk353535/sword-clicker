@@ -204,9 +204,9 @@ export const LEVEL_THREE_CRAFTS = {
     id: 'volcanic_shield_level_3_tome',
     category: 'tome',
     timeToCraft: 300,
-    xp: 250,
+    xp: 500,
     maxToCraft: 1,
-    requiredInscriptionLevel: 34,
-    required: [UTIL.BLUE_255, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_34]
+    requiredInscriptionLevel: 37,
+    required: [UTIL.MANY_YELLOW_255, UTIL.RED_100, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_37]
   }
 }

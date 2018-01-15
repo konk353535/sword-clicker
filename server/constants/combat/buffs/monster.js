@@ -1065,7 +1065,7 @@ export const MONSTER_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         // spawn cubes if mob is killed without spawning previously
-        if (!buff.data.hasSplit) {
+        if (!buff.data.hasSplit && buff.data.stacks > 0) {
           buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
             let newCube = JSON.parse(JSON.stringify(target));
@@ -1079,7 +1079,7 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // blank
+        // Blank
       }
     }
   }

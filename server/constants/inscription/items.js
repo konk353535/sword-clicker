@@ -703,6 +703,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the volcanic shield ability.'
   },
 
+  volcanic_shield_level_2_tome: {
+    id: 'volcanic_shield_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 2',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 2
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
+  volcanic_shield_level_3_tome: {
+    id: 'volcanic_shield_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 3',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
   thirsty_fangs_1_tome: {
     id: 'thirsty_fangs_1_tome',
     icon: 'tome.svg',

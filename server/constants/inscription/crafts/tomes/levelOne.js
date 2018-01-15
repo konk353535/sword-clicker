@@ -82,7 +82,7 @@ export const LEVEL_ONE_CRAFTS = {
 
   volcanic_shield_tome: {
     recipeFor: 'inscription',
-    produces: 'volcanic_shield_tome',
+    produces: 'volcanic_shield_1_tome',
     name: 'Volcanic shield',
     id: 'volcanic_shield_tome',
     category: 'tome',
@@ -92,7 +92,6 @@ export const LEVEL_ONE_CRAFTS = {
     requiredInscriptionLevel: 14,
     required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_14]
   },
-
 
   water_ball_tome: {
     recipeFor: 'inscription',

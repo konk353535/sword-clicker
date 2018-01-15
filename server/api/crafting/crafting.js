@@ -295,6 +295,7 @@ Meteor.methods({
   },
 
   'crafting.cancelCraft'(targetEndDate) {
+    const userDoc = Meteor.user();
     // If existing crafts done, remove from crafting table
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
@@ -323,7 +324,10 @@ Meteor.methods({
     // Reconstruct start and end dates
     sortedCrafts.forEach((craft, index) => {
       if (moment().isBefore(craft.startDate)) {
-        const craftDuration = craft.amount * CRAFTING.recipes[craft.recipeId].timeToCraft;
+        let craftDuration = craft.amount * CRAFTING.recipes[craft.recipeId].timeToCraft;
+        if (userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo)) {
+          craftDuration *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
+        }
         if (index === 0) {
           craft.startDate = moment().toDate();
           craft.endDate = moment().add(craftDuration, 'seconds').toDate();

@@ -703,6 +703,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the volcanic shield ability.'
   },
 
+  volcanic_shield_level_2_tome: {
+    id: 'volcanic_shield_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 2',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 2
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
+  volcanic_shield_level_3_tome: {
+    id: 'volcanic_shield_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 3',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
   thirsty_fangs_1_tome: {
     id: 'thirsty_fangs_1_tome',
     icon: 'tome.svg',
@@ -1331,13 +1357,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'lightning_speed_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'lightning_speed',
+    name: 'lightning speed',
     teaches: {
       abilityId: 'lightning_speed',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the lightning_speed spell.'
+    description: 'Can be consumed to learn the lightning speed spell.'
   },
 
   diamond_skin_tome: {

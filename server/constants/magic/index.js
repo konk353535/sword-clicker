@@ -336,7 +336,7 @@ export const MAGIC = {
     mending_spring: {
       id: 'mending_spring',
       abilityId: 'mending_spring',
-      xp: 10,
+      xp: 105,
       maxToCraft: 10000,
       required: [{
         type: 'item',

@@ -126,6 +126,8 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
+    setBattleAgain(floor, room);
+
     let isExplorationRun = false;
     if (room === 0) {
       isExplorationRun = true;
@@ -153,7 +155,6 @@ Meteor.methods({
       if (currentCommunityFloor.floor === floor && canBossBattle) {
         const bossHealth = currentCommunityFloor.health;
 
-        setBattleAgain(floor, room);
         return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
         const bossId = FLOORS[floor].boss.enemy.id;
@@ -161,7 +162,6 @@ Meteor.methods({
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
-          setBattleAgain(floor, room);
           return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else {
           return;
@@ -175,12 +175,10 @@ Meteor.methods({
     if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
-      setBattleAgain(floor, room);
       return startBattle({ floor, room, isTowerContribution, isExplorationRun });
     }
 
     // Eventually select a random battle appropriate to users level
-    setBattleAgain(floor, room);
     startBattle({ floor, room, isTowerContribution, isExplorationRun });
   },
 

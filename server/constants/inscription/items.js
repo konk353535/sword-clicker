@@ -690,8 +690,8 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the furied defense ability.'
   },
 
-  volcanic_shield_tome: {
-    id: 'volcanic_shield_tome',
+  volcanic_shield_1_tome: {
+    id: 'volcanic_shield_1_tome',
     icon: 'tome.svg',
     category: 'tome',
     name: 'Volcanic Shield Lv. 1',

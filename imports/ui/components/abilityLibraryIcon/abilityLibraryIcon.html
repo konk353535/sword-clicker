@@ -54,6 +54,14 @@
             </div>
           {{/if}}
         {{/if}}
+
+        {{#if item.shiftAction}}
+          {{#if item.shiftAction.description}}
+            <div>
+              <b>Shift Click</b> to {{item.shiftAction.description}}
+            </div>
+          {{/if}}
+        {{/if}}
       </div>
     </div>
   </div>

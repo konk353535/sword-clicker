@@ -21,6 +21,50 @@ import '../components/craftingDuration/craftingDuration.js';
 
 let gameUpdateTimer;
 
+
+const itemModifier = function (item) {
+  if (item.shiftActionData) {
+    item.shiftAction = {
+      description: item.shiftActionData.description,
+      item,
+      method() {
+        if (this.item.shiftActionData.target) {
+          const targetClass = `targetting-${this.item.shiftActionData.target}`;
+          if (!$('body').hasClass(targetClass)) {
+            $('body').addClass(targetClass);
+            Meteor.setTimeout(() => {
+              // Add body listener for when you want to click out
+              $('body').on(`click.${this.item._id}`, (event) => {
+                const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
+                if (closestTarget) {
+                  const targetId = closestTarget.data('id');
+                  if (targetId) {
+                    Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
+                  }
+                }
+                
+                $('body').removeClass(targetClass);
+                $('body').off(`click.${this.item._id}`);
+              });
+            }, 1);
+          }
+        } else {
+          Meteor.call('items.use', { baseItemId: this.item._id }, (err, res) => {
+            if (/essence_scroll/.test(this.item.itemId)) {
+              // If this was an essence scroll, reload recipes
+              recipeCache = undefined;
+            }
+          });
+        }
+      }
+    }
+  }
+
+  return item;
+}
+
+
+
 Template.inscriptionPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
@@ -191,7 +235,7 @@ Template.inscriptionPage.helpers({
       category: {
         $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book', 'enchantment']
       } 
-    });
+    }).map((itemModifier));
   },
 
   isInscription() {

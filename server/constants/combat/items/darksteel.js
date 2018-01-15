@@ -14,10 +14,10 @@ export const DARKSTEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": (17.4 * DARKSTEEL_MULTIPLIER).toFixed(1),
-      "attackMax": 32.7 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "attack": 17.4 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 32.7 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 1,
-      "accuracy": 75.5 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "accuracy": 75.5 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -37,17 +37,17 @@ export const DARKSTEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 66.7 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "attack": 66.7 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 83.5 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.5,
-      "accuracy": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 32.7 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "accuracy": 83.5 * DARKSTEEL_MULTIPLIER,
+      "defense": 32.7 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "attack": 20 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "accuracy": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 9.8 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "attack": 20 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 25.1 * DARKSTEEL_MULTIPLIER,
+      "accuracy": 25.1 * DARKSTEEL_MULTIPLIER,
+      "defense": 9.8 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -67,15 +67,15 @@ export const DARKSTEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 66.7 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 99.5 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "attack": 66.7 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 99.5 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.7,
-      "accuracy": 99.5 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "accuracy": 99.5 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "attack": 20 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 29.8 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "accuracy": 29.8 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "attack": 20 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 29.8 * DARKSTEEL_MULTIPLIER,
+      "accuracy": 29.8 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -96,15 +96,15 @@ export const DARKSTEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 116.7 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 200.5 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "attack": 116.7 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 200.5 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.5,
-      "accuracy": 134.1 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "accuracy": 134.1 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "attack": 35 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 60.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "accuracy": 40.2 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "attack": 35 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 60.2 * DARKSTEEL_MULTIPLIER,
+      "accuracy": 40.2 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -126,15 +126,15 @@ export const DARKSTEEL_ITEMS = {
     "isWeapon": true,
     "isEquippable": true,
     "stats": {
-      "attack": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 300 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "attack": 83.5 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 300 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.3,
-      "accuracy": 134.1 * DARKSTEEL_MULTIPLIER.toFixed(1),
+      "accuracy": 134.1 * DARKSTEEL_MULTIPLIER,
       "criticalChance": 5
     },
     "extraStats": {
-      "attack": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "attackMax": 90 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "attack": 25.1 * DARKSTEEL_MULTIPLIER,
+      "attackMax": 90 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -153,14 +153,14 @@ export const DARKSTEEL_ITEMS = {
     "description": "Protect your head",
     "isEquippable": true,
     "stats": {
-      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER,
+      "defense": 17.4 * DARKSTEEL_MULTIPLIER,
+      "armor": 83.5 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER,
+      "defense": 5.2 * DARKSTEEL_MULTIPLIER,
+      "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -178,14 +178,14 @@ export const DARKSTEEL_ITEMS = {
     "description": "Protect your heart",
     "isEquippable": true,
     "stats": {
-      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER,
+      "defense": 17.4 * DARKSTEEL_MULTIPLIER,
+      "armor": 83.5 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER,
+      "defense": 5.2 * DARKSTEEL_MULTIPLIER,
+      "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -203,14 +203,14 @@ export const DARKSTEEL_ITEMS = {
     "description": "Protect your legs",
     "isEquippable": true,
     "stats": {
-      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 17.4 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 83.5 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 17.4 * DARKSTEEL_MULTIPLIER,
+      "defense": 17.4 * DARKSTEEL_MULTIPLIER,
+      "armor": 83.5 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 5.2 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 25.1 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 5.2 * DARKSTEEL_MULTIPLIER,
+      "defense": 5.2 * DARKSTEEL_MULTIPLIER,
+      "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -229,14 +229,14 @@ export const DARKSTEEL_ITEMS = {
     "description": "Provides large defense bonuses",
     "isEquippable": true,
     "stats": {
-      "healthMax": 32.7 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 51.1 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 167.6 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 32.7 * DARKSTEEL_MULTIPLIER,
+      "defense": 51.1 * DARKSTEEL_MULTIPLIER,
+      "armor": 167.6 * DARKSTEEL_MULTIPLIER
     },
     "extraStats": {
-      "healthMax": 9.8 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "defense": 15.3 * DARKSTEEL_MULTIPLIER.toFixed(1),
-      "armor": 50.3 * DARKSTEEL_MULTIPLIER.toFixed(1)
+      "healthMax": 9.8 * DARKSTEEL_MULTIPLIER,
+      "defense": 15.3 * DARKSTEEL_MULTIPLIER,
+      "armor": 50.3 * DARKSTEEL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',

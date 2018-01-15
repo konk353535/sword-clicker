@@ -54,6 +54,44 @@ Meteor.methods({
         friends: currentFriends.friends
       }
     });
+  },
+
+  'friends.remove'(username) {
+    // Does the specified username exist
+    const targetUser = Users.findOne({
+      $or: [{
+        username: username.toLowerCase()
+      }, {
+        email: username.toLowerCase()
+      }]
+    });
+
+    if (!targetUser) {
+      return;
+    }
+
+    // Is targetUser already a friend?
+    let currentFriends;
+
+    currentFriends = Friends.findOne({
+      owner: this.userId
+    });
+
+    if (!currentFriends) {
+      currentFriends = {
+        owner: this.userId,
+        friends: []
+      };
+      Friends.insert(currentFriends);
+    }
+
+    currentFriends.friends = currentFriends.friends.filter((friend) => { return friend !== targetUser._id });
+
+    Friends.update(currentFriends._id, {
+      $set: {
+        friends: currentFriends.friends
+      }
+    });
   }
 });
 

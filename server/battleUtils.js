@@ -37,3 +37,13 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
     target.buffs.push(buff);
   }
 }
+
+export const finishAllBattles = function() {
+  import { BattlesList } from "/imports/api/battles/battles";
+  const redis = new Meteor.RedisCollection('redis');
+  BattlesList.find({}).fetch().forEach((battleList) => {
+    BattlesList.remove(battleList._id);
+    redis.del(`battles-${battleList._id}`);
+    redis.del(`battleActions-${battleList._id}`);
+  });
+};

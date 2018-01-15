@@ -44,6 +44,28 @@
     </div>
   {{/if}}
 
+  {{#if bookRecipes}}
+    <div class="mb-1">
+      <h3>Books</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each bookRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if magicBookRecipes}}
+    <div class="mb-1">
+      <h3>Magic Books</h3>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        {{#each magicBookRecipes}}
+          {{ > recipeIcon recipe=this isInscription=isInscription}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
   {{#if xpRecipes}}
     <div class="mb-1">
       <h3>Walls & Pylons <small>(XP)</small></h3>

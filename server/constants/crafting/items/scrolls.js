@@ -424,7 +424,7 @@ export const SCROLL_ITEMS = {
     icon: 'darksteelShortSwordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'darksteel shield scroll',
+    name: 'darksteel short sword scroll',
     teaches: 'darksteel_short_sword',
     sellPrice: 1000,
     description: `A darksteel scroll, made from cursed adamantium.`,

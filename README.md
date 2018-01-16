@@ -24,3 +24,4 @@ which is fixed when you run this in the console:
 `
 redis-cli set global-buffs-xpq "{\"combat\":\"2017-10-29T19:30:59.534Z\",\"gathering\":\"2017-10-29T08:45:55.520Z\",\"crafting\":\"2017-10-29T18:45:54.943Z\"}"
 `
+

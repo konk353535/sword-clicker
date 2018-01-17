@@ -22,7 +22,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   copper_sculpture: {
@@ -70,7 +70,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   bronze_sculpture: {
@@ -118,7 +118,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   silver_sculpture: {
@@ -166,7 +166,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   gold_crown: {
@@ -239,7 +239,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   platinum_sculpture: {
@@ -287,7 +287,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   tungsten_sculpture: {
@@ -335,7 +335,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   cobalt_sculpture: {
@@ -383,7 +383,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   adamantium_sculpture: {
@@ -431,7 +431,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   meteorite_sculpture: {
@@ -479,7 +479,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
   elven_steel_sculpture: {
@@ -527,7 +527,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
-    maxToCraft: 1
+    maxToCraft: 5
   },
 
 }

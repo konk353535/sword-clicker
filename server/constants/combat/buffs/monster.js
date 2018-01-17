@@ -1057,6 +1057,7 @@ export const MONSTER_BUFFS = {
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = Random.id();
+            newCube.target = _.sample(actualBattle.units).id;
             actualBattle.enemies.push(newCube);
           }
           buff.data.hasSplit = true;
@@ -1072,6 +1073,7 @@ export const MONSTER_BUFFS = {
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = Random.id();
+            newCube.target = _.sample(actualBattle.units).id;
             actualBattle.enemies.push(newCube);
           }
           buff.data.hasSplit = true;

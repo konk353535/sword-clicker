@@ -982,6 +982,39 @@ export const ENEMIES = Object.assign({
       key: 'healthMax',
       amount: 1.5
     }]
+  },
+
+  warden: {
+    id: 'warden',
+    icon: 'warden.svg',
+    name: 'warden',
+    buffs: [{
+      id: 'warden_shield',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        level: 10, // 80% damage redirection
+        icon: 'warden_shield.svg',
+        name: 'warden shield',
+        allies: 'enemies',
+        applyToAllies: true,
+        appliedToAllies: false,
+        sourceAlly: null
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'armor',
+      amount: 5
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 8
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 8
+    }]
   }
 
 }, BOSS_ENEMIES);

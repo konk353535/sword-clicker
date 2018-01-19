@@ -958,5 +958,138 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       }
     }
-  }
+  },
+
+  winged_shield: {
+    duplicateTag: 'winged_shield', // Used to stop duplicate buffs
+    icon: 'wingedShield.svg',
+    name: 'winged shield',
+    description() {
+      return `Every 15 seconds, blocks the damage from the next attack.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.timeTillDodge = 15;
+        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.data.dodge = false;
+      },
+
+      onTick({ secondsElapsed, buff }) {
+        if (buff.data.timeTillDodge > 0) {
+          buff.data.timeTillDodge -= secondsElapsed;
+        } else if (!buff.data.dodge) {
+          buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
+          target.stats.damageTaken -= buff.data.damageReduction;
+          buff.data.dodge = true;
+        }
+        if (buff.data.timeTillDodge < 0) {
+          buff.data.timeTillDodge = 0;
+        }
+        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (buff.data.dodge) {
+          target.stats.damageTaken += buff.data.damageReduction;
+          buff.data.timeTillDodge = 15;
+          buff.data.dodge = false;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  warden_shield: {
+    duplicateTag: 'warden_shield',
+    icon: 'warden_shield.svg',
+    name: 'warden shield',
+    description({ buff, level }) {
+      const defensePerLevel = Math.round(buff.constants.defensePerLevel * 100);
+      const maxDefense = Math.round((buff.constants.baseDefense + (defensePerLevel * level)) * 100);
+      return `
+        Redirects ${maxDefense}% (+${defensePerLevel}% per lvl) damage from allies onto yourself.`;
+    },
+    constants: {
+      baseDefense: 0.3,
+      defensePerLevel: 0.05,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      allies: 'units',
+      applyToAllies: true,
+      appliedToAllies: false,
+      sourceAlly: null
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ buff, target, caster, actualBattle }) {
+        // apply buff to 'allies' if required
+        if (buff.data.applyToAllies && !buff.data.appliedToAllies) {
+          console.log('applying buff to allies:', buff, '\n\ntarget:', target);
+          const newBuff = {
+            id: 'warden_shield',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              caster: target.id,
+              icon: 'warden_shield.svg',
+              name: 'warden shield',
+              allies: buff.data.allies,
+              applyToAllies: false,
+              appliedToAllies: false,
+              sourceAlly: target.id,
+              hideBuff: false,
+              level: buff.data.level
+            },
+            constants: BUFFS['warden_shield']
+          };
+          // apply to all but self
+          console.log('other allies:', actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }), '\n\n');
+          actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }).forEach((ally) => {
+            addBuff({ buff: newBuff, target: ally, caster: caster });
+          });
+          buff.data.appliedToAllies = true;
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        console.log('defender took damage:', buff, '\n\n', defender, '\n\n');
+        if (buff.data.sourceAlly !== null) {
+          // try fo find ally
+          const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
+          console.log('sourceAlly:', sourceAlly, '\n\n');
+          if(!_.isUndefined(sourceAlly)) {
+            // redirect damage from self to sourceAlly
+            const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
+            console.log('damageDealt:',damageDealt, '\tredirectDamage:', redirectDamage);
+            actualBattle.utils.healTarget(redirectDamage, {
+              caster: sourceAlly,
+              target: defender,
+            });
+            actualBattle.utils.dealDamage(redirectDamage, {
+              attacker: defender,
+              defender: sourceAlly,
+            });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
 }

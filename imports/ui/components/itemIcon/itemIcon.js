@@ -28,6 +28,11 @@ Template.itemIcon.helpers({
     return instance.state.get('showSellModal');
   },
 
+  showUseModal() {
+    const instance = Template.instance();
+    return instance.state.get('showUseModal');
+  },
+
   quickSelling() {
     const instance = Template.instance();
     return instance.state.get('quickSelling');
@@ -64,6 +69,7 @@ const sellItem = function (event, instance) {
   if (instance.data.hideTooltip) return;
 
   Template.instance().$('.sellModal').modal('hide');
+  Template.instance().$('.useModal').modal('hide');
   const itemData = instance.data.item;
   if (instance.state.get('quickSelling')) {
     Session.set('instaSellDateTo', moment().add(10, 'seconds').toDate());
@@ -130,10 +136,18 @@ Template.itemIcon.events({
         Meteor.call('items.sellItem', instance.data.item._id, instance.data.item.itemId, instance.data.item.amount);
       } else {
         instance.state.set('sellAmount', instance.data.item.amount);
-        instance.state.set('showSellModal', true);
-        Meteor.setTimeout(() => {
-          instance.$('.sellModal').modal('show');
-        }, 10);
+
+        if (shiftAction) {
+          instance.state.set('showUseModal', true);
+          Meteor.setTimeout(() => {
+            instance.$('.useModal').modal('show');
+          }, 10);
+        } else {
+          instance.state.set('showSellModal', true);
+          Meteor.setTimeout(() => {
+            instance.$('.sellModal').modal('show');
+          }, 10);
+        }
       }
     }
   },
@@ -158,7 +172,8 @@ Template.itemIcon.events({
 
   'click .use-btn'(event, instance) {
 
-    Template.instance().$('.sellModal').modal('hide');
+    Template.instance().$('.useModal').modal('hide');
+
     const shiftAction = instance.data.item.shiftAction;
 
     if(shiftAction) {

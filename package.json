@@ -10,7 +10,7 @@
     "arrowpay-react-checkout": "^1.0.1",
     "async": "^2.4.1",
     "babel-runtime": "^6.20.0",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "4.0.0-alpha.6",
     "js-object-parser": "^1.0.1",
     "json-parser": "^1.1.5",
     "jsonic": "^0.3.0",

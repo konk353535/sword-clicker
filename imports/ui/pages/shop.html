@@ -34,12 +34,12 @@
         <div>
           {{> React
             component=RaiCheckout
-            token=token
-            cost=5
-            publicKey=publicKey
-            subTitle='Some Gems'
+            onPaymentConfirmed=onPaymentConfirmed
+            payment=someGemsPayment
+            public_key=public_key
+            sub_title='Some Gems'
             title='Eternity Tower'
-            itemId='someGems'
+            item_id='someGems'
             text='Pay with RaiBlocks $0.05'}}
         </div>
       </div>
@@ -58,6 +58,18 @@
             $4.99
           {{/if}}
         </button>
+        <div class="mt-1">
+        {{> React
+          component=RaiCheckout
+          onPaymentConfirmed=onPaymentConfirmed
+          payment=bunchOfGemsPayment
+          buttonClasses='btn-block'
+          public_key=public_key
+          sub_title='Bunch Of Gems'
+          title='Eternity Tower'
+          item_id='bunchOfGems'
+          text='Pay with RaiBlocks $4.99'}}
+        </div>
       </div>
     </div>
     <div class="col-md-3">

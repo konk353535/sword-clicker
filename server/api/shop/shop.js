@@ -265,27 +265,32 @@ Meteor.methods({
 
   },
 
-  'shop.purchaseWithRaiBlocks'({ paymentId, itemId }) {
+  'shop.purchaseWithRaiBlocks'({ token, item_id }) {
     // Lookup itemId, confirm that its price matches what was paid
     const ITEMS = {
       'someGems': {
         price: 5,
         gems: 5
+      },
+      'bunchOfGems': {
+        price: 499,
+        gems: 500
       }
     }
 
-    if (!ITEMS[itemId]) {
+    if (!ITEMS[item_id]) {
       throw new Meteor.Error("Invalid item id given");
     }
 
-    const amount = ITEMS[itemId].price;
+    const amount = ITEMS[item_id].price;
 
     const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
       data: {
-        amount, // How much moola we're expecting
-        paymentId, // Determines if this is a valid payment
-        description: itemId, // Optional
-        privateKey: Meteor.settings.private.RAI_PAYS_PRIVATE_KEY
+        payment: {
+          amount,
+          currency: 'USD'
+        },
+        token
       }
     });
 
@@ -295,7 +300,7 @@ Meteor.methods({
         _id: Meteor.userId(),
       }, {
         $inc: {
-          gems: ITEMS[itemId].gems
+          gems: ITEMS[item_id].gems
         }
       });        
     } else {

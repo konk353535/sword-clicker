@@ -290,10 +290,10 @@ Template.shopPage.helpers({
     return RaiCheckout;
   },
 
-  token() {
+  onPaymentConfirmed() {
     const instance = Template.instance();
-    return ({ paymentId, itemId }) => {
-      Meteor.call('shop.purchaseWithRaiBlocks', { paymentId, itemId }, (err, res) => {
+    return ({ token, item_id }) => {
+      Meteor.call('shop.purchaseWithRaiBlocks', { token, item_id }, (err, res) => {
         if (err) {
           toastr.error('An error occured while purchasing gems.');
         } else {
@@ -327,8 +327,22 @@ Template.shopPage.helpers({
     return globalBuffs;
   },
 
-  publicKey() {
+  public_key() {
     return Meteor.settings.public.RAI_PAYS_PUBLIC_KEY;
+  },
+
+  someGemsPayment() {
+    return {
+      amount: 5,
+      currency: 'USD'
+    }
+  },
+
+  bunchOfGemsPayment() {
+    return {
+      amount: 499,
+      currency: 'USD'
+    }
   },
 
   currentUpgrades() {

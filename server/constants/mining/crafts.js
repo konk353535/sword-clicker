@@ -2280,9 +2280,9 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'darksteel_anvil',
-      icon: ITEMS['darksteel_anvil'].icon,
-      name: ITEMS['darksteel_anvil'].name,
+      itemId: 'darksteel_mining_anvil',
+      icon: ITEMS['darksteel_mining_anvil'].icon,
+      name: ITEMS['darksteel_mining_anvil'].name,
       amount: 1,
       consumes: false
     },  {

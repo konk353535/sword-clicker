@@ -15,7 +15,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 2) + (ORI_ESS_XP * 2),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -90,7 +90,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -165,7 +165,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -240,7 +240,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (ORI_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -315,7 +315,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (ORI_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -390,7 +390,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -442,9 +442,9 @@ export const RADIANT_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'darksteel_battle_axe',
-      icon: ITEMS['darksteel_battle_axe'].icon,
-      name: ITEMS['darksteel_battle_axe'].name,
+      itemId: 'darksteel_helmet',
+      icon: ITEMS['darksteel_helmet'].icon,
+      name: ITEMS['darksteel_helmet'].name,
       amount: 1,
       consumes: false
     }, {
@@ -465,7 +465,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -540,7 +540,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',
@@ -615,7 +615,7 @@ export const RADIANT_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 105,
     required: [{
       type: 'item',
       itemId: 'darksteel_furnace',

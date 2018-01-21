@@ -45,8 +45,10 @@ Template.personalQuestTab.events({
 
   'click .select-level'(event, instance) {
     const selectedLevel = $(event.target).closest('.select-level')[0].getAttribute('data-level');
-    instance.state.set('currentLevel', parseInt(selectedLevel));
-    Meteor.call('users.setUiState', 'questLevel', parseInt(selectedLevel));
+    if (instance.state.get('currentLevel') !== parseInt(selectedLevel)) {
+      instance.state.set('currentLevel', parseInt(selectedLevel));
+      Meteor.call('users.setUiState', 'questLevel', parseInt(selectedLevel));
+    }
   },
 
   'click .random-battle'(event, instance) {

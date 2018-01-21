@@ -67,7 +67,7 @@ export const TOWER_FLOOR_22 = {
   },
   7: {
     name: 'Blessed Mine',
-    enemies: ['angel', 'dwarf'],
+    enemies: ['dwarf'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [

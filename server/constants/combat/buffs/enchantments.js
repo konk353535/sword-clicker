@@ -1082,6 +1082,7 @@ export const ENCHANTMENT_BUFFS = {
             actualBattle.utils.dealDamage(redirectDamage, {
               attacker: defender,
               defender: sourceAlly,
+              tickEvents: actualBattle.tickEvents
             });
           }
         }

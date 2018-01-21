@@ -438,6 +438,26 @@ export const WOODCUTTING_ITEMS = {
     }
   },
 
+  radiant_axe: {
+    id: 'radiant_axe',
+    icon: 'radiantAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'radiant axe',
+    sellPrice: 3500,
+    description: 'A radiant axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 110,
+      attackSpeed: 2,
+      accuracy: 75
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },  
+
   pine_log: {
     id: 'pine_log',
     icon: 'pineLog.png',

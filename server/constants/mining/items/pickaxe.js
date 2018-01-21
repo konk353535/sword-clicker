@@ -1069,6 +1069,30 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  radiant_mining_anvil: {
+    id: 'radiant_mining_anvil',
+    icon: 'radiantMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'radiant mining anvil',
+    sellPrice: 1500,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 2000, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 92
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
+    }
+  },
+
   // Passive heavy pickaxes
   copper_dwarven_idol: {
     id: 'copper_dwarven_idol',
@@ -2142,5 +2166,28 @@ export const PICKAXE_ITEMS = {
       attack: 7,
       energyRegen: 3
     }
-  }
+  },
+
+  radiant_pickaxe: {
+    id: 'radiant_pickaxe',
+    icon: 'radiantPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'radiant pickaxe',
+    sellPrice: 2250,
+    description: 'A radiant pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 139,
+      attack: 250,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 39,
+      attack: 8,
+      energyRegen: 3
+    }
+  },  
 }

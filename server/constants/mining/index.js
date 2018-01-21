@@ -935,7 +935,32 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.30
-    }
+    },
+
+    radiant_miner: {
+      requiredMiningLevel: 105,
+      icon: 'cursedMiner.png',
+      name: 'radiant miner',
+      id: 'radiant_miner',
+      required: [{
+        type: 'item',
+        itemId: 'radiant_pickaxe',
+        icon: ITEMS['radiant_pickaxe'].icon,
+        name: ITEMS['radiant_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1600000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 105
+      }],
+      max: 3,
+      damagePerSecond: 0.31
+    },
   },
   ores: {
     stone: {

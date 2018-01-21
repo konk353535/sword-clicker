@@ -5,13 +5,13 @@ import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '/server/constants/floors/levels/lev
 export const TOWER_FLOOR_22 = {
   unlocks: false,
   1: {
-    name: 'Bees?',
-    enemies: ['bee', 'bee'],
+    name: 'Frozen Waste',
+    enemies: ['ice_giant'],
     rewards: []
   },
   2: {
-    name: 'Tangled Undergrowth',
-    enemies: ['wasp'],
+    name: 'Dojo',
+    enemies: ['monk'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -21,8 +21,8 @@ export const TOWER_FLOOR_22 = {
     }]))
   },
   3: {
-    name: 'Swampy Grove',
-    enemies: ['gelatinous_cube'],
+    name: 'Sparta',
+    enemies: ['spartan', 'crab'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -32,8 +32,8 @@ export const TOWER_FLOOR_22 = {
     }]))
   },
   4: {
-    name: 'Abandoned Manor',
-    enemies: ['vampire'],
+    name: 'The Field',
+    enemies: ['farmer', 'snake'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -43,8 +43,8 @@ export const TOWER_FLOOR_22 = {
     }]))
   },
   5: {
-    name: 'Old Tree',
-    enemies: ['bird', 'cut_purse'],
+    name: 'Mage\'s Caravan',
+    enemies: ['warden', 'fire_mage'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -55,8 +55,8 @@ export const TOWER_FLOOR_22 = {
     }]))
   },
   6: {
-    name: 'Peaceful Hillock',
-    enemies: ['echidna', 'water_mage'],
+    name: 'Abandoned Dojo',
+    enemies: ['young_ninja'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
@@ -66,8 +66,8 @@ export const TOWER_FLOOR_22 = {
     }]))
   },
   7: {
-    name: 'Dark Cave',
-    enemies: ['goblin'],
+    name: 'Blessed Mine',
+    enemies: ['angel', 'dwarf'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [

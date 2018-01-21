@@ -124,23 +124,31 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 Template.miningPage.events({
 
   'click .minePitLink'(event, instance) {
-    instance.state.set('currentTab', 'minePit');
-    Meteor.call('users.setUiState', 'miningTab', 'minePit');
+    if (instance.state.get('currentTab') !== 'minePit') {
+      instance.state.set('currentTab', 'minePit');
+      Meteor.call('users.setUiState', 'miningTab', 'minePit');
+    }
   },
 
   'click .equipmentLink'(event, instance) {
-    instance.state.set('currentTab', 'equipment');
-    Meteor.call('users.setUiState', 'miningTab', 'equipment');
+    if (instance.state.get('currentTab') !== 'equipment') {
+      instance.state.set('currentTab', 'equipment');
+      Meteor.call('users.setUiState', 'miningTab', 'equipment');
+    }
   },
 
   'click .prospectorsLink'(event, instance) {
-    instance.state.set('currentTab', 'prospectors');
-    Meteor.call('users.setUiState', 'miningTab', 'prospectors');
+    if (instance.state.get('currentTab') !== 'prospectors') {
+      instance.state.set('currentTab', 'prospectors');
+      Meteor.call('users.setUiState', 'miningTab', 'prospectors');
+    }
   },
 
   'click .minersLink'(event, instance) {
-    instance.state.set('currentTab', 'miners');
-    Meteor.call('users.setUiState', 'miningTab', 'miners');
+    if (instance.state.get('currentTab') !== 'miners') {
+      instance.state.set('currentTab', 'miners');
+      Meteor.call('users.setUiState', 'miningTab', 'miners');
+    }
   },
 
   'click .prospector-hire'(event, instance) {

@@ -74,20 +74,26 @@ Template.magicPage.events({
   },
 
   'click .spellBookTabLink'(event, instance) {
-    instance.state.set('currentTab', 'spellBook');
-    Meteor.call('users.setUiState', 'magicTab', 'spellBook');
+    if (instance.state.get('currentTab') !== 'spellBook') {
+      instance.state.set('currentTab', 'spellBook');
+      Meteor.call('users.setUiState', 'magicTab', 'spellBook');
+    }
   },
 
   'click .astronomyTabLink'(event, instance) {
-    instance.state.set('currentTab', 'astronomy');
-    Meteor.call('users.setUiState', 'magicTab', 'astronomy');
+    if (instance.state.get('currentTab') !== 'astronomy') {
+      instance.state.set('currentTab', 'astronomy');
+      Meteor.call('users.setUiState', 'magicTab', 'astronomy');
+    }
   },
 
   'click .abilitiesTabLink'(event, instance) {
-    instance.state.set('currentTab', 'abilities');
-    Meteor.call('users.setUiState', 'magicTab', 'abilities');
+    if (instance.state.get('currentTab') !== 'abilities') {
+      instance.state.set('currentTab', 'abilities');
+      Meteor.call('users.setUiState', 'magicTab', 'abilities');
+    }
   },
-})
+});
 
 Template.magicPage.helpers({
 

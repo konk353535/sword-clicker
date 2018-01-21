@@ -11,6 +11,7 @@ import { Crafting } from '/imports/api/crafting/crafting';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { Events } from '/imports/api/events/events';
 import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
@@ -62,9 +63,11 @@ Meteor.startup(() => {
 
   // Ensure indexes on key databases
   Combat._ensureIndex({ owner: 1 });
+  Combat._ensureIndex({ foughtBoss: 1 });
   Abilities._ensureIndex({ owner: 1 });
   Woodcutting._ensureIndex({ owner: 1 });
   Crafting._ensureIndex({ owner: 1 });
+  Events._ensureIndex({ owner: 1, date: -1 });
   Skills._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ type: 1 });
   Skills._ensureIndex({ totalXp: -1 });
@@ -72,6 +75,9 @@ Meteor.startup(() => {
   Mining._ensureIndex({ owner: 1 });
   MiningSpace._ensureIndex({ owner: 1 });
   Battles._ensureIndex({ owners: 1 });
+  Battles._ensureIndex({ updatedAt: 1 });
+  Battles._ensureIndex({ owners: 1, updatedAt: -1 });
+  Battles._ensureIndex({ owners: 1, createdAt: -1 });
   Farming._ensureIndex({ owner: 1 });
   FarmingSpace._ensureIndex({ owner: 1 });
   FarmingSpace._ensureIndex({ index: 1 });

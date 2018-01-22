@@ -284,7 +284,7 @@ export const ACHIEVEMENTS = {
   'pq_155': {
     name: 'PQ 155',
     hidden: false,
-    description: 'Reach level 125 in personal quest',
+    description: 'Reach level 155 in personal quest',
     condition({ user }) {
       return user.personalQuest.level >= 155;
     },

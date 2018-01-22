@@ -256,10 +256,6 @@ Meteor.methods({
       UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
-    if (baseItem.itemId === "ruby") {
-      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
-    }
-
     if (baseItem.itemId === "jade") {
       UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
@@ -270,6 +266,18 @@ Meteor.methods({
 
     if (baseItem.itemId === "sapphire") {
       UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "emerald") {
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "ruby") {
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "tanzanite") {
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
 
@@ -965,6 +973,52 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   ConsumeItem(baseItem);
 }
 
+export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "emerald_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level             = targetItem.extraStats.level;
+  const originalHealthMax = targetItemConstants.stats.healthMax;
+
+  const healthMaxRate     = 1.15;
+
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
 
 export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1004,6 +1058,53 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   targetItem.extraStats.attack    = attack    - originalAttack;
   targetItem.extraStats.attackMax = attackMax - originalAttackMax;
 
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "tanzanite_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level              = targetItem.extraStats.level;
+  const originalMagicPower = targetItemConstants.stats.magicPower;
+
+  const magicPowerRate     = 1.20;
+
+  const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.magicPower = magicPower - originalMagicPower;
 
   // Post Logic & Cleanup
   Items.update({

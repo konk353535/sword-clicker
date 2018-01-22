@@ -268,6 +268,11 @@ Meteor.methods({
       UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    if (baseItem.itemId === "sapphire") {
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
@@ -899,6 +904,53 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   // Subtract Original Amount to determine Extra
   targetItem.extraStats.healthMax = healthMax - originalHealthMax;
   targetItem.extraStats.defense   = defense   - originalDefense;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "sapphire_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level              = targetItem.extraStats.level;
+  const originalMagicPower = targetItemConstants.stats.healthMax;
+
+  const magicPowerRate     = 1.20;
+
+  const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.magicPower = magicPower - originalMagicPower;
 
   // Post Logic & Cleanup
   Items.update({

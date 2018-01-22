@@ -304,7 +304,7 @@ Meteor.methods({
         targetItem.extraStats.level = 0;
       }
 
-      if (targetItem.extraStats.level == 5) {
+      if (targetItem.extraStats.level == 4) {
         return;
       }
 

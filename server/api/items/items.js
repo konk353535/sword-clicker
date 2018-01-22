@@ -260,6 +260,10 @@ Meteor.methods({
       UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+     if (baseItem.itemId === "jade") {
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
@@ -833,15 +837,12 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   const level             = targetItem.extraStats.level;
   const originalAccuracy  = targetItemConstants.stats.accuracy;
 
-  const attackRate    = 1.2;
-  const attackMaxRate = 1.15;
+  const accuracyRate    = 1.25;
 
-  const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
-  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
 
   // Subtract Original Attack to determine Extra
-  targetItem.extraStats.attack    = attack    - originalAttack;
-  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+  targetItem.extraStats.accuracy = accuracy - originalAccuracy;
 
 
   // Post Logic & Cleanup

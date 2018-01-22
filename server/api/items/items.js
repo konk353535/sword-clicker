@@ -851,10 +851,10 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level             = targetItem.extraStats.level;
-  const originalAccuracy  = targetItemConstants.stats.accuracy;
+  const level = targetItem.extraStats.level;
+  const originalAccuracy = targetItemConstants.stats.accuracy;
 
-  const accuracyRate    = 1.25;
+  const accuracyRate = 1.25;
 
   const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
 
@@ -899,19 +899,19 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level             = targetItem.extraStats.level;
+  const level = targetItem.extraStats.level;
   const originalHealthMax = targetItemConstants.stats.healthMax;
-  const originalDefense   = targetItemConstants.stats.defense;
+  const originalDefense = targetItemConstants.stats.defense;
 
-  const healthMaxRate    = 1.10;
-  const defenseMaxRate   = 1.35;
+  const healthMaxRate = 1.10;
+  const defenseMaxRate = 1.35;
 
-  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate,  level));
-  const defense   = Math.round(originalDefense   * Math.pow(defenseMaxRate, level));
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+  const defense = Math.round(originalDefense * Math.pow(defenseMaxRate, level));
 
   // Subtract Original Amount to determine Extra
   targetItem.extraStats.healthMax = healthMax - originalHealthMax;
-  targetItem.extraStats.defense   = defense   - originalDefense;
+  targetItem.extraStats.defense = defense - originalDefense;
 
   // Post Logic & Cleanup
   Items.update({
@@ -950,10 +950,10 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level              = targetItem.extraStats.level;
+  const level = targetItem.extraStats.level;
   const originalMagicPower = targetItemConstants.stats.magicPower;
 
-  const magicPowerRate     = 1.20;
+  const magicPowerRate = 1.20;
 
   const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
 
@@ -997,10 +997,10 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level             = targetItem.extraStats.level;
+  const level = targetItem.extraStats.level;
   const originalHealthMax = targetItemConstants.stats.healthMax;
 
-  const healthMaxRate     = 1.15;
+  const healthMaxRate = 1.15;
 
   const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
 
@@ -1044,18 +1044,18 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level             = targetItem.extraStats.level;
-  const originalAttack    = targetItemConstants.stats.attack;
+  const level = targetItem.extraStats.level;
+  const originalAttack = targetItemConstants.stats.attack;
   const originalAttackMax = targetItemConstants.stats.attackMax;
 
-  const attackRate    = 1.2;
+  const attackRate = 1.2;
   const attackMaxRate = 1.15;
 
-  const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
+  const attack = Math.round(originalAttack * Math.pow(attackRate, level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
 
   // Subtract Original Amount to determine Extra
-  targetItem.extraStats.attack    = attack    - originalAttack;
+  targetItem.extraStats.attack = attack - originalAttack;
   targetItem.extraStats.attackMax = attackMax - originalAttackMax;
 
 
@@ -1096,37 +1096,37 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level              = targetItem.extraStats.level;
-  const originalAttack     = targetItemConstants.stats.attack;
-  const originalAttackMax  = targetItemConstants.stats.attackMax;
-  const originalAccuracy   = targetItemConstants.stats.accuracy;
-  const originalDefense    = targetItemConstants.stats.defense;
+  const level = targetItem.extraStats.level;
+  const originalAttack = targetItemConstants.stats.attack;
+  const originalAttackMax = targetItemConstants.stats.attackMax;
+  const originalAccuracy = targetItemConstants.stats.accuracy;
+  const originalDefense = targetItemConstants.stats.defense;
   const originalHealthMax  = targetItemConstants.stats.healthMax;
   const originalMagicPower = targetItemConstants.stats.magicPower;
   const originalMagicArmor = targetItemConstants.stats.magicArmor;
 
-  const attackRate     = 1.30;
-  const attackMaxRate  = 1.30;
-  const accuracyrRate  = 1.30;
-  const defenseRate    = 1.30;
-  const healthMaxRate  = 1.20;
+  const attackRate = 1.30;
+  const attackMaxRate = 1.30;
+  const accuracyrRate = 1.30;
+  const defenseRate = 1.30;
+  const healthMaxRate = 1.20;
   const magicPowerRate = 1.50;
   const magicArmorRate = 1.30;
 
-  const attack     = Math.round(originalAttack     * Math.pow(attackRate,     level));
-  const attackMax  = Math.round(originalAttackMax  * Math.pow(attackMaxRate,  level));
-  const accuracy   = Math.round(originalAccuracy   * Math.pow(accuracyrRate,  level));
-  const defense    = Math.round(originalDefense    * Math.pow(defenseRate,    level));
-  const healthMax  = Math.round(originalHealthMax  * Math.pow(healthMaxRate,  level));
+  const attack = Math.round(originalAttack * Math.pow(attackRate, level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate, level));
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyrRate, level));
+  const defense = Math.round(originalDefense * Math.pow(defenseRate, level));
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
   const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
   const magicArmor = Math.round(originalMagicArmor * Math.pow(magicArmorRate, level));
 
   // Subtract Original Amount to determine Extra
-  targetItem.extraStats.attack     = attack     - originalAttack;
-  targetItem.extraStats.attackMax  = attackMax  - originalAttackMax;
-  targetItem.extraStats.accuracy   = accuracy   - originalAccuracy;
-  targetItem.extraStats.defense    = defense    - originalDefense;
-  targetItem.extraStats.healthMax  = healthMax  - originalHealthMax;
+  targetItem.extraStats.attack = attack - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+  targetItem.extraStats.accuracy = accuracy - originalAccuracy;
+  targetItem.extraStats.defense = defense - originalDefense;
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
   targetItem.extraStats.magicPower = magicPower - originalMagicPower;
   targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
 

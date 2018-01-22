@@ -289,6 +289,80 @@ Meteor.methods({
       }
     }
 
+    if (baseItem.itemId === "ruby") {
+
+      if (targetItem.itemId !== "ruby_amulet") {
+        //throw new Meteor.Error("invalid-target", 'Invalid target item');
+        return;
+      }
+
+      if (!targetItem.extraStats) {
+        targetItem.extraStats = {};
+      }
+
+      if (!targetItem.extraStats.level) {
+        targetItem.extraStats.level = 0;
+      }
+
+      if (targetItem.extraStats.level == 5) {
+        return;
+      }
+
+      targetItem.extraStats.level += 1;
+
+      const level = targetItem.extraStats.level;
+
+      let attack = targetItemConstants.stats.attack;
+      let attackMax = targetItemConstants.stats.attackMax;
+
+      for( let x = 0; x < level; x += 1) {
+        attack *= 1.2;
+        attack = Math.round(attack);
+      }
+
+      for( let x = 0; x < level; x += 1) {
+        attackMax *= 1.15;
+        attackMax = Math.round(attackMax);
+      }
+
+      targetItem.extraStats.attack = attack;
+      targetItem.extraStats.attackMax = attackMax;
+
+      // Update the stats of the item
+      Items.update({
+        owner: Meteor.userId(),
+        _id: targetItem._id
+      }, {
+        $set: {
+          extraStats: targetItem.extraStats,
+        }
+      });
+
+      // Remove the ruby
+      if (baseItem.amount === 1) {
+        Events.insert({
+          owner: Meteor.userId(),
+          event: 'items.consumeItem',
+          date: new Date(),
+          data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+        }, () => {});
+        Items.remove({
+          owner: Meteor.userId(),
+          _id: baseItem._id
+        });
+      } else {
+        Items.update({
+          owner: Meteor.userId(),
+          _id: baseItem._id
+        }, {
+          $inc: {
+            amount: -1
+          }
+        });
+      }
+
+      
+    }
 
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
@@ -465,7 +539,6 @@ Meteor.methods({
         throw new Meteor.Error("invalid-target", 'Item is not crafted.');
       }
 
-      console.log(targetItem);
       Items.update({
         owner: Meteor.userId(),
         _id: targetItem._id

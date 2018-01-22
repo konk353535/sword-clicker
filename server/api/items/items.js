@@ -252,43 +252,13 @@ Meteor.methods({
     const baseItemConstants = ITEMS[baseItem.itemId];
 
 
-
-    //
-    // Magic books
-    //
-    if ( baseItem.category == "magic_book" ) {
-
-      if( !baseItemConstants.magicXp) {
-        console.log('magic xp not set');
-        return;
-      }
-      //todo - ensure magicxp is set
-      addXp('magic', baseItemConstants.magicXp);
-
-      // Remove the key
-      if (baseItem.amount === 1) {
-        Events.insert({
-          owner: Meteor.userId(),
-          event: 'items.consumeItem',
-          date: new Date(),
-          data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
-        }, () => {});
-        Items.remove({
-          owner: Meteor.userId(),
-          _id: baseItem._id
-        });
-      } else {
-        Items.update({
-          owner: Meteor.userId(),
-          _id: baseItem._id
-        }, {
-          $inc: {
-            amount: -1
-          }
-        });
-      }
+    if (baseItem.category == "magic_book") {
+      UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    if (baseItem.itemId === "ruby") {
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
 
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
@@ -465,7 +435,6 @@ Meteor.methods({
         throw new Meteor.Error("invalid-target", 'Item is not crafted.');
       }
 
-      console.log(targetItem);
       Items.update({
         owner: Meteor.userId(),
         _id: targetItem._id
@@ -815,3 +784,104 @@ Meteor.publish('items', function() {
   self.ready();
 
 });
+
+
+export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (baseItem.category !== 'magic_book') {
+    return;
+  }
+
+  if (!baseItemConstants.magicXp) {
+    return;
+  }
+
+
+  // Logic 
+  addXp('magic', baseItemConstants.magicXp);
+
+
+  // Post Logic & Cleanup
+  ConsumeItem(baseItem);
+}
+
+
+export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "ruby_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level             = targetItem.extraStats.level;
+  const originalAttack    = targetItemConstants.stats.attack;
+  const originalAttackMax = targetItemConstants.stats.attackMax;
+
+  const attackRate    = 1.2;
+  const attackMaxRate = 1.15;
+
+  const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
+
+  // Subtract Original Attack to determine Extra
+  targetItem.extraStats.attack    = attack    - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+
+export const ConsumeItem = function (baseItem) {
+
+    // Remove the key
+    if (baseItem.amount === 1) {
+      Events.insert({
+        owner: Meteor.userId(),
+        event: 'items.consumeItem',
+        date: new Date(),
+        data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+      }, () => {});
+      Items.remove({
+        owner: Meteor.userId(),
+        _id: baseItem._id
+      });
+    } else {
+      Items.update({
+        owner: Meteor.userId(),
+        _id: baseItem._id
+      }, {
+        $inc: {
+          amount: -1
+        }
+      });
+    }
+}

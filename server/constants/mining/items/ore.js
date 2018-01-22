@@ -212,7 +212,11 @@ export const ORE_ITEMS = {
     icon: 'ruby.png',
     category: 'mining',
     name: 'ruby',
-    sellPrice: 2500
+    sellPrice: 2500,
+    shiftActionData: {
+      description: 'Upgrade Ruby Amulet',
+      target: 'item'
+    }
   },
 
   tanzanite: {

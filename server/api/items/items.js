@@ -943,7 +943,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   targetItem.extraStats.level += 1;
 
   const level              = targetItem.extraStats.level;
-  const originalMagicPower = targetItemConstants.stats.healthMax;
+  const originalMagicPower = targetItemConstants.stats.magicPower;
 
   const magicPowerRate     = 1.20;
 

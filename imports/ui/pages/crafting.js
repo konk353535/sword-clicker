@@ -172,12 +172,16 @@ Template.craftingPage.events({
 
     if (existingFilter) {
       craftingTierFilter[existingFilter] = false;
-      instance.state.set('craftingTierFilter', craftingTierFilter);
-      Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, false);
+      if(instance.state.get('craftingTierFilter') !== craftingTierFilter) {
+        instance.state.set('craftingTierFilter', craftingTierFilter);
+        Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, false);
+      }
     } else {
       craftingTierFilter[existingFilter] = true;
-      instance.state.set('craftingTierFilter', craftingTierFilter);
-      Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, true);
+      if(instance.state.get('craftingTierFilter') !== craftingTierFilter) {
+        instance.state.set('craftingTierFilter', craftingTierFilter);
+        Meteor.call('users.setUiState', `craftingTierFilter.${filter}`, true);
+      }
     }
   },
 

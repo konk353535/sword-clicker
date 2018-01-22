@@ -139,43 +139,59 @@ Template.combatPage.events({
   },
 
   'click .personalQuestTabLink'(event, instance) {
-    instance.state.set('currentTab', 'personalQuest');
-    Meteor.call('users.setUiState', 'combatTab', 'personalQuest');
+    if (instance.state.get('currentTab') !== 'personalQuest') {
+      instance.state.set('currentTab', 'personalQuest');
+      Meteor.call('users.setUiState', 'combatTab', 'personalQuest');
+    }
   },
 
   'click .towerTabLink'(event, instance) {
-    instance.state.set('currentTab', 'tower');
-    Meteor.call('users.setUiState', 'combatTab', 'tower');
+    if (instance.state.get('currentTab') !== 'tower') {
+      instance.state.set('currentTab', 'tower');
+      Meteor.call('users.setUiState', 'combatTab', 'tower');
+    }
   },
 
   'click .adventuresTabLink'(event, instance) {
-    instance.state.set('currentTab', 'adventures');
-    Meteor.call('users.setUiState', 'combatTab', 'adventures');
+    if (instance.state.get('currentTab') !== 'adventures') {
+      instance.state.set('currentTab', 'adventures');
+      Meteor.call('users.setUiState', 'combatTab', 'adventures');
+    }
   },
 
   'click .equipmentTabLink'(event, instance) {
-    instance.state.set('currentTab', 'equipment');
-    Meteor.call('users.setUiState', 'combatTab', 'equipment');
+    if (instance.state.get('currentTab') !== 'equipment') {
+      instance.state.set('currentTab', 'equipment');
+      Meteor.call('users.setUiState', 'combatTab', 'equipment');
+    }
   },
 
   'click .abilitiesTabLink'(event, instance) {
-    instance.state.set('currentTab', 'abilities');
-    Meteor.call('users.setUiState', 'combatTab', 'abilities');
+    if (instance.state.get('currentTab') !== 'abilities') {
+      instance.state.set('currentTab', 'abilities');
+      Meteor.call('users.setUiState', 'combatTab', 'abilities');
+    }
   },
 
   'click .skinsTabLink'(event, instance) {
-    instance.state.set('currentTab', 'skins');
-    Meteor.call('users.setUiState', 'combatTab', 'skins');
+    if (instance.state.get('currentTab') !== 'skins') {
+      instance.state.set('currentTab', 'skins');
+      Meteor.call('users.setUiState', 'combatTab', 'skins');
+    }
   },
 
   'click .battleLogTabLink'(event, instance) {
-    instance.state.set('currentTab', 'battleLog');
-    Meteor.call('users.setUiState', 'combatTab', 'battleLog');
+    if (instance.state.get('currentTab') !== 'battleLog') {
+      instance.state.set('currentTab', 'battleLog');
+      Meteor.call('users.setUiState', 'combatTab', 'battleLog');
+    }
   },
 
   'click .groupTabLink'(event, instance) {
-    instance.state.set('currentTab', 'group');
-    Meteor.call('users.setUiState', 'combatTab', 'group');
+    if (instance.state.get('currentTab') !== 'group') {
+      instance.state.set('currentTab', 'group');
+      Meteor.call('users.setUiState', 'combatTab', 'group');
+    }
   },
 
   'click .btn-close-finishedBattle'(event, instance) {

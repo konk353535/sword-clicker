@@ -985,9 +985,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeTillDodge -= secondsElapsed;
         } else if (!buff.data.dodge) {
           buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
-          console.log("DR:", buff.data.damageReduction, '\t\tdamageTaken:', target.stats.damageTaken);
           target.stats.damageTaken -= buff.data.damageReduction;
-          console.log('\t\tdamageTaken after:', target.stats.damageTaken);
           buff.data.dodge = true;
         }
         if (buff.data.timeTillDodge < 0) {
@@ -1002,7 +1000,6 @@ export const ENCHANTMENT_BUFFS = {
           defender.stats.damageTaken += buff.data.damageReduction;
           buff.data.timeTillDodge = 15;
           buff.data.dodge = false;
-          console.log("damageTaken post-dodge:", )
         }
       },
 
@@ -1042,7 +1039,6 @@ export const ENCHANTMENT_BUFFS = {
       onTick({ buff, target, caster, actualBattle }) {
         // apply buff to 'allies' if required
         if (buff.data.applyToAllies && !buff.data.appliedToAllies) {
-          // console.log('applying buff to allies:', buff, '\n\ntarget:', target);
           const newBuff = {
             id: 'warden_shield',
             data: {
@@ -1061,7 +1057,6 @@ export const ENCHANTMENT_BUFFS = {
             constants: BUFFS['warden_shield']
           };
           // apply to all but self
-          // console.log('other allies:', actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }), '\n\n');
           actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }).forEach((ally) => {
             addBuff({ buff: newBuff, target: ally, caster: caster });
           });
@@ -1070,15 +1065,12 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        // console.log('defender took damage:', buff, '\n\n', defender, '\n\n');
         if (buff.data.sourceAlly !== null) {
           // try fo find ally
           const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
-          // console.log('sourceAlly:', sourceAlly, '\n\n');
           if(!_.isUndefined(sourceAlly)) {
             // redirect damage from self to sourceAlly
             const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
-            // console.log('damageDealt:',damageDealt, '\tredirectDamage:', redirectDamage);
             actualBattle.utils.healTarget(redirectDamage, {
               caster: sourceAlly,
               target: defender,

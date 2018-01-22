@@ -260,8 +260,12 @@ Meteor.methods({
       UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
-     if (baseItem.itemId === "jade") {
+    if (baseItem.itemId === "jade") {
       UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "lapislazuli") {
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
 
@@ -841,9 +845,60 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
 
   const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
 
-  // Subtract Original Attack to determine Extra
+  // Subtract Original Amount to determine Extra
   targetItem.extraStats.accuracy = accuracy - originalAccuracy;
 
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "lapislazuli_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level             = targetItem.extraStats.level;
+  const originalHealthMax = targetItemConstants.stats.healthMax;
+  const originalDefense   = targetItemConstants.stats.defense;
+
+  const healthMaxRate    = 1.10;
+  const defenseMaxRate   = 1.35;
+
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate,  level));
+  const defense   = Math.round(originalDefense   * Math.pow(defenseMaxRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
+  targetItem.extraStats.defense   = defense   - originalDefense;
 
   // Post Logic & Cleanup
   Items.update({
@@ -893,7 +948,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
 
-  // Subtract Original Attack to determine Extra
+  // Subtract Original Amount to determine Extra
   targetItem.extraStats.attack    = attack    - originalAttack;
   targetItem.extraStats.attackMax = attackMax - originalAttackMax;
 

@@ -835,11 +835,15 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   const originalAttack    = targetItemConstants.stats.attack;
   const originalAttackMax = targetItemConstants.stats.attackMax;
 
-  const attack    = Math.round(originalAttack    * attackRate    ^ level);
-  const attackMax = Math.round(originalAttackMax * attackMaxRate ^ level);
+  const attackRate    = 1.2;
+  const attackMaxRate = 1.15;
 
-  targetItem.extraStats.attack    = attack;
-  targetItem.extraStats.attackMax = attackMax;
+  const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
+
+  // Subtract Original Attack to determine Extra
+  targetItem.extraStats.attack    = attack    - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
 
 
   // Post Logic & Cleanup

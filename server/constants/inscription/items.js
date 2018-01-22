@@ -2324,7 +2324,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 500,
     description: 'Can be consumed for 500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 500 Magic XP.'
+      description: 'consume for 500 Magic XP.'
     }
   },
 
@@ -2337,7 +2337,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1000,
     description: 'Can be consumed for 1000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1000 Magic XP.'
+      description: 'consume for 1000 Magic XP.'
     }
   },
 
@@ -2350,7 +2350,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1500,
     description: 'Can be consumed for 1500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1500 Magic XP.'
+      description: 'consume for 1500 Magic XP.'
     }
   },
 
@@ -2363,7 +2363,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 2000,
     description: 'Can be consumed for 2000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 2000 Magic XP.'
+      description: 'consume for 2000 Magic XP.'
     }
   },
 
@@ -2376,7 +2376,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 5000,
     description: 'Can be consumed for 5,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 5,000 Magic XP.'
+      description: 'consume for 5,000 Magic XP.'
     }
   },
 
@@ -2389,7 +2389,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 7500,
     description: 'Can be consumed for 7,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 7,500 Magic XP.'
+      description: 'consume for 7,500 Magic XP.'
     }
   },
 
@@ -2402,7 +2402,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 10000,
     description: 'Can be consumed for 10,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 10,000 Magic XP.'
+      description: 'consume for 10,000 Magic XP.'
     }
   },
 
@@ -2415,7 +2415,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 12500,
     description: 'Can be consumed for 12,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 12,500 Magic XP.'
+      description: 'consume for 12,500 Magic XP.'
     }
   },
 

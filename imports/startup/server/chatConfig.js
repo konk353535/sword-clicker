@@ -64,7 +64,7 @@ SimpleChat.configure ({
     if (userDoc.isMod) {
       if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() });
 
         // Set all users with this ip
         Users.update({
@@ -94,7 +94,7 @@ SimpleChat.configure ({
         return false;  
       } else if (/\/permamute/.test(message)) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() });
 
         // Set isMuted + Expiry
         Users.update(targetUser._id, {
@@ -111,7 +111,7 @@ SimpleChat.configure ({
         return false;
       } else if (/\/hardmute/.test(message)) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() });
         
         // Set isMuted + Expiry
         Users.update(targetUser._id, {
@@ -138,14 +138,14 @@ SimpleChat.configure ({
         });
 
         return false;
-      } else if (/\/newUpdates/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+      } else if (/\/newUpdates/.test(message) && userDoc.isSuperMod) {
         Users.update({}, {
           $set: {
             newUpdates: true
           }
         }, { multi: true });
         return false;
-      } else if (/\/ban/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+      } else if (/\/ban/.test(message) && userDoc.isSuperMod) {
 
         const targetUser = Users.findOne({
           username: message.split('/ban')[1].toLowerCase().trim()
@@ -170,7 +170,7 @@ SimpleChat.configure ({
         });
 
         return false;
-      } else if (/\/giveItem/.test(message) && userDoc.isSuperMod && userDoc.username === 'konk353535') {
+      } else if (/\/giveItem/.test(message) && userDoc.isSuperMod) {
         const splitMessage = message.split(' ');
         const targetUsername = splitMessage[1];
         const targetItem = splitMessage[2];

@@ -816,5 +816,72 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 100
     }]
-  }
+  },
+
+  radiant_axe: {
+    produces: 'radiant_axe',
+    recipeFor: 'crafting',
+    name: 'radiant axe',
+    id: 'radiant_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 625000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 105,
+    required: [{
+      type: 'item',
+      itemId: 'orichalcum_essence',
+      icon: ITEMS['orichalcum_essence'].icon,
+      name: ITEMS['orichalcum_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'darksteel_axe',
+      icon: ITEMS['darksteel_axe'].icon,
+      name: ITEMS['darksteel_axe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 105
+    }]
+  },  
 }

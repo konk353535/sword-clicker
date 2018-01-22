@@ -806,6 +806,57 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
   ConsumeItem(baseItem);
 }
 
+export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "jade_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level             = targetItem.extraStats.level;
+  const originalAccuracy  = targetItemConstants.stats.accuracy;
+
+  const attackRate    = 1.2;
+  const attackMaxRate = 1.15;
+
+  const attack    = Math.round(originalAttack    * Math.pow(attackRate,   level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
+
+  // Subtract Original Attack to determine Extra
+  targetItem.extraStats.attack    = attack    - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
 
 export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 

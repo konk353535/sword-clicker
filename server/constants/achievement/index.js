@@ -47,7 +47,8 @@ export const ACHIEVEMENTS = {
     }]
   },
 
-  'pq_35': {
+  /* Rebalanced, pq70 now pq35 */
+  'pq_70': {
     name: 'PQ 35',
     hidden: false,
     description: 'Reach level 35 in personal quest',
@@ -60,6 +61,7 @@ export const ACHIEVEMENTS = {
       amount: 1
     }]
   },
+
 
   'pq_40': {
     name: 'PQ 40',
@@ -114,7 +116,7 @@ export const ACHIEVEMENTS = {
     }]
   },
 
-  'pq_65': {
+  'pq_110': {
     name: 'PQ 65',
     hidden: false,
     description: 'Reach level 65 in personal quest',
@@ -125,10 +127,15 @@ export const ACHIEVEMENTS = {
       type: 'item',
       itemId: 'lapislazuli',
       amount: 1
+    }, {
+      type: 'item',
+      itemId: 'ore_carbon',
+      amount: 2500
     }]
   },
 
-  'pq_70': {
+  /* Rebalanced, Jade from pq70 moved to 35 */
+  'pq_70_2': {
     name: 'PQ 70',
     hidden: false,
     description: 'Reach level 70 in personal quest',
@@ -136,10 +143,6 @@ export const ACHIEVEMENTS = {
       return user.personalQuest.level >= 70;
     },
     rewards: [{
-      type: 'item',
-      itemId: 'jade',
-      amount: 1
-    }, {
       type: 'gold',
       amount: 50000
     }]
@@ -220,7 +223,7 @@ export const ACHIEVEMENTS = {
     }]
   },
 
-  'pq_110': {
+  'pq_110_2': {
     name: 'PQ 110',
     hidden: false,
     description: 'Reach level 110 in personal quest',
@@ -228,16 +231,21 @@ export const ACHIEVEMENTS = {
       return user.personalQuest.level >= 110;
     },
     rewards: [{
-      type: 'item',
-      itemId: 'lapislazuli',
-      amount: 1
-    }, {
       type: 'gold',
       amount: 100000
-    }, {
-      type: 'item',
-      itemId: 'ore_carbon',
-      amount: 2500
+    }]
+  },
+
+  'pq_110_2': {
+    name: 'PQ 110',
+    hidden: false,
+    description: 'Reach level 110 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 110;
+    },
+    rewards: [{
+      type: 'gold',
+      amount: 100000
     }]
   },
 

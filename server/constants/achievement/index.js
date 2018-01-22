@@ -236,19 +236,6 @@ export const ACHIEVEMENTS = {
     }]
   },
 
-  'pq_110_2': {
-    name: 'PQ 110',
-    hidden: false,
-    description: 'Reach level 110 in personal quest',
-    condition({ user }) {
-      return user.personalQuest.level >= 110;
-    },
-    rewards: [{
-      type: 'gold',
-      amount: 100000
-    }]
-  },
-
   'pq_120': {
     name: 'PQ 120',
     hidden: false,

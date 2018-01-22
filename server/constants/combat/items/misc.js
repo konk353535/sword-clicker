@@ -120,28 +120,28 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "bone_kings_axe": {
-    "id": "bone_kings_axe",
-    "icon": "boneKingsAxe.svg",
-    "category": "combat",
-    "weaponType": "battleAxe",
-    "slot": "mainHand",
-    "name": "bone kings axe",
-    "sellPrice": 350,
-    "description": "The axe from a fallen warrior.",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 20.4,
-      "attackMax": 59,
-      "attackSpeed": 0.3,
-      "accuracy": 26.4,
-      "criticalChance": 5
+  bone_kings_axe: {
+    id: "bone_kings_axe",
+    icon: "boneKingsAxe.svg",
+    category: "combat",
+    weaponType: "battleAxe",
+    slot: "mainHand",
+    name: "bone kings axe",
+    sellPrice: 350,
+    description: "The axe from a fallen warrior.",
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 20.4,
+      attackMax: 59,
+      attackSpeed: 0.3,
+      accuracy: 26.4,
+      criticalChance: 5
     },
-    "extraStats": {
-      "attack": 7.7,
-      "attackMax": 13.8
+    extraStats: {
+      attack: 7.7,
+      attackMax: 13.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -151,29 +151,29 @@ export const MISC_ITEMS = {
     enchantments: ['axe_cleave']
   },
 
-  "spartan_spear": {
-    "id": "spartan_spear",
-    "icon": "spartanSpear.svg",
-    "category": "combat",
-    "weaponType": "spear",
-    "slot": "mainHand",
-    "name": "spartans spear",
-    "sellPrice": 275,
-    "description": "Used to train defense.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 9.1,
-      "attackMax": 12.4,
-      "attackSpeed": 0.5,
-      "accuracy": 25.4,
-      "magicArmor": 20
+  spartan_spear: {
+    id: "spartan_spear",
+    icon: "spartanSpear.svg",
+    category: "combat",
+    weaponType: "spear",
+    slot: "mainHand",
+    name: "spartans spear",
+    sellPrice: 275,
+    description: "Used to train defense.",
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 9.1,
+      attackMax: 12.4,
+      attackSpeed: 0.5,
+      accuracy: 25.4,
+      magicArmor: 20
     },
-    "extraStats": {
-      "attack": 2.7,
-      "attackMax": 3.4,
-      "accuracy": 3.4,
-      "magicArmor": 5
+    extraStats: {
+      attack: 2.7,
+      attackMax: 3.4,
+      accuracy: 3.4,
+      magicArmor: 5
     },
     requiredEquip: [{
       type: 'skill',
@@ -182,29 +182,29 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "oversized_club": {
-    "id": "oversized_club",
-    "icon": "oversizedClub.svg",
-    "category": "combat",
-    "weaponType": "longSword",
-    "slot": "mainHand",
-    "name": "oversized club",
-    "sellPrice": 650,
-    "description": "An overly large club",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 1,
-      "attackMax": 100,
-      "attackSpeed": 0.3,
-      "accuracy": 30.9,
-      "criticalChance": 5
+  oversized_club: {
+    id: "oversized_club",
+    icon: "oversizedClub.svg",
+    category: "combat",
+    weaponType: "longSword",
+    slot: "mainHand",
+    name: "oversized club",
+    sellPrice: 650,
+    description: "An overly large club",
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 100,
+      attackSpeed: 0.3,
+      accuracy: 30.9,
+      criticalChance: 5
     },
-    "extraStats": {
-      "attack": 5.5,
-      "attackMax": 21.1,
-      "accuracy": 10.3
+    extraStats: {
+      attack: 5.5,
+      attackMax: 21.1,
+      accuracy: 10.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -215,26 +215,26 @@ export const MISC_ITEMS = {
   },
 
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
-  "bronze_kite_shield": {
-    "id": "bronze_kite_shield",
-    "icon": "bronzeKiteShield.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "bronze kite shield",
-    "sellPrice": 200,
-    "description": "Provides high defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 3.6,
-      "defense": 6.2,
-      "armor": 30.6,
-      "attackSpeed": -0.15
+  bronze_kite_shield: {
+    id: "bronze_kite_shield",
+    icon: "bronzeKiteShield.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "bronze kite shield",
+    sellPrice: 200,
+    description: "Provides high defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 3.6,
+      defense: 6.2,
+      armor: 30.6,
+      attackSpeed: -0.15
     },
-    "extraStats": {
-      "healthMax": 1.1,
-      "defense": 1.3,
-      "armor": 5.0
+    extraStats: {
+      healthMax: 1.1,
+      defense: 1.3,
+      armor: 5.0
     },
     requiredEquip: [{
       type: 'skill',
@@ -243,26 +243,26 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "steel_kite_shield": {
-    "id": "steel_kite_shield",
-    "icon": "steelKiteShield.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "steel kite shield",
-    "sellPrice": 500,
-    "description": "Provides high defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 8.6,
-      "defense": 14.9,
-      "armor": 73.5,
-      "attackSpeed": -0.15
+  steel_kite_shield: {
+    id: "steel_kite_shield",
+    icon: "steelKiteShield.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "steel kite shield",
+    sellPrice: 500,
+    description: "Provides high defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 8.6,
+      defense: 14.9,
+      armor: 73.5,
+      attackSpeed: -0.15
     },
-    "extraStats": {
-      "healthMax": 2.6,
-      "defense": 4,
-      "armor": 10
+    extraStats: {
+      healthMax: 2.6,
+      defense: 4,
+      armor: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -271,26 +271,26 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "obsidian_kite_shield": {
-    "id": "obsidian_kite_shield",
-    "icon": "obsidianKiteShield.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "obsidian kite shield",
-    "sellPrice": 950,
-    "description": "Provides high defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 14.8,
-      "defense": 26,
-      "armor": 128.4,
-      "attackSpeed": -0.15
+  obsidian_kite_shield: {
+    id: "obsidian_kite_shield",
+    icon: "obsidianKiteShield.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "obsidian kite shield",
+    sellPrice: 950,
+    description: "Provides high defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 14.8,
+      defense: 26,
+      armor: 128.4,
+      attackSpeed: -0.15
     },
-    "extraStats": {
-      "healthMax": 4.4,
-      "defense": 6.9,
-      "armor": 15.6
+    extraStats: {
+      healthMax: 4.4,
+      defense: 6.9,
+      armor: 15.6
     },
     requiredEquip: [{
       type: 'skill',
@@ -299,26 +299,26 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "meteorite_kite_shield": {
-    "id": "meteorite_kite_shield",
-    "icon": "meteoriteKiteShield.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "meteorite kite shield",
-    "sellPrice": 1250,
-    "description": "Provides large defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 24.4,
-      "defense": 43.1,
-      "armor": 210.8,
-      "attackSpeed": -0.15
+  meteorite_kite_shield: {
+    id: "meteorite_kite_shield",
+    icon: "meteoriteKiteShield.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "meteorite kite shield",
+    sellPrice: 1250,
+    description: "Provides large defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 24.4,
+      defense: 43.1,
+      armor: 210.8,
+      attackSpeed: -0.15
     },
-    "extraStats": {
-      "healthMax": 7.3,
-      "defense": 11.4,
-      "armor": 37.4
+    extraStats: {
+      healthMax: 7.3,
+      defense: 11.4,
+      armor: 37.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -329,27 +329,27 @@ export const MISC_ITEMS = {
 
   /* Buckler -30% armor, -10% defense, + small accuracy */
 
-  "tin_buckler": {
-    "id": "tin_buckler",
-    "icon": "tinBuckler.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "tin buckler",
-    "sellPrice": 75,
-    "description": "Provides average defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 2.8,
-      "defense": 3.8,
-      "armor": 10.4,
-      "accuracy": 2
+  tin_buckler: {
+    id: "tin_buckler",
+    icon: "tinBuckler.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "tin buckler",
+    sellPrice: 75,
+    description: "Provides average defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 2.8,
+      defense: 3.8,
+      armor: 10.4,
+      accuracy: 2
     },
-    "extraStats": {
-      "healthMax": 0.8,
-      "defense": 1.3,
-      "armor": 4.2,
-      "accuracy": 1.0
+    extraStats: {
+      healthMax: 0.8,
+      defense: 1.3,
+      armor: 4.2,
+      accuracy: 1.0
     },
     requiredEquip: [{
       type: 'skill',
@@ -358,27 +358,27 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "gold_buckler": {
-    "id": "gold_buckler",
-    "icon": "goldBuckler.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "gold buckler",
-    "sellPrice": 350,
-    "description": "Provides average defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 6.5,
-      "defense": 8,
-      "armor": 26.9,
-      "accuracy": 4.5
+  gold_buckler: {
+    id: "gold_buckler",
+    icon: "goldBuckler.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "gold buckler",
+    sellPrice: 350,
+    description: "Provides average defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 6.5,
+      defense: 8,
+      armor: 26.9,
+      accuracy: 4.5
     },
-    "extraStats": {
-      "healthMax": 2,
-      "defense": 2.5,
-      "armor": 7.1,
-      "accuracy": 1.8
+    extraStats: {
+      healthMax: 2,
+      defense: 2.5,
+      armor: 7.1,
+      accuracy: 1.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -387,27 +387,27 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "tungsten_buckler": {
-    "id": "tungsten_buckler",
-    "icon": "tungstenBuckler.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "tungsten buckler",
-    "sellPrice": 850,
-    "description": "Provides average defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 13.2,
-      "defense": 16.5,
-      "armor": 45.3,
-      "accuracy": 5.5
+  tungsten_buckler: {
+    id: "tungsten_buckler",
+    icon: "tungstenBuckler.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "tungsten buckler",
+    sellPrice: 850,
+    description: "Provides average defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 13.2,
+      defense: 16.5,
+      armor: 45.3,
+      accuracy: 5.5
     },
-    "extraStats": {
-      "healthMax": 4,
-      "defense": 5.4,
-      "armor": 14,
-      "accuracy": 2.4
+    extraStats: {
+      healthMax: 4,
+      defense: 5.4,
+      armor: 14,
+      accuracy: 2.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -416,27 +416,27 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "mithril_buckler": {
-    "id": "mithril_buckler",
-    "icon": "mithrilBuckler.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "mithril buckler",
-    "sellPrice": 950,
-    "description": "Provides average defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 18.4,
-      "defense": 20.6,
-      "armor": 75.7,
-      "accuracy": 6.6
+  mithril_buckler: {
+    id: "mithril_buckler",
+    icon: "mithrilBuckler.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "mithril buckler",
+    sellPrice: 950,
+    description: "Provides average defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 18.4,
+      defense: 20.6,
+      armor: 75.7,
+      accuracy: 6.6
     },
-    "extraStats": {
-      "healthMax": 5.5,
-      "defense": 6.6,
-      "armor": 19.6,
-      "accuracy": 2.8
+    extraStats: {
+      healthMax: 5.5,
+      defense: 6.6,
+      armor: 19.6,
+      accuracy: 2.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -445,27 +445,27 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "elven_steel_buckler": {
-    "id": "elven_steel_buckler",
-    "icon": "elvenSteelBuckler.svg",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "elven steel buckler",
-    "sellPrice": 1350,
-    "description": "Provides average defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 30,
-      "defense": 38.9,
-      "armor": 113.8,
-      "accuracy": 8.9
+  elven_steel_buckler: {
+    id: "elven_steel_buckler",
+    icon: "elvenSteelBuckler.svg",
+    category: "combat",
+    weaponType: "shield",
+    slot: "offHand",
+    name: "elven steel buckler",
+    sellPrice: 1350,
+    description: "Provides average defense bonuses",
+    isEquippable: true,
+    stats: {
+      healthMax: 30,
+      defense: 38.9,
+      armor: 113.8,
+      accuracy: 8.9
     },
-    "extraStats": {
-      "healthMax": 9,
-      "defense": 12.1,
-      "armor": 32.1,
-      "accuracy": 3.6
+    extraStats: {
+      healthMax: 9,
+      defense: 12.1,
+      armor: 32.1,
+      accuracy: 3.6
     },
     requiredEquip: [{
       type: 'skill',
@@ -475,25 +475,25 @@ export const MISC_ITEMS = {
   },
 
   /* Knife - Off handed weapon, minor accuracy and damage increases */
-  "silver_knife": {
-    "id": "silver_knife",
-    "icon": "silverKnife.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "silver knife",
-    "sellPrice": 250,
-    "description": "Provides minor offensive bonuses",
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 3,
-      "attack": 2,
-      "attackMax": 3
+  silver_knife: {
+    id: "silver_knife",
+    icon: "silverKnife.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "silver knife",
+    sellPrice: 250,
+    description: "Provides minor offensive bonuses",
+    isEquippable: true,
+    stats: {
+      accuracy: 3,
+      attack: 2,
+      attackMax: 3
     },
-    "extraStats": {
-      "accuracy": 2,
-      "attack": 2,
-      "attackMax": 2
+    extraStats: {
+      accuracy: 2,
+      attack: 2,
+      attackMax: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -502,25 +502,25 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "titanium_knife": {
-    "id": "titanium_knife",
-    "icon": "titaniumKnife.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "titanium knife",
-    "sellPrice": 850,
-    "description": "Provides minor offensive bonuses",
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 5,
-      "attack": 4,
-      "attackMax": 5
+  titanium_knife: {
+    id: "titanium_knife",
+    icon: "titaniumKnife.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "titanium knife",
+    sellPrice: 850,
+    description: "Provides minor offensive bonuses",
+    isEquippable: true,
+    stats: {
+      accuracy: 5,
+      attack: 4,
+      attackMax: 5
     },
-    "extraStats": {
-      "accuracy": 2,
-      "attack": 2,
-      "attackMax": 3
+    extraStats: {
+      accuracy: 2,
+      attack: 2,
+      attackMax: 3
     },
     requiredEquip: [{
       type: 'skill',
@@ -529,25 +529,25 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "cobalt_knife": {
-    "id": "cobalt_knife",
-    "icon": "cobaltKnife.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "cobalt knife",
-    "sellPrice": 950,
-    "description": "Provides minor offensive bonuses",
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 7,
-      "attack": 6,
-      "attackMax": 8
+  cobalt_knife: {
+    id: "cobalt_knife",
+    icon: "cobaltKnife.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "cobalt knife",
+    sellPrice: 950,
+    description: "Provides minor offensive bonuses",
+    isEquippable: true,
+    stats: {
+      accuracy: 7,
+      attack: 6,
+      attackMax: 8
     },
-    "extraStats": {
-      "accuracy": 3,
-      "attack": 3,
-      "attackMax": 4
+    extraStats: {
+      accuracy: 3,
+      attack: 3,
+      attackMax: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -556,25 +556,25 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "cursed_knife": {
-    "id": "cursed_knife",
-    "icon": "cursedKnife.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "cursed knife",
-    "sellPrice": 1650,
-    "description": "Provides minor offensive bonuses",
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 10,
-      "attack": 8,
-      "attackMax": 10
+  cursed_knife: {
+    id: "cursed_knife",
+    icon: "cursedKnife.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "cursed knife",
+    sellPrice: 1650,
+    description: "Provides minor offensive bonuses",
+    isEquippable: true,
+    stats: {
+      accuracy: 10,
+      attack: 8,
+      attackMax: 10
     },
-    "extraStats": {
-      "accuracy": 4,
-      "attack": 4,
-      "attackMax": 6
+    extraStats: {
+      accuracy: 4,
+      attack: 4,
+      attackMax: 6
     },
     requiredEquip: [{
       type: 'skill',
@@ -584,29 +584,29 @@ export const MISC_ITEMS = {
   },
 
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
-  "iron_rapiers": {
-    "id": "iron_rapiers",
-    "icon": "ironRapiers.svg",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "iron rapiers",
-    "sellPrice": 150,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "isTwoHanded": true,
-    "stats": {
-      "attack": 10.1,
-      "attackMax": 13.9,
-      "attackSpeed": 1.0,
-      "defense": -10,
-      "accuracy": 10.8
+  iron_rapiers: {
+    id: "iron_rapiers",
+    icon: "ironRapiers.svg",
+    category: "combat",
+    weaponType: "shortSword",
+    slot: "mainHand",
+    name: "iron rapiers",
+    sellPrice: 150,
+    description: "A good balance between offense and defense",
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 10.1,
+      attackMax: 13.9,
+      attackSpeed: 1.0,
+      defense: -10,
+      accuracy: 10.8
     },
-    "extraStats": {
-      "attack": 2.7,
-      "attackMax": 5.5,
-      "accuracy": 2.4
+    extraStats: {
+      attack: 2.7,
+      attackMax: 5.5,
+      accuracy: 2.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -615,29 +615,29 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "adamantium_rapiers": {
-    "id": "adamantium_rapiers",
-    "icon": "adamantiumRapiers.svg",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "adamantium rapiers",
-    "sellPrice": 1050,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "isTwoHanded": true,
-    "stats": {
-      "attack": 45.4,
-      "attackMax": 71.8,
-      "attackSpeed": 1.0,
-      "defense": -10,
-      "accuracy": 45.8
+  adamantium_rapiers: {
+    id: "adamantium_rapiers",
+    icon: "adamantiumRapiers.svg",
+    category: "combat",
+    weaponType: "shortSword",
+    slot: "mainHand",
+    name: "adamantium rapiers",
+    sellPrice: 1050,
+    description: "A good balance between offense and defense",
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 45.4,
+      attackMax: 71.8,
+      attackSpeed: 1.0,
+      defense: -10,
+      accuracy: 45.8
     },
-    "extraStats": {
-      "attack": 12.3,
-      "attackMax": 24.8,
-      "accuracy": 12
+    extraStats: {
+      attack: 12.3,
+      attackMax: 24.8,
+      accuracy: 12
     },
     requiredEquip: [{
       type: 'skill',
@@ -646,29 +646,29 @@ export const MISC_ITEMS = {
     }]
   },
 
-  "fairy_steel_rapiers": {
-    "id": "fairy_steel_rapiers",
-    "icon": "fairySteelRapiers.svg",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "fairy steel rapiers",
-    "sellPrice": 1250,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "isTwoHanded": true,
-    "stats": {
-      "attack": 60.4,
-      "attackMax": 95.6,
-      "attackSpeed": 1.0,
-      "accuracy": 60.9,
-      "defense": -25
+  fairy_steel_rapiers: {
+    id: "fairy_steel_rapiers",
+    icon: "fairySteelRapiers.svg",
+    category: "combat",
+    weaponType: "shortSword",
+    slot: "mainHand",
+    name: "fairy steel rapiers",
+    sellPrice: 1250,
+    description: "A good balance between offense and defense",
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 60.4,
+      attackMax: 95.6,
+      attackSpeed: 1.0,
+      accuracy: 60.9,
+      defense: -25
     },
-    "extraStats": {
-      "attack": 16.4,
-      "attackMax": 32.9,
-      "accuracy": 18.7
+    extraStats: {
+      attack: 16.4,
+      attackMax: 32.9,
+      accuracy: 18.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -780,22 +780,22 @@ export const MISC_ITEMS = {
     enchantments: ['demons_heart']
   },
 
-  "smoke_dagger": {
-    "id": "smoke_dagger",
-    "icon": "smokeDagger.svg",
-    "category": "combat",
-    "weaponType": "dagger",
-    "slot": "mainHand",
-    "name": "smoke",
-    "sellPrice": 850,
-    "description": "A slither of smoke.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 11,
-      "attackMax": 20.2,
-      "attackSpeed": 1,
-      "accuracy": 35.4
+  smoke_dagger: {
+    id: "smoke_dagger",
+    icon: "smokeDagger.svg",
+    category: "combat",
+    weaponType: "dagger",
+    slot: "mainHand",
+    name: "smoke",
+    sellPrice: 850,
+    description: "A slither of smoke.",
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 11,
+      attackMax: 20.2,
+      attackSpeed: 1,
+      accuracy: 35.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -805,26 +805,26 @@ export const MISC_ITEMS = {
     enchantments: ['smoke_dagger']
   },
 
-  "shadow_knife": {
-    "id": "shadow_knife",
-    "icon": "shadowKnife.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "shadow",
-    "sellPrice": 850,
-    "description": "A slither of shadow.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 5,
-      "attack": 4,
-      "attackMax": 5
+  shadow_knife: {
+    id: "shadow_knife",
+    icon: "shadowKnife.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "shadow",
+    sellPrice: 850,
+    description: "A slither of shadow.",
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      accuracy: 5,
+      attack: 4,
+      attackMax: 5
     },
-    "extraStats": {
-      "accuracy": 2,
-      "attack": 2,
-      "attackMax": 3
+    extraStats: {
+      accuracy: 2,
+      attack: 2,
+      attackMax: 3
     },
     requiredEquip: [{
       type: 'skill',
@@ -834,26 +834,26 @@ export const MISC_ITEMS = {
     enchantments: ['shadow_knife']
   },
 
-  "living_helmet": {
-    "id": "living_helmet",
-    "icon": "livingHelmet.svg",
-    "category": "combat",
-    "slot": "head",
-    "name": "living helmet",
-    "sellPrice": 850,
-    "description": "A helmet fashioned from a living tree.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 7.8,
-      "attackMax": -25,
-      "defense": 7.8,
-      "armor": 37.6
+  living_helmet: {
+    id: "living_helmet",
+    icon: "livingHelmet.svg",
+    category: "combat",
+    slot: "head",
+    name: "living helmet",
+    sellPrice: 850,
+    description: "A helmet fashioned from a living tree.",
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      healthMax: 7.8,
+      attackMax: -25,
+      defense: 7.8,
+      armor: 37.6
     },
-    "extraStats": {
-      "healthMax": 2.3,
-      "defense": 2.3,
-      "armor": 11.3
+    extraStats: {
+      healthMax: 2.3,
+      defense: 2.3,
+      armor: 11.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -863,24 +863,24 @@ export const MISC_ITEMS = {
     enchantments: ['living_helmet']
   },
 
-  "bloody_plate_legs": {
-    "id": "bloody_plate_legs",
-    "icon": "bloodyPlateLegs.svg",
-    "category": "combat",
-    "slot": "legs",
-    "name": "bloody platelegs",
-    "sellPrice": 1500,
-    "description": "Injures your legs",
-    "isEquippable": true,
-    "stats": {
-      "armor": -20,
-      "defense": -2,
-      "accuracy": 2,
-      "attack": 2
+  bloody_plate_legs: {
+    id: "bloody_plate_legs",
+    icon: "bloodyPlateLegs.svg",
+    category: "combat",
+    slot: "legs",
+    name: "bloody platelegs",
+    sellPrice: 1500,
+    description: "Injures your legs",
+    isEquippable: true,
+    stats: {
+      armor: -20,
+      defense: -2,
+      accuracy: 2,
+      attack: 2
     },
-    "extraStats": {
-      "accuracy": 2,
-      "attack": 2
+    extraStats: {
+      accuracy: 2,
+      attack: 2
     },
     enchantments: ['bloody_plate_legs'],
     requiredEquip: [{
@@ -968,24 +968,24 @@ export const MISC_ITEMS = {
     description: 'Looks cozy (lots of xp)'
   },
 
-  "frankensteins_heart": {
-    "id": "frankensteins_heart",
-    "icon": "frankensteinsHeart.svg",
-    "category": "combat",
-    "slot": "chest",
-    "name": "frankensteins heart",
-    "sellPrice": 2500,
-    "description": "Protect your heart",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 9.7,
-      "defense": 9.7,
-      "armor": 46.7
+  frankensteins_heart: {
+    id: "frankensteins_heart",
+    icon: "frankensteinsHeart.svg",
+    category: "combat",
+    slot: "chest",
+    name: "frankensteins heart",
+    sellPrice: 2500,
+    description: "Protect your heart",
+    isEquippable: true,
+    stats: {
+      healthMax: 9.7,
+      defense: 9.7,
+      armor: 46.7
     },
-    "extraStats": {
-      "healthMax": 2.9,
-      "defense": 2.9,
-      "armor": 14
+    extraStats: {
+      healthMax: 2.9,
+      defense: 2.9,
+      armor: 14
     },
     requiredEquip: [{
       type: 'skill',
@@ -995,52 +995,52 @@ export const MISC_ITEMS = {
     enchantments: ['frankensteins_heart']
   },
 
-  "rich_snake_skin": {
-    "id": "rich_snake_skin",
-    "icon": "richSnakeSkin.svg",
-    "category": "combat",
-    "slot": "chest",
-    "name": "rich snake skin",
-    "sellPrice": 1800,
-    "description": "Protect your chest",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 10.7,
-      "defense": 10.7,
-      "armor": 51.4
+  rich_snake_skin: {
+    id: "rich_snake_skin",
+    icon: "richSnakeSkin.svg",
+    category: "combat",
+    slot: "chest",
+    name: "rich snake skin",
+    sellPrice: 1800,
+    description: "Protect your chest",
+    isEquippable: true,
+    stats: {
+      healthMax: 10.7,
+      defense: 10.7,
+      armor: 51.4
     },
-    "extraStats": {
-      "healthMax": 3.2,
-      "defense": 3.2,
-      "armor": 15.4
+    extraStats: {
+      healthMax: 3.2,
+      defense: 3.2,
+      armor: 15.4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 70
     }],
-    "enchantments": ['rich_snake_skin']
+    enchantments: ['rich_snake_skin']
   },
 
-  "krakens_tentacle": {
-    "id": "krakens_tentacle",
-    "icon": "tentacle.svg",
-    "category": "combat",
-    "weaponType": "knife",
-    "slot": "offHand",
-    "name": "krakens tentacle",
-    "sellPrice": 950,
-    "description": "Provides minor offensive bonuses",
-    "isEquippable": true,
-    "stats": {
-      "accuracy": 7,
-      "attack": 6,
-      "attackMax": 8
+  krakens_tentacle: {
+    id: "krakens_tentacle",
+    icon: "tentacle.svg",
+    category: "combat",
+    weaponType: "knife",
+    slot: "offHand",
+    name: "krakens tentacle",
+    sellPrice: 950,
+    description: "Provides minor offensive bonuses",
+    isEquippable: true,
+    stats: {
+      accuracy: 7,
+      attack: 6,
+      attackMax: 8
     },
-    "extraStats": {
-      "accuracy": 3,
-      "attack": 3,
-      "attackMax": 4
+    extraStats: {
+      accuracy: 3,
+      attack: 3,
+      attackMax: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -1050,28 +1050,28 @@ export const MISC_ITEMS = {
     enchantments: ['krakens_tentacle']
   },
 
-  "bison_axe": {
-    "id": "bison_axe",
-    "icon": "bisonAxe.svg",
-    "category": "combat",
-    "weaponType": "battleAxe",
-    "slot": "mainHand",
-    "name": "Bisons axe",
-    "sellPrice": 2250,
-    "description": "Fix for a bison to wield",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 68.4,
-      "attackMax": 245.7,
-      "attackSpeed": 0.3,
-      "accuracy": 109.8,
-      "criticalChance": 5
+  bison_axe: {
+    id: "bison_axe",
+    icon: "bisonAxe.svg",
+    category: "combat",
+    weaponType: "battleAxe",
+    slot: "mainHand",
+    name: "Bisons axe",
+    sellPrice: 2250,
+    description: "Fix for a bison to wield",
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 68.4,
+      attackMax: 245.7,
+      attackSpeed: 0.3,
+      accuracy: 109.8,
+      criticalChance: 5
     },
-    "extraStats": {
-      "attack": 20.5,
-      "attackMax": 73.7
+    extraStats: {
+      attack: 20.5,
+      attackMax: 73.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -1081,26 +1081,54 @@ export const MISC_ITEMS = {
     enchantments: ['bison_axe']
   },
 
-  "baby_fox": {
-    "id": "baby_fox",
-    "icon": "babyFox.svg",
-    "category": "combat",
-    "slot": "chest",
-    "name": "baby fox",
-    "sellPrice": 1800,
-    "description": "Summons a fox",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 1
+  baby_fox: {
+    id: "baby_fox",
+    icon: "babyFox.svg",
+    category: "combat",
+    slot: "chest",
+    name: "baby fox",
+    sellPrice: 1800,
+    description: "Summons a fox",
+    isEquippable: true,
+    stats: {
+      healthMax: 1
     },
-    "extraStats": {
-      "healthMax": 1
+    extraStats: {
+      healthMax: 1
     },
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 90
     }],
-    "enchantments": ['baby_fox']
+    enchantments: ['baby_fox']
   },
+  
+  winged_shield: {
+    id: 'winged_shield',
+    icon: 'winged_shield.svg',
+    category: 'combat',
+    slot: 'offHand',
+    weaponType: 'shield',
+    name: 'Winged Shield',
+    sellPrice: 2000,
+    description: 'Provides protection from harm',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      defense: 20,
+      armor: 80
+    },
+    extraStats: {
+      healthMax: 3.2,
+      defense: 3.2,
+      armor: 15.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }],
+    enchantments: ['winged_shield']
+  }
 }

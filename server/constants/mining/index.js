@@ -1469,7 +1469,7 @@ export const MINING = {
       name: 'ruby',
       itemId: 'ruby',
       isGem: true,
-      chance: 0.0000005,
+      chance: 0.0000005
     },
 
     tanzanite: {

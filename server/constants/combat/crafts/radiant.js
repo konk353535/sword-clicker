@@ -1,7 +1,7 @@
 import { ITEMS } from '/server/constants/items/index.js';
 
 const CURSED_ESS_XP = 500000;
-const ORI_ESS_XP = 43750;
+const ORI_ESS_XP = 62500;
 
 export const RADIANT_CRAFTS = {
   radiant_dagger: {

@@ -767,7 +767,7 @@ export const FOOD_BUFFS = {
     name: 'lemon honey',
     description({ buff, level }) {
       const totalHeal = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
-      return `Heals for ${totalHeal}hp over a ${buff.data.totalDuration}s digestion period.`;
+      return `Recovers ${totalHeal} energy over a ${buff.data.totalDuration}s digestion period.`;
     },
     data: { // Data we require to persist
       duration: 60, // How long the buff will last

@@ -126,6 +126,8 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
 
+    setBattleAgain(floor, room);
+
     let isExplorationRun = false;
     if (room === 0) {
       isExplorationRun = true;
@@ -153,7 +155,6 @@ Meteor.methods({
       if (currentCommunityFloor.floor === floor && canBossBattle) {
         const bossHealth = currentCommunityFloor.health;
 
-        setBattleAgain(floor, room);
         return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
         const bossId = FLOORS[floor].boss.enemy.id;
@@ -161,7 +162,6 @@ Meteor.methods({
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
-          setBattleAgain(floor, room);
           return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else {
           return;
@@ -170,9 +170,15 @@ Meteor.methods({
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");
       }
     }
+    
+    // if floor doesn't unlock, start at room 1 always
+    if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
+      isExplorationRun = true;
+      room = 1;
+      return startBattle({ floor, room, isTowerContribution, isExplorationRun });
+    }
 
     // Eventually select a random battle appropriate to users level
-    setBattleAgain(floor, room);
     startBattle({ floor, room, isTowerContribution, isExplorationRun });
   },
 
@@ -207,6 +213,7 @@ Meteor.methods({
         },
         floorDetails: {
           rewards: specifiedFloorConstants.floorRewards,
+          unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
           1: { name: specifiedFloorConstants[1].name },
           2: { name: specifiedFloorConstants[2].name },
           3: { name: specifiedFloorConstants[3].name },
@@ -221,6 +228,7 @@ Meteor.methods({
 
     return {
       floorDetails: {
+        unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
         1: { name: specifiedFloorConstants[1].name },
         2: { name: specifiedFloorConstants[2].name },
         3: { name: specifiedFloorConstants[3].name },

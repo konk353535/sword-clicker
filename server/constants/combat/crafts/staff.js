@@ -326,12 +326,12 @@ export const STAFF_CRAFTS = {
     }]
   },
 
-  teak_staff: {
-    produces: 'teak_staff',
-    name: 'teak staff',
+  willow_staff: {
+    produces: 'willow_staff',
+    name: 'willow staff',
     recipeFor: 'crafting',
     category: 'combat',
-    id: 'teak_staff',
+    id: 'willow_staff',
     timeToCraft: 2 * 60 * 60, // 60
     xp: 75000,
     maxToCraft: 1,
@@ -339,9 +339,9 @@ export const STAFF_CRAFTS = {
     requiredCraftingLevel: 85,
     required: [{
       type: 'item',
-      itemId: 'teak_log',
-      icon: ITEMS['teak_log'].icon,
-      name: ITEMS['teak_log'].name,
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
       amount: 15,
       consumes: true
     }, {
@@ -351,12 +351,12 @@ export const STAFF_CRAFTS = {
     }]
   },
 
-  willow_staff: {
-    produces: 'willow_staff',
-    name: 'willow staff',
+  teak_staff: {
+    produces: 'teak_staff',
+    name: 'teak staff',
     recipeFor: 'crafting',
     category: 'combat',
-    id: 'willow_staff',
+    id: 'teak_staff',
     timeToCraft: 2 * 60 * 60, // 60
     xp: 100000,
     maxToCraft: 1,
@@ -364,9 +364,9 @@ export const STAFF_CRAFTS = {
     requiredCraftingLevel: 90,
     required: [{
       type: 'item',
-      itemId: 'willow_log',
-      icon: ITEMS['willow_log'].icon,
-      name: ITEMS['willow_log'].name,
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
       amount: 15,
       consumes: true
     }, {

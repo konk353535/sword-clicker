@@ -144,16 +144,16 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'carbon axe',
-    sellPrice: 300,
+    sellPrice: 150,
     description: 'An axe forged from carbon. Used for woodcutting',
     isAxe: true,
     stats: {
       attack: 35,
       attackSpeed: 1,
-      accuracy: 1
+      accuracy: 50
     },
     extraStats: {
-      accuracy: 24,
+      accuracy: 25,
       attackSpeed: 1
     }
   },
@@ -404,7 +404,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'cursed axe',
-    sellPrice: 750,
+    sellPrice: 2500,
     description: 'A cursed axe. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -417,6 +417,46 @@ export const WOODCUTTING_ITEMS = {
       attackSpeed: 1
     }
   },
+
+  darksteel_axe: {
+    id: 'darksteel_axe',
+    icon: 'darksteelAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'darksteel axe',
+    sellPrice: 3000,
+    description: 'A darksteel axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 105,
+      attackSpeed: 2,
+      accuracy: 75
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  radiant_axe: {
+    id: 'radiant_axe',
+    icon: 'radiantAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'radiant axe',
+    sellPrice: 3500,
+    description: 'A radiant axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 110,
+      attackSpeed: 2,
+      accuracy: 75
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },  
 
   pine_log: {
     id: 'pine_log',

@@ -48,6 +48,30 @@ Template.combatGroupTab.events({
     });
   },
 
+  'click .remove-friend-click'(event, instance) {
+    // convert to confirm button
+    $(event.target).addClass('remove-friend-confirm btn-success');
+    $(event.target).removeClass('remove-friend-click btn-warning');
+    $(event.target).html('✓');
+  },
+
+  'click .remove-friend-confirm'(event, instance) {
+    const name = $(event.currentTarget).data('username');
+    // Send remove request
+    Meteor.call('friends.remove', name, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'blur .remove-friend-confirm'(event, instance) {
+    // convert to confirm button on blur (cancel)
+    $(event.target).addClass('remove-friend-click btn-warning');
+    $(event.target).removeClass('remove-friend-confirm btn-success');
+    $(event.target).html('x');
+  },
+
   'submit .invite-user'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -89,6 +113,11 @@ Template.combatGroupTab.events({
   'click .kick-unit'(event, instance) {
     const ownerId = instance.$(event.target).closest('.kick-unit').data('owner');
     Meteor.call('groups.kick', { ownerId });
+  },
+
+  'click .transfer-unit'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.transfer-unit').data('owner');
+    Meteor.call('groups.transfer', { ownerId });
   },
 
   'click .accept-btn'(event) {

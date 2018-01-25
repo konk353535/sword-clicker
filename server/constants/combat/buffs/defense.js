@@ -10,14 +10,35 @@ export const DEFENSE_BUFFS = {
     icon: 'volcanicShield.svg',
     name: 'volcanic shield',
     description({ buff, level }) {
-      return `Increase armor & magic armor by 100.<br />
-        After 10 seconds, erupts dealing 250% weapon damage to all enemies`;
+
+      let localLevel = JSON.parse(JSON.stringify(level));
+      if (!localLevel) {
+        localLevel = 1;
+      }
+
+      const constants = buff.constants;
+
+      let armorBuff  = constants.armorBase  + (constants.armorPerLevel  * localLevel);
+      let damageBuff = (constants.damageBase + (constants.damagePerLevel * localLevel)) * 100;
+      
+      return `Increase armor & magic armor by ${armorBuff}. (+${constants.armorPerLevel } per lvl)<br />
+        After 10 seconds, erupts dealing ${damageBuff}% (+${constants.damagePerLevel * 100}% per lvl) weapon damage to all enemies`;
+    },
+    constants: {
+      armorBase: 75,
+      armorPerLevel: 25,
+      damageBase: 2,
+      damagePerLevel: .5
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
+
+        const constants = buff.constants.constants;
+        let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
+
         // Increase armor & magic armor by 100
-        target.stats.armor += 100;
-        target.stats.magicArmor += 100;
+        target.stats.armor += armorBuff;
+        target.stats.magicArmor += armorBuff;
         buff.data.duration = 10;
       },
 
@@ -31,12 +52,17 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster, actualBattle }) {
         // Mutate targets attack speed
-        target.stats.armor -= 100;
-        target.stats.magicArmor -= 100;
+
+        const constants = buff.constants.constants;
+        let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
+        let damageBuff = constants.damageBase + (constants.damagePerLevel * buff.data.level);
+
+        target.stats.armor -= armorBuff;
+        target.stats.magicArmor -= armorBuff;
 
         const attack = target.stats.attack;
         const attackMax = target.stats.attackMax;
-        const actualDamage = (attack + ((attackMax - attack) * Math.random())) * 2.5;
+        const actualDamage = (attack + ((attackMax - attack) * Math.random())) * damageBuff;
 
         actualBattle.enemies.forEach((enemy) => {
           actualBattle.utils.dealDamage(actualDamage, {
@@ -636,7 +662,8 @@ export const DEFENSE_BUFFS = {
         if (buff.constants && buff.constants.constants) {
           buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
         }
-        target.stats.damageTaken *= (1 - (99.9 / 100));
+        buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
+        target.stats.damageTaken -= buff.data.damageReduction;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -660,7 +687,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.damageTaken /= (1 - (99.9 / 100));
+        target.stats.damageTaken += buff.data.damageReduction;
       }
     }
   },
@@ -776,5 +803,4 @@ export const DEFENSE_BUFFS = {
       }
     }
   },
-
 }

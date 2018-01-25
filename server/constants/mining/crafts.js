@@ -1138,6 +1138,147 @@ export const MINING_CRAFTS = {
     }]
   },
 
+  darksteel_pickaxe: {
+    produces: 'darksteel_pickaxe',
+    recipeFor: 'crafting',
+    name: 'darksteel pickaxe',
+    id: 'darksteel_pickaxe',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 543750,
+    maxToCraft: 1,
+    requiredCraftingLevel: 100,
+    required: [{
+      type: 'item',
+      itemId: 'cursed_furnace',
+      icon: ITEMS['cursed_furnace'].icon,
+      name: ITEMS['cursed_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'adamantium_essence',
+      icon: ITEMS['adamantium_essence'].icon,
+      name: ITEMS['adamantium_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 100
+    }]
+  },
+
+  radiant_pickaxe: {
+    produces: 'radiant_pickaxe',
+    recipeFor: 'crafting',
+    name: 'radiant pickaxe',
+    id: 'radiant_pickaxe',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 625000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 105,
+    required: [{
+      type: 'item',
+      itemId: 'darksteel_furnace',
+      icon: ITEMS['darksteel_furnace'].icon,
+      name: ITEMS['darksteel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_essence',
+      icon: ITEMS['orichalcum_essence'].icon,
+      name: ITEMS['orichalcum_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'darksteel_pickaxe',
+      icon: ITEMS['darksteel_pickaxe'].icon,
+      name: ITEMS['darksteel_pickaxe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 105
+    }]
+  },  
+  
   copper_mining_anvil: {
     produces: 'copper_mining_anvil',
     recipeFor: 'crafting',
@@ -2008,5 +2149,146 @@ export const MINING_CRAFTS = {
       name: 'crafting',
       level: 95
     }]
-  }
+  },
+
+  darksteel_mining_anvil: {
+    produces: 'darksteel_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'darksteel mining anvil',
+    id: 'darksteel_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 543750,
+    maxToCraft: 1,
+    requiredCraftingLevel: 100,
+    required: [{
+      type: 'item',
+      itemId: 'cursed_furnace',
+      icon: ITEMS['cursed_furnace'].icon,
+      name: ITEMS['cursed_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'adamantium_essence',
+      icon: ITEMS['adamantium_essence'].icon,
+      name: ITEMS['adamantium_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 100
+    }]
+  },
+
+  radiant_mining_anvil: {
+    produces: 'radiant_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'radiant mining anvil',
+    id: 'radiant_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 625000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 105,
+    required: [{
+      type: 'item',
+      itemId: 'darksteel_furnace',
+      icon: ITEMS['darksteel_furnace'].icon,
+      name: ITEMS['darksteel_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_essence',
+      icon: ITEMS['orichalcum_essence'].icon,
+      name: ITEMS['orichalcum_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'larch_log',
+      icon: ITEMS['larch_log'].icon,
+      name: ITEMS['larch_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'darksteel_mining_anvil',
+      icon: ITEMS['darksteel_mining_anvil'].icon,
+      name: ITEMS['darksteel_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 105
+    }]
+  },  
 }

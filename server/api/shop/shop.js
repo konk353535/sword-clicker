@@ -265,43 +265,44 @@ Meteor.methods({
 
   },
 
-  'shop.purchaseWithRaiBlocks'({ paymentId, itemId }) {
+  'shop.purchaseWithRaiBlocks'({ token, item_id }) {
     // Lookup itemId, confirm that its price matches what was paid
     const ITEMS = {
       'someGems': {
         price: 5,
         gems: 5
+      },
+      'bunchOfGems': {
+        price: 499,
+        gems: 500
       }
     }
 
-    if (!ITEMS[itemId]) {
+    if (!ITEMS[item_id]) {
       throw new Meteor.Error("Invalid item id given");
     }
 
-    const expectedUsdPriceCents = ITEMS[itemId].price;
+    const amount = ITEMS[item_id].price;
 
-    const handleCharge = HTTP.post("https://pays.eternitytower.net/methods/handleCharge", {
-      data: [paymentId, itemId, 'asdf0345dsf1'] // paymentId, itemId, secret
+    const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
+      data: {
+        payment: {
+          amount,
+          currency: 'USD'
+        },
+        token
+      }
     });
 
-    if (handleCharge && handleCharge.data && handleCharge.data.firstComplete) {
-      const amountUsdCents = handleCharge.data.amountUsdCents;
-      const itemId = handleCharge.data.itemId;
-
-      // Ensure that usd cents matches expected
-      if (amountUsdCents >= expectedUsdPriceCents) {
-        // Credit our account!
-        Users.update({
-          _id: Meteor.userId(),
-        }, {
-          $inc: {
-            gems: ITEMS[itemId].gems
-          }
-        });        
-      } else {
-        // Throw an err
-        throw new Meteor.Error("Incorrect price was payed for this product");
-      }
+    if (handleCharge && handleCharge.data && handleCharge.data.id) {
+      // Credit our account!
+      Users.update({
+        _id: Meteor.userId(),
+      }, {
+        $inc: {
+          gems: ITEMS[item_id].gems
+        }
+      });        
     } else {
       // Throw an err
       throw new Meteor.Error("rai blocks payment failed");

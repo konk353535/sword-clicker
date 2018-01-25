@@ -11,6 +11,10 @@
               {{#if $eq currentGroup.leader currentUserId}}
                 <button class="btn btn-danger btn-sm kick-unit mt-1"
                 style="max-width: 100px" data-owner={{this.owner}}>Kick</button>
+                {{#if $neq this.owner currentUserId}}
+                <button class="btn btn-info btn-sm transfer-unit mt-1"
+                style="max-width: 100px" data-owner={{this.owner}}>Make Leader</button>
+                {{/if}}
               {{/if}}
             </div>
           {{/each}}
@@ -82,11 +86,16 @@
             {{this.username}}
           </div>
           <div>Online {{moFromNow this.lastGameUpdated}}</div>
-          <button
-            class="btn btn-primary btn-sm invite-friend-to-group"
-            data-username="{{this.username}}">
-            Invite to group
-          </button>
+          <div>
+            <button
+                class="btn btn-primary btn-sm invite-friend-to-group"
+                data-username="{{this.username}}">
+              Invite to group
+            </button>
+            <button class="btn btn-warning btn-sm remove-friend-click" data-username="{{this.username}}">
+              x
+            </button>
+          </div>
         </div>
       {{/each}}
     </div>

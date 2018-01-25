@@ -32,7 +32,7 @@ export const SCROLL_ITEMS = {
     icon: 'redEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'thirsty fangs scroll',
+    name: 'thirsty fangs lv. 1 scroll',
     teaches: 'thirsty_fangs_1_tome',
     sellPrice: 750,
     description: `A lost scroll, said to contain the secrets of vampirism.`,
@@ -46,7 +46,7 @@ export const SCROLL_ITEMS = {
     icon: 'redEssenceScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
-    name: 'thirsty fangs scroll',
+    name: 'thirsty fangs lv. 2 scroll',
     teaches: 'thirsty_fangs_2_tome',
     sellPrice: 1750,
     description: `A lost scroll, said to contain the secrets of vampirism.`,
@@ -265,4 +265,367 @@ export const SCROLL_ITEMS = {
     }
   },
 
+  darksteel_pickaxe_scroll: {
+    id: 'darksteel_pickaxe_scroll',
+    icon: 'darksteelPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel pickaxe scroll',
+    teaches: 'darksteel_pickaxe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_mining_anvil_scroll: {
+    id: 'darksteel_mining_anvil_scroll',
+    icon: 'darksteelMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel mining anvil scroll',
+    teaches: 'darksteel_mining_anvil',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_axe_scroll: {
+    id: 'darksteel_axe_scroll',
+    icon: 'darksteelAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel axe scroll',
+    teaches: 'darksteel_axe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_battle_axe_scroll: {
+    id: 'darksteel_battle_axe_scroll',
+    icon: 'darksteelBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel battle axe scroll',
+    teaches: 'darksteel_battle_axe',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_chest_plate_scroll: {
+    id: 'darksteel_chest_plate_scroll',
+    icon: 'darksteelChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel chest plate scroll',
+    teaches: 'darksteel_chest_plate',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_dagger_scroll: {
+    id: 'darksteel_dagger_scroll',
+    icon: 'darksteelDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel dagger scroll',
+    teaches: 'darksteel_dagger',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_furnace_scroll: {
+    id: 'darksteel_furnace_scroll',
+    icon: 'darksteelFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel forge scroll',
+    teaches: 'darksteel_furnace',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_helmet_scroll: {
+    id: 'darksteel_helmet_scroll',
+    icon: 'darksteelHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel helmet scroll',
+    teaches: 'darksteel_helmet',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_long_sword_scroll: {
+    id: 'darksteel_long_sword_scroll',
+    icon: 'darksteelLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel long sword scroll',
+    teaches: 'darksteel_long_sword',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_plate_legs_scroll: {
+    id: 'darksteel_plate_legs_scroll',
+    icon: 'darksteelPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel plate legs scroll',
+    teaches: 'darksteel_plate_legs',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_shield_scroll: {
+    id: 'darksteel_shield_scroll',
+    icon: 'darksteelShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel shield scroll',
+    teaches: 'darksteel_shield',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_short_sword_scroll: {
+    id: 'darksteel_short_sword_scroll',
+    icon: 'darksteelShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel short sword scroll',
+    teaches: 'darksteel_short_sword',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  darksteel_spear_scroll: {
+    id: 'darksteel_spear_scroll',
+    icon: 'darksteelSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'darksteel shield scroll',
+    teaches: 'darksteel_spear',
+    sellPrice: 1000,
+    description: `A darksteel scroll, made from cursed adamantium.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_pickaxe_scroll: {
+    id: 'radiant_pickaxe_scroll',
+    icon: 'radiantPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant pickaxe scroll',
+    teaches: 'radiant_pickaxe',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_mining_anvil_scroll: {
+    id: 'radiant_mining_anvil_scroll',
+    icon: 'radiantMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant mining anvil scroll',
+    teaches: 'radiant_mining_anvil',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_axe_scroll: {
+    id: 'radiant_axe_scroll',
+    icon: 'radiantAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant axe scroll',
+    teaches: 'radiant_axe',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_battle_axe_scroll: {
+    id: 'radiant_battle_axe_scroll',
+    icon: 'radiantBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant battle axe scroll',
+    teaches: 'radiant_battle_axe',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_chest_plate_scroll: {
+    id: 'radiant_chest_plate_scroll',
+    icon: 'radiantChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant chest plate scroll',
+    teaches: 'radiant_chest_plate',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_dagger_scroll: {
+    id: 'radiant_dagger_scroll',
+    icon: 'radiantDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant dagger scroll',
+    teaches: 'radiant_dagger',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_furnace_scroll: {
+    id: 'radiant_furnace_scroll',
+    icon: 'radiantFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant forge scroll',
+    teaches: 'radiant_furnace',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_helmet_scroll: {
+    id: 'radiant_helmet_scroll',
+    icon: 'radiantHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant helmet scroll',
+    teaches: 'radiant_helmet',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_long_sword_scroll: {
+    id: 'radiant_long_sword_scroll',
+    icon: 'radiantLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant long sword scroll',
+    teaches: 'radiant_long_sword',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_plate_legs_scroll: {
+    id: 'radiant_plate_legs_scroll',
+    icon: 'radiantPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant plate legs scroll',
+    teaches: 'radiant_plate_legs',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_shield_scroll: {
+    id: 'radiant_shield_scroll',
+    icon: 'radiantShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant shield scroll',
+    teaches: 'radiant_shield',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_short_sword_scroll: {
+    id: 'radiant_short_sword_scroll',
+    icon: 'radiantShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant short sword scroll',
+    teaches: 'radiant_short_sword',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  radiant_spear_scroll: {
+    id: 'radiant_spear_scroll',
+    icon: 'radiantSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'radiant shield scroll',
+    teaches: 'radiant_spear',
+    sellPrice: 1500,
+    description: `A radiant scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },  
 }

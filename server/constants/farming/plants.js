@@ -202,7 +202,7 @@ export const PLANTS = {
     }, {
       type: 'skill',
       name: 'farming',
-      level: 18
+      level: 25
     }]
   },
 
@@ -508,7 +508,7 @@ export const PLANTS = {
 
   sweet_potato: {
     produces: 'sweet_potato',
-    name: 'sweet_potato',
+    name: 'sweet potato',
     id: 'sweet_potato',
     category: 'farming',
     icon: ITEMS['sweet_potato'].icon,

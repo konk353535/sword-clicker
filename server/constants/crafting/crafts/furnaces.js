@@ -503,5 +503,76 @@ export const FURNACE_CRAFTS = {
     timeToCraft: 40 * 60,
     xp: 800,
     maxToCraft: 1
-  }
+  },
+  
+  darksteel_furnace: {
+    produces: 'darksteel_furnace',
+    recipeFor: 'crafting',
+    name: 'darksteel furnace',
+    id: 'darksteel_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 104,
+    required: [{
+      type: 'item',
+      itemId: 'adamantium_bar',
+      icon: ITEMS['adamantium_bar'].icon,
+      name: ITEMS['adamantium_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 104
+    }],
+    timeToCraft: 40 * 60,
+    xp: 1000,
+    maxToCraft: 1
+  },
+
+  radiant_furnace: {
+    produces: 'radiant_furnace',
+    recipeFor: 'crafting',
+    name: 'radiant furnace',
+    id: 'radiant_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 109,
+    required: [{
+      type: 'item',
+      itemId: 'orichalcum_bar',
+      icon: ITEMS['orichalcum_bar'].icon,
+      name: ITEMS['orichalcum_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'darksteel_furnace',
+      icon: ITEMS['darksteel_furnace'].icon,
+      name: ITEMS['darksteel_furnace'].name,
+      amount: 1,
+      consumes: false // If true, this required item will dissapear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 109
+    }],
+    timeToCraft: 40 * 60,
+    xp: 1500,
+    maxToCraft: 1
+  }  
 }

@@ -1028,5 +1028,61 @@ export const MONSTER_BUFFS = {
         // Blank
       }
     }
+  },
+
+  gelatinous_cube_monster: {
+    duplicateTag: 'gelatinous_cube_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'gelatinous cube monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTookDamage({ buff, defender, actualBattle }) {
+        // spawn three minicubes when HP drops below 15%
+        const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
+        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
+          buff.data.stacks -= 1;
+          for(let i = 0; i < buff.data.splitAmount; i++) {
+            let newCube = JSON.parse(JSON.stringify(defender));
+            newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.id = Random.id();
+            newCube.target = _.sample(actualBattle.units).id;
+            actualBattle.enemies.push(newCube);
+          }
+          buff.data.hasSplit = true;
+        }
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // spawn cubes if mob is killed without spawning previously
+        if (!buff.data.hasSplit && buff.data.stacks > 0) {
+          buff.data.stacks -= 1;
+          for(let i = 0; i < buff.data.splitAmount; i++) {
+            let newCube = JSON.parse(JSON.stringify(target));
+            newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
+            newCube.id = Random.id();
+            newCube.target = _.sample(actualBattle.units).id;
+            actualBattle.enemies.push(newCube);
+          }
+          buff.data.hasSplit = true;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
   }
 }

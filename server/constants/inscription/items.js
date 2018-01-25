@@ -703,6 +703,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the volcanic shield ability.'
   },
 
+  volcanic_shield_level_2_tome: {
+    id: 'volcanic_shield_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 2',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 2
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
+  volcanic_shield_level_3_tome: {
+    id: 'volcanic_shield_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Volcanic Shield Lv. 3',
+    teaches: {
+      abilityId: 'volcanic_shield',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the volcanic shield ability.'
+  },
+
   thirsty_fangs_1_tome: {
     id: 'thirsty_fangs_1_tome',
     icon: 'tome.svg',
@@ -751,7 +777,20 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'slash',
       level: 2
     },
-    sellPrice: 100,
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the slash ability.'
+  },
+
+  slash_level_3_tome: {
+    id: 'slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Slash Lv. 3',
+    teaches: {
+      abilityId: 'slash',
+      level: 3
+    },
+    sellPrice: 2500,
     description: 'Can be consumed to upgrade the slash ability.'
   },
 
@@ -1318,13 +1357,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'lightning_speed_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'lightning_speed',
+    name: 'lightning speed',
     teaches: {
       abilityId: 'lightning_speed',
       level: 1
     },
     sellPrice: 25000,
-    description: 'Can be consumed to learn the lightning_speed spell.'
+    description: 'Can be consumed to learn the lightning speed spell.'
   },
 
   diamond_skin_tome: {
@@ -1688,7 +1727,20 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 1000,
-    description: 'Can be consumed to learn the penetrating slash ability.'
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
+  },
+
+  penetrating_slash_level_3_tome: {
+    id: 'penetrating_slash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'penetrating slash Lv. 3',
+    teaches: {
+      abilityId: 'penetrating_slash',
+      level: 3
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the penetrating slash ability.'
   },
 
   vampirism_level_1_tome: {
@@ -1909,6 +1961,19 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 100,
+    description: 'Can be consumed to upgrade the shield bash ability.'
+  },
+
+  shield_bash_level_3_tome: {
+    id: 'shield_bash_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'shield bash Lv. 3',
+    teaches: {
+      abilityId: 'shield_bash',
+      level: 3
+    },
+    sellPrice: 1000,
     description: 'Can be consumed to upgrade the shield bash ability.'
   },
 
@@ -2259,7 +2324,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 500,
     description: 'Can be consumed for 500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 500 Magic XP.'
+      description: 'consume for 500 Magic XP.'
     }
   },
 
@@ -2272,7 +2337,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1000,
     description: 'Can be consumed for 1000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1000 Magic XP.'
+      description: 'consume for 1000 Magic XP.'
     }
   },
 
@@ -2285,7 +2350,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1500,
     description: 'Can be consumed for 1500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1500 Magic XP.'
+      description: 'consume for 1500 Magic XP.'
     }
   },
 
@@ -2298,7 +2363,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 2000,
     description: 'Can be consumed for 2000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 2000 Magic XP.'
+      description: 'consume for 2000 Magic XP.'
     }
   },
 
@@ -2307,11 +2372,11 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magic_tome_5.svg',
     category: 'magic_book',
     name: 'Codex of Illusion',
-    sellPrice: 1000,
-    magicXp: 12500,
-    description: 'Can be consumed for 12,500 Magic XP.',
+    sellPrice: 500,
+    magicXp: 5000,
+    description: 'Can be consumed for 5,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 12,500 Magic XP.'
+      description: 'consume for 5,000 Magic XP.'
     }
   },
 
@@ -2320,11 +2385,11 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magic_tome_6.svg',
     category: 'magic_book',
     name: 'Codex of Sorcery',
-    sellPrice: 1200,
-    magicXp: 15000,
-    description: 'Can be consumed for 15,000 Magic XP.',
+    sellPrice: 600,
+    magicXp: 7500,
+    description: 'Can be consumed for 7,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 15,000 Magic XP.'
+      description: 'consume for 7,500 Magic XP.'
     }
   },
 
@@ -2333,11 +2398,11 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magic_tome_7.svg',
     category: 'magic_book',
     name: 'Codex of Rituals',
-    sellPrice: 1400,
-    magicXp: 17500,
-    description: 'Can be consumed for 17,500 Magic XP.',
+    sellPrice: 700,
+    magicXp: 10000,
+    description: 'Can be consumed for 10,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 17,500 Magic XP.'
+      description: 'consume for 10,000 Magic XP.'
     }
   },
 
@@ -2346,11 +2411,11 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magic_tome_8.svg',
     category: 'magic_book',
     name: 'Codex of Prophecy',
-    sellPrice: 1800,
-    magicXp: 20000,
-    description: 'Can be consumed for 20,000 Magic XP.',
+    sellPrice: 800,
+    magicXp: 12500,
+    description: 'Can be consumed for 12,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 20,000 Magic XP.'
+      description: 'consume for 12,500 Magic XP.'
     }
   },
 

@@ -1045,6 +1045,54 @@ export const PICKAXE_ITEMS = {
     }
   },
 
+  darksteel_mining_anvil: {
+    id: 'darksteel_mining_anvil',
+    icon: 'darksteelMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'darksteel mining anvil',
+    sellPrice: 1000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 1900, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 88
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
+    }
+  },
+
+  radiant_mining_anvil: {
+    id: 'radiant_mining_anvil',
+    icon: 'radiantMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'radiant mining anvil',
+    sellPrice: 1500,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 2000, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 92
+    },
+    extraStats: {
+      energyStorage: 200,
+      miner: 3,
+      attack: 30,
+    }
+  },
+
   // Passive heavy pickaxes
   copper_dwarven_idol: {
     id: 'copper_dwarven_idol',
@@ -2011,7 +2059,7 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'meteorite pickaxe',
-    sellPrice: 1000,
+    sellPrice: 1250,
     description: 'A pickaxe forged from meteorite. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -2034,7 +2082,7 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'fairy steel pickaxe',
-    sellPrice: 750,
+    sellPrice: 1500,
     description: 'A pickaxe forged from fairy steel. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -2057,7 +2105,7 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'elven steel pickaxe',
-    sellPrice: 750,
+    sellPrice: 1750,
     description: 'A pickaxe forged from elven steel. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -2080,12 +2128,12 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'cursed pickaxe',
-    sellPrice: 750,
+    sellPrice: 2000,
     description: 'A cursed pickaxe. Used for mining',
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      energyStorage: 31,
+      energyStorage: 131,
       attack: 220,
       energyPerHit: 1,
       energyRegen: 4,
@@ -2095,5 +2143,51 @@ export const PICKAXE_ITEMS = {
       attack: 6,
       energyRegen: 3
     }
-  }
+  },
+
+  darksteel_pickaxe: {
+    id: 'darksteel_pickaxe',
+    icon: 'darksteelPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'darksteel pickaxe',
+    sellPrice: 2250,
+    description: 'A darksteel pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 135,
+      attack: 235,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 35,
+      attack: 7,
+      energyRegen: 3
+    }
+  },
+
+  radiant_pickaxe: {
+    id: 'radiant_pickaxe',
+    icon: 'radiantPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'radiant pickaxe',
+    sellPrice: 2250,
+    description: 'A radiant pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 139,
+      attack: 250,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 39,
+      attack: 8,
+      energyRegen: 3
+    }
+  },  
 }

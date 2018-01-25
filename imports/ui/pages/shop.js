@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import RaiCheckout from 'rai-checkout';
+import RaiCheckout from 'arrowpay-react-checkout';
 
-import 'rai-checkout/build/css/index.css';
+import 'arrowpay-react-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
@@ -290,10 +290,10 @@ Template.shopPage.helpers({
     return RaiCheckout;
   },
 
-  token() {
+  onPaymentConfirmed() {
     const instance = Template.instance();
-    return ({ paymentId, itemId }) => {
-      Meteor.call('shop.purchaseWithRaiBlocks', { paymentId, itemId }, (err, res) => {
+    return ({ token, item_id }) => {
+      Meteor.call('shop.purchaseWithRaiBlocks', { token, item_id }, (err, res) => {
         if (err) {
           toastr.error('An error occured while purchasing gems.');
         } else {
@@ -325,6 +325,24 @@ Template.shopPage.helpers({
     }
 
     return globalBuffs;
+  },
+
+  public_key() {
+    return Meteor.settings.public.RAI_PAYS_PUBLIC_KEY;
+  },
+
+  someGemsPayment() {
+    return {
+      amount: 5,
+      currency: 'USD'
+    }
+  },
+
+  bunchOfGemsPayment() {
+    return {
+      amount: 499,
+      currency: 'USD'
+    }
   },
 
   currentUpgrades() {

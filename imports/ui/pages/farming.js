@@ -72,13 +72,17 @@ Template.farmingPage.events({
   },
 
   'click .shopLink'(event, instance) {
-    Meteor.call('users.setUiState', 'farmingTab', 'shop');
-    instance.state.set('currentTab', 'shop');
+    if(instance.state.get('currentTab') !== 'shop') {
+      instance.state.set('currentTab', 'shop');
+      Meteor.call('users.setUiState', 'farmingTab', 'shop');
+    }
   },
 
   'click .plotsLink'(event, instance) {
-    Meteor.call('users.setUiState', 'farmingTab', 'plots');
-    instance.state.set('currentTab', 'plots');
+    if(instance.state.get('currentTab') !== 'plots') {
+      instance.state.set('currentTab', 'plots');
+      Meteor.call('users.setUiState', 'farmingTab', 'plots');
+    }
   },
 
   'click .allLink'(event, instance) {

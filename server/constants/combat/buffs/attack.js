@@ -1000,6 +1000,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          isMagic: buff.data.hasOwnProperty('isMagic') ? buff.data.isMagic : false
         });
       },
 
@@ -1130,7 +1131,8 @@ export const ATTACK_BUFFS = {
 
         if (buff.data.duration < 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
+
+            return targetBuff !== buff;
           });
         }
       },

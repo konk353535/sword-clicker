@@ -62,9 +62,10 @@ Template.towerTab.events({
 
   'click .select-floor'(event, instance) {
     const selectedFloor = $(event.target).closest('.select-floor')[0].getAttribute('data-floor');
-
-    instance.state.set('usersCurrentFloor', parseInt(selectedFloor));
-    Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
+    if(instance.state.get('usersCurrentFloor') !== parseInt(selectedFloor)) {
+      instance.state.set('usersCurrentFloor', parseInt(selectedFloor));
+      Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
+    }
   },
 
   'click .battle-deeper'(event, instance) {

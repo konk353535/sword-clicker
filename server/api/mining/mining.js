@@ -720,7 +720,7 @@ Meteor.publish('miningSpace', function() {
       doc.name = currentOreConstants.name;
       doc.xp = currentOreConstants.xp;
       if (doc.isCluster) {
-        doc.healthMax *= 15;
+        doc.healthMax *= 10;
         doc.icon = currentOreConstants.clusterIcon;
       } else {
         doc.icon = currentOreConstants.icon;

@@ -58,7 +58,7 @@ export const TOWER_FLOOR_20 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_cursed', amount: 1 },
-        { type: 'item', itemId: 'poplar_log', amount: 1 }
+        { type: 'item', itemId: 'teak_log', amount: 1 }
       ]
     }, {
       chance: 1 / 8,

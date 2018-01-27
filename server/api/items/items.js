@@ -1123,7 +1123,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
 
   if (!baseItemConstants.enchantSlot) {
     console.log('Enchant Slot not set');
-    throw new Meteor.Error("invalid-target", 'ENchant Slot not set');
+    throw new Meteor.Error("invalid-target", 'Enchant Slot not set');
   }
 
   if (!targetItemConstants.slot) {

@@ -25,6 +25,21 @@
   {{#if enchantmentRecipes}}
     <div class="mb-1">
       <h3>Enchantments</h3>
+      <div class="alert alert-danger"><b>ENCHANTMENTS ARE IN BETA</b>
+        <ul>
+          <li>They will all be removed after beta.</li>
+          <li>Do not craft more than you need.</li>
+          <li>Recipe and effects will change after beta.</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <ul>
+          <li>Enchantments can only be applied to crafted equipment.</li>
+          <li>Each enchantment applies to a specific wearable slot.</li>
+          <li>Items can be enchanted once.</li>
+          <li>To remove enchantment, use Nullify Enchantment.</li>
+        </ul>
+      </div>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         {{#each enchantmentRecipes}}
           {{ > recipeIcon recipe=this isInscription=isInscription}}

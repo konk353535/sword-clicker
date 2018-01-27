@@ -2419,22 +2419,63 @@ export const INSCRIPTION_ITEMS = {
     }
   },
 
-  /*
-  enchantment_fire: {
-    id: 'enchantment_fire',
-    icon: 'enchantmentFire.svg',
+  enchantment_nullify: {
+    id: 'enchantment_nullify',
+    icon: 'nullify.svg',
     category: 'enchantment',
-    name: 'lesser fire',
-    sellPrice: 50,
+    name: 'nullify enchantment',
+    sellPrice: 0,
     enchantSlot: ['mainHand'],
     description: `
-      Can be consumed to increase an items quality by up to 15%.\n
-      Can only be applied once per item.\n
-      Item quality can not be increased beyond 100%.`,
+      Remove Crafted Enchantment from an Item`,
     shiftActionData: {
-      description: 'increase an items quality by up to 15%',
+      description: 'Remove crafted enchantment from an Item',
+      target: 'item'
+    }
+  },
+
+  enchantment_barkskin: {
+    id: 'enchantment_barkskin',
+    icon: 'barkskin.svg',
+    category: 'enchantment',
+    name: 'barkskin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['chest'],
+    description: `
+      Chest Enchantment. Applies armor boost which degrades on each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
+      target: 'item'
+    }
+  },
+
+  enchantment_flaming_blade: {
+    id: 'enchantment_flaming_blade',
+    icon: 'flamingBlade.svg',
+    category: 'enchantment',
+    name: 'flaming blade enchantment',
+    sellPrice: 0,
+    enchantSlot: ['mainHand'],
+    description: `
+      Main Weapon Enchantment. Additional magic damage each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
+      target: 'item'
+    }
+  },
+
+  enchantment_enchanted_blade: {
+    id: 'enchantment_enchanted_blade',
+    icon: 'magicBlade.svg',
+    category: 'enchantment',
+    name: 'enchanted blade enchantment',
+    sellPrice: 0,
+    enchantSlot: ['mainHand'],
+    description: `
+      Main Weapon Enchantment. Additional magic damage based off your magic power each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
       target: 'item'
     }
   }
-  */
 }

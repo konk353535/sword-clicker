@@ -83,7 +83,7 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'inferno_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'catnip', amount: 1 } // Change to herb
       ]

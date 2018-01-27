@@ -280,6 +280,13 @@ Meteor.methods({
       UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    if (baseItem.category === 'enchantment') {
+      if (baseItem.itemId === "enchantment_nullify") {
+        RemoveEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      } else {
+        UseEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      }
+    }
 
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
@@ -427,49 +434,7 @@ Meteor.methods({
           consumeItem(baseItem, 1);
         }
       }
-    } else if (baseItem.category === 'enchantment') {
-
-      console.log('Enchanted Activated.' + targetItem.itemId);
-
-      if (targetItem.enchantmentId) {
-        console.log('Already enchanted.');
-        throw new Meteor.Error("invalid-target", 'Item already enchanted');
-      }
-
-      if (!COMBAT_CRAFTS[targetItem.itemId]) {
-        console.log('Not a recipe');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (!baseItemConstants.enchantSlot) {
-        console.log('Enchant Slot not set');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (!targetItemConstants.slot) {
-        console.log('Target item slot not defined');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
-        console.log('Enchantment slot doesn\'t match target slot');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      Items.update({
-        owner: Meteor.userId(),
-        _id: targetItem._id
-      }, {
-        $set: {
-         enchantmentId : baseItem.itemId
-        }
-      });
     }
-
-    // To Do: Make this more generic
-    // If there is a valid behaviour, execute it
-
-    // Done
   },
 
   'items.eat'(_id, itemId) {
@@ -1137,6 +1102,64 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   }, {
     $set: {
       extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+
+export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  if (targetItem.enchantmentId) {
+    console.log('Already enchanted.');
+    throw new Meteor.Error("invalid-target", 'Item already enchanted');
+  }
+
+  if (!COMBAT_CRAFTS[targetItem.itemId]) {
+    console.log('Not a recipe');
+    throw new Meteor.Error("invalid-target", 'Not a recipe.');
+  }
+
+  if (!baseItemConstants.enchantSlot) {
+    console.log('Enchant Slot not set');
+    throw new Meteor.Error("invalid-target", 'ENchant Slot not set');
+  }
+
+  if (!targetItemConstants.slot) {
+    console.log('Target item slot not defined');
+    throw new Meteor.Error("invalid-target", 'Target item slot not defined.');
+  }
+
+  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
+    console.log('Enchantment slot doesn\'t match target slot');
+    throw new Meteor.Error("invalid-target", 'Item is not crafted.');
+  }
+
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+     enchantmentId : baseItem.itemId
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  if (!targetItem.enchantmentId) {
+    throw new Meteor.Error("invalid-target", 'Item not enchanted');
+  }
+
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $unset: {
+     enchantmentId : 1
     }
   });
 

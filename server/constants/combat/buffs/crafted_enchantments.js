@@ -59,7 +59,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         Additional magic damage on every hit`;
     },
     constants: {
-      additionalDamagePercent: 10,
+      damageModifier: 20,
     },
     data: {
       duration: Infinity,
@@ -73,7 +73,9 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
         
         const constants = buff.constants.constants;
-        const actualDamage = Math.round(rawDamage * ( constants.additionalDamagePercent / 100 ));
+
+        const modifier = constants.damageModifier / 100;
+        const modifiedDamage = Math.round(rawDamage * modifier); 
         
         actualBattle.utils.dealDamage(actualDamage, {
           attacker: attacker,
@@ -95,7 +97,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         Additional magic damage on every hit`;
     },
     constants: {
-      additionalDamagePercent: 10,
+      damageModifier: 50,
     },
     data: {
       duration: Infinity,
@@ -109,13 +111,12 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
         const constants = buff.constants.constants;
-        let actualDamage = attacker.stats.magicPower;
 
-        if (!actualDamage) {
-          actualDamage = 1;
-        }
+        const baseDamage = 1 + attacker.stats.magicPower;
+        const modifier = constants.damageModifier / 100;
+        const modifiedDamage = Math.round(baseDamage * modifier); 
 
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,

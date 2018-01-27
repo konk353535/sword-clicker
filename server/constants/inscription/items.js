@@ -2444,7 +2444,7 @@ export const INSCRIPTION_ITEMS = {
     description: `
       Chest Enchantment. Applies armor boost which degrades on each hit.`,
     shiftActionData: {
-      description: 'Apply enchantment to Main Hand Weapon',
+      description: 'Apply enchantment to Chest',
       target: 'item'
     }
   },

@@ -294,9 +294,11 @@ Meteor.methods({
       const ENHANCER_KEY_INCREASE = 15;
 
       if (IsJewelAmulet(targetItem)) {
-        if ( targetItem.extraStats
-          && targetItem.extraStats.level
-          && targetItem.extraStats.level >= 4 // Amulet Upgrade Limit
+        if ( (
+            targetItem.extraStats
+            && targetItem.extraStats.level
+            && targetItem.extraStats.level >= 4 // Amulet Upgrade Limit
+          ) || targetItem.enhanced
         ) {
           throw new Meteor.Error("invalid-target", 'Invalid target item');
         } else {

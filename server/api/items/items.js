@@ -293,7 +293,21 @@ Meteor.methods({
     if (baseItem.itemId === 'enhancer_key') {
       const ENHANCER_KEY_INCREASE = 15;
 
+      if (IsJewelAmulet(targetItem)) {
+        if ( targetItem.extraStats
+          && targetItem.extraStats.level
+          && targetItem.extraStats.level >= 4 // Amulet Upgrade Limit
+        ) {
+          throw new Meteor.Error("invalid-target", 'Invalid target item');
+        } else {
+          UseKeyOnAmulet(baseItem, baseItemConstants, targetItem, targetItemConstants);
+          return;
+        }
+      }
+
       if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
+      
+
         // Get the current quality
         const originalQuality = targetItem.quality
         const targetItemClone = JSON.parse(JSON.stringify(targetItem));
@@ -1191,4 +1205,63 @@ export const ConsumeItem = function (baseItem) {
         }
       });
     }
+}
+
+export const IsJewelAmulet = function (targetItem) {
+
+  if(  targetItem.itemId == "jade_amulet"
+    || targetItem.itemId == "lapislazuli_amulet"
+    || targetItem.itemId == "sapphire_amulet"
+    || targetItem.itemId == "emerald_amulet"
+    || targetItem.itemId == "ruby_amulet"
+    || targetItem.itemId == "tanzanite_amulet"
+    ) {
+      return true;
+  }
+
+  return false;
+}
+
+export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  switch (targetItem.itemId) {
+
+    case "jade_amulet":
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "lapislazuli_amulet":
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "sapphire_amulet":
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "emerald_amulet":
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "ruby_amulet":
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "tanzanite_amulet":
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    default:
+      //this shouldn't happen
+      return;
+  }
+
+  // Update the stats of the item
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      enhanced: true
+    }
+  });
 }

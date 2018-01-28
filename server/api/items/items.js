@@ -280,6 +280,7 @@ Meteor.methods({
       UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    //
     if (baseItem.category === 'enchantment') {
       if (baseItem.itemId === "enchantment_nullify") {
         RemoveEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
@@ -1116,9 +1117,11 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
     throw new Meteor.Error("invalid-target", 'Item already enchanted');
   }
 
-  if (!COMBAT_CRAFTS[targetItem.itemId]) {
-    console.log('Not a recipe');
-    throw new Meteor.Error("invalid-target", 'Not a recipe.');
+  if (!COMBAT_CRAFTS[targetItem.itemId] ) {
+    if (targetItem.itemId.indexOf('_wizard') == -1 ) {
+      console.log('Not a recipe');
+      throw new Meteor.Error("invalid-target", 'Not a recipe.');
+    }
   }
 
   if (!baseItemConstants.enchantSlot) {
@@ -1141,7 +1144,8 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
     _id: targetItem._id
   }, {
     $set: {
-     enchantmentId : baseItem.itemId
+     enchantmentId : baseItem.itemId,
+     enchantmentDescription : baseItemConstants.description
     }
   });
 
@@ -1158,8 +1162,6 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
-  targetItem.enchantmentId = false;
-  //delete targetItem.enchantmentId;
 
   Items.update({
     owner: Meteor.userId(),
@@ -1167,6 +1169,7 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
   }, {
     $set: {
      enchantmentId : 'undefined',
+     enchantmentDescription : 'undefined'
     }
   });
 

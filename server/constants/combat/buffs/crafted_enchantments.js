@@ -6,7 +6,7 @@ import { Random } from 'meteor/random'
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
-	/* Degrading armor */
+	/* Degrading armor 
 	enchantment_barkskin: {
     duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
     icon: 'barkskin.svg',
@@ -49,6 +49,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
       }
     }
 	},
+  */
 
   enchantment_flaming_blade: {
     duplicateTag: 'enchantment_flaming_blade', // Used to stop duplicate buffs
@@ -124,5 +125,32 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         });
       }
     }
-  }
+  },
+
+  /* Degrading armor */
+  enchantment_barkskin: {
+    duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
+    icon: 'barkskin.svg',
+    name: 'barkskin',
+    description() {
+      return `
+        Defensive bonus which degrades each hit`;
+    },
+    constants: {
+      armorPerHit: 3,
+      totalHits: 10
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { 
+
+      onApply({ buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 }

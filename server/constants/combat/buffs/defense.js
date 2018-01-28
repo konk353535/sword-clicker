@@ -443,6 +443,17 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         target.target = caster.id;
         buff.data.damage = caster.stats.magicPower * 2;
+
+        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+
+        if (hasRoar) {
+          actualBattle.utils.dealDamage(caster.stats.attack, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -482,6 +493,17 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         target.target = caster.id;
         buff.data.damage = caster.stats.attackMax * 0.75;
+
+        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+
+        if (hasRoar) {
+          actualBattle.utils.dealDamage(caster.stats.attack, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -522,6 +544,17 @@ export const DEFENSE_BUFFS = {
         buff.data.attack = target.stats.attackMax * 0.1;
         target.stats.attack -= buff.data.attack;
         target.stats.attackMax -= buff.data.attack;
+
+        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+
+        if (hasRoar) {
+          actualBattle.utils.dealDamage(caster.stats.attack, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -557,6 +590,17 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
+
+        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+
+        if (hasRoar) {
+          actualBattle.utils.dealDamage(caster.stats.attack, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

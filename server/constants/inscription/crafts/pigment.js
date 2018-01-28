@@ -130,7 +130,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 180,
     xp: 50,
-    maxToCraft: 6,
+    maxToCraft: 5,
     requiredInscriptionLevel: 6,
     required: [{
       type: 'item',
@@ -178,7 +178,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 100,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 10,
     required: [{
       type: 'item',
@@ -226,7 +226,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 50,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 20,
     required: [{
       type: 'item',
@@ -250,7 +250,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 50,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 25,
     required: [{
       type: 'item',
@@ -274,7 +274,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 450,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 31,
     required: [{
       type: 'item',
@@ -298,7 +298,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 10,
     xp: 550,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 37,
     required: [{
       type: 'item',
@@ -322,7 +322,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 900,
     xp: 500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 43,
     required: [{
       type: 'item',
@@ -346,7 +346,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 1500,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 49,
     required: [{
       type: 'item',
@@ -370,7 +370,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 600,
     xp: 4000,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 54,
     required: [{
       type: 'item',
@@ -394,7 +394,7 @@ export const PIGMENT_CRAFTS = {
     category: 'pigment',
     timeToCraft: 900,
     xp: 10000,
-    maxToCraft: 1,
+    maxToCraft: 5,
     requiredInscriptionLevel: 60,
     required: [{
       type: 'item',

@@ -26,7 +26,9 @@
           (E)
         {{/if}}
         {{#if item.enchantmentId}}
-            (M)
+          {{#if $neq item.enchantmentId "undefined"}}
+              (M)
+            {{/if}}
           {{/if}}
       </h3>
       <div class='popover-content'>
@@ -64,7 +66,11 @@
         {{/if}}
 
         {{#if item.enchantmentId}}
-          <b>Enchantment</b>: {{{item.enchantmentId}}}<br />
+          {{#if $neq item.enchantmentId "undefined"}}
+            {{#if item.enchantmentDescription}}
+              <b>Enchantment</b>: {{{item.enchantmentDescription}}}<br />
+            {{/if}}
+          {{/if}}
         {{/if}}
 
         {{#if item.primaryAction}}

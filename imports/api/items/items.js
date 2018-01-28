@@ -14,7 +14,8 @@ ItemsSchema = new SimpleSchema({
   slot: { type: String, optional: true },
   extraStats: { type: Object, blackbox: true, optional: true },
   quality: { type: Number, optional: true },
-  enchantmentId: { type: String, optional: true }
+  enchantmentId: { type: String, optional: true },
+  enchantmentDescription: { type: String, optional: true }
 });
 
 Items.attachSchema(ItemsSchema);

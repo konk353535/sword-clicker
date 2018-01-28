@@ -6,7 +6,7 @@ import { Random } from 'meteor/random'
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
-	/* Degrading armor 
+	/* Degrading armor */
 	enchantment_barkskin: {
     duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
     icon: 'barkskin.svg',
@@ -49,7 +49,6 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
       }
     }
 	},
-  */
 
   enchantment_flaming_blade: {
     duplicateTag: 'enchantment_flaming_blade', // Used to stop duplicate buffs

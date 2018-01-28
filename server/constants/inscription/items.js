@@ -2487,9 +2487,9 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['head'],
     description: `
-      Main Weapon Enchantment. Additional magic damage based off your magic power each hit.`,
+      Taunts abilities will include an attack.`,
     shiftActionData: {
-      description: 'Apply enchantment to Main Hand Weapon',
+      description: 'Apply enchantment to Head Item',
       target: 'item'
     }
   }

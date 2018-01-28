@@ -2442,7 +2442,7 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['chest'],
     description: `
-      Chest Enchantment. Applies armor boost which degrades on each hit.`,
+      Additional armor which decreases on each enemy hit.`,
     shiftActionData: {
       description: 'Apply enchantment to Chest',
       target: 'item'
@@ -2457,7 +2457,7 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['mainHand'],
     description: `
-      Main Weapon Enchantment. Additional magic damage each hit.`,
+      Additional magic damage based off a portion of each hit.`,
     shiftActionData: {
       description: 'Apply enchantment to Main Hand Weapon',
       target: 'item'
@@ -2472,7 +2472,7 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['mainHand'],
     description: `
-      Main Weapon Enchantment. Additional magic damage based off your magic power each hit.`,
+      Additional magic damage based off your magic power each hit.`,
     shiftActionData: {
       description: 'Apply enchantment to Main Hand Weapon',
       target: 'item'

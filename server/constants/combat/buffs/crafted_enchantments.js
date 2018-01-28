@@ -128,17 +128,15 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
   },
 
   /* Degrading armor */
-  enchantment_barkskin: {
-    duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
-    icon: 'barkskin.svg',
-    name: 'barkskin',
+  enchantment_intimidate: {
+    duplicateTag: 'enchantment_intimidate', // Used to stop duplicate buffs
+    icon: 'intimidate.svg',
+    name: 'intimidate',
     description() {
       return `
         Defensive bonus which degrades each hit`;
     },
     constants: {
-      armorPerHit: 3,
-      totalHits: 10
     },
     data: {
       duration: Infinity,

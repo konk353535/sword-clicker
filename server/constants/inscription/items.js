@@ -2483,9 +2483,9 @@ export const INSCRIPTION_ITEMS = {
     id: 'enchantment_intimidate',
     icon: 'intimidate.svg',
     category: 'enchantment',
-    name: 'enchanted blade enchantment',
+    name: 'intimidate enchantment',
     sellPrice: 0,
-    enchantSlot: ['mainHand'],
+    enchantSlot: ['head'],
     description: `
       Main Weapon Enchantment. Additional magic damage based off your magic power each hit.`,
     shiftActionData: {

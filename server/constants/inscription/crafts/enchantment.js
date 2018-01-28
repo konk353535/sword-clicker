@@ -88,5 +88,27 @@ export const ENCHANTMENT_CRAFTS = {
       name: 'astronomy',
       level: 1
     }]
+  },
+
+  enchantment_intimidate: {
+    recipeFor: 'inscription',
+    produces: 'enchantment_intimidate',
+    name: 'Intimidate Enchantment',
+    id: 'enchantment_intimidate',
+    category: 'enchantment',
+    timeToCraft: 1,
+    xp: 0,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    },
+    {
+      type: 'skill',
+      name: 'astronomy',
+      level: 1
+    }]
   }
 }

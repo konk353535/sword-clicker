@@ -444,9 +444,9 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.magicPower * 2;
 
-        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
-        if (hasRoar) {
+        if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack, {
             defender: target,
             attacker: target,
@@ -494,9 +494,9 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.attackMax * 0.75;
 
-        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
-        if (hasRoar) {
+        if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack, {
             defender: target,
             attacker: target,
@@ -545,9 +545,9 @@ export const DEFENSE_BUFFS = {
         target.stats.attack -= buff.data.attack;
         target.stats.attackMax -= buff.data.attack;
 
-        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
-        if (hasRoar) {
+        if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack, {
             defender: target,
             attacker: target,
@@ -591,9 +591,9 @@ export const DEFENSE_BUFFS = {
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
 
-        const hasRoar = _.findWhere(caster.buffs, { id: 'enchantment_barkskin' });
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
-        if (hasRoar) {
+        if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack, {
             defender: target,
             attacker: target,

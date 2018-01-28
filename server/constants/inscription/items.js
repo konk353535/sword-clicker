@@ -2477,5 +2477,20 @@ export const INSCRIPTION_ITEMS = {
       description: 'Apply enchantment to Main Hand Weapon',
       target: 'item'
     }
+  },
+
+  enchantment_intimidate: {
+    id: 'enchantment_intimidate',
+    icon: 'intimidate.svg',
+    category: 'enchantment',
+    name: 'enchanted blade enchantment',
+    sellPrice: 0,
+    enchantSlot: ['mainHand'],
+    description: `
+      Main Weapon Enchantment. Additional magic damage based off your magic power each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
+      target: 'item'
+    }
   }
 }

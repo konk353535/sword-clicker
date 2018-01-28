@@ -2477,5 +2477,20 @@ export const INSCRIPTION_ITEMS = {
       description: 'Apply enchantment to Main Hand Weapon',
       target: 'item'
     }
+  },
+
+  enchantment_intimidate: {
+    id: 'enchantment_intimidate',
+    icon: 'intimidate.svg',
+    category: 'enchantment',
+    name: 'intimidate enchantment',
+    sellPrice: 0,
+    enchantSlot: ['head'],
+    description: `
+      Taunts abilities will include an attack.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Head Item',
+      target: 'item'
+    }
   }
 }

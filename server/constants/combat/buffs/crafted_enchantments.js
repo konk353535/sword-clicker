@@ -124,5 +124,30 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         });
       }
     }
-  }
+  },
+
+  /* Degrading armor */
+  enchantment_intimidate: {
+    duplicateTag: 'enchantment_intimidate', // Used to stop duplicate buffs
+    icon: 'intimidate.svg',
+    name: 'intimidate',
+    description() {
+      return `
+        Defensive bonus which degrades each hit`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { 
+
+      onApply({ buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 }

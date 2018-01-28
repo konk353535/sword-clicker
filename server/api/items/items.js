@@ -1111,7 +1111,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
 export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
-  if (targetItem.enchantmentId) {
+  if (targetItem.enchantmentId && targetItem.enchantmentId !== 'undefined') {
     console.log('Already enchanted.');
     throw new Meteor.Error("invalid-target", 'Item already enchanted');
   }
@@ -1154,12 +1154,19 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
+  if (targetItem.enchantmentId && targetItem.enchantmentId == false) {
+    throw new Meteor.Error("invalid-target", 'Item not enchanted');
+  }
+
+  targetItem.enchantmentId = false;
+  //delete targetItem.enchantmentId;
+
   Items.update({
     owner: Meteor.userId(),
     _id: targetItem._id
   }, {
-    $unset: {
-     enchantmentId : 1
+    $set: {
+     enchantmentId : 'undefined',
     }
   });
 

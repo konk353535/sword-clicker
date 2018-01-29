@@ -59,7 +59,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         Additional magic damage on every hit`;
     },
     constants: {
-      damageModifier: 20,
+      damageModifier: 25,
     },
     data: {
       duration: Infinity,
@@ -81,6 +81,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
           attacker: attacker,
           defender: defender,
           isMagic: true,
+          isTrueDamage: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats
         });
@@ -97,7 +98,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         Additional magic damage on every hit`;
     },
     constants: {
-      damageModifier: 50,
+      damageModifier: 75,
     },
     data: {
       duration: Infinity,
@@ -120,6 +121,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
           attacker: attacker,
           defender: defender,
           isMagic: true,
+          isTrueDamage: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats
         });

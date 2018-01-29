@@ -77,7 +77,7 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
         
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,

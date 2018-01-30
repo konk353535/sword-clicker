@@ -87,11 +87,6 @@ export const TOWER_FLOOR_20 = {
         { type: 'item', itemId: 'diamond_skin_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
-      rewards: [
-        { type: 'item', itemId: 'sorrell', amount: 1 }
-      ]
-    } {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'cursed_scimitar', amount: 1 },

@@ -218,12 +218,12 @@ LEG
     icon: 'rhinoSkin.svg',
     name: 'rhino skin',
     description() {
-      return `Increases health by 30% of armor. Every 5 seconds, next hit is for 500% damage.`;
+      return `Increases health by 30% of armor. Every 10 seconds, next hit is for 250% addtional damage.`;
     },
     constants: {
       healthModifier : 30,
-      damageModifier : 500,
-      charge : 5
+      damageModifier : 250,
+      charge : 10
     },
     data: {
       duration: Infinity,

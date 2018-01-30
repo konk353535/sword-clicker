@@ -23,6 +23,7 @@ export const TOWER_FLOOR_15 = {
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
     }]))
+  },
   4: {
     name: 'Place of Adamantium',
     enemies: ['adamantium_spirit'],

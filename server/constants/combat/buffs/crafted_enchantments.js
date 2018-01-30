@@ -183,8 +183,8 @@ LEG
   },
 
 
-  fox_skin: {
-    duplicateTag: 'fox_skin', // Used to stop duplicate buffs
+  enchantment_fox_skin: {
+    duplicateTag: 'enchantment_fox_skin', // Used to stop duplicate buffs
     icon: 'foxSkin.svg',
     name: 'fox skin',
     description() {
@@ -200,12 +200,11 @@ LEG
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-          const constants = buff.constants.constants;
-          const modifier = 1 + (constants.speedModifier / 100);
+        const constants = buff.constants.constants;
+        const modifier = 1 + (constants.speedModifier / 100);
 
-          attacker.stats.attackSpeed *= modifier;
-          attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
-        }
+        attacker.stats.attackSpeed *= modifier;
+        attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
       },
 
       onRemove({ buff, target, caster }) {
@@ -214,8 +213,8 @@ LEG
     }
   },
 
-  rhino_skin: {
-    duplicateTag: 'rhino_skin', // Used to stop duplicate buffs
+  enchantment_rhino_skin: {
+    duplicateTag: 'enchantment_rhino_skin', // Used to stop duplicate buffs
     icon: 'rhinoSkin.svg',
     name: 'rhino skin',
     description() {
@@ -224,7 +223,7 @@ LEG
     constants: {
       healthModifier : 30,
       damageModifier : 500,
-      countdown : 5
+      charge : 5
     },
     data: {
       duration: Infinity,
@@ -235,7 +234,7 @@ LEG
 
         const constants = buff.constants.constants;
 
-        const modifier = constants.healthModifier / 100);
+        const modifier = constants.healthModifier / 100;
         const amountToAdd = target.stats.armor * modifier;
 
         buff.data.health = amountToAdd;
@@ -244,35 +243,38 @@ LEG
         target.stats.healthMax += buff.data.healthMax;
 
 
-        buff.data.stacks = constants.countdown;
+        buff.data.timeTillCharge = constants.charge;
+        buff.data.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
 
-        if (buff.data.duration <= 0) {
-          buff.data.duration = 0;
+        buff.data.stacks -= secondsElapsed;
+
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+          buff.data.stacks = Math.round(buff.data.timeTillCharge);
         }
-
-        buff.data.stacks = buff.data.duration;
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
-        const constants = buff.constants.constants;
-        const modifier = constants.damageModifier / 100;
-        const modifiedDamage = Math.round(rawDamage * modifier); 
+        if (buff.data.timeTillCharge <= 0) {
+          buff.data.timeTillCharge = 5;
+          const constants = buff.constants.constants;
+          const modifier = constants.damageModifier / 100;
+          const modifiedDamage = Math.round(rawDamage * modifier); 
 
-        actualBattle.utils.dealDamage(modifiedDamage, {
-          attacker: attacker,
-          defender: defender,
-          isTrueDamage: true,
-          tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
-        });
+          actualBattle.utils.dealDamage(modifiedDamage, {
+            attacker: attacker,
+            defender: defender,
+            isTrueDamage: true,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
 
-        buff.data.duration = constants.countdown;
-        buff.data.stacks = buff.data.duration;
+          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        }
       },
 
       onRemove({ buff, target, caster }) {

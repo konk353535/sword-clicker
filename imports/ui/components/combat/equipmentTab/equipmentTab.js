@@ -61,6 +61,40 @@ Template.equipmentTab.helpers({
     });
   },
 
+  enchantItems() {
+    return Items.find({ category: 'enchantment' }).map((item) => {
+      item.primaryAction = {
+        description: item.shiftActionData.description,
+        item,
+        method() {
+          if (this.item.shiftActionData.target) {
+            const targetClass = `targetting-${this.item.shiftActionData.target}`;
+            if (!$('body').hasClass(targetClass)) {
+              $('body').addClass(targetClass);
+              Meteor.setTimeout(() => {
+                // Add body listener for when you want to click out
+                $('body').on(`click.${this.item._id}`, (event) => {
+                  const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
+                  if (closestTarget) {
+                    const targetId = closestTarget.data('id');
+                    if (targetId) {
+                      Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
+                    }
+                  }
+                  
+                  $('body').removeClass(targetClass);
+                  $('body').off(`click.${this.item._id}`);
+                });
+              }, 1);
+            }
+          } 
+        }
+      }
+      return item;
+    });
+  },
+
+
   equippedItemsMap() {
     const equippedItems = Items.find({
       category: 'combat',

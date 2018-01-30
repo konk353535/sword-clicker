@@ -110,5 +110,49 @@ export const ENCHANTMENT_CRAFTS = {
       name: 'astronomy',
       level: 1
     }]
+  },
+
+  enchantment_fox_skin: {
+    recipeFor: 'inscription',
+    produces: 'enchantment_fox_skin',
+    name: 'Fox Skin Enchantment',
+    id: 'enchantment_fox_skin',
+    category: 'enchantment',
+    timeToCraft: 1,
+    xp: 0,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    },
+    {
+      type: 'skill',
+      name: 'astronomy',
+      level: 1
+    }]
+  },
+
+  enchantment_rhino_skin: {
+    recipeFor: 'inscription',
+    produces: 'enchantment_rhino_skin',
+    name: 'Rhino Skin Enchantment',
+    id: 'enchantment_rhino_skin',
+    category: 'enchantment',
+    timeToCraft: 1,
+    xp: 0,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 1,
+    required: [{
+      type: 'skill',
+      name: 'inscription',
+      level: 1
+    },
+    {
+      type: 'skill',
+      name: 'astronomy',
+      level: 1
+    }]
   }
 }

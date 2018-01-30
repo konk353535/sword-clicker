@@ -17,7 +17,7 @@ export const TOWER_FLOOR_13 = {
     name: 'Venom\'s Place',
     enemies: ['jellyFish', 'spider', 'snake'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'nasturtium', amount: 1 },
       ]
@@ -75,7 +75,7 @@ export const TOWER_FLOOR_13 = {
     name: 'Rolling Stones',
     enemies: ['ice_giant', 'water_mage'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 96,
       rewards: [
         { type: 'item', itemId: 'lightning_storm_tome', amount: 1 },
         { type: 'item', itemId: 'frost_armor_2_tome', amount: 1 }

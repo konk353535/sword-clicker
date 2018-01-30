@@ -14,17 +14,16 @@ WEAPON
 
 HAT
  - Intimidate
+ - Viper Helm - Poison Bite
+ - Dragon Helm - Fire Breath
+ 
 
 CHEST
  - Barkskin
 
 LEG
  - Fox Skin (FPS)
- - Rhino Skin (Health)
- (inc speed, inc armor) - tentacle.
- - Viper Strike (poison burst)
- - Rhino ? - Covert Armor to HP, defense.
- - 
+ - Rhino Skin (Tank)
 
 
 

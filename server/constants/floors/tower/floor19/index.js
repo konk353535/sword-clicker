@@ -77,7 +77,7 @@ export const TOWER_FLOOR_19 = {
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'complete_water_shard', amount: 25 }
+        { type: 'item', itemId: 'complete_water_shard', amount: 10 }
       ]
     }, {
       chance: 1 / 32,

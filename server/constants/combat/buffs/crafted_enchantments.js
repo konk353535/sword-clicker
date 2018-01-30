@@ -6,6 +6,35 @@ import { Random } from 'meteor/random'
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
+/*
+
+WEAPON
+ - Flaming Blade
+ - Enchanted Blade
+
+HAT
+ - Intimidate
+
+CHEST
+ - Barkskin
+
+LEG
+ - Fox Skin (FPS)
+ - Rhino Skin (Health)
+ (inc speed, inc armor) - tentacle.
+ - Viper Strike (poison burst)
+ - Rhino ? - Covert Armor to HP, defense.
+ - 
+
+
+
+
+
+
+
+
+
+*/
 	/* Degrading armor */
 	enchantment_barkskin: {
     duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
@@ -153,4 +182,104 @@ export const CRAFTED_ENCHANTMENT_BUFFS = {
       }
     }
   },
+
+
+  fox_skin: {
+    duplicateTag: 'fox_skin', // Used to stop duplicate buffs
+    icon: 'foxSkin.svg',
+    name: 'fox skin',
+    description() {
+      return `Increase attack speed by 20%`;
+    },
+    constants: {
+      speedModifier: 20,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+
+          const constants = buff.constants.constants;
+          const modifier = 1 + (constants.speedModifier / 100);
+
+          attacker.stats.attackSpeed *= modifier;
+          attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  rhino_skin: {
+    duplicateTag: 'rhino_skin', // Used to stop duplicate buffs
+    icon: 'rhinoSkin.svg',
+    name: 'rhino skin',
+    description() {
+      return `Increases health by 30% of armor. Every 5 seconds, next hit is for 500% damage.`;
+    },
+    constants: {
+      healthModifier : 30,
+      damageModifier : 500,
+      countdown : 5
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+
+        const constants = buff.constants.constants;
+
+        const modifier = constants.healthModifier / 100);
+        const amountToAdd = target.stats.armor * modifier;
+
+        buff.data.health = amountToAdd;
+        buff.data.healthMax = amountToAdd;
+        target.stats.health += buff.data.health;
+        target.stats.healthMax += buff.data.healthMax;
+
+
+        buff.data.stacks = constants.countdown;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.duration -= secondsElapsed;
+
+        if (buff.data.duration <= 0) {
+          buff.data.duration = 0;
+        }
+
+        buff.data.stacks = buff.data.duration;
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
+
+        const constants = buff.constants.constants;
+        const modifier = constants.damageModifier / 100;
+        const modifiedDamage = Math.round(rawDamage * modifier); 
+
+        actualBattle.utils.dealDamage(modifiedDamage, {
+          attacker: attacker,
+          defender: defender,
+          isTrueDamage: true,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
+        });
+
+        buff.data.duration = constants.countdown;
+        buff.data.stacks = buff.data.duration;
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health -= buff.data.health;
+        target.stats.healthMax -= buff.data.healthMax;
+      }
+    }
+  }
 }

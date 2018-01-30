@@ -78,7 +78,7 @@ export const TOWER_FLOOR_10 = {
     name: 'Overgrown Grass',
     enemies: ['grasshopper', 'spider'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'inferno_tome', amount: 1 }
       ]

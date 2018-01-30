@@ -27,6 +27,11 @@ export const TOWER_FLOOR_18 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'garlic_seed', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -87,7 +92,7 @@ export const TOWER_FLOOR_18 = {
     name: 'Waterfall',
     enemies: ['water_mage', 'jellyFish'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'heavens_descent_tome', amount: 1 }
       ]

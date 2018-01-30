@@ -203,8 +203,8 @@ LEG
         const constants = buff.constants.constants;
         const modifier = 1 + (constants.speedModifier / 100);
 
-        attacker.stats.attackSpeed *= modifier;
-        attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
+        target.stats.attackSpeed *= modifier;
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onRemove({ buff, target, caster }) {
@@ -254,6 +254,8 @@ LEG
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
           buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        } else {
+          buff.data.stacks = 0;
         }
       },
 

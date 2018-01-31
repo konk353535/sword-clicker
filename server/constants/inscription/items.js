@@ -2479,6 +2479,36 @@ export const INSCRIPTION_ITEMS = {
     }
   },
 
+  enchantment_fox_skin: {
+    id: 'enchantment_fox_skin',
+    icon: 'foxSkin.svg',
+    category: 'enchantment',
+    name: 'fox skin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['legs'],
+    description: `
+      Increase attack speed by 20%.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Leg Item',
+      target: 'item'
+    }
+  },
+
+  enchantment_rhino_skin: {
+    id: 'enchantment_rhino_skin',
+    icon: 'rhinoSkin.svg',
+    category: 'enchantment',
+    name: 'rhino skin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['legs'],
+    description: `
+      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additinal damage.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Leg Item',
+      target: 'item'
+    }
+  },
+
   enchantment_intimidate: {
     id: 'enchantment_intimidate',
     icon: 'intimidate.svg',

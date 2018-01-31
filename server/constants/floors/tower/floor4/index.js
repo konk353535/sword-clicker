@@ -17,7 +17,7 @@ export const TOWER_FLOOR_4 = {
     name: 'Herb Garden',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 48,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'lavender', amount: 1 }
       ]
@@ -82,7 +82,7 @@ export const TOWER_FLOOR_4 = {
     name: 'Earthen Mage',
     enemies: ['earth_mage'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
       ]

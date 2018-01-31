@@ -70,14 +70,14 @@ export const TOWER_FLOOR_19 = {
     name: 'Hilly Plain',
     enemies: ['unicorn'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'lightning_speed_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'complete_water_shard', amount: 25 }
+        { type: 'item', itemId: 'complete_water_shard', amount: 10 }
       ]
     }, {
       chance: 1 / 32,

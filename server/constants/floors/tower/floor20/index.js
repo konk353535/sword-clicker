@@ -22,6 +22,11 @@ export const TOWER_FLOOR_20 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'sorrell', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -77,7 +82,7 @@ export const TOWER_FLOOR_20 = {
     name: 'Down Under',
     enemies: ['echidna', 'wombat', 'snake', 'spider'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'diamond_skin_tome', amount: 1 }
       ]

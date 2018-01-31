@@ -242,14 +242,11 @@ LEG
         target.stats.health += buff.data.health;
         target.stats.healthMax += buff.data.healthMax;
 
-
         buff.data.timeTillCharge = constants.charge;
         buff.data.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-
-        buff.data.stacks -= secondsElapsed;
 
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
@@ -262,7 +259,9 @@ LEG
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
         if (buff.data.timeTillCharge <= 0) {
-          buff.data.timeTillCharge = 5;
+
+          
+          
           const constants = buff.constants.constants;
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
@@ -275,7 +274,7 @@ LEG
             historyStats: actualBattle.historyStats
           });
 
-          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+          buff.data.timeTillCharge = constants.charge;
         }
       },
 

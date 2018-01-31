@@ -80,14 +80,14 @@ export const TOWER_FLOOR_15 = {
     name: 'Eternal Abyss',
     enemies: ['demon', 'angel'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'chives', amount: 1 }
       ]
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'complete_fire_shard', amount: 25 }
+        { type: 'item', itemId: 'complete_fire_shard', amount: 10 }
       ]
     }, {
       chance: 1 / 32,

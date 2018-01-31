@@ -70,14 +70,15 @@ export const TOWER_FLOOR_17 = {
     name: 'Empty Cave',
     enemies: ['goblin', 'cut_purse'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 64,
       rewards: [
-        { type: 'item', itemId: 'sorrell', amount: 1 }
+        { type: 'item', itemId: 'sorrell', amount: 1 },
+        { type: 'item', itemId: 'chives', amount: 1 }
       ]
     }, {
       chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'complete_air_shard', amount: 25 }
+        { type: 'item', itemId: 'complete_air_shard', amount: 10 }
       ]
     }, {
       chance: 1 / 32,

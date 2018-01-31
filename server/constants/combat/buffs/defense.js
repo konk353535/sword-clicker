@@ -447,7 +447,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack, {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
             defender: target,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -497,7 +497,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack, {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
             defender: target,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -548,7 +548,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack, {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
             defender: target,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -594,7 +594,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack, {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
             defender: target,
             attacker: target,
             tickEvents: actualBattle.tickEvents,

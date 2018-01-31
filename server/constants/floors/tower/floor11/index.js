@@ -70,7 +70,7 @@ export const TOWER_FLOOR_11 = {
     name: 'Mage\'s Guild',
     enemies: ['water_mage', 'fire_mage', 'earth_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 96,
       rewards: [
         { type: 'item', itemId: 'blizzard_tome', amount: 1 }
       ]

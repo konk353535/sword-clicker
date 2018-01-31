@@ -22,7 +22,7 @@ export const TOWER_FLOOR_8 = {
     name: 'Oak Tree',
     enemies: ['bird'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'celery_seed', amount: 1 }
       ]
@@ -98,7 +98,7 @@ export const TOWER_FLOOR_8 = {
     name: 'Magician\'s Headquarters',
     enemies: ['blue_mage'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 96,
       rewards: [
         { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
         { type: 'item', itemId: 'bleeding_spin_1_tome', amount: 1 }

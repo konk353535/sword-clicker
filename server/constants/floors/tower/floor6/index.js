@@ -7,7 +7,7 @@ export const TOWER_FLOOR_6 = {
     name: 'Tamarind Tree',
     enemies: ['bee'],
     rewards: [{
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'tamarind_honey', amount: 1 }
       ]
@@ -50,12 +50,12 @@ export const TOWER_FLOOR_6 = {
         { type: 'item', itemId: 'watermelon', amount: 1 }
       ]
     }, {
-      chance: 1 / 48,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'lavender', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'chilli_seed', amount: 1 }
       ]
@@ -75,7 +75,7 @@ export const TOWER_FLOOR_6 = {
     name: 'Volcanic Chamber',
     enemies: ['demon'],
     rewards: orderLootTable(LEVEL_SIX_LOOT_TABLE.concat([{
-      chance: 1 / 128,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
         { type: 'item', itemId: 'gold_wand', amount: 1 }

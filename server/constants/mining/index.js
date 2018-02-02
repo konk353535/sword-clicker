@@ -5,7 +5,7 @@ export const MINING_ITEMS = miningItems;
 
 export const MINING = {
   prospecting: {
-    chance: 1 / 3, // 1 spawn every 3 seconds ( 20 / min )
+    chance: 1 / 6, // 1 spawn every 6 seconds ( 10 / min )
   },
   prospectors: {
     stone: {

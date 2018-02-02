@@ -44,7 +44,25 @@ Template.battleLogRow.helpers({
       });
     })
 
+    console.log('battle', battle);
+
     return battle;
+  },
+
+  computedLoot() {
+    const instance = Template.instance();
+    const battle = instance.data.battle;
+    let needGreed = [];
+
+    if (battle.loot.length > 0) {
+      needGreed = battle.loot.map((loot) => {
+        return Object.assign(loot, {ngChoice: loot.owners.find((owner) => { return owner.id === Meteor.userId() }).ngChoice});
+      })
+    }
+
+    console.log('ng', needGreed);
+
+    return needGreed;
   },
 
   showMore() {

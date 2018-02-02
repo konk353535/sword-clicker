@@ -1,4 +1,5 @@
 import _ from 'underscore';
+const util = require('util');
 
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -11,7 +12,7 @@ import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Battles, BattlesList, BattlesLoot } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
 import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -96,6 +97,7 @@ const distributeRewards = function distributeRewards({ floor }) {
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
   let win = actualBattle.units.length > 0;
+  let ngRewards = [];
 
   const rawGlobalBuffs = redis.get('global-buffs-xpq');
   const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
@@ -255,16 +257,31 @@ export const completeBattle = function (actualBattle) {
     const owners = _.uniq(units.map((unit) => unit.owner));
     rewardsGained.forEach((rewardGained) => {
       if (rewardGained.type === 'item') {
-        const luckyOwner = _.sample(owners);
-        addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
-        finalTickEvents.push({
-          type: 'item',
-          amount: rewardGained.amount,
-          itemId: rewardGained.itemId,
-          affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-          icon: ITEMS[rewardGained.itemId].icon,
-          owner: luckyOwner
-        });
+        // special reward handling for need/greed flagged items
+        // if (rewardGained.ng && owners.length > 1) {
+        if (!rewardGained.ng) {
+          console.log('owners', owners, owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}));
+          ngRewards.push({
+            type: 'item',
+            itemId: rewardGained.itemId,
+            amount: rewardGained.amount,
+            icon: ITEMS[rewardGained.itemId].icon,
+            affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+            owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
+          });
+          console.log('ngRewards: ', util.inspect(ngRewards, false, null));
+        } else {
+          const luckyOwner = _.sample(owners);
+          addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
+          finalTickEvents.push({
+            type: 'item',
+            amount: rewardGained.amount,
+            itemId: rewardGained.itemId,
+            affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+            icon: ITEMS[rewardGained.itemId].icon,
+            owner: luckyOwner
+          });
+        }
       } else if (rewardGained.type === 'gold') {
         const luckyOwner = _.sample(owners);
         Users.update(luckyOwner, {
@@ -612,6 +629,7 @@ export const completeBattle = function (actualBattle) {
     win,
     historyStats: actualBattle.historyStats,
     finalTickEvents,
+    loot: ngRewards,
     updatedAt: new Date(),
     createdAt: new Date()
   });

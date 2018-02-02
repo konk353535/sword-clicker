@@ -66,12 +66,12 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
     const finishedBattle = Battles.findOne({
       finished: true,
-      updatedAt: {
-        $gte: moment().subtract(15, 'second').toDate()
+      createdAt: {
+        $gte: moment().subtract(30, 'second').toDate()
       }
     }, {
       sort: {
-        updatedAt: -1
+        createdAt: -1
       }
     });
 

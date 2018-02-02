@@ -90,8 +90,17 @@ BattlesSchema = new SimpleSchema({
   'tickEvents.$.to': { type: String }, // Who is taking damage Eg: Enemy
   'tickEvents.$.label': { type: String }, // label Eg: 1
 
-  finalTickEvents: { type: [Object], blackbox: true, optional: true }
+  finalTickEvents: { type: [Object], blackbox: true, optional: true },
 
+  loot: { type: [Object], optional: true },
+  'loot.$.type': { type: String },
+  'loot.$.icon': { type: String },
+  'loot.$.itemId': { type: String },
+  'loot.$.amount': { type: Number },
+  'loot.$.owners': { type: [Object], blackbox: true },
+  // 'loot.$.owners.id': { type: String, regEx: SimpleSchema.RegEx.Id },
+  // 'loot.$.owners.ngChoice': { type: String },
+  'loot.$.winner': { type: String, optional: true },
 });
 
 Battles.attachSchema(BattlesSchema);

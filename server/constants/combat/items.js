@@ -20,6 +20,7 @@ import { TITANIUM_ITEMS } from './items/titanium';
 import { CURSED_ITEMS } from './items/cursed';
 import { DARKSTEEL_ITEMS } from './items/darksteel';
 import { RADIANT_ITEMS } from './items/radiant';
+import { ASTRAL_ITEMS } from './items/astral';
 
 import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
@@ -49,6 +50,7 @@ export const COMBAT_ITEMS = Object.assign(
   CURSED_ITEMS,
   DARKSTEEL_ITEMS,
   RADIANT_ITEMS,
+  ASTRAL_ITEMS,
   MISC_ITEMS,
   AMULET_ITEMS,
   STAFF_ITEMS,

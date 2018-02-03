@@ -1,6 +1,6 @@
 const ASTRAL_MULTIPLIER = 1.3;
 
-/*
+
 export const ASTRAL_ITEMS = {
   "radiant_dagger": {
     "id": "radiant_dagger",
@@ -245,4 +245,3 @@ export const ASTRAL_ITEMS = {
     }]
   }
 }
-*/

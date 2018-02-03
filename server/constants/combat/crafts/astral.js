@@ -1,7 +1,7 @@
 import { ITEMS } from '/server/constants/items/index.js';
 
 const CURSED_ESS_XP = 500000;
-const ORI_ESS_XP = 125000;
+const MET_ESS_XP = 125000;
 
 export const ASTRAL_CRAFTS = {
   astral_dagger: {
@@ -12,7 +12,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_dagger',
     isHidden: true,
     timeToCraft: 30 * 60 * 2,
-    xp: (CURSED_ESS_XP * 2) + (ORI_ESS_XP * 2),
+    xp: (CURSED_ESS_XP * 2) + (MET_ESS_XP * 2),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,
@@ -87,7 +87,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_spear',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,
@@ -162,7 +162,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_short_sword',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,
@@ -237,7 +237,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_long_sword',
     isHidden: true,
     timeToCraft: 90 * 60,
-    xp: (CURSED_ESS_XP * 8) + (ORI_ESS_XP * 8),
+    xp: (CURSED_ESS_XP * 8) + (MET_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,
@@ -312,7 +312,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_battle_axe',
     isHidden: true,
     timeToCraft: 90 * 60,
-    xp: (CURSED_ESS_XP * 8) + (ORI_ESS_XP * 8),
+    xp: (CURSED_ESS_XP * 8) + (MET_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,
@@ -387,7 +387,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_helmet',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 105,
@@ -462,7 +462,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_chest_plate',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 105,
@@ -537,7 +537,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_plate_legs',
     isHidden: true,
     timeToCraft: 60 * 60 * 2, // 60
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 105,
@@ -612,7 +612,7 @@ export const ASTRAL_CRAFTS = {
     id: 'astral_shield',
     isHidden: true,
     timeToCraft: 60 * 60 * 2, // 60
-    xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
+    xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 105,

@@ -1089,4 +1089,54 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
-}
+
+  angel_heart: {
+    duplicateTag: 'angel_heart',
+    icon: 'angel_heart.svg',
+    name: 'angel heart',
+    description({ buff, level }) {
+      const healthTransferCost = buff.constants.baseTransferRate * level;
+      const healthTransfer = healthTransferCost * buff.constants.baseTransferEfficiency;
+      return `Heals allies for ${healthTransfer * 4} per second at the cost of ${healthTransferCost * 4} health.`;
+    },
+    constants: {
+      baseTransferRate: 5,
+      baseTransferEfficiency: 1
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      allies: 'units',
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ buff, target, caster, actualBattle }) {
+        let healthTransferred = false;
+        const healthToTransfer = buff.data.level * buff.data.baseTransferRate;
+        actualBattle[buff.data.allies].forEach((ally) => {
+          // transfer HP from self to allies
+          if (ally.health < ally.healthMax) {
+            healthTransferred = true;
+            actualBattle.utils.healTarget(healthToTransfer * buff.data.baseTransferEfficiency, {
+              caster: target,
+              target: ally
+            });
+          }
+        });
+        if (healthTransferred) {
+          actualBattle.utils.dealDamage(healthToTransfer, {
+            defender: target,
+            tickEvents: actualBattle.tickEvents
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+};

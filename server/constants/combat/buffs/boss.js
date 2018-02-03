@@ -4,6 +4,7 @@ import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from '/server/constants/combat/index.js';
 import { Random } from 'meteor/random'
+import { GENERATORS } from '/server/constants/floors/generators/index.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -2010,6 +2011,41 @@ export const BOSS_BUFFS = {
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             });
           }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_high_angel: {
+    duplicateTag: 'boss_high_angel', // Used to stop duplicate buffs
+    icon: 'resurrection.svg',
+    name: 'boss high angel',
+    description({ buff, level }) {
+      return `Brings forth fallen allies to aid in battle`;
+    },
+    constants: {
+      resurrectionTimer: 25,
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeTillResurrection = buff.constants.constants.resurrectionTimer;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillResurrection > 0) {
+          buff.data.timeTillResurrection -= secondsElapsed;
+          buff.data.stacks = Math.round(buff.data.timeTillResurrection);
+        } else {
+          const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
+          const enemy = _.sample(GENERATORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
+          actualBattle.enemies.push(enemy);
+          buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10));
+          buff.data.stacks = Math.round(buff.data.timeTillResurrection);
         }
       },
 

@@ -4,7 +4,7 @@ import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from '/server/constants/combat/index.js';
 import { Random } from 'meteor/random'
-import { GENERATORS } from '/server/constants/floors/generators/index.js';
+import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -2042,7 +2042,7 @@ export const BOSS_BUFFS = {
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
-          const enemy = _.sample(GENERATORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
+          const enemy = _.sample(genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
           actualBattle.enemies.push(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10));
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);

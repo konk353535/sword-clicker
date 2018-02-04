@@ -1,5 +1,10 @@
 import { TOWER_FLOORS } from './tower/index';
-import { GENERATORS } from "./generators";
+
+import { personalQuestMonsterGenerator } from './generators/personalQuest.js';
+import { easyTowerMonsterGenerator } from './generators/easyTower.js';
+import { hardTowerMonsterGenerator } from './generators/hardTower.js';
+import { veryHardTowerMonsterGenerator } from './generators/veryHardTower.js';
+import { genericTowerMonsterGenerator } from './generators/genericTower.js';
 
 export const FLOORS = Object.assign({
 
@@ -39,5 +44,15 @@ export const FLOORS = Object.assign({
     }
 
     return Math.round(activeTowerUsers * maxPoints * floorDays[floor] * 1);
-  }
-}, TOWER_FLOORS, GENERATORS);
+  },
+
+  // Given a level, create a monster for personal quest
+  personalQuestMonsterGenerator,
+
+  // Given a floor, create a monster for tower
+  easyTowerMonsterGenerator,
+  hardTowerMonsterGenerator,
+  veryHardTowerMonsterGenerator,
+  genericTowerMonsterGenerator
+
+}, TOWER_FLOORS);

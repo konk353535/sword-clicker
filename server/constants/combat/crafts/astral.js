@@ -18,9 +18,9 @@ export const ASTRAL_CRAFTS = {
     requiredCraftingLevel: 105,
     required: [{
       type: 'item',
-      itemId: 'astral_furnace',
-      icon: ITEMS['astral_furnace'].icon,
-      name: ITEMS['astral_furnace'].name,
+      itemId: 'radiant_furnace',
+      icon: ITEMS['radiant_furnace'].icon,
+      name: ITEMS['radiant_furnace'].name,
       amount: 1,
       consumes: false
     }, {

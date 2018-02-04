@@ -2,13 +2,13 @@ const ASTRAL_MULTIPLIER = 1.3;
 
 
 export const ASTRAL_ITEMS = {
-  "radiant_dagger": {
-    "id": "radiant_dagger",
-    "icon": "radiantDagger.svg",
+  "astral_dagger": {
+    "id": "astral_dagger",
+    "icon": "astralDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
-    "name": "radiant dagger",
+    "name": "astral dagger",
     "sellPrice": Math.round(1650 * ASTRAL_MULTIPLIER),
     "description": "A poorly made dagger.",
     "isWeapon": true,
@@ -25,13 +25,13 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_spear": {
-    "id": "radiant_spear",
-    "icon": "radiantSpear.svg",
+  "astral_spear": {
+    "id": "astral_spear",
+    "icon": "astralSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
-    "name": "radiant spear",
+    "name": "astral spear",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Used to train defense.",
     "isWeapon": true,
@@ -55,13 +55,13 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_short_sword": {
-    "id": "radiant_short_sword",
-    "icon": "radiantShortSword.svg",
+  "astral_short_sword": {
+    "id": "astral_short_sword",
+    "icon": "astralShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
-    "name": "radiant short sword",
+    "name": "astral short sword",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "A good balance between offense and defense",
     "isWeapon": true,
@@ -83,13 +83,13 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_long_sword": {
-    "id": "radiant_long_sword",
-    "icon": "radiantLongSword.svg",
+  "astral_long_sword": {
+    "id": "astral_long_sword",
+    "icon": "astralLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
-    "name": "radiant long sword",
+    "name": "astral long sword",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "A pure offensive weapon",
     "isTwoHanded": true,
@@ -113,13 +113,13 @@ export const ASTRAL_ITEMS = {
     }]
   },
   
-  "radiant_battle_axe": {
-    "id": "radiant_battle_axe",
-    "icon": "radiantBattleAxe.svg",
+  "astral_battle_axe": {
+    "id": "astral_battle_axe",
+    "icon": "astralBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
-    "name": "radiant battle axe",
+    "name": "astral battle axe",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "A slow pure offensive weapon.",
     "isTwoHanded": true,
@@ -143,12 +143,12 @@ export const ASTRAL_ITEMS = {
     }]
   },
 
-  "radiant_helmet": {
-    "id": "radiant_helmet",
-    "icon": "radiantHelmet.svg",
+  "astral_helmet": {
+    "id": "astral_helmet",
+    "icon": "astralHelmet.svg",
     "category": "combat",
     "slot": "head",
-    "name": "radiant helmet",
+    "name": "astral helmet",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Protect your head",
     "isEquippable": true,
@@ -168,12 +168,12 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_chest_plate": {
-    "id": "radiant_chest_plate",
-    "icon": "radiantChestPlate.svg",
+  "astral_chest_plate": {
+    "id": "astral_chest_plate",
+    "icon": "astralChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "radiant chestplate",
+    "name": "astral chestplate",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,
@@ -193,12 +193,12 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_plate_legs": {
-    "id": "radiant_plate_legs",
-    "icon": "radiantPlateLegs.svg",
+  "astral_plate_legs": {
+    "id": "astral_plate_legs",
+    "icon": "astralPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
-    "name": "radiant platelegs",
+    "name": "astral platelegs",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Protect your legs",
     "isEquippable": true,
@@ -218,13 +218,13 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
-  "radiant_shield": {
-    "id": "radiant_shield",
-    "icon": "radiantShield.svg",
+  "astral_shield": {
+    "id": "astral_shield",
+    "icon": "astralShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
-    "name": "radiant shield",
+    "name": "astral shield",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Provides large defense bonuses",
     "isEquippable": true,

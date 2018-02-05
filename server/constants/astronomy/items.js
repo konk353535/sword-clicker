@@ -1,3 +1,4 @@
+console.log('exporting astronomy/items.js ASTRONOMY_ITEMS');
 export const ASTRONOMY_ITEMS = {
   poison_shard_fragment: {
     id: 'poison_shard_fragment',

@@ -1,8 +1,12 @@
+console.log('importing mining/index.js MINING_ITEMS');
 import { MINING_ITEMS as miningItems } from './items';
+console.log('importing mining/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 
+console.log('exporting mining/index.js MINING_ITEMS');
 export const MINING_ITEMS = miningItems;
 
+console.log('exporting mining/index.js MINING');
 export const MINING = {
   prospecting: {
     chance: 1 / 6, // 1 spawn every 6 seconds ( 10 / min )

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
 
 export const ENCHANTMENT_BUFFS = {
@@ -1089,4 +1089,55 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
-}
+
+  angels_heart: {
+    duplicateTag: 'angels_heart',
+    icon: 'angels_heart.svg',
+    name: 'angels heart',
+    description({ buff, level }) {
+      const healthTransferCost = buff.constants.baseTransferRate * level;
+      const healthTransfer = healthTransferCost * buff.constants.baseTransferEfficiency;
+      return `Heals allies for ${healthTransfer * 4} per second at the cost of ${healthTransferCost * 4} health.`;
+    },
+    constants: {
+      baseTransferRate: 5,
+      baseTransferEfficiency: 1
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      allies: 'units',
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        let healthTransferred = false;
+        const healthToTransfer = buff.data.level * constants.baseTransferRate;
+        const actualHealthTransferred = healthToTransfer * constants.baseTransferEfficiency;
+        actualBattle[buff.data.allies].forEach((ally) => {
+          if (ally.id === target.id) return;
+          // transfer HP from self to allies
+          if ((ally.stats.health + actualHealthTransferred) < ally.stats.healthMax) {
+            healthTransferred = true;
+            actualBattle.utils.healTarget(actualHealthTransferred, {
+              caster: target,
+              target: ally,
+              tickEvents: actualBattle.tickEvents
+            });
+          }
+        });
+        if (healthTransferred) {
+          target.stats.health -= healthToTransfer;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+};

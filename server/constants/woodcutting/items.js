@@ -1,3 +1,4 @@
+console.log('exporting woodcutting/items.js WOODCUTTING_ITEMS');
 export const WOODCUTTING_ITEMS = {
   primitive_axe: {
     id: 'primitive_axe',
@@ -456,7 +457,27 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 55,
       attackSpeed: 1
     }
-  },  
+  },
+
+  astral_axe: {
+    id: 'astral_axe',
+    icon: 'astralAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'astral axe',
+    sellPrice: 4000,
+    description: 'A astral axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 115,
+      attackSpeed: 2,
+      accuracy: 110
+    },
+    extraStats: {
+      accuracy: 65,
+      attackSpeed: 1
+    }
+  },   
 
   pine_log: {
     id: 'pine_log',

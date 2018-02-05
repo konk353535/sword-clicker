@@ -1,5 +1,7 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing farming/plants.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
+console.log('exporting farming/plants.js PLANTS');
 export const PLANTS = {
   lettice: {
     produces: 'lettice',

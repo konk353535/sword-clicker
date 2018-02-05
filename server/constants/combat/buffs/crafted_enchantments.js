@@ -109,7 +109,7 @@ LEG
           attacker: attacker,
           defender: defender,
           isMagic: true,
-          isTrueDamage: true,
+          //isTrueDamage: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats
         });
@@ -149,7 +149,7 @@ LEG
           attacker: attacker,
           defender: defender,
           isMagic: true,
-          isTrueDamage: true,
+          //isTrueDamage: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats
         });
@@ -269,7 +269,7 @@ LEG
           actualBattle.utils.dealDamage(modifiedDamage, {
             attacker: attacker,
             defender: defender,
-            isTrueDamage: true,
+            //isTrueDamage: true,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
           });

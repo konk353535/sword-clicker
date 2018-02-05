@@ -33,7 +33,7 @@ export const TOWER_FLOOR_12 = {
     name: 'Place of Obsidian',
     enemies: ['obsidian_spirit'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'druids_shirt', amount: 1 },
         { type: 'item', itemId: 'druids_pants', amount: 1 }        
@@ -56,7 +56,7 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
     }, {
-      chance: 1 / 48,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'amber_wizard_hat', amount: 1 },
         { type: 'item', itemId: 'amber_wizard_shirt', amount: 1 },

@@ -168,7 +168,7 @@ export const FARMING_ITEMS = {
   tulip: {
     id: 'tulip',
     icon: 'tulip.svg',
-    category: 'herb',
+    category: 'misc',
     name: 'tulip',
     description() {
       return 'Sells for $$$'

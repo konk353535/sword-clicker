@@ -15,7 +15,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 2) + (MET_ESS_XP * 2),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -75,7 +75,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -90,7 +90,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -150,7 +150,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -165,7 +165,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -225,7 +225,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -240,7 +240,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (MET_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -300,7 +300,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -315,7 +315,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (MET_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -375,7 +375,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -390,7 +390,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -450,7 +450,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -465,7 +465,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -525,7 +525,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -540,7 +540,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -600,7 +600,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   },
 
@@ -615,7 +615,7 @@ export const ASTRAL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -675,7 +675,7 @@ export const ASTRAL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 110
     }]
   }
 }

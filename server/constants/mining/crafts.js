@@ -2226,7 +2226,7 @@ export const MINING_CRAFTS = {
     isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,
-    xp: 625000,
+    xp: 562500,
     maxToCraft: 1,
     requiredCraftingLevel: 105,
     required: [{
@@ -2289,6 +2289,80 @@ export const MINING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 105
+    }]
+  },
+
+  astral_mining_anvil: {
+    produces: 'astral_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'astral mining anvil',
+    id: 'astral_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 625000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 105,
+    required: [{
+      type: 'item',
+      itemId: 'radiant_furnace',
+      icon: ITEMS['radiant_furnace'].icon,
+      name: ITEMS['radiant_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'meteorite_essence',
+      icon: ITEMS['meteorite_essence'].icon,
+      name: ITEMS['meteorite_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'poplar_log',
+      icon: ITEMS['poplar_log'].icon,
+      name: ITEMS['poplar_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'meteorite_bar',
+      icon: ITEMS['meteorite_bar'].icon,
+      name: ITEMS['meteorite_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_mining_anvil',
+      icon: ITEMS['radiant_mining_anvil'].icon,
+      name: ITEMS['radiant_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 110
     }]
   },  
 }

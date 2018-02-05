@@ -1279,11 +1279,11 @@ export const MINING_CRAFTS = {
     }]
   },  
 
-  radiant_pickaxe: {
-    produces: 'radiant_pickaxe',
+  astral_pickaxe: {
+    produces: 'astral_pickaxe',
     recipeFor: 'crafting',
-    name: 'radiant pickaxe',
-    id: 'radiant_pickaxe',
+    name: 'astral pickaxe',
+    id: 'astral_pickaxe',
     isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,

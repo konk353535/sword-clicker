@@ -12,24 +12,24 @@
     </div>
 
     <h2>Items</h2>
+
+    <ul class="nav nav-tabs my-3">
+      <li class="nav-item item-filter" data-filter="visible-items">
+        <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">All</a>
+      </li>
+      <li class="nav-item item-filter" data-filter="hidden-items">
+        <a class="nav-link {{#if $eq itemFilter 'hidden-items'}}active{{/if}}" href="#">Hidden</a>
+      </li>
+    </ul>
+
     <div class="d-flex flex-wrap">
-      {{#each items}}
-        {{> itemIcon item=this classes="small"}}
-      {{/each}}
-      {{#if $gt allItemsCount itemViewLimit}}
-        {{#if itemViewLimit}}
-          <div class="item-icon-container small icon-box show-all-items" style="cursor: pointer">
-            More
-          </div>
-        {{else}}
-          <div class="item-icon-container small icon-box show-less-items" style="cursor: pointer">
-            Less
-          </div>
-        {{/if}}
-      {{/if}}
+
+      {{> itemList items=items allItemsCount=allItemsCount}}
+
     </div>
 
     <h2>Recipes</h2>
+    
     <ul class="nav nav-tabs my-3">
       <li class="nav-item crafting-filter" data-filter="all">
         <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
@@ -50,51 +50,6 @@
         <a class="nav-link {{#if $eq recipeFilter 'astronomy'}}active{{/if}}" href="#">Astronomy</a>
       </li>
     </ul>
-
-    <!--
-    <div class="mb-3">
-      <b>Filter: </b>
-      <span class="tier-filter badge
-        badge-{{#if craftingTierFilter.primitive}}empty{{else}}grey-0{{/if}}" data-tier-filter="primitive">
-          Primitive
-      </span>
-
-      {{#each craftingFilters}}
-        <span class="tier-filter text-capitalize badge
-          badge-{{#if this.empty}}empty{{else}}{{this.color}}{{/if}}" data-tier-filter="{{this.name}}">
-            {{this.displayName}}
-        </span>
-      {{/each}}
-
-    </div>-->
-
-    <!--
-    <table class="table table-bordered table-hover table-centered table-responsive">
-      <thead>
-        <tr>
-          <th class="hidden-xs-down">Name</th>
-          <th>Icon</th>
-          <th>Time</th>          
-          <th>Requirements</th>
-          <th class="hidden-xs-down">Description</th>
-        </tr>  
-      </thead>
-      <tbody>
-        {{#each recipes}}
-          <tr class="craft-row" style="cursor: pointer" data-recipe={{this.id}}>
-            <td class="text-capitalize hidden-xs-down">{{this.name}}</td>
-            <td>
-              {{ > recipeIcon recipe=this}}
-            </td>
-            <td>{{this.calculatedTimeToCraft}}s</td>
-            <td>
-              {{ > requiredItems requiredItems=this.required recipeName=this.name}}
-            </td>
-            <td class="hidden-xs-down">{{{this.description}}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>-->
 
     {{> craftingList recipes=recipes recipeFilter=recipeFilter}}
 

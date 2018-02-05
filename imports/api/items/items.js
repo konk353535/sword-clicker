@@ -15,7 +15,9 @@ ItemsSchema = new SimpleSchema({
   extraStats: { type: Object, blackbox: true, optional: true },
   quality: { type: Number, optional: true },
   enchantmentId: { type: String, optional: true },
-  enchantmentDescription: { type: String, optional: true }
+  enchantmentDescription: { type: String, optional: true },
+  hidden: { type: Boolean, optional: true },
+  autoSell: { type: Boolean, optional: true },
 });
 
 Items.attachSchema(ItemsSchema);

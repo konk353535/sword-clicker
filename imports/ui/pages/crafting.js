@@ -17,6 +17,7 @@ import { BattlesList } from '/imports/api/battles/battles.js';
 import './crafting.html';
 import '../components/craftingDuration/craftingDuration.js';
 import '../components/craftingList/craftingList.js';
+import '../components/itemList/itemList.js';
 
 let gameUpdateTimer;
 let recipeCache;
@@ -94,6 +95,12 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('craftingTierFilter', {});
       }
+
+      if (myUser.uiState && myUser.uiState.itemFilter !== undefined) {
+        this.state.set('itemFilter', myUser.uiState.itemFilter);
+      } else {
+        this.state.set('itemFilter', 'visible-items');
+      }
     }
   });
 
@@ -163,6 +170,12 @@ Template.craftingPage.events({
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
     Meteor.call('users.setUiState', 'craftingFilter', filter);
+  },
+
+  'click .item-filter'(event, instance) {
+    const filter = instance.$(event.target).closest('.item-filter').data('filter');
+    Meteor.call('users.setUiState', 'itemFilter', filter);
+    console.log(filter);
   },
 
   'click .tier-filter'(event, instance) {
@@ -307,11 +320,12 @@ Template.craftingPage.helpers({
   },
 
   allItemsCount() {
-    return Items.find({ equipped: false }).fetch().length;
+    return Items.find({ equipped: false, hidden: false }).fetch().length;
   },
 
   items() {
-    const itemViewLimit = Template.instance().state.get('itemViewLimit');
+    const itemViewLimit = 0;
+    //Template.instance().state.get('itemViewLimit');
 
     // Get highest furnace tier
     const allFurnaces = Items.find({
@@ -365,5 +379,9 @@ Template.craftingPage.helpers({
         quality: -1
       }
     }).map((itemModifier));
-  }
+  },
+
+  itemFilter() {
+    return Template.instance().state.get('itemFilter');
+  },
 });

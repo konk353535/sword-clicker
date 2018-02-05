@@ -222,6 +222,27 @@ Meteor.methods({
     }
   },
 
+  'items.hide'({ baseItemId }) {
+    //
+    const baseItem = Items.findOne({
+      owner: Meteor.userId(),
+      _id: baseItemId
+    });
+
+    if (!baseItem || baseItem.amount <= 0) {
+      return;
+    }
+
+    Items.update({
+      owner: Meteor.userId(),
+      _id: targetItem._id
+    }, {
+      $set: {
+        hidden: !baseItem.hidden
+      }
+    });
+  },
+
   'items.use'({ baseItemId, targetItemId }) {
 
     // Fetch both items

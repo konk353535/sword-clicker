@@ -1,7 +1,9 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+console.log('importing floor2/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 import { LEVEL_TWO_LOOT_TABLE } from '/server/constants/floors/levels/level2';
 
+console.log('exporting floor2/index.js TOWER_FLOOR_2');
 export const TOWER_FLOOR_2 = {
   1: {
     name: 'Derelict House',

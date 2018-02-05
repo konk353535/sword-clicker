@@ -2,9 +2,9 @@ import moment from 'moment';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
-import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
+import { FLOORS } from '/server/constants/floors/index';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -2027,13 +2027,12 @@ export const BOSS_BUFFS = {
       return `Brings forth fallen allies to aid in battle`;
     },
     constants: {
-      resurrectionTimer: 25,
+      timeTillResurrection: 25,
     },
     data: {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        buff.data.timeTillResurrection = buff.constants.constants.resurrectionTimer;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -2042,9 +2041,9 @@ export const BOSS_BUFFS = {
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
-          const enemy = _.sample(genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
+          const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
           actualBattle.enemies.push(enemy);
-          buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10));
+          buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);
         }
       },

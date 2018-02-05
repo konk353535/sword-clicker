@@ -1,5 +1,7 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing woodcutting/crafts.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
+console.log('exporting woodcutting/crafts.js WOODCUTTING_CRAFTS');
 export const WOODCUTTING_CRAFTS = {
   primitive_axe: {
     produces: 'primitive_axe',

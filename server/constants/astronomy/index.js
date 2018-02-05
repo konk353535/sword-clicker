@@ -1,7 +1,10 @@
+console.log('importing astronomy/index.js ASTRONOMY_ITEMS');
 import { ASTRONOMY_ITEMS as astronomyItems } from './items';
 
+console.log('exporting astronomy/index.js ASTRONOMY_ITEMS');
 export const ASTRONOMY_ITEMS = astronomyItems;
 
+console.log('exporting astronomy/index.js ASTRONOMY');
 export const ASTRONOMY = {
   baseMaxMages: 7,
 

@@ -1,7 +1,9 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+console.log('importing floor1/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 import { LEVEL_ONE_LOOT_TABLE } from '/server/constants/floors/levels/level1';
 
+console.log('exporting floor1/index.js TOWER_FLOOR_1');
 export const TOWER_FLOOR_1 = {
   1: {
     name: 'Grass Field',

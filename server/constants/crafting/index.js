@@ -1,14 +1,23 @@
+console.log('importing crafting/index.js CRAFTING_ITEMS');
 import { CRAFTING_ITEMS as craftingItems } from './items';
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing crafting/index.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
+console.log('importing crafting/index.js CRAFTING_CRAFTS');
 import { CRAFTING_CRAFTS } from './crafts';
+console.log('importing crafting/index.js COMBAT_CRAFTS');
 import { COMBAT_CRAFTS } from '/server/constants/combat/crafts';
+console.log('importing crafting/index.js MINING_CRAFTS');
 import { MINING_CRAFTS } from '/server/constants/mining/crafts';
+console.log('importing crafting/index.js WOODCUTTING_CRAFTS');
 import { WOODCUTTING_CRAFTS } from '/server/constants/woodcutting/crafts';
+console.log('importing crafting/index.js INSCRIPTION_CRAFTS');
 import { INSCRIPTION_CRAFTS } from '/server/constants/inscription/crafts';
 
+console.log('exporting crafting/index.js CRAFTING_ITEMS');
 export const CRAFTING_ITEMS = craftingItems;
 
+console.log('exporting crafting/index.js CRAFTING');
 export const CRAFTING = {
   recipes: Object.assign(
     CRAFTING_CRAFTS,

@@ -25,6 +25,8 @@ import { LEVEL_TWENTY_FOUR_MONSTERS, LEVEL_TWENTY_FOUR_LOOT_TABLE } from './leve
 import { LEVEL_TWENTY_FIVE_MONSTERS, LEVEL_TWENTY_FIVE_LOOT_TABLE } from './level25';
 import { LEVEL_TWENTY_SIX_MONSTERS, LEVEL_TWENTY_SIX_LOOT_TABLE } from './level26';
 
+console.log('exporting level/index.js TABLE_LIST');
+
 export const TABLE_LIST = {
   1: LEVEL_ONE_LOOT_TABLE,
   2: LEVEL_TWO_LOOT_TABLE,

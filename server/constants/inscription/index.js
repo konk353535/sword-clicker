@@ -1,7 +1,10 @@
+console.log('importing inscription/index.js INSCRIPTION_ITEMS');
 import { INSCRIPTION_ITEMS as inscriptionItems } from './items';
 
+console.log('exporting inscription/index.js INSCRIPTION_ITEMS');
 export const INSCRIPTION_ITEMS = inscriptionItems;
 
+console.log('exporting inscription/index.js INSCRIPTION');
 export const INSCRIPTION = {
 
   getMaxCrafts(inscriptionLevel) {

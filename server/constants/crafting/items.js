@@ -5,6 +5,7 @@ import { XP_ITEMS } from './items/xp';
 import { MISC_ITEMS } from './items/misc';
 import { SCROLL_ITEMS } from './items/scrolls';
 
+console.log('exporting crafting/items.js CRAFTING_ITEMS');
 export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
   composite_wall: {
     id: 'composite_wall',

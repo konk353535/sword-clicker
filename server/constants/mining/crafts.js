@@ -1,6 +1,8 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing mining/crafts.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 const MINUTE = 60;
 
+console.log('exporting mining/crafts.js MINING_CRAFTS');
 export const MINING_CRAFTS = {
   primitive_pickaxe: {
     produces: 'primitive_pickaxe',

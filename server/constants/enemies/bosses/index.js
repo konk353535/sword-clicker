@@ -678,11 +678,11 @@ export const BOSS_ENEMIES = {
       attackMax: 250,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 600,
-      health: 8000,
-      healthMax: 8000,
-      defense: 300,
-      armor: 750,
-      magicArmor: 250,
+      health: 12500,
+      healthMax: 12500,
+      defense: 225,
+      armor: 650,
+      magicArmor: 150,
       damageTaken: 1
     },
     buffs: [{
@@ -693,15 +693,17 @@ export const BOSS_ENEMIES = {
         name: 'boss high angel',
         icon: 'resurrection.svg',
         stacks: 0,
+        timeTillResurrection: 5,
       }
     }, {
-      id: 'angel_heart',
+      id: 'angels_heart',
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        name: 'angel heart',
-        icon: 'angel_heart.svg',
-        level: 5
+        name: 'angels heart',
+        icon: 'angels_heart.svg',
+        level: 5,
+        allies: 'enemies',
       }
     }],
     rewards: []

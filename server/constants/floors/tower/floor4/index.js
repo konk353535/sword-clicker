@@ -1,7 +1,9 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+console.log('importing floor4/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 import { LEVEL_FOUR_LOOT_TABLE } from '/server/constants/floors/levels/level4';
 
+console.log('exporting floor4/index.js TOWER_FLOOR_4');
 export const TOWER_FLOOR_4 = {
   1: {
     name: 'Lonely Oak',

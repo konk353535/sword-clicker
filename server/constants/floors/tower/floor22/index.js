@@ -78,7 +78,7 @@ export const TOWER_FLOOR_22 = {
   },
 
   boss: {
-    enemy: { id: 'high_angel', amount: 1 },
+    enemy: { id: 'boss_high_angel', amount: 1 },
     rewards: []
   },
 

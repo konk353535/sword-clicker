@@ -1,5 +1,7 @@
-import { BUFFS } from '/server/constants/combat';
+console.log('importing farming/items.js BUFFS');
+import { FOOD_BUFFS as BUFFS} from '/server/constants/buffs/food';
 
+console.log('exporting farming/items.js FARMING_ITEMS');
 export const FARMING_ITEMS = {
   lettice_seed: {
     id: 'lettice_seed',

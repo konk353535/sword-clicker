@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
 
 export const ENCHANTMENT_BUFFS = {
@@ -1090,10 +1090,10 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
-  angel_heart: {
-    duplicateTag: 'angel_heart',
-    icon: 'angel_heart.svg',
-    name: 'angel heart',
+  angels_heart: {
+    duplicateTag: 'angels_heart',
+    icon: 'angels_heart.svg',
+    name: 'angels heart',
     description({ buff, level }) {
       const healthTransferCost = buff.constants.baseTransferRate * level;
       const healthTransfer = healthTransferCost * buff.constants.baseTransferEfficiency;
@@ -1114,23 +1114,24 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
         let healthTransferred = false;
-        const healthToTransfer = buff.data.level * buff.data.baseTransferRate;
+        const healthToTransfer = buff.data.level * constants.baseTransferRate;
+        const actualHealthTransferred = healthToTransfer * constants.baseTransferEfficiency;
         actualBattle[buff.data.allies].forEach((ally) => {
+          if (ally.id === target.id) return;
           // transfer HP from self to allies
-          if (ally.health < ally.healthMax) {
+          if ((ally.stats.health + actualHealthTransferred) < ally.stats.healthMax) {
             healthTransferred = true;
-            actualBattle.utils.healTarget(healthToTransfer * buff.data.baseTransferEfficiency, {
+            actualBattle.utils.healTarget(actualHealthTransferred, {
               caster: target,
-              target: ally
+              target: ally,
+              tickEvents: actualBattle.tickEvents
             });
           }
         });
         if (healthTransferred) {
-          actualBattle.utils.dealDamage(healthToTransfer, {
-            defender: target,
-            tickEvents: actualBattle.tickEvents
-          });
+          target.stats.health -= healthToTransfer;
         }
       },
 

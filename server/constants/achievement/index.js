@@ -1,3 +1,4 @@
+console.log('exporting achievement/index.js ACHIEVEMENTS');
 export const ACHIEVEMENTS = {
   'pq_10': {
     name: 'PQ 10',

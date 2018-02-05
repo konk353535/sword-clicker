@@ -1,9 +1,11 @@
+console.log('importing floors/generators/genericTower.js FLOORS');
 import { FLOORS } from '/server/constants/floors/index';
 import { ENEMIES } from '/server/constants/enemies/index';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { Random } from 'meteor/random';
 
+console.log('exporting floors/generators/genericTower.js genericTowerMonsterGenerator');
 export const genericTowerMonsterGenerator = function(floor, room) {
 
   const allMonsters = FLOORS[floor][room].enemies;

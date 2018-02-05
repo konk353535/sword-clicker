@@ -1,5 +1,7 @@
-import { ITEMS } from '/server/constants/items/index'; 
+console.log('importing skills/index.js ITEMS');
+import { ITEMS } from '/server/constants/items/index';
 
+console.log('exporting skills/index.js SKILLS');
 export const SKILLS = {
   mining: {
     xpToLevel(level) {

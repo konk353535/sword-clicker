@@ -627,5 +627,187 @@ export const SCROLL_ITEMS = {
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
-  },  
+  },
+
+  astral_pickaxe_scroll: {
+    id: 'astral_pickaxe_scroll',
+    icon: 'astralPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral pickaxe scroll',
+    teaches: 'astral_pickaxe',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_mining_anvil_scroll: {
+    id: 'astral_mining_anvil_scroll',
+    icon: 'astralMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral mining anvil scroll',
+    teaches: 'astral_mining_anvil',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_axe_scroll: {
+    id: 'astral_axe_scroll',
+    icon: 'astralAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral axe scroll',
+    teaches: 'astral_axe',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_battle_axe_scroll: {
+    id: 'astral_battle_axe_scroll',
+    icon: 'astralBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral battle axe scroll',
+    teaches: 'astral_battle_axe',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_chest_plate_scroll: {
+    id: 'astral_chest_plate_scroll',
+    icon: 'astralChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral chest plate scroll',
+    teaches: 'astral_chest_plate',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_dagger_scroll: {
+    id: 'astral_dagger_scroll',
+    icon: 'astralDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral dagger scroll',
+    teaches: 'astral_dagger',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_furnace_scroll: {
+    id: 'astral_furnace_scroll',
+    icon: 'astralFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral forge scroll',
+    teaches: 'astral_furnace',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_helmet_scroll: {
+    id: 'astral_helmet_scroll',
+    icon: 'astralHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral helmet scroll',
+    teaches: 'astral_helmet',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_long_sword_scroll: {
+    id: 'astral_long_sword_scroll',
+    icon: 'astralLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral long sword scroll',
+    teaches: 'astral_long_sword',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_plate_legs_scroll: {
+    id: 'astral_plate_legs_scroll',
+    icon: 'astralPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral plate legs scroll',
+    teaches: 'astral_plate_legs',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_shield_scroll: {
+    id: 'astral_shield_scroll',
+    icon: 'astralShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral shield scroll',
+    teaches: 'astral_shield',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_short_sword_scroll: {
+    id: 'astral_short_sword_scroll',
+    icon: 'astralShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral short sword scroll',
+    teaches: 'astral_short_sword',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  astral_spear_scroll: {
+    id: 'astral_spear_scroll',
+    icon: 'astralSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'astral spear scroll',
+    teaches: 'astral_spear',
+    sellPrice: 2000,
+    description: `A astral scroll, made from cursed orichalcum.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  }, 
 }

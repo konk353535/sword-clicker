@@ -2198,7 +2198,7 @@ export const PICKAXE_ITEMS = {
     category: 'mining',
     slot: 'pickaxe',
     name: 'radiant pickaxe',
-    sellPrice: 2250,
+    sellPrice: 2500,
     description: 'A radiant pickaxe. Used for mining',
     isPickaxe: true,
     isEquippable: true,
@@ -2211,6 +2211,29 @@ export const PICKAXE_ITEMS = {
     extraStats: {
       energyStorage: 39,
       attack: 8,
+      energyRegen: 3
+    }
+  },  
+
+  astral_pickaxe: {
+    id: 'astral_pickaxe',
+    icon: 'astralPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'astral pickaxe',
+    sellPrice: 2750,
+    description: 'A astral pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 145,
+      attack: 265,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 42,
+      attack: 10,
       energyRegen: 3
     }
   },  

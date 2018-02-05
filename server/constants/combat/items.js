@@ -27,6 +27,7 @@ import { AMULET_ITEMS } from './items/amulet';
 import { STAFF_ITEMS } from './items/staff';
 import { WIZARD_ITEMS } from './items/wizard';
 
+console.log('exporting combat/items.js COMBAT_ITEMS');
 export const COMBAT_ITEMS = Object.assign(
   COPPER_ITEMS,
   TIN_ITEMS,

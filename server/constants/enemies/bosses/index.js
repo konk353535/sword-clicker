@@ -667,4 +667,45 @@ export const BOSS_ENEMIES = {
     }],
     rewards: []
   },
-}
+
+  boss_high_angel: {
+    id: 'boss_high_angel',
+    icon: 'high_angel.svg',
+    name: 'Boss High Angel',
+    isBoss: true,
+    stats: {
+      attack: 150,
+      attackMax: 250,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 600,
+      health: 12500,
+      healthMax: 12500,
+      defense: 225,
+      armor: 650,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_high_angel',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'boss high angel',
+        icon: 'resurrection.svg',
+        stacks: 0,
+        timeTillResurrection: 5,
+      }
+    }, {
+      id: 'angels_heart',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'angels heart',
+        icon: 'angels_heart.svg',
+        level: 5,
+        allies: 'enemies',
+      }
+    }],
+    rewards: []
+  },
+};

@@ -1,3 +1,4 @@
+console.log('exporting inscription/items.js INSCRIPTION_ITEMS');
 export const INSCRIPTION_ITEMS = {
   pigment_red_255: {
     id: 'pigment_red_255',

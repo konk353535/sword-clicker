@@ -1,3 +1,4 @@
+console.log('exporting items/items.js MISC_ITEMS');
 export const MISC_ITEMS = {
   rat_head: {
     id: 'rat_head',

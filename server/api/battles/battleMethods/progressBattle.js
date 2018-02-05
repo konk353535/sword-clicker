@@ -1,5 +1,6 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
-import { ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
+import { ABILITIES } from '/server/constants/combat/index.js'; // List of available combat stats
+import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 
 import moment from 'moment';

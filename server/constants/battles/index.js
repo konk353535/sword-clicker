@@ -1,3 +1,4 @@
+console.log('exporting battles/index.js BATTLES');
 export const BATTLES = {
 
   xpDistribution(weaponType) {

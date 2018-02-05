@@ -1,3 +1,4 @@
+console.log('exporting woodcutting/items.js WOODCUTTING_ITEMS');
 export const WOODCUTTING_ITEMS = {
   primitive_axe: {
     id: 'primitive_axe',

@@ -9,9 +9,9 @@ import { Events } from '/imports/api/events/events';
 import { addXp } from '/server/api/skills/skills.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from '/server/constants/buffs/index.js';
 import { COMBAT_CRAFTS } from '/server/constants/combat/crafts.js';
-import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat.js';
+import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 

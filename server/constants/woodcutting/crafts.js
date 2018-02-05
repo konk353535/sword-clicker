@@ -34,7 +34,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60, // 60
     xp: 20,
     maxToCraft: 1,
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 4,
     required: [{
       type: 'item',
       itemId: 'copper_bar',
@@ -52,7 +52,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 4
     }]
   },
 
@@ -65,7 +65,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60, // 60
     xp: 30,
     maxToCraft: 1,
-    requiredCraftingLevel: 10,
+    requiredCraftingLevel: 9,
     required: [{
       type: 'item',
       itemId: 'tin_bar',
@@ -83,7 +83,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 10
+      level: 9
     }]
   },
 
@@ -96,7 +96,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60, // 60
     xp: 40,
     maxToCraft: 1,
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_bar',
@@ -114,7 +114,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 14
     }]
   },
 
@@ -127,7 +127,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 50,
     maxToCraft: 1,
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_bar',
@@ -145,7 +145,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 20
+      level: 19
     }]
   },
 
@@ -158,7 +158,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 180, // 60
     xp: 300,
     maxToCraft: 1,
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 24,
     required: [{
       type: 'item',
       itemId: 'silver_essence',
@@ -183,7 +183,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 24
     }]
   },
 
@@ -196,7 +196,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 500,
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 29,
     required: [{
       type: 'item',
       itemId: 'gold_essence',
@@ -221,7 +221,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 29
     }]
   },
 
@@ -234,7 +234,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 1000,
     maxToCraft: 1,
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_essence',
@@ -259,7 +259,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 34
     }]
   },
 
@@ -272,7 +272,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 360, // 60
     xp: 1500,
     maxToCraft: 1,
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_essence',
@@ -297,7 +297,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 40
+      level: 39
     }]
   },
 
@@ -310,7 +310,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 600, // 60
     xp: 2500,
     maxToCraft: 1,
-    requiredCraftingLevel: 45,
+    requiredCraftingLevel: 44,
     required: [{
       type: 'item',
       itemId: 'platinum_essence',
@@ -335,7 +335,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 45
+      level: 44
     }]
   },
 
@@ -348,7 +348,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 3700,
     maxToCraft: 1,
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_essence',
@@ -373,7 +373,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 50
+      level: 49
     }]
   },
 
@@ -386,7 +386,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 6250,
     maxToCraft: 1,
-    requiredCraftingLevel: 55,
+    requiredCraftingLevel: 54,
     required: [{
       type: 'item',
       itemId: 'tungsten_essence',
@@ -411,7 +411,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 55
+      level: 54
     }]
   },
 
@@ -424,7 +424,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 10000,
     maxToCraft: 1,
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_essence',
@@ -449,7 +449,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 60
+      level: 59
     }]
   },
 
@@ -462,7 +462,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 15000,
     maxToCraft: 1,
-    requiredCraftingLevel: 65,
+    requiredCraftingLevel: 64,
     required: [{
       type: 'item',
       itemId: 'cobalt_essence',
@@ -487,7 +487,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 65
+      level: 64
     }]
   },
 
@@ -501,7 +501,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 25000,
     maxToCraft: 1,
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_essence',
@@ -526,7 +526,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 70
+      level: 69
     }]
   },
 
@@ -539,7 +539,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 900, // 60
     xp: 43500,
     maxToCraft: 1,
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_essence',
@@ -564,7 +564,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 75
+      level: 74
     }]
   },
 
@@ -577,7 +577,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 1200, // 60
     xp: 62000,
     maxToCraft: 1,
-    requiredCraftingLevel: 80,
+    requiredCraftingLevel: 79,
     required: [{
       type: 'item',
       itemId: 'orichalcum_essence',
@@ -602,7 +602,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 80
+      level: 79
     }]
   },
 
@@ -615,7 +615,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 1500, // 60
     xp: 125000,
     maxToCraft: 1,
-    requiredCraftingLevel: 85,
+    requiredCraftingLevel: 84,
     required: [{
       type: 'item',
       itemId: 'meteorite_essence',
@@ -640,7 +640,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 85
+      level: 84
     }]
   },
 
@@ -653,7 +653,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 1800, // 60
     xp: 200000,
     maxToCraft: 1,
-    requiredCraftingLevel: 90,
+    requiredCraftingLevel: 89,
     required: [{
       type: 'item',
       itemId: 'fairy_steel_essence',
@@ -678,7 +678,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 90
+      level: 89
     }]
   },
 
@@ -691,7 +691,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 300000,
     maxToCraft: 1,
-    requiredCraftingLevel: 95,
+    requiredCraftingLevel: 94,
     required: [{
       type: 'item',
       itemId: 'elven_steel_essence',
@@ -716,7 +716,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 95
+      level: 94
     }]
   },
 
@@ -729,7 +729,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_essence',
@@ -754,7 +754,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 100
+      level: 99
     }]
   },
 
@@ -768,7 +768,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 543750,
     maxToCraft: 1,
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 104,
     required: [{
       type: 'item',
       itemId: 'adamantium_essence',
@@ -814,7 +814,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 100
+      level: 104
     }]
   },
 
@@ -828,7 +828,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 562500,
     maxToCraft: 1,
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 109,
     required: [{
       type: 'item',
       itemId: 'orichalcum_essence',
@@ -881,7 +881,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 105
+      level: 109
     }]
   },
 
@@ -895,7 +895,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 625000,
     maxToCraft: 1,
-    requiredCraftingLevel: 110,
+    requiredCraftingLevel: 114,
     required: [{
       type: 'item',
       itemId: 'meteorite_essence',
@@ -948,7 +948,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 114
     }]
   }, 
 }

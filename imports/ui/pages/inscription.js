@@ -232,8 +232,9 @@ Template.inscriptionPage.helpers({
   items() {
     return Items.find({
       equipped: false,
+      name: { $regex: /^((?!axe).)*$/ },
       category: {
-        $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book', 'enchantment']
+        $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book', 'enchantment'],
       } 
     }).map((itemModifier));
   },

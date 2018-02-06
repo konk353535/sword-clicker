@@ -443,6 +443,17 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         target.target = caster.id;
         buff.data.damage = caster.stats.magicPower * 2;
+
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+
+        if (hasIntimidate) {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -482,6 +493,17 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         target.target = caster.id;
         buff.data.damage = caster.stats.attackMax * 0.75;
+
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+
+        if (hasIntimidate) {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -522,6 +544,17 @@ export const DEFENSE_BUFFS = {
         buff.data.attack = target.stats.attackMax * 0.1;
         target.stats.attack -= buff.data.attack;
         target.stats.attackMax -= buff.data.attack;
+
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+
+        if (hasIntimidate) {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -557,6 +590,17 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
+
+        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+
+        if (hasIntimidate) {
+          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+            defender: target,
+            attacker: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -662,7 +706,8 @@ export const DEFENSE_BUFFS = {
         if (buff.constants && buff.constants.constants) {
           buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
         }
-        target.stats.damageTaken *= (1 - (99.9 / 100));
+        buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
+        target.stats.damageTaken -= buff.data.damageReduction;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -686,7 +731,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.damageTaken /= (1 - (99.9 / 100));
+        target.stats.damageTaken += buff.data.damageReduction;
       }
     }
   },
@@ -802,5 +847,4 @@ export const DEFENSE_BUFFS = {
       }
     }
   },
-
 }

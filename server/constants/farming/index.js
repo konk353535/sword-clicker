@@ -1,6 +1,9 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing farming/index.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
+console.log('importing farming/index.js PLANTS');
 import { PLANTS } from './plants';
 
+console.log('exporting farming/index.js FARMING');
 export const FARMING = {
   plants: PLANTS,
 

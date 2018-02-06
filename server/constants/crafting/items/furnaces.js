@@ -219,5 +219,25 @@ export const FURNACE_ITEMS = {
     sellPrice: 1,
     tier: 22,
     description: 'Used to combine bars'
-  }
+  },
+
+  radiant_furnace: {
+    id: 'radiant_furnace',
+    icon: 'radiantFurnace.svg',
+    category: 'crafting',
+    name: 'radiant furnace',
+    sellPrice: 1,
+    tier: 23,
+    description: 'Used to combine bars'
+  }, 
+
+  astral_furnace: {
+    id: 'astral_furnace',
+    icon: 'astralFurnace.svg',
+    category: 'crafting',
+    name: 'astral furnace',
+    sellPrice: 1,
+    tier: 24,
+    description: 'Used to combine bars'
+  }, 
 }

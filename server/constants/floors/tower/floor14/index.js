@@ -44,7 +44,7 @@ export const TOWER_FLOOR_14 = {
         { type: 'item', itemId: 'mithril_wand', amount: 1 }
       ]
     }, {
-      chance: 1 / 48,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'violet_wizard_hat', amount: 1 },
         { type: 'item', itemId: 'violet_wizard_shirt', amount: 1 },
@@ -78,7 +78,7 @@ export const TOWER_FLOOR_14 = {
     name: 'Thieves\' Guild',
     enemies: ['cut_purse', 'cut_purse'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'lemon_grass', amount: 1 },
         { type: 'item', itemId: 'garlic_seed', amount: 1 }

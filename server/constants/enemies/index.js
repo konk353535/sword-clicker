@@ -1,12 +1,7 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
-
-import { LEVEL_ONE_ENEMIES } from '/server/constants/enemies/level1/index.js'
-import { LEVEL_TWO_ENEMIES } from '/server/constants/enemies/level2/index.js'
-import { LEVEL_THREE_ENEMIES } from '/server/constants/enemies/level3/index.js'
-import { LEVEL_FOUR_ENEMIES } from '/server/constants/enemies/level4/index.js'
-import { LEVEL_FIVE_ENEMIES } from '/server/constants/enemies/level5/index.js'
+console.log('importing enemies/index.js BOSS_ENEMIES');
 import { BOSS_ENEMIES } from '/server/constants/enemies/bosses/index.js'
 
+console.log('exporting enemies/index.js ENEMIES');
 export const ENEMIES = Object.assign({
 
   grasshopper: {
@@ -981,6 +976,47 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'healthMax',
       amount: 1.5
+    }]
+  },
+
+  warden: {
+    id: 'warden',
+    icon: 'warden.svg',
+    name: 'warden',
+    buffs: [{
+      id: 'warden_shield',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        level: 10, // 80% damage redirection
+        icon: 'warden_shield.svg',
+        name: 'warden shield',
+        allies: 'enemies',
+        applyToAllies: true,
+        appliedToAllies: false,
+        sourceAlly: null
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.35
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.35
+    }, {
+      type: 'times',
+      key: 'armor',
+      amount: 2
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 2
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 2
     }]
   }
 

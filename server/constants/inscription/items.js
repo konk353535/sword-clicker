@@ -1,3 +1,4 @@
+console.log('exporting inscription/items.js INSCRIPTION_ITEMS');
 export const INSCRIPTION_ITEMS = {
   pigment_red_255: {
     id: 'pigment_red_255',
@@ -2324,7 +2325,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 500,
     description: 'Can be consumed for 500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 500 Magic XP.'
+      description: 'consume for 500 Magic XP.'
     }
   },
 
@@ -2337,7 +2338,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1000,
     description: 'Can be consumed for 1000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1000 Magic XP.'
+      description: 'consume for 1000 Magic XP.'
     }
   },
 
@@ -2350,7 +2351,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 1500,
     description: 'Can be consumed for 1500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 1500 Magic XP.'
+      description: 'consume for 1500 Magic XP.'
     }
   },
 
@@ -2363,7 +2364,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 2000,
     description: 'Can be consumed for 2000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 2000 Magic XP.'
+      description: 'consume for 2000 Magic XP.'
     }
   },
 
@@ -2376,7 +2377,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 5000,
     description: 'Can be consumed for 5,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 5,000 Magic XP.'
+      description: 'consume for 5,000 Magic XP.'
     }
   },
 
@@ -2389,7 +2390,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 7500,
     description: 'Can be consumed for 7,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 7,500 Magic XP.'
+      description: 'consume for 7,500 Magic XP.'
     }
   },
 
@@ -2402,7 +2403,7 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 10000,
     description: 'Can be consumed for 10,000 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 10,000 Magic XP.'
+      description: 'consume for 10,000 Magic XP.'
     }
   },
 
@@ -2415,26 +2416,112 @@ export const INSCRIPTION_ITEMS = {
     magicXp: 12500,
     description: 'Can be consumed for 12,500 Magic XP.',
     shiftActionData: {
-      description: 'to consume for 12,500 Magic XP.'
+      description: 'consume for 12,500 Magic XP.'
     }
   },
 
-  /*
-  enchantment_fire: {
-    id: 'enchantment_fire',
-    icon: 'enchantmentFire.svg',
+  enchantment_nullify: {
+    id: 'enchantment_nullify',
+    icon: 'nullify.svg',
     category: 'enchantment',
-    name: 'lesser fire',
-    sellPrice: 50,
+    name: 'nullify enchantment',
+    sellPrice: 0,
     enchantSlot: ['mainHand'],
     description: `
-      Can be consumed to increase an items quality by up to 15%.\n
-      Can only be applied once per item.\n
-      Item quality can not be increased beyond 100%.`,
+      Remove Crafted Enchantment from an Item`,
     shiftActionData: {
-      description: 'increase an items quality by up to 15%',
+      description: 'Remove crafted enchantment from an Item',
+      target: 'item'
+    }
+  },
+
+  enchantment_barkskin: {
+    id: 'enchantment_barkskin',
+    icon: 'barkskin.svg',
+    category: 'enchantment',
+    name: 'barkskin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['chest'],
+    description: `
+      Additional armor which decreases on each enemy hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Chest',
+      target: 'item'
+    }
+  },
+
+  enchantment_flaming_blade: {
+    id: 'enchantment_flaming_blade',
+    icon: 'flamingBlade.svg',
+    category: 'enchantment',
+    name: 'flaming blade enchantment',
+    sellPrice: 0,
+    enchantSlot: ['mainHand'],
+    description: `
+      Additional magic damage based off a portion of each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
+      target: 'item'
+    }
+  },
+
+  enchantment_enchanted_blade: {
+    id: 'enchantment_enchanted_blade',
+    icon: 'magicBlade.svg',
+    category: 'enchantment',
+    name: 'enchanted blade enchantment',
+    sellPrice: 0,
+    enchantSlot: ['mainHand'],
+    description: `
+      Additional magic damage based off your magic power each hit.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Main Hand Weapon',
+      target: 'item'
+    }
+  },
+
+  enchantment_fox_skin: {
+    id: 'enchantment_fox_skin',
+    icon: 'foxSkin.svg',
+    category: 'enchantment',
+    name: 'fox skin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['legs'],
+    description: `
+      Increase attack speed by 20%.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Leg Item',
+      target: 'item'
+    }
+  },
+
+  enchantment_rhino_skin: {
+    id: 'enchantment_rhino_skin',
+    icon: 'rhinoSkin.svg',
+    category: 'enchantment',
+    name: 'rhino skin enchantment',
+    sellPrice: 0,
+    enchantSlot: ['legs'],
+    description: `
+      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additinal damage.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Leg Item',
+      target: 'item'
+    }
+  },
+
+  enchantment_intimidate: {
+    id: 'enchantment_intimidate',
+    icon: 'intimidate.svg',
+    category: 'enchantment',
+    name: 'intimidate enchantment',
+    sellPrice: 0,
+    enchantSlot: ['head'],
+    description: `
+      Taunts abilities will include an attack.`,
+    shiftActionData: {
+      description: 'Apply enchantment to Head Item',
       target: 'item'
     }
   }
-  */
 }

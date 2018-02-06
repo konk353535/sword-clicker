@@ -30,7 +30,7 @@ export const TOWER_FLOOR_5 = {
         { type: 'icon', iconId: 'crow_t1' }
       ]
     }, {
-      chance: 1 / 32,
+      chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_1_tome', amount: 1 }
       ]
@@ -89,7 +89,7 @@ export const TOWER_FLOOR_5 = {
     name: 'Snake',
     enemies: ['snake'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 32,
+      chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'poisoned_blade_1_tome', amount: 1 },
         { type: 'item', itemId: 'poison_dart_tome', amount: 1 }

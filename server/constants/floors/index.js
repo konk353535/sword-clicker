@@ -1,10 +1,9 @@
+console.log('importing floors/index.js TOWER_FLOORS');
 import { TOWER_FLOORS } from './tower/index';
-import { personalQuestMonsterGenerator } from './generators/personalQuest.js';
-import { easyTowerMonsterGenerator } from './generators/easyTower.js';
-import { hardTowerMonsterGenerator } from './generators/hardTower.js';
-import { veryHardTowerMonsterGenerator } from './generators/veryHardTower.js';
-import { genericTowerMonsterGenerator } from './generators/genericTower.js';
+console.log('importing floors/index.js GENERATORS');
+import { GENERATORS } from '/server/constants/floors/generators';
 
+console.log('exporting floors/index.js FLOORS');
 export const FLOORS = Object.assign({
 
   getNewPointCount(floor, activeTowerUsers) {
@@ -45,13 +44,4 @@ export const FLOORS = Object.assign({
     return Math.round(activeTowerUsers * maxPoints * floorDays[floor] * 1);
   },
 
-  // Given a level, create a monster for personal quest
-  personalQuestMonsterGenerator,
-
-  // Given a floor, create a monster for tower
-  easyTowerMonsterGenerator,
-  hardTowerMonsterGenerator,
-  veryHardTowerMonsterGenerator,
-  genericTowerMonsterGenerator
-
-}, TOWER_FLOORS);
+}, TOWER_FLOORS, GENERATORS);

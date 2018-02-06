@@ -1,7 +1,12 @@
+console.log('importing woodcutting/index.js WOODCUTTING_ITEMS');
 import { WOODCUTTING_ITEMS as woodcuttingItems } from './items';
+console.log('importing woodcutting/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 
+console.log('exporting woodcutting/index.js WOODCUTTING_ITEMS');
 export const WOODCUTTING_ITEMS = woodcuttingItems;
+
+console.log('exporting woodcutting/index.js WOODCUTTING');
 export const WOODCUTTING = {
 
   suicidalFury: {

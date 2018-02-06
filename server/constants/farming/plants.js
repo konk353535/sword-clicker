@@ -1,5 +1,7 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
+console.log('importing farming/plants.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
+console.log('exporting farming/plants.js PLANTS');
 export const PLANTS = {
   lettice: {
     produces: 'lettice',
@@ -1208,32 +1210,6 @@ export const PLANTS = {
     }]
   },
 
-  teak_log: {
-    produces: 'teak_log',
-    name: 'teak tree',
-    produceAmount: 20,
-    id: 'teak_log',
-    category: 'farming',
-    icon: 'teakTree.svg',
-    waterStorage: 100,
-    initialWater: 100,
-    requiredWater: 100,
-    growthTime: 8 * 60 * 60,
-    xp:9000,
-    required: [{
-      type: 'item',
-      itemId: 'teak_seed',
-      icon: ITEMS['teak_seed'].icon,
-      name: ITEMS['teak_seed'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'farming',
-      level: 90
-    }]
-  },
-
   willow_log: {
     produces: 'willow_log',
     name: 'willow tree',
@@ -1245,7 +1221,7 @@ export const PLANTS = {
     initialWater: 100,
     requiredWater: 100,
     growthTime: 8 * 60 * 60,
-    xp:10000,
+    xp:9000,
     required: [{
       type: 'item',
       itemId: 'willow_seed',
@@ -1256,11 +1232,35 @@ export const PLANTS = {
     }, {
       type: 'skill',
       name: 'farming',
-      level: 95
+      level: 90
     }]
   },
 
-
+teak_log: {
+    produces: 'teak_log',
+    name: 'teak tree',
+    produceAmount: 20,
+    id: 'teak_log',
+    category: 'farming',
+    icon: 'teakTree.svg',
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 100,
+    growthTime: 8 * 60 * 60,
+    xp:10000,
+    required: [{
+      type: 'item',
+      itemId: 'teak_seed',
+      icon: ITEMS['teak_seed'].icon,
+      name: ITEMS['teak_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 95
+    }]
+  },
 
 
 

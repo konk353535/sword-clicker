@@ -22,13 +22,18 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'nasturtium', amount: 1 },
+      ]
     }]))
   },
   4: {
     name: 'Place of Obsidian',
     enemies: ['obsidian_spirit'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'druids_shirt', amount: 1 },
         { type: 'item', itemId: 'druids_pants', amount: 1 }        
@@ -51,7 +56,7 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
     }, {
-      chance: 1 / 48,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'amber_wizard_hat', amount: 1 },
         { type: 'item', itemId: 'amber_wizard_shirt', amount: 1 },
@@ -85,12 +90,12 @@ export const TOWER_FLOOR_12 = {
     name: 'Bloody River',
     enemies: ['elephant', 'rat', 'spartan'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_5_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 35,
+      chance: 1 / 36,
       rewards: [
         { type: 'icon', iconId: 'adalgar_t1' }
       ]

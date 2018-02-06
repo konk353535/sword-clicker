@@ -21,6 +21,11 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'pineapple', amount: 10 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'lemon_grass', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -37,7 +42,7 @@ export const TOWER_FLOOR_16 = {
     name: 'Fiery Pit',
     enemies: ['demon', 'fire_mage'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'meteor_tome', amount: 1 }
       ]
@@ -76,7 +81,7 @@ export const TOWER_FLOOR_16 = {
     name: 'Howling Abyss',
     enemies: ['ice_giant'],
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'frost_armor_3_tome', amount: 1 }
       ]

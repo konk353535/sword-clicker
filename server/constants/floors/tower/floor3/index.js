@@ -1,7 +1,9 @@
 import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+console.log('importing floor3/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 import { LEVEL_THREE_LOOT_TABLE } from '/server/constants/floors/levels/level3';
 
+console.log('exporting floor3/index.js TOWER_FLOOR_3');
 export const TOWER_FLOOR_3 = {
   1: {
     name: 'Swinging Tree',
@@ -17,11 +19,19 @@ export const TOWER_FLOOR_3 = {
     name: 'Herb Garden',
     enemies: ['butterfly'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
-      chance: 1 / 48,
+      chance: 1 / 16,
       rewards: [
-        { type: 'item', itemId: 'lavender', amount: 1 },
         { type: 'item', itemId: 'juniper', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 24,
+      rewards: [
         { type: 'item', itemId: 'agrimony_seed', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'lavender', amount: 1 }
       ]
     }]))
   },
@@ -39,7 +49,7 @@ export const TOWER_FLOOR_3 = {
     name: 'Abandoned Dojo',
     enemies: ['young_ninja'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
-      chance: 1 / 48,
+      chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
       ]
@@ -67,7 +77,7 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'bronze_mining_hammer', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'lightning_dart_tome', amount: 1 }
       ]

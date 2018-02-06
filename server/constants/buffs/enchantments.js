@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
 
 export const ENCHANTMENT_BUFFS = {
@@ -958,5 +958,186 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       }
     }
-  }
-}
+  },
+
+  winged_shield: {
+    duplicateTag: 'winged_shield', // Used to stop duplicate buffs
+    icon: 'winged_shield.svg',
+    name: 'winged shield',
+    description() {
+      return `Every 15 seconds, blocks the damage from the next attack.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.timeTillDodge = 15;
+        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.data.dodge = false;
+      },
+
+      onTick({ buff, target, secondsElapsed }) {
+        if (buff.data.timeTillDodge > 0) {
+          buff.data.timeTillDodge -= secondsElapsed;
+        } else if (!buff.data.dodge) {
+          buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
+          target.stats.damageTaken -= buff.data.damageReduction;
+          buff.data.dodge = true;
+        }
+        if (buff.data.timeTillDodge < 0) {
+          buff.data.timeTillDodge = 0;
+        }
+        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        // re-add DR once a hit has been tanked
+        if (buff.data.dodge) {
+          defender.stats.damageTaken += buff.data.damageReduction;
+          buff.data.timeTillDodge = 15;
+          buff.data.dodge = false;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  warden_shield: {
+    duplicateTag: 'warden_shield',
+    icon: 'warden_shield.svg',
+    name: 'warden shield',
+    description({ buff, level }) {
+      const defensePerLevel = Math.round(buff.constants.defensePerLevel * 100);
+      const maxDefense = Math.round((buff.constants.baseDefense + (defensePerLevel * level)) * 100);
+      return `
+        Redirects ${maxDefense}% (+${defensePerLevel}% per lvl) damage from allies onto yourself.`;
+    },
+    constants: {
+      baseDefense: 0.3,
+      defensePerLevel: 0.05,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      allies: 'units',
+      applyToAllies: true,
+      appliedToAllies: false,
+      sourceAlly: null
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ buff, target, caster, actualBattle }) {
+        // apply buff to 'allies' if required
+        if (buff.data.applyToAllies && !buff.data.appliedToAllies) {
+          const newBuff = {
+            id: 'warden_shield',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              caster: target.id,
+              icon: 'warden_shield.svg',
+              name: 'warden shield',
+              allies: buff.data.allies,
+              applyToAllies: false,
+              appliedToAllies: false,
+              sourceAlly: target.id,
+              hideBuff: false,
+              level: buff.data.level
+            },
+            constants: BUFFS['warden_shield']
+          };
+          // apply to all but self
+          actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }).forEach((ally) => {
+            addBuff({ buff: newBuff, target: ally, caster: caster });
+          });
+          buff.data.appliedToAllies = true;
+        }
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (buff.data.sourceAlly !== null) {
+          // try fo find ally
+          const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
+          if(!_.isUndefined(sourceAlly)) {
+            // redirect damage from self to sourceAlly
+            const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
+            actualBattle.utils.healTarget(redirectDamage, {
+              caster: sourceAlly,
+              target: defender,
+            });
+            actualBattle.utils.dealDamage(redirectDamage, {
+              attacker: defender,
+              defender: sourceAlly,
+              tickEvents: actualBattle.tickEvents
+            });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  angels_heart: {
+    duplicateTag: 'angels_heart',
+    icon: 'angels_heart.svg',
+    name: 'angels heart',
+    description({ buff, level }) {
+      const healthTransferCost = buff.constants.baseTransferRate * level;
+      const healthTransfer = healthTransferCost * buff.constants.baseTransferEfficiency;
+      return `Heals allies for ${healthTransfer * 4} per second at the cost of ${healthTransferCost * 4} health.`;
+    },
+    constants: {
+      baseTransferRate: 5,
+      baseTransferEfficiency: 1
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      allies: 'units',
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onTick({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        let healthTransferred = false;
+        const healthToTransfer = buff.data.level * constants.baseTransferRate;
+        const actualHealthTransferred = healthToTransfer * constants.baseTransferEfficiency;
+        actualBattle[buff.data.allies].forEach((ally) => {
+          if (ally.id === target.id) return;
+          // transfer HP from self to allies
+          if ((ally.stats.health + actualHealthTransferred) < ally.stats.healthMax) {
+            healthTransferred = true;
+            actualBattle.utils.healTarget(actualHealthTransferred, {
+              caster: target,
+              target: ally,
+              tickEvents: actualBattle.tickEvents
+            });
+          }
+        });
+        if (healthTransferred) {
+          target.stats.health -= healthToTransfer;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+};

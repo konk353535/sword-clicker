@@ -9,9 +9,9 @@ import { Events } from '/imports/api/events/events';
 import { addXp } from '/server/api/skills/skills.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FARMING } from '/server/constants/farming/index.js';
-import { BUFFS } from '/server/constants/combat/index.js';
+import { BUFFS } from '/server/constants/buffs/index.js';
 import { COMBAT_CRAFTS } from '/server/constants/combat/crafts.js';
-import { updateCombatStats, processCombatEvent } from '/server/api/combat/combat.js';
+import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
@@ -252,50 +252,65 @@ Meteor.methods({
     const baseItemConstants = ITEMS[baseItem.itemId];
 
 
-
-    //
-    // Magic books
-    //
-    if ( baseItem.category == "magic_book" ) {
-
-      if( !baseItemConstants.magicXp) {
-        console.log('magic xp not set');
-        return;
-      }
-      //todo - ensure magicxp is set
-      addXp('magic', baseItemConstants.magicXp);
-
-      // Remove the key
-      if (baseItem.amount === 1) {
-        Events.insert({
-          owner: Meteor.userId(),
-          event: 'items.consumeItem',
-          date: new Date(),
-          data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
-        }, () => {});
-        Items.remove({
-          owner: Meteor.userId(),
-          _id: baseItem._id
-        });
-      } else {
-        Items.update({
-          owner: Meteor.userId(),
-          _id: baseItem._id
-        }, {
-          $inc: {
-            amount: -1
-          }
-        });
-      }
+    if (baseItem.category == "magic_book") {
+      UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    if (baseItem.itemId === "jade") {
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "lapislazuli") {
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "sapphire") {
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "emerald") {
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "ruby") {
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    if (baseItem.itemId === "tanzanite") {
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
+    //
+    if (baseItem.category === 'enchantment') {
+      if (baseItem.itemId === "enchantment_nullify") {
+        RemoveEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      } else {
+        UseEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      }
+    }
 
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
       const ENHANCER_KEY_INCREASE = 15;
 
+      if (IsJewelAmulet(targetItem)) {
+        if ( (
+            targetItem.extraStats
+            && targetItem.extraStats.level
+            && targetItem.extraStats.level >= 4 // Amulet Upgrade Limit
+          ) || targetItem.enhanced
+        ) {
+          throw new Meteor.Error("invalid-target", 'Invalid target item');
+        } else {
+          UseKeyOnAmulet(baseItem, baseItemConstants, targetItem, targetItemConstants);
+          return;
+        }
+      }
+
       if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
+      
+
         // Get the current quality
         const originalQuality = targetItem.quality
         const targetItemClone = JSON.parse(JSON.stringify(targetItem));
@@ -436,50 +451,7 @@ Meteor.methods({
           consumeItem(baseItem, 1);
         }
       }
-    } else if (baseItem.category === 'enchantment') {
-
-      console.log('Enchanted Activated.' + targetItem.itemId);
-
-      if (targetItem.enchantmentId) {
-        console.log('Already enchanted.');
-        throw new Meteor.Error("invalid-target", 'Item already enchanted');
-      }
-
-      if (!COMBAT_CRAFTS[targetItem.itemId]) {
-        console.log('Not a recipe');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (!baseItemConstants.enchantSlot) {
-        console.log('Enchant Slot not set');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (!targetItemConstants.slot) {
-        console.log('Target item slot not defined');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
-        console.log('Enchantment slot doesn\'t match target slot');
-        throw new Meteor.Error("invalid-target", 'Item is not crafted.');
-      }
-
-      console.log(targetItem);
-      Items.update({
-        owner: Meteor.userId(),
-        _id: targetItem._id
-      }, {
-        $set: {
-         enchantmentId : baseItem.itemId
-        }
-      });
     }
-
-    // To Do: Make this more generic
-    // If there is a valid behaviour, execute it
-
-    // Done
   },
 
   'items.eat'(_id, itemId) {
@@ -815,3 +787,493 @@ Meteor.publish('items', function() {
   self.ready();
 
 });
+
+
+export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (baseItem.category !== 'magic_book') {
+    return;
+  }
+
+  if (!baseItemConstants.magicXp) {
+    return;
+  }
+
+
+  // Logic 
+  addXp('magic', baseItemConstants.magicXp);
+
+
+  // Post Logic & Cleanup
+  ConsumeItem(baseItem);
+}
+
+export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "jade_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalAccuracy = targetItemConstants.stats.accuracy;
+
+  const accuracyRate = 1.25;
+
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.accuracy = accuracy - originalAccuracy;
+
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "lapislazuli_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalHealthMax = targetItemConstants.stats.healthMax;
+  const originalDefense = targetItemConstants.stats.defense;
+
+  const healthMaxRate = 1.10;
+  const defenseMaxRate = 1.35;
+
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+  const defense = Math.round(originalDefense * Math.pow(defenseMaxRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
+  targetItem.extraStats.defense = defense - originalDefense;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "sapphire_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalMagicPower = targetItemConstants.stats.magicPower;
+
+  const magicPowerRate = 1.20;
+
+  const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.magicPower = magicPower - originalMagicPower;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "emerald_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalHealthMax = targetItemConstants.stats.healthMax;
+
+  const healthMaxRate = 1.15;
+
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "ruby_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalAttack = targetItemConstants.stats.attack;
+  const originalAttackMax = targetItemConstants.stats.attackMax;
+
+  const attackRate = 1.2;
+  const attackMaxRate = 1.15;
+
+  const attack = Math.round(originalAttack * Math.pow(attackRate, level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.attack = attack - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "tanzanite_amulet") {
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 4 times.
+  if (targetItem.extraStats.level >= 4) {
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = targetItem.extraStats.level;
+  const originalAttack = targetItemConstants.stats.attack;
+  const originalAttackMax = targetItemConstants.stats.attackMax;
+  const originalAccuracy = targetItemConstants.stats.accuracy;
+  const originalDefense = targetItemConstants.stats.defense;
+  const originalHealthMax  = targetItemConstants.stats.healthMax;
+  const originalMagicPower = targetItemConstants.stats.magicPower;
+  const originalMagicArmor = targetItemConstants.stats.magicArmor;
+
+  const attackRate = 1.30;
+  const attackMaxRate = 1.30;
+  const accuracyrRate = 1.30;
+  const defenseRate = 1.30;
+  const healthMaxRate = 1.20;
+  const magicPowerRate = 1.50;
+  const magicArmorRate = 1.30;
+
+  const attack = Math.round(originalAttack * Math.pow(attackRate, level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate, level));
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyrRate, level));
+  const defense = Math.round(originalDefense * Math.pow(defenseRate, level));
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+  const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
+  const magicArmor = Math.round(originalMagicArmor * Math.pow(magicArmorRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.attack = attack - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+  targetItem.extraStats.accuracy = accuracy - originalAccuracy;
+  targetItem.extraStats.defense = defense - originalDefense;
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
+  targetItem.extraStats.magicPower = magicPower - originalMagicPower;
+  targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+
+export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  if (targetItem.enchantmentId && targetItem.enchantmentId !== 'undefined') {
+    console.log('Already enchanted.');
+    throw new Meteor.Error("invalid-target", 'Item already enchanted');
+  }
+
+  if (!COMBAT_CRAFTS[targetItem.itemId] ) {
+    if (targetItem.itemId.indexOf('_wizard') == -1 ) {
+      console.log('Not a recipe');
+      throw new Meteor.Error("invalid-target", 'Not a recipe.');
+    }
+  }
+
+  if (!baseItemConstants.enchantSlot) {
+    console.log('Enchant Slot not set');
+    throw new Meteor.Error("invalid-target", 'Enchant Slot not set');
+  }
+
+  if (!targetItemConstants.slot) {
+    console.log('Target item slot not defined');
+    throw new Meteor.Error("invalid-target", 'Target item slot not defined.');
+  }
+
+  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
+    console.log('Enchantment slot doesn\'t match target slot');
+    throw new Meteor.Error("invalid-target", 'Item is not crafted.');
+  }
+
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+     enchantmentId : baseItem.itemId,
+     enchantmentDescription : baseItemConstants.description
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  if (!targetItem.enchantmentId) {
+    throw new Meteor.Error("invalid-target", 'Item not enchanted');
+  }
+
+  if (targetItem.enchantmentId && targetItem.enchantmentId == false) {
+    throw new Meteor.Error("invalid-target", 'Item not enchanted');
+  }
+
+
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+     enchantmentId : 'undefined',
+     enchantmentDescription : 'undefined'
+    }
+  });
+
+  ConsumeItem(baseItem);
+}
+
+
+export const ConsumeItem = function (baseItem) {
+
+    // Remove the key
+    if (baseItem.amount === 1) {
+      Events.insert({
+        owner: Meteor.userId(),
+        event: 'items.consumeItem',
+        date: new Date(),
+        data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+      }, () => {});
+      Items.remove({
+        owner: Meteor.userId(),
+        _id: baseItem._id
+      });
+    } else {
+      Items.update({
+        owner: Meteor.userId(),
+        _id: baseItem._id
+      }, {
+        $inc: {
+          amount: -1
+        }
+      });
+    }
+}
+
+export const IsJewelAmulet = function (targetItem) {
+
+  if(  targetItem.itemId == "jade_amulet"
+    || targetItem.itemId == "lapislazuli_amulet"
+    || targetItem.itemId == "sapphire_amulet"
+    || targetItem.itemId == "emerald_amulet"
+    || targetItem.itemId == "ruby_amulet"
+    || targetItem.itemId == "tanzanite_amulet"
+    ) {
+      return true;
+  }
+
+  return false;
+}
+
+export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  switch (targetItem.itemId) {
+
+    case "jade_amulet":
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "lapislazuli_amulet":
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "sapphire_amulet":
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "emerald_amulet":
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "ruby_amulet":
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "tanzanite_amulet":
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    default:
+      //this shouldn't happen
+      return;
+  }
+
+  // Update the stats of the item
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      enhanced: true
+    }
+  });
+}

@@ -1,11 +1,15 @@
+console.log('importing mining/index.js MINING_ITEMS');
 import { MINING_ITEMS as miningItems } from './items';
+console.log('importing mining/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index';
 
+console.log('exporting mining/index.js MINING_ITEMS');
 export const MINING_ITEMS = miningItems;
 
+console.log('exporting mining/index.js MINING');
 export const MINING = {
   prospecting: {
-    chance: 1 / 6, // 1 spawn every 5 seconds ( 12 / min )
+    chance: 1 / 6, // 1 spawn every 6 seconds ( 10 / min )
   },
   prospectors: {
     stone: {
@@ -935,7 +939,32 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.30
-    }
+    },
+
+    radiant_miner: {
+      requiredMiningLevel: 105,
+      icon: 'cursedMiner.png',
+      name: 'radiant miner',
+      id: 'radiant_miner',
+      required: [{
+        type: 'item',
+        itemId: 'radiant_pickaxe',
+        icon: ITEMS['radiant_pickaxe'].icon,
+        name: ITEMS['radiant_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1600000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 105
+      }],
+      max: 3,
+      damagePerSecond: 0.31
+    },
   },
   ores: {
     stone: {
@@ -1035,7 +1064,7 @@ export const MINING = {
       xp: 50,
       id: 'silver_essence',
       icon: 'silverEssence.png',
-      name: 'silver_essence',
+      name: 'silver essence',
       itemId: 'silver_essence',
       chance: 0.00004
     },
@@ -1070,7 +1099,7 @@ export const MINING = {
       xp: 70,
       id: 'gold_essence',
       icon: 'goldEssence.png',
-      name: 'gold_essence',
+      name: 'gold essence',
       itemId: 'gold_essence',
       chance: 0.00002
     },
@@ -1094,7 +1123,7 @@ export const MINING = {
       xp: 125,
       id: 'carbon_essence',
       icon: 'carbonEssence.png',
-      name: 'carbon_essence',
+      name: 'carbon essence',
       itemId: 'carbon_essence',
       chance: 0.000015
     },
@@ -1118,7 +1147,7 @@ export const MINING = {
       xp: 200,
       id: 'steel_essence',
       icon: 'steelEssence.png',
-      name: 'steel_essence',
+      name: 'steel essence',
       itemId: 'steel_essence',
       chance: 0.00001
     },
@@ -1142,7 +1171,7 @@ export const MINING = {
       xp: 400,
       id: 'platinum_essence',
       icon: 'platinumEssence.png',
-      name: 'platinum_essence',
+      name: 'platinum essence',
       itemId: 'platinum_essence',
       chance: 0.000009
     },
@@ -1166,7 +1195,7 @@ export const MINING = {
       xp: 600,
       id: 'titanium_essence',
       icon: 'titaniumEssence.png',
-      name: 'titanium_essence',
+      name: 'titanium essence',
       itemId: 'titanium_essence',
       chance: 0.000008
     },
@@ -1190,7 +1219,7 @@ export const MINING = {
       xp: 800,
       id: 'tungsten_essence',
       icon: 'tungstenEssence.png',
-      name: 'tungsten_essence',
+      name: 'tungsten essence',
       itemId: 'tungsten_essence',
       chance: 0.000007
     },
@@ -1214,7 +1243,7 @@ export const MINING = {
       xp: 1100,
       id: 'obsidian_essence',
       icon: 'obsidianEssence.png',
-      name: 'obsidian_essence',
+      name: 'obsidian essence',
       itemId: 'obsidian_essence',
       chance: 0.000006
     },
@@ -1238,7 +1267,7 @@ export const MINING = {
       xp: 1400,
       id: 'cobalt_essence',
       icon: 'cobaltEssence.png',
-      name: 'cobalt_essence',
+      name: 'cobalt essence',
       itemId: 'cobalt_essence',
       chance: 0.000005
     },
@@ -1262,7 +1291,7 @@ export const MINING = {
       xp: 2000,
       id: 'mithril_essence',
       icon: 'mithrilEssence.png',
-      name: 'mithril_essence',
+      name: 'mithril essence',
       itemId: 'mithril_essence',
       chance: 0.000004
     },
@@ -1286,7 +1315,7 @@ export const MINING = {
       xp: 3000,
       id: 'adamantium_essence',
       icon: 'adamantiumEssence.png',
-      name: 'adamantium_essence',
+      name: 'adamantium essence',
       itemId: 'adamantium_essence',
       chance: 0.000003
     },
@@ -1310,7 +1339,7 @@ export const MINING = {
       xp: 4500,
       id: 'orichalcum_essence',
       icon: 'orichalcumEssence.png',
-      name: 'orichalcum_essence',
+      name: 'orichalcum essence',
       itemId: 'orichalcum_essence',
       chance: 0.000002
     },
@@ -1334,7 +1363,7 @@ export const MINING = {
       xp: 6000,
       id: 'meteorite_essence',
       icon: 'meteoriteEssence.png',
-      name: 'meteorite_essence',
+      name: 'meteorite essence',
       itemId: 'meteorite_essence',
       chance: 0.000001
     },
@@ -1347,7 +1376,7 @@ export const MINING = {
       canCluster: true,
       id: 'fairy_steel',
       icon: 'fairySteel.png',
-      name: 'fairy_steel',
+      name: 'fairy steel',
       itemId: 'ore_fairy_steel',
       chance: 0.00009
     },
@@ -1358,7 +1387,7 @@ export const MINING = {
       xp: 7500,
       id: 'fairy_steel_essence',
       icon: 'fairySteelEssence.png',
-      name: 'fairy_steel_essence',
+      name: 'fairy steel essence',
       itemId: 'fairy_steel_essence',
       chance: 0.0000009
     },
@@ -1371,7 +1400,7 @@ export const MINING = {
       canCluster: true,
       id: 'elven_steel',
       icon: 'elvenSteel.png',
-      name: 'elven_steel',
+      name: 'elven steel',
       itemId: 'ore_elven_steel',
       chance: 0.00008
     },
@@ -1382,7 +1411,7 @@ export const MINING = {
       xp: 10000,
       id: 'elven_steel_essence',
       icon: 'elvenSteelEssence.png',
-      name: 'elven_steel_essence',
+      name: 'elven steel essence',
       itemId: 'elven_steel_essence',
       chance: 0.0000008
     },
@@ -1406,7 +1435,7 @@ export const MINING = {
       xp: 12500,
       id: 'cursed_essence',
       icon: 'cursedEssence.png',
-      name: 'cursed_essence',
+      name: 'cursed essence',
       itemId: 'cursed_essence',
       chance: 0.0000006
     },

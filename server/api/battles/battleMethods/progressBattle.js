@@ -1,5 +1,6 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
-import { ABILITIES, BUFFS } from '/server/constants/combat/index.js'; // List of available combat stats
+import { ABILITIES } from '/server/constants/combat/index.js'; // List of available combat stats
+import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 
 import moment from 'moment';
@@ -106,22 +107,24 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         defender.stats.health -= damage;
       }
 
-      if (historyStats[attacker.id]) {
+      if (historyStats && historyStats[attacker.id]) {
         historyStats[attacker.id].damageDone += damage;
       }
 
-      if (historyStats[defender.id]) {
+      if (historyStats && historyStats[defender.id]) {
         historyStats[defender.id].damageTaken += damage;
       }
 
-      tickEvents.push({
-        from: attacker ? attacker.id : '',
-        to: defender.id,
-        eventType: 'damage',
-        label: damage.toFixed(1),
-        customColor: isMagic ? 'blue' : customColor,
-        customIcon: isMagic ? 'magic' : customIcon
-      });
+      if(tickEvents) {
+        tickEvents.push({
+          from: attacker ? attacker.id : '',
+          to: defender.id,
+          eventType: 'damage',
+          label: damage.toFixed(1),
+          customColor: isMagic ? 'blue' : customColor,
+          customIcon: isMagic ? 'magic' : customIcon
+        });
+      }
 
       return damage;
     }
@@ -151,14 +154,16 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
         historyStats[caster.id].healingDone += healAmount;
       }
 
-      tickEvents.push({
-        from: caster ? caster.id : '',
-        to: target.id,
-        eventType: 'heal',
-        label: (healAmount).toFixed(1),
-        customColor: '#f5528b',
-        customIcon: 'health'
-      });
+      if(tickEvents) {
+        tickEvents.push({
+          from: caster ? caster.id : '',
+          to: target.id,
+          eventType: 'heal',
+          label: (healAmount).toFixed(1),
+          customColor: '#f5528b',
+          customIcon: 'health'
+        });
+      }
     }
 
     const autoAttack = function({ attacker, defender, tickEvents, historyStats, originalAutoAttack = true }) {

@@ -1,13 +1,15 @@
+console.log('importing combat/index.js COMBAT_ITEMS');
 import { COMBAT_ITEMS as combatItems} from './items';
-import { BUFFS as buffs } from './buffs';
+console.log('importing combat/index.js ABILITIES, ABILITY');
 import { ABILITIES as abilities, ABILITY as ability } from './abilities';
 
-import { ITEMS } from './items';
-
+console.log('exporting combat/index.js ABILITIES');
 export const ABILITIES = abilities;
+console.log('exporting combat/index.js ABILITY');
 export const ABILITY = ability;
-export const BUFFS = buffs;
+console.log('exporting combat/index.js COMBAT_ITEMS');
 export const COMBAT_ITEMS = combatItems;
+console.log('exporting combat/index.js COMBAT');
 export const COMBAT = {
 
   baseEnergyMax: 40,

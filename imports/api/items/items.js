@@ -16,8 +16,7 @@ ItemsSchema = new SimpleSchema({
   quality: { type: Number, optional: true },
   enchantmentId: { type: String, optional: true },
   enchantmentDescription: { type: String, optional: true },
-  hidden: { type: Boolean, optional: true },
-  autoSell: { type: Boolean, optional: true },
+  hidden: { type: Boolean, optional: true }
 });
 
 Items.attachSchema(ItemsSchema);

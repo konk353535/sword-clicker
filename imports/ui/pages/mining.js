@@ -19,7 +19,6 @@ let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
 let oresCache;
-let multihit;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -125,11 +124,13 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 Template.miningPage.events({
 
   'click .multihit-btn'(event, instance) {
-
-    multihit = !multihit;
-
+    
+    // Determine new boolean and label
+    let multihit = Template.instance().$('.multihit-value').val();
+    multihit = multihit == "1" ? 0 : 1;
     let label = multihit ? "Disable Multihit" : "Enable Multihit";
 
+    // Set visual and hidden values
     event.target.innerText = label;
     Template.instance().$('.multihit-value').val(multihit);
   },

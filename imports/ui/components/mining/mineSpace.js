@@ -17,7 +17,6 @@ Template.mineSpace.events({
     const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
     const myMining = Mining.findOne({ owner: Meteor.userId() });
     let multiplier = 1;
-    let potential = 0;
 
     let membershipMultiplier = 1.0;
     const userDoc = Meteor.user();
@@ -26,17 +25,16 @@ Template.mineSpace.events({
       membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
     }
 
-    const multihit = Template.instance().$('.multihit-value');
+    let multihit = $('.multihit-value').val();
+    multihit = multihit == "1" ? true : false;
 
     if (shiftKey || multihit) {
-      for (multiplier = 1; multiplier < 10; multiplier += 1) {
-      
-        potential = myMining.stats.attack * multiplier * membershipMultiplier;
-
-        if(potential > instance.data.mineSpace.health) {
-          break;
-        }
-      }
+      let perHit = myMining.stats.attack * multiplier * membershipMultiplier;
+      console.log("PerHit: " + perHit);
+      let hitsRemaining = Math.ceil(instance.data.mineSpace.health / perHit);
+      console.log("Hits Rem: " + hitsRemaining);
+      multiplier = Math.min( hitsRemaining, 10);
+      console.log("M: " + multiplier);
     }
 
     if (myMining.stats.energy < (myMining.stats.energyPerHit * multiplier)) {

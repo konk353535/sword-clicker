@@ -26,7 +26,9 @@ Template.mineSpace.events({
       membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
     }
 
-    if (shiftKey) {
+    const multihit = Template.instance().$('.multihit-value');
+
+    if (shiftKey || multihit) {
       for (multiplier = 1; multiplier < 10; multiplier += 1) {
       
         potential = myMining.stats.attack * multiplier * membershipMultiplier;

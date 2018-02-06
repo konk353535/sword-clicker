@@ -176,7 +176,6 @@ Template.craftingPage.events({
   'click .item-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.item-filter').data('filter');
     Meteor.call('users.setUiState', 'itemFilter', filter);
-    console.log(filter);
   },
 
   'click .tier-filter'(event, instance) {

@@ -24,10 +24,6 @@ let recipeCache;
 
 const itemModifier = function (item) {
 
-  //if (!item.hidden || item.hidden === undefined) {
-  //  item.hidden = false;
-  //}
-
   if (item.shiftActionData) {
     item.shiftAction = {
       description: item.shiftActionData.description,
@@ -324,10 +320,6 @@ Template.craftingPage.helpers({
     return Template.instance().state.get('itemViewLimit');
   },
 
-  allItemsCount() {
-    return items().length;
-  },
-
   items() {
     const itemViewLimit = Template.instance().state.get('itemViewLimit');
 
@@ -374,7 +366,6 @@ Template.craftingPage.helpers({
 
 
 const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
-  console.log('FetchSomeHiddenItems');
   return Items.find({
     equipped: false,
     hidden: true,
@@ -397,7 +388,6 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
 
 
 const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
-  console.log('FetchSomeVisibleItems: ' + itemViewLimit);
   return Items.find(
     {
       equipped: false,
@@ -429,7 +419,6 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
 
 
 const FetchAllHiddenItems = function(highestFurnaceTier) {
-  console.log('FetchAllHiddenItems');
   return Items.find({
     equipped: false,
     hidden: true,
@@ -451,7 +440,6 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
 
 
 const FetchAllVisibleItems = function (highestFurnaceTier) {
-  console.log('FetchAllVisibleItems');
   return Items.find(
     {
       equipped: false,

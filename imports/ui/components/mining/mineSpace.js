@@ -30,11 +30,8 @@ Template.mineSpace.events({
 
     if (shiftKey || multihit) {
       let perHit = myMining.stats.attack * multiplier * membershipMultiplier;
-      console.log("PerHit: " + perHit);
       let hitsRemaining = Math.ceil(instance.data.mineSpace.health / perHit);
-      console.log("Hits Rem: " + hitsRemaining);
       multiplier = Math.min( hitsRemaining, 10);
-      console.log("M: " + multiplier);
     }
 
     if (myMining.stats.energy < (myMining.stats.energyPerHit * multiplier)) {

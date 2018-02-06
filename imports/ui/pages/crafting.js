@@ -325,12 +325,11 @@ Template.craftingPage.helpers({
   },
 
   allItemsCount() {
-    return Items.find({ equipped: false }).fetch().length;
+    return items().length;
   },
 
   items() {
-    const itemViewLimit = 0;
-    //Template.instance().state.get('itemViewLimit');
+    const itemViewLimit = Template.instance().state.get('itemViewLimit');
 
     // Get highest furnace tier
     const allFurnaces = Items.find({
@@ -343,6 +342,7 @@ Template.craftingPage.helpers({
         tier: -1
       }
     }).fetch();
+
     let highestFurnaceTier = 'stone_furnace';
     if (allFurnaces.length > 0) {
       highestFurnaceTier = allFurnaces[0].tier;
@@ -350,72 +350,131 @@ Template.craftingPage.helpers({
 
     let hidden = Template.instance().state.get('itemFilter') == 'hidden-items' ? true : false;
 
+
     if (itemViewLimit !== 0) {
-      return Items.find({
-        equipped: false,
-        $or: [{
-          tier: highestFurnaceTier,
-        }, {
-          name: {
-            $regex: /^((?!furnace).)*$/
-          }
-        }]
-      }, {
-        limit: itemViewLimit,
-        sort: {
-          category: 1,
-          name: 1,
-          quality: -1
-        }
-      }).map((itemModifier));
+      if (hidden) {
+        return FetchSomeHiddenItems(highestFurnaceTier, itemViewLimit);
+      }
+
+      return FetchSomeVisibleItems(highestFurnaceTier, itemViewLimit);
     }
 
     if (hidden) {
-
-      return Items.find({
-        equipped: false,
-        hidden: true,
-        $or: [{
-          tier: highestFurnaceTier,
-        }, {
-          name: {
-            $regex: /^((?!furnace).)*$/,
-          }
-        }]
-      }, {
-        sort: {
-          category: 1,
-          name: 1,
-          quality: -1
-        }
-      }).map((itemModifier));
+      return FetchAllHiddenItems(highestFurnaceTier);
     }
 
-    return Items.find({
-        equipped: false,
-        $and : [{
-          $or: [{
-            tier: highestFurnaceTier,
-          }, {
-            name: {
-              $regex: /^((?!furnace).)*$/,
-            }
-          }]
-        },
-        { $or : [
-          { hidden : false },
-          { hidden : { $exists : false} } ]
-      }]
-      }, {
-        sort: {
-          category: 1,
-          name: 1,
-          quality: -1
-        }
-      }).map((itemModifier));
+    return FetchAllVisibleItems(highestFurnaceTier);
+    
   },
 
   itemFilter() {
     return Template.instance().state.get('itemFilter');
   },
 });
+
+
+const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
+  console.log('FetchSomeHiddenItems');
+  return Items.find({
+    equipped: false,
+    hidden: true,
+    $or: [{
+      tier: highestFurnaceTier,
+    }, {
+      name: {
+        $regex: /^((?!furnace).)*$/,
+      }
+    }]
+  }, {
+    limit: itemViewLimit,
+    sort: {
+      category: 1,
+      name: 1,
+      quality: -1
+    }
+  }).map((itemModifier));
+}
+
+
+const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
+  console.log('FetchSomeVisibleItems: ' + itemViewLimit);
+  return Items.find(
+    {
+      equipped: false,
+      $and : [
+        {
+          $or: [
+            { tier: highestFurnaceTier },
+            { name: { $regex: /^((?!furnace).)*$/ } }
+          ]
+        },
+        {
+          $or : [
+            { hidden : false },
+            { hidden : { $exists : false } }
+          ]
+        }
+      ]
+    }, {
+      limit: itemViewLimit,
+      sort: {
+        category: 1,
+        name: 1,
+        quality: -1
+      }
+    }
+  ).map((itemModifier));
+};
+
+
+
+const FetchAllHiddenItems = function(highestFurnaceTier) {
+  console.log('FetchAllHiddenItems');
+  return Items.find({
+    equipped: false,
+    hidden: true,
+    $or: [{
+      tier: highestFurnaceTier,
+    }, {
+      name: {
+        $regex: /^((?!furnace).)*$/,
+      }
+    }]
+  }, {
+    sort: {
+      category: 1,
+      name: 1,
+      quality: -1
+    }
+  }).map((itemModifier));
+}
+
+
+const FetchAllVisibleItems = function (highestFurnaceTier) {
+  console.log('FetchAllVisibleItems');
+  return Items.find(
+    {
+      equipped: false,
+      $and : [
+        {
+          $or: [
+            { tier: highestFurnaceTier },
+            { name: { $regex: /^((?!furnace).)*$/ } }
+          ]
+        },
+        {
+          $or : [
+            { hidden : false },
+            { hidden : { $exists : false } }
+          ]
+        }
+      ]
+    }, {
+      sort: {
+        category: 1,
+        name: 1,
+        quality: -1
+      }
+    }
+  ).map((itemModifier));
+};

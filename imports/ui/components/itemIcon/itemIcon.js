@@ -88,7 +88,6 @@ const sellItem = function (event, instance) {
 }
 
 const hideItem = function (event, instance) {
-  if (instance.data.hideTooltip) return;
 
   Template.instance().$('.sellModal').modal('hide');
   Template.instance().$('.useModal').modal('hide');

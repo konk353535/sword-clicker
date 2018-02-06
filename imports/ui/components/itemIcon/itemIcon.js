@@ -95,7 +95,7 @@ const hideItem = function (event, instance) {
 
   const itemData = instance.data.item;
 
-  Meteor.call('items.hideItem', itemData._id, itemData.itemId);
+  Meteor.call('items.hide', itemData._id);
 }
 
 

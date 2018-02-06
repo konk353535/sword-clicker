@@ -18,6 +18,7 @@ Template.itemList.helpers({
 
 
   visibleItems() {
+    console.log('visible-items');
     const instance = Template.instance();
 
     return instance.data.items.filter((item) => {
@@ -26,10 +27,11 @@ Template.itemList.helpers({
   },
 
   hiddenItems() {
+    console.log('hidden-items');
     const instance = Template.instance();
 
     return instance.data.items.filter((item) => {
-      return item.hidden;
+      return item.hidden === true;
     });
   },
 });

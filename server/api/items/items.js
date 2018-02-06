@@ -222,8 +222,8 @@ Meteor.methods({
     }
   },
 
-  'items.hide'({ baseItemId }) {
-    //
+  'items.hide'( baseItemId) {
+    //    
     const baseItem = Items.findOne({
       owner: Meteor.userId(),
       _id: baseItemId
@@ -235,7 +235,7 @@ Meteor.methods({
 
     Items.update({
       owner: Meteor.userId(),
-      _id: targetItem._id
+      _id: baseItem._id
     }, {
       $set: {
         hidden: !baseItem.hidden

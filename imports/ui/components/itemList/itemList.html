@@ -4,9 +4,9 @@
     <div class="mb-1">
       <h3>Visible Items</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        {{#each items}}
-		    {{> itemIcon item=this classes="small"}}
-		{{/each}}
+        {{#each visibleItems}}
+		      {{> itemIcon item=this classes="small"}}
+		    {{/each}}
       </div>
     </div>
   {{/if}}
@@ -15,9 +15,9 @@
     <div class="mb-1">
       <h3>Hidden Items</h3>
       <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        {{#each items}}
-		    {{> itemIcon item=this classes="small"}}
-		{{/each}}
+        {{#each hiddenItems}}
+		      {{> itemIcon item=this classes="small"}}
+		    {{/each}}
       </div>
     </div>
   {{/if}}

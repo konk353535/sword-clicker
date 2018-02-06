@@ -23,6 +23,11 @@ let gameUpdateTimer;
 let recipeCache;
 
 const itemModifier = function (item) {
+
+  //if (!item.hidden || item.hidden === undefined) {
+  //  item.hidden = false;
+  //}
+
   if (item.shiftActionData) {
     item.shiftAction = {
       description: item.shiftActionData.description,
@@ -320,7 +325,7 @@ Template.craftingPage.helpers({
   },
 
   allItemsCount() {
-    return Items.find({ equipped: false, hidden: false }).fetch().length;
+    return Items.find({ equipped: false }).fetch().length;
   },
 
   items() {
@@ -343,6 +348,8 @@ Template.craftingPage.helpers({
       highestFurnaceTier = allFurnaces[0].tier;
     }
 
+    let hidden = Template.instance().state.get('itemFilter') == 'hidden-items' ? true : false;
+
     if (itemViewLimit !== 0) {
       return Items.find({
         equipped: false,
@@ -363,22 +370,49 @@ Template.craftingPage.helpers({
       }).map((itemModifier));
     }
 
-    return Items.find({
-      equipped: false,
-      $or: [{
-        tier: highestFurnaceTier,
+    if (hidden) {
+
+      return Items.find({
+        equipped: false,
+        hidden: true,
+        $or: [{
+          tier: highestFurnaceTier,
+        }, {
+          name: {
+            $regex: /^((?!furnace).)*$/,
+          }
+        }]
       }, {
-        name: {
-          $regex: /^((?!furnace).)*$/
+        sort: {
+          category: 1,
+          name: 1,
+          quality: -1
         }
+      }).map((itemModifier));
+    }
+
+    return Items.find({
+        equipped: false,
+        $and : [{
+          $or: [{
+            tier: highestFurnaceTier,
+          }, {
+            name: {
+              $regex: /^((?!furnace).)*$/,
+            }
+          }]
+        },
+        { $or : [
+          { hidden : false },
+          { hidden : { $exists : false} } ]
       }]
-    }, {
-      sort: {
-        category: 1,
-        name: 1,
-        quality: -1
-      }
-    }).map((itemModifier));
+      }, {
+        sort: {
+          category: 1,
+          name: 1,
+          quality: -1
+        }
+      }).map((itemModifier));
   },
 
   itemFilter() {

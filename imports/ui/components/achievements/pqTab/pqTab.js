@@ -1,33 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { Users } from '/imports/api/users/users.js';
-
-
 import _ from 'underscore';
-
-// Component used in the template
-import '/imports/ui/components/achievements/pqTab/astronomyTab.js';
-
-import './achievements.html';
-
-Template.achievementsPage.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
-
-  Tracker.autorun(() => {
-    const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.achievementTab !== undefined) {
-        this.state.set('currentTab', myUser.uiState.achievementTab);
-      } else {
-        this.state.set('currentTab', 'pq');
-      }
-    }
-  });
-
-
-  
-});
+import './pqTab.html';
 
 Template.achievementsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();

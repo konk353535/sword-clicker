@@ -3,17 +3,12 @@
   <h1>Achievements</h1>
 
   <ul class="nav nav-tabs my-3">
-    <li class="nav-item astronomyTabLink">
-      <a class="nav-link {{#if showAstronomyTab}}active{{/if}}" href="#">Astronomy</a>
-    </li>
-    <li class="nav-item spellBookTabLink">
-      <a class="nav-link {{#if showSpellBookTab}}active{{/if}}" href="#">Spell Book</a>
+    <li class="nav-item pqTabLink">
+      <a class="nav-link {{#if showPqTab}}active{{/if}}" href="#">Personal Quest</a>
     </li>
   </ul>
 
   {{#if showPqTab}}
-    {{> pqTab}}
-  {{else if showSpellBookTab}}
-    {{> spellBookTab}}
+    {{> pqTab achievements=achievements}}
   {{/if}}
 </template>

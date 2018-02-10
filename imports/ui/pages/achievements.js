@@ -7,7 +7,7 @@ import { Users } from '/imports/api/users/users.js';
 import _ from 'underscore';
 
 // Component used in the template
-import '/imports/ui/components/achievements/pqTab/astronomyTab.js';
+import '/imports/ui/components/achievements/pqTab/pqTab.js';
 
 import './achievements.html';
 
@@ -43,80 +43,22 @@ Template.achievementsPage.events({
         instance.state.set('achievements', achievements);
       }
     });
-  }
+  },
+
+  'click .pqTabLink'(event, instance) {
+    if (instance.state.get('currentTab') !== 'pq') {
+      instance.state.set('currentTab', 'pq');
+      Meteor.call('users.setUiState', 'achievementTab', 'pq');
+    }
+  },
 })
 
 Template.achievementsPage.helpers({
   achievements() {
     return Template.instance().state.get('achievements');
-  }
-})
-
-
-
-
-
-
-
-Template.magicPage.events({
-
-  'click .learn-now'(event, instance) {
-    Meteor.call('skills.learnSkill', 'astronomy');
   },
 
-  'click .spellBookTabLink'(event, instance) {
-    if (instance.state.get('currentTab') !== 'spellBook') {
-      instance.state.set('currentTab', 'spellBook');
-      Meteor.call('users.setUiState', 'magicTab', 'spellBook');
-    }
+   showPqTab() {
+    return Template.instance().state.get('currentTab') === 'pq';
   },
-
-  'click .astronomyTabLink'(event, instance) {
-    if (instance.state.get('currentTab') !== 'astronomy') {
-      instance.state.set('currentTab', 'astronomy');
-      Meteor.call('users.setUiState', 'magicTab', 'astronomy');
-    }
-  },
-
-  'click .abilitiesTabLink'(event, instance) {
-    if (instance.state.get('currentTab') !== 'abilities') {
-      instance.state.set('currentTab', 'abilities');
-      Meteor.call('users.setUiState', 'magicTab', 'abilities');
-    }
-  },
-});
-
-Template.magicPage.helpers({
-
-  learnRequirements() {
-    return Template.instance().state.get('learnRequirements');
-  },
-
-  hasLearnRequirements() {
-    return Template.instance().state.get('hasLearnRequirements');
-  },
-
-  learnRequirementsMet() {
-    const instance = Template.instance();
-    return function (met) {
-      instance.state.set('hasLearnRequirements', met);
-    }
-  },
-
-  astronomySkill() {
-    return Skills.findOne({ type: 'astronomy' });
-  },
-
-  showAstronomyTab() {
-    return Template.instance().state.get('currentTab') === 'astronomy';
-  },
-
-  showSpellBookTab() {
-    return Template.instance().state.get('currentTab') === 'spellBook';
-  },
-
-  showAbilitiesTab() {
-    return Template.instance().state.get('currentTab') === 'abilities';
-  }
-
 });

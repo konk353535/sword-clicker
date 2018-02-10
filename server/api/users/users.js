@@ -256,6 +256,7 @@ Meteor.methods({
       'miningTab',
       'farmingTab',
       'magicTab',
+      'achievementTab',
       'towerFloor',
       'questLevel',
       'craftingTierFilter.primitive',

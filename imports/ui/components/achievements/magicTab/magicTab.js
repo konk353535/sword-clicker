@@ -2,14 +2,14 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import _ from 'underscore';
-import './pqTab.html';
+import './magicTab.html';
 
-Template.pqTab.onCreated(function bodyOnCreated() {
+Template.magicTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
 
-Template.pqTab.events({
+Template.magicTab.events({
 })
 
-Template.pqTab.helpers({
+Template.magicTab.helpers({
 })

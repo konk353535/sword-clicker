@@ -3,11 +3,11 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Users } from '/imports/api/users/users.js';
 
-
 import _ from 'underscore';
 
 // Component used in the template
 import '/imports/ui/components/achievements/pqTab/pqTab.js';
+import '/imports/ui/components/achievements/magicTab/magicTab.js';
 
 import './achievements.html';
 
@@ -51,6 +51,13 @@ Template.achievementsPage.events({
       Meteor.call('users.setUiState', 'achievementTab', 'pq');
     }
   },
+
+  'click .magicTabLink'(event, instance) {
+    if (instance.state.get('currentTab') !== 'magic') {
+      instance.state.set('currentTab', 'magic');
+      Meteor.call('users.setUiState', 'achievementTab', 'magic');
+    }
+  },
 })
 
 Template.achievementsPage.helpers({
@@ -58,7 +65,11 @@ Template.achievementsPage.helpers({
     return Template.instance().state.get('achievements');
   },
 
-   showPqTab() {
+  showPqTab() {
     return Template.instance().state.get('currentTab') === 'pq';
+  },
+
+  showMagicTab() {
+    return Template.instance().state.get('currentTab') === 'magic';
   },
 });

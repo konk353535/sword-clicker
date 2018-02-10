@@ -6,9 +6,15 @@
     <li class="nav-item pqTabLink">
       <a class="nav-link {{#if showPqTab}}active{{/if}}" href="#">Personal Quest</a>
     </li>
+    <li class="nav-item magicTabLink">
+      <a class="nav-link {{#if showMagicTab}}active{{/if}}" href="#">Magic Quest</a>
+    </li>
   </ul>
 
   {{#if showPqTab}}
     {{> pqTab achievements=achievements}}
+  {{/if}}
+  {{#if showMagicTab}}
+    {{> magicTab achievements=achievements}}
   {{/if}}
 </template>

@@ -435,11 +435,13 @@ export const completeBattle = function (actualBattle) {
     }
 
     let totalMagicXp = 0;
+    let spellsCast = [];
 
     unit.abilities.forEach((ability) => {
       if (ability.isSpell) {
         const spellConstants = MAGIC.spells[ability.id];
         totalMagicXp += ability.totalCasts * spellConstants.xp;
+        spellsCast[ability.id] = 1;
       }
     });
 
@@ -461,6 +463,16 @@ export const completeBattle = function (actualBattle) {
         });
         totalMagicXp *= 1.2;
       }
+
+      let totalSpellsCast = Object.keys(spellsCast).length;
+
+      //
+      // Record total number of unique spells cast per battle
+      Users.update(unit.owner, {
+        $inc: {
+          'stats.spellsCast': totalSpellsCast
+        }
+      });
 
       addXp('magic', totalMagicXp, unit.owner);
     }

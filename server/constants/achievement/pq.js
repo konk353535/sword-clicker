@@ -1,14 +1,3 @@
-/*
-import { AMULET_CRAFTS } from './crafts/amulet';
-import { STAFF_CRAFTS } from './crafts/staff';
-
-export const COMBAT_CRAFTS = Object.assign(
-  COPPER_CRAFTS,
-  TIN_CRAFTS,
-  BRONZE_CRAFTS,
-  IRON_CRAFTS,
-  */
-
 console.log('exporting achievement/pq.js PQ_ACHIEVEMENTS');
 export const PQ_ACHIEVEMENTS = {
   'pq_10': {

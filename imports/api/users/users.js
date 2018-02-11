@@ -98,7 +98,11 @@ UserSchema = new SimpleSchema({
 
   personalQuest: { type: Object },
   'personalQuest.level': { type: Number, defaultValue: 1 },
-  'personalQuest.wave': { type: Number, defaultValue: 1 }
+  'personalQuest.wave': { type: Number, defaultValue: 1 },
+
+
+  stats: { type: Object },
+  'stats.spellsCast' : { type: Number, defaultValue: 1 }
 })
 
 Meteor.users.attachSchema(UserSchema);

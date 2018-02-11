@@ -6,8 +6,11 @@ import { Users } from '/imports/api/users/users.js';
 import _ from 'underscore';
 
 // Component used in the template
-import '/imports/ui/components/achievements/pqTab/pqTab.js';
-import '/imports/ui/components/achievements/magicTab/magicTab.js';
+import '/imports/ui/components/achievements/combatAchieveTab/combatAchieveTab.js';
+import '/imports/ui/components/achievements/craftingAchieveTab/craftingAchieveTab.js';
+import '/imports/ui/components/achievements/pqAchieveTab/pqAchieveTab.js';
+import '/imports/ui/components/achievements/magicAchieveTab/magicAchieveTab.js';
+import '/imports/ui/components/achievements/towerAchieveTab/towerAchieveTab.js';
 
 import './achievements.html';
 
@@ -45,6 +48,20 @@ Template.achievementsPage.events({
     });
   },
 
+  'click .combatTabLink'(event, instance) {
+    if (instance.state.get('currentTab') !== 'combat') {
+      instance.state.set('currentTab', 'combat');
+      Meteor.call('users.setUiState', 'achievementTab', 'combat');
+    }
+  },
+
+  'click .craftingTabLink'(event, instance) {
+    if (instance.state.get('currentTab') !== 'crafting') {
+      instance.state.set('currentTab', 'crafting');
+      Meteor.call('users.setUiState', 'achievementTab', 'crafting');
+    }
+  },
+
   'click .pqTabLink'(event, instance) {
     if (instance.state.get('currentTab') !== 'pq') {
       instance.state.set('currentTab', 'pq');
@@ -58,6 +75,14 @@ Template.achievementsPage.events({
       Meteor.call('users.setUiState', 'achievementTab', 'magic');
     }
   },
+
+  'click .towerTabLink'(event, instance) {
+    if (instance.state.get('currentTab') !== 'tower') {
+      instance.state.set('currentTab', 'tower');
+      Meteor.call('users.setUiState', 'achievementTab', 'tower');
+    }
+  },
+
 })
 
 Template.achievementsPage.helpers({
@@ -65,11 +90,27 @@ Template.achievementsPage.helpers({
     return Template.instance().state.get('achievements');
   },
 
-  showPqTab() {
-    return Template.instance().state.get('currentTab') === 'pq';
+  showCombatTab() {
+    return Template.instance().state.get('currentTab') === 'combat';
+  },
+
+  showCraftingTab() {
+    return Template.instance().state.get('currentTab') === 'crafting';
   },
 
   showMagicTab() {
     return Template.instance().state.get('currentTab') === 'magic';
   },
+
+  showPqTab() {
+    return Template.instance().state.get('currentTab') === 'pq';
+  },
+
+  showTowerTab() {
+    return Template.instance().state.get('currentTab') === 'tower';
+  },
+
+
+
+  
 });

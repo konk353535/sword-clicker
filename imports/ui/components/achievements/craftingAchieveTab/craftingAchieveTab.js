@@ -2,14 +2,14 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import _ from 'underscore';
-import './magicTab.html';
+import './craftingAchieveTab.html';
 
-Template.magicTab.onCreated(function bodyOnCreated() {
+Template.craftingAchieveTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
 
-Template.magicTab.events({
+Template.craftingAchieveTab.events({
 })
 
-Template.magicTab.helpers({
+Template.craftingAchieveTab.helpers({
 })

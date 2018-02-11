@@ -3,18 +3,37 @@
   <h1>Achievements</h1>
 
   <ul class="nav nav-tabs my-3">
+    <li class="nav-item combatTabLink">
+      <a class="nav-link {{#if showCombatTab}}active{{/if}}" href="#">Combat</a>
+    </li>
+    <li class="nav-item craftingTabLink">
+      <a class="nav-link {{#if showCraftingTab}}active{{/if}}" href="#">Crafting</a>
+    </li>
+    <li class="nav-item magicTabLink">
+      <a class="nav-link {{#if showMagicTab}}active{{/if}}" href="#">Magic</a>
+    </li>
     <li class="nav-item pqTabLink">
       <a class="nav-link {{#if showPqTab}}active{{/if}}" href="#">Personal Quest</a>
     </li>
-    <li class="nav-item magicTabLink">
-      <a class="nav-link {{#if showMagicTab}}active{{/if}}" href="#">Magic Quest</a>
+    <li class="nav-item towerTabLink">
+      <a class="nav-link {{#if showTowerTab}}active{{/if}}" href="#">Tower</a>
     </li>
   </ul>
 
-  {{#if showPqTab}}
-    {{> pqTab achievements=achievements}}
+  
+  {{#if showCombatTab}}
+    {{> combatTab achievements=achievements}}
+  {{/if}}
+  {{#if showCraftingTab}}
+    {{> craftingTab achievements=achievements}}
   {{/if}}
   {{#if showMagicTab}}
     {{> magicTab achievements=achievements}}
+  {{/if}}
+  {{#if showPqTab}}
+    {{> pqTab achievements=achievements}}
+  {{/if}}
+  {{#if showTowerTab}}
+    {{> towerTab achievements=achievements}}
   {{/if}}
 </template>

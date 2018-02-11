@@ -162,7 +162,7 @@ export const PLANTS = {
     name: 'tulip',
     id: 'tulip',
     category: 'farming',
-    icon: ITEMS['zinnia'].icon,
+    icon: ITEMS['tulip'].icon,
     waterStorage: 100,
     initialWater: 100,
     requiredWater: 50,

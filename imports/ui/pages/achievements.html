@@ -1,31 +1,40 @@
 <template name="achievementsPage">
+
   <h1>Achievements</h1>
-  <table class="table table-centered table-responsive">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Requirements</th>
-        <th>Rewards</th>
-        <th>Collect</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each achievements}}
-      <tr>
-        <th scope="row">{{this.name}}</th>
-        <td>{{this.description}}</td>
-        <td>{{> requiredItems requiredItems=this.rewards hideTooltip=true ignoreRequired=true}}</td>
-        <td>
-          {{#if this.collected}}
-            <button class="btn btn-primary" disabled=true>Collected</button>
-          {{else if this.canCollect}}
-            <button class="btn btn-primary btn-collect" data-id="{{this.id}}">Collect</button>
-          {{else}}
-            <button class="btn btn-primary" disabled=true>Collect</button>
-          {{/if}}
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>  
+
+  <ul class="nav nav-tabs my-3">
+  	<li class="nav-item pqTabLink">
+      <a class="nav-link {{#if showPqAchieveTab}}active{{/if}}" href="#">Personal Quest</a>
+    </li>
+    <li class="nav-item combatTabLink">
+      <a class="nav-link {{#if showCombatAchieveTab}}active{{/if}}" href="#">Combat</a>
+    </li>
+    <li class="nav-item craftingTabLink">
+      <a class="nav-link {{#if showCraftingAchieveTab}}active{{/if}}" href="#">Crafting</a>
+    </li>
+  	<li class="nav-item magicTabLink">
+      <a class="nav-link {{#if showMagicAchieveTab}}active{{/if}}" href="#">Magic</a>
+    </li>
+    <li class="nav-item towerTabLink">
+      <a class="nav-link {{#if showTowerAchieveTab}}active{{/if}}" href="#">Tower</a>
+    </li>
+  </ul>
+
+
+  {{#if showPqAchieveTab}}
+    {{> pqAchieveTab achievements=achievements}}
+  {{/if}}
+  {{#if showCombatAchieveTab}}
+    {{> combatAchieveTab achievements=achievements}}
+  {{/if}}
+  {{#if showCraftingAchieveTab}}
+    {{> craftingAchieveTab achievements=achievements}}
+  {{/if}}
+  {{#if showMagicAchieveTab}}
+    {{> magicAchieveTab achievements=achievements}}
+  {{/if}}
+  {{#if showTowerAchieveTab}}
+    {{> towerAchieveTab achievements=achievements}}
+  {{/if}}
+
 </template>

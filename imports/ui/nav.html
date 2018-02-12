@@ -139,6 +139,11 @@
                   Skills
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'achievements'}}active{{/if}}" href="/achievements">
+                  Achievements
+                </a>
+              </li>
               {{#if currentUser.newUpdates}}
                 <li class="nav-item">
                   <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>

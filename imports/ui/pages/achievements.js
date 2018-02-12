@@ -108,9 +108,5 @@ Template.achievementsPage.helpers({
 
   showTowerAchieveTab() {
     return Template.instance().state.get('currentTab') === 'tower';
-  },
-
-
-
-  
+  }
 });

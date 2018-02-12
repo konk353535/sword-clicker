@@ -3,37 +3,42 @@
   <h1>Achievements</h1>
 
   <ul class="nav nav-tabs my-3">
+  	<li class="nav-item pqTabLink">
+      <a class="nav-link {{#if showPqAchieveTab}}active{{/if}}" href="#">Personal Quest</a>
+    </li>
+
     <li class="nav-item combatTabLink">
-      <a class="nav-link {{#if showCombatTab}}active{{/if}}" href="#">Combat</a>
+      <a class="nav-link {{#if showCombatAchieveTab}}active{{/if}}" href="#">Combat</a>
     </li>
     <li class="nav-item craftingTabLink">
-      <a class="nav-link {{#if showCraftingTab}}active{{/if}}" href="#">Crafting</a>
+      <a class="nav-link {{#if showCraftingAchieveTab}}active{{/if}}" href="#">Crafting</a>
     </li>
-    <li class="nav-item magicTabLink">
-      <a class="nav-link {{#if showMagicTab}}active{{/if}}" href="#">Magic</a>
-    </li>
-    <li class="nav-item pqTabLink">
-      <a class="nav-link {{#if showPqTab}}active{{/if}}" href="#">Personal Quest</a>
+  	<li class="nav-item magicTabLink">
+      <a class="nav-link {{#if showMagicAchieveTab}}active{{/if}}" href="#">Magic</a>
     </li>
     <li class="nav-item towerTabLink">
-      <a class="nav-link {{#if showTowerTab}}active{{/if}}" href="#">Tower</a>
+      <a class="nav-link {{#if showTowerAchieveTab}}active{{/if}}" href="#">Tower</a>
     </li>
   </ul>
 
-  
-  {{#if showCombatTab}}
-    {{> combatTab achievements=achievements}}
+
+  {{#if showPqAchieveTab}}
+    {{> pqAchieveTab achievements=achievements}}
   {{/if}}
-  {{#if showCraftingTab}}
-    {{> craftingTab achievements=achievements}}
+
+  {{#if showCombatAchieveTab}}
+    {{> combatAchieveTab achievements=achievements}}
   {{/if}}
-  {{#if showMagicTab}}
-    {{> magicTab achievements=achievements}}
+
+  {{#if showCraftingAchieveTab}}
+    {{> craftingAchieveTab achievements=achievements}}
   {{/if}}
-  {{#if showPqTab}}
-    {{> pqTab achievements=achievements}}
+
+  {{#if showMagicAchieveTab}}
+    {{> magicAchieveTab achievements=achievements}}
   {{/if}}
-  {{#if showTowerTab}}
-    {{> towerTab achievements=achievements}}
+  {{#if showTowerAchieveTab}}
+    {{> towerAchieveTab achievements=achievements}}
   {{/if}}
+
 </template>

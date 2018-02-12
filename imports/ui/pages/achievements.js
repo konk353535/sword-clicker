@@ -90,23 +90,23 @@ Template.achievementsPage.helpers({
     return Template.instance().state.get('achievements');
   },
 
-  showCombatTab() {
+  showCombatAchieveTab() {
     return Template.instance().state.get('currentTab') === 'combat';
   },
 
-  showCraftingTab() {
+  showCraftingAchieveTab() {
     return Template.instance().state.get('currentTab') === 'crafting';
   },
 
-  showMagicTab() {
+  showMagicAchieveTab() {
     return Template.instance().state.get('currentTab') === 'magic';
   },
 
-  showPqTab() {
+  showPqAchieveTab() {
     return Template.instance().state.get('currentTab') === 'pq';
   },
 
-  showTowerTab() {
+  showTowerAchieveTab() {
     return Template.instance().state.get('currentTab') === 'tower';
   },
 

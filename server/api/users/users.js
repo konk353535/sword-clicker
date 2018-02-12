@@ -280,7 +280,8 @@ Meteor.methods({
       'craftingTierFilter.fairy_steel',
       'craftingTierFilter.elven_steel',
       'craftingTierFilter.cursed',
-      'battleAgain'
+      'battleAgain',
+      'itemFilter',
     ];
 
     if (_.contains(validIds, id)) {

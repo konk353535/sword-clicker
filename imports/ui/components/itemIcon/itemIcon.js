@@ -70,7 +70,9 @@ const sellItem = function (event, instance) {
 
   Template.instance().$('.sellModal').modal('hide');
   Template.instance().$('.useModal').modal('hide');
+
   const itemData = instance.data.item;
+
   if (instance.state.get('quickSelling')) {
     Session.set('instaSellDateTo', moment().add(10, 'seconds').toDate());
     toastr.error('Quick selling enabled for 10 seconds!');
@@ -83,6 +85,16 @@ const sellItem = function (event, instance) {
     }, 11000)
   }
   Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
+}
+
+const hideItem = function (event, instance) {
+
+  Template.instance().$('.sellModal').modal('hide');
+  Template.instance().$('.useModal').modal('hide');
+
+  const itemData = instance.data.item;
+
+  Meteor.call('items.hide', itemData._id);
 }
 
 
@@ -179,5 +191,9 @@ Template.itemIcon.events({
     if(shiftAction) {
       shiftAction.method();
     }
+  },
+
+  'click .hide-btn'(event, instance) {
+    hideItem(event, instance);
   }
 })

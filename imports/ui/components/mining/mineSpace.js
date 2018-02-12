@@ -18,8 +18,20 @@ Template.mineSpace.events({
     const myMining = Mining.findOne({ owner: Meteor.userId() });
     let multiplier = 1;
 
-    if (shiftKey) {
-      multiplier = 10;
+    let membershipMultiplier = 1.0;
+    const userDoc = Meteor.user();
+
+    if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+      membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
+    }
+
+    let multihit = $('.multihit-value').val();
+    multihit = multihit == "1" ? true : false;
+
+    if (shiftKey || multihit) {
+      let perHit = myMining.stats.attack * multiplier * membershipMultiplier;
+      let hitsRemaining = Math.ceil(instance.data.mineSpace.health / perHit);
+      multiplier = Math.min( hitsRemaining, 10);
     }
 
     if (myMining.stats.energy < (myMining.stats.energyPerHit * multiplier)) {
@@ -27,13 +39,6 @@ Template.mineSpace.events({
       if (multiplier === 0) {
         multiplier = 1;
       }
-    }
-
-    let membershipMultiplier = 1.0;
-    const userDoc = Meteor.user();
-
-    if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
-      membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
     }
 
     if (instance.data.mineSpace.oreId) {

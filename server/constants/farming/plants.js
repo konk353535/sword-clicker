@@ -78,6 +78,31 @@ export const PLANTS = {
     }]
   },
 
+  pink_hydrangea: {
+    produces: 'pink_hydrangea',
+    name: 'pink hydrangea',
+    id: 'pink_hydrangea',
+    category: 'farming',
+    icon: ITEMS['pink_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'pink_hydrangea_seed',
+      icon: ITEMS['pink_hydrangea_seed'].icon,
+      name: ITEMS['pink_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 29
+    }]
+  },
+
   // 0.25 hours, 2800g/hr
   hydrangea: {
     produces: 'hydrangea',
@@ -101,6 +126,31 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 39
+    }]
+  },
+
+  red_hydrangea: {
+    produces: 'red_hydrangea',
+    name: 'red hydrangea',
+    id: 'red_hydrangea',
+    category: 'farming',
+    icon: ITEMS['red_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'red_hydrangea_seed',
+      icon: ITEMS['red_hydrangea_seed'].icon,
+      name: ITEMS['red_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 49
     }]
   },
 

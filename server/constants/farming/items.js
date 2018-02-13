@@ -80,6 +80,31 @@ export const FARMING_ITEMS = {
     sellPrice: 400
   },
 
+  pink_hydrangea_seed: {
+    id: 'pink_hydrangea_seed',
+    icon: 'pinkHydrangeaSeed.svg',
+    category: 'seed',
+    name: 'pink hydrangea seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'pink_hydrangea'
+  },
+
+  pink_hydrangea: {
+    id: 'pink_hydrangea',
+    icon: 'pinkHydrangea.svg',
+    category: 'herb',
+    name: 'pinkhydrangea',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 550
+  },
+
+
   hydrangea_seed: {
     id: 'hydrangea_seed',
     icon: 'hydrangeaSeed.svg',
@@ -102,6 +127,30 @@ export const FARMING_ITEMS = {
       return 'Sells for $$$'
     },
     sellPrice: 700
+  },
+
+  red_hydrangea_seed: {
+    id: 'red_hydrangea_seed',
+    icon: 'redHydrangeaSeed.svg',
+    category: 'seed',
+    name: 'red hydrangea Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'red_hydrangea'
+  },
+
+  red_hydrangea: {
+    id: 'red_hydrangea',
+    icon: 'redHydrangea.svg',
+    category: 'herb',
+    name: 'red_hydrangea',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 775
   },
 
   poppy_seed: {

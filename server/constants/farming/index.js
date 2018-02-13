@@ -53,6 +53,21 @@ export const FARMING = {
       }]
     },
 
+    pink_hydrangea_seed: {
+      id: 'pink_hydrangea_seed',
+      itemId: 'pink_hydrangea_seed',
+      requiredFarmingLevel: 29,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 29
+      }]
+    },
+
     hydrangea_seed: {
       id: 'hydrangea_seed',
       itemId: 'hydrangea_seed',
@@ -65,6 +80,21 @@ export const FARMING = {
         type: 'skill',
         name: 'farming',
         level: 39
+      }]
+    },
+
+    red_hydrangea_seed: {
+      id: 'red_hydrangea_seed',
+      itemId: 'red_hydrangea_seed',
+      requiredFarmingLevel: 49,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 49
       }]
     },
 

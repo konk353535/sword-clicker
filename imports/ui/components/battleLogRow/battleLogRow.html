@@ -111,20 +111,25 @@
           {{/each}}
           </tbody>
         </table>
-        {{#if computedBattle.loot }}
-          <div class="d-flex flex-column">
-            {{#each computedLoot}}
-              <div class="mb-2 d-flex flex-row align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
-                <div class="d-flex flex-row mx-3">
-                  +{{this.amount}}
-                  <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
-                </div>
-                <button class="btn btn-primary">
-                  {{this.ngChoice}}
-                </button>
+        {{#if $gt ngCountdown 0 }}
+          {{#if computedBattle.loot}}
+            <div class="d-flex flex-column">
+              <div class="mb-2 mx-3 d-flex flex-row align-items-center">
+                Time Remaining: {{ ngCountdown }}s
               </div>
-            {{/each}}
-          </div>
+              {{#each computedBattle.myLoot}}
+                <div class="mb-2 d-flex flex-row align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
+                  <div class="d-flex flex-row mx-3">
+                    +{{this.amount}}
+                    <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
+                  </div>
+                  <button class="btn {{#if $eq this.ngChoice 'greed'}}btn-primary{{/if}}{{#if $eq this.ngChoice 'need'}}btn-success{{/if}} ng-selector" data-loot-id="{{this.lootId}}" data-choice="{{this.ngChoice}}">
+                    {{this.ngChoice}}
+                  </button>
+                </div>
+              {{/each}}
+            </div>
+          {{/if}}
         {{/if}}
       </div>
     {{/if}}

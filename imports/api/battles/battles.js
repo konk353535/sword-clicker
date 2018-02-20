@@ -93,6 +93,7 @@ BattlesSchema = new SimpleSchema({
   finalTickEvents: { type: [Object], blackbox: true, optional: true },
 
   loot: { type: [Object], optional: true },
+  'loot.$.lootId': { type: String },
   'loot.$.type': { type: String },
   'loot.$.icon': { type: String },
   'loot.$.itemId': { type: String },

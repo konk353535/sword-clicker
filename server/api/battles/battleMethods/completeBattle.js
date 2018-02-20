@@ -7,6 +7,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import { MAGIC } from '/server/constants/magic/index.js';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
@@ -260,8 +261,8 @@ export const completeBattle = function (actualBattle) {
         // special reward handling for need/greed flagged items
         // if (rewardGained.ng && owners.length > 1) {
         if (!rewardGained.ng) {
-          console.log('owners', owners, owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}));
           ngRewards.push({
+            lootId: new Meteor.Collection.ObjectID()._str,
             type: 'item',
             itemId: rewardGained.itemId,
             amount: rewardGained.amount,

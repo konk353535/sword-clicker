@@ -260,7 +260,10 @@ export const completeBattle = function (actualBattle) {
       if (rewardGained.type === 'item') {
         // special reward handling for need/greed flagged items
         // if (rewardGained.ng && owners.length > 1) {
-        if (!rewardGained.ng) {
+        const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
+          return matcher(rewardGained.itemId);
+        });
+        if (rewardGained.ng || ng) {
           ngRewards.push({
             lootId: new Meteor.Collection.ObjectID()._str,
             type: 'item',

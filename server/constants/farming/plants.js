@@ -458,8 +458,6 @@ export const PLANTS = {
     }]
   },
 
-
-
   lemon: {
     produces: 'lemon',
     name: 'lemon',
@@ -1415,12 +1413,6 @@ teak_log: {
   },
 
 
-
-
-
-
-
-
   endive: {
     produces: 'endive',
     name: 'endive',
@@ -1620,5 +1612,4 @@ teak_log: {
       level: 30
     }]
   }
-
 }

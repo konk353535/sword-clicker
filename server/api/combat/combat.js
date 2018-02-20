@@ -367,7 +367,7 @@ Meteor.methods({
     };
     update.$set[`loot.${lootIdx}.owners.${ownerIdx}.ngChoice`] = choice;
 
-    Battles.update({owners: Meteor.userId(), 'loot.lootId': lootId}, update);
+    Battles.update(battle._id, update);
   }
 });
 

@@ -263,7 +263,7 @@ export const completeBattle = function (actualBattle) {
         const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
           return matcher(rewardGained.itemId);
         });
-        if (rewardGained.ng || ng) {
+        if (owners.length > 1 && rewardGained.ng || ng) {
           ngRewards.push({
             lootId: new Meteor.Collection.ObjectID()._str,
             type: 'item',

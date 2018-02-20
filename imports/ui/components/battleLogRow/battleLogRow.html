@@ -115,7 +115,8 @@
           {{#if computedBattle.loot}}
             <div class="d-flex flex-column">
               <div class="mb-2 mx-3 d-flex flex-row align-items-center">
-                Time Remaining: {{ computedBattle.timer }}s
+                <span>Time Remaining: {{ computedBattle.timer }}s</span>
+                {{> helpIcon title='Need Greed' content=ngHelpContent}}
               </div>
               {{#each computedBattle.myLoot}}
                 <div class="mb-2 d-flex flex-row align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">

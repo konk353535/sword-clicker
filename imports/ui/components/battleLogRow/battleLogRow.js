@@ -82,5 +82,26 @@ Template.battleLogRow.helpers({
 
   showMore() {
     return Template.instance().state.get('showMore');
-  }
+  },
+
+  ngHelpContent() {
+    return `
+      <p>
+        <b>What</b><br />
+        Need / Greed is a loot system where players<br />
+        can opt-in to rolling for an item.
+      </p>
+      <p>
+        <b>Need</b><br />
+        If one or more people select Need, only those<br />
+        people roll for the item.
+      </p>
+      <p>
+        <b>Greed</b><br />
+        The default option, if anyone selected Need<br />
+        then the item will not go to a player who selects<br /> 
+        Greed. If no one selected Need, then everyone rolls<br />
+        for the item.
+      </p>`
+  },
 });

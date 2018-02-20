@@ -13,7 +13,7 @@ import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
-import { Battles, BattlesList, BattlesLoot } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
 import { Users } from '/imports/api/users/users';
 import { Abilities } from '/imports/api/abilities/abilities';

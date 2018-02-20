@@ -3,6 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
+import { Battles } from '/imports/api/battles/battles';
 
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
@@ -338,8 +339,37 @@ Meteor.methods({
         lastGameUpdated: new Date()
       })
     });
+  },
+
+  'combat.clickedNeedGreed'(lootId, choice) {
+    if (!lootId || !(choice === 'need' || choice === 'greed')) {
+      return;
+    }
+
+    const battle = Battles.findOne({owners: Meteor.userId(), 'loot.lootId': lootId, createdAt: {$gte: moment().subtract(30, 'second').toDate()}});
+
+    if (!battle) return;
+
+    const lootIdx = battle.loot.findIndex((loot) => {
+      return loot.lootId === lootId
+    });
+
+    if (lootIdx === -1) return;
+
+    const ownerIdx = battle.loot[lootIdx].owners.findIndex((owner) => {
+      return owner.id === Meteor.userId();
+    });
+
+    if (ownerIdx === -1) return;
+
+    let update = {
+      $set: {}
+    };
+    update.$set[`loot.${lootIdx}.owners.${ownerIdx}.ngChoice`] = choice;
+
+    Battles.update(battle._id, update);
   }
-})
+});
 
 const MINUTE = 60 * 1000;
 

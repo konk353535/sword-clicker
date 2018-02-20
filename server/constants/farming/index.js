@@ -191,6 +191,36 @@ export const FARMING = {
       }]
     },
 
+    reed_seed: {
+      id: 'reed_seed',
+      itemId: 'reed_seed',
+      requiredFarmingLevel: 16,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 16
+      }]
+    },
+
+    papyrus_seed: {
+      id: 'papyrus_seed',
+      itemId: 'papyrus_seed',
+      requiredFarmingLevel: 26,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 26
+      }]
+    },
+
     bamboo_seed: {
       id: 'bamboo_seed',
       itemId: 'bamboo_seed',
@@ -206,13 +236,28 @@ export const FARMING = {
       }]
     },
 
+    palm_seed: {
+      id: 'palm_seed',
+      itemId: 'palm_seed',
+      requiredFarmingLevel: 46,
+      required: [{
+        type: 'gold',
+        amount: 25,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 46
+      }]
+    },
+
     kenaf_seed: {
       id: 'kenaf_seed',
       itemId: 'kenaf_seed',
       requiredFarmingLevel: 56,
       required: [{
         type: 'gold',
-        amount: 100,
+        amount: 25,
         consumes: true
       }, {
         type: 'skill',
@@ -220,21 +265,7 @@ export const FARMING = {
         level: 56
       }]
     },
-
-    palm_seed: {
-      id: 'palm_seed',
-      itemId: 'palm_seed',
-      requiredFarmingLevel: 76,
-      required: [{
-        type: 'gold',
-        amount: 250,
-        consumes: true
-      }, {
-        type: 'skill',
-        name: 'farming',
-        level: 76
-      }]
-    },
+    
 
     pear_seed: {
       id: 'pear_seed',
@@ -691,15 +722,15 @@ export const FARMING = {
     chrysanthemum_seed: {
       id: 'chrysanthemum_seed',
       itemId: 'chrysanthemum_seed',
-      requiredFarmingLevel: 25,
+      requiredFarmingLevel: 19,
       required: [{
         type: 'gold',
-        amount: 600,
+        amount: 50,
         consumes: true
       }, {
         type: 'skill',
         name: 'farming',
-        level: 25
+        level: 19
       }]
     },
 

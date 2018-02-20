@@ -333,6 +333,56 @@ export const PLANTS = {
     }]
   },
 
+  reed: {
+    produces: 'reed',
+    name: 'reed',
+    id: 'reed',
+    category: 'farming',
+    icon: ITEMS['reed'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 150,
+    required: [{
+      type: 'item',
+      itemId: 'reed_seed',
+      icon: ITEMS['reed_seed'].icon,
+      name: ITEMS['reed_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 16
+    }]
+  },
+
+  papyrus: {
+    produces: 'papyrus',
+    name: 'papyrus',
+    id: 'papyrus',
+    category: 'farming',
+    icon: ITEMS['papyrus'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 30 * 60,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'papyrus_seed',
+      icon: ITEMS['papyrus_seed'].icon,
+      name: ITEMS['papyrus_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 26
+    }]
+  },
+
   bamboo: {
     produces: 'bamboo',
     name: 'bamboo',
@@ -355,6 +405,31 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 36
+    }]
+  },
+
+  palm: {
+    produces: 'palm',
+    name: 'palm',
+    id: 'palm',
+    category: 'farming',
+    icon: ITEMS['palm'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'palm_seed',
+      icon: ITEMS['palm_seed'].icon,
+      name: ITEMS['palm_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 46
     }]
   },
 
@@ -383,30 +458,7 @@ export const PLANTS = {
     }]
   },
 
-  palm: {
-    produces: 'palm',
-    name: 'palm',
-    id: 'palm',
-    category: 'farming',
-    icon: ITEMS['palm'].icon,
-    waterStorage: 100,
-    initialWater: 100,
-    requiredWater: 50,
-    growthTime: 60 * 60 * 2,
-    xp: 8000,
-    required: [{
-      type: 'item',
-      itemId: 'palm_seed',
-      icon: ITEMS['palm_seed'].icon,
-      name: ITEMS['palm_seed'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'farming',
-      level: 76
-    }]
-  },
+
 
   lemon: {
     produces: 'lemon',

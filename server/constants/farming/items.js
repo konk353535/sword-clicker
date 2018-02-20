@@ -153,6 +153,54 @@ export const FARMING_ITEMS = {
     sellPrice: 775
   },
 
+  sun_rose_seed: {
+    id: 'sun_rose_seed',
+    icon: 'sunRoseSeed.svg',
+    category: 'seed',
+    name: 'sun rose Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'sun_rose'
+  },
+
+  sun_rose: {
+    id: 'sun_rose',
+    icon: 'sunRose.svg',
+    category: 'herb',
+    name: 'sun_rose',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 825
+  },
+
+  crimson_rose_seed: {
+    id: 'crimson_rose_seed',
+    icon: 'crimsonRoseSeed.svg',
+    category: 'seed',
+    name: 'crimson rose Seed',
+    seedType: 'misc',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'sun_rose'
+  },
+
+  crimson_rose: {
+    id: 'crimson_rose',
+    icon: 'crimsonRose.svg',
+    category: 'herb',
+    name: 'crimson_rose',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 900
+  },
+
   poppy_seed: {
     id: 'poppy_seed',
     icon: 'poppySeed.svg',

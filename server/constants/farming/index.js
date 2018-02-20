@@ -98,6 +98,36 @@ export const FARMING = {
       }]
     },
 
+    sun_rose_seed: {
+      id: 'sun_rose_seed',
+      itemId: 'sun_rose_seed',
+      requiredFarmingLevel: 59,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 59
+      }]
+    },
+
+    crimson_rose_seed: {
+      id: 'crimson_rose_seed',
+      itemId: 'crimson_rose_seed',
+      requiredFarmingLevel: 69,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 69
+      }]
+    },
+
     poppy_seed: {
       id: 'poppy_seed',
       itemId: 'poppy_seed',
@@ -128,6 +158,8 @@ export const FARMING = {
       }]
     },
 
+    /*
+    // Substitute crimson rose for tulip
     tulip_seed: {
       id: 'tulip_seed',
       itemId: 'tulip_seed',
@@ -142,6 +174,7 @@ export const FARMING = {
         level: 69
       }]
     },
+    */
 
     cactus_seed: {
       id: 'cactus_seed',

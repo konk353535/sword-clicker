@@ -154,6 +154,56 @@ export const PLANTS = {
     }]
   },
 
+  sun_rose: {
+    produces: 'sun_rose',
+    name: 'sun rose',
+    id: 'sun_rose',
+    category: 'farming',
+    icon: ITEMS['sun_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'sun_rose_seed',
+      icon: ITEMS['sun_rose_seed'].icon,
+      name: ITEMS['sun_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 59
+    }]
+  },
+
+  crimson_rose: {
+    produces: 'crimson_rose',
+    name: 'crimson rose',
+    id: 'crimson_rose',
+    category: 'farming',
+    icon: ITEMS['crimson_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'crimson_rose_seed',
+      icon: ITEMS['crimson_rose_seed'].icon,
+      name: ITEMS['crimson_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 69
+    }]
+  },
+
   // 4 hours, 800g/hr
   poppy: {
     produces: 'poppy',

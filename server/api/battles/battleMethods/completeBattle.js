@@ -1,5 +1,4 @@
 import _ from 'underscore';
-const util = require('util');
 
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -326,7 +325,6 @@ export const completeBattle = function (actualBattle) {
         }
       }
     });
-    console.log('ngRewards: ', util.inspect(ngRewards, false, null));
 
     if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
       if (actualBattle.room !== 'boss') {

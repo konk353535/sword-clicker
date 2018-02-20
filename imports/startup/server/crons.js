@@ -224,7 +224,6 @@ SyncedCron.add({
         {lootResolved: false}
       ]
     }).fetch().forEach((battle) => {
-      console.log('battle._id', battle._id);
       battle.loot.forEach((loot, lootIdx) => {
         if (loot.owners.length === 0) return;
 
@@ -250,6 +249,7 @@ SyncedCron.add({
           amount: loot.amount,
           itemId: loot.itemId,
           affectedGlobalBuff: loot.affectedGlobalBuff,
+          affectedNeedGreed: true,
           icon: ITEMS[loot.itemId].icon,
           owner: winner
         };

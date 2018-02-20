@@ -25,7 +25,7 @@
           {{/if}}
 
           {{#if $eq this.type 'item'}}
-            <div class="ml-1 d-flex align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
+            <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
               +{{this.amount}}
               <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
             </div>
@@ -92,7 +92,7 @@
                 <div class="d-flex">
                   {{#each this.tickEvents}}
                     {{#if $eq this.type 'item'}}
-                      <div class="ml-1 d-flex align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">
+                      <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
                         +{{this.amount}}
                         <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
                       </div>
@@ -111,11 +111,11 @@
           {{/each}}
           </tbody>
         </table>
-        {{#if $gt ngCountdown 0 }}
+        {{#if $gt computedBattle.timer 0 }}
           {{#if computedBattle.loot}}
             <div class="d-flex flex-column">
               <div class="mb-2 mx-3 d-flex flex-row align-items-center">
-                Time Remaining: {{ ngCountdown }}s
+                Time Remaining: {{ computedBattle.timer }}s
               </div>
               {{#each computedBattle.myLoot}}
                 <div class="mb-2 d-flex flex-row align-items-center {{#if this.affectedGlobalBuff}}text-info{{/if}}">

@@ -5,11 +5,10 @@ import _ from 'underscore';
 
 import './battleLogRow.html';
 
-let ngInterval = undefined;
+const timerDep = new Tracker.Dependency;
 
 Template.battleLogRow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.state.set('ngCountdown', 0);
 });
 
 Template.battleLogRow.events({
@@ -34,6 +33,7 @@ Template.battleLogRow.events({
 
 Template.battleLogRow.helpers({
   computedBattle() {
+    timerDep.depend();
     const instance = Template.instance();
     const battle = instance.data.battle;
 
@@ -64,18 +64,15 @@ Template.battleLogRow.helpers({
       })
     });
 
+    battle.timer = 0;
+
     if (battle.myLoot.length) {
       instance.state.set('showMore', true);
-      instance.state.set('ngTimer', moment(battle.createdAt).add(30, 'second').toDate());
-      if (_.isUndefined(ngInterval) ) {
-        ngInterval = Meteor.setInterval(function() {
-          const countdown = -moment.duration(moment().diff(instance.state.get('ngTimer'))).asSeconds();
-          if (countdown > 0) {
-            instance.state.set('ngCountdown', countdown);
-          } else {
-            instance.state.set('ngCountdown', 0);
-            Meteor.clearInterval(ngInterval);
-          }
+      const countdown = Math.round(-moment.duration(moment().diff(moment(battle.createdAt).add(30, 'second').toDate())).asSeconds());
+      if (countdown > 0) {
+        battle.timer = countdown;
+        setTimeout(function () {
+          timerDep.changed();
         }, 1000);
       }
     }
@@ -85,10 +82,5 @@ Template.battleLogRow.helpers({
 
   showMore() {
     return Template.instance().state.get('showMore');
-  },
-
-  ngCountdown() {
-    const instance = Template.instance();
-    return Math.round(instance.state.get('ngCountdown'));
   }
 });

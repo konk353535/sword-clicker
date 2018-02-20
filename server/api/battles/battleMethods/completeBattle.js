@@ -270,7 +270,6 @@ export const completeBattle = function (actualBattle) {
             affectedGlobalBuff: rewardGained.affectedGlobalBuff,
             owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
           });
-          console.log('ngRewards: ', util.inspect(ngRewards, false, null));
         } else {
           const luckyOwner = _.sample(owners);
           addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
@@ -325,6 +324,7 @@ export const completeBattle = function (actualBattle) {
         }
       }
     });
+    console.log('ngRewards: ', util.inspect(ngRewards, false, null));
 
     if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
       if (actualBattle.room !== 'boss') {

@@ -70,7 +70,6 @@ Template.battleLogRow.helpers({
       if (_.isUndefined(ngInterval) ) {
         ngInterval = Meteor.setInterval(function() {
           const countdown = -moment.duration(moment().diff(instance.state.get('ngTimer'))).asSeconds();
-          console.log('countdown', countdown);
           if (countdown > 0) {
             instance.state.set('ngCountdown', countdown);
           } else {

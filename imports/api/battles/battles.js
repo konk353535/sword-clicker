@@ -32,6 +32,7 @@ BattlesSchema = new SimpleSchema({
   carryOverRewards: { type: [Object], blackbox: true, optional: true },
   historyStats: { type: Object, blackbox: true, optional: true },
   tick: { type: Number, defaultValue: 0, optional: true },
+  lootResolved: { type: Boolean, optional: true },
 
   units: { type: [Object], optional: true }, // Usually just your player, but leave options open for pets
   'units.$.stats': { type: Object, blackbox: true },

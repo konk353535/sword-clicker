@@ -1,5 +1,7 @@
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
+import { ITEMS } from '/server/constants/items';
+import { Meteor } from 'meteor/meteor';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
@@ -9,6 +11,8 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+import { addItem } from '/server/api/items/items';
+import _ from 'underscore';
 
 const redis = new Meteor.RedisCollection('redis');
 
@@ -199,6 +203,65 @@ SyncedCron.add({
       });
     });
 
+    return true;
+  }
+});
+
+// Resolve Need Greed loot
+SyncedCron.add({
+  name: 'Resolve Need Greed loot',
+  schedule: function(parser) {
+    return parser.cron('* * * * * * *');
+  },
+  job: function() {
+    Battles.find({
+      'loot.0': { $exists: true },
+      createdAt: {
+        $lte: moment().subtract(1, 'minutes').toDate()
+      },
+      $or: [
+        {lootResolved: {$exists: false}},
+        {lootResolved: false}
+      ]
+    }).fetch().forEach((battle) => {
+      console.log('battle._id', battle._id);
+      battle.loot.forEach((loot, lootIdx) => {
+        if (loot.owners.length === 0) return;
+
+        const needMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'need'; });
+        const greedMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'greed'; });
+        if (needMembers.length === 0 && greedMembers.length === 0) return;
+        let winner = undefined;
+        if (needMembers.length) {
+          winner = _.sample(needMembers).id;
+        } else {
+          winner = _.sample(greedMembers).id;
+        }
+
+        addItem(loot.itemId, loot.amount, winner);
+
+        let update = {
+          $set: {},
+          $push: {}
+        };
+        update.$set[`loot.${lootIdx}.winner`] = winner;
+        update.$push['finalTickEvents'] = {
+          type: 'item',
+          amount: loot.amount,
+          itemId: loot.itemId,
+          affectedGlobalBuff: loot.affectedGlobalBuff,
+          icon: ITEMS[loot.itemId].icon,
+          owner: winner
+        };
+        Battles.update(battle._id, update);
+      });
+
+      Battles.update(battle._id, {
+        $set: {
+          lootResolved: true
+        }
+      });
+    });
     return true;
   }
 });

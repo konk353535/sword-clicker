@@ -348,25 +348,19 @@ Meteor.methods({
 
     const battle = Battles.findOne({owners: Meteor.userId(), 'loot.lootId': lootId, createdAt: {$gte: moment().subtract(30, 'second').toDate()}});
 
-    if (!battle) {
-      return;
-    }
+    if (!battle) return;
 
     const lootIdx = battle.loot.findIndex((loot) => {
       return loot.lootId === lootId
     });
 
-    if (lootIdx === -1) {
-      return;
-    }
+    if (lootIdx === -1) return;
 
     const ownerIdx = battle.loot[lootIdx].owners.findIndex((owner) => {
       return owner.id === Meteor.userId();
     });
 
-    if (ownerIdx === -1) {
-      return;
-    }
+    if (ownerIdx === -1) return;
 
     let update = {
       $set: {}

@@ -78,6 +78,31 @@ export const PLANTS = {
     }]
   },
 
+  pink_hydrangea: {
+    produces: 'pink_hydrangea',
+    name: 'pink hydrangea',
+    id: 'pink_hydrangea',
+    category: 'farming',
+    icon: ITEMS['pink_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'pink_hydrangea_seed',
+      icon: ITEMS['pink_hydrangea_seed'].icon,
+      name: ITEMS['pink_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 29
+    }]
+  },
+
   // 0.25 hours, 2800g/hr
   hydrangea: {
     produces: 'hydrangea',
@@ -101,6 +126,81 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 39
+    }]
+  },
+
+  red_hydrangea: {
+    produces: 'red_hydrangea',
+    name: 'red hydrangea',
+    id: 'red_hydrangea',
+    category: 'farming',
+    icon: ITEMS['red_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'red_hydrangea_seed',
+      icon: ITEMS['red_hydrangea_seed'].icon,
+      name: ITEMS['red_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 49
+    }]
+  },
+
+  sun_rose: {
+    produces: 'sun_rose',
+    name: 'sun rose',
+    id: 'sun_rose',
+    category: 'farming',
+    icon: ITEMS['sun_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'sun_rose_seed',
+      icon: ITEMS['sun_rose_seed'].icon,
+      name: ITEMS['sun_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 59
+    }]
+  },
+
+  crimson_rose: {
+    produces: 'crimson_rose',
+    name: 'crimson rose',
+    id: 'crimson_rose',
+    category: 'farming',
+    icon: ITEMS['crimson_rose'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'crimson_rose_seed',
+      icon: ITEMS['crimson_rose_seed'].icon,
+      name: ITEMS['crimson_rose_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 69
     }]
   },
 
@@ -233,6 +333,56 @@ export const PLANTS = {
     }]
   },
 
+  reed: {
+    produces: 'reed',
+    name: 'reed',
+    id: 'reed',
+    category: 'farming',
+    icon: ITEMS['reed'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 150,
+    required: [{
+      type: 'item',
+      itemId: 'reed_seed',
+      icon: ITEMS['reed_seed'].icon,
+      name: ITEMS['reed_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 16
+    }]
+  },
+
+  papyrus: {
+    produces: 'papyrus',
+    name: 'papyrus',
+    id: 'papyrus',
+    category: 'farming',
+    icon: ITEMS['papyrus'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 30 * 60,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'papyrus_seed',
+      icon: ITEMS['papyrus_seed'].icon,
+      name: ITEMS['papyrus_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 26
+    }]
+  },
+
   bamboo: {
     produces: 'bamboo',
     name: 'bamboo',
@@ -258,6 +408,31 @@ export const PLANTS = {
     }]
   },
 
+  palm: {
+    produces: 'palm',
+    name: 'palm',
+    id: 'palm',
+    category: 'farming',
+    icon: ITEMS['palm'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 500,
+    required: [{
+      type: 'item',
+      itemId: 'palm_seed',
+      icon: ITEMS['palm_seed'].icon,
+      name: ITEMS['palm_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 46
+    }]
+  },
+
   kenaf: {
     produces: 'kenaf',
     name: 'kenaf',
@@ -280,31 +455,6 @@ export const PLANTS = {
       type: 'skill',
       name: 'farming',
       level: 56
-    }]
-  },
-
-  palm: {
-    produces: 'palm',
-    name: 'palm',
-    id: 'palm',
-    category: 'farming',
-    icon: ITEMS['palm'].icon,
-    waterStorage: 100,
-    initialWater: 100,
-    requiredWater: 50,
-    growthTime: 60 * 60 * 2,
-    xp: 8000,
-    required: [{
-      type: 'item',
-      itemId: 'palm_seed',
-      icon: ITEMS['palm_seed'].icon,
-      name: ITEMS['palm_seed'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'farming',
-      level: 76
     }]
   },
 
@@ -1263,12 +1413,6 @@ teak_log: {
   },
 
 
-
-
-
-
-
-
   endive: {
     produces: 'endive',
     name: 'endive',
@@ -1468,5 +1612,4 @@ teak_log: {
       level: 30
     }]
   }
-
 }

@@ -97,6 +97,14 @@ Template.farmingPage.events({
     instance.state.set('seedsFilter', 'misc');
   },
 
+  'click .xpLink'(event, instance) {
+    instance.state.set('seedsFilter', 'xp');
+  },
+
+  'click .goldLink'(event, instance) {
+    instance.state.set('seedsFilter', 'gold');
+  },
+
   'click .herbLink'(event, instance) {
     instance.state.set('seedsFilter', 'herb');
   },

@@ -229,6 +229,7 @@ export const PLANTS = {
     }]
   },
 
+  
   crimson_rose: {
     produces: 'crimson_rose',
     name: 'crimson rose',

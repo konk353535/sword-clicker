@@ -163,7 +163,7 @@ export const FARMING_ITEMS = {
       return 'Sells for $$$'
     },
     sellPrice: 1,
-    produces: 'sunburst_hydragea'
+    produces: 'sunburst_hydrangea'
   },
 
   sunburst_hydrangea: {

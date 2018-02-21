@@ -680,7 +680,7 @@ Meteor.methods({
       return;
     }
 
-    const itemConstants = ITEMS[currentItem.itemId]
+    const itemConstants = ITEMS[currentItem.itemId];
     let amountToSell = amount;
 
     if (amountToSell >= currentItem.amount) {
@@ -692,7 +692,7 @@ Meteor.methods({
         owner: Meteor.userId(),
         event: 'items.sell',
         date: new Date(),
-        data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner }
+        data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner, quantity: amountToSell, goldGained: amountToSell * itemConstants.sellPrice }
       }, () => {});
       if (itemsUpdated <= 0) {
         return;
@@ -708,7 +708,12 @@ Meteor.methods({
       const itemsUpdated = Items.update(currentItem._id, {
         $inc: { amount: (amountToSell * -1) }
       });
-
+      Events.insert({
+        owner: Meteor.userId(),
+        event: 'items.sell',
+        date: new Date(),
+        data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner, quantity: amountToSell, goldGained: amountToSell * itemConstants.sellPrice }
+      }, () => {});
       if (itemsUpdated <= 0) {
         return;
       }

@@ -392,8 +392,6 @@ Meteor.methods({
       shopItem.name = ITEMS[shopItem.itemId].name;
       shopItem.seedType = ITEMS[shopItem.itemId].seedType;
 
-        console.log(shopItem.itemId);
-
       if (_.isFunction(producesConstants.description)) {
         shopItem.description = producesConstants.description();
       } else {

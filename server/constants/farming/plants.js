@@ -179,6 +179,56 @@ export const PLANTS = {
     }]
   },
 
+  sunburst_hydrangea: {
+    produces: 'sunburst_hydrangea',
+    name: 'sunburst hydrangea',
+    id: 'sunburst_hydrangea',
+    category: 'farming',
+    icon: ITEMS['sunburst_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'sunburst_hydrangea_seed',
+      icon: ITEMS['sunburst_hydrangea_seed'].icon,
+      name: ITEMS['sunburst_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 59
+    }]
+  },
+
+  crimson_hydrangea: {
+    produces: 'crimson_hydrangea',
+    name: 'crimson hydrangea',
+    id: 'crimson_hydrangea',
+    category: 'farming',
+    icon: ITEMS['crimson_hydrangea'].icon,
+    waterStorage: 100,
+    initialWater: 100,
+    requiredWater: 50,
+    growthTime: 15 * 60,
+    xp: 3,
+    required: [{
+      type: 'item',
+      itemId: 'crimson_hydrangea_seed',
+      icon: ITEMS['crimson_hydrangea_seed'].icon,
+      name: ITEMS['crimson_hydrangea_seed'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'farming',
+      level: 69
+    }]
+  },
+
   crimson_rose: {
     produces: 'crimson_rose',
     name: 'crimson rose',

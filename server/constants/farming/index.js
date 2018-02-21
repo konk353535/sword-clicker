@@ -98,6 +98,36 @@ export const FARMING = {
       }]
     },
 
+    sunburst_hydrangea_seed: {
+      id: 'sunburst_hydrangea_seed',
+      itemId: 'sunburst_hydrangea_seed',
+      requiredFarmingLevel: 59,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 59
+      }]
+    },
+
+    crimson_hydrangea_seed: {
+      id: 'crimson_hydrangea_seed',
+      itemId: 'crimson_hydrangea_seed',
+      requiredFarmingLevel: 69,
+      required: [{
+        type: 'gold',
+        amount: 50,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'farming',
+        level: 69
+      }]
+    },
+    /*
     sun_rose_seed: {
       id: 'sun_rose_seed',
       itemId: 'sun_rose_seed',
@@ -127,7 +157,7 @@ export const FARMING = {
         level: 69
       }]
     },
-
+    */
     poppy_seed: {
       id: 'poppy_seed',
       itemId: 'poppy_seed',

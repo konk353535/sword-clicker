@@ -58,22 +58,24 @@ Template.battleLogRow.helpers({
       });
     });
 
-    battle.myLoot = battle.loot.map((loot) => {
-      return Object.assign({}, _.omit(loot, 'owners'), {
-        ngChoice: loot.owners.find((owner) => { return owner.id === Meteor.userId() }).ngChoice
-      })
-    });
-
     battle.timer = 0;
 
-    if (battle.myLoot.length) {
-      instance.state.set('showMore', true);
-      const countdown = Math.round(-moment.duration(moment().diff(moment(battle.createdAt).add(30, 'second').toDate())).asSeconds());
-      if (countdown > 0) {
-        battle.timer = countdown;
-        setTimeout(function () {
-          timerDep.changed();
-        }, 1000);
+    if (battle.loot) {
+      battle.myLoot = battle.loot.map((loot) => {
+        return Object.assign({}, _.omit(loot, 'owners'), {
+          ngChoice: loot.owners.find((owner) => { return owner.id === Meteor.userId() }).ngChoice
+        })
+      });
+
+      if (battle.myLoot.length) {
+        instance.state.set('showMore', true);
+        const countdown = Math.round(-moment.duration(moment().diff(moment(battle.createdAt).add(30, 'second').toDate())).asSeconds());
+        if (countdown > 0) {
+          battle.timer = countdown;
+          setTimeout(function () {
+            timerDep.changed();
+          }, 1000);
+        }
       }
     }
 

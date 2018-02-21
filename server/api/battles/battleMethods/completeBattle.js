@@ -267,6 +267,7 @@ export const completeBattle = function (actualBattle) {
             type: 'item',
             itemId: rewardGained.itemId,
             amount: rewardGained.amount,
+            name: ITEMS[rewardGained.itemId].name,
             icon: ITEMS[rewardGained.itemId].icon,
             affectedGlobalBuff: rewardGained.affectedGlobalBuff,
             owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
@@ -279,6 +280,7 @@ export const completeBattle = function (actualBattle) {
             amount: rewardGained.amount,
             itemId: rewardGained.itemId,
             affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+            name: ITEMS[rewardGained.itemId].name,
             icon: ITEMS[rewardGained.itemId].icon,
             owner: luckyOwner
           });

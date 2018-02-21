@@ -97,6 +97,7 @@ BattlesSchema = new SimpleSchema({
   'loot.$.lootId': { type: String },
   'loot.$.type': { type: String },
   'loot.$.icon': { type: String },
+  'loot.$.name': { type: String },
   'loot.$.itemId': { type: String },
   'loot.$.amount': { type: Number },
   'loot.$.owners': { type: [Object], blackbox: true },

@@ -97,7 +97,7 @@ export const FARMING_ITEMS = {
     id: 'pink_hydrangea',
     icon: 'pinkHydrangea.svg',
     category: 'gold',
-    name: 'pinkhydrangea',
+    name: 'pink hydrangea',
     description() {
       return 'Sells for $$$'
     },
@@ -146,11 +146,35 @@ export const FARMING_ITEMS = {
     id: 'red_hydrangea',
     icon: 'redHydrangea.svg',
     category: 'gold',
-    name: 'red_hydrangea',
+    name: 'red hydrangea',
     description() {
       return 'Sells for $$$'
     },
     sellPrice: 775
+  },
+
+  sunburst_hydragea_seed: {
+    id: 'sunburst_hydragea_seed',
+    icon: 'sunburstHydrageaSeed.svg',
+    category: 'seed',
+    name: 'sunburst hydragea Seed',
+    seedType: 'gold',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'sunburst_hydragea'
+  },
+
+  sunburst_hydragea: {
+    id: 'sunburst_hydragea',
+    icon: 'sunburstHydragea.svg',
+    category: 'gold',
+    name: 'sunburst hydragea',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 825
   },
 
   sun_rose_seed: {
@@ -177,6 +201,30 @@ export const FARMING_ITEMS = {
     sellPrice: 825
   },
 
+  crimson_hydrangea_seed: {
+    id: 'crimson_hydrangea_seed',
+    icon: 'crimsonHydrangeaeSeed.svg',
+    category: 'seed',
+    name: 'crimson hydrangea Seed',
+    seedType: 'gold',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 1,
+    produces: 'crimson_hydrangea'
+  },
+
+  crimson_hydrangea: {
+    id: 'crimson_hydrangea',
+    icon: 'crimsonHydrangea.svg',
+    category: 'gold',
+    name: 'crimson_hydrangea',
+    description() {
+      return 'Sells for $$$'
+    },
+    sellPrice: 900
+  },
+
   crimson_rose_seed: {
     id: 'crimson_rose_seed',
     icon: 'crimsonRoseSeed.svg',
@@ -187,7 +235,7 @@ export const FARMING_ITEMS = {
       return 'Sells for $$$'
     },
     sellPrice: 1,
-    produces: 'sun_rose'
+    produces: 'crimson_rose'
   },
 
   crimson_rose: {

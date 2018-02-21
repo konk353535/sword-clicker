@@ -251,6 +251,7 @@ SyncedCron.add({
           affectedGlobalBuff: loot.affectedGlobalBuff,
           affectedNeedGreed: true,
           icon: ITEMS[loot.itemId].icon,
+          name: ITEMS[loot.itemId].name,
           owner: winner
         };
         Battles.update(battle._id, update);

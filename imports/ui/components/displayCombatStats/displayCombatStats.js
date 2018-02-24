@@ -3,6 +3,28 @@ import { Template } from 'meteor/templating';
 
 import './displayCombatStats.html';
 
+function descriptors(str) {
+  const terms = {
+    'attack': 'damage',
+    'accuracy': 'accuracy',
+    'healthMax': 'health',
+    'defense': 'defense',
+    'armor': 'armor',
+    'attackSpeed': 'attack speed',
+    'magicPower': 'magic power',
+    'magicArmor': 'magic armor',
+    'healingPower': 'healing power',
+    'criticalChance': 'critical chance',
+    'energyStorage': 'energy storage',
+    'energyPerHit': 'energy per hit',
+    'energyRegen': 'energy regen',
+    'miner': 'passive miner damage'
+  };
+  if (terms.hasOwnProperty(str)) {
+    return terms[str];
+  } else return '';
+}
+
 Template.displayCombatStats.helpers({
 
   hasExtraStats() {
@@ -20,7 +42,7 @@ Template.displayCombatStats.helpers({
         if (extraStatsMap.attack) {
           attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
         }
-        attackLabel += ')';
+        attackLabel += ') attack';
 
         let attackMaxLabel = `(${statsMap.attackMax.toFixed(1)}`;
         if (extraStatsMap.attackMax) {
@@ -29,16 +51,16 @@ Template.displayCombatStats.helpers({
         attackMaxLabel += ')';
 
         statsArr.push({
-          label: `${attackLabel} - ${attackMaxLabel}`,
+          label: `${attackLabel} - ${attackMaxLabel} ${descriptors('attack')}`,
           key: 'attack'
-        });        
+        });
       } else {
         let attackLabel = statsMap.attack;
         if (extraStatsMap.attack) {
           attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
         }
         statsArr.push({
-          label: attackLabel,
+          label: attackLabel + ` ${descriptors('attack')}`,
           key: 'attack'
         });
       }
@@ -55,7 +77,7 @@ Template.displayCombatStats.helpers({
       }
 
       statsArr.push({
-        label: statLabel,
+        label: statLabel + ` ${descriptors(key)}`,
         value: statsMap[key] + extraStatsMap[key],
         key
       });
@@ -71,12 +93,12 @@ Template.displayCombatStats.helpers({
     if (statsMap.attack) {
       if (statsMap.attackMax) {
         statsArr.push({
-          label: `${statsMap.attack.toFixed(1)} - ${statsMap.attackMax.toFixed(1)}`,
+          label: `${statsMap.attack.toFixed(1)} - ${statsMap.attackMax.toFixed(1)} ${descriptors('attack')}`,
           key: 'attack'
         });        
       } else {
         statsArr.push({
-          label: `${statsMap.attack.toFixed(1)}`,
+          label: `${statsMap.attack.toFixed(1)} ${descriptors('attack')}`,
           key: 'attack'
         });
       }
@@ -88,7 +110,7 @@ Template.displayCombatStats.helpers({
       }
 
       statsArr.push({
-        label: statsMap[key].toFixed(1),
+        label: statsMap[key].toFixed(1) + ` ${descriptors(key)}`,
         key
       });
     });

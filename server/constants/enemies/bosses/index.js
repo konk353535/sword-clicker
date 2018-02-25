@@ -708,4 +708,35 @@ export const BOSS_ENEMIES = {
     }],
     rewards: []
   },
+
+  boss_hive: {
+    id: 'boss_hive',
+    icon: 'hive.svg',
+    name: 'Boss Hive',
+    isBoss: true,
+    stats: {
+      attack: 1,
+      attackMax: 1,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 600,
+      health: 12500,
+      healthMax: 12500,
+      defense: 110,
+      armor: 850,
+      magicArmor: 150,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_hive',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'boss hive',
+        icon: 'honeycomb.svg',
+        stacks: 0,
+        damageLimit: 100
+      }
+    }],
+    rewards: []
+  }
 };

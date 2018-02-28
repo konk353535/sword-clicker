@@ -5,6 +5,7 @@ import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
 import { FLOORS } from '/server/constants/floors/index';
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -1955,7 +1956,6 @@ export const BOSS_BUFFS = {
     icon: 'dragon.svg',
     name: 'boss dragon',
     description({ buff, level }) {
-      const c = buff.constants;
       return `Swipes and bathes the battlefield in flame`;
     },
     constants: {
@@ -2052,4 +2052,123 @@ export const BOSS_BUFFS = {
       }
     }
   },
-}
+
+  boss_hive: {
+    duplicateTag: 'boss_hive', // Used to stop duplicate buffs
+    icon: 'honeycomb.svg',
+    name: 'boss hive',
+    description({ buff, level }) {
+      return `Don't agitate what dwells within`;
+    },
+    constants: {
+      damageLimit: 5000
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({buff, target, caster, actualBattle}) {
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        if (!buff.data.oldHealth) {
+          buff.data.oldHealth = target.stats.health;
+        }
+        if (!buff.data.damageTaken) {
+          buff.data.damageTaken = 0;
+        }
+        buff.data.damageTaken += (buff.data.oldHealth - target.stats.health);
+        buff.data.oldHealth = target.stats.health;
+
+        if (buff.data.damageTaken > buff.data.damageLimit) {
+          // anti-de protection
+          const spawnAmount = Math.floor(buff.data.damageTaken / buff.data.damageLimit);
+          buff.data.damageTaken = 0;
+          for(let i = 0; i < spawnAmount; i++) {
+            // summon the queen + attendants
+            const queenStats = {
+              attack: 650,
+              attackMax: 900,
+              attackSpeed: FAST_SPEED,
+              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
+              accuracy: 350,
+              health: 10000,
+              healthMax: 10000,
+              defense: 150,
+              armor: 450,
+              magicArmor: 50,
+              damageTaken: 1
+            };
+
+            const queen = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'spiderbee.svg',
+              name: 'Queen Spiderbee',
+              stats: queenStats,
+              buffs: [{
+                id: 'poisoned_blade',
+                data: {
+                  duration: 10000,
+                  totalDuration: 10000,
+                  icon: 'poisonedBlade.svg',
+                  name: 'poisoned blade',
+                  level: 5
+                }
+              }]
+            };
+
+            const droneStats = {
+              attack: 250,
+              attackMax: 300,
+              attackSpeed: FAST_SPEED,
+              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
+              accuracy: 450,
+              health: 2500,
+              healthMax: 2500,
+              defense: 75,
+              armor: 250,
+              magicArmor: 25,
+              magicPower: 1250,
+              damageTaken: 1
+            };
+
+            const drone1 = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'spiderbee.svg',
+              name: 'Spiderbee Drone',
+              stats: droneStats,
+              buffs: [{
+                id: 'water_mage_monster',
+                data: {
+                  hideBuff: true
+                }
+              }]
+            };
+
+            const drone2 = {
+              id: Random.id(),
+              tickOffset: 0,
+              icon: 'spiderbee.svg',
+              name: 'Spiderbee Drone',
+              stats: droneStats,
+              buffs: [{
+                id: 'water_mage_monster',
+                data: {
+                  hideBuff: true
+                }
+              }]
+            };
+
+            actualBattle.enemies.push(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
+          }
+        }
+
+        buff.data.stacks = Math.round((1 - ((buff.data.damageLimit - buff.data.damageTaken) / buff.data.damageLimit)) * 100);
+      },
+
+      onRemove({buff, target}) {
+      }
+    }
+  },
+};

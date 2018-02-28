@@ -92,7 +92,48 @@ const distributeRewards = function distributeRewards({ floor }) {
       }
     });
   })
-}
+};
+
+export const resolveLoot = function(battle) {
+  battle.loot.forEach((loot, lootIdx) => {
+    if (loot.owners.length === 0) return;
+
+    const needMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'need'; });
+    const greedMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'greed'; });
+    if (needMembers.length === 0 && greedMembers.length === 0) return;
+    let winner = undefined;
+    if (needMembers.length) {
+      winner = _.sample(needMembers).id;
+    } else {
+      winner = _.sample(greedMembers).id;
+    }
+
+    addItem(loot.itemId, loot.amount, winner);
+
+    let update = {
+      $set: {},
+      $push: {}
+    };
+    update.$set[`loot.${lootIdx}.winner`] = winner;
+    update.$push['finalTickEvents'] = {
+      type: 'item',
+      amount: loot.amount,
+      itemId: loot.itemId,
+      affectedGlobalBuff: loot.affectedGlobalBuff,
+      affectedNeedGreed: true,
+      icon: ITEMS[loot.itemId].icon,
+      name: ITEMS[loot.itemId].name,
+      owner: winner
+    };
+    Battles.update(battle._id, update);
+  });
+
+  Battles.update(battle._id, {
+    $set: {
+      lootResolved: true
+    }
+  });
+};
 
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
@@ -633,7 +674,7 @@ export const completeBattle = function (actualBattle) {
     }
   }
 
-  Battles.insert({
+  const battleId = Battles.insert({
     owners: actualBattle.owners,
     finished: true,
     level: actualBattle.level,
@@ -649,5 +690,12 @@ export const completeBattle = function (actualBattle) {
     createdAt: new Date()
   });
 
+  if (ngRewards.length > 0) {
+    Meteor.setTimeout(() => {
+      const battle = Battles.findOne({_id: battleId});
+      resolveLoot(battle);
+    }, 30000);
+  }
+
   delete actualBattle;
-}
+};

@@ -104,6 +104,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           dmgReduction = 0;
         }
         damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
+
+        if (defender.isBoss && damage > 10000) {
+          damage = 10000;
+        }
         defender.stats.health -= damage;
       }
 

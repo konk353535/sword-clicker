@@ -1,0 +1,59 @@
+<template name="ngLoot">
+  <h3 class="my-2 d-flex flex-row align-items-center">
+    <span class="mr-4 mt-1">Need Greed Loot - Time Remaining: {{ battle.timer }}s</span>
+    <div class="ng-help-icon-container">
+      <img src="/icons/help.svg" class="extra-small-icon">
+    </div>
+  </h3>
+  <div class="d-flex flex-row">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Choice</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each battle.myLoot}}
+        <tr>
+          <td class="align-middle"><img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}"> {{#if this.name}}<span class="text-capitalize">{{this.name}}</span>{{/if}}</td>
+          <td class="align-middle {{#if this.affectedGlobalBuff}}text-info{{/if}}">+{{this.amount}}</td>
+          <td>
+            <button class="mr-1 btn {{#if $eq this.ngChoice 'greed'}}btn-primary{{/if}}{{#if $eq this.ngChoice 'need'}}btn-success whiteframe-4dp{{/if}} ng-selector-need" data-loot-id="{{this.lootId}}">
+              Need
+            </button>
+            <button class="ml-1 btn {{#if $eq this.ngChoice 'need'}}btn-primary{{/if}}{{#if $eq this.ngChoice 'greed'}}btn-success whiteframe-4dp{{/if}} ng-selector-greed" data-loot-id="{{this.lootId}}">
+              Greed
+            </button>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="item-tooltip-content my-tooltip-inner" id="tooltip-{{battle._id}}">
+    <h3 class='popover-title text-capitalize'>
+      Need / Greed System
+    </h3>
+    <div class='popover-content'>
+      <p>
+        <b>What</b><br />
+        Need / Greed is a loot system where players<br />
+        can opt-in to rolling for an item.
+      </p>
+      <p>
+        <b>Need</b><br />
+        If one or more people select Need, only those<br />
+        people roll for the item.
+      </p>
+      <p>
+        <b>Greed</b><br />
+        The default option, if anyone selected Need<br />
+        then the item will not go to a player who selects<br />
+        Greed. If no one selected Need, then everyone rolls<br />
+        for the item.
+      </p>
+    </div>
+  </div>
+</template>

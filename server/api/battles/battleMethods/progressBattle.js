@@ -104,6 +104,10 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           dmgReduction = 0;
         }
         damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
+
+        if (defender.isBoss && damage > 10000) {
+          damage = 10000;
+        }
         defender.stats.health -= damage;
       }
 
@@ -167,7 +171,6 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     }
 
     const autoAttack = function({ attacker, defender, tickEvents, historyStats, originalAutoAttack = true }) {
-      console.log('autoattacking', attacker, defender);
       // Do we hit?
       let hitGap = attacker.stats.accuracy - defender.stats.defense;
       let hitChance = 0.5;
@@ -265,12 +268,9 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
 
     // Apply enemy attacks
     actualBattle.enemies.forEach((enemy) => {
-      console.log('enemy', enemy);
       if ((actualBattle.tick - enemy.tickOffset) % enemy.stats.attackSpeedTicks === 0 && actualBattle.tick > enemy.tickOffset) {
-        console.log('attacking');
         let defender = _.sample(actualBattle.units);
         if (enemy.target) {
-          console.log('target already set');
           const targetUnit = _.find(actualBattle.units, (unit) => {
             return unit.id === enemy.target
           });
@@ -280,7 +280,6 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
             enemy.target = defender.id;
           }
         } else {
-          console.log('setting target');
           enemy.target = defender.id;
         }
         autoAttack({

@@ -2042,6 +2042,7 @@ export const BOSS_BUFFS = {
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
           const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
+          enemy.attackSpeedTicks = attackSpeedTicks(enemy.attackSpeed);
           actualBattle.enemies.push(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);
@@ -2091,12 +2092,13 @@ export const BOSS_BUFFS = {
               attackSpeed: FAST_SPEED,
               attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
               accuracy: 350,
-              health: 10000,
-              healthMax: 10000,
+              health: 5000,
+              healthMax: 5000,
               defense: 150,
               armor: 450,
               magicArmor: 50,
-              damageTaken: 1
+              damageTaken: 1,
+              criticalChance: 10
             };
 
             const queen = {
@@ -2129,7 +2131,8 @@ export const BOSS_BUFFS = {
               armor: 250,
               magicArmor: 25,
               magicPower: 1250,
-              damageTaken: 1
+              damageTaken: 1,
+              criticalChance: 10
             };
 
             const drone1 = {

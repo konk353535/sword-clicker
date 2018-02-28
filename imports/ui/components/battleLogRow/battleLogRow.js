@@ -20,14 +20,14 @@ Template.battleLogRow.events({
     instance.state.set('showMore', false);
   },
 
-  'click .ng-selector'(event, instance) {
+  'click .ng-selector-need'(event, instance) {
     const target = $(event.currentTarget);
-    let choice = 'need';
-    if (target.data('choice') === 'need') {
-      choice = 'greed';
-    }
-    target.data('choice', choice);
-    Meteor.call('combat.clickedNeedGreed', target.data('loot-id'), choice);
+    Meteor.call('combat.clickedNeedGreed', target.data('loot-id'), 'need');
+  },
+
+  'click .ng-selector-greed'(event, instance) {
+    const target = $(event.currentTarget);
+    Meteor.call('combat.clickedNeedGreed', target.data('loot-id'), 'greed');
   }
 });
 
@@ -84,26 +84,5 @@ Template.battleLogRow.helpers({
 
   showMore() {
     return Template.instance().state.get('showMore');
-  },
-
-  ngHelpContent() {
-    return `
-      <p>
-        <b>What</b><br />
-        Need / Greed is a loot system where players<br />
-        can opt-in to rolling for an item.
-      </p>
-      <p>
-        <b>Need</b><br />
-        If one or more people select Need, only those<br />
-        people roll for the item.
-      </p>
-      <p>
-        <b>Greed</b><br />
-        The default option, if anyone selected Need<br />
-        then the item will not go to a player who selects<br /> 
-        Greed. If no one selected Need, then everyone rolls<br />
-        for the item.
-      </p>`
-  },
+  }
 });

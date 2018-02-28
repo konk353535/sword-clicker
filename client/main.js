@@ -24,6 +24,7 @@ import '/imports/ui/components/battleUnit/battleUnit.js';
 import '/imports/ui/components/skillHeader/skillHeader.js';
 import '/imports/ui/components/summaryList/summaryList.js';
 import '/imports/ui/components/memberBenefit/memberBenefit.js';
+import '/imports/ui/components/ngLoot/ngLoot.js';
 
 // Pages / Core
 import '../imports/ui/body.js';

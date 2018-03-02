@@ -293,7 +293,9 @@ Meteor.methods({
         slot: 1,
         quality: 1,
         enhanced: 1,
-        extraStats: 1
+        extraStats: 1,
+        enchantmentId: 1,
+        enchantmentDescription: 1
       }
     }).fetch().map((item) => {
       const itemConstants = ITEMS[item.itemId];

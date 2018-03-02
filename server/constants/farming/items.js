@@ -330,7 +330,7 @@ export const FARMING_ITEMS = {
     description() {
       return 'Sells for $$$'
     },
-    sellPrice: 400,
+    sellPrice: 1,
     produces: 'chrysanthemum'
   },
 

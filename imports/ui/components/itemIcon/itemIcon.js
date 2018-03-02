@@ -10,8 +10,6 @@ let tooltip;
 
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-
-  this.state.set('quickSelling', false);
 });
 
 Template.itemIcon.helpers({
@@ -32,11 +30,6 @@ Template.itemIcon.helpers({
   showUseModal() {
     const instance = Template.instance();
     return instance.state.get('showUseModal');
-  },
-
-  quickSelling() {
-    const instance = Template.instance();
-    return instance.state.get('quickSelling');
   },
 
   multiSelling() {
@@ -82,20 +75,8 @@ const sellItem = function (event, instance) {
   Template.instance().$('.useModal').modal('hide');
 
   const itemData = instance.data.item;
-
-  if (instance.state.get('quickSelling')) {
-    Session.set('instaSellDateTo', moment().add(10, 'seconds').toDate());
-    toastr.error('Quick selling enabled for 10 seconds!');
-    Meteor.setTimeout(() => {
-      const instaSellDateTo = Session.get('instaSellDateTo');
-      if (instaSellDateTo && moment().isAfter(instaSellDateTo)) {
-        toastr.success('Quick selling is now disabled');
-        Session.set('instaSellDateTo', undefined);
-      }
-    }, 11000)
-  }
   Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
-}
+};
 
 const hideItem = function (event, instance) {
 
@@ -105,18 +86,9 @@ const hideItem = function (event, instance) {
   const itemData = instance.data.item;
 
   Meteor.call('items.hide', itemData._id);
-}
-
+};
 
 Template.itemIcon.events({
-
-  'click .toggle-quick-selling'(event, instance) {
-    instance.state.set('quickSelling', !instance.state.get('quickSelling'));
-    if (instance.state.get('quickSelling')) {
-      toastr.error('Warning you have enabled quick selling!');
-    }
-  },
-
   'click .icon-box'(event, instance) {
 
     if ($('body').hasClass('targetting-item')) {
@@ -168,23 +140,17 @@ Template.itemIcon.events({
     } else if (primaryAction) {
       primaryAction.method();
     } else {
-      const instaSellDateTo = Session.get('instaSellDateTo');
-      if (instaSellDateTo && moment().isBefore(instaSellDateTo)) {
-        Meteor.call('items.sellItem', instance.data.item._id, instance.data.item.itemId, instance.data.item.amount);
+      instance.state.set('sellAmount', instance.data.item.amount);
+      if (shiftAction) {
+        instance.state.set('showUseModal', true);
+        Meteor.setTimeout(() => {
+          instance.$('.useModal').modal('show');
+        }, 10);
       } else {
-        instance.state.set('sellAmount', instance.data.item.amount);
-
-        if (shiftAction) {
-          instance.state.set('showUseModal', true);
-          Meteor.setTimeout(() => {
-            instance.$('.useModal').modal('show');
-          }, 10);
-        } else {
-          instance.state.set('showSellModal', true);
-          Meteor.setTimeout(() => {
-            instance.$('.sellModal').modal('show');
-          }, 10);
-        }
+        instance.state.set('showSellModal', true);
+        Meteor.setTimeout(() => {
+          instance.$('.sellModal').modal('show');
+        }, 10);
       }
     }
   },

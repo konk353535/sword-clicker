@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
+import _ from 'underscore';
 
 import './itemIcon.html';
 
@@ -36,8 +37,17 @@ Template.itemIcon.helpers({
   quickSelling() {
     const instance = Template.instance();
     return instance.state.get('quickSelling');
+  },
+
+  multiSelling() {
+    const instance = Template.instance();
+    let selling = false;
+    if(!_.isUndefined(Session.get('multiSellItems'))) {
+      selling = Session.get('multiSellItems').hasOwnProperty(instance.data.item._id);
+    }
+    return selling;
   }
-})
+});
 
 Template.itemIcon.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
@@ -110,6 +120,21 @@ Template.itemIcon.events({
   'click .icon-box'(event, instance) {
 
     if ($('body').hasClass('targetting-item')) {
+      return;
+    }
+
+    if(Session.get('multiSell')) {
+      let currentItems = Session.get('multiSellItems');
+      if(currentItems.hasOwnProperty(instance.data.item._id)) {
+        delete currentItems[instance.data.item._id];
+      } else {
+        currentItems[instance.data.item._id] = {
+          id: instance.data.item._id,
+          itemId: instance.data.item.itemId,
+          amount: instance.data.item.amount
+        };
+      }
+      Session.set('multiSellItems', currentItems);
       return;
     }
 

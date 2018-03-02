@@ -253,6 +253,12 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     color: $blue;
   }
 
+  .item-multisell {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   &.small {
     position: relative;
     width: 64px;
@@ -321,6 +327,10 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
       justify-content: center;
       align-items: center;
     }
+  }
+
+  &.item-icon-multiSelling {
+    box-shadow: inset 0 0 0 4px rgb(96, 96, 96);
   }
 }
 

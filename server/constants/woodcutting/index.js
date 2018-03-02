@@ -522,6 +522,77 @@ export const WOODCUTTING = {
       }]
     },
 
+    darksteel_lumberjack: {
+      requiredWoodcuttingLevel: 105,
+      icon: 'cursedLumberJack.png',
+      name: 'darksteel lumber jack',
+      id: 'darksteel_lumberjack',
+      axeId: 'darksteel_axe',
+      required: [{
+        type: 'item',
+        itemId: 'darksteel_axe',
+        icon: ITEMS['darksteel_axe'].icon,
+        name: ITEMS['darksteel_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1300000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 105
+      }]
+    },
+
+    radiant_lumberjack: {
+      requiredWoodcuttingLevel: 110,
+      icon: 'cursedLumberJack.png',
+      name: 'radiant lumber jack',
+      id: 'radiant_lumberjack',
+      axeId: 'radiant_axe',
+      required: [{
+        type: 'item',
+        itemId: 'radiant_axe',
+        icon: ITEMS['radiant_axe'].icon,
+        name: ITEMS['radiant_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1400000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 110
+      }]
+    },
+
+    astral_lumberjack: {
+      requiredWoodcuttingLevel: 115,
+      icon: 'cursedLumberJack.png',
+      name: 'astral lumber jack',
+      id: 'astral_lumberjack',
+      axeId: 'astral_axe',
+      required: [{
+        type: 'item',
+        itemId: 'astral_axe',
+        icon: ITEMS['astral_axe'].icon,
+        name: ITEMS['astral_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 115
+      }]
+    },
   },
 
   woods: {

@@ -1,213 +1,160 @@
 <template name="miningPage">
-
-  {{> skillHeader skill=miningSkill}}
-
-  <ul class="nav nav-tabs mb-3">
-    <li class="nav-item">
-      <a class="nav-link minePitLink {{#if $eq currentTab 'minePit'}}active{{/if}}" href="#">Mine Pit</a>
-    </li>
-    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningEquipment}}
-      <li class="nav-item">
-        <a class="nav-link equipmentLink
-          {{#if $eq currentTab 'equipment'}}
-            active
-          {{else}}
-          {{#if currentUser.tutorial.highlightMiningEquipment}}new-update-color{{/if}}
-          {{/if}}" href="#">
-          Equipment
-        </a>
-      </li>
-    {{/unless}}
-    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningMiners}}
-      <li class="nav-item">
-        <a class="nav-link minersLink
-          {{#if $eq currentTab 'miners'}}
-            active
-          {{else}}
-            {{#if currentUser.tutorial.highlightMiningMiners}}new-update-color{{/if}}
-          {{/if}}" href="#">
-          Miners ({{summaryMiners.count}} / {{summaryMiners.max}})
-        </a>
-      </li>
-    {{/unless}}
-    {{#unless $and currentUser.tutorial currentUser.tutorial.hideMiningProspectors}}
-      <li class="nav-item">
-        <a class="nav-link prospectorsLink
-          {{#if $eq currentTab 'prospectors'}}
-            active
-          {{else}}
-            {{#if currentUser.tutorial.highlightMiningProspectors}}new-update-color{{/if}}
-          {{/if}}" href="#">
-          Prospectors ({{summaryProspectors.count}} / {{summaryProspectors.max}})
-        </a>
-      </li>
-    {{/unless}}
-  </ul>
-
-
-  {{#if $eq currentTab 'minePit'}}
-    <div class="d-flex align-items-center">
-      <div class="d-flex flex-column mb-3" style="width: 200px">
-        <div class="d-flex align-items-center">
-          <i class="lilIcon-mining extra-small-icon mr-1"></i> 
-          {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+  <div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex flex-column mb-3">
+        <div class="d-flex align-items-center mb-1" style="flex: 1">
+          <div class="d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <img src="/icons/energy.svg" class="extra-small-icon mr-1">
+              {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+            </div>
+          </div>
+          <!--
+          <div class="d-flex align-items-center justify-content-end">
+            <button class='btn btn-secondary multihit-btn btn-sm ml-4'>Enable Multihit</button>
+            <input type='hidden' class='multihit-value' value=0 />
+          </div>-->
         </div>
-        <div class="progress mt-1" style="width: 100%">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: {{miningEnergyPercentage}}%" aria-valuenow="{{miningEnergyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-      <div class="d-flex align-items-center">
-        <button class='btn btn-secondary multihit-btn ml-4'>Enable Multihit</button>
-        <input type='hidden' class='multihit-value' value=0 />
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
         <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
           {{#each miningSpaces}}
             {{> mineSpace mineSpace=this}}
           {{/each}}
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="d-flex flex-column flex-wrap" style="max-height: 420px">
-          {{#each oresList}}
-            {{> oreListItem ore=this}}
-          {{/each}}
-        </div>
-      </div>
-    </div>
-  {{else if $eq currentTab 'equipment'}}
 
-    <h3>Inventory</h3>
-    {{#each miningPickaxes}}
-      {{> itemIcon item=this classes="small"}}
-    {{else}}
-      No pickaxes in inventory
-    {{/each}}
-
-    <h3 class="mt-3">Equipped</h3>
-    <div class="d-flex flex-row flex-wrap">
-      {{#if equippedItemsMap.pickaxe}}
-        <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
-          {{> itemIcon item=equippedItemsMap.pickaxe}}
-          <div class="d-flex">
-            {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+        <h3 style="margin-top: 30px">Gear</h3>
+        <div class="d-flex flex-row flex-wrap mb-3">
+          {{#if equippedItemsMap.pickaxe}}
+            <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
+              {{> itemIcon item=equippedItemsMap.pickaxe}}
+              <div class="d-flex">
+                {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+              </div>
+            </div>
+          {{else}}
+            <div class="icon-box">
+              Pickaxe
+            </div>
+          {{/if}}
+          {{#if equippedItemsMap.mining_offhand}}
+            <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
+              {{> itemIcon item=equippedItemsMap.mining_offhand}}
+              <div class="d-flex">
+                {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+              </div>
+            </div>
+          {{else}}
+            <div class="icon-box">
+              Offhand
+            </div>
+          {{/if}}
+          <div class="d-flex flex-column ml-3">
+            <div class="d-flex align-items-center">
+              {{#if hasMiningUpgrade}}
+                ({{mining.stats.attack}}
+                {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
+              {{else}}
+                {{mining.stats.attack}}
+              {{/if}}
+              <i class="lilIcon-attack mx-1"></i> Damage per click.
+            </div>
+            <div class="d-flex align-items-center">
+              {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
+            </div>
+            <div class="d-flex align-items-center">
+              {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
+            </div>
+            <div class="d-flex align-items-center">
+              {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
+            </div>
+            <div class="d-flex align-items-center">
+              {{#if hasMiningUpgrade}}
+                ({{mining.stats.miner}}
+                {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
+              {{else}}
+                {{mining.stats.miner}}%
+              {{/if}}
+              <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
+            </div>
           </div>
         </div>
-      {{else}}
-        <div class="icon-box">
-          Pickaxe
-        </div>
-      {{/if}}
-      {{#if equippedItemsMap.mining_offhand}}
-        <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
-          {{> itemIcon item=equippedItemsMap.mining_offhand}}
-          <div class="d-flex">
-            {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
-          </div>
-        </div>
-      {{else}}
-        <div class="icon-box">
-          Offhand
-        </div>
-      {{/if}}
-      <div class="d-flex flex-column ml-3">
-        <div class="d-flex align-items-center">
-          {{#if hasMiningUpgrade}}
-            ({{mining.stats.attack}}
-            {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
-          {{else}}
-            {{mining.stats.attack}}
-          {{/if}}
-          <i class="lilIcon-attack mx-1"></i> Damage per click.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
-        </div>
-        <div class="d-flex align-items-center">
-          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
-        </div>
-        <div class="d-flex align-items-center">
-          {{#if hasMiningUpgrade}}
-            ({{mining.stats.miner}}
-            {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
-          {{else}}
-            {{mining.stats.miner}}%
-          {{/if}}
-          <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
-        </div>
 
-      </div>
-    </div>
-  {{else if $eq currentTab 'miners'}}
-    <h3>Inventory</h3>
-    {{#each miningPickaxes}}
-      {{> itemIcon item=this classes="small"}}
-    {{else}}
-      No pickaxes in inventory
-    {{/each}}
-
-    <h3 class="my-1">Total DPH: {{> ceilNumber totalDPH}}</h3>
-
-    {{#if $lte summaryMiners.count 3}}
-      <div class="mb-1"><b>Miners passively collect ores for you, over time.</b></div>
-    {{/if}}
-
-    <div class="mb-3">
-      <b>Miners gain xp when their associated ore is mined.</b><br />
-      Bonus XP awarded for last hitting ores.
-    </div>
-
-    <div class="d-flex flex-wrap">
-    {{#each buyableMiners}}
-      {{> buyableMiner miner=this}}
-    {{/each}}
-    </div>
-  {{else if $eq currentTab 'prospectors'}}
-
-    {{#if $gte summaryProspectors.count 3}}
-      <div class="my-3"><b>Prospectors increase the speed at which ores spawn.</b></div>
-    {{/if}}
-
-    <table class="table table-bordered table-centered table-responsive">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th class="hidden-md-down">Icon</th>
-          <th>Requirements</th>
-          <th>Count</th>
-          <th>Actions</th>
-        </tr>  
-      </thead>
-      <tbody>
-        {{#each buyableProspectors}}
-          <tr class="prospector-row text-center">
-            <td class="text-capitalize">{{this.name}}</td>
-            <td class="hidden-md-down">
-              <img src="/icons/{{this.icon}}" class="ore-icon">
-            </td>
-            <td>{{ > requiredItems requiredItems=this.required}}</td>
-            <td>{{this.amount}} / {{this.max}}</td>
-            <td>
-              <button class="btn btn-primary m-1 prospector-hire" data-prospector={{this.id}}>
-                Hire
-              </button>
-              <button class="btn btn-danger m-1 prospector-fire" data-prospector={{this.id}}>
-                Fire
-              </button>
-            </td>
-          </tr>
+        {{#each miningPickaxes}}
+          {{> itemIcon item=this classes="small"}}
+        {{else}}
+          No pickaxes in inventory
         {{/each}}
-      </tbody>
-    </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex align-items-center mb-1">
+        <h3 class="mb-0 mr-3">Cart</h3>
+        <button class="btn btn-primary btn-sm">
+          Collect
+        </button>
+      </div>
+      <div class="d-flex flex-wrap">
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/stone.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/copper.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/copper.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/copper.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/copper.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+        <div class="d-flex icon-box-new mr-1 mt-1 p-2">
+          <div class="ore-list-item align-items-center d-flex">
+            <img src="/icons/copper.png" class="extra-small-icon">
+            <div>300 / 500</div>
+          </div>
+        </div>
+      </div>
 
-  {{/if}}
+      <div class="d-flex mb-2" style="margin-top: 30px">
+        <span class="mr-2">Prospecting</span>
+        <div class="ore-list-item align-items-center d-flex mr-2">
+          <img src="/icons/stone.png" class="extra-small-icon">
+        </div>
+        <div class="ore-list-item align-items-center d-flex mr-2">
+          <img src="/icons/stone.png" class="extra-small-icon">
+        </div>
+        <a href="#">edit</a>
+        <!--
+        {{#each oresList}}
+          {{> oreListItem ore=this}}
+        {{/each}}
+        -->
+      </div>
+      <div class="d-flex flex-wrap">
+        {{#each buyableMiners}}
+          {{> buyableMiner miner=this}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  </div>
 </template>
 
 <template name="hireMinerButton">
@@ -277,12 +224,14 @@
 
 <template name="buyableMiner">
   <div class="buy-miner" data-miner="{{miner.id}}"
-    style="border: 1px solid black; padding: 10px; margin: 0 10px 10px 0; min-width: calc(50% - 20px); flex: 1 1 auto;">
+    style="border: 1px solid #DFDFDF; padding: 10px; margin: 0 10px 10px 0; min-width: calc(50% - 20px); flex: 1 1 auto; border-radius: 4px;">
     <div class="d-flex flex-wrap">
       <img src="/icons/{{miner.icon}}" class="medium-icon">
       <div class="mx-3 d-flex flex-column">
         <div class="text-capitalize">{{miner.name}}</div>
         <span class="damage-per-hour-container" style="min-width: 120px">
+          Miners 0 / 3
+          <!--
           {{#if miner.amount}}
             <div>DPH:
               <span class="text-info">
@@ -293,24 +242,15 @@
             <div style="color: #DFDFDF">
               DPH: {{> ceilNumber miner.damagePerHour}}
             </div>
-          {{/if}}
+          {{/if}}-->
         </span>
       </div>
       <div class="mx-3" style="flex: 1 1; align-items: center;">
         <div class="d-flex">
-          <div class="d-flex flex-grow">Level: {{miner.level}}</div>
-          {{#if $lt miner.amount 3}}
-            <div class="d-flex flex-grow">
-              Miners: {{miner.amount}} / 3
-            </div>
-          {{/if}}
+          Mining <img src="/icons/stone.png" class="extra-small-icon ml-1">
         </div>
         <div style="flex: 1 1 auto; display: flex; align-items: center; height: 50%">
-          <div class="progress" style="height: 16px; flex: 1 1 auto;">
-            <div class="progress-bar" role="progressbar" style="width: {{miner.xpPercentage}}%;" aria-valuenow="{{miner.xpPercentage}}" aria-valuemin="0" aria-valuemax="100">
-              {{> formatNumber number=miner.xp decimal=1}} / {{miner.xpToLevel}}
-            </div>
-          </div>
+          32 DPS
         </div>
       </div>
       {{> hireMinerButton recipe=miner}} 
@@ -331,8 +271,9 @@
 </template>
 
 <template name="oreListItem">
-  <div class="ore-list-item">
-    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{ore.amount}}
+  <div class="ore-list-item align-items-center d-flex mr-2">
+    <img src="/icons/{{ore.icon}}" class="extra-small-icon">
+    <div>{{ore.amount}}</div>
   </div>
 
   <div class="ore-list-item-tooltip-content my-tooltip-inner">

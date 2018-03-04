@@ -104,6 +104,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   }
 }
 
+.icon-box-new {
+  border: 1px solid $gray-lighter;
+  border-radius: 4px;
+}
+
 .icon-box.disabled {
   background-color: $gray-lighter;
   img {

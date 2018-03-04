@@ -41,7 +41,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       if (myUser.uiState && myUser.uiState.miningTab !== undefined) {
         this.state.set('currentTab', myUser.uiState.miningTab);
       } else {
-        this.state.set('currentTab', 'minePit');
+        this.state.set('currentTab', 'equipment');
       }
     }
   });

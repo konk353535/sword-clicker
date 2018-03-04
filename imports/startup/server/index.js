@@ -443,7 +443,7 @@ Accounts.onCreateUser((options, user) => {
     index: 0
   });
 
-  for (let i = 1; i < 16; i++) {
+  for (let i = 1; i < 12; i++) {
     MiningSpace.insert({
       owner: userId,
       oreId: MINING.ores.stone.id,

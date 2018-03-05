@@ -307,7 +307,7 @@ Template.miningPage.helpers({
   },
 
   miningPickaxes() {
-    return Items.find({ category: 'mining', equipped: false, $or: [{hidden: {$exists: false}}, {hidden: false}] }).map((item) => {
+    return Items.find({ category: 'mining', equipped: false }).map((item) => {
       if (item.isEquippable) {
         item.primaryAction = {
           description: 'equip',

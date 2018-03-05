@@ -199,6 +199,6 @@ Template.astronomyTab.helpers({
   },
 
   items() {
-    return Items.find({ category: 'astronomy', $or: [{hidden: {$exists: false}}, {hidden: false}] });
+    return Items.find({ category: 'astronomy' });
   }
 });

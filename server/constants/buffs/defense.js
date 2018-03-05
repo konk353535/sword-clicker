@@ -448,7 +448,7 @@ export const DEFENSE_BUFFS = {
 
         if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack * 2, {
-            defender: target,
+            defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -498,7 +498,7 @@ export const DEFENSE_BUFFS = {
 
         if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack * 2, {
-            defender: target,
+            defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -549,7 +549,7 @@ export const DEFENSE_BUFFS = {
 
         if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack * 2, {
-            defender: target,
+            defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -595,7 +595,7 @@ export const DEFENSE_BUFFS = {
 
         if (hasIntimidate) {
           actualBattle.utils.dealDamage(caster.stats.attack * 2, {
-            defender: target,
+            defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats

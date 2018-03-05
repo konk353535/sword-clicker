@@ -965,6 +965,31 @@ export const MINING = {
       max: 3,
       damagePerSecond: 0.31
     },
+
+    astral_miner: {
+      requiredMiningLevel: 110,
+      icon: 'cursedMiner.png',
+      name: 'astral miner',
+      id: 'astral_miner',
+      required: [{
+        type: 'item',
+        itemId: 'astral_pickaxe',
+        icon: ITEMS['astral_pickaxe'].icon,
+        name: ITEMS['astral_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1700000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 110
+      }],
+      max: 3,
+      damagePerSecond: 0.32
+    },
   },
   ores: {
     stone: {

@@ -48,6 +48,9 @@
                       <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                            id="{{_id}}">
                           <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-timestamp pull-right">
+                              [{{moFormat date "hh:mm A"}}]
+                            </span>
                               {{#if $eq name 'Game'}}
                                 <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
                                   {{name}}
@@ -63,9 +66,6 @@
                                   </span>
                                 </a>
                               {{/if}}
-                            <span class="direct-chat-timestamp pull-right">
-                              [{{moFormat date "h:mm A"}}]
-                            </span>
                           </div>
                           <!-- /.direct-chat-info -->
                           <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0px{{/unless}}">

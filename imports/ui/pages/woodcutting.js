@@ -181,7 +181,7 @@ Template.woodcuttingPage.helpers({
   },
 
   items() {
-    return Items.find({ category: 'woodcutting' }, {
+    return Items.find({ category: 'woodcutting', $or: [{hidden: {$exists: false}}, {hidden: false}] }, {
       sort: {
         quality: -1
       }

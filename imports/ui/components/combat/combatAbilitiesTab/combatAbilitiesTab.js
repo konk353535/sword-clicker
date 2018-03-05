@@ -33,7 +33,7 @@ Template.combatAbilitiesTab.events({
 
 Template.combatAbilitiesTab.helpers({
   availableTomes() {
-    return Items.find({ category: 'tome' }).map((item) => {
+    return Items.find({ category: 'tome', $or: [{hidden: {$exists: false}}, {hidden: false}] }).map((item) => {
       item.primaryAction = {
         description: 'learn',
         item,

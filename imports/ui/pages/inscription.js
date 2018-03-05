@@ -235,7 +235,8 @@ Template.inscriptionPage.helpers({
       name: { $regex: /^((?!axe).)*$/ },
       category: {
         $in: ['herb', 'pigment', 'paper', 'page', 'book', 'tome', 'woodcutting', 'magic_book', 'enchantment'],
-      } 
+        $or: [{hidden: {$exists: false}}, {hidden: false}]
+      }
     }).map((itemModifier));
   },
 

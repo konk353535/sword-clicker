@@ -32,7 +32,7 @@ Template.equipmentTab.rendered = function () {
 
 Template.equipmentTab.helpers({
   unequippedCombatItems() {
-    return Items.find({ category: 'combat', equipped: false }).map((item) => {
+    return Items.find({ category: 'combat', equipped: false, $or: [{hidden: {$exists: false}}, {hidden: false}] }).map((item) => {
       item.primaryAction = {
         description: 'equip',
         item,
@@ -49,7 +49,7 @@ Template.equipmentTab.helpers({
   },
 
   foodItems() {
-    return Items.find({ category: 'food' }).map((item) => {
+    return Items.find({ category: 'food', $or: [{hidden: {$exists: false}}, {hidden: false}] }).map((item) => {
       item.primaryAction = {
         description: 'eat',
         item,
@@ -62,7 +62,7 @@ Template.equipmentTab.helpers({
   },
 
   enchantItems() {
-    return Items.find({ category: 'enchantment' }).map((item) => {
+    return Items.find({ category: 'enchantment', $or: [{hidden: {$exists: false}}, {hidden: false}] }).map((item) => {
       item.primaryAction = {
         description: item.shiftActionData.description,
         item,

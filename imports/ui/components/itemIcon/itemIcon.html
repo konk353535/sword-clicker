@@ -1,5 +1,9 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}}" style="position: relative" data-id="{{item._id}}">
+    {{#if multiSelling}}
+      <i class="material-icons icon-success item-multisell">check_circle</i>
+    {{/if}}
+
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
@@ -135,10 +139,6 @@
               </div>
 
               <br /><br />
-              <label>
-                Allow selling without confirmation for the next 10 seconds.
-              </label>
-              <input type="checkbox" class="toggle-quick-selling" checked={{enableQuickSelling}}>
             </div>
             <div class="modal-footer">
               <!--
@@ -184,10 +184,6 @@
                 </form>
                   +{{ totalPrice sellAmount item.sellPrice }} Gold
                 <br /><br />
-                <label>
-                  Allow selling without confirmation for the next 10 seconds.
-                </label>
-                <input type="checkbox" class="toggle-quick-selling" checked={{enableQuickSelling}}>
               </div>
             </div>
           </div>

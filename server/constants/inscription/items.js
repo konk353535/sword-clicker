@@ -2503,7 +2503,7 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['legs'],
     description: `
-      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additinal damage.`,
+      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additional damage.`,
     shiftActionData: {
       description: 'Apply enchantment to Leg Item',
       target: 'item'

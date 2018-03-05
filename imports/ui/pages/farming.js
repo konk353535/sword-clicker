@@ -142,8 +142,7 @@ Template.farmingPage.helpers({
     return Items.find({
       category: {
         $in: ['seed', 'farming']
-      },
-      $or: [{hidden: {$exists: false}}, {hidden: false}]
+      }
     }, {
       sort: {
         category: -1,

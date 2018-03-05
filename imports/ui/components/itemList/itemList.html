@@ -2,8 +2,16 @@
 
   {{#if visibleItems}}
     <div class="mb-1">
-      <h3>Visible Items</h3>
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      <div class="d-flex align-items-center mb-1">
+        <h3 class="mb-0 mr-auto">Visible Items</h3>
+        {{#if sellItems}}
+          <i class="material-icons icon-danger multiSellConfirm">delete_forever</i>
+          <i class="material-icons multiSellCancel">clear</i>
+        {{else}}
+          <i class="material-icons multiSellStart">delete</i>
+        {{/if}}
+      </div>
+      <div class="d-flex flex-wrap">
         {{#each visibleItems}}
 		      {{> itemIcon item=this classes="small"}}
 		    {{/each}}
@@ -13,8 +21,16 @@
 
   {{#if hiddenItems}}
     <div class="mb-1">
-      <h3>Hidden Items</h3>
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      <div class="d-flex align-items-center mb-1">
+        <h3 class="mb-0 mr-auto">Hidden Items</h3>
+        {{#if sellItems}}
+          <i class="material-icons icon-danger multiSellConfirm">delete_forever</i>
+          <i class="material-icons multiSellCancel">clear</i>
+        {{else}}
+          <i class="material-icons multiSellStart">delete</i>
+        {{/if}}
+      </div>
+      <div class="d-flex flex-wrap">
         {{#each hiddenItems}}
 		      {{> itemIcon item=this classes="small"}}
 		    {{/each}}
@@ -22,4 +38,23 @@
     </div>
   {{/if}}
 
+  <div class="modal confirmSellModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sell Items</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Really sell the selected items?</p>
+          <div class="d-flex">
+            <button class="btn btn-danger modalButtonConfirm ml-auto">Yes</button>
+            <button class="btn btn-success modalButtonCancel ml-2">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

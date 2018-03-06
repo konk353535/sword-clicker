@@ -1,8 +1,8 @@
 import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
-import { ENEMIES } from '/server/constants/enemies/index';
+import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { Random } from 'meteor/random';
+import { attackSpeedTicks } from '../../../utils';
+import uuid from 'node-uuid';
 
 export const personalQuestMonsterGenerator = function(level, wave) {
 
@@ -139,7 +139,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {
       const monsterClone = JSON.parse(JSON.stringify(monster));
-      monsterClone.id = Random.id();
+      monsterClone.id = uuid.v4();
       allMonsters.push(monsterClone);
     }
 

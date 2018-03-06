@@ -1,9 +1,9 @@
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
+import uuid from 'node-uuid';
 
 export const MONSTER_BUFFS = {
 
@@ -305,7 +305,7 @@ export const MONSTER_BUFFS = {
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
             const newRabbit = JSON.parse(JSON.stringify(target));
-            newRabbit.id = Random.id();
+            newRabbit.id = uuid.v4();
             actualBattle.enemies.push(newRabbit);
             buff.data.timeTillRabbit = 6000;
           }
@@ -1056,7 +1056,7 @@ export const MONSTER_BUFFS = {
             let newCube = JSON.parse(JSON.stringify(defender));
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = Random.id();
+            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.enemies.push(newCube);
           }
@@ -1072,7 +1072,7 @@ export const MONSTER_BUFFS = {
             let newCube = JSON.parse(JSON.stringify(target));
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = Random.id();
+            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.enemies.push(newCube);
           }

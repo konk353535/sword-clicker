@@ -1,8 +1,8 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
+import uuid from 'node-uuid';
 
 export const ENCHANTMENT_BUFFS = {
 
@@ -150,7 +150,7 @@ export const ENCHANTMENT_BUFFS = {
           // Spawn our fox
           const foxToSpawn = _.sample(['fire', 'water', 'air', 'earth']);
           let fox = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
           }
 

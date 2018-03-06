@@ -27,6 +27,7 @@ import './combat.html';
 const redis = new Meteor.RedisCollection('redis');
 
 Template.combatPage.onCreated(function bodyOnCreated() {
+
   this.state = new ReactiveDict();
 
   this.state.set('hasLearnRequirements', false);

@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { BATTLES } from './constants/battles/index.js'; // List of encounters
 
 export const flattenObjectForMongo = function(ob) {
   var toReturn = {};

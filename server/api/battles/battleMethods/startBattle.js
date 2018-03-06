@@ -359,7 +359,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }, { multi: true });
 
   // Progress battle
+  HTTP.call('POST', 'http://localhost:3000/battle', {
+    data: { battle: actualBattle }
+  }, (error, result) => {});
+
+  return;
+
   const battleIntervalId = Meteor.setInterval(() => {
+    console.log(JSON.stringify(actualBattle));
     progressBattle(actualBattle, battleIntervalId);
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
 }

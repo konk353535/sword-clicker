@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { BUFFS } from '/server/constants/buffs/index';
+import { BUFFS } from './constants/buffs/index';
 
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
   const buffConstants = BUFFS[buff.id];
@@ -39,7 +39,7 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
 }
 
 export const finishAllBattles = function() {
-  import { BattlesList } from "/imports/api/battles/battles";
+  const { BattlesList } = require('../imports/api/battles/battles')
   const redis = new Meteor.RedisCollection('redis');
   BattlesList.find({}).fetch().forEach((battleList) => {
     BattlesList.remove(battleList._id);

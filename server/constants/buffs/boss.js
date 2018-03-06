@@ -1,11 +1,11 @@
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
-import { FLOORS } from '/server/constants/floors/index';
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
+import uuid from 'node-uuid';
+import { FLOORS } from '../floors/index';
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -141,7 +141,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little snake
           const littleSnake = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'snake.svg',
             name: 'snake',
@@ -249,7 +249,7 @@ export const BOSS_BUFFS = {
 
             // Spawn little snake
             const littleSpartan = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'spartan.svg',
               name: 'spartan',
@@ -315,7 +315,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'bird.svg',
             name: 'bird',
@@ -420,7 +420,7 @@ export const BOSS_BUFFS = {
 
             // Spawn little goblin
             const littleGoblin = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'goblin.svg',
               name: 'goblin',
@@ -510,7 +510,7 @@ export const BOSS_BUFFS = {
 
             // Spawn little snake
             const phoenixEgg = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'phoenixEgg.svg',
               name: 'phoenix egg',
@@ -574,7 +574,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
@@ -613,7 +613,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
@@ -668,7 +668,7 @@ export const BOSS_BUFFS = {
 
         // Spawn little snake
         const phoenixEgg = {
-          id: Random.id(),
+          id: uuid.v4(),
           tickOffset: 0,
           icon: 'phoenixEgg.svg',
           name: 'phoenix egg',
@@ -832,7 +832,7 @@ export const BOSS_BUFFS = {
         if (!buff.data.lampsSpawned) {
 
             const powerLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'bossGeniePowerLamp.svg',
               name: 'power',
@@ -862,7 +862,7 @@ export const BOSS_BUFFS = {
             }
 
             const wisdomLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'bossGenieWisdomLamp.svg',
               name: 'wisdom',
@@ -892,7 +892,7 @@ export const BOSS_BUFFS = {
             }
 
             const healthLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'bossGenieHealthLamp.svg',
               name: 'Vitality',
@@ -1220,7 +1220,7 @@ export const BOSS_BUFFS = {
 
           // Spawn bird
           const bird = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: actualBattle.tick + 4,
             icon: 'bird.svg',
             name: 'bird',
@@ -1318,7 +1318,7 @@ export const BOSS_BUFFS = {
 
             // Spawn bird
             const bird = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'waterMage.svg',
               name: 'water mage',
@@ -1344,7 +1344,7 @@ export const BOSS_BUFFS = {
 
           // Spawn wall
           const wall = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'stoneWall.svg',
             name: 'stone wall',
@@ -1434,7 +1434,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'tentacle.svg',
             name: 'tentacle',
@@ -1542,7 +1542,7 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const poodle = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
             icon: 'bossPoodle.svg',
             name: 'poodle',
@@ -1761,7 +1761,7 @@ export const BOSS_BUFFS = {
 
               // Spawn little bird
               const fountain = {
-                id: Random.id(),
+                id: uuid.v4(),
                 tickOffset: 0,
                 icon: 'fountain.svg',
                 name: 'fountain',
@@ -1894,7 +1894,7 @@ export const BOSS_BUFFS = {
 
               // Spawn little bird
               const mirage = {
-                id: Random.id(),
+                id: uuid.v4(),
                 tickOffset: 0,
                 icon: 'airFox.svg',
                 name: 'mirage',
@@ -2102,7 +2102,7 @@ export const BOSS_BUFFS = {
             };
 
             const queen = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Queen Spiderbee',
@@ -2136,7 +2136,7 @@ export const BOSS_BUFFS = {
             };
 
             const drone1 = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',
@@ -2150,7 +2150,7 @@ export const BOSS_BUFFS = {
             };
 
             const drone2 = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',

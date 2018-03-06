@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
+import { BATTLES } from '../battles/index.js'; // List of encounters
 
 export const DEFENSE_BUFFS = {
 

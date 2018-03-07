@@ -129,9 +129,15 @@ Template.currentBattleUi.helpers({
         if (myUnit && myUnit.amulet && myUnit.amulet.energy >= 1) {
           const battleId = currentBattle._id;
           const casterId = Meteor.userId();
-          Meteor.call('battles.castAbility', battleId, 'clickAttack', {
-            targets: [unitId], caster: casterId
-          });
+
+          if (battleSocket) {
+            // Gonna require the socket here
+            battleSocket.emit('action', {
+              abilityId: 'clickAttack',
+              targets: [unitId],
+              caster: Meteor.userId()
+            });                
+          }
         }
       }
     }

@@ -30,7 +30,9 @@ app.use(bodyParser.json());
 app.post('/battle', (req, res) => {
   const { battle } = req.body;
 
-  battles[battle.id] = new Battle(battle, 'balancer_abc', io);
+  battles[battle.id] = new Battle(battle, 'balancer_abc', io, (id) => {
+    delete battles[id];
+  });
 
   // Creates a battle
   res.send(battle.id);

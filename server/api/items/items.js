@@ -93,18 +93,22 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         Items.insert(newItemsList[0]);
       }
     } else {
-      Items.upsert({ owner, itemId }, {
-        $inc: {
-          amount
-        },
-        $setOnInsert: {
+      const updatedCount = Items.update({
+        owner,
+        itemId
+      }, {
+        $inc: { amount: amount }
+      });
+
+      if (!updatedCount) {
+        Items.insert({
           itemId,
+          amount,
           owner,
           category: itemConstants.category,
-          amount,
           equipped: false
-        }
-      })
+        });
+      }
     }
   } else {
     newItemsList.forEach((newItem) => {

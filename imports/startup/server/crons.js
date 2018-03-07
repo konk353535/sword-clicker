@@ -115,6 +115,7 @@ SyncedCron.add({
     return parser.text('every 30 seconds');
   },
   job: function() {
+    return;
     BattlesList.find({
       createdAt: {    
         $lte: moment().subtract(Meteor.settings.is_dev ? 1 : 60, 'seconds').toDate()   

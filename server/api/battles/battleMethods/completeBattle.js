@@ -136,6 +136,8 @@ export const resolveLoot = function(battle) {
 };
 
 export const completeBattle = function (actualBattle) {
+  console.log(actualBattle);
+  console.log('complete battle');
   const finalTickEvents = [];
   let win = actualBattle.units.length > 0;
   let ngRewards = [];
@@ -145,13 +147,15 @@ export const completeBattle = function (actualBattle) {
   let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
 
   // Remove from battle list
-  const battlesDeleted = BattlesList.remove(actualBattle._id);
-  // Remove from redis
-  redis.del(`battles-${actualBattle._id}`);
+  const battlesDeleted = BattlesList.remove(actualBattle.id);
+
+  console.log(0);
 
   if (battlesDeleted <= 0) {
     return;
   }
+
+  console.log(1);
 
   if (!win && actualBattle.isExplorationRun) {
     // Take back the xp values for the current wave (as they failed it)
@@ -162,9 +166,13 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
+  console.log(2);
+
   if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
+
+    console.log(3);
 
     if (actualBattle.isTowerContribution) {
       if (win) {
@@ -190,12 +198,14 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
-    const units = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+    const units = actualBattle.units.filter((unit) => {
       return !!unit.owner;
     });
 
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
+
+    console.log(4);
 
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
@@ -206,7 +216,10 @@ export const completeBattle = function (actualBattle) {
       totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
     }
 
+    console.log(5);
+
     units.forEach((unit) => {
+      console.log(6);
       // Distribute xp gained evenly across units
       const xpPortion = totalXpGain / units.length;
       Object.keys(unit.xpDistribution).forEach((skillName) => {
@@ -241,12 +254,13 @@ export const completeBattle = function (actualBattle) {
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
-    const deadEnemy = actualBattle.deadEnemies[0];
     
     let rewards = [];
     if (actualBattle.level) {
       rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
     }
+
+    console.log(7);
 
     for (let i = 0; i < rewards.length; i++) {
       const rewardTable = rewards[i];
@@ -257,6 +271,8 @@ export const completeBattle = function (actualBattle) {
         break;          
       }
     }
+
+    console.log(8);
 
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
@@ -272,6 +288,8 @@ export const completeBattle = function (actualBattle) {
         }
       }
     }
+
+    console.log(9);
 
     // Each user = additional 20% chance of loot
     const extraChance = 1 + (units.length * 0.2) - 0.2;
@@ -475,9 +493,10 @@ export const completeBattle = function (actualBattle) {
   }
 
   // Update all player units healths
-  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+  const allFriendlyUnits = actualBattle.units.filter((unit) => {
     return !!unit.owner;
   });
+
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
@@ -699,3 +718,7 @@ export const completeBattle = function (actualBattle) {
 
   delete actualBattle;
 };
+
+Meteor.method('completeBattle', function (battle) {
+  completeBattle(battle);
+});

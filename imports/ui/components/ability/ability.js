@@ -46,10 +46,15 @@ const castAbility = function(instance) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
               const abilityId = instance.data.ability.id;
-              // Fire this ability from = us, to = 
-              Meteor.call('battles.castAbility', battleId, abilityId, {
-                targets: [targetId], caster: Meteor.userId()
-              });
+
+              if (battleSocket) {
+                // Gonna require the socket here
+                battleSocket.emit('action', {
+                  abilityId,
+                  targets: [targetId],
+                  caster: Meteor.userId()
+                });                
+              }
             }
             
             $('body').removeClass('targetting-friendlies');
@@ -63,9 +68,15 @@ const castAbility = function(instance) {
     const abilityId = instance.data.ability.id;
     const targetId = Meteor.userId();
     const casterId = Meteor.userId();
-    Meteor.call('battles.castAbility', battleId, abilityId, {
-      targets: [targetId], caster: casterId
-    });
+
+    if (battleSocket) {
+      // Gonna require the socket here
+      battleSocket.emit('action', {
+        abilityId,
+        targets: [targetId],
+        caster: Meteor.userId()
+      });                
+    }
   }
 }
 

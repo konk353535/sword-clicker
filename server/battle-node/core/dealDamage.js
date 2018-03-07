@@ -51,17 +51,7 @@ export default function(rawDamage, {
 
       // Only kill defender if it is still dead
       if (defender.stats.health <= 0) {
-        if (defender.isEnemy) {
-          this.deadEnemies.push(defender);
-          this.enemies = this.enemies.filter((enemy) => {
-            enemy.id !== defender.id
-          });
-        } else {
-          this.deadUnits.push(defender);
-          this.units = this.units.filter((unit) => {
-            unit.id !== defender.id
-          });
-        }
+        this.removeUnit(defender);
       }
     }
   }

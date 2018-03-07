@@ -1,32 +1,40 @@
-import { ABILITIES } from '../../constants/combat/index.js'; // List of available combat stats
-import { BATTLES } from '../../constants/battles/index.js'; // List of available combat stats
+import { ABILITIES } from '../../constants/combat/index.js';
+import { BATTLES } from '../../constants/battles/index.js';
+import { BUFFS } from '../../constants/buffs/index.js';
 import _ from 'underscore';
+import request from 'request-promise';
 import dealDamage from './dealDamage';
 import healTarget from './healTarget';
 import autoAttack from './autoAttack';
+import castAbility from './castAbility';
 
 const TICK_DURATION = 100;
+const secondsElapsed = (TICK_DURATION / 1000);
 
 export default class Battle {
 
-  constructor(battle, balancerId, io) {
+  constructor(battle, balancerId, io, removeBattle) {
+    this.removeBattle = removeBattle;
     this.balancerId = balancerId;
     this.io = io;
-    this.id = battle.id;
+
+    this.id = battle._id;
+    this.level = battle.level;
+    this.room = battle.room;
+    this.floor = battle.floor;
+    this.isExplorationRun = battle.isExplorationRun;  
+    this.owners = battle.owners;
+    this.totalXpGain = battle.totalXpGain;
+
     this.units = battle.units;
     this.enemies = battle.enemies;
+
     this.tickCount = 0;
+
     this.tickEvents = [];
     this.battleActions = [];
     this.deadUnits = [];
     this.deadEnemies = [];
-    this.utils = {
-      autoAttack,
-      dealDamage,
-      healTarget
-    }
-
-    this.isExplorationRun = false;    
 
     this.initHelpers();
     this.intervalId = setInterval(() => {
@@ -75,29 +83,26 @@ export default class Battle {
           const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[ability.id]));
           abilityToCast.level = ability.level;
 
-          console.log(abilityToCast);
           // Fetch who we are are targetting with this ability
-          /*
-          castAbility({
+          this.castAbility({
             ability: abilityToCast,
             caster: unit,
             targets: [unit],
             actualBattle
-          });*/
+          });
         }
       });
     }
   }
 
   tick() {
-    const secondsElapsed = (TICK_DURATION / 1000);
     const allAliveUnits = this.units.concat(this.enemies);
 
     if (this.tickCount === 0) {
       this.initPassives(allAliveUnits);
     }
 
-    // TODO: Tick Buffs
+    this.tickBuffs(allAliveUnits);
 
     this.unitAutoAttacks(this.enemies);
     this.unitAutoAttacks(this.units);
@@ -115,8 +120,21 @@ export default class Battle {
     this.postTick();
   }
 
+  tickBuffs(units) {
+    units.forEach((unit) => {
+      if (unit.buffs) {
+        // Buffs can do things on tick, will collect them in the form of combatEvents
+        unit.buffs.forEach((buff) => {
+          buff.constants = BUFFS[buff.id];
+          if (buff.constants.events.onTick) {
+            buff.constants.events.onTick({ secondsElapsed, buff, target: unit, actualBattle: this });
+          }
+        });
+      }
+    });
+  }
+
   updateAbilityCooldowns(allUnits) {
-    const secondsElapsed = (TICK_DURATION / 1000);
     allUnits.forEach((unit) => {
       if (unit.abilities) {
         unit.abilities.forEach((ability) => {
@@ -162,8 +180,24 @@ export default class Battle {
     }
   }
 
+  removeUnit(defender) {
+    if (defender.isEnemy) {
+      this.deadEnemies.push(defender);
+      this.enemies = this.enemies.filter((enemy) => {
+        return enemy.id !== defender.id;
+      });
+    } else {
+      this.deadUnits.push(defender);
+      this.units = this.units.filter((unit) => {
+        return unit.id !== defender.id;
+      });
+    }
+    this.updateUnitMaps();
+  }
+
   applyBattleActions() {
     this.battleActions.forEach((action) => {
+      console.log(action);
       const casterId = action.caster;
       if (action.abilityId === 'changeTarget') {
         // Modify casters preferred target
@@ -191,9 +225,13 @@ export default class Battle {
         // WANRING: You can't own multiple units so we can assume this one
         const casterUnit = this.unitsMap[casterId];
 
+        if (!casterUnit.abilities) {
+          return;
+        }
+
         // Check if the ability exists
         let unitAbility = casterUnit.abilities.find((ability) => {
-          return ability.id === action.abiltiyId;
+          return ability.id === action.abilityId;
         });
 
         if (!unitAbility || unitAbility.currentCooldown > 0) {
@@ -218,9 +256,9 @@ export default class Battle {
         abilityToCast.level = unitAbility.level;
 
         // Fetch who we are are targetting with this ability
-        const refundCast = castAbility({
+        const refundCast = this.castAbility({
           ability: abilityToCast,
-          caster: actionCaster,
+          caster: casterUnit,
           targets: actionTargets,
           actualBattle: this
         });
@@ -241,17 +279,13 @@ export default class Battle {
       // TODO: How effecient is this IF statement?
       if ((this.tickCount - unit.tickOffset) % unit.stats.attackSpeedTicks === 0 && this.tickCount > unit.tickOffset) {
         // TODO: Only get a random defender, if the target is not alive
-        let defender = _.sample(unit.isEnemy ? this.units : this.enemies);
-        if (unit.target) {
-          const targetUnit = this.allUnitsMap[unit.target];
-          if (targetUnit) {
-            defender = targetUnit;
-          } else {
-            unit.target = defender.id;
-          }
-        } else {
+        let defender = unit.target ? this.allUnitsMap[unit.target] : false;
+
+        if (!defender || defender.stats.health <= 0) {
+          defender = _.sample(unit.isEnemy ? this.units : this.enemies);
           unit.target = defender.id;
         }
+
         this.autoAttack({
           attacker: unit,
           defender,
@@ -275,11 +309,26 @@ export default class Battle {
   }
 
   end() {
-    console.log('Ending');
+    request({
+      method: 'POST',
+      uri: 'http://localhost:3201/methods/completeBattle',
+      body: [{
+        units: this.units.concat(this.deadUnits),
+        enemies: this.enemies.concat(this.deadEnemies),
+        floor: this.floor,
+        totalXpGain: this.totalXpGain,
+        room: this.room,
+        id: this.id,
+        owners: this.owners
+      }],
+      json: true
+    })
+    this.removeBattle(this.id);
     clearInterval(this.intervalId);
   }
 }
 
 Battle.prototype.autoAttack = autoAttack;
 Battle.prototype.dealDamage = dealDamage;
+Battle.prototype.castAbility = castAbility;
 Battle.prototype.healTarget = healTarget;

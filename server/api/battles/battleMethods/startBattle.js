@@ -5,6 +5,7 @@ import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { addBuff, removeBuff } from '/server/battleUtils';
 
+import uuid from 'node-uuid';
 import { Random } from 'meteor/random'
 import moment from 'moment';
 import _ from 'underscore';
@@ -298,7 +299,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       const randomUnitTarget = _.sample(newBattle.units);
       totalXpGain += BATTLES.xpGain(enemyStats, enemyConstants.buffs);
       newBattle.enemies.push({
-        id: Random.id(),
+        id: uuid.v4(),
         stats: enemyStats,
         icon: enemyConstants.icon,
         buffs: enemyConstants.buffs || [],

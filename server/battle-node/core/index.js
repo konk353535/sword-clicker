@@ -1,6 +1,9 @@
 import { ABILITIES } from '../../constants/combat/index.js'; // List of available combat stats
 import { BATTLES } from '../../constants/battles/index.js'; // List of available combat stats
 import _ from 'underscore';
+import dealDamage from './dealDamage';
+import healTarget from './healTarget';
+import autoAttack from './autoAttack';
 
 const TICK_DURATION = 100;
 
@@ -14,6 +17,7 @@ export default class Battle {
     this.enemies = battle.enemies;
     this.tickCount = 0;
     this.tickEvents = [];
+    this.battleActions = [];
     this.deadUnits = [];
     this.deadEnemies = [];
     this.utils = {
@@ -22,18 +26,17 @@ export default class Battle {
       healTarget
     }
 
-    this.initHelpers();
+    this.isExplorationRun = false;    
 
+    this.initHelpers();
     this.intervalId = setInterval(() => {
       this.tick();
     }, TICK_DURATION);
 
-    io.of(`/balancer/${balancerId}`).on('connection', async (socket) => {
-      socket.on('action', () => {
-        console.log('Action Called!');
+    io.of(`/${balancerId}`).on('connection', async (socket) => {
+      socket.on('action', (data) => {
+        this.battleActions.push(data);
       });
-
-      socket.emit('tick');
     });
   }
 
@@ -57,7 +60,13 @@ export default class Battle {
     });
   }
 
-  initPassives(unit) {
+  initPassives(units) {
+    units.forEach((unit) => {
+      this.initUnitPassives(unit);
+    });
+  }
+
+  initUnitPassives(unit) {
     if (unit.abilities) {
       unit.abilities.forEach((ability) => {
         if (ABILITIES[ability.id].isPassive) {
@@ -76,230 +85,201 @@ export default class Battle {
             actualBattle
           });*/
         }
-      })
+      });
     }
   }
 
   tick() {
-    console.log('Tick');
     const secondsElapsed = (TICK_DURATION / 1000);
     const allAliveUnits = this.units.concat(this.enemies);
+
     if (this.tickCount === 0) {
-      allAliveUnits.forEach((unit) => {
-        this.initPassives(unit);
-      });
+      this.initPassives(allAliveUnits);
     }
 
     // TODO: Tick Buffs
 
-    // Apply Enemy Attacks
-    this.enemies.forEach((enemy) => {
-      // TODO: How effecient is this IF statement?
-      if ((this.tickCount - enemy.tickOffset) % enemy.stats.attackSpeedTicks === 0 && this.tickCount > enemy.tickOffset) {
-        // TODO: Only get a random defender, if the target is not alive
-        let defender = _.sample(this.units);
-        if (enemy.target) {
-          const targetUnit = _.find(this.units, (unit) => {
-            return unit.id === enemy.target
+    this.unitAutoAttacks(this.enemies);
+    this.unitAutoAttacks(this.units);
+
+    // Apply battle actions
+    this.applyBattleActions();
+
+    // Update Ability Cooldowns
+    this.updateAbilityCooldowns(allAliveUnits);
+
+    // Check for game over conditions
+    this.checkGameOverConditions();
+
+    this.tickCount++;
+    this.postTick();
+  }
+
+  updateAbilityCooldowns(allUnits) {
+    const secondsElapsed = (TICK_DURATION / 1000);
+    allUnits.forEach((unit) => {
+      if (unit.abilities) {
+        unit.abilities.forEach((ability) => {
+          if (ability.currentCooldown > 0) {
+            ability.currentCooldown -= secondsElapsed;
+          }
+        });
+      }
+    });
+  }
+
+  checkGameOverConditions() {
+    if (this.enemies.length === 0 || this.units.length === 0) {
+      // Before we end the battle, make sure it shouldn't continue
+      if (this.isExplorationRun && this.units.length > 0) {
+        if (this.room !== 'boss' && this.room < 7) {
+          this.room += 1;
+          // Strip out old dead enemies
+          this.deadEnemies = [];
+          // Populate battle with next room
+          const newMonsters = FLOORS.genericTowerMonsterGenerator(this.floor, this.room);
+          // Inject into battle
+          newMonsters.forEach((monster) => {
+            const randomUnitTarget = _.sample(this.units);
+            this.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs);
+            this.enemies.push({
+              id: Random.id(),
+              stats: monster.stats,
+              icon: monster.icon,
+              buffs: monster.buffs || [],
+              target: randomUnitTarget.id,
+              enemyId: monster.id,
+              name: monster.name,
+              tickOffset: this.tick + 2
+            });
           });
+
+          return;
+        }
+      }
+
+      this.end();
+    }
+  }
+
+  applyBattleActions() {
+    this.battleActions.forEach((action) => {
+      const casterId = action.caster;
+      if (action.abilityId === 'changeTarget') {
+        // Modify casters preferred target
+        const targetUnit = this.allUnitsMap[casterId];
+        if (targetUnit) {
+          targetUnit.target = action.targets[0];
+        }
+      } else if (action.abilityId === 'clickAttack') {
+        const targetId = action.targets[0];
+        const targetUnit = this.enemiesMap[targetId];
+        const casterUnit = this.unitsMap[casterId];
+
+        // Ensure caster unit has sufficient energy
+        if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
+          casterUnit.amulet.energy -= 1;
+          dealDamage(casterUnit.amulet.damage, {
+            attacker: casterUnit,
+            defender: targetUnit,
+            actualBattle: this,
+            tickEvents: this.tickEvents,
+            historyStats: this.historyStats
+          });
+        }
+      } else {
+        // WANRING: You can't own multiple units so we can assume this one
+        const casterUnit = this.unitsMap[casterId];
+
+        // Check if the ability exists
+        let unitAbility = casterUnit.abilities.find((ability) => {
+          return ability.id === action.abiltiyId;
+        });
+
+        if (!unitAbility || unitAbility.currentCooldown > 0) {
+          return;
+        }
+
+        if (unitAbility.isSpell && unitAbility.casts <= 0) {
+          return;
+        }
+
+        // Cast it! and put it on cooldown
+        const abilityToCast = JSON.parse(JSON.stringify(ABILITIES[action.abilityId]));
+
+        if (abilityToCast.isPassive) {
+          return;
+        }
+
+        const unitsAndEnemies = this.units.concat(this.enemies);
+        const actionTargets = unitsAndEnemies.filter((unit) => {
+          return _.contains(action.targets, unit.id);
+        });
+        abilityToCast.level = unitAbility.level;
+
+        // Fetch who we are are targetting with this ability
+        const refundCast = castAbility({
+          ability: abilityToCast,
+          caster: actionCaster,
+          targets: actionTargets,
+          actualBattle: this
+        });
+
+        if (refundCast) {
+
+        } else {
+          unitAbility.casts -= 1;
+          unitAbility.totalCasts += 1;
+          unitAbility.currentCooldown = abilityToCast.cooldown;
+        }
+      }
+    });
+  }
+
+  unitAutoAttacks(units) {
+    units.forEach((unit) => {
+      // TODO: How effecient is this IF statement?
+      if ((this.tickCount - unit.tickOffset) % unit.stats.attackSpeedTicks === 0 && this.tickCount > unit.tickOffset) {
+        // TODO: Only get a random defender, if the target is not alive
+        let defender = _.sample(unit.isEnemy ? this.units : this.enemies);
+        if (unit.target) {
+          const targetUnit = this.allUnitsMap[unit.target];
           if (targetUnit) {
             defender = targetUnit;
           } else {
-            enemy.target = defender.id;
+            unit.target = defender.id;
           }
         } else {
-          enemy.target = defender.id;
+          unit.target = defender.id;
         }
-        autoAttack({
-          attacker: enemy,
+        this.autoAttack({
+          attacker: unit,
           defender,
           tickEvents: this.tickEvents,
           historyStats: this.historyStats
         });
       }
     });
-
-    this.tickCount++;
-    this.postTick();
   }
 
   postTick() {
-    this.io.of(`/balancer/${this.balancerId}`).emit('tick', {
-      data: 'hello'
+    this.io.of(`/${this.balancerId}`).emit('tick', {
+      battle: {
+        units: this.units,
+        enemies: this.enemies,
+        tickEvents: this.tickEvents
+      }
     });
+    this.battleActions = [];
     this.tickEvents = [];
   }
 
   end() {
+    console.log('Ending');
     clearInterval(this.intervalId);
   }
 }
 
-const dealDamage = function(rawDamage, {
-  attacker,
-  defender,
-  tickEvents,
-  customColor,
-  customIcon,
-  isMagic,
-  isTrueDamage,
-  historyStats 
-}) {
-  if (!attacker) {
-    return 0;
-  }
-
-  let damage = rawDamage;
-  if (damage > 0 && damage) {
-    let dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
-
-    if (dmgReduction < 0) {
-      dmgReduction = 0;
-    } else if (isTrueDamage) {
-      dmgReduction = 0;
-    } else if (dmgReduction > 1) {
-      dmgReduction = 1;
-    } else if (dmgReduction == null) {
-      dmgReduction = 0;
-    }
-    damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
-
-    if (defender.isBoss && damage > 10000) {
-      damage = 10000;
-    }
-    defender.stats.health -= damage;
-  }
-
-  if (historyStats && historyStats[attacker.id]) {
-    historyStats[attacker.id].damageDone += damage;
-  }
-
-  if (historyStats && historyStats[defender.id]) {
-    historyStats[defender.id].damageTaken += damage;
-  }
-
-  if(tickEvents) {
-    tickEvents.push({
-      from: attacker ? attacker.id : '',
-      to: defender.id,
-      eventType: 'damage',
-      label: damage.toFixed(1),
-      customColor: isMagic ? 'blue' : customColor,
-      customIcon: isMagic ? 'magic' : customIcon
-    });
-  }
-
-  return damage;
-}
-
-const healTarget = function(healAmount, {
-  target,
-  caster,
-  tickEvents,
-  customColor,
-  customIcon,
-  historyStats
-}) {
-  if (caster && caster.stats && caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
-    healAmount *= (1 + (caster.stats.healingPower / 100));
-  }
-
-  if (target.stats.healingReduction != null) {
-    healAmount *= target.stats.healingReduction;
-  }
-
-  target.stats.health += healAmount;
-  if (target.stats.health > target.stats.healthMax) {
-    target.stats.health = target.stats.healthMax;
-  }
-
-  if (caster && historyStats && historyStats[caster.id]) {
-    historyStats[caster.id].healingDone += healAmount;
-  }
-
-  if(tickEvents) {
-    tickEvents.push({
-      from: caster ? caster.id : '',
-      to: target.id,
-      eventType: 'heal',
-      label: (healAmount).toFixed(1),
-      customColor: '#f5528b',
-      customIcon: 'health'
-    });
-  }
-}
-
-const autoAttack = function({ attacker, defender, tickEvents, historyStats, originalAutoAttack = true }) {
-  // Do we hit?
-  let hitGap = attacker.stats.accuracy - defender.stats.defense;
-  let hitChance = 0.5;
-
-  if (hitGap > 0) {
-    // Favours attacker
-    const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 50)) / 2;
-    hitChance += extraChance;
-  } else {
-    // Favours defender
-    const extraChance = (Math.abs(hitGap) / (Math.abs(hitGap) + 50)) / 2;
-    hitChance -= extraChance;
-  }
-
-  if (defender.stats.minimumHitChance && hitChance > (1 - defender.stats.minimumHitChance)) {
-    hitChance = 1 - defender.stats.minimumHitChance;
-  }
-
-  if (hitChance >= Math.random()) {
-    // How much do we hit for
-    const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-    let rawDamage = attacker.stats.attack + extraRawDamage;
-
-    // Is this a crit?
-    let customIcon;
-    if (attacker.stats.criticalChance && Math.random() <= (attacker.stats.criticalChance / 100)) {
-      rawDamage *= attacker.stats.criticalDamage;
-      customIcon = 'criticalStrike';
-    }
-
-    const damageDealt = dealDamage(rawDamage, {
-      attacker,
-      defender,
-      tickEvents,
-      customIcon,
-      historyStats
-    });
-
-    // Tick didDamage event on attacker
-    if (attacker.buffs) {
-      attacker.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
-        if (buff.constants.events.onDidDamage) {
-          // Did Damage
-          buff.constants.events.onDidDamage({
-            originalAutoAttack,
-            secondsElapsed,
-            buff,
-            defender,
-            attacker,
-            actualBattle,
-            damageDealt,
-            rawDamage
-          })
-        }
-      });
-    }
-
-    // Tick tookDamage event on defender
-    if (defender.buffs) {
-      defender.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
-        if (buff.constants.events.onTookDamage) {
-          // Took Damage
-          buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt })
-        }
-      });
-    }
-
-  } else {
-    dealDamage(0, { attacker, defender, tickEvents, historyStats });
-  }
-}
+Battle.prototype.autoAttack = autoAttack;
+Battle.prototype.dealDamage = dealDamage;
+Battle.prototype.healTarget = healTarget;

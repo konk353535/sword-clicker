@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import io from 'socket.io-client';
 
 import _ from 'underscore';
 
@@ -85,13 +86,22 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     const currentBattleList = BattlesList.findOne({
       owners: Meteor.userId()
     });
-    if (!currentBattleList) return;
-    const rawBattle = redis.get(`battles-${currentBattleList._id}`);
-    if (!rawBattle) return;
-    const currentBattle = JSON.parse(rawBattle);
-    if (!currentBattle) return;
 
-    startBattle(currentBattle, this);
+    if (!currentBattleList) return;
+
+    window.battleSocket = io('http://localhost:3055/balancer_abc', {
+      transports: ['websocket']
+    });
+
+    window.battleSocket.on('tick', (data) => {
+      const rawBattle = data.battle;
+      if (!rawBattle) return;
+      const currentBattle = rawBattle;
+      if (!currentBattle) return;
+
+      startBattle(currentBattle, this);
+    });
+
   })
 });
 

@@ -46,7 +46,7 @@ export const BOSS_BUFFS = {
 
         const extraDamage = 0.1 * buff.data.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -798,7 +798,7 @@ export const BOSS_BUFFS = {
 
         const extraDamage = 0.01 * buff.data.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -1482,7 +1482,7 @@ export const BOSS_BUFFS = {
 
           const attackMax = target.stats.attackMax;
           const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
-          actualBattle.utils.dealDamage(damageToDeal, {
+          actualBattle.dealDamage(damageToDeal, {
             attacker: target,
             defender: unitToAttack,
             tickEvents: actualBattle.tickEvents,
@@ -1850,7 +1850,7 @@ export const BOSS_BUFFS = {
             // cast ignite
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
 
-            actualBattle.utils.dealDamage(500, {
+            actualBattle.dealDamage(500, {
               attacker: target,
               defender: unit,
               isMagic: true,
@@ -1938,7 +1938,7 @@ export const BOSS_BUFFS = {
 
         // Heal Fox, reduce health by healed amount
         target.stats.health -= 50;
-        actualBattle.utils.healTarget(50, {
+        actualBattle.healTarget(50, {
           caster: target,
           target: fox,
           tickEvents: actualBattle.tickEvents,

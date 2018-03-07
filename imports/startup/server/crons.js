@@ -112,12 +112,12 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.cron('* * * * * * *');
+    return parser.text('every 30 seconds');
   },
   job: function() {
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(1, 'minutes').toDate()   
+        $lte: moment().subtract(Meteor.settings.is_dev ? 1 : 60, 'seconds').toDate()   
       } 
     }).fetch().forEach((battleList) => {
       let currentBattle = redis.get(`battles-${battleList._id}`);
@@ -125,8 +125,8 @@ SyncedCron.add({
 
       let isUpdatedStale = false;
 
-      if (battleList.useStreamy) {
-        isUpdatedStale = moment().isAfter(moment(battleList.createdAt).add(15, 'minutes'));
+      if (Meteor.settings.is_dev) {
+        isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(1, 'seconds'));
       } else if (currentBattle) {
         isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
       }
@@ -234,4 +234,4 @@ SyncedCron.config({
 
 Meteor.setTimeout(() => {
   SyncedCron.start();
-}, 60000);
+}, Meteor.settings.is_dev ? 0 : 60000);

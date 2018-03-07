@@ -346,6 +346,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   const actualBattle = newBattle;
+  actualBattle.enemies.forEach((enemy) => {
+    enemy.isEnemy = true;
+  });
 
   // Take energy from all members
   Combat.update({
@@ -359,7 +362,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }, { multi: true });
 
   // Progress battle
-  HTTP.call('POST', 'http://localhost:3000/battle', {
+  HTTP.call('POST', 'http://localhost:3055/battle', {
     data: { battle: actualBattle }
   }, (error, result) => {});
 

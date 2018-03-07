@@ -21,8 +21,21 @@ import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
+import http from 'http';
+import socket_io from 'socket.io';
 
 Meteor.startup(() => {
+  const server = http.createServer();
+  const io = socket_io(server);
+
+  // New client
+  io.of('/my-namespace').on('connection', function(socket) {
+    console.log('new socket client');
+  });
+
+  server.listen(3510);
+
+
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);

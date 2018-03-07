@@ -606,7 +606,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -662,7 +662,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -729,7 +729,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -781,7 +781,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -833,7 +833,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -889,7 +889,7 @@ export const MAGIC_BUFFS = {
           buff.data.totalHeal = totalHeal;
           buff.data.healingPower = caster.stats.healingPower;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.healTarget(buff.data.totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -904,7 +904,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
+          actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
             caster: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             target,
             tickEvents: actualBattle.tickEvents,
@@ -961,7 +961,7 @@ export const MAGIC_BUFFS = {
           buff.data.totalHeal = totalHeal;
           buff.data.healingPower = caster.stats.healingPower;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.healTarget(buff.data.totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -976,7 +976,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
+          actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
             caster: _.findWhere(actualBattle.allUnits, { id: buff.dat.asourceId }),
             target,
             tickEvents: actualBattle.tickEvents,
@@ -1104,7 +1104,7 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalMagicArmorReduction) {
           target.stats.magicArmor += buff.data.totalMagicArmorReduction;
-          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
+          actualBattle.dealDamage(buff.data.magicDamageTotal, {
             attacker: target,
             defender: target,
             isMagic: true,
@@ -1162,7 +1162,7 @@ export const MAGIC_BUFFS = {
           buff.data.sourceId = caster.id;
           target.stats.magicArmor -= totalMagicArmorReduction;
 
-          actualBattle.utils.dealDamage(magicDamageTotal, {
+          actualBattle.dealDamage(magicDamageTotal, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1186,7 +1186,7 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalMagicArmorReduction) {
           target.stats.magicArmor += buff.data.totalMagicArmorReduction;
-          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
+          actualBattle.dealDamage(buff.data.magicDamageTotal, {
             attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             defender: target,
             isMagic: true,
@@ -1301,7 +1301,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1374,7 +1374,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1506,7 +1506,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1587,7 +1587,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1668,7 +1668,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -1720,7 +1720,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -1773,7 +1773,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1846,7 +1846,7 @@ export const MAGIC_BUFFS = {
         
           buff.data.sourceId = caster.id;
           buff.data.totalDamage = totalDamage;
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1862,7 +1862,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             defender: target,
             isMagic: true,
@@ -1919,7 +1919,7 @@ export const MAGIC_BUFFS = {
         
           buff.data.totalDamage = totalDamage;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1935,7 +1935,7 @@ export const MAGIC_BUFFS = {
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             defender: target,
             isMagic: true,
@@ -1989,7 +1989,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2042,7 +2042,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2095,7 +2095,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2148,7 +2148,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,

@@ -105,7 +105,7 @@ LEG
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
         
-        actualBattle.utils.dealDamage(modifiedDamage, {
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -145,7 +145,7 @@ LEG
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(baseDamage * modifier); 
 
-        actualBattle.utils.dealDamage(modifiedDamage, {
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -266,7 +266,7 @@ LEG
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
 
-          actualBattle.utils.dealDamage(modifiedDamage, {
+          actualBattle.dealDamage(modifiedDamage, {
             attacker: attacker,
             defender: defender,
             //isTrueDamage: true,

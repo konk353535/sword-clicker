@@ -2,7 +2,6 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import RaiCheckout from 'arrowpay-react-checkout';
-import App from './react-test';
 
 import 'arrowpay-react-checkout/build/css/index.css';
 import './shop.html';
@@ -289,10 +288,6 @@ Template.shopPage.helpers({
 
   RaiCheckout() {
     return RaiCheckout;
-  },
-
-  App() {
-    return App;
   },
 
   onPaymentConfirmed() {

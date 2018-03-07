@@ -65,7 +65,7 @@ export const DEFENSE_BUFFS = {
         const actualDamage = (attack + ((attackMax - attack) * Math.random())) * damageBuff;
 
         actualBattle.enemies.forEach((enemy) => {
-          actualBattle.utils.dealDamage(actualDamage, {
+          actualBattle.dealDamage(actualDamage, {
             attacker: target,
             defender: enemy,
             tickEvents: actualBattle.tickEvents,
@@ -403,7 +403,7 @@ export const DEFENSE_BUFFS = {
 
         const totalDamage = damageDealt;
 
-        actualBattle.utils.dealDamage((totalDamage * damageReflection) + 10, {
+        actualBattle.dealDamage((totalDamage * damageReflection) + 10, {
           attacker: defender,
           defender: attacker,
           isMagic: true,
@@ -447,7 +447,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -465,7 +465,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           isMagic: true,
@@ -497,7 +497,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -515,7 +515,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           tickEvents: actualBattle.tickEvents,
@@ -548,7 +548,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -594,7 +594,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,

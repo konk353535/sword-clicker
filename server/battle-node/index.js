@@ -18,32 +18,10 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 io.on('connection', (socket) => {
-  socket.join('myroom');
-  setInterval(() => {
-    io.to('myroom').emit('hello');
-  }, 1000);
-  console.log('connected');
-  socket.on('disconnect', function (e) { 
-    console.log(0);
-    console.log(e);
-  })
 });
-
-io.on('disconnect', (e) => {
-  console.log('disconnect');
-  console.log(e);
-})
 
 io.of('/my-namespace').on('connection', (socket) => {
-  setInterval(() => {
-    socket.emit('hello');
-  }, 1000);
   console.log('namespace connected');
-});
-
-io.of('/my-namespace').on('disconnect', (e) => { 
-  console.log(1);
-  console.log(e);
 });
 
 app.use(bodyParser.urlencoded({ extended: true }) );
@@ -251,5 +229,7 @@ const testBattle = {
   "tick": 0,
   "_id": "NpZ6eqBKMxhwT687Q"
 }
+
+// battles[testBattle.id] = new Battle(testBattle, 'balancer_abc', io);
 
 server.listen(3055);

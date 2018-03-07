@@ -833,7 +833,7 @@ export const MONSTER_BUFFS = {
 
         if (poisonedCount >= 1) {
           const totalHeal =  ((defender.stats.defense * poisonedCount) / 2);
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster: defender,
             target: defender,
             historyStats: actualBattle.historyStats,

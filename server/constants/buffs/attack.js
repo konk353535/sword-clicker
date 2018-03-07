@@ -38,7 +38,7 @@ export const ATTACK_BUFFS = {
         const defenderAttackMax = defender.stats.attackMax;
         const actualDamage = (defenderAttack + ((defenderAttackMax - defenderAttack) * Math.random())) * constants.damageDecimal;
 
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.dealDamage(actualDamage, {
           defender: attacker,
           attacker: defender,
           tickEvents: actualBattle.tickEvents,
@@ -77,7 +77,7 @@ export const ATTACK_BUFFS = {
         if (buff.data.timeTillDamage <= 0) {
           buff.data.timeTillDamage = constants.timeTillDamage;
           const poisonDamage = buff.data.damage;
-          actualBattle.utils.dealDamage(poisonDamage, {
+          actualBattle.dealDamage(poisonDamage, {
             defender: target,
             attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             tickEvents: actualBattle.tickEvents,
@@ -239,7 +239,7 @@ export const ATTACK_BUFFS = {
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         const totalHeal = (damageDealt * buff.data.lifestealTotal);
 
-        actualBattle.utils.healTarget(totalHeal, {
+        actualBattle.healTarget(totalHeal, {
           caster: attacker,
           target: attacker,
           tickEvents: actualBattle.tickEvents,
@@ -375,7 +375,7 @@ export const ATTACK_BUFFS = {
 
           const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
 
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker,
             defender,
             tickEvents: actualBattle.tickEvents,
@@ -453,7 +453,7 @@ export const ATTACK_BUFFS = {
           if (adjacentTargets.length > 0) {
             adjacentTargets.forEach((newTarget) => {
               // Call auto attack on them as well
-              actualBattle.utils.autoAttack({
+              actualBattle.autoAttack({
                 attacker,
                 defender: newTarget,
                 tickEvents: actualBattle.tickEvents,
@@ -534,7 +534,7 @@ export const ATTACK_BUFFS = {
           const hpDecimal = attacker.stats.health / attacker.stats.healthMax;
 
           if (hpDecimal <= 0.60) {
-            actualBattle.utils.healTarget(totalHealing, {
+            actualBattle.healTarget(totalHealing, {
               caster: attacker,
               target: attacker,
               tickEvents: actualBattle.tickEvents,
@@ -542,7 +542,7 @@ export const ATTACK_BUFFS = {
             }); 
           }
 
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker,
             defender,
             tickEvents: actualBattle.tickEvents,
@@ -738,14 +738,14 @@ export const ATTACK_BUFFS = {
         const totalDamage = baseDamage * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.utils.dealDamage(totalDamage, {
+        actualBattle.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
         });
 
-        actualBattle.utils.dealDamage(totalDamage / 2, {
+        actualBattle.dealDamage(totalDamage / 2, {
           attacker: caster,
           defender: caster,
           tickEvents: actualBattle.tickEvents,
@@ -797,7 +797,7 @@ export const ATTACK_BUFFS = {
         const totalDamage = (baseDamage + extraDamage) * (missingHealthPercentage / 100) * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.utils.dealDamage(totalDamage, {
+        actualBattle.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -844,7 +844,7 @@ export const ATTACK_BUFFS = {
         const casterAttackMax = caster.stats.attackMax;
         const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) * Math.random())) * damageTotalDecimal;
 
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -894,7 +894,7 @@ export const ATTACK_BUFFS = {
 
         // Reduce armor by X% before hit
         target.stats.armor *= (1 - constants.armorPenetration);
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -938,7 +938,7 @@ export const ATTACK_BUFFS = {
         // Targets missing health %
         const actualDamage = caster.stats.defense * damageTotalDecimal;
 
-        actualBattle.utils.dealDamage(actualDamage, {
+        actualBattle.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -995,7 +995,7 @@ export const ATTACK_BUFFS = {
         }
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.utils.dealDamage(totalDamage, {
+        actualBattle.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -1121,7 +1121,7 @@ export const ATTACK_BUFFS = {
           const caster = _.findWhere(actualBattle.allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
 
-          actualBattle.utils.dealDamage(buff.data.dps, { 
+          actualBattle.dealDamage(buff.data.dps, { 
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,

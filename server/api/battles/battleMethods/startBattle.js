@@ -362,8 +362,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }, { multi: true });
 
   // Send battle to socket server
-  // TODO: Make sure this call is encrypted in some way
+  // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
+  // Otherwise MIM attack compromises the security of the system
   HTTP.call('POST', 'http://localhost:3055/battle', {
-    data: { battle: actualBattle }
+    data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s' }
   }, (error, result) => {});
 }

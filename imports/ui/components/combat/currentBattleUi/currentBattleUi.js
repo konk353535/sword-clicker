@@ -89,7 +89,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 
     if (!currentBattleList) return;
 
-    window.battleSocket = io('http://localhost:3055/balancer_abc', {
+    window.battleSocket = io(`http://localhost:3055/${currentBattleList._id}`, {
       transports: ['websocket']
     });
 

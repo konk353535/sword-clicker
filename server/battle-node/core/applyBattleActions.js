@@ -1,3 +1,5 @@
+import { ABILITIES } from '../../constants/combat/index.js';
+
 export default function applyBattleActions() {
   this.battleActions.forEach((action) => {
     const casterId = action.caster;

@@ -698,6 +698,10 @@ export const completeBattle = function (actualBattle) {
   delete actualBattle;
 };
 
-Meteor.method('completeBattle', function (battle) {
+Meteor.method('completeBattle', function (battle, passphrase) {
+  if (passphrase !== 'dqv$dYT65YrU%s') {
+    return;
+  }
+
   completeBattle(battle);
 });

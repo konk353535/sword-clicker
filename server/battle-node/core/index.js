@@ -128,7 +128,7 @@ export default class Battle {
         room: this.room,
         id: this.id,
         owners: this.owners
-      }],
+      }, 'dqv$dYT65YrU%s'],
       json: true
     })
     this.removeBattle(this.id, this.intervalId);

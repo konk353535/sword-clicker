@@ -30,19 +30,8 @@ export default function({ ability, caster, targets }) {
 
   if (ability.target === 'currentEnemy') {
     // Is current target alive
-    const currentEnemy = _.find(this.allAliveUnits, (unit) => {
-      return unit.id === caster.target
-    });
-    if (currentEnemy) {
-      targets = [currentEnemy];
-    } else {
-      const firstEnemy = this.enemies[0];
-      if (firstEnemy) {
-        targets = [firstEnemy];
-      } else {
-        targets = [];
-      }
-    }
+    const currentEnemy = this.allUnitsMap[caster.target];
+    const targets = currentEnemy ? [currentEnemy] : [this.enemies[0]];
   } else if (ability.target === 'allEnemies') {
     targets = this.enemies;
   } else if (ability.target === 'allAllies') {
@@ -50,25 +39,20 @@ export default function({ ability, caster, targets }) {
   } else if (ability.target === 'self') {
     targets = [caster];
   } else if (ability.target === 'singleEnemy') {
-    // Make sure specified target is an enemy
-    if (targets[0] && targets.length === 1) {
-      if (!_.findWhere(this.enemies, { id: targets[0].id })) {
-        targets = [];
-      }
+    const singleTarget = targets[0];
+    if (singleTarget && this.enemiesMap[singleTarget.id]) {
+      targets = [singleTarget]
     } else {
       targets = [];
     }
   } else if (ability.target === 'singleFriendly') {
-    // Make sure specified target is an ally
-    if (targets[0] && targets.length === 1) {
-      if (!_.findWhere(this.units, { id: targets[0].id })) {
-        targets = [];
-      }
+    const singleTarget = targets[0];
+    if (singleTarget && this.unitsMap[singleTarget.id]) {
+      targets = [singleTarget]
     } else {
       targets = [];
     }
   }
-
 
   // Apply ability buffs to targets
   targets.forEach((target) => {

@@ -306,7 +306,7 @@ export const MONSTER_BUFFS = {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
             const newRabbit = JSON.parse(JSON.stringify(target));
             newRabbit.id = uuid.v4();
-            actualBattle.enemies.push(newRabbit);
+            actualBattle.addUnit(newRabbit);
             buff.data.timeTillRabbit = 6000;
           }
         }
@@ -1058,7 +1058,7 @@ export const MONSTER_BUFFS = {
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.enemies.push(newCube);
+            actualBattle.addUnit(newCube);
           }
           buff.data.hasSplit = true;
         }
@@ -1074,7 +1074,7 @@ export const MONSTER_BUFFS = {
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.enemies.push(newCube);
+            actualBattle.addUnit(newCube);
           }
           buff.data.hasSplit = true;
         }

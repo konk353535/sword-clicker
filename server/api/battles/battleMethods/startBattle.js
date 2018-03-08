@@ -17,7 +17,6 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';
-import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
 
@@ -362,15 +361,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }, { multi: true });
 
-  // Progress battle
+  // Send battle to socket server
+  // TODO: Make sure this call is encrypted in some way
   HTTP.call('POST', 'http://localhost:3055/battle', {
     data: { battle: actualBattle }
   }, (error, result) => {});
-
-  return;
-
-  const battleIntervalId = Meteor.setInterval(() => {
-    console.log(JSON.stringify(actualBattle));
-    progressBattle(actualBattle, battleIntervalId);
-  }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
 }

@@ -7,7 +7,7 @@ import { Floors } from '/imports/api/floors/floors';
 import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
-import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
+import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
 
@@ -16,55 +16,10 @@ import { FLOORS } from '/server/constants/floors/index.js'; // List of floor det
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 
 import { startBattle } from './battleMethods/startBattle';
-import { progressBattle } from './battleMethods/progressBattle';
-
-const redis = new Meteor.RedisCollection('redis');
 
 const setBattleAgain = function(floor, room) {
   Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
 };
-
-export const resumeBattle = function(id) {
-  // Find the battle
-  const rawBattle = redis.get(`battles-${id}`);
-  let actualBattle;
-  if (rawBattle) {
-    actualBattle = JSON.parse(rawBattle);
-  }
-
-  let isUpdatedStale;
-  let isCreatedStale;
-
-  if (actualBattle) {
-    isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(60, 'seconds'));
-    isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
-  }
-
-  // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
-  if (isUpdatedStale || isCreatedStale || !actualBattle) {
-    console.log('--------- Ending Battle Early!!! -------------');
-    if (isUpdatedStale) {
-      console.log('Reason: Is updated stale');
-      console.log(`Now = ${moment().toDate()}`);
-      console.log(`Last updated = ${moment(actualBattle.updatedAt).toDate()}`);
-    } else {
-      console.log('Reason: Is created stale');
-      console.log(`Now = ${moment().toDate()}`);
-      console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
-    }
-
-    // Remove from battle list
-    BattlesList.remove(actualBattle._id);
-    // Remove from redis
-    redis.del(`battles-${actualBattle._id}`);
-    return;
-  }
-
-  // Progress battle
-  const battleIntervalId = Meteor.setInterval(() => {
-    progressBattle(actualBattle, battleIntervalId);
-  }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
-}
 
 Meteor.methods({
 
@@ -293,35 +248,6 @@ Meteor.methods({
         rankingPercentage: Math.min(Math.round((userRanking / totalRankings) * 100), 100)
       }
     }
-  },
-
-  'battles.castAbility'(battleId, abilityId, options) {
-    if (options.caster !== Meteor.userId()) {
-      throw new Meteor.Error("battle-not-found", "Thats not you!");      
-    }
-
-    if (options.caster && options.caster !== Meteor.userId()) {
-      throw new Meteor.Error("access-denied", "You do not have control of that caster");
-    }
-
-    let existingActions = [];
-    let rawRedis = redis.get(`battleActions-${battleId}`);
-    if (rawRedis) {
-      existingActions = JSON.parse(rawRedis);
-    }
-
-    const obj = {
-      battleId,
-      abilityId,
-      caster: options.caster,
-      target: options.target,
-      targets: options.targets
-    }
-
-    check(obj, BattleActionsSchema);
-
-    existingActions.push(obj);
-    redis.set(`battleActions-${battleId}`, JSON.stringify(existingActions));
   }
 });
 
@@ -351,8 +277,3 @@ Meteor.publish('battlesList', function () {
     owners: this.userId
   });
 });
-
-Meteor.publish("redis-battles", function (currentBattle) {
-  return redis.matching(`battles-${currentBattle._id}`);
-});
-

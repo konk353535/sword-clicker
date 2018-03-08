@@ -131,8 +131,7 @@ export default class Battle {
       }],
       json: true
     })
-    this.removeBattle(this.id);
-    clearInterval(this.intervalId);
+    this.removeBattle(this.id, this.intervalId);
   }
 }
 

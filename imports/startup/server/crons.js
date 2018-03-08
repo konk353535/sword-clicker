@@ -115,30 +115,16 @@ SyncedCron.add({
     return parser.text('every 30 seconds');
   },
   job: function() {
-    return;
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(Meteor.settings.is_dev ? 1 : 60, 'seconds').toDate()   
+        $lte: moment().subtract(15, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
-      let currentBattle = redis.get(`battles-${battleList._id}`);
-      currentBattle = currentBattle ? JSON.parse(currentBattle) : currentBattle;
-
-      let isUpdatedStale = false;
-
-      if (Meteor.settings.is_dev) {
-        isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(1, 'seconds'));
-      } else if (currentBattle) {
-        isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
-      }
-
-
-      if (isUpdatedStale || (!currentBattle && !battleList.useStreamy)) {
+      HTTP.call('DELETE', `http://localhost:3055/battle/${battleList._id}`, (error, result) => {
         BattlesList.remove(battleList._id);
-        redis.del(`battles-${battleList._id}`);
-        redis.del(`battleActions-${battleList._id}`);
-      }
+      });
     });
+
     return true;
   }
 });

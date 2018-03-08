@@ -4,7 +4,6 @@ import '/imports/startup/server';
 
 import { ITEMS } from '/server/constants/items/index';
 import { ABILITIES } from '/server/constants/combat/abilities';
-import { resumeBattle } from '/server/api/battles/battles';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Crafting } from '/imports/api/crafting/crafting';
@@ -21,21 +20,8 @@ import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
-import http from 'http';
-import socket_io from 'socket.io';
 
 Meteor.startup(() => {
-  const server = http.createServer();
-  const io = socket_io(server);
-
-  // New client
-  io.of('/my-namespace').on('connection', function(socket) {
-    console.log('new socket client');
-  });
-
-  server.listen(3510);
-
-
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);
@@ -64,16 +50,6 @@ Meteor.startup(() => {
     }
   })*/
 
-
-  if (process.env['CLUSTER_WORKER_ID'] == 1) {
-    // Start processing abandoned battles
-    BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
-      Meteor.setTimeout(() => {
-        resumeBattle(existingBattle._id);
-      }, Math.random() * 1000);
-    });
-  }
-
   // Ensure indexes on key databases
   Combat._ensureIndex({ owner: 1 });
   Combat._ensureIndex({ foughtBoss: 1 });
@@ -95,5 +71,4 @@ Meteor.startup(() => {
   FarmingSpace._ensureIndex({ owner: 1 });
   FarmingSpace._ensureIndex({ index: 1 });
   BattleActions._ensureIndex({ battleId: 1 });
-
 });

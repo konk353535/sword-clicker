@@ -20,22 +20,36 @@ app.use(cors(corsOptions));
 io.on('connection', (socket) => {
 });
 
-io.of('/my-namespace').on('connection', (socket) => {
-  console.log('namespace connected');
-});
-
 app.use(bodyParser.urlencoded({ extended: true }) );
 app.use(bodyParser.json());
 
 app.post('/battle', (req, res) => {
   const { battle } = req.body;
 
-  battles[battle.id] = new Battle(battle, 'balancer_abc', io, (id) => {
+  battles[battle._id] = new Battle(battle, 'balancer_abc', io, (id, intervalId) => {
+    clearInterval(intervalId);
     delete battles[id];
   });
 
   // Creates a battle
   res.send(battle.id);
+});
+
+app.delete('/battle/:battleId', (req, res) => {
+  const battleId = req.params.battleId;
+
+  const targetBattle = battles[battleId];
+  if (!targetBattle) {
+    return res.sendStatus(404);
+  }
+
+  targetBattle.removeBattle(targetBattle.id, targetBattle.intervalId);
+
+  if (battles[battleId]) {
+    return res.sendStatus(500);
+  }
+
+  res.sendStatus(201);
 });
 
 const testBattle = {

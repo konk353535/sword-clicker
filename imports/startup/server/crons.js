@@ -117,7 +117,7 @@ SyncedCron.add({
   job: function() {
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(1, 'minutes').toDate()   
+        $lte: moment().subtract(5, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
       HTTP.call('DELETE', `http://localhost:3055/battle/${battleList._id}`, (error, result) => {

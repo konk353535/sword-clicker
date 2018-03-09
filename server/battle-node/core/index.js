@@ -107,8 +107,10 @@ export default class Battle {
 
   addUnit(unit) {
     if (unit.isEnemy) {
+      this.deltaEvents.push({ type: 'push', path: 'enemies', value: unit.raw() });
       this.enemies.push(unit);
     } else {
+      this.deltaEvents.push({ type: 'push', path: 'units', value: unit.raw() });
       this.units.push(unit);
     }
     this.updateUnitMaps();
@@ -120,11 +122,13 @@ export default class Battle {
       this.enemies = this.enemies.filter((enemy) => {
         return enemy.id !== unit.id;
       });
+      this.deltaEvents.push({ type: 'pop', path: 'enemies', value: unit.id });
     } else {
       this.deadUnits.push(unit);
       this.units = this.units.filter((unit) => {
         return unit.id !== unit.id;
       });
+      this.deltaEvents.push({ type: 'pop', path: 'units', value: unit.id });
     }
     this.updateUnitMaps();
   }

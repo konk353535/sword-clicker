@@ -121,6 +121,13 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       deltaEvents.forEach(({ type, path, value }) => {
         if (type === 'abs') {
           lodash.set(alteredBattle, path, value);
+        } else if (type === 'push') {
+          lodash.get(alteredBattle, path).push(value);          
+        } else if (type === 'pop') {
+          const arrayToMutate = lodash.get(alteredBattle, path);
+          lodash.set(alteredBattle, path, arrayToMutate.filter((unit) => {
+            return unit.id !== value
+          }));
         }
       });
       startBattle(alteredBattle, this);

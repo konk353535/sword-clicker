@@ -28,6 +28,7 @@
             id={{unit.id}}
             data-unit-id={{unit.id}}
             class="icon-box battle-unit
+              {{#if unit.myTarget}}my-target{{/if}}
               {{#if unit.leader}}leader-icon{{/if}}
               {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
               {{#if small}}item-icon-container small{{/if}}"

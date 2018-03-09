@@ -339,16 +339,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
-    createdAt: new Date(),
-    useStreamy
+    createdAt: new Date()
   });
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;
-
-  if (!useStreamy) {
-    redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));
-  }
 
   const actualBattle = newBattle;
   actualBattle.enemies.forEach((enemy) => {

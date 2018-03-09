@@ -24,22 +24,32 @@ export default class Battle {
 
     this.id = battle._id;
     this.level = battle.level;
+    this.wave = battle.wave;
     this.room = battle.room;
     this.floor = battle.floor;
     this.isExplorationRun = battle.isExplorationRun;  
     this.owners = battle.owners;
     this.totalXpGain = battle.totalXpGain;
 
-    this.units = battle.units.map(unit => new Unit(unit));
-    this.enemies = battle.enemies.map(unit => new Unit(unit));
-
-    this.tickCount = 0;
-
-    this.tickEvents = [];
+    // { type, data }
+    // types:
+    //   abs: absolute change
+    //   add: numeric addition
+    //   push: add to array
+    //   pop: remove from array
+    // }
+    this.deltaEvents = [];
     this.battleActions = [];
+    this.tickEvents = [];
+
     this.deadUnits = [];
     this.deadEnemies = [];
     this.allAliveUnits = [];
+
+    this.units = battle.units.map(unit => new Unit(unit, this));
+    this.enemies = battle.enemies.map(unit => new Unit(unit, this));
+
+    this.tickCount = 0;
 
     this.initHelpers();
     this.intervalId = setInterval(() => {
@@ -50,6 +60,9 @@ export default class Battle {
       socket.on('action', (data) => {
         this.battleActions.push(data);
       });
+      socket.on('getFullState', () => {
+        this.sendFullState();
+      })
     });
   }
 
@@ -116,6 +129,16 @@ export default class Battle {
     this.updateUnitMaps();
   }
 
+  sendFullState() {
+    this.io.of(`/${this.balancerId}`).emit('fullState', {
+      battle: {
+        units: this.units.map(unit => unit.raw()),
+        enemies: this.enemies.map(unit => unit.raw()),
+        tickEvents: this.tickEvents
+      }
+    });
+  }
+
   end() {
     request({
       method: 'POST',
@@ -126,6 +149,8 @@ export default class Battle {
         floor: this.floor,
         totalXpGain: this.totalXpGain,
         room: this.room,
+        wave: this.wave,
+        level: this.level,
         id: this.id,
         owners: this.owners
       }, 'dqv$dYT65YrU%s'],
@@ -248,12 +273,11 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 // Tick method #7
 Battle.prototype.postTick = function postTick() {
   this.io.of(`/${this.balancerId}`).emit('tick', {
-    battle: {
-      units: this.units.map(unit => unit.raw()),
-      enemies: this.enemies.map(unit => unit.raw()),
-      tickEvents: this.tickEvents
-    }
+    tickEvents: this.tickEvents,
+    deltaEvents: this.deltaEvents
   });
+
+  this.deltaEvents = [];
   this.battleActions = [];
   this.tickEvents = [];
 }

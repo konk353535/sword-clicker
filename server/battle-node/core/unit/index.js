@@ -15,10 +15,23 @@ export default class Unit {
   set icon(value) { this._icon = value; }
 
   get target() { return this._target; }
-  set target(value) { this._target = value; }
+  set target(value) {
+    this._target = value;
+    this.delta('target');
+  }
 
   get isEnemy() { return this._isEnemy; }
   set isEnemy(value) { this._isEnemy = value; }
+
+  delta(stat) {
+    const event = {
+      type: 'abs',
+      path: `unitsMap.${this.id}.${stat}`,
+      value: this[stat]
+    };
+
+    this.battleRef.deltaEvents.push(event);
+  }
 
   constructor(unit, battleRef) {
     this.id = unit.id;

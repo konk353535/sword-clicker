@@ -50,7 +50,26 @@ export default class Stats {
     this.damageReduction = this.getDamageReduction(value);
   }
 
+  get health() { return this._health; }
+  set health(value) {
+    this._health = value;
+    this.delta('health');
+  }
+
+  delta(stat) {
+    const event = {
+      type: 'abs',
+      path: `unitsMap.${this.unitId}.stats.${stat}`,
+      value: this[stat]
+    };
+
+    this.battleRef.deltaEvents.push(event);
+  }
+
   constructor(stats, unitId, battleRef) {
+    this.unitId = unitId;
+    this.battleRef = battleRef;
+
     this.attack = stats.attack;
     this.attackMax = stats.attackMax;
     this.attackSpeed = stats.attackSpeed

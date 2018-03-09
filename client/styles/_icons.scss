@@ -139,6 +139,9 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 .leader-icon.icon-box {
   border-color: $brand-warning;
 }
+.my-target.icon-box {
+  border-color: $brand-danger;
+}
 
 // Used in inscription to stop icon box having a border
 .no-box-border {

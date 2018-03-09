@@ -17,15 +17,8 @@ export default function(rawDamage, {
 
   let damage = rawDamage;
   if (damage > 0 && damage) {
-    let dmgReduction = BATTLES.dmgReduction(isMagic ? defender.stats.magicArmor : defender.stats.armor);
-
-    if (dmgReduction < 0) {
-      dmgReduction = 0;
-    } else if (isTrueDamage) {
-      dmgReduction = 0;
-    } else if (dmgReduction > 1) {
-      dmgReduction = 1;
-    } else if (dmgReduction == null) {
+    let dmgReduction = isMagic ? defender.stats.magicDamageReduction : defender.stats.damageReduction;
+    if (isTrueDamage) {
       dmgReduction = 0;
     }
     damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;

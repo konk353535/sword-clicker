@@ -1,8 +1,23 @@
 import { TICK_DURATION } from '../autoAttack';
+import { BATTLES } from '../../../constants/battles';
 
 const ticksPerSecond = 1000 / TICK_DURATION;
 
 export default class Stats {
+
+  getDamageReduction (armor) {
+    let damageReduction = BATTLES.dmgReduction(armor);
+
+    if (damageReduction < 0) {
+      damageReduction = 0;
+    } else if (damageReduction > 1) {
+      damageReduction = 1;
+    } else if (damageReduction == null) {
+      damageReduction = 0;
+    }
+
+    return damageReduction;
+  }
 
   getAttackSpeedTicks(attackSpeed) {
     // Convert attack speed seconds to attack speed ticks
@@ -17,12 +32,22 @@ export default class Stats {
     }
   }
 
-  get attackSpeed() {
-    return this._attackSpeed;
-  }
+  get attackSpeed() { return this._attackSpeed; }
   set attackSpeed(value) {
     this._attackSpeed = value;
     this.attackSpeedTicks = this.getAttackSpeedTicks(value);
+  }
+
+  get armor() { return this._armor; }
+  set armor(value) {
+    this._armor = value;
+    this.damageReduction = this.getDamageReduction(value);
+  }
+
+  get magicArmor() { return this._magicArmor; }
+  set magicArmor(value) {
+    this._magicArmor = value;
+    this.damageReduction = this.getDamageReduction(value);
   }
 
   constructor(stats, unitId, battleRef) {

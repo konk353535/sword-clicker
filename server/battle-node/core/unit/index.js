@@ -44,11 +44,17 @@ export default class Unit {
     this.tickOffset = unit.tickOffset;
     this._target = unit.target;
 
+    this.attackIn = this.tickOffset || 1; 
+
     if (unit.owner) {
       this.owner = unit.owner;
     } else {
       this._isEnemy = true;
     }
+  }
+
+  tick() {
+    this.attackIn--;
   }
 
   raw() {

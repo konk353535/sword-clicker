@@ -77,7 +77,7 @@ export default class Battle {
       this.initPassives();
     }
 
-    this.tickBuffs();
+    this.tickUnitsAndBuffs();
 
     this.unitAutoAttacks(this.enemies);
     this.unitAutoAttacks(this.units);
@@ -159,8 +159,12 @@ Battle.prototype.initPassives = function initPassives() {
   });
 }
 // Tick method #2
-Battle.prototype.tickBuffs = function tickBuffs() {
+Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
   this.allAliveUnits.forEach((unit) => {
+    if (unit.tick) {
+      unit.tick();
+    }
+
     if (unit.buffs) {
       // Buffs can do things on tick, will collect them in the form of combatEvents
       unit.buffs.forEach((buff) => {
@@ -175,23 +179,21 @@ Battle.prototype.tickBuffs = function tickBuffs() {
 // Tick method #3
 Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
   units.forEach((unit) => {
-    if (this.tickCount > unit.tickOffset) {
-      // TODO: How effecient is this IF statement?
-      if ((this.tickCount - unit.tickOffset) % unit.stats.attackSpeedTicks === 0) {
-        let defender = unit.target ? this.allUnitsMap[unit.target] : false;
+    if (unit.attackIn <= 0) {
+      unit.attackIn = unit.stats.attackSpeedTicks;
+      let defender = unit.target ? this.allUnitsMap[unit.target] : false;
 
-        if (!defender || defender.stats.health <= 0) {
-          defender = _.sample(unit.isEnemy ? this.units : this.enemies);
-          unit.target = defender.id;
-        }
-
-        this.autoAttack({
-          attacker: unit,
-          defender,
-          tickEvents: this.tickEvents,
-          historyStats: this.historyStats
-        });
+      if (!defender || defender.stats.health <= 0) {
+        defender = _.sample(unit.isEnemy ? this.units : this.enemies);
+        unit.target = defender.id;
       }
+
+      this.autoAttack({
+        attacker: unit,
+        defender,
+        tickEvents: this.tickEvents,
+        historyStats: this.historyStats
+      });
     }
   });
 }

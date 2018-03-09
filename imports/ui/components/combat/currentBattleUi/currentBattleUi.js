@@ -133,6 +133,7 @@ Template.currentBattleUi.helpers({
           if (battleSocket) {
             // Gonna require the socket here
             battleSocket.emit('action', {
+              battleSecret: Meteor.user().battleSecret,
               abilityId: 'clickAttack',
               targets: [unitId],
               caster: Meteor.userId()

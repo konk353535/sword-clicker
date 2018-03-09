@@ -24,6 +24,7 @@ const castAbility = function(instance) {
               if (battleSocket) {
                 // Gonna require the socket here
                 battleSocket.emit('action', {
+                  battleSecret: Meteor.user().battleSecret,
                   abilityId,
                   targets: [targetId],
                   caster: Meteor.userId()
@@ -50,6 +51,7 @@ const castAbility = function(instance) {
               if (battleSocket) {
                 // Gonna require the socket here
                 battleSocket.emit('action', {
+                  battleSecret: Meteor.user().battleSecret,
                   abilityId,
                   targets: [targetId],
                   caster: Meteor.userId()
@@ -72,6 +74,7 @@ const castAbility = function(instance) {
     if (battleSocket) {
       // Gonna require the socket here
       battleSocket.emit('action', {
+        battleSecret: Meteor.user().battleSecret,
         abilityId,
         targets: [targetId],
         caster: Meteor.userId()

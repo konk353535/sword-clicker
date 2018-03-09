@@ -25,6 +25,7 @@ export default class Unit {
 
     this._name = unit.name;
     this.battleRef = battleRef;
+    this.battleSecret = unit.battleSecret;
 
     if (unit.abilities) {
       // TODO: Make this a class

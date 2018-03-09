@@ -175,8 +175,16 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   });
 
+  const usersData = Users.find({
+    _id: {
+      $in: battleParticipants
+    }
+  }).fetch();
+
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
+    const targetUser = usersData.find((userData) => userData._id === userCombat.owner);
+
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
       if (userCombat.stats[statName] !== undefined) {
@@ -213,6 +221,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     const newUnit = {
       id: userCombat.owner,
       owner: userCombat.owner,
+      battleSecret: targetUser.battleSecret,
       towerContributionsToday: userCombat.towerContributionsToday,
       isTowerContribution: userCombat.isTowerContribution,
       abilities: usersEquippedAbilities,

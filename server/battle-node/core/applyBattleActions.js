@@ -4,16 +4,18 @@ import _ from 'underscore';
 export default function applyBattleActions() {
   this.battleActions.forEach((action) => {
     const casterId = action.caster;
+    const casterUnit = this.allUnitsMap[casterId];
+
+    if (!casterUnit || casterUnit.battleSecret !== action.battleSecret) {
+      return;
+    }
+
     if (action.abilityId === 'changeTarget') {
       // Modify casters preferred target
-      const targetUnit = this.allUnitsMap[casterId];
-      if (targetUnit) {
-        targetUnit.target = action.targets[0];
-      }
+      casterUnit.target = action.targets[0];
     } else if (action.abilityId === 'clickAttack') {
       const targetId = action.targets[0];
       const targetUnit = this.enemiesMap[targetId];
-      const casterUnit = this.unitsMap[casterId];
 
       // Ensure caster unit has sufficient energy
       if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
@@ -27,9 +29,6 @@ export default function applyBattleActions() {
         });
       }
     } else {
-      // WARNING: You can't own multiple units so we can assume this one
-      const casterUnit = this.unitsMap[casterId];
-
       if (!casterUnit.abilities) {
         return;
       }

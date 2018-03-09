@@ -249,6 +249,8 @@ const testBattle = {
   "_id": "NpZ6eqBKMxhwT687Q"
 }
 
-// battles[testBattle.id] = new Battle(testBattle, 'balancer_abc', io);
+/*battles[testBattle.id] = new Battle(testBattle, 'balancer_abc', io, (id, clearId) => {
+  clearInterval(clearId);
+});*/
 
 server.listen(3055);

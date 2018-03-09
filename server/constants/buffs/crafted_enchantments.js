@@ -204,7 +204,6 @@ LEG
         const modifier = 1 + (constants.speedModifier / 100);
 
         target.stats.attackSpeed *= modifier;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onRemove({ buff, target, caster }) {

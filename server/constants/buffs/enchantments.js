@@ -339,7 +339,6 @@ export const ENCHANTMENT_BUFFS = {
 
         if (buff.data.charges >= 20 && !buff.data.isActive) {
           attacker.stats.attackSpeed *= 1.5;
-          attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
           buff.data.timeTillEnd = 3;
           buff.data.isActive = true;
           buff.data.stacks = undefined;
@@ -354,7 +353,6 @@ export const ENCHANTMENT_BUFFS = {
             buff.data.isActive = false;
             buff.data.charges = 0;
             target.stats.attackSpeed /= 1.5;
-            target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
             buff.data.icon = 'tentacle.svg';
           }
         }
@@ -940,7 +938,6 @@ export const ENCHANTMENT_BUFFS = {
             target.stats.armor += 50;
             target.stats.magicArmor += 50;
             target.stats.attackSpeed *= 1.5;
-            target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
 
             target.icon = 'demon.svg';
             buff.data.active = true;

@@ -141,7 +141,6 @@ export const MAGIC_BUFFS = {
           buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.stacks = constants.attacksCount + 0;
         } else {
           buff.data.stacks = 0;
@@ -162,7 +161,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -209,9 +207,7 @@ export const MAGIC_BUFFS = {
           buff.data.originalCaster = caster.id;
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           caster.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          caster.stats.attackSpeedTicks = attackSpeedTicks(caster.stats.attackSpeed);
         }
       },
 
@@ -226,7 +222,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
 
         // Find original caster
@@ -237,7 +232,6 @@ export const MAGIC_BUFFS = {
 
         if (originalCaster) {
           originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          originalCaster.stats.attackSpeedTicks = attackSpeedTicks(originalCaster.stats.attackSpeed);
         }
       }
     }
@@ -282,7 +276,6 @@ export const MAGIC_BUFFS = {
           buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       },
 
@@ -297,7 +290,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -542,7 +534,6 @@ export const MAGIC_BUFFS = {
 
           buff.data.increaseDecimal = (totalIncrease / 100);
           target.stats.attackSpeed *= (1 + buff.data.increaseDecimal);
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.attack = target.stats.attack * buff.data.increaseDecimal;
           buff.data.attackMax = target.stats.attack * buff.data.increaseDecimal;
           target.stats.attack += buff.data.attack;
@@ -561,7 +552,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster }) {
         if (buff.data.increaseDecimal) {
           target.stats.attackSpeed /= (1 + buff.data.increaseDecimal);
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           target.stats.attack -= buff.data.attack;
           target.stats.attackMax -= buff.data.attackMax;
         }
@@ -1783,7 +1773,6 @@ export const MAGIC_BUFFS = {
 
           buff.data.attackSpeedDecrease = 99;
           target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         } else {
           buff.data.attackSpeedDecrease = 0;
           buff.data.duration = -1;
@@ -1802,7 +1791,6 @@ export const MAGIC_BUFFS = {
         if (buff.data.attackSpeedDecrease) {
           // Mutate targets attack speed
           target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }

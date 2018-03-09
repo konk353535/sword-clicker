@@ -87,7 +87,6 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -101,7 +100,6 @@ export const DEFENSE_BUFFS = {
       onRemove({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },

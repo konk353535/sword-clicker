@@ -1,4 +1,5 @@
 import { ABILITIES } from '../../constants/combat/index.js';
+import _ from 'underscore';
 
 export default function applyBattleActions() {
   this.battleActions.forEach((action) => {

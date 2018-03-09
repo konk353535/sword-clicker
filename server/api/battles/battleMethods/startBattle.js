@@ -184,8 +184,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       }
     });
 
-    userCombatStats.attackSpeedTicks = attackSpeedTicks(userCombatStats.attackSpeed);
-
     // Fetch this users currently equipped abilities
     const usersAbilities = Abilities.findOne({
       owner: userCombat.owner
@@ -287,8 +285,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     if (enemyConstants.isBoss && isOldBoss) {
       enemyStats.accuracy += 20;
     }
-
-    enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
 
     if (!enemy.amount) {
       enemy.amount = 1;

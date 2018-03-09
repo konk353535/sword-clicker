@@ -675,7 +675,6 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax += buff.data.extraAttackMax;
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -705,7 +704,6 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax -= buff.data.extraAttackMax;
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -1044,7 +1042,6 @@ export const ATTACK_BUFFS = {
         buff.data.attackSpeedGain = attackSpeedGain;
 
         target.stats.attackSpeed *= (1 + (buff.data.attackSpeedGain / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -1069,7 +1066,6 @@ export const ATTACK_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.attackSpeed /= (1 + (buff.data.attackSpeedGain / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },

@@ -22,6 +22,16 @@ import { addItem } from '/server/api/items/items';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
+  BattlesList.find({
+    createdAt: {    
+      $lte: moment().subtract(1, 'second').toDate()   
+    } 
+  }).fetch().forEach((battleList) => {
+    HTTP.call('DELETE', `http://localhost:3055/battle/${battleList._id}`, (error, result) => {
+      BattlesList.remove(battleList._id);
+    });
+  });
+
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);

@@ -8,11 +8,11 @@ import request from 'request-promise';
 
 import dealDamage from './dealDamage';
 import healTarget from './healTarget';
-import autoAttack from './autoAttack';
+import autoAttack, { TICK_DURATION } from './autoAttack';
 import castAbility from './castAbility';
 import applyBattleActions from './applyBattleActions';
+import Unit from './unit';
 
-const TICK_DURATION = 100;
 const secondsElapsed = (TICK_DURATION / 1000);
 
 export default class Battle {
@@ -30,8 +30,8 @@ export default class Battle {
     this.owners = battle.owners;
     this.totalXpGain = battle.totalXpGain;
 
-    this.units = battle.units;
-    this.enemies = battle.enemies;
+    this.units = battle.units.map(unit => new Unit(unit));
+    this.enemies = battle.enemies.map(unit => new Unit(unit));
 
     this.tickCount = 0;
 
@@ -121,8 +121,8 @@ export default class Battle {
       method: 'POST',
       uri: 'http://localhost:3201/methods/completeBattle',
       body: [{
-        units: this.units.concat(this.deadUnits),
-        enemies: this.enemies.concat(this.deadEnemies),
+        units: this.units.concat(this.deadUnits).map(unit => unit.raw()),
+        enemies: this.enemies.concat(this.deadEnemies).map(unit => unit.raw()),
         floor: this.floor,
         totalXpGain: this.totalXpGain,
         room: this.room,
@@ -247,8 +247,8 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 Battle.prototype.postTick = function postTick() {
   this.io.of(`/${this.balancerId}`).emit('tick', {
     battle: {
-      units: this.units,
-      enemies: this.enemies,
+      units: this.units.map(unit => unit.raw()),
+      enemies: this.enemies.map(unit => unit.raw()),
       tickEvents: this.tickEvents
     }
   });

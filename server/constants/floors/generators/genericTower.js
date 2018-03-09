@@ -49,8 +49,6 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       })
     }
 
-    monster.stats.attackSpeedTicks = attackSpeedTicks(monster.stats.attackSpeed);
-
     // Is this a swarm mob?
     if (selectedMonster.swarmRange) {
       const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);

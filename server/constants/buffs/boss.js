@@ -506,7 +506,6 @@ export const BOSS_BUFFS = {
             phoenixStats.health = 500;
             phoenixStats.healthMax = 500;
             phoenixStats.attackSpeed = 0.001;
-            phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
             phoenixStats.attackMax /= 3;
             phoenixStats.attack /= 3;
             phoenixStats.armor /= 3;
@@ -572,7 +571,6 @@ export const BOSS_BUFFS = {
           phoenixStats.health = target.stats.health;
           phoenixStats.healthMax = target.stats.health;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
@@ -612,7 +610,6 @@ export const BOSS_BUFFS = {
           phoenixStats.health = 10;
           phoenixStats.healthMax = 10;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
@@ -668,7 +665,6 @@ export const BOSS_BUFFS = {
         phoenixStats.health = 500;
         phoenixStats.healthMax = 500;
         phoenixStats.attackSpeed = 0.001;
-        phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
         phoenixStats.armor /= 3;
 
         // Spawn little snake
@@ -1218,7 +1214,6 @@ export const BOSS_BUFFS = {
           birdStats.health = 250;
           birdStats.healthMax = 250;
           birdStats.attackSpeed = 1;
-          birdStats.attackSpeedTicks = attackSpeedTicks(1);
           birdStats.attackMax = 100;
           birdStats.attack = 100;
           birdStats.armor /= 2.5;
@@ -1313,7 +1308,6 @@ export const BOSS_BUFFS = {
             birdStats.health = 1000;
             birdStats.healthMax = 1000;
             birdStats.attackSpeed = 0.7;
-            birdStats.attackSpeedTicks = attackSpeedTicks(0.7);
             birdStats.attackMax = 50;
             birdStats.attack = 50;
             birdStats.accuracy *= 1.5;
@@ -1345,7 +1339,6 @@ export const BOSS_BUFFS = {
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
           birdStats.attackSpeed = 0.01;
-          birdStats.attackSpeedTicks = attackSpeedTicks(0.01);
           birdStats.attackMax = 1;
           birdStats.attack = 1;
 
@@ -1380,7 +1373,6 @@ export const BOSS_BUFFS = {
         if (buff.data.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
           target.stats.attackSpeed /= 2;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.icon = 'oldTortoise';
         }
       },
@@ -1394,7 +1386,6 @@ export const BOSS_BUFFS = {
         if (buff.data.stacks >= 350 && !buff.data.enraged) {
           buff.data.enraged = true;
           defender.stats.attackSpeed *= 2;
-          defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
           buff.data.icon = 'enragedTortoise.svg';
         }
       },
@@ -1767,7 +1758,6 @@ export const BOSS_BUFFS = {
               fountainStats.magicArmor *= 0.5;
               fountainStats.attack = 1;
               fountainStats.attackMax = 1;
-              fountainStats.attackSpeedTicks = 100;
 
               // Spawn little bird
               const fountain = {
@@ -2054,7 +2044,6 @@ export const BOSS_BUFFS = {
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
           const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
-          enemy.attackSpeedTicks = attackSpeedTicks(enemy.attackSpeed);
           actualBattle.addUnit(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);

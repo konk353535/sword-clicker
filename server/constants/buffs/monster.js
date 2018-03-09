@@ -217,7 +217,6 @@ export const MONSTER_BUFFS = {
         target.stats.attackSpeed *= 3;
         target.stats.magicArmor *= 0.3;
         target.stats.armor *= 0.3;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -970,9 +969,6 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1 + (decimal / 1.75);
             buff.data.lastMissingHp = missingHp;
           }
-
-          // Recompute attack speed and damage by missingHp
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
 
         buff.data.timeTillUpdate -= secondsElapsed;

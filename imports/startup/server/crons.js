@@ -112,7 +112,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.text('every 30 seconds');
+    return parser.text('every 15 seconds');
   },
   job: function() {
     BattlesList.find({

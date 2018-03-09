@@ -1,5 +1,7 @@
 import { BUFFS } from '../../constants/buffs/index.js';
 
+export const TICK_DURATION = 100;
+
 export default function({ attacker, defender, tickEvents, actualBattle, historyStats, originalAutoAttack = true }) {
   // Do we hit?
   let hitGap = attacker.stats.accuracy - defender.stats.defense;

@@ -476,7 +476,7 @@ export const completeBattle = function (actualBattle) {
 
   // Update all player units healths
   const allFriendlyUnits = actualBattle.units.filter((unit) => {
-    return !!unit.owner;
+    return !unit.isEnemy;
   });
 
   allFriendlyUnits.forEach((unit) => {

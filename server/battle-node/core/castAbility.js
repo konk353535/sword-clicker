@@ -31,7 +31,7 @@ export default function({ ability, caster, targets }) {
   if (ability.target === 'currentEnemy') {
     // Is current target alive
     const currentEnemy = this.allUnitsMap[caster.target];
-    const targets = currentEnemy ? [currentEnemy] : [this.enemies[0]];
+    targets = currentEnemy ? [currentEnemy] : [this.enemies[0]];
   } else if (ability.target === 'allEnemies') {
     targets = this.enemies;
   } else if (ability.target === 'allAllies') {

@@ -698,7 +698,8 @@ export const completeBattle = function (actualBattle) {
   delete actualBattle;
 };
 
-Meteor.method('completeBattle', function (battle, passphrase) {
+JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {
+  const [battle, passphrase] = req.body;
   if (passphrase !== 'dqv$dYT65YrU%s') {
     return;
   }

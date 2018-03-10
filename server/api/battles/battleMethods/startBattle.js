@@ -364,7 +364,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Send battle to socket server
   // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
   // Otherwise MIM attack compromises the security of the system
-  HTTP.call('POST', 'http://localhost:3055/battle', {
+  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle`, {
     data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s' }
   }, (error, result) => {});
 }

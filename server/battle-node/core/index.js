@@ -12,6 +12,7 @@ import autoAttack, { TICK_DURATION } from './autoAttack';
 import castAbility from './castAbility';
 import applyBattleActions from './applyBattleActions';
 import Unit from './unit';
+import { serverUrl } from '../config';
 
 const secondsElapsed = (TICK_DURATION / 1000);
 
@@ -43,7 +44,7 @@ export default class Battle {
     this.deadUnits = [];
     this.deadEnemies = [];
     this.allAliveUnits = [];
-    console.log(battle.units);
+
     this.units = battle.units.map(unit => new Unit(unit, this));
     this.enemies = battle.enemies.map(unit => new Unit(unit, this));
     this.tickCount = 0;
@@ -142,7 +143,7 @@ export default class Battle {
   end() {
     request({
       method: 'POST',
-      uri: 'http://localhost:3201/methods/completeBattle',
+      uri: `${serverUrl}/methods/completeBattle`,
       body: [{
         units: this.units.concat(this.deadUnits).map(unit => unit.raw()),
         enemies: this.enemies.concat(this.deadEnemies).map(unit => unit.raw()),

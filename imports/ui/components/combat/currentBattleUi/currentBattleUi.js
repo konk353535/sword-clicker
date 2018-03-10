@@ -92,7 +92,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 
     if (!currentBattleList) return;
 
-    window.battleSocket = io(`http://localhost:3055/${currentBattleList._id}`, {
+    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${currentBattleList._id}`, {
       transports: ['websocket']
     });
 

@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Battle from './core';
 import cors from 'cors';
-
+import { isDev, serverUrl, port } from './config';
 const app = express();
 
 var server = require('http').Server(app);
@@ -10,10 +10,12 @@ var io = require('socket.io')(server);
 
 const battles = {};
 
-var corsOptions = {
-  origin: 'http://localhost:3201',
-  credentials: true // <-- REQUIRED backend setting
-};  
+if (isDev) {
+  var corsOptions = {
+    origin: serverUrl,
+    credentials: true
+  };  
+}
 
 app.use(cors(corsOptions));
 
@@ -253,4 +255,4 @@ battles[testBattle.id] = new Battle(testBattle, 'balancer_abc', io, (id, clearId
   clearInterval(clearId);
 });*/
 
-server.listen(3055);
+server.listen(port);

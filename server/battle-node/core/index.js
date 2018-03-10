@@ -30,7 +30,6 @@ export default class Battle {
     this.isExplorationRun = battle.isExplorationRun;  
     this.owners = battle.owners;
     this.totalXpGain = battle.totalXpGain;
-
     // { type, data }
     // types:
     //   abs: absolute change
@@ -41,16 +40,12 @@ export default class Battle {
     this.deltaEvents = [];
     this.battleActions = [];
     this.tickEvents = [];
-
     this.deadUnits = [];
     this.deadEnemies = [];
     this.allAliveUnits = [];
-
     this.units = battle.units.map(unit => new Unit(unit, this));
     this.enemies = battle.enemies.map(unit => new Unit(unit, this));
-
     this.tickCount = 0;
-
     this.initHelpers();
     this.intervalId = setInterval(() => {
       this.tick();
@@ -169,19 +164,9 @@ Battle.prototype.initPassives = function initPassives() {
   this.allAliveUnits.forEach((unit) => {
     if (unit.abilities) {
       unit.abilities.forEach((ability) => {
-        if (ABILITIES[ability.id].isPassive) {
+        if (ability.isPassive) {
           const targets = [unit.id];
-          // Cast it! and put it on cooldown
-          const abilityToCast = Object.assign({}, ABILITIES[ability.id]);
-          abilityToCast.level = ability.level;
-
-          // Fetch who we are are targetting with this ability
-          this.castAbility({
-            ability: abilityToCast,
-            caster: unit,
-            targets: [unit],
-            actualBattle
-          });
+          ability.cast(targets);
         }
       });
     }

@@ -1,15 +1,10 @@
 import Stats from './stats';
+import Ability from './ability';
 
 export default class Unit {
 
   get name() { return this._name; }
   set name(value) { this._name = value; }
-
-  get abilities() { return this._abilities; }
-  set abilities(value) { this._abilities = value; }
-
-  get buffs() { return this._buffs; }
-  set buffs(value) { this._buffs = value; }
 
   get icon() { return this._icon; }
   set icon(value) { this._icon = value; }
@@ -41,12 +36,16 @@ export default class Unit {
     this.battleSecret = unit.battleSecret;
 
     if (unit.abilities) {
-      // TODO: Make this a class
-      this._abilities = unit.abilities;
+      this.abilitiesMap = {};
+      this.abilities = unit.abilities.map((rawAbility) => {
+        const ability = new Ability(rawAbility, this, battleRef);
+        this.abilitiesMap[rawAbility.id] = ability;
+        return ability;
+      });
     }
 
     // TODO: Make this a class
-    this._buffs = unit.buffs;
+    this.buffs = unit.buffs;
 
     // TODO: Make this a class?
     this.stats = new Stats(unit.stats, unit.id, battleRef);
@@ -71,11 +70,33 @@ export default class Unit {
     this.attackIn--;
   }
 
+  addBuffs(buffs) {
+    buffs.forEach(buff => this.addBuff(buff));
+  }
+
+  addBuff(buff) {
+    this.buffs.push(buff);
+    this.battleRef.deltaEvents.push({
+      type: 'push',
+      path: `unitsMap.${this.id}.buffs`,
+      value: buff
+    });
+  }
+
+  removeBuff(buffToRemove) {
+    this.battleRef.deltaEvents.push({
+      type: 'pop',
+      path: `unitsMap.${this.id}.buffs`,
+      value: buffToRemove.id
+    });
+    this.buffs = this.buffs.filter(buff => buff.id !== buffToRemove.id);
+  }
+
   raw() {
     return {
       id: this.id,
       name: this.name,
-      abilities: this.abilities,
+      abilities: this.abilities ? this.abilities.map(ability => ability.raw()) : [],
       owner: this.owner,
       buffs: this.buffs,
       stats: this.stats.raw(),

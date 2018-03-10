@@ -5,15 +5,16 @@ export default function applyBattleActions() {
   this.battleActions.forEach((action) => {
     const casterId = action.caster;
     const casterUnit = this.allUnitsMap[casterId];
+    const abilityId = action.abilityId;
 
     if (!casterUnit || casterUnit.battleSecret !== action.battleSecret) {
       return;
     }
 
-    if (action.abilityId === 'changeTarget') {
+    if (abilityId === 'changeTarget') {
       // Modify casters preferred target
       casterUnit.target = action.targets[0];
-    } else if (action.abilityId === 'clickAttack') {
+    } else if (abilityId === 'clickAttack') {
       const targetId = action.targets[0];
       const targetUnit = this.enemiesMap[targetId];
 
@@ -29,48 +30,28 @@ export default function applyBattleActions() {
         });
       }
     } else {
-      if (!casterUnit.abilities) {
+      if (!casterUnit.abilitiesMap || !casterUnit.abilitiesMap[abilityId]) {
         return;
       }
 
-      // Check if the ability exists
-      let unitAbility = casterUnit.abilities.find((ability) => {
-        return ability.id === action.abilityId;
+      const targetAbility = casterUnit.abilitiesMap[abilityId];
+
+      this.allAliveUnits.forEach((unit) => {
+      });
+      Object.keys(this.allUnitsMap).forEach((key) => {
       });
 
-      if (!unitAbility || unitAbility.currentCooldown > 0) {
-        return;
-      }
-
-      if (unitAbility.isSpell && unitAbility.casts <= 0) {
-        return;
-      }
-
-      // Cast it! and put it on cooldown
-      const abilityToCast = Object.assign({}, ABILITIES[action.abilityId]);
-
-      if (abilityToCast.isPassive) {
-        return;
-      }
-
-      const unitsAndEnemies = this.units.concat(this.enemies);
-      const actionTargets = unitsAndEnemies.filter((unit) => {
-        return _.contains(action.targets, unit.id);
+      const actionTargets = action.targets.map((rawTarget) => {
+        return this.allUnitsMap[rawTarget];
       });
-      abilityToCast.level = unitAbility.level;
 
-      // Fetch who we are are targetting with this ability
-      const refundCast = this.castAbility({
-        ability: abilityToCast,
-        caster: casterUnit,
-        targets: actionTargets,
-        actualBattle: this
-      });
+
+      const refundCast = targetAbility.cast(actionTargets);
 
       if (!refundCast) {
-        unitAbility.casts -= 1;
-        unitAbility.totalCasts += 1;
-        unitAbility.currentCooldown = abilityToCast.cooldown;
+        targetAbility.casts -= 1;
+        targetAbility.totalCasts += 1;
+        targetAbility.currentCooldown = targetAbility.cooldown;
       }
     }
   });

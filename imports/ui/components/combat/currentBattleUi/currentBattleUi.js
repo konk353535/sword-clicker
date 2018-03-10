@@ -116,6 +116,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       alteredBattle.units.concat(alteredBattle.enemies, alteredBattle.deadEnemies, alteredBattle.deadUnits).forEach((unit) => {
         if (unit) {
           alteredBattle.unitsMap[unit.id] = unit;
+          if (unit.abilities) {
+            unit.abilitiesMap = {};
+            unit.abilities.forEach((ability) => {
+              unit.abilitiesMap[ability.id] = ability;
+            });
+          }
         }
       });
       deltaEvents.forEach(({ type, path, value }) => {

@@ -89,12 +89,7 @@ export const ATTACK_BUFFS = {
 
         // Blank
         if (buff.data.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            if (targetBuff === buff) {
-              return false;
-            }
-            return true;
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -251,9 +246,7 @@ export const ATTACK_BUFFS = {
         buff.data.duration -= secondsElapsed;
         // Blank
         if (buff.data.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -323,9 +316,7 @@ export const ATTACK_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -387,9 +378,7 @@ export const ATTACK_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -554,9 +543,7 @@ export const ATTACK_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
         if (buff.data.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -603,11 +590,7 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -691,11 +674,7 @@ export const ATTACK_BUFFS = {
         target.stats.health += (localSecondsElapsed * buff.data.healthLost);
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -752,9 +731,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -804,9 +781,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -851,9 +826,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -902,9 +875,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -945,9 +916,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -1003,9 +972,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id
-        });
+        removeBuff({ target, buff, caster })
       },
 
       onRemove() {
@@ -1057,10 +1024,7 @@ export const ATTACK_BUFFS = {
 
         if (buff.data.duration < 0) {
           // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -1126,10 +1090,7 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-
-            return targetBuff !== buff;
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 

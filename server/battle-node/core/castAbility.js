@@ -4,7 +4,6 @@ import { BUFFS } from '../../constants/buffs/index.js';
 import _ from 'underscore';
 
 export default function({ ability, caster, targets }) {
-
   // Does user have appropriate gear to cast this ability?
   let canCast = true;
   if (ability.requires) {
@@ -91,13 +90,8 @@ export default function({ ability, caster, targets }) {
       }
     });
 
-    // Add buffs to target ( Need to unique this ? )
-    if (target.buffs) {
-      target.buffs.push(...newBuffs);
-    } else {
-      target.buffs = newBuffs;
-    }
-
+    // Add buffs to target ( Need to unique this ?)
+    target.addBuffs(newBuffs);
   });
 
   return false;

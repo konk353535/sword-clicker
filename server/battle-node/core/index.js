@@ -201,6 +201,9 @@ Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
 
       if (!defender || defender.stats.health <= 0) {
         defender = _.sample(unit.isEnemy ? this.units : this.enemies);
+        if (!defender) {
+          return;
+        }
         unit.target = defender.id;
       }
 

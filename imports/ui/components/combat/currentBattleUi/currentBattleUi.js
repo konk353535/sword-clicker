@@ -90,11 +90,16 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       owners: Meteor.userId()
     });
 
-    if (!currentBattleList) return;
+    if (!currentBattleList) {
+      delete window.battleSocket;
+      return;
+    }
 
-    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${currentBattleList._id}`, {
-      transports: ['websocket']
-    });
+    if (!window.battleSocket) {
+      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${currentBattleList._id}`, {
+        transports: ['websocket']
+      });      
+    }
 
     battleSocket.emit('getFullState');
 

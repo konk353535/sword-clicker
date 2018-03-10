@@ -246,7 +246,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
         newMonsters.forEach((monster) => {
           const randomUnitTarget = _.sample(this.units);
           this.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs);
-          this.enemies.push(new Unit({
+          const newUnit = new Unit({
             id: uuid.v4(),
             stats: monster.stats,
             icon: monster.icon,
@@ -255,7 +255,13 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
             enemyId: monster.id,
             name: monster.name,
             tickOffset: this.tick + 2
-          }, this));
+          }, this);
+          this.enemies.push(newUnit);
+          this.deltaEvents.push({
+            path: 'enemies',
+            type: 'push',
+            value: newUnit.raw()
+          });
         });
         this.updateUnitMaps();
 

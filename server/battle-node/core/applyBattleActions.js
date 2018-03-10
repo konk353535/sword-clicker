@@ -21,7 +21,12 @@ export default function applyBattleActions() {
       // Ensure caster unit has sufficient energy
       if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
         casterUnit.amulet.energy -= 1;
-        dealDamage(casterUnit.amulet.damage, {
+        this.deltaEvents.push({
+          type: 'abs',
+          path: `unitsMap.${casterUnit.id}.amulet.energy`,
+          value: casterUnit.amulet.energy
+        });
+        this.dealDamage(casterUnit.amulet.damage, {
           attacker: casterUnit,
           defender: targetUnit,
           actualBattle: this,

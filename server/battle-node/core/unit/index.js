@@ -34,6 +34,7 @@ export default class Unit {
     this._name = unit.name;
     this.battleRef = battleRef;
     this.battleSecret = unit.battleSecret;
+    this.amulet = unit.amulet;
 
     if (unit.abilities) {
       this.abilitiesMap = {};
@@ -100,6 +101,7 @@ export default class Unit {
       owner: this.owner,
       buffs: this.buffs,
       stats: this.stats.raw(),
+      amulet: this.amulet,
       icon: this.icon,
       xpDistribution: this.xpDistribution,
       isTowerContribution: this.isTowerContribution,

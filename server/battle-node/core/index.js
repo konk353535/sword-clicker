@@ -43,6 +43,7 @@ export default class Battle {
     this.deadUnits = [];
     this.deadEnemies = [];
     this.allAliveUnits = [];
+    console.log(battle.units);
     this.units = battle.units.map(unit => new Unit(unit, this));
     this.enemies = battle.enemies.map(unit => new Unit(unit, this));
     this.tickCount = 0;

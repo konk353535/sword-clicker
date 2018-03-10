@@ -1,11 +1,11 @@
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
-import { FLOORS } from '/server/constants/floors/index';
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
+import uuid from 'node-uuid';
+import { FLOORS } from '../floors/index';
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -46,7 +46,7 @@ export const BOSS_BUFFS = {
 
         const extraDamage = 0.1 * buff.data.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -141,7 +141,8 @@ export const BOSS_BUFFS = {
 
           // Spawn little snake
           const littleSnake = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'snake.svg',
             name: 'snake',
@@ -157,7 +158,7 @@ export const BOSS_BUFFS = {
             }]
           }
 
-          actualBattle.enemies.push(littleSnake);
+          actualBattle.addUnit(littleSnake);
 
           if (buff.data.phase === 1) {
             buff.data.timeTillSpawn = 5;
@@ -249,7 +250,8 @@ export const BOSS_BUFFS = {
 
             // Spawn little snake
             const littleSpartan = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spartan.svg',
               name: 'spartan',
@@ -259,14 +261,13 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'phalanx.svg',        
                   name: 'phalanx'
                 }
               }]
             }
 
-            actualBattle.enemies.push(littleSpartan);
+            actualBattle.addUnit(littleSpartan);
           }
 
           buff.data.spartansSpawned = true;
@@ -315,8 +316,9 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'bird.svg',
             name: 'bird',
             buffs: [{
@@ -328,7 +330,7 @@ export const BOSS_BUFFS = {
             stats: birdStats
           }
 
-          actualBattle.enemies.push(littlebird);
+          actualBattle.addUnit(littlebird);
 
           buff.data.timeTillSpawn = 15;
         }
@@ -420,8 +422,9 @@ export const BOSS_BUFFS = {
 
             // Spawn little goblin
             const littleGoblin = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
+              isEnemy: true,
               icon: 'goblin.svg',
               name: 'goblin',
               stats: goblinStats,
@@ -437,7 +440,7 @@ export const BOSS_BUFFS = {
               }]
             }
 
-            actualBattle.enemies.push(littleGoblin);
+            actualBattle.addUnit(littleGoblin);
           }
 
           buff.data.timeTillSpawn = 90;
@@ -503,15 +506,15 @@ export const BOSS_BUFFS = {
             phoenixStats.health = 500;
             phoenixStats.healthMax = 500;
             phoenixStats.attackSpeed = 0.001;
-            phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
             phoenixStats.attackMax /= 3;
             phoenixStats.attack /= 3;
             phoenixStats.armor /= 3;
 
             // Spawn little snake
             const phoenixEgg = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
+              isEnemy: true,
               icon: 'phoenixEgg.svg',
               name: 'phoenix egg',
               stats: phoenixStats,
@@ -521,14 +524,13 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   timeTillSpawn: 60,
-                  isEnemy: true,
                   icon: 'babyPhoenix.svg',        
                   name: 'baby phoenix'
                 }
               }]
             }
 
-            actualBattle.enemies.push(phoenixEgg);
+            actualBattle.addUnit(phoenixEgg);
           }
 
           buff.data.phoenixsSpawned = true;
@@ -569,13 +571,13 @@ export const BOSS_BUFFS = {
           phoenixStats.health = target.stats.health;
           phoenixStats.healthMax = target.stats.health;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
@@ -590,7 +592,7 @@ export const BOSS_BUFFS = {
             }]
           }
 
-          actualBattle.enemies.push(littlePhoenix);
+          actualBattle.addUnit(littlePhoenix);
 
           buff.data.hasSpawned = true;
           target.stats.health = -1;
@@ -608,13 +610,13 @@ export const BOSS_BUFFS = {
           phoenixStats.health = 10;
           phoenixStats.healthMax = 10;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
@@ -629,7 +631,7 @@ export const BOSS_BUFFS = {
             }]
           }
 
-          actualBattle.enemies.push(littlePhoenix);
+          actualBattle.addUnit(littlePhoenix);
         }
       }
     }
@@ -663,12 +665,12 @@ export const BOSS_BUFFS = {
         phoenixStats.health = 500;
         phoenixStats.healthMax = 500;
         phoenixStats.attackSpeed = 0.001;
-        phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
         phoenixStats.armor /= 3;
 
         // Spawn little snake
         const phoenixEgg = {
-          id: Random.id(),
+          id: uuid.v4(),
+          isEnemy: true,
           tickOffset: 0,
           icon: 'phoenixEgg.svg',
           name: 'phoenix egg',
@@ -679,14 +681,13 @@ export const BOSS_BUFFS = {
               duration: Infinity,
               totalDuration: Infinity,
               timeTillSpawn: 120,
-              isEnemy: true,
               icon: 'babyPhoenix.svg',  
               name: 'baby phoenix'
             }
           }]
         }
 
-        actualBattle.enemies.push(phoenixEgg);
+        actualBattle.addUnit(phoenixEgg);
 
       }
     }
@@ -798,7 +799,7 @@ export const BOSS_BUFFS = {
 
         const extraDamage = 0.01 * buff.data.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -832,7 +833,8 @@ export const BOSS_BUFFS = {
         if (!buff.data.lampsSpawned) {
 
             const powerLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGeniePowerLamp.svg',
               name: 'power',
@@ -854,7 +856,6 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGeniePowerLamp.svg',        
                   name: 'power lap'
                 }
@@ -862,7 +863,8 @@ export const BOSS_BUFFS = {
             }
 
             const wisdomLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGenieWisdomLamp.svg',
               name: 'wisdom',
@@ -884,7 +886,6 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGenieWisdomLamp.svg',        
                   name: 'wisdom lamp'
                 }
@@ -892,7 +893,8 @@ export const BOSS_BUFFS = {
             }
 
             const healthLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGenieHealthLamp.svg',
               name: 'Vitality',
@@ -914,16 +916,15 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGenieHealthLamp.svg',        
                   name: 'health lamp'
                 }
               }]
             }
 
-            actualBattle.enemies.push(powerLamp);
-            actualBattle.enemies.push(wisdomLamp);
-            actualBattle.enemies.push(healthLamp);
+            actualBattle.addUnit(powerLamp);
+            actualBattle.addUnit(wisdomLamp);
+            actualBattle.addUnit(healthLamp);
 
           buff.data.lampsSpawned = true;
         }
@@ -1213,14 +1214,14 @@ export const BOSS_BUFFS = {
           birdStats.health = 250;
           birdStats.healthMax = 250;
           birdStats.attackSpeed = 1;
-          birdStats.attackSpeedTicks = attackSpeedTicks(1);
           birdStats.attackMax = 100;
           birdStats.attack = 100;
           birdStats.armor /= 2.5;
 
           // Spawn bird
           const bird = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: actualBattle.tick + 4,
             icon: 'bird.svg',
             name: 'bird',
@@ -1228,7 +1229,7 @@ export const BOSS_BUFFS = {
             buffs: []
           }
 
-          actualBattle.enemies.push(bird);
+          actualBattle.addUnit(bird);
         }
 
       },
@@ -1307,7 +1308,6 @@ export const BOSS_BUFFS = {
             birdStats.health = 1000;
             birdStats.healthMax = 1000;
             birdStats.attackSpeed = 0.7;
-            birdStats.attackSpeedTicks = attackSpeedTicks(0.7);
             birdStats.attackMax = 50;
             birdStats.attack = 50;
             birdStats.accuracy *= 1.5;
@@ -1318,7 +1318,8 @@ export const BOSS_BUFFS = {
 
             // Spawn bird
             const bird = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'waterMage.svg',
               name: 'water mage',
@@ -1331,20 +1332,20 @@ export const BOSS_BUFFS = {
               }]
             }
 
-            actualBattle.enemies.push(bird);
+            actualBattle.addUnit(bird);
           }
 
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
           birdStats.attackSpeed = 0.01;
-          birdStats.attackSpeedTicks = attackSpeedTicks(0.01);
           birdStats.attackMax = 1;
           birdStats.attack = 1;
 
           // Spawn wall
           const wall = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'stoneWall.svg',
             name: 'stone wall',
@@ -1352,7 +1353,7 @@ export const BOSS_BUFFS = {
             buffs: []
           }
 
-          actualBattle.enemies.push(wall);
+          actualBattle.addUnit(wall);
 
           buff.data.healersSpawned = true;
           buff.data.stacks = 0;
@@ -1372,7 +1373,6 @@ export const BOSS_BUFFS = {
         if (buff.data.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
           target.stats.attackSpeed /= 2;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.icon = 'oldTortoise';
         }
       },
@@ -1386,7 +1386,6 @@ export const BOSS_BUFFS = {
         if (buff.data.stacks >= 350 && !buff.data.enraged) {
           buff.data.enraged = true;
           defender.stats.attackSpeed *= 2;
-          defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
           buff.data.icon = 'enragedTortoise.svg';
         }
       },
@@ -1434,7 +1433,8 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'tentacle.svg',
             name: 'tentacle',
@@ -1442,7 +1442,7 @@ export const BOSS_BUFFS = {
             stats: birdStats
           }
 
-          actualBattle.enemies.push(littlebird);
+          actualBattle.addUnit(littlebird);
 
           buff.data.timeTillSpawn = 180;
         }
@@ -1482,7 +1482,7 @@ export const BOSS_BUFFS = {
 
           const attackMax = target.stats.attackMax;
           const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
-          actualBattle.utils.dealDamage(damageToDeal, {
+          actualBattle.dealDamage(damageToDeal, {
             attacker: target,
             defender: unitToAttack,
             tickEvents: actualBattle.tickEvents,
@@ -1542,7 +1542,8 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const poodle = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'bossPoodle.svg',
             name: 'poodle',
@@ -1559,7 +1560,7 @@ export const BOSS_BUFFS = {
             stats: poodleStats
           }
 
-          actualBattle.enemies.push(poodle);
+          actualBattle.addUnit(poodle);
 
           buff.data.poodleSpawned = true;
         }
@@ -1757,11 +1758,11 @@ export const BOSS_BUFFS = {
               fountainStats.magicArmor *= 0.5;
               fountainStats.attack = 1;
               fountainStats.attackMax = 1;
-              fountainStats.attackSpeedTicks = 100;
 
               // Spawn little bird
               const fountain = {
-                id: Random.id(),
+                id: uuid.v4(),
+                isEnemy: true,
                 tickOffset: 0,
                 icon: 'fountain.svg',
                 name: 'fountain',
@@ -1777,7 +1778,7 @@ export const BOSS_BUFFS = {
                 stats: fountainStats
               }
 
-              actualBattle.enemies.push(fountain);
+              actualBattle.addUnit(fountain);
             }
           }
 
@@ -1850,7 +1851,7 @@ export const BOSS_BUFFS = {
             // cast ignite
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
 
-            actualBattle.utils.dealDamage(500, {
+            actualBattle.dealDamage(500, {
               attacker: target,
               defender: unit,
               isMagic: true,
@@ -1894,7 +1895,8 @@ export const BOSS_BUFFS = {
 
               // Spawn little bird
               const mirage = {
-                id: Random.id(),
+                id: uuid.v4(),
+                isEnemy: true,
                 tickOffset: 0,
                 icon: 'airFox.svg',
                 name: 'mirage',
@@ -1902,7 +1904,7 @@ export const BOSS_BUFFS = {
                 stats: mirageStats
               }
 
-              actualBattle.enemies.push(mirage);
+              actualBattle.addUnit(mirage);
             }
           }
         }
@@ -1938,7 +1940,7 @@ export const BOSS_BUFFS = {
 
         // Heal Fox, reduce health by healed amount
         target.stats.health -= 50;
-        actualBattle.utils.healTarget(50, {
+        actualBattle.healTarget(50, {
           caster: target,
           target: fox,
           tickEvents: actualBattle.tickEvents,
@@ -2042,8 +2044,7 @@ export const BOSS_BUFFS = {
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
           const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
-          enemy.attackSpeedTicks = attackSpeedTicks(enemy.attackSpeed);
-          actualBattle.enemies.push(enemy);
+          actualBattle.addUnit(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
           buff.data.stacks = Math.round(buff.data.timeTillResurrection);
         }
@@ -2102,7 +2103,8 @@ export const BOSS_BUFFS = {
             };
 
             const queen = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Queen Spiderbee',
@@ -2136,7 +2138,8 @@ export const BOSS_BUFFS = {
             };
 
             const drone1 = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',
@@ -2150,7 +2153,8 @@ export const BOSS_BUFFS = {
             };
 
             const drone2 = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',
@@ -2163,7 +2167,7 @@ export const BOSS_BUFFS = {
               }]
             };
 
-            actualBattle.enemies.push(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
+            actualBattle.addUnit(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
           }
         }
 

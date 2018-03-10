@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
+import { BATTLES } from '../battles/index.js'; // List of encounters
 
 export const DEFENSE_BUFFS = {
 
@@ -65,7 +65,7 @@ export const DEFENSE_BUFFS = {
         const actualDamage = (attack + ((attackMax - attack) * Math.random())) * damageBuff;
 
         actualBattle.enemies.forEach((enemy) => {
-          actualBattle.utils.dealDamage(actualDamage, {
+          actualBattle.dealDamage(actualDamage, {
             attacker: target,
             defender: enemy,
             tickEvents: actualBattle.tickEvents,
@@ -87,7 +87,6 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -101,7 +100,6 @@ export const DEFENSE_BUFFS = {
       onRemove({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -403,7 +401,7 @@ export const DEFENSE_BUFFS = {
 
         const totalDamage = damageDealt;
 
-        actualBattle.utils.dealDamage((totalDamage * damageReflection) + 10, {
+        actualBattle.dealDamage((totalDamage * damageReflection) + 10, {
           attacker: defender,
           defender: attacker,
           isMagic: true,
@@ -447,7 +445,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -465,7 +463,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           isMagic: true,
@@ -497,7 +495,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -515,7 +513,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           tickEvents: actualBattle.tickEvents,
@@ -548,7 +546,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -594,7 +592,7 @@ export const DEFENSE_BUFFS = {
         const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -604,9 +602,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id;
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -666,11 +662,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -722,11 +714,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -776,11 +764,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -834,11 +818,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+          removeBuff({ target, buff, caster });
         }
       },
 

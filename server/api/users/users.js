@@ -328,6 +328,7 @@ Meteor.publish("userData", function () {
         'gold': 1,
         'uiState': 1,
         'tutorial': 1,
+        'battleSecret': 1,
         'newUpdates': 1,
         'gems': 1,
         'fakeGems': 1,

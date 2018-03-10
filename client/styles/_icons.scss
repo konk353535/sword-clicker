@@ -90,7 +90,8 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   user-select: none;
   width: 96px;
   height: 96px;
-  border: 1px solid black;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -138,6 +139,9 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 
 .leader-icon.icon-box {
   border-color: $brand-warning;
+}
+.my-target.icon-box {
+  border-color: $brand-danger;
 }
 
 // Used in inscription to stop icon box having a border

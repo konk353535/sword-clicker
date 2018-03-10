@@ -1,8 +1,8 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
+import uuid from 'node-uuid';
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
@@ -105,7 +105,7 @@ LEG
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
         
-        actualBattle.utils.dealDamage(modifiedDamage, {
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -145,7 +145,7 @@ LEG
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(baseDamage * modifier); 
 
-        actualBattle.utils.dealDamage(modifiedDamage, {
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -204,7 +204,6 @@ LEG
         const modifier = 1 + (constants.speedModifier / 100);
 
         target.stats.attackSpeed *= modifier;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onRemove({ buff, target, caster }) {
@@ -266,7 +265,7 @@ LEG
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
 
-          actualBattle.utils.dealDamage(modifiedDamage, {
+          actualBattle.dealDamage(modifiedDamage, {
             attacker: attacker,
             defender: defender,
             //isTrueDamage: true,

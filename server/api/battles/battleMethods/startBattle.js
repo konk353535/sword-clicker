@@ -5,6 +5,7 @@ import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { addBuff, removeBuff } from '/server/battleUtils';
 
+import uuid from 'node-uuid';
 import { Random } from 'meteor/random'
 import moment from 'moment';
 import _ from 'underscore';
@@ -16,7 +17,6 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';
-import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
 
@@ -175,16 +175,22 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   });
 
+  const usersData = Users.find({
+    _id: {
+      $in: battleParticipants
+    }
+  }).fetch();
+
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
+    const targetUser = usersData.find((userData) => userData._id === userCombat.owner);
+
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
       if (userCombat.stats[statName] !== undefined) {
         userCombatStats[statName] = userCombat.stats[statName];
       }
     });
-
-    userCombatStats.attackSpeedTicks = attackSpeedTicks(userCombatStats.attackSpeed);
 
     // Fetch this users currently equipped abilities
     const usersAbilities = Abilities.findOne({
@@ -215,6 +221,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     const newUnit = {
       id: userCombat.owner,
       owner: userCombat.owner,
+      battleSecret: targetUser.battleSecret,
       towerContributionsToday: userCombat.towerContributionsToday,
       isTowerContribution: userCombat.isTowerContribution,
       abilities: usersEquippedAbilities,
@@ -288,8 +295,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       enemyStats.accuracy += 20;
     }
 
-    enemyStats.attackSpeedTicks = Math.round(ticksPerSecond / enemyStats.attackSpeed);
-
     if (!enemy.amount) {
       enemy.amount = 1;
     }
@@ -298,7 +303,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       const randomUnitTarget = _.sample(newBattle.units);
       totalXpGain += BATTLES.xpGain(enemyStats, enemyConstants.buffs);
       newBattle.enemies.push({
-        id: Random.id(),
+        id: uuid.v4(),
         stats: enemyStats,
         icon: enemyConstants.icon,
         buffs: enemyConstants.buffs || [],
@@ -334,18 +339,16 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
-    createdAt: new Date(),
-    useStreamy
+    createdAt: new Date()
   });
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;
 
-  if (!useStreamy) {
-    redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));
-  }
-
   const actualBattle = newBattle;
+  actualBattle.enemies.forEach((enemy) => {
+    enemy.isEnemy = true;
+  });
 
   // Take energy from all members
   Combat.update({
@@ -358,8 +361,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }, { multi: true });
 
-  // Progress battle
-  const battleIntervalId = Meteor.setInterval(() => {
-    progressBattle(actualBattle, battleIntervalId);
-  }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
+  // Send battle to socket server
+  // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
+  // Otherwise MIM attack compromises the security of the system
+  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle`, {
+    data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s' }
+  }, (error, result) => {});
 }

@@ -1,7 +1,5 @@
-console.log('importing enemies/index.js BOSS_ENEMIES');
-import { BOSS_ENEMIES } from '/server/constants/enemies/bosses/index.js'
+import { BOSS_ENEMIES } from './bosses/index.js'
 
-console.log('exporting enemies/index.js ENEMIES');
 export const ENEMIES = Object.assign({
 
   grasshopper: {

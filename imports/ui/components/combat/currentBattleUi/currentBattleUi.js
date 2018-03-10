@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import io from 'socket.io-client';
 
+import lodash from 'lodash';
 import _ from 'underscore';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
@@ -24,7 +26,9 @@ const startBattle = (currentBattle, self) => {
     } else {
       enemy.targettingPlayer = false;
     }
-  });   
+
+    enemy.myTarget = myUnit.target === enemy.id;
+  });
 
   self.state.set('currentBattle', currentBattle);
 
@@ -85,13 +89,60 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     const currentBattleList = BattlesList.findOne({
       owners: Meteor.userId()
     });
-    if (!currentBattleList) return;
-    const rawBattle = redis.get(`battles-${currentBattleList._id}`);
-    if (!rawBattle) return;
-    const currentBattle = JSON.parse(rawBattle);
-    if (!currentBattle) return;
 
-    startBattle(currentBattle, this);
+    if (!currentBattleList) {
+      delete window.battleSocket;
+      return;
+    }
+
+    if (!window.battleSocket) {
+      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${currentBattleList._id}`, {
+        transports: ['websocket']
+      });      
+    }
+
+    battleSocket.emit('getFullState');
+
+    battleSocket.on('fullState', (data) => {
+      const rawBattle = data.battle;
+      if (!rawBattle) return;
+      const currentBattle = rawBattle;
+      if (!currentBattle) return;
+
+      startBattle(currentBattle, this);
+    });
+
+    battleSocket.on('tick', (data) => {
+      const { tickEvents, deltaEvents } = data;
+      const currentBattle = this.state.get('currentBattle');
+      if (!currentBattle) return;
+      const alteredBattle = Object.assign(currentBattle, { tickEvents });
+      alteredBattle.unitsMap = {};
+      alteredBattle.units.concat(alteredBattle.enemies, alteredBattle.deadEnemies, alteredBattle.deadUnits).forEach((unit) => {
+        if (unit) {
+          alteredBattle.unitsMap[unit.id] = unit;
+          if (unit.abilities) {
+            unit.abilitiesMap = {};
+            unit.abilities.forEach((ability) => {
+              unit.abilitiesMap[ability.id] = ability;
+            });
+          }
+        }
+      });
+      deltaEvents.forEach(({ type, path, value }) => {
+        if (type === 'abs') {
+          lodash.set(alteredBattle, path, value);
+        } else if (type === 'push') {
+          lodash.get(alteredBattle, path).push(value);          
+        } else if (type === 'pop') {
+          const arrayToMutate = lodash.get(alteredBattle, path);
+          lodash.set(alteredBattle, path, arrayToMutate.filter((unit) => {
+            return unit.id !== value
+          }));
+        }
+      });
+      startBattle(alteredBattle, this);
+    });
   })
 });
 
@@ -119,9 +170,16 @@ Template.currentBattleUi.helpers({
         if (myUnit && myUnit.amulet && myUnit.amulet.energy >= 1) {
           const battleId = currentBattle._id;
           const casterId = Meteor.userId();
-          Meteor.call('battles.castAbility', battleId, 'clickAttack', {
-            targets: [unitId], caster: casterId
-          });
+
+          if (battleSocket) {
+            // Gonna require the socket here
+            battleSocket.emit('action', {
+              battleSecret: Meteor.user().battleSecret,
+              abilityId: 'clickAttack',
+              targets: [unitId],
+              caster: Meteor.userId()
+            });                
+          }
         }
       }
     }

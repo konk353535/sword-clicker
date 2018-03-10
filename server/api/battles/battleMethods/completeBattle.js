@@ -25,7 +25,6 @@ import weightedRandom from 'weighted-random';
 const redis = new Meteor.RedisCollection('redis');
 
 const distributeRewards = function distributeRewards({ floor }) {
-  console.log('Distributing rewards');
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
@@ -41,7 +40,6 @@ const distributeRewards = function distributeRewards({ floor }) {
   sortedBossHealthScores.forEach((bossHealthScore) => {
     rawFloorRewards.forEach((reward) => {
       if (reward.type === 'item') {
-        console.log(`Adding item - ${reward.itemId}`);
         addItem(reward.itemId, 1, bossHealthScore.owner);
       }
     })
@@ -76,14 +74,11 @@ const distributeRewards = function distributeRewards({ floor }) {
       chance = 1;
     }
 
-    console.log(`Rank = ${percentRank}`);
     rawFloorRewards.forEach((reward) => {
       if (reward.type === 'item' && Math.random() <= (chance / 100)) {
         addItem(reward.itemId, 1, waveScore.owner);
-        console.log(`Adding item - ${reward.itemId} - 1`);
       } else if (reward.type === 'gold') {
         const goldAmount = (1 - (percentRank / 100)) * reward.amount;
-        console.log(`Adding gold - ${goldAmount}`);
         Users.update(waveScore.owner, {
           $inc: {
             gold: Math.round(goldAmount)
@@ -145,13 +140,13 @@ export const completeBattle = function (actualBattle) {
   let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
 
   // Remove from battle list
-  const battlesDeleted = BattlesList.remove(actualBattle._id);
-  // Remove from redis
-  redis.del(`battles-${actualBattle._id}`);
+  const battlesDeleted = BattlesList.remove(actualBattle.id);
+
 
   if (battlesDeleted <= 0) {
     return;
   }
+
 
   if (!win && actualBattle.isExplorationRun) {
     // Take back the xp values for the current wave (as they failed it)
@@ -162,9 +157,11 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
+
   if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
+
 
     if (actualBattle.isTowerContribution) {
       if (win) {
@@ -190,12 +187,13 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
-    const units = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+    const units = actualBattle.units.filter((unit) => {
       return !!unit.owner;
     });
 
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
+
 
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
@@ -205,6 +203,7 @@ export const completeBattle = function (actualBattle) {
 
       totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
     }
+
 
     units.forEach((unit) => {
       // Distribute xp gained evenly across units
@@ -241,12 +240,12 @@ export const completeBattle = function (actualBattle) {
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
-    const deadEnemy = actualBattle.deadEnemies[0];
     
     let rewards = [];
     if (actualBattle.level) {
       rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
     }
+
 
     for (let i = 0; i < rewards.length; i++) {
       const rewardTable = rewards[i];
@@ -257,6 +256,7 @@ export const completeBattle = function (actualBattle) {
         break;          
       }
     }
+
 
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
@@ -272,6 +272,7 @@ export const completeBattle = function (actualBattle) {
         }
       }
     }
+
 
     // Each user = additional 20% chance of loot
     const extraChance = 1 + (units.length * 0.2) - 0.2;
@@ -433,7 +434,6 @@ export const completeBattle = function (actualBattle) {
 
               FloorWaveScores.upsert(updateSelector, updateModifier);
             } else {
-              console.log('Unexpected Failure');
             }
           }
         });
@@ -475,9 +475,10 @@ export const completeBattle = function (actualBattle) {
   }
 
   // Update all player units healths
-  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
-    return !!unit.owner;
+  const allFriendlyUnits = actualBattle.units.filter((unit) => {
+    return !unit.isEnemy;
   });
+
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
@@ -585,7 +586,6 @@ export const completeBattle = function (actualBattle) {
     if (!damageDealt || damageDealt < 0) {
       damageDealt = 0;
     }
-    console.log(`Damage dealt to boss ${damageDealt}`);
 
     // Update players contributions
     allFriendlyUnits.forEach((unit) => {
@@ -602,7 +602,6 @@ export const completeBattle = function (actualBattle) {
       currentFloor.health -= damageDealt;
 
       if (currentFloor.health <= 0) {
-        console.log('Health is below 0');
         // Complete the floor!
         let updatedCount = Floors.update({
           floor: actualBattle.floor,
@@ -613,7 +612,6 @@ export const completeBattle = function (actualBattle) {
           }
         });
 
-        console.log(`Updated count is ${updatedCount}`);
         if (updatedCount === 1) {
           // Distribute rewards
           distributeRewards({ floor: actualBattle.floor });
@@ -699,3 +697,12 @@ export const completeBattle = function (actualBattle) {
 
   delete actualBattle;
 };
+
+JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {
+  const [battle, passphrase] = req.body;
+  if (passphrase !== 'dqv$dYT65YrU%s') {
+    return;
+  }
+
+  completeBattle(battle);
+});

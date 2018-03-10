@@ -14,6 +14,7 @@ import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
+import uuid from 'node-uuid';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -359,6 +360,7 @@ Accounts.onCreateUser((options, user) => {
 
   user._id = Random.id();
   const userId = user._id;
+  user.battleSecret = uuid.v4();
   user.uiState = {
     showChat: true,
     showSummaryList: false,

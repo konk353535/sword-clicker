@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { BATTLES } from './constants/battles/index.js'; // List of encounters
 
 export const flattenObjectForMongo = function(ob) {
   var toReturn = {};
@@ -48,19 +48,4 @@ export const enemyStatSetter = function(constants, baseStats, enhancedStats) {
       currentEnemy.stats[statKey] = currentStatValue * baseStats[statKey];
     });
   });
-}
-
-export const attackSpeedTicks = function(attackSpeed) {
-  const ticksPerSecond = 1000 / BATTLES.tickDuration;
-
-  // Convert attack speed seconds to attack speed ticks
-  if (attackSpeed !== undefined) {
-    // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
-    if (attackSpeed >= 8) {
-      return 1;
-    }
-    return Math.round(ticksPerSecond / attackSpeed);
-  } else {
-    return 0;
-  }
 }

@@ -14,6 +14,8 @@ UserSchema = new SimpleSchema({
   fakeGems: { type: Number, defaultValue: 0 },
   fakeGemsToday: { type: Number, defaultValue: 0 },
 
+  battleSecret: { type: String },
+
   banned: { type: Boolean, optional: true },
 
   membershipTo: { type: Date, optional: true },
@@ -83,7 +85,6 @@ UserSchema = new SimpleSchema({
   'tutorial.hideCombatGroup': { type: Boolean },
   'tutorial.hideCombatBattleLog': { type: Boolean },
 
-
   'tutorial.hideMiningEquipment': { type: Boolean },
   'tutorial.highlightMiningEquipment': { type: Boolean },
   'tutorial.hideMiningMiners': { type: Boolean },  
@@ -99,7 +100,6 @@ UserSchema = new SimpleSchema({
   personalQuest: { type: Object },
   'personalQuest.level': { type: Number, defaultValue: 1 },
   'personalQuest.wave': { type: Number, defaultValue: 1 },
-
 
   stats: { type: Object },
   'stats.spellsCast' : { type: Number, defaultValue: 1 }

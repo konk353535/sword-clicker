@@ -1,0 +1,86 @@
+<template name="lobbyPage">
+  <div class="container mt-2">
+    <!--
+    <div class="d-flex align-items-center py-1" style="cursor: pointer">
+      <img src="/icons/back.svg" class="extra-small-icon" />
+      Loadout
+    </div>
+    -->
+    <div class="d-flex align-items-center">
+      <div class="mr-2">Type</div>
+      <div class="dropdown">
+        <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{type}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item select-type" data-type="solo" href="#">Solo</a>
+          <a class="dropdown-item select-type" data-type="group" href="#">Tower (Group)</a>
+          <a class="dropdown-item select-type" data-type="afk" href="#">Adventure (AFK)</a>
+        </div>
+      </div>
+      {{#if $eq typeKey 'solo'}}
+        <div class="mr-2">Level</div>
+        <div class="dropdown">
+          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">1</a>
+            <a class="dropdown-item" href="#">2</a>
+            <a class="dropdown-item" href="#">3</a>
+          </div>
+        </div>
+        <div>
+          Wave 4
+        </div>
+      {{else if $eq typeKey 'group'}}
+        <div class="mr-2">Floor</div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">1</a>
+            <a class="dropdown-item" href="#">2</a>
+            <a class="dropdown-item" href="#">3</a>
+          </div>
+        </div>
+      {{else if $eq typeKey 'afk'}}
+        <div class="mr-2">Floor</div>
+        <div class="dropdown">
+          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">1</a>
+            <a class="dropdown-item" href="#">2</a>
+            <a class="dropdown-item" href="#">3</a>
+          </div>
+        </div>
+        <div class="mr-2">Room</div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            1 - Eternal Pond
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">1 - Eternal Pond</a>
+            <a class="dropdown-item" href="#">2 - Fire Keep</a>
+            <a class="dropdown-item" href="#">3 - Stone Fortress</a>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if $eq typeKey 'solo'}}
+      <div class="d-flex justify-content-center mt-3">
+        Recent Battles
+      </div>
+      <div>Show All</div>
+    {{/if}}
+
+    <div class="select-battle-container">
+      <button class="btn btn-secondary mr-3" style="width: 150px">Loadout</button>
+      <button class="btn btn-primary continue-btn" style="width: 150px">Battle</button>
+    </div>
+  </div>
+</template>

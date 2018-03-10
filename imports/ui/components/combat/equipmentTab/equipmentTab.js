@@ -94,7 +94,6 @@ Template.equipmentTab.helpers({
     });
   },
 
-
   equippedItemsMap() {
     const equippedItems = Items.find({
       category: 'combat',

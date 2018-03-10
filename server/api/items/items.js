@@ -743,6 +743,8 @@ const MINUTE = 60 * 1000;
 Meteor.publish('items', function() {
 
   //Transform function
+  // TODO: We can move items to local dev, and avoid having to do all this extra processing here
+  // Just send raw item to client, then they can do the transforms with the constants locally
   var transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
     if (!itemConstants) {
@@ -753,6 +755,7 @@ Meteor.publish('items', function() {
     doc.name = itemConstants.name;
     doc.isTwoHanded = itemConstants.isTwoHanded;
     doc.sellPrice = itemConstants.sellPrice;
+    doc.slot = itemConstants.slot;
     if (itemConstants.stats) {
       doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
       doc.isWeapon = itemConstants.isWeapon;

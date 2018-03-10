@@ -1,0 +1,11 @@
+<template name="newCombatPage">
+  {{#if $eq page 'loadout'}}
+    {{> loadoutPage setPage=setPage}}
+  {{else if $eq page 'lobby'}}
+    {{> lobbyPage setPage=setPage}}
+  {{else if $eq page 'selectGear'}}
+    {{> selectGearPage setPage=setPage}}
+  {{else}}
+    Here
+  {{/if}}
+</template>

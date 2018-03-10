@@ -1,6 +1,6 @@
 <template name="nav">
   <nav class="navbar navbar-toggleable-md navbar-light bg-faded {{#unless $eq currentRoute 'home'}}sticky-top{{/unless}}">
-    <div class="d-flex {{#if $eq currentRoute 'home'}}container{{else}}flex-grow{{/if}}">
+    <div class="d-flex container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,136 +19,34 @@
         <ul class="navbar-nav mr-auto">
           {{#if currentUser}}
             <li class="nav-item">
-              <a class="nav-link
-                {{#if $eq currentRoute 'mining'}}
-                  active
-                {{else}}
-                  {{#if currentUser.tutorial.highlightMiningEquipment}}
-                    new-update-color
-                  {{/if}}
-                  {{#if currentUser.tutorial.highlightMiningMiners}}
-                    new-update-color
-                  {{/if}}
-                  {{#if currentUser.tutorial.highlightMiningProspectors}}
-                    new-update-color
-                  {{/if}}
-                {{/if}}
-              " href="/mining">Mining</a>
+              <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
+                Mine
+              </a>
             </li>
-            {{#if currentUser.tutorial}}
-              {{#unless currentUser.tutorial.hideCrafting}}
-                <li class="nav-item">
-                  <a class="nav-link
-                    {{#if $eq currentRoute 'crafting'}}
-                      active
-                    {{else}}
-                      {{#if currentUser.tutorial.highlightCrafting}}new-update-color{{/if}}
-                    {{/if}}"
-                    href="/crafting">
-                    Crafting
-                  </a>
-                </li>
-              {{/unless}}
-              {{#unless currentUser.tutorial.hideWoodcutting}}
-                <li class="nav-item">
-                  <a class="nav-link
-                    {{#if $eq currentRoute 'woodcutting'}}
-                      active
-                    {{else}}
-                      {{#if currentUser.tutorial.highlightWoodcutting}}new-update-color{{/if}}
-                    {{/if}}"
-                    href="/woodcutting">
-                    Woodcutting
-                  </a>
-                </li>
-              {{/unless}}
-              {{#unless currentUser.tutorial.hideCombat}}
-                <li class="nav-item">
-                  <a class="nav-link
-                    {{#if $eq currentRoute 'combat'}}
-                      active
-                    {{else}}
-                      {{#if currentUser.tutorial.highlightCombat}}new-update-color{{/if}}
-                    {{/if}}
-                  " href="/combat">Combat</a>
-                </li>
-              {{/unless}}
-              {{#unless currentUser.tutorial.hideFarming}}
-                <li class="nav-item">
-                  <a class="nav-link
-                    {{#if $eq currentRoute 'farming'}}
-                      active
-                    {{else}}
-                      {{#if currentUser.tutorial.highlightFarming}}new-update-color{{/if}}
-                    {{/if}}
-                  " href="/farming">Farming</a>
-                </li>
-              {{/unless}}
-              {{#unless currentUser.tutorial.hideInscription}}
-                <li class="nav-item">
-                  <a class="nav-link
-                    {{#if $eq currentRoute 'inscription'}}
-                      active
-                    {{else}}
-                      {{#if currentUser.tutorial.highlightInscription}}new-update-color{{/if}}
-                    {{/if}}
-                  " href="/inscription">Inscription</a>
-                </li>
-              {{/unless}}
-            {{else}}
-              {{#if hasCraftingSkill}}
-                <li class="nav-item">
-                  <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">Crafting</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">Combat</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">Woodcutting</a>
-                </li>
-                {{#if hasAttackSkill}}
-                  <li class="nav-item">
-                    <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
-                      Farming
-                    </a>
-                  </li>
-                  {{#if hasFarmingSkill}}
-                    <li class="nav-item">
-                      <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
-                        Inscription
-                      </a>
-                    </li>
-                    {{#if hasInscriptionSkill}}
-                      <li class="nav-item">
-                        <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
-                          Magic
-                        </a>
-                      </li>
-                    {{/if}}
-                  {{/if}}
-                {{/if}}
-              {{/if}}
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
+                Craft
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">
+                Battle
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
+                Woodcut
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
+                Farm
+              </a>
+            </li>
+            {{#if currentUser.newUpdates}}
               <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'patchNotes'}}active{{/if}}" href="/patchNotes">FAQ</a>
+                <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">Chat</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
-                  Skills
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'achievements'}}active{{/if}}" href="/achievements">
-                  Achievements
-                </a>
-              </li>
-              {{#if currentUser.newUpdates}}
-                <li class="nav-item">
-                  <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
-                </li>
-              {{/if}}
             {{/if}}
           {{/if}}
         </ul>

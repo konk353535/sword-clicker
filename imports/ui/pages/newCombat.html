@@ -9,6 +9,8 @@
     {{> selectAbilitiesPage setPage=setPage}}
   {{else if $eq page 'recentBattles'}}
     {{> recentBattlesPage setPage=setPage}}
+  {{else if $eq page 'otherBattlers'}}
+    {{> otherBattlersPage setPage=setPage}}
   {{else}}
     Here
   {{/if}}

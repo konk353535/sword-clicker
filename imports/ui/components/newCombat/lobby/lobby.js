@@ -21,7 +21,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('battles');
 
-  this.state.set('type', 'solo');
+  this.state.set('type', 'group');
 });
 
 Template.lobbyPage.events({
@@ -36,6 +36,10 @@ Template.lobbyPage.events({
 
   'click .recent-battles-btn'(event, instance) {
     instance.data.setPage('recentBattles');
+  },
+
+  'click .other-battlers-btn'(event, instance) {
+    instance.data.setPage('otherBattlers');
   }
 
 })

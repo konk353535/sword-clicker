@@ -1,6 +1,6 @@
 <template name="battleLogRow">
-  <div class="d-flex flex-column alert alert-secondary" role="alert">
-    <div class="d-flex">
+  <div class="d-flex flex-column alert battle-log-alert alert-secondary" role="alert">
+    <div class="d-flex flex-wrap">
       {{#if computedBattle.wave}}
         <span class="mr-1">L{{computedBattle.level}} W{{computedBattle.wave}}</span>
       {{/if}}
@@ -16,7 +16,7 @@
         <strong class="text-danger d-flex align-items-center mr-1">Defeat</strong>
       {{/if}}
 
-      <div class="d-flex align-items-center" style="flex: 1 1 auto">
+      <div class="d-flex align-items-center flex-wrap" style="flex: 1 1 auto">
         {{#each computedBattle.myTickEvents}}
           {{#if $eq this.type 'xp'}}
             <div class="ml-1 {{#if this.affectedGlobalBuff}}text-info{{/if}}">

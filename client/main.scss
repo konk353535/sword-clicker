@@ -10,6 +10,8 @@
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
 @import "styles/typeahead.scss";
+@import "styles/lobby.scss";
+@import "styles/battleLog.scss";
 
 .select-battle-container {
   display: flex;
@@ -126,7 +128,16 @@ body { padding-right: 0 !important }
   }
 
   .buff-container {
-    width: 80px;
+    width: 80p;
+  }
+
+  .lobby-container .battle-unit-container {
+    max-width: 100px;
+    margin-top: 20px;
+  }
+
+  .lobby-container .buff-container {
+    width: 100px;
   }
 
   .battle-units-container {
@@ -296,12 +307,12 @@ body { padding-right: 0 !important }
 
 @media screen and (max-width: 768px) {
   .health-bar {
-    width: 48px;
+    width: 100%;
     font-size: 10px;
   }
-
-  .health-bar.progress {
-    height: 5px;
+  .energy-bar {
+    width: 100%;
+    font-size: 10px;
   }
 }
 

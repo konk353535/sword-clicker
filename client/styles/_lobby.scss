@@ -1,0 +1,35 @@
+.lobby-units-container {
+  margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .lobby-units-container {
+    margin-top: 2rem;
+  }
+
+  .room-dropdown, .floor-dropdown, .level-dropdown {
+    display: flex;
+    flex: 1;
+
+    & > button {
+      flex: 1;
+    }
+  }
+
+  .justify-content-center-sm {
+    justify-content: center;
+  }
+
+  .flex-grow-sm {
+    flex: 1;
+  }
+
+  .group-invite {
+    justify-content: flex-start !important;
+    margin-top: 0.5rem;
+
+    & > button {
+      flex: 1
+    }
+  }
+}

@@ -19,7 +19,12 @@ Template.lobbyPage.events({
   'click .select-type'(event, instance) {
     const newType = instance.$(event.target).closest('.select-type').data('type');
     instance.state.set('type', newType);
+  },
+
+  'click .loadout-btn'(event, instance) {
+    instance.data.setPage('loadout');
   }
+
 })
 
 Template.lobbyPage.helpers({

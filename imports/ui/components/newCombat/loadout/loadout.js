@@ -37,6 +37,10 @@ Template.loadoutPage.events({
 
   'click .edit-gear-btn'(event, instance) {
     instance.data.setPage('selectGear');
+  },
+
+  'click .edit-abilities-btn'(event, instance) {
+    instance.data.setPage('selectAbilities');
   }
 })
 

@@ -1,6 +1,5 @@
 <template name="lobbyPage">
   <div class="container mt-2">
-
     <!-- Select Type / Floor / Room / Level -->
     <div class="d-flex align-items-center">
       <div class="mr-2">Type</div>
@@ -18,29 +17,45 @@
         <div class="mr-2">Level</div>
         <div class="dropdown">
           <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            1
+            {{usersCurrentLevel}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">1</a>
-            <a class="dropdown-item" href="#">2</a>
-            <a class="dropdown-item" href="#">3</a>
+            {{#each levelsList}}
+              <a class="dropdown-item select-level" data-level="{{this}}" href="#">{{this}}</a>
+            {{/each}}
           </div>
         </div>
-        <div>
-          Wave 4
-        </div>
+        {{#if $eq usersCurrentLevel maxLevel}}
+          <div>
+            Wave {{maxLevelCurrentWave}}
+          </div>
+        {{/if}}
       {{else if $eq typeKey 'group'}}
         <div class="mr-2">Floor</div>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            1
+            {{usersCurrentFloor}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">1</a>
-            <a class="dropdown-item" href="#">2</a>
-            <a class="dropdown-item" href="#">3</a>
+            {{#each floorsList}}
+              <a class="dropdown-item select-floor" href="#" data-floor="{{this}}">{{this}}</a>
+            {{/each}}
           </div>
         </div>
+        {{#if floorDetails.isUnlocked}}
+          <div class="mx-2">Room</div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{usersCurrentRoom}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item select-room" href="#" data-room="all">All</a>
+              {{#each floorDetails.rooms}}
+                <a class="dropdown-item select-room" href="#" data-room="{{this.room}}">{{this.room}} - {{this.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
       {{else if $eq typeKey 'afk'}}
         <div class="mr-2">Floor</div>
         <div class="dropdown">
@@ -56,7 +71,7 @@
         <div class="mr-2">Room</div>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            1 - Eternal Pond
+            1
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">1 - Eternal Pond</a>

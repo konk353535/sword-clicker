@@ -1,5 +1,7 @@
 <template name="newCombatPage">
-  {{#if $eq page 'loadout'}}
+  {{#if inCurrentBattle}}
+    {{> currentBattleUi}}  
+  {{else if $eq page 'loadout'}}
     {{> loadoutPage setPage=setPage}}
   {{else if $eq page 'lobby'}}
     {{> lobbyPage setPage=setPage}}

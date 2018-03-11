@@ -169,13 +169,16 @@ Meteor.methods({
         floorDetails: {
           rewards: specifiedFloorConstants.floorRewards,
           unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
-          1: { name: specifiedFloorConstants[1].name },
-          2: { name: specifiedFloorConstants[2].name },
-          3: { name: specifiedFloorConstants[3].name },
-          4: { name: specifiedFloorConstants[4].name },
-          5: { name: specifiedFloorConstants[5].name },
-          6: { name: specifiedFloorConstants[6].name },
-          7: { name: specifiedFloorConstants[7].name }
+          isUnlocked: false,
+          rooms: [
+            { room: 1, name: specifiedFloorConstants[1].name },
+            { room: 2, name: specifiedFloorConstants[2].name },
+            { room: 3, name: specifiedFloorConstants[3].name },
+            { room: 4, name: specifiedFloorConstants[4].name },
+            { room: 5, name: specifiedFloorConstants[5].name },
+            { room: 6, name: specifiedFloorConstants[6].name },
+            { room: 7, name: specifiedFloorConstants[7].name }
+          ]
         },
         maxFloor: currentFloor.floor
       }
@@ -184,13 +187,16 @@ Meteor.methods({
     return {
       floorDetails: {
         unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
-        1: { name: specifiedFloorConstants[1].name },
-        2: { name: specifiedFloorConstants[2].name },
-        3: { name: specifiedFloorConstants[3].name },
-        4: { name: specifiedFloorConstants[4].name },
-        5: { name: specifiedFloorConstants[5].name },
-        6: { name: specifiedFloorConstants[6].name },
-        7: { name: specifiedFloorConstants[7].name }
+        isUnlocked: true,
+        rooms: [
+          { room: 1, name: specifiedFloorConstants[1].name },
+          { room: 2, name: specifiedFloorConstants[2].name },
+          { room: 3, name: specifiedFloorConstants[3].name },
+          { room: 4, name: specifiedFloorConstants[4].name },
+          { room: 5, name: specifiedFloorConstants[5].name },
+          { room: 6, name: specifiedFloorConstants[6].name },
+          { room: 7, name: specifiedFloorConstants[7].name }
+        ]
       },
       maxFloor: currentFloor.floor
     }

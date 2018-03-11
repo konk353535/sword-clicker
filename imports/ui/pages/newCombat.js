@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Items } from '/imports/api/items/items.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 import { Combat } from '/imports/api/combat/combat.js';
 
 import { PLAYER_ICONS } from '/imports/constants/shop/index.js';
@@ -35,5 +36,12 @@ Template.newCombatPage.helpers({
     return (page) => {
       instance.state.set('page', page);      
     }
-  }
+  },
+
+  inCurrentBattle() {
+    const currentBattleList = BattlesList.findOne({
+      owners: Meteor.userId()
+    });
+    return !!currentBattleList;
+  },
 });

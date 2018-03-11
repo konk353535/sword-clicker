@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-
 import './lobby.html';
 import '../lobbyUnit/lobbyUnit.js';
 
@@ -11,6 +10,13 @@ const TYPES = {
   afk: 'Adventure',
 }
 
+const findBattleHandler = function (err, res) {
+  if (err) {
+    toastr.warning(err.reason);
+  }
+}
+
+import { Users } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
@@ -23,6 +29,55 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
   this.state.set('userSuggestions', []);
   this.state.set('type', 'group');
+
+  this.state.set('currentLevel', 1);
+  this.state.set('usersCurrentRoom', 'All');
+  this.state.set('usersCurrentFloor', 1);
+  this.state.set('floorDetails', {});
+  this.state.set('waveDetails', {});
+  this.state.set('maxFloor', 1);
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.towerFloor !== undefined) {
+        this.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
+      } else {
+        this.state.set('usersCurrentFloor', 1);
+      }
+
+      if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
+        this.state.set('currentLevel', myUser.uiState.questLevel);
+      } else if (myUser.personalQuest) {
+        this.state.set('currentLevel', myUser.personalQuest.level);
+      }
+    }
+  });
+
+  Meteor.call('battles.myFloorContributions', (err, res) => {
+    this.state.set('myFloorContributions', res);
+  });
+
+  Tracker.autorun(() => {
+    // TODO: Can replace this call by making the FLOORS constants client side
+    Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this.state.set('floorDetails', floorDetailsRaw.floorDetails);
+        this.state.set('waveDetails', floorDetailsRaw.waveDetails);
+        this.state.set('maxFloor', floorDetailsRaw.maxFloor);
+      }
+    });
+  });
+
+  this.autorun(() => {
+    const userDoc = Users.findOne({});
+    if (userDoc && userDoc.personalQuest) {
+      this.state.set('maxLevel', userDoc.personalQuest.level);
+      this.state.set('maxLevelCurrentWave', userDoc.personalQuest.wave);
+    }
+  });
 });
 
 Template.lobbyPage.events({
@@ -82,6 +137,46 @@ Template.lobbyPage.events({
     const ownerId = instance.$(event.target).closest('.btn-promote').data('owner');
     Meteor.call('groups.transfer', { ownerId });
   },
+
+  'click .select-floor'(event, instance) {
+    const selectedFloor = $(event.target).closest('.select-floor')[0].getAttribute('data-floor');
+    if (instance.state.get('usersCurrentFloor') !== parseInt(selectedFloor)) {
+      instance.state.set('usersCurrentFloor', parseInt(selectedFloor));
+      instance.state.set('usersCurrentRoom', 'All');
+      Meteor.call('users.setUiState', 'towerFloor', parseInt(selectedFloor));
+    }
+  },
+
+  'click .select-room'(event, instance) {
+    const selectedRoom = $(event.target).closest('.select-room')[0].getAttribute('data-room');
+    if (selectedRoom === 'All') {
+      instance.state.set('usersCurrentRoom', 'All');
+    } else {
+      instance.state.set('usersCurrentRoom', parseInt(selectedRoom));
+    }
+  },
+
+  'click .select-level'(event, instance) {
+    const selectedLevel = $(event.target).closest('.select-level')[0].getAttribute('data-level');
+    instance.state.set('currentLevel', parseInt(selectedLevel));
+    Meteor.call('users.setUiState', 'questLevel', parseInt(selectedLevel));
+  },
+
+  'click .battle-btn'(event, instance) {
+    const type = instance.state.get('type');
+    if (type === 'group') {
+      const floor = instance.state.get('usersCurrentFloor');
+      const room = instance.state.get('usersCurrentRoom');
+      if (room === 'All') {
+        Meteor.call('battles.findTowerBattle', floor, 0, findBattleHandler);
+      } else {
+        Meteor.call('battles.findTowerBattle', floor, room, findBattleHandler);        
+      }
+    } else if (type === 'solo') {
+      const level = instance.state.get('usersCurrentLevle')
+    }
+  }
+
 })
 
 Template.lobbyPage.rendered = function () {
@@ -89,6 +184,21 @@ Template.lobbyPage.rendered = function () {
 }
 
 Template.lobbyPage.helpers({
+  floorsList() {
+    let floorsList = [];
+    let maxFloor = Template.instance().state.get('maxFloor');
+
+    for (let i = 0; i < maxFloor; i++) {
+      floorsList.push(i + 1)
+    }
+
+    return floorsList;
+  },
+
+  floorDetails() {
+    return Template.instance().state.get('floorDetails');
+  },
+
   typeKey() {
     return Template.instance().state.get('type');
   },
@@ -101,6 +211,22 @@ Template.lobbyPage.helpers({
     return Groups.findOne({
       members: Meteor.userId()
     });
+  },
+
+  floorDetails() {
+    return Template.instance().state.get('floorDetails');
+  },
+
+  waveDetails() {
+    return Template.instance().state.get('waveDetails');
+  },
+
+  usersCurrentFloor() {
+    return Template.instance().state.get('usersCurrentFloor');
+  },
+
+  usersCurrentRoom() {
+    return Template.instance().state.get('usersCurrentRoom');
   },
 
   recentBattles() {
@@ -188,4 +314,24 @@ Template.lobbyPage.helpers({
       return userCombat;
     });
   },
+
+  maxLevel() {
+    return Template.instance().state.get('maxLevel');
+  },
+
+  maxLevelCurrentWave() {
+    return Template.instance().state.get('maxLevelCurrentWave');
+  },
+
+  usersCurrentLevel() {
+    return Template.instance().state.get('currentLevel');
+  },
+
+  levelsList() {
+    const maxLevel = Template.instance().state.get('maxLevel');
+    if (!maxLevel) {
+      return;
+    }
+    return _.range(maxLevel, 0, -1);
+  }
 });

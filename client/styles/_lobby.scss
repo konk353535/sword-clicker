@@ -2,7 +2,36 @@
   margin-top: 100px;
 }
 
+.recent-battling-row {
+  display: flex;
+  align-items: center;
+  padding: $spacer / 2;
+  margin-bottom: $spacer / 2;
+  border: 1px solid $gray-lighter;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
+
+  .recent-battling-row {
+    .users-row {
+      margin-top: $spacer / 2;
+      margin-right: 0 !important;
+      flex-wrap: wrap;
+    }
+
+    .actions-row {
+      margin-top: $spacer / 2;
+      margin-right: 0 !important;
+      justify-content: center !important;
+
+      & > button {
+        flex: 1;
+      }
+    }
+  }
+
   .lobby-units-container {
     margin-top: 2rem;
   }

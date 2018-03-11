@@ -16,7 +16,11 @@
         <strong class="text-danger d-flex align-items-center mr-1">Defeat</strong>
       {{/if}}
 
-      <div class="d-flex align-items-center flex-wrap" style="flex: 1 1 auto">
+      <span class="hidden-sm-up d-flex flex-grow justify-content-end">
+        {{moFormat computedBattle.updatedAt 'Do MMM h:mm A'}}
+      </span>
+
+      <div class="d-flex align-items-center rewards-row flex-wrap" style="flex: 1 1 auto">
         {{#each computedBattle.myTickEvents}}
           {{#if $eq this.type 'xp'}}
             <div class="ml-1 {{#if this.affectedGlobalBuff}}text-info{{/if}}">
@@ -54,13 +58,13 @@
 
         {{/each}}
 
-        <span class="d-flex justify-content-end flex-grow">
+        <span class="d-flex justify-content-end flex-grow hidden-sm-down">
           {{#if showMore}}
             <a class="show-less" href="#" style="width: 100px">Show Less</a>
           {{else}}
             <a class="show-more" href="#" style="width: 100px">Show More</a>
           {{/if}}
-          <span style="width: 150px">
+          <span class="hidden-sm-down" style="width: 150px">
             {{moFormat computedBattle.updatedAt 'Do MMM h:mm A'}}
           </span>
         </span>

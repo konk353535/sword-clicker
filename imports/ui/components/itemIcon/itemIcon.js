@@ -43,16 +43,26 @@ Template.itemIcon.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
     const vm = this;
     vm.state.set('tooltipOpen', false);
-    tooltip = tippy(Template.instance().$('.item-icon-container')[0],
-        {
-          html: Template.instance().$('.item-tooltip-content')[0],
-          performance: true,
-          animateFill: false,
-          distance: 5,
-          onHide: function() {
-            vm.state.set('tooltipOpen', false);
+    tooltip = tippy(Template.instance().$('.item-icon-container')[0], {
+      appendTo: Template.instance().$('.item-icon-container')[0].parentNode,
+      popperOptions: {
+        modifiers: {
+          preventOverflow: {
+            enabled: false
+          },
+          hide: {
+            enabled: false
           }
-        })
+        }
+      },
+      html: Template.instance().$('.item-tooltip-content')[0],
+      performance: true,
+      animateFill: false,
+      distance: 5,
+      onHide: function() {
+        vm.state.set('tooltipOpen', false);
+      }
+    })
   }
 };
 

@@ -151,16 +151,6 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
 Meteor.methods({
 
-  'combat.startMeditation'() {
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: moment().toDate()
-      }
-    });
-  },
-
   'combat.updateIsTowerContribution'(newValue) {
     Combat.update({
       owner: Meteor.userId()
@@ -226,44 +216,6 @@ Meteor.methods({
         characterIcon: targetIcon.icon
       }
     })
-  },
-
-  'combat.stopMeditation'() {
-    // Time since meditation
-    const combat = Combat.findOne({
-      owner: Meteor.userId()
-    });
-
-    if (!combat.meditatingStartDate) {
-      throw new Meteor.Error("no-meditation", "you're not meditating");
-    }
-
-    const now = moment();
-    let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
-
-    if (hoursElapsed > 24) {
-      hoursElapsed = 24; 
-    }
-
-    // Skills level x 10xp / hour
-    const combatSkills = Skills.find({
-      owner: Meteor.userId(),
-      type: {
-        $in: ['attack', 'defense', 'health']
-      }
-    }).fetch();
-
-    combatSkills.forEach((skill) => {
-      addXp(skill.type, hoursElapsed * 15 * skill.level)
-    });
-
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: null
-      }
-    });
   },
 
   'combat.gameUpdate'() {

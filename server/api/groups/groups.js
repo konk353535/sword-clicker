@@ -23,6 +23,10 @@ Meteor.methods({
       return member !== this.userId;
     });
 
+    currentGroup.membersObject = currentGroup.membersObject.filter((member) => {
+      return member.id !== this.userId;
+    });
+
     // Is this user in group finder?
     GroupFinder.remove({
       owner: Meteor.userId()
@@ -45,6 +49,7 @@ Meteor.methods({
       Groups.update(currentGroup._id, {
         $set :{
           members: currentGroup.members,
+          membersObject: currentGroup.membersObject,
           leader: currentGroup.leader
         }
       });
@@ -80,81 +85,27 @@ Meteor.methods({
     const memberFilter = function (member) {
       if (targetUser) {
         return member !== targetUser._id
-      } else {
-        return member !== ownerId;
       }
+      return member !== ownerId;
     }
 
     // Remove from current group (invites + users)
     currentGroup.members = currentGroup.members.filter(memberFilter);
     currentGroup.invites = currentGroup.invites.filter(memberFilter);
+    currentGroup.membersObject = currentGroup.membersObject.filter((member) => {
+      if (targetUser) {
+        return member.id !== targetUser._id
+      }
+      return member.id !== ownerId;
+    });
 
     Groups.update(currentGroup._id, {
       $set: {
         members: currentGroup.members,
+        membersObject: currentGroup.membersObject,
         invites: currentGroup.invites
       }
     });
-  },
-
-  'groups.findGroup'(floor) {
-    // Is there one other user looking for this floor?
-    // Can specify floor later when there is more users
-    const existingGroup = GroupFinder.findOne({
-      floor
-    });
-
-    // Existing Group
-    if (existingGroup) {
-      if (existingGroup.groupCreatedId) {
-        // If a group exists
-        // Add this user to it as the leader
-        const targetGroup = Groups.findOne(existingGroup.groupCreatedId);
-
-        if (targetGroup) {
-          targetGroup.members.push(Meteor.userId());
-          targetGroup.leader = Meteor.userId();
-          targetGroup.leaderName = Meteor.user().username;
-
-          if (targetGroup.members.length >= 5) {
-            // Remove this entry
-            GroupFinder.remove(existingGroup._id);
-          }
-
-          Groups.update(targetGroup._id, {
-            $set: {
-              members: targetGroup.members,
-              leader: targetGroup.leader,
-              leaderName: targetGroup.leaderName
-            }
-          });
-          return;
-        }
-      } else {
-        // If no created group yet, make one.
-        // Add this user as leader
-        // Add other user as second player
-        const newlyCreatedGroupId = Groups.insert({
-          leaderName: Meteor.user().username,
-          leader: this.userId,
-          members: [this.userId],
-          invites: [existingGroup.owner]
-        });
-
-        GroupFinder.update(existingGroup._id, {
-          $set: {
-            groupCreatedId: newlyCreatedGroupId
-          }
-        });
-      }
-    } else {
-      // No group exists yet, add single entry and wait
-      GroupFinder.insert({
-        owner: Meteor.userId(),
-        createdAt: moment().toDate(),
-        floor
-      });
-    }
   },
 
   'groups.ready'() {
@@ -238,9 +189,10 @@ Meteor.methods({
   },
 
   'groups.acceptInvite'(id, accept) {
+    const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
       _id: id,
-      invites: Meteor.userId()
+      invites: userDoc._id
     });
 
     if (!targetGroup) {
@@ -254,7 +206,7 @@ Meteor.methods({
 
     // Remove from invites list
     targetGroup.invites = targetGroup.invites.filter((userId) => {
-      if (userId === Meteor.userId()) {
+      if (userId === userDoc._id) {
         return false;
       }
       return true;
@@ -262,12 +214,17 @@ Meteor.methods({
 
     // Add user to members if accepting
     if (accept) {
-      targetGroup.members.push(Meteor.userId());
+      targetGroup.members.push(userDoc._id);
+      targetGroup.membersObject.push({
+        name: userDoc.username,
+        id: userDoc._id
+      })
     }
 
     Groups.update(targetGroup._id, {
       $set: {
         members: targetGroup.members,
+        membersObject: targetGroup.membersObject,
         invites: targetGroup.invites
       }
     });
@@ -333,15 +290,16 @@ Meteor.methods({
         leaderName: Meteor.user().username,
         leader: this.userId,
         members: [this.userId],
+        membersObject: [{
+          name: Meteor.user().username,
+          id: this.userId
+        }],
         invites: [targetUser._id]
       });
     }
   },
 
-
-
-// Transfer leaderhip role to another party member
-
+  // Transfer leaderhip role to another party member
   'groups.transfer'({ ownerId }) {
     const isMutedExpiry = Meteor.user().isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
@@ -396,9 +354,12 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'groups.invite' }, 25, 5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
 
-Meteor.publish('groupFinder', function() {
-  return GroupFinder.find({
-    owner: this.userId
+Meteor.publish('otherBattlers', function() {
+  return Groups.find({}, {
+    limit: 10,
+    sort: {
+      lastBattleStarted: -1
+    }
   });
 });
 

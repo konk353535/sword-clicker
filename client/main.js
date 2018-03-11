@@ -37,6 +37,7 @@ import '../imports/ui/pages/chat.js';
 import '../imports/ui/pages/achievements.js';
 import '../imports/ui/pages/magic.js';
 import '../imports/ui/pages/mining.js';
+import '../imports/ui/pages/newCombat.js';
 import '../imports/ui/pages/crafting.js';
 import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';

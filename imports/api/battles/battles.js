@@ -8,8 +8,15 @@ export const BattlesList = new Mongo.Collection('battlesList');
 
 BattlesListSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
-  createdAt: { type: Date },
-  useStreamy: { type: Boolean, defaultValue: false }
+
+  floor: { type: Number, optional: true },
+  room: { type: String, optional: true },
+  level: { type: Number, optional: true },
+  wave: { type: Number, optional: true },
+
+  group: { type: String, optional: true },
+
+  createdAt: { type: Date }
 });
 
 BattlesSchema = new SimpleSchema({

@@ -9,6 +9,21 @@
 @import "styles/icons.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
+@import "styles/typeahead.scss";
+@import "styles/lobby.scss";
+@import "styles/battleLog.scss";
+
+.select-battle-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-top: 1px solid $gray-lighter;
+  background-color: $gray-lightest;
+}
 
 .body-content {
   margin-left: $spacer / 2;
@@ -64,13 +79,6 @@ body { padding-right: 0 !important }
   color: $brand-danger;
 }
 
-.battle-unit-name {
-  width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-align: center;
-}
-
 @media screen and (max-width: 768px) {
   .battle-unit-name {
     font-size: 10px;
@@ -79,6 +87,22 @@ body { padding-right: 0 !important }
 
 .battle-unit-container {
   max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.invitee-unit img {
+    background-color: $gray-lighter;
+    border-color: $gray-lighter;
+    opacity: 0.5;
+  }
+
+  & > .text-capitalize {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px;
+  }
 }
 
 .buff-container {
@@ -95,7 +119,16 @@ body { padding-right: 0 !important }
   }
 
   .buff-container {
-    width: 80px;
+    width: 80p;
+  }
+
+  .lobby-container .battle-unit-container {
+    max-width: 100px;
+    margin-top: 20px;
+  }
+
+  .lobby-container .buff-container {
+    width: 100px;
   }
 
   .battle-units-container {
@@ -265,12 +298,12 @@ body { padding-right: 0 !important }
 
 @media screen and (max-width: 768px) {
   .health-bar {
-    width: 48px;
+    width: 100%;
     font-size: 10px;
   }
-
-  .health-bar.progress {
-    height: 5px;
+  .energy-bar {
+    width: 100%;
+    font-size: 10px;
   }
 }
 

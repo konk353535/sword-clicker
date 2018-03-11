@@ -11,7 +11,13 @@ GroupsSchema = new SimpleSchema({
   members: { type: [String] },
   lastReadyCheck: { type: Date, optional: true },
   membersChecks: { type: Object, optional: true, blackbox: true },
-  invites: { type: [String], optional: true }
+  invites: { type: [String], optional: true },
+
+  membersObject: { type: [Object], blackbox: true },
+  floor: { type: Number, optional: true },
+  inBattle: { type: Boolean, optional: true },
+  lastBattleStarted: { type: Date, optional: true },
+  battleCount: { type: Number, optional: true }
 });
 
 Groups.attachSchema(GroupsSchema);

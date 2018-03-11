@@ -15,6 +15,7 @@ import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
 import { Users } from '/imports/api/users/users';
+import { Groups } from '/imports/api/groups/groups';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
@@ -130,6 +131,28 @@ export const resolveLoot = function(battle) {
   });
 };
 
+export const removeBattle = function (battleId) {
+  const targetBattle = BattlesList.findOne({
+    _id: battleId
+  });
+
+  if (!targetBattle) {
+    return 0;
+  }
+
+  if (targetBattle.group) {
+    Groups.update({
+      _id: targetBattle.group
+    }, {
+      $set: {
+        inBattle: false
+      }
+    });
+  }
+
+  return BattlesList.remove(battleId);
+}
+
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
   let win = actualBattle.units.length > 0;
@@ -140,13 +163,11 @@ export const completeBattle = function (actualBattle) {
   let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
 
   // Remove from battle list
-  const battlesDeleted = BattlesList.remove(actualBattle.id);
-
+  const battlesDeleted = removeBattle(actualBattle.id)
 
   if (battlesDeleted <= 0) {
     return;
   }
-
 
   if (!win && actualBattle.isExplorationRun) {
     // Take back the xp values for the current wave (as they failed it)

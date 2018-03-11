@@ -167,7 +167,10 @@ Template.currentBattleUi.helpers({
       const myUnit = instance.state.get('myUnit');
 
       if (!$('body').hasClass('targetting-enemies')) {
-        if (myUnit && myUnit.amulet && myUnit.amulet.energy >= 1) {
+        if (
+          (myUnit && myUnit.amulet && myUnit.amulet.energy >= 1) ||
+          (myUnit.target !== unitId)
+        ) {
           const battleId = currentBattle._id;
           const casterId = Meteor.userId();
 

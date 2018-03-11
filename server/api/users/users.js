@@ -235,6 +235,24 @@ Meteor.methods({
     });
   },
 
+  'users.search'(searchValue) {
+    if (searchValue.length < 3 || !/^\w+$/.test(searchValue)) {
+      return [];
+    }
+
+    return Users.find({
+      username: {
+        $regex: `${searchValue}*`
+      }
+    }, {
+      fields: {
+        'username': true,
+        '_id': false
+      },
+      limit: 5
+    }).fetch();
+  },
+
   'users.skipTutorial'() {
     Users.update({
       _id: Meteor.userId()
@@ -304,7 +322,9 @@ Meteor.methods({
       });
     }
   }
-})
+});
+
+
 
 const MINUTE = 60 * 1000;
 const clientAddress = function clientAddress(clientAddress) {

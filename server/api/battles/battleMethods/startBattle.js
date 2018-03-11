@@ -339,8 +339,22 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
+    group: currentGroup._id,
     createdAt: new Date()
   });
+
+  if (currentGroup) {
+    Groups.update({
+      _id: currentGroup._id
+    }, {
+      $set: {
+        battleCount: currentGroup.battleCount ? currentGroup.battleCount + 1 : 1,
+        floor,
+        lastBattleStarted: new Date(),
+        inBattle: true
+      }
+    });
+  }
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;

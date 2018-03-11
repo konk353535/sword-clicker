@@ -113,9 +113,19 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 @media screen and (max-width: 768px) {
+  
   .icon-box.battle-unit {
     width: 48px;
     height: 48px;
+  }
+
+  .lobby-container .icon-box.battle-unit {
+    width: 80px;
+    height: 80px;
+  }
+
+  .lobby-container .icon-box.battle-unit {
+    margin: 0.25rem 0;
   }
 
   .buff-icon-container {

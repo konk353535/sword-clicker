@@ -202,6 +202,18 @@ Router.route('/combat', {
   }
 });
 
+Router.route('/newCombat', {
+
+  name: 'newCombat',
+
+  template: 'newCombatPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.onAfterAction(() => {
   const name = Router.current().route.options.name;
   if (name) {

@@ -188,6 +188,45 @@ Meteor.methods({
     });
   },
 
+  'groups.join'(id) {
+    const userDoc = Meteor.user();
+    const targetGroup = Groups.findOne({
+      _id: id
+    });
+
+    if (!targetGroup || targetGroup.members.length >= 5) {
+      return;
+    }
+
+    if (targetGroup.members.length + 1 > BATTLES.maxBossPartySize) {
+      throw new Meteor.Error('group-full',
+        `Group is full (${targetGroup.members.length} / ${BATTLES.maxBossPartySize}) members`);
+    }
+
+    // Remove from invites list
+    targetGroup.invites = targetGroup.invites.filter((userId) => {
+      if (userId === userDoc._id) {
+        return false;
+      }
+      return true;
+    });
+
+    // Add user to members if accepting
+    targetGroup.members.push(userDoc._id);
+    targetGroup.membersObject.push({
+      name: userDoc.username,
+      id: userDoc._id
+    });
+
+    Groups.update(targetGroup._id, {
+      $set: {
+        members: targetGroup.members,
+        membersObject: targetGroup.membersObject,
+        invites: targetGroup.invites
+      }
+    });
+  },
+
   'groups.acceptInvite'(id, accept) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({

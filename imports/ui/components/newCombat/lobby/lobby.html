@@ -190,7 +190,9 @@
             <div class="d-flex flex-grow actions-row justify-content-end">
               <span class="mr-3">{{this.battleCount}} Battles</span>
               <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
-              <button class="btn btn-primary btn-sm">Join</button>
+              <button class="btn btn-primary btn-join-group btn-sm" data-id="{{this._id}}">
+                Join
+              </button>
             </div>
           </div>
         {{/each}}

@@ -208,11 +208,14 @@ Template.lobbyPage.events({
   },
 
   'click .decline-btn'(event, instance) {
-    // Get target data
     const inviteId = instance.$(event.target).closest('.decline-btn').data('id');
-
     Meteor.call('groups.acceptInvite', inviteId, false);
   },
+
+  'click .btn-join-group'(event, instance) {
+    const groupId = instance.$(event.target).closest('.btn-join-group').data('id');
+    Meteor.call('groups.join', groupId);
+  }
 
 })
 

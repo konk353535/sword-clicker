@@ -14,6 +14,8 @@ BattlesListSchema = new SimpleSchema({
   level: { type: Number, optional: true },
   wave: { type: Number, optional: true },
 
+  group: { type: String, optional: true },
+
   createdAt: { type: Date }
 });
 

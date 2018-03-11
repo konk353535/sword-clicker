@@ -29,7 +29,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'combat'}}active{{/if}}" href="/combat">
+              <a class="nav-link {{#if $eq currentRoute 'newCombat'}}active{{/if}}" href="/newCombat">
                 Battle
               </a>
             </li>
@@ -41,6 +41,11 @@
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
                 Farm
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
+                Magic
               </a>
             </li>
             {{#if currentUser.newUpdates}}

@@ -37,6 +37,8 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state.set('waveDetails', {});
   this.state.set('maxFloor', 1);
 
+  Meteor.subscribe('otherBattlers');
+
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
     if (myUser) {
@@ -56,6 +58,23 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
   Meteor.call('battles.myFloorContributions', (err, res) => {
     this.state.set('myFloorContributions', res);
+  });
+
+  Tracker.autorun(() => {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (!currentGroup) {
+      return;
+    }
+
+    if (currentGroup && currentGroup.members.length !== this.state.get('currentMemberCount')) {
+      setTimeout(() => {
+        Meteor.subscribe('combat');
+        this.state.set('currentMemberCount', currentGroup.members.length);
+      }, 1500);
+    }
   });
 
   Tracker.autorun(() => {
@@ -175,7 +194,25 @@ Template.lobbyPage.events({
     } else if (type === 'solo') {
       const level = instance.state.get('usersCurrentLevle')
     }
-  }
+  },
+
+  'click .accept-btn'(event, instance) {
+    // Get target data
+    const inviteId = instance.$(event.target).closest('.accept-btn').data('id');
+
+    Meteor.call('groups.acceptInvite', inviteId, true, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .decline-btn'(event, instance) {
+    // Get target data
+    const inviteId = instance.$(event.target).closest('.decline-btn').data('id');
+
+    Meteor.call('groups.acceptInvite', inviteId, false);
+  },
 
 })
 
@@ -229,9 +266,46 @@ Template.lobbyPage.helpers({
     return Template.instance().state.get('usersCurrentRoom');
   },
 
+  otherBattlers() {
+    const otherBattlers = Groups.find({}, {
+      limit: 10,
+      sort: {
+        lastBattleStarted: -1
+      }
+    }).fetch();
+
+    return otherBattlers;
+  },
+
+  firstPendingInvite() {
+    return Groups.findOne({
+      invites: Meteor.userId()
+    });
+  },
+
+  showInvites() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    const pendingInvites = Groups.find({
+      invites: Meteor.userId()
+    }).fetch();
+
+    if (pendingInvites.length <= 0) {
+      return false;
+    } else if (currentGroup && currentGroup.members.length > 1) {
+      return false;
+    } else if (currentGroup && currentGroup.invites.length > 1) {
+      return false;
+    }
+
+    return true;
+  },
+
   recentBattles() {
     return Battles.find({}, {
-      limit: 3,
+      limit: 1,
       sort: {
         updatedAt: -1
       }

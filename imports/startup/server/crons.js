@@ -1,7 +1,7 @@
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
-import { resolveLoot } from '/server/api/battles/battleMethods/completeBattle';
+import { resolveLoot, removeBattle } from '/server/api/battles/battleMethods/completeBattle';
 
 import { Floors } from '../../api/floors/floors.js';
 import { Combat } from '/imports/api/combat/combat';
@@ -121,7 +121,7 @@ SyncedCron.add({
       } 
     }).fetch().forEach((battleList) => {
       HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}`, (error, result) => {
-        BattlesList.remove(battleList._id);
+        removeBattle(battleList._id);
       });
     });
 

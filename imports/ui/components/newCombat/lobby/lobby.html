@@ -81,7 +81,24 @@
         </div>
       {{/if}}
 
-      {{#if $eq typeKey 'group'}}
+      {{#if showInvites}}
+        <div class="mb-1 d-flex align-items-center justify-content-end flex-grow">
+          <div class="mr-1">Invite from</div>
+          <div class="battle-unit-name text-capitalize">{{firstPendingInvite.leaderName}}</div>
+          <div class="d-flex mt-2">
+            <button
+              class="btn btn-success ml-1 btn-sm accept-btn"
+              data-id={{firstPendingInvite._id}}>
+              Accept
+            </button>
+            <button
+              class="btn btn-danger ml-1 btn-sm decline-btn"
+              data-id={{firstPendingInvite._id}}>
+              Decline
+            </button>
+          </div>
+        </div>
+      {{else if $eq typeKey 'group'}}
         <form class="group-invite d-flex flex-grow align-items-center justify-content-end">
           <div class="col-auto">
             <label class="sr-only" for="name">Name</label>
@@ -144,34 +161,39 @@
         <div>
           <a href="#" class="mb-1 other-battlers-btn text-muted">Other Battlers</a>
         </div>
-        <div class="recent-battling-row">
-          <span class="mr-3">Floor 3</span>
-          <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
-          <span class="mr-3 d-flex users-row">
-            <span class="badge badge-invisible mr-1">konk353535 #81</span>
-            <span class="badge badge-invisible mr-1">aessedai #69</span>
-            <span class="badge badge-invisible mr-1">nickbreslin #92</span>
-          </span>
-          <div class="d-flex flex-grow actions-row justify-content-end">
-            <span class="mr-3">24 Battles</span>
-            <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
-            <button class="btn btn-primary btn-sm">Join</button>
+        {{#each otherBattlers}}
+          <div class="recent-battling-row">
+            <span class="mr-3">Floor {{this.floor}}</span>
+            
+            <span class="badge {{#if this.inBattle}}badge-success{{else}}badge-info{{/if}} mr-3" style="width: 120px;">
+              {{#if this.inBattle}}
+                Battling for
+              {{else}}
+                Fought
+              {{/if}}
+
+              {{#if $lte (moDiff moNow this.lastBattleStarted 'seconds') 60}}          
+                {{moDiff moNow this.lastBattleStarted 'seconds'}}s
+              {{else}}
+                {{moDiff moNow this.lastBattleStarted 'minutes'}}m
+              {{/if}}
+
+              {{#unless this.inBattle}}
+                ago
+              {{/unless}}
+            </span>
+            <span class="mr-3 d-flex users-row">
+              {{#each this.membersObject}}
+                <span class="badge badge-invisible mr-1">{{this.name}} #81</span>
+              {{/each}}
+            </span>
+            <div class="d-flex flex-grow actions-row justify-content-end">
+              <span class="mr-3">{{this.battleCount}} Battles</span>
+              <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
+              <button class="btn btn-primary btn-sm">Join</button>
+            </div>
           </div>
-        </div>
-        <div class="recent-battling-row">
-          <span class="mr-3">Floor 3</span>
-          <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
-          <span class="mr-3 d-flex users-row">
-            <span class="badge badge-invisible mr-1">konk353535 #81</span>
-            <span class="badge badge-invisible mr-1">aessedai #69</span>
-            <span class="badge badge-invisible mr-1">nickbreslin #92</span>
-          </span>
-          <div class="d-flex flex-grow actions-row justify-content-end">
-            <span class="mr-3">24 Battles</span>
-            <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
-            <button class="btn btn-primary btn-sm">Join</button>
-          </div>
-        </div>
+        {{/each}}
       </div>
     {{/if}}
 

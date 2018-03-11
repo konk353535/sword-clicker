@@ -12,6 +12,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Events } from '/imports/api/events/events';
 import { BattleActions } from '/imports/api/battles/battleActions';
+import { Groups } from '/imports/api/groups/groups';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
@@ -23,15 +24,6 @@ import { Users } from '/imports/api/users/users';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
-  BattlesList.find({
-    createdAt: {    
-      $lte: moment().subtract(1, 'second').toDate()   
-    } 
-  }).fetch().forEach((battleList) => {
-    HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}`, (error, result) => {
-      BattlesList.remove(battleList._id);
-    });
-  });
 
   /*
   Object.keys(ITEMS).forEach((itemId) => {
@@ -67,6 +59,7 @@ Meteor.startup(() => {
   Abilities._ensureIndex({ owner: 1 });
   Woodcutting._ensureIndex({ owner: 1 });
   Crafting._ensureIndex({ owner: 1 });
+  Groups._ensureIndex({ lastBattleStarted: -1 });
   Events._ensureIndex({ owner: 1, date: -1 });
   Skills._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ type: 1 });

@@ -1,11 +1,7 @@
 <template name="lobbyPage">
   <div class="container mt-2">
-    <!--
-    <div class="d-flex align-items-center py-1" style="cursor: pointer">
-      <img src="/icons/back.svg" class="extra-small-icon" />
-      Loadout
-    </div>
-    -->
+
+    <!-- Select Type / Floor / Room / Level -->
     <div class="d-flex align-items-center">
       <div class="mr-2">Type</div>
       <div class="dropdown">
@@ -71,11 +67,80 @@
       {{/if}}
     </div>
 
-    {{#if $eq typeKey 'solo'}}
-      <div class="d-flex justify-content-center mt-3">
-        Recent Battles
+    <div class="d-flex align-items-center justify-content-center flex-wrap" style="margin-top: 100px">
+      {{#each currentGroupMembers}}
+        {{> lobbyUnit unit=this}}
+      {{/each}}
+    </div>
+
+    <div style="margin-top: 100px">
+      <div>
+        <a href="#" class="mb-1 recent-battles-btn text-muted">Recent Battles</a>
       </div>
-      <div>Show All</div>
+      {{#each recentBattles}}
+        {{> battleLogRow battle=this}}
+      {{/each}}
+    </div>
+
+    <div class="mb-3">
+      <div>
+        <a href="#" class="mb-1 recent-battles-btn text-muted">Consumables</a>
+      </div>
+      <div class="d-flex flex-wrap">
+        {{#each foodItems}}
+          {{> itemIcon item=this classes="small"}}
+        {{/each}}
+      </div>
+    </div>
+
+    {{#if $eq typeKey 'group'}}
+      <div>
+        <div>
+          <a href="#" class="mb-1 other-battlers-btn text-muted">Other Battlers</a>
+        </div>
+        <div class="recent-battling-row">
+          <span class="mr-3">Floor 3</span>
+          <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
+          <span class="mr-3 d-flex">
+            <span class="badge badge-invisible mr-1">konk353535 #81</span>
+            <span class="badge badge-invisible mr-1">aessedai #69</span>
+            <span class="badge badge-invisible mr-1">nickbreslin #92</span>
+          </span>
+          <div class="d-flex flex-grow justify-content-end">
+            <span class="mr-3">24 Battles</span>
+            <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
+            <button class="btn btn-primary btn-sm">Join</button>
+          </div>
+        </div>
+        <div class="recent-battling-row">
+          <span class="mr-3">Floor 3</span>
+          <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
+          <span class="mr-3 d-flex">
+            <span class="badge badge-invisible mr-1">konk353535 #81</span>
+            <span class="badge badge-invisible mr-1">aessedai #69</span>
+            <span class="badge badge-invisible mr-1">nickbreslin #92</span>
+          </span>
+          <div class="d-flex flex-grow justify-content-end">
+            <span class="mr-3">24 Battles</span>
+            <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
+            <button class="btn btn-primary btn-sm">Join</button>
+          </div>
+        </div>
+        <div class="recent-battling-row">
+          <span class="mr-3">Floor 3</span>
+          <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
+          <span class="mr-3 d-flex">
+            <span class="badge badge-invisible mr-1">konk353535 #81</span>
+            <span class="badge badge-invisible mr-1">aessedai #69</span>
+            <span class="badge badge-invisible mr-1">nickbreslin #92</span>
+          </span>
+          <div class="d-flex flex-grow justify-content-end">
+            <span class="mr-3">24 Battles</span>
+            <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
+            <button class="btn btn-primary btn-sm">Join</button>
+          </div>
+        </div>
+      </div>
     {{/if}}
 
     <div class="select-battle-container">

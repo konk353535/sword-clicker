@@ -86,20 +86,22 @@
       {{#each currentGroupMembers}}
         <div class="flex-column d-flex justify-content-center"  style="margin-left: 30px; margin-right: 30px">
           {{> lobbyUnit unit=this}}
-          <div class="d-flex justify-content-center mt-2" style="height: 30px">
-            {{#if $eq currentUser._id this.owner}}
-              <button class="btn btn-secondary btn-leave btn-sm mr-1">
-                <img src="/icons/leave.svg" width="16" height="16" />
-              </button>
-            {{else if isLeader}}
-              <button class="btn btn-danger btn-kick btn-sm mr-1">
-                <img src="/icons/boot.svg" width="16" height="16" />
-              </button>
-              <button class="btn btn-warning btn-promote btn-sm">
-                <img src="/icons/leaderCrown.svg" width="16" height="16" />
-              </button>
-            {{/if}}
-          </div>
+          {{#if currentGroup}}
+            <div class="d-flex justify-content-center mt-2" style="height: 30px">
+              {{#if $eq currentUser._id this.owner}}
+                <button class="btn btn-secondary btn-leave btn-sm mr-1">
+                  <img src="/icons/leave.svg" width="16" height="16" />
+                </button>
+              {{else if isLeader}}
+                <button class="btn btn-danger btn-kick btn-sm mr-1" data-owner="{{this.owner}}">
+                  <img src="/icons/boot.svg" width="16" height="16" />
+                </button>
+                <button class="btn btn-warning btn-promote btn-sm" data-owner="{{this.owner}}">
+                  <img src="/icons/leaderCrown.svg" width="16" height="16" />
+                </button>
+              {{/if}}
+            </div>
+          {{/if}}
         </div>
       {{/each}}
     </div>

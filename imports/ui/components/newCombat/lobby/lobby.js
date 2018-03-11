@@ -67,7 +67,21 @@ Template.lobbyPage.events({
  
     // Clear input
     Template.instance().$('#name').val('');
-  }
+  },
+
+  'click .btn-leave'(event) {
+    Meteor.call('groups.leave');
+  },
+
+  'click .btn-kick'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.btn-kick').data('owner');
+    Meteor.call('groups.kick', { ownerId });
+  },
+
+  'click .btn-promote'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.btn-promote').data('owner');
+    Meteor.call('groups.transfer', { ownerId });
+  },
 })
 
 Template.lobbyPage.rendered = function () {
@@ -81,6 +95,12 @@ Template.lobbyPage.helpers({
 
   type() {
     return TYPES[Template.instance().state.get('type')];
+  },
+
+  currentGroup() {
+    return Groups.findOne({
+      members: Meteor.userId()
+    });
   },
 
   recentBattles() {

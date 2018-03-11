@@ -9,6 +9,7 @@
 @import "styles/icons.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
+@import "styles/typeahead.scss";
 
 .select-battle-container {
   display: flex;
@@ -85,13 +86,6 @@ body { padding-right: 0 !important }
   color: $brand-danger;
 }
 
-.battle-unit-name {
-  width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-align: center;
-}
-
 @media screen and (max-width: 768px) {
   .battle-unit-name {
     font-size: 10px;
@@ -100,6 +94,22 @@ body { padding-right: 0 !important }
 
 .battle-unit-container {
   max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.invitee-unit img {
+    background-color: $gray-lighter;
+    border-color: $gray-lighter;
+    opacity: 0.5;
+  }
+
+  & > .text-capitalize {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px;
+  }
 }
 
 .buff-container {

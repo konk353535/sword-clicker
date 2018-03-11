@@ -21,6 +21,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('battles');
 
+  this.state.set('userSuggestions', []);
   this.state.set('type', 'group');
 });
 
@@ -40,9 +41,38 @@ Template.lobbyPage.events({
 
   'click .other-battlers-btn'(event, instance) {
     instance.data.setPage('otherBattlers');
-  }
+  },
 
+  'keydown #name'(event, instance) {
+    // Get value from form element
+    const text = instance.$('#name').val();
+    Meteor.call('users.search', text, (err, res) => {
+      instance.state.set('userSuggestions', res.map(user => user.username));
+    });
+  },
+
+  'submit .group-invite'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+ 
+    // Get value from form element
+    const text = Template.instance().$('#name').val();
+ 
+    // Send invite request
+    Meteor.call('groups.invite', text, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+ 
+    // Clear input
+    Template.instance().$('#name').val('');
+  }
 })
+
+Template.lobbyPage.rendered = function () {
+  Meteor.typeahead.inject();
+}
 
 Template.lobbyPage.helpers({
   typeKey() {
@@ -75,6 +105,28 @@ Template.lobbyPage.helpers({
     });
   },
 
+  isLeader() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    if (!currentGroup) {
+      return true;
+    }
+
+    return currentGroup.leader === Meteor.userId()
+  },
+
+  search(query, sync, callback) {
+    Meteor.call('users.search', query, {}, function(err, res) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      callback(res.map(function(v){ return {value: v.username}; }));
+    });
+  },
+
   currentGroupMembers() {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
@@ -86,12 +138,20 @@ Template.lobbyPage.helpers({
         owner: {
           $in: currentGroup.members
         }
-      });
+      }).fetch();
+
+      if (currentGroup.invitesDetails && currentGroup.invitesDetails.length > 0) {
+        combats = combats.concat(currentGroup.invitesDetails.map((invitee) => {
+          invitee.isInvitee = true;
+          return invitee;
+        }));
+      }
     } else {
       combats = Combat.find({
         owner: Meteor.userId()
-      });
+      }).fetch();
     }
+
 
     return combats.map((userCombat) => {
       // Map stuff we want to read into stats

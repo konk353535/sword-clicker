@@ -1,8 +1,10 @@
 <template name="lobbyUnit">
   <div class="d-flex flex-column">
-    <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
+    <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2 {{#if unit.isInvitee}}invitee-unit{{/if}}">
       <a href="/profile/{{unit.name}}" class="text-muted text-capitalize">
-        {{unit.name}}
+        <span class="battle-unit-name">
+          {{unit.name}}
+        </span>
       </a>
       <a href="/profile/{{unit.name}}">
         <img

@@ -13,6 +13,20 @@
 @import "styles/lobby.scss";
 @import "styles/battleLog.scss";
 
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .navbar-inner-container {
+    width: 100%;
+  }
+}
+
+.navbar-toggler-right {
+  right: 0;
+}
+
 .select-battle-container {
   display: flex;
   justify-content: center;

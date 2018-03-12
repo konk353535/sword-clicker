@@ -51,13 +51,7 @@ Template.loadoutPage.helpers({
       equipped: true
     }).map((item) => {
       item.hideCount = true;
-      item.primaryAction = {
-        description: 'unequip',
-        item,
-        method() {
-          Meteor.call('items.unequip', this.item._id, this.item.itemId);
-        }
-      }
+      item.primaryAction = {}
       return item;
     });
 
@@ -76,15 +70,6 @@ Template.loadoutPage.helpers({
     }
 
     const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
-      // To do add unequipping for abilities
-      ability.primaryAction = {
-        description: 'unequip',
-        ability,
-        method() {
-          Meteor.call('abilities.unequip', this.ability.slot);
-        }
-      };
-
       return ability.equipped;
     });
 

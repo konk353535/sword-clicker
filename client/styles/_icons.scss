@@ -291,6 +291,20 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
       font-size: 10px;
       color: $gray-light;
     }
+
+    .cooldown-text {
+      position: absolute;
+      opacity: 1.0;
+      color: white;
+      top: 0px;
+      left: 0px;
+      width: 64px;
+      height: 64px;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &.tiny {
@@ -384,6 +398,15 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
       opacity: 0.5;
     }
   }
+}
+
+.food-icon {
+  opacity: 0.9;
+}
+
+.food-icon-container.disabled {
+  background-color: #DDD;
+  font-size: 18px;
 }
 
 .ore-icon {

@@ -11,9 +11,9 @@ import { Users } from '/imports/api/users/users.js';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 // Component used in the template
+import '/imports/ui/components/combat/foodIcon/foodIcon.js';
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
-import '/imports/ui/components/combat/adventuresTab/adventuresTab.js';
 import '/imports/ui/components/combat/battleLogTab/battleLogTab.js';
 import '/imports/ui/components/combat/skinTab/skinTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';

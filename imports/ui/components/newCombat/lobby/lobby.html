@@ -136,25 +136,32 @@
       {{/each}}
     </div>
 
-    <div style="margin-top: 150px">
-      <div>
-        <a href="#" class="mb-1 recent-battles-btn text-muted">Recent Battles</a>
-      </div>
-      {{#each recentBattles}}
-        {{> battleLogRow battle=this}}
-      {{/each}}
-    </div>
-
-    <div class="mb-3">
-      <div>
-        <a href="#" class="mb-1 recent-battles-btn text-muted">Consumables</a>
-      </div>
-      <div class="d-flex flex-wrap">
-        {{#each foodItems}}
-          {{> itemIcon item=this classes="small"}}
+    {{#if $eq typeKey 'afk'}}
+      {{> adventuresTab}}
+    {{else}}
+      <div style="margin-top: 150px">
+        <div>
+          <a href="#" class="mb-1 recent-battles-btn text-muted">Recent Battles</a>
+        </div>
+        {{#each recentBattles}}
+          {{> battleLogRow battle=this}}
         {{/each}}
       </div>
-    </div>
+
+      <div class="mb-3">
+        <div>
+          <a href="#" class="mb-1 recent-battles-btn text-muted">Consumables</a>
+        </div>
+        <div class="d-flex flex-wrap">
+          {{#each combat.buffs}}
+            {{> foodIcon food=this}}
+          {{/each}}
+          {{#each foodItems}}
+            {{> itemIcon item=this classes="small"}}
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
 
     {{#if $eq typeKey 'group'}}
       <div>

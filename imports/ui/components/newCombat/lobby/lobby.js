@@ -69,12 +69,17 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       return;
     }
 
-    if (currentGroup && currentGroup.members.length !== this.state.get('currentMemberCount')) {
-      setTimeout(() => {
-        Meteor.subscribe('combat');
-        this.state.set('currentMemberCount', currentGroup.members.length);
-      }, 1500);
+    const groupsCombat = Combat.find({
+      owner: {
+        $in: currentGroup.members
+      }
+    }).fetch();
+
+    if (groupsCombat.length === currentGroup.members.length) {
+      return;
     }
+
+    Meteor.subscribe('combat');
   });
 
   Tracker.autorun(() => {
@@ -347,6 +352,12 @@ Template.lobbyPage.helpers({
         return;
       }
       callback(res.map(function(v){ return {value: v.username}; }));
+    });
+  },
+
+  combat() {
+    return Combat.findOne({
+      owner: Meteor.userId()
     });
   },
 

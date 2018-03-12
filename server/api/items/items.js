@@ -570,7 +570,8 @@ Meteor.methods({
     Combat.update(currentCombat._id, {
       $set: flattenObjectForMongo({
         stats: currentCombat.stats,
-        buffs: currentCombat.buffs
+        buffs: currentCombat.buffs,
+        lastGameUpdated: new Date()
       })
     });
 

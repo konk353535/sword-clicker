@@ -3,10 +3,37 @@ import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Combat } from '/imports/api/combat/combat';
-import { Groups, GroupFinder } from '/imports/api/groups/groups';
+import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js';
+
+function leaveGroup(group, userId) {
+  group.members = group.members.filter((member) => {
+    return member !== this.userId;
+  });
+
+  group.membersObject = group.membersObject.filter((member) => {
+    return member.id !== this.userId;
+  });
+
+  if (group.members.length === 0) {
+    Groups.remove(group._id);
+  } else {
+    // Is leader leaving?
+    if (group.leader === this.userId) {
+      group.leader = group.members[0];
+    }
+
+    Groups.update(group._id, {
+      $set :{
+        members: group.members,
+        membersObject: group.membersObject,
+        leader: group.leader
+      }
+    });
+  }
+}
 
 Meteor.methods({
 
@@ -19,42 +46,7 @@ Meteor.methods({
       return;
     }
 
-    currentGroup.members = currentGroup.members.filter((member) => {
-      return member !== this.userId;
-    });
-
-    currentGroup.membersObject = currentGroup.membersObject.filter((member) => {
-      return member.id !== this.userId;
-    });
-
-    // Is this user in group finder?
-    GroupFinder.remove({
-      owner: Meteor.userId()
-    });
-
-    if (currentGroup.members.length === 0) {
-      Groups.remove(currentGroup._id);
-
-      // Is this group tied to a LFG?
-      GroupFinder.remove({
-        groupCreatedId: currentGroup._id
-      });
-    } else {
-
-      // Is leader leaving?
-      if (currentGroup.leader === this.userId) {
-        currentGroup.leader = currentGroup.members[0];
-      }
-
-      Groups.update(currentGroup._id, {
-        $set :{
-          members: currentGroup.members,
-          membersObject: currentGroup.membersObject,
-          leader: currentGroup.leader
-        }
-      });
-    }
-
+    leaveGroup(currentGroup, this.userId);
   },
 
   'groups.kick'({ username, ownerId }) {
@@ -77,7 +69,7 @@ Meteor.methods({
     }
 
     // If leader kicks himself, trigger a group.leave instead so leader status tranfers
-    if (ownerId == this.userId ) {
+    if (ownerId == this.userId) {
       Meteor.call('groups.leave');
       return;
     }
@@ -181,20 +173,26 @@ Meteor.methods({
     });
   },
 
-  'groups.stopFindingGroup'() {
-    // Remove all records for this user
-    GroupFinder.remove({
-      owner: Meteor.userId()
-    });
-  },
-
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
       _id: id
     });
 
+    if (targetGroup.members.find(member => userDoc._id)) {
+      throw new Meteor.Error('already-in-this-group');
+    }
+
+    const existingGroup = Groups.findOne({
+      members: userDoc._id
+    });
+
+    if (existingGroup) {
+      leaveGroup(existingGroup, userDoc._id);
+    }
+
     if (!targetGroup || targetGroup.members.length >= 5) {
+      throw new Meteor.Error('group does not exist or is full');
       return;
     }
 
@@ -236,6 +234,18 @@ Meteor.methods({
 
     if (!targetGroup) {
       return;
+    }
+
+    const existingGroup = Groups.findOne({
+      members: userDoc._id
+    });
+
+    if (existingGroup) {
+      leaveGroup(existingGroup, userDoc._id);
+    }
+
+    if (targetGroup.members.find(member => userDoc._id)) {
+      throw new Meteor.Error('already-in-this-group');
     }
 
     if (accept && targetGroup.members.length + 1 > BATTLES.maxBossPartySize) {

@@ -79,7 +79,9 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       return;
     }
 
-    Meteor.subscribe('combat');
+    setTimeout(() => {
+      Meteor.subscribe('combat');
+    }, 2000);
   });
 
   Tracker.autorun(() => {

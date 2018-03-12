@@ -10,18 +10,18 @@ import { BATTLES } from '/server/constants/battles/index.js';
 
 function leaveGroup(group, userId) {
   group.members = group.members.filter((member) => {
-    return member !== this.userId;
+    return member !== userId;
   });
 
   group.membersObject = group.membersObject.filter((member) => {
-    return member.id !== this.userId;
+    return member.id !== userId;
   });
 
   if (group.members.length === 0) {
     Groups.remove(group._id);
   } else {
     // Is leader leaving?
-    if (group.leader === this.userId) {
+    if (group.leader === userId) {
       group.leader = group.members[0];
     }
 
@@ -244,8 +244,8 @@ Meteor.methods({
       leaveGroup(existingGroup, userDoc._id);
     }
 
-    if (targetGroup.members.find(member => userDoc._id)) {
-      throw new Meteor.Error('already-in-this-group');
+    if (targetGroup.members.find(member => member === userDoc._id)) {
+      throw new Meteor.Error('already-in-this-group', 'already in this group');
     }
 
     if (accept && targetGroup.members.length + 1 > BATTLES.maxBossPartySize) {

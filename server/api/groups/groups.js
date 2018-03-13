@@ -179,28 +179,25 @@ Meteor.methods({
       _id: id
     });
 
-    if (targetGroup.members.find(member => userDoc._id)) {
+
+    if (targetGroup.members.find(member => member === userDoc._id)) {
       throw new Meteor.Error('already-in-this-group');
     }
 
     const existingGroup = Groups.findOne({
       members: userDoc._id
     });
-
     if (existingGroup) {
       leaveGroup(existingGroup, userDoc._id);
     }
-
     if (!targetGroup || targetGroup.members.length >= 5) {
       throw new Meteor.Error('group does not exist or is full');
       return;
     }
-
     if (targetGroup.members.length + 1 > BATTLES.maxBossPartySize) {
       throw new Meteor.Error('group-full',
         `Group is full (${targetGroup.members.length} / ${BATTLES.maxBossPartySize}) members`);
     }
-
     // Remove from invites list
     targetGroup.invites = targetGroup.invites.filter((userId) => {
       if (userId === userDoc._id) {
@@ -208,14 +205,12 @@ Meteor.methods({
       }
       return true;
     });
-
     // Add user to members if accepting
     targetGroup.members.push(userDoc._id);
     targetGroup.membersObject.push({
       name: userDoc.username,
       id: userDoc._id
     });
-
     Groups.update(targetGroup._id, {
       $set: {
         members: targetGroup.members,

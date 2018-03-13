@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
@@ -187,7 +186,6 @@ export const ENCHANTMENT_BUFFS = {
               attack: target.stats.attackMax * 0.05,
               attackMax: target.stats.attackMax * 0.05,
               attackSpeed: 0.5,
-              attackSpeedTicks: attackSpeedTicks(0.5),
               accuracy: target.stats.accuracy * 0.5,
               health: target.stats.healthMax * 0.25,
               healthMax: target.stats.healthMax * 0.25,
@@ -214,7 +212,6 @@ export const ENCHANTMENT_BUFFS = {
               attack: target.stats.attackMax * 0.1,
               attackMax: target.stats.attackMax * 0.1,
               attackSpeed: 1,
-              attackSpeedTicks: attackSpeedTicks(1),
               accuracy: target.stats.accuracy,
               health: target.stats.healthMax * 0.15,
               healthMax: target.stats.healthMax * 0.15,

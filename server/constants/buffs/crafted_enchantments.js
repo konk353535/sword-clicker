@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';

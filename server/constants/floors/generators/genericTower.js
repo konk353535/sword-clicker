@@ -2,7 +2,6 @@ console.log('importing floors/generators/genericTower.js FLOORS');
 import { FLOORS } from '../../floors/index';
 import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
-import { attackSpeedTicks } from '../../../utils';
 import uuid from 'node-uuid';
 
 console.log('exporting floors/generators/genericTower.js genericTowerMonsterGenerator');

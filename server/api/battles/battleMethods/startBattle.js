@@ -9,7 +9,6 @@ import uuid from 'node-uuid';
 import { Random } from 'meteor/random'
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Adventures } from '/imports/api/adventures/adventures';
@@ -339,7 +338,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
-    group: currentGroup._id,
+    group: currentGroup ? currentGroup._id : false,
     createdAt: new Date()
   });
 

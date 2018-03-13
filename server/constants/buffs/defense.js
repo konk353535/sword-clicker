@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BATTLES } from '../battles/index.js'; // List of encounters
 
@@ -131,12 +130,12 @@ export const DEFENSE_BUFFS = {
           if (buff.data.isEnemy) {
             // Check for other enemies with buff
             phalanxCount = actualBattle.enemies.filter((enemy) => {
-              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+              return enemy.buffs.find(buff => buff.id === 'phalanx');
             }).length;
           } else {
             // Check for other allies with buff
             phalanxCount = actualBattle.enemies.filter((enemy) => {
-              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+              return enemy.buffs.find(buff => buff.id === 'phalanx');
             }).length;
           }
 
@@ -442,7 +441,7 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.magicPower * 2;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
           actualBattle.dealDamage(caster.stats.attack * 2, {
@@ -492,7 +491,7 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.attackMax * 0.75;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
           actualBattle.dealDamage(caster.stats.attack * 2, {
@@ -543,7 +542,7 @@ export const DEFENSE_BUFFS = {
         target.stats.attack -= buff.data.attack;
         target.stats.attackMax -= buff.data.attack;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
           actualBattle.dealDamage(caster.stats.attack * 2, {
@@ -589,7 +588,7 @@ export const DEFENSE_BUFFS = {
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
           actualBattle.dealDamage(caster.stats.attack * 2, {

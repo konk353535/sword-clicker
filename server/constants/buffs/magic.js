@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 
 export const MAGIC_BUFFS = {
@@ -225,10 +224,7 @@ export const MAGIC_BUFFS = {
         }
 
         // Find original caster
-        let originalCaster = _.findWhere(actualBattle.units, { id: buff.data.originalCaster });
-        if (!originalCaster) {
-          originalCaster = _.findWhere(actualBattle.deadUnits, { id: buff.data.originalCaster });
-        }
+        let originalCaster = actualBattle.allUnitsMap[buff.data.originalCaster];
 
         if (originalCaster) {
           originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
@@ -895,7 +891,7 @@ export const MAGIC_BUFFS = {
 
         if (buff.data.timeTillHeal <= 0) {
           actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
-            caster: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+            caster: actualBattle.allUnitsMap[buff.data.sourceId],
             target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -967,7 +963,7 @@ export const MAGIC_BUFFS = {
 
         if (buff.data.timeTillHeal <= 0) {
           actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
-            caster: _.findWhere(actualBattle.allUnits, { id: buff.dat.asourceId }),
+            caster: actualBattle.allUnitsMap[buff.data.sourceId],
             target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -1177,7 +1173,7 @@ export const MAGIC_BUFFS = {
         if (buff.data.totalMagicArmorReduction) {
           target.stats.magicArmor += buff.data.totalMagicArmorReduction;
           actualBattle.dealDamage(buff.data.magicDamageTotal, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
@@ -1851,7 +1847,7 @@ export const MAGIC_BUFFS = {
 
         if (buff.data.timeTillDamage <= 0) {
           actualBattle.dealDamage(buff.data.totalDamage, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
@@ -1924,7 +1920,7 @@ export const MAGIC_BUFFS = {
 
         if (buff.data.timeTillDamage <= 0) {
           actualBattle.dealDamage(buff.data.totalDamage, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,

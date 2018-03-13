@@ -1,6 +1,5 @@
 import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
@@ -2091,7 +2090,6 @@ export const BOSS_BUFFS = {
               attack: 650,
               attackMax: 900,
               attackSpeed: FAST_SPEED,
-              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
               accuracy: 350,
               health: 5000,
               healthMax: 5000,
@@ -2125,7 +2123,6 @@ export const BOSS_BUFFS = {
               attack: 250,
               attackMax: 300,
               attackSpeed: FAST_SPEED,
-              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
               accuracy: 450,
               health: 2500,
               healthMax: 2500,

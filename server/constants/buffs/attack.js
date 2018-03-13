@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 
 export const ATTACK_BUFFS = {
@@ -79,7 +78,7 @@ export const ATTACK_BUFFS = {
           const poisonDamage = buff.data.damage;
           actualBattle.dealDamage(poisonDamage, {
             defender: target,
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
             customIcon: 'poison.svg',
@@ -516,7 +515,7 @@ export const ATTACK_BUFFS = {
         const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
         const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
-        const hasBleed = _.findWhere(defender.buffs, { id: 'bleed' });
+        const hasBleed = defender.buffs.find((buff) => buff.id === 'bleed');
 
         if (hasBleed) {
           // My current hp
@@ -946,7 +945,7 @@ export const ATTACK_BUFFS = {
         const totalDamage = (baseDamage + extraDamage) * (percentDamage / 100);
 
         // Do we have smoke_dagger buff?
-        if (_.findWhere(caster.buffs, { id: 'smoke_dagger' })) {
+        if (caster.buffs.find((buff) => buff.id === 'smoke_dagger')) {
           // Apply smoke_debuff to target
           const newBuff = {
             id: 'smoke_dagger_debuff',
@@ -1077,8 +1076,9 @@ export const ATTACK_BUFFS = {
           }
         }
 
+        const caster = actualBattle.allUnitsMap[buff.data.caster];
+
         if (buff.data.timeTillDamage < 0) {
-          const caster = _.findWhere(actualBattle.allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
 
           actualBattle.dealDamage(buff.data.dps, { 

@@ -43,6 +43,8 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "You are not up to the specified level");
     } else if (level <= 0) {
       throw new Meteor.Error("no-sir", "Cannot select a level below 1");      
+    } else if (!_.isFinite(level)) {
+      throw new Meteor.Error("no-sir", "Level must be a finite number");      
     }
 
     const currentGroup = Groups.findOne({

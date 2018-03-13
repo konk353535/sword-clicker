@@ -53,6 +53,10 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       } else if (myUser.personalQuest) {
         this.state.set('currentLevel', myUser.personalQuest.level);
       }
+
+      if (myUser.uiState && myUser.uiState.newCombatType !== undefined) {
+        this.state.set('type', myUser.uiState.newCombatType);
+      }
     }
   });
 
@@ -110,6 +114,7 @@ Template.lobbyPage.events({
   'click .select-type'(event, instance) {
     const newType = instance.$(event.target).closest('.select-type').data('type');
     instance.state.set('type', newType);
+    Meteor.call('users.setUiState', 'newCombatType', newType);
   },
 
   'click .loadout-btn'(event, instance) {
@@ -199,7 +204,10 @@ Template.lobbyPage.events({
         Meteor.call('battles.findTowerBattle', floor, room, findBattleHandler);        
       }
     } else if (type === 'solo') {
-      const level = instance.state.get('usersCurrentLevle')
+      const level = instance.state.get('currentLevel');
+      const targetWave = instance.state.get('maxLevelCurrentWave');
+
+      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), findBattleHandler);
     }
   },
 

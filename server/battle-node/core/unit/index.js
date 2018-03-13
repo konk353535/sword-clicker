@@ -30,6 +30,7 @@ export default class Unit {
 
   constructor(unit, battleRef) {
     this.id = unit.id;
+    this.isUnitClass = true;
 
     this._name = unit.name;
     this.battleRef = battleRef;
@@ -55,10 +56,10 @@ export default class Unit {
     this.isTowerContribution = unit.isTowerContribution;
 
     this._icon = unit.icon;
-    this.tickOffset = unit.tickOffset;
+    this.tickOffset = unit.tickOffset || 0;
     this._target = unit.target;
 
-    this.attackIn = this.tickOffset || 1; 
+    this.attackIn = this.tickOffset || 1;
 
     if (unit.owner) {
       this.owner = unit.owner;

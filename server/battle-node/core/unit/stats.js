@@ -27,12 +27,13 @@ export default class Stats {
         return 1;
       }
       return Math.round(ticksPerSecond / attackSpeed);
-    } else {
-      return 0;
     }
+    return 0;
   }
 
-  get attackSpeed() { return this._attackSpeed; }
+  get attackSpeed() {
+    return this._attackSpeed;
+  }
   set attackSpeed(value) {
     this._attackSpeed = value;
     this.attackSpeedTicks = this.getAttackSpeedTicks(value);

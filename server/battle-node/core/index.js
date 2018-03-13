@@ -9,13 +9,11 @@ import request from 'request-promise';
 
 import dealDamage from './dealDamage';
 import healTarget from './healTarget';
-import autoAttack, { TICK_DURATION } from './autoAttack';
+import autoAttack, { TICK_DURATION, secondsElapsed } from './autoAttack';
 import castAbility from './castAbility';
 import applyBattleActions from './applyBattleActions';
 import Unit from './unit';
 import { serverUrl } from '../config';
-
-const secondsElapsed = (TICK_DURATION / 1000);
 
 export default class Battle {
 
@@ -104,6 +102,10 @@ export default class Battle {
   }
 
   addUnit(unit) {
+    if (!unit.isUnitClass) {
+      unit = new Unit(unit, this);
+    }
+
     if (unit.isEnemy) {
       this.deltaEvents.push({ type: 'push', path: 'enemies', value: unit.raw() });
       this.enemies.push(unit);
@@ -152,6 +154,7 @@ export default class Battle {
         totalXpGain: this.totalXpGain,
         room: this.room,
         wave: this.wave,
+        isExplorationRun: this.isExplorationRun,
         level: this.level,
         id: this.id,
         owners: this.owners
@@ -254,7 +257,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
             target: randomUnitTarget.id,
             enemyId: monster.id,
             name: monster.name,
-            tickOffset: this.tick + 2
+            tickOffset: 0
           }, this);
           this.enemies.push(newUnit);
           this.deltaEvents.push({

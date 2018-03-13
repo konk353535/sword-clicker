@@ -1,7 +1,6 @@
 import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
 import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
-import { attackSpeedTicks } from '../../../utils';
 import uuid from 'node-uuid';
 
 export const personalQuestMonsterGenerator = function(level, wave) {

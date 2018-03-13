@@ -155,7 +155,10 @@ export const removeBattle = function (battleId) {
 
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
-  let win = actualBattle.units.length > 0;
+
+  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0);
+
+  let win = aliveUnits.length > 0;
   let ngRewards = [];
 
   const rawGlobalBuffs = redis.get('global-buffs-xpq');
@@ -282,7 +285,7 @@ export const completeBattle = function (actualBattle) {
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
     if (actualBattle.floor) {
-      if (win) {
+      if (win && !actualBattle.isExplorationRun) {
         floorRewards.push(...FLOORS[actualBattle.floor][actualBattle.room].rewards);
       }
 

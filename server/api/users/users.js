@@ -273,6 +273,7 @@ Meteor.methods({
       'combatTab',
       'miningTab',
       'farmingTab',
+      'newCombatType',
       'magicTab',
       'achievementTab',
       'towerFloor',

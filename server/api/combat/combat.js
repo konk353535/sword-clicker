@@ -10,7 +10,6 @@ import moment from 'moment';
 import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
-import { attackSpeedTicks } from '/server/api/battles/battles';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';

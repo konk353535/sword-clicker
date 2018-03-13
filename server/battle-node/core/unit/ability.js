@@ -48,7 +48,7 @@ export default class Ability {
       return;
     } else if (this.isSpell && this.casts <= 0) {
       return;
-    } else if (this.isPassive) {
+    } else if (this.isPassive && this.battleRef.tickCount > 1) {
       return;
     }
 

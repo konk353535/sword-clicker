@@ -90,6 +90,7 @@ export default function({ ability, caster, targets }) {
       }
     });
 
+
     // Add buffs to target ( Need to unique this ?)
     target.addBuffs(newBuffs);
   });

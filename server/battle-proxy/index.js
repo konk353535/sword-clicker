@@ -2,7 +2,7 @@ import http from 'http';
 import httpProxy from 'http-proxy';
 import ConsistentHashing from 'consistent-hashing';
 import { parse } from 'query-string';
-import { SERVERS } from './config';
+import { SERVERS, PORT } from './config';
 
 const consistentHash = new ConsistentHashing(Object.keys(SERVERS));
 
@@ -37,4 +37,4 @@ proxyServer.on('upgrade', function (req, socket, head) {
   proxy.ws(req, socket, head, { target: targetServerUrl });
 });
 
-proxyServer.listen(3057);
+proxyServer.listen(PORT);

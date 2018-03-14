@@ -34,7 +34,7 @@ proxyServer.on('upgrade', function (req, socket, head) {
   const targetServerUrl = SERVERS[targetServerId];
 
   console.log(`Balancer - ${balancer} | Proxying WS to ${targetServerId}`);
-  proxy.ws(req, socket, head, { target: targetServerUrl });
+  proxy.ws(req, socket, head, { target: targetServerUrl.replace('https', 'http') });
 });
 
 proxyServer.listen(PORT);

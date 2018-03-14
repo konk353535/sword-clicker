@@ -41,7 +41,8 @@ Template.newCombatPage.helpers({
 
   inCurrentBattle() {
     const currentBattleList = BattlesList.findOne({
-      owners: Meteor.userId()
+      owners: Meteor.userId(),
+      activated: true
     });
     return !!currentBattleList;
   },

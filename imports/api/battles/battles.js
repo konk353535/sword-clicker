@@ -13,6 +13,7 @@ BattlesListSchema = new SimpleSchema({
   room: { type: String, optional: true },
   level: { type: Number, optional: true },
   wave: { type: Number, optional: true },
+  activated: { type: Boolean },
 
   group: { type: String, optional: true },
 

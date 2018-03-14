@@ -7,6 +7,7 @@ import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js';
+import uuid from 'node-uuid';
 
 function leaveGroup(group, userId) {
   group.members = group.members.filter((member) => {
@@ -331,6 +332,7 @@ Meteor.methods({
     } else {
       // Create group with myself and the target user
       Groups.insert({
+        balancer: uuid.v4(),
         leaderName: Meteor.user().username,
         leader: this.userId,
         members: [this.userId],

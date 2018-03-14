@@ -339,7 +339,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
     group: currentGroup ? currentGroup._id : false,
-    createdAt: new Date()
+    createdAt: new Date(),
+    activated: false
   });
 
   if (currentGroup) {
@@ -374,10 +375,23 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }, { multi: true });
 
+  let balancer = Meteor.userId();
+  if (currentGroup) {
+    balancer = currentGroup.balancer;
+  }
+
   // Send battle to socket server
   // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
   // Otherwise MIM attack compromises the security of the system
-  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle`, {
-    data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s' }
-  }, (error, result) => {});
+  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle?balancer=${balancer}`, {
+    data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s', balancer }
+  }, (error, result) => {
+    BattlesList.update({
+      _id: actualBattle._id
+    }, {
+      $set: {
+        activated: true
+      }
+    });
+  });
 }

@@ -20,18 +20,19 @@ if (isDev) {
 app.use(cors(corsOptions));
 
 io.on('connection', (socket) => {
+  console.log('connected');
 });
 
 app.use(bodyParser.urlencoded({ extended: true }) );
 app.use(bodyParser.json());
 
 app.post('/battle', (req, res) => {
-  const { battle, passphrase } = req.body;
+  const { battle, passphrase, balancer } = req.body;
   if (passphrase !== 'dqv$dYT65YrU%s') {
     return res.send(battle._id);
   }
 
-  battles[battle._id] = new Battle(battle, battle._id, io, (id, intervalId) => {
+  battles[battle._id] = new Battle(battle, balancer, io, (id, intervalId) => {
     clearInterval(intervalId);
     delete battles[id];
   });

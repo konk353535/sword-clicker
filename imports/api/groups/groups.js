@@ -11,6 +11,7 @@ GroupsSchema = new SimpleSchema({
   lastReadyCheck: { type: Date, optional: true },
   membersChecks: { type: Object, optional: true, blackbox: true },
   invites: { type: [String], optional: true },
+  balancer: { type: String },
 
   membersObject: { type: [Object], blackbox: true },
   floor: { type: Number, optional: true },

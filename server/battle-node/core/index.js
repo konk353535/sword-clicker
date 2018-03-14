@@ -15,11 +15,51 @@ import applyBattleActions from './applyBattleActions';
 import Unit from './unit';
 import { serverUrl } from '../config';
 
+const balancers = {};
+
+class Balancer {
+  constructor(id, io, battleRef) {
+    this.id = id;
+    this.battleRef = battleRef;
+    this.io = io;
+
+    io.of(`/${id}`).on('connection', async (socket) => {
+      socket.on('action', (data) => {
+        if (this.battleRef) {
+          this.battleRef.battleActions.push(data);
+        }
+      });
+      socket.on('getFullState', () => {
+        if (this.battleRef) {
+          this.battleRef.sendFullState();
+        }
+      });
+    });
+  }
+
+  updateRef(battleRef) {
+    this.battleRef = battleRef;
+  }
+
+  remove() {
+    delete this.battleRef;
+  }
+}
+
 export default class Battle {
 
-  constructor(battle, balancerId, io, removeBattle) {
+  constructor(battle, balancer, io, removeBattle) {
     this.removeBattle = removeBattle;
-    this.balancerId = balancerId;
+    this.balancer = balancer;
+
+    let globalSocket;
+    if (!balancers[balancer]) {
+      console.log('Creating balancer connection');
+      balancers[balancer] = new Balancer(balancer, io, this);
+    } else {
+      balancers[balancer].updateRef(this);
+    }
+
     this.io = io;
 
     this.id = battle._id;
@@ -51,15 +91,6 @@ export default class Battle {
     this.intervalId = setInterval(() => {
       this.tick();
     }, TICK_DURATION);
-
-    io.of(`/${balancerId}`).on('connection', async (socket) => {
-      socket.on('action', (data) => {
-        this.battleActions.push(data);
-      });
-      socket.on('getFullState', () => {
-        this.sendFullState();
-      })
-    });
   }
 
   initHelpers() {
@@ -134,7 +165,7 @@ export default class Battle {
   }
 
   sendFullState() {
-    this.io.of(`/${this.balancerId}`).emit('fullState', {
+    this.io.of(`/${this.balancer}`).emit('fullState', {
       battle: {
         units: this.units.map(unit => unit.raw()),
         enemies: this.enemies.map(unit => unit.raw()),
@@ -161,6 +192,7 @@ export default class Battle {
       }, 'dqv$dYT65YrU%s'],
       json: true
     })
+    balancers[this.balancer].remove();
     this.removeBattle(this.id, this.intervalId);
   }
 }
@@ -277,7 +309,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 }
 // Tick method #7
 Battle.prototype.postTick = function postTick() {
-  this.io.of(`/${this.balancerId}`).emit('tick', {
+  this.io.of(`/${this.balancer}`).emit('tick', {
     tickEvents: this.tickEvents,
     deltaEvents: this.deltaEvents
   });

@@ -8,6 +8,7 @@ import _ from 'underscore';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Groups } from '/imports/api/groups/groups.js';
 
 import './currentBattleUi.html';
 
@@ -90,15 +91,25 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       owners: Meteor.userId()
     });
 
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
     if (!currentBattleList) {
-      delete window.battleSocket;
       return;
     }
 
-    if (!window.battleSocket) {
-      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${currentBattleList._id}`, {
-        transports: ['websocket']
-      });      
+    let localBalancer = Meteor.userId();
+    if (currentGroup) {
+      localBalancer = currentGroup.balancer;
+    }
+
+    if (!window.battleSocket || localBalancer !== window.balancer) {
+      window.balancer = localBalancer;
+      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
+        transports: ['websocket'],
+        forceNew: true
+      });
     }
 
     battleSocket.emit('getFullState');

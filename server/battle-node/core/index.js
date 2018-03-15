@@ -147,19 +147,19 @@ export default class Battle {
     this.updateUnitMaps();
   }
 
-  removeUnit(unit) {
-    if (unit.isEnemy) {
-      this.deadEnemies.push(unit);
+  removeUnit(targetUnit) {
+    if (targetUnit.isEnemy) {
+      this.deadEnemies.push(targetUnit);
       this.enemies = this.enemies.filter((enemy) => {
-        return enemy.id !== unit.id;
+        return enemy.id !== targetUnit.id;
       });
-      this.deltaEvents.push({ type: 'pop', path: 'enemies', value: unit.id });
+      this.deltaEvents.push({ type: 'pop', path: 'enemies', value: targetUnit.id });
     } else {
-      this.deadUnits.push(unit);
+      this.deadUnits.push(targetUnit);
       this.units = this.units.filter((unit) => {
-        return unit.id !== unit.id;
+        return unit.id !== targetUnit.id;
       });
-      this.deltaEvents.push({ type: 'pop', path: 'units', value: unit.id });
+      this.deltaEvents.push({ type: 'pop', path: 'units', value: targetUnit.id });
     }
     this.updateUnitMaps();
   }

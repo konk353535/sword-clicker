@@ -24,7 +24,7 @@ export default function({ ability, caster, targets }) {
   }
 
   if (!canCast) {
-    return true;
+    return false;
   }
 
   if (ability.target === 'currentEnemy') {
@@ -95,5 +95,5 @@ export default function({ ability, caster, targets }) {
     target.addBuffs(newBuffs);
   });
 
-  return false;
+  return true;
 }

@@ -54,10 +54,8 @@ export default function applyBattleActions() {
         return this.allUnitsMap[rawTarget];
       });
 
-
-      const refundCast = targetAbility.cast(actionTargets);
-
-      if (!refundCast) {
+      const castSuccess = targetAbility.cast(actionTargets);
+      if (castSuccess) {
         targetAbility.casts -= 1;
         targetAbility.totalCasts += 1;
         targetAbility.currentCooldown = targetAbility.cooldown;

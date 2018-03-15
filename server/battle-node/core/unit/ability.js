@@ -45,11 +45,11 @@ export default class Ability {
 
   cast(targets) {
     if (this.currentCooldown > 0) {
-      return;
+      return false;
     } else if (this.isSpell && this.casts <= 0) {
-      return;
+      return false;
     } else if (this.isPassive && this.battleRef.tickCount > 1) {
-      return;
+      return false;
     }
 
     return this.battleRef.castAbility({

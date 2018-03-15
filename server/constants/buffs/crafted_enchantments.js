@@ -276,8 +276,13 @@ LEG
         }
       },
 
-      onRemove({ buff, target, caster }) {
-        target.stats.health -= buff.data.health;
+      onRemove({ buff, target, caster, actualBattle }) {
+        actualBattle.dealDamage(buff.data.health, {
+          attacker: target,
+          defender: target,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+        });
         target.stats.healthMax -= buff.data.healthMax;
       }
     }

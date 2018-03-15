@@ -281,10 +281,10 @@ export const DEFENSE_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
-        // Blank
+      onRemove({ buff, target, caster, actualBattle }) {
         caster.stats.health /= (1 + buff.data.healthIncrease);
         caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+        actualBattle.checkDeath(caster);
       }
     }
   },

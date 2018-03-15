@@ -659,7 +659,7 @@ export const ATTACK_BUFFS = {
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.data.duration -= secondsElapsed;
 
@@ -670,7 +670,14 @@ export const ATTACK_BUFFS = {
           }
         }
 
-        target.stats.health += (localSecondsElapsed * buff.data.healthLost);
+        const damageToTake = (localSecondsElapsed * buff.data.healthLost);
+        actualBattle.dealDamage(damageToTake, {
+          attacker: caster,
+          defender: caster,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+          isTrueDamage: true
+        });
 
         if (buff.data.duration < 0) {
           removeBuff({ target, buff, caster })

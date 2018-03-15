@@ -17,37 +17,18 @@ export default function(rawDamage, {
 
   let damage = rawDamage;
   if (damage > 0 && damage) {
-    let dmgReduction = isMagic ? defender.stats.magicDamageReduction : defender.stats.damageReduction;
+    let dmgReduction;
     if (isTrueDamage) {
       dmgReduction = 0;
+    } else {
+      dmgReduction = isMagic ? defender.stats.magicDamageReduction : defender.stats.damageReduction;
     }
+
     damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
 
-    if (defender.isBoss && damage > 10000) {
-      damage = 10000;
-    }
     defender.stats.health -= damage;
 
-    // Check if this unit is dead
-    if (defender.stats.health <= 0 || !defender.stats.health) {
-      defender.stats.health = 0;
-
-      // Call death event for this defender
-      if (defender.buffs) {
-        // Buffs can do things on tick, will collect them in the form of combatEvents
-        defender.buffs.forEach((buff) => {
-          buff.constants = BUFFS[buff.id];
-          if (buff.constants.events.onBeforeDeath) {
-            buff.constants.events.onBeforeDeath({ buff, target: defender, actualBattle: this });
-          }
-        });
-      }
-
-      // Only kill defender if it is still dead
-      if (defender.stats.health <= 0) {
-        this.removeUnit(defender);
-      }
-    }
+    this.checkDeath(defender);
   }
 
   if (historyStats && historyStats[attacker.id]) {

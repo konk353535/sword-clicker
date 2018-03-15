@@ -112,7 +112,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.text('every 60 seconds');
+    return parser.text('every 30 seconds');
   },
   job: function() {
     BattlesList.find({
@@ -120,7 +120,7 @@ SyncedCron.add({
         $lte: moment().subtract(10, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
-      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}`, (error, result) => {
+      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}`, (error, result) => {
         removeBattle(battleList._id);
       });
     });

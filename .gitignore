@@ -14,3 +14,4 @@ settings-old-2.json
 mup.js
 
 server/battle-proxy/config.js
+server/battle-node/config.js

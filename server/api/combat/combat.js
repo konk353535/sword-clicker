@@ -3,6 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
+import { Users } from '/imports/api/users/users';
 import { Battles } from '/imports/api/battles/battles';
 
 import { flattenObjectForMongo } from '/server/utils';
@@ -112,9 +113,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
   }).fetch();
 
+  let averageCombat = 0;
+
   // Apply user skills
   combatSkills.forEach((combatSkill) => {
     const skillLevel = combatSkill.level;
+    averageCombat += skillLevel;
     combatSkill.constants = SKILLS[combatSkill.type];
     if (combatSkill.constants.statsPerLevel) {
       const skillStatsPerLevel = JSON.parse(JSON.stringify(combatSkill.constants.statsPerLevel));
@@ -139,6 +143,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
   if (currentCombat.stats.health > playerData.stats.healthMax) {
     playerData.stats.health = playerData.stats.healthMax;
   }
+
+  Users.update({
+    _id: userId
+  }, {
+    $set: {
+      averageCombat: Math.floor(averageCombat / 4)
+    }
+  });
 
   // Set player stats
   Combat.update({

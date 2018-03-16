@@ -206,12 +206,14 @@
             </span>
             <span class="mr-3 d-flex users-row">
               {{#each this.membersObject}}
-                <span class="badge badge-invisible mr-1">{{this.name}} #81</span>
+                <span class="badge badge-invisible mr-1">{{this.name}} #{{this.averageCombat}}</span>
               {{/each}}
             </span>
             <div class="d-flex flex-grow actions-row justify-content-end">
               <span class="mr-3">{{this.battleCount}} Battles</span>
-              <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
+              <button class="btn btn-secondary btn-spectate-group btn-sm mr-1" data-id="{{this._id}}" disabled="{{$not this.inBattle}}">
+                Spectate
+              </button>
               <button class="btn btn-primary btn-join-group btn-sm" data-id="{{this._id}}">
                 Join
               </button>

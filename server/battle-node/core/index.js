@@ -312,10 +312,12 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 }
 // Tick method #7
 Battle.prototype.postTick = function postTick() {
-  this.io.of(`/${this.balancer}`).emit('tick', {
-    tickEvents: this.tickEvents,
-    deltaEvents: this.deltaEvents
-  });
+  if (this.tickEvents.length > 0 || this.deltaEvents.length > 0) {
+    this.io.of(`/${this.balancer}`).emit('tick', {
+      tickEvents: this.tickEvents,
+      deltaEvents: this.deltaEvents
+    });    
+  }
 
   this.deltaEvents = [];
   this.battleActions = [];

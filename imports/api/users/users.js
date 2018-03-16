@@ -36,6 +36,8 @@ UserSchema = new SimpleSchema({
   isSuperMod: { type: Boolean, optional: true },
   isGuest: { type: Boolean, optional: true },
 
+  averageCombat: { type: Number, optional: true },
+
   logEvents: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
   username: {

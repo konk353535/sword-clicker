@@ -206,9 +206,11 @@ Meteor.methods({
       }
       return true;
     });
+
     // Add user to members if accepting
     targetGroup.members.push(userDoc._id);
     targetGroup.membersObject.push({
+      averageCombat: userDoc.averageCombat,
       name: userDoc.username,
       id: userDoc._id
     });
@@ -262,7 +264,8 @@ Meteor.methods({
       targetGroup.members.push(userDoc._id);
       targetGroup.membersObject.push({
         name: userDoc.username,
-        id: userDoc._id
+        id: userDoc._id,
+        averageCombat: userDoc.averageCombat
       })
     }
 
@@ -338,6 +341,7 @@ Meteor.methods({
         members: [this.userId],
         membersObject: [{
           name: Meteor.user().username,
+          averageCombat: Meteor.user().averageCombat,
           id: this.userId
         }],
         invites: [targetUser._id]

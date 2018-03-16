@@ -1,59 +1,71 @@
 <template name="currentBattleUi">
-  <div style="height: calc(100vh - 54px)">
-    <!-- Buffs list -->
-    <div class="d-flex my-1" style="min-height: 58px">
-      {{#each myUnitsBuffs}}
-        {{> buffIcon buff=this}}
-      {{/each}}
-
-      {{#if myUnitsAmulet}}
-        <div class="buff-icon-container icon-box medium-icon" style="position: relative">
-          <img src="/icons/amulet.svg" class="extra-small-icon">
-          <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
-            {{> formatNumber number=myUnitsAmulet.energy}} / {{> formatNumber number=myUnitsAmulet.energyStorage}}
-          </span>
-        </div>
-      {{/if}}
-    </div>
-
-    <!-- Battle Area -->
-    <div class="d-sm-flex">
-      <div class="col d-flex flex-column justify-content-start align-items-center battle-units-container">
-        <div class="hidden-xs-down">
-          <h1>My Units</h1>
-        </div>
-        <div class="d-flex flex-row flex-wrap">
-          {{#each currentBattle.units}}
-            {{> battleUnit unit=this isFriendly="true" unitClicked=unitClicked showBuffs=true}}
-          {{/each}}
-        </div>
-      </div>
-      <div class="col d-flex flex-column justify-content-start align-items-center">
-        <div class="hidden-xs-down">
-          <h1>Enemy Units</h1>
-        </div>
-        <div class="d-flex flex-row flex-wrap">
-          {{#each currentBattle.enemies}}
-            {{> battleUnit unit=this isEnemy="true" unitClicked=unitClicked showBuffs=true}}
-          {{/each}}
-        </div>
-      </div>
-    </div>
-
-    <!-- Ability List -->
-    <div style="
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      height: 100px;
-      background-color: white;
-      padding: 0 20px;">
-      <div class="d-flex my-3">
-        {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
-        {{#each abilityData in equippedAbilities}}
-          {{> ability ability=abilityData}}
+  {{#if currentBattle}}
+    <div style="height: calc(100vh - 54px)">
+      <!-- Buffs list -->
+      <div class="d-flex my-1" style="min-height: 58px">
+        {{#each myUnitsBuffs}}
+          {{> buffIcon buff=this}}
         {{/each}}
+
+        {{#if myUnitsAmulet}}
+          <div class="buff-icon-container icon-box medium-icon" style="position: relative">
+            <img src="/icons/amulet.svg" class="extra-small-icon">
+            <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
+              {{> formatNumber number=myUnitsAmulet.energy}} / {{> formatNumber number=myUnitsAmulet.energyStorage}}
+            </span>
+          </div>
+        {{/if}}
+      </div>
+
+      <!-- Battle Area -->
+      <div class="d-sm-flex">
+        <div class="col d-flex flex-column justify-content-start align-items-center battle-units-container">
+          <div class="hidden-xs-down">
+            <h1>My Units</h1>
+          </div>
+          <div class="d-flex flex-row flex-wrap">
+            {{#each currentBattle.units}}
+              {{> battleUnit unit=this isFriendly="true" unitClicked=unitClicked showBuffs=true}}
+            {{/each}}
+          </div>
+        </div>
+        <div class="col d-flex flex-column justify-content-start align-items-center">
+          <div class="hidden-xs-down">
+            <h1>Enemy Units</h1>
+          </div>
+          <div class="d-flex flex-row flex-wrap">
+            {{#each currentBattle.enemies}}
+              {{> battleUnit unit=this isEnemy="true" unitClicked=unitClicked showBuffs=true}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <!-- Ability List -->
+      <div style="
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 100px;
+        background-color: white;
+        padding: 0 20px;">
+        <div class="d-flex my-3">
+          {{> ability ability=changeTargetAbility battleId=currentBattle._id}}
+          {{#each abilityData in equippedAbilities}}
+            {{> ability ability=abilityData}}
+          {{/each}}
+        </div>
       </div>
     </div>
-  </div>
+  {{else}}
+    <div style="height: calc(100vh - 54px); display: flex; align-items: center; flex: 1 1; justify-content: center">
+      <div>
+        <div class="real-spinner real-spinner-blue">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </template>

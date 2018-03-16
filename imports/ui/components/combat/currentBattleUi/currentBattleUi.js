@@ -84,6 +84,7 @@ const startBattle = (currentBattle, self) => {
 
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('currentBattle', false);
 
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
@@ -96,6 +97,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     });
 
     if (!currentBattleList) {
+      this.state.set('currentBattle', false);
       return;
     }
 

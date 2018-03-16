@@ -11,12 +11,6 @@ const TYPES = {
   afk: 'Adventure',
 }
 
-const findBattleHandler = function (err, res) {
-  if (err) {
-    toastr.warning(err.reason);
-  }
-}
-
 import { Users } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
@@ -213,20 +207,39 @@ Template.lobbyPage.events({
   },
 
   'click .battle-btn'(event, instance) {
+    instance.state.set('newBattleLoading', true);
     const type = instance.state.get('type');
     if (type === 'group') {
       const floor = instance.state.get('usersCurrentFloor');
       const room = instance.state.get('usersCurrentRoom');
       if (room === 'All') {
-        Meteor.call('battles.findTowerBattle', floor, 0, findBattleHandler);
+        Meteor.call('battles.findTowerBattle', floor, 0, function (err, res) {
+          if (err) {
+            toastr.warning(err.reason);
+          }
+
+          instance.state.set('newBattleLoading', false);
+        });
       } else {
-        Meteor.call('battles.findTowerBattle', floor, room, findBattleHandler);        
+        Meteor.call('battles.findTowerBattle', floor, room, function (err, res) {
+          if (err) {
+            toastr.warning(err.reason);
+          }
+
+          instance.state.set('newBattleLoading', false);
+        });        
       }
     } else if (type === 'solo') {
       const level = instance.state.get('currentLevel');
       const targetWave = instance.state.get('maxLevelCurrentWave');
 
-      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), findBattleHandler);
+      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), function (err, res) {
+        if (err) {
+          toastr.warning(err.reason);
+        }
+
+        instance.state.set('newBattleLoading', false);
+      });
     }
   },
 
@@ -372,6 +385,10 @@ Template.lobbyPage.helpers({
     }
 
     return currentGroup.leader === Meteor.userId()
+  },
+
+  newBattleLoading() {
+    return Template.instance().state.get('newBattleLoading');
   },
 
   search(query, sync, callback) {

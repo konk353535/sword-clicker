@@ -302,7 +302,7 @@ export const MONSTER_BUFFS = {
           }
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
-            const newRabbit = JSON.parse(JSON.stringify(target));
+            const newRabbit = target;
             newRabbit.id = uuid.v4();
             actualBattle.addUnit(newRabbit);
             buff.data.timeTillRabbit = 6000;
@@ -718,7 +718,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 15)),
+              dps: attacker.stats.attackMax / 15,
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
@@ -768,7 +768,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 3,
               totalDuration: 3,
-              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 6)),
+              dps: attacker.stats.attackMax / 6,
               caster: attacker.id,
               timeTillDamage: 1,
               icon: 'bleed.svg',
@@ -917,7 +917,7 @@ export const MONSTER_BUFFS = {
           if (defender.stats.magicArmor <= 1) {
             defender.stats.magicArmor = 1;
           }
-          removeBuff({ buff, target: defender, caster: defender });
+          removeBuff({ buff, target: defender, caster: defender, actualBattle });
         }
       },
 
@@ -1048,7 +1048,7 @@ export const MONSTER_BUFFS = {
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
           buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = JSON.parse(JSON.stringify(defender));
+            let newCube = defender;
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = uuid.v4();
@@ -1064,7 +1064,7 @@ export const MONSTER_BUFFS = {
         if (!buff.data.hasSplit && buff.data.stacks > 0) {
           buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = JSON.parse(JSON.stringify(target));
+            let newCube = target;
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.id = uuid.v4();

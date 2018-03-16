@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import './lobby.html';
 import '../lobbyUnit/lobbyUnit.js';
+import io from 'socket.io-client';
 
 const TYPES = {
   solo: 'Solo',
@@ -68,6 +69,24 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
     });
+
+    let localBalancer = Meteor.userId();
+    if (currentGroup) {
+      localBalancer = currentGroup.balancer;
+    }
+
+    if (!window.battleSocket || localBalancer !== window.balancer) {
+      window.balancer = localBalancer;
+      console.log('Ajax call start');
+      $.ajax({
+        url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
+      }).done(function() {
+        window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
+          transports: ['websocket'],
+          forceNew: true
+        });
+      });
+    }
 
     if (!currentGroup) {
       return;

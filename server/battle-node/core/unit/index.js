@@ -47,7 +47,11 @@ export default class Unit {
     }
 
     // TODO: Make this a class
-    this.buffs = unit.buffs;
+    if (unit.buffs && unit.buffs.length > 0) {
+      this.buffs = JSON.parse(JSON.stringify(unit.buffs));
+    } else {
+      this.buffs = unit.buffs.concat([]);
+    }
 
     // TODO: Make this a class?
     this.stats = new Stats(unit.stats, unit.id, battleRef);

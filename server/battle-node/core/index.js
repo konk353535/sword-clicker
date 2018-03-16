@@ -15,13 +15,16 @@ import applyBattleActions from './applyBattleActions';
 import Unit from './unit';
 import { serverUrl } from '../config';
 
-const balancers = {};
+export const balancers = {};
 
-class Balancer {
+export class Balancer {
   constructor(id, io, battleRef) {
     this.id = id;
-    this.battleRef = battleRef;
     this.io = io;
+
+    if (this.battleRef) {
+      this.battleRef = battleRef;
+    }
 
     io.of(`/${id}`).on('connection', async (socket) => {
       socket.on('action', (data) => {

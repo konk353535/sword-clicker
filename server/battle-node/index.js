@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import Battle from './core';
 import cors from 'cors';
 import { isDev, serverUrl, port } from './config';
+import { ENEMIES } from '../constants/enemies';
+import { balancers, Balancer } from './core';
+
 const app = express();
 
 var server = require('http').Server(app);
@@ -39,6 +42,17 @@ app.post('/battle', (req, res) => {
 
   // Creates a battle
   res.send(battle._id);
+});
+
+app.get('/balancer/:balancerId', (req, res) => {
+  const balancerId = req.params.balancerId;
+
+  if (balancers[balancerId]) {
+    return res.sendStatus(200);
+  }
+
+  balancers[balancerId] = new Balancer(balancerId, io);
+  res.sendStatus(200);
 });
 
 app.delete('/battle/:battleId', (req, res) => {

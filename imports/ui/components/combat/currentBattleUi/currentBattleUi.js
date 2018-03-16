@@ -40,6 +40,7 @@ const startBattle = (currentBattle, self) => {
         return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
       });
     }
+
     if (!Session.get('floatingTextDisabled')) {
       currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
         const offset = $(`#${tickEvent.to}`).offset();
@@ -129,11 +130,11 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       const { tickEvents, deltaEvents } = data;
       const currentBattle = this.state.get('currentBattle');
       if (!currentBattle) return;
-      const alteredBattle = Object.assign(currentBattle, { tickEvents });
-      alteredBattle.unitsMap = {};
-      alteredBattle.units.concat(alteredBattle.enemies, alteredBattle.deadEnemies, alteredBattle.deadUnits).forEach((unit) => {
+      currentBattle.tickEvents = tickEvents;
+      currentBattle.unitsMap = {};
+      currentBattle.units.concat(currentBattle.enemies, currentBattle.deadEnemies, currentBattle.deadUnits).forEach((unit) => {
         if (unit) {
-          alteredBattle.unitsMap[unit.id] = unit;
+          currentBattle.unitsMap[unit.id] = unit;
           if (unit.abilities) {
             unit.abilitiesMap = {};
             unit.abilities.forEach((ability) => {
@@ -142,19 +143,20 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
           }
         }
       });
+
       deltaEvents.forEach(({ type, path, value }) => {
         if (type === 'abs') {
-          lodash.set(alteredBattle, path, value);
+          lodash.set(currentBattle, path, value);
         } else if (type === 'push') {
-          lodash.get(alteredBattle, path).push(value);          
+          lodash.get(currentBattle, path).push(value);          
         } else if (type === 'pop') {
-          const arrayToMutate = lodash.get(alteredBattle, path);
-          lodash.set(alteredBattle, path, arrayToMutate.filter((unit) => {
+          const arrayToMutate = lodash.get(currentBattle, path);
+          lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
             return unit.id !== value
           }));
         }
       });
-      startBattle(alteredBattle, this);
+      startBattle(currentBattle, this);
     });
   })
 });

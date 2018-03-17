@@ -16,7 +16,7 @@ export default function applyBattleActions() {
       casterUnit.target = action.targets[0];
     } else if (abilityId === 'forfeit') {
       this.forfitters[casterId] = true;
-      if (Object.keys(this.forfitters).length >= Object.keys(this.owners).length) {
+      if (Object.keys(this.forfitters).length >= (Object.keys(this.owners).length / 2)) {
         this.totalXpGain = 0;
         this.units.forEach((unit) => {
           // Remove all buffs to avoid on death mechanics triggering

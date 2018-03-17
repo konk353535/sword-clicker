@@ -2,13 +2,17 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import lodash from 'lodash';
 
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Users } from '/imports/api/users/users.js';
+import { State } from '/imports/api/state/state';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+
+import { STATE_BUFFS } from '/imports/constants/state';
 
 // Component used in the template
 import '/imports/ui/components/combat/foodIcon/foodIcon.js';
@@ -32,8 +36,10 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   this.state.set('hasLearnRequirements', false);
 
-  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-    this.state.set('globalBuffs', res);
+  Tracker.autorun(() => {
+    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
+    this.state.set('globalBuffs', globalBuffs);
   });
 
   Tracker.autorun(() => {

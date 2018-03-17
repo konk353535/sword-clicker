@@ -17,8 +17,6 @@ import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';
 
-const redis = new Meteor.RedisCollection('redis');
-
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 

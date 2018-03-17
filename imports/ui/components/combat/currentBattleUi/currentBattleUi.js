@@ -12,8 +12,6 @@ import { Groups } from '/imports/api/groups/groups.js';
 
 import './currentBattleUi.html';
 
-const redis = new Meteor.RedisCollection('redis');
-
 const startBattle = (currentBattle, self) => {
   let myUnit;
 

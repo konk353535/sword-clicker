@@ -13,14 +13,14 @@
     {{#if skill}}
       <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.combat moNow 'seconds') 0}}
-      {{> globalBuffIcon type='combat' date=globalBuffs.combat}}
+    {{#if globalBuffs.buffCombat}}
+      {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.gathering moNow 'seconds') 0}}
-      {{> globalBuffIcon type='gathering' date=globalBuffs.gathering}}
+    {{#if globalBuffs.buffGathering}}
+      {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.crafting moNow 'seconds') 0}}
-      {{> globalBuffIcon type='crafting' date=globalBuffs.crafting}}
+    {{#if globalBuffs.buffCrafting}}
+      {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
     {{/if}}
   </div>
   {{#if flipped}}

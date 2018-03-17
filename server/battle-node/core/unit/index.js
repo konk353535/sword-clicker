@@ -36,6 +36,8 @@ export default class Unit {
     this.battleRef = battleRef;
     this.battleSecret = unit.battleSecret;
     this.amulet = unit.amulet;
+    this.mainHandType = unit.mainHandType;
+    this.offHandType = unit.offHandType;
 
     if (unit.abilities) {
       this.abilitiesMap = {};

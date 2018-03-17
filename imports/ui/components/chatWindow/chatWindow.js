@@ -81,7 +81,9 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
-    const currentGroup = Groups.findOne();
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
     const availableChats = this.state.get('availableChats');
 
     if (availableChats.General.show) {

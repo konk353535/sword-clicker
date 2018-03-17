@@ -457,6 +457,11 @@ Template.lobbyPage.helpers({
 
       userCombat.name = userCombat.username;
       userCombat.icon = userCombat.characterIcon || 'character.svg';
+      if (currentGroup) {
+        userCombat.isLeader = userCombat.owner === currentGroup.leader;
+      } else {
+        userCombat.isLeader = false;
+      }
 
       return userCombat;
     });

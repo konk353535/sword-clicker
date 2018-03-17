@@ -1,6 +1,14 @@
 <template name="lobbyUnit">
   <div class="d-flex flex-column">
     <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2 {{#if unit.isInvitee}}invitee-unit{{/if}}">
+      <div class="d-flex justify-content-center" style="height: 16px">
+        {{#if unit.isLeader}}
+          <img src="/icons/leaderCrownYellow.svg" class="mr-1" width="16" height="16" />
+        {{/if}}
+        {{#each unit.buffs}}
+          <img src="/icons/{{this.data.icon}}" width="16" height="16" />
+        {{/each}}
+      </div>
       <a href="/profile/{{unit.name}}" class="text-muted text-capitalize">
         <span class="battle-unit-name">
           {{unit.name}}

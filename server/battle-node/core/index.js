@@ -68,6 +68,7 @@ export default class Battle {
     this.id = battle._id;
     this.level = battle.level;
     this.forfitters = {};
+    this.historyStats = battle.historyStats;
     this.wave = battle.wave;
     this.room = battle.room;
     this.floor = battle.floor;
@@ -189,6 +190,7 @@ export default class Battle {
         totalXpGain: this.totalXpGain,
         room: this.room,
         wave: this.wave,
+        historyStats: this.historyStats,
         isExplorationRun: this.isExplorationRun,
         level: this.level,
         id: this.id,

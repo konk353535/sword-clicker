@@ -918,11 +918,12 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          actualBattle
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ target, buff, caster, actualBattle })
       }
     }
   },

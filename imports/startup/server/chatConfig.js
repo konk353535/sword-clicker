@@ -2,10 +2,13 @@ import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
+import { Groups } from '/imports/api/groups/groups';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addItem } from '/server/api/items/items.js';
 
 import moment from 'moment';
+
+const PUBLIC_ROOMS = ['General', 'LFG', 'Offtopic', 'Help']
 
 SimpleChat.configure ({
   texts:{
@@ -17,8 +20,25 @@ SimpleChat.configure ({
     room: 'room at'
   },
   limit: 25,
-  publishChats: function(roomId, limit){ //server
-    return this.userId;
+  publishChats: function(roomId, limit){ // server
+    if (PUBLIC_ROOMS.find(room => room === roomId)) {
+      return this.userId;
+    }
+
+    if (roomId === `Game-${this.userId}`) {
+      return this.userId;
+    }
+
+    const targetGroup = Groups.findOne({
+      _id: roomId,
+      members: this.userId
+    });
+
+    if (targetGroup) {
+      return this.userId;
+    }
+
+    return false;
   },
   onNewMessage: function () {
 

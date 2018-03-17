@@ -404,9 +404,17 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'groups.invite' }, 25, 5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
 
-Meteor.publish('otherBattlers', function() {
-  return Groups.find({}, {
-    limit: 10,
+Meteor.publish('otherBattlers', function(limit) {
+  if (limit > 100) {
+    limit = 100;
+  }
+
+  return Groups.find({
+    lastBattleStarted: {
+      $gte: moment().subtract(24, 'hours').toDate()
+    }
+  }, {
+    limit,
     sort: {
       lastBattleStarted: -1
     }

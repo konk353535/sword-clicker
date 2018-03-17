@@ -167,7 +167,7 @@
 
       <div class="mb-3">
         <div>
-          <a href="#" class="mb-1 recent-battles-btn text-muted">Consumables</a>
+          <a href="#" class="mb-1 consumables-btn text-muted">Consumables</a>
         </div>
         <div class="d-flex flex-wrap">
           {{#each combat.buffs}}
@@ -186,41 +186,7 @@
           <a href="#" class="mb-1 other-battlers-btn text-muted">Other Battlers</a>
         </div>
         {{#each otherBattlers}}
-          <div class="recent-battling-row">
-            <span class="mr-3">Floor {{this.floor}}</span>
-            
-            <span class="badge {{#if this.inBattle}}badge-success{{else}}badge-info{{/if}} mr-3" style="width: 120px;">
-              {{#if this.inBattle}}
-                Battling for
-              {{else}}
-                Fought
-              {{/if}}
-
-              {{#if $lte (moDiff moNow this.lastBattleStarted 'seconds') 60}}          
-                {{moDiff moNow this.lastBattleStarted 'seconds'}}s
-              {{else}}
-                {{moDiff moNow this.lastBattleStarted 'minutes'}}m
-              {{/if}}
-
-              {{#unless this.inBattle}}
-                ago
-              {{/unless}}
-            </span>
-            <span class="mr-3 d-flex users-row">
-              {{#each this.membersObject}}
-                <span class="badge badge-invisible mr-1">{{this.name}} #{{this.averageCombat}}</span>
-              {{/each}}
-            </span>
-            <div class="d-flex flex-grow actions-row justify-content-end">
-              <span class="mr-3">{{this.battleCount}} Battles</span>
-              <button class="btn btn-secondary btn-spectate-group btn-sm mr-1" data-id="{{this._id}}" disabled="{{$not this.inBattle}}">
-                Spectate
-              </button>
-              <button class="btn btn-primary btn-join-group btn-sm" data-id="{{this._id}}">
-                Join
-              </button>
-            </div>
-          </div>
+          {{> otherBattlersRow row=this}}
         {{/each}}
       </div>
     {{/if}}

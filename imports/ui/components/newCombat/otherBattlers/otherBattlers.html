@@ -1,25 +1,48 @@
 <template name="otherBattlersPage">
   <div class="container mt-2">
     <div class="mb-1 text-muted">
-      Players Battling <span class="text-primary">57</span>
+      Parties Battling <span class="text-primary">{{otherBattlers.length}}</span>
     </div>
-    <div class="recent-battling-row">
-      <span class="mr-3">Floor 3</span>
-      <span class="badge badge-success mr-3" style="width: 70px;">Battling</span>
-      <span class="mr-3 d-flex users-row">
-        <span class="badge badge-invisible mr-1">konk353535 #81</span>
-        <span class="badge badge-invisible mr-1">aessedai #69</span>
-        <span class="badge badge-invisible mr-1">nickbreslin #92</span>
-      </span>
-      <div class="d-flex flex-grow actions-row justify-content-end">
-        <span class="mr-3">24 Battles</span>
-        <button class="btn btn-secondary btn-sm mr-1">Spectate</button>
-        <button class="btn btn-primary btn-sm">Join</button>
-      </div>
-    </div>
+    {{#each otherBattlers}}
+      {{> otherBattlersRow row=this}}
+    {{/each}}
+  </div>
+</template>
 
-    <div class="select-battle-container">
-      <button class="btn btn-primary back-to-lobby-btn">Back to lobby</button>
+<template name="otherBattlersRow">
+  <div class="recent-battling-row">
+    <span class="mr-3">Floor {{row.floor}}</span>
+    
+    <span class="badge {{#if row.inBattle}}badge-success{{else}}badge-info{{/if}} mr-3" style="width: 120px;">
+      {{#if row.inBattle}}
+        Battling for
+      {{else}}
+        Fought
+      {{/if}}
+
+      {{#if $lte (moDiff moNow row.lastBattleStarted 'seconds') 60}}          
+        {{moDiff moNow row.lastBattleStarted 'seconds'}}s
+      {{else}}
+        {{moDiff moNow row.lastBattleStarted 'minutes'}}m
+      {{/if}}
+
+      {{#unless row.inBattle}}
+        ago
+      {{/unless}}
+    </span>
+    <span class="mr-3 d-flex users-row">
+      {{#each row.membersObject}}
+        <span class="badge badge-invisible mr-1">{{this.name}} #{{this.averageCombat}}</span>
+      {{/each}}
+    </span>
+    <div class="d-flex flex-grow actions-row justify-content-end">
+      <span class="mr-3">{{row.battleCount}} Battles</span>
+      <button class="btn btn-secondary btn-spectate-group btn-sm mr-1" data-id="{{row._id}}" disabled="{{$not row.inBattle}}">
+        Spectate
+      </button>
+      <button class="btn btn-primary btn-join-group btn-sm" data-id="{{row._id}}">
+        Join
+      </button>
     </div>
   </div>
 </template>

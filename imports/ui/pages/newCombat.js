@@ -15,6 +15,7 @@ import '../components/newCombat/otherBattlers/otherBattlers.js';
 import '../components/newCombat/selectGear/selectGear.js';
 import '../components/newCombat/selectAbilities/selectAbilities.js';
 import '../components/newCombat/lobby/lobby.js';
+import '../components/newCombat/consumables/consumables.js';
 import '../components/newCombat/adventuresTab/adventuresTab.js';
 import './newCombat.html';
 

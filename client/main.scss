@@ -7,6 +7,7 @@
 @import "styles/adventures.scss";
 @import "styles/nav.scss";
 @import "styles/tutorial.scss";
+@import "styles/homePage.scss";
 @import "styles/icons.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
@@ -17,6 +18,15 @@
 
 html, body {
   font-family: 'Roboto', sans-serif;
+  background-color: $gray-lightest;
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.text-white {
+  color: white;
 }
 
 @media (max-width: 768px) {

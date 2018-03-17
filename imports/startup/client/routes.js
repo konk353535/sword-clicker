@@ -44,6 +44,19 @@ Router.route('/profile/:username', {
   }
 });
 
+
+Router.route('/gameHome', {
+
+  name: 'gameHomePage',
+
+  template: 'gameHomePage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/updates', {
 
   name: 'updatesPage',

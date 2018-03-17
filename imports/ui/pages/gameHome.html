@@ -1,0 +1,286 @@
+<template name="gameHomePage">
+  <div class="container mt-2">
+    <div class="d-flex">
+      <div class="mr-3">
+        <div class="text-muted mb-1">Links</div>
+        <a href="/shop" class="side-link-item">Shop</a>
+        <a href="/skills" class="side-link-item">Skills</a>
+        <a href="/achievements" class="side-link-item">Achievements</a>
+        <a href="/patchNotes" class="side-link-item">FAQ</a>
+        <a href="/updates" class="side-link-item new-update-color">New Things</a>
+      </div>
+      <div class="home-page-content mr-3">
+
+        <div class="d-flex align-items-center text-danger">
+          You are currently in a battle
+          <div class="d-flex flex-grow justify-content-end">
+            <button class="btn btn-secondary">View</button>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center mt-3">
+          Party invite from aessedai
+          <div class="d-flex flex-grow justify-content-end">
+            <button class="btn btn-primary mr-2">Accept</button>
+            <button class="btn btn-danger">Decline</button>
+          </div>
+        </div>
+
+        <!-- Mining -->
+        <div class="d-flex flex-column mt-3">
+          <div class="d-flex align-items-center">
+            Mining Carts
+            <div class="d-flex justify-content-end flex-grow">
+              <button class="btn btn-primary btn-sm ml-3">
+                Collect
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/copper.png" class="extra-small-icon mr-1">
+                <div>300 / 500</div>
+              </div>
+            </div>
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/stone.png" class="extra-small-icon mr-1">
+                <div>56 / 1043</div>
+              </div>
+            </div>
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/mithril.png" class="extra-small-icon mr-1">
+                <div>23 / 60</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crafting -->
+        <div class="d-flex flex-column mt-3">
+          <div class="d-flex align-items-center">
+            Workbench
+            <div class="text-muted ml-3">
+              5h 54m
+            </div>
+          </div>
+          <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="d-flex icon-box-new flex-grow align-items-center mt-1" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+              <img src="/icons/stoneFurnace.svg" class="extra-small-icon mr-1">
+              <div class="mr-3">1</div>
+              <div class="progress mr-3 flex-grow">
+                <div
+                  class="progress-bar bg-primary"
+                  role="progressbar"
+                  style="width: 50%;" 
+                  aria-valuenow="50"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  50%
+                </div>
+              </div>
+              <div class="text-muted">3m 54s</div>
+            </div>
+            <div class="d-flex flex-wrap">
+              <div class="d-flex icon-box-new mr-1 mt-1">
+                <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                  <img src="/icons/polishedStone.svg" class="extra-small-icon mr-1">
+                  <div>5</div>
+                </div>
+              </div>
+              <div class="d-flex icon-box-new mr-1 mt-1">
+                <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                  <img src="/icons/bronzeShortSword.svg" class="extra-small-icon mr-1">
+                  <div>5</div>
+                </div>
+              </div>
+              <div class="d-flex icon-box-new mr-1 mt-1">
+                <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                  <img src="/icons/copperDagger.svg" class="extra-small-icon mr-1">
+                  <div>5</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lumber -->
+        <div class="d-flex flex-column mt-3">
+          <div class="d-flex align-items-center">
+            Lumber Carriages
+            <div class="d-flex justify-content-end flex-grow">
+              <button class="btn btn-primary btn-sm ml-3">
+                Collect
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/beechLog.png" class="extra-small-icon mr-1">
+                <div>300 / 500</div>
+              </div>
+            </div>
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/pineLog.png" class="extra-small-icon mr-1">
+                <div>56 / 1043</div>
+              </div>
+            </div>
+            <div class="d-flex icon-box-new mr-1 mt-1">
+              <div class="align-items-center d-flex" style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;">
+                <img src="/icons/ashLog.png" class="extra-small-icon mr-1">
+                <div>23 / 60</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Farming -->
+        <div class="d-flex flex-column mt-3">
+          <div class="d-flex align-items-center">
+            Farm Plots <div class="text-muted ml-3">3h 52m</div>
+            <div class="d-flex justify-content-end flex-grow">
+              <button class="btn btn-primary btn-sm ml-3">
+                Pick All
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/lettice.svg" class="ore-icon" style="width: 32px; height: 32px;">
+              </div>
+            </div>
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/lettice.svg" class="ore-icon" style="width: 32px; height: 32px;">
+              </div>
+            </div>
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/lettice.svg" class="ore-icon" style="width: 32px; height: 32px;">
+              </div>
+            </div>
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/lettice.svg" class="ore-icon" style="width: 32px; height: 32px;">
+              </div>
+            </div>
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/lettice.svg" class="ore-icon" style="width: 32px; height: 32px;">
+              </div>
+            </div>
+            <div class="farm-space-container active">
+              <div class="icon-box align-items-center medium-icon">
+                <img src="/icons/sapling.svg" class="ore-icon" style="width: 32px; height: 32px;">
+                <div class="progress mt-1" style="width: 100%">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 50%; height: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Adventures -->
+        <div class="d-flex flex-column mt-3">
+          <div class="d-flex align-items-center">
+            Adventures <div class="text-muted ml-3">1h 46m</div>
+            <div class="d-flex justify-content-end flex-grow">
+              <button class="btn btn-primary btn-sm ml-3">
+                Collect All
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="adventure-item-container d-flex flex-column my-1 mx-1 p-2 active-adventure">
+              <div class="d-flex align-items-center">
+                <img src="/icons/grasshopper.svg" class="medium-icon">
+                <div class="d-flex flex-column ml-3 flex-grow hidden-md-down">
+                  <div class="text-capitalize">Grass Field</div>
+                </div>
+                <div class="d-flex flex-column mx-3 flex-grow">
+                  <div class="text-success">Victory</div>
+                </div>
+                <div class="d-flex mx-3 align-items-center justify-content-center hidden-xs-down" style="flex: 10 10 auto;">
+                    <div class="d-flex align-items-center" style="flex: 1 1 auto">
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-attack"></i>
+                          </div>
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-health"></i>
+                          </div>
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-defense"></i>
+                          </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
+                    <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-id="6tjmMRo8EaaANRcud">
+                      Collect
+                    </button>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-attack"></i>
+                    </div>
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-health"></i>
+                    </div>
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-defense"></i>
+                    </div>
+              </div>
+            </div>
+            <div class="adventure-item-container d-flex flex-column my-1 mx-1 p-2 active-adventure">
+              <div class="d-flex align-items-center">
+                <img src="/icons/grasshopper.svg" class="medium-icon">
+                <div class="d-flex flex-column ml-3 flex-grow hidden-md-down">
+                  <div class="text-capitalize">Grass Field</div>
+                </div>
+                <div class="d-flex flex-column mx-3 flex-grow">
+                  <div class="text-success">Victory</div>
+                </div>
+                <div class="d-flex mx-3 align-items-center justify-content-center hidden-xs-down" style="flex: 10 10 auto;">
+                    <div class="d-flex align-items-center" style="flex: 1 1 auto">
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-attack"></i>
+                          </div>
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-health"></i>
+                          </div>
+                          <div class="ml-1">
+                            +57 <i class="lilIcon-defense"></i>
+                          </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
+                    <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-id="6tjmMRo8EaaANRcud">
+                      Collect
+                    </button>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-attack"></i>
+                    </div>
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-health"></i>
+                    </div>
+                    <div class="ml-1">
+                      +57 <i class="lilIcon-defense"></i>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="live-active-feed d-flex">
+        Live Active Feed
+      </div>
+    </div>
+  </div>
+</template>

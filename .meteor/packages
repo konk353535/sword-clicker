@@ -40,7 +40,6 @@ cesarve:simple-chat
 ddp-rate-limiter@1.0.7
 aldeed:template-extension
 sha@1.0.9
-slava:redis-livedata
 check@1.2.5
 meteorhacks:cluster
 mrt:fancybox

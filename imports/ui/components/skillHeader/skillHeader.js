@@ -16,7 +16,6 @@ Template.skillHeader.onCreated(function bodyOnCreated() {
   Tracker.autorun(() => {
     let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
     globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
-    console.log('global buffs', globalBuffs);
     this.state.set('globalBuffs', globalBuffs);
   });
 });

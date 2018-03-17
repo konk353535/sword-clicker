@@ -28,8 +28,6 @@ import '/imports/ui/components/combat/personalQuestTab/personalQuestTab.js';
 
 import './combat.html';
 
-const redis = new Meteor.RedisCollection('redis');
-
 Template.combatPage.onCreated(function bodyOnCreated() {
 
   this.state = new ReactiveDict();
@@ -55,19 +53,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('battles');
   Meteor.subscribe('floorWaveScores');
-
-  // When new battle comes up, update our subscribe of redis-battles
-  Tracker.autorun(() => {
-    const currentBattle = BattlesList.findOne({}, {
-      sort: {
-        createdAt: -1
-      }
-    });
-
-    if (currentBattle && !currentBattle.useStreamy) {
-      Meteor.subscribe('redis-battles', currentBattle);
-    }
-  });
 
   this.autorun(() => {
 

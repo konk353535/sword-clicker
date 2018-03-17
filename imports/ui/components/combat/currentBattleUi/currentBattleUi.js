@@ -41,8 +41,11 @@ const startBattle = (currentBattle, self) => {
       });
     }
 
+    console.log(currentBattle.tickEvents);
+
     if (!Session.get('floatingTextDisabled')) {
       currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
+        console.log('Tick Events!');
         const offset = $(`#${tickEvent.to}`).offset();
         if (offset) {
           let color;
@@ -87,6 +90,13 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('currentBattle', false);
 
+  setInterval(() => {
+    // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
+    if (!this.state.get('currentBattle')) {
+      battleSocket.emit('getFullState');
+    }
+  }, 2500);
+
   Tracker.autorun(() => {
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({
@@ -113,16 +123,21 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         transports: ['websocket'],
         forceNew: true
       });
+      window.battleSocket.on('disconnect', () => {
+        delete window.battleSocket;
+      });
     }
 
     battleSocket.emit('getFullState');
 
+    console.log('Initializing listeners');
     battleSocket.on('fullState', (data) => {
       const rawBattle = data.battle;
       if (!rawBattle) return;
       const currentBattle = rawBattle;
       if (!currentBattle) return;
 
+      console.log('full State!');
       startBattle(currentBattle, this);
     });
 
@@ -156,10 +171,22 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
           }));
         }
       });
+
+      console.log(`Tick - ${data.tickCount} - ${moment().format()}`);
       startBattle(currentBattle, this);
     });
   })
 });
+
+Template.currentBattleUi.events({
+  'click .forfeit-battle'(event, instance) {
+    battleSocket.emit('action', {
+      battleSecret: Meteor.user().battleSecret,
+      abilityId: 'forfeit',
+      caster: Meteor.userId()
+    });
+  }
+})
 
 Template.currentBattleUi.helpers({
   currentBattle() {

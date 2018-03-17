@@ -1,6 +1,6 @@
 <template name="currentBattleUi">
   {{#if currentBattle}}
-    <div style="height: calc(100vh - 54px)">
+    <div style="height: calc(100vh - 54px); position: relative">
       <!-- Buffs list -->
       <div class="d-flex my-1" style="min-height: 58px">
         {{#each myUnitsBuffs}}
@@ -56,6 +56,11 @@
           {{/each}}
         </div>
       </div>
+    </div>
+    <div class="d-flex align-items-end justify-content-center flex-grow">
+      <button class="btn btn-danger forfeit-battle mt-3">
+        Forfeit
+      </button>
     </div>
   {{else}}
     <div style="height: calc(100vh - 54px); display: flex; align-items: center; flex: 1 1; justify-content: center">

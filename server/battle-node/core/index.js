@@ -67,6 +67,7 @@ export default class Battle {
 
     this.id = battle._id;
     this.level = battle.level;
+    this.forfitters = {};
     this.wave = battle.wave;
     this.room = battle.room;
     this.floor = battle.floor;
@@ -315,7 +316,8 @@ Battle.prototype.postTick = function postTick() {
   if (this.tickEvents.length > 0 || this.deltaEvents.length > 0) {
     this.io.of(`/${this.balancer}`).emit('tick', {
       tickEvents: this.tickEvents,
-      deltaEvents: this.deltaEvents
+      deltaEvents: this.deltaEvents,
+      tickCount: this.tickCount
     });    
   }
 

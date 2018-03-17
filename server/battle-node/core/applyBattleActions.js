@@ -14,6 +14,20 @@ export default function applyBattleActions() {
     if (abilityId === 'changeTarget') {
       // Modify casters preferred target
       casterUnit.target = action.targets[0];
+    } else if (abilityId === 'forfeit') {
+      this.forfitters[casterId] = true;
+      if (Object.keys(this.forfitters).length >= Object.keys(this.owners).length) {
+        this.totalXpGain = 0;
+        this.units.forEach((unit) => {
+          // Remove all buffs to avoid on death mechanics triggering
+          unit.buffs = [];
+          // Set health to -1
+          unit.stats.health = -1;
+          // Ensure the unit is picked up as dead
+          this.checkDeath(unit);
+        });
+        this.end();
+      }
     } else if (abilityId === 'clickAttack') {
       const targetId = action.targets[0];
       if (targetId !== casterUnit.target) {

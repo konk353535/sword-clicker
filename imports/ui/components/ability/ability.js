@@ -88,8 +88,6 @@ Template.ability.onCreated(function bodyOnCreated() {
 });
 
 Template.ability.rendered = function () {
-
-
   const slot = this.data.ability.slot;
 
   $(document).off(`keyup.${slot}`);
@@ -114,7 +112,12 @@ Template.ability.events({
   'click'(event, instance) {
     castAbility(instance);
   }
-})
+});
+
+Template.ability.onDestroyed(function onAbilityDestroyed() {
+  const slot = this.data.ability.slot;
+  $(document).off(`keyup.${slot}`);
+});
 
 Template.ability.helpers({
 

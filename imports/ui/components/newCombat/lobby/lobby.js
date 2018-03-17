@@ -17,6 +17,7 @@ import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Battles } from '/imports/api/battles/battles.js';
 
+// TODO: All this logic will fire after every battle, very ineffective though
 Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
@@ -34,27 +35,6 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('otherBattlers');
 
-  Tracker.autorun(() => {
-    const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.towerFloor !== undefined) {
-        this.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
-      } else {
-        this.state.set('usersCurrentFloor', 1);
-      }
-
-      if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
-        this.state.set('currentLevel', myUser.uiState.questLevel);
-      } else if (myUser.personalQuest) {
-        this.state.set('currentLevel', myUser.personalQuest.level);
-      }
-
-      if (myUser.uiState && myUser.uiState.newCombatType !== undefined) {
-        this.state.set('type', myUser.uiState.newCombatType);
-      }
-    }
-  });
-
   Meteor.call('battles.myFloorContributions', (err, res) => {
     this.state.set('myFloorContributions', res);
   });
@@ -71,13 +51,15 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 
     if (!window.battleSocket || localBalancer !== window.balancer) {
       window.balancer = localBalancer;
-      console.log('Ajax call start');
       $.ajax({
         url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
       }).done(function() {
         window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
           transports: ['websocket'],
-          forceNew: true
+          forceNew: true,
+        });
+        window.battleSocket.on('disconnect', () => {
+          delete window.battleSocket;
         });
       });
     }
@@ -146,6 +128,7 @@ Template.lobbyPage.events({
     // Get value from form element
     const text = instance.$('#name').val();
     Meteor.call('users.search', text, (err, res) => {
+      console.log(res);
       instance.state.set('userSuggestions', res.map(user => user.username));
     });
   },
@@ -267,7 +250,37 @@ Template.lobbyPage.events({
 })
 
 Template.lobbyPage.rendered = function () {
-  Meteor.typeahead.inject();
+  if (Template.instance().state.get('type') === 'group') {
+    Meteor.typeahead.inject();
+  }
+
+  const instance = Template.instance();
+
+  Tracker.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (myUser) {
+      if (myUser.uiState && myUser.uiState.towerFloor !== undefined) {
+        instance.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
+      } else {
+        instance.state.set('usersCurrentFloor', 1);
+      }
+
+      if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
+        instance.state.set('currentLevel', myUser.uiState.questLevel);
+      } else if (myUser.personalQuest) {
+        instance.state.set('currentLevel', myUser.personalQuest.level);
+      }
+
+      if (myUser.uiState && myUser.uiState.newCombatType !== undefined) {
+        instance.state.set('type', myUser.uiState.newCombatType);
+        if (myUser.uiState.newCombatType === 'group') {
+          if (!$('.tt-hint').length) {
+            Meteor.typeahead.inject();
+          }
+        }
+      }
+    }
+  });
 }
 
 Template.lobbyPage.helpers({

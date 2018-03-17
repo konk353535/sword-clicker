@@ -54,7 +54,7 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
             buff,
             defender,
             attacker,
-            actualBattle,
+            actualBattle: this,
             damageDealt,
             rawDamage
           })
@@ -68,7 +68,7 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTookDamage) {
           // Took Damage
-          buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt })
+          buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle: this, damageDealt })
         }
       });
     }

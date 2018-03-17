@@ -46,14 +46,14 @@ LEG
       armorPerHit: 3,
       totalHits: 10
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { 
 
       onApply({ buff, target, caster }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         caster.stats.armor += constants.armorPerHit * constants.totalHits;
         buff.stacks = constants.armorPerHit * constants.totalHits;
@@ -61,7 +61,7 @@ LEG
 
       // Remove Armor as player gets hit.
       onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         buff.stacks -= constants.armorPerHit;
 
@@ -88,8 +88,8 @@ LEG
     constants: {
       damageModifier: 25,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: {
@@ -98,12 +98,11 @@ LEG
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
-        
+
         actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
@@ -127,8 +126,8 @@ LEG
     constants: {
       damageModifier: 75,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: {
@@ -137,8 +136,7 @@ LEG
       }, 
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const baseDamage = 1 + attacker.stats.magicPower;
         const modifier = constants.damageModifier / 100;
@@ -167,8 +165,8 @@ LEG
     },
     constants: {
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { 
@@ -192,14 +190,14 @@ LEG
     constants: {
       speedModifier: 20,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
         const modifier = 1 + (constants.speedModifier / 100);
 
         target.stats.attackSpeed *= modifier;
@@ -223,14 +221,14 @@ LEG
       damageModifier : 250,
       charge : 10
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const modifier = constants.healthModifier / 100;
         const amountToAdd = target.stats.armor * modifier;
@@ -257,10 +255,7 @@ LEG
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
         if (buff.data.timeTillCharge <= 0) {
-
-          
-          
-          const constants = buff.constants.constants;
+          const constants = BUFFS[buff.id].constants;
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
 

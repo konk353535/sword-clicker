@@ -49,8 +49,7 @@ export default class Unit {
       });
     }
 
-    this.buffs = [];
-    this.addBuffs(unit.buffs);
+    this.buffs = unit.buffs.map(buff => new Buff(buff, this, this.battleRef));
 
     this.stats = new Stats(unit.stats, unit.id, battleRef);
     this.xpDistribution = unit.xpDistribution;

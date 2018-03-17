@@ -48,7 +48,7 @@ export default class Stats {
   get magicArmor() { return this._magicArmor; }
   set magicArmor(value) {
     this._magicArmor = value;
-    this.damageReduction = this.getDamageReduction(value);
+    this.magicDamageReduction = this.getDamageReduction(value);
   }
 
   get health() { return this._health; }

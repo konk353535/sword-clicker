@@ -239,19 +239,19 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       userCombat.enchantments.forEach((buffId) => {
         const enchantConstants = BUFFS[buffId];
         if (enchantConstants) {
-          const clonedConstants = JSON.parse(JSON.stringify(enchantConstants));
+          const clonedConstants = enchantConstants;
           const newBuff = {
             id: buffId,
-            duration: clonedConstants.durationTotal,
+            duration: clonedConstants.data.durationTotal,
             data: {
-              totalDuration: clonedConstants.durationTotal,
+              totalDuration: clonedConstants.data.durationTotal,
               icon: clonedConstants.icon,
               description: enchantConstants.description(),
               name: clonedConstants.name
             }
           }
 
-          addBuff({ buff: newBuff, target: newUnit, caster: newUnit, actualBattle: null});
+          newUnit.buffs.push(newBuff);
         }
       });
     }

@@ -708,8 +708,8 @@ export const ATTACK_BUFFS = {
       damageBase: 1.25, // 200, 275, 350, 425, 500
       damagePerLevel: .75
     },
+    duration: 0,
     data: {
-      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -757,8 +757,8 @@ export const ATTACK_BUFFS = {
       damageBase: 2, // % Increase of damage for each % of health enemy is missing
       damagePerLevel: 0.5
     },
+    duration: 0,
     data: {
-      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -808,8 +808,8 @@ export const ATTACK_BUFFS = {
       damageBase: 0.8,
       damagePerLevel: 0.2
     },
+    duration: 0,
     data: {
-      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id

@@ -35,7 +35,11 @@ export default class Buff {
     this.unit = unit;
     this._isBuffClass = true;
     this.battleRef = battleRef;
-    this._duration = buff.duration;
+    if (buff.duration == undefined) {
+      this._duration = buff.data.duration;
+    } else {
+      this._duration = buff.duration;
+    }
     this._stacks = buff.stacks;
     this.data = buff.data;
   }

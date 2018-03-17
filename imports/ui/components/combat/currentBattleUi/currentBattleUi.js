@@ -15,7 +15,13 @@ import './currentBattleUi.html';
 const redis = new Meteor.RedisCollection('redis');
 
 const startBattle = (currentBattle, self) => {
-  const myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
+  let myUnit;
+
+  if (currentBattle.unitsMap) {
+    myUnit = currentBattle.unitsMap[Meteor.userId()];
+  } else {
+    myUnit = _.findWhere(currentBattle.units, { id: Meteor.userId() });
+  }
   if (myUnit) {
     self.state.set('myUnit', myUnit);
   }

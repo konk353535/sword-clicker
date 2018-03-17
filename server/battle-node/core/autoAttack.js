@@ -1,6 +1,6 @@
 import { BUFFS } from '../../constants/buffs/index.js';
 
-export const TICK_DURATION = 100;
+export const TICK_DURATION = 200;
 export const secondsElapsed = TICK_DURATION / 1000;
 
 export default function({ attacker, defender, tickEvents, actualBattle, historyStats, originalAutoAttack = true }) {

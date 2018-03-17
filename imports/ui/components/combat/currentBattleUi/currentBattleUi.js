@@ -152,6 +152,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
               unit.abilitiesMap[ability.id] = ability;
             });
           }
+          if (unit.buffs) {
+            unit.buffsMap = {};
+            unit.buffs.forEach((buff) => {
+              unit.buffsMap[buff.id] = buff;
+            });
+          }
         }
       });
 
@@ -159,12 +165,17 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         if (type === 'abs') {
           lodash.set(currentBattle, path, value);
         } else if (type === 'push') {
-          lodash.get(currentBattle, path).push(value);          
+          const arrayToMutate = lodash.get(currentBattle, path);
+          if (arrayToMutate) {
+            arrayToMutate.push(value);
+          }
         } else if (type === 'pop') {
           const arrayToMutate = lodash.get(currentBattle, path);
-          lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
-            return unit.id !== value
-          }));
+          if (arrayToMutate) {
+            lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
+              return unit.id !== value;
+            }));
+          }
         }
       });
 

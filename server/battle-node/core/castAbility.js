@@ -59,6 +59,7 @@ export default function({ ability, caster, targets }) {
       const buffObj = {};
       // Store constants
       buffObj.constants = BUFFS[buffId];
+      buffObj.duration = buffObj.constants.data.duration;
 
       // Save things we actually want to store in the data property
       buffObj.data = Object.assign({
@@ -81,7 +82,7 @@ export default function({ ability, caster, targets }) {
         if (target.buffs && target.buffs.length > 0) {
           let existingBuff = _.findWhere(target.buffs, { id: buff.id });
           if (existingBuff) {
-            existingBuff.data.duration = -1;
+            existingBuff.duration = -1;
             buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle: this });
           }
         }
@@ -89,7 +90,6 @@ export default function({ ability, caster, targets }) {
         buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
       }
     });
-
 
     // Add buffs to target ( Need to unique this ?)
     target.addBuffs(newBuffs);

@@ -26,9 +26,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -62,7 +62,7 @@ export const MONSTER_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
-        buff.data.stacks = Math.round(buff.data.timeTillSteal);
+        buff.stacks = Math.round(buff.data.timeTillSteal);
 
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
@@ -297,15 +297,18 @@ export const MONSTER_BUFFS = {
           buff.data.timeTillRabbit = 8 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
-          if (buff.data.timeTillRabbit <= 1000) {
-            buff.data.stacks = Math.round(buff.data.timeTillRabbit);
+          const newStacks = Math.round(buff.data.timeTillRabbit);
+          if (buff.stacks !== newStacks) {
+            buff.stacks = newStacks;
           }
+
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
-            const newRabbit = target;
-            newRabbit.id = uuid.v4();
+            const newRabbit = Object.assign({}, target.raw(), {
+              id: uuid.v4()
+            });
             actualBattle.addUnit(newRabbit);
-            buff.data.timeTillRabbit = 6000;
+            target.removeBuff(buff);
           }
         }
       },
@@ -340,9 +343,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -556,9 +559,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -597,9 +600,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -637,9 +640,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -839,8 +842,8 @@ export const MONSTER_BUFFS = {
           });
 
           defender.buffs.forEach((buff) => {
-            if (buff.id === 'basic_poison' && buff.data.duration > 1) {
-              buff.data.duration = 0.2;
+            if (buff.id === 'basic_poison' && buff.duration > 1) {
+              buff.duration = 0.2;
               buff.data.timeTillDamage = 5;
             }
           });
@@ -875,7 +878,7 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, attacker, actualBattle }) {
         defender.stats.attack *= 1.03;
         defender.stats.attackMax *= 1.03;
-        buff.data.stacks += 1;
+        buff.stacks += 1;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -906,7 +909,7 @@ export const MONSTER_BUFFS = {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
-        buff.data.stacks = buff.data.hitsRequired;
+        buff.stacks = buff.data.hitsRequired;
 
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;
@@ -1045,8 +1048,8 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, actualBattle }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
-        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
-          buff.data.stacks -= 1;
+        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
+          buff.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
             let newCube = defender;
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
@@ -1061,8 +1064,8 @@ export const MONSTER_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         // spawn cubes if mob is killed without spawning previously
-        if (!buff.data.hasSplit && buff.data.stacks > 0) {
-          buff.data.stacks -= 1;
+        if (!buff.data.hasSplit && buff.stacks > 0) {
+          buff.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
             let newCube = target;
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);

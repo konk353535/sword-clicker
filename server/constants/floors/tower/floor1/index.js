@@ -6,7 +6,7 @@ console.log('exporting floor1/index.js TOWER_FLOOR_1');
 export const TOWER_FLOOR_1 = {
   1: {
     name: 'Grass Field',
-    enemies: ['grasshopper', 'fly'],
+    enemies: ['rabbit'],
     rewards: [{
       chance: 1 / 4,
       rewards: [

@@ -37,7 +37,7 @@ export const ENCHANTMENT_BUFFS = {
           }
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -77,7 +77,7 @@ export const ENCHANTMENT_BUFFS = {
           });
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -118,7 +118,7 @@ export const ENCHANTMENT_BUFFS = {
           });
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -276,13 +276,13 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.timeTillCharge = 5;
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ secondsElapsed, buff }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
-          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+          buff.stacks = Math.round(buff.data.timeTillCharge);
         }
       },
 
@@ -331,14 +331,14 @@ export const ENCHANTMENT_BUFFS = {
       onDidDamage({ buff, attacker }) {
         if (!buff.data.isActive) {
           buff.data.charges += 1;
-          buff.data.stacks = buff.data.charges;
+          buff.stacks = buff.data.charges;
         }
 
         if (buff.data.charges >= 20 && !buff.data.isActive) {
           attacker.stats.attackSpeed *= 1.5;
           buff.data.timeTillEnd = 3;
           buff.data.isActive = true;
-          buff.data.stacks = undefined;
+          buff.stacks = undefined;
           buff.data.icon = 'tentacleRed.svg';
         }
       },
@@ -379,7 +379,7 @@ export const ENCHANTMENT_BUFFS = {
         const amountToAdd = target.stats.armor * 0.1;
         buff.data.defense = amountToAdd;
         target.stats.defense += buff.data.defense;
-        buff.data.stacks = Math.round(buff.data.defense);
+        buff.stacks = Math.round(buff.data.defense);
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -422,7 +422,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.totalDamage = target.stats.attackMax * (extraDamagePercentage / 100);
           target.stats.attackMax += buff.data.totalDamage;
           target.stats.attack += buff.data.totalDamage;
-          buff.data.stacks = Math.round(buff.data.totalDamage);
+          buff.stacks = Math.round(buff.data.totalDamage);
         }
       },
 
@@ -628,8 +628,8 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.data.duration -= secondsElapsed;
-        if (buff.data.duration <= 0) {
+        buff.duration -= secondsElapsed;
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -727,7 +727,7 @@ export const ENCHANTMENT_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
             return targetBuff.id !== buff.id
           });
@@ -871,8 +871,8 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.stacks) {
-          buff.data.stacks = 5;
+        if (!buff.stacks) {
+          buff.stacks = 5;
         }
 
         if (Math.random() <= 0.02) {
@@ -890,9 +890,9 @@ export const ENCHANTMENT_BUFFS = {
 
           // cast ignite
           addBuff({ buff: newBuff, target: targetEnemy, caster: target, actualBattle });
-          buff.data.stacks -= 1;
+          buff.stacks -= 1;
 
-          if (buff.data.stacks <= 0) {
+          if (buff.stacks <= 0) {
             removeBuff({ buff, target, caster: target });
           }
         }
@@ -939,11 +939,11 @@ export const ENCHANTMENT_BUFFS = {
             target.icon = 'demon.svg';
             buff.data.active = true;
             buff.data.deathStacks = 0.5;
-            buff.data.stacks = 0;
+            buff.stacks = 0;
           }
         } else {
           buff.data.deathStacks += secondsElapsed / 10;
-          buff.data.stacks = Math.round(buff.data.deathStacks);
+          buff.stacks = Math.round(buff.data.deathStacks);
           target.stats.health -= buff.data.deathStacks
         }
       },
@@ -970,7 +970,7 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.timeTillDodge = 15;
-        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.stacks = Math.round(buff.data.timeTillDodge);
         buff.data.dodge = false;
       },
 
@@ -985,7 +985,7 @@ export const ENCHANTMENT_BUFFS = {
         if (buff.data.timeTillDodge < 0) {
           buff.data.timeTillDodge = 0;
         }
-        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.stacks = Math.round(buff.data.timeTillDodge);
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {

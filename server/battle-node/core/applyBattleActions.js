@@ -12,8 +12,11 @@ export default function applyBattleActions() {
     }
 
     if (abilityId === 'changeTarget') {
-      // Modify casters preferred target
-      casterUnit.target = action.targets[0];
+      const targetId = action.targets[0];
+      if (this.enemiesMap[targetId]) {
+        // Modify casters preferred target
+        casterUnit.target = action.targets[0];        
+      }
     } else if (abilityId === 'forfeit') {
       this.forfitters[casterId] = true;
       if (Object.keys(this.forfitters).length >= (Object.keys(this.owners).length / 2)) {
@@ -30,6 +33,10 @@ export default function applyBattleActions() {
       }
     } else if (abilityId === 'clickAttack') {
       const targetId = action.targets[0];
+      if (!this.enemiesMap[targetId]) {
+        return;
+      }
+
       if (targetId !== casterUnit.target) {
         casterUnit.target = targetId;
       } else {

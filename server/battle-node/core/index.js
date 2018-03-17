@@ -57,7 +57,6 @@ export default class Battle {
 
     let globalSocket;
     if (!balancers[balancer]) {
-      console.log('Creating balancer connection');
       balancers[balancer] = new Balancer(balancer, io, this);
     } else {
       balancers[balancer].updateRef(this);
@@ -143,10 +142,12 @@ export default class Battle {
     }
 
     if (unit.isEnemy) {
-      this.deltaEvents.push({ type: 'push', path: 'enemies', value: unit.raw() });
+      const event = { type: 'push', path: 'enemies', value: unit.raw() };
+      this.deltaEvents.push(event);
       this.enemies.push(unit);
     } else {
-      this.deltaEvents.push({ type: 'push', path: 'units', value: unit.raw() });
+      const event = { type: 'push', path: 'units', value: unit.raw() };
+      this.deltaEvents.push(event);
       this.units.push(unit);
     }
     this.updateUnitMaps();
@@ -228,7 +229,12 @@ Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
       unit.buffs.forEach((buff) => {
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTick) {
-          buff.constants.events.onTick({ secondsElapsed, buff, target: unit, actualBattle: this });
+          buff.constants.events.onTick({
+            secondsElapsed,
+            buff,
+            target: unit,
+            actualBattle: this
+          });
         }
       });
     }

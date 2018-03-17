@@ -1,4 +1,5 @@
 import Stats from './stats';
+import Buff from './buff';
 import Ability from './ability';
 
 export default class Unit {
@@ -48,14 +49,9 @@ export default class Unit {
       });
     }
 
-    // TODO: Make this a class
-    if (unit.buffs && unit.buffs.length > 0) {
-      this.buffs = JSON.parse(JSON.stringify(unit.buffs));
-    } else {
-      this.buffs = unit.buffs.concat([]);
-    }
+    this.buffs = [];
+    this.addBuffs(unit.buffs);
 
-    // TODO: Make this a class?
     this.stats = new Stats(unit.stats, unit.id, battleRef);
     this.xpDistribution = unit.xpDistribution;
     this.towerContributionsToday = unit.towerContributionsToday;
@@ -83,11 +79,12 @@ export default class Unit {
   }
 
   addBuff(buff) {
-    this.buffs.push(buff);
+    const newBuff = new Buff(buff, this, this.battleRef);
+    this.buffs.push(newBuff);
     this.battleRef.deltaEvents.push({
       type: 'push',
       path: `unitsMap.${this.id}.buffs`,
-      value: buff
+      value: newBuff.raw()
     });
   }
 
@@ -106,7 +103,7 @@ export default class Unit {
       name: this.name,
       abilities: this.abilities ? this.abilities.map(ability => ability.raw()) : [],
       owner: this.owner,
-      buffs: this.buffs,
+      buffs: this.buffs && this.buffs.length > 0 ? this.buffs.map(buff => buff.raw()) : [],
       stats: this.stats.raw(),
       amulet: this.amulet,
       icon: this.icon,

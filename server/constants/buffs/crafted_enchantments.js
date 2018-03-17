@@ -56,16 +56,16 @@ LEG
         const constants = buff.constants.constants;
 
         caster.stats.armor += constants.armorPerHit * constants.totalHits;
-        buff.data.stacks = constants.armorPerHit * constants.totalHits;
+        buff.stacks = constants.armorPerHit * constants.totalHits;
       },
 
       // Remove Armor as player gets hit.
       onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
         const constants = buff.constants.constants;
 
-        buff.data.stacks -= constants.armorPerHit;
+        buff.stacks -= constants.armorPerHit;
 
-        if ( buff.data.stacks > 0 ) {
+        if ( buff.stacks > 0 ) {
           defender.stats.armor -= constants.armorPerHit;
         } else {
           removeBuff({ buff, target : defender, actualBattle });
@@ -241,16 +241,16 @@ LEG
         target.stats.healthMax += buff.data.healthMax;
 
         buff.data.timeTillCharge = constants.charge;
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
 
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
-          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+          buff.stacks = Math.round(buff.data.timeTillCharge);
         } else {
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
       },
 

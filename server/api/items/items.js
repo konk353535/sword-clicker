@@ -543,7 +543,7 @@ Meteor.methods({
         if (currentCombat.buffs && currentCombat.buffs.length > 0) {
           let existingBuff = _.findWhere(currentCombat.buffs, { id: buff.id });
           if (existingBuff) {
-            existingBuff.data.duration = -1;
+            existingBuff.duration = -1;
             existingBuff.constants = buff.constants;
             buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target: currentCombat });
           }

@@ -87,9 +87,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -140,9 +140,9 @@ export const MAGIC_BUFFS = {
           buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          buff.data.stacks = constants.attacksCount + 0;
+          buff.stacks = constants.attacksCount + 0;
         } else {
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
       },
 
@@ -150,9 +150,9 @@ export const MAGIC_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        buff.data.stacks -= 1;
+        buff.stacks -= 1;
 
-        if (buff.data.stacks <= 0) {
+        if (buff.stacks <= 0) {
           removeBuff({ buff, target: attacker, caster: attacker, actualBattle });
         }
       },
@@ -211,9 +211,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -276,9 +276,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -333,9 +333,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -538,9 +538,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -659,15 +659,15 @@ export const MAGIC_BUFFS = {
           const totalArmor = constants.armorBase + (constants.armorMPRatio * caster.stats.magicPower);
           target.stats.armor += totalArmor;
           buff.data.totalArmor = totalArmor;
-          buff.data.duration = constants.duration + 0;
+          buff.duration = constants.duration + 0;
           buff.data.totalDuration = constants.duration + 0;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -886,7 +886,7 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
@@ -899,7 +899,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillHeal = 4;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -958,7 +958,7 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
@@ -971,7 +971,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillHeal = 4;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1076,13 +1076,13 @@ export const MAGIC_BUFFS = {
             }
           });
         }
-        buff.data.duration = 0;
+        buff.duration = 0;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -1157,14 +1157,14 @@ export const MAGIC_BUFFS = {
           });
         } else {
           buff.data.totalMagicArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -1226,14 +1226,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1299,14 +1299,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1372,14 +1372,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1434,14 +1434,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1519,13 +1519,13 @@ export const MAGIC_BUFFS = {
 
         }
 
-        buff.data.duration = -1;
+        buff.duration = -1;
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1600,13 +1600,13 @@ export const MAGIC_BUFFS = {
 
         }
 
-        buff.data.duration = -1;
+        buff.duration = -1;
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1771,14 +1771,14 @@ export const MAGIC_BUFFS = {
           target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
         } else {
           buff.data.attackSpeedDecrease = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1842,7 +1842,7 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
@@ -1856,7 +1856,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillDamage = 1;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1915,7 +1915,7 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
@@ -1929,7 +1929,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillDamage = 0.5;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },

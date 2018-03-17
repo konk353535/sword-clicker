@@ -242,8 +242,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
           const clonedConstants = JSON.parse(JSON.stringify(enchantConstants));
           const newBuff = {
             id: buffId,
+            duration: clonedConstants.durationTotal,
             data: {
-              duration: clonedConstants.durationTotal,
               totalDuration: clonedConstants.durationTotal,
               icon: clonedConstants.icon,
               description: enchantConstants.description(),

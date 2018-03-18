@@ -57,17 +57,19 @@
         </div>
       </div>
       <div class="d-flex align-items-center">
-        <button class='btn btn-secondary multihit-btn ml-4'>Enable Multihit</button>
-        <input type='hidden' class='multihit-value' value=0 />
+        {{#if miningMultihit}}
+          <button class='btn btn-secondary multihit-disable ml-4'>Disable Multihit</button>
+        {{else}}
+          <button class='btn btn-secondary multihit-enable ml-4'>Enable Multihit</button>
+        {{/if}}
       </div>
-
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
           {{#each miningSpaces}}
-            {{> mineSpace mineSpace=this}}
+            {{> mineSpace mineSpace=this multihit=miningMultihit}}
           {{/each}}
         </div>
       </div>

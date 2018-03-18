@@ -174,12 +174,25 @@ Meteor.methods({
     });
   },
 
+  'groups.lock'(locked) {
+    Groups.update({
+      leader: Meteor.userId()
+    }, {
+      $set: {
+        locked
+      }
+    });
+  },
+
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
       _id: id
     });
 
+    if (targetGroup.locked) {
+      return;
+    }
 
     if (targetGroup.members.find(member => member === userDoc._id)) {
       throw new Meteor.Error('already-in-this-group');
@@ -404,9 +417,17 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'groups.invite' }, 25, 5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
 
-Meteor.publish('otherBattlers', function() {
-  return Groups.find({}, {
-    limit: 10,
+Meteor.publish('otherBattlers', function(limit) {
+  if (limit > 100) {
+    limit = 100;
+  }
+
+  return Groups.find({
+    lastBattleStarted: {
+      $gte: moment().subtract(24, 'hours').toDate()
+    }
+  }, {
+    limit,
     sort: {
       lastBattleStarted: -1
     }

@@ -33,7 +33,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state.set('waveDetails', {});
   this.state.set('maxFloor', 1);
 
-  Meteor.subscribe('otherBattlers');
+  Meteor.subscribe('otherBattlers', 3);
 
   Meteor.call('battles.myFloorContributions', (err, res) => {
     this.state.set('myFloorContributions', res);
@@ -106,6 +106,17 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 });
 
 Template.lobbyPage.events({
+
+  'click .battle-boss-btn'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', function (err, res) {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+
+      instance.state.set('newBattleLoading', false);
+    });
+  },
+
   'click .select-type'(event, instance) {
     const newType = instance.$(event.target).closest('.select-type').data('type');
     instance.state.set('type', newType);
@@ -118,6 +129,10 @@ Template.lobbyPage.events({
 
   'click .recent-battles-btn'(event, instance) {
     instance.data.setPage('recentBattles');
+  },
+
+  'click .consumables-btn'(event, instance) {
+    instance.data.setPage('consumables');
   },
 
   'click .other-battlers-btn'(event, instance) {
@@ -153,6 +168,14 @@ Template.lobbyPage.events({
 
   'click .btn-leave'(event) {
     Meteor.call('groups.leave');
+  },
+
+  'click .btn-lock-open'(event) {
+    Meteor.call('groups.lock', false);
+  },
+
+  'click .btn-lock-close'(event) {
+    Meteor.call('groups.lock', true);
   },
 
   'click .btn-kick'(event, instance) {
@@ -240,11 +263,6 @@ Template.lobbyPage.events({
   'click .decline-btn'(event, instance) {
     const inviteId = instance.$(event.target).closest('.decline-btn').data('id');
     Meteor.call('groups.acceptInvite', inviteId, false);
-  },
-
-  'click .btn-join-group'(event, instance) {
-    const groupId = instance.$(event.target).closest('.btn-join-group').data('id');
-    Meteor.call('groups.join', groupId);
   }
 
 })
@@ -321,6 +339,12 @@ Template.lobbyPage.helpers({
     return Template.instance().state.get('waveDetails');
   },
 
+  wavePointsProgress() {
+    const waveDetails = Template.instance().state.get('waveDetails');
+
+    return (waveDetails.points / waveDetails.pointsMax) * 100;
+  },
+
   usersCurrentFloor() {
     return Template.instance().state.get('usersCurrentFloor');
   },
@@ -330,8 +354,12 @@ Template.lobbyPage.helpers({
   },
 
   otherBattlers() {
-    const otherBattlers = Groups.find({}, {
-      limit: 10,
+    const otherBattlers = Groups.find({
+      lastBattleStarted: {
+        $gte: moment().subtract(24, 'hours').toDate()
+      }
+    }, {
+      limit: 3,
       sort: {
         lastBattleStarted: -1
       }
@@ -376,7 +404,11 @@ Template.lobbyPage.helpers({
   },
 
   foodItems() {
-    return Items.find({ category: 'food' }).map((item) => {
+    return Items.find({
+      category: 'food'
+    }, {
+      limit: 8
+    }).map((item) => {
       item.primaryAction = {
         description: 'eat',
         item,

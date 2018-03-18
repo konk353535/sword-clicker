@@ -4,10 +4,8 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { STATE_BUFFS } from '/imports/constants/state';
 import { State } from '/imports/api/state/state';
 
-import RaiCheckout from 'arrowpay-react-checkout';
 import lodash from 'lodash';
 
-import 'arrowpay-react-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
@@ -281,10 +279,6 @@ Template.shopPage.rendered = function () {
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
-  },
-
-  RaiCheckout() {
-    return RaiCheckout;
   },
 
   onPaymentConfirmed() {

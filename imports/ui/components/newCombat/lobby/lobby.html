@@ -55,6 +55,20 @@
               {{/each}}
             </div>
           </div>
+        {{else}}
+          {{#if $lte waveDetails.points waveDetails.pointsMax}}
+            <div class="progress" style="min-width: 200px; height: 30px;">
+              <div class="progress-bar bg-danger justify-content-center align-items-center d-flex" role="progressbar" style="min-width: 75px; width: {{wavePointsProgress}}%; height: 30px;" aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
+                {{waveDetails.points}} / {{waveDetails.pointsMax}}
+              </div>
+            </div>
+            {{#each combat.towerContributions}}
+              <div class="mx-1 badge badge-warning">{{> formatNumber number=this decimal=1}}</div>
+            {{/each}}
+          {{else}}
+            <button class="btn btn-danger battle-boss-btn mr-2">Boss</button>
+            {{waveDetails.health}} / {{waveDetails.healthMax}} hp
+          {{/if}}
         {{/if}}
       {{else if $eq typeKey 'afk'}}
         <div class="mr-2 hidden-sm-down">Floor</div>
@@ -122,6 +136,17 @@
                 <button class="btn btn-secondary btn-leave btn-sm mr-1">
                   <img src="/icons/leave.svg" width="16" height="16" />
                 </button>
+                {{#if $eq this.owner currentGroup.leader}}
+                  {{#if currentGroup.locked}}
+                    <button class="btn btn-secondary btn-lock-open btn-sm mr-1">
+                      <img src="/icons/openLock.svg" width="16" height="16" />
+                    </button>
+                  {{else}}
+                    <button class="btn btn-secondary btn-lock-close btn-sm mr-1">
+                      <img src="/icons/closedLock.svg" width="16" height="16" />
+                    </button>
+                  {{/if}}
+                {{/if}}
               {{else if isLeader}}
                 <button class="btn btn-danger btn-kick btn-sm mr-1" data-owner="{{this.owner}}">
                   <img src="/icons/boot.svg" width="16" height="16" />
@@ -167,7 +192,7 @@
 
       <div class="mb-3">
         <div>
-          <a href="#" class="mb-1 recent-battles-btn text-muted">Consumables</a>
+          <a href="#" class="mb-1 consumables-btn text-muted">Consumables</a>
         </div>
         <div class="d-flex flex-wrap">
           {{#each combat.buffs}}
@@ -186,41 +211,7 @@
           <a href="#" class="mb-1 other-battlers-btn text-muted">Other Battlers</a>
         </div>
         {{#each otherBattlers}}
-          <div class="recent-battling-row">
-            <span class="mr-3">Floor {{this.floor}}</span>
-            
-            <span class="badge {{#if this.inBattle}}badge-success{{else}}badge-info{{/if}} mr-3" style="width: 120px;">
-              {{#if this.inBattle}}
-                Battling for
-              {{else}}
-                Fought
-              {{/if}}
-
-              {{#if $lte (moDiff moNow this.lastBattleStarted 'seconds') 60}}          
-                {{moDiff moNow this.lastBattleStarted 'seconds'}}s
-              {{else}}
-                {{moDiff moNow this.lastBattleStarted 'minutes'}}m
-              {{/if}}
-
-              {{#unless this.inBattle}}
-                ago
-              {{/unless}}
-            </span>
-            <span class="mr-3 d-flex users-row">
-              {{#each this.membersObject}}
-                <span class="badge badge-invisible mr-1">{{this.name}} #{{this.averageCombat}}</span>
-              {{/each}}
-            </span>
-            <div class="d-flex flex-grow actions-row justify-content-end">
-              <span class="mr-3">{{this.battleCount}} Battles</span>
-              <button class="btn btn-secondary btn-spectate-group btn-sm mr-1" data-id="{{this._id}}" disabled="{{$not this.inBattle}}">
-                Spectate
-              </button>
-              <button class="btn btn-primary btn-join-group btn-sm" data-id="{{this._id}}">
-                Join
-              </button>
-            </div>
-          </div>
+          {{> otherBattlersRow row=this}}
         {{/each}}
       </div>
     {{/if}}

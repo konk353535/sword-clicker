@@ -91,6 +91,8 @@ const startBattle = (currentBattle, self) => {
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('currentBattle', false);
+  this.state.set('onTick', false);
+  this.state.set('fullState', false);
 
   setInterval(() => {
     // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
@@ -125,68 +127,77 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         transports: ['websocket'],
         forceNew: true
       });
-      window.battleSocket.on('disconnect', () => {
-        delete window.battleSocket;
+    }
+
+    if (!this.state.get('fullState')) {
+      this.state.set('fullState', true);
+      battleSocket.on('fullState', (data) => {
+        const rawBattle = data.battle;
+        if (!rawBattle) return;
+        const currentBattle = rawBattle;
+        if (!currentBattle) return;
+
+        startBattle(currentBattle, this);
       });
     }
 
-    battleSocket.emit('getFullState');
-
-    battleSocket.on('fullState', (data) => {
-      const rawBattle = data.battle;
-      if (!rawBattle) return;
-      const currentBattle = rawBattle;
-      if (!currentBattle) return;
-
-      startBattle(currentBattle, this);
-    });
-
-    battleSocket.on('tick', (data) => {
-      const { tickEvents, deltaEvents } = data;
-      const currentBattle = this.state.get('currentBattle');
-      if (!currentBattle) return;
-      currentBattle.tickEvents = tickEvents;
-      currentBattle.unitsMap = {};
-      currentBattle.units.concat(currentBattle.enemies, currentBattle.deadEnemies, currentBattle.deadUnits).forEach((unit) => {
-        if (unit) {
-          currentBattle.unitsMap[unit.id] = unit;
-          if (unit.abilities) {
-            unit.abilitiesMap = {};
-            unit.abilities.forEach((ability) => {
-              unit.abilitiesMap[ability.id] = ability;
-            });
+    if (!this.state.get('onTick')) {
+      this.state.set('onTick', true);
+      battleSocket.on('tick', (data) => {
+        const { tickEvents, deltaEvents } = data;
+        console.log(data.tickCount);
+        const currentBattle = this.state.get('currentBattle');
+        if (!currentBattle) return;
+        currentBattle.tickEvents = tickEvents;
+        currentBattle.unitsMap = {};
+        currentBattle.units.concat(currentBattle.enemies, currentBattle.deadEnemies, currentBattle.deadUnits).forEach((unit) => {
+          if (unit) {
+            currentBattle.unitsMap[unit.id] = unit;
+            if (unit.abilities) {
+              unit.abilitiesMap = {};
+              unit.abilities.forEach((ability) => {
+                unit.abilitiesMap[ability.id] = ability;
+              });
+            }
+            if (unit.buffs) {
+              unit.buffsMap = {};
+              unit.buffs.forEach((buff) => {
+                unit.buffsMap[buff.id] = buff;
+              });
+            }
           }
-          if (unit.buffs) {
-            unit.buffsMap = {};
-            unit.buffs.forEach((buff) => {
-              unit.buffsMap[buff.id] = buff;
-            });
+        });
+
+        deltaEvents.forEach(({ type, path, value }) => {
+          if (type === 'abs') {
+            lodash.set(currentBattle, path, value);
+          } else if (type === 'push') {
+            const arrayToMutate = lodash.get(currentBattle, path);
+            if (arrayToMutate) {
+              arrayToMutate.push(value);
+            }
+          } else if (type === 'pop') {
+            const arrayToMutate = lodash.get(currentBattle, path);
+            if (arrayToMutate) {
+              lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
+                return unit.id !== value;
+              }));
+            }
           }
-        }
+        });
+
+        startBattle(currentBattle, this);
       });
 
-      deltaEvents.forEach(({ type, path, value }) => {
-        if (type === 'abs') {
-          lodash.set(currentBattle, path, value);
-        } else if (type === 'push') {
-          const arrayToMutate = lodash.get(currentBattle, path);
-          if (arrayToMutate) {
-            arrayToMutate.push(value);
-          }
-        } else if (type === 'pop') {
-          const arrayToMutate = lodash.get(currentBattle, path);
-          if (arrayToMutate) {
-            lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
-              return unit.id !== value;
-            }));
-          }
-        }
-      });
-
-      startBattle(currentBattle, this);
-    });
+      battleSocket.emit('getFullState')
+    }
   })
 });
+
+Template.currentBattleUi.onDestroyed(function () {
+  battleSocket.removeListener('tick');
+  battleSocket.removeListener('fullState');
+})
 
 Template.currentBattleUi.events({
   'click .forfeit-battle'(event, instance) {

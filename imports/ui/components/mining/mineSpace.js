@@ -25,10 +25,7 @@ Template.mineSpace.events({
       membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
     }
 
-    let multihit = $('.multihit-value').val();
-    multihit = multihit == "1" ? true : false;
-
-    if (shiftKey || multihit) {
+    if (shiftKey || instance.data.multihit) {
       let perHit = myMining.stats.attack * multiplier * membershipMultiplier;
       let hitsRemaining = Math.ceil(instance.data.mineSpace.health / perHit);
       multiplier = Math.min( hitsRemaining, 10);

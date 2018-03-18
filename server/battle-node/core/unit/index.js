@@ -39,6 +39,7 @@ export default class Unit {
     this.amulet = unit.amulet;
     this.mainHandType = unit.mainHandType;
     this.offHandType = unit.offHandType;
+    this.towerContributions = unit.towerContributions;
 
     if (unit.abilities) {
       this.abilitiesMap = {};
@@ -108,7 +109,7 @@ export default class Unit {
       icon: this.icon,
       xpDistribution: this.xpDistribution,
       isTowerContribution: this.isTowerContribution,
-      towerContributionsToday: this.towerContributionsToday,
+      towerContributions: this.towerContributions,
       tickOffset: this.tickOffset,
       target: this.target,
       owner: this.owner,

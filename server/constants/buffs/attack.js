@@ -297,7 +297,7 @@ export const ATTACK_BUFFS = {
           const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
 
           // Add poisoned debuff to enemy
-          defender.buffs.push({
+          defender.addBuff({
             id: 'basic_poison',
             data: {
               duration: 300,

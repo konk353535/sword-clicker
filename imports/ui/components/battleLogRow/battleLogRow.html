@@ -58,7 +58,7 @@
 
         {{/each}}
 
-        <span class="d-flex justify-content-end flex-grow hidden-sm-down">
+        <span class="d-flex justify-content-end flex-grow">
           {{#if showMore}}
             <a class="show-less" href="#" style="width: 100px">Show Less</a>
           {{else}}
@@ -82,47 +82,49 @@
       <h3 class="my-2">Details</h3>
       <!-- Combine with item drops? -->
       <div class="d-flex flex-row">
-        <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Damage Done</th>
-            <th>Healing Done</th>
-            <th>Damage Taken</th>
-            <th>Loot</th>
-          </tr>
-          </thead>
-          <tbody>
-          {{#each computedBattle.detailedStats}}
+        <div class="table-responsive">
+          <table class="table table-bordered">
+          <thead>
             <tr>
-              <td class="text-capitalize"><b>{{this.name}}</b></td>
-              <td>{{> ceilNumber this.damageDone}}</td>
-              <td>{{> ceilNumber this.healingDone}}</td>
-              <td>{{> ceilNumber this.damageTaken}}</td>
-              <td>
-                <div class="d-flex">
-                  {{#each this.tickEvents}}
-                    {{#if $eq this.type 'item'}}
-                      <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
-                        +{{this.amount}}
-                        <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
-                        {{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}
-                      </div>
-                    {{/if}}
-
-                    {{#if $eq this.type 'gold'}}
-                      <div class="ml-1 d-flex align-items-center">
-                        +{{this.amount}}
-                        <img src="/icons/goldCoin.svg" class="extra-small-icon">
-                      </div>
-                    {{/if}}
-                  {{/each}}
-                </div>
-              </td>
+              <th>Username</th>
+              <th>Damage Done</th>
+              <th>Healing Done</th>
+              <th>Damage Taken</th>
+              <th>Loot</th>
             </tr>
-          {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            {{#each computedBattle.detailedStats}}
+              <tr>
+                <td class="text-capitalize"><b>{{this.name}}</b></td>
+                <td>{{> ceilNumber this.damageDone}}</td>
+                <td>{{> ceilNumber this.healingDone}}</td>
+                <td>{{> ceilNumber this.damageTaken}}</td>
+                <td>
+                  <div class="d-flex">
+                    {{#each this.tickEvents}}
+                      {{#if $eq this.type 'item'}}
+                        <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
+                          +{{this.amount}}
+                          <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
+                          {{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}
+                        </div>
+                      {{/if}}
+
+                      {{#if $eq this.type 'gold'}}
+                        <div class="ml-1 d-flex align-items-center">
+                          +{{this.amount}}
+                          <img src="/icons/goldCoin.svg" class="extra-small-icon">
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                </td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     {{/if}}
     </div>

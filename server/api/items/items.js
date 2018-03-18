@@ -529,6 +529,7 @@ Meteor.methods({
         duplicateTag: buff.constants.duplicateTag
       }, buff.constants.data);
 
+      buff.duration = buff.constants.data.duration;
       buff.data.description = buff.constants.description({ buff: buff, level: 1 });
     });
 

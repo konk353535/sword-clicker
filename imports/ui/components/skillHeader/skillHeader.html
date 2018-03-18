@@ -1,10 +1,4 @@
 <template name="skillHeader"> 
-
-  {{#unless flipped}}
-    <div class="progress">
-      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-  {{/unless}}
   <div class="d-flex my-3 align-items-center">
     <i class="lilIcon-{{skill.type}} medium-icon"></i>
     <h1 class="ml-1 mb-0">
@@ -23,9 +17,4 @@
       {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
     {{/if}}
   </div>
-  {{#if flipped}}
-    <div class="progress">
-      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-  {{/if}}
 </template>

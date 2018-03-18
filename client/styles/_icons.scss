@@ -410,8 +410,12 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 .food-icon-container.disabled {
-  background-color: #DDD;
+  background-color: #FAFAFA;
   font-size: 18px;
+
+  & .cooldown-text {
+    color: $gray;
+  }
 }
 
 .ore-icon {

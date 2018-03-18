@@ -50,3 +50,5 @@ simple:json-routes
 service-configuration
 sergeyt:typeahead
 standard-minifier-js
+cultofcoders:redis-oplog
+disable-oplog

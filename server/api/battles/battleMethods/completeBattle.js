@@ -186,29 +186,28 @@ export const completeBattle = function (actualBattle) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
 
-
-    if (actualBattle.isTowerContribution) {
-      if (win) {
-        // Count current room
-        pointsEarnt += Math.pow(1.7, actualBattle.room);
-      } else {
-        // Get hp of current wave
-        let totalHp = 0;
-        let currentHp = 0;
-        actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
+    if (win) {
+      // Count current room
+      pointsEarnt += Math.pow(1.7, actualBattle.room);
+    } else {
+      // Get hp of current wave
+      let totalHp = 0;
+      let currentHp = 0;
+      actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
+        if (enemy) {
           totalHp += enemy.stats.healthMax;
           currentHp += enemy.stats.health;
-        });
+        }
+      });
 
-        const decimalCompletion = 1 - (currentHp / totalHp);
+      const decimalCompletion = 1 - (currentHp / totalHp);
 
-        pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
-      }
+      pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
+    }
 
-      // Add points from previous rooms
-      for (let i = actualBattle.room - 1; i > 0; i--) {
-        pointsEarnt += Math.pow(1.7, i);
-      }
+    // Add points from previous rooms
+    for (let i = actualBattle.room - 1; i > 0; i--) {
+      pointsEarnt += Math.pow(1.7, i);
     }
 
     const units = actualBattle.units.filter((unit) => {
@@ -394,82 +393,83 @@ export const completeBattle = function (actualBattle) {
       }
     });
 
-    if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
+    if (actualBattle.floor && actualBattle.room) {
       if (actualBattle.room !== 'boss') {
 
-        let countTowerContributors = 0;
+        let totalPointsForGroup = 0;
 
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
 
-          if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            // Double confirm that this is a contribution
-            const combatDoc = Combat.findOne({
+          if (ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
+            ownerObject.newContribution = pointsEarnt;
+            let actualPointsGained = pointsEarnt;
+            if (ownerObject.towerContributions.length >= 3) {
+              actualPointsGained -= ownerObject.towerContributions[0];
+              ownerObject.towerContributions[0] = pointsEarnt;
+              ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+            } else {
+              ownerObject.towerContributions.push(pointsEarnt);
+              ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+            }
+
+            totalPointsForGroup += actualPointsGained;
+
+            const updateSelector = { owner, floor: actualBattle.floor };
+
+            const updateModifier = {
+              $inc: {
+                points: actualPointsGained
+              },
+              $set: {
+                username: ownerObject.name // To do: Make this work when users have multiple units
+              }
+            };
+
+            const possibleStats = [
+              'mining',
+              'crafting',
+              'woodcutting',
+              'farming',
+              'inscription',
+              'astronomy'
+            ];
+
+            const targetStat = _.sample(possibleStats);
+            addXp(targetStat, Math.round(actualPointsGained * 50), owner);
+
+            if (actualPointsGained > 10) {
+              addFakeGems(5, owner);
+            }
+
+            finalTickEvents.push({
+              type: 'xp',
+              amount: Math.round(actualPointsGained * 50),
+              skill: targetStat,
               owner
             });
 
-            if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
-              ownerObject.usedTowerContribution = true;
-              countTowerContributors++;
+            finalTickEvents.push({
+              type: 'points',
+              amount: actualPointsGained.toFixed(1),
+              icon: 'tower.svg',
+              owner
+            });
 
-              const updateSelector = { owner, floor: actualBattle.floor };
-
-              const updateModifier = {
-                $inc: {
-                  points: pointsEarnt
-                },
-                $setOnInsert: {
-                  points: pointsEarnt,
-                  username: ownerObject.name // To do: Make this work when users have multiple units
-                }
-              };
-
-              const possibleStats = [
-                'mining',
-                'crafting',
-                'woodcutting',
-                'farming',
-                'inscription',
-                'astronomy'
-              ];
-
-              const targetStat = _.sample(possibleStats);
-              addXp(targetStat, Math.round(pointsEarnt * 50), owner);
-
-              if (pointsEarnt > 10) {
-                addFakeGems(5, owner);
-              }
-
-              finalTickEvents.push({
-                type: 'xp',
-                amount: Math.round(pointsEarnt * 50),
-                skill: targetStat,
-                owner
-              });
-
-              finalTickEvents.push({
-                type: 'points',
-                amount: pointsEarnt.toFixed(1),
-                icon: 'tower.svg',
-                owner
-              });
-
-              FloorWaveScores.upsert(updateSelector, updateModifier);
-            } else {
-            }
+            FloorWaveScores.update(updateSelector, updateModifier);
           }
         });
 
-        if (countTowerContributors > 0) {
+        if (totalPointsForGroup > 0) {
           // Increment total points data
           Floors.update({
             floor: actualBattle.floor,
             floorComplete: false
           }, {
             $inc: {
-              points: pointsEarnt * countTowerContributors
+              points: totalPointsForGroup
             }
           });
         }
@@ -508,11 +508,14 @@ export const completeBattle = function (actualBattle) {
       $set: {
         'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
         lastGameUpdated: new Date(),
-      },
-      $inc: {
-        'towerContributionsToday': unit.usedTowerContribution ? 1 : 0
       }
     };
+
+    console.log(unit.towerContributions);
+    if (unit.newContribution) {
+      combatModifier['$set'].towerContributions = unit.towerContributions;      
+    }
+
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       combatModifier['$set'].foughtBoss = true;
     }
@@ -563,10 +566,14 @@ export const completeBattle = function (actualBattle) {
       addXp('magic', totalMagicXp, unit.owner);
     }
 
+    console.log(unit.owner);
+    console.log(combatModifier);
     // Update relevant stuff, use callback so this is non blocking
     Combat.update({
       owner: unit.owner
     }, combatModifier, (err, res) => {
+      console.log(err);
+      console.log(res);
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
       updateAbilityCooldowns(unit.owner, (err, res) => {

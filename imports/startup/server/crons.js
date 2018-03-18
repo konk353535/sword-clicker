@@ -64,13 +64,9 @@ SyncedCron.add({
     console.log('Fought boss is done now');
 
     // Enable users to fight waves again
-    Combat.update({
-      towerContributionsToday: {
-        $gt: 0
-      }
-    }, {
+    Combat.update({}, {
       $set: {
-        towerContributionsToday: 0
+        towerContributions: []
       }
     }, { multi: true });
 

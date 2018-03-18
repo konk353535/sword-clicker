@@ -513,6 +513,7 @@ Accounts.onCreateUser((options, user) => {
     });
 
     Combat.insert({
+      towerContributions: [],
       owner: userId,
       stats: {
         health: 50,

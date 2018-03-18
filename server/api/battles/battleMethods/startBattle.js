@@ -221,7 +221,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       id: userCombat.owner,
       owner: userCombat.owner,
       battleSecret: targetUser.battleSecret,
-      towerContributionsToday: userCombat.towerContributionsToday,
+      towerContributions: userCombat.towerContributions,
       isTowerContribution: userCombat.isTowerContribution,
       abilities: usersEquippedAbilities,
       name: userCombat.username || 'Unnamed',

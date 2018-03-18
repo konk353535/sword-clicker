@@ -106,6 +106,17 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 });
 
 Template.lobbyPage.events({
+
+  'click .battle-boss-btn'(event, instance) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', function (err, res) {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+
+      instance.state.set('newBattleLoading', false);
+    });
+  },
+
   'click .select-type'(event, instance) {
     const newType = instance.$(event.target).closest('.select-type').data('type');
     instance.state.set('type', newType);
@@ -157,6 +168,14 @@ Template.lobbyPage.events({
 
   'click .btn-leave'(event) {
     Meteor.call('groups.leave');
+  },
+
+  'click .btn-lock-open'(event) {
+    Meteor.call('groups.lock', false);
+  },
+
+  'click .btn-lock-close'(event) {
+    Meteor.call('groups.lock', true);
   },
 
   'click .btn-kick'(event, instance) {
@@ -318,6 +337,12 @@ Template.lobbyPage.helpers({
 
   waveDetails() {
     return Template.instance().state.get('waveDetails');
+  },
+
+  wavePointsProgress() {
+    const waveDetails = Template.instance().state.get('waveDetails');
+
+    return (waveDetails.points / waveDetails.pointsMax) * 100;
   },
 
   usersCurrentFloor() {

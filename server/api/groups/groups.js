@@ -174,12 +174,25 @@ Meteor.methods({
     });
   },
 
+  'groups.lock'(locked) {
+    Groups.update({
+      leader: Meteor.userId()
+    }, {
+      $set: {
+        locked
+      }
+    });
+  },
+
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
       _id: id
     });
 
+    if (targetGroup.locked) {
+      return;
+    }
 
     if (targetGroup.members.find(member => member === userDoc._id)) {
       throw new Meteor.Error('already-in-this-group');

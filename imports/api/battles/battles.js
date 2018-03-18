@@ -50,7 +50,11 @@ BattlesSchema = new SimpleSchema({
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
   'units.$.name': { type: String },
+
+  // Deprecated
   'units.$.towerContributionsToday': { type: Number },
+
+  'units.$.towerContributions': { type: [Number] },
   'units.$.tickOffset': { type: Number, defaultValue: 0 },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 

@@ -147,7 +147,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       this.state.set('onTick', true);
       battleSocket.on('tick', (data) => {
         const { tickEvents, deltaEvents } = data;
-        console.log(data.tickCount);
         const currentBattle = this.state.get('currentBattle');
         if (!currentBattle) return;
         currentBattle.tickEvents = tickEvents;
@@ -193,7 +192,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 
       battleSocket.emit('getFullState')
     }
-  })
+  });
 });
 
 Template.currentBattleUi.onDestroyed(function () {

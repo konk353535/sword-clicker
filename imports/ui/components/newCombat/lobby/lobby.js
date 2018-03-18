@@ -15,13 +15,11 @@ import { Users } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
-import { Battles } from '/imports/api/battles/battles.js';
+import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
 // TODO: All this logic will fire after every battle, very ineffective though
 Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-
-  Meteor.subscribe('battles');
 
   this.state.set('userSuggestions', []);
   this.state.set('type', 'group');
@@ -33,11 +31,15 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state.set('waveDetails', {});
   this.state.set('maxFloor', 1);
 
+  // Resubscribe
   Meteor.subscribe('otherBattlers', 3);
+  Meteor.subscribe('battles');
 
+  // Api Call
+  /*
   Meteor.call('battles.myFloorContributions', (err, res) => {
     this.state.set('myFloorContributions', res);
-  });
+  });*/
 
   Tracker.autorun(() => {
     const currentGroup = Groups.findOne({
@@ -49,7 +51,12 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       localBalancer = currentGroup.balancer;
     }
 
-    if (!window.battleSocket || localBalancer !== window.balancer) {
+    // Lots of hacks follow, I'm so sorry
+    const currentBattleList = BattlesList.findOne({
+      owners: Meteor.userId()
+    });
+
+    if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
       window.balancer = localBalancer;
       $.ajax({
         url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
@@ -57,9 +64,6 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
         window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
           transports: ['websocket'],
           forceNew: true,
-        });
-        window.battleSocket.on('disconnect', () => {
-          delete window.battleSocket;
         });
       });
     }
@@ -84,7 +88,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-    // TODO: Can replace this call by making the FLOORS constants client side
+    // Another method Call
     Meteor.call('battles.getFloorDetails', parseInt(this.state.get('usersCurrentFloor')), (err, floorDetailsRaw) => {
       if (err) {
         console.log(err);

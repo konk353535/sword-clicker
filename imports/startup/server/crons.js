@@ -12,8 +12,6 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
-const redis = new Meteor.RedisCollection('redis');
-
 // Reset tower things (daily)
 SyncedCron.add({
   name: 'Reset boss health',

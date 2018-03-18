@@ -1,25 +1,31 @@
 import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
+import { State } from '/imports/api/state/state';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import moment from 'moment';
+
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
 import _ from 'underscore';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
-const redis = new Meteor.RedisCollection('redis');
 
 import { unlockFarmingSpaces } from '/server/api/farming/farming';
 
 Meteor.methods({
 
   'shop.fetchGlobalBuffs'() {
-    return JSON.parse(redis.get('global-buffs-xpq'));
+    return State.find({
+      name: {
+        $in: Object.values(STATE_BUFFS)
+      }
+    });
   },
 
   'shop.buyGlobalBuff'(type) {
-    if (!_.contains(['combat', 'gathering', 'crafting'], type)) {
+    if (!_.contains(Object.values(STATE_BUFFS), type)) {
       throw new Meteor.Error("invalid-type", "Invalid type");
     }
 
@@ -32,14 +38,17 @@ Meteor.methods({
       throw new Meteor.Error("gems-too-low", "You don't have enough gems");
     }
 
-    // Fetch the redis doc
-    const rawGlobalBuffs = redis.get('global-buffs-xpq');
-    if (!rawGlobalBuffs) return;
-    const globalBuffs = JSON.parse(rawGlobalBuffs);
+    const globalBuff = State.findOne({name: type});
 
-    if (!globalBuffs[type]) {
+    if (!globalBuff) {
       return;
     }
+
+    const friendlyNames = {
+      buffCrafting: 'crafting',
+      buffCombat: 'combat',
+      buffGathering: 'gathering'
+    };
 
     // Take me gems!
     Users.update({
@@ -51,10 +60,11 @@ Meteor.methods({
     });
 
     // Increment target buff by 1 hour
-    if (moment().isAfter(globalBuffs[type])) {
-      // Legend banner to all online users?
+    if (moment().isAfter(globalBuff.value.activeTo)) {
+      globalBuff.value.activeTo = moment().add(1, 'hour').toDate();
+      const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
       Chats.insert({
-        message: `${userDoc.username} has activated the ${type} buff for all players (1hr remaining)`,
+        message: `${userDoc.username} has activated the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
         username: 'SERVER',
         name: 'SERVER',
         date: new Date(),
@@ -70,13 +80,26 @@ Meteor.methods({
       } else {
         globalBuffs.users[userDoc.username] = 1;
       }*/
-
-      globalBuffs[type] = moment().add(1, 'hour').toDate();
     } else {
-      globalBuffs[type] = moment(globalBuffs[type]).add(1, 'hour').toDate();
+      globalBuff.value.activeTo = moment(globalBuff.value.activeTo).add(1, 'hour').toDate();
+      const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
+      Chats.insert({
+        message: `${userDoc.username} has extended the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
+        username: 'SERVER',
+        name: 'SERVER',
+        date: new Date(),
+        custom: {
+          roomType: 'Game'
+        },
+        roomId: 'General'
+      });
     }
 
-    redis.set('global-buffs-xpq', JSON.stringify(globalBuffs));
+    State.update({name: type}, {
+      $set: {
+        value: globalBuff.value
+      }
+    });
   },
 
   'shop.buyMembership'(days) {

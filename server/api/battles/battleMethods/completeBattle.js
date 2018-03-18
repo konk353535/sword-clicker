@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import _ from 'underscore';
 
 import { ENEMIES } from '/server/constants/enemies/index.js';
@@ -7,6 +8,7 @@ import { MAGIC } from '/server/constants/magic/index.js';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
@@ -21,9 +23,8 @@ import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
+import { State } from '/imports/api/state/state';
 import weightedRandom from 'weighted-random';
-
-const redis = new Meteor.RedisCollection('redis');
 
 const distributeRewards = function distributeRewards({ floor }) {
 
@@ -161,9 +162,7 @@ export const completeBattle = function (actualBattle) {
   let win = aliveUnits.length > 0;
   let ngRewards = [];
 
-  const rawGlobalBuffs = redis.get('global-buffs-xpq');
-  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
-  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
 
   // Remove from battle list
   const battlesDeleted = removeBattle(actualBattle.id)

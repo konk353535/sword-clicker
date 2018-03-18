@@ -2,11 +2,13 @@ import { Meteor } from 'meteor/meteor';
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { STATE_BUFFS } from '/imports/constants/state/index';
 
 import moment from 'moment';
 import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills';
+import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
@@ -14,8 +16,6 @@ import { MiningSpace } from '/imports/api/mining/mining';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
-
-const redis = new Meteor.RedisCollection('redis');
 
 export const updateMiningStats = function (userId, isNewUser = false) {
   let owner;
@@ -347,9 +347,7 @@ Meteor.methods({
       return miningSpace.oreId === 'gem';
     }).length;
 
-    const rawGlobalBuffs = redis.get('global-buffs-xpq');
-    const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
-    const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
+    const hasCraftingGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.crafting, 'value.activeTo': {$gte: moment().toDate()}}));
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {

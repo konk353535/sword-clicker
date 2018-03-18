@@ -3,6 +3,7 @@ import { Random } from 'meteor/random';
 import moment from 'moment';
 
 import { Skills } from '../../api/skills/skills.js';
+import { State } from '/imports/api/state/state.js';
 import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
@@ -20,6 +21,7 @@ import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
@@ -561,6 +563,20 @@ if (!currentFloor) {
     pointsMax
   });
 }
+
+// Guarantee buffs exist
+Object.values(STATE_BUFFS).forEach((name) => {
+  const buff = State.findOne({name: name});
+
+  if (!buff) {
+    State.insert({
+      name: name,
+      value: {
+        activeTo: moment().subtract(1, 'hour').toDate()
+      }
+    })
+  }
+});
 
 const MINUTE = 60 * 1000;
 DDPRateLimiter.addRule({ type: 'method', name: 'SimpleChat.newMessage' }, 15, 1 * MINUTE);

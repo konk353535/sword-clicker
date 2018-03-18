@@ -316,6 +316,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('adventures');
   // Battle List
   Meteor.subscribe('battlesList');
+  // State
+  Meteor.subscribe('state');
 
   // Only use these if summary list is showing & not mobile
 

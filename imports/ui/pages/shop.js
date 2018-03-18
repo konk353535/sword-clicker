@@ -1,6 +1,11 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { STATE_BUFFS } from '/imports/constants/state';
+import { State } from '/imports/api/state/state';
+
+import lodash from 'lodash';
+
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
@@ -8,9 +13,11 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 
   this.state.set('processing', false);
 
-  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-    this.state.set('globalBuffs', res);
-  })
+  this.autorun(() => {
+    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
+    this.state.set('globalBuffs', globalBuffs);
+  });
 });
 
 Template.shopPage.events({
@@ -156,26 +163,17 @@ Template.shopPage.events({
   },
 
   'click .buy-global-crafting'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'crafting', (err, res) => {
-      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-        instance.state.set('globalBuffs', res);
-      })
+    Meteor.call('shop.buyGlobalBuff', 'buffCrafting', (err, res) => {
     });
   },
 
   'click .buy-global-gathering'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'gathering', (err, res) => {
-      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-        instance.state.set('globalBuffs', res);
-      })
+    Meteor.call('shop.buyGlobalBuff', 'buffGathering', (err, res) => {
     });
   },
 
   'click .buy-global-combat'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'combat', (err, res) => {
-      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-        instance.state.set('globalBuffs', res);
-      })
+    Meteor.call('shop.buyGlobalBuff', 'buffCombat', (err, res) => {
     });
   },
 
@@ -303,21 +301,7 @@ Template.shopPage.helpers({
   },
 
   globalBuffs() {
-    const globalBuffs = Template.instance().state.get('globalBuffs');
-
-    if (moment().isAfter(globalBuffs.combat)) {
-      globalBuffs.combat = null;
-    }
-
-    if (moment().isAfter(globalBuffs.gathering)) {
-      globalBuffs.gathering = null;
-    }
-
-    if (moment().isAfter(globalBuffs.crafting)) {
-      globalBuffs.crafting = null;
-    }
-
-    return globalBuffs;
+    return Template.instance().state.get('globalBuffs');
   },
 
   public_key() {

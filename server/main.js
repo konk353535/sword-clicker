@@ -16,6 +16,7 @@ import { Groups } from '/imports/api/groups/groups';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
+import { State } from '/imports/api/state/state';
 import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
@@ -75,4 +76,5 @@ Meteor.startup(() => {
   FarmingSpace._ensureIndex({ owner: 1 });
   FarmingSpace._ensureIndex({ index: 1 });
   BattleActions._ensureIndex({ battleId: 1 });
+  State._ensureIndex({ name: 1 })
 });

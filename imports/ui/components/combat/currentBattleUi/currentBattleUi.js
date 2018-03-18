@@ -32,7 +32,9 @@ const startBattle = (currentBattle, self) => {
       enemy.targettingPlayer = false;
     }
 
-    enemy.myTarget = myUnit.target === enemy.id;
+    if (myUnit) {
+      enemy.myTarget = myUnit.target === enemy.id;
+    }
   });
 
   self.state.set('currentBattle', currentBattle);

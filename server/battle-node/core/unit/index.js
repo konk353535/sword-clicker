@@ -74,6 +74,23 @@ export default class Unit {
     this.attackIn--;
   }
 
+  onDeath() {
+    // Get who was targetting this unit, give them a new target
+    this.battleRef.allAliveUnits.forEach((unit) => {
+      if (unit.target === this.id) {
+        if (unit.isEnemy) {
+          if (this.battleRef.units.length > 0) {
+            unit.target = this.battleRef.units[0].id;
+          }
+        } else {
+          if (this.battleRef.enemies.length > 0) {
+            unit.target = this.battleRef.enemies[0].id;
+          }
+        }
+      }
+    });
+  }
+
   addBuffs(buffs) {
     buffs.forEach(buff => this.addBuff(buff));
   }

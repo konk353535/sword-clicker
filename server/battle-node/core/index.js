@@ -351,6 +351,7 @@ Battle.prototype.checkDeath = function checkDeath(defender) {
 
     // Only kill defender if it is still dead
     if (defender.stats.health <= 0) {
+      defender.onDeath();
       this.removeUnit(defender);
     }
   }

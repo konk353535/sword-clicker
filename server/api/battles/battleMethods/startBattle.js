@@ -34,7 +34,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room);
   } else if (room === 'boss') {
     // Is tower BOSS (To Do)
-    battleData.enemies.push(FLOORS[floor].boss.enemy);
+    const boss = FLOORS[floor].boss.enemy;
+    boss.monsterType = boss.id;
+    battleData.enemies.push(boss);
   }
 
   // Is user in a group? If so this is a group battle
@@ -301,6 +303,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       totalXpGain += BATTLES.xpGain(enemyStats, enemyConstants.buffs);
       newBattle.enemies.push({
         id: uuid.v4(),
+        monsterType: enemy.id,
         stats: enemyStats,
         icon: enemyConstants.icon,
         buffs: enemyConstants.buffs || [],

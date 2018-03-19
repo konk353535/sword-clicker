@@ -74,6 +74,7 @@ export default class Battle {
     this.isExplorationRun = battle.isExplorationRun;  
     this.owners = battle.owners;
     this.totalXpGain = battle.totalXpGain;
+    this.startingBossHp = battle.startingBossHp;
     // { type, data }
     // types:
     //   abs: absolute change
@@ -189,6 +190,7 @@ export default class Battle {
         enemies: this.enemies.concat(this.deadEnemies).map(unit => unit.raw()),
         floor: this.floor,
         totalXpGain: this.totalXpGain,
+        startingBossHp: this.startingBossHp,
         room: this.room,
         wave: this.wave,
         historyStats: this.historyStats,

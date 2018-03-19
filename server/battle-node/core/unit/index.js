@@ -40,6 +40,7 @@ export default class Unit {
     this.mainHandType = unit.mainHandType;
     this.offHandType = unit.offHandType;
     this.towerContributions = unit.towerContributions;
+    this.monsterType = unit.monsterType;
 
     if (unit.abilities) {
       this.abilitiesMap = {};
@@ -118,6 +119,7 @@ export default class Unit {
     return {
       id: this.id,
       name: this.name,
+      monsterType: this.monsterType,
       abilities: this.abilities ? this.abilities.map(ability => ability.raw()) : [],
       owner: this.owner,
       buffs: this.buffs && this.buffs.length > 0 ? this.buffs.map(buff => buff.raw()) : [],

@@ -220,8 +220,8 @@ export const completeBattle = function (actualBattle) {
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-      const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
-      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
+      const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
 
       totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
     }
@@ -510,7 +510,6 @@ export const completeBattle = function (actualBattle) {
       }
     };
 
-    console.log(unit.towerContributions);
     if (unit.newContribution) {
       combatModifier['$set'].towerContributions = unit.towerContributions;      
     }
@@ -565,14 +564,10 @@ export const completeBattle = function (actualBattle) {
       addXp('magic', totalMagicXp, unit.owner);
     }
 
-    console.log(unit.owner);
-    console.log(combatModifier);
     // Update relevant stuff, use callback so this is non blocking
     Combat.update({
       owner: unit.owner
     }, combatModifier, (err, res) => {
-      console.log(err);
-      console.log(res);
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
       updateAbilityCooldowns(unit.owner, (err, res) => {
@@ -608,11 +603,12 @@ export const completeBattle = function (actualBattle) {
 
 
   // Is this a current boss battle?
+  console.log(actualBattle.startingBossHp);
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
-    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
-
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
+    console.log(`damage dealt = ${damageDealt}`);
     if (!damageDealt || damageDealt < 0) {
       damageDealt = 0;
     }
@@ -669,8 +665,8 @@ export const completeBattle = function (actualBattle) {
           const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, activeTowerUsers);
 
           // Get bosses hp
-          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
-          const bossEnemyConstants = ENEMIES[bossEnemyId];
+          const bossId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
+          const bossEnemyConstants = ENEMIES[bossId];
 
           // Reset tower contributions for all
           Combat.update({}, {

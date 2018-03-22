@@ -21,11 +21,10 @@ MiningSchema = new SimpleSchema({
   'miners.$.amount': { type: Number, decimal: true },
   'miners.$.level': { type: Number, defaultValue: 1 },
   'miners.$.xp': { type: Number, decimal: true, defaultValue: 0 },
-  prospectors: { type: [Object] },
-  'prospectors.$.id': { type: String },
-  'prospectors.$.amount': { type: Number },  
+  prospecting: { type: [String] },
   stats: { type: Object, blackbox: true, defaultValue: {} },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  collector: { type: Object, blackbox: true },
   lastGameUpdated: { type: Date, defaultValue: new Date() }
 });
 

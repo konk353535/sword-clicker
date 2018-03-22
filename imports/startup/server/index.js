@@ -17,9 +17,9 @@ import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import uuid from 'node-uuid';
 
-import { MINING } from '/server/constants/mining/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
-import { SKILLS } from '/server/constants/skills/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
+import { SKILLS } from '/imports/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
@@ -429,6 +429,7 @@ Accounts.onCreateUser((options, user) => {
 
   Mining.insert({
     owner: userId,
+    collector: {},
     lastGameUpdated: new Date(),
     miners: [{
       id: MINING.miners.primitive_miner.id,
@@ -447,7 +448,7 @@ Accounts.onCreateUser((options, user) => {
     index: 0
   });
 
-  for (let i = 1; i < 16; i++) {
+  for (let i = 1; i < 12; i++) {
     MiningSpace.insert({
       owner: userId,
       oreId: MINING.ores.stone.id,

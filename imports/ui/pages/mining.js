@@ -9,6 +9,7 @@ import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -19,6 +20,55 @@ let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
 let oresCache;
+
+
+function updateTotalDPH(self) {
+  const mining = Mining.findOne({});
+  const rawBuyableMiners = self.state.get('rawBuyableMiners');
+  const userDoc = Meteor.user();
+
+  if (!mining || !rawBuyableMiners) {
+    return;
+  }
+
+  let hasMiningUpgrade = false;
+  if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+    hasMiningUpgrade = true;
+  }
+
+  let totalDPH = 0;
+  const finalBuyableMiners = rawBuyableMiners.map((possibleMiner) => {
+    const localMiner = _.findWhere(mining.miners, { id: possibleMiner.id });
+    if (localMiner) {
+      possibleMiner.amount = localMiner.amount;
+      possibleMiner.baseDamagePerHour = localMiner.amount * possibleMiner.damagePerSecond * 3600;
+      possibleMiner.damagePerHour = localMiner.amount * possibleMiner.damagePerSecond * 3600;
+      // Mutate damagePerHour by (level - 1) * 2.5%
+      possibleMiner.levelDps = possibleMiner.damagePerHour * (localMiner.level * 0.025);
+      possibleMiner.damagePerHour += possibleMiner.levelDps;
+      // Mutate damagePerHour by base passive miner damage
+      possibleMiner.minerStatDps = possibleMiner.damagePerHour * (mining.stats.miner / 100);
+      possibleMiner.damagePerHour += possibleMiner.minerStatDps;
+      // Mutate damagePerHour by donator bonus (to passive miner damage)
+      if (hasMiningUpgrade) {
+        possibleMiner.donatorDps = possibleMiner.damagePerHour * (DONATORS_BENEFITS.miningBonus / 100);
+        possibleMiner.damagePerHour += possibleMiner.donatorDps;
+      }
+      totalDPH += possibleMiner.damagePerHour;
+    } else {
+      possibleMiner.amount = 0;
+      possibleMiner.damagePerHour = possibleMiner.damagePerSecond * 3600;
+    }
+
+    possibleMiner.level = localMiner ? localMiner.level : 1;
+    possibleMiner.xp = localMiner ? localMiner.xp : 0;
+    possibleMiner.xpToLevel = localMiner ? localMiner.xpToLevel : 10;
+    possibleMiner.xpPercentage = localMiner ? (localMiner.xp / localMiner.xpToLevel * 100) : 0;
+    return possibleMiner;
+  });
+
+  self.state.set('totalDPH', totalDPH);
+}
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -114,6 +164,8 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     this.state.set('rawOres', oreResults);
     this.state.set('rawBuyableMiners', minerResults);
     this.state.set('rawBuyableProspectors', prospectorResults);
+
+    updateTotalDPH(this);
   });
 
   Meteor.call('mining.gameUpdate');
@@ -161,6 +213,14 @@ Template.miningPage.events({
       instance.state.set('currentTab', 'miners');
       Meteor.call('users.setUiState', 'miningTab', 'miners');
     }
+  },
+
+  'click .collect-ores'(event, instance) {
+    Meteor.call('mining.collect', (err, res) => {
+      if (err) {
+        return toastr.error(err.reason);
+      }
+    });
   },
 
   'click .prospector-hire'(event, instance) {
@@ -289,12 +349,28 @@ Template.miningPage.helpers({
     });
   },
 
+  prospectorsCap() {
+    const miningSkill = Skills.findOne({
+      type: 'mining'
+    });
+
+    let prospectorCount = MINING.prospecting.base;
+    MINING.prospecting.levelsGained.forEach((level) => {
+      if (miningSkill.level >= level) {
+        prospectorCount++;
+      }
+    });
+
+    return prospectorCount;
+  },
+
   mining() {
-    const mining = Mining.findOne();
+    const mining = Mining.findOne({});
     if (mining) {
       Template.instance().state.set('nextMinerCost', mining.nextMinerCost);
       Template.instance().state.set('nextProspectorCost', mining.nextProspectorCost);
     }
+
     return mining;
   },
 
@@ -324,6 +400,17 @@ Template.miningPage.helpers({
       return item;
     }).filter((item) => {
       return item.isEquippable;
+    });
+  },
+
+  collectors() {
+    const mining = Mining.findOne({});
+
+    return Object.keys(mining.collector).map((key) => {
+      return {
+        key,
+        amount: mining.collector[key]
+      }
     });
   },
 

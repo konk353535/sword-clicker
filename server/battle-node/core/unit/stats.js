@@ -57,6 +57,12 @@ export default class Stats {
     this.delta('health');
   }
 
+  get healthMax() { return this._healthMax; }
+  set healthMax(value) {
+    this._healthMax = value;
+    this.delta('healthMax');
+  }
+
   delta(stat) {
     const event = {
       type: 'abs',

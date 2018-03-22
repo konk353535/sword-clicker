@@ -2,12 +2,12 @@ import moment from "moment/moment";
 import _ from 'underscore';
 
 import { ENEMIES } from '/server/constants/enemies/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
-import { MAGIC } from '/server/constants/magic/index.js';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { MAGIC } from '/imports/constants/magic/index.js';
+import { BATTLES } from '/imports/constants/battles/index.js'; // List of encounters
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
-import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
+import { NEED_GREED_ITEMS } from '/imports/constants/items/needgreed';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';
@@ -416,17 +416,6 @@ export const completeBattle = function (actualBattle) {
 
             totalPointsForGroup += actualPointsGained;
 
-            const updateSelector = { owner, floor: actualBattle.floor };
-
-            const updateModifier = {
-              $inc: {
-                points: actualPointsGained
-              },
-              $set: {
-                username: ownerObject.name // To do: Make this work when users have multiple units
-              }
-            };
-
             const possibleStats = [
               'mining',
               'crafting',
@@ -438,10 +427,6 @@ export const completeBattle = function (actualBattle) {
 
             const targetStat = _.sample(possibleStats);
             addXp(targetStat, Math.round(actualPointsGained * 50), owner);
-
-            if (actualPointsGained > 10) {
-              addFakeGems(5, owner);
-            }
 
             finalTickEvents.push({
               type: 'xp',
@@ -457,7 +442,27 @@ export const completeBattle = function (actualBattle) {
               owner
             });
 
-            FloorWaveScores.update(updateSelector, updateModifier);
+            const existingScores = FloorWaveScores.findOne({
+              owner,
+              floor: actualBattle.floor
+            });
+
+            if (existingScores) {
+              FloorWaveScores.update({
+                _id: existingScores._id
+              }, {
+                $inc: {
+                  points: actualPointsGained
+                }
+              });
+            } else {
+              FloorWaveScores.insert({
+                owner,
+                username: ownerObject.name,
+                points: actualPointsGained,
+                floor: actualBattle.floor
+              })
+            }
           }
         });
 

@@ -1,8 +1,10 @@
 import { Meteor } from 'meteor/meteor';
-import { MINING } from '/server/constants/mining/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { STATE_BUFFS } from '/imports/constants/state/index';
+
+import { flattenObjectForMongo } from '/server/utils';
 
 import moment from 'moment';
 import _ from 'underscore';
@@ -192,6 +194,30 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 }
 
 Meteor.methods({
+  'mining.collect'() {
+    const mining = Mining.findOne({ owner: Meteor.userId() });
+
+    let xpGained = 0;
+    Object.keys(mining.collector).forEach((key) => {
+      const amount = mining.collector[key];
+      addItem(`ore_${key}`, amount);
+      xpGained += (MINING.ores[key].xp * amount);
+    });
+
+    const miningUpdated = Mining.update({
+      _id: mining._id,
+      lastGameUpdated: mining.lastGameUpdated
+    }, {
+      $set: {
+        collector: {}
+      }
+    });
+
+    if (miningUpdated === 1) {
+      addXp('mining', xpGained);
+    }
+  },
+
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
     if (multiplier < 1 || multiplier > 10) {
       return;
@@ -402,19 +428,19 @@ Meteor.methods({
 
         if (miningSpace.health <= damage) {
           damage -= miningSpace.health;
-          miningSpace.oreId = null;
 
           let newAmount = 1;
           if (miningSpace.isCluster) {
             newAmount = 8 + Math.round(Math.random() * 4);
           }
 
-          if (gainedItems[oreConstants.itemId]) {
-            gainedItems[oreConstants.itemId].amount += newAmount;
+          if (gainedItems[miningSpace.oreId]) {
+            gainedItems[miningSpace.oreId].amount += newAmount;
           } else {
-            gainedItems[oreConstants.itemId] = { amount: newAmount };
+            gainedItems[miningSpace.oreId] = { amount: newAmount };
           }
 
+          miningSpace.oreId = null;
           gainedXp += (oreConstants.xp * newAmount);
         } else {
           miningSpace.health -= damage;
@@ -574,22 +600,27 @@ Meteor.methods({
         }
       }
 
-      if (gainedXp > 0) {
-        addXp('mining', gainedXp);
-      }
+      let mutateMiners = false;
 
       Object.keys(gainedItems).forEach((key) => {
+        mutateMiners = true;
         if (key === 'gem') {
           addFakeGems(gainedItems[key].amount, Meteor.userId());
         } else {
-          addItem(key, gainedItems[key].amount);
+          if (mining.collector[key]) {
+            mining.collector[key] += gainedItems[key].amount;
+            if (mining.collector[key] > 100) {
+              mining.collector[key] = 100;
+            }
+          } else {
+            mining.collector[key] = gainedItems[key].amount;
+          }
         }
       });
 
-      let mutateMiners = false;
       mining.miners.forEach((miner) => {
         const minerName = miner.id === 'primitive_miner' ? 'stone' : miner.id.replace('_miner', '');
-        const targetItem = gainedItems[`ore_${minerName}`];
+        const targetItem = gainedItems[minerName];
         if (targetItem) {
           mutateMiners = true;
           miner.xp += (targetItem.amount / 10);
@@ -606,7 +637,8 @@ Meteor.methods({
           lastGameUpdated: newLastGameUpdated
         }, {
           $set: {
-            miners: mining.miners
+            miners: mining.miners,
+            collector: flattenObjectForMongo(mining.collector)
           }
         });
       }
@@ -751,37 +783,8 @@ Meteor.publish('miningSpace', function() {
 
 });
 
-Meteor.publish('mining', function() {
-
-  //Transform function
-  var transform = function(doc) {
-    doc.miners.map((miner) => {
-      miner.xpToLevel = MINING.miners.xpToLevel(miner.level || 1);
-      return miner;
-    });
-    return doc;
-  }
-
-  var self = this;
-
-  var observer = Mining.find({
+Meteor.publish('mining', function () {
+  return Mining.find({
     owner: this.userId
-  }).observe({
-      added: function (document) {
-      self.added('mining', document._id, transform(document));
-    },
-    changed: function (newDocument, oldDocument) {
-      self.changed('mining', oldDocument._id, transform(newDocument));
-    },
-    removed: function (oldDocument) {
-      self.removed('mining', oldDocument._id);
-    }
   });
-
-  self.onStop(function () {
-    observer.stop();
-  });
-
-  self.ready();
-
 });

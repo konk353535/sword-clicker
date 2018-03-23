@@ -214,14 +214,6 @@ Template.miningPage.events({
     });
 
     instance.state.set('selectingProspector', -1);
-  },
-
-  'click .collect-ores'(event, instance) {
-    Meteor.call('mining.collect', (err, res) => {
-      if (err) {
-        return toastr.error(err.reason);
-      }
-    });
   }
 });
 
@@ -405,17 +397,6 @@ Template.miningPage.helpers({
     });
   },
 
-  collectors() {
-    const mining = Mining.findOne({});
-    if (!mining) return [];
-    return Object.keys(mining.collector).map((key) => {
-      return {
-        key,
-        amount: mining.collector[key]
-      }
-    });
-  },
-
   summaryMiners() {
     const mining = Mining.findOne({});
     const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
@@ -585,3 +566,26 @@ Template.miningPage.helpers({
     return Template.instance().state.get('miningMultihit');
   },
 });
+
+Template.miningCollector.events({
+  'click .collect-ores'(event, instance) {
+    Meteor.call('mining.collect', (err, res) => {
+      if (err) {
+        return toastr.error(err.reason);
+      }
+    });
+  }
+})
+
+Template.miningCollector.helpers({
+  collectors() {
+    const mining = Mining.findOne({});
+    if (!mining) return [];
+    return Object.keys(mining.collector).map((key) => {
+      return {
+        key,
+        amount: mining.collector[key]
+      }
+    });
+  },
+})

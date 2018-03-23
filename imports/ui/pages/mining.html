@@ -9,25 +9,7 @@
             Mining Carts
           </div>
         </div>
-        <div class="d-flex flex-wrap">
-          {{#each collectors}}
-            <div class="d-flex icon-box-border mr-1 mt-1 p-2">
-              <div class="ore-list-item align-items-center d-flex">
-                <img src="/icons/{{this.key}}.png" class="extra-small-icon mr-1">
-                <div>{{this.amount}} / 100</div>
-              </div>
-            </div>
-          {{else}}
-            <div class="text-muted">Empty</div>
-          {{/each}}
-          {{#if collectors}}
-            <div class="d-flex align-items-center mt-1 ml-1">
-              <button class="btn btn-primary collect-ores">
-                Collect
-              </button>
-            </div>
-          {{/if}}
-        </div>
+        {{> miningCollector}}
 
         <!-- Prospecting -->
         <div class="d-flex mt-3 align-items-center">
@@ -323,6 +305,28 @@
         {{/if}}
       </div>
     </div>
+</template>
+
+<template name="miningCollector">
+  <div class="d-flex flex-wrap">
+    {{#each collectors}}
+      <div class="d-flex icon-box-border mr-1 mt-1 p-2">
+        <div class="ore-list-item align-items-center d-flex">
+          <img src="/icons/{{this.key}}.png" class="extra-small-icon mr-1">
+          <div>{{this.amount}} / 100</div>
+        </div>
+      </div>
+    {{else}}
+      <div class="text-muted">Empty</div>
+    {{/each}}
+    {{#if collectors}}
+      <div class="d-flex align-items-center mt-1 ml-1">
+        <button class="btn btn-primary collect-ores">
+          Collect
+        </button>
+      </div>
+    {{/if}}
+  </div>
 </template>
 
 <template name="oreListItem">

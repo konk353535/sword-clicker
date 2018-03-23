@@ -7,6 +7,7 @@ import './gameHome.html';
 Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  Meteor.subscribe('mining');
 });
 
 Template.gameHomePage.helpers({

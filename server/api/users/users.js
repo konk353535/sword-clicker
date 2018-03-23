@@ -8,7 +8,8 @@ import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
-import { addXp } from '/imports/api/skills/skills';
+
+import { addXp } from '/server/api/skills/skills.js';
 import { addItem } from '/server/api/items/items.js';
 
 Meteor.methods({

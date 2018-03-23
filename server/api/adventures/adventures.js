@@ -15,12 +15,11 @@ import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Floors } from '/imports/api/floors/floors';
 import { Adventures } from '/imports/api/adventures/adventures';
-
-import { requirementsUtility } from '/imports/api/crafting/crafting';
-
-import { addItem, hasGems, consumeGems, consumeItem } from '/imports/api/items/items.js';
-import { addXp } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
+
+import { requirementsUtility } from '/server/api/crafting/crafting';
+import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
+import { addXp } from '/server/api/skills/skills.js';
 
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;

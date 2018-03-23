@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Random } from 'meteor/random';
 
 import { Groups } from '/imports/api/groups/groups';
+import { FarmingSpace } from '/imports/api/farming/farming';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 
@@ -10,12 +11,48 @@ import './gameHome.html';
 
 Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('showPickAll', false);
+
+  this.autorun(() => {
+    const nowTimeStamp = TimeSync.serverTime();
+    const now = moment(nowTimeStamp);
+
+    const showPickAll = FarmingSpace.find().fetch().find((space) => {
+      return now.isAfter(space.maturityDate) && space.plantId;
+    });
+
+    this.state.set('showPickAll', !!showPickAll);
+  });
 
   Meteor.subscribe('mining');
   Meteor.subscribe('crafting');
+  Meteor.subscribe('farmingSpace');
 });
 
 Template.gameHomePage.helpers({
+
+  lastGrownThing() {
+    const growingThings = FarmingSpace.find({
+      plantId: {
+        $not: null
+      }
+    }, {
+      sort: {
+        maturityDate: 1
+      }
+    }).fetch();
+
+    if (growingThings.length === 0) {
+      return false;
+    }
+
+    return growingThings.pop();
+  },
+
+  showPickAll() {
+    return Template.instance().state.get('showPickAll');
+  },
+
   creatingGuest() {
     return Template.instance().state.get('creatingGuest');
   },
@@ -61,7 +98,11 @@ Template.gameHomePage.helpers({
       activated: true
     });
     return !!currentBattleList;
-  }
+  },
+
+  farmingSpaces() {
+    return FarmingSpace.find({});
+  },
 });
 
 Template.gameHomePage.events({

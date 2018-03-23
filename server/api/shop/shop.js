@@ -7,12 +7,12 @@ import moment from 'moment';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
-import { addItem, hasGems, consumeGems } from '/imports/api/items/items.js';
+import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
+import { unlockFarmingSpaces } from '/server/api/farming/farming';
+
 import _ from 'underscore';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
-
-import { unlockFarmingSpaces } from '/imports/api/farming/farming';
 
 Meteor.methods({
 

@@ -60,8 +60,6 @@ Template.body.onCreated(function () {
         Meteor.subscribe('mining');
         // Show currently crafting items
         Meteor.subscribe('crafting');
-        // Farming
-        Meteor.subscribe('farmingSpace');
         // Show currently inscripting items
         Meteor.subscribe('inscription');
       }

@@ -11,10 +11,11 @@ import { Crafting } from '../../api/crafting/crafting.js';
 import { Combat } from '../../api/combat/combat.js';
 import { Adventures } from '../../api/adventures/adventures.js';
 import { Abilities } from '../../api/abilities/abilities.js';
-import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
-import { updateMiningStats } from '/imports/api/mining/mining.js';
-import { updateCombatStats } from '/imports/api/combat/combat.js';
+
+import { addItem } from '/server/api/items/items.js';
+import { updateMiningStats } from '/server/api/mining/mining.js';
+import { updateCombatStats } from '/server/api/combat/combat.js';
 import uuid from 'node-uuid';
 
 import { MINING } from '/server/constants/mining/index.js';
@@ -429,16 +430,15 @@ Accounts.onCreateUser((options, user) => {
 
   Mining.insert({
     owner: userId,
-    collector: {},
+    collector: {
+      stone: 1
+    },
     lastGameUpdated: new Date(),
     miners: [{
       id: MINING.miners.primitive_miner.id,
       amount: 1
     }],
-    prospectors: [{
-      id: MINING.prospectors.stone.id,
-      amount: 1
-    }]
+    prospecting: ['stone']
   });
 
   MiningSpace.insert({

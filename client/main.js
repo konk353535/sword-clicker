@@ -8,6 +8,7 @@ import './main.html';
 import '/imports/ui/components/groupList/groupList.js';
 import '/imports/ui/components/chatWindow/chatWindow.js';
 import '/imports/ui/components/ability/ability.js';
+import '/imports/ui/components/readableDuration/readableDuration.js';
 import '/imports/ui/components/helpIcon/helpIcon.js';
 import '/imports/ui/components/globalBuffIcon/globalBuffIcon.js';
 import '/imports/ui/components/itemIcon/itemIcon.js';

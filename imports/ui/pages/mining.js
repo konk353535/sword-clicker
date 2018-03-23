@@ -328,7 +328,7 @@ Template.miningPage.helpers({
   },
 
   emptyProspectingSpaces() {
-    if (!Mining.findOne({})) return;
+    if (!Mining.findOne({})) return [];
 
     const miningSkill = Skills.findOne({
       type: 'mining'

@@ -309,7 +309,8 @@ Meteor.methods({
     // Target Crafting Item
     let targetCrafting;
     newCrafting.forEach((currentCrafting, index) => {
-      if (moment(currentCrafting.endDate).diff(targetEndDate) === 0) {
+      // Difference as MS may get cut off
+      if (moment(currentCrafting.endDate).diff(targetEndDate) <= 1000) {
         targetCrafting = currentCrafting;
       }
     });

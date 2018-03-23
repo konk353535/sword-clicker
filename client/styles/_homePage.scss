@@ -12,6 +12,10 @@
   }
 }
 
+.icon-danger-hover:hover path {
+  fill: $brand-danger;
+}
+
 .live-feed-content {
   display: flex;
 

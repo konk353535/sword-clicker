@@ -138,40 +138,48 @@ Meteor.methods({
   },*/
 
   'farming.pick'(index) {
-    // Pick whatever is in the specified index
-    const targetToPick = FarmingSpace.findOne({
-      owner: Meteor.userId(),
-      index
-    });
-    if (moment().isAfter(targetToPick.maturityDate)) {
-      // Good to pick
-      const plantConstants = FARMING.plants[targetToPick.plantId];
-      // Fetch Farming
-      const farming = Farming.findOne({
-        owner: Meteor.userId()
-      });
-
-      // Update patch
-      FarmingSpace.update({
-        _id: targetToPick._id
-      }, {
-        $set: {
-          plantId: null,
-          water: null,
-          maturityDate: null,
-          plantDate: null,
-          growing: null
-        }
-      });
-
-      // Add item
-      addItem(plantConstants.produces, plantConstants.produceAmount || 1);
-      // Add Xp
-      addXp('farming', plantConstants.xp);
+    let indexes = [];
+    if (index === 'all') {
+      indexes = [0, 1, 2, 3, 4, 5];
     } else {
-      // Not ready to pick
-      throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
+      indexes = [index]
     }
+
+    const targetsToPick = FarmingSpace.find({
+      owner: Meteor.userId(),
+      index: {
+        $in: indexes
+      }
+    }).fetch();
+
+    targetsToPick.forEach((targetToPick) => {
+      if (moment().isAfter(targetToPick.maturityDate)) {
+        // Good to pick
+        const plantConstants = FARMING.plants[targetToPick.plantId];
+        // Fetch Farming
+        const farming = Farming.findOne({
+          owner: Meteor.userId()
+        });
+
+        // Update patch
+        FarmingSpace.update({
+          _id: targetToPick._id
+        }, {
+          $set: {
+            plantId: null,
+            water: null,
+            maturityDate: null,
+            plantDate: null,
+            growing: null
+          }
+        });
+
+        // Add item
+        addItem(plantConstants.produces, plantConstants.produceAmount || 1);
+        // Add Xp
+        addXp('farming', plantConstants.xp);
+      }
+    });
   },
 
   'farming.killPlant'(index) {

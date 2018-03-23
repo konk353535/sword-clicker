@@ -20,7 +20,9 @@ Template.readableDuration.onCreated(function bodyOnCreated() {
     const asSeconds = duration.asSeconds();
     const asMinutes = duration.asMinutes();
 
-    if (asSeconds < 60) {
+    if (asSeconds < 0) {
+      return '';
+    } else if (asSeconds < 60) {
       return this.state.set('duration', `${Math.round(asSeconds)}s`);
     } else if (asMinutes < 60) {
       const seconds = duration.seconds();

@@ -5,6 +5,7 @@ import { Random } from 'meteor/random';
 import { Groups } from '/imports/api/groups/groups';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Crafting } from '/imports/api/crafting/crafting';
+import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 
 import './gameHome.html';
@@ -30,6 +31,19 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
 });
 
 Template.gameHomePage.helpers({
+
+  activeAdventures() {
+    return Adventures.findOne({}).adventures.filter((adventure) => {
+      return adventure.startDate;
+    });
+  },
+
+  lastAdventure() {
+    const adventures = Adventures.findOne({}).adventures.filter((adventure) => {
+      return !!adventure.startDate;
+    });
+    return adventures.pop();
+  },
 
   lastGrownThing() {
     const growingThings = FarmingSpace.find({
@@ -106,6 +120,11 @@ Template.gameHomePage.helpers({
 });
 
 Template.gameHomePage.events({
+
+  'click .collect-plants'(event, instance) {
+    Meteor.call('farming.pick', 'all');
+  },
+
   'click .play-as-guest-btn'(event, instance) {
     const username = `guest_${parseInt(Math.random() * 1000000000)}`;
     const password = Random.id();

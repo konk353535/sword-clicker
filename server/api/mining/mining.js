@@ -226,6 +226,8 @@ Meteor.methods({
       type: 'mining'
     });
 
+    ore = ore.replace(' ', '');
+
     if (!MINING.ores[ore]) {
       throw new Meteor.Error("invalid-ore", "invalid ore");
     } else if (miningSkill.level < MINING.ores[ore].requiredLevel) {

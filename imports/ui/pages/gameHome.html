@@ -132,94 +132,15 @@
         <!-- Adventures -->
         <div class="d-flex flex-column mt-3">
           <div class="d-flex align-items-center">
-            Adventures <div class="text-muted ml-3">1h 46m</div>
+            Adventures
             <div class="d-flex justify-content-end flex-grow">
-              <button class="btn btn-primary btn-sm ml-3">
-                Collect All
-              </button>
+              <div class="text-muted ml-3">
+                {{> readableDuration endDate=lastAdventure.endDate}}
+              </div>
             </div>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
-            <div class="adventure-item-container d-flex flex-column my-1 mx-1 p-2 active-adventure">
-              <div class="d-flex align-items-center">
-                <img src="/icons/grasshopper.svg" class="medium-icon">
-                <div class="d-flex flex-column ml-3 flex-grow hidden-md-down">
-                  <div class="text-capitalize">Grass Field</div>
-                </div>
-                <div class="d-flex flex-column mx-3 flex-grow">
-                  <div class="text-success">Victory</div>
-                </div>
-                <div class="d-flex mx-3 align-items-center justify-content-center hidden-xs-down" style="flex: 10 10 auto;">
-                    <div class="d-flex align-items-center" style="flex: 1 1 auto">
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-attack"></i>
-                          </div>
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-health"></i>
-                          </div>
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-defense"></i>
-                          </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
-                    <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-id="6tjmMRo8EaaANRcud">
-                      Collect
-                    </button>
-                </div>
-              </div>
-              <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-attack"></i>
-                    </div>
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-health"></i>
-                    </div>
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-defense"></i>
-                    </div>
-              </div>
-            </div>
-            <div class="adventure-item-container d-flex flex-column my-1 mx-1 p-2 active-adventure">
-              <div class="d-flex align-items-center">
-                <img src="/icons/grasshopper.svg" class="medium-icon">
-                <div class="d-flex flex-column ml-3 flex-grow hidden-md-down">
-                  <div class="text-capitalize">Grass Field</div>
-                </div>
-                <div class="d-flex flex-column mx-3 flex-grow">
-                  <div class="text-success">Victory</div>
-                </div>
-                <div class="d-flex mx-3 align-items-center justify-content-center hidden-xs-down" style="flex: 10 10 auto;">
-                    <div class="d-flex align-items-center" style="flex: 1 1 auto">
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-attack"></i>
-                          </div>
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-health"></i>
-                          </div>
-                          <div class="ml-1">
-                            +57 <i class="lilIcon-defense"></i>
-                          </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column align-items-end justify-content-center ml-3" style="width: 10%; flex: 1 1 auto;">
-                    <button class="btn btn-success collect-adventure-btn" style="width: 100px;" data-id="6tjmMRo8EaaANRcud">
-                      Collect
-                    </button>
-                </div>
-              </div>
-              <div class="d-flex align-items-center mt-2 hidden-sm-up" style="flex: 1 1 auto">
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-attack"></i>
-                    </div>
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-health"></i>
-                    </div>
-                    <div class="ml-1">
-                      +57 <i class="lilIcon-defense"></i>
-                    </div>
-              </div>
-            </div>
+            {{> adventuresList adventures=activeAdventures}}
           </div>
         </div>
       </div>

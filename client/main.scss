@@ -29,6 +29,10 @@ html, body {
   color: white;
 }
 
+.hoverable-blue:hover {
+  border-color: $brand-primary;
+}
+
 @media (max-width: 768px) {
   .navbar-inner-container {
     width: 100%;

@@ -10,7 +10,7 @@ import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 import _ from 'underscore';
 
-import { addXp } from '/server/api/skills/skills';
+import { addXp } from '/imports/api/skills/skills';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';

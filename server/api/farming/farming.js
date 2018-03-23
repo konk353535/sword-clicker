@@ -7,9 +7,9 @@ import { FarmingSpace } from '/imports/api/farming/farming';
 import { Users } from '/imports/api/users/users';
 import { Events } from '/imports/api/events/events';
 
-import { requirementsUtility } from '/server/api/crafting/crafting';
-import { addItem } from '/server/api/items/items';
-import { addXp } from '/server/api/skills/skills';
+import { requirementsUtility } from '/imports/api/crafting/crafting';
+import { addItem } from '/imports/api/items/items';
+import { addXp } from '/imports/api/skills/skills';
 
 import { FARMING } from '/server/constants/farming';
 import { ITEMS } from '/server/constants/items';

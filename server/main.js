@@ -19,7 +19,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { State } from '/imports/api/state/state';
 import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
-import { addItem } from '/server/api/items/items';
+import { addItem } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';

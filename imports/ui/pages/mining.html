@@ -8,9 +8,6 @@
           <div class="text-muted mr-2">
             Mining Carts
           </div>
-          <a href="#">
-            <small>upgrade</small>
-          </a>
         </div>
         <div class="d-flex flex-wrap">
           {{#each collectors}}
@@ -37,27 +34,46 @@
           <div class="text-muted mr-2">
             Prospecting
           </div>
-          <a href="#">
-            <small>retarget</small>
-          </a>
         </div>
         <div class="d-flex flex-wrap">
-          {{prospectorsCap}}
-          <div class="icon-box mine-space-container prospecting-ore ml-0 mr-1">
-            <img src="/icons/stone.png" class="ore-icon">
-          </div>
-          <div class="icon-box mine-space-container prospecting-ore ml-0">
-            <img src="/icons/stone.png" class="ore-icon">
-          </div>
+          {{#each mining.prospecting}}
+            <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="{{@index}}">
+              <img src="/icons/{{this}}.png" class="ore-icon">
+            </div>
+          {{/each}}
+          {{#each emptyProspectingSpaces}}
+            <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="new">
+              Set
+            </div>
+          {{/each}}
         </div>
+        {{#if isSelectingProspector}}
+          <hr />
+          <div class="d-flex flex-wrap">
+            {{#each oresList}}
+              <div
+                class="icon-box hoverable-blue cursor-pointer item-icon-container small ml-0 mr-1 select-ore-to-prospect {{#if this.prospecting}}leader-icon{{/if}}"
+                data-id="{{this.name}}"
+              >
+                <img src="/icons/{{this.icon}}" class="ore-icon">
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
 
         <!-- Gear -->
         <div class="d-flex mt-3 align-items-center">
           <div class="text-muted mr-2">
             Gear
           </div>
-          <a href="#">
-            <small>edit</small>
+          <a href="#" class="edit-mining-gear">
+            <small>
+              {{#if editingMiningGear}}
+                cancel
+              {{else}}
+                edit
+              {{/if}}
+            </small>
           </a>
         </div>
         <div class="d-flex flex-row flex-wrap">
@@ -80,15 +96,21 @@
             </div>
           {{/if}}
         </div>
+        {{#if editingMiningGear}}
+          <hr />
+          <!-- Show inventory of pickaxes / ect -->
+          <div class="d-flex flex-wrap">
+            {{#each miningPickaxes}}
+              {{> itemIcon item=this classes="small"}}
+            {{/each}}
+          </div>
+        {{/if}}
 
         <!-- Miners -->
         <div class="d-flex mt-3 align-items-center">
           <div class="text-muted mr-2">
             Miners
           </div>
-          <a href="#">
-            <small>upgrade</small>
-          </a>
         </div>
         <div class="d-flex flex-wrap mt-1">
           {{#each buyableMiners}}
@@ -119,6 +141,23 @@
               {{#each miningSpaces}}
                 {{> mineSpace mineSpace=this multihit=miningMultihit}}
               {{/each}}
+            </div>
+
+            <div style="margin-top: 50px">
+              {{> skillHeader skill=miningSkill small=true}}
+            </div>
+
+            <div style="margin-top: 10px">
+              <div class="d-flex flex-wrap">
+                {{#each oresList}}
+                  <div class="d-flex icon-box-border mr-1 mt-1 p-2" style="width: 75px">
+                    <div class="ore-list-item align-items-center d-flex">
+                      <img src="/icons/{{this.icon}}" class="extra-small-icon mr-1">
+                      <div>{{this.amount}}</div>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
             </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ import { Users } from '/imports/api/users/users';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
+
 import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';

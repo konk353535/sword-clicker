@@ -72,6 +72,8 @@ function updateTotalDPH(self) {
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('selectingProspector', -1);
+  this.state.set('editingMiningGear', false);
 
   // Show mining spaces
   Meteor.subscribe('miningSpace');
@@ -135,19 +137,6 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       Session.set('minersCache', minersCache);
     }
 
-    if (prospectorsCache && prospectorsCache.data && prospectorsCache.level === miningSkill.level &&
-      moment().isBefore(moment(prospectorsCache.date).add(30, 'minutes'))) {
-      prospectorResults = prospectorsCache.data;
-    } else {
-      prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level);
-      prospectorsCache = {
-        data: prospectorResults,
-        level: miningSkill.level,
-        date: moment().toDate()
-      }
-      Session.set('prospectorsCache', prospectorsCache);
-    }
-
     if (oresCache && oresCache.data && oresCache.level === miningSkill.level &&
       moment().isBefore(moment(oresCache.date).add(30, 'minutes'))) {
       oreResults = oresCache.data;
@@ -163,7 +152,6 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
     this.state.set('rawOres', oreResults);
     this.state.set('rawBuyableMiners', minerResults);
-    this.state.set('rawBuyableProspectors', prospectorResults);
 
     updateTotalDPH(this);
   });
@@ -201,13 +189,6 @@ Template.miningPage.events({
     }
   },
 
-  'click .prospectorsLink'(event, instance) {
-    if (instance.state.get('currentTab') !== 'prospectors') {
-      instance.state.set('currentTab', 'prospectors');
-      Meteor.call('users.setUiState', 'miningTab', 'prospectors');
-    }
-  },
-
   'click .minersLink'(event, instance) {
     if (instance.state.get('currentTab') !== 'miners') {
       instance.state.set('currentTab', 'miners');
@@ -215,26 +196,30 @@ Template.miningPage.events({
     }
   },
 
-  'click .collect-ores'(event, instance) {
-    Meteor.call('mining.collect', (err, res) => {
+  'click .select-prospector'(event, instance) {
+    const prospectorIndex = instance.$(event.target).closest('.select-prospector').attr('data-index');
+    instance.state.set('selectingProspector', prospectorIndex);
+  },
+
+  'click .edit-mining-gear'(event, instance) {
+    instance.state.set('editingMiningGear', !instance.state.get('editingMiningGear'));
+  },
+
+  'click .select-ore-to-prospect'(event, instance) {
+    const oreId = instance.$(event.target).closest('.select-ore-to-prospect').data('id');
+    Meteor.call('mining.setProspector', instance.state.get('selectingProspector'), oreId, (err, res) => {
       if (err) {
         return toastr.error(err.reason);
       }
     });
+
+    instance.state.set('selectingProspector', -1);
   },
 
-  'click .prospector-hire'(event, instance) {
-    const prospectorId = instance.$(event.target).closest('.prospector-hire').data('prospector');
-
-    Meteor.call('mining.buyProspector', prospectorId);
-  },
-
-  'click .prospector-fire'(event, instance) {
-    const prospectorId = instance.$(event.target).closest('.prospector-fire').data('prospector');
-
-    Meteor.call('mining.fireProspector', prospectorId, (err, res) => {
+  'click .collect-ores'(event, instance) {
+    Meteor.call('mining.collect', (err, res) => {
       if (err) {
-        toastr.error(err.reason);
+        return toastr.error(err.reason);
       }
     });
   }
@@ -290,14 +275,6 @@ Template.buyableMiner.rendered = function () {
 }
 
 Template.miningPage.rendered = function () {
-  const prospectorTooltip = new Drop({
-    target: Template.instance().$('.buy-prospector')[0],
-    content: Template.instance().$('.prospectors-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
-
   const minerTooltip = new Drop({
     target: Template.instance().$('.buy-miner')[0],
     content: Template.instance().$('.miners-tooltip-content')[0],
@@ -320,6 +297,10 @@ Template.miningPage.helpers({
   oresList() {
     const instance = Template.instance();
     const rawOres = Template.instance().state.get('rawOres');
+    const mining = Mining.findOne({});
+
+    const selectingProspector = instance.state.get('selectingProspector');
+
     const gems = rawOres.filter((ore) => {
       return ore.isGem;
     });
@@ -333,6 +314,12 @@ Template.miningPage.helpers({
         itemId: ore.itemId
       });
 
+      if (selectingProspector > -1 && ore.name === mining.prospecting[selectingProspector]) {
+        ore.prospecting = true;
+      } else {
+        ore.prospecting = false;
+      }
+
       if (targetItem) {
         ore.amount = targetItem.amount;
       } else {
@@ -340,28 +327,37 @@ Template.miningPage.helpers({
       }
 
       return ore;
-    }).filter((ore) => {
-      if (ore.amount === 0 && ore.isGem) {
-        return false;
-      }
-
-      return true;
     });
   },
 
-  prospectorsCap() {
+  isSelectingProspector() {
+    const index = Template.instance().state.get('selectingProspector');
+    return index !== -1;
+  },
+
+  emptyProspectingSpaces() {
+    if (!Mining.findOne({})) return;
+
     const miningSkill = Skills.findOne({
       type: 'mining'
     });
 
-    let prospectorCount = MINING.prospecting.base;
+    let prospectorsCount = MINING.prospecting.base;
     MINING.prospecting.levelsGained.forEach((level) => {
       if (miningSkill.level >= level) {
-        prospectorCount++;
+        prospectorsCount++;
       }
     });
 
-    return prospectorCount;
+    const usedProspectors = Mining.findOne({}).prospecting.length;
+    const excessProspectors = prospectorsCount - usedProspectors;
+    let myArr = [];
+
+    for (let i = 0; i < excessProspectors; i++) {
+      myArr.push(1);
+    }
+
+    return myArr;
   },
 
   mining() {
@@ -382,13 +378,19 @@ Template.miningPage.helpers({
     return Template.instance().state.get('nextProspectorCost');
   },
 
+  editingMiningGear() {
+    return Template.instance().state.get('editingMiningGear');
+  },
+
   miningPickaxes() {
+    const instance = Template.instance();
     return Items.find({ category: 'mining', equipped: false }).map((item) => {
       if (item.isEquippable) {
         item.primaryAction = {
           description: 'equip',
           item,
           method() {
+            instance.state.set('editingMiningGear', false);
             Meteor.call('items.equip', this.item._id, this.item.itemId, (err, res) => {
               if (err) {
                 toastr.warning(err.reason);
@@ -405,7 +407,7 @@ Template.miningPage.helpers({
 
   collectors() {
     const mining = Mining.findOne({});
-
+    if (!mining) return [];
     return Object.keys(mining.collector).map((key) => {
       return {
         key,

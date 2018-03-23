@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { MINING } from '/imports/constants/mining/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { MINING } from '/server/constants/mining/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { STATE_BUFFS } from '/imports/constants/state/index';
 
@@ -15,6 +15,7 @@ import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
+
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
@@ -216,6 +217,54 @@ Meteor.methods({
     if (miningUpdated === 1) {
       addXp('mining', xpGained);
     }
+  },
+
+  'mining.setProspector'(index, ore) {
+    // Can we target that ore?
+    const miningSkill = Skills.findOne({
+      owner: Meteor.userId(),
+      type: 'mining'
+    });
+
+    if (!MINING.ores[ore]) {
+      throw new Meteor.Error("invalid-ore", "invalid ore");
+    } else if (miningSkill.level < MINING.ores[ore].requiredLevel) {
+      throw new Meteor.Error("too-low-level", "too low mining level to prospect that");
+    }
+
+    if (index !== 'new' && !_.isFinite(index)) {
+      throw new Meteor.Error("invalid idnex", "invalid index");      
+    } else if (index > 5) {
+      throw new Meteor.Error("invalid idnex", "invalid index");      
+    }
+
+    const mining = Mining.findOne({
+      owner: Meteor.userId()
+    });
+
+    if (index === 'new') {
+      let cap = MINING.prospecting.base;
+      MINING.prospecting.levelsGained.forEach((level) => {
+        if (miningSkill.level >= level) {
+          cap += 1;
+        }
+      });
+
+      if (mining.prospecting.length < cap) {
+        mining.prospecting.push(ore);
+      }
+    } else {
+      mining.prospecting[index] = ore;
+    }
+
+    Mining.update({
+      _id: mining._id,
+      owner: Meteor.userId()
+    }, {
+      $set: {
+        prospecting: mining.prospecting
+      }
+    });
   },
 
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
@@ -462,8 +511,12 @@ Meteor.methods({
 
       // Build prospectors map
       const prospectorsMap = {};
-      mining.prospectors.forEach((prospector) => {
-        prospectorsMap[prospector.id] = prospector.amount;
+      mining.prospecting.forEach((key) => {
+        if (prospectorsMap[key]) {
+          prospectorsMap[key] += 1;
+        } else {
+          prospectorsMap[key] = 1;
+        }
       });
 
       // Prepare easy arrays for which ore is about to spawn
@@ -473,12 +526,16 @@ Meteor.methods({
 
       // Increase or decrease chance of finding ore based on owned prospectors
       // Clone so we don't mutatet the constants
-      const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
+      const computedOres = JSON.parse(JSON.stringify(availableOres)).filter((ore) => {
+        return ore.isGem || prospectorsMap[ore.id];
+      }).map((ore) => {
         // Jewel prospectors cover all available jewel types in one prospector
         if(ore.isGem && prospectorsMap['jewel']) {
           ore.chance *= prospectorsMap['jewel'];
         } else if (prospectorsMap[ore.id]) {
-          ore.chance *= prospectorsMap[ore.id];
+          ore.chance *= (prospectorsMap[ore.id] * 4);
+        } else {
+          ore.chance = 0;
         }
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
@@ -491,6 +548,7 @@ Meteor.methods({
 
         return ore;
       });
+
       const sortedChanceOres = _.sortBy(computedOres, 'chance');
 
       // Determine how many new ores to spawn

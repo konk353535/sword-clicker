@@ -2,12 +2,12 @@ import moment from "moment/moment";
 import _ from 'underscore';
 
 import { ENEMIES } from '/server/constants/enemies/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
-import { MAGIC } from '/imports/constants/magic/index.js';
-import { BATTLES } from '/imports/constants/battles/index.js'; // List of encounters
+import { MAGIC } from '/server/constants/magic/index.js';
+import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
-import { NEED_GREED_ITEMS } from '/imports/constants/items/needgreed';
+import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';

@@ -13,18 +13,18 @@ import { Adventures } from '../../api/adventures/adventures.js';
 import { Abilities } from '../../api/abilities/abilities.js';
 import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
-import { updateMiningStats } from '/server/api/mining/mining.js';
-import { updateCombatStats } from '/server/api/combat/combat.js';
+import { updateMiningStats } from '/imports/api/mining/mining.js';
+import { updateCombatStats } from '/imports/api/combat/combat.js';
 import uuid from 'node-uuid';
 
-import { MINING } from '/imports/constants/mining/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
-import { SKILLS } from '/imports/constants/skills/index.js';
+import { MINING } from '/server/constants/mining/index.js';
+import { ITEMS } from '/server/constants/items/index.js';
+import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import '/imports/api/users/users.js';
-import '/server/api/users/users.js';
+import '/imports/api/users/users.js';
 import './crons.js';
 import './chatConfig.js';
 

@@ -8,10 +8,11 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { Users } from '/imports/api/users/users';
+
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
-import { Users } from '/imports/api/users/users';
 
 Meteor.methods({
 

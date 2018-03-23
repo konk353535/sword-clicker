@@ -6,14 +6,14 @@ import moment from 'moment';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
-import { requirementsUtility } from '/server/api/crafting/crafting';
+import { requirementsUtility } from '/imports/api/crafting/crafting';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
 import { MAGIC } from '/server/constants/magic/index';
 
-import { consumeItem } from '/server/api/items/items';
+import { consumeItem } from '/imports/api/items/items';
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
   let owner = userId;

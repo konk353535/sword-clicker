@@ -1,20 +1,42 @@
 <template name="skillHeader"> 
-  <div class="d-flex my-3 align-items-center">
-    <i class="lilIcon-{{skill.type}} medium-icon"></i>
-    <h1 class="ml-1 mb-0">
-      Level {{skill.level}}
-    </h1>
+  <div class="d-flex flex-grow {{#if small}}my-1{{else}}my-3{{/if}} align-items-center">
+    {{#if small}}
+      <i class="lilIcon-{{skill.type}} small-icon"></i>
+    {{else}}
+      <i class="lilIcon-{{skill.type}} medium-icon"></i>
+    {{/if}}
+    {{#if small}}
+      <div class="ml-1 mb-0">
+        Level {{skill.level}}
+      </div>
+    {{else}}
+      <h1 class="ml-1 mb-0">
+        Level {{skill.level}}
+      </h1>
+    {{/if}}
     {{#if skill}}
-      <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
+      {{#if small}}
+        <div class="d-flex flex-grow">
+          <div class="progress ml-3" style="width: 100%">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: {{xpPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100">
+              {{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
+      {{/if}}
     {{/if}}
-    {{#if globalBuffs.buffCombat}}
-      {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
-    {{/if}}
-    {{#if globalBuffs.buffGathering}}
-      {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
-    {{/if}}
-    {{#if globalBuffs.buffCrafting}}
-      {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
-    {{/if}}
+    {{#unless small}}
+      {{#if globalBuffs.buffCombat}}
+        {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
+      {{/if}}
+      {{#if globalBuffs.buffGathering}}
+        {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
+      {{/if}}
+      {{#if globalBuffs.buffCrafting}}
+        {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
+      {{/if}}
+    {{/unless}}
   </div>
 </template>

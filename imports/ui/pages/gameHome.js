@@ -185,7 +185,9 @@ Template.gameHomePage.events({
   },
 
   'blur #add-friend-input'(event, instance) {
-    instance.state.set('showAddFriends', false);
+    setTimeout(() => {
+      instance.state.set('showAddFriends', false);
+    }, 500);
   },
 
   'click .add-friends'(event, instance) {

@@ -12,6 +12,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .home-page-content {
+    min-width: auto;
+  }
+}
+
 .icon-danger-hover:hover path {
   fill: $brand-danger;
 }

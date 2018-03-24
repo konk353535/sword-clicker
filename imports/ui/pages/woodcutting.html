@@ -9,11 +9,11 @@
         
         <div class="home-page-content mt-3">
           {{#each buyableWoodcutters}}
-            <div class="d-flex flex-grow align-items-center mt-2" >
+            <div class="d-flex flex-grow align-items-center mt-2">
               <div class="mr-3 medium-icon icon-box">
                 <img src="/icons/{{this.icon}}" class="ore-icon">
               </div>
-              <div class="mr-3 text-capitalize" style="width: 150px">{{this.name}}</div>
+              <div class="mr-3 text-capitalize hidden-md-down" style="width: 150px">{{this.name}}</div>
               <div class="mr-3 flex-grow d-flex justify-content-center">
                 <div>{{ > requiredItems requiredItems=this.required}}</div>
               </div>
@@ -28,7 +28,7 @@
         <div class="d-flex flex-wrap flex-grow justify-content-center" style="margin-top: 150px">
           <!-- List of my woodcutters here -->
           {{#each woodcutting.woodcutters}}
-            <div class="flex-column d-flex justify-content-center flex-column align-items-center"  style="margin-left: 30px; margin-right: 30px">
+            <div class="flex-column d-flex justify-content-center flex-column align-items-center"  style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px;">
               {{> itemIcon item=this classes="cursor-pointer"}}
               {{#if this.deathTime}}
                 Dies in {{moDiff this.deathTime moNow 'seconds'}}

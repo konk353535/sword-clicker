@@ -86,6 +86,10 @@ Template.adventureRow.onCreated(function bodyOnCreated() {
 
     const nowTimeStamp = TimeSync.serverTime();
 
+    if (adventure.duration && !adventure.endDate) {
+      adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');
+    }
+
     if (adventure.win != null) {
       adventure.isComplete = true;
     }

@@ -2,14 +2,14 @@
   <div class="adventure-item-container d-flex flex-column my-1 mx-1 {{#if computedAdventure.inactive}}inactive-adventure{{else}}active-adventure{{/if}}">
     <div class="d-flex">
       <img src="/icons/{{computedAdventure.icon}}" class="medium-icon">
-      <div class="d-flex flex-column ml-3 flex-grow hidden-md-down">
-        <div class="text-capitalize">{{computedAdventure.name}}</div>
+      <div class="d-flex flex-column ml-3 flex-grow">
+        <div class="text-capitalize hidden-xs-down">{{computedAdventure.name}}</div>
         {{#unless active}}
           <div class="text-capitalize">{{computedAdventure.length}}</div>
         {{/unless}}
       </div>
       <div class="d-flex flex-column mx-3 flex-grow">
-        <div class="text-capitalize hidden-md-down">{{computedAdventure.type}}</div>
+        <div class="text-capitalize">{{computedAdventure.type}}</div>
         {{#if computedAdventure.isComplete}}
           {{#if computedAdventure.win}}
             <div class="text-success">Victory</div>

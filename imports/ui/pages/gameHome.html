@@ -1,7 +1,7 @@
 <template name="gameHomePage">
   <div class="container mt-2">
-    <div class="d-flex">
-      <div class="mr-3">
+    <div class="d-flex flex-wrap">
+      <div class="mr-3 mt-2" style="min-width: 150px">
         <div class="text-muted mb-1">Links</div>
         <a href="/shop" class="side-link-item">Shop</a>
         <a href="/skills" class="side-link-item">Skills</a>
@@ -10,13 +10,23 @@
         <a href="/patchNotes" class="side-link-item">FAQ</a>
         <a href="/updates" class="side-link-item new-update-color">New Things</a>
       </div>
-      <div class="home-page-content mr-3">
+      <div class="home-page-content mr-3 mt-2">
 
         {{#if inCurrentBattle}}
           <div class="d-flex align-items-center text-danger">
             You are currently in a battle
             <div class="d-flex flex-grow justify-content-end">
               <a href="/newCombat" class="btn btn-secondary">View</a>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if firstRecievedFriendRequest}}
+          <div class="d-flex align-items-center mt-3">
+            Friend request from {{firstRecievedFriendRequest.senderName}}
+            <div class="d-flex flex-grow justify-content-end">
+              <button class="btn btn-primary mr-2 accept-friend-invite" data-sender={{firstRecievedFriendRequest.sender}}>Accept</button>
+              <button class="btn btn-danger decline-friend-invite" data-sender={{firstRecievedFriendRequest.sender}}>Decline</button>
             </div>
           </div>
         {{/if}}
@@ -32,7 +42,7 @@
         {{/if}}
 
         <!-- Mining -->
-        <div class="d-flex flex-column mt-3">
+        <div class="d-flex flex-column">
           <div class="d-flex align-items-center">
             Mining Carts
           </div>
@@ -123,46 +133,53 @@
           </div>
         </div>
       </div>
-      <div class="live-feed-content d-flex flex-column flex-grow">
+      <div class="live-feed-content d-flex flex-column flex-grow mr-3 mt-2">
         <!-- Friends Card -->
         <div>
-          <div class="text-muted">
+          <div class="d-flex text-muted mb-1 align-items-center">
             Friends
+            <div class="d-flex flex-grow justify-content-end">
+              <a href="#" class="add-friends">
+                Add
+              </a>
+            </div>
           </div>
-          <div class="d-flex align-items-center flex-grow">
-            <div class="badge badge-success mr-3" style="width: 70px">Combat</div>
-            <div class="flex-grow">Aessedai</div>
-            <button class="btn btn-primary btn-sm mr-1">Join</button>
-            <button class="btn btn-secondary btn-sm">Invite</button>
-          </div>
-          <div class="d-flex align-items-center flex-grow mt-1">
-            <div class="badge badge-success mr-3" style="width: 70px">Mining</div>
-            <div class="flex-grow">Nickbreslin</div>
-            <button class="btn btn-primary btn-sm mr-1">Join</button>
-            <button class="btn btn-secondary btn-sm">Invite</button>
-          </div>
-          <div class="d-flex align-items-center flex-grow mt-1">
-            <div class="badge badge-success mr-3" style="width: 70px">Crafting</div>
-            <div class="flex-grow">Entropy</div>
-            <button class="btn btn-primary btn-sm mr-1">Join</button>
-            <button class="btn btn-secondary btn-sm">Invite</button>
-          </div>
-          <div class="d-flex align-items-center flex-grow mt-1">
-            <div class="badge badge-grey-1 mr-3" style="width: 70px">Offline</div>
-            <div class="flex-grow">Konk353535</div>
-            <button class="btn btn-primary btn-sm mr-1">Join</button>
-            <button class="btn btn-secondary btn-sm">Invite</button>
-          </div>
+          {{#if showAddFriends}}
+            <form class="friend-invite d-flex flex-grow align-items-center mb-1">
+              <div class="flex-grow">
+                <label class="sr-only" for="name">Name</label>
+                <input class="form-control typeahead" name="team" id="add-friend-input" type="text"
+                  placeholder="Name"
+                  autocomplete="off" spellcheck="off"
+                  data-source="search" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-invite ml-1">Invite</button>
+            </form>
+            <hr style="width: 100%" class="my-2" />
+          {{/if}}
+          {{#each friendsList}}
+            {{> friendRow friend=this}}
+          {{/each}}
+          {{#if sentFriendRequests.length}}
+            <hr style="width: 100%" class="mb-1">
+            {{#each sentFriendRequests}}
+              <div class="d-flex align-items-center flex-grow mt-1">
+                <div class="badge badge-grey-1 mr-3" style="width: 70px">Pending</div>
+                <div class="flex-grow text-capitalize">{{this.recieverName}}</div>
+                <button class="btn btn-danger btn-sm cancel-friend-request" data-reciever="{{this.reciever}}">Cancel</button>
+              </div>
+            {{/each}}
+          {{/if}}
         </div>
         <div class="mt-2">
-          <div class="text-muted">
+          <div class="text-muted mb-1">
             Recent Battlers
           </div>
           Todo...
           <!-- Groups of friends / Clans mates here to easily join -->
         </div>
         <div class="mt-2">
-          <div class="text-muted">
+          <div class="text-muted mb-1">
             Clan
           </div>
           Todo..
@@ -171,7 +188,7 @@
           -->
         </div>
         <div class="mt-2">
-          <div class="text-muted">
+          <div class="text-muted mb-1">
             Leaderboards
           </div>
           Todo..
@@ -202,5 +219,32 @@
     </div>
     <div class="text-muted">{{> readableDuration endDate=computedCraftingProcess.endDate}}</div>
     <i class="fas fa-times icon-danger-hover cursor-pointer cancel-crafting ml-2" data-enddate="{{computedCraftingProcess.endDate}}"></i>
+  </div>
+</template>
+
+<template name="friendRow">
+  <div class="d-flex align-items-center flex-grow mb-1">
+    <div class="badge text-capitalize
+      {{#if computedFriend.afk}}badge-grey-0{{else}}badge-success{{/if}} mr-1
+    " style="width: 70px">
+      {{#if computedFriend.afk}}
+        {{> readableDuration startDate=computedFriend.lastActionDate}}
+      {{else}}
+        {{friend.lastAction}}
+      {{/if}}
+    </div>
+    <div class="flex-grow text-capitalize"
+      style="max-width: 100px; overflow: hidden; text-overflow: ellipsis;"
+    >
+      {{friend.username}}
+    </div>
+    <div class="d-flex justify-content-end flex-grow">
+      {{#if friend.partyId}}
+        <button class="btn btn-primary btn-sm mr-1 join-group">Join</button>
+      {{/if}}
+      {{#if canInvite}}
+        <button class="btn btn-secondary btn-sm invite-to-group">Invite</button>
+      {{/if}}
+    </div>
   </div>
 </template>

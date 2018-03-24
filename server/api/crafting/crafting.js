@@ -225,6 +225,15 @@ Meteor.methods({
     }
 
     craftItem(recipeId, amount);
+
+    Users.update({
+      _id: this.userId,
+    }, {
+      $set: {
+        lastAction: 'crafting',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'crafting.fetchTiers'() {

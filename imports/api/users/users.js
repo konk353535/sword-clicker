@@ -40,12 +40,17 @@ UserSchema = new SimpleSchema({
 
   logEvents: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
+  
   username: {
     type: String,
     regEx: /^\w+$/,
     min: 3,
     max: 20
   },
+
+  lastAction: { type: String, optional: true },
+  lastActionDate: { type: Date, optional: true },
+  partyId: { type: String, optional: true },
 
   tutorial: { type: Object, optional: true },
 

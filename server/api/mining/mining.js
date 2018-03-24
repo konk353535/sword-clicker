@@ -132,6 +132,16 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
   }  
 
   if (mineSpace.health - damage <= 0) {
+
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $set: {
+        lastAction: 'mining',
+        lastActionDate: new Date()
+      }
+    }, () => {});
+
     // Mine space has been destroyed
     MiningSpace.update(mineSpace._id, {
       $set: { oreId: null, isCluster: false }
@@ -196,7 +206,8 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 
 Meteor.methods({
   'mining.collect'() {
-    const mining = Mining.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const mining = Mining.findOne({ owner: userDoc._id });
 
     let xpGained = 0;
     Object.keys(mining.collector).forEach((key) => {
@@ -217,6 +228,15 @@ Meteor.methods({
     if (miningUpdated === 1) {
       addXp('mining', xpGained);
     }
+
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $set: {
+        lastAction: 'mining',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'mining.setProspector'(index, ore) {

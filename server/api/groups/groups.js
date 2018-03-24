@@ -10,12 +10,21 @@ import { BATTLES } from '/server/constants/battles/index.js';
 import uuid from 'node-uuid';
 
 function leaveGroup(group, userId) {
+
   group.members = group.members.filter((member) => {
     return member !== userId;
   });
 
   group.membersObject = group.membersObject.filter((member) => {
     return member.id !== userId;
+  });
+
+  Users.update({
+    _id: userId
+  }, {
+    $set: {
+      partyId: null
+    }
   });
 
   if (group.members.length === 0) {
@@ -227,6 +236,15 @@ Meteor.methods({
       name: userDoc.username,
       id: userDoc._id
     });
+
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $set: {
+        partyId: targetGroup._id
+      }
+    });
+
     Groups.update(targetGroup._id, {
       $set: {
         members: targetGroup.members,
@@ -279,7 +297,15 @@ Meteor.methods({
         name: userDoc.username,
         id: userDoc._id,
         averageCombat: userDoc.averageCombat
-      })
+      });
+
+      Users.update({
+        _id: userDoc._id
+      }, {
+        $set: {
+          partyId: targetGroup._id
+        }
+      });
     }
 
     Groups.update(targetGroup._id, {
@@ -347,7 +373,7 @@ Meteor.methods({
       });
     } else {
       // Create group with myself and the target user
-      Groups.insert({
+      const newGroupId = Groups.insert({
         balancer: uuid.v4(),
         leaderName: Meteor.user().username,
         leader: this.userId,
@@ -358,6 +384,14 @@ Meteor.methods({
           id: this.userId
         }],
         invites: [targetUser._id]
+      });
+
+      Users.update({
+        _id: Meteor.userId()
+      }, {
+        $set: {
+          partyId: newGroupId
+        }
       });
     }
   },

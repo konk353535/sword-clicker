@@ -180,6 +180,15 @@ Meteor.methods({
         addXp('farming', plantConstants.xp);
       }
     });
+
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastAction: 'farming',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'farming.killPlant'(index) {
@@ -262,6 +271,15 @@ Meteor.methods({
         growing: true
       }
     });
+
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $set: {
+        lastAction: 'farming',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'farming.plantAll'(plantId, specifiedAmount) {
@@ -355,6 +373,15 @@ Meteor.methods({
         growing: true
       }
     }, { multi: true });
+
+    Users.update({
+      _id: userDoc._id
+    }, {
+      $set: {
+        lastAction: 'farming',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'farming.buyShopItem'(seedId, amountToBuy = 1) {

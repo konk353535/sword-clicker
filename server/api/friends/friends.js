@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
-import { Friends } from '/imports/api/friends/friends';
+import { Friends, FriendRequests, } from '/imports/api/friends/friends';
 import { Users } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 
@@ -44,14 +44,87 @@ Meteor.methods({
     }
 
     if (_.find(currentFriends.friends, (friend) => { return friend === targetUser._id })) {
-      return;
+      throw new Meteor.Error("already-friend", "already-a-friend");
     }
 
-    currentFriends.friends.push(targetUser._id);
+    const existingRequest = FriendRequests.findOne({
+      sender: Meteor.userId(),
+      reciever: targetUser._id
+    });
 
-    Friends.update(currentFriends._id, {
+    if (existingRequest) {
+      throw new Meteor.Error("already-requested", "already-a-request-pending");
+    }
+
+    FriendRequests.insert({
+      sender: Meteor.userId(),
+      senderName: Meteor.user().username,
+      reciever: targetUser._id,
+      recieverName: targetUser.username
+    });
+  },
+
+  'friends.cancel'(reciever) {
+    FriendRequests.remove({
+      reciever,
+      sender: Meteor.userId()
+    });
+  },
+
+  'friends.decline'(sender) {
+    FriendRequests.remove({
+      reciever: Meteor.userId(),
+      sender
+    });
+  },
+
+  'friends.accept'(sender) {
+    const targetRequest = FriendRequests.findOne({
+      reciever: Meteor.userId(),
+      sender
+    });
+
+    if (!targetRequest) {
+      throw new Meteor.Error("invalid-request", "invalid-request");
+    }
+
+    let currentFriends = Friends.findOne({
+      owner: this.userId
+    });
+
+    if (!currentFriends) {
+      currentFriends = {
+        owner: this.userId,
+        friends: []
+      };
+      Friends.insert(currentFriends);
+    }
+
+    const senderFriends = Friends.findOne({
+      owner: targetRequest.sender
+    });
+
+    currentFriends.friends.push(targetRequest.sender);
+    senderFriends.friends.push(targetRequest.reciever);
+
+    FriendRequests.remove({
+      reciever: Meteor.userId(),
+      sender
+    });
+
+    Friends.update({
+      _id: currentFriends._id
+    }, {
       $set: {
         friends: currentFriends.friends
+      }
+    });
+
+    Friends.update({
+      _id: senderFriends._id
+    }, {
+      $set: {
+        friends: senderFriends.friends
       }
     });
   },
@@ -93,6 +166,16 @@ Meteor.methods({
       }
     });
   }
+});
+
+Meteor.publish('friendRequests', function () {
+  return FriendRequests.find({
+    $or: [{
+      reciever: this.userId
+    }, {
+      sender: this.userId
+    }]
+  });
 });
 
 Meteor.publish('friends', function() {

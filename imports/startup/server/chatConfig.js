@@ -50,6 +50,17 @@ SimpleChat.configure ({
 
     const userDoc = Users.findOne(this.userId);
 
+    if (userDoc.lastActionDate && moment().isAfter(moment(userDoc.lastActionDate).add(1, 'minutes'))) {
+      Users.update({
+        _id: userDoc._id
+      }, {
+        $set: {
+          lastAction: 'chatting',
+          lastActionDate: new Date()
+        }
+      }, () => {});
+    }
+
     if (name !== userDoc.username || username !== userDoc.username) {
       return false;
     }

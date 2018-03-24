@@ -3,6 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
+import { Friends } from '/imports/api/friends/friends';
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
@@ -371,4 +372,35 @@ Meteor.publish("userData", function () {
   } else {
     this.ready();
   }
+});
+
+Meteor.publish('friendsFeed', function() {
+  const myFriends = Friends.findOne({
+    owner: this.userId
+  });
+
+  if (!myFriends) {
+    return Meteor.users.find({
+      _id: this.userId
+    }, {
+      fields: {
+        'gold': 1,
+        'username': 1
+      }
+    });
+  }
+
+  return Meteor.users.find({
+    _id: {
+      $in: myFriends.friends
+    }
+  }, {
+    fields: {
+      'username': 1,
+      'lastAction': 1,
+      'lastActionDate': 1,
+      'partyId': 1
+    }
+  });
+
 });

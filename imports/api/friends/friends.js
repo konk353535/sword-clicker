@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Friends = new Mongo.Collection('friend');
+export const FriendRequests = new Mongo.Collection('friendRequests');
 
 FriendsSchema = new SimpleSchema({
   friends: { type: [String] },
@@ -10,3 +11,12 @@ FriendsSchema = new SimpleSchema({
 });
 
 Friends.attachSchema(FriendsSchema);
+
+FriendRequestsSchema = new SimpleSchema({
+  sender: { type: String, regEx: SimpleSchema.RegEx.Id },
+  senderName: { type: String },
+  reciever: { type: String, regEx: SimpleSchema.RegEx.Id },
+  recieverName: { type: String }
+});
+
+FriendRequests.attachSchema(FriendRequestsSchema);

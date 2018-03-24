@@ -40,6 +40,15 @@ Meteor.methods({
     if (woodcuttingUpdated === 1) {
       addXp('woodcutting', xpGained);
     }
+
+    Users.update({
+      _id: woodcutting.owner
+    }, {
+      $set: {
+        lastAction: 'woodcutting',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'woodcutting.fireWoodcutter'(index) {
@@ -64,6 +73,15 @@ Meteor.methods({
         woodcutters: woodcutting.woodcutters
       }
     });
+
+    Users.update({
+      _id: this.userId
+    }, {
+      $set: {
+        lastAction: 'woodcutting',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   },
 
   'woodcutting.gameUpdate'() {
@@ -273,6 +291,15 @@ Meteor.methods({
         }
       }
     });
+
+    Users.update({
+      _id: woodcutting.owner
+    }, {
+      $set: {
+        lastAction: 'woodcutting',
+        lastActionDate: new Date()
+      }
+    }, () => {});
   }
 
 })

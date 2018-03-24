@@ -10,15 +10,27 @@ Template.readableDuration.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    const endDate = moment(this.data.endDate);
+    let endDate;
+    let startDate;
+    if (this.data.endDate) {
+      endDate = moment(this.data.endDate);
+    } else if (this.data.startDate) {
+      startDate = moment(this.data.startDate);
+    }
 
     const nowTimeStamp = TimeSync.serverTime();
     const now = moment(nowTimeStamp);
 
-    const duration = moment.duration(endDate.diff(now))
+    let duration;
+    if (endDate) {
+      duration = moment.duration(endDate.diff(now));
+    } else {
+      duration = moment.duration(now.diff(startDate));
+    }
 
     const asSeconds = duration.asSeconds();
     const asMinutes = duration.asMinutes();
+    const asHours = duration.asHours();
 
     if (asSeconds < 0) {
       return '';
@@ -28,11 +40,15 @@ Template.readableDuration.onCreated(function bodyOnCreated() {
       const seconds = duration.seconds();
       const minutes = duration.minutes();
       return this.state.set('duration', `${minutes}m ${seconds}s`);
+    } else if (asHours < 24) {
+      const minutes = duration.minutes();
+      const hours = duration.hours();
+      return this.state.set('duration', `${hours}h ${minutes}m`);  
     }
 
-    const minutes = duration.minutes();
+    const days = duration.days();
     const hours = duration.hours();
-    return this.state.set('duration', `${hours}h ${minutes}m`);
+    return this.state.set('duration', `${days}d ${hours}h`);
   });
 });
 

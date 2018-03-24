@@ -180,6 +180,17 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }).fetch();
 
+  usersData.forEach((userDoc) => {
+    Users.update({
+      _id: userDoc._id,
+    }, {
+      $set: {
+        lastAction: 'battling',
+        lastActionDate: new Date()
+      }
+    }, () => {});
+  })
+
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
     const targetUser = usersData.find((userData) => userData._id === userCombat.owner);

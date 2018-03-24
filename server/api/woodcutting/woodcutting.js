@@ -14,7 +14,33 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
+import { flattenObjectForMongo } from '/server/utils';
+
 Meteor.methods({
+
+  'woodcutting.collect'() {
+    const woodcutting = Woodcutting.findOne({ owner: Meteor.userId() });
+
+    let xpGained = 0;
+    Object.keys(woodcutting.collector).forEach((key) => {
+      const amount = woodcutting.collector[key];
+      addItem(key, amount);
+      xpGained += (WOODCUTTING.woods[key].xp * amount);
+    });
+
+    const woodcuttingUpdated = Woodcutting.update({
+      _id: woodcutting._id,
+      lastGameUpdated: woodcutting.lastGameUpdated
+    }, {
+      $set: {
+        collector: {}
+      }
+    });
+
+    if (woodcuttingUpdated === 1) {
+      addXp('woodcutting', xpGained);
+    }
+  },
 
   'woodcutting.fireWoodcutter'(index) {
     const woodcutting = Woodcutting.findOne({ owner: this.userId });
@@ -53,8 +79,9 @@ Meteor.methods({
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
+    const newLastGameUpdated = new Date()
     Woodcutting.update(woodcutting._id, {
-      $set: { lastGameUpdated: new Date() }
+      $set: { lastGameUpdated: newLastGameUpdated }
     });
 
     // Determine time since last update
@@ -135,11 +162,31 @@ Meteor.methods({
       });
     });
 
-    Object.keys(gainedItems).forEach((itemId) => {
-      addItem(itemId, gainedItems[itemId]);
+
+    let collectorMutated = false;
+
+    Object.keys(gainedItems).forEach((key) => {
+      collectorMutated = true;
+      if (woodcutting.collector[key]) {
+        woodcutting.collector[key] += gainedItems[key];
+        if (woodcutting.collector[key] > 100) {
+          woodcutting.collector[key] = 100;
+        }
+      } else {
+        woodcutting.collector[key] = gainedItems[key];
+      }
     });
 
-    addXp('woodcutting', gainedXp);
+    if (collectorMutated) {
+      Woodcutting.update({
+        owner: Meteor.userId(),
+        lastGameUpdated: newLastGameUpdated
+      }, {
+        $set: {
+          collector: flattenObjectForMongo(woodcutting.collector)
+        }
+      });
+    }
 
     // If there is any woodcutters with death timers past now, kill em
     woodcutting.woodcutters.forEach((woodcutter) => {

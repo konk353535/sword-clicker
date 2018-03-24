@@ -16,6 +16,10 @@
   fill: $brand-danger;
 }
 
+.icon-primary-hover:hover path {
+  fill: $brand-primary;
+}
+
 .live-feed-content {
   display: flex;
 

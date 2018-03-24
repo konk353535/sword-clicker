@@ -3,6 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 
+import { determineRequiredItems } from '/imports/ui/utils.js';
+
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
@@ -16,6 +18,10 @@ let woodcuttingPageTimer;
 Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
+  this.state.set('buyingNewWoodcutter', false);
+
+  this.state.set('firingWoodcutterIndex', false);
+  this.state.set('firingWoodcutterIndexConfirm', false);
 
   // Show woodcutting
   Meteor.subscribe('woodcutting');
@@ -52,7 +58,7 @@ Template.woodcuttingPage.events({
   },
 
   'click .buy-woodcutter'(event, instance) {
-    Template.instance().$('.woodcuttersModal').modal('show');      
+    instance.state.set('buyingNewWoodcutter', true);
   },
 
   'click .confirm-fire-btn'(event, instance) {
@@ -60,16 +66,44 @@ Template.woodcuttingPage.events({
     instance.$('.fireModal').modal('hide');
   },
 
-  'click .craft-row'(event, instance) {
-    const woodcutterId = instance.$(event.target).closest('.craft-row').data('recipe');
+  'click .back-btn'(event, instance) {
+    instance.state.set('buyingNewWoodcutter', false);
+  },
 
+  'click .hire-woodcutter'(event, instance) {
+    const woodcutterId = instance.$(event.target).closest('.hire-woodcutter').data('woodcutter');
+
+    instance.state.set('buyingNewWoodcutter', false);
     Meteor.call('woodcutting.hireWoodcutter', woodcutterId);
   },
+
+  'click .btn-suicide'(event, instance) {
+    const woodcutterIndex = parseInt(instance.$(event.target).closest('.btn-suicide').attr('data-index'));
+  
+    if (instance.state.get('firingWoodcutterIndex') === woodcutterIndex) {
+      if (instance.state.get('firingWoodcutterIndexConfirm')) {
+        Meteor.call('woodcutting.fireWoodcutter', instance.state.get('firingWoodcutterIndex'));
+      } else {
+        instance.state.set('firingWoodcutterIndexConfirm', true);
+      }
+    } else {
+      setTimeout(() => {
+        instance.state.set('firingWoodcutterIndex', false);
+        instance.state.set('firingWoodcutterIndexConfirm', false);
+      }, 10000);
+      instance.state.set('firingWoodcutterIndex', woodcutterIndex);
+      instance.state.set('firingWoodcutterIndexConfirm', false);
+    }
+  }
 });
 
 Template.woodcuttingPage.helpers({
   woodcuttingSkill() {
     return Skills.findOne({ type: 'woodcutting' });
+  },
+
+  buyingNewWoodcutter() {
+    return Template.instance().state.get('buyingNewWoodcutter');
   },
 
   woodcutting() {
@@ -79,10 +113,25 @@ Template.woodcuttingPage.helpers({
       return;
     }
 
+    const firingWoodcutterIndex = instance.state.get('firingWoodcutterIndex');
+    const firingWoodcutterIndexConfirm = instance.state.get('firingWoodcutterIndexConfirm');
+
     const userDoc = Meteor.user();
     const hasMiningUpgrade = userDoc.woodcuttingUpgradeTo && moment().isBefore(userDoc.woodcuttingUpgradeTo);
 
-    woodcutting.woodcutters.forEach((woodcutter, woodcutterIndex) => {
+    woodcutting.woodcutters = woodcutting.woodcutters.map((woodcutter, woodcutterIndex) => {
+
+      if (woodcutterIndex === firingWoodcutterIndex) {
+        woodcutter.confirmSuicide = true;
+        if (firingWoodcutterIndexConfirm) {
+          woodcutter.confirmSuicide2 = true;          
+        } else {
+          woodcutter.confirmSuicide2 = false;
+        }
+      } else {
+        woodcutter.confirmSuicide = false;
+      }
+
       if (!/.png/.test(woodcutter.icon) && !/.svg/.test(woodcutter.icon)) {
         woodcutter.icon += '.svg';
       }
@@ -126,6 +175,8 @@ Template.woodcuttingPage.helpers({
           instance.$('.fireModal').modal('show');
         }
       }
+
+      return Object.assign({}, woodcutter);
     });
     return woodcutting;
   },
@@ -177,7 +228,30 @@ Template.woodcuttingPage.helpers({
     // Pass level so that this is recalled when we get up a level
     const results = ReactiveMethod.call('woodcutting.fetchWoodcutters', woodcuttingSkill.level);
 
-    return results || [];
+    if (!results) {
+      return [];
+    }
+
+    return results.map((result) => {
+      let { notMet } = determineRequiredItems(result);
+
+      result.notMet = notMet;
+
+      return result;
+    });
+  },
+
+  logsList() {
+    return Items.find({
+      category: 'woodcutting',
+      itemId: {
+        $regex: /_log/gi,
+      }
+    }, {
+      sort: {
+        quality: -1
+      }
+    });
   },
 
   items() {
@@ -188,3 +262,27 @@ Template.woodcuttingPage.helpers({
     });
   }
 });
+
+Template.woodcuttingCollector.events({
+  'click .collect-ores'(event, instance) {
+    Meteor.call('woodcutting.collect', (err, res) => {
+      if (err) {
+        return toastr.error(err.reason);
+      }
+    });
+  }
+})
+
+Template.woodcuttingCollector.helpers({
+  collectors() {
+    const woodcutting = Woodcutting.findOne({});
+    if (!woodcutting) return [];
+    return Object.keys(woodcutting.collector).map((key) => {
+      return {
+        key,
+        icon: `${key.split('_')[0]}Log.png`,
+        amount: woodcutting.collector[key]
+      }
+    });
+  },
+})

@@ -374,7 +374,7 @@ Meteor.publish("userData", function () {
   }
 });
 
-Meteor.publish('friendsFeed', function() {
+Meteor.publish('friendsFeed', function(data) {
   const myFriends = Friends.findOne({
     owner: this.userId
   });

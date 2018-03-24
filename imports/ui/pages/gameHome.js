@@ -30,11 +30,13 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-    const friends = Friends.findOne({});
-    Meteor.subscribe('friends');
+    const friendsObject = Friends.findOne({});
+    if (friendsObject) {
+      Meteor.subscribe('friendsFeed', friendsObject.friends.join(','));
+    }
   });
 
-  Meteor.subscribe('friendsFeed');
+  Meteor.subscribe('friends');
   Meteor.subscribe('mining');
   Meteor.subscribe('crafting');
   Meteor.subscribe('friendRequests');
@@ -47,6 +49,10 @@ Template.gameHomePage.helpers({
     return Users.find({
       _id: {
         $not: Meteor.userId()
+      }
+    }, {
+      sort: {
+        lastActionDate: 1
       }
     });
   },

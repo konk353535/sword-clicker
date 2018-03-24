@@ -13,7 +13,7 @@
       <div class="home-page-content mr-3 mt-2">
 
         {{#if inCurrentBattle}}
-          <div class="d-flex align-items-center text-danger">
+          <div class="d-flex align-items-center text-danger mb-3">
             You are currently in a battle
             <div class="d-flex flex-grow justify-content-end">
               <a href="/newCombat" class="btn btn-secondary">View</a>
@@ -22,7 +22,7 @@
         {{/if}}
 
         {{#if firstRecievedFriendRequest}}
-          <div class="d-flex align-items-center mt-3">
+          <div class="d-flex align-items-center mb-3">
             Friend request from {{firstRecievedFriendRequest.senderName}}
             <div class="d-flex flex-grow justify-content-end">
               <button class="btn btn-primary mr-2 accept-friend-invite" data-sender={{firstRecievedFriendRequest.sender}}>Accept</button>
@@ -32,7 +32,7 @@
         {{/if}}
 
         {{#if firstPendingInvite}}
-          <div class="d-flex align-items-center mt-3">
+          <div class="d-flex align-items-center mb-3">
             Party invite from {{firstPendingInvite.leaderName}}
             <div class="d-flex flex-grow justify-content-end">
               <button class="btn btn-primary mr-2 accept-party-invite" data-id={{firstPendingInvite._id}}>Accept</button>
@@ -42,7 +42,7 @@
         {{/if}}
 
         <!-- Mining -->
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             Mining Carts
           </div>
@@ -52,7 +52,7 @@
         </div>
 
         <!-- Crafting -->
-        <div class="d-flex flex-column mt-3">
+        <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             Workbench
             {{#if firstCrafting}}
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Lumber -->
-        <div class="d-flex flex-column mt-3">
+        <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             Lumber Carriages
           </div>
@@ -119,7 +119,7 @@
           </div>
         </div>
         <!-- Adventures -->
-        <div class="d-flex flex-column mt-3">
+        <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             Adventures
             <div class="d-flex justify-content-end flex-grow">
@@ -226,7 +226,7 @@
   <div class="d-flex align-items-center flex-grow mb-1">
     <div class="badge text-capitalize
       {{#if computedFriend.afk}}badge-grey-0{{else}}badge-success{{/if}} mr-1
-    " style="width: 70px">
+    " style="width: 80px">
       {{#if computedFriend.afk}}
         {{> readableDuration startDate=computedFriend.lastActionDate}}
       {{else}}

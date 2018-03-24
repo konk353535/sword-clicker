@@ -97,15 +97,27 @@ Meteor.methods({
         owner: this.userId,
         friends: []
       };
-      Friends.insert(currentFriends);
+      currentFriends._id = Friends.insert(currentFriends);
     }
 
     const senderFriends = Friends.findOne({
       owner: targetRequest.sender
     });
 
+    console.log('currentFriends');
+    console.log(currentFriends);
+    console.log('senderFriends');
+    console.log(senderFriends);
+    console.log('-------');
+
     currentFriends.friends.push(targetRequest.sender);
     senderFriends.friends.push(targetRequest.reciever);
+
+    console.log('currentFriends');
+    console.log(currentFriends);
+    console.log('senderFriends');
+    console.log(senderFriends);
+    console.log('-------');
 
     FriendRequests.remove({
       reciever: Meteor.userId(),
@@ -179,48 +191,7 @@ Meteor.publish('friendRequests', function () {
 });
 
 Meteor.publish('friends', function() {
-
-  //Transform function
-  var transform = function(doc) {
-    // Transfer invite id to invite names
-    const invitesObjects = Combat.find({
-      owner: {
-        $in: doc.friends
-      }
-    }, {
-      fields: {
-        owner: 1,
-        username: 1,
-        lastGameUpdated: 1
-      }
-    }).fetch();
-
-    // Modify members and invites objects as fake 'battle units for display'?
-    doc.friends = invitesObjects;
-
-    return doc;
-  }
-
-  var self = this;
-
-  var observer = Friends.find({
+  return Friends.find({
     owner: this.userId
-  }).observe({
-      added: function (document) {
-      self.added('friend', document._id, transform(document));
-    },
-    changed: function (newDocument, oldDocument) {
-      self.changed('friend', oldDocument._id, transform(newDocument));
-    },
-    removed: function (oldDocument) {
-      self.removed('friend', oldDocument._id);
-    }
   });
-
-  self.onStop(function () {
-    observer.stop();
-  });
-
-  self.ready();
-
 });

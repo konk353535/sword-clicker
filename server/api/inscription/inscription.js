@@ -12,7 +12,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 
-import { requirementsUtility } from '/imports/api/crafting/crafting';
+import { requirementsUtility } from '/server/api/crafting/crafting';
 
 const craftItem = function (recipeId, amountToCraft) {
   const inscription = Inscription.findOne({ owner: Meteor.userId() });

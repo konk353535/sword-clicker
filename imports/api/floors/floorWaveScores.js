@@ -13,3 +13,14 @@ FloorWaveScoresSchema = new SimpleSchema({
 });
 
 FloorWaveScores.attachSchema(FloorWaveScoresSchema);
+
+export const ClanHighscores = new Mongo.Collection('clanHighscores');
+ 
+ClanHighscoresSchema = new SimpleSchema({
+  owner: { type: String }, // Who owns this
+  score: { type: Number }, // 50.3xp / 30.9g
+  type: { type: String }, // mining-weekly / gold-weekly / ect
+  clan: { type: String } // Clan this user is in
+});
+
+ClanHighscores.attachSchema(ClanHighscoresSchema);

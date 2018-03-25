@@ -24,7 +24,8 @@ MiningSchema = new SimpleSchema({
   prospecting: { type: [String] },
   stats: { type: Object, blackbox: true, defaultValue: {} },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
-  collector: { type: Object, blackbox: true },
+  collector: { type: Object, blackbox: true }, // { stone: 1, copper: 2 } value === # mined
+  storage: { type: Object, blackbox: true }, // { stone: 1, copper: 2 } value === lvl of storage
   lastGameUpdated: { type: Date, defaultValue: new Date() }
 });
 

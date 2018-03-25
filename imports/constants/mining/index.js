@@ -616,8 +616,21 @@ export const MINING = {
       damagePerSecond: 0.32
     },
   },
+  storage: {
+    costs(level, ore) {
+      return [{
+        type: 'item',
+        itemId: `ore_${ore}`,
+        icon: MINING_ITEMS[`ore_${ore}`].icon,
+        name: MINING_ITEMS[`ore_${ore}`].name,
+        amount: (level * 5) + 5,
+        consumes: true
+      }];
+    }
+  },
   ores: {
     stone: {
+      baseStorage: 100,
       requiredLevel: 1,
       healthMax: 10,
       xp: 2,
@@ -631,6 +644,7 @@ export const MINING = {
     },
 
     copper: {
+      baseStorage: 90,
       requiredLevel: 2,
       healthMax: 20,
       xp: 4,
@@ -644,6 +658,7 @@ export const MINING = {
     },
 
     coal: {
+      baseStorage: 80,
       requiredLevel: 2,
       healthMax: 35,
       xp: 8,
@@ -657,6 +672,7 @@ export const MINING = {
     },
 
     tin: {
+      baseStorage: 70,
       requiredLevel: 5,
       healthMax: 75,
       xp: 13,
@@ -670,6 +686,7 @@ export const MINING = {
     },
 
     bronze: {
+      baseStorage: 60,
       requiredLevel: 10,
       healthMax: 150,
       xp: 17,

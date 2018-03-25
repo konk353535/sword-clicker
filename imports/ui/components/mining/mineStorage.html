@@ -1,0 +1,23 @@
+<template name="mineStorage">
+  <div class="home-page-content mt-3">
+    {{#each storageList}}
+      <div class="d-flex flex-grow align-items-center mt-2">
+        <div class="mr-3 medium-icon icon-box">
+          <img src="/icons/{{this.icon}}" class="ore-icon">
+        </div>
+        <div class="mr-3 text-capitalize hidden-md-down" style="width: 150px">{{this.name}}</div>
+        <div class="mr-3 text-capitalize hidden-md-down" style="width: 150px">
+          Storage {{this.storage}}
+        </div>
+        <div class="mr-3 flex-grow d-flex justify-content-center">
+          <div>{{ > requiredItems requiredItems=this.required}}</div>
+        </div>
+        <button
+          class="btn btn-primary upgrade-storage"
+          disabled="{{this.notMet}}"
+          data-id="{{this.id}}"
+        >Upgrade</button>
+      </div>
+    {{/each}}
+  </div>
+</template>

@@ -52,7 +52,7 @@ Template.gameHomePage.helpers({
       }
     }, {
       sort: {
-        lastActionDate: 1
+        lastActionDate: -1
       }
     });
   },

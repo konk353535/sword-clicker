@@ -205,6 +205,54 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 }
 
 Meteor.methods({
+
+  'mining.upgradeStorage'(oreId) {
+    const mining = Mining.findOne({
+      owner: Meteor.userId()
+    });
+
+    const constants = MINING.ores[oreId];
+    if (!MINING.ores[oreId]) {
+      console.log('invalid ore');
+      return;
+    } else if (constants.isGem) {
+      console.log('is gem');
+      return;
+    } else if (/essence_/.test(constants.id)) {
+      console.log('is essence');
+      return;
+    } else if (oreId === 'gem') {
+      console.log('is gem');
+      return;
+    }
+
+    console.log(1);
+    let storageLevel = 0;
+    if (mining.storage[oreId]) {
+      storageLevel = mining.storage[oreId];
+    }
+
+    const costs = MINING.storage.costs(storageLevel, oreId);
+
+    console.log(2);
+
+    if (!requirementsUtility(costs, 1)) {
+      return;
+    }
+
+    console.log(3);
+
+    mining.storage[oreId] = storageLevel + 1;
+
+    Mining.update({
+      _id: mining._id
+    }, {
+      $set: {
+        storage: flattenObjectForMongo(mining.storage)
+      }
+    })
+  },
+
   'mining.collect'() {
     const userDoc = Meteor.user();
     const mining = Mining.findOne({ owner: userDoc._id });
@@ -682,6 +730,24 @@ Meteor.methods({
 
       let mutateMiners = false;
 
+      let storageLimits = {};
+      if (Object.keys(gainedItems).length >= 0) {
+        Object.keys(MINING.ores).forEach((key) => {
+          const ore = MINING.ores[key];
+
+          let baseLimit = 50;
+          if (MINING.ores[ore.id].baseStorage) {
+            baseLimit = MINING.ores[ore.id].baseStorage;
+          }
+
+          let storageLevel = 0;
+          if (mining.storage[ore.id]) {
+            storageLevel = mining.storage[ore.id];
+          }
+          storageLimits[ore.id] = baseLimit + (storageLevel * 10);
+        });
+      }
+
       Object.keys(gainedItems).forEach((key) => {
         mutateMiners = true;
         if (key === 'gem') {
@@ -689,8 +755,8 @@ Meteor.methods({
         } else {
           if (mining.collector[key]) {
             mining.collector[key] += gainedItems[key].amount;
-            if (mining.collector[key] > 100) {
-              mining.collector[key] = 100;
+            if (mining.collector[key] > storageLimits[key]) {
+              mining.collector[key] = storageLimits[key];
             }
           } else {
             mining.collector[key] = gainedItems[key].amount;

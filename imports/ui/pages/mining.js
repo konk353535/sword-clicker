@@ -74,6 +74,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('selectingProspector', -1);
   this.state.set('editingMiningGear', false);
+  this.state.set('upgradingMiningCarts', false);
 
   // Show mining spaces
   Meteor.subscribe('miningSpace');
@@ -169,6 +170,14 @@ Template.miningPage.events({
 
   'click .multihit-enable'(event, instance) {
     Meteor.call('users.setUiState', 'miningMultihit', true);
+  },
+
+  'click .back-btn'(event, instance) {
+    instance.state.set('upgradingMiningCarts', false);
+  },
+
+  'click .upgrade-mining-carts'(event, instance) {
+    instance.state.set('upgradingMiningCarts', true);
   },
 
   'click .multihit-disable'(event, instance) {
@@ -277,6 +286,11 @@ Template.miningPage.rendered = function () {
 }
 
 Template.miningPage.helpers({
+
+  upgradingMiningCarts() {
+    return Template.instance().state.get('upgradingMiningCarts');
+  },
+
   miningSkill() {
     // Otherwise, return all of the tasks
     return Skills.findOne({ type: 'mining' });
@@ -582,9 +596,19 @@ Template.miningCollector.helpers({
     const mining = Mining.findOne({});
     if (!mining) return [];
     return Object.keys(mining.collector).map((key) => {
+
+      const constants = MINING.ores[key];
+      let storage = constants.baseStorage || 50;
+      let storageLevel = 0;
+      if (mining.storage[key]) {
+        storageLevel = mining.storage[key];
+        storage += (storageLevel * 10);
+      }
+
       return {
         key,
-        amount: mining.collector[key]
+        amount: mining.collector[key],
+        storage
       }
     });
   },

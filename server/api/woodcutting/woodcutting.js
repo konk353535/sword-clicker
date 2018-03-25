@@ -18,6 +18,38 @@ import { flattenObjectForMongo } from '/server/utils';
 
 Meteor.methods({
 
+  'woodcutting.upgradeStorage'(logId) {
+    const woodcutting = Woodcutting.findOne({
+      owner: Meteor.userId()
+    });
+
+    const constants = WOODCUTTING.woods[logId];
+    if (!WOODCUTTING.woods[logId]) {
+      return;
+    }
+
+    let storageLevel = 0;
+    if (woodcutting.storage[logId]) {
+      storageLevel = woodcutting.storage[logId];
+    }
+
+    const costs = WOODCUTTING.STORAGE.costs(storageLevel, logId);
+
+    if (!requirementsUtility(costs, 1)) {
+      return;
+    }
+
+    woodcutting.storage[logId] = storageLevel + 1;
+
+    Woodcutting.update({
+      _id: woodcutting._id
+    }, {
+      $set: {
+        storage: flattenObjectForMongo(woodcutting.storage)
+      }
+    })
+  },
+
   'woodcutting.collect'() {
     const woodcutting = Woodcutting.findOne({ owner: Meteor.userId() });
 
@@ -183,12 +215,30 @@ Meteor.methods({
 
     let collectorMutated = false;
 
+    let storageLimits = {};
+    if (Object.keys(gainedItems).length > 0) {
+      Object.keys(WOODCUTTING.woods).forEach((key) => {
+        const log = WOODCUTTING.woods[key];
+
+        let baseLimit = 50;
+        if (WOODCUTTING.woods[log.id].baseStorage) {
+          baseLimit = WOODCUTTING.woods[log.id].baseStorage;
+        }
+
+        let storageLevel = 0;
+        if (woodcutting.storage[log.id]) {
+          storageLevel = woodcutting.storage[log.id];
+        }
+        storageLimits[log.id] = baseLimit + (storageLevel * 10);
+      });
+    }
+
     Object.keys(gainedItems).forEach((key) => {
       collectorMutated = true;
       if (woodcutting.collector[key]) {
         woodcutting.collector[key] += gainedItems[key];
-        if (woodcutting.collector[key] > 100) {
-          woodcutting.collector[key] = 100;
+        if (woodcutting.collector[key] > storageLimits[key]) {
+          woodcutting.collector[key] = storageLimits[key];
         }
       } else {
         woodcutting.collector[key] = gainedItems[key];

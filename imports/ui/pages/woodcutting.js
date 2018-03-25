@@ -10,6 +10,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { WOODS } from '/imports/constants/woodcutting/woods.js';
 
 import './woodcutting.html';
 
@@ -19,6 +20,7 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
   this.state.set('buyingNewWoodcutter', false);
+  this.state.set('upgradingWoodcuttingCarriages', false);
 
   this.state.set('firingWoodcutterIndex', false);
   this.state.set('firingWoodcutterIndexConfirm', false);
@@ -70,6 +72,14 @@ Template.woodcuttingPage.events({
     instance.state.set('buyingNewWoodcutter', false);
   },
 
+  'click .upgrade-woodcutting-carts'(event, instance) {
+    instance.state.set('upgradingWoodcuttingCarriages', true);
+  },
+
+  'click .back-btn'(event, instance) {
+    instance.state.set('upgradingWoodcuttingCarriages', false);
+  },
+
   'click .hire-woodcutter'(event, instance) {
     const woodcutterId = instance.$(event.target).closest('.hire-woodcutter').data('woodcutter');
 
@@ -104,6 +114,10 @@ Template.woodcuttingPage.helpers({
 
   buyingNewWoodcutter() {
     return Template.instance().state.get('buyingNewWoodcutter');
+  },
+
+  upgradingWoodcuttingCarriages() {
+    return Template.instance().state.get('upgradingWoodcuttingCarriages');
   },
 
   woodcutting() {
@@ -278,11 +292,21 @@ Template.woodcuttingCollector.helpers({
     const woodcutting = Woodcutting.findOne({});
     if (!woodcutting) return [];
     return Object.keys(woodcutting.collector).map((key) => {
+      const constants = WOODS[key];
+
+      let storage = constants.baseStorage || 50;
+      let storageLevel = 0;
+      if (woodcutting.storage[key]) {
+        storageLevel = woodcutting.storage[key];
+        storage += (storageLevel * 10);
+      }
+
       return {
         key,
         icon: `${key.split('_')[0]}Log.png`,
-        amount: woodcutting.collector[key]
+        amount: woodcutting.collector[key],
+        storage
       }
     });
-  },
-})
+  }
+});

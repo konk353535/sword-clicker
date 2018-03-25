@@ -226,7 +226,6 @@ Meteor.methods({
       return;
     }
 
-    console.log(1);
     let storageLevel = 0;
     if (mining.storage[oreId]) {
       storageLevel = mining.storage[oreId];
@@ -234,13 +233,9 @@ Meteor.methods({
 
     const costs = MINING.storage.costs(storageLevel, oreId);
 
-    console.log(2);
-
     if (!requirementsUtility(costs, 1)) {
       return;
     }
-
-    console.log(3);
 
     mining.storage[oreId] = storageLevel + 1;
 
@@ -731,7 +726,7 @@ Meteor.methods({
       let mutateMiners = false;
 
       let storageLimits = {};
-      if (Object.keys(gainedItems).length >= 0) {
+      if (Object.keys(gainedItems).length > 0) {
         Object.keys(MINING.ores).forEach((key) => {
           const ore = MINING.ores[key];
 

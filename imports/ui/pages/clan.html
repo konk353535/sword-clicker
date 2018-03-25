@@ -1,0 +1,81 @@
+<template name="clanPage">
+  <div class="container mt-2">
+    {{#if currentClan}}
+      <h4>{{currentClan.name}}</h4>
+
+      <div class="home-page-content">
+        <div class="d-flex flex-column mt-2">
+          <div class="text-muted">
+            Members
+          </div>
+          <div class="d-flex flex-column">
+            {{#each clanMembers}}
+              {{> friendRow friend=this}}
+            {{/each}}
+
+            {{#if clanPendingInvites.length}}
+              <div class="text-muted">
+                Invited
+              </div>
+              {{#each clanPendingInvites}}
+                <div class="d-flex align-items-center flex-grow mb-1">
+                  <div class="badge text-capitalize badge-grey-0 mr-1
+                  " style="width: 80px">
+                    Pending
+                  </div>
+                  <div class="flex-grow text-capitalize"
+                    style="max-width: 100px; overflow: hidden; text-overflow: ellipsis;"
+                  >
+                    {{this.inviteeName}}
+                  </div>
+                </div>
+              {{/each}}
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="d-flex flex-column mt-2">
+          <div class="text-muted">
+            Add Member
+          </div>
+          <hr style="width: 100%" class="my-1" />
+          <form class="d-flex mt-1 flex-grow member-invite">
+            <input class="form-control typeahead" name="team" id="invitee-name" type="text"
+              placeholder="Name"
+              style="width: 100%"
+              autocomplete="off" spellcheck="off"
+              data-source="search" />
+            <div class="d-flex justify-content-center align-items-center">
+              <button
+                type="submit"
+                class="btn btn-primary btn-invite ml-2"
+              >
+                Invite
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {{else}}
+      <div class="d-flex align-items-center justify-content-center flex-grow" style="margin-top: 100px">
+        <form class="d-flex flex-column flex-grow" style="max-width: 400px">
+          <label class="mb-1">Clan Name</label>
+          <input class="form-control" name="team" id="clan-name"/>
+
+          <div class="d-flex justify-content-center flex-grow mt-3">
+            <div>{{ > requiredItems requiredItems=newClanCost.cost.required}}</div>
+          </div>
+          <div class="d-flex justify-content-center flex-grow mt-3">
+            <button
+              type="submit"
+              class="btn btn-primary btn-create"
+              disabled="{{newClanCost.notMet}}"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    {{/if}}
+  </div>
+</template>

@@ -3,6 +3,7 @@ import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Groups } from '/imports/api/groups/groups';
+import { Clans } from '/imports/api/clans/clans';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addItem } from '/server/api/items/items.js';
 
@@ -35,6 +36,15 @@ SimpleChat.configure ({
     });
 
     if (targetGroup) {
+      return this.userId;
+    }
+
+    const myClan = Clans.findOne({
+      _id: roomId,
+      members: this.userId
+    });
+
+    if (myClan) {
       return this.userId;
     }
 

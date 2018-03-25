@@ -20,6 +20,21 @@ Router.route('/', {
   }
 });
 
+Router.route('/clan', {
+
+  name: 'clan',
+
+  template: 'clanPage',
+
+  title: 'clan',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+
+});
+
 Router.route('/achievements', {
 
   name: 'achievementsPage',

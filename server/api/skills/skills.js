@@ -11,6 +11,7 @@ import { Crafting } from '/imports/api/crafting/crafting';
 import { Users } from '/imports/api/users/users';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
+import { ClanHighscores } from '/imports/api/clans/clans';
 import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 
 import { updateCombatStats } from '/server/api/combat/combat';
@@ -129,16 +130,28 @@ export const addXp = function (skillType, xp, specificUserId) {
         xp: xp
       }
     });
-    
-    // This can probably be optimized
-    /* Remove for performance reasons
-    Skills.update({
-      type: 'total',
-      owner
+  }
+
+  if (xp >= 1) {
+    const highScoreType = `${skill.type}-weekly`;
+
+    ClanHighscores.update({
+      owner,
+      type: highScoreType
     }, {
-      $inc: { totalXp: xp }
-    });
-    */
+      $inc: {
+        score: Math.floor(xp)
+      }
+    }, (err, res) => {
+      if (!res) {
+        // Create the entry
+        ClanHighscores.insert({
+          owner,
+          type: highScoreType,
+          score: Math.floor(xp)
+        });
+      }
+    })
   }
 }
 

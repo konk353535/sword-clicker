@@ -21,6 +21,16 @@
           </div>
         {{/if}}
 
+        {{#if firstClanInvite}}
+          <div class="d-flex align-items-center mb-3">
+            Clan invite to {{firstClanInvite.clanName}} from {{firstClanInvite.inviterName}}
+            <div class="d-flex flex-grow justify-content-end">
+              <button class="btn btn-primary mr-2 accept-clan-invite" data-id={{firstClanInvite._id}}>Accept</button>
+              <button class="btn btn-danger decline-clan-invite" data-id={{firstClanInvite._id}}>Decline</button>
+            </div>
+          </div>
+        {{/if}}
+
         {{#if firstRecievedFriendRequest}}
           <div class="d-flex align-items-center mb-3">
             Friend request from {{firstRecievedFriendRequest.senderName}}
@@ -94,7 +104,7 @@
         </div>
 
         <!-- Farming -->
-        <div class="d-flex flex-column mt-3">
+        <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             Farm Plots
             <div class="d-flex flex-grow justify-content-end">
@@ -180,15 +190,23 @@
         </div>
         <div class="mt-2">
           <div class="d-flex text-muted mb-1 align-items-center">
-            Clan
-            <div class="d-flex flex-grow justify-content-end">
-              <a href="#" class="create-clan">
-                Create
-              </a>
-            </div>
+            {{#if myClan}}
+              <a href="/clan">Clan</a>
+            {{else}}
+              Clan
+              <div class="d-flex flex-grow justify-content-end">
+                <a href="/clan" class="create-clan">
+                  Create
+                </a>
+              </div>
+            {{/if}}
           </div>
 
-          Your not in a clan
+          {{#if myClan}}
+            {{myClan.name}}
+          {{else}}
+            Your not in a clan
+          {{/if}}
         </div>
         <div class="mt-2">
           <div class="text-muted mb-1">

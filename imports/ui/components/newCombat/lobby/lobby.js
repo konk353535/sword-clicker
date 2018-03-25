@@ -143,15 +143,6 @@ Template.lobbyPage.events({
     instance.data.setPage('otherBattlers');
   },
 
-  'keydown #name'(event, instance) {
-    // Get value from form element
-    const text = instance.$('#name').val();
-    Meteor.call('users.search', text, (err, res) => {
-      console.log(res);
-      instance.state.set('userSuggestions', res.map(user => user.username));
-    });
-  },
-
   'submit .group-invite'(event) {
     // Prevent default browser form submit
     event.preventDefault();

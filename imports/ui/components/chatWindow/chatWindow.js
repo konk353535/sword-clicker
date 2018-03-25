@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import { Users } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups.js';
+import { Clans } from '/imports/api/clans/clans.js';
 
 import './chatWindow.html';
 
@@ -30,6 +31,12 @@ const AVAILABLE_CHATS = {
     name: 'Party',
     id: 'Party',
     class: 'chat-Party',
+    show: true
+  },
+  'Clan': {
+    name: 'Clan',
+    id: 'Clan',
+    class: 'chat-Clan',
     show: true
   },
   'LFG': {
@@ -84,6 +91,9 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
     });
+
+    const currentClan = Clans.findOne({});
+
     const availableChats = this.state.get('availableChats');
 
     if (availableChats.General.show) {
@@ -91,8 +101,13 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     }
 
     if (currentGroup && availableChats.Party.show) {
-      // Current group messages
+      // Current clan messages
       Meteor.subscribe("simpleChats", currentGroup._id, this.limit.get());
+    }
+
+    if (currentClan && availableChats.Clan.show) {
+      // Current group messages
+      Meteor.subscribe("simpleChats", currentClan._id, this.limit.get());
     }
 
     if (availableChats.LFG.show) {
@@ -184,6 +199,10 @@ Template.chatWindow.events({
     instance.state.set('currentRoom', 'General');
   },
 
+  'click .room-clan'(event, instance) {
+    instance.state.set('currentRoom', 'Clan');
+  },
+
   'click .room-other'(event, instance) {
     instance.state.set('currentRoom', 'Other');
   },
@@ -230,6 +249,9 @@ Template.chatWindow.events({
     } else if (command === '/offtopic' || command === '/ot') {
       $message.val(text);
       template.state.set('currentChat', 'Offtopic');
+    } else if (command === '/clan') {
+      $message.val(text);
+      template.state.set('currentChat', 'Clan');      
     }
 
     if ($message.val() !== '') {
@@ -245,6 +267,8 @@ Template.chatWindow.events({
       let roomId;
       if (currentChatId === 'Party') {
         roomId = Groups.findOne({ members: Meteor.userId() })._id;
+      } else if (currentChatId === 'Clan') {
+        roomId = Clans.findOne({})._id;
       } else {
         roomId = currentChatId;
       }

@@ -1,12 +1,31 @@
 import { Clans, ClanInvites } from '/imports/api/clans/clans';
 import { Users } from '/imports/api/users/users';
 
+import { requirementsUtility } from '/server/api/crafting/crafting';
+
+const clanCost = [{
+  type: 'item',
+  itemId: 'ore_stone',
+  icon: 'stone.png',
+  name: 'stone',
+  amount: 500,
+  consumes: true
+}, {
+  type: 'gold',
+  amount: 1000,
+  consumes: true
+}]
+
 Meteor.methods({
   'clans.create'(name) {
     const userDoc = Meteor.user();
 
+    if (!requirementsUtility(clanCost, 1)) {
+      return;
+    }
+
     Clans.insert({
-      username: name,
+      name: name,
       members: [userDoc._id],
       owner: userDoc._id
     });
@@ -32,6 +51,14 @@ Meteor.methods({
     });
 
     targetClan.members.push(Meteor.userId());
+
+    Clans.update({
+      _id: clanInvite.clanId
+    }, {
+      $set: {
+        members: targetClan.members
+      }
+    })
 
     ClanInvites.remove({
       _id: clanInvite._id
@@ -68,17 +95,44 @@ Meteor.methods({
       members: targetUser._id
     });
 
-    throw new Meteor.Error('target-in-clan', 'Your target is already in a clan');
+    if (targetsClan) {
+      throw new Meteor.Error('target-in-clan', 'Your target is already in a clan');
+    }
 
     ClanInvites.insert({
       clanId: myClan._id,
-      invitee: targetUser._id
+      invitee: targetUser._id,
+      inviterName: Meteor.user().username,
+      clanName: myClan.name,
+      inviteeName: targetUser.username
     });
   }
 });
 
 Meteor.publish('clanInvites', function() {
+
+  const myClan = Clans.findOne({
+    members: this.userId
+  });
+
+  if (myClan) {
+    return ClanInvites.find({
+      $or: [{
+        invitee: this.userId,
+      }, {
+        clanId: myClan._id
+      }]
+    });
+  }
+
   return ClanInvites.find({
     invitee: this.userId
   });
 });
+
+Meteor.publish('clans', function() {
+  return Clans.find({
+    members: this.userId
+  });
+});
+

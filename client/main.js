@@ -33,6 +33,7 @@ import '/imports/ui/components/ngLoot/ngLoot.js';
 import '../imports/ui/body.js';
 import '../imports/ui/nav.js';
 import '../imports/ui/pages/updates.js';
+import '../imports/ui/pages/clan.js';
 import '../imports/ui/pages/guestSettings.js';
 import '../imports/ui/pages/profile.js';
 import '../imports/ui/pages/home.js';

@@ -9,6 +9,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
+import { Clans } from '/imports/api/clans/clans';
 
 import { addXp } from '/server/api/skills/skills.js';
 import { addItem } from '/server/api/items/items.js';
@@ -379,6 +380,10 @@ Meteor.publish('friendsFeed', function(data) {
     owner: this.userId
   });
 
+  const myClan = Clans.findOne({
+    members: this.userId
+  });
+
   if (!myFriends) {
     return Meteor.users.find({
       _id: this.userId
@@ -388,6 +393,11 @@ Meteor.publish('friendsFeed', function(data) {
         'username': 1
       }
     });
+  }
+
+  let allUsersInFeed = myFriends.friends;
+  if (myClan) {
+    allUsersInFeed.push(...myClan.members);
   }
 
   return Meteor.users.find({

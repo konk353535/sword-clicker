@@ -9,6 +9,7 @@ import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users } from '/imports/api/users/users';
+import { Clans, ClanInvites } from '/imports/api/clans/clans';
 
 import './gameHome.html';
 
@@ -37,18 +38,26 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   });
 
   Meteor.subscribe('friends');
+  Meteor.subscribe('clanInvites');
   Meteor.subscribe('mining');
   Meteor.subscribe('crafting');
   Meteor.subscribe('friendRequests');
   Meteor.subscribe('farmingSpace');
+  Meteor.subscribe('clans');
 });
 
 Template.gameHomePage.helpers({
 
+  myClan() {
+    return Clans.findOne({});
+  },
+
   friendsList() {
+    const friendsObject = Friends.findOne({});
+
     return Users.find({
       _id: {
-        $not: Meteor.userId()
+        $in: friendsObject.friends
       }
     }, {
       sort: {
@@ -61,6 +70,12 @@ Template.gameHomePage.helpers({
     return FriendRequests.find({
       sender: Meteor.userId()
     }).fetch();
+  },
+
+  firstClanInvite() {
+    return ClanInvites.findOne({
+      invitee: Meteor.userId()
+    });
   },
 
   firstRecievedFriendRequest() {
@@ -224,6 +239,22 @@ Template.gameHomePage.events({
         instance.state.get('creatingGuest', false);
       }
     });
+  },
+
+  'click .accept-clan-invite'(event, instance) {
+    // Get target data
+    const inviteId = instance.$(event.target).closest('.accept-clan-invite').data('id');
+
+    Meteor.call('clans.accept', inviteId, true, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .decline-clan-invite'(event, instance) {
+    const inviteId = instance.$(event.target).closest('.decline-clan-invite').data('id');
+    Meteor.call('clans.decline', inviteId, false);
   },
 
   'click .accept-party-invite'(event, instance) {

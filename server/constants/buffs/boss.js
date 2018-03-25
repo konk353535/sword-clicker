@@ -23,8 +23,8 @@ export const BOSS_BUFFS = {
     },
     constants: {
     },
+    duration: 0,
     data: {
-      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -41,10 +41,11 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id];
 
         const extraDamage = 0.1 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
+        
         actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
@@ -89,10 +90,10 @@ export const BOSS_BUFFS = {
         } else {
           const newBuff = {
             id: 'deep_wounds',
+            stacks: 1,
+            duration: DEEP_WOUNDS_DURATION,
             data: {
-              duration: DEEP_WOUNDS_DURATION,
               totalDuration: DEEP_WOUNDS_DURATION,
-              stacks: 1,
               icon: 'deepWounds.svg',
               description: ''
             }
@@ -776,8 +777,8 @@ export const BOSS_BUFFS = {
     },
     constants: {
     },
+    duration: 0,
     data: {
-      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -794,10 +795,12 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id];
 
         const extraDamage = 0.01 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
+        console.log(extraDamage);
+        console.log(attackerDamage);
         actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,

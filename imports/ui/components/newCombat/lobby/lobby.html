@@ -67,7 +67,7 @@
             {{/each}}
           {{else}}
             <button class="btn btn-danger battle-boss-btn mr-2">Boss</button>
-            {{waveDetails.health}} / {{waveDetails.healthMax}} hp
+            {{> formatNumber number=waveDetails.health decimal=0}} / {{> formatNumber number=waveDetails.healthMax decimal=0}} hp
           {{/if}}
         {{/if}}
       {{else if $eq typeKey 'afk'}}

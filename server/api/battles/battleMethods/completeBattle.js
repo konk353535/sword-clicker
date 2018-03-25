@@ -220,7 +220,8 @@ export const completeBattle = function (actualBattle) {
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-      const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+      const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
+
       let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
 
       totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
@@ -430,7 +431,7 @@ export const completeBattle = function (actualBattle) {
 
             finalTickEvents.push({
               type: 'xp',
-              amount: Math.round(actualPointsGained * 50),
+              amount: Math.round(actualPointsGained * 5),
               skill: targetStat,
               owner
             });
@@ -611,7 +612,7 @@ export const completeBattle = function (actualBattle) {
   console.log(actualBattle.startingBossHp);
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
     let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
     console.log(`damage dealt = ${damageDealt}`);
     if (!damageDealt || damageDealt < 0) {

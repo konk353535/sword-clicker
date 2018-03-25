@@ -1,4 +1,7 @@
 {
+  "kadira": {
+    "KADIRA_PROFILE_LOCALLY": true
+  },
   "redisConfigureKeyspaceNotifications": 1,
   "public": {
     "battleUrl": "http://localhost:3055",
@@ -11,18 +14,5 @@
   },
   "private": {
     "stripe": "-or-this"
-  },
-  "redisOplog": {
-    "redis": {
-      "host": "127.0.0.1",
-      "port": "6379",
-    },
-    "retryIntervalMs": 10000,
-    "mutationDefaults": {
-      "optimistic": true,
-      "pushToRedis": true
-    },
-    "debug": false,
-    "overridePublishFunction": true
   }
 }

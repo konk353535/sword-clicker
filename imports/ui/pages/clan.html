@@ -3,7 +3,7 @@
     {{#if currentClan}}
       <h4>{{currentClan.name}}</h4>
 
-      <div class="home-page-content">
+      <div class="home-page-content mr-3">
         <div class="d-flex flex-column mt-2">
           <div class="text-muted">
             Members
@@ -55,7 +55,49 @@
             </div>
           </form>
         </div>
-      </div>
+
+        <div class="d-flex flex-column mt-2">
+          <div class="text-muted mb-1">Weekly Leaderboard</div>
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Mining</th>
+                <th>Crafting</th>
+                <th>Attack</th>
+                <th>Defense</th>
+                <th>Health</th>
+                <th>Magic</th>
+                <th>Woodcutting</th>
+                <th>Farming</th>
+                <th>Astronomy</th>
+                <th>Gold</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each leaderboardList}}
+                <tr>
+                  <td>{{this.rank}}</td>
+                  <td style="overflow: hidden">{{this.username}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.mining}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.crafting}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.attack}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.defense}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.health}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.magic}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.woodcutting}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.farming}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.astronomy}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.gold}}</td>
+                  <td>{{> fallBackComponent fallback="0" value=this.total}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>  
     {{else}}
       <div class="d-flex align-items-center justify-content-center flex-grow" style="margin-top: 100px">
         <form class="d-flex flex-column flex-grow" style="max-width: 400px">
@@ -78,4 +120,12 @@
       </div>
     {{/if}}
   </div>
+</template>
+
+<template name="fallBackComponent">
+  {{#if value}}
+    {{value}}
+  {{else}}
+    {{fallback}}
+  {{/if}}
 </template>

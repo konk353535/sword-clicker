@@ -4,15 +4,52 @@ import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './clan.html';
 
+import {sortBy} from 'lodash';
 import { Clans, ClanInvites } from '/imports/api/clans/clans.js';
 import { Users } from '/imports/api/users/users.js';
 
 Template.clanPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('rawLeaderboardData', []);
+  this.state.set('leaderboardData', []);
+  this.state.set('sortOption', 'total');
 
   Meteor.subscribe('clans');
   Meteor.subscribe('clanInvites');
   Meteor.subscribe('friendsFeed');
+
+  this.autorun(() => {
+    const myClan = Clans.findOne();
+
+    if (myClan) {
+      Meteor.call('clan.leaderboard', (err, raw) => {
+        if (raw) {
+          this.state.set('rawLeaderboardData', raw);
+          const membersMap = {};
+
+          raw.forEach((data) => {
+            if (membersMap[data.owner]) {
+              membersMap[data.owner].total += data.score;
+              if (membersMap[data.owner][data.type]) {
+                membersMap[data.owner][data.type] += data.score;
+              } else {
+                membersMap[data.owner][data.type] = data.score;
+              }
+            } else {
+              membersMap[data.owner] = {
+                total: data.score,
+                [data.type]: data.score,
+                owner: data.owner
+              }
+            }
+          });
+
+          const members = Object.keys(membersMap).map((key) => membersMap[key]);
+          this.state.set('leaderboard', members);
+        }
+      });      
+    }
+  })
 });
 
 Template.clanPage.events({
@@ -51,6 +88,23 @@ Template.clanPage.rendered = function () {
 }
 
 Template.clanPage.helpers({
+
+  leaderboardList() {
+    const instance = Template.instance();
+    const sortOption = instance.state.get('sortOption');
+
+    return sortBy(instance.state.get('leaderboard').map((user, index) => {
+      const newUser = {};
+      newUser.username = Users.findOne({ _id: user.owner }).username;
+      newUser.rank = index + 1;
+      Object.keys(user).forEach((key) => {
+        const newKey = key.replace('-weekly', '');
+        newUser[newKey] = user[key]; 
+      });
+      return newUser;
+    }), sortOption).reverse();
+  },
+
   currentClan() {
     return Clans.findOne({});
   },

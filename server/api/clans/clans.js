@@ -1,4 +1,4 @@
-import { Clans, ClanInvites } from '/imports/api/clans/clans';
+import { Clans, ClanInvites, ClanHighscores } from '/imports/api/clans/clans';
 import { Users } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
@@ -17,6 +17,23 @@ const clanCost = [{
 }]
 
 Meteor.methods({
+
+  'clan.leaderboard'() {
+    const myClan = Clans.findOne({
+      members: Meteor.userId()
+    });
+
+    if (!myClan) {
+      return false;
+    }
+
+    return ClanHighscores.find({
+      owner: {
+        $in: myClan.members
+      }
+    }).fetch();
+  },
+
   'clans.create'(name) {
     const userDoc = Meteor.user();
 

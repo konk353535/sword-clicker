@@ -40,10 +40,10 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('friends');
   Meteor.subscribe('clanInvites');
   Meteor.subscribe('mining');
+  Meteor.subscribe('woodcutting');
   Meteor.subscribe('crafting');
   Meteor.subscribe('friendRequests');
   Meteor.subscribe('farmingSpace');
-  Meteor.subscribe('clans');
 });
 
 Template.gameHomePage.helpers({

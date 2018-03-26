@@ -13,7 +13,7 @@ import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
 import { MAGIC } from '/server/constants/magic/index';
 
-import { consumeItem } from '/imports/api/items/items';
+import { consumeItem } from '/server/api/items/items';
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
   let owner = userId;

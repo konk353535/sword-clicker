@@ -48,24 +48,6 @@ Template.body.onCreated(function () {
     }
   });
 
-  Tracker.autorun(() => {
-    if (Meteor.user() && Meteor.user().uiState && Meteor.user().uiState.showSummaryList) {
-      // Make sure not on mobile
-      if ($(window).width() > 1150) {
-        // Show woodcutting
-        Meteor.subscribe('woodcutting');
-        // Show mining spaces
-        Meteor.subscribe('miningSpace');
-        // Mining data
-        Meteor.subscribe('mining');
-        // Show currently crafting items
-        Meteor.subscribe('crafting');
-        // Show currently inscripting items
-        Meteor.subscribe('inscription');
-      }
-    }
-  });
-
   // auto tracker for detecting battle completion to begin cd cooldown interval
   Tracker.autorun(() => {
     const finishedBattle = Battles.findOne({
@@ -316,6 +298,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('battlesList');
   // State
   Meteor.subscribe('state');
+  // Clans
+  Meteor.subscribe('clans');
 
   // Only use these if summary list is showing & not mobile
 

@@ -11,7 +11,7 @@ import { FARMING } from '/server/constants/farming/index.js';
 import { BUFFS } from '/server/constants/buffs/index.js';
 import { COMBAT_CRAFTS } from '/server/constants/combat/crafts.js';
 
-import { addXp } from '/server/api/skills/skills.js';
+import { addXp, addGold } from '/server/api/skills/skills.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
@@ -724,12 +724,7 @@ Meteor.methods({
       }
     }
 
-    // Add gold to users account
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $inc: { gold: amountToSell * itemConstants.sellPrice }
-    });
+    addGold(amountToSell * itemConstants.sellPrice, Meteor.userId());
   }
 });
 

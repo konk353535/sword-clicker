@@ -7,7 +7,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { Users } from '/imports/api/users/users';
 import { Achievements } from '/imports/api/achievements/achievements';
 import { addItem } from '/server/api/items/items.js';
-import { addXp } from '/server/api/skills/skills.js';
+import { addXp, addGold } from '/server/api/skills/skills.js';
 
 Meteor.methods({
 
@@ -50,11 +50,7 @@ Meteor.methods({
       if (reward.type === 'item') {
         addItem(reward.itemId, reward.amount, userDoc._id);
       } else if (reward.type === 'gold') {
-        Users.update(userDoc._id, {
-          $inc: {
-            gold: reward.amount
-          }
-        });
+        addGold(reward, userDoc._id);
       } else if (reward.type === 'xp') {
         addXp(reward.skill, reward.amount);
       }

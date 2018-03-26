@@ -29,7 +29,10 @@ Template.clanPage.onCreated(function bodyOnCreated() {
 
           raw.forEach((data) => {
             if (membersMap[data.owner]) {
-              membersMap[data.owner].total += data.score;
+              if (data.type !== 'gold-weekly') {
+                membersMap[data.owner].total += data.score;
+              }
+
               if (membersMap[data.owner][data.type]) {
                 membersMap[data.owner][data.type] += data.score;
               } else {
@@ -37,7 +40,7 @@ Template.clanPage.onCreated(function bodyOnCreated() {
               }
             } else {
               membersMap[data.owner] = {
-                total: data.score,
+                total: data.type !== 'weekly-gold' ? data.score : 0,
                 [data.type]: data.score,
                 owner: data.owner
               }
@@ -53,6 +56,12 @@ Template.clanPage.onCreated(function bodyOnCreated() {
 });
 
 Template.clanPage.events({
+
+  'click .sort-btn'(event, instance) {
+    const sortOption = instance.$(event.target).closest('.sort-btn').data('id');
+    instance.state.set('sortOption', sortOption);
+  },
+
   'click .btn-create'(event, instance) {
     event.preventDefault();
     const name = instance.$('#clan-name').val();
@@ -93,16 +102,18 @@ Template.clanPage.helpers({
     const instance = Template.instance();
     const sortOption = instance.state.get('sortOption');
 
-    return sortBy(instance.state.get('leaderboard').map((user, index) => {
+    return sortBy(instance.state.get('leaderboard').map((user) => {
       const newUser = {};
       newUser.username = Users.findOne({ _id: user.owner }).username;
-      newUser.rank = index + 1;
       Object.keys(user).forEach((key) => {
         const newKey = key.replace('-weekly', '');
         newUser[newKey] = user[key]; 
       });
       return newUser;
-    }), sortOption).reverse();
+    }), sortOption).reverse().map((user, index) => {
+      user.rank = index + 1;
+      return user;
+    });
   },
 
   currentClan() {

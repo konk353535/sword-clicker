@@ -19,7 +19,7 @@ import { Users } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
-import { addXp } from '/server/api/skills/skills.js';
+import { addXp, addGold } from '/server/api/skills/skills.js';
 
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
@@ -269,11 +269,7 @@ Meteor.methods({
     // Add rewards
     targetAdventure.rewards.forEach((reward) => {
       if (reward.type === 'gold') {
-        Users.update(Meteor.userId(), {
-          $inc: {
-            gold: reward.amount
-          }
-        })
+        addGold(reward.amount, Meteor.userId());
       } else if (reward.type === 'item') {
         addItem(reward.itemId, reward.amount, Meteor.userId());
       } else if (reward.type === 'xp') {

@@ -12,7 +12,7 @@ import { CRAFTING } from '/server/constants/crafting/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 
 import { addItem } from '/server/api/items/items.js';
-import { addXp } from '/server/api/skills/skills.js';
+import { addXp, addGold } from '/server/api/skills/skills.js';
 
 // Take a list of requirements
 // If met will return true and take items
@@ -55,9 +55,12 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
     ]
   }).fetch();
 
+
   const myUser = {
     gold: Meteor.user().gold
   }
+
+  const originalGold = myUser.gold;
 
   const myItemsMap = {};
   myItems.forEach((item) => {
@@ -125,9 +128,8 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
 
   // Take gold
   if (myUser.isDirty) {
-    Users.update(Meteor.userId(), {
-      $set: { gold: myUser.gold }
-    });
+    const goldDiff = myUser.gold - originalGold;
+    addGold(goldDiff, Meteor.userId());
   }
 
   return true;

@@ -13,7 +13,7 @@ import { Astronomy } from '/imports/api/astronomy/astronomy';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
-import { addXp } from '/server/api/skills/skills';
+import { addXp, addGold } from '/server/api/skills/skills';
 
 Meteor.methods({
 
@@ -170,11 +170,7 @@ Meteor.methods({
     }
 
     // Update user, then update mage
-    Users.update(Meteor.userId(), {
-      $inc: {
-        gold: amount * -1
-      }
-    });
+    addGold(amount * -1, Meteor.userId());
 
     Astronomy.update(astronomy._id, {
       $set: {
@@ -208,11 +204,7 @@ Meteor.methods({
     }
 
     // Update user, then update mage
-    Users.update(Meteor.userId(), {
-      $inc: {
-        gold: Math.round(amount)
-      }
-    });
+    addGold(Math.round(amount), Meteor.userId());
 
     Astronomy.update(astronomy._id, {
       $set: {

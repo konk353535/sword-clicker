@@ -43,6 +43,38 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs();
 Meteor.setInterval(updateGlobalBuffs, 30000);
 
+export const addGold = function (amount, userId) {
+  const owner = userId;
+
+  Users.update(owner, {
+    $inc: {
+      gold: amount
+    }
+  });
+
+  if (amount > 0) {
+    const highScoreType = 'gold-weekly';
+
+    ClanHighscores.update({
+      owner,
+      type: highScoreType
+    }, {
+      $inc: {
+        score: Math.floor(amount)
+      }
+    }, (err, res) => {
+      if (!res) {
+        // Create the entry
+        ClanHighscores.insert({
+          owner,
+          type: highScoreType,
+          score: Math.floor(amount)
+        });
+      }
+    });
+  }
+}
+
 export const addXp = function (skillType, xp, specificUserId) {
   let owner;
   if (specificUserId) {

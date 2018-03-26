@@ -10,7 +10,7 @@ import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.j
 import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
 import { STATE_BUFFS } from '/imports/constants/state';
 
-import { addXp } from '/server/api/skills/skills';
+import { addXp, addGold } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
@@ -81,11 +81,7 @@ const distributeRewards = function distributeRewards({ floor }) {
         addItem(reward.itemId, 1, waveScore.owner);
       } else if (reward.type === 'gold') {
         const goldAmount = (1 - (percentRank / 100)) * reward.amount;
-        Users.update(waveScore.owner, {
-          $inc: {
-            gold: Math.round(goldAmount)
-          }
-        });
+        addGold(Math.round(goldAmount), waveScore.owner);
       }
     });
   })
@@ -352,11 +348,7 @@ export const completeBattle = function (actualBattle) {
         }
       } else if (rewardGained.type === 'gold') {
         const luckyOwner = _.sample(owners);
-        Users.update(luckyOwner, {
-          $inc: {
-            gold: rewardGained.amount
-          }
-        });
+        addGold(rewardGained.amount, luckyOwner);
         finalTickEvents.push({
           type: 'gold',
           amount: rewardGained.amount,

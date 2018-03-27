@@ -750,11 +750,12 @@ Meteor.methods({
         } else {
           if (mining.collector[key]) {
             mining.collector[key] += gainedItems[key].amount;
-            if (mining.collector[key] > storageLimits[key]) {
-              mining.collector[key] = storageLimits[key];
-            }
           } else {
             mining.collector[key] = gainedItems[key].amount;
+          }
+
+          if (mining.collector[key] > storageLimits[key]) {
+            mining.collector[key] = storageLimits[key];
           }
         }
       });

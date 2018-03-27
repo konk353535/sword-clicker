@@ -315,6 +315,10 @@ Template.miningPage.helpers({
       return !(/essence/.test(ore.name)) && !ore.isGem && ore.name !== 'gem';
     });
 
+    setTimeout(() => {
+      tippy('.ore-list-item');
+    }, 100);
+
     return ores.concat(gems).map((ore) => {
       const targetItem = Items.findOne({
         itemId: ore.itemId
@@ -595,6 +599,11 @@ Template.miningCollector.helpers({
   collectors() {
     const mining = Mining.findOne({});
     if (!mining) return [];
+
+    setTimeout(() => {
+      tippy('.collector-container');
+    }, 100);
+
     return Object.keys(mining.collector).map((key) => {
 
       const constants = MINING.ores[key];
@@ -607,6 +616,7 @@ Template.miningCollector.helpers({
 
       return {
         key,
+        name: key,
         amount: mining.collector[key],
         storage
       }

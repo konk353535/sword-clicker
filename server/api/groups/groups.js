@@ -11,6 +11,10 @@ import uuid from 'node-uuid';
 
 function leaveGroup(group, userId) {
 
+  group.invites = group.invites.filter((member) => {
+    return member !== userId;
+  });
+
   group.members = group.members.filter((member) => {
     return member !== userId;
   });
@@ -38,6 +42,7 @@ function leaveGroup(group, userId) {
     Groups.update(group._id, {
       $set :{
         members: group.members,
+        invites: group.invites,
         membersObject: group.membersObject,
         leader: group.leader
       }
@@ -62,52 +67,29 @@ Meteor.methods({
   'groups.kick'({ username, ownerId }) {
     // Fetch your current group
     const currentGroup = Groups.findOne({
-      leader: this.userId,
-      members: this.userId
+      leader: this.userId
     });
 
-    if (!currentGroup) {
-      return;
+    if (ownerId && currentGroup && currentGroup.members.find(member => member === ownerId)) {
+      // If leader kicks himself, trigger a group.leave instead so leader status tranfers
+      if (ownerId == this.userId) {
+        Meteor.call('groups.leave');
+        return;
+      }
+
+      leaveGroup(currentGroup, ownerId);
     }
 
-    let targetUser;
-    if (username) {
-      // Find specified username id
-      targetUser = Users.findOne({
-        username
+    if (username && !ownerId) {
+      const targetUser = Users.findOne({
+        username: username.toLowerCase()
       });
-    }
 
-    // If leader kicks himself, trigger a group.leave instead so leader status tranfers
-    if (ownerId == this.userId) {
-      Meteor.call('groups.leave');
-      return;
-    }
-
-    const memberFilter = function (member) {
-      if (targetUser) {
-        return member !== targetUser._id
+      if (targetUser && currentGroup.invites.find(invitee => invitee === targetUser._id)) {
+        console.log('hit');
+        leaveGroup(currentGroup, targetUser._id);
       }
-      return member !== ownerId;
     }
-
-    // Remove from current group (invites + users)
-    currentGroup.members = currentGroup.members.filter(memberFilter);
-    currentGroup.invites = currentGroup.invites.filter(memberFilter);
-    currentGroup.membersObject = currentGroup.membersObject.filter((member) => {
-      if (targetUser) {
-        return member.id !== targetUser._id
-      }
-      return member.id !== ownerId;
-    });
-
-    Groups.update(currentGroup._id, {
-      $set: {
-        members: currentGroup.members,
-        membersObject: currentGroup.membersObject,
-        invites: currentGroup.invites
-      }
-    });
   },
 
   'groups.ready'() {

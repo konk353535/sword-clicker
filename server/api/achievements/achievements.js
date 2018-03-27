@@ -50,7 +50,7 @@ Meteor.methods({
       if (reward.type === 'item') {
         addItem(reward.itemId, reward.amount, userDoc._id);
       } else if (reward.type === 'gold') {
-        addGold(reward, userDoc._id);
+        addGold(reward.amount, userDoc._id);
       } else if (reward.type === 'xp') {
         addXp(reward.skill, reward.amount);
       }

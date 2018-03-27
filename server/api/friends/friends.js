@@ -104,20 +104,8 @@ Meteor.methods({
       owner: targetRequest.sender
     });
 
-    console.log('currentFriends');
-    console.log(currentFriends);
-    console.log('senderFriends');
-    console.log(senderFriends);
-    console.log('-------');
-
     currentFriends.friends.push(targetRequest.sender);
     senderFriends.friends.push(targetRequest.reciever);
-
-    console.log('currentFriends');
-    console.log(currentFriends);
-    console.log('senderFriends');
-    console.log(senderFriends);
-    console.log('-------');
 
     FriendRequests.remove({
       reciever: Meteor.userId(),

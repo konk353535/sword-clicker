@@ -1,4 +1,4 @@
-Router.route('/', {
+Router.route('/landing', {
 
   name: 'home',
 
@@ -13,7 +13,7 @@ Router.route('/', {
 
   onBeforeAction: function () {
     if (Meteor.user()) {
-      Router.go('mining');
+      Router.go('gameHome');
     } else {
       this.next();
     }
@@ -60,7 +60,7 @@ Router.route('/profile/:username', {
 });
 
 
-Router.route('/gameHome', {
+Router.route('/', {
 
   name: 'gameHomePage',
 

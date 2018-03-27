@@ -350,7 +350,13 @@ Template.friendRow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
+
     const computedFriend = this.data.friend;
+
+    computedFriend.hasInvitedToMyGroup = !!Groups.findOne({
+      members: Meteor.userId(),
+      invites: computedFriend._id
+    });
 
     const nowTimeStamp = TimeSync.serverTime();
     const now = moment(nowTimeStamp);
@@ -385,6 +391,12 @@ Template.friendRow.helpers({
   computedFriend() {
     const instance = Template.instance();
     return instance.state.get('computedFriend');
+  },
+
+  myGroup() {
+    return Groups.findOne({
+      members: Meteor.userId()
+    });
   },
 
   canInvite() {

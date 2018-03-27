@@ -1,16 +1,16 @@
 <template name="gameHomePage">
-  <div class="container mt-2">
+  <div class="container mt-3">
     <div class="d-flex flex-wrap">
-      <div class="mr-3 mt-2" style="min-width: 150px">
+      <div class="mr-3 hidden-md-down" style="min-width: 150px">
         <div class="text-muted mb-1">Links</div>
         <a href="/shop" class="side-link-item">Shop</a>
         <a href="/skills" class="side-link-item">Skills</a>
-        <a class="side-link-item" style="cursor: not-allowed;">Clan</a>
+        <a href="/clan" class="side-link-item">Clan</a>
         <a href="/achievements" class="side-link-item">Achievements</a>
         <a href="/patchNotes" class="side-link-item">FAQ</a>
         <a href="/updates" class="side-link-item new-update-color">New Things</a>
       </div>
-      <div class="home-page-content mr-3 mt-2">
+      <div class="home-page-content game-home-page-container">
 
         {{#if inCurrentBattle}}
           <div class="d-flex align-items-center text-danger mb-3">
@@ -54,7 +54,7 @@
         <!-- Mining -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            Mining Carts
+            <a href="/mining" class="text-muted">Mining Carts</a>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{> miningCollector}}
@@ -64,7 +64,7 @@
         <!-- Crafting -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            Workbench
+            <a href="/crafting" class="text-muted">Workbench</a>
             {{#if firstCrafting}}
               <div class="d-flex flex-grow justify-content-end">
                 <div class="text-muted ml-3">
@@ -96,7 +96,7 @@
         <!-- Lumber -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            Lumber Carriages
+            <a href="/woodcutting" class="text-muted">Lumber Carriages</a>
           </div>
           <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{> woodcuttingCollector}}
@@ -106,7 +106,7 @@
         <!-- Farming -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            Farm Plots
+            <a href="/farming" class="text-muted">Farm Plots</a>
             <div class="d-flex flex-grow justify-content-end">
               {{#if lastGrownThing}}
                 <div class="text-muted ml-3">
@@ -131,7 +131,7 @@
         <!-- Adventures -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            Adventures
+            <a href="/newCombat" class="text-muted">Adventures</a>
             <div class="d-flex justify-content-end flex-grow">
               <div class="text-muted ml-3">
                 {{> readableDuration endDate=lastAdventure.endDate}}
@@ -143,7 +143,7 @@
           </div>
         </div>
       </div>
-      <div class="live-feed-content d-flex flex-column flex-grow mr-3 mt-2">
+      <div class="live-feed-content d-flex flex-column flex-grow">
         <!-- Friends Card -->
         <div>
           <div class="d-flex text-muted mb-1 align-items-center">
@@ -169,6 +169,8 @@
           {{/if}}
           {{#each friendsList}}
             {{> friendRow friend=this}}
+          {{else}}
+            You have no friends
           {{/each}}
           {{#if sentFriendRequests.length}}
             <hr style="width: 100%" class="mb-1">
@@ -209,6 +211,15 @@
           <!-- Groups of friends / Clans mates here to easily join -->
         </div>
       </div>
+      <div class="mr-3 hidden-md-up" style="min-width: 150px">
+        <div class="text-muted mb-1">Links</div>
+        <a href="/shop" class="side-link-item">Shop</a>
+        <a href="/skills" class="side-link-item">Skills</a>
+        <a href="/clan" class="side-link-item">Clan</a>
+        <a href="/achievements" class="side-link-item">Achievements</a>
+        <a href="/patchNotes" class="side-link-item">FAQ</a>
+        <a href="/updates" class="side-link-item new-update-color">New Things</a>
+      </div>
     </div>
   </div>
 </template>
@@ -248,14 +259,22 @@
     <div class="flex-grow text-capitalize"
       style="max-width: 100px; overflow: hidden; text-overflow: ellipsis;"
     >
-      {{friend.username}}
+      <a href="/profile/{{friend.username}}" class="text-muted">
+        {{friend.username}}
+      </a>
     </div>
     <div class="d-flex justify-content-end flex-grow">
-      {{#if friend.partyId}}
-        <button class="btn btn-primary btn-sm mr-1 join-group">Join</button>
-      {{/if}}
-      {{#if canInvite}}
-        <button class="btn btn-secondary btn-sm invite-to-group">Invite</button>
+      {{#if $and myGroup ($eq myGroup._id friend.partyId)}}
+        <div class="badge badge-primary">In Group</div>
+      {{else}}
+        {{#if friend.partyId}}
+          <button class="btn btn-primary btn-sm mr-1 join-group">Join</button>
+        {{/if}}
+        {{#if computedFriend.hasInvitedToMyGroup}}
+          <div class="badge badge-info">Invited</div>
+        {{else if canInvite}}
+          <button class="btn btn-secondary btn-sm invite-to-group">Invite</button>
+        {{/if}}
       {{/if}}
     </div>
   </div>

@@ -27,6 +27,7 @@ Template.abilityLibraryIcon.rendered = function () {
               }
             }
           },
+          theme: "custom",
           html: Template.instance().$('.item-tooltip-content')[0],
           performance: true,
           animateFill: false,

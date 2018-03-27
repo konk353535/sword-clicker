@@ -9,6 +9,7 @@
 @import "styles/tutorial.scss";
 @import "styles/homePage.scss";
 @import "styles/icons.scss";
+@import "styles/mining.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
 @import "styles/typeahead.scss";
@@ -362,16 +363,16 @@ body { padding-right: 0 !important }
   text-align: left;
 }
 
-.tippy-backdrop, .tippy-tooltip {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
 
-.tippy-tooltip {
-  font-size: 1rem;
-}
+.custom-theme {
+  &.tippy-backdrop, &.tippy-tooltip {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
 
-.tippy-popper {
-  min-width: 150px;
+  &.tippy-tooltip {
+    font-size: 1rem;
+    min-width: 150px;
+  }
 }
 
 .item-tooltip-content {

@@ -14,6 +14,7 @@ Template.ngLoot.rendered = function () {
   if (!Template.instance().data.hideTooltip) {
     tooltip = tippy(Template.instance().$('.ng-help-icon-container')[0],
         {
+          theme: "custom",
           html: Template.instance().$('.item-tooltip-content')[0],
           performance: true,
           animateFill: false,

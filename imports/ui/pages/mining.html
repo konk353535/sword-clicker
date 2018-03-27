@@ -24,98 +24,105 @@
           </div>
           {{> miningCollector}}
 
-          <!-- Prospecting -->
-          <div class="d-flex mt-3 align-items-center">
-            <div class="text-muted mr-2">
-              Prospecting
+          <div class="hidden-sm-down">
+            <!-- Prospecting -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Prospecting
+              </div>
             </div>
-          </div>
-          <div class="d-flex flex-wrap">
-            {{#each mining.prospecting}}
-              <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="{{@index}}">
-                <img src="/icons/{{this}}.png" class="ore-icon">
-              </div>
-            {{/each}}
-            {{#each emptyProspectingSpaces}}
-              <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="new">
-                Set
-              </div>
-            {{/each}}
-          </div>
-          {{#if isSelectingProspector}}
-            <hr />
             <div class="d-flex flex-wrap">
-              {{#each oresList}}
-                <div
-                  class="icon-box hoverable-blue cursor-pointer item-icon-container small ml-0 mr-1 select-ore-to-prospect {{#if this.prospecting}}leader-icon{{/if}}"
-                  data-id="{{this.name}}"
-                >
-                  <img src="/icons/{{this.icon}}" class="ore-icon">
+              {{#each mining.prospecting}}
+                <div class="d-flex flex-column align-items-center mb-1 mr-1">
+                  <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-0 mb-0 mt-0 select-prospector cursor-pointer" data-index="{{@index}}">
+                    <img src="/icons/{{this}}.png" class="ore-icon">
+                  </div>
+                  <div class="text-capitalize">
+                    <small>{{this}}</small>
+                  </div>
+                </div>
+              {{/each}}
+              {{#each emptyProspectingSpaces}}
+                <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="new">
+                  Set
                 </div>
               {{/each}}
             </div>
-          {{/if}}
+            {{#if isSelectingProspector}}
+              <hr />
+              <div class="d-flex flex-wrap">
+                {{#each oresList}}
+                  <div
+                    class="icon-box hoverable-blue cursor-pointer item-icon-container small ml-0 mr-1 select-ore-to-prospect {{#if this.prospecting}}leader-icon{{/if}}"
+                    data-id="{{this.name}}"
+                  >
+                    <img src="/icons/{{this.icon}}" class="ore-icon">
+                  </div>
+                {{/each}}
+              </div>
+            {{/if}}
 
-          <!-- Gear -->
-          <div class="d-flex mt-3 align-items-center">
-            <div class="text-muted mr-2">
-              Gear
+            <!-- Gear -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Gear
+              </div>
+              <a href="#" class="edit-mining-gear">
+                <small>
+                  {{#if editingMiningGear}}
+                    cancel
+                  {{else}}
+                    edit
+                  {{/if}}
+                </small>
+              </a>
             </div>
-            <a href="#" class="edit-mining-gear">
-              <small>
-                {{#if editingMiningGear}}
-                  cancel
-                {{else}}
-                  edit
-                {{/if}}
-              </small>
-            </a>
-          </div>
-          <div class="d-flex flex-row flex-wrap">
-            {{#if equippedItemsMap.pickaxe}}
-              <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
-                {{> itemIcon item=equippedItemsMap.pickaxe classes="small"}}
-              </div>
-            {{else}}
-              <div class="icon-box small">
-                Pickaxe
+            <div class="d-flex flex-row flex-wrap">
+              {{#if equippedItemsMap.pickaxe}}
+                <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
+                  {{> itemIcon item=equippedItemsMap.pickaxe classes="small"}}
+                </div>
+              {{else}}
+                <div class="icon-box small">
+                  Pickaxe
+                </div>
+              {{/if}}
+              {{#if equippedItemsMap.mining_offhand}}
+                <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
+                  {{> itemIcon item=equippedItemsMap.mining_offhand classes="small"}}
+                </div>
+              {{else}}
+                <div class="item-icon-container icon-box small">
+                  Offhand
+                </div>
+              {{/if}}
+            </div>
+            {{#if editingMiningGear}}
+              <hr />
+              <!-- Show inventory of pickaxes / ect -->
+              <div class="d-flex flex-wrap">
+                {{#each miningPickaxes}}
+                  {{> itemIcon item=this classes="small"}}
+                {{/each}}
               </div>
             {{/if}}
-            {{#if equippedItemsMap.mining_offhand}}
-              <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
-                {{> itemIcon item=equippedItemsMap.mining_offhand classes="small"}}
+
+            <!-- Miners -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Miners
               </div>
-            {{else}}
-              <div class="item-icon-container icon-box small">
-                Offhand
-              </div>
-            {{/if}}
-          </div>
-          {{#if editingMiningGear}}
-            <hr />
-            <!-- Show inventory of pickaxes / ect -->
-            <div class="d-flex flex-wrap">
-              {{#each miningPickaxes}}
-                {{> itemIcon item=this classes="small"}}
+            </div>
+            <div class="d-flex flex-wrap mt-1">
+              {{#each buyableMiners}}
+                {{> buyableMiner miner=this}}
               {{/each}}
             </div>
-          {{/if}}
-
-          <!-- Miners -->
-          <div class="d-flex mt-3 align-items-center">
-            <div class="text-muted mr-2">
-              Miners
-            </div>
-          </div>
-          <div class="d-flex flex-wrap mt-1">
-            {{#each buyableMiners}}
-              {{> buyableMiner miner=this}}
-            {{/each}}
           </div>
         </div>
         <div class="col-md-6">
           <!-- Mine Pit -->
-          <div class="d-flex flex-grow justify-content-center align-items-center">
+          <div class="mine-pit-container d-flex flex-grow justify-content-center align-items-center">
             <div style="max-width: 352px">
               <div class="d-flex" style="justify-content: space-between;">
                 <div class="d-flex">
@@ -145,7 +152,7 @@
               <div style="margin-top: 10px">
                 <div class="d-flex flex-wrap">
                   {{#each oresList}}
-                    <div class="d-flex icon-box-border mr-1 mt-1 p-2" style="width: 75px">
+                    <div class="d-flex icon-box-border ore-list-item mr-1 mt-1 p-2" style="width: 75px" title="{{this.name}}">
                       <div class="ore-list-item align-items-center d-flex">
                         <img src="/icons/{{this.icon}}" class="extra-small-icon mr-1">
                         <div>{{this.amount}}</div>
@@ -154,6 +161,102 @@
                   {{/each}}
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="hidden-md-up">
+            <!-- Prospecting -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Prospecting
+              </div>
+            </div>
+            <div class="d-flex flex-wrap">
+              {{#each mining.prospecting}}
+                <div class="d-flex flex-column align-items-center mb-1 mr-1">
+                  <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-0 mb-0 mt-0 select-prospector cursor-pointer" data-index="{{@index}}">
+                    <img src="/icons/{{this}}.png" class="ore-icon">
+                  </div>
+                  <div class="text-capitalize">
+                    <small>{{this}}</small>
+                  </div>
+                </div>
+              {{/each}}
+              {{#each emptyProspectingSpaces}}
+                <div class="icon-box hoverable-blue item-icon-container small ml-0 mr-1 select-prospector cursor-pointer" data-index="new">
+                  Set
+                </div>
+              {{/each}}
+            </div>
+            {{#if isSelectingProspector}}
+              <hr />
+              <div class="d-flex flex-wrap">
+                {{#each oresList}}
+                  <div
+                    class="icon-box hoverable-blue cursor-pointer item-icon-container small ml-0 mr-1 select-ore-to-prospect {{#if this.prospecting}}leader-icon{{/if}}"
+                    data-id="{{this.name}}"
+                  >
+                    <img src="/icons/{{this.icon}}" class="ore-icon">
+                  </div>
+                {{/each}}
+              </div>
+            {{/if}}
+
+            <!-- Gear -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Gear
+              </div>
+              <a href="#" class="edit-mining-gear">
+                <small>
+                  {{#if editingMiningGear}}
+                    cancel
+                  {{else}}
+                    edit
+                  {{/if}}
+                </small>
+              </a>
+            </div>
+            <div class="d-flex flex-row flex-wrap">
+              {{#if equippedItemsMap.pickaxe}}
+                <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
+                  {{> itemIcon item=equippedItemsMap.pickaxe classes="small"}}
+                </div>
+              {{else}}
+                <div class="icon-box small">
+                  Pickaxe
+                </div>
+              {{/if}}
+              {{#if equippedItemsMap.mining_offhand}}
+                <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
+                  {{> itemIcon item=equippedItemsMap.mining_offhand classes="small"}}
+                </div>
+              {{else}}
+                <div class="item-icon-container icon-box small">
+                  Offhand
+                </div>
+              {{/if}}
+            </div>
+            {{#if editingMiningGear}}
+              <hr />
+              <!-- Show inventory of pickaxes / ect -->
+              <div class="d-flex flex-wrap">
+                {{#each miningPickaxes}}
+                  {{> itemIcon item=this classes="small"}}
+                {{/each}}
+              </div>
+            {{/if}}
+
+            <!-- Miners -->
+            <div class="d-flex mt-3 align-items-center">
+              <div class="text-muted mr-2">
+                Miners
+              </div>
+            </div>
+            <div class="d-flex flex-wrap mt-1">
+              {{#each buyableMiners}}
+                {{> buyableMiner miner=this}}
+              {{/each}}
             </div>
           </div>
         </div>
@@ -285,7 +388,7 @@
 <template name="miningCollector">
   <div class="d-flex flex-wrap">
     {{#each collectors}}
-      <div class="d-flex icon-box-border mr-1 mt-1 p-2">
+      <div class="d-flex icon-box-border collector-container mr-1 mt-1 p-2" title="{{this.name}}">
         <div class="ore-list-item align-items-center d-flex">
           <img src="/icons/{{this.key}}.png" class="extra-small-icon mr-1">
           <div>{{this.amount}} / {{this.storage}}</div>

@@ -17,7 +17,9 @@
             <div class="text-danger">Failure</div>
           {{/if}}
         {{else}}
-          <div>{{computedAdventure.durationTotalDisplay}}</div>
+          {{#if computedAdventure.durationTotalDisplay}}
+            <div>{{computedAdventure.durationTotalDisplay}}</div>
+          {{/if}}
         {{/if}}
       </div>
       <div class="d-flex mx-3 align-items-center justify-content-center" style="flex: 10 10 auto;">
@@ -70,8 +72,13 @@
             Collect
           </button>
         {{else if computedAdventure.startDate}}
-          <button class="btn btn-danger cancel-adventure-btn" style="width: 100px;" data-id="{{computedAdventure.id}}">
-            Cancel
+          <button class="btn btn-primary btn-hover-text cancel-adventure-btn" style="width: 100px;" data-id="{{computedAdventure.id}}">
+            <span class="main-text">
+              {{> readableDuration endDate=computedAdventure.endDate}}
+            </span>
+            <span class="hover-text">
+              Cancel
+            </span>
           </button>
         {{else}}
           <button class="btn btn-primary start-adventure-btn" style="width: 100px;" data-id="{{computedAdventure.id}}">

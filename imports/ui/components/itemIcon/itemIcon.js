@@ -44,6 +44,7 @@ Template.itemIcon.rendered = function () {
     const vm = this;
     vm.state.set('tooltipOpen', false);
     tooltip = tippy(Template.instance().$('.item-icon-container')[0], {
+      theme: 'custom',
       appendTo: Template.instance().$('.item-icon-container')[0].parentNode,
       popperOptions: {
         modifiers: {

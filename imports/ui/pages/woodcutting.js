@@ -70,14 +70,11 @@ Template.woodcuttingPage.events({
 
   'click .back-btn'(event, instance) {
     instance.state.set('buyingNewWoodcutter', false);
+    instance.state.set('upgradingWoodcuttingCarriages', false);
   },
 
   'click .upgrade-woodcutting-carts'(event, instance) {
     instance.state.set('upgradingWoodcuttingCarriages', true);
-  },
-
-  'click .back-btn'(event, instance) {
-    instance.state.set('upgradingWoodcuttingCarriages', false);
   },
 
   'click .hire-woodcutter'(event, instance) {
@@ -256,6 +253,10 @@ Template.woodcuttingPage.helpers({
   },
 
   logsList() {
+    setTimeout(() => {
+      tippy('.log-list-item');
+    }, 100);
+
     return Items.find({
       category: 'woodcutting',
       itemId: {
@@ -291,6 +292,11 @@ Template.woodcuttingCollector.helpers({
   collectors() {
     const woodcutting = Woodcutting.findOne({});
     if (!woodcutting) return [];
+
+    setTimeout(() => {
+      tippy('.collector-container');
+    }, 100);
+
     return Object.keys(woodcutting.collector).map((key) => {
       const constants = WOODS[key];
 
@@ -303,6 +309,7 @@ Template.woodcuttingCollector.helpers({
 
       return {
         key,
+        name: `${key.split('_').join(' ')}`,
         icon: `${key.split('_')[0]}Log.png`,
         amount: woodcutting.collector[key],
         storage

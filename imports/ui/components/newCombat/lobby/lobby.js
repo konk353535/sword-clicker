@@ -175,7 +175,10 @@ Template.lobbyPage.events({
 
   'click .btn-kick'(event, instance) {
     const ownerId = instance.$(event.target).closest('.btn-kick').data('owner');
-    Meteor.call('groups.kick', { ownerId });
+    const username = instance.$(event.target).closest('.btn-kick').data('username');
+    console.log(ownerId);
+    console.log(username);
+    Meteor.call('groups.kick', { ownerId, username });
   },
 
   'click .btn-promote'(event, instance) {

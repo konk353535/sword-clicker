@@ -148,14 +148,24 @@
                   {{/if}}
                 {{/if}}
               {{else if isLeader}}
-                <button class="btn btn-danger btn-kick btn-sm mr-1" data-owner="{{this.owner}}">
-                  <img src="/icons/boot.svg" width="16" height="16" />
-                </button>
-                {{#unless this.isInvitee}}
+                {{#if this.isInvitee}}
+                  <button
+                    class="btn btn-danger btn-kick btn-sm mr-1"
+                    data-username="{{this.username}}"
+                  >
+                    <img src="/icons/boot.svg" width="16" height="16" />
+                  </button>
+                {{else}}
+                  <button
+                    class="btn btn-danger btn-kick btn-sm mr-1"
+                    data-owner="{{this.owner}}"
+                  >
+                    <img src="/icons/boot.svg" width="16" height="16" />
+                  </button>
                   <button class="btn btn-warning btn-promote btn-sm" data-owner="{{this.owner}}">
                     <img src="/icons/leaderCrown.svg" width="16" height="16" />
                   </button>
-                {{/unless}}
+                {{/if}}
               {{/if}}
             </div>
           {{/if}}

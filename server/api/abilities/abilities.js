@@ -6,8 +6,9 @@ import moment from 'moment';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
-import { requirementsUtility } from '/imports/api/crafting/crafting';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
+
+import { requirementsUtility } from '/server/api/crafting/crafting';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';

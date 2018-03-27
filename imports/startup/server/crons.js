@@ -11,6 +11,7 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+import { ClanHighscores } from '/imports/api/clans/clans';
 
 // Reset tower things (daily)
 SyncedCron.add({
@@ -206,6 +207,22 @@ SyncedCron.add({
       resolveLoot(battle);
     });
     return true;
+  }
+});
+
+SyncedCron.add({
+  name: 'reset clan high scores',
+  schedule: function(parser) {
+    return parser.cron('0 0 * * 0');
+  },
+  job: function() {
+    ClanHighscores.update({}, {
+      $set: {
+        score: 0
+      }
+    }, {
+      multi: true
+    });
   }
 });
 

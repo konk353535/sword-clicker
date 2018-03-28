@@ -104,12 +104,12 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
 
   // Xp / hour lookup
   const xpLookup = {
-    1: 2000,
-    2: 6000,
-    3: 10000,
-    4: 22000,
-    5: 33000,
-    6: 55000
+    1: 500,
+    2: 1500,
+    3: 2500,
+    4: 5500,
+    5: 8500,
+    6: 13500
   }
 
   const lengthXpLookup = {
@@ -121,7 +121,7 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
   const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
 
   // Determine xp
-  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);
+  let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 2500);
   const lengthXpDecimal = lengthXpLookup[adventure.length];
   const totalXp = xpPerHour * (adventure.duration / 3600) * lengthXpDecimal;
 

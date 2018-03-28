@@ -17,9 +17,11 @@ import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';
+
 import { SKILLS } from '/server/constants/skills/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 import { ITEMS } from '/server/constants/items/index.js';
+
 import moment from "moment/moment";
 import _ from 'underscore';
 
@@ -258,6 +260,8 @@ Meteor.methods({
         Woodcutting.insert({
           owner: Meteor.userId(),
           woodcutters: [],
+          storage: {},
+          collector: {},
           lastGameUpdated: new Date()
         });
       } else if (skillName === 'attack') {

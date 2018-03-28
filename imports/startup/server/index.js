@@ -433,6 +433,7 @@ Accounts.onCreateUser((options, user) => {
     collector: {
       stone: 1
     },
+    storage: {},
     lastGameUpdated: new Date(),
     miners: [{
       id: MINING.miners.primitive_miner.id,

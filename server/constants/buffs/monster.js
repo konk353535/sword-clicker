@@ -128,8 +128,8 @@ export const MONSTER_BUFFS = {
         if (buff.data.timeTillBlink <= 0) {
           const newBuff = {
             id: 'evasive_maneuvers',
+            duration: 4,
             data: {
-              duration: 4,
               totalDuration: 4,
               level: 1,
               icon: 'invulnerable.svg'
@@ -166,7 +166,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id];;
         if (Math.random() <= 0.1) {
           const hasEvasive = _.find(defender.buffs, (buff) => {
             return buff.id === 'evasive_maneuvers';
@@ -175,8 +175,8 @@ export const MONSTER_BUFFS = {
           if (!hasEvasive) {
             const newBuff = {
               id: 'evasive_maneuvers',
+              duration: 3,
               data: {
-                duration: 3,
                 totalDuration: 3,
                 level: 1,
                 icon: 'evasiveManeuvers.svg'

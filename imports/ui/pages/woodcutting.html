@@ -88,11 +88,14 @@
         {{/if}}
       {{/if}}
     {{else}}
-      {{#if hasLearnRequirements}}
-        <button class="btn btn-primary learn-now">Learn Now</button>
-      {{else}}
-        <button class="btn btn-primary learn-now" disabled>Learn Now</button>
-      {{/if}}
+      <div class="d-flex flex-column justify-content-center align-items-center flex-grow" style="margin-top: 100px">
+        {{> requiredItems requiredItems=learnRequirements requirementsMet=learnRequirementsMet}}
+        {{#if hasLearnRequirements}}
+          <button class="btn btn-primary learn-now mt-3">Learn Now</button>
+        {{else}}
+          <button class="btn btn-primary learn-now mt-3" disabled>Learn Now</button>
+        {{/if}}
+      </div>
     {{/if}}
   </div>
 

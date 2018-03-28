@@ -2,6 +2,10 @@ import { BUFFS } from '../../../constants/buffs/index.js';
 
 export default class Buff {
 
+  get constants() {
+    return BUFFS[this.id];
+  }
+
   get events() {
     return BUFFS[this.id].events;
   }

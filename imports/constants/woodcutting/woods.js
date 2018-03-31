@@ -1,6 +1,9 @@
 export const WOODS = {
   pine_log: { // 1
-    baseStorage: 200,
+    storage: {
+      perLevel: 50,
+      base: 100
+    },
     requiredAttack: 1,
     xp: 3,
     id: 'pine_log',
@@ -11,7 +14,10 @@ export const WOODS = {
   },
 
   beech_log: { // 2
-    baseStorage: 150,
+    storage: {
+      perLevel: 40,
+      base: 90
+    },
     requiredAttack: 5,
     xp: 6,
     id: 'beech_log',
@@ -22,7 +28,10 @@ export const WOODS = {
   },
 
   ash_log: { // 3
-    baseStorage: 100,
+    storage: {
+      perLevel: 30,
+      base: 80
+    },
     requiredAttack: 10,
     xp: 18,
     id: 'ash_log',
@@ -33,7 +42,10 @@ export const WOODS = {
   },
 
   oak_log: { // 4
-    baseStorage: 50,
+    storage: {
+      perLevel: 20,
+      base: 70
+    },
     requiredAttack: 15,
     xp: 50,
     id: 'oak_log',
@@ -44,7 +56,10 @@ export const WOODS = {
   },
 
   maple_log: { // 5
-    requiredAttack: 20,
+    storage: {
+      perLevel: 15,
+      base: 60
+    },
     xp: 70,
     id: 'maple_log',
     icon: 'mapleLog.png',

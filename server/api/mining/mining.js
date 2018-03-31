@@ -731,15 +731,21 @@ Meteor.methods({
           const ore = MINING.ores[key];
 
           let baseLimit = 50;
-          if (MINING.ores[ore.id].baseStorage) {
-            baseLimit = MINING.ores[ore.id].baseStorage;
+          let storagePerLevel = 10;
+          if (MINING.ores[ore.id].storage) {
+            if (MINING.ores[ore.id].storage.base) {
+              baseLimit = MINING.ores[ore.id].storage.base;
+            }
+            if (MINING.ores[ore.id].storage.perLevel) {
+              storagePerLevel = MINING.ores[ore.id].storage.perLevel;
+            }
           }
 
           let storageLevel = 0;
           if (mining.storage[ore.id]) {
             storageLevel = mining.storage[ore.id];
           }
-          storageLimits[ore.id] = baseLimit + (storageLevel * 10);
+          storageLimits[ore.id] = baseLimit + (storageLevel * storagePerLevel);
         });
       }
 

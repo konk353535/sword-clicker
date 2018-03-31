@@ -298,13 +298,14 @@ Template.woodcuttingCollector.helpers({
     }, 100);
 
     return Object.keys(woodcutting.collector).map((key) => {
-      const constants = WOODS[key];
+      const c = WOODS[key];
 
-      let storage = constants.baseStorage || 50;
+      let storage = c.storage && c.storage.base ? c.storage.base : 50;      
+      const storagePerLevel = c.storage && c.storage.perLevel ? c.storage.perLevel : 10;
       let storageLevel = 0;
       if (woodcutting.storage[key]) {
         storageLevel = woodcutting.storage[key];
-        storage += (storageLevel * 10);
+        storage += (storageLevel * storagePerLevel);
       }
 
       return {

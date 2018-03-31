@@ -57,7 +57,17 @@
             <a href="/mining" class="text-muted">Mining Carts</a>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
-            {{> miningCollector}}
+            {{#if updatingMining}}
+              <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
+                <div class="real-spinner real-spinner-blue">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+              </div>
+            {{else}}
+              {{> miningCollector}}
+            {{/if}}  
           </div>
         </div>
 
@@ -99,7 +109,17 @@
             <a href="/woodcutting" class="text-muted">Lumber Carriages</a>
           </div>
           <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
-            {{> woodcuttingCollector}}
+            {{#if updatingWoodcutting}}
+              <div class="d-flex justify-content-center flex-grow" style="margin-top: 20px; margin-bottom: 20px">
+                <div class="real-spinner real-spinner-blue">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+              </div>
+            {{else}}
+              {{> woodcuttingCollector}}
+            {{/if}}
           </div>
         </div>
 

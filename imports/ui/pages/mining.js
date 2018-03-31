@@ -606,12 +606,13 @@ Template.miningCollector.helpers({
 
     return Object.keys(mining.collector).map((key) => {
 
-      const constants = MINING.ores[key];
-      let storage = constants.baseStorage || 50;
+      const c = MINING.ores[key];
+      let storage = c.storage && c.storage.base ? c.storage.base : 50;      
+      const storagePerLevel = c.storage && c.storage.perLevel ? c.storage.perLevel : 10;
       let storageLevel = 0;
       if (mining.storage[key]) {
         storageLevel = mining.storage[key];
-        storage += (storageLevel * 10);
+        storage += (storageLevel * storagePerLevel);
       }
 
       return {

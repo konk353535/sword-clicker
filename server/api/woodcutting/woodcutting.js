@@ -221,15 +221,21 @@ Meteor.methods({
         const log = WOODCUTTING.woods[key];
 
         let baseLimit = 50;
-        if (WOODCUTTING.woods[log.id].baseStorage) {
-          baseLimit = WOODCUTTING.woods[log.id].baseStorage;
+        let storagePerLevel = 10;
+        if (WOODCUTTING.woods[key].storage) {
+          if (WOODCUTTING.woods[key].storage.base) {
+            baseLimit = WOODCUTTING.woods[key].storage.base;
+          }
+          if (WOODCUTTING.woods[key].storage.perLevel) {
+            storagePerLevel = WOODCUTTING.woods[key].storage.perLevel;
+          }
         }
 
         let storageLevel = 0;
         if (woodcutting.storage[log.id]) {
           storageLevel = woodcutting.storage[log.id];
         }
-        storageLimits[log.id] = baseLimit + (storageLevel * 10);
+        storageLimits[log.id] = baseLimit + (storageLevel * storagePerLevel);
       });
     }
 

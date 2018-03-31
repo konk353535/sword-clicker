@@ -6,6 +6,8 @@ import { Groups } from '/imports/api/groups/groups';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Adventures } from '/imports/api/adventures/adventures.js';
+import { Mining } from '/imports/api/mining/mining.js';
+import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users } from '/imports/api/users/users';
@@ -18,6 +20,8 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state.set('showPickAll', false);
   this.state.set('showAddFriends', false);
   this.state.set('userSuggestions', []);
+  this.state.set('updatingWoodcutting', false);
+  this.state.set('updatingMining', false);
 
   this.autorun(() => {
     const nowTimeStamp = TimeSync.serverTime();
@@ -26,6 +30,34 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     const showPickAll = FarmingSpace.find().fetch().find((space) => {
       return now.isAfter(space.maturityDate) && space.plantId;
     });
+
+    // Check mining / woodcutting gameUpdatedAt
+    const mining = Mining.findOne({});
+    const woodcutting = Woodcutting.findOne({});
+
+    if (woodcutting
+      && moment().subtract(5, 'minutes').isAfter(woodcutting.lastGameUpdated)
+      && !this.state.get('updatingWoodcutting')
+    ) {
+      this.state.set('updatingWoodcutting', true);
+      Meteor.call('woodcutting.gameUpdate', (err, res) => {
+        setTimeout(() => {
+          this.state.set('updatingWoodcutting', false);
+        }, 10000);
+      });
+    }
+
+    if (mining
+      && moment().subtract(5, 'minutes').isAfter(mining.lastGameUpdated)
+      && !this.state.get('updatingMining')
+    ) {
+      this.state.set('updatingMining', true);
+      Meteor.call('mining.gameUpdate', (err, res) => {
+        setTimeout(() => {
+          this.state.set('updatingMining', false);
+        }, 10000);
+      });
+    }
 
     this.state.set('showPickAll', !!showPickAll);
   });
@@ -164,6 +196,14 @@ Template.gameHomePage.helpers({
     }
 
     return crafting.currentlyCrafting.slice(1);
+  },
+
+  updatingMining() {
+    return Template.instance().state.get('updatingMining');
+  },
+
+  updatingWoodcutting() {
+    return Template.instance().state.get('updatingWoodcutting');
   },
 
   firstPendingInvite() {

@@ -37,11 +37,12 @@ Template.mineStorage.helpers({
       if (ore.id === 'gem') return false;
       return ore.requiredLevel <= miningSkill.level;
     }).map((ore) => {
-      let storage = ore.baseStorage || 50;
+      let storage = ore.storage && ore.storage.base ? ore.storage.base : 50;
+      const storagePerLevel = ore.storage && ore.storage.perLevel ? ore.storage.perLevel : 10;
       let storageLevel = 0;
       if (mining.storage[ore.id]) {
         storageLevel = mining.storage[ore.id];
-        storage += (storageLevel * 10);
+        storage += (storageLevel * storagePerLevel);
       }
 
       return {

@@ -630,7 +630,10 @@ export const MINING = {
   },
   ores: {
     stone: {
-      baseStorage: 200,
+      storage: {
+        perLevel: 50,
+        base: 100
+      },
       requiredLevel: 1,
       healthMax: 10,
       xp: 2,
@@ -644,7 +647,10 @@ export const MINING = {
     },
 
     copper: {
-      baseStorage: 150,
+      storage: {
+        perLevel: 40,
+        base: 90
+      },
       requiredLevel: 2,
       healthMax: 20,
       xp: 4,
@@ -658,7 +664,10 @@ export const MINING = {
     },
 
     coal: {
-      baseStorage: 100,
+      storage: {
+        perLevel: 40,
+        base: 80
+      },
       requiredLevel: 2,
       healthMax: 35,
       xp: 8,
@@ -672,6 +681,10 @@ export const MINING = {
     },
 
     tin: {
+      storage: {
+        perLevel: 30,
+        base: 70
+      },
       requiredLevel: 5,
       healthMax: 75,
       xp: 13,
@@ -685,6 +698,10 @@ export const MINING = {
     },
 
     bronze: {
+      storage: {
+        perLevel: 20,
+        base: 60
+      },
       requiredLevel: 10,
       healthMax: 150,
       xp: 17,
@@ -698,6 +715,10 @@ export const MINING = {
     },
 
     iron: {
+      storage: {
+        perLevel: 15,
+        base: 50
+      },
       requiredLevel: 15,
       healthMax: 300,
       xp: 33,
@@ -711,6 +732,10 @@ export const MINING = {
     },
 
     silver: {
+      storage: {
+        perLevel: 10,
+        base: 50
+      },
       requiredLevel: 20,
       healthMax: 500,
       xp: 50,

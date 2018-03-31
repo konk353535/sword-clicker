@@ -34,11 +34,12 @@ Template.woodcuttingStorage.helpers({
     }).filter((log) => {
       return log.requiredAttack <= woodcuttingSkill.level;
     }).map((log) => {
-      let storage = log.baseStorage || 50;
+      let storage = log.storage && log.storage.base ? log.storage.base : 50;
+      const storagePerLevel = log.storage && log.storage.perLevel ? log.storage.perLevel : 10;
       let storageLevel = 0;
       if (woodcutting.storage[log.id]) {
         storageLevel = woodcutting.storage[log.id];
-        storage += (storageLevel * 10);
+        storage += (storageLevel * storagePerLevel);
       }
 
       return {

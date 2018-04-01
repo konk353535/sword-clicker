@@ -66,10 +66,12 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     }
   });
 
+  Meteor.subscribe('otherBattlers', 3);
   Meteor.subscribe('friends');
   Meteor.subscribe('clanInvites');
   Meteor.subscribe('mining');
   Meteor.subscribe('combat');
+  Meteor.subscribe('clans');
   Meteor.subscribe('woodcutting');
   Meteor.subscribe('crafting');
   Meteor.subscribe('friendRequests');
@@ -77,6 +79,36 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
 });
 
 Template.gameHomePage.helpers({
+
+  clanMembers() {
+    const currentClan = Clans.findOne({});
+    if (!currentClan) return [];
+
+    return Users.find({
+      _id: {
+        $in: currentClan.members
+      }
+    }, {
+      sort: {
+        lastActionDate: -1
+      }
+    });
+  },
+
+  otherBattlers() {
+    const otherBattlers = Groups.find({
+      lastBattleStarted: {
+        $gte: moment().subtract(24, 'hours').toDate()
+      }
+    }, {
+      limit: 3,
+      sort: {
+        lastBattleStarted: -1
+      }
+    }).fetch();
+
+    return otherBattlers;
+  },
 
   myClan() {
     return Clans.findOne({});

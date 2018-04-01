@@ -221,7 +221,7 @@
         <div class="mt-2">
           <div class="d-flex text-muted mb-1 align-items-center">
             {{#if myClan}}
-              <a href="/clan">Clan</a>
+              <a href="/clan">{{myClan.name}}</a>
             {{else}}
               Clan
               <div class="d-flex flex-grow justify-content-end">
@@ -233,17 +233,12 @@
           </div>
 
           {{#if myClan}}
-            {{myClan.name}}
+            {{#each clanMembers}}
+              {{> friendRow friend=this}}
+            {{/each}}
           {{else}}
             You're not in a clan
           {{/if}}
-        </div>
-        <div class="mt-2">
-          <div class="text-muted mb-1">
-            Recent Battlers
-          </div>
-          Todo...
-          <!-- Groups of friends / Clans mates here to easily join -->
         </div>
       </div>
       <div class="mr-3 hidden-md-up" style="min-width: 150px">

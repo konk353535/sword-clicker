@@ -581,6 +581,10 @@ Template.miningPage.helpers({
   },
 
   miningMultihit() {
+    setTimeout(() => {
+      tippy('.multihit-btn');
+    }, 100);
+
     return Template.instance().state.get('miningMultihit');
   },
 });

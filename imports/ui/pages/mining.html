@@ -145,6 +145,16 @@
                 {{/each}}
               </div>
 
+              {{#if miningMultihit}}
+                <button class="btn btn-success multihit-disable multihit-btn mt-3" title="Will tap up to 12 times per click. No more mindless tapping.">
+                  Power Tap Active
+                </button>
+              {{else}}
+                <button class="btn btn-secondary multihit-enable multihit-btn mt-3" title="Will tap up to 12 times per click. No more mindless tapping.">
+                  Power Tap Inactive
+                </button>
+              {{/if}}
+
               <div style="margin-top: 50px">
                 {{> skillHeader skill=miningSkill small=true}}
               </div>
@@ -161,6 +171,7 @@
                   {{/each}}
                 </div>
               </div>
+
             </div>
           </div>
 
@@ -217,6 +228,7 @@
                 </small>
               </a>
             </div>
+
             <div class="d-flex flex-row flex-wrap">
               {{#if equippedItemsMap.pickaxe}}
                 <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">

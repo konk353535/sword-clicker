@@ -41,9 +41,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     ) {
       this.state.set('updatingWoodcutting', true);
       Meteor.call('woodcutting.gameUpdate', (err, res) => {
-        setTimeout(() => {
-          this.state.set('updatingWoodcutting', false);
-        }, 10000);
+        this.state.set('updatingWoodcutting', false);
       });
     }
 
@@ -53,9 +51,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     ) {
       this.state.set('updatingMining', true);
       Meteor.call('mining.gameUpdate', (err, res) => {
-        setTimeout(() => {
-          this.state.set('updatingMining', false);
-        }, 10000);
+        this.state.set('updatingMining', false);
       });
     }
 

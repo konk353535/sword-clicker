@@ -32,7 +32,7 @@ export const DEFENSE_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id];
         let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
 
         // Increase armor & magic armor by 100

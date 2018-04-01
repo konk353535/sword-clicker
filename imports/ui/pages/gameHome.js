@@ -11,6 +11,7 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users } from '/imports/api/users/users';
+import { Combat } from '/imports/api/combat/combat';
 import { Clans, ClanInvites } from '/imports/api/clans/clans';
 
 import './gameHome.html';
@@ -68,6 +69,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('friends');
   Meteor.subscribe('clanInvites');
   Meteor.subscribe('mining');
+  Meteor.subscribe('combat');
   Meteor.subscribe('woodcutting');
   Meteor.subscribe('crafting');
   Meteor.subscribe('friendRequests');
@@ -123,6 +125,53 @@ Template.gameHomePage.helpers({
         return;
       }
       callback(res.map(function(v){ return {value: v.username}; }));
+    });
+  },
+
+  currentGroupMembers() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    let combats;
+    if (currentGroup) {
+      combats = Combat.find({
+        owner: {
+          $in: currentGroup.members
+        }
+      }).fetch();
+
+      if (currentGroup.invitesDetails && currentGroup.invitesDetails.length > 0) {
+        combats = combats.concat(currentGroup.invitesDetails.map((invitee) => {
+          invitee.isInvitee = true;
+          return invitee;
+        }));
+      }
+    } else {
+      combats = Combat.find({
+        owner: Meteor.userId()
+      }).fetch();
+    }
+
+
+    return combats.map((userCombat) => {
+      // Map stuff we want to read into stats
+      userCombat.stats = {
+        health: userCombat.stats.health,
+        healthMax: userCombat.stats.healthMax,
+        energy: userCombat.stats.energy,
+        energyMax: userCombat.stats.energyMax
+      }
+
+      userCombat.name = userCombat.username;
+      userCombat.icon = userCombat.characterIcon || 'character.svg';
+      if (currentGroup) {
+        userCombat.isLeader = userCombat.owner === currentGroup.leader;
+      } else {
+        userCombat.isLeader = false;
+      }
+
+      return userCombat;
     });
   },
 

@@ -13,11 +13,9 @@ import { Clans } from '/imports/api/clans/clans.js';
 import './chatWindow.html';
 
 SimpleChat.scrollToEnd = function () {
-  if ($(window).width() > 500) {
-    Template.chatWindow.endScroll = true;
-    $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
-    $('.direct-chat-messages').trigger('scroll');
-  }
+  Template.chatWindow.endScroll = true;
+  $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
+  $('.direct-chat-messages').trigger('scroll');
 }
 
 const AVAILABLE_CHATS = {
@@ -76,8 +74,18 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   Tracker.autorun(() => {
     let minimized = true;
     let myUserDoc = Users.findOne({ _id: Meteor.userId() });
-    if (myUserDoc && myUserDoc.uiState && myUserDoc.uiState.showChat !== undefined) {
-      minimized = !myUserDoc.uiState.showChat;      
+    if (myUserDoc && myUserDoc.uiState) {
+      if (myUserDoc.uiState.showChat !== undefined) {
+        minimized = !myUserDoc.uiState.showChat;
+      }
+
+      const availableChats = this.state.get('availableChats');
+      Object.keys(AVAILABLE_CHATS).forEach((key) => {
+        if (myUserDoc.uiState[`chat-${key}-show`] !== undefined) {
+          availableChats[key].show = myUserDoc.uiState[`chat-${key}-show`];
+        }
+      });
+      this.state.set('availableChats', availableChats);
     }
 
     if (myUserDoc && myUserDoc.isMutedExpiry && moment().isBefore(myUserDoc.isMutedExpiry)) {
@@ -174,6 +182,7 @@ Template.chatWindow.events({
 
     const availableChats = instance.state.get('availableChats');
     availableChats[chatId].show = false;
+    Meteor.call('users.setUiState', `chat-${chatId}-show`, false);
     instance.state.set('availableChats', availableChats);
   },
 
@@ -182,6 +191,7 @@ Template.chatWindow.events({
 
     const availableChats = instance.state.get('availableChats');
     availableChats[chatId].show = true;
+    Meteor.call('users.setUiState', `chat-${chatId}-show`, true);
     instance.state.set('availableChats', availableChats);
   },
 

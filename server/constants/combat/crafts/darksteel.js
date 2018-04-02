@@ -14,7 +14,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: (CURSED_ESS_XP * 2) + (ADA_ESS_XP * 2),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'dagger'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -82,7 +82,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'spear'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -150,7 +150,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'shortsword'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -218,7 +218,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: (CURSED_ESS_XP * 8) + (ADA_ESS_XP * 8),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'longsword'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -286,7 +286,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: (CURSED_ESS_XP * 8) + (ADA_ESS_XP * 8),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'battleaxe'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -354,7 +354,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'helmet'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -422,7 +422,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'chest'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -490,7 +490,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'legs'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',
@@ -558,7 +558,7 @@ export const DARKSTEEL_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'armor', 'shield'],
     requiredCraftingLevel: 100,
     required: [{
       type: 'item',

@@ -10,7 +10,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 87500,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'dagger'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -56,7 +56,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 175000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'spear'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -102,7 +102,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 175000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'shortsword'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -148,7 +148,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 350000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'longsword'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -194,7 +194,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 350000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'battleaxe'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -240,7 +240,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 175000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'helmet'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -286,7 +286,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 175000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'chest'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -332,7 +332,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 175000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'legs'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',
@@ -378,7 +378,7 @@ export const ADAMANTIUM_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 175000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'armor', 'shield'],
     requiredCraftingLevel: 70,
     required: [{
       type: 'item',

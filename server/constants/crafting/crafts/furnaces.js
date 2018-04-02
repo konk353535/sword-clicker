@@ -6,6 +6,7 @@ export const FURNACE_CRAFTS = {
     recipeFor: 'crafting',
     name: 'stone furnace',
     category: 'crafting',
+    tags: ['furnace'],
     id: 'stone_furnace',
     requiredCraftingLevel: 1,
     required: [{
@@ -31,6 +32,7 @@ export const FURNACE_CRAFTS = {
     name: 'copper furnace',
     id: 'copper_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 4,
     required: [{
       type: 'item',
@@ -55,6 +57,7 @@ export const FURNACE_CRAFTS = {
     name: 'tin furnace',
     id: 'tin_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 9,
     required: [{
       type: 'item',
@@ -79,6 +82,7 @@ export const FURNACE_CRAFTS = {
     name: 'bronze furnace',
     id: 'bronze_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 14,
     required: [{
       type: 'item',
@@ -103,6 +107,7 @@ export const FURNACE_CRAFTS = {
     name: 'iron furnace',
     id: 'iron_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 19,
     required: [{
       type: 'item',
@@ -127,6 +132,7 @@ export const FURNACE_CRAFTS = {
     name: 'silver furnace',
     id: 'silver_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 24,
     required: [{
       type: 'item',
@@ -151,6 +157,7 @@ export const FURNACE_CRAFTS = {
     name: 'gold furnace',
     id: 'gold_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 29,
     required: [{
       type: 'item',
@@ -175,6 +182,7 @@ export const FURNACE_CRAFTS = {
     name: 'carbon furnace',
     id: 'carbon_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 34,
     required: [{
       type: 'item',
@@ -199,6 +207,7 @@ export const FURNACE_CRAFTS = {
     name: 'steel furnace',
     id: 'steel_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 39,
     required: [{
       type: 'item',
@@ -223,6 +232,7 @@ export const FURNACE_CRAFTS = {
     name: 'platinum furnace',
     id: 'platinum_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 44,
     required: [{
       type: 'item',
@@ -247,6 +257,7 @@ export const FURNACE_CRAFTS = {
     name: 'titanium furnace',
     id: 'titanium_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 49,
     required: [{
       type: 'item',
@@ -271,6 +282,7 @@ export const FURNACE_CRAFTS = {
     name: 'tungsten furnace',
     id: 'tungsten_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 54,
     required: [{
       type: 'item',
@@ -295,6 +307,7 @@ export const FURNACE_CRAFTS = {
     name: 'obsidian furnace',
     id: 'obsidian_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 59,
     required: [{
       type: 'item',
@@ -319,6 +332,7 @@ export const FURNACE_CRAFTS = {
     name: 'cobalt furnace',
     id: 'cobalt_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 64,
     required: [{
       type: 'item',
@@ -343,6 +357,7 @@ export const FURNACE_CRAFTS = {
     name: 'mithril furnace',
     id: 'mithril_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 69,
     required: [{
       type: 'item',
@@ -367,6 +382,7 @@ export const FURNACE_CRAFTS = {
     name: 'adamantium furnace',
     id: 'adamantium_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 74,
     required: [{
       type: 'item',
@@ -391,6 +407,7 @@ export const FURNACE_CRAFTS = {
     name: 'orichalcum furnace',
     id: 'orichalcum_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 79,
     required: [{
       type: 'item',
@@ -415,6 +432,7 @@ export const FURNACE_CRAFTS = {
     name: 'meteorite furnace',
     id: 'meteorite_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 84,
     required: [{
       type: 'item',
@@ -439,6 +457,7 @@ export const FURNACE_CRAFTS = {
     name: 'fairy steel furnace',
     id: 'fairy_steel_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 89,
     required: [{
       type: 'item',
@@ -463,6 +482,7 @@ export const FURNACE_CRAFTS = {
     name: 'elven steel furnace',
     id: 'elven_steel_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 94,
     required: [{
       type: 'item',
@@ -487,6 +507,7 @@ export const FURNACE_CRAFTS = {
     name: 'cursed furnace',
     id: 'cursed_furnace',
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 99,
     required: [{
       type: 'item',
@@ -512,6 +533,7 @@ export const FURNACE_CRAFTS = {
     id: 'darksteel_furnace',
     isHidden: true,
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 104,
     required: [{
       type: 'item',
@@ -544,6 +566,7 @@ export const FURNACE_CRAFTS = {
     id: 'radiant_furnace',
     isHidden: true,
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 109,
     required: [{
       type: 'item',
@@ -583,6 +606,7 @@ export const FURNACE_CRAFTS = {
     id: 'astral_furnace',
     isHidden: true,
     category: 'crafting',
+    tags: ['furnace'],
     requiredCraftingLevel: 114,
     required: [{
       type: 'item',

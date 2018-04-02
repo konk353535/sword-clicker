@@ -305,7 +305,7 @@
           </div>
           <form class="craft-amount-form">
             <div class="modal-body">
-              {{ > requiredItemsList requiredItems=recipe.required recipeName=recipe.name duration=0}}
+              {{ > requiredItemsList inline=true requiredItems=recipe.required recipeName=recipe.name duration=0}}
 
               {{#if recipe.baseStats}}
                 {{#if showStats}}

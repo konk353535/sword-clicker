@@ -60,6 +60,7 @@ export const WOODS = {
       perLevel: 15,
       base: 60
     },
+    requiredAttack: 20,
     xp: 70,
     id: 'maple_log',
     icon: 'mapleLog.png',

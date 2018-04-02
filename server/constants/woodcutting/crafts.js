@@ -9,6 +9,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'primitive axe',
     id: 'primitive_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 20,
     xp: 10,
     maxToCraft: 1,
@@ -33,6 +34,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'copper axe',
     id: 'copper_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60, // 60
     xp: 20,
     maxToCraft: 1,
@@ -64,6 +66,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'tin axe',
     id: 'tin_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60, // 60
     xp: 30,
     maxToCraft: 1,
@@ -95,6 +98,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'bronze axe',
     id: 'bronze_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60, // 60
     xp: 40,
     maxToCraft: 1,
@@ -126,6 +130,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'iron axe',
     id: 'iron_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 120, // 60
     xp: 50,
     maxToCraft: 1,
@@ -157,6 +162,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'silver axe',
     id: 'silver_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 180, // 60
     xp: 300,
     maxToCraft: 1,
@@ -195,6 +201,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'gold axe',
     id: 'gold_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 240, // 60
     xp: 500,
     maxToCraft: 1,
@@ -233,6 +240,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'carbon axe',
     id: 'carbon_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 300, // 60
     xp: 1000,
     maxToCraft: 1,
@@ -271,6 +279,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'steel axe',
     id: 'steel_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 360, // 60
     xp: 1500,
     maxToCraft: 1,
@@ -309,6 +318,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'platinum axe',
     id: 'platinum_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 600, // 60
     xp: 2500,
     maxToCraft: 1,
@@ -347,6 +357,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'titanium axe',
     id: 'titanium_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 3700,
     maxToCraft: 1,
@@ -385,6 +396,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'tungsten axe',
     id: 'tungsten_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 6250,
     maxToCraft: 1,
@@ -423,6 +435,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'obsidian axe',
     id: 'obsidian_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 10000,
     maxToCraft: 1,
@@ -461,6 +474,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'cobalt axe',
     id: 'cobalt_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 15000,
     maxToCraft: 1,
@@ -500,6 +514,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'mithril axe',
     id: 'mithril_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 25000,
     maxToCraft: 1,
@@ -538,6 +553,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'adamantium axe',
     id: 'adamantium_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 900, // 60
     xp: 43500,
     maxToCraft: 1,
@@ -576,6 +592,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'orichalcum axe',
     id: 'orichalcum_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 1200, // 60
     xp: 62000,
     maxToCraft: 1,
@@ -614,6 +631,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'meteorite axe',
     id: 'meteorite_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 1500, // 60
     xp: 125000,
     maxToCraft: 1,
@@ -652,6 +670,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'fairy steel axe',
     id: 'fairy_steel_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 1800, // 60
     xp: 200000,
     maxToCraft: 1,
@@ -690,6 +709,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'elven steel axe',
     id: 'elven_steel_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60 * 60 * 1, // 60
     xp: 300000,
     maxToCraft: 1,
@@ -728,6 +748,7 @@ export const WOODCUTTING_CRAFTS = {
     name: 'cursed axe',
     id: 'cursed_axe',
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60 * 60 * 1, // 60
     xp: 500000,
     maxToCraft: 1,
@@ -767,6 +788,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'darksteel_axe',
     isHidden: true,
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60 * 60 * 1, // 60
     xp: 543750,
     maxToCraft: 1,
@@ -827,6 +849,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'radiant_axe',
     isHidden: true,
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60 * 60 * 1, // 60
     xp: 562500,
     maxToCraft: 1,
@@ -894,6 +917,7 @@ export const WOODCUTTING_CRAFTS = {
     id: 'astral_axe',
     isHidden: true,
     category: 'woodcutting',
+    tags: ['axe'],
     timeToCraft: 60 * 60 * 1, // 60
     xp: 625000,
     maxToCraft: 1,

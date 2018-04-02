@@ -70,10 +70,13 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   // Show currently crafting items
   Meteor.subscribe('crafting');
 
+  this.state.set('selectedCraftingOptions', []);
+  this.state.set('selectedRecipe', false);
+
   if (Session.get('itemViewLimit') !== undefined) {
     this.state.set('itemViewLimit', Session.get('itemViewLimit'));
   } else {
-    this.state.set('itemViewLimit', 10);
+    this.state.set('itemViewLimit', 0);
   }
 
   if (Session.get('recipeCache')) {
@@ -168,6 +171,31 @@ Template.craftingPage.events({
     Meteor.call('skills.learnSkill', 'crafting');
   },
 
+  'click .reset-crafting'(event, instance) {
+    instance.state.set('selectedCraftingOptions', []);
+  },
+
+  'click .reset-crafting-option'(event, instance) {
+    const index = parseInt(instance.$(event.target).closest('.reset-crafting-option').attr('data-index'));
+    const selectedCraftingOptions = instance.state.get('selectedCraftingOptions');
+    instance.state.set('selectedCraftingOptions', selectedCraftingOptions.slice(0, index + 1));
+  },
+
+  'click .select-recipe'(event, instance) {
+    const recipeId = instance.$(event.target).closest('.select-recipe').attr('data-id');
+
+    instance.state.set('selectedRecipe', recipeId);
+  },
+
+  'click .select-craft'(event, instance) {
+    const craftId = instance.$(event.target).closest('.select-craft').attr('data-id');
+
+    const selectedCraftingOptions = instance.state.get('selectedCraftingOptions');
+
+    selectedCraftingOptions.push(craftId);
+    instance.state.set('selectedCraftingOptions', selectedCraftingOptions.concat([]));
+  },
+
   'click .crafting-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.crafting-filter').data('filter');
     Meteor.call('users.setUiState', 'craftingFilter', filter);
@@ -225,6 +253,10 @@ Template.craftingPage.helpers({
     return Skills.findOne({ type: 'crafting' });
   },
 
+  selectedCraftingOptions() {
+    return Template.instance().state.get('selectedCraftingOptions');
+  },
+
   inCurrentBattle() {
     return BattlesList.findOne({});
   },
@@ -247,6 +279,128 @@ Template.craftingPage.helpers({
 
   recipeFilter() {
     return Template.instance().state.get('recipeFilter');
+  },
+
+  selectedRecipe() {
+    const instance = Template.instance();
+    const selectedRecipe = instance.state.get('selectedRecipe');
+
+    if (!selectedRecipe) {
+      return false;
+    }
+
+    return instance.state.get('recipes').find((recipe) => {
+      return recipe.id === selectedRecipe;
+    });
+  },
+
+  selectableCraftingList() {
+
+    const baseList = {
+      crafting: {
+        label: 'Crafting',
+        categories: {
+          xp: 'XP',
+          gold: 'Gold',
+          bar: 'Bar',
+          furnace: 'Furnace',
+          misc: 'Misc'
+        }
+      },
+      mining: {
+        label: 'Mining',
+        categories: {
+          pickaxe: 'Pickaxe',
+          idol: 'Idol',
+          anvil: 'Anvil'
+        }
+      },
+      woodcutting: {
+        label: 'Woodcutting',
+        categories: {
+          axe: 'Axe'
+        }
+      },
+      combat: {
+        label: 'Combat',
+        categories: {
+          armor: {
+            label: 'Armor',
+            categories: {
+              helmet: 'Helmet',
+              chest: 'Chest',
+              legs: 'Legs'              
+            }
+          },
+          weapon: {
+            label: 'Weapon',
+            categories: {
+              dagger: 'Dagger',
+              longsword: 'Longsword',
+              spear: 'Spear',
+              shield: 'Shield',
+              shortsword: 'Shortsword',
+              battleaxe: 'Battleaxe'              
+            }
+          },
+          staff: 'Staff',
+          amulet: 'Amulet'
+        }
+      },
+      astronomy: {
+        label: 'Astronomy',
+        categories: {
+          misc: 'Misc'
+        }
+      }
+    }
+
+    const instance = Template.instance();
+    const selectedCraftingOptions = instance.state.get('selectedCraftingOptions');
+
+    let selectedListObject = baseList;
+
+    selectedCraftingOptions.forEach((key) => {
+      if (selectedListObject[key].categories) {
+        selectedListObject = selectedListObject[key].categories
+      } else {
+        selectedListObject = null
+      }
+    });
+
+    if (selectedListObject) {
+      return Object.keys(selectedListObject).map((key) => {
+        return {
+          key,
+          label: selectedListObject[key].label ? selectedListObject[key].label : selectedListObject[key]
+        }
+      });
+    }
+
+    let filteredRecipes = instance.state.get('recipes');
+    selectedCraftingOptions.forEach((key, index) => {
+      if (index === 0) {
+        filteredRecipes = filteredRecipes.filter((item) => {
+          return item.category === key
+        });
+      } else {
+        filteredRecipes = filteredRecipes.filter((item) => {
+          return _.contains(item.tags, key)
+        });
+      }
+    })
+
+    const selectedRecipe = instance.state.get('selectedRecipe');
+
+    return filteredRecipes.map((recipe) => {
+      return {
+        isRecipe: true,
+        isActive: recipe.id === selectedRecipe,
+        label: recipe.name,
+        key: recipe.id,
+        icon: recipe.icon
+      }
+    });
   },
 
   craftingLevel() {
@@ -316,11 +470,11 @@ Template.craftingPage.helpers({
   },
 
   itemViewLimit() {
-    return Template.instance().state.get('itemViewLimit');
+    return 0;
   },
 
   items() {
-    const itemViewLimit = Template.instance().state.get('itemViewLimit');
+    const itemViewLimit = 0;
 
     // Get highest furnace tier
     const allFurnaces = Items.find({

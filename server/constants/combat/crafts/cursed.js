@@ -10,7 +10,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 30 * 60 * 2,
     xp: 1000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'dagger'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -56,7 +56,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'spear'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -102,7 +102,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'shortsword'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -148,7 +148,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 4000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'longsword'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -194,7 +194,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 90 * 60,
     xp: 4000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'battleaxe'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -240,7 +240,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'helmet'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -286,7 +286,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2,
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'chest'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -332,7 +332,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'legs'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',
@@ -378,7 +378,7 @@ export const CURSED_CRAFTS = {
     timeToCraft: 60 * 60 * 2, // 60
     xp: 2000000,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'armor', 'shield'],
     requiredCraftingLevel: 95,
     required: [{
       type: 'item',

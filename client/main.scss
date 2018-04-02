@@ -9,6 +9,7 @@
 @import "styles/tutorial.scss";
 @import "styles/homePage.scss";
 @import "styles/icons.scss";
+@import "styles/textColors.scss";
 @import "styles/mining.scss";
 @import "styles/badges.scss";
 @import "styles/buttons.scss";
@@ -390,4 +391,11 @@ body { padding-right: 0 !important }
 
 .whiteframe-4dp {
   box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)
+}
+
+.framed-content-container > div {
+  border: 1px solid $gray-lighter;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
 }

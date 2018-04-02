@@ -7,6 +7,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'adventure token',
     category: 'crafting',
+    tags: ['misc'],
     id: 'adventure_token',
     requiredCraftingLevel: 15,
     required: [{
@@ -38,6 +39,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'enhancer key',
     category: 'crafting',
+    tags: ['misc'],
     id: 'enhancer_key',
     requiredCraftingLevel: 1000,
     required: [{
@@ -147,6 +149,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'bamboo roof',
     category: 'crafting',
+    tags: ['misc'],
     id: 'bamboo_roof',
     requiredCraftingLevel: 42,
     required: [{
@@ -178,6 +181,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'bamboo wall',
     category: 'crafting',
+    tags: ['misc'],
     id: 'bamboo_wall',
     requiredCraftingLevel: 42,
     required: [{
@@ -209,6 +213,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'bamboo shack',
     category: 'crafting',
+    tags: ['misc'],
     id: 'bamboo_shack',
     requiredCraftingLevel: 42,
     required: [{
@@ -240,6 +245,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'ancient earth shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'ancient_earth_shard',
     requiredCraftingLevel: 20,
     required: [{
@@ -264,6 +270,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'ancient fire shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'ancient_fire_shard',
     requiredCraftingLevel: 20,
     required: [{
@@ -288,6 +295,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'ancient air shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'ancient_air_shard',
     requiredCraftingLevel: 20,
     required: [{
@@ -312,6 +320,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'ancient water shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'ancient_water_shard',
     requiredCraftingLevel: 20,
     required: [{
@@ -336,6 +345,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'complete earth shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'complete_earth_shard',
     requiredCraftingLevel: 10,
     required: [{
@@ -360,6 +370,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'complete fire shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'complete_fire_shard',
     requiredCraftingLevel: 10,
     required: [{
@@ -384,6 +395,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'complete air shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'complete_air_shard',
     requiredCraftingLevel: 10,
     required: [{
@@ -408,6 +420,7 @@ export const MISC_CRAFTS = {
     recipeFor: 'crafting',
     name: 'complete water shard',
     category: 'astronomy',
+    tags: ['misc'],
     id: 'complete_water_shard',
     requiredCraftingLevel: 10,
     required: [{

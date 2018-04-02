@@ -6,6 +6,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'stone pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'stone_pylon',
     requiredCraftingLevel: 2,
     required: [{
@@ -30,6 +31,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'stone wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'stone_wall',
     requiredCraftingLevel: 5,
     required: [{
@@ -54,6 +56,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'copper wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'copper_wall',
     requiredCraftingLevel: 7,
     required: [{
@@ -78,6 +81,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'tin pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'tin_pylon',
     requiredCraftingLevel: 12,
     required: [{
@@ -102,6 +106,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'bronze wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'bronze_wall',
     requiredCraftingLevel: 17,
     required: [{
@@ -126,6 +131,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'iron pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'iron_pylon',
     requiredCraftingLevel: 22,
     required: [{
@@ -150,6 +156,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'silver wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'silver_wall',
     requiredCraftingLevel: 27,
     required: [{
@@ -174,6 +181,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'silver essence wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'silver_essence_wall',
     requiredCraftingLevel: 37,
     required: [{
@@ -205,6 +213,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'gold pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'gold_pylon',
     requiredCraftingLevel: 32,
     required: [{
@@ -229,6 +238,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'carbon wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'carbon_wall',
     requiredCraftingLevel: 37,
     required: [{
@@ -253,6 +263,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'steel pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'steel_pylon',
     requiredCraftingLevel: 42,
     required: [{
@@ -277,6 +288,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'platinum wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'platinum_wall',
     requiredCraftingLevel: 47,
     required: [{
@@ -301,6 +313,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'titanium pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'titanium_pylon',
     requiredCraftingLevel: 52,
     required: [{
@@ -325,6 +338,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'tungsten wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'tungsten_wall',
     requiredCraftingLevel: 57,
     required: [{
@@ -349,6 +363,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'obsidian pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'obsidian_pylon',
     requiredCraftingLevel: 62,
     required: [{
@@ -373,6 +388,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'cobalt wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'cobalt_wall',
     requiredCraftingLevel: 67,
     required: [{
@@ -397,6 +413,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'mithril pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'mithril_pylon',
     requiredCraftingLevel: 72,
     required: [{
@@ -421,6 +438,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'adamantium wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'adamantium_wall',
     requiredCraftingLevel: 77,
     required: [{
@@ -445,6 +463,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'orichalcum pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'orichalcum_pylon',
     requiredCraftingLevel: 82,
     required: [{
@@ -469,6 +488,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'meteorite wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'meteorite_wall',
     requiredCraftingLevel: 87,
     required: [{
@@ -493,6 +513,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'fairy steel pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'fairy_steel_pylon',
     requiredCraftingLevel: 92,
     required: [{
@@ -517,6 +538,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'elven steel wall',
     category: 'crafting',
+    tags: ['xp'],
     id: 'elven_steel_wall',
     requiredCraftingLevel: 97,
     required: [{
@@ -541,6 +563,7 @@ export const XP_CRAFTS = {
     recipeFor: 'crafting',
     name: 'cursed pylon',
     category: 'crafting',
+    tags: ['xp'],
     id: 'cursed_pylon',
     requiredCraftingLevel: 102,
     required: [{

@@ -1,5 +1,6 @@
 <template name="requiredItemsList">
 
+  {{#if inline}}
   <div class="d-flex">
     <div class="d-flex flex-column" style="flex: 1 1 auto;">
       <b>Consumes</b>
@@ -50,4 +51,59 @@
       {{/if}}
     </div>
   </div>
+  {{else}}
+
+  <div>
+    <div class="text-muted">
+      Requires
+    </div>
+    <div class="d-flex flex-wrap mb-2">
+      {{#each computedRequiredItems}}
+        {{#unless this.consumes}}
+          {{#if $eq this.type 'item'}}
+            <div class="item-icon-container small icon-box">
+              <img src="/icons/{{this.icon}}" class="small-icon" />
+              <div class="item-amount {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</div>
+            </div>
+          {{/if}}
+        {{/unless}}
+      {{/each}}
+      {{#each computedRequiredItems}}
+        {{#if $eq this.type 'skill'}}
+          <div class="item-icon-container small icon-box">
+            <img src="/icons/{{this.name}}.svg" class="small-icon" />
+            <div class="item-amount {{#if this.notMet}}text-danger{{/if}}">Lv {{this.level}}</div>
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+
+    <div class="text-muted">
+      Consumes
+    </div>
+    <div class="d-flex flex-wrap mb-2">
+      {{#each computedRequiredItems}}
+        {{#if this.consumes}}
+          <div class="item-icon-container small icon-box">
+            {{#if $eq this.type 'gold'}}
+              <img src="/icons/goldCoin.svg" class="small-icon" />
+              <div class="item-amount {{#if this.notMet}}text-danger{{/if}}">
+                {{> formatNumber number=currentUser.gold}} / {{> formatNumber number=this.amount}}
+              </div>
+            {{else if $eq this.type 'item'}}
+              <img src="/icons/{{this.icon}}" class="small-icon" />
+              <div class="item-amount {{#if this.notMet}}text-danger{{/if}}">
+                {{this.currentAmount}} / {{this.amount}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      {{/each}}
+      <div class="item-icon-container small icon-box">
+        <img src="/icons/timer.svg" class="small-icon" />
+        <div class="item-amount">{{duration}}s</div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
 </template>

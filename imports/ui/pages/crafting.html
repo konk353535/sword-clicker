@@ -1,73 +1,184 @@
 <template name="craftingPage">
 
-  {{#if craftingSkill}}
-    {{> skillHeader skill=craftingSkill}}
+  <div class="container mt-2">
+    {{#if craftingSkill}}
 
-    <div class="my-3 {{#unless inCurrentBattle}}{{#unless summaryListDisabled}}hidden-xl-up{{/unless}}{{/unless}}">
-      <div class="d-flex flex-row align-items-center">
-        {{#each crafting.currentlyCrafting}}
-          {{> craftingDuration craftingProcess=this isCrafting=true}}
-        {{/each}}
+      <div class="row">
+        <div class="framed-content-container col-md-6">
+          <div class="mb-2">
+            <div class="d-flex align-items-center mb-2">
+              <a href="#" class="text-muted reset-crafting">
+                Craft
+              </a>
+              {{#each selectedCraftingOptions}}
+                <div>
+                  <i class="fas fa-chevron-right mx-2"></i>
+                  <a href="#" class="text-muted text-capitalize reset-crafting-option" data-index="{{@index}}">
+                    {{this}}
+                  </a>
+                </div>
+              {{/each}}
+            </div>
+            <div class="list-group">
+              {{#each selectableCraftingList}}
+                <a
+                  href="#"
+                  class="
+                    list-group-item list-group-item-action d-flex
+                    {{#if this.isRecipe}}select-recipe{{else}}select-craft{{/if}}
+                    {{#if this.isActive}}active{{/if}}
+                  "
+                  data-id="{{this.key}}"
+                >
+                  {{#if this.icon}}
+                    <img src="/icons/{{this.icon}}" class="small-icon mr-2" />
+                  {{/if}}
+                  <div class="flex-grow text-capitalize">{{this.label}}</div>
+                </a>
+              {{/each}}
+              <!--
+              <a href="#" class="list-group-item list-group-item-action d-flex">
+                <div class="pl-2 flex-grow">Pickaxe</div>
+                <i class="fas fa-chevron-up ml-2"></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action active">
+                <span class="pl-3">Stone</span>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <span class="pl-3 color-orange-1">Copper</span>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <span class="pl-3 color-grey-1">Tin</span>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="pl-2 flex-grow">Idol</div>
+                <i class="fas fa-chevron-down ml-2"></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="pl-2 flex-grow">Misc</div>
+                <i class="fas fa-chevron-down ml-2"></i>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action d-flex">
+                <div class="flex-grow">Crafting</div>
+                <i class="fas fa-chevron-down ml-2"></i>
+              </a>
+              -->
+            </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-muted">Recent Crafts</div>
+          </div>
+          <div class="mb-2">
+            <div class="text-muted">Workbench</div>
+          </div>
+        </div>
+        <div class="framed-content-container col-md-6">
+          {{#if selectedRecipe}}
+            <div class="mb-2">
+              <div class="mb-2 d-flex">
+                <div class="icon-box medium-icon">
+                  <img src="/icons/{{selectedRecipe.icon}}" class="medium-icon" />
+                </div>
+                <div class="d-flex flex-column justify-content-center ml-2">
+                  <div class="text-primary mb-0 text-capitalize">{{selectedRecipe.name}}</div>
+                  <div>
+                    <small>{{selectedRecipe.description}}</small>
+                  </div>
+                </div>
+              </div>
+
+              {{ > requiredItemsList requiredItems=selectedRecipe.required recipeName=selectedRecipe.name duration=selectedRecipe.calculatedTimeToCraft}}
+
+              <div class="d-flex flex-grow pt-2" style="border-top: 1px solid #DFDFDF;">
+                <div class="d-flex flex-grow">
+                  <button class="btn btn-secondary">Craft</button>
+                </div>
+                <div class="btn btn-primary">
+                  Craft All
+                </div>
+              </div>
+            </div>
+          {{/if}}
+          <div>
+            <div class="text-muted">
+              Inventory
+            </div>
+            <div class="d-flex flex-wrap" style="overflow-y: scroll; padding-top: 5px; padding-bottom: 5px; max-height: 280px">
+              {{#each items}}
+                {{> itemIcon item=this classes="small"}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <h2>Items</h2>
+      <!--
+      {{> skillHeader skill=craftingSkill}}
 
-    <ul class="nav nav-tabs my-3">
-      <li class="nav-item item-filter" data-filter="visible-items">
-        <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">All</a>
-      </li>
-      <li class="nav-item item-filter" data-filter="hidden-items">
-        <a class="nav-link {{#if $eq itemFilter 'hidden-items'}}active{{/if}}" href="#">Hidden</a>
-      </li>
-    </ul>
+      <div class="my-3 {{#unless inCurrentBattle}}{{#unless summaryListDisabled}}hidden-xl-up{{/unless}}{{/unless}}">
+        <div class="d-flex flex-row align-items-center">
+          {{#each crafting.currentlyCrafting}}
+            {{> craftingDuration craftingProcess=this isCrafting=true}}
+          {{/each}}
+        </div>
+      </div>
 
-      {{> itemList items=items itemFilter=itemFilter}}
+      <h2>Items</h2>
 
-      {{#if $gt items.length 5}}
-        {{#if itemViewLimit}}
-          <div class="item-icon-container small icon-box show-all-items" style="cursor: pointer">
-            More
-          </div>
-        {{else}}
-          <div class="item-icon-container small icon-box show-less-items" style="cursor: pointer">
-            Less
-          </div>
+      <ul class="nav nav-tabs my-3">
+        <li class="nav-item item-filter" data-filter="visible-items">
+          <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">All</a>
+        </li>
+        <li class="nav-item item-filter" data-filter="hidden-items">
+          <a class="nav-link {{#if $eq itemFilter 'hidden-items'}}active{{/if}}" href="#">Hidden</a>
+        </li>
+      </ul>
+
+        {{#if $gt items.length 5}}
+          {{#if itemViewLimit}}
+            <div class="item-icon-container small icon-box show-all-items" style="cursor: pointer">
+              More
+            </div>
+          {{else}}
+            <div class="item-icon-container small icon-box show-less-items" style="cursor: pointer">
+              Less
+            </div>
+          {{/if}}
         {{/if}}
-      {{/if}}
 
 
-    <h2>Recipes</h2>
-    
-    <ul class="nav nav-tabs my-3">
-      <li class="nav-item crafting-filter" data-filter="all">
-        <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="crafting">
-        <a class="nav-link {{#if $eq recipeFilter 'crafting'}}active{{/if}}" href="#">Crafting</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="mining">
-        <a class="nav-link {{#if $eq recipeFilter 'mining'}}active{{/if}}" href="#">Mining</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="woodcutting">
-        <a class="nav-link {{#if $eq recipeFilter 'woodcutting'}}active{{/if}}" href="#">Woodcutting</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="combat">
-        <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
-      </li>
-      <li class="nav-item crafting-filter" data-filter="astronomy">
-        <a class="nav-link {{#if $eq recipeFilter 'astronomy'}}active{{/if}}" href="#">Astronomy</a>
-      </li>
-    </ul>
+      <h2>Recipes</h2>
+      
+      <ul class="nav nav-tabs my-3">
+        <li class="nav-item crafting-filter" data-filter="all">
+          <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
+        </li>
+        <li class="nav-item crafting-filter" data-filter="crafting">
+          <a class="nav-link {{#if $eq recipeFilter 'crafting'}}active{{/if}}" href="#">Crafting</a>
+        </li>
+        <li class="nav-item crafting-filter" data-filter="mining">
+          <a class="nav-link {{#if $eq recipeFilter 'mining'}}active{{/if}}" href="#">Mining</a>
+        </li>
+        <li class="nav-item crafting-filter" data-filter="woodcutting">
+          <a class="nav-link {{#if $eq recipeFilter 'woodcutting'}}active{{/if}}" href="#">Woodcutting</a>
+        </li>
+        <li class="nav-item crafting-filter" data-filter="combat">
+          <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
+        </li>
+        <li class="nav-item crafting-filter" data-filter="astronomy">
+          <a class="nav-link {{#if $eq recipeFilter 'astronomy'}}active{{/if}}" href="#">Astronomy</a>
+        </li>
+      </ul>
 
-    {{> craftingList recipes=recipes recipeFilter=recipeFilter}}
-
-  {{else}}
-    <div 
-      class="d-flex justify-content-center align-items-center flex-column"
-      style="height: 200px; margin-top: 100px;">
-      <div class="mb-3">You haven't learning the crafting skill yet</div>
-      <button class="btn btn-primary learn-now">Learn Now</button>
-    </div>
-  {{/if}}
+      {{> craftingList recipes=recipes recipeFilter=recipeFilter}}
+      -->
+    {{else}}
+      <div 
+        class="d-flex justify-content-center align-items-center flex-column"
+        style="height: 200px; margin-top: 100px;">
+        <div class="mb-3">You haven't learning the crafting skill yet</div>
+        <button class="btn btn-primary learn-now">Learn Now</button>
+      </div>
+    {{/if}}
+  </div>
 </template>

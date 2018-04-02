@@ -22,6 +22,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -46,6 +47,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -70,6 +72,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -94,6 +97,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -118,6 +122,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -142,6 +147,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -166,6 +172,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -215,6 +222,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -239,6 +247,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -263,6 +272,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -287,6 +297,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -311,6 +322,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -335,6 +347,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -359,6 +372,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -383,6 +397,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -407,6 +422,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -431,6 +447,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -455,6 +472,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -479,6 +497,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 
@@ -503,6 +522,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 100
   },
 
@@ -527,6 +547,7 @@ export const GOLD_CRAFTS = {
     }],
     timeToCraft: 60,
     xp: 1,
+    tags: ['gold'],
     maxToCraft: 5
   },
 

@@ -10,7 +10,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 60,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'dagger'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -49,7 +49,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 180, // 60
     xp: 120,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'spear'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -88,7 +88,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 120,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'shortsword'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -127,7 +127,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 240, // 60
     xp: 120,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'longsword'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -166,7 +166,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 300, // 60
     xp: 160,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'battleaxe'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -205,7 +205,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'helmet'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -244,7 +244,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'chest'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -283,7 +283,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    tags: ['armor'],
+    tags: ['armor', 'legs'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',
@@ -322,7 +322,7 @@ export const IRON_CRAFTS = {
     timeToCraft: 120, // 60
     xp: 100,
     maxToCraft: 1,
-    tags: ['weapon'],
+    tags: ['weapon', 'armor', 'shield'],
     requiredCraftingLevel: 15,
     required: [{
       type: 'item',

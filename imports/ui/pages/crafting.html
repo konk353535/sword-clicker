@@ -90,12 +90,15 @@
               {{ > requiredItemsList requiredItems=selectedRecipe.required recipeName=selectedRecipe.name duration=selectedRecipe.calculatedTimeToCraft}}
 
               <div class="d-flex flex-grow pt-2" style="border-top: 1px solid #DFDFDF;">
-                <div class="d-flex flex-grow">
-                  <button class="btn btn-secondary">Craft</button>
+                <div style="display: flex; flex: 1 1 auto;">
+                  <input class="form-control craft-amount-input mr-1" value={{craftAmount}} style="max-width: 100px">
+                  <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
+                    Craft {{craftAmount}}
+                  </button>
                 </div>
-                <div class="btn btn-primary">
-                  Craft All
-                </div>
+                <button type="button" class="btn btn-primary craft-btn" data-amount={{maxCraftableAtOnce}}>
+                  Craft Max <small>{{maxCraftableAtOnce}}</small>
+                </button>
               </div>
             </div>
           {{/if}}

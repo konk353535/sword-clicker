@@ -175,6 +175,26 @@ Template.craftingPage.events({
     instance.state.set('selectedCraftingOptions', []);
   },
 
+  'click .craft-btn'(event, instance) {
+    // Note this is all copy pasta'd above
+    const recipeId = instance.state.get('selectedRecipe');
+    const amountToCraft = parseInt(instance.$(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
+    const recipeConstants = instance.state.get('recipes').find(recipe => recipe.id === recipeId);
+    
+    if (amountToCraft <= 0) {
+      return;
+    }
+
+    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
+      if (err) {
+        toastr.warning(`Failed to craft ${recipeConstants.name}`);
+      } else {
+        updateCraftable(instance);
+      }
+    });
+    toastr.success(`Crafting ${recipeConstants.name}`)
+  },
+
   'click .reset-crafting-option'(event, instance) {
     const index = parseInt(instance.$(event.target).closest('.reset-crafting-option').attr('data-index'));
     const selectedCraftingOptions = instance.state.get('selectedCraftingOptions');
@@ -183,6 +203,20 @@ Template.craftingPage.events({
 
   'click .select-recipe'(event, instance) {
     const recipeId = instance.$(event.target).closest('.select-recipe').attr('data-id');
+
+
+    const recipe = instance.state.get('recipes').find((recipe) => recipe.id === recipeId);
+    let { maxCraftable, notMet } = determineRequiredItems(recipe);
+
+    let maxCraftableAtOnce = maxCraftable;
+    if (maxCraftable > recipe.maxToCraft) {
+      maxCraftableAtOnce = recipe.maxToCraft;
+    }
+
+    instance.state.set('maxCraftableAmount', maxCraftable);
+    instance.state.set('maxCraftAmount', recipe.maxToCraft);
+    instance.state.set('craftAmount', Math.ceil(maxCraftableAtOnce / 2));
+    instance.state.set('maxCraftableAtOnce', maxCraftableAtOnce);
 
     instance.state.set('selectedRecipe', recipeId);
   },
@@ -275,6 +309,10 @@ Template.craftingPage.helpers({
 
   maxCraftableAmount() {
     return Template.instance().state.get('maxCraftableAmount');
+  },
+
+  maxCraftableAtOnce() {
+    return Template.instance().state.get('maxCraftableAtOnce');
   },
 
   recipeFilter() {

@@ -271,6 +271,7 @@ Meteor.methods({
       'showChat',
       'showSummaryList',
       'inscriptionFilter',
+      'craftingFavourites',
       'inscriptionLevelFilter',
       'craftingFilter',
       'combatTab',

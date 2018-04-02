@@ -50,8 +50,26 @@
             </div>
           </div>
           <div class="mb-2">
-            <div class="text-muted">Recent Crafts</div>
-            Todo..
+            <div class="text-muted mb-2">Favourite Crafts</div>
+            {{#each craftingFavourites}}
+              <div
+                class="d-flex icon-box-new flex-grow align-items-center mb-1"
+                style="border: 1px solid #DFDFDF; border-radius: 4px; padding: 8px;"
+              >
+                <img src="/icons/{{this.icon}}" class="small-icon mr-1" />
+                <a href="#" class="text-muted select-recipe text-capitalize" data-id="{{this.id}}">
+                  {{this.name}}
+                </a>
+                <div class="d-flex justify-content-end flex-grow">
+                  <button class="btn btn-sm btn-secondary quick-craft-btn mr-1" data-id="{{this.id}}" data-amount="1" disabled="{{this.notMet}}" style="width: 90px">
+                    Craft 1
+                  </button>
+                  <button class="btn btn-sm btn-primary quick-craft-btn" data-id="{{this.id}}" data-amount="{{this.maxCraftableAtOnce}}" style="width: 90px" disabled="{{this.notMet}}">
+                    Craft {{this.maxCraftableAtOnce}}
+                  </button>
+                </div>
+              </div>
+            {{/each}}
           </div>
         </div>
         <div class="framed-content-container col-md-6">
@@ -61,11 +79,22 @@
                 <div class="icon-box medium-icon">
                   <img src="/icons/{{selectedRecipe.icon}}" class="medium-icon" />
                 </div>
-                <div class="d-flex flex-column justify-content-center ml-2">
+                <div class="d-flex flex-column justify-content-center flex-grow ml-2">
                   <div class="text-primary mb-0 text-capitalize">{{selectedRecipe.name}}</div>
                   <div>
                     <small>{{selectedRecipe.description}}</small>
                   </div>
+                </div>
+                <div>
+                  {{#if selectedRecipe.favourited}}
+                    <button class="btn btn-warning btn-sm remove-favourite-btn ml-1">
+                      Favourited
+                    </button>
+                  {{else}}
+                    <button class="btn btn-secondary btn-sm add-favourite-btn ml-1">
+                      Favourite
+                    </button>
+                  {{/if}}
                 </div>
               </div>
 

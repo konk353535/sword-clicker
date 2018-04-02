@@ -65,6 +65,30 @@ const itemModifier = function (item) {
   return item;
 }
 
+const updateCraftable = function (instance) {
+  const recipes = instance.state.get('recipes');
+  const recipeId = instance.state.get('selectedRecipe');
+  const recipe = recipes.find(recipe => recipe.id === recipeId);
+
+  if (recipe) {
+    let { maxCraftable, notMet } = determineRequiredItems(recipe);
+
+    instance.state.set('maxCraftableAmount', maxCraftable);
+    instance.state.set('maxCraftAmount', recipe.maxToCraft);
+
+    let maxCraftableAtOnce = maxCraftable;
+    if (maxCraftable > recipe.maxToCraft) {
+      maxCraftableAtOnce = recipe.maxToCraft;
+    }
+
+    instance.state.set('craftAmount', Math.ceil(maxCraftableAtOnce / 2));
+    instance.state.set('maxCraftableAtOnce', maxCraftableAtOnce);
+  }
+
+  // Trigger crafting favourites to update
+  instance.state.set('craftingFavourites', instance.state.get('craftingFavourites').concat([]));
+}
+
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
@@ -73,6 +97,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 
   this.state.set('selectedCraftingOptions', []);
   this.state.set('selectedRecipe', false);
+  this.state.set('craftingFavourites', []);
 
   if (Session.get('itemViewLimit') !== undefined) {
     this.state.set('itemViewLimit', Session.get('itemViewLimit'));
@@ -93,6 +118,12 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
         this.state.set('recipeFilter', myUser.uiState.craftingFilter);
       } else {
         this.state.set('recipeFilter', 'all');
+      }
+
+      if (myUser.uiState && myUser.uiState.craftingFavourites !== undefined) {
+        this.state.set('craftingFavourites', myUser.uiState.craftingFavourites);
+      } else {
+        this.state.set('craftingFavourites', []);
       }
 
       if (myUser.uiState && myUser.uiState.craftingTierFilter !== undefined) {
@@ -168,6 +199,33 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 });
 
 Template.craftingPage.events({
+
+  'click .add-favourite-btn'(event, instance) {
+    const user = Users.findOne({
+      _id: Meteor.userId()
+    });
+
+    const craftingFavourites = user.uiState.craftingFavourites || [];
+    craftingFavourites.push(instance.state.get('selectedRecipe'));
+
+    instance.state.set('craftingFavourites', craftingFavourites);
+    Meteor.call('users.setUiState', 'craftingFavourites', craftingFavourites);
+  },
+
+  'click .remove-favourite-btn'(event, instance) {
+    const user = Users.findOne({
+      _id: Meteor.userId()
+    });
+
+    let craftingFavourites = user.uiState.craftingFavourites || [];
+    craftingFavourites = craftingFavourites.filter((recipeId) => {
+      return recipeId !== instance.state.get('selectedRecipe');
+    });
+
+    instance.state.set('craftingFavourites', craftingFavourites);
+    Meteor.call('users.setUiState', 'craftingFavourites', craftingFavourites);
+  },
+
   'click .learn-now'(event, instance) {
     Meteor.call('skills.learnSkill', 'crafting');
   },
@@ -176,10 +234,30 @@ Template.craftingPage.events({
     instance.state.set('selectedCraftingOptions', []);
   },
 
+  'click .quick-craft-btn'(event, instance) {
+    // Note this is all copy pasta'd above
+    const recipeId = instance.$(event.target).closest('.quick-craft-btn').attr('data-id');
+    const amountToCraft = parseInt(instance.$(event.target).closest('.quick-craft-btn').attr('data-amount'));
+    const recipeConstants = instance.state.get('recipes').find(recipe => recipe.id === recipeId);
+    
+    if (amountToCraft <= 0 || !recipeId) {
+      return;
+    }
+
+    Meteor.call('crafting.craftItem', recipeId, amountToCraft, (err) => {
+      if (err) {
+        toastr.warning(`Failed to craft ${recipeConstants.name}`);
+      } else {
+        updateCraftable(instance);
+      }
+    });
+    toastr.success(`Crafting ${recipeConstants.name}`)
+  },
+
   'click .craft-btn'(event, instance) {
     // Note this is all copy pasta'd above
     const recipeId = instance.state.get('selectedRecipe');
-    const amountToCraft = parseInt(instance.$(event.target).closest('.craft-btn')[0].getAttribute('data-amount'));
+    const amountToCraft = parseInt(instance.$(event.target).closest('.craft-btn').attr('data-amount'));
     const recipeConstants = instance.state.get('recipes').find(recipe => recipe.id === recipeId);
     
     if (amountToCraft <= 0) {
@@ -204,7 +282,6 @@ Template.craftingPage.events({
 
   'click .select-recipe'(event, instance) {
     const recipeId = instance.$(event.target).closest('.select-recipe').attr('data-id');
-
 
     const recipe = instance.state.get('recipes').find((recipe) => recipe.id === recipeId);
     let { maxCraftable, notMet } = determineRequiredItems(recipe);
@@ -288,6 +365,25 @@ Template.craftingPage.helpers({
     return Skills.findOne({ type: 'crafting' });
   },
 
+  craftingFavourites() {
+    const instance = Template.instance();
+    return instance.state.get('craftingFavourites').map((recipeId) => {
+      return instance.state.get('recipes').find(recipe => recipe.id === recipeId);
+    }).map((recipe) => {
+      let { maxCraftable, notMet } = determineRequiredItems(recipe);
+
+      let maxCraftableAtOnce = maxCraftable;
+      if (maxCraftable > recipe.maxToCraft) {
+        maxCraftableAtOnce = recipe.maxToCraft;
+      }
+
+      recipe.notMet = notMet;
+      recipe.maxCraftableAtOnce = maxCraftableAtOnce;
+
+      return recipe;
+    })
+  },
+
   selectedCraftingOptions() {
     return Template.instance().state.get('selectedCraftingOptions');
   },
@@ -346,9 +442,16 @@ Template.craftingPage.helpers({
       return false;
     }
 
-    return instance.state.get('recipes').find((recipe) => {
+    const selectedRecipeObject = instance.state.get('recipes').find((recipe) => {
       return recipe.id === selectedRecipe;
     });
+
+    const craftingFavourites = instance.state.get('craftingFavourites');
+    selectedRecipeObject.favourited = craftingFavourites.find(favourite => {
+      return favourite === selectedRecipe
+    });
+
+    return selectedRecipeObject;
   },
 
   selectableCraftingList() {

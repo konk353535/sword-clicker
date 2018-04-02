@@ -5,6 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 import moment from 'moment';
 
+import { getMaxCrafts } from '/imports/constants/crafting/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import { Crafting } from '/imports/api/crafting/crafting.js';
@@ -317,6 +318,24 @@ Template.craftingPage.helpers({
 
   recipeFilter() {
     return Template.instance().state.get('recipeFilter');
+  },
+
+  emptyCraftingSlots() {
+    const crafting = Crafting.findOne();
+    const craftingSkill = Skills.findOne({
+      type: 'crafting'
+    });
+    const currentlyCrafting = crafting.currentlyCrafting;
+
+    const cap = getMaxCrafts(craftingSkill.level);
+
+    const emptyCraftingSlotscount = cap - currentlyCrafting.length;
+    let emptyCraftingSlots = [];
+    for (i = 0; i < emptyCraftingSlotscount; i++) {
+      emptyCraftingSlots.push({});
+    }
+
+    return emptyCraftingSlots;
   },
 
   selectedRecipe() {

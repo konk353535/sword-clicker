@@ -417,13 +417,15 @@ Template.gameHomePage.events({
         toastr.warning(err.reason);
       }
     });
-  },
+  }
+});
 
+Template.firstCraftingUI.events({
   'click .cancel-crafting'(event, instance) {
     const endDate = instance.$(event.target).closest('.cancel-crafting').attr('data-enddate');
     Meteor.call('crafting.cancelCraft', moment(endDate).toDate());
   }
-});
+})
 
 Template.firstCraftingUI.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();

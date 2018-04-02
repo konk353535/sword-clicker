@@ -1,23 +1,15 @@
-console.log('importing crafting/index.js CRAFTING_ITEMS');
 import { CRAFTING_ITEMS as craftingItems } from './items';
-console.log('importing crafting/index.js ITEMS');
 import { ITEMS } from '/server/constants/items/index.js';
+import { getMaxCrafts } from '/imports/constants/crafting/index.js';
 
-console.log('importing crafting/index.js CRAFTING_CRAFTS');
 import { CRAFTING_CRAFTS } from './crafts';
-console.log('importing crafting/index.js COMBAT_CRAFTS');
 import { COMBAT_CRAFTS } from '/server/constants/combat/crafts';
-console.log('importing crafting/index.js MINING_CRAFTS');
 import { MINING_CRAFTS } from '/server/constants/mining/crafts';
-console.log('importing crafting/index.js WOODCUTTING_CRAFTS');
 import { WOODCUTTING_CRAFTS } from '/server/constants/woodcutting/crafts';
-console.log('importing crafting/index.js INSCRIPTION_CRAFTS');
 import { INSCRIPTION_CRAFTS } from '/server/constants/inscription/crafts';
 
-console.log('exporting crafting/index.js CRAFTING_ITEMS');
 export const CRAFTING_ITEMS = craftingItems;
 
-console.log('exporting crafting/index.js CRAFTING');
 export const CRAFTING = {
   recipes: Object.assign(
     CRAFTING_CRAFTS,
@@ -27,27 +19,7 @@ export const CRAFTING = {
     INSCRIPTION_CRAFTS
   ),
 
-  getMaxCrafts(craftingLevel) {
-    let maxCrafts = 2;
-
-    if (craftingLevel >= 5) {
-      maxCrafts = 3;
-    }
-
-    if (craftingLevel >= 15) {
-      maxCrafts = 4;
-    }
-
-    if (craftingLevel >= 35) {
-      maxCrafts = 5;
-    }
-
-    if (craftingLevel >= 60) {
-      maxCrafts = 6;
-    }
-
-    return maxCrafts;
-  },
+  getMaxCrafts,
 
   tiers: {
     copper: {

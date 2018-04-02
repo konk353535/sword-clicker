@@ -430,6 +430,7 @@ Template.firstCraftingUI.events({
 Template.firstCraftingUI.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('percentage', 0);
+  this.state.set('updatingGame', false);
 
   this.autorun(() => {
     const craftingProcess = this.data.data;
@@ -450,6 +451,18 @@ Template.firstCraftingUI.onCreated(function bodyOnCreated() {
 
     if (craftingProcess.percentage < 0) {
       craftingProcess.percentage = 0;
+    }
+
+    if (craftingProcess.percentage > 100 && !this.state.get('updatingGame')) {
+      this.state.set('updatingGame', true);
+      Meteor.call('crafting.updateGame', (err, res) => {
+        // Incase we are out of sync, backoff
+        setTimeout(() => {
+          this.state.set('updateGame', false);
+        }, 5000);
+      });
+    } else if (craftingProcess.percentage < 100) {
+      this.state.set('updatingGame', false);
     }
 
     craftingProcess.humanReadable = moment.duration(endDate.diff(now)).humanize(true);

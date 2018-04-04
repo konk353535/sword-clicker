@@ -229,7 +229,6 @@ Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
     if (unit.buffs) {
       // Buffs can do things on tick, will collect them in the form of combatEvents
       unit.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTick) {
           buff.constants.events.onTick({
             secondsElapsed,

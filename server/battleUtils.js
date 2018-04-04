@@ -13,6 +13,8 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
 }
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
+  const buffConstants = BUFFS[buff.id];
+
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
     removeBuff({ target, buff, caster });

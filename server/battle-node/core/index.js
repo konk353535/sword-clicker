@@ -343,7 +343,7 @@ Battle.prototype.checkDeath = function checkDeath(defender) {
     if (defender.buffs) {
       // Buffs can do things on tick, will collect them in the form of combatEvents
       defender.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
+        
         if (buff.constants.events.onBeforeDeath) {
           buff.constants.events.onBeforeDeath({ buff, target: defender, actualBattle: this });
         }

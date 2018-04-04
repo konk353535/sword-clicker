@@ -18,8 +18,6 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
     removeBuff({ target, buff, caster });
   }
 
-  const buffConstants = BUFFS[buff.id];
-  buff.constants = buffConstants;
   if (buffConstants.events.onApply) {
     buffConstants.events.onApply({ buff, target, caster, actualBattle });
   }

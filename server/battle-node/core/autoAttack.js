@@ -45,7 +45,6 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
     // Tick didDamage event on attacker
     if (attacker.buffs) {
       attacker.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onDidDamage) {
           // Did Damage
           buff.constants.events.onDidDamage({
@@ -65,7 +64,7 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
     // Tick tookDamage event on defender
     if (defender.buffs) {
       defender.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
+        
         if (buff.constants.events.onTookDamage) {
           // Took Damage
           buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle: this, damageDealt })

@@ -553,9 +553,12 @@ Template.craftingPage.helpers({
     const selectedRecipe = instance.state.get('selectedRecipe');
 
     return filteredRecipes.map((recipe) => {
+      let { maxCraftable, notMet } = determineRequiredItems(recipe);
+
       return {
         isRecipe: true,
         isActive: recipe.id === selectedRecipe,
+        notMet,
         label: recipe.name,
         key: recipe.id,
         icon: recipe.icon

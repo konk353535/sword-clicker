@@ -37,6 +37,7 @@
                   class="
                     list-group-item list-group-item-action d-flex
                     {{#if this.isRecipe}}select-recipe{{else}}select-craft{{/if}}
+                    {{#if this.notMet}}bg-faded-danger{{/if}}
                     {{#if this.isActive}}active{{/if}}
                   "
                   data-id="{{this.key}}"

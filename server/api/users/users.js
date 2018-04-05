@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
 import moment from 'moment';
 
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Friends } from '/imports/api/friends/friends';
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Skills } from '/imports/api/skills/skills';
@@ -360,13 +360,7 @@ Meteor.publish("userData", function () {
       fields: {
         'gold': 1,
         'uiState': 1,
-        'tutorial': 1,
         'battleSecret': 1,
-        'newUpdates': 1,
-        'gems': 1,
-        'fakeGems': 1,
-        'membershipTo': 1,
-        'personalQuest': 1,
         'miningUpgradeTo': 1,
         'craftingUpgradeTo': 1,
         'combatUpgradeTo': 1,
@@ -375,12 +369,28 @@ Meteor.publish("userData", function () {
         'farmingUpgradeTo': 1,
         'inscriptionUpgradeTo': 1,
         'isGuest': 1,
-        'isMutedExpiry': 1
+        'isMutedExpiry': 1,
+        'currentGame': 1,
+        'games': 1,
+
+        'newUpdates': 1,
+        'tutorial': 1,
+        'gems': 1,
+        'fakeGems': 1,
+        'membershipTo': 1,
+        'personalQuest': 1
       }
     });
   } else {
     this.ready();
   }
+});
+
+Meteor.publish('userGame', function(game) {
+  return UserGames.find({
+    owner: this.userId,
+    game
+  });
 });
 
 Meteor.publish('friendsFeed', function(data) {

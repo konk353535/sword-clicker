@@ -15,7 +15,7 @@ import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Floors } from '/imports/api/floors/floors';
 import { Adventures } from '/imports/api/adventures/adventures';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
@@ -190,8 +190,9 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
 Meteor.methods({
 
   'adventures.cancelAdventure'(adventureId) {
+    const userDoc = Meteor.user();
     // Queue up an adventure
-    const myAdventures = Adventures.findOne({ owner: this.userId });
+    const myAdventures = Adventures.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // Set data for target adventure
     const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
@@ -225,7 +226,8 @@ Meteor.methods({
     });
 
     const updatedCount = Adventures.update({
-      owner: this.userId,
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
@@ -236,8 +238,9 @@ Meteor.methods({
   },
 
   'adventures.collectAdventure'(adventureId) {
+    const userDoc = Meteor.user();
     // Queue up an adventure
-    const myAdventures = Adventures.findOne({ owner: this.userId });
+    const myAdventures = Adventures.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // Set data for target adventure
     const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
@@ -253,7 +256,8 @@ Meteor.methods({
     });
 
     const updatedCount = Adventures.update({
-      owner: this.userId,
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
@@ -279,16 +283,23 @@ Meteor.methods({
   },
 
   'adventures.cycleAdventure'(isGems = false) {
+    const userDoc = Meteor.user();
+    const userGame = UserGames.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame
+    });
+
     let adventureTokens;
 
     if (isGems) {
-      if (!hasGems(10, Meteor.user())) {
+      if (!hasGems(10, userGame)) {
         return;
       }
     } else {
       // Check for an adventure_token
       adventureTokens = Items.findOne({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         itemId: 'adventure_token'
       });
 
@@ -305,7 +316,8 @@ Meteor.methods({
 
     // Fetch users combat skills
     const rawCombatSkills = Skills.find({
-      owner: this.userId,
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       type: {
         $in: ['attack', 'defense', 'magic']
       }
@@ -318,7 +330,10 @@ Meteor.methods({
     });
 
     // Get max floor
-    const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+    const maxFloor = Floors.findOne({
+      floorComplete: false,
+      game: userDoc.currentGame
+    }).floor;
 
     // Add a new adventure entry
     const forceEpic = true;
@@ -341,7 +356,8 @@ Meteor.methods({
     // Needs to be more defensive, as there is a slight delay between fetching and resetting adventures
     // Could be abused
     const updated = Adventures.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
@@ -353,7 +369,7 @@ Meteor.methods({
 
     if (updated > 0) {
       if (isGems) {
-        consumeGems(10, Meteor.user());
+        consumeGems(10, userGame);
       } else {
         consumeItem(adventureTokens, 1);
       }
@@ -361,14 +377,18 @@ Meteor.methods({
   },
 
   'adventures.startAdventure'(adventureId) {
+    const userDoc = Meteor.user();
     // Make sure user isn't in combat
-    const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
+    const currentBattle = BattlesList.findOne({ owners: userDoc._id, game: userDoc.currentGame });
     if (currentBattle) {
       throw new Meteor.Error('in-battle', 'You cannot start a adventure while you are in a battle');
     }
 
     // Queue up an adventure
-    const myAdventures = Adventures.findOne({ owner: this.userId });
+    const myAdventures = Adventures.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame
+    });
 
     const activeAdventures = myAdventures.adventures.filter((adventure) => {
       return adventure.startDate && adventure.win == null;
@@ -397,7 +417,8 @@ Meteor.methods({
     targetAdventure.endDate = moment(targetAdventure.startDate).add(targetAdventure.duration, 'seconds').toDate();
 
     Adventures.update({
-      owner: this.userId,
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
@@ -408,17 +429,22 @@ Meteor.methods({
   },
 
   'adventures.gameUpdate'() {
-    if (!this.userId) {
+    const userDoc = Meteor.user();
+    if (!userDoc) {
       return;
     }
 
     // Fetch all db data we need
-    let myAdventures = Adventures.findOne({ owner: this.userId });
+    let myAdventures = Adventures.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame
+    });
 
     // Create one
     if (!myAdventures) {
       myAdventures = {
-        owner: this.userId,
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         lastGameUpdated: moment().subtract(1000, 'seconds').toDate(),
         adventures: [],
         timeTillUpdate: 0
@@ -449,7 +475,8 @@ Meteor.methods({
 
       // Fetch users combat skills
       const rawCombatSkills = Skills.find({
-        owner: this.userId,
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         type: {
           $in: ['attack', 'defense', 'magic']
         }
@@ -462,7 +489,10 @@ Meteor.methods({
       });
 
       // Get max floor
-      const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+      const maxFloor = Floors.findOne({
+        floorComplete: false,
+        game: userDoc.currentGame
+      }).floor;
 
       let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / NEW_ADVENTURE_SECONDS) + 1);
       if (newAdventureCount >= MAX_ADVENTURES) {
@@ -493,7 +523,8 @@ Meteor.methods({
     // Needs to be more defensive, as there is a slight delay between fetching and resetting adventures
     // Could be abused
     Adventures.update({
-      owner: Meteor.userId(),
+      game: userDoc.currentGame,
+      owner: userDoc._id,
       lastGameUpdated: myAdventures.lastGameUpdated
     }, {
       $set: {
@@ -517,6 +548,8 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
 
 Meteor.publish('adventures', function() {
 
+  const userDoc = Meteor.user();
+
   //Transform function
   var transform = function(doc) {
     // Inject icon and name into document based on floor and room
@@ -534,7 +567,8 @@ Meteor.publish('adventures', function() {
   var self = this;
 
   var observer = Adventures.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('adventures', document._id, transform(document));

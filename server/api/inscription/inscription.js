@@ -14,8 +14,8 @@ import { addXp } from '/server/api/skills/skills.js';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 
-const craftItem = function (recipeId, amountToCraft) {
-  const inscription = Inscription.findOne({ owner: Meteor.userId() });
+const craftItem = function (recipeId, amountToCraft, owner, game) {
+  const inscription = Inscription.findOne({ owner, game });
 
   // Are we crafting at least one item
   if (amountToCraft <= 0) {
@@ -44,7 +44,7 @@ const craftItem = function (recipeId, amountToCraft) {
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
-  if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
+  if (!requirementsUtility(recipeConstants.required, amountToCraft, owner, game)) {
     console.log('doesnt meet reqs');
     return;
   }
@@ -62,7 +62,7 @@ const craftItem = function (recipeId, amountToCraft) {
   const userDoc = Meteor.user();
 
   // Apply membership benefits
-  if (Meteor.user().inscriptionUpgradeTo && moment().isBefore(Meteor.user().inscriptionUpgradeTo)) {
+  if (userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo)) {
     timeToCraft *= (1 - (DONATORS_BENEFITS.inscriptionBonus / 100));
   }
 
@@ -82,21 +82,23 @@ const craftItem = function (recipeId, amountToCraft) {
 
 Meteor.methods({
   'inscription.craftItem'(recipeId, amount) {
-    if (Meteor.user().logEvents) {
+    const userDoc = Meteor.user();
+    if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'inscription.craftItem',
         date: new Date(),
         data: { recipeId, amount }
       }, () => {})
     }
 
-    craftItem(recipeId, amount);
+    craftItem(recipeId, amount, userDoc._id, userDoc.currentGame);
   },
 
   'inscription.cancelCraft'(targetEndDate) {
+    const userDoc = Meteor.user();
     // If existing crafts done, remove from crafting table
-    const inscription = Inscription.findOne({ owner: Meteor.userId() });
+    const inscription = Inscription.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     if (!inscription || !inscription.currentlyCrafting) {
       return;
@@ -153,15 +155,18 @@ Meteor.methods({
     recipeConstants.required.forEach((required) => {
       if (required.consumes) {
         if (required.type === 'item') {
-          addItem(required.itemId, required.amount * targetCrafting.amount);
+          addItem(required.itemId, required.amount * targetCrafting.amount, userDoc._id, userDoc.currentGame);
         }
       }
     });
   },
 
   'inscription.fetchRecipes'() {
+    const userDoc = Meteor.user();
+
     const inscriptionSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       type: 'inscription'
     });
 
@@ -199,8 +204,9 @@ Meteor.methods({
   },
 
   'inscription.updateGame'() {
+    const userDoc = Meteor.user();
     // If existing crafts done, remove from crafting table
-    const inscription = Inscription.findOne({ owner: Meteor.userId() });
+    const inscription = Inscription.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     let inscriptionXp = 0;
     const newItems = [];
@@ -236,12 +242,12 @@ Meteor.methods({
 
     // Add new items to user
     newItems.forEach((item) => {
-      addItem(item.itemId, item.amount);
+      addItem(item.itemId, item.amount, userDoc._id, userDoc.currentGame);
     })
 
     // Add inscription exp
     if (_.isNumber(inscriptionXp)) {
-      addXp('inscription', inscriptionXp);
+      addXp('inscription', inscriptionXp, userDoc._id, userDoc.currentGame);
     }
   }
 });
@@ -254,6 +260,7 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'inscription' }, 100, 10 * MINUTE);
 
 Meteor.publish('inscription', function() {
+  const userDoc = Meteor.user();
 
   //Transform function
   var transform = function(doc) {
@@ -270,7 +277,8 @@ Meteor.publish('inscription', function() {
   var self = this;
 
   var observer = Inscription.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('inscription', document._id, transform(document));

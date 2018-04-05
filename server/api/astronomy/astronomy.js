@@ -8,7 +8,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Astronomy } from '/imports/api/astronomy/astronomy';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
@@ -23,14 +23,16 @@ Meteor.methods({
       throw new Meteor.Error("invalid-stat", "Not a valid mage stat");
     }
 
+    const userDoc = Meteor.user();
+
     // Get current value
-    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
     const mainMage = astronomy.mages[0];
 
     // Get cost of specified stat
     const requirements = ASTRONOMY.upgradeCosts[stat](mainMage.stats[stat]);
 
-    if (!requirementsUtility(requirements, 1)) {
+    if (!requirementsUtility(requirements, 1, userDoc.currentGame)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
       return;
     }
@@ -40,8 +42,6 @@ Meteor.methods({
     }
 
     mainMage.stats[stat] += 1;
-
-    const userDoc = Meteor.user();
 
     // Does user have astronomy upgrade
     const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
@@ -64,9 +64,12 @@ Meteor.methods({
   },
   // Fetch main mage upgrade costs
   'astronomy.upgradeCosts'() {
+    const userDoc = Meteor.user();
+
     // Get main mage
     const astronomy = Astronomy.findOne({
-      owner: Meteor.userId()
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     const mainMage = astronomy.mages[0];
@@ -88,7 +91,9 @@ Meteor.methods({
   },
   // Cost to hire a mage
   'astronomy.hireMageCost'() {
-    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
     if (!astronomy) {
       return;
     }
@@ -104,7 +109,7 @@ Meteor.methods({
     if (!_.contains(['fire', 'water', 'air', 'earth'], type)) {
       throw new Meteor.Error("missed-requirmeents", "invalid mage type");
     }
-    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // Do we have room for a new mage?
     const currentMages = astronomy.mages.length;
@@ -125,7 +130,7 @@ Meteor.methods({
     const mainMage = astronomy.mages[0];
     const requirements = ASTRONOMY.mageHireCost(mainMage);
 
-    if (!requirementsUtility(requirements, 1)) {
+    if (!requirementsUtility(requirements, 1, userDoc.currentGame)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
       return;
     }
@@ -148,16 +153,19 @@ Meteor.methods({
   },
   // Deposit gold to mage
   'astronomy.depositMageGold'(index, amount) {
+    const userDoc = Meteor.user();
     if (amount <= 0) {
       return;
     }
     // Check we have enough gold, and deposit it
-    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
-    // Do we have enough gold
-    const userDoc = Meteor.user();
+    const userGame = UserGames.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame
+    });
 
-    if (userDoc.gold < amount) {
+    if (userGame.gold < amount) {
       throw new Meteor.Error("invalid-gold", "dont have that much gold");
     }
 
@@ -170,7 +178,7 @@ Meteor.methods({
     }
 
     // Update user, then update mage
-    addGold(amount * -1, Meteor.userId());
+    addGold(amount * -1, userDoc._id, userDoc.currentGame);
 
     Astronomy.update(astronomy._id, {
       $set: {
@@ -180,15 +188,17 @@ Meteor.methods({
   },
   // Withdraw gold from mage
   'astronomy.withdrawMageGold'(index, amount) {
+    const userDoc = Meteor.user();
+
     if (amount <= 0) {
       return;
     }
 
     // If more gold then what is there specified, withdraw all gold
-    const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // Do we have enough gold
-    const userDoc = Meteor.user();
+    const userGame = UserGames.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // Does mage exist?
     if (astronomy.mages[index] && astronomy.mages[index].type && astronomy.mages[index].gold) {
@@ -204,7 +214,7 @@ Meteor.methods({
     }
 
     // Update user, then update mage
-    addGold(Math.round(amount), Meteor.userId());
+    addGold(Math.round(amount), userDoc._id, userDoc.currentGame);
 
     Astronomy.update(astronomy._id, {
       $set: {
@@ -216,14 +226,13 @@ Meteor.methods({
   'astronomy.boostMage'(index) { },
   // Game Update
   'astronomy.gameUpdate'() {
+    const userDoc = Meteor.user();
     // Fetch all db data we need
-    const astronomy = Astronomy.findOne({ owner: this.userId });
+    const astronomy = Astronomy.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     if (!astronomy) {
       return;
     }
-
-    const userDoc = Meteor.user();
 
     const originalMages = JSON.parse(JSON.stringify(astronomy.mages));
 
@@ -415,11 +424,11 @@ Meteor.methods({
 
     if (astronomyUpdated) {
       Object.keys(gainedItems).forEach((itemId) => {
-        addItem(itemId, gainedItems[itemId]);
+        addItem(itemId, gainedItems[itemId], userDoc._id, userDoc.currentGame);
       });
 
       if (gainedXp >= 1) {
-        addXp('astronomy', gainedXp);
+        addXp('astronomy', gainedXp, userDoc._id, userDoc.currentGame);
       }
     }
   }
@@ -428,10 +437,10 @@ Meteor.methods({
 
 Meteor.publish('astronomy', function() {
 
+  const userDoc = Meteor.user();
+
   //Transform function
   var transform = function(doc) {
-
-    const userDoc = Meteor.user();
     
     let maxMages = ASTRONOMY.baseMaxMages;
     const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
@@ -457,7 +466,8 @@ Meteor.publish('astronomy', function() {
   var self = this;
 
   var observer = Astronomy.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('astronomy', document._id, transform(document));

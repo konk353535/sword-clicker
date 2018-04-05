@@ -9,6 +9,7 @@ ItemsSchema = new SimpleSchema({
   category: { type: String, optional: true },
   amount: { type: Number, defaultValue: 1 },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   equipped: { type: Boolean, defaultValue: false },
   enhanced: { type: Boolean, optional: true },
   slot: { type: String, optional: true },

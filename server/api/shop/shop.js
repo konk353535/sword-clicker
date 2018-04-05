@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 import { State } from '/imports/api/state/state';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
@@ -25,20 +25,29 @@ Meteor.methods({
   },
 
   'shop.buyGlobalBuff'(type) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     if (!_.contains(Object.values(STATE_BUFFS), type)) {
       throw new Meteor.Error("invalid-type", "Invalid type");
     }
 
     const GEM_COST = 100;
 
-    // Does the user have 100 gems?
-    const userDoc = Meteor.user();
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
 
-    if (userDoc.gems < GEM_COST) {
+    if (userGame < GEM_COST) {
       throw new Meteor.Error("gems-too-low", "You don't have enough gems");
     }
 
-    const globalBuff = State.findOne({name: type});
+    const globalBuff = State.findOne({
+      name: type,
+      game
+    });
 
     if (!globalBuff) {
       return;
@@ -51,13 +60,7 @@ Meteor.methods({
     };
 
     // Take me gems!
-    Users.update({
-      _id: userDoc._id
-    }, {
-      $inc: {
-        gems: (GEM_COST * -1)
-      }
-    });
+    consumeGems(GEM_COST, userGame);
 
     // Increment target buff by 1 hour
     if (moment().isAfter(globalBuff.value.activeTo)) {
@@ -95,7 +98,10 @@ Meteor.methods({
       });
     }
 
-    State.update({name: type}, {
+    State.update({
+      name: type,
+      game
+    }, {
       $set: {
         value: globalBuff.value
       }
@@ -103,6 +109,10 @@ Meteor.methods({
   },
 
   'shop.buyMembership'(days) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     if (!_.contains([15, 30], days)) {
       throw new Meteor.Error("not-valid-days", "Not valid day amount");
     }
@@ -115,7 +125,12 @@ Meteor.methods({
       requiredGems = 500;
     }
 
-    if (!hasGems(requiredGems, Meteor.user())) {
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
+
+    if (!hasGems(requiredGems, userGame)) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
@@ -137,10 +152,10 @@ Meteor.methods({
 
     });
 
-    if (consumeGems(requiredGems, Meteor.user())) {
+    if (consumeGems(requiredGems, userGame)) {
       // Update membership to
       Users.update({
-        _id: Meteor.userId()
+        _id: owner
       }, {
         $set: setModifier
       });
@@ -149,6 +164,10 @@ Meteor.methods({
   },
 
   'shop.buySingle'({ days, type }) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     if (!_.contains([15, 30], days)) {
       throw new Meteor.Error("not-valid-days", "Not valid day amount");
     }
@@ -164,12 +183,17 @@ Meteor.methods({
       requiredGems = 100;
     }
 
-    if (!hasGems(requiredGems, Meteor.user())) {
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
+
+    if (!hasGems(requiredGems, userGame)) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
     // Add X days to specified typemembership
-    let membershipTo = Meteor.user()[`${type}UpgradeTo`];
+    let membershipTo = userDoc[`${type}UpgradeTo`];
     if (!membershipTo || moment().isAfter(membershipTo)) {
       membershipTo = moment().add(days, 'days').toDate();
     } else {
@@ -179,10 +203,10 @@ Meteor.methods({
     const setModifier = {}
     setModifier[`${type}UpgradeTo`] = membershipTo;
 
-    if (consumeGems(requiredGems, Meteor.user())) {
+    if (consumeGems(requiredGems, userGame)) {
       // Update membership to
       Users.update({
-        _id: Meteor.userId()
+        _id: owner
       }, {
         $set: setModifier
       });
@@ -191,6 +215,9 @@ Meteor.methods({
   },
 
   'shop.buyIcon'(iconId) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
 
     const validIcons = [
       { id: 'mage_t1', cost: 150 },
@@ -208,20 +235,26 @@ Meteor.methods({
       throw new Meteor.Error("invalid-item", "Invalid item");
     }
 
-    if (!hasGems(iconToBuy.cost, Meteor.user())) {
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
+
+    if (!hasGems(iconToBuy.cost, userGame)) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
     // Make sure user doesn't already have target icon
     const userCombat = Combat.findOne({
-      owner: Meteor.userId()
+      owner,
+      game
     });
 
     if (userCombat.boughtIcons && _.contains(userCombat.boughtIcons, iconToBuy.id)) {
       throw new Meteor.Error("already-own", "Already own that icon");
     }
 
-    if (consumeGems(iconToBuy.cost, Meteor.user())) {
+    if (consumeGems(iconToBuy.cost, userGame)) {
       // Add the icon
       if (!userCombat.boughtIcons) {
         userCombat.boughtIcons = [iconToBuy.id];
@@ -242,7 +275,8 @@ Meteor.methods({
 
     // Update combat
     Combat.update({
-      owner: Meteor.userId()
+      owner,
+      game
     }, {
       $set: {
         boughtIcons: userCombat.boughtIcons
@@ -252,43 +286,63 @@ Meteor.methods({
   },
 
   'shop.buyItem'({ itemId }) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
 
     const validItems = [{
       id: 'lemonade',
       cost: 10
     }];
 
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
+
     const itemToBuy = _.findWhere(validItems, { id: itemId });
     if (!itemToBuy) {
       throw new Meteor.Error("invalid-item", "Invalid item");
     }
 
-    if (!hasGems(itemToBuy.cost, Meteor.user())) {
+    if (!hasGems(itemToBuy.cost, userGame)) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
-    if (consumeGems(itemToBuy.cost, Meteor.user())) {
-      addItem(itemToBuy.id, 1, Meteor.userId());
+    if (consumeGems(itemToBuy.cost, userGame)) {
+      addItem(itemToBuy.id, 1, owner);
     }
 
   },
 
   'shop.buyEnhancerKey'() {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const userGame = UserGames.findOne({
+      owner,
+      game
+    });
 
     // Check user has the correct # of gems to key
     let requiredGems = 100;
 
-    if (!hasGems(requiredGems, Meteor.user())) {
+    if (!hasGems(requiredGems, userGame)) {
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
-    if (consumeGems(requiredGems, Meteor.user())) {
+    if (consumeGems(requiredGems, userGame)) {
       addItem('enhancer_key', 1, Meteor.userId());
     }
 
   },
 
   'shop.purchaseWithRaiBlocks'({ token, item_id }) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     // Lookup itemId, confirm that its price matches what was paid
     const ITEMS = {
       'someGems': {
@@ -319,8 +373,9 @@ Meteor.methods({
 
     if (handleCharge && handleCharge.data && handleCharge.data.id) {
       // Credit our account!
-      Users.update({
-        _id: Meteor.userId(),
+      UserGames.update({
+        owner,
+        game
       }, {
         $inc: {
           gems: ITEMS[item_id].gems
@@ -333,6 +388,10 @@ Meteor.methods({
   },
 
   'shop.purchase'({ token, currentPack }) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     if (!_.contains(['bunch', 'bag', 'box'], currentPack)) {
       throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box");
     }
@@ -358,8 +417,8 @@ Meteor.methods({
           description: "Bag Of Gems",
           source: token,
           metadata: {
-            userId: Meteor.userId(),
-            username: Meteor.user().username 
+            userId: userDoc._id,
+            username: userDoc.username 
           }
         });
       } else if (currentPack === 'box') {
@@ -369,8 +428,8 @@ Meteor.methods({
           description: "Box Of Gems",
           source: token,
           metadata: {
-            userId: Meteor.userId(),
-            username: Meteor.user().username 
+            userId: userDoc._id,
+            username: userDoc.username 
           }
         });
       }
@@ -385,13 +444,14 @@ Meteor.methods({
           newGems = 6200;
         }
 
-        Users.update({
-          _id: Meteor.userId(),
+        const userGame = UserGames.update({
+          owner,
+          game
         }, {
           $inc: {
             gems: newGems
           }
-        })
+        });
       }
     } catch(err) {
       throw new Meteor.Error("unknown-error", "Unknown error occured when attempting to purchase gems");

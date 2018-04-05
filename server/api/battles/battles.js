@@ -10,6 +10,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
+import { UserGames } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
@@ -26,13 +27,18 @@ Meteor.methods({
   'battles.findPersonalBattle'(level) {
     const userDoc = Meteor.user();
 
+    const userGame = UserGames.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame
+    });
+
     // Ensure user has access to specified wave
-    const maxLevel = userDoc.personalQuest.level;
-    const maxWave = userDoc.personalQuest.wave;
+    const maxLevel = userGame.personalQuest.level;
+    const maxWave = userGame.personalQuest.wave;
 
     if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'battle.personal.start',
         date: new Date(),
         data: { level }
@@ -48,7 +54,8 @@ Meteor.methods({
     }
 
     const currentGroup = Groups.findOne({
-      members: Meteor.userId()
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (currentGroup && currentGroup.members.length > 1) {
@@ -65,9 +72,10 @@ Meteor.methods({
   },
 
   'battles.findTowerBattle'(floor, room) {
-    if (Meteor.user().logEvents) {
+    const userDoc = Meteor.user();
+    if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'battle.tower.start',
         date: new Date(),
         data: { floor, room }
@@ -132,15 +140,19 @@ Meteor.methods({
     if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
-      return startBattle({ floor, room, isTowerContribution, isExplorationRun });
+      return startBattle({ floor, room, isTowerContribution, isExplorationRun, userDoc });
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle({ floor, room, isTowerContribution, isExplorationRun });
+    startBattle({ floor, room, isTowerContribution, isExplorationRun, userDoc });
   },
 
   'battles.getWaveDetails'() {
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const userDoc = Meteor.user();
+    const currentFloor = Floors.findOne({
+      floorComplete: false,
+      game: userDoc.currentGame
+    });
 
     return {
       points: Math.floor(currentFloor.points),
@@ -150,8 +162,9 @@ Meteor.methods({
   },
 
   'battles.getFloorDetails'(floorNumber = 1) {
+    const userDoc = Meteor.user();
     // Fetch specified floor details ( constants + current floor details )
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentFloor = Floors.findOne({ floorComplete: false, game: userDoc.currentGame });
 
     // Can't access floors the community hasn't got to yet
     if (currentFloor.floor < floorNumber) {
@@ -205,16 +218,18 @@ Meteor.methods({
   },
 
   'battles.currentFloorHighscores'(showAll200) {
+    const userDoc = Meteor.user();
     let limit = 20;
     if (showAll200) {
       limit = 200;
     }
     // Fetch current active floor
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentFloor = Floors.findOne({ floorComplete: false, game: userDoc.currentGame });
 
     // Fetch top 10 for each difficulty
     return FloorWaveScores.find({
-      floor: currentFloor.floor
+      floor: currentFloor.floor,
+      game: userDoc.currentGame
     }, {
       sort: {
         points: -1
@@ -224,11 +239,13 @@ Meteor.methods({
   },
 
   'battles.myFloorContributions'() {
+    const userDoc = Meteor.user();
     // current floor contribution + ranking
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false, game: userDoc.currentGame });
     // Fetch there waveScores
     const userWaveScores = FloorWaveScores.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       floor: currentCommunityFloor.floor
     });
 
@@ -236,6 +253,7 @@ Meteor.methods({
       // Get ranking
       const userRanking = FloorWaveScores.find({
         floor: currentCommunityFloor.floor,
+        game: userDoc.currentGame,
         points: {
           $gte: userWaveScores.points
         }
@@ -244,6 +262,7 @@ Meteor.methods({
       // Total Rankings
       const totalRankings = FloorWaveScores.find({
         floor: currentCommunityFloor.floor,
+        game: userDoc.currentGame
         points: {
           $gte: 25
         }
@@ -270,8 +289,11 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'battles' }, 500, 1 * MINUTE);
 
 Meteor.publish('battles', function() {
+  const userDoc = Meteor.user();
+
   return Battles.find({
-    owners: this.userId
+    owners: userDoc._id,
+    game: userDoc.currentGame
   }, {
     limit: 25,
     sort: {
@@ -281,7 +303,10 @@ Meteor.publish('battles', function() {
 });
 
 Meteor.publish('battlesList', function () {
+  const userDoc = Meteor.user();
+
   return BattlesList.find({
-    owners: this.userId
+    owners: userDoc._id,
+    game: userDoc.currentGame
   });
 });

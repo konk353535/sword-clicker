@@ -12,6 +12,7 @@ import { Combat } from '../../api/combat/combat.js';
 import { Adventures } from '../../api/adventures/adventures.js';
 import { Abilities } from '../../api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
+import { Games } from '/imports/api/games/games.js';
 
 import { addItem } from '/server/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
@@ -24,7 +25,7 @@ import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
-import '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 import '/imports/api/users/users.js';
 import './crons.js';
 import './chatConfig.js';
@@ -361,69 +362,39 @@ Accounts.validateLoginAttempt((attempt) => {
 
 Accounts.onCreateUser((options, user) => {
 
+  const mainGame = Games.findOne({
+    mainGame: true
+  });
+
+  const game = mainGame._id;
+
   user._id = Random.id();
   const userId = user._id;
   user.battleSecret = uuid.v4();
-  user.uiState = {
-    showChat: true,
-    showSummaryList: false,
-    craftingFilter: 'mining'
-  }
-  user.tutorial = {
-    hideCombat: true,
-  
-    highlightCombat: false,
-    highlightCombatPersonalQuest: false,
-    highlightCombatTower: false,
-    highlightCombatAdventures: false,
-    highlightCombatAbilities: false,
-    highlightCombatEquipment: false,
-    hideCombatEquipment: true,
-    hideCombatAbilities: true,
-    hideCombatGroup: true,
-    hideCombatBattleLog: true,
-    hideCombatTower: true,
-    hideCombatPersonalQuest: true,
-    hideCombatAdventures: true,
-
-    hideInscription: true,
-    highlightInscription: false,
-    hideInscriptionAbilities: true,
-    highlightInscriptionAbilities: false,
-    hideInscriptionPigments: true,
-    highlightInscriptionPigments: false,
-    hideInscriptionPaper: true,
-    highlightInscriptionPaper: false,
-
-    hideFarming: true,
-    highlightFarming: false,
-    hideFarmingPlots: true,
-    highlightFarmingPlots: false,
-
-    hideCrafting: true,
-    highlightCrafting: false,
-
-    hideWoodcutting: true,
-    highlightWoodcutting: false,
-
-    hideMiningEquipment: true,
-    highlightMiningEquipment: false,
-    hideMiningMiners: true,
-    highlightMiningMiners: false,
-    hideMiningProspectors: true,
-    highlightMiningProspectors: false,
-    currentStep: 1
-  }
+  user.games = [mainGame._id];
+  user.currentGame = mainGame._id;
 
   if (options.isGuest) {
     user.isGuest = options.isGuest;
   }
+
+  UserGames.insert({
+    owner: user._id,
+    game: mainGame._id,
+    uiState: {
+      showChat: true,
+      craftingFilter: 'mining'
+    },
+    gold: 0,
+    floor: 1
+  });
 
   // Mining stuff
   Skills.insert({
     type: 'mining',
     createdAt: new Date(),
     owner: userId,
+    game: mainGame._id,
     xp: 0,
     username: user.username
   });
@@ -433,6 +404,7 @@ Accounts.onCreateUser((options, user) => {
     collector: {
       stone: 1
     },
+    game,
     storage: {},
     lastGameUpdated: new Date(),
     miners: [{
@@ -444,6 +416,7 @@ Accounts.onCreateUser((options, user) => {
 
   MiningSpace.insert({
     owner: userId,
+    game,
     oreId: MINING.ores.stone.id,
     health: MINING.ores.stone.healthMax,
     index: 0
@@ -452,6 +425,7 @@ Accounts.onCreateUser((options, user) => {
   for (let i = 1; i < 12; i++) {
     MiningSpace.insert({
       owner: userId,
+      game,
       oreId: MINING.ores.stone.id,
       health: MINING.ores.stone.healthMax,
       index: i
@@ -460,10 +434,11 @@ Accounts.onCreateUser((options, user) => {
     });
   }
 
-  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId);
+  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId, mainGame._id);
 
   Items.update({
     owner: userId,
+    game,
     itemId: ITEMS['sharp_rock_pickaxe'].id
   }, {
     $set: {
@@ -473,13 +448,14 @@ Accounts.onCreateUser((options, user) => {
   });
 
   // Update mining stats
-  updateMiningStats(userId, true);
+  updateMiningStats(userId, game, true);
 
   // Non mining stuff
   Skills.insert({
     type: 'defense',
     createdAt: new Date(),
     owner: userId,
+    game,
     username: user.username
   }, (err, res) => {
     Skills.insert({
@@ -493,6 +469,7 @@ Accounts.onCreateUser((options, user) => {
       type: 'health',
       createdAt: new Date(),
       owner: userId,
+      game,
       level: SKILLS.health.baseLevel,
       username: user.username
     });
@@ -501,6 +478,7 @@ Accounts.onCreateUser((options, user) => {
       type: 'crafting',
       createdAt: new Date(),
       owner: userId,
+      game,
       username: user.username
     });
 
@@ -508,17 +486,20 @@ Accounts.onCreateUser((options, user) => {
       type: 'total',
       createdAt: new Date(),
       owner: userId,
+      game,
       username: user.username
     });
 
     Crafting.insert({
       owner: userId,
+      game,
       currentlyCrafting: []
     });
 
     Combat.insert({
       towerContributions: [],
       owner: userId,
+      game,
       stats: {
         health: 50,
         healthMax: 50,
@@ -528,6 +509,7 @@ Accounts.onCreateUser((options, user) => {
 
     Adventures.insert({
       owner: userId,
+      game,
       adventures: [],
       lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
       timeTillUpdate: 60 * 3
@@ -535,6 +517,7 @@ Accounts.onCreateUser((options, user) => {
 
     Abilities.insert({
       owner: userId,
+      game,
       learntAbilities: [{
         "abilityId": "slash",
         "level": 1,
@@ -545,26 +528,12 @@ Accounts.onCreateUser((options, user) => {
     });
 
     // Update combat stats
-    updateCombatStats(userId, user.username);
+    updateCombatStats(userId, game, user.username);
   });
 
 
   return user;
 });
-
-const currentFloor = Floors.findOne();
-
-if (!currentFloor) {
-  const pointsMax = FLOORS.getNewPointCount(1, 10);
-
-  // Create our first floor
-  Floors.insert({
-    floor: 1,
-    createdAt: new Date(),
-    points: 0,
-    pointsMax
-  });
-}
 
 // Guarantee buffs exist
 Object.values(STATE_BUFFS).forEach((name) => {

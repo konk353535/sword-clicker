@@ -15,6 +15,7 @@ SkillsSchema = new SimpleSchema({
   level: { type: Number, defaultValue: 1 },
   rank: { type: Number, optional: true },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id }
 });
 
 Skills.attachSchema(SkillsSchema);

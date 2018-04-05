@@ -7,6 +7,7 @@ export const FarmingSpace = new Mongo.Collection('farmingSpace');
 
 FarmingSpaceSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   active: { type: Boolean }, // Active means usable, can be turned off for donator spaces
   index: { type: Number },
   plantId: { type: String, optional: true },
@@ -20,6 +21,7 @@ FarmingSpace.attachSchema(FarmingSpaceSchema);
 
 FarmingSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date, defaultValue: new Date() }
 });
 

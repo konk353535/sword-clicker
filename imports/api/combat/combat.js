@@ -6,6 +6,7 @@ export const Combat = new Mongo.Collection('combat');
 
 CombatSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   username: { type: String, optional: true },
   foughtBoss: { type: Boolean, defaultValue: false },
   boughtIcons: { type: [String], optional: true },

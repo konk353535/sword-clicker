@@ -15,9 +15,9 @@ import { Adventures } from '/imports/api/adventures/adventures';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 
-export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, userDoc }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
@@ -41,32 +41,35 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
   // Is user in a group? If so this is a group battle
   const currentGroup = Groups.findOne({
-    members: Meteor.userId()
+    members: userDoc._id,
+    game: userDoc.currentGAme
   });
 
-  let battleParticipants = [Meteor.userId()];
-  if (currentGroup && currentGroup.leader !== Meteor.userId()) {
+  let battleParticipants = [userDoc._id];
+  if (currentGroup && currentGroup.leader !== userDoc._id) {
     throw new Meteor.Error('not-leader', 'You must be the leader to start a battle in a group');
   } else if (currentGroup) {
     battleParticipants = currentGroup.members;
   }
 
   // Ensure battle participants aren't already in a battle
-  const currentBattle = BattlesList.findOne({ owners: battleParticipants });
+  const currentBattle = BattlesList.findOne({
+    owners: battleParticipants,
+    game: userDoc.currentGame
+  });
   if (currentBattle) {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is still in one.');
   }
 
-  let useStreamy = false;
 
   // Ensure battle participants don't have any active adventures
-
   let adventurePlayers = "";
 
   // Loop through each participant, check for adventure adventures.
   battleParticipants.forEach((participant) => {
 
     const activeAdventures = Adventures.findOne({
+      game: userDoc.currentGame,
       owner: {
         $in: [participant]
       },
@@ -88,22 +91,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       }
     }
   });
-
-  /*
-  // Original method, checks all participants at once, but doesn't identify them.
-  const activeAdventures = Adventures.findOne({
-    owner: {
-      $in: battleParticipants
-    },
-    adventures: {
-      $elemMatch :{
-        endDate: {
-          $gt: new Date()
-        }        
-      }
-    }
-  });
-  */
 
   if (adventurePlayers != "") {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while ' + adventurePlayers + ' in your group is in an adventure');
@@ -131,6 +118,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     owners: battleParticipants,
     floor,
     room,
+    game: userDoc.currentGame,
     wave,
     level,
     historyStats: {},
@@ -146,7 +134,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   const usersCombatStats = Combat.find({
     owner: {
       $in: battleParticipants
-    }
+    },
+    game: userDoc.currentGame
   }).fetch();
 
   let hasEnergy = true;
@@ -180,9 +169,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }).fetch();
 
-  usersData.forEach((userDoc) => {
-    Users.update({
-      _id: userDoc._id,
+  usersData.forEach((innerUser) => {
+    UserGames.update({
+      _id: innerUser._id,
+      game: userData.currentGame
     }, {
       $set: {
         lastAction: 'battling',
@@ -380,14 +370,15 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   Combat.update({
     owner: {
       $in: battleParticipants
-    }
+    },
+    game: userDoc.currentGame
   }, {
     $inc: {
       'stats.energy': (battleEnergyCost * -1)
     }
   }, { multi: true });
 
-  let balancer = Meteor.userId();
+  let balancer = userDoc._id;
   if (currentGroup) {
     balancer = currentGroup.balancer;
   }

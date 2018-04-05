@@ -568,7 +568,10 @@ export const completeBattle = function (actualBattle) {
     }, combatModifier, (err, res) => {
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
-      updateAbilityCooldowns(unit.owner, (err, res) => {
+      updateAbilityCooldowns({
+        _id: unit.owner,
+        currentGame: actualBattle.game
+      }, (err, res) => {
 
         // Update ability cooldowns ect
         const userAbilities = Abilities.findOne({

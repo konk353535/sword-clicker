@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Skills } from '/imports/api/skills/skills';
 import { Farming } from '/imports/api/farming/farming';
 import { FarmingSpace } from '/imports/api/farming/farming';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Events } from '/imports/api/events/events';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
@@ -14,63 +14,6 @@ import { addXp } from '/server/api/skills/skills';
 import { FARMING } from '/server/constants/farming';
 import { ITEMS } from '/server/constants/items';
 
-// Given a farm space, will return it modified based on
-/*
-const farmSpaceModifier = function (farmSpace, farming) {
-  if (farmSpace.plantId && farmSpace.plantId !== 'dead_plant' && farmSpace.growing) {
-    const plantConstants = FARMING.plants[farmSpace.plantId];
-
-    const now = moment();
-    const plantDate = moment(farmSpace.plantDate);
-    const maturityDate = moment(farmSpace.maturityDate);
-    let secondsElapsed = moment.duration(now.diff(farming.lastGameUpdated)).asSeconds();
-
-    // Cap secondsElapsed to plants entire growth time - last updated time
-    const timeSincePlanted = moment.duration(now.diff(farmSpace.plantDate)).asSeconds();
-    const timeTotal = moment.duration(maturityDate.diff(plantDate)).asSeconds();
-
-    if (secondsElapsed > timeSincePlanted) {
-      secondsElapsed = timeSincePlanted;
-    }
-
-    if (secondsElapsed > timeTotal) {
-      secondsElapsed = timeTotal;
-    }
-
-    // Percentage of total growth time
-    const growthTimeDecimal = secondsElapsed / plantConstants.growthTime;
-
-    // Store original water
-    const originalWater = farmSpace.water;
-
-    // Update me farm space water usage
-    farmSpace.water -= (growthTimeDecimal * plantConstants.requiredWater);
-
-    farmSpace.isDirty = true;
-    if (farmSpace.water <= 0) {
-
-      // Grow if there was originally any water
-      if (originalWater >= 1) {
-        // Determine growth from water amount
-        const growthAmount = (originalWater / plantConstants.requiredWater) * plantConstants.growthTime;
-        secondsElapsed -= growthAmount;
-      }
-
-      farmSpace.plantDate = moment(farmSpace.plantDate).add(secondsElapsed, 'seconds').toDate();
-      farmSpace.maturityDate = moment(farmSpace.maturityDate).add(secondsElapsed, 'seconds').toDate();
-      const totalTime = Math.abs(moment().diff(farmSpace.maturityDate)) / 1000;
-      if (totalTime > plantConstants.growthTime) {
-        farmSpace.plantDate = moment().toDate();
-        farmSpace.maturityDate = moment().add(plantConstants.growthTime, 'seconds').toDate();
-      }
-    } else if (now.isAfter(maturityDate)) {
-      farmSpace.growing = false;
-    }
-  }
-
-  return farmSpace;
-}*/
-
 export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
   // Make sure the user is currently a member
   const userDoc = Users.findOne({ _id: userId });
@@ -78,7 +21,8 @@ export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
   if (userDoc.membershipTo && moment().isBefore(userDoc.membershipTo)) {
     // Update there farming spaces and make them active
     FarmingSpace.update({
-      owner: userId
+      owner: userId,
+      game: userDoc.currentGame
     }, {
       $set: {
         active: true
@@ -89,55 +33,9 @@ export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
 
 Meteor.methods({
 
-  /*
-  'farming.gameUpdate'() {
-    this.unblock();
-    // Fetch farming for last game updated
-    const farming = Farming.findOne({ owner: Meteor.userId() });
-
-    if (!farming) {
-      return;
-    }
-
-    Farming.update(farming._id, {
-      $set :{
-        lastGameUpdated: new Date()
-      }
-    });
-
-    // Fetch all in use farming spaces
-    const farmingSpaces = FarmingSpace.find({
-      owner: Meteor.userId(),
-      plantId: {
-        $exists: true
-      }
-    }).map((farmSpace) => {
-      return farmSpace;
-    });
-  },
-
-  'farming.water'(index) {
-    // Water whatever is in the specified index
-    const targetToWater = FarmingSpace.findOne({
-      owner: Meteor.userId(),
-      index
-    });
-
-    if (targetToWater.plantId) {
-      const farming = Farming.findOne({ owner: Meteor.userId() });
-
-      const plantConstants = FARMING.plants[targetToWater.plantId];
-      if (targetToWater.water < plantConstants.waterStorage) {
-        FarmingSpace.update(targetToWater._id, {
-          $set: {
-            water: plantConstants.waterStorage
-          }
-        });
-      }
-    }
-  },*/
-
   'farming.pick'(index) {
+    const userDoc = Meteor.user();
+
     let indexes = [];
     if (index === 'all') {
       indexes = [0, 1, 2, 3, 4, 5];
@@ -146,7 +44,8 @@ Meteor.methods({
     }
 
     const targetsToPick = FarmingSpace.find({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       index: {
         $in: indexes
       }
@@ -175,14 +74,15 @@ Meteor.methods({
         });
 
         // Add item
-        addItem(plantConstants.produces, plantConstants.produceAmount || 1);
+        addItem(plantConstants.produces, plantConstants.produceAmount || 1, userDoc._id, userDoc.currentGame);
         // Add Xp
-        addXp('farming', plantConstants.xp);
+        addXp('farming', plantConstants.xp, userDoc._id, userDoc.currentGame);
       }
     });
 
-    Users.update({
-      _id: Meteor.userId()
+    UserGames.update({
+      owners: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         lastAction: 'farming',
@@ -192,9 +92,11 @@ Meteor.methods({
   },
 
   'farming.killPlant'(index) {
+    const userDoc = Meteor.user();
     // Pick whatever is in the specified index
     FarmingSpace.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       index
     }, {
       $set: {
@@ -211,7 +113,7 @@ Meteor.methods({
     const userDoc = Meteor.user();
     if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'farming.plant.single',
         date: new Date(),
         data: { plantId }
@@ -223,7 +125,8 @@ Meteor.methods({
     let searchQuery = {};
     if (hasFarmingUpgrade) {
       searchQuery = {
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         $or: [{
           plantId: {
             $exists: false
@@ -234,7 +137,8 @@ Meteor.methods({
       }
     } else {
       searchQuery = {
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         index: {
           $in: [0, 1, 2, 3]
         },
@@ -272,8 +176,9 @@ Meteor.methods({
       }
     });
 
-    Users.update({
-      _id: userDoc._id
+    UserGames.update({
+      owner: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         lastAction: 'farming',
@@ -294,7 +199,7 @@ Meteor.methods({
 
     if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'farming.plant.all',
         date: new Date(),
         data: { plantId }
@@ -307,7 +212,8 @@ Meteor.methods({
     let searchQuery = {};
     if (hasFarmingUpgrade) {
       searchQuery = {
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         $or: [{
           plantId: {
             $exists: false
@@ -318,7 +224,8 @@ Meteor.methods({
       }
     } else {
       searchQuery = {
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         index: {
           $in: [0, 1, 2, 3]
         },
@@ -361,7 +268,8 @@ Meteor.methods({
 
     // Modify farming space with growing sapling
     FarmingSpace.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       index: {
         $in: indexesToMutate
       }
@@ -374,8 +282,9 @@ Meteor.methods({
       }
     }, { multi: true });
 
-    Users.update({
-      _id: userDoc._id
+    UserGames.update({
+      owner: userDoc._id,
+      game: userDoc.currentGame,
     }, {
       $set: {
         lastAction: 'farming',
@@ -385,6 +294,7 @@ Meteor.methods({
   },
 
   'farming.buyShopItem'(seedId, amountToBuy = 1) {
+    const userDoc = Meteor.user();
     if (amountToBuy < 1 || amountToBuy > 100 || !_.isFinite(amountToBuy)) {
       return;
     }
@@ -397,17 +307,19 @@ Meteor.methods({
     }
 
     // Do we have the requirements for this craft (items / levels / gold)
-    if (!requirementsUtility(shopItemConstants.required, amountToBuy)) {
+    if (!requirementsUtility(shopItemConstants.required, amountToBuy, userDoc._id, userDoc.currentGame)) {
       return;
     }
 
     // Add specified item
-    addItem(shopItemConstants.itemId, amountToBuy);
+    addItem(shopItemConstants.itemId, amountToBuy, userDoc._id, userDoc.currentGame);
   },
 
   'farming.fetchSeedShopSells'() {
+    const userDoc = Meteor.user();
     const farmingSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       type: 'farming'
     });
 
@@ -453,6 +365,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells', use
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'farmingSpace', userId }, 240, 2 * MINUTE);
 
 Meteor.publish('farmingSpace', function() {
+  const userDoc = Meteor.user();
 
   //Transform function
   var transform = function(doc) {
@@ -469,7 +382,8 @@ Meteor.publish('farmingSpace', function() {
   var self = this;
 
   var observer = FarmingSpace.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('farmingSpace', document._id, transform(document));

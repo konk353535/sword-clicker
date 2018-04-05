@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { Crafting } from '/imports/api/crafting/crafting';
@@ -20,12 +20,16 @@ import _ from 'underscore';
 
 const math = require('mathjs');
 
-export const addItem = function (itemId, amount = 1, specificUserId) {
+export const addItem = function (itemId, amount = 1, specificUserId, game) {
   let owner;
   if (specificUserId) {
     owner = specificUserId;
   } else {
     owner = Meteor.userId();
+  }
+
+  if (!game) {
+    game = Meteor.user().currentGame;
   }
 
   const newItemsList = [];
@@ -66,6 +70,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         category: itemConstants.category,
         itemId,
         owner,
+        game,
         extraStats,
         quality
       });
@@ -75,6 +80,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       category: itemConstants.category,
       itemId,
       owner,
+      game,
       amount
     });
   }
@@ -82,7 +88,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   if (newItemsList.length === 1 && !itemConstants.stats) {
     if (itemConstants.extraStats) {
       const extraStats = newItemsList[0].extraStats;
-      const currentItem = Items.findOne({ owner, itemId, extraStats });
+      const currentItem = Items.findOne({ owner, game, itemId, extraStats });
       if (currentItem) {
         // Update
         Items.update({ _id: currentItem._id }, {
@@ -104,6 +110,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
           itemId,
           amount,
           owner,
+          game,
           category: itemConstants.category,
           equipped: false
         });
@@ -117,15 +124,15 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   }
 }
 
-export const addFakeGems = function (amount, userId) {
+export const addFakeGems = function (amount, userId, game) {
   // Ensure amount is valid
   if (!_.isFinite(amount) || amount < 0 || amount > 1000) {
     return;
   }
 
-  // Ensure user already has fakeGems count
-  Users.update({
-    _id: userId,
+  UserGames.update({
+    owner: userId,
+    game,
     fakeGems: {
       $exists: true
     }
@@ -166,7 +173,7 @@ export const consumeGems = function (count, userObject) {
     return false;
   }
 
-  Users.update(userObject._id, {
+  UserGames.update(userObject._id, {
     $inc: {
       fakeGems: fakeConsumed * -1,
       gems: realConsumed * -1
@@ -219,16 +226,18 @@ Meteor.methods({
     }, { multi: true });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
+      updateCombatStats(Meteor.userId(), Meteor.user().currentGame, Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
   },
 
   'items.hide'( baseItemId) {
+    const userDoc = Meteor.user();
     //    
     const baseItem = Items.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       _id: baseItemId
     });
 
@@ -237,7 +246,8 @@ Meteor.methods({
     }
 
     Items.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       _id: baseItem._id
     }, {
       $set: {
@@ -247,10 +257,15 @@ Meteor.methods({
   },
 
   'items.use'({ baseItemId, targetItemId }) {
+    const userDoc = Meteor.user();
+
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
 
     // Fetch both items
     const baseItem = Items.findOne({
-      owner: Meteor.userId(),
+      owner,
+      game,
       _id: baseItemId
     });
 
@@ -262,7 +277,8 @@ Meteor.methods({
     let targetItem;
     if (targetItemId) {
       targetItem = Items.findOne({
-        owner: Meteor.userId(),
+        owner,
+        game,
         _id: targetItemId
       });
 
@@ -277,42 +293,41 @@ Meteor.methods({
 
 
     if (baseItem.category == "magic_book") {
-      UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "jade") {
-      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "lapislazuli") {
-      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "sapphire") {
-      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "emerald") {
-      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "ruby") {
-      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     if (baseItem.itemId === "tanzanite") {
-      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
     }
 
     //
     if (baseItem.category === 'enchantment') {
       if (baseItem.itemId === "enchantment_nullify") {
-        RemoveEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+        RemoveEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       } else {
-        UseEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants);
+        UseEnchantment(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       }
     }
-
 
     // Check what the behaviour is for the baseItem, targetting that targetItem
     if (baseItem.itemId === 'enhancer_key') {
@@ -327,14 +342,12 @@ Meteor.methods({
         ) {
           throw new Meteor.Error("invalid-target", 'Invalid target item');
         } else {
-          UseKeyOnAmulet(baseItem, baseItemConstants, targetItem, targetItemConstants);
+          UseKeyOnAmulet(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
           return;
         }
       }
 
       if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
-      
-
         // Get the current quality
         const originalQuality = targetItem.quality
         const targetItemClone = JSON.parse(JSON.stringify(targetItem));
@@ -418,12 +431,12 @@ Meteor.methods({
               data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
             }, () => {});
             Items.remove({
-              owner: Meteor.userId(),
+              owner: userDoc._id,
               _id: baseItem._id
             });
           } else {
             Items.update({
-              owner: Meteor.userId(),
+              owner: userDoc._id,
               _id: baseItem._id
             }, {
               $inc: {
@@ -434,7 +447,8 @@ Meteor.methods({
 
           // Update the stats of the item
           Items.update({
-            owner: Meteor.userId(),
+            owner,
+            game,
             _id: targetItem._id
           }, {
             $set: {
@@ -452,7 +466,8 @@ Meteor.methods({
     } else if (baseItemConstants.isCraftingScroll) {
       // Learn the craft is we don't already have it
       const crafting = Crafting.findOne({
-        owner: Meteor.userId()
+        owner,
+        game
       });
 
       if (!crafting.learntCrafts) {
@@ -479,10 +494,11 @@ Meteor.methods({
   },
 
   'items.eat'(_id, itemId) {
+    const userDoc = Meteor.user();
 
-    if (Meteor.user().logEvents) {
+    if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'items.eat',
         date: new Date(),
         data: { itemId }
@@ -490,7 +506,7 @@ Meteor.methods({
     }
 
     // Check we have the nom
-    const targetItem = Items.findOne({ _id, itemId });
+    const targetItem = Items.findOne({ _id, itemId, owner: userDoc._id, game: userDoc.currentGame });
     if (!targetItem || targetItem.amount < 1) {
       return;
     }
@@ -502,7 +518,7 @@ Meteor.methods({
     }
 
     // Fetch users combat
-    const currentCombat = Combat.findOne({ owner: Meteor.userId() });
+    const currentCombat = Combat.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     // If there already consuming food, return
     if (currentCombat.buffs.length > 0) {
@@ -578,9 +594,11 @@ Meteor.methods({
   },
 
   'items.equip'(_id) {
+    const userDoc = Meteor.user();
 
     const item = Items.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       _id: _id
     });
 
@@ -594,7 +612,8 @@ Meteor.methods({
       // Make sure we have the correct stats
       const statNames = itemConstants.requiredEquip.map((skill) => skill.name);
       const usersStats = Skills.find({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         type: {
           $in: statNames
         }
@@ -644,7 +663,8 @@ Meteor.methods({
 
     // Unequip existing items
     Items.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       equipped: true,
       slot: {
         $in: affectedSlots
@@ -657,7 +677,8 @@ Meteor.methods({
 
     // Equip specified item
     Items.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       _id,
     }, {
       $set: {
@@ -668,7 +689,12 @@ Meteor.methods({
     });
 
     if (itemCategory === 'combat') {
-      updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
+      updateCombatStats(
+        userDoc._id,
+        userDoc.currentGame,
+        userDoc.username,
+        itemSlot === 'neck'
+      );
     } else if (itemCategory === 'mining') {
       updateMiningStats();
     }
@@ -679,7 +705,9 @@ Meteor.methods({
       return;
     }
 
-    const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId });
+    const userDoc = Meteor.user();
+
+    const currentItem = Items.findOne({ _id, owner: userDoc._id, game: userDoc.currentGame, itemId: itemId });
 
     if (!currentItem) {
       return;
@@ -694,7 +722,7 @@ Meteor.methods({
       // Remove item
       const itemsUpdated = Items.remove(currentItem._id);
       Events.insert({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
         event: 'items.sell',
         date: new Date(),
         data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner, quantity: amountToSell, goldGained: amountToSell * itemConstants.sellPrice }
@@ -704,7 +732,7 @@ Meteor.methods({
       }
 
       if (itemConstants.category === 'combat' && currentItem.equipped) {
-        updateCombatStats(Meteor.userId(), Meteor.user().username);
+        updateCombatStats(Meteor.userId(), Meteor.user().currentGame, Meteor.user().username);
       } else if (itemConstants.category === 'mining' && currentItem.equipped) {
         updateMiningStats();
       }
@@ -714,7 +742,7 @@ Meteor.methods({
         $inc: { amount: (amountToSell * -1) }
       });
       Events.insert({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
         event: 'items.sell',
         date: new Date(),
         data: { itemId: currentItem.itemId, id: currentItem._id, baseItem: currentItem.owner, quantity: amountToSell, goldGained: amountToSell * itemConstants.sellPrice }
@@ -724,7 +752,7 @@ Meteor.methods({
       }
     }
 
-    addGold(amountToSell * itemConstants.sellPrice, Meteor.userId());
+    addGold(amountToSell * itemConstants.sellPrice, userDoc._id, userDoc.currentGame);
   }
 });
 
@@ -737,6 +765,8 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'items' }, 1000, 5 * MINUTE);
 
 Meteor.publish('items', function() {
+
+  const userDoc = Meteor.user();
 
   //Transform function
   // TODO: We can move items to local dev, and avoid having to do all this extra processing here
@@ -796,7 +826,8 @@ Meteor.publish('items', function() {
   var self = this;
 
   var observer = Items.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('items', document._id, transform(document));
@@ -817,8 +848,9 @@ Meteor.publish('items', function() {
 
 });
 
+// Up to here
 
-export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (baseItem.category !== 'magic_book') {
@@ -829,17 +861,14 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
     return;
   }
 
-
   // Logic 
-  addXp('magic', baseItemConstants.magicXp);
-
+  addXp('magic', baseItemConstants.magicXp, owner, game);
 
   // Post Logic & Cleanup
   ConsumeItem(baseItem);
 }
 
-export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
-
+export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
   // Validation
   if (targetItem.itemId !== "jade_amulet") {
     return;
@@ -858,7 +887,6 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
     return;
   }
 
-
   // Logic 
   targetItem.extraStats.level += 1;
 
@@ -875,7 +903,8 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -886,7 +915,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   ConsumeItem(baseItem);
 }
 
-export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (targetItem.itemId !== "lapislazuli_amulet") {
@@ -926,7 +955,8 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -937,7 +967,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   ConsumeItem(baseItem);
 }
 
-export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (targetItem.itemId !== "sapphire_amulet") {
@@ -973,7 +1003,8 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -984,7 +1015,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   ConsumeItem(baseItem);
 }
 
-export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (targetItem.itemId !== "emerald_amulet") {
@@ -1004,7 +1035,6 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
     return;
   }
 
-
   // Logic 
   targetItem.extraStats.level += 1;
 
@@ -1020,7 +1050,8 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -1031,7 +1062,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
   ConsumeItem(baseItem);
 }
 
-export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (targetItem.itemId !== "ruby_amulet") {
@@ -1072,7 +1103,8 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -1083,7 +1115,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   ConsumeItem(baseItem);
 }
 
-export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   // Validation
   if (targetItem.itemId !== "tanzanite_amulet") {
@@ -1102,7 +1134,6 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   if (targetItem.extraStats.level >= 4) {
     return;
   }
-
 
   // Logic 
   targetItem.extraStats.level += 1;
@@ -1143,7 +1174,8 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   // Post Logic & Cleanup
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -1155,7 +1187,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 }
 
 
-export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   if (targetItem.enchantmentId && targetItem.enchantmentId !== 'undefined') {
     console.log('Already enchanted.');
@@ -1185,7 +1217,8 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   }
 
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -1197,7 +1230,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   ConsumeItem(baseItem);
 }
 
-export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   if (!targetItem.enchantmentId) {
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
@@ -1209,7 +1242,8 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
 
 
   Items.update({
-    owner: Meteor.userId(),
+    owner,
+    game,
     _id: targetItem._id
   }, {
     $set: {
@@ -1223,7 +1257,6 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
 
 
 export const ConsumeItem = function (baseItem) {
-
     // Remove the key
     if (baseItem.amount === 1) {
       Events.insert({
@@ -1263,32 +1296,32 @@ export const IsJewelAmulet = function (targetItem) {
   return false;
 }
 
-export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game) {
 
   switch (targetItem.itemId) {
 
     case "jade_amulet":
-      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     case "lapislazuli_amulet":
-      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     case "sapphire_amulet":
-      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseSapphire(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     case "emerald_amulet":
-      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseEmerald(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     case "ruby_amulet":
-      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseRuby(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     case "tanzanite_amulet":
-      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants, owner, game);
       break;
 
     default:
@@ -1298,7 +1331,7 @@ export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem,
 
   // Update the stats of the item
   Items.update({
-    owner: Meteor.userId(),
+    owner,
     _id: targetItem._id
   }, {
     $set: {

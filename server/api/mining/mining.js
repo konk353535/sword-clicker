@@ -12,7 +12,7 @@ import _ from 'underscore';
 import { Skills } from '/imports/api/skills/skills';
 import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
 import { MiningSpace } from '/imports/api/mining/mining';
 
@@ -20,7 +20,7 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
-export const updateMiningStats = function (userId, isNewUser = false) {
+export const updateMiningStats = function (userId, game, isNewUser = false) {
   let owner;
   if (userId) {
     owner = userId;
@@ -28,15 +28,21 @@ export const updateMiningStats = function (userId, isNewUser = false) {
     owner = Meteor.userId();
   }
 
+  if (!game) {
+    game = Meteor.user().currentGame;
+  }
+
   // Fetch equipped pick axe
   let pickaxe = Items.findOne({
     owner,
+    game,
     slot: 'pickaxe',
     equipped: true
   });
 
   const offhand = Items.findOne({
     owner,
+    game,
     slot: 'mining_offhand',
     equipped: true
   })
@@ -94,7 +100,8 @@ export const updateMiningStats = function (userId, isNewUser = false) {
 
   // Set player stats
   Mining.update({
-    owner
+    owner,
+    game
   }, {
     $set: {
       stats: miningStats
@@ -107,10 +114,10 @@ const rawOresArray = Object.keys(MINING.ores).map((oreKey) => {
   return MINING.ores[oreKey];
 });
 
-const attackMineSpace = function (id, mining, multiplier = 1) {
+const attackMineSpace = function (id, mining, owner, game, multiplier = 1) {
   let damage = mining.stats.attack * multiplier;
   const mineSpace = MiningSpace.findOne({ _id: id });
-  if (mineSpace.owner !== Meteor.userId()) {
+  if (mineSpace.owner !== owner && mineSpace.game !== game) {
     return;
   }
 
@@ -333,20 +340,25 @@ Meteor.methods({
   },
 
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
+    const userDoc = Meteor.user();
     if (multiplier < 1 || multiplier > 10) {
       return;
     }
 
-    const mining = Mining.findOne({ owner: this.userId });
+    const mining = Mining.findOne({ owner: userDoc._id, game: userDoc.currentGame });
     if (mining.stats.energy < (mining.stats.energyPerHit * multiplier)) {
       return;
     }
 
-    attackMineSpace(mineSpaceId, mining, multiplier);
+    attackMineSpace(mineSpaceId, mining, userDoc._id, userDoc.currentGame, multiplier);
   },
 
   'mining.buyMiner'(minerId) {
-    const mining = Mining.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const mining = Mining.findOne({ owner, game });
     const targetMinerConstants = MINING.miners[minerId];
 
     if (!targetMinerConstants) {
@@ -360,7 +372,7 @@ Meteor.methods({
     }
 
     // Do we have the requirements for this craft (items / levels / gold)
-    if (!requirementsUtility(targetMinerConstants.required, 1)) {
+    if (!requirementsUtility(targetMinerConstants.required, 1, owner, game)) {
       return;
     }
 
@@ -385,7 +397,11 @@ Meteor.methods({
   },
 
   'mining.buyProspector'(prospectorId) {
-    const mining = Mining.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const mining = Mining.findOne({ owner, game });
     const targetProspectorConstants = MINING.prospectors[prospectorId];
 
     if (!targetProspectorConstants) {
@@ -399,7 +415,7 @@ Meteor.methods({
     }
 
     // Do we have the requirements for this craft (items / levels / gold)
-    if (!requirementsUtility(targetProspectorConstants.required, 1)) {
+    if (!requirementsUtility(targetProspectorConstants.required, 1, owner, game)) {
       return;
     }
 
@@ -421,7 +437,11 @@ Meteor.methods({
   },
 
   'mining.fireProspector'(prospectorId) {
-    const mining = Mining.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const mining = Mining.findOne({ owner, game });
 
     // Does user own specified prospector?
     const existingTargetProspector = _.findWhere(mining.prospectors, { id: prospectorId });
@@ -443,8 +463,12 @@ Meteor.methods({
   },
 
   'mining.gameUpdate'() {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     // Fetch all db data we need
-    const mining = Mining.findOne({ owner: this.userId });
+    const mining = Mining.findOne({ owner, game });
 
     // Determine time since last update
     const now = moment();
@@ -475,12 +499,10 @@ Meteor.methods({
       }
     });
 
-    const userDoc = Meteor.user();
-
     this.unblock();
 
-    const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
-    let miningSpaces = _.shuffle(MiningSpace.find({ owner: this.userId }).map((doc) => doc));
+    const miningSkill = Skills.findOne({ owner, game, type: 'mining' });
+    let miningSpaces = _.shuffle(MiningSpace.find({ owner, game }).map((doc) => doc));
     let emptyMiningSpaces = miningSpaces.filter((miningSpace) => !miningSpace.oreId);
     let fakeGemsSpawned = 0;
     let existingFakeGems = miningSpaces.filter((miningSpace) => {
@@ -645,7 +667,8 @@ Meteor.methods({
 
       if (migrateMiners) {
         Mining.update({
-          owner: Meteor.userId()
+          owner,
+          game
         }, {
           $set: {
             miners: mining.miners
@@ -752,7 +775,7 @@ Meteor.methods({
       Object.keys(gainedItems).forEach((key) => {
         mutateMiners = true;
         if (key === 'gem') {
-          addFakeGems(gainedItems[key].amount, Meteor.userId());
+          addFakeGems(gainedItems[key].amount, owner, game));
         } else {
           if (mining.collector[key]) {
             mining.collector[key] += gainedItems[key].amount;
@@ -781,7 +804,8 @@ Meteor.methods({
 
       if (mutateMiners) {
         Mining.update({
-          owner: Meteor.userId(),
+          owner,
+          game,
           lastGameUpdated: newLastGameUpdated
         }, {
           $set: {
@@ -814,7 +838,8 @@ Meteor.methods({
 
   'mining.fetchMiners'() {
     const miningSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner,
+      game,
       type: 'mining'
     });
 
@@ -834,7 +859,8 @@ Meteor.methods({
 
   'mining.fetchOres'() {
     const miningSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner,
+      game,
       type: 'mining'
     });
 
@@ -858,7 +884,8 @@ Meteor.methods({
 
   'mining.fetchProspectors'() {
     const miningSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner,
+      game,
       type: 'mining'
     });
 
@@ -888,6 +915,9 @@ DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners', userId }, 1
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'mining', userId }, 100, 1 * MINUTE);
 
 Meteor.publish('miningSpace', function() {
+  const userDoc = Meteor.user();
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {
@@ -910,7 +940,8 @@ Meteor.publish('miningSpace', function() {
   var self = this;
 
   var observer = MiningSpace.find({
-    owner: this.userId
+    owner,
+    game
   }).observe({
     added: function (document) {
       self.added('miningSpace', document._id, transform(document));
@@ -932,7 +963,12 @@ Meteor.publish('miningSpace', function() {
 });
 
 Meteor.publish('mining', function () {
+  const userDoc = Meteor.user();
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
+
   return Mining.find({
-    owner: this.userId
+    owner,
+    game
   });
 });

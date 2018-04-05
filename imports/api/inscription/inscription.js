@@ -5,6 +5,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Inscription = new Mongo.Collection('inscription');
 
 InscriptionSchema = new SimpleSchema({
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   inscriptionLevel: { type: Number, optional: true },
   currentlyCrafting: { type: [Object], optional: true },

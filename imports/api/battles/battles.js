@@ -8,6 +8,7 @@ export const BattlesList = new Mongo.Collection('battlesList');
 
 BattlesListSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
 
   floor: { type: Number, optional: true },
   room: { type: String, optional: true },
@@ -22,6 +23,8 @@ BattlesListSchema = new SimpleSchema({
 
 BattlesSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
+
   createdAt: { type: Date },
   updatedAt: { type: Date },
 

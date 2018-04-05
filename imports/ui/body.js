@@ -48,6 +48,13 @@ Template.body.onCreated(function () {
     }
   });
 
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      // Subscribe to my game
+      Meteor.subscribe('userGame', Meteor.user().currentGame);
+    }
+  });
+
   // auto tracker for detecting battle completion to begin cd cooldown interval
   Tracker.autorun(() => {
     const finishedBattle = Battles.findOne({

@@ -20,11 +20,22 @@ import { State } from '/imports/api/state/state';
 import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/imports/api/items/items';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
+import { Games } from '/imports/api/games/games';
 
+import { createGame } from '/server/api/games/games';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
+
+  // Ensure main game has been created
+  const mainGame = Games.findOne({
+    mainGame: true
+  });
+
+  if (!mainGame) {
+    createGame('Main Game', null, true);
+  }
 
   /*
   Object.keys(ITEMS).forEach((itemId) => {

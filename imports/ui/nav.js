@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Session } from 'meteor/session';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Meteor } from "meteor/meteor";
 
@@ -98,6 +98,10 @@ Template.nav.helpers({
     return Session.get('summaryListDisabled');
   },
 
+  userGame() {
+    return UserGames.findOne({});
+  },
+
   hasFarmingSkill() {
     if (Skills.findOne()) {
       return Skills.findOne({ type: 'farming' });
@@ -115,7 +119,8 @@ Template.nav.helpers({
   },
 
   combinedGems() {
-    return Meteor.user().gems + (Meteor.user().fakeGems || 0);
+    const userGame = UserGames.findOne({});
+    return userGame.gems + (userGame.fakeGems || 0);
   },
 
   hasAttackSkill() {

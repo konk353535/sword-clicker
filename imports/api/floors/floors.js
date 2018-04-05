@@ -6,6 +6,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Floors = new Mongo.Collection('floors');
  
 FloorsSchema = new SimpleSchema({
+  game: { type: String },
   floor: { type: Number },
   createdAt: { type: Date },
   finishedAt: { type: Date, optional: true },

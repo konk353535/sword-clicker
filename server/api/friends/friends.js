@@ -3,20 +3,22 @@ import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Friends, FriendRequests, } from '/imports/api/friends/friends';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 
 Meteor.methods({
 
   // Invite the user to your current group or create a group if not in one
   'friends.invite'(username) {
-    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    const userDoc = Meteor.user();
+    const isMutedExpiry = userDoc.isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
       throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
     }
 
     // Does the specified username exist
     const targetUser = Users.findOne({
+      games: userDoc.currentGame,
       $or: [{
         username: username.toLowerCase()
       }, {
@@ -32,12 +34,14 @@ Meteor.methods({
     let currentFriends;
 
     currentFriends = Friends.findOne({
-      owner: this.userId
+      owner: userDoc._id,
+      game: userDoc.currentGame,
     });
 
     if (!currentFriends) {
       currentFriends = {
-        owner: this.userId,
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         friends: []
       };
       Friends.insert(currentFriends);
@@ -48,7 +52,8 @@ Meteor.methods({
     }
 
     const existingRequest = FriendRequests.findOne({
-      sender: Meteor.userId(),
+      sender: userDoc._id,
+      game: userDoc.currentGame,
       reciever: targetUser._id
     });
 
@@ -57,6 +62,7 @@ Meteor.methods({
     }
 
     FriendRequests.insert({
+      game: userDoc.currentGame,
       sender: Meteor.userId(),
       senderName: Meteor.user().username,
       reciever: targetUser._id,
@@ -65,22 +71,27 @@ Meteor.methods({
   },
 
   'friends.cancel'(reciever) {
+    const userDoc = Meteor.user();
     FriendRequests.remove({
       reciever,
-      sender: Meteor.userId()
+      sender: userDoc._id,
+      game: userDoc.currentGame
     });
   },
 
   'friends.decline'(sender) {
     FriendRequests.remove({
-      reciever: Meteor.userId(),
+      reciever: userDoc._id,
+      game: userDoc.currentGame,
       sender
     });
   },
 
   'friends.accept'(sender) {
+    const userDoc = Meteor.user();
     const targetRequest = FriendRequests.findOne({
-      reciever: Meteor.userId(),
+      reciever: userDoc._id,
+      game: userDoc.currentGame,
       sender
     });
 
@@ -89,26 +100,30 @@ Meteor.methods({
     }
 
     let currentFriends = Friends.findOne({
-      owner: this.userId
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!currentFriends) {
       currentFriends = {
-        owner: this.userId,
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         friends: []
       };
       currentFriends._id = Friends.insert(currentFriends);
     }
 
     const senderFriends = Friends.findOne({
-      owner: targetRequest.sender
+      owner: targetRequest.sender,
+      game: userDoc.currentGame
     });
 
     currentFriends.friends.push(targetRequest.sender);
     senderFriends.friends.push(targetRequest.reciever);
 
     FriendRequests.remove({
-      reciever: Meteor.userId(),
+      reciever: userDoc._id,
+      game: userDoc.currentGame
       sender
     });
 
@@ -130,6 +145,7 @@ Meteor.methods({
   },
 
   'friends.remove'(username) {
+    const userDoc = Meteor.user();
     // Does the specified username exist
     const targetUser = Users.findOne({
       $or: [{
@@ -147,12 +163,14 @@ Meteor.methods({
     let currentFriends;
 
     currentFriends = Friends.findOne({
-      owner: this.userId
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!currentFriends) {
       currentFriends = {
-        owner: this.userId,
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         friends: []
       };
       Friends.insert(currentFriends);
@@ -169,17 +187,21 @@ Meteor.methods({
 });
 
 Meteor.publish('friendRequests', function () {
+  const userDoc = Meteor.user();
   return FriendRequests.find({
     $or: [{
-      reciever: this.userId
+      reciever: userDoc._id
     }, {
-      sender: this.userId
-    }]
+      sender: userDoc._id
+    }],
+    game: userDoc.currentGame
   });
 });
 
 Meteor.publish('friends', function() {
+  const userDoc = Meteor.user();
   return Friends.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   });
 });

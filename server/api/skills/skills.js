@@ -45,7 +45,7 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs();
 Meteor.setInterval(updateGlobalBuffs, 30000);
 
-export const addGold = function (amount, userId) {
+export const addGold = function (amount, userId, game) {
   const owner = userId;
 
   Users.update(owner, {
@@ -77,14 +77,19 @@ export const addGold = function (amount, userId) {
   }
 }
 
-export const addXp = function (skillType, xp, specificUserId) {
+export const addXp = function (skillType, xp, specificUserId, game) {
   let owner;
   if (specificUserId) {
     owner = specificUserId
   } else {
     owner = Meteor.userId();
   }
-  const skill = Skills.findOne({ owner , type: skillType });
+
+  if (!game) {
+    game = Meteor.user().currentGame;
+  }
+
+  const skill = Skills.findOne({ owner, game, type: skillType });
 
   if (!skill) {
     return;
@@ -128,10 +133,11 @@ export const addXp = function (skillType, xp, specificUserId) {
 
     // If this is attack / Defense / Health recompute combat
     if (skill.type === 'attack' || skill.type === 'defense' || skill.type === 'health' || skill.type === 'magic') {
-      updateCombatStats(owner);
+      updateCombatStats(owner, game);
     } else if (skill.type === 'crafting') {
       Crafting.update({
-        owner
+        owner,
+        game
       }, {
         $set: {
           craftingLevel: skill.level + 1
@@ -139,19 +145,21 @@ export const addXp = function (skillType, xp, specificUserId) {
       });
     } else if (skill.type === 'inscription') {
       Inscription.update({
-        owner
+        owner,
+        game
       }, {
         $set: {
           inscriptionLevel: skill.level + 1
         }
       });
     } else if (skill.type === 'mining') {
-      updateMiningStats(owner, true);
+      updateMiningStats(owner, game, true);
     }
 
     // Can probably be optimized
     Skills.update({
       owner,
+      game,
       type: 'total'
     }, {
       $inc: { level: 1 }
@@ -171,6 +179,7 @@ export const addXp = function (skillType, xp, specificUserId) {
 
     ClanHighscores.update({
       owner,
+      game,
       type: highScoreType
     }, {
       $inc: {
@@ -181,6 +190,7 @@ export const addXp = function (skillType, xp, specificUserId) {
         // Create the entry
         ClanHighscores.insert({
           owner,
+          game,
           type: highScoreType,
           score: Math.floor(xp)
         });

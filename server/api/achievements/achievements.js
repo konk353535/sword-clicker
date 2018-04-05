@@ -4,7 +4,7 @@ import _ from 'underscore';
 
 import { ACHIEVEMENTS } from '/server/constants/achievement/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Achievements } from '/imports/api/achievements/achievements';
 import { addItem } from '/server/api/items/items.js';
 import { addXp, addGold } from '/server/api/skills/skills.js';
@@ -16,15 +16,21 @@ Meteor.methods({
     // Has this already been collected?
     const userDoc = Meteor.user();
     let achievements = Achievements.findOne({
-      owner: userDoc._id
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!achievements || achievements.collected[id] || !ACHIEVEMENTS[id]) {
       return;
     }
 
+    const userGame = UserGames.findOne({
+      game: userDoc.currentGame,
+      owner: userDoc._id
+    });
+
     // Do we meet condition?
-    if (!ACHIEVEMENTS[id].condition({ user: userDoc })) {
+    if (!ACHIEVEMENTS[id].condition({ user: userGame })) {
       return;
     }
 
@@ -36,6 +42,7 @@ Meteor.methods({
     // Set as collected
     const updated = Achievements.update({
       owner: userDoc._id,
+      game: userDoc.currentGame,
       lastGameUpdated: achievements.lastGameUpdated
     }, {
       $set: modifier
@@ -48,11 +55,11 @@ Meteor.methods({
     // Apply rewards
     ACHIEVEMENTS[id].rewards.forEach((reward) => {
       if (reward.type === 'item') {
-        addItem(reward.itemId, reward.amount, userDoc._id);
+        addItem(reward.itemId, reward.amount, userDoc._id, userDoc.currentGame);
       } else if (reward.type === 'gold') {
-        addGold(reward.amount, userDoc._id);
+        addGold(reward.amount, userDoc._id, userDoc.currentGame);
       } else if (reward.type === 'xp') {
-        addXp(reward.skill, reward.amount);
+        addXp(reward.skill, reward.amount, userDoc._id, userDoc.currentGame);
       }
     });
 
@@ -68,17 +75,20 @@ Meteor.methods({
   'achievements.fetch'() {
     const userDoc = Meteor.user();
     let achievements = Achievements.findOne({
-      owner: userDoc._id
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!achievements) {
       Achievements.insert({
         owner: userDoc._id,
+        game: userDoc.currentGame,
         lastGameUpdated: new Date(),
         collected: {}
       });
 
       achievements = Achievements.findOne({
+        game: userDoc.currentGame,
         owner: userDoc._id
       });
     }
@@ -127,7 +137,10 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'adventures' }, 40, 2 * MINUTE);
 
 Meteor.publish('achievements', function() {
+  const userDoc = Meteor.user();
+
   return Achievements.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   });
 });

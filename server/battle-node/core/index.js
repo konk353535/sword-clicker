@@ -64,6 +64,7 @@ export default class Battle {
 
     this.io = io;
 
+    this.game = battle.game;
     this.id = battle._id;
     this.level = battle.level;
     this.forfitters = {};
@@ -189,6 +190,7 @@ export default class Battle {
         units: this.units.concat(this.deadUnits).map(unit => unit.raw()),
         enemies: this.enemies.concat(this.deadEnemies).map(unit => unit.raw()),
         floor: this.floor,
+        game: this.game,
         totalXpGain: this.totalXpGain,
         startingBossHp: this.startingBossHp,
         room: this.room,

@@ -6,6 +6,7 @@ export const Crafting = new Mongo.Collection('crafting');
 
 CraftingSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   craftingLevel: { type: Number, optional: true },
   currentlyCrafting: { type: [Object], optional: true },
   'currentlyCrafting.$.itemId': { type: String },

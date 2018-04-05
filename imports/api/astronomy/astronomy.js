@@ -11,6 +11,7 @@ AstronomySchema = new SimpleSchema({
   'mages.$.id': { type: String, optional: true }, // This wasn't always here
   'mages.$.gold': { type: Number, optional: true, decimal: true },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date, defaultValue: new Date() }
 });
 

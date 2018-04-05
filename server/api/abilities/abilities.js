@@ -16,13 +16,13 @@ import { MAGIC } from '/server/constants/magic/index';
 
 import { consumeItem } from '/server/api/items/items';
 
-export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
-  let owner = userId;
-  if (!owner) {
-    owner = this.userId;
-  }
+export const updateAbilityCooldowns = function updateAbilityCooldowns(userDoc, callback) {
+  const owner = userDoc._id;
 
-  const myAbilities = Abilities.findOne({ owner });
+  const myAbilities = Abilities.findOne({
+    owner,
+    game: userDoc.currentGame
+  });
   if (!myAbilities) {
     console.log('unlogged in user');
     return;
@@ -59,11 +59,13 @@ const allAbilitiesCooledDown = function(userId) {
 Meteor.methods({
 
   'abilities.unequip'(slot) {
+    const userDoc = Meteor.user();
     // Make sure this is a valid slot
     if (_.contains(ABILITY.slots, slot)) {
       // Unequip specified slot
       Abilities.update({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
+        game: userDoc.currentGame,
         learntAbilities: {
           $elemMatch: {
             slot,
@@ -79,8 +81,9 @@ Meteor.methods({
   },
 
   'abilities.craftSpell'(abilityId, amount) {
+    const userDoc = Meteor.user();
 
-    const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
+    const currentBattle = BattlesList.findOne({ owners: userDoc._id, game: userDoc.currentGame });
     if (currentBattle) {
       throw new Meteor.Error('in-battle', 'You cannot craft spells while in a battle');
     }
@@ -99,7 +102,8 @@ Meteor.methods({
 
     // Update existing level
     Abilities.update({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       "learntAbilities.abilityId": abilityId
     }, {
       $inc: {
@@ -109,8 +113,9 @@ Meteor.methods({
   },
 
   'abilities.fetchSpellCrafting'() {
+    const userDoc = Meteor.user();
     // Get my abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const myAbilities = Abilities.findOne({ owner: userDoc._id, game: userDoc.currentGame });
     const mySpellAbilities = myAbilities.learntAbilities.filter((ability) => {
       return ability.isSpell;
     }).map((ability) => {
@@ -126,8 +131,9 @@ Meteor.methods({
   },
 
   'abilities.equip'(abilityId) {
+    const userDoc = Meteor.user();
     // Make sure the user actually has the specified ability
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const myAbilities = Abilities.findOne({ owner: userDoc._id, game: userDoc.currentGame });
     const targetEquip = _.findWhere(myAbilities.learntAbilities, { abilityId });
 
     if (!targetEquip) {
@@ -177,8 +183,13 @@ Meteor.methods({
   },
 
   'abilities.learn'(_id, itemId) {
+    const userDoc = Meteor.user();
     // Make sure we have this item
-    const tome = Items.findOne({ owner: Meteor.userId(), itemId });
+    const tome = Items.findOne({
+      owner: userDoc._id,
+      game: userDoc.currentGame,
+      itemId
+    });
 
     if (!tome) {
       return;
@@ -188,7 +199,10 @@ Meteor.methods({
     const tomeConstants = ITEMS[itemId];
 
     // Fetch existing abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const myAbilities = Abilities.findOne({
+      game: userDoc.currentGame,
+      owner: userDoc._id
+    });
 
     // Filter down to existing ability
     const hasTargetAbility = _.findWhere(myAbilities.learntAbilities, {
@@ -241,8 +255,9 @@ Meteor.methods({
   },
 
   'abilities.fetchLibrary'() {
+    const userDoc = Meteor.user();
     const userAbilities = Abilities.findOne({
-      owner: Meteor.userId()
+      owner: userDoc._id
     });
 
     // Build up abilities id to level map
@@ -284,8 +299,9 @@ Meteor.methods({
   },
 
   'abilities.gameUpdate'() {
+    const userDoc = Meteor.user();
     return new Promise(function(resolve, reject) {
-      updateAbilityCooldowns(Meteor.userId(), (err, res) => {
+      updateAbilityCooldowns(userDoc, (err, res) => {
         if (_.isNull(err)) {
           resolve(allAbilitiesCooledDown(Meteor.userId()));
         } else {
@@ -305,6 +321,7 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'abilities' }, 100, 5 * MINUTE);
 
 Meteor.publish('abilities', function() {
+  const userDoc = Meteor.user();
 
   //Transform function
   var transform = function(doc) {
@@ -329,7 +346,8 @@ Meteor.publish('abilities', function() {
   var self = this;
 
   var observer = Abilities.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('abilities', document._id, transform(document));

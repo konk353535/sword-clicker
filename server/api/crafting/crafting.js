@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Crafting } from '/imports/api/crafting/crafting';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Events } from '/imports/api/events/events';
@@ -17,7 +17,9 @@ import { addXp, addGold } from '/server/api/skills/skills.js';
 // Take a list of requirements
 // If met will return true and take items
 // If not met, will return false and take no items
-export const requirementsUtility = function (requirements, amountToCraft = 1) {
+export const requirementsUtility = function (requirements, amountToCraft = 1, game) {
+
+  const owner = Meteor.userId();
 
   const requiredSkillList = requirements.filter((requirement) => {
     return requirement.type === 'skill';
@@ -26,7 +28,8 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   });
 
   const mySkills = Skills.find({
-    owner: Meteor.userId(),
+    owner,
+    game,
     type: {
       $in: requiredSkillList
     }
@@ -44,7 +47,8 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   });
 
   const myItems = Items.find({
-    owner: Meteor.userId(),
+    owner,
+    game,
     itemId: {
       $in: requiredItemList
     },
@@ -56,8 +60,13 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   }).fetch();
 
 
+  const userGame = UserGames.findOne({
+    owner,
+    game
+  });
+
   const myUser = {
-    gold: Meteor.user().gold
+    gold: userGame.gold
   }
 
   const originalGold = myUser.gold;
@@ -129,14 +138,14 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   // Take gold
   if (myUser.isDirty) {
     const goldDiff = myUser.gold - originalGold;
-    addGold(goldDiff, Meteor.userId());
+    addGold(goldDiff, owner, game);
   }
 
   return true;
 }
 
-const craftItem = function (recipeId, amountToCraft = 1) {
-  const crafting = Crafting.findOne({ owner: Meteor.userId() });
+const craftItem = function (recipeId, amountToCraft = 1, owner, game) {
+  const crafting = Crafting.findOne({ owner, game });
 
   if (crafting && (crafting.currentlyCrafting === undefined || crafting.currentlyCrafting === null)) {
     Crafting.update(crafting._id, {
@@ -180,7 +189,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
-  if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
+  if (!requirementsUtility(recipeConstants.required, amountToCraft, game)) {
     return;
   }
 
@@ -193,8 +202,6 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   }
 
   let timeToCraft = recipeConstants.timeToCraft * amountToCraft;
-
-  const userDoc = Meteor.user();
 
   // Apply membership benefits
   if (userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo)) {
@@ -217,19 +224,21 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
 Meteor.methods({
   'crafting.craftItem'(recipeId, amount) {
-    if (Meteor.user().logEvents) {
+    const userDoc = Meteor.user();
+    if (userDoc.logEvents) {
       Events.insert({
-        owner: this.userId,
+        owner: userDoc._id,
         event: 'crafting.craftItem',
         date: new Date(),
         data: { recipeId, amount }
       }, () => {})
     }
 
-    craftItem(recipeId, amount);
+    craftItem(recipeId, amount, userDoc._id, userDoc.currentGame);
 
-    Users.update({
-      _id: this.userId,
+    UserGames.update({
+      owner: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         lastAction: 'crafting',
@@ -239,8 +248,10 @@ Meteor.methods({
   },
 
   'crafting.fetchTiers'() {
+    const userDoc = Meteor.user();
     const craftingSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       type: 'crafting'
     });
 
@@ -254,13 +265,16 @@ Meteor.methods({
   },
 
   'crafting.fetchRecipes'() {
+    const userDoc = Meteor.user();
     const craftingSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner: userDoc._id,
+      game: userDoc.currentGame,
       type: 'crafting'
     });
 
     const crafting = Crafting.findOne({
-      owner: Meteor.userId()
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
@@ -309,7 +323,7 @@ Meteor.methods({
   'crafting.cancelCraft'(targetEndDate) {
     const userDoc = Meteor.user();
     // If existing crafts done, remove from crafting table
-    const crafting = Crafting.findOne({ owner: Meteor.userId() });
+    const crafting = Crafting.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     if (!crafting || !crafting.currentlyCrafting) {
       return;
@@ -370,15 +384,16 @@ Meteor.methods({
     recipeConstants.required.forEach((required) => {
       if (required.consumes) {
         if (required.type === 'item') {
-          addItem(required.itemId, required.amount * targetCrafting.amount);
+          addItem(required.itemId, required.amount * targetCrafting.amount, userDoc._id, userDoc.currentGame);
         }
       }
     });
   },
 
   'crafting.updateGame'() {
+    const userDoc = Meteor.user();
     // If existing crafts done, remove from crafting table
-    const crafting = Crafting.findOne({ owner: Meteor.userId() });
+    const crafting = Crafting.findOne({ owner: userDoc._id, game: userDoc.currentGame });
 
     if (!crafting || !crafting.currentlyCrafting) {
       return;
@@ -418,12 +433,12 @@ Meteor.methods({
 
     // Add new items to user
     newItems.forEach((item) => {
-      addItem(item.itemId, item.amount);
+      addItem(item.itemId, item.amount, userDoc._id, userDoc.currentGame);
     })
 
     // Add crafting exp
     if (_.isNumber(craftingXp)) {
-      addXp('crafting', craftingXp);
+      addXp('crafting', craftingXp, userDoc._id, userDoc.currentGame);
     }
   }
 });
@@ -439,6 +454,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish('crafting', function() {
+  const userDoc = Meteor.user();
 
   //Transform function
   var transform = function(doc) {
@@ -455,7 +471,8 @@ Meteor.publish('crafting', function() {
   var self = this;
 
   var observer = Crafting.find({
-    owner: this.userId
+    owner: userDoc._id,
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('crafting', document._id, transform(document));

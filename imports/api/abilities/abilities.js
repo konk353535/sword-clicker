@@ -6,6 +6,7 @@ export const Abilities = new Mongo.Collection('abilities');
 
 AbilitiesSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date, defaultValue: new Date() },
   learntAbilities: { type: [Object] },
   'learntAbilities.$.abilityId': { type: String },

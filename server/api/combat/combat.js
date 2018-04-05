@@ -3,7 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Battles } from '/imports/api/battles/battles';
 
 import { flattenObjectForMongo } from '/server/utils';
@@ -19,7 +19,7 @@ import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT } from '/server/constants/combat/index.js';
 import { BUFFS } from '/server/constants/buffs/index.js';
 
-export const updateCombatStats = function (userId, username, amuletChanged = false) {
+export const updateCombatStats = function (userId, game, username, amuletChanged = false) {
   // Build up our object of skills
   const playerData = {
     stats: {
@@ -51,6 +51,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
   // Fetch all equipped combat items
   const combatItems = Items.find({
     owner: userId,
+    game,
     category: 'combat',
     equipped: true
   }).fetch();
@@ -108,6 +109,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
   // Fetch all users skill levels
   const combatSkills = Skills.find({
     owner: userId,
+    game,
     type: {
       $in: ['attack', 'health', 'defense', 'magic']
     }
@@ -144,8 +146,9 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     playerData.stats.health = playerData.stats.healthMax;
   }
 
-  Users.update({
-    _id: userId
+  UserGames.update({
+    game,
+    owner: userId
   }, {
     $set: {
       averageCombat: Math.floor(averageCombat / 4)
@@ -154,7 +157,8 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
   // Set player stats
   Combat.update({
-    owner: userId
+    owner: userId,
+    game
   }, {
     $set: flattenObjectForMongo(playerData)
   });
@@ -163,8 +167,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 Meteor.methods({
 
   'combat.updateIsTowerContribution'(newValue) {
+    const userDoc = Meteor.user();
     Combat.update({
-      owner: Meteor.userId()
+      owner: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         isTowerContribution: newValue
@@ -173,8 +179,10 @@ Meteor.methods({
   },
 
   'combat.updateCharacterIcon'(id) {
+    const userDoc = Meteor.user();
     const myCombat = Combat.findOne({
-      owner: Meteor.userId()
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
@@ -192,10 +200,11 @@ Meteor.methods({
       // Make sure we have the correct stats
       const statNames = targetIcon.requiredEquip.map((skill) => skill.name);
       const usersStats = Skills.find({
-        owner: Meteor.userId(),
+        owner: userDoc._id,
         type: {
           $in: statNames
-        }
+        },
+        game: userDoc.currentGame
       }).fetch();
 
       let hasEquipRequirements = true;
@@ -221,7 +230,8 @@ Meteor.methods({
 
     // Equip it!
     Combat.update({
-      owner: Meteor.userId()
+      game: userDoc.currentGame,
+      owner: userDoc._id
     }, {
       $set: {
         characterIcon: targetIcon.icon
@@ -231,9 +241,11 @@ Meteor.methods({
 
   'combat.gameUpdate'() {
     this.unblock();
+    const userDoc = Meteor.user();
 
     const currentCombat = Combat.findOne({
-      owner: Meteor.userId()
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
 
     // Time since last update
@@ -309,7 +321,15 @@ Meteor.methods({
       return;
     }
 
-    const battle = Battles.findOne({owners: Meteor.userId(), 'loot.lootId': lootId, createdAt: {$gte: moment().subtract(30, 'second').toDate()}});
+    const userDoc = Meteor.user();
+    const battle = Battles.findOne({
+      owners: userDoc._id,
+      game: userDoc.currentGame,
+      'loot.lootId': lootId,
+      createdAt: {
+        $gte: moment().subtract(30, 'second').toDate()
+      }
+    });
 
     if (!battle) return;
 
@@ -340,20 +360,25 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'combat' }, 30, 1 * MINUTE);
 
 Meteor.publish('combat', function() {
+  const userDoc = Meteor.user();
+
   const currentGroup = Groups.findOne({
-    members: this.userId
+    members: userDoc._id,
+    game: userDoc.currentGame
   });
 
   if (!currentGroup) {
     return Combat.find({
-      owner: this.userId
+      owner: userDoc._id,
+      game: userDoc.currentGame
     });
   }
 
   return Combat.find({
     owner: {
       $in: currentGroup.members
-    }
+    },
+    game: userDoc.currentGame
   });
 
 });

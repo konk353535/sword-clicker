@@ -19,8 +19,10 @@ const clanCost = [{
 Meteor.methods({
 
   'clan.leaderboard'() {
+    const userDoc = Meteor.user();
     const myClan = Clans.findOne({
-      members: Meteor.userId()
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!myClan) {
@@ -30,7 +32,8 @@ Meteor.methods({
     return ClanHighscores.find({
       owner: {
         $in: myClan.members
-      }
+      },
+      game: userDoc.currentGame
     }).fetch();
   },
 
@@ -43,15 +46,18 @@ Meteor.methods({
 
     Clans.insert({
       name: name,
+      game: userDoc.currentGame,
       members: [userDoc._id],
       owner: userDoc._id
     });
   },
 
   'clans.accept'(inviteId) {
+    const userDoc = Meteor.user();
 
     const myClan = Clans.findOne({
-      members: Meteor.userId()
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (myClan) {
@@ -60,11 +66,13 @@ Meteor.methods({
 
     const clanInvite = ClanInvites.findOne({
       _id: inviteId,
-      invitee: Meteor.userId()
+      game: userDoc.currentGame,
+      invitee: userDoc._id
     });
 
     const targetClan = Clans.findOne({
-      _id: clanInvite.clanId
+      _id: clanInvite.clanId,
+      game: userDoc.currentGame
     });
 
     targetClan.members.push(Meteor.userId());
@@ -83,15 +91,19 @@ Meteor.methods({
   },
 
   'clans.decline'(inviteId) {
+    const userDoc = Meteor.user();
     ClanInvites.remove({
       _id: inviteId,
-      invitee: Meteor.userId()
+      invitee: userDoc._id,
+      game: userDoc.currentGame
     })
   },
 
   'clans.invite'(username) {
+    const userDoc = Meteor.user();
     const myClan = Clans.findOne({
-      members: Meteor.userId()
+      game: userDoc.currentGame,
+      members: userDoc._id
     });
 
     if (!myClan) {
@@ -104,12 +116,14 @@ Meteor.methods({
         username: username.toLowerCase()
       }, {
         email: username.toLowerCase()
-      }]
+      }],
+      games: userDoc.currentGame
     });
 
     // Check if target user is already in a clan
     const targetsClan = Clans.findOne({
-      members: targetUser._id
+      members: targetUser._id,
+      game: userDoc.currentGame
     });
 
     if (targetsClan) {
@@ -118,8 +132,9 @@ Meteor.methods({
 
     ClanInvites.insert({
       clanId: myClan._id,
+      game: userDoc.currentGame,
       invitee: targetUser._id,
-      inviterName: Meteor.user().username,
+      inviterName: userDoc.username,
       clanName: myClan.name,
       inviteeName: targetUser.username
     });
@@ -127,29 +142,36 @@ Meteor.methods({
 });
 
 Meteor.publish('clanInvites', function() {
+  const userDoc = Meteor.user();
 
   const myClan = Clans.findOne({
-    members: this.userId
+    members: userDoc._id,
+    game: userDoc.currentGame
   });
 
   if (myClan) {
     return ClanInvites.find({
       $or: [{
-        invitee: this.userId,
+        invitee: userDoc._id,
       }, {
         clanId: myClan._id
-      }]
+      }],
+      game: userDoc.currentGame
     });
   }
 
   return ClanInvites.find({
-    invitee: this.userId
+    invitee: userDoc._id,
+    game: userDoc.currentGame
   });
 });
 
 Meteor.publish('clans', function() {
+  const userDoc = Meteor.user();
+
   return Clans.find({
-    members: this.userId
+    game: userDoc.currentGame,
+    members: userDoc._id
   });
 });
 

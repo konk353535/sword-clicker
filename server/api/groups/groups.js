@@ -4,12 +4,12 @@ import moment from 'moment';
 
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js';
 import uuid from 'node-uuid';
 
-function leaveGroup(group, userId) {
+function leaveGroup(group, userId, game) {
 
   group.invites = group.invites.filter((member) => {
     return member !== userId;
@@ -23,13 +23,14 @@ function leaveGroup(group, userId) {
     return member.id !== userId;
   });
 
-  Users.update({
-    _id: userId
+  UserGames.update({
+    owner: userId,
+    game
   }, {
     $set: {
       partyId: null
     }
-  });
+  })
 
   if (group.members.length === 0) {
     Groups.remove(group._id);
@@ -53,50 +54,57 @@ function leaveGroup(group, userId) {
 Meteor.methods({
 
   'groups.leave'() {
+    const userDoc = Meteor.user();
     const currentGroup = Groups.findOne({
-      members: this.userId
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!currentGroup) {
       return;
     }
 
-    leaveGroup(currentGroup, this.userId);
+    leaveGroup(currentGroup, userDoc._id, userDoc.currentGame);
   },
 
   'groups.kick'({ username, ownerId }) {
+    const userDoc = Meteor.user();
     // Fetch your current group
     const currentGroup = Groups.findOne({
-      leader: this.userId
+      leader: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (ownerId && currentGroup && currentGroup.members.find(member => member === ownerId)) {
       // If leader kicks himself, trigger a group.leave instead so leader status tranfers
-      if (ownerId == this.userId) {
+      if (ownerId == userDoc._id) {
         Meteor.call('groups.leave');
         return;
       }
 
-      leaveGroup(currentGroup, ownerId);
+      leaveGroup(currentGroup, ownerId, userDoc.currentGame);
     }
 
     if (username && !ownerId) {
       const targetUser = Users.findOne({
-        username: username.toLowerCase()
+        username: username.toLowerCase(),
+        game: userDoc.currentGame
       });
 
       if (targetUser && currentGroup.invites.find(invitee => invitee === targetUser._id)) {
         console.log('hit');
-        leaveGroup(currentGroup, targetUser._id);
+        leaveGroup(currentGroup, targetUser._id, userDoc.currentGame);
       }
     }
   },
 
   'groups.ready'() {
+    const userDoc = Meteor.user();
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
-      members: this.userId
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (currentGroup.membersChecks[Meteor.userId()]) {
@@ -113,10 +121,12 @@ Meteor.methods({
   },
 
   'groups.notReady'() {
+    const userDoc = Meteor.user();
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
-      members: this.userId
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (currentGroup.membersChecks[Meteor.userId()]) {
@@ -133,14 +143,16 @@ Meteor.methods({
   },
 
   'groups.readyCheck'() {
+    const userDoc = Meteor.user();
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
-      members: this.userId
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     // Must be leader to ready check users
-    if (currentGroup && currentGroup.leader !== this.userId) {
+    if (currentGroup && currentGroup.leader !== userDoc._id) {
       return;
     }
 
@@ -166,8 +178,10 @@ Meteor.methods({
   },
 
   'groups.lock'(locked) {
+    const userDoc = Meteor.user();
     Groups.update({
-      leader: Meteor.userId()
+      leader: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         locked
@@ -178,7 +192,8 @@ Meteor.methods({
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
-      _id: id
+      _id: id,
+      game: userDoc.currentGame
     });
 
     if (targetGroup.locked) {
@@ -190,7 +205,8 @@ Meteor.methods({
     }
 
     const existingGroup = Groups.findOne({
-      members: userDoc._id
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
     if (existingGroup) {
       leaveGroup(existingGroup, userDoc._id);
@@ -219,8 +235,9 @@ Meteor.methods({
       id: userDoc._id
     });
 
-    Users.update({
-      _id: userDoc._id
+    UserGames.update({
+      owner: userDoc._id,
+      game: userDoc.currentGame
     }, {
       $set: {
         partyId: targetGroup._id
@@ -240,7 +257,8 @@ Meteor.methods({
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({
       _id: id,
-      invites: userDoc._id
+      invites: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!targetGroup) {
@@ -248,7 +266,8 @@ Meteor.methods({
     }
 
     const existingGroup = Groups.findOne({
-      members: userDoc._id
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (existingGroup) {
@@ -281,8 +300,9 @@ Meteor.methods({
         averageCombat: userDoc.averageCombat
       });
 
-      Users.update({
-        _id: userDoc._id
+      UserGames.update({
+        owner: userDoc._id,
+        game: userDoc.currentGame
       }, {
         $set: {
           partyId: targetGroup._id
@@ -301,7 +321,8 @@ Meteor.methods({
 
   // Invite the user to your current group or create a group if not in one
   'groups.invite'(username) {
-    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    const userDoc = Meteor.user();
+    const isMutedExpiry = userDoc.isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
       throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
     }
@@ -312,7 +333,8 @@ Meteor.methods({
         username: username.toLowerCase().replace(/ /g,'')
       }, {
         email: username.toLowerCase()
-      }]
+      }],
+      games: userDoc.currentGame
     });
 
     if (!targetUser) {
@@ -321,16 +343,17 @@ Meteor.methods({
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
-      members: this.userId
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     // Must be leader to invite users
-    if (currentGroup && currentGroup.leader !== this.userId) {
+    if (currentGroup && currentGroup.leader !== userDoc._id) {
       return;
     }
 
     // Cannot invite self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id == userDoc._id) {
       return;
     }
 
@@ -357,38 +380,42 @@ Meteor.methods({
       // Create group with myself and the target user
       const newGroupId = Groups.insert({
         balancer: uuid.v4(),
-        leaderName: Meteor.user().username,
+        game: userDoc.currentGame,
+        leaderName: userDoc.username,
         leader: this.userId,
         members: [this.userId],
         membersObject: [{
-          name: Meteor.user().username,
-          averageCombat: Meteor.user().averageCombat,
-          id: this.userId
+          name: userDoc.username,
+          averageCombat: 0,
+          id: userDoc._id
         }],
         invites: [targetUser._id]
       });
 
-      Users.update({
-        _id: Meteor.userId()
+      UserGames.update({
+        owner: userDoc._id,
+        game: userDoc.currentGame
       }, {
         $set: {
           partyId: newGroupId
-        }
+        }        
       });
     }
   },
 
   // Transfer leaderhip role to another party member
   'groups.transfer'({ ownerId }) {
-    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    const userDoc = Meteor.user();
+    const isMutedExpiry = userDoc.isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
       throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
     }
 
     // Fetch and confirm group exists
     const currentGroup = Groups.findOne({
-      leader: this.userId,
-      members: this.userId
+      leader: userDoc._id,
+      members: userDoc._id,
+      game: userDoc.currentGame
     });
 
     if (!currentGroup) {
@@ -399,7 +426,8 @@ Meteor.methods({
     // Fetch and confirm target user exists
     let targetUser;
       targetUser = Users.findOne({
-        _id: ownerId
+        _id: ownerId,
+        games: userDoc.currentGame
       });
 
     if (!targetUser) {
@@ -408,7 +436,7 @@ Meteor.methods({
 
 
     // Cannot transfer to self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id == userDoc._id) {
       return;
     }
 
@@ -438,10 +466,13 @@ Meteor.publish('otherBattlers', function(limit) {
     limit = 100;
   }
 
+  const userDoc = Meteor.user();
+
   return Groups.find({
     lastBattleStarted: {
       $gte: moment().subtract(24, 'hours').toDate()
-    }
+    },
+    game: userDoc.currentGame
   }, {
     limit,
     sort: {
@@ -451,11 +482,13 @@ Meteor.publish('otherBattlers', function(limit) {
 });
 
 Meteor.publish('groups', function() {
+  const userDoc = Meteor.user();
 
   //Transform function
   var transform = function(doc) {
     // Transfer invite id to invite names
     const invitesObjects = Combat.find({
+      game: userDoc.currentGame,
       owner: {
         $in: doc.invites
       }
@@ -492,10 +525,11 @@ Meteor.publish('groups', function() {
 
   var observer = Groups.find({
     $or: [{
-      members: this.userId
+      members: userDoc._id
     }, {
-      invites: this.userId
-    }]
+      invites: userDoc._id
+    }],
+    game: userDoc.currentGame
   }).observe({
       added: function (document) {
       self.added('groups', document._id, transform(document));

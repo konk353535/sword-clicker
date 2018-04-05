@@ -6,6 +6,7 @@ export const Events = new Mongo.Collection('events');
 
 EventsSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   event: { type: String },
   data: { type: Object, blackbox: true, optional: true },
   date: { type: Date }

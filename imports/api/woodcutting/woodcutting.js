@@ -9,6 +9,7 @@ WoodcuttingSchema = new SimpleSchema({
   collector: { type: Object, blackbox: true },
   storage: { type: Object, blackbox: true },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
   lastGameUpdated: { type: Date }
 });
 

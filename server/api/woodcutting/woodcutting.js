@@ -8,7 +8,7 @@ import { ITEMS } from '/server/constants/items/index.js';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
@@ -19,8 +19,13 @@ import { flattenObjectForMongo } from '/server/utils';
 Meteor.methods({
 
   'woodcutting.upgradeStorage'(logId) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     const woodcutting = Woodcutting.findOne({
-      owner: Meteor.userId()
+      owner,
+      game
     });
 
     const constants = WOODCUTTING.woods[logId];
@@ -51,7 +56,11 @@ Meteor.methods({
   },
 
   'woodcutting.collect'() {
-    const woodcutting = Woodcutting.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const woodcutting = Woodcutting.findOne({ owner, game });
 
     let xpGained = 0;
     Object.keys(woodcutting.collector).forEach((key) => {
@@ -70,11 +79,12 @@ Meteor.methods({
     });
 
     if (woodcuttingUpdated === 1) {
-      addXp('woodcutting', xpGained);
+      addXp('woodcutting', xpGained, owner, game);
     }
 
-    Users.update({
-      _id: woodcutting.owner
+    UserGames.update({
+      owner,
+      game
     }, {
       $set: {
         lastAction: 'woodcutting',
@@ -84,7 +94,11 @@ Meteor.methods({
   },
 
   'woodcutting.fireWoodcutter'(index) {
-    const woodcutting = Woodcutting.findOne({ owner: this.userId });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const woodcutting = Woodcutting.findOne({ owner, game });
     const targetWoodcutter = woodcutting.woodcutters[index];
 
     // Ensure this woodcutter isn't already set to die
@@ -99,15 +113,17 @@ Meteor.methods({
     targetWoodcutter.deathTime = moment().add(WOODCUTTING.suicidalFury.duration, 'seconds').toDate();
 
     Woodcutting.update({
-      owner: this.userId
+      owner,
+      game
     }, {
       $set: {
         woodcutters: woodcutting.woodcutters
       }
     });
 
-    Users.update({
-      _id: this.userId
+    UserGames.update({
+      owner,
+      game
     }, {
       $set: {
         lastAction: 'woodcutting',
@@ -117,14 +133,16 @@ Meteor.methods({
   },
 
   'woodcutting.gameUpdate'() {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     // Fetch all db data we need
-    const woodcutting = Woodcutting.findOne({ owner: this.userId });
+    const woodcutting = Woodcutting.findOne({ owner, game });
 
     if (!woodcutting) {
       return;
     }
-
-    const userDoc = Meteor.user();
 
     // Update last updated immeditely
     // incase an error occurs further on in the code, the users updated will not get set
@@ -253,7 +271,8 @@ Meteor.methods({
 
     if (collectorMutated) {
       Woodcutting.update({
-        owner: Meteor.userId(),
+        owner,
+        game,
         lastGameUpdated: newLastGameUpdated
       }, {
         $set: {
@@ -277,8 +296,13 @@ Meteor.methods({
   },
 
   'woodcutting.fetchWoodcutters'() {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     const woodcuttingSkill = Skills.findOne({
-      owner: Meteor.userId(),
+      owner,
+      game,
       type: 'woodcutting'
     });
 
@@ -297,7 +321,11 @@ Meteor.methods({
   },
 
   'woodcutting.hireWoodcutter'(woodcutterId) {
-    const woodcutting = Woodcutting.findOne({ owner: Meteor.userId() });
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
+    const woodcutting = Woodcutting.findOne({ owner, game });
 
     // Do we have room for more woodcutters?
     if (woodcutting.woodcutters.length >= WOODCUTTING.baseMaxWoodcutters) {
@@ -313,7 +341,8 @@ Meteor.methods({
     // Fetch the axe which we will use, as it will dissapear when we call requirements util
     const axeToUse = Items.findOne({
       itemId: woodcutterConstants.axeId,
-      owner: Meteor.userId()
+      owner,
+      game
     }, {
       sort: [
         ['quality', 'desc']
@@ -348,14 +377,15 @@ Meteor.methods({
       }
     });
 
-    Users.update({
-      _id: woodcutting.owner
+    UserGames.update({
+      owner,
+      game
     }, {
       $set: {
-        lastAction: 'woodcutting',
+        lastActionDate: 'woodcutting',
         lastActionDate: new Date()
       }
-    }, () => {});
+    });
   }
 
 })
@@ -373,6 +403,10 @@ DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);
 
 Meteor.publish('woodcutting', function() {
+  const userDoc = Meteor.user();
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
+
   //Transform function
   var transform = function(doc) {
     doc.maxWoodcutters = WOODCUTTING.baseMaxWoodcutters;
@@ -382,7 +416,8 @@ Meteor.publish('woodcutting', function() {
   var self = this;
 
   var observer = Woodcutting.find({
-    owner: this.userId
+    owner,
+    game
   }).observe({
       added: function (document) {
       self.added('woodcutting', document._id, transform(document));

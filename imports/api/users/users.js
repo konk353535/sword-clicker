@@ -40,6 +40,8 @@ UserGamesSchema = new SimpleSchema({
   owner: { type: String },
   game: { type: String },
 
+  username: { type: String},
+
   // User Game Data below
   gold: { type: Number, defaultValue: 200 },
   floor: { type: Number, defaultValue: 1 },

@@ -381,6 +381,7 @@ Accounts.onCreateUser((options, user) => {
   UserGames.insert({
     owner: user._id,
     game: mainGame._id,
+    username: user.username,
     uiState: {
       showChat: true,
       craftingFilter: 'mining'

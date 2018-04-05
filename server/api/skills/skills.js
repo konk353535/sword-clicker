@@ -201,19 +201,24 @@ export const addXp = function (skillType, xp, specificUserId, game) {
 
 Meteor.methods({
   'skills.learnSkill'(skillName) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     // Make sure this is a valid skillName
     if (!_.contains(Object.keys(SKILLS), skillName)) {
       return;
     }
 
-    const existingSkill = Skills.findOne({ owner: Meteor.userId(), type: skillName });
+    const existingSkill = Skills.findOne({ owner, game, type: skillName });
 
     // Make sure you have the requirements for this skill
     if (SKILLS[skillName].requirementsToLearn) {
       const requiredItemList = SKILLS[skillName].requirementsToLearn.map((item) => item.itemId);
       // Ensure we have the requirements
       const usersItems = Items.find({
-        owner: Meteor.userId(),
+        owner,
+        game,
         itemId: {
           $in: requiredItemList
         }
@@ -244,14 +249,16 @@ Meteor.methods({
       Skills.insert({
         type: skillName,
         createdAt: new Date(),
-        owner: Meteor.userId(),
+        owner,
+        game,
         level: baseLevel,
         username: Meteor.user().username
       });
 
       Skills.update({
         type: 'total',
-        owner: Meteor.userId()
+        owner,
+        game
       }, {
         $inc: {
           level: baseLevel
@@ -260,15 +267,18 @@ Meteor.methods({
 
       if (skillName === 'crafting') {
         Crafting.insert({
-          owner: Meteor.userId()
+          owner,
+          game
         });
       } else if (skillName === 'inscription') {
         Inscription.insert({
-          owner: Meteor.userId()
+          owner,
+          game
         });
       } else if (skillName === 'woodcutting') {
         Woodcutting.insert({
-          owner: Meteor.userId(),
+          owner,
+          game,
           woodcutters: [],
           storage: {},
           collector: {},
@@ -279,20 +289,23 @@ Meteor.methods({
       } else if (skillName === 'farming') {
         // Inject farming
         Farming.insert({
-          owner: Meteor.userId()
+          owner,
+          game
         });
         // Inject farming spaces (4 active, 2 inactive)
         for (let i = 0; i < 6; i++) {
           const isActive = i < 4;
           FarmingSpace.insert({
-            owner: Meteor.userId(),
+            owner,
+            game,
             active: isActive,
             index: i
           });
         }
       } else if (skillName === 'astronomy') {
         Astronomy.insert({
-          owner: Meteor.userId(),
+          owner,
+          game,
           mages: [{
             id: 'main',
             stats: {
@@ -305,7 +318,8 @@ Meteor.methods({
       } else if (skillName === 'magic') {
         // Update abilities
         Abilities.update({
-          owner: Meteor.userId()
+          owner,
+          game
         }, {
           $push: {
             learntAbilities: {
@@ -335,17 +349,22 @@ Meteor.methods({
   },
 
   'skills.fetchProfile'(username) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     // Ensure username is a string
     if (!_.isString(username)) {
       throw new Meteor.Error('not-string', 'username must be a string');
     }
 
     // Search for the user
-    const targetUser = Users.findOne({ username });
+    const targetUser = Users.findOne({ username, game });
 
     const equipment = Items.find({
       equipped: true,
-      owner: targetUser._id
+      owner,
+      game
     }, {
       fields: {
         itemId: 1,
@@ -379,12 +398,13 @@ Meteor.methods({
     });
 
     // Fetch icon from combat
-    const targetUserCombat = Combat.findOne({ owner: targetUser._id });
+    const targetUserCombat = Combat.findOne({ owner, game });
 
     // Get all users skills
     return {
       skills: Skills.find({
-        owner: targetUser._id
+        owner,
+        game
       }).fetch().map((skill) => {
         return {
           xpToLevel: SKILLS[skill.type].xpToLevel(skill.level),
@@ -402,13 +422,18 @@ Meteor.methods({
   },
 
   'skills.highscores'(skillName, showAll200) {
+    const userDoc = Meteor.user();
+    const owner = userDoc._id;
+    const game = userDoc.currentGame;
+
     let limit = 10;
     if (showAll200) {
       limit = 200;
     }
 
     if (skillName === 'personalQuest') {
-      return Users.find({
+      return UserGames.find({
+        game
         //banned: {
         //  $ne: true
         //}
@@ -425,6 +450,7 @@ Meteor.methods({
       }).fetch();
     } else if (skillName === 'boss') {
       return BossHealthScores.find({
+        game
         //banned: {
         //  $ne: true
         //}
@@ -440,6 +466,7 @@ Meteor.methods({
       }).fetch();
     } else {
       return Skills.find({
+        game,
         type: skillName,
         //banned: {
         //  $ne: true
@@ -463,6 +490,9 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'skills' }, 100, 1 * MINUTE);
 
 Meteor.publish('skills', function() {
+  const userDoc = Meteor.user();
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {
@@ -473,7 +503,8 @@ Meteor.publish('skills', function() {
   var self = this;
 
   var observer = Skills.find({
-    owner: this.userId
+    owner,
+    game
   }).observe({
       added: function (document) {
       self.added('skills', document._id, transform(document));

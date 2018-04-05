@@ -123,7 +123,7 @@ Meteor.methods({
 
     FriendRequests.remove({
       reciever: userDoc._id,
-      game: userDoc.currentGame
+      game: userDoc.currentGame,
       sender
     });
 

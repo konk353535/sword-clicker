@@ -775,7 +775,7 @@ Meteor.methods({
       Object.keys(gainedItems).forEach((key) => {
         mutateMiners = true;
         if (key === 'gem') {
-          addFakeGems(gainedItems[key].amount, owner, game));
+          addFakeGems(gainedItems[key].amount, owner, game);
         } else {
           if (mining.collector[key]) {
             mining.collector[key] += gainedItems[key].amount;

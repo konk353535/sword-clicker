@@ -7,6 +7,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Users } from '/imports/api/users/users';
 
 import { requirementsUtility } from '/server/api/crafting/crafting';
 
@@ -24,7 +25,6 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userDoc, c
     game: userDoc.currentGame
   });
   if (!myAbilities) {
-    console.log('unlogged in user');
     return;
   }
 
@@ -47,12 +47,9 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userDoc, c
   }, callback);
 };
 
-const allAbilitiesCooledDown = function(userId) {
-  let owner = userId;
-  if (!owner) {
-    owner = this.userId;
-  }
-  const myAbilities = Abilities.findOne({ owner });
+const allAbilitiesCooledDown = function(userDoc) {
+  let owner = userDoc._id;
+  const myAbilities = Abilities.findOne({ owner, game: userDoc.currentGame });
   return _.isUndefined(_.find(myAbilities.learntAbilities, (ability) => { return ability.currentCooldown > 0}))
 };
 
@@ -95,7 +92,7 @@ Meteor.methods({
       throw new Meteor.Error("invalid-spell", "invalid spell");
     }
 
-    if (!requirementsUtility(spellConstants.required, amount)) {
+    if (!requirementsUtility(spellConstants.required, amount, userDoc._id, userDoc.currentGame)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
       return;
     }
@@ -300,10 +297,11 @@ Meteor.methods({
 
   'abilities.gameUpdate'() {
     const userDoc = Meteor.user();
+    console.log(userDoc);
     return new Promise(function(resolve, reject) {
       updateAbilityCooldowns(userDoc, (err, res) => {
         if (_.isNull(err)) {
-          resolve(allAbilitiesCooledDown(Meteor.userId()));
+          resolve(allAbilitiesCooledDown(userDoc));
         } else {
           reject(err);
         }
@@ -321,7 +319,9 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'abilities' }, 100, 5 * MINUTE);
 
 Meteor.publish('abilities', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {

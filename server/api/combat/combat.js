@@ -360,7 +360,9 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'combat' }, 30, 1 * MINUTE);
 
 Meteor.publish('combat', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   const currentGroup = Groups.findOne({
     members: userDoc._id,

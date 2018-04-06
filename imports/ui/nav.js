@@ -9,17 +9,6 @@ import './nav.html';
 
 Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
-
-  Tracker.autorun(() => {
-    const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.showSummaryList !== undefined) {
-        Session.set('summaryListDisabled', !myUser.uiState.showSummaryList);
-      } else {
-        Session.set('summaryListDisabled', false);
-      }
-    }
-  });
 });
 
 Template.nav.events({
@@ -48,16 +37,6 @@ Template.nav.events({
 
   'click .enable-floating-text'(event, instance) {
     Session.set('floatingTextDisabled', false);
-  },
-
-  'click .disable-summary-list'(event, instance) {
-    Session.set('summaryListDisabled', true);
-    Meteor.call('users.setUiState', 'showSummaryList', false);
-  },
-
-  'click .enable-summary-list'(event, instance) {
-    Session.set('summaryListDisabled', false);
-    Meteor.call('users.setUiState', 'showSummaryList', true);
   },
 
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
@@ -92,10 +71,6 @@ Template.nav.helpers({
 
   floatingTextDisabled() {
     return Session.get('floatingTextDisabled');
-  },
-
-  summaryListDisabled() {
-    return Session.get('summaryListDisabled');
   },
 
   userGame() {

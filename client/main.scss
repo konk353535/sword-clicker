@@ -22,6 +22,10 @@
   background-color: transparentize($brand-danger, .9);
 }
 
+.bg-faded-primary {
+  background-color: transparentize($brand-primary, .9);
+}
+
 .twitter-typeahead {
   display: flex !important;
   flex: 1; 

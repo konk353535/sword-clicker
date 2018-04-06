@@ -40,7 +40,7 @@ Meteor.methods({
   'clans.create'(name) {
     const userDoc = Meteor.user();
 
-    if (!requirementsUtility(clanCost, 1)) {
+    if (!requirementsUtility(clanCost, 1, userDoc._id, userDoc.currentGame)) {
       return;
     }
 
@@ -142,7 +142,9 @@ Meteor.methods({
 });
 
 Meteor.publish('clanInvites', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   const myClan = Clans.findOne({
     members: userDoc._id,
@@ -167,7 +169,9 @@ Meteor.publish('clanInvites', function() {
 });
 
 Meteor.publish('clans', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   return Clans.find({
     game: userDoc.currentGame,

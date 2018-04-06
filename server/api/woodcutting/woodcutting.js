@@ -40,7 +40,7 @@ Meteor.methods({
 
     const costs = WOODCUTTING.STORAGE.costs(storageLevel, logId);
 
-    if (!requirementsUtility(costs, 1)) {
+    if (!requirementsUtility(costs, 1, owner, game)) {
       return;
     }
 
@@ -350,7 +350,7 @@ Meteor.methods({
     });
 
     // Do we have the requirements for this craft (items / levels / gold)
-    if (!requirementsUtility(woodcutterConstants.required, 1)) {
+    if (!requirementsUtility(woodcutterConstants.required, 1, owner, game)) {
       return;
     }
 
@@ -403,7 +403,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'woodcutting' }, 40, 2 * MINUTE);
 
 Meteor.publish('woodcutting', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
   const owner = userDoc._id;
   const game = userDoc.currentGame;
 

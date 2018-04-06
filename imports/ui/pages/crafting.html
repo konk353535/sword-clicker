@@ -38,7 +38,7 @@
                     list-group-item list-group-item-action d-flex
                     {{#if this.isRecipe}}select-recipe{{else}}select-craft{{/if}}
                     {{#if this.notMet}}bg-faded-danger{{/if}}
-                    {{#if this.isActive}}active{{/if}}
+                    {{#if this.isActive}}bg-faded-primary{{/if}}
                   "
                   data-id="{{this.key}}"
                 >
@@ -46,6 +46,9 @@
                     <img src="/icons/{{this.icon}}" class="small-icon mr-2" />
                   {{/if}}
                   <div class="flex-grow text-capitalize">{{this.label}}</div>
+                  {{#if count}}
+                    <div class="badge badge-grey-0">{{this.count}}</div>
+                  {{/if}}
                 </a>
               {{/each}}
             </div>
@@ -126,67 +129,6 @@
           </div>
         </div>
       </div>
-
-      <!--
-      {{> skillHeader skill=craftingSkill}}
-
-      <div class="my-3 {{#unless inCurrentBattle}}{{#unless summaryListDisabled}}hidden-xl-up{{/unless}}{{/unless}}">
-        <div class="d-flex flex-row align-items-center">
-          {{#each crafting.currentlyCrafting}}
-            {{> craftingDuration craftingProcess=this isCrafting=true}}
-          {{/each}}
-        </div>
-      </div>
-
-      <h2>Items</h2>
-
-      <ul class="nav nav-tabs my-3">
-        <li class="nav-item item-filter" data-filter="visible-items">
-          <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">All</a>
-        </li>
-        <li class="nav-item item-filter" data-filter="hidden-items">
-          <a class="nav-link {{#if $eq itemFilter 'hidden-items'}}active{{/if}}" href="#">Hidden</a>
-        </li>
-      </ul>
-
-        {{#if $gt items.length 5}}
-          {{#if itemViewLimit}}
-            <div class="item-icon-container small icon-box show-all-items" style="cursor: pointer">
-              More
-            </div>
-          {{else}}
-            <div class="item-icon-container small icon-box show-less-items" style="cursor: pointer">
-              Less
-            </div>
-          {{/if}}
-        {{/if}}
-
-
-      <h2>Recipes</h2>
-      
-      <ul class="nav nav-tabs my-3">
-        <li class="nav-item crafting-filter" data-filter="all">
-          <a class="nav-link {{#if $eq recipeFilter 'all'}}active{{/if}}" href="#">All</a>
-        </li>
-        <li class="nav-item crafting-filter" data-filter="crafting">
-          <a class="nav-link {{#if $eq recipeFilter 'crafting'}}active{{/if}}" href="#">Crafting</a>
-        </li>
-        <li class="nav-item crafting-filter" data-filter="mining">
-          <a class="nav-link {{#if $eq recipeFilter 'mining'}}active{{/if}}" href="#">Mining</a>
-        </li>
-        <li class="nav-item crafting-filter" data-filter="woodcutting">
-          <a class="nav-link {{#if $eq recipeFilter 'woodcutting'}}active{{/if}}" href="#">Woodcutting</a>
-        </li>
-        <li class="nav-item crafting-filter" data-filter="combat">
-          <a class="nav-link {{#if $eq recipeFilter 'combat'}}active{{/if}}" href="#">Combat</a>
-        </li>
-        <li class="nav-item crafting-filter" data-filter="astronomy">
-          <a class="nav-link {{#if $eq recipeFilter 'astronomy'}}active{{/if}}" href="#">Astronomy</a>
-        </li>
-      </ul>
-
-      {{> craftingList recipes=recipes recipeFilter=recipeFilter}}
-      -->
     {{else}}
       <div 
         class="d-flex justify-content-center align-items-center flex-column"

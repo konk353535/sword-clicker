@@ -32,7 +32,7 @@ Meteor.methods({
     // Get cost of specified stat
     const requirements = ASTRONOMY.upgradeCosts[stat](mainMage.stats[stat]);
 
-    if (!requirementsUtility(requirements, 1, userDoc.currentGame)) {
+    if (!requirementsUtility(requirements, 1, userDoc._id, userDoc.currentGame)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
       return;
     }
@@ -130,7 +130,7 @@ Meteor.methods({
     const mainMage = astronomy.mages[0];
     const requirements = ASTRONOMY.mageHireCost(mainMage);
 
-    if (!requirementsUtility(requirements, 1, userDoc.currentGame)) {
+    if (!requirementsUtility(requirements, 1, userDoc._id, userDoc.currentGame)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
       return;
     }
@@ -436,8 +436,9 @@ Meteor.methods({
 
 
 Meteor.publish('astronomy', function() {
-
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {

@@ -190,10 +190,6 @@ Template.inscriptionPage.helpers({
     return Template.instance().state.get('levelFilter');
   },
 
-  summaryListDisabled() {
-    return Session.get('summaryListDisabled');
-  },
-
   recipes() {
     const instance = Template.instance();
     const recipeFilter = instance.state.get('recipeFilter');

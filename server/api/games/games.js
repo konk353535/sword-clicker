@@ -12,6 +12,7 @@ export const createGame = function createGame(name, owner, mainGame = false) {
   // Create associated first floor
   Floors.insert({
     game: gameId,
+    createdAt: new Date(),
     floor: 1,
     points: 0,
     pointsMax: 1000,

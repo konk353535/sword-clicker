@@ -466,7 +466,9 @@ Meteor.publish('otherBattlers', function(limit) {
     limit = 100;
   }
 
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   return Groups.find({
     lastBattleStarted: {
@@ -482,7 +484,9 @@ Meteor.publish('otherBattlers', function(limit) {
 });
 
 Meteor.publish('groups', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {

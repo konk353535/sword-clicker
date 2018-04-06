@@ -137,7 +137,9 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'adventures' }, 40, 2 * MINUTE);
 
 Meteor.publish('achievements', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   return Achievements.find({
     owner: userDoc._id,

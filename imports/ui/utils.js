@@ -1,4 +1,5 @@
 import { Items } from '/imports/api/items/items.js';
+import { UserGames } from '/imports/api/users/users.js';
 import { Skills } from '/imports/api/skills/skills.js';
 
 export const determineRequiredItems = function determineRequiredItems(recipe) {
@@ -13,7 +14,8 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
     requiredItem.notMet = false;
 
     if (requiredItem.type === 'gold') {
-      const usersGold = Meteor.user().gold;
+      const userGame = UserGames.findOne();
+      const usersGold = userGame.gold;
       const requiredGold = requiredItem.amount;
       if (usersGold < requiredGold) {
         requiredItem.notMet = true;

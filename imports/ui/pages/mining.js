@@ -7,7 +7,7 @@ import _ from 'underscore';
 import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { MINING } from '/imports/constants/mining/index.js';
 
@@ -90,15 +90,17 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.miningTab !== undefined) {
-        this.state.set('currentTab', myUser.uiState.miningTab);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.miningTab !== undefined) {
+        this.state.set('currentTab', userGame.uiState.miningTab);
       } else {
         this.state.set('currentTab', 'minePit');
       }
 
-      if (myUser.uiState && myUser.uiState.miningMultihit !== undefined) {
-        this.state.set('miningMultihit', myUser.uiState.miningMultihit);
+      if (userGame.uiState && userGame.uiState.miningMultihit !== undefined) {
+        this.state.set('miningMultihit', userGame.uiState.miningMultihit);
       }
     }
   });

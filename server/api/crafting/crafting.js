@@ -17,9 +17,7 @@ import { addXp, addGold } from '/server/api/skills/skills.js';
 // Take a list of requirements
 // If met will return true and take items
 // If not met, will return false and take no items
-export const requirementsUtility = function (requirements, amountToCraft = 1, game) {
-
-  const owner = Meteor.userId();
+export const requirementsUtility = function (requirements, amountToCraft = 1, owner, game) {
 
   const requiredSkillList = requirements.filter((requirement) => {
     return requirement.type === 'skill';
@@ -144,7 +142,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1, ga
   return true;
 }
 
-const craftItem = function (recipeId, amountToCraft = 1, owner, game) {
+const craftItem = function (recipeId, amountToCraft = 1, owner, game, userDoc) {
   const crafting = Crafting.findOne({ owner, game });
 
   if (crafting && (crafting.currentlyCrafting === undefined || crafting.currentlyCrafting === null)) {
@@ -189,7 +187,7 @@ const craftItem = function (recipeId, amountToCraft = 1, owner, game) {
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
-  if (!requirementsUtility(recipeConstants.required, amountToCraft, game)) {
+  if (!requirementsUtility(recipeConstants.required, amountToCraft, owner, game)) {
     return;
   }
 
@@ -225,6 +223,7 @@ const craftItem = function (recipeId, amountToCraft = 1, owner, game) {
 Meteor.methods({
   'crafting.craftItem'(recipeId, amount) {
     const userDoc = Meteor.user();
+
     if (userDoc.logEvents) {
       Events.insert({
         owner: userDoc._id,
@@ -234,7 +233,7 @@ Meteor.methods({
       }, () => {})
     }
 
-    craftItem(recipeId, amount, userDoc._id, userDoc.currentGame);
+    craftItem(recipeId, amount, userDoc._id, userDoc.currentGame, userDoc);
 
     UserGames.update({
       owner: userDoc._id,
@@ -454,7 +453,9 @@ DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish('crafting', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {

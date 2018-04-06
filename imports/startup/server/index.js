@@ -463,6 +463,7 @@ Accounts.onCreateUser((options, user) => {
       type: 'attack',
       createdAt: new Date(),
       owner: userId,
+      game,
       username: user.username
     });
 

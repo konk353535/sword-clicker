@@ -8,7 +8,7 @@ import { Astronomy } from '/imports/api/astronomy/astronomy';
 import { Inscription } from '/imports/api/inscription/inscription';
 import { Combat } from '/imports/api/combat/combat';
 import { Crafting } from '/imports/api/crafting/crafting';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { ClanHighscores } from '/imports/api/clans/clans';
@@ -48,17 +48,21 @@ Meteor.setInterval(updateGlobalBuffs, 30000);
 export const addGold = function (amount, userId, game) {
   const owner = userId;
 
-  Users.update(owner, {
+  UserGames.update({
+    owner,
+    game
+  }, {
     $inc: {
       gold: amount
     }
-  });
+  })
 
   if (amount > 0) {
     const highScoreType = 'gold-weekly';
 
     ClanHighscores.update({
       owner,
+      game,
       type: highScoreType
     }, {
       $inc: {
@@ -69,6 +73,7 @@ export const addGold = function (amount, userId, game) {
         // Create the entry
         ClanHighscores.insert({
           owner,
+          game,
           type: highScoreType,
           score: Math.floor(amount)
         });
@@ -490,7 +495,7 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'skills' }, 100, 1 * MINUTE);
 
 Meteor.publish('skills', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
   const owner = userDoc._id;
   const game = userDoc.currentGame;
 

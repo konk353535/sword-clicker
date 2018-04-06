@@ -766,7 +766,9 @@ const MINUTE = 60 * 1000;
 
 Meteor.publish('items', function() {
 
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   // TODO: We can move items to local dev, and avoid having to do all this extra processing here

@@ -10,7 +10,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
-import { UserGames } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
@@ -68,7 +68,7 @@ Meteor.methods({
       wave = _.random(1, 5);
     }
 
-    startBattle({ level, wave });
+    startBattle({ level, wave, userDoc });
   },
 
   'battles.findTowerBattle'(floor, room) {
@@ -289,7 +289,9 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'battles' }, 500, 1 * MINUTE);
 
 Meteor.publish('battles', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   return Battles.find({
     owners: userDoc._id,
@@ -303,7 +305,9 @@ Meteor.publish('battles', function() {
 });
 
 Meteor.publish('battlesList', function () {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   return BattlesList.find({
     owners: userDoc._id,

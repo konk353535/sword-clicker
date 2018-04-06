@@ -126,7 +126,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     isExplorationRun,
     tickEvents: [],
     units: [],
-    useStreamy,
     enemies: []
   }
 
@@ -172,7 +171,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   usersData.forEach((innerUser) => {
     UserGames.update({
       _id: innerUser._id,
-      game: userData.currentGame
+      game: innerUser.currentGame
     }, {
       $set: {
         lastAction: 'battling',
@@ -340,6 +339,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
+    game: userDoc.currentGame,
     group: currentGroup ? currentGroup._id : false,
     createdAt: new Date(),
     activated: false

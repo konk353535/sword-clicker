@@ -11,7 +11,7 @@ import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { BattlesList } from '/imports/api/battles/battles.js';
 
 // Component used in the template
@@ -113,27 +113,29 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.craftingFilter !== undefined) {
-        this.state.set('recipeFilter', myUser.uiState.craftingFilter);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.craftingFilter !== undefined) {
+        this.state.set('recipeFilter', userGame.uiState.craftingFilter);
       } else {
         this.state.set('recipeFilter', 'all');
       }
 
-      if (myUser.uiState && myUser.uiState.craftingFavourites !== undefined) {
-        this.state.set('craftingFavourites', myUser.uiState.craftingFavourites);
+      if (userGame.uiState && userGame.uiState.craftingFavourites !== undefined) {
+        this.state.set('craftingFavourites', userGame.uiState.craftingFavourites);
       } else {
         this.state.set('craftingFavourites', []);
       }
 
-      if (myUser.uiState && myUser.uiState.craftingTierFilter !== undefined) {
-        this.state.set('craftingTierFilter', myUser.uiState.craftingTierFilter);
+      if (userGame.uiState && userGame.uiState.craftingTierFilter !== undefined) {
+        this.state.set('craftingTierFilter', userGame.uiState.craftingTierFilter);
       } else {
         this.state.set('craftingTierFilter', {});
       }
 
-      if (myUser.uiState && myUser.uiState.itemFilter !== undefined) {
-        this.state.set('itemFilter', myUser.uiState.itemFilter);
+      if (userGame.uiState && userGame.uiState.itemFilter !== undefined) {
+        this.state.set('itemFilter', userGame.uiState.itemFilter);
       } else {
         this.state.set('itemFilter', 'visible-items');
       }
@@ -201,11 +203,11 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
 Template.craftingPage.events({
 
   'click .add-favourite-btn'(event, instance) {
-    const user = Users.findOne({
-      _id: Meteor.userId()
-    });
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
 
-    const craftingFavourites = user.uiState.craftingFavourites || [];
+    const craftingFavourites = userGame.uiState.craftingFavourites || [];
     craftingFavourites.push(instance.state.get('selectedRecipe'));
 
     instance.state.set('craftingFavourites', craftingFavourites);
@@ -213,11 +215,11 @@ Template.craftingPage.events({
   },
 
   'click .remove-favourite-btn'(event, instance) {
-    const user = Users.findOne({
-      _id: Meteor.userId()
-    });
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
 
-    let craftingFavourites = user.uiState.craftingFavourites || [];
+    let craftingFavourites = userGame.uiState.craftingFavourites || [];
     craftingFavourites = craftingFavourites.filter((recipeId) => {
       return recipeId !== instance.state.get('selectedRecipe');
     });
@@ -457,6 +459,9 @@ Template.craftingPage.helpers({
   selectableCraftingList() {
 
     const baseList = {
+      all: {
+        label: 'All'
+      },
       crafting: {
         label: 'Crafting',
         categories: {
@@ -530,23 +535,45 @@ Template.craftingPage.helpers({
 
     if (selectedListObject) {
       return Object.keys(selectedListObject).map((key) => {
+        // For each key, get the count of recipes below it
+        let count = 0;
+        let filteredRecipes = instance.state.get('recipes');
+        const tempFilters = selectedCraftingOptions.concat([key]);
+        tempFilters.forEach((key, index) => {
+          if (key !== 'all') {
+            if (index === 0) {
+              filteredRecipes = filteredRecipes.filter((item) => {
+                return item.category === key
+              });
+            } else {
+              filteredRecipes = filteredRecipes.filter((item) => {
+                return _.contains(item.tags, key)
+              });
+            }
+          }
+        });
+
         return {
           key,
+          icon: tempFilters.length === 1 ? `${key}.svg` : false,
+          count: filteredRecipes.length,
           label: selectedListObject[key].label ? selectedListObject[key].label : selectedListObject[key]
         }
-      });
+      }).filter(category => category.count > 0);
     }
 
     let filteredRecipes = instance.state.get('recipes');
     selectedCraftingOptions.forEach((key, index) => {
-      if (index === 0) {
-        filteredRecipes = filteredRecipes.filter((item) => {
-          return item.category === key
-        });
-      } else {
-        filteredRecipes = filteredRecipes.filter((item) => {
-          return _.contains(item.tags, key)
-        });
+      if (key !== 'all') {
+        if (index === 0) {
+          filteredRecipes = filteredRecipes.filter((item) => {
+            return item.category === key
+          });
+        } else {
+          filteredRecipes = filteredRecipes.filter((item) => {
+            return _.contains(item.tags, key)
+          });
+        }
       }
     })
 
@@ -626,10 +653,6 @@ Template.craftingPage.helpers({
         return item.category === recipeFilter;
       });
     }
-  },
-
-  summaryListDisabled() {
-    return Session.get('summaryListDisabled');
   },
 
   itemViewLimit() {

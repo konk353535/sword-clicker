@@ -162,7 +162,7 @@ Meteor.methods({
     // Fetch plant constants
     const plantConstants = FARMING.plants[plantId];
 
-    if (!plantConstants || !requirementsUtility(plantConstants.required)) {
+    if (!plantConstants || !requirementsUtility(plantConstants.required, 1, userDoc._id, userDoc.currentGame)) {
       throw new Meteor.Error("requirements-not-met", "You do not meet the requirements to plant this seed");
     }
 
@@ -251,7 +251,7 @@ Meteor.methods({
 
     let plantAmount = specifiedAmount > emptySpaces.length ? emptySpaces.length : specifiedAmount;
 
-    if (!plantConstants || !requirementsUtility(plantConstants.required, plantAmount)) {
+    if (!plantConstants || !requirementsUtility(plantConstants.required, plantAmount, userDoc._id, userDoc.currentGame)) {
       throw new Meteor.Error("requirements-not-met", "You do not meet the requirements to plant this seed");
     }
 
@@ -365,7 +365,9 @@ DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells', use
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'farmingSpace', userId }, 240, 2 * MINUTE);
 
 Meteor.publish('farmingSpace', function() {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
+  const owner = userDoc._id;
+  const game = userDoc.currentGame;
 
   //Transform function
   var transform = function(doc) {

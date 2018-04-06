@@ -151,7 +151,6 @@ Meteor.methods({
   'users.setUiState'(id, value) {
     const validIds = [
       'showChat',
-      'showSummaryList',
       'inscriptionFilter',
       'craftingFavourites',
       'inscriptionLevelFilter',
@@ -277,7 +276,7 @@ Meteor.publish('userGame', function(game) {
 });
 
 Meteor.publish('friendsFeed', function(data) {
-  const userDoc = Meteor.user();
+  const userDoc = Users.findOne(this.userId);
   const owner = userDoc._id;
   const game = userDoc.currentGame;
 

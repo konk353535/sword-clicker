@@ -297,7 +297,6 @@ Meteor.methods({
 
   'abilities.gameUpdate'() {
     const userDoc = Meteor.user();
-    console.log(userDoc);
     return new Promise(function(resolve, reject) {
       updateAbilityCooldowns(userDoc, (err, res) => {
         if (_.isNull(err)) {

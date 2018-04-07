@@ -82,18 +82,7 @@ export const addGold = function (amount, userId, game) {
   }
 }
 
-export const addXp = function (skillType, xp, specificUserId, game) {
-  let owner;
-  if (specificUserId) {
-    owner = specificUserId
-  } else {
-    owner = Meteor.userId();
-  }
-
-  if (!game) {
-    game = Meteor.user().currentGame;
-  }
-
+export const addXp = function (skillType, xp, owner, game) {
   const skill = Skills.findOne({ owner, game, type: skillType });
 
   if (!skill) {

@@ -6,7 +6,7 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 import moment from 'moment';
 
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Clans } from '/imports/api/clans/clans.js';
 
@@ -73,7 +73,9 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     let minimized = true;
-    let myUserDoc = Users.findOne({ _id: Meteor.userId() });
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (!myUser) return;
+    const myUserDoc = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
     if (myUserDoc && myUserDoc.uiState) {
       if (myUserDoc.uiState.showChat !== undefined) {
         minimized = !myUserDoc.uiState.showChat;
@@ -96,49 +98,51 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
-    const currentGroup = Groups.findOne({
-      members: Meteor.userId()
-    });
+    if (Meteor.user() && Meteor.user().currentGame) {
+      const currentGroup = Groups.findOne({
+        members: Meteor.userId()
+      });
 
-    const currentClan = Clans.findOne({});
+      const currentClan = Clans.findOne({});
 
-    const availableChats = this.state.get('availableChats');
+      const availableChats = this.state.get('availableChats');
 
-    if (availableChats.General.show) {
-      Meteor.subscribe("simpleChats", 'General', this.limit.get());
+      if (availableChats.General.show) {
+        Meteor.subscribe("simpleChats", 'General', this.limit.get());
+      }
+
+      if (currentGroup && availableChats.Party.show) {
+        // Current clan messages
+        Meteor.subscribe("simpleChats", currentGroup._id, this.limit.get());
+      }
+
+      if (currentClan && availableChats.Clan.show) {
+        // Current group messages
+        Meteor.subscribe("simpleChats", currentClan._id, this.limit.get());
+      }
+
+      if (availableChats.LFG.show) {
+        // People looking for group
+        Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
+      }
+
+      if (availableChats.Game.show) {
+        // Events relevant to you
+        Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
+      }
+
+      if (availableChats.Offtopic.show) {
+        // Events relevant to you
+        Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
+      }
+
+      if (availableChats.Help.show) {
+        // Events relevant to you
+        Meteor.subscribe("simpleChats", `Help`, this.limit.get());
+      }
+
+      this.subscribing = true;
     }
-
-    if (currentGroup && availableChats.Party.show) {
-      // Current clan messages
-      Meteor.subscribe("simpleChats", currentGroup._id, this.limit.get());
-    }
-
-    if (currentClan && availableChats.Clan.show) {
-      // Current group messages
-      Meteor.subscribe("simpleChats", currentClan._id, this.limit.get());
-    }
-
-    if (availableChats.LFG.show) {
-      // People looking for group
-      Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
-    }
-
-    if (availableChats.Game.show) {
-      // Events relevant to you
-      Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
-    }
-
-    if (availableChats.Offtopic.show) {
-      // Events relevant to you
-      Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
-    }
-
-    if (availableChats.Help.show) {
-      // Events relevant to you
-      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
-    }
-
-    this.subscribing = true;
   });
 });
 

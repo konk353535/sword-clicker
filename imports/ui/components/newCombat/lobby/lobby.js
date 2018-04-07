@@ -11,7 +11,7 @@ const TYPES = {
   afk: 'Adventure',
 }
 
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
@@ -32,8 +32,12 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state.set('maxFloor', 1);
 
   // Resubscribe
-  Meteor.subscribe('otherBattlers', 3);
-  Meteor.subscribe('battles');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('otherBattlers', 3, Meteor.user().currentGame);
+      Meteor.subscribe('battles', Meteor.user().currentGame);
+    }
+  });
 
   // Api Call
   /*
@@ -42,49 +46,51 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   });*/
 
   Tracker.autorun(() => {
-    const currentGroup = Groups.findOne({
-      members: Meteor.userId()
-    });
-
-    let localBalancer = Meteor.userId();
-    if (currentGroup) {
-      localBalancer = currentGroup.balancer;
-    }
-
-    // Lots of hacks follow, I'm so sorry
-    const currentBattleList = BattlesList.findOne({
-      owners: Meteor.userId()
-    });
-
-    if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
-      window.balancer = localBalancer;
-      $.ajax({
-        url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
-      }).done(function() {
-        window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
-          transports: ['websocket'],
-          forceNew: true,
-        });
+    if (Meteor.user() && Meteor.user().currentGame) {
+      const currentGroup = Groups.findOne({
+        members: Meteor.userId()
       });
-    }
 
-    if (!currentGroup) {
-      return;
-    }
-
-    const groupsCombat = Combat.find({
-      owner: {
-        $in: currentGroup.members
+      let localBalancer = Meteor.userId();
+      if (currentGroup) {
+        localBalancer = currentGroup.balancer;
       }
-    }).fetch();
 
-    if (groupsCombat.length === currentGroup.members.length) {
-      return;
+      // Lots of hacks follow, I'm so sorry
+      const currentBattleList = BattlesList.findOne({
+        owners: Meteor.userId()
+      });
+
+      if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
+        window.balancer = localBalancer;
+        $.ajax({
+          url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
+        }).done(function() {
+          window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
+            transports: ['websocket'],
+            forceNew: true,
+          });
+        });
+      }
+
+      if (!currentGroup) {
+        return;
+      }
+
+      const groupsCombat = Combat.find({
+        owner: {
+          $in: currentGroup.members
+        }
+      }).fetch();
+
+      if (groupsCombat.length === currentGroup.members.length) {
+        return;
+      }
+
+      setTimeout(() => {
+        Meteor.subscribe('combat', Meteor.user().currentGame);
+      }, 1000);
     }
-
-    setTimeout(() => {
-      Meteor.subscribe('combat');
-    }, 1000);
   });
 
   Tracker.autorun(() => {
@@ -274,22 +280,24 @@ Template.lobbyPage.rendered = function () {
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.towerFloor !== undefined) {
-        instance.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.towerFloor !== undefined) {
+        instance.state.set('usersCurrentFloor', userGame.uiState.towerFloor);
       } else {
         instance.state.set('usersCurrentFloor', 1);
       }
 
-      if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
-        instance.state.set('currentLevel', myUser.uiState.questLevel);
-      } else if (myUser.personalQuest) {
-        instance.state.set('currentLevel', myUser.personalQuest.level);
+      if (userGame.uiState && userGame.uiState.questLevel !== undefined) {
+        instance.state.set('currentLevel', userGame.uiState.questLevel);
+      } else if (userGame.personalQuest) {
+        instance.state.set('currentLevel', userGame.personalQuest.level);
       }
 
-      if (myUser.uiState && myUser.uiState.newCombatType !== undefined) {
-        instance.state.set('type', myUser.uiState.newCombatType);
-        if (myUser.uiState.newCombatType === 'group') {
+      if (userGame.uiState && userGame.uiState.newCombatType !== undefined) {
+        instance.state.set('type', userGame.uiState.newCombatType);
+        if (userGame.uiState.newCombatType === 'group') {
           if (!$('.tt-hint').length) {
             Meteor.typeahead.inject();
           }
@@ -325,7 +333,8 @@ Template.lobbyPage.helpers({
 
   currentGroup() {
     return Groups.findOne({
-      members: Meteor.userId()
+      members: Meteor.userId(),
+      game: Meteor.user().currentGame
     });
   },
 
@@ -374,11 +383,13 @@ Template.lobbyPage.helpers({
 
   showInvites() {
     const currentGroup = Groups.findOne({
-      members: Meteor.userId()
+      members: Meteor.userId(),
+      game: Meteor.user().currentGame
     });
 
     const pendingInvites = Groups.find({
-      invites: Meteor.userId()
+      invites: Meteor.userId(),
+      game: Meteor.user().currentGame
     }).fetch();
 
     if (pendingInvites.length <= 0) {
@@ -452,7 +463,8 @@ Template.lobbyPage.helpers({
 
   currentGroupMembers() {
     const currentGroup = Groups.findOne({
-      members: Meteor.userId()
+      members: Meteor.userId(),
+      game: Meteor.user().currentGame
     });
 
     let combats;
@@ -460,7 +472,8 @@ Template.lobbyPage.helpers({
       combats = Combat.find({
         owner: {
           $in: currentGroup.members
-        }
+        },
+        game: Meteor.user().currentGame
       }).fetch();
 
       if (currentGroup.invitesDetails && currentGroup.invitesDetails.length > 0) {
@@ -471,7 +484,8 @@ Template.lobbyPage.helpers({
       }
     } else {
       combats = Combat.find({
-        owner: Meteor.userId()
+        owner: Meteor.userId(),
+        game: Meteor.user().currentGame
       }).fetch();
     }
 

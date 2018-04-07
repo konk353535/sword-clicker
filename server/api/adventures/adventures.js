@@ -273,11 +273,11 @@ Meteor.methods({
     // Add rewards
     targetAdventure.rewards.forEach((reward) => {
       if (reward.type === 'gold') {
-        addGold(reward.amount, Meteor.userId());
+        addGold(reward.amount, userDoc._id, userDoc.currentGame);
       } else if (reward.type === 'item') {
         addItem(reward.itemId, reward.amount, Meteor.userId());
       } else if (reward.type === 'xp') {
-        addXp(reward.skill, reward.amount, Meteor.userId());
+        addXp(reward.skill, reward.amount, userDoc._id, userDoc.currentGame);
       }
     })
   },

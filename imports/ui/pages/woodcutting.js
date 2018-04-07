@@ -26,7 +26,7 @@ Template.woodcuttingPage.onCreated(function bodyOnCreated() {
   this.state.set('firingWoodcutterIndexConfirm', false);
 
   // Show woodcutting
-  Meteor.subscribe('woodcutting');
+  Meteor.subscribe('woodcutting', Meteor.user().currentGame);
 
   woodcuttingPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {

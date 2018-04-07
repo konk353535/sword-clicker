@@ -10,6 +10,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
 import { Clans } from '/imports/api/clans/clans';
+import { Games } from '/imports/api/games/games';
 
 import { addXp } from '/server/api/skills/skills.js';
 import { addItem } from '/server/api/items/items.js';
@@ -128,14 +129,12 @@ Meteor.methods({
   'users.search'(searchValue) {
     const userDoc = Meteor.user();
     const owner = userDoc._id;
-    const game = userDoc.currentGame;
 
     if (searchValue.length < 3 || !/^\w+$/.test(searchValue)) {
       return [];
     }
 
     return Users.find({
-      game,
       username: {
         $regex: `${searchValue}*`
       }
@@ -276,6 +275,27 @@ Meteor.publish('userGame', function(game) {
 });
 
 Meteor.publish('friendsFeed', function(data) {
+  if (data === 'games') {
+    const games = Games.find({
+      members: this.userId,
+      mainGame: false
+    }).fetch();
+
+    return UserGames.find({
+      game: {
+        $in: games.map((game) => game._id)
+      }
+    }, {
+      fields: {
+        'owner': 1,
+        'username': 1,
+        'lastAction': 1,
+        'lastActionDate': 1,
+        'partyId': 1
+      }
+    });
+  }
+
   const userDoc = Users.findOne(this.userId);
   const owner = userDoc._id;
   const game = userDoc.currentGame;
@@ -291,11 +311,12 @@ Meteor.publish('friendsFeed', function(data) {
   });
 
   if (!myFriends) {
-    return Meteor.users.find({
-      _id: this.userId
+    return UserGames.find({
+      owner: this.userId
     }, {
       fields: {
         'gold': 1,
+        'owner': 1,
         'username': 1
       }
     });
@@ -313,6 +334,7 @@ Meteor.publish('friendsFeed', function(data) {
     }
   }, {
     fields: {
+      'owner': 1,
       'username': 1,
       'lastAction': 1,
       'lastActionDate': 1,

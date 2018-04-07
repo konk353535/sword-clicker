@@ -29,7 +29,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'newCombat'}}active{{/if}}" href="/newCombat">
+              <a class="nav-link {{#if $eq currentRoute 'newCombat'}}active{{/if}}" href="/combat">
                 Battle
                 {{#if showPendingInvites}}
                   <span class="red-dot"></span>
@@ -74,31 +74,23 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{currentUser.username}}
               </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/achievements" style="cursor: pointer">
-                  Achievements
-                </a>
-                {{#if currentUser.tutorial}}
-                  <a class="dropdown-item skip-tutorial" style="cursor: pointer">
-                    Skip Tutorial
+              <div class="dropdown-menu dropdown-menu-right" style="min-width: 200px" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item d-flex align-items-center text-muted" href="/games">Games</a>
+                {{#each gamesList}}
+                  <a class="dropdown-item d-flex align-items-center switch-game" href="#"  data-game="{{this._id}}">
+                    <div class="flex-grow mr-3 {{#if this.active}}text-primary{{/if}}">
+                      {{this.name}}
+                    </div>
+                    {{this.members.length}} <img src="/icons/team.svg" class="ml-1 extra-small-icon">
                   </a>
-                {{/if}}
-                {{#if floatingTextDisabled}}
-                  <a class="dropdown-item enable-floating-text" style="cursor: pointer">
-                    Enable floating text
-                  </a>
-                {{else}}
-                  <a class="dropdown-item disable-floating-text" style="cursor: pointer">
-                    Disable floating text
-                  </a>
-                {{/if}}
+                {{/each}}
+                <div class="dropdown-divider"></div>
                 {{#if currentUser.isGuest}}
-                  <label class="text-danger">Danger, your a guest</label>
-                  <a class="dropdown-item" href="/guestSettings">
-                    Set name and password now
+                  <a class="dropdown-item text-primary" href="/guestSettings">
+                    Set name and password
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger guest-sign-out-btn" style="cursor: pointer">
+                  <a class="dropdown-item guest-sign-out-btn" style="cursor: pointer">
                     Sign Out
                   </a>
                 {{else}}

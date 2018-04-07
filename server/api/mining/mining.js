@@ -197,7 +197,7 @@ const attackMineSpace = function (id, mining, owner, game, multiplier = 1) {
       amount = 8 + Math.round(Math.random() * 4);
     }
 
-    addXp('mining', oreConstants.xp * amount);
+    addXp('mining', oreConstants.xp * amount, owner, game);
 
     if (oreConstants.itemId === 'gem') {
       addFakeGems(1, Meteor.userId());

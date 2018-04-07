@@ -51,6 +51,16 @@
           </div>
         {{/if}}
 
+        {{#if firstPendingGameInvite}}
+          <div class="d-flex align-items-center mb-3">
+            Game invite to {{firstPendingGameInvite.gameName}} from {{firstPendingGameInvite.inviteeName}}
+            <div class="d-flex flex-grow justify-content-end">
+              <button class="btn btn-primary mr-2 accept-game-invite" data-id={{firstPendingGameInvite._id}}>Accept</button>
+              <button class="btn btn-danger decline-game-invite" data-id={{firstPendingGameInvite._id}}>Decline</button>
+            </div>
+          </div>
+        {{/if}}
+
         {{#if $gte currentGroupMembers.length 2}}
           <div class="mb-3 d-flex flex-column">
             <div class="d-flex align-items-center">
@@ -282,8 +292,10 @@
     " style="width: 80px">
       {{#if computedFriend.afk}}
         {{> readableDuration startDate=computedFriend.lastActionDate}}
-      {{else}}
+      {{else if friend.lastAction}}
         {{friend.lastAction}}
+      {{else}}
+        Never
       {{/if}}
     </div>
     <div class="flex-grow text-capitalize"

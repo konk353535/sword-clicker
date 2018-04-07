@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { FarmingSpace } from '/imports/api/farming/farming.js';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 
 import '../components/farming/farmSpace.js';
 import './farming.html';
@@ -15,16 +15,22 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   // Farming
-  Meteor.subscribe('farmingSpace');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('farmingSpace', Meteor.user().currentGame);
+    }
+  });
 
   this.state.set('currentTab', 'shop');
   this.state.set('seedsFilter', 'food');
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.farmingTab !== undefined) {
-        this.state.set('currentTab', myUser.uiState.farmingTab);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.farmingTab !== undefined) {
+        this.state.set('currentTab', userGame.uiState.farmingTab);
       } else {
         this.state.set('currentTab', 'shop');
       }

@@ -10,7 +10,11 @@ import './otherBattlers.html';
 Template.otherBattlersPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  Meteor.subscribe('otherBattlers', 100);
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {  
+      Meteor.subscribe('otherBattlers', 100, Meteor.user().currentGame);
+    }
+  });
 });
 
 Template.otherBattlersPage.events({

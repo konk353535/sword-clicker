@@ -14,6 +14,7 @@ import { Abilities } from '../../api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Games } from '/imports/api/games/games.js';
 
+import { joinGame } from '/server/api/games/games';
 import { addItem } from '/server/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
@@ -371,168 +372,14 @@ Accounts.onCreateUser((options, user) => {
   user._id = Random.id();
   const userId = user._id;
   user.battleSecret = uuid.v4();
-  user.games = [mainGame._id];
+  user.games = [];
   user.currentGame = mainGame._id;
 
   if (options.isGuest) {
     user.isGuest = options.isGuest;
   }
 
-  UserGames.insert({
-    owner: user._id,
-    game: mainGame._id,
-    username: user.username,
-    uiState: {
-      showChat: true,
-      craftingFilter: 'mining'
-    },
-    gold: 0,
-    floor: 1
-  });
-
-  // Mining stuff
-  Skills.insert({
-    type: 'mining',
-    createdAt: new Date(),
-    owner: userId,
-    game: mainGame._id,
-    xp: 0,
-    username: user.username
-  });
-
-  Mining.insert({
-    owner: userId,
-    collector: {
-      stone: 1
-    },
-    game,
-    storage: {},
-    lastGameUpdated: new Date(),
-    miners: [{
-      id: MINING.miners.primitive_miner.id,
-      amount: 1
-    }],
-    prospecting: ['stone']
-  });
-
-  MiningSpace.insert({
-    owner: userId,
-    game,
-    oreId: MINING.ores.stone.id,
-    health: MINING.ores.stone.healthMax,
-    index: 0
-  });
-
-  for (let i = 1; i < 12; i++) {
-    MiningSpace.insert({
-      owner: userId,
-      game,
-      oreId: MINING.ores.stone.id,
-      health: MINING.ores.stone.healthMax,
-      index: i
-    }, (err, res) => {
-      
-    });
-  }
-
-  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId, mainGame._id);
-
-  Items.update({
-    owner: userId,
-    game,
-    itemId: ITEMS['sharp_rock_pickaxe'].id
-  }, {
-    $set: {
-      equipped: true,
-      slot: ITEMS['sharp_rock_pickaxe'].slot
-    }
-  });
-
-  // Update mining stats
-  updateMiningStats(userId, game, true);
-
-  // Non mining stuff
-  Skills.insert({
-    type: 'defense',
-    createdAt: new Date(),
-    owner: userId,
-    game,
-    username: user.username
-  }, (err, res) => {
-    Skills.insert({
-      type: 'attack',
-      createdAt: new Date(),
-      owner: userId,
-      game,
-      username: user.username
-    });
-
-    Skills.insert({
-      type: 'health',
-      createdAt: new Date(),
-      owner: userId,
-      game,
-      level: SKILLS.health.baseLevel,
-      username: user.username
-    });
-
-    Skills.insert({
-      type: 'crafting',
-      createdAt: new Date(),
-      owner: userId,
-      game,
-      username: user.username
-    });
-
-    Skills.insert({
-      type: 'total',
-      createdAt: new Date(),
-      owner: userId,
-      game,
-      username: user.username
-    });
-
-    Crafting.insert({
-      owner: userId,
-      game,
-      currentlyCrafting: []
-    });
-
-    Combat.insert({
-      towerContributions: [],
-      owner: userId,
-      game,
-      stats: {
-        health: 50,
-        healthMax: 50,
-        energy: 40
-      }
-    });
-
-    Adventures.insert({
-      owner: userId,
-      game,
-      adventures: [],
-      lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
-      timeTillUpdate: 60 * 3
-    });
-
-    Abilities.insert({
-      owner: userId,
-      game,
-      learntAbilities: [{
-        "abilityId": "slash",
-        "level": 1,
-        "equipped": false,
-        "slot": "mainHand",
-        "currentCooldown": 0
-      }]
-    });
-
-    // Update combat stats
-    updateCombatStats(userId, game, user.username);
-  });
-
+  joinGame(game, user._id, user.username);
 
   return user;
 });

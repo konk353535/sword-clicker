@@ -33,6 +33,7 @@ import '../imports/ui/body.js';
 import '../imports/ui/nav.js';
 import '../imports/ui/pages/updates.js';
 import '../imports/ui/pages/clan.js';
+import '../imports/ui/pages/games.js';
 import '../imports/ui/pages/guestSettings.js';
 import '../imports/ui/pages/profile.js';
 import '../imports/ui/pages/home.js';
@@ -47,7 +48,6 @@ import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';
 import '../imports/ui/pages/skills.js';
 import '../imports/ui/pages/patchNotes.js';
-import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
 import '../imports/ui/pages/shop.js';
 

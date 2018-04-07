@@ -6,6 +6,7 @@ export const State = new Mongo.Collection('state');
 
 StateSchema = new SimpleSchema({
   name: { type: String },
+  game: { type: String },
   value: { type: Object, blackbox: true, optional: true },
 });
 

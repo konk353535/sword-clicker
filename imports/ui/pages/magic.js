@@ -5,7 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 
 // Component used in the template
 import '/imports/ui/components/magic/astronomyTab/astronomyTab.js';
@@ -20,7 +20,7 @@ Template.magicPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
 
-  Meteor.subscribe('abilities');
+  Meteor.subscribe('abilities', Meteor.user().currentGame);
 
   Meteor.call('astronomy.gameUpdate');
   astronomyPageTimer = Meteor.setInterval(function () {
@@ -31,9 +31,11 @@ Template.magicPage.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.magicTab !== undefined) {
-        this.state.set('currentTab', myUser.uiState.magicTab);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.magicTab !== undefined) {
+        this.state.set('currentTab', userGame.uiState.magicTab);
       } else {
         this.state.set('currentTab', 'astronomy');
       }

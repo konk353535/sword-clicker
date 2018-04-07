@@ -20,6 +20,7 @@ import { Users, UserGames } from '/imports/api/users/users';
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, userDoc }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
+  const game = userDoc.currentGame;
   let battleData = { enemies: [] };
 
   if (level) {
@@ -42,7 +43,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Is user in a group? If so this is a group battle
   const currentGroup = Groups.findOne({
     members: userDoc._id,
-    game: userDoc.currentGAme
+    game
   });
 
   let battleParticipants = [userDoc._id];
@@ -55,7 +56,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Ensure battle participants aren't already in a battle
   const currentBattle = BattlesList.findOne({
     owners: battleParticipants,
-    game: userDoc.currentGame
+    game
   });
   if (currentBattle) {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while anyone in your group is still in one.');
@@ -69,7 +70,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   battleParticipants.forEach((participant) => {
 
     const activeAdventures = Adventures.findOne({
-      game: userDoc.currentGame,
+      game,
       owner: {
         $in: [participant]
       },
@@ -118,7 +119,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     owners: battleParticipants,
     floor,
     room,
-    game: userDoc.currentGame,
+    game,
     wave,
     level,
     historyStats: {},
@@ -134,7 +135,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     owner: {
       $in: battleParticipants
     },
-    game: userDoc.currentGame
+    game
   }).fetch();
 
   let hasEnergy = true;
@@ -339,7 +340,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Save battle
   const actualBattleId = BattlesList.insert({
     owners: newBattle.owners,
-    game: userDoc.currentGame,
+    game,
     group: currentGroup ? currentGroup._id : false,
     createdAt: new Date(),
     activated: false
@@ -371,7 +372,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     owner: {
       $in: battleParticipants
     },
-    game: userDoc.currentGame
+    game
   }, {
     $inc: {
       'stats.energy': (battleEnergyCost * -1)

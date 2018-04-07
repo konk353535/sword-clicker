@@ -10,8 +10,9 @@ import { Mining } from '/imports/api/mining/mining.js';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
+import { GameInvites } from '/imports/api/games/games';
 import { Clans, ClanInvites } from '/imports/api/clans/clans';
 
 import './gameHome.html';
@@ -66,16 +67,22 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     }
   });
 
-  Meteor.subscribe('otherBattlers', 3);
-  Meteor.subscribe('friends');
-  Meteor.subscribe('clanInvites');
-  Meteor.subscribe('mining');
-  Meteor.subscribe('combat');
-  Meteor.subscribe('clans');
-  Meteor.subscribe('woodcutting');
-  Meteor.subscribe('crafting');
-  Meteor.subscribe('friendRequests');
-  Meteor.subscribe('farmingSpace');
+  Meteor.subscribe('gameInvites', true);
+
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('otherBattlers', 3, Meteor.user().currentGame);
+      Meteor.subscribe('friends', Meteor.user().currentGame);
+      Meteor.subscribe('clanInvites', Meteor.user().currentGame);
+      Meteor.subscribe('mining', Meteor.user().currentGame);
+      Meteor.subscribe('combat', Meteor.user().currentGame);
+      Meteor.subscribe('clans', Meteor.user().currentGame);
+      Meteor.subscribe('woodcutting', Meteor.user().currentGame);
+      Meteor.subscribe('crafting', Meteor.user().currentGame);
+      Meteor.subscribe('friendRequests', Meteor.user().currentGame);
+      Meteor.subscribe('farmingSpace', Meteor.user().currentGame);
+    }
+  });
 });
 
 Template.gameHomePage.helpers({
@@ -84,8 +91,8 @@ Template.gameHomePage.helpers({
     const currentClan = Clans.findOne({});
     if (!currentClan) return [];
 
-    return Users.find({
-      _id: {
+    return UserGames.find({
+      owner: {
         $in: currentClan.members
       }
     }, {
@@ -117,8 +124,8 @@ Template.gameHomePage.helpers({
   friendsList() {
     const friendsObject = Friends.findOne({});
 
-    return Users.find({
-      _id: {
+    return UserGames.find({
+      owner: {
         $in: friendsObject.friends
       }
     }, {
@@ -162,7 +169,8 @@ Template.gameHomePage.helpers({
 
   currentGroupMembers() {
     const currentGroup = Groups.findOne({
-      members: Meteor.userId()
+      members: Meteor.userId(),
+      game: Meteor.user().currentGame
     });
 
     let combats;
@@ -170,7 +178,8 @@ Template.gameHomePage.helpers({
       combats = Combat.find({
         owner: {
           $in: currentGroup.members
-        }
+        },
+        game: Meteor.user().currentGame
       }).fetch();
 
       if (currentGroup.invitesDetails && currentGroup.invitesDetails.length > 0) {
@@ -181,7 +190,8 @@ Template.gameHomePage.helpers({
       }
     } else {
       combats = Combat.find({
-        owner: Meteor.userId()
+        owner: Meteor.userId(),
+        game: Meteor.user().currentGame
       }).fetch();
     }
 
@@ -283,6 +293,12 @@ Template.gameHomePage.helpers({
     return Template.instance().state.get('updatingWoodcutting');
   },
 
+  firstPendingGameInvite() {
+    return GameInvites.findOne({
+      invitee: Meteor.userId()
+    });
+  },
+
   firstPendingInvite() {
     return Groups.findOne({
       invites: Meteor.userId()
@@ -354,6 +370,28 @@ Template.gameHomePage.events({
         });
       } else {
         instance.state.get('creatingGuest', false);
+      }
+    });
+  },
+
+  'click .decline-game-invite'(event, instance) {
+    // Get target data
+    const inviteId = instance.$(event.target).closest('.decline-game-invite').data('id');
+
+    Meteor.call('games.decline', inviteId, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
+  'click .accept-game-invite'(event, instance) {
+    // Get target data
+    const inviteId = instance.$(event.target).closest('.accept-game-invite').data('id');
+
+    Meteor.call('games.accept', inviteId, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
       }
     });
   },

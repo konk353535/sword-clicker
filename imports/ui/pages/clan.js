@@ -14,9 +14,13 @@ Template.clanPage.onCreated(function bodyOnCreated() {
   this.state.set('leaderboardData', []);
   this.state.set('sortOption', 'total');
 
-  Meteor.subscribe('clans');
-  Meteor.subscribe('clanInvites');
-  Meteor.subscribe('friendsFeed');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('clans', Meteor.user().currentGame);
+      Meteor.subscribe('clanInvites', Meteor.user().currentGame);
+      Meteor.subscribe('friendsFeed', Meteor.user().currentGame);
+    }
+  });
 
   this.autorun(() => {
     const myClan = Clans.findOne();

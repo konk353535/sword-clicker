@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Session } from 'meteor/session';
 import { Users, UserGames } from '/imports/api/users/users.js';
+import { Games } from '/imports/api/games/games.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Meteor } from "meteor/meteor";
 
@@ -31,6 +32,14 @@ Template.nav.events({
     Router.go('/guestSettings');
   },
 
+  'click .switch-game'(event, instance) {
+    const game = instance.$(event.target).closest('.switch-game').attr('data-game');
+
+    if (game !== Meteor.user().currentGame) {
+      Meteor.call('games.switch', game);
+    }
+  },
+
   'click .disable-floating-text'(event, instance) {
     Session.set('floatingTextDisabled', true);
   },
@@ -47,6 +56,14 @@ Template.nav.events({
 Template.nav.helpers({
   currentRoute() {
     return Router.current().route.getName();
+  },
+
+  gamesList() {
+    return Games.find({}).map((game) => {
+      game.active = game._id === Meteor.user().currentGame;
+
+      return game;
+    })
   },
 
   hasCraftingSkill() {
@@ -74,6 +91,7 @@ Template.nav.helpers({
   },
 
   userGame() {
+    console.log(UserGames.find({}).fetch());
     return UserGames.findOne({});
   },
 

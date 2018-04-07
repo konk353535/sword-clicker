@@ -20,6 +20,20 @@ Router.route('/landing', {
   }
 });
 
+Router.route('/games', {
+
+  name: 'games',
+
+  template: 'gamesPage',
+
+  title: 'games',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/clan', {
 
   name: 'clan',
@@ -219,18 +233,6 @@ Router.route('/crafting', {
 });
 
 Router.route('/combat', {
-
-  name: 'combat',
-
-  template: 'combatPage',
-
-  yieldRegions: {
-    'nav': { to: 'nav' },
-    'footer': { to: 'footer' }
-  }
-});
-
-Router.route('/newCombat', {
 
   name: 'newCombat',
 

@@ -16,7 +16,7 @@ import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
@@ -101,7 +101,7 @@ export const resolveLoot = function(battle) {
       winner = _.sample(greedMembers).id;
     }
 
-    addItem(loot.itemId, loot.amount, winner);
+    addItem(loot.itemId, loot.amount, winner, battle.game);
 
     let update = {
       $set: {},
@@ -157,8 +157,15 @@ export const completeBattle = function (actualBattle) {
 
   let win = aliveUnits.length > 0;
   let ngRewards = [];
+  const game = actualBattle.game;
 
-  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
+  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({
+    name: STATE_BUFFS.combat,
+    'value.activeTo': {
+      $gte: moment().toDate()
+    },
+    game
+  }));
 
   // Remove from battle list
   const battlesDeleted = removeBattle(actualBattle.id)
@@ -212,7 +219,6 @@ export const completeBattle = function (actualBattle) {
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
-
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
@@ -252,7 +258,7 @@ export const completeBattle = function (actualBattle) {
             });
           }
 
-          addXp(skillName, skillXpPortion, unit.id);
+          addXp(skillName, skillXpPortion, unit.id, game);
         }
       });
     });
@@ -265,7 +271,6 @@ export const completeBattle = function (actualBattle) {
       rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
     }
 
-
     for (let i = 0; i < rewards.length; i++) {
       const rewardTable = rewards[i];
       const diceRoll = Math.random();
@@ -275,7 +280,6 @@ export const completeBattle = function (actualBattle) {
         break;          
       }
     }
-
 
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
@@ -335,7 +339,7 @@ export const completeBattle = function (actualBattle) {
           });
         } else {
           const luckyOwner = _.sample(owners);
-          addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
+          addItem(rewardGained.itemId, rewardGained.amount, luckyOwner, game);
           finalTickEvents.push({
             type: 'item',
             amount: rewardGained.amount,
@@ -348,7 +352,7 @@ export const completeBattle = function (actualBattle) {
         }
       } else if (rewardGained.type === 'gold') {
         const luckyOwner = _.sample(owners);
-        addGold(rewardGained.amount, luckyOwner);
+        addGold(rewardGained.amount, luckyOwner, game);
         finalTickEvents.push({
           type: 'gold',
           amount: rewardGained.amount,
@@ -375,7 +379,8 @@ export const completeBattle = function (actualBattle) {
             owner: luckyOwner
           });
           Combat.update({
-            owner: luckyOwner
+            owner: luckyOwner,
+            game
           }, {
             $set: {
               boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
@@ -419,7 +424,7 @@ export const completeBattle = function (actualBattle) {
             ];
 
             const targetStat = _.sample(possibleStats);
-            addXp(targetStat, Math.round(actualPointsGained * 50), owner);
+            addXp(targetStat, Math.round(actualPointsGained * 50), owner, game);
 
             finalTickEvents.push({
               type: 'xp',
@@ -437,6 +442,7 @@ export const completeBattle = function (actualBattle) {
 
             const existingScores = FloorWaveScores.findOne({
               owner,
+              game,
               floor: actualBattle.floor
             });
 
@@ -451,6 +457,7 @@ export const completeBattle = function (actualBattle) {
             } else {
               FloorWaveScores.insert({
                 owner,
+                game,
                 username: ownerObject.name,
                 points: actualPointsGained,
                 floor: actualBattle.floor
@@ -463,6 +470,7 @@ export const completeBattle = function (actualBattle) {
           // Increment total points data
           Floors.update({
             floor: actualBattle.floor,
+            game,
             floorComplete: false
           }, {
             $inc: {
@@ -474,17 +482,23 @@ export const completeBattle = function (actualBattle) {
     } else if (actualBattle.level && actualBattle.wave) {
       // Should only be for one person? but a good habit I guess?
       owners.forEach((owner) => {
-        const userObject = Users.findOne({ _id: owner });
-        if (userObject.personalQuest.level === actualBattle.level) {
+        const userGame = UserGames.findOne({ owner, game });
+        if (userGame.personalQuest.level === actualBattle.level) {
           if (actualBattle.wave + 1 > 5) {
-            Users.update(owner, {
+            UserGames.update({
+              owner,
+              game
+            }, {
               $set: {
                 'personalQuest.level': actualBattle.level + 1,
                 'personalQuest.wave': 1
               }
-            })
+            });
           } else {
-            Users.update(owner, {
+            UserGames.update({
+              owner,
+              game
+            }, {
               $set: {
                 'personalQuest.wave': actualBattle.wave + 1
               }
@@ -551,31 +565,36 @@ export const completeBattle = function (actualBattle) {
 
       let totalSpellsCast = Object.keys(spellsCast).length;
 
-      //
       // Record total number of unique spells cast per battle
-      Users.update(unit.owner, {
+      UserGames.update({
+        owner: unit.owner,
+        game
+      }, {
         $inc: {
           'stats.spellsCast': totalSpellsCast
-        }
-      });
+        }        
+      })
 
-      addXp('magic', totalMagicXp, unit.owner);
+      addXp('magic', totalMagicXp, unit.owner, game);
     }
 
     // Update relevant stuff, use callback so this is non blocking
     Combat.update({
-      owner: unit.owner
+      owner: unit.owner,
+      game
     }, combatModifier, (err, res) => {
       // This is intentionally empty
       // As providing a callback means this will not block the loop from continuing
-      updateAbilityCooldowns({
+      const fakeUserDoc = {
         _id: unit.owner,
-        currentGame: actualBattle.game
-      }, (err, res) => {
+        currentGame: game
+      }
+      updateAbilityCooldowns(fakeUserDoc, (err, res) => {
 
         // Update ability cooldowns ect
         const userAbilities = Abilities.findOne({
-          owner: unit.owner
+          owner: unit.owner,
+          game
         });
 
         if (userAbilities) {
@@ -618,6 +637,7 @@ export const completeBattle = function (actualBattle) {
     allFriendlyUnits.forEach((unit) => {
       BossHealthScores.insert({
         owner: unit.owner,
+        game,
         username: unit.name,
         bossDamage: damageDealt
       });
@@ -632,6 +652,7 @@ export const completeBattle = function (actualBattle) {
         // Complete the floor!
         let updatedCount = Floors.update({
           floor: actualBattle.floor,
+          game,
           floorComplete: false
         }, {
           $set: {
@@ -659,6 +680,7 @@ export const completeBattle = function (actualBattle) {
           // Insert the next floor (To do, make this pass a valid active tower users number)
           const activeTowerUsers = FloorWaveScores.find({
             floor: actualBattle.floor,
+            game,
             points: {
               $gte: 25
             }
@@ -680,6 +702,7 @@ export const completeBattle = function (actualBattle) {
 
           // Create our next floor
           Floors.insert({
+            game,
             floor: actualBattle.floor + 1,
             createdAt: new Date(),
             points: 0,
@@ -701,6 +724,7 @@ export const completeBattle = function (actualBattle) {
 
   const battleId = Battles.insert({
     owners: actualBattle.owners,
+    game,
     finished: true,
     level: actualBattle.level,
     wave: actualBattle.wave,

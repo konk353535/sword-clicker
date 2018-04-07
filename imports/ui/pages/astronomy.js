@@ -22,7 +22,11 @@ Template.astronomyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('hasLearnRequirements', false);
 
-  Meteor.subscribe('astronomy');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('astronomy', Meteor.user().currentGame);
+    }
+  });
 
   astronomyPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {

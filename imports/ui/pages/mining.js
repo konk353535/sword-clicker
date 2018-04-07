@@ -76,10 +76,14 @@ Template.miningPage.onCreated(function bodyOnCreated() {
   this.state.set('editingMiningGear', false);
   this.state.set('upgradingMiningCarts', false);
 
-  // Show mining spaces
-  Meteor.subscribe('miningSpace');
-  // Mining data
-  Meteor.subscribe('mining');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      // Show mining spaces
+      Meteor.subscribe('miningSpace', Meteor.user().currentGame);
+      // Mining data
+      Meteor.subscribe('mining', Meteor.user().currentGame);      
+    }
+  });
 
   this.autorun(() => {
     if (!hasInitGameUpdate && Mining.findOne()) {

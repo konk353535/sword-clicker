@@ -1,0 +1,104 @@
+<template name="gamesPage">
+  <div class="container mt-2">
+    <div class="d-flex flex-grow justify-content-end">
+      <button class="btn btn-primary create-game">
+        Create Game
+      </button>
+    </div>
+    <div class="mt-2">
+      <div class="framed-content-container">
+        {{#each gamesList}}
+          <div class="mb-2">
+            <div class="d-flex align-items-center">
+              <h4 class="flex-grow">
+                {{this.name}}
+              </h4>
+            </div>
+
+            <div class="text-muted">Manage</div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="text-muted">Add Member</div>
+                <form class="d-flex mt-1 flex-grow game-invite" data-game="{{this._id}}">
+                  <input class="form-control typeahead" name="team" id="invitee-name" type="text"
+                    placeholder="Name"
+                    style="width: 100%"
+                    autocomplete="off" spellcheck="off"
+                    data-source="search" />
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-invite ml-2"
+                    >
+                      Invite
+                    </button>
+                  </div>
+                </form>
+                <button class="btn btn-secondary mt-3">Generate Invite Link</button>
+              </div>
+              <div class="col-md-6">
+                <div class="text-muted">Admin Area</div>
+                <form class="d-flex mt-1 flex-grow game-name" data-game="{{this._id}}">
+                  <input class="form-control typeahead" name="team" id="game-name" type="text"
+                    placeholder="{{this.name}}"
+                    style="width: 100%"
+                    autocomplete="off" spellcheck="off"
+                    data-source="search" />
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary update-game-name ml-2"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="text-muted mt-3">Stats</div>
+            <div class="d-flex">
+              <div style="width: 80px">Floor</div> {{this.floor}}
+            </div>
+            <div class="d-flex">
+              <div style="width: 80px">Members</div> {{this.membersCount}}
+            </div>
+            <div class="d-flex">
+              <div style="width: 80px">Active</div> {{this.activeCount}}
+            </div>
+            <div class="d-flex">
+              <div style="width: 80px">Online</div> {{this.onlineCount}}
+            </div>
+
+            {{#unless this.mainGame}}
+              <div class="text-muted mt-3">Members</div>
+              {{#each friend in this.members}}
+                {{#if friend}}
+                  {{> friendRow friend=friend}}
+                {{/if}}
+              {{/each}}
+
+              {{#if this.invites}}
+                <div class="text-muted">
+                  Invited
+                </div>
+                {{#each invite in this.invites}}
+                  <div class="d-flex align-items-center flex-grow mb-1">
+                    <div class="badge text-capitalize badge-grey-0 mr-1
+                    " style="width: 80px">
+                      Pending
+                    </div>
+                    <div class="flex-grow text-capitalize"
+                      style="max-width: 100px; overflow: hidden; text-overflow: ellipsis;"
+                    >
+                      {{invite.inviteeName}}
+                    </div>
+                  </div>
+                {{/each}}
+              {{/if}}
+            {{/unless}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

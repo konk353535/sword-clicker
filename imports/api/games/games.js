@@ -11,3 +11,15 @@ GamesSchema = new SimpleSchema({
 });
 
 Games.attachSchema(GamesSchema);
+
+export const GameInvites = new Mongo.Collection('gameInvites');
+
+GameInvitesSchema = new SimpleSchema({
+  game: { type: String, regEx: SimpleSchema.RegEx.Id },
+  inviteeName: { type: String },
+  gameName: { type: String },
+  inviterName: { type: String },
+  invitee: { type: String, regEx: SimpleSchema.RegEx.Id }
+});
+
+GameInvites.attachSchema(GameInvitesSchema);

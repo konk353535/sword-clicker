@@ -11,7 +11,7 @@ import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 import { BattlesList } from '/imports/api/battles/battles.js';
 
 
@@ -71,7 +71,7 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
   this.state.set('hasLearnRequirements', false);
 
   // Show currently inscripting items
-  Meteor.subscribe('inscription');
+  Meteor.subscribe('inscription', Meteor.user().currentGame);
 
   Meteor.call('abilities.fetchLibrary', (err, abilityResults) => {
     if (abilityResults) {
@@ -85,15 +85,17 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.inscriptionFilter !== undefined) {
-        this.state.set('recipeFilter', myUser.uiState.inscriptionFilter);
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
+    if (userGame) {
+      if (userGame.uiState && userGame.uiState.inscriptionFilter !== undefined) {
+        this.state.set('recipeFilter', userGame.uiState.inscriptionFilter);
       } else {
         this.state.set('recipeFilter', 'abilities');
       }
 
-      if (myUser.uiState && myUser.uiState.inscriptionLevelFilter !== undefined) {
-        this.state.set('levelFilter', myUser.uiState.inscriptionLevelFilter);
+      if (userGame.uiState && userGame.uiState.inscriptionLevelFilter !== undefined) {
+        this.state.set('levelFilter', userGame.uiState.inscriptionLevelFilter);
       } else {
         this.state.set('levelFilter', 1);
       }

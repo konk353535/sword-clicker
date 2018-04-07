@@ -17,6 +17,9 @@ import '../components/newCombat/selectAbilities/selectAbilities.js';
 import '../components/newCombat/lobby/lobby.js';
 import '../components/newCombat/consumables/consumables.js';
 import '../components/newCombat/adventuresTab/adventuresTab.js';
+import '../components/combat/currentBattleUi/currentBattleUi.js';
+import '../components/combat/foodIcon/foodIcon.js';
+import '../components/combat/buffIcon/buffIcon.js';
 import './newCombat.html';
 
 Template.newCombatPage.onCreated(function bodyOnCreated() {

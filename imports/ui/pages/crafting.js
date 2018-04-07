@@ -93,7 +93,11 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   // Show currently crafting items
-  Meteor.subscribe('crafting');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('crafting', Meteor.user().currentGame);
+    }
+  });
 
   this.state.set('selectedCraftingOptions', []);
   this.state.set('selectedRecipe', false);

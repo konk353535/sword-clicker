@@ -8,6 +8,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Combat } from '/imports/api/combat/combat.js';
+import { UserGames, Users } from '/imports/api/users/users';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
 import './components/accounts/accounts.html';
@@ -42,16 +43,12 @@ tippy.browser.onUserInputChange = function (type) {
 Template.body.onCreated(function () {
 
   this.autorun(() => {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    if (!myUser) return;
+    const userGame = UserGames.findOne({ owner: myUser._id, game: myUser.currentGame });
     // Check for gold to make sure we have the full user doc
-    if (Meteor.user() && Meteor.user().gold && !Meteor.user().uiState) {
+    if (userGame && userGame.gold && !userGame.uiState) {
       Meteor.call('users.initUiState');
-    }
-  });
-
-  Tracker.autorun(() => {
-    if (Meteor.user() && Meteor.user().currentGame) {
-      // Subscribe to my game
-      Meteor.subscribe('userGame', Meteor.user().currentGame);
     }
   });
 
@@ -143,7 +140,9 @@ Template.body.onCreated(function () {
       if (skill.type !== 'total' || skill.owner !== Meteor.userId()) {
         const skillCache = cachedSkills[skill.type];
         if (skillCache) {
-          if (skillCache.level === skill.level) {
+          if (skillCache.game !== skill.game) {
+            // Do nothing... yea I know this isn't great logic
+          } else if (skillCache.level === skill.level) {
             // Show tick for this skill
             let xpGained = skill.xp - skillCache.xp;
             if (xpGained > 0) {
@@ -184,11 +183,13 @@ Template.body.onCreated(function () {
           skillCache.xp = skill.xp;
           skillCache.level = skill.level;
           skillCache.owner = skill.owner;
+          skillCache.game = skill.game;
         } else {
           cachedSkills[skill.type] = {
             xp: skill.xp,
             level: skill.level,
-            owner: skill.owner
+            owner: skill.owner,
+            game: skill.game
           }
         }
       }
@@ -289,24 +290,32 @@ Template.body.onCreated(function () {
     });
   }, 20);*/
 
-  // Show items
-  Meteor.subscribe('items');
-  // Show skills
-  Meteor.subscribe('skills');
-  // Show Abilities
-  Meteor.subscribe('abilities');
-  // Show groups
-  Meteor.subscribe('groups');
-  // Show combat details for groups
-  Meteor.subscribe('combat');
-  // Adventures
-  Meteor.subscribe('adventures');
-  // Battle List
-  Meteor.subscribe('battlesList');
-  // State
-  Meteor.subscribe('state');
-  // Clans
-  Meteor.subscribe('clans');
+  Meteor.subscribe('games');
+
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      // Show items
+      Meteor.subscribe('items', Meteor.user().currentGame);
+      // Show skills
+      Meteor.subscribe('skills', Meteor.user().currentGame);
+      // Show Abilities
+      Meteor.subscribe('abilities', Meteor.user().currentGame);
+      // Show groups
+      Meteor.subscribe('groups', Meteor.user().currentGame);
+      // Show combat details for groups
+      Meteor.subscribe('combat', Meteor.user().currentGame);
+      // Adventures
+      Meteor.subscribe('adventures', Meteor.user().currentGame);
+      // Battle List
+      Meteor.subscribe('battlesList', Meteor.user().currentGame);
+      // State
+      Meteor.subscribe('state', Meteor.user().currentGame);
+      // Clans
+      Meteor.subscribe('clans', Meteor.user().currentGame);
+      // Subscribe to my game
+      Meteor.subscribe('userGame', Meteor.user().currentGame);
+    }
+  });
 
   // Only use these if summary list is showing & not mobile
 

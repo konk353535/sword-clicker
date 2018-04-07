@@ -21,7 +21,11 @@ const descriptions = {
 Template.astronomyTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
-  Meteor.subscribe('astronomy');
+  Tracker.autorun(() => {
+    if (Meteor.user() && Meteor.user().currentGame) {
+      Meteor.subscribe('astronomy', Meteor.user().currentGame);
+    }
+  });
 
   Meteor.call('astronomy.hireMageCost', (err, res) => {
     if (!err) {

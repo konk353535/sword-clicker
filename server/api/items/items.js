@@ -765,6 +765,58 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'items.sellItem' }, 50, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'items' }, 1000, 5 * MINUTE);
 
+export const transformItem = function transformItem(doc) {
+  const itemConstants = ITEMS[doc.itemId];
+  if (!itemConstants) {
+    return;
+  }
+
+  doc.icon = itemConstants.icon;
+  doc.name = itemConstants.name;
+  doc.isTwoHanded = itemConstants.isTwoHanded;
+  doc.sellPrice = itemConstants.sellPrice;
+  doc.slot = itemConstants.slot;
+  if (itemConstants.stats) {
+    doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
+    doc.isWeapon = itemConstants.isWeapon;
+    doc.isEquippable = itemConstants.isEquippable;
+    if (doc.extraStats) {
+      Object.keys(doc.extraStats).forEach((statName) => {
+        if (doc.stats[statName]) {
+          doc.stats[statName] += doc.extraStats[statName];
+        }
+      });
+    }
+  }
+
+  if (itemConstants.enchantments) {
+    doc.enchantments = [];
+    itemConstants.enchantments.forEach((buffId) => {
+      if (BUFFS[buffId]) {
+        doc.enchantments.push(BUFFS[buffId].description());
+      }
+    });
+  }
+
+  if (itemConstants.tier) {
+    doc.tier = itemConstants.tier;
+  }
+
+  if (itemConstants.category === 'seed') {
+    doc.plantingDetails = FARMING.plants[itemConstants.produces];
+  }
+
+  if (_.isFunction(itemConstants.description)) {
+    doc.description = itemConstants.description();
+  }
+
+  if (itemConstants.shiftActionData) {
+    doc.shiftActionData = itemConstants.shiftActionData;
+  }
+
+  return doc;
+}
+
 Meteor.publish('items', function() {
 
   const userDoc = Users.findOne(this.userId);
@@ -774,57 +826,7 @@ Meteor.publish('items', function() {
   //Transform function
   // TODO: We can move items to local dev, and avoid having to do all this extra processing here
   // Just send raw item to client, then they can do the transforms with the constants locally
-  var transform = function(doc) {
-    const itemConstants = ITEMS[doc.itemId];
-    if (!itemConstants) {
-      return;
-    }
-
-    doc.icon = itemConstants.icon;
-    doc.name = itemConstants.name;
-    doc.isTwoHanded = itemConstants.isTwoHanded;
-    doc.sellPrice = itemConstants.sellPrice;
-    doc.slot = itemConstants.slot;
-    if (itemConstants.stats) {
-      doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
-      doc.isWeapon = itemConstants.isWeapon;
-      doc.isEquippable = itemConstants.isEquippable;
-      if (doc.extraStats) {
-        Object.keys(doc.extraStats).forEach((statName) => {
-          if (doc.stats[statName]) {
-            doc.stats[statName] += doc.extraStats[statName];
-          }
-        });
-      }
-    }
-
-    if (itemConstants.enchantments) {
-      doc.enchantments = [];
-      itemConstants.enchantments.forEach((buffId) => {
-        if (BUFFS[buffId]) {
-          doc.enchantments.push(BUFFS[buffId].description());
-        }
-      });
-    }
-
-    if (itemConstants.tier) {
-      doc.tier = itemConstants.tier;
-    }
-
-    if (itemConstants.category === 'seed') {
-      doc.plantingDetails = FARMING.plants[itemConstants.produces];
-    }
-
-    if (_.isFunction(itemConstants.description)) {
-      doc.description = itemConstants.description();
-    }
-
-    if (itemConstants.shiftActionData) {
-      doc.shiftActionData = itemConstants.shiftActionData;
-    }
-
-    return doc;
-  }
+  var transform = transformItem
 
   var self = this;
 

@@ -33,6 +33,7 @@ import '../imports/ui/body.js';
 import '../imports/ui/nav.js';
 import '../imports/ui/pages/updates.js';
 import '../imports/ui/pages/clan.js';
+import '../imports/ui/pages/game.js';
 import '../imports/ui/pages/games.js';
 import '../imports/ui/pages/guestSettings.js';
 import '../imports/ui/pages/profile.js';

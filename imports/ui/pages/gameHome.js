@@ -13,6 +13,7 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users, UserGames } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 import { Skills } from '/imports/api/skills/skills';
+import { Items } from '/imports/api/items/items';
 import { GameInvites, Games } from '/imports/api/games/games';
 import { Clans, ClanInvites } from '/imports/api/clans/clans';
 
@@ -25,6 +26,13 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state.set('userSuggestions', []);
   this.state.set('updatingWoodcutting', false);
   this.state.set('updatingMining', false);
+  this.state.set('gameItems', []);
+
+  Meteor.call('games.itemsList', (err, res) => {
+    if (res) {
+      this.state.set('gameItems', res);
+    }
+  });
 
   this.autorun(() => {
     const nowTimeStamp = TimeSync.serverTime();
@@ -125,6 +133,10 @@ Template.gameHomePage.helpers({
     });
   },
 
+  gameItems() {
+    return Template.instance().state.get('gameItems');
+  },
+
   otherBattlers() {
     const otherBattlers = Groups.find({
       lastBattleStarted: {
@@ -187,6 +199,12 @@ Template.gameHomePage.helpers({
         return;
       }
       callback(res.map(function(v){ return {value: v.username}; }));
+    });
+  },
+
+  teamItems() {
+    return Items.find({}, {
+      limit: 10
     });
   },
 

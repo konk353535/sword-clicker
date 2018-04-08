@@ -1,0 +1,89 @@
+<template name="gamePage">
+  <div class="container mt-2">
+    <div class="d-flex flex-wrap">
+      <div class="mr-3 hidden-md-down" style="min-width: 150px">
+        <a href="/clan" class="side-link-item">Buildings</a>
+        <a href="/clan" class="side-link-item">Members</a>
+        <a href="/clan" class="side-link-item active">Bank</a>
+        <a href="/clan" class="side-link-item">Stats</a>
+        <a href="/clan" class="side-link-item">Events</a>
+        <a href="/clan" class="side-link-item">Settings</a>
+      </div>
+      <div class="home-page-content game-home-page-container">
+        <div class="d-flex flex-column mb-3">
+          <div>Bank</div>
+          <div class="d-flex flex-wrap">
+            {{#each gameItems}}
+              {{> itemIcon item=this classes="small"}}
+            {{/each}}
+          </div>        </div>
+        <div class="d-flex flex-column">
+          <div>Inventory</div>
+          <div class="d-flex flex-wrap">
+            {{#each myItems}}
+              {{> itemIcon item=this classes="small"}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="live-feed-content d-flex flex-column flex-grow">
+        <div>
+          Level 57
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal deposit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form class="modal-content deposit-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Deposit Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{#if depositItem}}
+            {{> itemIcon item=depositItem classes="small"}}
+          {{/if}}
+          <div>How many to deposit?</div>
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control deposit-amount-input" value={{depositAmount}}>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Deposit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal withdraw-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form class="modal-content withdraw-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Withdraw Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{#if withdrawItem}}
+            {{> itemIcon item=withdrawItem classes="small"}}
+          {{/if}}
+          <div>How many to withdraw?</div>
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control withdraw-amount-input" value={{withdrawAmount}}>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Withdraw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>

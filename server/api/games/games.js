@@ -12,15 +12,233 @@ import { Clans } from '/imports/api/clans/clans.js';
 import { Games, GameInvites } from '/imports/api/games/games.js';
 import { Users, UserGames } from '/imports/api/users/users';
 
-import { addItem } from '/server/api/items/items.js';
+
+import { addItem, transformItem } from '/server/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
+
+import _ from 'underscore';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
+
+Meteor.methods({
+
+  'games.updateName'(game, name) {
+    const targetGame = Games.findOne({
+      _id: game,
+      members: Meteor.userId(),
+      mainGame: false
+    });
+
+    if (!targetGame) {
+      throw new Meteor.Error('access-denied', 'Your not in this game');
+    }
+
+    if (name.length < 3 || !/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/.test(name)) {
+      throw new Meteor.Error('invalid-name', 'Invalid name');
+    }
+
+    Games.update(game, {
+      $set: {
+        name: name
+      }
+    });
+  },
+
+  // Deposit an item to game bank
+  'games.deposit'(id, amount = 1) {
+    const userDoc = Meteor.user();
+    const game = userDoc.currentGame;
+    const owner = userDoc._id;
+
+    const myItem = Items.findOne({
+      _id: id,
+      game,
+      owner
+    });
+
+    if (!myItem) {
+      throw new Meteor.Error('invalid', 'Item not found');
+    } else if (myItem.amount < amount) {
+      throw new Meteor.Error('invalid', 'Dont have specified amount');      
+    } else if (!_.isFinite(amount) || amount < 1 || amount > 100000000) {
+      throw new Meteor.Error('invalid', 'Invalid amount');      
+    }
+
+    if (myItem.amount === amount) {
+      const deleted = Items.remove(id);
+
+      if (deleted) {
+        addItem(myItem.itemId, amount, game, game)
+      }
+    } else {
+      const mutated = Items.update(id, {
+        $inc: {
+          amount: (amount * -1)
+        }
+      });
+
+      if (mutated) {
+        addItem(myItem.itemId, amount, game, game)
+      }
+    }
+
+    return getGameItems(game);
+  },
+
+  // Withdraw item from game bank
+  'games.withdraw'(id, amount) {
+    const userDoc = Meteor.user();
+    const game = userDoc.currentGame;
+    const owner = userDoc._id;
+
+    const myGame = Games.findOne(game);
+    if (myGame.mainGame) {
+      throw new Meteor.Error('invalid', 'Cannot withdraw from main game');
+    }
+
+    const myItem = Items.findOne({
+      _id: id,
+      game,
+      owner: game
+    });
+
+    if (!myItem) {
+      throw new Meteor.Error('invalid', 'Item not found');
+    } else if (myItem.amount < amount) {
+      throw new Meteor.Error('invalid', 'Dont have specified amount');      
+    } else if (!_.isFinite(amount) || amount < 1 || amount > 100000000) {
+      throw new Meteor.Error('invalid', 'Invalid amount');      
+    }
+
+    if (myItem.amount === amount) {
+      const deleted = Items.remove(id);
+
+      if (deleted) {
+        addItem(myItem.itemId, amount, owner, game);
+      }
+    } else {
+      const mutated = Items.update(id, {
+        $inc: {
+          amount: (amount * -1)
+        }
+      });
+
+      if (mutated) {
+        addItem(myItem.itemId, amount, owner, game);
+      }
+    }
+
+    return getGameItems(game);
+  },
+
+  // List of items in game bank
+  'games.itemsList'() {
+    const userDoc = Meteor.user();
+    const game = userDoc.currentGame;
+    const owner = userDoc.owner;
+
+    return getGameItems(game);
+  },
+
+  'games.accept'(inviteId) {
+    const userDoc = Meteor.user();
+
+    const gameInvite = GameInvites.findOne({
+      _id: inviteId,
+      invitee: userDoc._id
+    });
+
+    joinGame(gameInvite.game, gameInvite.invitee, userDoc.username);
+
+    GameInvites.remove({
+      _id: gameInvite._id
+    });
+  },
+
+  'games.switch'(game) {
+    const inGame = Games.findOne({
+      _id: game,
+      members: Meteor.userId()
+    });
+
+    if (inGame) {
+      Users.update(Meteor.userId(), {
+        $set: {
+          currentGame: game
+        }
+      });
+    }
+  },
+
+  'games.decline'(inviteId) {
+    const userDoc = Meteor.user();
+    GameInvites.remove({
+      _id: inviteId,
+      invitee: userDoc._id
+    })
+  },
+
+  'games.create'(name) {
+    const userDoc = Meteor.user();
+
+    createGame(name, userDoc._id);
+  },
+
+  'games.invite'(game, username) {
+    const myGame = Games.findOne({
+      _id: game,
+      members: this.userId
+    });
+
+    if (!myGame) {
+      throw new Meteor.Error('game-does-not-exist', 'Game does not exist');
+    }
+
+    const targetUser = Users.findOne({
+      username: username.toLowerCase(),
+    });
+
+    if (!targetUser) {
+      throw new Meteor.Error('target-user', 'Target user does not exist');
+    }
+
+    if (UserGames.findOne({
+      owner: targetUser._id,
+      game
+    })) {
+      throw new Meteor.Error('user-already-in-game', 'User already in this game');      
+    }
+
+    if (GameInvites.findOne({
+      game,
+      invitee: targetUser._id
+    })) {
+      throw new Meteor.Error('game-invited', 'Existing game invite');
+    }
+
+    GameInvites.insert({
+      game,
+      gameName: myGame.name,
+      inviteeName: targetUser.username,
+      invitee: targetUser._id,
+      inviterName: Meteor.user().username
+    });
+  }
+});
+
+export const getGameItems = function getGameItems(game) {
+  return Items.find({
+    owner: game,
+    game
+  }).fetch().map((item) => {
+    return transformItem(item);
+  });
+}
 
 export const createGame = function createGame(name, owner, mainGame = false) {
   const gameId = Games.insert({
@@ -242,116 +460,6 @@ export const joinGame = function joinGame(game, owner, username) {
     updateCombatStats(owner, game, username);
   });
 }
-
-Meteor.methods({
-
-  'games.updateName'(game, name) {
-    const targetGame = Games.findOne({
-      _id: game,
-      members: Meteor.userId(),
-      mainGame: false
-    });
-
-    if (!targetGame) {
-      throw new Meteor.Error('access-denied', 'Your not in this game');
-    }
-
-    if (name.length < 3 || !/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/.test(name)) {
-      throw new Meteor.Error('invalid-name', 'Invalid name');
-    }
-
-    Games.update(game, {
-      $set: {
-        name: name
-      }
-    });
-  },
-
-  'games.accept'(inviteId) {
-    const userDoc = Meteor.user();
-
-    const gameInvite = GameInvites.findOne({
-      _id: inviteId,
-      invitee: userDoc._id
-    });
-
-    joinGame(gameInvite.game, gameInvite.invitee, userDoc.username);
-
-    GameInvites.remove({
-      _id: gameInvite._id
-    });
-  },
-
-  'games.switch'(game) {
-    const inGame = Games.findOne({
-      _id: game,
-      members: Meteor.userId()
-    });
-
-    if (inGame) {
-      Users.update(Meteor.userId(), {
-        $set: {
-          currentGame: game
-        }
-      });
-    }
-  },
-
-  'games.decline'(inviteId) {
-    const userDoc = Meteor.user();
-    GameInvites.remove({
-      _id: inviteId,
-      invitee: userDoc._id
-    })
-  },
-
-  'games.create'(name) {
-    const userDoc = Meteor.user();
-
-    createGame(name, userDoc._id);
-  },
-
-  'games.invite'(game, username) {
-    const myGame = Games.findOne({
-      _id: game,
-      members: this.userId
-    });
-
-    if (!myGame) {
-      throw new Meteor.Error('game-does-not-exist', 'Game does not exist');
-    }
-
-    const targetUser = Users.findOne({
-      username: username.toLowerCase(),
-    });
-
-    if (!targetUser) {
-      throw new Meteor.Error('target-user', 'Target user does not exist');
-    }
-
-    if (UserGames.findOne({
-      owner: targetUser._id,
-      game
-    })) {
-      throw new Meteor.Error('user-already-in-game', 'User already in this game');      
-    }
-
-    if (GameInvites.findOne({
-      game,
-      invitee: targetUser._id
-    })) {
-      throw new Meteor.Error('game-invited', 'Existing game invite');
-    }
-
-    GameInvites.insert({
-      game,
-      gameName: myGame.name,
-      inviteeName: targetUser.username,
-      invitee: targetUser._id,
-      inviterName: Meteor.user().username
-    });
-  }
-});
 
 Meteor.publish('gameInvites', function(justMe = false) {
 

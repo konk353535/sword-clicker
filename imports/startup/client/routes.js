@@ -20,6 +20,20 @@ Router.route('/landing', {
   }
 });
 
+Router.route('/game', {
+
+  name: 'game',
+
+  template: 'gamePage',
+
+  title: 'game',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/games', {
 
   name: 'games',

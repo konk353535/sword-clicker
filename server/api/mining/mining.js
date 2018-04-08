@@ -162,7 +162,8 @@ const attackMineSpace = function (id, mining, owner, game, multiplier = 1) {
       let xpToAdd = mineSpace.isCluster ? 10 : 1;
       if (targetMiner.xp + xpToAdd >= MINING.miners.xpToLevel(targetMiner.level) && targetMiner.level < 20) {
         Mining.update({
-          owner: Meteor.userId(),
+          owner,
+          game,
           miners: {
             $elemMatch: {
               id: minerName
@@ -178,7 +179,8 @@ const attackMineSpace = function (id, mining, owner, game, multiplier = 1) {
         });
       } else {
         Mining.update({
-          owner: Meteor.userId(),
+          owner,
+          game,
           miners: {
             $elemMatch: {
               id: minerName
@@ -200,9 +202,9 @@ const attackMineSpace = function (id, mining, owner, game, multiplier = 1) {
     addXp('mining', oreConstants.xp * amount, owner, game);
 
     if (oreConstants.itemId === 'gem') {
-      addFakeGems(1, Meteor.userId());
+      addFakeGems(1, owner, game);
     } else {
-      addItem(oreConstants.itemId, 1 * amount);
+      addItem(oreConstants.itemId, 1 * amount, owner, game);
     }
 
   } else {

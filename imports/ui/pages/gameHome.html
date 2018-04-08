@@ -16,7 +16,7 @@
           <div class="d-flex align-items-center text-danger mb-3">
             You are currently in a battle
             <div class="d-flex flex-grow justify-content-end">
-              <a href="/newCombat" class="btn btn-secondary">View</a>
+              <a href="/combat" class="btn btn-secondary">View</a>
             </div>
           </div>
         {{/if}}
@@ -64,7 +64,7 @@
         {{#if $gte currentGroupMembers.length 2}}
           <div class="mb-3 d-flex flex-column">
             <div class="d-flex align-items-center">
-              <a class="text-muted" href="/newCombat">Your Party</a>
+              <a class="text-muted" href="/combat">Your Party</a>
             </div>
             <div class="d-flex justify-content-center flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF; margin-bottom: 20px">
               {{#each currentGroupMembers}}
@@ -75,6 +75,20 @@
             </div>
           </div>
         {{/if}}
+
+        <div class="d-flex mb-3">
+          {{#each skills}}
+            <div class="d-flex flex-column skill-container icon-box-border mr-1 p-1 align-items-center" style="width: 60px" title="{{this.xp}}xp / {{this.xpToLevel}}xp ({{this.percentage}}%)">
+              <img src="/icons/{{this.type}}.svg" class="extra-small-icon" />
+              <div class="my-1">{{this.level}}</div>
+              <div class="progress" style="flex: 1 1 auto; height: 16px; width: 100%">
+                <div class="progress-bar" role="progressbar" style="width: {{this.percentage}}%;" aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
+                  {{this.percentage}}%
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
 
         <!-- Mining -->
         <div class="d-flex flex-column mb-3">
@@ -176,7 +190,7 @@
         <!-- Adventures -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/newCombat" class="text-muted">Adventures</a>
+            <a href="/combat" class="text-muted">Adventures</a>
             <div class="d-flex justify-content-end flex-grow">
               <div class="text-muted ml-3">
                 {{> readableDuration endDate=lastAdventure.endDate}}

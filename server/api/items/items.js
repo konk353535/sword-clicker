@@ -100,6 +100,7 @@ export const addItem = function (itemId, amount = 1, specificUserId, game) {
     } else {
       const updatedCount = Items.update({
         owner,
+        game,
         itemId
       }, {
         $inc: { amount: amount }

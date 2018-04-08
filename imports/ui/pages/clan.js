@@ -6,7 +6,7 @@ import './clan.html';
 
 import {sortBy} from 'lodash';
 import { Clans, ClanInvites } from '/imports/api/clans/clans.js';
-import { Users } from '/imports/api/users/users.js';
+import { Users, UserGames } from '/imports/api/users/users.js';
 
 Template.clanPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -108,7 +108,7 @@ Template.clanPage.helpers({
 
     return sortBy(instance.state.get('leaderboard').map((user) => {
       const newUser = {};
-      newUser.username = Users.findOne({ _id: user.owner }).username;
+      newUser.username = UserGames.findOne({ owner: user.owner }).username;
       Object.keys(user).forEach((key) => {
         const newKey = key.replace('-weekly', '');
         newUser[newKey] = user[key]; 
@@ -142,8 +142,8 @@ Template.clanPage.helpers({
     const currentClan = Clans.findOne({});
     if (!currentClan) return [];
 
-    return Users.find({
-      _id: {
+    return UserGames.find({
+      owner: {
         $in: currentClan.members
       }
     }, {

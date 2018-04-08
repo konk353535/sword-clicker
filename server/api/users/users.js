@@ -310,7 +310,7 @@ Meteor.publish('friendsFeed', function(data) {
     game
   });
 
-  if (!myFriends) {
+  if (!myFriends && !myClan) {
     return UserGames.find({
       owner: this.userId
     }, {
@@ -322,7 +322,7 @@ Meteor.publish('friendsFeed', function(data) {
     });
   }
 
-  let allUsersInFeed = myFriends.friends;
+  let allUsersInFeed = myFriends ? myFriends.friends : [];
   if (myClan) {
     allUsersInFeed.push(...myClan.members);
   }
@@ -330,7 +330,7 @@ Meteor.publish('friendsFeed', function(data) {
   return UserGames.find({
     game,
     owner: {
-      $in: myFriends.friends      
+      $in: allUsersInFeed     
     }
   }, {
     fields: {

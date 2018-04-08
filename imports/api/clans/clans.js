@@ -10,6 +10,7 @@ ClansSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
   game: { type: String, regEx: SimpleSchema.RegEx.Id },
   members: { type: [String] },
+  gameDefault: { type: Boolean, optional: true },
   name: { type: String }
 });
 

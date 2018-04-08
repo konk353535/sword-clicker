@@ -1,6 +1,6 @@
 import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
-import { Users } from '/imports/api/users/users';
+import { Users, UserGames } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Groups } from '/imports/api/groups/groups';
 import { Clans } from '/imports/api/clans/clans';
@@ -61,8 +61,9 @@ SimpleChat.configure ({
     const userDoc = Users.findOne(this.userId);
 
     if (userDoc.lastActionDate && moment().isAfter(moment(userDoc.lastActionDate).add(1, 'minutes'))) {
-      Users.update({
-        _id: userDoc._id
+      UserGames.update({
+        owner: userDoc._id,
+        game: userDoc.currentGame
       }, {
         $set: {
           lastAction: 'chatting',

@@ -8,6 +8,7 @@ import { Combat } from '/imports/api/combat/combat.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
+import { Clans } from '/imports/api/clans/clans.js';
 import { Games, GameInvites } from '/imports/api/games/games.js';
 import { Users, UserGames } from '/imports/api/users/users';
 
@@ -45,15 +46,38 @@ export const createGame = function createGame(name, owner, mainGame = false) {
   });
 
   if (!mainGame) {
+    // Create a clan for this game
+    Clans.insert({
+      name: name,
+      game: gameId,
+      members: [],
+      owner,
+      gameDefault: true
+    });
+
     joinGame(gameId, owner, user.username);
   }
 }
 
 export const joinGame = function joinGame(game, owner, username) {
 
+  // Join default clan
+  const defaultClone = Clans.findOne({
+    game,
+    gameDefault: true
+  });
+
+  if (defaultClone) {
+    Clans.update(defaultClone._id, {
+      $push: {
+        members: owner
+      }
+    });
+  }
+
   Users.update(owner, {
     $push: {
-      games: games
+      games: game
     }
   });
 

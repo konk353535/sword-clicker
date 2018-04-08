@@ -12,7 +12,8 @@ import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users, UserGames } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
-import { GameInvites } from '/imports/api/games/games';
+import { Skills } from '/imports/api/skills/skills';
+import { GameInvites, Games } from '/imports/api/games/games';
 import { Clans, ClanInvites } from '/imports/api/clans/clans';
 
 import './gameHome.html';
@@ -61,9 +62,14 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-    const friendsObject = Friends.findOne({});
-    if (friendsObject) {
-      Meteor.subscribe('friendsFeed', friendsObject.friends.join(','));
+    if (Meteor.user() && Meteor.user().currentGame) {
+      const friendsObject = Friends.findOne({});
+      // Need to resub if friends changes
+      if (friendsObject) {
+        Meteor.subscribe('friendsFeed', friendsObject.friends.join(','), Meteor.user().currentGame);
+      } else {
+        Meteor.subscribe('friendsFeed', Meteor.user().currentGame);
+      }
     }
   });
 
@@ -99,6 +105,23 @@ Template.gameHomePage.helpers({
       sort: {
         lastActionDate: -1
       }
+    });
+  },
+
+  skills() {
+    setTimeout(() => {
+      tippy('.skill-container');
+    }, 100);
+
+    return Skills.find({
+      type: {
+        $not: 'total'
+      }
+    }).fetch().map((skill) => {
+      skill.percentage = Math.round((skill.xp / skill.xpToLevel) * 100);
+      skill.xp = Math.floor(skill.xp);
+      skill.xpToLevel = Math.ceil(skill.xpToLevel);
+      return skill;
     });
   },
 

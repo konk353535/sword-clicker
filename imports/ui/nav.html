@@ -79,7 +79,7 @@
                 {{#each gamesList}}
                   <a class="dropdown-item d-flex align-items-center switch-game" href="#"  data-game="{{this._id}}">
                     <div class="flex-grow mr-3 {{#if this.active}}text-primary{{/if}}">
-                      {{this.name}}
+                      {{this.name}} - {{this._id}}
                     </div>
                     {{this.members.length}} <img src="/icons/team.svg" class="ml-1 extra-small-icon">
                   </a>

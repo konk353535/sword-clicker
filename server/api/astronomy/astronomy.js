@@ -106,6 +106,7 @@ Meteor.methods({
   },
   // Hire a specific type of mage
   'astronomy.hireMage'(type) {
+    const userDoc = Meteor.user();
     if (!_.contains(['fire', 'water', 'air', 'earth'], type)) {
       throw new Meteor.Error("missed-requirmeents", "invalid mage type");
     }
@@ -114,8 +115,6 @@ Meteor.methods({
     // Do we have room for a new mage?
     const currentMages = astronomy.mages.length;
     let maxMages = ASTRONOMY.baseMaxMages;
-
-    const userDoc = Meteor.user();
 
     // Does user have astronomy upgrade
     const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);

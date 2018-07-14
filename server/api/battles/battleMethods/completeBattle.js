@@ -628,7 +628,7 @@ export const completeBattle = function (actualBattle) {
             custom: {
               roomType: 'Game'
             },
-            roomId: 'General'
+            roomId: `General-${actualBattle.server}`
           });
 
           // Insert the next floor (To do, make this pass a valid active tower users number)
@@ -658,6 +658,7 @@ export const completeBattle = function (actualBattle) {
             floor: actualBattle.floor + 1,
             createdAt: new Date(),
             points: 0,
+            server: actualBattle.server,
             pointsMax: newPointMax, // Need some kind of
             health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
             healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers

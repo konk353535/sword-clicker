@@ -2,6 +2,8 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Random } from 'meteor/random';
 import moment from 'moment';
 
+import { Servers } from '/imports/api/servers/servers';
+
 import { Skills } from '../../api/skills/skills.js';
 import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
@@ -364,6 +366,20 @@ Accounts.onCreateUser((options, user) => {
     showSummaryList: false,
     craftingFilter: 'mining'
   }
+
+  let targetServer;
+  if (options.server) {
+    targetServer = Servers.findOne({
+      _id: options.server
+    });
+  } else {
+    targetServer = Servers.findOne({
+      name: 'Classic'
+    });    
+  }
+
+  user.server = targetServer._id;
+
   user.tutorial = {
     hideCombat: true,
   
@@ -511,6 +527,7 @@ Accounts.onCreateUser((options, user) => {
     });
 
     Combat.insert({
+      server: targetServer._id,
       owner: userId,
       stats: {
         health: 50,
@@ -548,11 +565,15 @@ Accounts.onCreateUser((options, user) => {
 const currentFloor = Floors.findOne();
 
 if (!currentFloor) {
+  const targetServer = Servers.findOne({
+    name: 'Classic'
+  });
   const pointsMax = FLOORS.getNewPointCount(1, 10);
 
   // Create our first floor
   Floors.insert({
     floor: 1,
+    server: targetServer._id,
     createdAt: new Date(),
     points: 0,
     pointsMax

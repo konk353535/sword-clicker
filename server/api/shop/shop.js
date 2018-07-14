@@ -61,7 +61,7 @@ Meteor.methods({
         custom: {
           roomType: 'Game'
         },
-        roomId: 'General'
+        roomId: `General-${userDoc.server}`
       });
 
       /* TODO in mongo db

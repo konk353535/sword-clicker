@@ -10,6 +10,7 @@ import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
+import { Servers } from '/imports/api/servers/servers';
 
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
@@ -104,10 +105,14 @@ Meteor.methods({
       wave = _.random(1, 5);
     }
 
-    startBattle({ level, wave });
+    const server = userDoc.server;
+
+    startBattle({ level, wave, server });
   },
 
   'battles.findTowerBattle'(floor, room) {
+    const userDoc = Meteor.user();
+
     if (Meteor.user().logEvents) {
       Events.insert({
         owner: this.userId,
@@ -118,7 +123,7 @@ Meteor.methods({
     }
 
     // Ensure the floor specified is currently open
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
     if (floor > currentCommunityFloor.floor) {
       throw new Meteor.Error("no-sir", "Dont have access to that floor!");
@@ -151,18 +156,20 @@ Meteor.methods({
       }      
     }
 
+    const server = userDoc.server;
+
     if (room === 'boss') {
       if (currentCommunityFloor.floor === floor && canBossBattle) {
         const bossHealth = currentCommunityFloor.health;
 
-        return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
+        return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
         const bossId = FLOORS[floor].boss.enemy.id;
         if (bossId) {
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
-          return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
+          return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else {
           return;
         }
@@ -175,15 +182,15 @@ Meteor.methods({
     if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
-      return startBattle({ floor, room, isTowerContribution, isExplorationRun });
+      return startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle({ floor, room, isTowerContribution, isExplorationRun });
+    startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
   },
 
   'battles.getWaveDetails'() {
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
     return {
       points: Math.floor(currentFloor.points),
@@ -194,7 +201,7 @@ Meteor.methods({
 
   'battles.getFloorDetails'(floorNumber = 1) {
     // Fetch specified floor details ( constants + current floor details )
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
     // Can't access floors the community hasn't got to yet
     if (currentFloor.floor < floorNumber) {
@@ -247,7 +254,7 @@ Meteor.methods({
       limit = 200;
     }
     // Fetch current active floor
-    const currentFloor = Floors.findOne({ floorComplete: false });
+    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
     // Fetch top 10 for each difficulty
     return FloorWaveScores.find({
@@ -262,7 +269,7 @@ Meteor.methods({
 
   'battles.myFloorContributions'() {
     // current floor contribution + ranking
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
     // Fetch there waveScores
     const userWaveScores = FloorWaveScores.findOne({
       owner: Meteor.userId(),
@@ -350,6 +357,10 @@ Meteor.publish('battlesList', function () {
   return BattlesList.find({
     owners: this.userId
   });
+});
+
+Meteor.publish('servers', function () {
+  return Servers.find();
 });
 
 Meteor.publish("redis-battles", function (currentBattle) {

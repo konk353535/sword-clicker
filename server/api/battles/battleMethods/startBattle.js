@@ -20,7 +20,7 @@ import { progressBattle } from './progressBattle.js';
 
 const redis = new Meteor.RedisCollection('redis');
 
-export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
@@ -340,6 +340,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;
+  newBattle.server = server;
 
   if (!useStreamy) {
     redis.set(`battles-${newBattle._id}`, JSON.stringify(newBattle));

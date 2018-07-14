@@ -19,6 +19,12 @@ AccountsTemplates.configure({
   sendVerificationEmail: true,
   lowercaseUsername: true,
 
+  preSignUpHook(password, options) {
+    if (Meteor.isClient) {
+      options.server = $('.server-selector').attr('id');
+    }
+  },
+
   // Appearance
   showAddRemoveServices: false,
   // Email field required for this to work
@@ -63,7 +69,7 @@ AccountsTemplates.configureRoute('signIn', {
 
 AccountsTemplates.configureRoute('signUp', {
   name: 'join',
-  path: '/join',
+  path: '/join'
 });
 
 AccountsTemplates.configureRoute('resetPwd', {

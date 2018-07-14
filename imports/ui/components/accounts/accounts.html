@@ -30,6 +30,20 @@
   {{/if}}
 </template>
 
+<template name="serverSelector">
+  <div style="margin-bottom: 5px; font-size: 14px; font-weight: 500;">Server</div>
+  <div class="dropdown">
+    <button class="btn btn-secondary btn-block server-selector dropdown-toggle" type="button" id="{{selectedServer._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{selectedServer.name}}
+    </button>
+    <div class="dropdown-menu" style="width: 100%" aria-labelledby="dropdownMenuButton">
+      {{#each allServers}}
+        <a class="dropdown-item select-name" href="#" data-id="{{this._id}}">{{this.name}}</a>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
 <template name="playAsGuestBtn">
   <button type="button" class="btn btn-secondary btn-block play-as-guest-btn mt-3 {{#if creatingGuest}}disabled{{/if}}">
     {{#if creatingGuest}}
@@ -51,6 +65,7 @@
         {{#each fields}}
           {{> atInput}}
         {{/each}}
+        {{> serverSelector}}
         {{#if showReCaptcha}}
           {{> atReCaptcha}}
         {{/if}}

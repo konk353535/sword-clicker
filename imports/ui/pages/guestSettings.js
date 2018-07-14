@@ -1,11 +1,14 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Servers } from '/imports/api/servers/servers';
 
 import './guestSettings.html';
 
 Template.guestSettingsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('error', '');
+
+  Meteor.subscribe('servers');
 });
 
 Template.guestSettingsPage.events({
@@ -57,6 +60,12 @@ Template.guestSettingsPage.events({
 })
 
 Template.guestSettingsPage.helpers({
+
+  allServers() {
+    console.log(Servers.find({}).fetch());
+    return Servers.find({});
+  },
+
   error() {
     return Template.instance().state.get('error');
   },

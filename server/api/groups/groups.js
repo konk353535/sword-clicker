@@ -135,6 +135,7 @@ Meteor.methods({
         // Add this user as leader
         // Add other user as second player
         const newlyCreatedGroupId = Groups.insert({
+          server: Meteor.user().server,
           leaderName: Meteor.user().username,
           leader: this.userId,
           members: [this.userId],
@@ -282,6 +283,7 @@ Meteor.methods({
 
     // Does the specified username exist
     const targetUser = Users.findOne({
+      server: Meteor.user().server,
       $or: [{
         username: username.toLowerCase().replace(/ /g,'')
       }, {
@@ -330,6 +332,7 @@ Meteor.methods({
     } else {
       // Create group with myself and the target user
       Groups.insert({
+        server: Meteor.user().server,
         leaderName: Meteor.user().username,
         leader: this.userId,
         members: [this.userId],

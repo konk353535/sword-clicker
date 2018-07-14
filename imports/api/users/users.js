@@ -14,6 +14,7 @@ UserSchema = new SimpleSchema({
   fakeGems: { type: Number, defaultValue: 0 },
   fakeGemsToday: { type: Number, defaultValue: 0 },
 
+  server: { type: String },
   banned: { type: Boolean, optional: true },
 
   membershipTo: { type: Date, optional: true },

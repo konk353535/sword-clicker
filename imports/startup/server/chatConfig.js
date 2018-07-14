@@ -2,10 +2,33 @@ import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
+import { Servers } from '/imports/api/servers/servers';
+import { Floors } from '/imports/api/floors/floors';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addItem } from '/server/api/items/items.js';
 
+import { FLOORS } from '/server/constants/floors/index.js';
+
 import moment from 'moment';
+
+const createNewServer = function (name, iteration) {
+  // Create the server
+  const newServer = Servers.insert({
+    membersCount: 0,
+    createdAt: new Date(),
+    name,
+    iteration
+  });
+
+  // Create the floor
+  Floors.insert({
+    floor: 1,
+    server: newServer,
+    createdAt: new Date(),
+    points: 0,
+    pointsMax: FLOORS.getNewPointCount(1, 10)
+  });
+}
 
 SimpleChat.configure ({
   texts:{
@@ -92,6 +115,14 @@ SimpleChat.configure ({
         });
 
         return false;  
+      } else if (/\/createserver/.test(message)) {
+        const splitMessage = message.split(' ');
+        const name = splitMessage[1];
+        const iteration = parseInt(splitMessage[2]);
+
+        createNewServer(name, iteration);
+
+        return false;
       } else if (/\/permamute/.test(message)) {
         // Find user
         const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() });

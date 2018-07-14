@@ -82,10 +82,15 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
   this.autorun(() => {
     const currentGroup = Groups.findOne();
+    const myUserDoc = Users.findOne({ _id: Meteor.userId() });
     const availableChats = this.state.get('availableChats');
 
+    if (!myUserDoc) {
+      return;
+    }
+
     if (availableChats.General.show) {
-      Meteor.subscribe("simpleChats", 'General', this.limit.get());
+      Meteor.subscribe("simpleChats", `General-${myUserDoc.server}`, this.limit.get());
     }
 
     if (currentGroup && availableChats.Party.show) {
@@ -244,7 +249,7 @@ Template.chatWindow.events({
       if (currentChatId === 'Party') {
         roomId = Groups.findOne({ members: Meteor.userId() })._id;
       } else {
-        roomId = currentChatId;
+        roomId = `${currentChatId}-${Meteor.user().server}`;
       }
 
       Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {

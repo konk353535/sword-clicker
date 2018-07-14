@@ -325,6 +325,7 @@ Meteor.publish("userData", function () {
       _id: this.userId
     }, {
       fields: {
+        'server': 1,
         'gold': 1,
         'uiState': 1,
         'tutorial': 1,

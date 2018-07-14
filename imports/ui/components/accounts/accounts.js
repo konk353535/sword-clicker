@@ -2,8 +2,40 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Random } from 'meteor/random';
+import { Servers } from '/imports/api/servers/servers';
 
 import './accounts.html';
+
+Template.serverSelector.onCreated(function bodyOnCreated() {
+  this.state = new ReactiveDict();
+
+  Meteor.subscribe('servers');
+
+  this.autorun(() => {
+    this.state.set('selectedServer', Servers.findOne({
+      name: 'Classic'
+    }));
+  });
+});
+
+Template.serverSelector.helpers({
+  selectedServer() {
+    return Template.instance().state.get('selectedServer')
+  },
+
+  allServers() {
+    return Servers.find();
+  }
+})
+
+Template.serverSelector.events({
+  'click .select-name'(event, instance) {
+    const id = instance.$(event.target).closest('.select-name').data('id');
+    instance.state.set('selectedServer', Servers.findOne({ 
+      _id: id
+    }));
+  }
+});
 
 Template.playAsGuestBtn.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();

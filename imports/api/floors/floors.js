@@ -7,6 +7,7 @@ export const Floors = new Mongo.Collection('floors');
  
 FloorsSchema = new SimpleSchema({
   floor: { type: Number },
+  server: { type: String },
   createdAt: { type: Date },
   finishedAt: { type: Date, optional: true },
   points: { type: Number, decimal: true, defaultValue: 0 },

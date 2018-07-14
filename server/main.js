@@ -6,7 +6,14 @@ import { ITEMS } from '/server/constants/items/index';
 import { ABILITIES } from '/server/constants/combat/abilities';
 import { resumeBattle } from '/server/api/battles/battles';
 
+import { Users } from '/imports/api/users/users';
+import { Groups } from '/imports/api/groups/groups.js';
+import { Floors } from '/imports/api/floors/floors.js';
+import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
+import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+
 import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Servers } from '/imports/api/servers/servers';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -23,6 +30,63 @@ import { addItem } from '/server/api/items/items';
 import { genericTowerMonsterGenerator } from '/server/constants/floors/generators/genericTower';
 
 Meteor.startup(() => {
+
+  const classicServer = Servers.findOne({
+    name: 'Classic'
+  });
+
+  if (!classicServer) {
+    const classicServerId = Servers.insert({
+      name: 'Classic',
+      iteration: 0,
+      createdAt: new Date(),
+      membersCount: 0
+    });
+
+    // Assign server to existing documents
+    // -- User Doc
+    Users.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+
+    // -- Group Doc
+    Groups.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+
+    // -- Floor Doc
+    Floors.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+
+    // -- Boss Health Score Doc
+    BossHealthScores.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+
+    // -- Floor Wave Score Doc
+    FloorWaveScores.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+
+    // -- Combat Doc
+    Combat.update({}, {
+      $set: {
+        server: classicServerId
+      }
+    }, { multi: true });
+  }
+
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);

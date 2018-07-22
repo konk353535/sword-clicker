@@ -23,7 +23,7 @@ export const WIZARD_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 25
+      level: 20
     }],
     enchantments: ['phoenix_hat']
   },
@@ -42,7 +42,7 @@ export const WIZARD_ITEMS = {
       accuracy: -25,
       magicPower: 5,
       magicArmor: 5,
-      healingPower: 10
+      healingPower: 15
     },
     extraStats: {
       healthMax: 10,
@@ -52,7 +52,7 @@ export const WIZARD_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 15
+      level: 10
     }],
     enchantments: ['druidic_hat'],
   },
@@ -67,23 +67,22 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit healing energy',
     isEquippable: true,
     stats: {
-      healthMax: 60,
-      magicPower: 8,
+      healthMax: 30,
+      magicPower: 6,
       magicArmor: 5,
-      healingPower: 10
+      healingPower: 15
     },
     extraStats: {
-      healthMax: 60,
+      healthMax: 30,
       magicPower: 2,
       healingPower: 4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 15
+      level: 10
     }]
   },
-
 
   druids_pants: {
     id: 'druids_pants',
@@ -95,20 +94,20 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit healing energy',
     isEquippable: true,
     stats: {
-      healthMax: 60,
-      magicPower: 8,
+      healthMax: 30,
+      magicPower: 6,
       magicArmor: 5,
-      healingPower: 10
+      healingPower: 15
     },
     extraStats: {
-      healthMax: 60,
+      healthMax: 30,
       magicPower: 2,
       healingPower: 4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 15
+      level: 10
     }]
   },
 

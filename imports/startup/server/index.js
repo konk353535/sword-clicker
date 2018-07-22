@@ -374,8 +374,14 @@ Accounts.onCreateUser((options, user) => {
     });
   } else {
     targetServer = Servers.findOne({
-      name: 'Classic'
+      name: 'Seasonal'
     });    
+  }
+
+  if (!targetServer) {
+    targetServer = Servers.findOne({
+      name: 'Classic'
+    });
   }
 
   user.server = targetServer._id;

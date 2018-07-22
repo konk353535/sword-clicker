@@ -109,6 +109,12 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         const resultsMap = {};
         results.forEach((result) => {
           resultsMap[result.id] = result;
+          if(result.name.includes('pigment')) {
+            let herb = result.required.filter((item) => item.type === 'item');
+            if (herb.length) {
+              result.herb_icon = herb[0].icon;
+            }
+          }
         });
         this.state.set('recipeListMap', resultsMap);
 
@@ -119,6 +125,14 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         this.state.set('recipes', results.map((result) => {
           if (inscriptionSkill.level < result.inscriptionSkill) {
             result.notMetLevelReq = true;
+          }
+
+          if(result.required) {
+            result.required.map((item) => {
+              if (item.name.includes('pigment')) {
+                item.herb_icon = resultsMap[item.itemId].required.filter((item) => item.type === 'item')[0].icon;
+              }
+            });
           }
 
           if (hasInscriptionUpgrade) {

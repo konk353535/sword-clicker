@@ -43,6 +43,12 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('currentTab', 'minePit');
       }
+
+      if (myUser.uiState && myUser.uiState.miningMultihit !== undefined) {
+        this.state.set('miningMultihit', myUser.uiState.miningMultihit);
+      } else {
+        this.state.set('miningMultihit', true);
+      }
     }
   });
 
@@ -124,15 +130,11 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 Template.miningPage.events({
 
   'click .multihit-btn'(event, instance) {
-    
-    // Determine new boolean and label
-    let multihit = Template.instance().$('.multihit-value').val();
-    multihit = multihit == "1" ? 0 : 1;
-    let label = multihit ? "Disable Multihit" : "Enable Multihit";
-
-    // Set visual and hidden values
-    event.target.innerText = label;
-    Template.instance().$('.multihit-value').val(multihit);
+    if (instance.state.get('miningMultihit')) {
+      Meteor.call('users.setUiState', 'miningMultihit', false);
+    } else {
+      Meteor.call('users.setUiState', 'miningMultihit', true);
+    }
   },
 
   'click .minePitLink'(event, instance) {
@@ -490,5 +492,9 @@ Template.miningPage.helpers({
     });
 
     return equippedMap;
+  },
+
+  miningMultihit() {
+    return Template.instance().state.get('miningMultihit');
   },
 });

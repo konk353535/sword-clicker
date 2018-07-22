@@ -57,8 +57,13 @@
         </div>
       </div>
       <div class="d-flex align-items-center">
-        <button class='btn btn-secondary multihit-btn ml-4'>Enable Multihit</button>
-        <input type='hidden' class='multihit-value' value=0 />
+        <button class='btn btn-secondary multihit-btn ml-4'>
+          {{#if $eq miningMultihit true }}
+            Disable Multihit
+          {{else}}
+            Enable Multihit
+          {{/if}}
+        </button>
       </div>
 
     </div>

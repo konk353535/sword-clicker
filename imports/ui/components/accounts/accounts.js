@@ -24,7 +24,12 @@ Template.serverSelector.helpers({
   },
 
   allServers() {
-    return Servers.find();
+    return Servers.find().fetch().filter((server) => {
+      return !server.disabled;
+    }).map((server) => {
+      server.formattedCreatedAt = moment.duration(moment().diff(server.createdAt)).humanize();
+      return server;
+    });
   }
 })
 

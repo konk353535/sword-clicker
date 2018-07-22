@@ -38,7 +38,9 @@
     </button>
     <div class="dropdown-menu" style="width: 100%" aria-labelledby="dropdownMenuButton">
       {{#each allServers}}
-        <a class="dropdown-item select-name" href="#" data-id="{{this._id}}">{{this.name}}</a>
+        <a class="dropdown-item select-name" href="#" data-id="{{this._id}}">
+          {{this.name}} <small>(created {{this.formattedCreatedAt}} ago)</small>
+        </a>
       {{/each}}
     </div>
   </div>
@@ -65,7 +67,6 @@
         {{#each fields}}
           {{> atInput}}
         {{/each}}
-        {{> serverSelector}}
         {{#if showReCaptcha}}
           {{> atReCaptcha}}
         {{/if}}
@@ -74,6 +75,7 @@
           {{> playAsGuestBtn}}
           {{> atPwdLink}}
         {{else}}
+          {{> serverSelector}}
           <div class="mt-1">
             By clicking register, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
           </div>

@@ -222,6 +222,16 @@
     </div>
   </nav>
 
+  {{#if currentUser}}
+    {{#if beforeAugust}}
+      <div class="alert alert-info">
+        <div class="text-center">
+          Eternity Tower seasonal will start on the 22nd of July 1PM (GMT +10).
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+
   <!-- Modal -->
   <div class="modal guestSignOffConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

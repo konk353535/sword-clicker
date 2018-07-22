@@ -915,9 +915,9 @@ export const ENCHANTMENT_BUFFS = {
     name: 'demons heart',
     description() {
       return `
-        When you fall below 20% hp become cursed.<br />
+        When you die, temporarily heal to full hp and become cursed.<br />
         Cursed: +50% damage, +50% attack speed, +50 hybrid armor<br />
-        Take increasing damage each second.`;
+        Take increasing damage each second. You cannot cast abilities while cursed`;
     },
     constants: {
     },
@@ -930,32 +930,37 @@ export const ENCHANTMENT_BUFFS = {
         // Blank
       },
 
-      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      onBeforeDeath({ buff, target, actualBattle }) {
         if (!buff.data.active) {
-          const decimalHp = target.stats.health / target.stats.healthMax;
-          if (decimalHp < 0.2) {
+          target.silenced = true;
+          target.stats.health = target.stats.healthMax;
+          target.stats.attackMax *= 1.5;
+          target.stats.attack *= 1.5;
+          target.stats.armor += 50;
+          target.stats.magicArmor += 50;
+          target.stats.attackSpeed *= 1.5;
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
+          target.icon = 'demon.svg';
+          buff.data.active = true;
+          buff.data.secondsElapsed = 0; 
+        }
+      },
 
-            target.stats.attackMax *= 1.5;
-            target.stats.attack *= 1.5;
-            target.stats.armor += 50;
-            target.stats.magicArmor += 50;
-            target.stats.attackSpeed *= 1.5;
-            target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
-
-            target.icon = 'demon.svg';
-            buff.data.active = true;
-            buff.data.deathStacks = 0.5;
-            buff.data.stacks = 0;
-          }
-        } else {
-          buff.data.deathStacks += secondsElapsed / 10;
-          buff.data.stacks = Math.round(buff.data.deathStacks);
-          target.stats.health -= buff.data.deathStacks
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.active) {
+          buff.data.secondsElapsed += secondsElapsed;
+          const percentDamage = (buff.data.secondsElapsed / 12) * 100;
+          target.stats.health -= ((target.stats.healthMax / 100) * percentDamage) * secondsElapsed;
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
+        target.stats.attackMax /= 1.5;
+        target.stats.attack /= 1.5;
+        target.stats.armor -= 50;
+        target.stats.magicArmor -= 50;
+        target.stats.attackSpeed /= 1.5;
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },

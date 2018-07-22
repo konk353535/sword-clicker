@@ -433,6 +433,7 @@ Accounts.onCreateUser((options, user) => {
   // Mining stuff
   Skills.insert({
     type: 'mining',
+    server: targetServer._id,
     createdAt: new Date(),
     owner: userId,
     xp: 0,
@@ -490,12 +491,14 @@ Accounts.onCreateUser((options, user) => {
     type: 'defense',
     createdAt: new Date(),
     owner: userId,
+    server: targetServer._id,
     username: user.username
   }, (err, res) => {
     Skills.insert({
       type: 'attack',
       createdAt: new Date(),
       owner: userId,
+      server: targetServer._id,
       username: user.username
     });
 
@@ -504,6 +507,7 @@ Accounts.onCreateUser((options, user) => {
       createdAt: new Date(),
       owner: userId,
       level: SKILLS.health.baseLevel,
+      server: targetServer._id,
       username: user.username
     });
 
@@ -511,11 +515,13 @@ Accounts.onCreateUser((options, user) => {
       type: 'crafting',
       createdAt: new Date(),
       owner: userId,
+      server: targetServer._id,
       username: user.username
     });
 
     Skills.insert({
       type: 'total',
+      server: targetServer._id,
       createdAt: new Date(),
       owner: userId,
       username: user.username

@@ -24,6 +24,11 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
     });
   }
 
+  if (caster.silenced) {
+    canCast = false;
+  }
+
+
   if (!canCast) {
     return true;
   }

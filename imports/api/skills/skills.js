@@ -12,6 +12,7 @@ SkillsSchema = new SimpleSchema({
   totalXp: { type: Number, defaultValue: 0, decimal: true },
   banned: { type: Boolean, optional: true },
   username: { type: String },
+  server: { type: String },
   level: { type: Number, defaultValue: 1 },
   rank: { type: Number, optional: true },
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },

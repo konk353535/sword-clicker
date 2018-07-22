@@ -2,12 +2,14 @@ import { Template } from 'meteor/templating';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Session } from 'meteor/session';
 import { Users } from '/imports/api/users/users.js';
+import { Servers } from '/imports/api/servers/servers.js';
 import { Meteor } from "meteor/meteor";
 
 import './nav.html';
 
 Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
+  Meteor.subscribe("servers");
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -67,6 +69,18 @@ Template.nav.events({
 Template.nav.helpers({
   currentRoute() {
     return Router.current().route.getName();
+  },
+
+  beforeAugust() {
+    const myServer = Servers.findOne({
+      _id: Meteor.user().server
+    });
+
+    if (myServer.name === 'Classic') {
+      return moment().isBefore(moment('2018-07-25'));
+    }
+
+    return false;
   },
 
   hasCraftingSkill() {

@@ -186,6 +186,7 @@ Meteor.methods({
 
       Skills.insert({
         type: skillName,
+        server: Meteor.user().server,
         createdAt: new Date(),
         owner: Meteor.userId(),
         level: baseLevel,
@@ -348,8 +349,11 @@ Meteor.methods({
       limit = 200;
     }
 
+    const server = Meteor.user().server;
+
     if (skillName === 'personalQuest') {
       return Users.find({
+        server
         //banned: {
         //  $ne: true
         //}
@@ -366,6 +370,7 @@ Meteor.methods({
       }).fetch();
     } else if (skillName === 'boss') {
       return BossHealthScores.find({
+        server
         //banned: {
         //  $ne: true
         //}
@@ -382,6 +387,7 @@ Meteor.methods({
     } else {
       return Skills.find({
         type: skillName,
+        server
         //banned: {
         //  $ne: true
         //}

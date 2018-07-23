@@ -24,14 +24,16 @@ import weightedRandom from 'weighted-random';
 
 const redis = new Meteor.RedisCollection('redis');
 
-const distributeRewards = function distributeRewards({ floor }) {
+const distributeRewards = function distributeRewards({ floor, server }) {
   console.log('Distributing rewards');
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
 
   // Fetch top 10 by damage dealt
-  const sortedBossHealthScores = BossHealthScores.find({}, {
+  const sortedBossHealthScores = BossHealthScores.find({
+    server
+  }, {
     sort: [
       ['bossDamage', 'desc']
     ],
@@ -396,6 +398,7 @@ export const completeBattle = function (actualBattle) {
                   points: pointsEarnt
                 },
                 $setOnInsert: {
+                  server: actualBattle.server,
                   points: pointsEarnt,
                   username: ownerObject.name // To do: Make this work when users have multiple units
                 }
@@ -431,6 +434,8 @@ export const completeBattle = function (actualBattle) {
                 owner
               });
 
+              console.log(updateSelector);
+              console.log(updateModifier);
               FloorWaveScores.upsert(updateSelector, updateModifier);
             } else {
               console.log('Unexpected Failure');
@@ -442,6 +447,7 @@ export const completeBattle = function (actualBattle) {
           // Increment total points data
           Floors.update({
             floor: actualBattle.floor,
+            server: actualBattle.server,
             floorComplete: false
           }, {
             $inc: {
@@ -590,6 +596,7 @@ export const completeBattle = function (actualBattle) {
     // Update players contributions
     allFriendlyUnits.forEach((unit) => {
       BossHealthScores.insert({
+        server: actualBattle.server,
         owner: unit.owner,
         username: unit.name,
         bossDamage: damageDealt
@@ -597,7 +604,7 @@ export const completeBattle = function (actualBattle) {
     });
 
     // Update bosses hp
-    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor });
+    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
     if (currentFloor) {
       currentFloor.health -= damageDealt;
 
@@ -606,6 +613,7 @@ export const completeBattle = function (actualBattle) {
         // Complete the floor!
         let updatedCount = Floors.update({
           floor: actualBattle.floor,
+          server: actualBattle.server,
           floorComplete: false
         }, {
           $set: {
@@ -616,7 +624,7 @@ export const completeBattle = function (actualBattle) {
         console.log(`Updated count is ${updatedCount}`);
         if (updatedCount === 1) {
           // Distribute rewards
-          distributeRewards({ floor: actualBattle.floor });
+          distributeRewards({ floor: actualBattle.floor, server: actualBattle.server });
 
           // Notify general chat
           Chats.insert({

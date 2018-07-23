@@ -258,7 +258,8 @@ Meteor.methods({
 
     // Fetch top 10 for each difficulty
     return FloorWaveScores.find({
-      floor: currentFloor.floor
+      floor: currentFloor.floor,
+      server: Meteor.user().server
     }, {
       sort: {
         points: -1
@@ -268,17 +269,20 @@ Meteor.methods({
   },
 
   'battles.myFloorContributions'() {
+    const server = Meteor.user().server;
     // current floor contribution + ranking
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server });
     // Fetch there waveScores
     const userWaveScores = FloorWaveScores.findOne({
       owner: Meteor.userId(),
+      server,
       floor: currentCommunityFloor.floor
     });
 
     if (userWaveScores) {
       // Get ranking
       const userRanking = FloorWaveScores.find({
+        server,
         floor: currentCommunityFloor.floor,
         points: {
           $gte: userWaveScores.points
@@ -287,6 +291,7 @@ Meteor.methods({
 
       // Total Rankings
       const totalRankings = FloorWaveScores.find({
+        server,
         floor: currentCommunityFloor.floor,
         points: {
           $gte: 25

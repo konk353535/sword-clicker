@@ -19,6 +19,11 @@ Template.nav.onCreated(function bodyOnCreated() {
       } else {
         Session.set('summaryListDisabled', false);
       }
+      if (myUser.uiState && myUser.uiState.recipeTileConsumables !== undefined) {
+        Session.set('recipeTileConsumablesDisabled', !myUser.uiState.recipeTileConsumables);
+      } else {
+        Session.set('recipeTileConsumablesDisabled', false);
+      }
     }
   });
 });
@@ -61,6 +66,16 @@ Template.nav.events({
     Meteor.call('users.setUiState', 'showSummaryList', true);
   },
 
+  'click .disable-recipe-consumables'(event, instance) {
+    Session.set('recipeTileConsumablesDisabled', true);
+    Meteor.call('users.setUiState', 'recipeTileConsumables', false);
+  },
+
+  'click .enable-recipe-consumables'(event, instance) {
+    Session.set('recipeTileConsumablesDisabled', false);
+    Meteor.call('users.setUiState', 'recipeTileConsumables', true);
+  },
+
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
     instance.$('.guestSignOffConfirmModal').modal('hide');
   }
@@ -97,6 +112,10 @@ Template.nav.helpers({
 
   summaryListDisabled() {
     return Session.get('summaryListDisabled');
+  },
+
+  recipeTileConsumablesDisabled() {
+    return Session.get('recipeTileConsumablesDisabled')
   },
 
   hasFarmingSkill() {

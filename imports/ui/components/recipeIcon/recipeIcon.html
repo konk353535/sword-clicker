@@ -10,33 +10,37 @@
 
         <span class="d-flex justify-content-between align-items-center {{#if maxCraftableAmount}}text-success{{else}}text-danger{{/if}}">
           <p class="m-0">{{maxCraftableAmount}}</p>
-          {{#if hasConsumeItemRequirements}}
-            {{#if $lte consumeItemRequirements.length 4}}
-            <div class="recipe-required">
-              {{#each consumeItemRequirements}}
-                {{#if $eq this.type 'item'}}
-                  {{#if this.herb_icon}}
-                    <img src="/icons/{{this.herb_icon}}" class="extra-small-icon">
-                  {{else}}
-                    <img src="/icons/{{this.icon}}" class="extra-small-icon">
+          {{#unless recipeTileConsumablesDisabled}}
+            {{#if hasConsumeItemRequirements}}
+              {{#if $lte consumeItemRequirements.length 4}}
+              <div class="recipe-required">
+                {{#each consumeItemRequirements}}
+                  {{#if $eq this.type 'item'}}
+                    {{#if this.herb_icon}}
+                      <img src="/icons/{{this.herb_icon}}" class="extra-small-icon">
+                    {{else}}
+                      <img src="/icons/{{this.icon}}" class="extra-small-icon">
+                    {{/if}}
                   {{/if}}
+                {{/each}}
+              </div>
+              {{/if}}
+            {{/if}}
+          {{/unless}}
+        </span>
+        {{#unless recipeTileConsumablesDisabled}}
+          {{#if hasConsumeItemRequirements}}
+            {{#if $gt consumeItemRequirements.length 4}}
+            <div class="recipe-required">
+              {{#each recipeItems}}
+                {{#if $eq this.type 'item'}}
+                  <img src="/icons/{{this.icon}}" class="extra-small-icon">
                 {{/if}}
               {{/each}}
             </div>
             {{/if}}
           {{/if}}
-        </span>
-        {{#if hasConsumeItemRequirements}}
-          {{#if $gt consumeItemRequirements.length 4}}
-          <div class="recipe-required">
-            {{#each recipeItems}}
-              {{#if $eq this.type 'item'}}
-                <img src="/icons/{{this.icon}}" class="extra-small-icon">
-              {{/if}}
-            {{/each}}
-          </div>
-          {{/if}}
-        {{/if}}
+        {{/unless}}
       </div>
     </div>
     <div class="recipe-tooltip">

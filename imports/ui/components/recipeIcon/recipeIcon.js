@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from "meteor/session";
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
@@ -147,7 +148,11 @@ Template.recipeIcon.helpers({
 
   recipeItems() {
     return Template.instance().state.get('recipeItems');
-  }
+  },
+
+  recipeTileConsumablesDisabled() {
+    return Session.get('recipeTileConsumablesDisabled')
+  },
 });
 
 Template.recipeIcon.onDestroyed(function () {

@@ -1557,7 +1557,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
 
       return `
-        Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage <br />
+        Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage <br />
         And slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
         Lasts for ${c.totalDuration}s. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;

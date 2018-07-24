@@ -200,6 +200,16 @@
                     Disable summary list
                   </a>
                 {{/if}}
+                {{#if recipeTileConsumablesDisabled}}
+                  <a class="dropdown-item enable-recipe-consumables" style="cursor: pointer">
+                    Show recipe consumables
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-recipe-consumables" style="cursor: pointer">
+                    Hide recipe consumables
+                  </a>
+                {{/if}}
+
                 {{#if currentUser.isGuest}}
                   <label class="text-danger">Danger, your a guest</label>
                   <a class="dropdown-item" href="/guestSettings">

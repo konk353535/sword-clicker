@@ -282,7 +282,8 @@ Meteor.methods({
       'craftingTierFilter.cursed',
       'battleAgain',
       'itemFilter',
-      'miningMultihit'
+      'miningMultihit',
+      'recipeTileConsumables'
     ];
 
     if (_.contains(validIds, id)) {

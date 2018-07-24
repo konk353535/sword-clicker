@@ -282,6 +282,7 @@ Meteor.methods({
       'craftingTierFilter.cursed',
       'battleAgain',
       'itemFilter',
+      'seedsFilter',
       'miningMultihit',
       'recipeTileConsumables'
     ];

@@ -100,7 +100,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
     if (availableChats.LFG.show) {
       // People looking for group
-      Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
+      Meteor.subscribe("simpleChats", `LFG-${myUserDoc.server}`, this.limit.get());
     }
 
     if (availableChats.Game.show) {
@@ -110,12 +110,12 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
     if (availableChats.Offtopic.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Offtopic-${myUserDoc.server}`, this.limit.get());
     }
 
     if (availableChats.Help.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Help-${myUserDoc.server}`, this.limit.get());
     }
 
     this.subscribing = true;

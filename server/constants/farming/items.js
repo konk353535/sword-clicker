@@ -61,7 +61,7 @@ export const FARMING_ITEMS = {
     icon: 'blueRoseSeed.svg',
     category: 'seed',
     name: 'blue rose Seed',
-    seedType: 'herb',
+    seedType: 'gold',
     description() {
       return 'Sells for $$$'
     },

@@ -3,7 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
 import { resolveLoot } from '/server/api/battles/battleMethods/completeBattle';
 
-import { Floors } from '../../api/floors/floors.js';
+import { Floors } from '/imports//api/floors/floors';
 import { Combat } from '/imports/api/combat/combat';
 import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
@@ -11,6 +11,7 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
+import { Servers } from '/imports/api/servers/servers';
 
 const redis = new Meteor.RedisCollection('redis');
 
@@ -142,7 +143,7 @@ SyncedCron.add({
   }
 });
 
-// Finish dead battles
+// Update global skill rankings
 SyncedCron.add({
   name: 'Update Rankings',
   schedule: function(parser) {
@@ -163,41 +164,43 @@ SyncedCron.add({
       'astronomy'
     ];
 
-    const playersTotalXp = {}
+    Servers.find({}).fetch().forEach((server) => {
+      const playersTotalXp = {};
 
-    stats.forEach((statName) => {
-      // Fetch all skills with that stat name by order
-      Skills.find({ type: statName }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
-        if (!playersTotalXp[skill.owner]) {
-          playersTotalXp[skill.owner] = skill.totalXp;
-        } else {
-          playersTotalXp[skill.owner] += skill.totalXp;          
-        }
+      stats.forEach((statName) => {
+        // Fetch all skills with that stat name by order
+        Skills.find({ type: statName, server: server._id }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
+          if (playersTotalXp[skill.owner]) {
+            playersTotalXp[skill.owner] += skill.totalXp;
+          } else {
+            playersTotalXp[skill.owner] = skill.totalXp;
+          }
+          Skills.update(skill._id, {
+            $set: {
+              rank: skillIndex + 1
+            }
+          });
+        });
+      });
+
+      Object.keys(playersTotalXp).forEach((playerId) => {
+        Skills.update({
+          owner: playerId,
+          type: 'total'
+        }, {
+          $set: {
+            totalXp: playersTotalXp[playerId]
+          }
+        })
+      });
+
+      // Fetch total
+      Skills.find({ type: 'total', server: server._id }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
         Skills.update(skill._id, {
           $set: {
             rank: skillIndex + 1
           }
         });
-      });
-    });
-
-    Object.keys(playersTotalXp).forEach((playerId) => {
-      Skills.update({
-        owner: playerId,
-        type: 'total'
-      }, {
-        $set: {
-          totalXp: playersTotalXp[playerId]
-        }
-      })
-    });
-
-    // Fetch total
-    Skills.find({ type: 'total' }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
-      Skills.update(skill._id, {
-        $set: {
-          rank: skillIndex + 1
-        }
       });
     });
 

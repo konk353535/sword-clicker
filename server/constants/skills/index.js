@@ -127,6 +127,7 @@ export const SKILLS = {
 
     statsPerLevel: {
       accuracy: 1,
+      attack: 0.25,
       attackMax: 0.5
     }
   },

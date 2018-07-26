@@ -688,7 +688,7 @@ export const ENEMIES = Object.assign({
   crab: {
     id: 'crab',
     icon: 'crab.svg',
-    name: 'crab',
+    name: 'citizen snips',
     buffs: [{
       id: 'crab_monster',
       data: {

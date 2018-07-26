@@ -109,7 +109,7 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         const resultsMap = {};
         results.forEach((result) => {
           resultsMap[result.id] = result;
-          if(result.name.includes('pigment')) {
+          if(result.hasOwnProperty('required') && result.name.includes('pigment')) {
             let herb = result.required.filter((item) => item.type === 'item');
             if (herb.length) {
               result.herb_icon = herb[0].icon;
@@ -129,7 +129,7 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
 
           if(result.required) {
             result.required.map((item) => {
-              if (item.name.includes('pigment')) {
+              if (item.name.includes('pigment') && resultsMap[item.itemId].hasOwnProperty('required')) {
                 item.herb_icon = resultsMap[item.itemId].required.filter((item) => item.type === 'item')[0].icon;
               }
             });
@@ -223,7 +223,7 @@ Template.inscriptionPage.helpers({
       const abilityRecipes = instance.state.get('recipes').filter((item) => {
         return item.category === 'tome' && item.teaches.level === parseInt(levelFilter);
       }).map((recipe) => {
-
+        recipe._id = Meteor.uuid();    // don't do this at home. Or do, since it fixes the levelFilter rendering on abilities
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {

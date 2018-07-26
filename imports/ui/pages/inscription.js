@@ -129,7 +129,7 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
 
           if(result.required) {
             result.required.map((item) => {
-              if (item.name.includes('pigment') && resultsMap[item.itemId].hasOwnProperty('required')) {
+              if (item.name.includes('pigment') && resultsMap && resultsMap.hasOwnProperty(item.itemId) && resultsMap[item.itemId].hasOwnProperty('required')) {
                 item.herb_icon = resultsMap[item.itemId].required.filter((item) => item.type === 'item')[0].icon;
               }
             });

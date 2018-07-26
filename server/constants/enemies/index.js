@@ -687,7 +687,7 @@ export const ENEMIES = Object.assign({
   // Gains shit tons of armor, each attack reduces it by one
   crab: {
     id: 'crab',
-    icon: 'crab.svg',
+    icon: 'citizensnips.png',
     name: 'citizen snips',
     buffs: [{
       id: 'crab_monster',

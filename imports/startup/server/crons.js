@@ -22,68 +22,71 @@ SyncedCron.add({
     return parser.cron('0 0 * * * * *');
   },
   job: function() {
-    // Fetch current active floor
-    const currentFloor = Floors.findOne({ floorComplete: false });
-    const floorConstants = FLOORS[currentFloor.floor];
+    Servers.find({}).fetch().forEach((server) => {
+      // Fetch current active floor
+      const currentFloor = Floors.findOne({server: server._id, floorComplete: false});
+      const floorConstants = FLOORS[currentFloor.floor];
 
-    // Get bosses hp
-    const bossEnemyId = floorConstants.boss.enemy.id;
-    const bossEnemyConstants = ENEMIES[bossEnemyId];
+      // Get bosses hp
+      const bossEnemyId = floorConstants.boss.enemy.id;
+      const bossEnemyConstants = ENEMIES[bossEnemyId];
 
-    const activeTowerUsers = FloorWaveScores.find({
-      floor: currentFloor.floor,
-      points: {
-        $gte: 25
-      }
-    }).count();
-    console.log(`active tower users ${activeTowerUsers}`);
-    console.log(`boss enemy constants`);
-    console.log(bossEnemyConstants);
-    const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
-    console.log(`new health max is ${newHealthMax}`)
-    Floors.update({ floorComplete: false }, {
-      $set: {
-        health: newHealthMax,
-        healthMax: newHealthMax
-      }
+      const activeTowerUsers = FloorWaveScores.find({
+        server: server._id,
+        floor: currentFloor.floor,
+        points: {
+          $gte: 25
+        }
+      }).count();
+      console.log(`Server: ${server.name}: active tower users ${activeTowerUsers}`);
+      console.log(`boss enemy constants`);
+      console.log(bossEnemyConstants);
+      const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
+      console.log(`new health max is ${newHealthMax}`);
+      Floors.update({server: server._id, floorComplete: false}, {
+        $set: {
+          health: newHealthMax,
+          healthMax: newHealthMax
+        }
+      });
+
+      console.log('Have finally reset boss health');
+
+      // Clear hp dealt on leaderboards
+      BossHealthScores.remove({});
+
+      console.log('Boss hp score reset');
+
+      // Enable users to fight bosses again
+      Combat.update({foughtBoss: true}, {
+        $set: {
+          foughtBoss: false
+        }
+      }, {multi: true});
+
+      console.log('Fought boss is done now');
+
+      // Enable users to fight waves again
+      Combat.update({
+        towerContributionsToday: {
+          $gt: 0
+        }
+      }, {
+        $set: {
+          towerContributionsToday: 0
+        }
+      }, {multi: true});
+
+      // Reset gems today
+      Users.update({}, {
+        $set: {
+          fakeGemsToday: 0
+        }
+      }, {multi: true});
+
+      console.log('All done for boss battle reset');
+      return true;
     });
-
-    console.log('Have finally reset boss health');
-
-    // Clear hp dealt on leaderboards
-    BossHealthScores.remove({});
-
-    console.log('Boss hp score reset');
-
-    // Enable users to fight bosses again
-    Combat.update({ foughtBoss: true }, {
-      $set: {
-        foughtBoss: false
-      }
-    }, { multi: true });
-
-    console.log('Fought boss is done now');
-
-    // Enable users to fight waves again
-    Combat.update({
-      towerContributionsToday: {
-        $gt: 0
-      }
-    }, {
-      $set: {
-        towerContributionsToday: 0
-      }
-    }, { multi: true });
-
-    // Reset gems today
-    Users.update({}, {
-      $set: {
-        fakeGemsToday: 0
-      }
-    }, { multi: true });
-
-    console.log('All done for boss battle reset');
-    return true;
   }
 });
 

@@ -218,7 +218,7 @@ Meteor.methods({
     if (itemCategory === 'combat') {
       updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
-      updateMiningStats();
+      updateMiningStats(Meteor.userId(), itemSlot);
     }
   },
 
@@ -665,7 +665,7 @@ Meteor.methods({
     if (itemCategory === 'combat') {
       updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
-      updateMiningStats();
+      updateMiningStats(Meteor.userId(), itemSlot);
     }
   },
 
@@ -701,7 +701,7 @@ Meteor.methods({
       if (itemConstants.category === 'combat' && currentItem.equipped) {
         updateCombatStats(Meteor.userId(), Meteor.user().username);
       } else if (itemConstants.category === 'mining' && currentItem.equipped) {
-        updateMiningStats();
+        updateMiningStats(Meteor.userId(), currentItem.slot);
       }
     } else {
       // Update item quantity

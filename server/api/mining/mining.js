@@ -17,7 +17,7 @@ import { addXp } from '/server/api/skills/skills';
 
 const redis = new Meteor.RedisCollection('redis');
 
-export const updateMiningStats = function (userId, isNewUser = false) {
+export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
   let owner;
   if (userId) {
     owner = userId;
@@ -36,7 +36,7 @@ export const updateMiningStats = function (userId, isNewUser = false) {
     owner,
     slot: 'mining_offhand',
     equipped: true
-  })
+  });
 
   let miningStats = {
   };
@@ -82,11 +82,14 @@ export const updateMiningStats = function (userId, isNewUser = false) {
   if (!miningStats.energyRegen) { miningStats.energyRegen = 10; }
   if (!miningStats.energyPerHit) { miningStats.energyPerHit = 1; }
 
-  miningStats.energy = 0;
-
-  // New users get full energy on there pick instantly.
+  // New users get full energy on their pick instantly.
   if (isNewUser) {
     miningStats.energy = miningStats.energyStorage;
+  } else if(slot === 'mining_offhand') {
+    let m = Mining.findOne({ owner: owner });
+    miningStats.energy = m.stats.energy;
+  } else {
+    miningStats.energy = 0;
   }
 
   // Set player stats

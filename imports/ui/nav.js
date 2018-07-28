@@ -4,12 +4,15 @@ import { Session } from 'meteor/session';
 import { Users } from '/imports/api/users/users.js';
 import { Servers } from '/imports/api/servers/servers.js';
 import { Meteor } from "meteor/meteor";
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './nav.html';
 
 Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
   Meteor.subscribe("servers");
+
+  this.state = new ReactiveDict();
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -26,6 +29,15 @@ Template.nav.onCreated(function bodyOnCreated() {
       }
     }
   });
+
+  Tracker.autorun(() => {
+    if(Meteor.user()) {
+      const server = Servers.findOne({ _id: Meteor.user().server });
+      if(server) {
+        this.state.set('myServer', server);
+      }
+    }
+  })
 });
 
 Template.nav.events({
@@ -91,11 +103,19 @@ Template.nav.helpers({
       _id: Meteor.user().server
     });
 
-    if (myServer.name === 'Classic') {
+    if (myServer && myServer.name === 'Classic') {
       return moment().isBefore(moment('2018-07-25'));
     }
 
     return false;
+  },
+
+  getServerName() {
+    let serverName = 'Classic';
+    if (Template.instance().state.get('myServer')) {
+      serverName = Template.instance().state.get('myServer').name
+    }
+    return serverName;
   },
 
   hasCraftingSkill() {

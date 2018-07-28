@@ -210,8 +210,12 @@
                   </a>
                 {{/if}}
 
+                <a class="dropdown-item">
+                  Server: {{ getServerName }}
+                </a>
+
                 {{#if currentUser.isGuest}}
-                  <label class="text-danger">Danger, your a guest</label>
+                  <label class="text-danger">Danger, you're a guest</label>
                   <a class="dropdown-item" href="/guestSettings">
                     Set name and password now
                   </a>

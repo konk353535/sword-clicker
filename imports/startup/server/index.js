@@ -490,7 +490,7 @@ Accounts.onCreateUser((options, user) => {
   });
 
   // Update mining stats
-  updateMiningStats(userId, true);
+  updateMiningStats(userId, '', true);
 
   // Non mining stuff
   Skills.insert({

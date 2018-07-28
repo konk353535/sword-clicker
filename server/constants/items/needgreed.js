@@ -16,6 +16,9 @@ export const NEED_GREED_ITEMS = {
   scimitar: (str) => {
     return RegExp('scimitar', 'g').test(str)
   },
+  rapier: (str) => {
+    return RegExp('rapier', 'g').test(str)
+  },
   broad_sword: (str) => {
     return RegExp('broad_sword', 'g').test(str)
   },

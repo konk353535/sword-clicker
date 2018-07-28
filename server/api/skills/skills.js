@@ -64,9 +64,17 @@ export const addXp = function (skillType, xp, specificUserId) {
 
   skill.xp += xp;
 
-  const xpToNextLevel = skillConstants.xpToLevel(skill.level);
+  let xpToNextLevel = skillConstants.xpToLevel(skill.level);
 
   if (skill.xp >= xpToNextLevel) {
+    let levelUps = 0;
+
+    while(skill.xp >= xpToNextLevel) {
+      skill.xp -= xpToNextLevel;
+      levelUps += 1;
+      xpToNextLevel = skillConstants.xpToLevel(skill.level + levelUps);
+    }
+
     // Update Level
     Skills.update({
       _id: skill._id,
@@ -74,14 +82,14 @@ export const addXp = function (skillType, xp, specificUserId) {
       level: skill.level
     }, {
       $set: {
-        level: skill.level + 1,
+        level: skill.level + levelUps,
         totalXp: (skill.totalXp + xp),
-        xp: (skill.xp - xpToNextLevel)
+        xp: skill.xp
       }
     });
 
     Chats.insert({
-      message: `Level Up! You are now level ${skill.level + 1} ${skill.type}`,
+      message: `Level Up! You are now level ${skill.level + levelUps} ${skill.type}`,
       username: 'Game',
       name: 'Game',
       date: new Date(),
@@ -99,7 +107,7 @@ export const addXp = function (skillType, xp, specificUserId) {
         owner
       }, {
         $set: {
-          craftingLevel: skill.level + 1
+          craftingLevel: skill.level + levelUps
         }
       });
     } else if (skill.type === 'inscription') {
@@ -107,11 +115,11 @@ export const addXp = function (skillType, xp, specificUserId) {
         owner
       }, {
         $set: {
-          inscriptionLevel: skill.level + 1
+          inscriptionLevel: skill.level + levelUps
         }
       });
     } else if (skill.type === 'mining') {
-      updateMiningStats(owner, true);
+      updateMiningStats(owner, '', true);
     }
 
     // Can probably be optimized
@@ -119,7 +127,7 @@ export const addXp = function (skillType, xp, specificUserId) {
       owner,
       type: 'total'
     }, {
-      $inc: { level: 1 }
+      $inc: { level: levelUps }
     })
   } else {
     // Just update exp

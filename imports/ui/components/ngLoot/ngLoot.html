@@ -20,10 +20,10 @@
           <td class="align-middle"><img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}"> {{#if this.name}}<span class="text-capitalize">{{this.name}}</span>{{/if}}</td>
           <td class="align-middle {{#if this.affectedGlobalBuff}}text-info{{/if}}">+{{this.amount}}</td>
           <td>
-            <button class="mr-1 btn {{#if $eq this.ngChoice 'greed'}}btn-primary{{/if}}{{#if $eq this.ngChoice 'need'}}btn-success whiteframe-4dp{{/if}} ng-selector-need" data-loot-id="{{this.lootId}}">
+            <button class="mr-1 btn whiteframe-4dp {{#if $eq this.ngChoice 'need'}}btn-success{{/if}} ng-selector-need" data-loot-id="{{this.lootId}}">
               Need
             </button>
-            <button class="ml-1 btn {{#if $eq this.ngChoice 'need'}}btn-primary{{/if}}{{#if $eq this.ngChoice 'greed'}}btn-success whiteframe-4dp{{/if}} ng-selector-greed" data-loot-id="{{this.lootId}}">
+            <button class="ml-1 btn whiteframe-4dp {{#if $eq this.ngChoice 'greed'}}btn-success{{/if}} ng-selector-greed" data-loot-id="{{this.lootId}}">
               Greed
             </button>
           </td>

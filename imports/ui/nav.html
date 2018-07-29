@@ -209,6 +209,15 @@
                     Hide recipe consumables
                   </a>
                 {{/if}}
+                {{#if numberShorthandDisabled}}
+                  <a class="dropdown-item enable-number-shorthand" style="cursor: pointer">
+                    Enable number shorthand
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-number-shorthand" style="cursor: pointer">
+                    Disable number shorthand
+                  </a>
+                {{/if}}
 
                 <a class="dropdown-item">
                   Server: {{ getServerName }}

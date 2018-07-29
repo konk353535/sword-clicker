@@ -140,10 +140,10 @@
         </div>
         <div class="d-flex align-items-center">
           {{#if hasMiningUpgrade}}
-            ({{mining.stats.miner}}
+            ({{> formatNumber number=mining.stats.miner decimal=1}}
             {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
           {{else}}
-            {{mining.stats.miner}}%
+            {{> formatNumber number=mining.stats.miner decimal=1}}%
           {{/if}}
           <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
         </div>

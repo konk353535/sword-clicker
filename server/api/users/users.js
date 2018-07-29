@@ -249,6 +249,7 @@ Meteor.methods({
     const validIds = [
       'showChat',
       'showSummaryList',
+      'showNumberShorthand',
       'inscriptionFilter',
       'inscriptionLevelFilter',
       'craftingFilter',

@@ -1,7 +1,7 @@
 export const TIN_ITEMS = {
   "tin_dagger": {
     "id": "tin_dagger",
-    "icon": "tinDagger.svg",
+    "icon": "tinDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const TIN_ITEMS = {
   },
   "tin_spear": {
     "id": "tin_spear",
-    "icon": "tinSpear.svg",
+    "icon": "tinSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const TIN_ITEMS = {
   },
   "tin_short_sword": {
     "id": "tin_short_sword",
-    "icon": "tinShortSword.svg",
+    "icon": "tinShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const TIN_ITEMS = {
   },
   "tin_scimitar": {
     "id": "tin_scimitar",
-    "icon": "tinScimitar.svg",
+    "icon": "tinScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TIN_ITEMS = {
   },
   "tin_long_sword": {
     "id": "tin_long_sword",
-    "icon": "tinLongSword.svg",
+    "icon": "tinLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const TIN_ITEMS = {
   },
   "tin_broad_sword": {
     "id": "tin_broad_sword",
-    "icon": "tinBroadSword.svg",
+    "icon": "tinBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const TIN_ITEMS = {
   },
   "tin_battle_axe": {
     "id": "tin_battle_axe",
-    "icon": "tinBattleAxe.svg",
+    "icon": "tinBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const TIN_ITEMS = {
   },
   "tin_helmet": {
     "id": "tin_helmet",
-    "icon": "tinHelmet.svg",
+    "icon": "tinHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "tin helmet",
@@ -247,7 +247,7 @@ export const TIN_ITEMS = {
   },
   "tin_chest_plate": {
     "id": "tin_chest_plate",
-    "icon": "tinChestPlate.svg",
+    "icon": "tinChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "tin chestplate",
@@ -272,7 +272,7 @@ export const TIN_ITEMS = {
   },
   "tin_plate_legs": {
     "id": "tin_plate_legs",
-    "icon": "tinPlateLegs.svg",
+    "icon": "tinPlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "tin platelegs",
@@ -297,7 +297,7 @@ export const TIN_ITEMS = {
   },
   "tin_shield": {
     "id": "tin_shield",
-    "icon": "tinShield.svg",
+    "icon": "tinShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

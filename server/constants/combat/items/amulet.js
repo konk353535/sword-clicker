@@ -1,7 +1,7 @@
 export const AMULET_ITEMS = {
   stone_amulet: {
     id: 'stone_amulet',
-    icon: 'stoneAmulet.svg',
+    icon: 'stoneAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'stone amulet',
@@ -46,7 +46,7 @@ export const AMULET_ITEMS = {
 
   copper_amulet: {
     id: 'copper_amulet',
-    icon: 'copperAmulet.svg',
+    icon: 'copperAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'copper amulet',
@@ -70,7 +70,7 @@ export const AMULET_ITEMS = {
 
   tin_amulet: {
     id: 'tin_amulet',
-    icon: 'tinAmulet.svg',
+    icon: 'tinAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'tin amulet',
@@ -94,7 +94,7 @@ export const AMULET_ITEMS = {
 
   bronze_amulet: {
     id: 'bronze_amulet',
-    icon: 'bronzeAmulet.svg',
+    icon: 'bronzeAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'bronze amulet',
@@ -119,7 +119,7 @@ export const AMULET_ITEMS = {
 
   iron_amulet: {
     id: 'iron_amulet',
-    icon: 'ironAmulet.svg',
+    icon: 'ironAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'iron amulet',
@@ -146,7 +146,7 @@ export const AMULET_ITEMS = {
 
   silver_amulet: {
     id: 'silver_amulet',
-    icon: 'silverAmulet.svg',
+    icon: 'silverAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'silver amulet',
@@ -173,7 +173,7 @@ export const AMULET_ITEMS = {
 
   gold_amulet: {
     id: 'gold_amulet',
-    icon: 'goldAmulet.svg',
+    icon: 'goldAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'gold amulet',
@@ -197,7 +197,7 @@ export const AMULET_ITEMS = {
 
   carbon_amulet: {
     id: 'carbon_amulet',
-    icon: 'carbonAmulet.svg',
+    icon: 'carbonAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'carbon amulet',
@@ -221,7 +221,7 @@ export const AMULET_ITEMS = {
 
   steel_amulet: {
     id: 'steel_amulet',
-    icon: 'steelAmulet.svg',
+    icon: 'steelAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'steel amulet',
@@ -246,7 +246,7 @@ export const AMULET_ITEMS = {
 
   platinum_amulet: {
     id: 'platinum_amulet',
-    icon: 'platinumAmulet.svg',
+    icon: 'platinumAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'platinum amulet',
@@ -273,7 +273,7 @@ export const AMULET_ITEMS = {
 
   titanium_amulet: {
     id: 'titanium_amulet',
-    icon: 'titaniumAmulet.svg',
+    icon: 'titaniumAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'titanium amulet',
@@ -297,7 +297,7 @@ export const AMULET_ITEMS = {
 
   tungsten_amulet: {
     id: 'tungsten_amulet',
-    icon: 'tungstenAmulet.svg',
+    icon: 'tungstenAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'tungsten amulet',
@@ -321,7 +321,7 @@ export const AMULET_ITEMS = {
 
   obsidian_amulet: {
     id: 'obsidian_amulet',
-    icon: 'obsidianAmulet.svg',
+    icon: 'obsidianAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'obsidian amulet',
@@ -346,7 +346,7 @@ export const AMULET_ITEMS = {
 
   cobalt_amulet: {
     id: 'cobalt_amulet',
-    icon: 'cobaltAmulet.svg',
+    icon: 'cobaltAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'cobalt amulet',
@@ -373,7 +373,7 @@ export const AMULET_ITEMS = {
 
   mithril_amulet: {
     id: 'mithril_amulet',
-    icon: 'mithrilAmulet.svg',
+    icon: 'mithrilAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'mithril amulet',
@@ -397,7 +397,7 @@ export const AMULET_ITEMS = {
 
   adamantium_amulet: {
     id: 'adamantium_amulet',
-    icon: 'adamantiumAmulet.svg',
+    icon: 'adamantiumAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'adamantium amulet',
@@ -421,7 +421,7 @@ export const AMULET_ITEMS = {
 
   orichalcum_amulet: {
     id: 'orichalcum_amulet',
-    icon: 'orichalcumAmulet.svg',
+    icon: 'orichalcumAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'orichalcum amulet',
@@ -446,7 +446,7 @@ export const AMULET_ITEMS = {
 
   meteorite_amulet: {
     id: 'meteorite_amulet',
-    icon: 'meteoriteAmulet.svg',
+    icon: 'meteoriteAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'meteorite amulet',
@@ -474,7 +474,7 @@ export const AMULET_ITEMS = {
 
   fairy_steel_amulet: {
     id: 'fairy_steel_amulet',
-    icon: 'fairySteelAmulet.svg',
+    icon: 'fairySteelAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'fairy steel amulet',
@@ -498,7 +498,7 @@ export const AMULET_ITEMS = {
 
   elven_steel_amulet: {
     id: 'elven_steel_amulet',
-    icon: 'elvenSteelAmulet.svg',
+    icon: 'elvenSteelAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'elven steel amulet',
@@ -522,7 +522,7 @@ export const AMULET_ITEMS = {
 
   cursed_amulet: {
     id: 'cursed_amulet',
-    icon: 'cursedAmulet.svg',
+    icon: 'cursedAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'cursed amulet',
@@ -548,7 +548,7 @@ export const AMULET_ITEMS = {
   // Amulet of accuracy
   jade_amulet: {
     id: 'jade_amulet',
-    icon: 'jadeAmulet.svg',
+    icon: 'jadeAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'jade amulet',
@@ -572,7 +572,7 @@ export const AMULET_ITEMS = {
   // Amulet of defense
   lapislazuli_amulet: {
     id: 'lapislazuli_amulet',
-    icon: 'lapislazuliAmulet.svg',
+    icon: 'lapislazuliAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'lapis lazuli amulet',
@@ -597,7 +597,7 @@ export const AMULET_ITEMS = {
   // Amulet of Wisdom (magic)
   sapphire_amulet: {
     id: 'sapphire_amulet',
-    icon: 'sapphireAmulet.svg',
+    icon: 'sapphireAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'sapphire amulet',
@@ -621,7 +621,7 @@ export const AMULET_ITEMS = {
   // Amulet of health
   emerald_amulet: {
     id: 'emerald_amulet',
-    icon: 'emeraldAmulet.svg',
+    icon: 'emeraldAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'emerald amulet',
@@ -645,7 +645,7 @@ export const AMULET_ITEMS = {
   // Amulet of power (damage)
   ruby_amulet: {
     id: 'ruby_amulet',
-    icon: 'rubyAmulet.svg',
+    icon: 'rubyAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'ruby amulet',
@@ -670,7 +670,7 @@ export const AMULET_ITEMS = {
   // Amulet of balance
   tanzanite_amulet: {
     id: 'tanzanite_amulet',
-    icon: 'tanzaniteAmulet.svg',
+    icon: 'tanzaniteAmulet.png',
     category: 'combat',
     slot: 'neck',
     name: 'tanzanite amulet',

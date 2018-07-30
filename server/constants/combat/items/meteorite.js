@@ -1,7 +1,7 @@
 export const METEORITE_ITEMS = {
   "meteorite_dagger": {
     "id": "meteorite_dagger",
-    "icon": "meteoriteDagger.svg",
+    "icon": "meteoriteDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_spear": {
     "id": "meteorite_spear",
-    "icon": "meteoriteSpear.svg",
+    "icon": "meteoriteSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_short_sword": {
     "id": "meteorite_short_sword",
-    "icon": "meteoriteShortSword.svg",
+    "icon": "meteoriteShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_scimitar": {
     "id": "meteorite_scimitar",
-    "icon": "meteoriteScimitar.svg",
+    "icon": "meteoriteScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_long_sword": {
     "id": "meteorite_long_sword",
-    "icon": "meteoriteLongSword.svg",
+    "icon": "meteoriteLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_broad_sword": {
     "id": "meteorite_broad_sword",
-    "icon": "meteoriteBroadSword.svg",
+    "icon": "meteoriteBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_battle_axe": {
     "id": "meteorite_battle_axe",
-    "icon": "meteoriteBattleAxe.svg",
+    "icon": "meteoriteBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_helmet": {
     "id": "meteorite_helmet",
-    "icon": "meteoriteHelmet.svg",
+    "icon": "meteoriteHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "meteorite helmet",
@@ -247,7 +247,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_chest_plate": {
     "id": "meteorite_chest_plate",
-    "icon": "meteoriteChestPlate.svg",
+    "icon": "meteoriteChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "meteorite chestplate",
@@ -272,7 +272,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_plate_legs": {
     "id": "meteorite_plate_legs",
-    "icon": "meteoritePlateLegs.svg",
+    "icon": "meteoritePlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "meteorite platelegs",
@@ -297,7 +297,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_shield": {
     "id": "meteorite_shield",
-    "icon": "meteoriteShield.svg",
+    "icon": "meteoriteShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

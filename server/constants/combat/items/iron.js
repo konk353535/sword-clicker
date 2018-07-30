@@ -1,7 +1,7 @@
 export const IRON_ITEMS = {
   "iron_dagger": {
     "id": "iron_dagger",
-    "icon": "ironDagger.svg",
+    "icon": "ironDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const IRON_ITEMS = {
   },
   "iron_spear": {
     "id": "iron_spear",
-    "icon": "ironSpear.svg",
+    "icon": "ironSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const IRON_ITEMS = {
   },
   "iron_short_sword": {
     "id": "iron_short_sword",
-    "icon": "ironShortSword.svg",
+    "icon": "ironShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const IRON_ITEMS = {
   },
   "iron_scimitar": {
     "id": "iron_scimitar",
-    "icon": "ironScimitar.svg",
+    "icon": "ironScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const IRON_ITEMS = {
   },
   "iron_long_sword": {
     "id": "iron_long_sword",
-    "icon": "ironLongSword.svg",
+    "icon": "ironLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const IRON_ITEMS = {
   },
   "iron_broad_sword": {
     "id": "iron_broad_sword",
-    "icon": "ironBroadSword.svg",
+    "icon": "ironBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const IRON_ITEMS = {
   },
   "iron_battle_axe": {
     "id": "iron_battle_axe",
-    "icon": "ironBattleAxe.svg",
+    "icon": "ironBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const IRON_ITEMS = {
   },
   "iron_helmet": {
     "id": "iron_helmet",
-    "icon": "ironHelmet.svg",
+    "icon": "ironHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "iron helmet",
@@ -247,7 +247,7 @@ export const IRON_ITEMS = {
   },
   "iron_chest_plate": {
     "id": "iron_chest_plate",
-    "icon": "ironChestPlate.svg",
+    "icon": "ironChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "iron chestplate",
@@ -272,7 +272,7 @@ export const IRON_ITEMS = {
   },
   "iron_plate_legs": {
     "id": "iron_plate_legs",
-    "icon": "ironPlateLegs.svg",
+    "icon": "ironPlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "iron platelegs",
@@ -297,7 +297,7 @@ export const IRON_ITEMS = {
   },
   "iron_shield": {
     "id": "iron_shield",
-    "icon": "ironShield.svg",
+    "icon": "ironShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

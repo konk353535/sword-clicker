@@ -217,7 +217,7 @@ export const MISC_ITEMS = {
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
   bronze_kite_shield: {
     id: "bronze_kite_shield",
-    icon: "bronzeKiteShield.svg",
+    icon: "bronzeKiteShield.png",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -245,7 +245,7 @@ export const MISC_ITEMS = {
 
   steel_kite_shield: {
     id: "steel_kite_shield",
-    icon: "steelKiteShield.svg",
+    icon: "steelKiteShield.png",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -273,7 +273,7 @@ export const MISC_ITEMS = {
 
   obsidian_kite_shield: {
     id: "obsidian_kite_shield",
-    icon: "obsidianKiteShield.svg",
+    icon: "obsidianKiteShield.png",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -301,7 +301,7 @@ export const MISC_ITEMS = {
 
   meteorite_kite_shield: {
     id: "meteorite_kite_shield",
-    icon: "meteoriteKiteShield.svg",
+    icon: "meteoriteKiteShield.png",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -586,7 +586,7 @@ export const MISC_ITEMS = {
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
   iron_rapiers: {
     id: "iron_rapiers",
-    icon: "ironRapiers.svg",
+    icon: "ironRapiers.png",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",
@@ -617,7 +617,7 @@ export const MISC_ITEMS = {
 
   adamantium_rapiers: {
     id: "adamantium_rapiers",
-    icon: "adamantiumRapiers.svg",
+    icon: "adamantiumRapiers.png",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",
@@ -648,7 +648,7 @@ export const MISC_ITEMS = {
 
   fairy_steel_rapiers: {
     id: "fairy_steel_rapiers",
-    icon: "fairySteelRapiers.svg",
+    icon: "fairySteelRapiers.png",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",

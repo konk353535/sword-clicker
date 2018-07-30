@@ -134,7 +134,7 @@ export const STAFF_ITEMS = {
 
   brown_trident: {
     id: 'brown_trident',
-    icon: 'brownTrident.svg',
+    icon: 'brownTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -265,7 +265,7 @@ export const STAFF_ITEMS = {
 
   blue_trident: {
     id: 'blue_trident',
-    icon: 'blueTrident.svg',
+    icon: 'blueTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -818,7 +818,7 @@ export const STAFF_ITEMS = {
 
   purple_trident: {
     id: 'purple_trident',
-    icon: 'purpleTrident.svg',
+    icon: 'purpleTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',

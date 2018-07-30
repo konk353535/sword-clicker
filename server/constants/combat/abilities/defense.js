@@ -13,8 +13,8 @@ export const DEFENSE_ABILITIES = {
     target: 'allEnemies',
     isHidden: false,
     description(level) {
-      const BUFF = BUFFS.taunt;
-      return BUFF.description({ buff: BUFF, level });
+      // const BUFF = BUFFS.taunt;
+      return 'Forces all enemies to attack you';
     }
   },
 
@@ -26,7 +26,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.eel_taunt;
       return BUFF.description({ buff: BUFF, level });
@@ -41,7 +41,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.lion_taunt;
       return BUFF.description({ buff: BUFF, level });
@@ -56,7 +56,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.bear_taunt;
       return BUFF.description({ buff: BUFF, level });

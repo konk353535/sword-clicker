@@ -680,7 +680,7 @@ export const MISC_ITEMS = {
   /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',
-    icon: 'spiritShield.svg',
+    icon: 'spiritShield.png',
     category: 'combat',
     slot: 'offHand',
     name: 'spirit shield',
@@ -704,7 +704,7 @@ export const MISC_ITEMS = {
 
   fairy_spirit_shield: {
     id: 'fairy_spirit_shield',
-    icon: 'fairySpiritShield.svg',
+    icon: 'fairySpiritShield.png',
     category: 'combat',
     weaponType: 'shield',
     slot: 'offHand',
@@ -729,7 +729,7 @@ export const MISC_ITEMS = {
 
   cursed_spirit_shield: {
     id: 'cursed_spirit_shield',
-    icon: 'cursedSpiritShield.svg',
+    icon: 'cursedSpiritShield.png',
     category: 'combat',
     slot: 'offHand',
     weaponType: 'shield',

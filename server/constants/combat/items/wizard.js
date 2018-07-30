@@ -59,7 +59,7 @@ export const WIZARD_ITEMS = {
 
   druids_shirt: {
     id: 'druids_shirt',
-    icon: 'druidsShirt.png',
+    icon: 'druidsShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'druidic shirt',
@@ -86,7 +86,7 @@ export const WIZARD_ITEMS = {
 
   druids_pants: {
     id: 'druids_pants',
-    icon: 'druidsPants.png',
+    icon: 'druidsPants.svg',
     category: 'combat',
     slot: 'legs',
     name: 'druidic pants',

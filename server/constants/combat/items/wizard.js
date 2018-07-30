@@ -42,7 +42,7 @@ export const WIZARD_ITEMS = {
       accuracy: -25,
       magicPower: 5,
       magicArmor: 5,
-      healingPower: 15
+      healingPower: 10
     },
     extraStats: {
       healthMax: 10,
@@ -59,7 +59,7 @@ export const WIZARD_ITEMS = {
 
   druids_shirt: {
     id: 'druids_shirt',
-    icon: 'druidsShirt.svg',
+    icon: 'druidsShirt.png',
     category: 'combat',
     slot: 'chest',
     name: 'druidic shirt',
@@ -70,7 +70,7 @@ export const WIZARD_ITEMS = {
       healthMax: 30,
       magicPower: 6,
       magicArmor: 5,
-      healingPower: 15
+      healingPower: 10
     },
     extraStats: {
       healthMax: 30,
@@ -86,7 +86,7 @@ export const WIZARD_ITEMS = {
 
   druids_pants: {
     id: 'druids_pants',
-    icon: 'druidsPants.svg',
+    icon: 'druidsPants.png',
     category: 'combat',
     slot: 'legs',
     name: 'druidic pants',
@@ -97,7 +97,7 @@ export const WIZARD_ITEMS = {
       healthMax: 30,
       magicPower: 6,
       magicArmor: 5,
-      healingPower: 15
+      healingPower: 10
     },
     extraStats: {
       healthMax: 30,

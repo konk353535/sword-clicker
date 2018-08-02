@@ -1,7 +1,7 @@
 <template name="recipeIcon">
   <div class="recipe-container {{#unless maxCraftableAmount}}uncraftable{{/unless}}" data-recipe="{{recipe.id}}">
     <div class="d-flex" style="overflow: hidden">
-      <img src="/icons/{{recipe.icon}}" class="ore-icon">
+      <img src="/icons/{{recipe.icon}}{{imageTimestamp}}" class="ore-icon">
       <div class="d-flex flex-column justify-content-center mx-2 w-100" style="overflow: hidden">
         <!-- If isLearnt is for inscription, if the ability has already been learnt -->
         <span class="text-capitalize {{#if recipe.isLearnt}}text-success{{/if}}">
@@ -17,9 +17,9 @@
                 {{#each consumeItemRequirements}}
                   {{#if $eq this.type 'item'}}
                     {{#if this.herb_icon}}
-                      <img src="/icons/{{this.herb_icon}}" class="extra-small-icon">
+                      <img src="/icons/{{this.herb_icon}}{{imageTimestamp}}" class="extra-small-icon">
                     {{else}}
-                      <img src="/icons/{{this.icon}}" class="extra-small-icon">
+                      <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
                     {{/if}}
                   {{/if}}
                 {{/each}}
@@ -34,7 +34,7 @@
             <div class="recipe-required">
               {{#each recipeItems}}
                 {{#if $eq this.type 'item'}}
-                  <img src="/icons/{{this.icon}}" class="extra-small-icon">
+                  <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
                 {{/if}}
               {{/each}}
             </div>

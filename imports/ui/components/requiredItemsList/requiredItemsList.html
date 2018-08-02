@@ -12,7 +12,7 @@
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.currentAmount}} / {{this.amount}}</span>
-              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+              <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>
@@ -30,7 +30,7 @@
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+              <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>

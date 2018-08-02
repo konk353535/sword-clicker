@@ -84,7 +84,7 @@
           {{#each offenseStats}}
             <div class="d-flex flex-row mb-1">
               <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
-                <img src="/icons/{{this.icon}}" class="extra-small-icon">
+                <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
               </div>
               <div class="d-flex align-items-center ml-1">
                 {{> formatNumber number=this.value decimal=1}}
@@ -100,7 +100,7 @@
           {{#each defenseStats}}
             <div class="d-flex flex-row mb-1">
               <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
-                <img src="/icons/{{this.icon}}" class="extra-small-icon">
+                <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
               </div>
               <div class="d-flex align-items-center ml-1">
                 {{> formatNumber number=this.value decimal=1}}

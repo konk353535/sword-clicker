@@ -358,3 +358,7 @@ Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(woodcuttingTimer);
   Meteor.clearInterval(floatingTextTimer);
 });
+
+Template.registerHelper('imageTimestamp', function () {
+  return '?t='+Meteor.settings.public.imageTimestamp;
+});

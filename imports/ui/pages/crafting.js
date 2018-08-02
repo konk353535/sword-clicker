@@ -70,11 +70,11 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   // Show currently crafting items
   Meteor.subscribe('crafting');
 
-  if (Session.get('itemViewLimit') !== undefined) {
-    this.state.set('itemViewLimit', Session.get('itemViewLimit'));
-  } else {
-    this.state.set('itemViewLimit', 10);
-  }
+  // if (Session.get('itemViewLimit') !== undefined) {
+  //   this.state.set('itemViewLimit', Session.get('itemViewLimit'));
+  // } else {
+  //   this.state.set('itemViewLimit', 10);
+  // }
 
   if (Session.get('recipeCache')) {
     recipeCache = Session.get('recipeCache');
@@ -101,6 +101,18 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
         this.state.set('itemFilter', myUser.uiState.itemFilter);
       } else {
         this.state.set('itemFilter', 'visible-items');
+      }
+
+      if (myUser.uiState && myUser.uiState.craftingShowMore !== undefined) {
+        this.state.set('craftingShowMore', myUser.uiState.craftingShowMore);
+        if (myUser.uiState.craftingShowMore) {
+          this.state.set('itemViewLimit', 0);
+        } else {
+          this.state.set('itemViewLimit', 10);
+        }
+      } else {
+        this.state.set('craftingShowMore', false);
+        this.state.set('itemViewLimit', 10);
       }
     }
   });
@@ -211,13 +223,15 @@ Template.craftingPage.events({
   'click .show-all-items'(event, instance) {
     Session.set('itemViewLimit', 0);
     instance.state.set('itemViewLimit', 0);
+    Meteor.call('users.setUiState', 'craftingShowMore', true);
   },
 
   'click .show-less-items'(event, instance) {
     Session.set('itemViewLimit', 10);
     instance.state.set('itemViewLimit', 10);
+    Meteor.call('users.setUiState', 'craftingShowMore', false);
   }
-})
+});
 
 Template.craftingPage.helpers({
   craftingSkill() {

@@ -285,7 +285,8 @@ Meteor.methods({
       'itemFilter',
       'seedsFilter',
       'miningMultihit',
-      'recipeTileConsumables'
+      'recipeTileConsumables',
+      'craftingShowMore'
     ];
 
     if (_.contains(validIds, id)) {

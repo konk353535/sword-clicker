@@ -8,7 +8,7 @@
       {{#if $gt ability.currentCooldown 0}}disabled{{/if}}
       {{#if $and (ability.isSpell) ($lte ability.casts 0)}}disabled{{/if}}
     ">
-      <img src="/icons/{{ability.icon}}">
+      <img src="/icons/{{ability.icon}}{{imageTimestamp}}">
     </div>
     {{#if $gt ability.currentCooldown 0}}
       <span class="cooldown-text">

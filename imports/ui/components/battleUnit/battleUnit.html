@@ -13,7 +13,7 @@
       {{#if viewProfile}}
         <a href="/profile/{{unit.name}}">
           <img
-              src="/icons/{{unit.icon}}"
+              src="/icons/{{unit.icon}}{{imageTimestamp}}"
               id={{unit.id}}
               data-unit-id={{unit.id}}
               class="icon-box battle-unit
@@ -24,7 +24,7 @@
         </a>
       {{else}}
         <img
-            src="/icons/{{unit.icon}}"
+            src="/icons/{{unit.icon}}{{imageTimestamp}}"
             id={{unit.id}}
             data-unit-id={{unit.id}}
             class="icon-box battle-unit

@@ -1150,7 +1150,7 @@ export const MINING = {
       icon: 'carbonEssence.png',
       name: 'carbon essence',
       itemId: 'carbon_essence',
-      chance: 0.000030
+      chance: 0.00003
     },
 
     steel: {

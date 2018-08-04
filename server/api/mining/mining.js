@@ -458,6 +458,8 @@ Meteor.methods({
           ore.chance *= prospectorsMap['jewel'];
         } else if (prospectorsMap[ore.id]) {
           ore.chance *= prospectorsMap[ore.id];
+        } else if (prospectorsMap[ore.id.replace('_essence', '')]) {
+          ore.chance *= prospectorsMap[ore.id.replace('_essence', '')];
         }
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {

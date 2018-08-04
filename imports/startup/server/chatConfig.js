@@ -6,6 +6,7 @@ import { Servers } from '/imports/api/servers/servers';
 import { Floors } from '/imports/api/floors/floors';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addItem } from '/server/api/items/items.js';
+import { Events } from '/imports/api/events/events';
 
 import { FLOORS } from '/server/constants/floors/index.js';
 
@@ -86,7 +87,6 @@ SimpleChat.configure ({
     }
 
     if (/\/transfergems/.test(message)) {
-      console.log(message);
       const splitMessage = message.split(' ');
       const targetUsername = splitMessage[1];
       const targetAmount = parseInt(splitMessage[2]);
@@ -109,6 +109,17 @@ SimpleChat.configure ({
       if (!targetUser) {
         return;
       }
+
+      Events.insert({
+        owner: userDoc._id,
+        event: 'transfergems',
+        date: new Date(),
+        data: {
+          from: userDoc._id,
+          to: targetUser._id,
+          amount: gemsToSend
+        }
+      }, () => {});
 
       Users.update(userDoc._id, {
         $inc: {

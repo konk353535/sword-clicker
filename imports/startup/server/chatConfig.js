@@ -9,6 +9,7 @@ import { addItem } from '/server/api/items/items.js';
 
 import { FLOORS } from '/server/constants/floors/index.js';
 
+import _ from 'underscore';
 import moment from 'moment';
 
 const createNewServer = function (name, iteration) {
@@ -82,6 +83,45 @@ SimpleChat.configure ({
         });
         return true;
       }
+    }
+
+    if (/\/transfergems/.test(message)) {
+      const splitMessage = message.split(' ');
+      const targetUsername = splitMessage[1];
+      const targetAmount = parseInt(splitMessage[2]);
+
+      if (!_.isFinite(targetAmount)) {
+        return;
+      } else if (targetAmount <= 0) {
+        return;
+      }
+
+      let gemsToSend = targetAmount;
+      if (gemsToSend > userDoc.gems) {
+        gemsToSend = userDoc.gems;
+      }
+
+      const targetUser = Users.findOne({
+        username: targetUsername.toLowerCase().trim()
+      });
+
+      if (!targetUser) {
+        return;
+      }
+
+      Users.update(userDoc._id, {
+        $inc: {
+          gems: (gemsToSend * -1)
+        }
+      });
+
+      Users.update(targetUser._id, {
+        $inc: {
+          gems: gemsToSend
+        }
+      });
+
+      return false;
     }
 
     if (userDoc.isMod) {

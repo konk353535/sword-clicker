@@ -86,6 +86,7 @@ SimpleChat.configure ({
     }
 
     if (/\/transfergems/.test(message)) {
+      console.log(message);
       const splitMessage = message.split(' ');
       const targetUsername = splitMessage[1];
       const targetAmount = parseInt(splitMessage[2]);

@@ -52,7 +52,11 @@ Meteor.methods({
   'users.updateGuest'({ username, password, email }) {
     // Make sure this account is actually a guest
     if (!Meteor.user().isGuest) {
-      throw new Meteor.Error('not-guest', 'Cant update details if your not a guest');
+      throw new Meteor.Error('not-guest', 'Cant update details if you are not a guest');
+    }
+
+    if (Users.find({emails: [email]})) {
+      throw new Meteor.Error('email-taken', 'Cant use an already registered email');
     }
 
     // Update username

@@ -42,7 +42,7 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs();
 Meteor.setInterval(updateGlobalBuffs, 30000);
 
-export const addXp = function (skillType, xp, specificUserId) {
+export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) {
   let owner;
   if (specificUserId) {
     owner = specificUserId
@@ -58,7 +58,9 @@ export const addXp = function (skillType, xp, specificUserId) {
   const skillConstants = SKILLS[skill.type];
   const originalXp = skill.xp;
 
-  if (globalXpBuffs[skill.type]) {
+
+
+  if (globalXpBuffs[skill.type] && !ignoreBuff) {
     xp *= 1.35;
   }
 

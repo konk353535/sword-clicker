@@ -56,7 +56,7 @@ Meteor.methods({
           }
         });
       } else if (reward.type === 'xp') {
-        addXp(reward.skill, reward.amount);
+        addXp(reward.skill, reward.amount, userDoc._id, true);
       }
     });
 

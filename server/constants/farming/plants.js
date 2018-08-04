@@ -1153,7 +1153,7 @@ export const PLANTS = {
 
   elk_log: {
     produces: 'elk_log',
-    name: 'elk tree',
+    name: 'elm tree',
     produceAmount: 20,
     id: 'elk_log',
     category: 'farming',

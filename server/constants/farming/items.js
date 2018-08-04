@@ -959,9 +959,9 @@ export const FARMING_ITEMS = {
     id: 'elk_seed',
     icon: 'elkSeed.svg',
     category: 'seed',
-    name: 'elk Seed',
+    name: 'elm Seed',
     seedType: 'tree',
-    description: 'Used to grow elk log. Long time to grow, gives good exp.',
+    description: 'Used to grow elm log. Long time to grow, gives good exp.',
     sellPrice: 10,
     produces: 'elk_log'
   },

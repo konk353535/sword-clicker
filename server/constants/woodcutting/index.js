@@ -681,7 +681,7 @@ export const WOODCUTTING = {
       xp: 180,
       id: 'elk_log',
       icon: 'elkLog.png',
-      name: 'elk log',
+      name: 'elm log',
       itemId: 'elk_log',
       chance: 0.01
     },

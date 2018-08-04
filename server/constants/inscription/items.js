@@ -365,7 +365,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'elk_paper',
     icon: 'elkPaper.png',
     category: 'paper',
-    name: 'elk paper',
+    name: 'elm paper',
     sellPrice: 470,
     description: 'Used in inscription with pigments to make ability books'
   },
@@ -374,7 +374,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'elk_book',
     icon: 'elkBook.png',
     category: 'paper',
-    name: 'elk book',
+    name: 'elm book',
     sellPrice: 2350,
     description: 'Gives decent xp'
   },

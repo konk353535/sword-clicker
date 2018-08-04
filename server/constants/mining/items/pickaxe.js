@@ -1359,7 +1359,7 @@ export const PICKAXE_ITEMS = {
     icon: 'elkIdol.svg',
     category: 'mining',
     slot: 'mining_offhand',
-    name: 'elk Idol',
+    name: 'elm Idol',
     sellPrice: 200,
     description: 'An idol used to inspire miners.',
     isPickaxe: true,

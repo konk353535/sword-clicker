@@ -547,7 +547,7 @@ export const WOODCUTTING_ITEMS = {
     id: 'elk_log',
     icon: 'elkLog.png',
     category: 'woodcutting',
-    name: 'elk log',
+    name: 'elm log',
     sellPrice: 60
   },
 

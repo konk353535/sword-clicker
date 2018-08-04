@@ -1091,7 +1091,7 @@ export const MINING = {
       icon: 'silverEssence.png',
       name: 'silver essence',
       itemId: 'silver_essence',
-      chance: 0.00004
+      chance: 0.00008
     },
 
     gem: {
@@ -1121,12 +1121,12 @@ export const MINING = {
     gold_essence: {
       requiredLevel: 25,
       healthMax: 750,
-      xp: 70,
+      xp: 75,
       id: 'gold_essence',
       icon: 'goldEssence.png',
       name: 'gold essence',
       itemId: 'gold_essence',
-      chance: 0.00002
+      chance: 0.00004
     },
 
     carbon: {
@@ -1150,7 +1150,7 @@ export const MINING = {
       icon: 'carbonEssence.png',
       name: 'carbon essence',
       itemId: 'carbon_essence',
-      chance: 0.000015
+      chance: 0.000030
     },
 
     steel: {
@@ -1174,7 +1174,7 @@ export const MINING = {
       icon: 'steelEssence.png',
       name: 'steel essence',
       itemId: 'steel_essence',
-      chance: 0.00001
+      chance: 0.00002
     },
 
     platinum: {
@@ -1198,7 +1198,7 @@ export const MINING = {
       icon: 'platinumEssence.png',
       name: 'platinum essence',
       itemId: 'platinum_essence',
-      chance: 0.000009
+      chance: 0.000018
     },
 
     titanium: {
@@ -1222,7 +1222,7 @@ export const MINING = {
       icon: 'titaniumEssence.png',
       name: 'titanium essence',
       itemId: 'titanium_essence',
-      chance: 0.000008
+      chance: 0.000016
     },
 
     tungsten: {
@@ -1246,7 +1246,7 @@ export const MINING = {
       icon: 'tungstenEssence.png',
       name: 'tungsten essence',
       itemId: 'tungsten_essence',
-      chance: 0.000007
+      chance: 0.000014
     },
 
     obsidian: {
@@ -1270,7 +1270,7 @@ export const MINING = {
       icon: 'obsidianEssence.png',
       name: 'obsidian essence',
       itemId: 'obsidian_essence',
-      chance: 0.000006
+      chance: 0.000012
     },
 
     cobalt: {
@@ -1294,7 +1294,7 @@ export const MINING = {
       icon: 'cobaltEssence.png',
       name: 'cobalt essence',
       itemId: 'cobalt_essence',
-      chance: 0.000005
+      chance: 0.000010
     },
 
     mithril: {
@@ -1318,7 +1318,7 @@ export const MINING = {
       icon: 'mithrilEssence.png',
       name: 'mithril essence',
       itemId: 'mithril_essence',
-      chance: 0.000004
+      chance: 0.000008
     },
 
     adamantium: {
@@ -1342,7 +1342,7 @@ export const MINING = {
       icon: 'adamantiumEssence.png',
       name: 'adamantium essence',
       itemId: 'adamantium_essence',
-      chance: 0.000003
+      chance: 0.000006
     },
 
     orichalcum: {
@@ -1366,7 +1366,7 @@ export const MINING = {
       icon: 'orichalcumEssence.png',
       name: 'orichalcum essence',
       itemId: 'orichalcum_essence',
-      chance: 0.000002
+      chance: 0.000004
     },
 
     meteorite: {
@@ -1390,7 +1390,7 @@ export const MINING = {
       icon: 'meteoriteEssence.png',
       name: 'meteorite essence',
       itemId: 'meteorite_essence',
-      chance: 0.000001
+      chance: 0.000002
     },
 
     fairy_steel: {
@@ -1414,7 +1414,7 @@ export const MINING = {
       icon: 'fairySteelEssence.png',
       name: 'fairy steel essence',
       itemId: 'fairy_steel_essence',
-      chance: 0.0000009
+      chance: 0.0000018
     },
 
     elven_steel: {
@@ -1438,7 +1438,7 @@ export const MINING = {
       icon: 'elvenSteelEssence.png',
       name: 'elven steel essence',
       itemId: 'elven_steel_essence',
-      chance: 0.0000008
+      chance: 0.0000016
     },
 
     cursed: {
@@ -1462,7 +1462,7 @@ export const MINING = {
       icon: 'cursedEssence.png',
       name: 'cursed essence',
       itemId: 'cursed_essence',
-      chance: 0.0000006
+      chance: 0.0000012
     },
 
     // Do Later

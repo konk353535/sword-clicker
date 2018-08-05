@@ -27,7 +27,9 @@ Meteor.methods({
   },
 
   'users.activeUsers'() {
+    const user = Users.findOne({_id: Meteor.userId()});
     return Mining.find({
+      server: user.server,
       lastGameUpdated: {
         $gte: moment().subtract(5, 'minutes').toDate()
       }
@@ -55,7 +57,7 @@ Meteor.methods({
       throw new Meteor.Error('not-guest', 'Cant update details if you are not a guest');
     }
 
-    if (Users.find({emails: [email]})) {
+    if (Users.findOne({'emails.address': email})) {
       throw new Meteor.Error('email-taken', 'Cant use an already registered email');
     }
 

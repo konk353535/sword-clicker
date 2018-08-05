@@ -449,6 +449,7 @@ Accounts.onCreateUser((options, user) => {
   Mining.insert({
     owner: userId,
     lastGameUpdated: new Date(),
+    server: targetServer._id,
     miners: [{
       id: MINING.miners.primitive_miner.id,
       amount: 1

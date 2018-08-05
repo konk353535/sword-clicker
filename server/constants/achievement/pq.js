@@ -104,7 +104,8 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
-  'pq_60': {
+  /* Rebalanced, Jade from pq70 moved to 35 */
+  'pq_70_2': {
     name: 'PQ 60',
     hidden: false,
     description: 'Reach level 60 in personal quest',
@@ -113,7 +114,7 @@ export const PQ_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'gold',
-      amount: 100000
+      amount: 50000
     }]
   },
 
@@ -135,8 +136,7 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
-  /* Rebalanced, Jade from pq70 moved to 35 */
-  'pq_70_2': {
+  'pq_60': {
     name: 'PQ 70',
     hidden: false,
     description: 'Reach level 70 in personal quest',
@@ -145,7 +145,7 @@ export const PQ_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'gold',
-      amount: 50000
+      amount: 100000
     }]
   },
 
@@ -233,7 +233,7 @@ export const PQ_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'gold',
-      amount: 100000
+      amount: 300000
     }]
   },
 

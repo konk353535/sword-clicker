@@ -14,7 +14,7 @@
       <tr>
         <th scope="row">{{this.name}}</th>
         <td>{{this.description}}</td>
-        <td>{{> requiredItems requiredItems=this.rewards hideTooltip=true ignoreRequired=true}}</td>
+        <td>{{> requiredItems requiredItems=this.rewards hideTooltip=true ignoreRequired=true hideCurrent=true}}</td>
         <td>
           {{#if this.collected}}
             <button class="btn btn-primary" disabled=true>Collected</button>

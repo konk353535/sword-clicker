@@ -14,7 +14,8 @@ FloorsSchema = new SimpleSchema({
   pointsMax: { type: Number, defaultValue: 10000 },
   health: { type: Number, decimal: true, defaultValue: 1000 },
   healthMax: { type: Number, defaultValue: 1000 },  
-  floorComplete: { type: Boolean, defaultValue: false }
+  floorComplete: { type: Boolean, defaultValue: false },
+  loot: { type: [Object], defaultValue: [], blackbox: true }
 });
 
 Floors.attachSchema(FloorsSchema);

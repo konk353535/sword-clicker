@@ -12,6 +12,7 @@ import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleA
 import { Groups } from '/imports/api/groups/groups';
 import { Servers } from '/imports/api/servers/servers';
 
+import { ITEMS } from '/server/constants/items';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
@@ -219,7 +220,15 @@ Meteor.methods({
           pointsMax: currentFloor.pointsMax
         },
         floorDetails: {
-          rewards: specifiedFloorConstants.floorRewards,
+          rewards: currentFloor.loot.map(function(reward) {
+            if (reward.type === 'item') {
+              reward.icon = ITEMS[reward.itemId].icon;
+              reward.name = ITEMS[reward.itemId].name;
+              reward.extraStats = ITEMS[reward.itemId].extraStats;
+              reward.description = ITEMS[reward.itemId].description;
+            }
+            return reward;
+          }),
           unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
           1: { name: specifiedFloorConstants[1].name },
           2: { name: specifiedFloorConstants[2].name },

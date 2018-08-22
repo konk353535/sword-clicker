@@ -1,16 +1,18 @@
 import _ from 'underscore';
 
-import { ENEMIES } from '/server/constants/enemies/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
-import { FLOORS } from '/server/constants/floors/index.js';
-import { MAGIC } from '/server/constants/magic/index.js';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
-import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { ENEMIES } from '/server/constants/enemies/index';
+import { ITEMS } from '/server/constants/items/index';
+import { FLOORS } from '/server/constants/floors/index';
+import { MAGIC } from '/server/constants/magic/index';
+import { BATTLES } from '/server/constants/battles/index'; // List of encounters
+import { PLAYER_ICONS } from '/imports/constants/shop/index';
 import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
+import { normalizedLootTable } from '/server/constants/enemies/lootTables/index';
+import { cleanRewards } from '/server/utils';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
@@ -20,7 +22,6 @@ import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
-import weightedRandom from 'weighted-random';
 
 const redis = new Meteor.RedisCollection('redis');
 
@@ -388,7 +389,7 @@ export const completeBattle = function (actualBattle) {
             });
 
             if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
-              ownerObject.usedTowerContribution = true;
+              // ownerObject.usedTowerContribution = true;
               countTowerContributors++;
 
               const updateSelector = { owner, floor: actualBattle.floor };
@@ -452,6 +453,94 @@ export const completeBattle = function (actualBattle) {
           }, {
             $inc: {
               points: pointsEarnt * countTowerContributors
+            }
+          });
+
+          // add additional loot to community pot for every contributor
+
+          let floors = [];
+          if (actualBattle.floor === 1) {
+            floors = [{
+              floor: 1,
+              minChance: 1 / 32
+            }]
+          } else if (actualBattle.floor === 2) {
+            floors = [{
+              floor: 1,
+              minChance: 1 / 32
+            }, {
+              floor: 2,
+              minChance: 1 / 48
+            }]
+          } else {
+            const floorNumbers = _.range(Math.max(1, actualBattle.floor - FLOORS.floorRewardRange - 1), actualBattle.floor);
+            floors = floorNumbers.map((num, idx) => { return { floor: num,  minChance: 1 / (16 * (idx + 2)) } });
+          }
+
+          let rewardsGained = _.flatten(floors.map((floor) => {
+            let floorRewards = [];
+
+            // Add rewards from previous rooms
+            for (let i = actualBattle.room - 1; i > 0; i--) {
+              floorRewards.push(...FLOORS[floor.floor][i].rewards);
+            }
+
+            floorRewards = normalizedLootTable(floorRewards, floor.minChance);
+            floorRewards.push({chance: 1 / 64, rewards: [{type: 'item', itemId: 'enhancer_key', amount: 1}]});
+            let rewards = [];
+
+            // Each user = additional 20% chance of loot
+            const extraChance = 1 + (countTowerContributors * 0.2) - 0.2;
+            for (let i = 0; i < floorRewards.length; i++) {
+              const rewardTable = floorRewards[i];
+              const diceRoll = Math.random();
+
+              if ((rewardTable.chance * extraChance) >= diceRoll) {
+                let reward = _.sample(rewardTable.rewards);
+                if (reward.type === 'gold') {
+                  reward.amount *= 12;
+                }
+                if (reward.type !== 'icon')  {
+                  rewards.push(reward);
+                }
+                if (rewards >= countTowerContributors) {
+                  break;
+                }
+              } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
+                let reward = _.sample(rewardTable.rewards);
+                if (reward.type === 'gold') {
+                  reward.amount *= 15;
+                }
+                if (reward.type !== 'icon')  {
+                  rewards.push(Object.assign({}, reward, {
+                    affectedGlobalBuff: true
+                  }));
+                }
+                if (rewards >= countTowerContributors) {
+                  break;
+                }
+              }
+            }
+
+            return rewards;
+
+          }));
+
+          const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+          let floorRewards = [];
+          if (currentFloor.loot) {
+            floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained));
+          } else {
+            floorRewards = cleanRewards(rewardsGained);
+          }
+
+          Floors.update({
+            floor: actualBattle.floor,
+            server: actualBattle.server,
+            floorComplete: false
+          }, {
+            $set: {
+              loot: floorRewards
             }
           });
         }

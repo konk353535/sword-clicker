@@ -48,7 +48,7 @@ export const enemyStatSetter = function(constants, baseStats, enhancedStats) {
       currentEnemy.stats[statKey] = currentStatValue * baseStats[statKey];
     });
   });
-}
+};
 
 export const attackSpeedTicks = function(attackSpeed) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
@@ -63,4 +63,28 @@ export const attackSpeedTicks = function(attackSpeed) {
   } else {
     return 0;
   }
-}
+};
+
+export const cleanRewards = function(rewards) {
+  const r = JSON.parse(JSON.stringify(rewards));
+  let items = r.reduce((acc, cur) => {
+    let exists = false;
+    acc.forEach((item) => {
+      if(item.type === 'item' && cur.type === 'item') {
+        if(item.itemId === cur.itemId) {
+          item.amount += cur.amount;
+          exists = true;
+        }
+      } else if(item.type === 'gold' && cur.type === 'gold') {
+        item.amount += cur.amount;
+        exists = true;
+      }
+    });
+
+    if (!exists) {
+      acc.push(cur);
+    }
+    return acc;
+  }, []);
+  return _.sortBy(items, 'type');
+};

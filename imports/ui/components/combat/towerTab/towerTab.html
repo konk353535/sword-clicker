@@ -68,7 +68,7 @@
                 Battle
               </button>
               <div>
-                Boss {{> formatNumber number=waveDetails.health}} / {{> formatNumber number=waveDetails.healthMax}}
+                Boss {{> formatNumber number=waveDetails.healthMax}} HP
               </div>
             {{/unless}}
             <span>
@@ -184,7 +184,7 @@
 
     </div>
     {{#if currentCommunityFloor}}
-      <div class="flex-grow">
+      <div class="flex-grow" style="max-width: 50%;">
         <h1>Stats</h1>
         <h2 class="my-3">Progress</h2>
         <div>{{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
@@ -197,15 +197,14 @@
             No contributions
           {{/if}}
         </div>
-        <h2 class="my-3">Your estimated rewards</h2>
-        <div class="d-flex align-items-center">
-          <img src="/icons/treasureChest.svg" class="large-icon">
+        <h2 class="my-3">Floor unlock rewards</h2>
+        <div class="d-flex flex-wrap align-items-center">
+          <img src="/icons/treasureChest.svg" class="large-icon mr-3">
           {{#each estimatedRewards}}
             {{#if $eq this.type 'item'}}
-              {{ > itemIcon item=this classes="small" hideTooltip=true}}
-              {{this.chance}}% chance
+              {{ > itemIcon item=this classes="small" readOnly=true }}
             {{else}}
-              <img src="/icons/goldCoin.svg" class="small-icon"> {{this.goldAmount}}
+              <img src="/icons/goldCoin.svg" class="small-icon"> {{this.amount}}
             {{/if}}
           {{/each}}
         </div>

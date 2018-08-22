@@ -72,5 +72,9 @@ Template.requiredItems.helpers({
 
   hasSkillRequirements() {
     return Template.instance().state.get('hasSkillRequirements');
+  },
+
+  hideCurrent() {
+    return Template.instance().data.hideCurrent;
   }
-})
+});

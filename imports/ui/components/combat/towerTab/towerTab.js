@@ -225,12 +225,25 @@ Template.towerTab.helpers({
     return Template.instance().state.get('usersCurrentFloor');
   },
 
-  bossResetDate() {
+  floorResetDate() {
     return moment().utc().hours(23).minutes(59).seconds(59);
+  },
+
+  bossResetDate() {
+    return Template.instance().state.get('waveDetails').bossResetAt;
   },
 
   maxFloor() {
     return Template.instance().state.get('maxFloor');
+  },
+
+  bossOverkill() {
+    let currentFloor = Template.instance().state.get('waveDetails');
+    let overkillLevel = 0;
+    if (currentFloor.health < 0) {
+      overkillLevel = Math.min(Math.floor(Math.abs(currentFloor.health * 4) / currentFloor.healthMax), 12);
+    }
+    return overkillLevel;
   },
 
   currentCommunityFloor() {

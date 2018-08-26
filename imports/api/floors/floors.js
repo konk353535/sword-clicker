@@ -15,7 +15,8 @@ FloorsSchema = new SimpleSchema({
   health: { type: Number, decimal: true, defaultValue: 1000 },
   healthMax: { type: Number, defaultValue: 1000 },  
   floorComplete: { type: Boolean, defaultValue: false },
-  loot: { type: [Object], defaultValue: [], blackbox: true }
+  loot: { type: [Object], defaultValue: [], blackbox: true },
+  bossResetAt: { type: Date, optional: true }
 });
 
 Floors.attachSchema(FloorsSchema);

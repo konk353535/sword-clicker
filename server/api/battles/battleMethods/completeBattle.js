@@ -1,6 +1,6 @@
+import moment from "moment/moment";
 import _ from 'underscore';
 
-import { ENEMIES } from '/server/constants/enemies/index';
 import { ITEMS } from '/server/constants/items/index';
 import { FLOORS } from '/server/constants/floors/index';
 import { MAGIC } from '/server/constants/magic/index';
@@ -25,76 +25,71 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
 const redis = new Meteor.RedisCollection('redis');
 
-const distributeRewards = function distributeRewards({ floor, server }) {
+export const distributeRewards = function distributeRewards({ floor, server }) {
   console.log('Distributing rewards');
-
-  // Fetch the rewards
-  const rawFloorRewards = FLOORS[floor].floorRewards;
-
-  // Fetch top 10 by damage dealt
-  const sortedBossHealthScores = BossHealthScores.find({
-    server
-  }, {
-    sort: [
-      ['bossDamage', 'desc']
-    ],
-    limit: 10
-  }).fetch();
-
-  sortedBossHealthScores.forEach((bossHealthScore) => {
-    rawFloorRewards.forEach((reward) => {
-      if (reward.type === 'item') {
-        console.log(`Adding item - ${reward.itemId}`);
-        addItem(reward.itemId, 1, bossHealthScore.owner);
-      }
-    })
-  })
 
   // Fetch all users by tower points
   const sortedFloorWaveScores = FloorWaveScores.find({
+    server,
     floor,
     points: {
       $gte: 25
     }
-  }, {
-    sort: [
-      ['points', 'desc']
-    ]
   }).fetch();
 
   const totalContributors = sortedFloorWaveScores.length;
 
-  sortedFloorWaveScores.forEach((waveScore, index) => {
-    const percentRank = ((index + 1) / totalContributors) * 100;
-    let chance = 0;
-    if (percentRank <= 10 || index <= 9) {
-      chance = 100;
-    } else if (percentRank <= 25) {
-      chance = 50;
-    } else if (percentRank <= 50) {
-      chance = 25;
-    } else if (percentRank <= 75) {
-      chance = 5;
-    } else {
-      chance = 1;
-    }
+  console.log('floor', floor, 'server', server);
+  let rewards = Floors.findOne({floor: floor, server: server}).loot;
+  // get gold out first
+  let gold = _.findWhere(rewards, {type: 'gold'});
 
-    console.log(`Rank = ${percentRank}`);
-    rawFloorRewards.forEach((reward) => {
-      if (reward.type === 'item' && Math.random() <= (chance / 100)) {
-        addItem(reward.itemId, 1, waveScore.owner);
-        console.log(`Adding item - ${reward.itemId} - 1`);
-      } else if (reward.type === 'gold') {
-        const goldAmount = (1 - (percentRank / 100)) * reward.amount;
-        console.log(`Adding gold - ${goldAmount}`);
-        Users.update(waveScore.owner, {
-          $inc: {
-            gold: Math.round(goldAmount)
-          }
-        });
+  let playerList = {};
+  sortedFloorWaveScores.forEach((waveScore) => {
+    playerList[waveScore.owner] = [{
+      type: 'gold',
+      amount: Math.floor(gold.amount / totalContributors)
+    }];
+  });
+
+  // remove gold
+  rewards = _.reject(rewards, function(r) {
+    return r.type === 'gold';
+  });
+
+  while(rewards.length > 0) {
+    Object.keys(playerList).map((player) => {
+      if(rewards.length <= 0) {
+        return;
+      }
+      const reward = _.sample(rewards);
+      playerList[player].push({
+        type: reward.type,
+        itemId: reward.itemId,
+        amount: 1
+      });
+      // find reward and decrement by 1 or remove from list
+      rewards = rewards.map((cur) => {
+        if (cur.itemId === reward.itemId) {
+          cur.amount -= 1;
+        }
+        return cur;
+      });
+      rewards = _.reject(rewards, (r) => {
+        return r.amount <= 0;
+      });
+    });
+  }
+
+  Object.keys(playerList).map((player) => {
+    playerList[player] = cleanRewards(playerList[player]);
+    playerList[player].map((item) => {
+      if (item.itemId) {
+        console.log(`awarding ${item.amount} ${item.itemId} to ${player}`);
+        addItem(item.itemId, item.amount, player);
       }
     });
-  })
+  });
 };
 
 export const resolveLoot = function(battle) {
@@ -456,6 +451,22 @@ export const completeBattle = function (actualBattle) {
             }
           });
 
+          // if boss should be unlocked, begin 24h timer
+          const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+
+          if (currentFloor.points > currentFloor.pointsMax && !currentFloor.bossResetAt) {
+            const resetDate = moment().add(24, 'hours').toDate();
+            Floors.update({
+              floor: actualBattle.floor,
+              server: actualBattle.server,
+              floorComplete: false
+            }, {
+              $set: {
+                bossResetAt: resetDate
+              }
+            });
+          }
+
           // add additional loot to community pot for every contributor
 
           let floors = [];
@@ -526,7 +537,6 @@ export const completeBattle = function (actualBattle) {
 
           }));
 
-          const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
           let floorRewards = [];
           if (currentFloor.loot) {
             floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained));
@@ -695,80 +705,12 @@ export const completeBattle = function (actualBattle) {
     // Update bosses hp
     const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
     if (currentFloor) {
-      currentFloor.health -= damageDealt;
-
-      if (currentFloor.health <= 0) {
-        console.log('Health is below 0');
-        // Complete the floor!
-        let updatedCount = Floors.update({
-          floor: actualBattle.floor,
-          server: actualBattle.server,
-          floorComplete: false
-        }, {
-          $set: {
-            floorComplete: true
-          }
-        });
-
-        console.log(`Updated count is ${updatedCount}`);
-        if (updatedCount === 1) {
-          // Distribute rewards
-          distributeRewards({ floor: actualBattle.floor, server: actualBattle.server });
-
-          // Notify general chat
-          Chats.insert({
-            message: `The boss on floor ${actualBattle.floor} has been defeated!
-              Floor ${actualBattle.floor + 1} is now unlocked.`,
-            username: 'SERVER',
-            name: 'SERVER',
-            date: new Date(),
-            custom: {
-              roomType: 'Game'
-            },
-            roomId: `General-${actualBattle.server}`
-          });
-
-          // Insert the next floor (To do, make this pass a valid active tower users number)
-          const activeTowerUsers = FloorWaveScores.find({
-            floor: actualBattle.floor,
-            points: {
-              $gte: 25
-            }
-          }).count();
-          const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, activeTowerUsers);
-
-          // Get bosses hp
-          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
-          const bossEnemyConstants = ENEMIES[bossEnemyId];
-
-          // Reset tower contributions for all
-          Combat.update({}, {
-            $set: {
-              towerContributionsToday: 0
-            }
-          }, { multi: true });
-
-          BossHealthScores.remove({});
-
-          // Create our next floor
-          Floors.insert({
-            floor: actualBattle.floor + 1,
-            createdAt: new Date(),
-            points: 0,
-            server: actualBattle.server,
-            pointsMax: newPointMax, // Need some kind of
-            health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-            healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
-          });
+      // Just update the bosses hp
+      Floors.update(currentFloor._id, {
+        $set: {
+          health: currentFloor.health - damageDealt
         }
-      } else {
-        // Just update the bosses hp
-        Floors.update(currentFloor._id, {
-          $inc: {
-            health: damageDealt * -1
-          }
-        });
-      }
+      });
     }
   }
 

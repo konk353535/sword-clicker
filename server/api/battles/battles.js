@@ -161,7 +161,7 @@ Meteor.methods({
 
     if (room === 'boss') {
       if (currentCommunityFloor.floor === floor && canBossBattle) {
-        const bossHealth = currentCommunityFloor.health;
+        const bossHealth = currentCommunityFloor.healthMax;
 
         return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
@@ -217,7 +217,8 @@ Meteor.methods({
           health: currentFloor.health,
           healthMax: currentFloor.healthMax,
           points: Math.floor(currentFloor.points),
-          pointsMax: currentFloor.pointsMax
+          pointsMax: currentFloor.pointsMax,
+          bossResetAt: currentFloor.bossResetAt
         },
         floorDetails: {
           rewards: currentFloor.loot.map(function(reward) {

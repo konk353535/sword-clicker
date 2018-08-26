@@ -11,7 +11,7 @@
         <img src="/icons/{{this.skill}}.svg" class="extra-small-icon">      
         <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount noDecimal=true}}</span>
       {{else}}
-        <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
+        <img src="/icons/{{this.icon}}" class="extra-small-icon">
         <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}"> {{#unless hideCurrent }}{{this.currentAmount}} / {{/unless}}{{this.amount}}</span>
       {{/if}}
     {{/each}}
@@ -33,7 +33,7 @@
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>
@@ -51,7 +51,7 @@
               <span class="ml-1 text-capitalize">Gold</span><br />            
             {{else if $eq this.type 'item'}}
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">{{this.amount}}</span>
-              <img src="/icons/{{this.icon}}{{imageTimestamp}}" class="extra-small-icon">
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             {{/if}}
           </div>

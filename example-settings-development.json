@@ -5,7 +5,6 @@
   "redisConfigureKeyspaceNotifications": 1,
   "public": {
     "stripe": "-or-this",
-    "imageTimestamp": "201808010000"
   },
   "galaxy.meteor.com": {
     "env": {

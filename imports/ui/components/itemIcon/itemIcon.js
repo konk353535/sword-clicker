@@ -91,6 +91,10 @@ const hideItem = function (event, instance) {
 Template.itemIcon.events({
   'click .icon-box'(event, instance) {
 
+    if (Template.instance().data.readOnly) {
+      return;
+    }
+
     if ($('body').hasClass('targetting-item')) {
       return;
     }
@@ -187,4 +191,4 @@ Template.itemIcon.events({
   'click .hide-btn'(event, instance) {
     hideItem(event, instance);
   }
-})
+});

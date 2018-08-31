@@ -10,10 +10,10 @@
 
     <!-- Abilities can have required items -->
     {{#if item.requiredItem}}
-      <img src="/icons/{{item.requiredItem}}{{imageTimestamp}}" class="small-icon">
+      <img src="/icons/{{item.requiredItem}}" class="small-icon">
     {{/if}}
 
-    <img src="/icons/{{item.icon}}{{imageTimestamp}}" class="item-icon">
+    <img src="/icons/{{item.icon}}" class="item-icon">
     {{#unless item.hideCount}}
       {{#if $gt item.amount 1}}
         <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
@@ -77,39 +77,41 @@
           {{/if}}
         {{/if}}
 
-        {{#if item.primaryAction}}
-          {{#if item.primaryAction.description}}
-            <div>
-              <b>Left Click</b> to {{item.primaryAction.description}}
-            </div>
-          {{/if}}
-        {{else}}
-          {{#if item.shiftAction}}
-            {{#if item.shiftAction.description}}
+        {{#unless readOnly}}
+          {{#if item.primaryAction}}
+            {{#if item.primaryAction.description}}
               <div>
-                <b>Left Click</b> to use or sell for {{item.sellPrice}}
+                <b>Left Click</b> to {{item.primaryAction.description}}
               </div>
             {{/if}}
           {{else}}
-            <b>Left Click</b> to sell for {{item.sellPrice}}
+            {{#if item.shiftAction}}
+              {{#if item.shiftAction.description}}
+                <div>
+                  <b>Left Click</b> to use or sell for {{item.sellPrice}}
+                </div>
+              {{/if}}
+            {{else}}
+              <b>Left Click</b> to sell for {{item.sellPrice}}
+            {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#if item.shiftAction}}
-          {{#if item.shiftAction.description}}
-            <div>
-              <b>Shift Click</b> to {{item.shiftAction.description}}
-            </div>
+          {{#if item.shiftAction}}
+            {{#if item.shiftAction.description}}
+              <div>
+                <b>Shift Click</b> to {{item.shiftAction.description}}
+              </div>
+            {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#if item.ctrlAction}}
-          {{#if item.ctrlAction.description}}
-            <div>
-              <b>Ctrl Click</b> to {{item.ctrlAction.description}}
-            </div>
+          {{#if item.ctrlAction}}
+            {{#if item.ctrlAction.description}}
+              <div>
+                <b>Ctrl Click</b> to {{item.ctrlAction.description}}
+              </div>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        {{/unless}}
       </div>
     </div>
   {{/unless}}

@@ -12,28 +12,8 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Servers } from '/imports/api/servers/servers';
-import { DigitalOcean } from 'digitalocean-js';
 
 const redis = new Meteor.RedisCollection('redis');
-
-SyncedCron.add({
-  name: 'Reset server',
-  schedule: function(parser) {
-    return parser.cron('0 12 * * * * *');
-  },
-  job: function() {
-    try {
-      const client = new DigitalOcean(Meteor.settings.private.do_api_key);
-      client.dropletActions.rebootDroplet('79440046').then((result) => {
-        console.log('Rebooted');
-      }).catch((err) => {
-        console.log(err);
-      })
-    } catch (e) {
-      console.log(e);
-    }
-  }
-});
 
 // Reset tower things (daily)
 SyncedCron.add({

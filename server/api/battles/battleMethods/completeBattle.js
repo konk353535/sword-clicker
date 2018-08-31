@@ -384,7 +384,7 @@ export const completeBattle = function (actualBattle) {
             });
 
             if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
-              // ownerObject.usedTowerContribution = true;
+              ownerObject.usedTowerContribution = true;
               countTowerContributors++;
 
               const updateSelector = { owner, floor: actualBattle.floor };

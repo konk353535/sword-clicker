@@ -324,8 +324,11 @@ Meteor.methods({
       combatSkills[combatSkill.type] = combatSkill;
     });
 
+    // get user for server ID
+    const userDoc = Users.findOne(this.userId);
+
     // Get max floor
-    const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+    const maxFloor = Floors.findOne({ floorComplete: false, server: userDoc.server }).floor;
 
     // Add a new adventure entry
     const forceEpic = true;
@@ -468,8 +471,11 @@ Meteor.methods({
         combatSkills[combatSkill.type] = combatSkill;
       });
 
+      // get user for server ID
+      const userDoc = Users.findOne(this.userId);
+
       // Get max floor
-      const maxFloor = Floors.findOne({ floorComplete: false }).floor;
+      const maxFloor = Floors.findOne({ floorComplete: false, server: userDoc.server }).floor;
 
       let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / NEW_ADVENTURE_SECONDS) + 1);
       if (newAdventureCount >= MAX_ADVENTURES) {

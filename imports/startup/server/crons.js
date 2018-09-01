@@ -18,6 +18,29 @@ const redis = new Meteor.RedisCollection('redis');
 
 // Reset tower things (daily)
 SyncedCron.add({
+  name: 'Reset Offs',
+  schedule: function (parser) {
+    return parser.cron('0 0 * * * * *');
+  },
+  job: function () {
+    // Reset tower contributions for all
+    Combat.update({}, {
+      $set: {
+        towerContributionsToday: 0
+      }
+    }, { multi: true });
+
+    // Reset gems today
+    Users.update({}, {
+      $set: {
+        fakeGemsToday: 0
+      }
+    }, {multi: true});
+  }
+});
+
+// Reset tower things (daily)
+SyncedCron.add({
   name: 'Check boss health / death',
   schedule: function(parser) {
     return parser.cron('* * * * * * *');
@@ -142,24 +165,6 @@ SyncedCron.add({
           }, {multi: true});
 
           console.log('Fought boss is done now');
-
-          // Enable users to fight waves again
-          Combat.update({
-            towerContributionsToday: {
-              $gt: 0
-            }
-          }, {
-            $set: {
-              towerContributionsToday: 0
-            }
-          }, {multi: true});
-
-          // Reset gems today
-          Users.update({}, {
-            $set: {
-              fakeGemsToday: 0
-            }
-          }, {multi: true});
 
           console.log('All done for boss battle reset');
         }

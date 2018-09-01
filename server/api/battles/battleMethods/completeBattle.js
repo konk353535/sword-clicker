@@ -87,6 +87,16 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
       if (item.itemId) {
         console.log(`awarding ${item.amount} ${item.itemId} to ${player}`);
         addItem(item.itemId, item.amount, player);
+        Chats.insert({
+          message: `You have been awarded ${item.amount} ${ITEMS[item.itemId].name}.`,
+          username: 'Game',
+          name: 'Game',
+          date: new Date(),
+          custom: {
+            roomType: 'Game'
+          },
+          roomId: `Game-${player}`
+        });
       }
     });
   });

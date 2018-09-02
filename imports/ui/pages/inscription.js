@@ -28,11 +28,12 @@ const itemModifier = function (item) {
       method() {
         if (this.item.shiftActionData.target) {
           const targetClass = `targetting-${this.item.shiftActionData.target}`;
-          if (!$('body').hasClass(targetClass)) {
-            $('body').addClass(targetClass);
+          const body = $('body');
+          if (!body.hasClass(targetClass)) {
+            body.addClass(targetClass);
             Meteor.setTimeout(() => {
               // Add body listener for when you want to click out
-              $('body').on(`click.${this.item._id}`, (event) => {
+              body.on(`click.${this.item._id}`, (event) => {
                 const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
                 if (closestTarget) {
                   const targetId = closestTarget.data('id');
@@ -40,9 +41,9 @@ const itemModifier = function (item) {
                     Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
                   }
                 }
-                
-                $('body').removeClass(targetClass);
-                $('body').off(`click.${this.item._id}`);
+
+                body.removeClass(targetClass);
+                body.off(`click.${this.item._id}`);
               });
             }, 1);
           }

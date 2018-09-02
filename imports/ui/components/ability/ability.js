@@ -11,11 +11,12 @@ const castAbility = function(instance) {
 
   if (instance.data.ability.targettable) {
     if (instance.data.ability.target === 'singleEnemy') {
-      if (!$('body').hasClass('targetting-enemies')) {
-        $('body').addClass('targetting-enemies');
+      const body = $('body');
+      if (!body.hasClass('targetting-enemies')) {
+        body.addClass('targetting-enemies');
         Meteor.setTimeout(() => {
           // Add body listener for when you want to click out
-          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+          body.on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('enemy-icon')) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
@@ -25,18 +26,19 @@ const castAbility = function(instance) {
                 targets: [targetId], caster: Meteor.userId()
               });
             }
-            
-            $('body').removeClass('targetting-enemies');
-            $('body').off(`click.${instance.data.ability.id}`);
+
+            body.removeClass('targetting-enemies');
+            body.off(`click.${instance.data.ability.id}`);
           });
         }, 1);
       }
     } else if (instance.data.ability.target === 'singleFriendly') {
-      if (!$('body').hasClass('targetting-friendlies')) {
-        $('body').addClass('targetting-friendlies');
+      const body = $('body'); 
+      if (!body.hasClass('targetting-friendlies')) {
+        body.addClass('targetting-friendlies');
         Meteor.setTimeout(() => {
           // Add body listener for when you want to click out
-          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+          body.on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('friendly-icon')) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
@@ -46,9 +48,9 @@ const castAbility = function(instance) {
                 targets: [targetId], caster: Meteor.userId()
               });
             }
-            
-            $('body').removeClass('targetting-friendlies');
-            $('body').off(`click.${instance.data.ability.id}`);
+
+            body.removeClass('targetting-friendlies');
+            body.off(`click.${instance.data.ability.id}`);
           });
         }, 1);
       }

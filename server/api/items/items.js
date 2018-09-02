@@ -15,8 +15,6 @@ import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
-
-
 import _ from 'underscore';
 
 const math = require('mathjs');

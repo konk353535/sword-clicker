@@ -19,6 +19,7 @@ let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
 let oresCache;
+let tooltip;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();

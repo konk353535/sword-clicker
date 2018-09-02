@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills';
-import { Farming } from '/imports/api/farming/farming';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Users } from '/imports/api/users/users';
 import { Events } from '/imports/api/events/events';
@@ -405,11 +404,7 @@ Meteor.methods({
       return FARMING.shopItems[key];
     }).filter((shopItem) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      if (farmingSkill.level + 1 >= shopItem.requiredFarmingLevel) {
-        return true;
-      }
-
-      return false;
+      return farmingSkill.level + 1 >= shopItem.requiredFarmingLevel;
     }).map((shopItem) => {
       const itemConstants = ITEMS[shopItem.itemId];
       const producesConstants = ITEMS[itemConstants.produces];

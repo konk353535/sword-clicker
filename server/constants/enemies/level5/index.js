@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED} from '/server/constants/combat/attackSpeeds.js';  
 import { baseLootTable } from '/server/constants/enemies/lootTables/index.js';
 import { enemyStatSetter } from '/server/utils';
 

@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { determineRequiredItems } from '/imports/ui/utils.js';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -353,7 +352,7 @@ Template.craftingPage.helpers({
       highestFurnaceTier = allFurnaces[0].tier;
     }
 
-    let hidden = Template.instance().state.get('itemFilter') === 'hidden-items' ? true : false;
+    let hidden = Template.instance().state.get('itemFilter') === 'hidden-items';
 
 
     if (itemViewLimit !== 0) {

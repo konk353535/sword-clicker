@@ -2,12 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import _ from 'underscore';
 
-import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ASTRONOMY } from '/server/constants/astronomy/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
 
-import { Skills } from '/imports/api/skills/skills';
-import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Astronomy } from '/imports/api/astronomy/astronomy';
 

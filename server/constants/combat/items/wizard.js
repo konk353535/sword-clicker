@@ -1,5 +1,3 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
-
 export const WIZARD_ITEMS = {
 
   phoenix_hat: {

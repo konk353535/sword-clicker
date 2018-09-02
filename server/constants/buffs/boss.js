@@ -1,11 +1,10 @@
-import moment from 'moment';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from './index.js';
 import { Random } from 'meteor/random'
 import { FLOORS } from '/server/constants/floors/index';
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
+import { FAST_SPEED } from '/server/constants/combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;

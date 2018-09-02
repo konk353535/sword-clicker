@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import moment from 'moment';
 
-import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
@@ -24,11 +23,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         adventure.isComplete = true;
       }
 
-      if (!adventure.startDate) {
-        adventure.inactive = true;
-      } else {
-        adventure.inactive = false;
-      }
+      adventure.inactive = !adventure.startDate;
 
       if (!adventure.isComplete && moment().isAfter(adventure.startDate) && moment().isBefore(adventure.endDate)) {
         // Seconds since start

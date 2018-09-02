@@ -114,11 +114,7 @@ Template.groupList.helpers({
         energy: userCombat.stats.energy,
         energyMax: userCombat.stats.energyMax
       };
-      if (userCombat.owner === currentGroup.leader) {
-        userCombat.leader = true;
-      } else {
-        userCombat.leader = false;
-      }
+      userCombat.leader = userCombat.owner === currentGroup.leader;
 
       userCombat.name = userCombat.username;
       userCombat.icon = userCombat.characterIcon || 'character.svg';

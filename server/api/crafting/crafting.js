@@ -275,19 +275,11 @@ Meteor.methods({
 
       // If it's learnt show regardless of level
       if (recipe.isHidden) {
-        if (!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]) {
-          return false;
-        } else {
-          return true;
-        }
+        return !(!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]);
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
-      if (craftingSkill.level + 1 >= recipe.requiredCraftingLevel) {
-        return true;
-      }
-
-      return false;
+      return craftingSkill.level + 1 >= recipe.requiredCraftingLevel;
     });
 
     return _.sortBy(recipesArray, 'requiredCraftingLevel');

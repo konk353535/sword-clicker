@@ -127,11 +127,7 @@ Template.chatWindow.rendered = function () {
   SimpleChat.scrollToEnd();
 
   this.$('.direct-chat-messages').scroll(function (event) {
-    if (event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350) {
-      Template.chatWindow.endScroll = true;
-    } else {
-      Template.chatWindow.endScroll = false;
-    }
+    Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350;
   });
 
   this.autorun(() => {

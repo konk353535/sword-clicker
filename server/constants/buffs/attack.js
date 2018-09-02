@@ -90,10 +90,7 @@ export const ATTACK_BUFFS = {
         // Blank
         if (buff.data.duration <= 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
-            if (targetBuff === buff) {
-              return false;
-            }
-            return true;
+            return targetBuff !== buff;
           });
         }
       },

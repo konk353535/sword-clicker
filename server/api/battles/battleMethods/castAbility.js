@@ -1,4 +1,3 @@
-import { ABILITIES } from '/server/constants/combat/index.js';
 import { BUFFS } from '/server/constants/buffs/index.js';
 
 import _ from 'underscore';

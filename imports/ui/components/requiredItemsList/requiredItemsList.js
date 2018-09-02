@@ -1,8 +1,5 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Items } from '/imports/api/items/items.js';
-import { Skills } from '/imports/api/skills/skills.js';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './requiredItemsList.html';

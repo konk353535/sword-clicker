@@ -1,13 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Session } from 'meteor/session';
 
 import { Astronomy } from '/imports/api/astronomy/astronomy.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
-
-import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './astronomyTab.html';
 

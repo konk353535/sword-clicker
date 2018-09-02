@@ -1,6 +1,4 @@
-import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const FloorWaveScores = new Mongo.Collection('floorWaveScores');

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';

@@ -1247,17 +1247,13 @@ export const ConsumeItem = function (baseItem) {
 
 export const IsJewelAmulet = function (targetItem) {
 
-  if(  targetItem.itemId === "jade_amulet"
-    || targetItem.itemId === "lapislazuli_amulet"
-    || targetItem.itemId === "sapphire_amulet"
-    || targetItem.itemId === "emerald_amulet"
-    || targetItem.itemId === "ruby_amulet"
-    || targetItem.itemId === "tanzanite_amulet"
-    ) {
-      return true;
-  }
+  return targetItem.itemId === "jade_amulet"
+      || targetItem.itemId === "lapislazuli_amulet"
+      || targetItem.itemId === "sapphire_amulet"
+      || targetItem.itemId === "emerald_amulet"
+      || targetItem.itemId === "ruby_amulet"
+      || targetItem.itemId === "tanzanite_amulet";
 
-  return false;
 };
 
 export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {

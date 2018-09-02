@@ -3,7 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
 import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { addBuff} from '/server/battleUtils';
 
 import { Random } from 'meteor/random'
 import moment from 'moment';
@@ -12,7 +12,7 @@ import { attackSpeedTicks } from '/server/utils';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Adventures } from '/imports/api/adventures/adventures';
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';

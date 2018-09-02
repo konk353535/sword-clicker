@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import moment from 'moment';
 import _ from 'underscore';
 
 import { PLAYER_ICONS } from '/imports/constants/shop/index.js';

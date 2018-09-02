@@ -11,7 +11,6 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
-import { Users } from '/imports/api/users/users';
 
 Meteor.methods({
 
@@ -97,11 +96,7 @@ Meteor.methods({
       const possibleLogs = Object.keys(WOODCUTTING.woods).map((woodKey) => {
         return WOODCUTTING.woods[woodKey];
       }).filter((log) => {
-        if (currentWoodcutter.stats.attack >= log.requiredAttack) {
-          return true;
-        }
-
-        return false;
+        return currentWoodcutter.stats.attack >= log.requiredAttack;
       });
 
       const sortedLogs = _.sortBy(possibleLogs, 'chance');
@@ -164,11 +159,7 @@ Meteor.methods({
       return WOODCUTTING.woodcutters[key];
     }).filter((recipe) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      if (woodcuttingSkill.level + 1 >= recipe.requiredWoodcuttingLevel) {
-        return true;
-      }
-
-      return false;
+      return woodcuttingSkill.level + 1 >= recipe.requiredWoodcuttingLevel;
     });
 
     return woodcuttersArray;

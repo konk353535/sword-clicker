@@ -8,7 +8,7 @@ import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
 import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
-import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
+import { BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
 import { Servers } from '/imports/api/servers/servers';
 

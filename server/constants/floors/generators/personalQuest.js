@@ -1,4 +1,4 @@
-import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
+import { TABLE_LIST } from '../levels/index.js'; 
 import { ENEMIES } from '/server/constants/enemies/index';
 import _ from 'underscore';
 import { attackSpeedTicks } from '/server/utils';

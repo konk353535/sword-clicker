@@ -26,7 +26,7 @@
 body {
   .direct-chat-info {
     display: block;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     margin-right: $spacer / 2;
     float: left;
     white-space: nowrap;
@@ -43,7 +43,7 @@ body {
   }
 
   .direct-chat-msg {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     display: flex;
   }
 
@@ -53,7 +53,7 @@ body {
 
   .direct-chat-text {
     margin: 0 !important;
-    border-radius: 0px;
+    border-radius: 0;
     padding: 0;
     background: none;
     border: none;
@@ -95,9 +95,9 @@ body {
   height: 370px;
   position: fixed;
   border: 1px solid $gray-lighter;
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
   background-color: white;
-  bottom: 0px;
+  bottom: 0;
   right: 15px;
   z-index: 15;
 
@@ -123,10 +123,10 @@ body .maximize-icon {
   cursor: pointer;
   padding: 5px;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   right: 15px;
   border: 1px solid $gray-lighter;
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
   background-color: white;
   pointer-events: all;
 }

@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Friends } from '/imports/api/friends/friends';

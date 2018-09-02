@@ -1,5 +1,3 @@
-import { ITEMS } from '/server/constants/items/index.js'; 
-
 export const ENCHANTMENT_CRAFTS = {
   
   enchantment_nullify: {

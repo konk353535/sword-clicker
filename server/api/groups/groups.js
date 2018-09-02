@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Combat } from '/imports/api/combat/combat';
@@ -255,10 +254,8 @@ Meteor.methods({
 
     // Remove from invites list
     targetGroup.invites = targetGroup.invites.filter((userId) => {
-      if (userId === Meteor.userId()) {
-        return false;
-      }
-      return true;
+      return userId !== Meteor.userId();
+
     });
 
     // Add user to members if accepting

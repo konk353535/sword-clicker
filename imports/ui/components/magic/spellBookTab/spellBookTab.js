@@ -5,7 +5,6 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
-import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
 import './spellBookTab.html';

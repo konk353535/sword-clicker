@@ -1,5 +1,4 @@
 console.log('importing farming/index.js ITEMS');
-import { ITEMS } from '/server/constants/items/index.js';
 console.log('importing farming/index.js PLANTS');
 import { PLANTS } from './plants';
 

@@ -4,10 +4,9 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { Abilities } from '/imports/api/abilities/abilities';
-import { Combat } from '/imports/api/combat/combat';
 import { Items } from '/imports/api/items/items';
 import { requirementsUtility } from '/server/api/crafting/crafting';
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { BattlesList } from '/imports/api/battles/battles';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
 import { ITEMS } from '/server/constants/items/index';
@@ -271,11 +270,7 @@ Meteor.methods({
 
       return abilityData;
     }).filter((ability) => {
-      if (ability.isHidden && !abilitiesMap[ability.id]) {
-        return false;
-      }
-
-      return true;
+      return !(ability.isHidden && !abilitiesMap[ability.id]);
     });
 
     return abilitiesArray;

@@ -213,11 +213,7 @@ Template.farmingPage.helpers({
     
     return FarmingSpace.find().map((farmingSpace) => {
       if (farmingSpace.index === 4 || farmingSpace.index === 5) {
-        if (hasFarmingUpgrade) {
-          farmingSpace.active = true;
-        } else {
-          farmingSpace.active = false;
-        }
+        farmingSpace.active = !!hasFarmingUpgrade;
       }
       return farmingSpace;
     });

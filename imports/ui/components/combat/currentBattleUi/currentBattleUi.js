@@ -4,7 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import _ from 'underscore';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 
 import './currentBattleUi.html';
@@ -19,11 +19,7 @@ const startBattle = (currentBattle, self) => {
 
   // Find enemies that are targetting my unit
   currentBattle.enemies.forEach((enemy) => {
-    if (myUnit && enemy.target === myUnit.id) {
-      enemy.targettingPlayer = true;
-    } else {
-      enemy.targettingPlayer = false;
-    }
+    enemy.targettingPlayer = !!(myUnit && enemy.target === myUnit.id);
   });   
 
   self.state.set('currentBattle', currentBattle);

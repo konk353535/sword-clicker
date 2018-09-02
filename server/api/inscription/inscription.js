@@ -187,11 +187,7 @@ Meteor.methods({
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
-      if (inscriptionSkill.level + 1 >= recipe.requiredInscriptionLevel) {
-        return true;
-      }
-
-      return false;
+      return inscriptionSkill.level + 1 >= recipe.requiredInscriptionLevel;
     });
 
     return _.sortBy(recipesArray, 'requiredInscriptionLevel');

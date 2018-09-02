@@ -3,10 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import moment from 'moment';
-import _ from 'underscore';
 
 import { Battles } from '/imports/api/battles/battles.js';
-import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 import { Combat } from '/imports/api/combat/combat.js';
@@ -170,11 +168,7 @@ Template.towerTab.helpers({
       return false;
     }
 
-    if (waveDetails && waveDetails.points > waveDetails.pointsMax) {
-      return false;
-    }
-
-    return true;
+    return !(waveDetails && waveDetails.points > waveDetails.pointsMax);
   },
 
   combat() {

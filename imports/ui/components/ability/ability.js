@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 
 import './ability.html';
 

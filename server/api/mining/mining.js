@@ -649,11 +649,7 @@ Meteor.methods({
       return MINING.miners[key];
     }).filter((recipe) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      if (miningSkill.level + 1 >= recipe.requiredMiningLevel) {
-        return true;
-      }
-
-      return false;
+      return miningSkill.level + 1 >= recipe.requiredMiningLevel;
     });
 
     return minersArray;

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { attackSpeedTicks } from '/server/utils';
 import { addBuff, removeBuff } from '/server/battleUtils';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+// List of encounters
 
 export const DEFENSE_BUFFS = {
 
@@ -137,7 +137,7 @@ export const DEFENSE_BUFFS = {
             }).length;
           } else {
             // Check for other allies with buff
-            phalanxCount = actualBattle.enemies.filter((enemy) => {
+            phalanxCount = actualBattle.units.filter((enemy) => {
               return _.findWhere(enemy.buffs, { id: 'phalanx' });
             }).length;
           }

@@ -283,11 +283,7 @@ Template.miningPage.helpers({
 
       return ore;
     }).filter((ore) => {
-      if (ore.amount === 0 && ore.isGem) {
-        return false;
-      }
-
-      return true;
+      return !(ore.amount === 0 && ore.isGem);
     });
   },
 

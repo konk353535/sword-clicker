@@ -1,11 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Session } from 'meteor/session';
 import moment from 'moment';
 
-import { determineRequiredItems } from '/imports/ui/utils.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import { Inscription } from '/imports/api/inscription/inscription.js';

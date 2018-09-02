@@ -327,8 +327,8 @@ Meteor.methods({
       }
     }
 
-    // Update last updated immeditely
-    // incase an error occurs further on in the code, the users updated will not get set
+    // Update last updated immediately
+    // in case an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
     const newLastGameUpdated = new Date();
     Mining.update(mining._id, {
@@ -451,7 +451,7 @@ Meteor.methods({
       });
 
       // Increase or decrease chance of finding ore based on owned prospectors
-      // Clone so we don't mutatet the constants
+      // Clone so we don't mutate the constants
       const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
         // Jewel prospectors cover all available jewel types in one prospector
         if(ore.isGem && prospectorsMap['jewel']) {

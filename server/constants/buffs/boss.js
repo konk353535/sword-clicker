@@ -480,9 +480,8 @@ export const BOSS_BUFFS = {
   boss_phoenix: {
     duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
     icon: 'spartan.svg',
-    name: 'boss phenoix',
+    name: 'boss phoenix',
     description({ buff, level }) {
-      const c = buff.constants;
       return `Eternal`;
     },
     constants: {

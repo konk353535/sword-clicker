@@ -141,7 +141,7 @@ Template.towerTab.helpers({
       </p>
       <p>
         <b>Why</b><br />
-        The top players in point contributions will recieve a powerful reward (see bottom of page)
+        The top players in point contributions will receive a powerful reward (see bottom of page)
       </p>
       <p>
         <b>How</b><br />

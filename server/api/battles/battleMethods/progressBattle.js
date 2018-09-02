@@ -555,7 +555,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       }, 1000);
     }
   } catch(e) {
-    console.log('An error in combat occured!!!!');
+    console.log('An error in combat occurred!!!!');
     console.log(e);
     Meteor.clearInterval(battleIntervalId);
     delete tickTracker[actualBattle._id];

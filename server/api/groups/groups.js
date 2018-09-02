@@ -340,7 +340,7 @@ Meteor.methods({
 
 
 
-// Transfer leaderhip role to another party member
+// Transfer leadership role to another party member
 
   'groups.transfer'({ ownerId }) {
     const isMutedExpiry = Meteor.user().isMutedExpiry;
@@ -422,14 +422,13 @@ Meteor.publish('groups', function() {
     }).fetch();
 
     const memberTransform = function (member) {
-      const orginalStats = JSON.parse(JSON.stringify(member.stats));
+      const originalStats = JSON.parse(JSON.stringify(member.stats));
       delete member.stats;
       member.name = member.username;
-      member.owner = member.owner;
       member.icon = member.characterIcon || "character.svg";
       member.stats = {
-        health: orginalStats.health,
-        healthMax: orginalStats.healthMax
+        health: originalStats.health,
+        healthMax: originalStats.healthMax
       };
       return member;
     };

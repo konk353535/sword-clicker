@@ -46,8 +46,7 @@ export const MONSTER_BUFFS = {
     icon: 'goblin.svg',
     name: 'stat stealer',
     description({ buff, level }) {
-      const c = buff.constants;
-      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permenantly`;
+      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permanently`;
     },
     constants: {
     },
@@ -323,7 +322,7 @@ export const MONSTER_BUFFS = {
     name: 'healing reduction',
     description({ buff, level }) {
       const c = buff.constants;
-      return `Reduces healing recieved`;
+      return `Reduces healing received`;
     },
     constants: {
     },
@@ -676,7 +675,7 @@ export const MONSTER_BUFFS = {
             totalDuration: 20,
             healingReduction,
             icon: 'healingReduction.svg',
-            description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
+            description: `Reduces healing received by ${Math.round((1 - healingReduction) * 100)}%`
           }
         };
 

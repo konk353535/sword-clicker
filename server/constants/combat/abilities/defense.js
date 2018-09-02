@@ -214,7 +214,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 180,
     slot: 'any',
     isHidden: false,
-    target: 'self', // The curreny enemy who we are auto attacking
+    target: 'self', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.armor_up;
       return BUFF.description({ buff: BUFF, level });
@@ -229,7 +229,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 90,
     slot: 'any',
     isHidden: false,
-    target: 'self', // The curreny enemy who we are auto attacking
+    target: 'self', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.iron_will;
       return BUFF.description({ buff: BUFF, level });

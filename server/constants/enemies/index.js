@@ -254,7 +254,7 @@ export const ENEMIES = Object.assign({
     }]
   },
 
-  // Spirits will randomly 'Blink', turning invulnrable for 10s
+  // Spirits will randomly 'Blink', turning invulnerable for 10s
   cursed_spirit: {
     id: 'cursed_spirit',
     icon: 'cursedSpirit.svg',

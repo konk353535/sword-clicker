@@ -34,7 +34,7 @@ export const enemyStatSetter = function(constants, baseStats, enhancedStats) {
     // Store enhanced enemy
     constants[`e_${enemyKey}`] = enhancedEnemy;
 
-    // Mutate enchancedEnemies stats
+    // Mutate enhancedEnemy stats
     Object.keys(enhancedEnemy.stats).forEach((statKey) => {
       const currentStatValue = enhancedEnemy.stats[statKey];
       enhancedEnemy.stats[statKey] = currentStatValue * enhancedStats[statKey];

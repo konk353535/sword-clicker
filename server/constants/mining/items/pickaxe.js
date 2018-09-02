@@ -16,14 +16,14 @@
 // High storage axes
 // Energy storage 50 - 100
 // Attack 2 - 20
-// energy per hit 1 - 1
+// Energy per hit 1 - 1
 // Energy regen 10 - 7
 // Miner 0 - 25
 
 // OP as fuck axes ( only a reward from bosses or very rare drop from hard mobs )
 // Storage 30 - 70
 // Attack 4 - 27
-// Enery per hit 1 - 1
+// Energy per hit 1 - 1
 // Energy Regen 10 - 7
 // Miner 50 - 125
 
@@ -1129,7 +1129,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 25 // Increases effeciency of miners
+      miner: 25 // Increases efficiency of miners
     },
     extraStats: {
       miner: 10
@@ -1148,7 +1148,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 15 // Increases effeciency of miners
+      miner: 15 // Increases efficiency of miners
     },
     extraStats: {
       miner: 5
@@ -1166,7 +1166,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 35 // Increases effeciency of miners
+      miner: 35 // Increases efficiency of miners
     },
     extraStats: {
       miner: 10
@@ -1184,7 +1184,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 45 // Increases effeciency of miners
+      miner: 45 // Increases efficiency of miners
     },
     extraStats: {
       miner: 10
@@ -1202,7 +1202,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 35 // Increases effeciency of miners
+      miner: 35 // Increases efficiency of miners
     },
     extraStats: {
       miner: 5

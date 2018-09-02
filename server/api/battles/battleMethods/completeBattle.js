@@ -172,12 +172,12 @@ export const completeBattle = function (actualBattle) {
 
   if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
     // Mutate points values / calculate points
-    let pointsEarnt = 0;
+    let pointsEarned = 0;
 
     if (actualBattle.isTowerContribution) {
       if (win) {
         // Count current room
-        pointsEarnt += Math.pow(1.7, actualBattle.room);
+        pointsEarned += Math.pow(1.7, actualBattle.room);
       } else {
         // Get hp of current wave
         let totalHp = 0;
@@ -189,12 +189,12 @@ export const completeBattle = function (actualBattle) {
 
         const decimalCompletion = 1 - (currentHp / totalHp);
 
-        pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
+        pointsEarned += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
       }
 
       // Add points from previous rooms
       for (let i = actualBattle.room - 1; i > 0; i--) {
-        pointsEarnt += Math.pow(1.7, i);
+        pointsEarned += Math.pow(1.7, i);
       }
     }
 
@@ -401,11 +401,11 @@ export const completeBattle = function (actualBattle) {
 
               const updateModifier = {
                 $inc: {
-                  points: pointsEarnt
+                  points: pointsEarned
                 },
                 $setOnInsert: {
                   server: actualBattle.server,
-                  points: pointsEarnt,
+                  points: pointsEarned,
                   username: ownerObject.name // To do: Make this work when users have multiple units
                 }
               };
@@ -420,22 +420,22 @@ export const completeBattle = function (actualBattle) {
               ];
 
               const targetStat = _.sample(possibleStats);
-              addXp(targetStat, Math.round(pointsEarnt * 50), owner);
+              addXp(targetStat, Math.round(pointsEarned * 50), owner);
 
-              if (pointsEarnt > 10) {
+              if (pointsEarned > 10) {
                 addFakeGems(5, owner);
               }
 
               finalTickEvents.push({
                 type: 'xp',
-                amount: Math.round(pointsEarnt * 50),
+                amount: Math.round(pointsEarned * 50),
                 skill: targetStat,
                 owner
               });
 
               finalTickEvents.push({
                 type: 'points',
-                amount: pointsEarnt.toFixed(1),
+                amount: pointsEarned.toFixed(1),
                 icon: 'tower.svg',
                 owner
               });
@@ -457,7 +457,7 @@ export const completeBattle = function (actualBattle) {
             floorComplete: false
           }, {
             $inc: {
-              points: pointsEarnt * countTowerContributors
+              points: pointsEarned * countTowerContributors
             }
           });
 
@@ -667,7 +667,7 @@ export const completeBattle = function (actualBattle) {
         });
 
         if (userAbilities) {
-          // Modify relevant abiltiy id cooldowns and update
+          // Modify relevant ability id cooldowns and update
           userAbilities.learntAbilities.forEach((ability) => {
             const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
             if (abilityToUpdate) {

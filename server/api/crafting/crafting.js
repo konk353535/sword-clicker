@@ -343,7 +343,7 @@ Meteor.methods({
       return;
     }
 
-    // Refund resources for specified crat
+    // Refund resources for specified craft
     const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
     recipeConstants.required.forEach((required) => {
       if (required.consumes) {

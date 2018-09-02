@@ -281,6 +281,7 @@ Meteor.methods({
       UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    // noinspection SpellCheckingInspection
     if (baseItem.itemId === "lapislazuli") {
       UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
@@ -1115,7 +1116,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   const attackRate = 1.30;
   const attackMaxRate = 1.30;
-  const accuracyrRate = 1.30;
+  const accuracyRate = 1.30;
   const defenseRate = 1.30;
   const healthMaxRate = 1.20;
   const magicPowerRate = 1.50;
@@ -1123,7 +1124,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   const attack = Math.round(originalAttack * Math.pow(attackRate, level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate, level));
-  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyrRate, level));
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
   const defense = Math.round(originalDefense * Math.pow(defenseRate, level));
   const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
   const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));

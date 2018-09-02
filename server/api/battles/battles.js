@@ -127,7 +127,7 @@ Meteor.methods({
     const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
     if (floor > currentCommunityFloor.floor) {
-      throw new Meteor.Error("no-sir", "Dont have access to that floor!");
+      throw new Meteor.Error("no-sir", "Don't have access to that floor!");
     } else if (room > 7 || room < 0) {
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
@@ -319,7 +319,7 @@ Meteor.methods({
 
   'battles.castAbility'(battleId, abilityId, options) {
     if (options.caster !== Meteor.userId()) {
-      throw new Meteor.Error("battle-not-found", "Thats not you!");      
+      throw new Meteor.Error("battle-not-found", "That's not you!");
     }
 
     if (options.caster && options.caster !== Meteor.userId()) {

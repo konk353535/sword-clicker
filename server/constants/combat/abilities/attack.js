@@ -243,7 +243,7 @@ export const ATTACK_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     isHidden: false,
-    target: 'currentEnemy', // The curreny enemy who we are auto attacking
+    target: 'currentEnemy', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.execute;
       return BUFF.description({ buff: BUFF, level });
@@ -258,7 +258,7 @@ export const ATTACK_ABILITIES = {
     cooldown: 15,
     slot: 'any',
     isHidden: false,
-    target: 'allEnemies', // The curreny enemy who we are auto attacking
+    target: 'allEnemies', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.blade_spin;
       return BUFF.description({ buff: BUFF, level });
@@ -273,7 +273,7 @@ export const ATTACK_ABILITIES = {
     cooldown: 60,
     slot: 'any',
     isHidden: false,
-    target: 'self', // The curreny enemy who we are auto attacking
+    target: 'self', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.blade_frenzy;
       return BUFF.description({ buff: BUFF, level });
@@ -292,7 +292,7 @@ export const ATTACK_ABILITIES = {
       type: 'weaponType',
       weaponTypes: ['battleAxe']
     }],
-    target: 'allEnemies', // The curreny enemy who we are auto attacking
+    target: 'allEnemies', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.bleed;
       return BUFF.description({ buff: BUFF, level });
@@ -307,7 +307,7 @@ export const ATTACK_ABILITIES = {
     cooldown: 30,
     slot: 'any',
     isHidden: false,
-    target: 'currentEnemy', // The curreny enemy who we are auto attacking
+    target: 'currentEnemy', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.bleed;
       return BUFF.description({ buff: BUFF, level });

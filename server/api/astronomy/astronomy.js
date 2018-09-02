@@ -27,7 +27,7 @@ Meteor.methods({
     const requirements = ASTRONOMY.upgradeCosts[stat](mainMage.stats[stat]);
 
     if (!requirementsUtility(requirements, 1)) {
-      throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
+      throw new Meteor.Error("missed-requirements", "don't meet requirements");
     }
 
     if (mainMage.stats[stat] == null) {
@@ -97,7 +97,7 @@ Meteor.methods({
   // Hire a specific type of mage
   'astronomy.hireMage'(type) {
     if (!_.contains(['fire', 'water', 'air', 'earth'], type)) {
-      throw new Meteor.Error("missed-requirmeents", "invalid mage type");
+      throw new Meteor.Error("missed-requirements", "invalid mage type");
     }
     const astronomy = Astronomy.findOne({ owner: Meteor.userId() });
 
@@ -114,14 +114,14 @@ Meteor.methods({
     }
 
     if (currentMages >= maxMages) {
-      throw new Meteor.Error("missed-requirmeents", "already have the max # of mages");
+      throw new Meteor.Error("missed-requirements", "already have the max # of mages");
     }
 
     const mainMage = astronomy.mages[0];
     const requirements = ASTRONOMY.mageHireCost(mainMage);
 
     if (!requirementsUtility(requirements, 1)) {
-      throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
+      throw new Meteor.Error("missed-requirements", "don't meet requirements");
     }
 
     // Add mage to our list
@@ -152,7 +152,7 @@ Meteor.methods({
     const userDoc = Meteor.user();
 
     if (userDoc.gold < amount) {
-      throw new Meteor.Error("invalid-gold", "dont have that much gold");
+      throw new Meteor.Error("invalid-gold", "don't have that much gold");
     }
 
     // Does mage exist?
@@ -251,7 +251,7 @@ Meteor.methods({
 
     // Does user contain members mage?
     if (_.findWhere(astronomy.mages, { id: 'donatorMage' })) {
-      // Is this user not a donator anymore? if not strip donatormage
+      // Is this user not a donator anymore? if not strip donator mage
       if (!hasAstronomyUpgrade) {
         astronomy.mages = astronomy.mages.filter((mage) => {
           return mage.id !== 'donatorMage';

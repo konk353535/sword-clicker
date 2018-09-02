@@ -48,8 +48,8 @@ Meteor.methods({
 
     const userDoc = Meteor.user();
 
-    // Update last updated immeditely
-    // incase an error occurs further on in the code, the users updated will not get set
+    // Update last updated immediately
+    // in case an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
     Woodcutting.update(woodcutting._id, {
       $set: { lastGameUpdated: new Date() }
@@ -179,7 +179,7 @@ Meteor.methods({
       return;
     }
 
-    // Fetch the axe which we will use, as it will dissapear when we call requirements util
+    // Fetch the axe which we will use, as it will disappear when we call requirements util
     const axeToUse = Items.findOne({
       itemId: woodcutterConstants.axeId,
       owner: Meteor.userId()

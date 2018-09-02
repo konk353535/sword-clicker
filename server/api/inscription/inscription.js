@@ -44,7 +44,7 @@ const craftItem = function (recipeId, amountToCraft) {
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
-    console.log('doesnt meet reqs');
+    console.log("doesn't meet requirements");
     return;
   }
 
@@ -147,7 +147,7 @@ Meteor.methods({
       return;
     }
 
-    // Refund resources for specified crat
+    // Refund resources for specified craft
     const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
     recipeConstants.required.forEach((required) => {
       if (required.consumes) {

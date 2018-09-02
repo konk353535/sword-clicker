@@ -79,7 +79,7 @@ export const DEFENSE_BUFFS = {
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
     icon: 'frostedAttacks.svg',
-    name: 'forsted attacks',
+    name: 'frosted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
     },

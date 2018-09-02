@@ -13,7 +13,7 @@ Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
 
   this.autorun(() => {
     const anAbility = Abilities.findOne();
-    // Pass ability so when a new abilitiy is learnt this is reactive
+    // Pass ability so when a new ability is learnt this is reactive
     const results = ReactiveMethod.call('abilities.fetchLibrary', anAbility);
     if (results) {
       const resultsMap = {};

@@ -30,7 +30,7 @@ Template.guestSettingsPage.events({
     } else if (password === '') {
       return instance.state.set('error', 'You must specify a password');
     } else if (password.length < 6) {
-      return instance.state.set('error', 'Password must be atleast 6 characters');
+      return instance.state.set('error', 'Password must be at least 6 characters');
     } else if (!email || email === '') {
       return instance.state.set('error', 'You must enter an email address');
     } else {

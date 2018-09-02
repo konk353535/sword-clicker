@@ -1187,8 +1187,8 @@ export const FARMING_ITEMS = {
     id: 'chilli_seed',
     icon: 'chilliSeed.svg',
     category: 'seed',
-    name: 'chilli seed',
-    description: 'Used to grow a chilli. Useful for inscription',
+    name: 'chili seed',
+    description: 'Used to grow a chili. Useful for inscription',
     sellPrice: 300,
     seedType: 'herb',
     produces: 'chilli'
@@ -1198,7 +1198,7 @@ export const FARMING_ITEMS = {
     id: 'chilli',
     icon: 'chilli.svg',
     category: 'herb',
-    name: 'chilli',
+    name: 'chili',
     sellPrice: 1000
   },
 

@@ -548,7 +548,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'shadowKnife.svg',
     name: 'shadow knife',
     description() {
-      return `Reduce cd of blade spin by 0.5s for each successfull auto attack.`;
+      return `Reduce cd of blade spin by 0.5s for each successful auto attack.`;
     },
     constants: {
       accuracyDecimal: 0.85,
@@ -859,7 +859,7 @@ export const ENCHANTMENT_BUFFS = {
   phoenix_hat: {
     duplicateTag: 'phoenix_hat', // Used to stop duplicate buffs
     icon: 'babyPhoenix.svg',
-    name: 'phoneix hat',
+    name: 'phoenix hat',
     description() {
       return `Randomly ignites enemies. Fades away after 5 ignites.`;
     },

@@ -106,7 +106,7 @@ Template.astronomyTab.helpers({
         mage.primaryAction = {
           description: 'Upgrade',
           method() {
-            instance.$('.mageUpgadeModal').modal('show');
+            instance.$('.mageUpgradeModal').modal('show');
           }
         }
       } else if (mage.type) {

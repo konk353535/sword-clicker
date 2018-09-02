@@ -222,7 +222,7 @@ Template.oreListItem.rendered = function () {
 };
 
 Template.buyableMiner.rendered = function () {
-  const dpsBreakdownTooltio = new Drop({
+  const dpsBreakdownTooltip = new Drop({
     target: Template.instance().$('.damage-per-hour-container')[0],
     content: Template.instance().$('.dps-breakdown-tooltip-content')[0],
     openOn: 'hover',

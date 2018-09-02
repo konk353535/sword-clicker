@@ -100,7 +100,7 @@ Meteor.methods({
 
     types.forEach((type) => {
 
-      // Add X days to specified typemembership
+      // Add X days to specified type of membership
       let membershipTo = Meteor.user()[`${type}UpgradeTo`];
       if (!membershipTo || moment().isAfter(membershipTo)) {
         membershipTo = moment().add(days, 'days').toDate();
@@ -143,7 +143,7 @@ Meteor.methods({
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
-    // Add X days to specified typemembership
+    // Add X days to specified type of membership
     let membershipTo = Meteor.user()[`${type}UpgradeTo`];
     if (!membershipTo || moment().isAfter(membershipTo)) {
       membershipTo = moment().add(days, 'days').toDate();
@@ -369,7 +369,7 @@ Meteor.methods({
         })
       }
     } catch(err) {
-      throw new Meteor.Error("unknown-error", "Unknown error occured when attempting to purchase gems");
+      throw new Meteor.Error("unknown-error", "Unknown error occurred when attempting to purchase gems");
     }
 
     return payment;

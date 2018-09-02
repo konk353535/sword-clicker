@@ -91,7 +91,7 @@ Meteor.methods({
     }
 
     if (!requirementsUtility(spellConstants.required, amount)) {
-      throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
+      throw new Meteor.Error("missed-requirements", "don't meet requirements");
     }
 
     // Update existing level
@@ -206,7 +206,7 @@ Meteor.methods({
     // Okay all is good, remove the tome
     consumeItem(tome, 1);
 
-    // Get ability constans
+    // Get ability constants
     const abilityConstants = ABILITIES[tomeConstants.teaches.abilityId];
 
     // Add to learnt abilities

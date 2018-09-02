@@ -21,21 +21,21 @@ export const CRAFTING_CRAFTS = Object.assign(ESSENCE_CRAFTS, FURNACE_CRAFTS, MIS
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 50,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'ore_coal',
       icon: ITEMS['ore_coal'].icon,
       name: ITEMS['ore_coal'].name,
       amount: 5,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'ore_copper',
       icon: ITEMS['ore_copper'].icon,
       name: ITEMS['ore_copper'].name,
       amount: 20,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -59,14 +59,14 @@ export const CRAFTING_CRAFTS = Object.assign(ESSENCE_CRAFTS, FURNACE_CRAFTS, MIS
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 50,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'ore_mithril',
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
       amount: 5,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -90,28 +90,28 @@ export const CRAFTING_CRAFTS = Object.assign(ESSENCE_CRAFTS, FURNACE_CRAFTS, MIS
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'copper_bar',
       icon: ITEMS['copper_bar'].icon,
       name: ITEMS['copper_bar'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'iron_bar',
       icon: ITEMS['iron_bar'].icon,
       name: ITEMS['iron_bar'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'steel_bar',
       icon: ITEMS['steel_bar'].icon,
       name: ITEMS['steel_bar'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',

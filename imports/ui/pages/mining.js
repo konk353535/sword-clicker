@@ -83,7 +83,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: minerResults,
         level: miningSkill.level,
         date: moment().toDate(),
-      }
+      };
       Session.set('minersCache', minersCache);
     }
 
@@ -96,7 +96,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: prospectorResults,
         level: miningSkill.level,
         date: moment().toDate()
-      }
+      };
       Session.set('prospectorsCache', prospectorsCache);
     }
 
@@ -109,7 +109,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: oreResults,
         level: miningSkill.level,
         date: moment().toDate()
-      }
+      };
       Session.set('oresCache', oresCache);
     }
 
@@ -209,7 +209,7 @@ Template.hireMinerButton.helpers({
   showModal() {
     return Template.instance().state.get('showModal');
   }
-})
+});
 
 Template.oreListItem.rendered = function () {
   tooltip = new Drop({
@@ -219,7 +219,7 @@ Template.oreListItem.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.buyableMiner.rendered = function () {
   const dpsBreakdownTooltio = new Drop({
@@ -229,7 +229,7 @@ Template.buyableMiner.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.miningPage.rendered = function () {
   const prospectorTooltip = new Drop({
@@ -247,7 +247,7 @@ Template.miningPage.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.miningPage.helpers({
   miningSkill() {
@@ -482,7 +482,7 @@ Template.miningPage.helpers({
       item.hideCount = true;
       item.primaryAction = {
         method() {}
-      }
+      };
       return item;
     });
 

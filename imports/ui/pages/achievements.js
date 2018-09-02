@@ -19,7 +19,7 @@ Template.achievementsPage.onCreated(function bodyOnCreated() {
 
   Meteor.call('achievements.fetch', (err, res) => {
     this.state.set('achievements', res);
-  })
+  });
 
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -83,7 +83,7 @@ Template.achievementsPage.events({
     }
   },
 
-})
+});
 
 Template.achievementsPage.helpers({
   achievements() {

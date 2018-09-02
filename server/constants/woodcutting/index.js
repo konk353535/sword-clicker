@@ -817,4 +817,4 @@ export const WOODCUTTING = {
     },
 
   }
-}
+};

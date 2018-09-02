@@ -97,7 +97,7 @@ export const BOSS_BUFFS = {
               icon: 'deepWounds.svg',
               description: ''
             }
-          }
+          };
 
           // cast earth dart
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -155,7 +155,7 @@ export const BOSS_BUFFS = {
                 level: 25
               }
             }]
-          }
+          };
 
           actualBattle.enemies.push(littleSnake);
 
@@ -207,7 +207,7 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['blade_spin']
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: unit, caster: defender, actualBattle });
@@ -264,7 +264,7 @@ export const BOSS_BUFFS = {
                   name: 'phalanx'
                 }
               }]
-            }
+            };
 
             actualBattle.enemies.push(littleSpartan);
           }
@@ -326,7 +326,7 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: birdStats
-          }
+          };
 
           actualBattle.enemies.push(littlebird);
 
@@ -374,7 +374,7 @@ export const BOSS_BUFFS = {
                 icon: 'ignite.svg',
                 description: 'Burns you each second'
               }
-            }
+            };
 
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             target.stats.health = 0;
@@ -435,7 +435,7 @@ export const BOSS_BUFFS = {
                   name: 'goblin stat stealer'
                 }
               }]
-            }
+            };
 
             actualBattle.enemies.push(littleGoblin);
           }
@@ -526,7 +526,7 @@ export const BOSS_BUFFS = {
                   name: 'baby phoenix'
                 }
               }]
-            }
+            };
 
             actualBattle.enemies.push(phoenixEgg);
           }
@@ -588,7 +588,7 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
           actualBattle.enemies.push(littlePhoenix);
 
@@ -627,7 +627,7 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
           actualBattle.enemies.push(littlePhoenix);
         }
@@ -684,7 +684,7 @@ export const BOSS_BUFFS = {
               name: 'baby phoenix'
             }
           }]
-        }
+        };
 
         actualBattle.enemies.push(phoenixEgg);
 
@@ -751,7 +751,7 @@ export const BOSS_BUFFS = {
                 icon: 'gorillaLearning.svg',
                 description: 'Increases damage taken, and decrease damage dealt by 1% per stack'
               }
-            }
+            };
 
             // cast learning buff
             addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -859,7 +859,7 @@ export const BOSS_BUFFS = {
                   name: 'power lap'
                 }
               }]
-            }
+            };
 
             const wisdomLamp = {
               id: Random.id(),
@@ -889,7 +889,7 @@ export const BOSS_BUFFS = {
                   name: 'wisdom lamp'
                 }
               }]
-            }
+            };
 
             const healthLamp = {
               id: Random.id(),
@@ -919,7 +919,7 @@ export const BOSS_BUFFS = {
                   name: 'health lamp'
                 }
               }]
-            }
+            };
 
             actualBattle.enemies.push(powerLamp);
             actualBattle.enemies.push(wisdomLamp);
@@ -968,7 +968,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGeniePowerLamp.svg',        
               name: 'power up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1017,7 +1017,7 @@ export const BOSS_BUFFS = {
               description: 'Increases magic power by 20%',      
               name: 'wisdom up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1066,7 +1066,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGenieHealthLamp.svg',        
               name: 'health up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1226,7 +1226,7 @@ export const BOSS_BUFFS = {
             name: 'bird',
             stats: birdStats,
             buffs: []
-          }
+          };
 
           actualBattle.enemies.push(bird);
         }
@@ -1270,7 +1270,7 @@ export const BOSS_BUFFS = {
               totalDuration: 10,
               duration: 10
             }
-          }
+          };
 
           buff.data.timeTillBlood = 150;
           addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
@@ -1329,7 +1329,7 @@ export const BOSS_BUFFS = {
                   hideBuff: true
                 }
               }]
-            }
+            };
 
             actualBattle.enemies.push(bird);
           }
@@ -1350,7 +1350,7 @@ export const BOSS_BUFFS = {
             name: 'stone wall',
             stats: birdStats,
             buffs: []
-          }
+          };
 
           actualBattle.enemies.push(wall);
 
@@ -1440,7 +1440,7 @@ export const BOSS_BUFFS = {
             name: 'tentacle',
             buffs: [],
             stats: birdStats
-          }
+          };
 
           actualBattle.enemies.push(littlebird);
 
@@ -1481,7 +1481,7 @@ export const BOSS_BUFFS = {
           const unitToAttack = _.findWhere(actualBattle.units, { id: target.target });
 
           const attackMax = target.stats.attackMax;
-          const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
+          const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6;
           actualBattle.utils.dealDamage(damageToDeal, {
             attacker: target,
             defender: unitToAttack,
@@ -1557,7 +1557,7 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: poodleStats
-          }
+          };
 
           actualBattle.enemies.push(poodle);
 
@@ -1581,7 +1581,7 @@ export const BOSS_BUFFS = {
 
             if (poodleBuff.data.damageMap) {
               Object.keys(poodleBuff.data.damageMap).forEach((key) => {
-                const damageDone = poodleBuff.data.damageMap[key]
+                const damageDone = poodleBuff.data.damageMap[key];
                 if (damageDone > max) {
                   max = damageDone;
                   unitToKill = key;
@@ -1638,7 +1638,7 @@ export const BOSS_BUFFS = {
               icon: 'attackReduction.svg',
               description: 'Reduces your attack by 25, for 30 seconds'
             }
-          }
+          };
 
           // cast attack reduction
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -1672,7 +1672,7 @@ export const BOSS_BUFFS = {
 
         if (!buff.data.timeTillSwitch || buff.data.timeTillSwitch <= 0) {
           // Target a random unit
-          target.target = _.sample(actualBattle.units).id
+          target.target = _.sample(actualBattle.units).id;
           buff.data.timeTillSwitch = 30;
         }
       },
@@ -1723,7 +1723,7 @@ export const BOSS_BUFFS = {
                 icon: 'spikedArmor.svg',
                 description: 'Reflect damage back at you.'
               }
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
@@ -1775,7 +1775,7 @@ export const BOSS_BUFFS = {
                   }
                 }],
                 stats: fountainStats
-              }
+              };
 
               actualBattle.enemies.push(fountain);
             }
@@ -1825,7 +1825,7 @@ export const BOSS_BUFFS = {
                   description: ''
                 },
                 constants: BUFFS['ignite']
-              }
+              };
 
               // cast ignite
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
@@ -1844,7 +1844,7 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['ignite']
-            }
+            };
 
             const unit = _.findWhere(actualBattle.units, { id: target.target });
             // cast ignite
@@ -1900,7 +1900,7 @@ export const BOSS_BUFFS = {
                 name: 'mirage',
                 buffs: [],
                 stats: mirageStats
-              }
+              };
 
               actualBattle.enemies.push(mirage);
             }

@@ -9,7 +9,7 @@ Template.combatAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.combatAchieveTab.events({
-})
+});
 
 Template.combatAchieveTab.helpers({
-})
+});

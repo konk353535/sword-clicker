@@ -321,4 +321,4 @@ export const TIN_ITEMS = {
       level: 5
     }]
   }
-}
+};

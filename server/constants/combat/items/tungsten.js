@@ -321,4 +321,4 @@ export const TUNGSTEN_ITEMS = {
       level: 50
     }]
   }
-}
+};

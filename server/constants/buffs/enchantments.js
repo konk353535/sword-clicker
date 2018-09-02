@@ -152,7 +152,7 @@ export const ENCHANTMENT_BUFFS = {
           let fox = {
             id: Random.id(),
             tickOffset: 0,
-          }
+          };
 
           if (foxToSpawn === 'fire') {
             fox.icon = 'babyFireFox.svg';
@@ -169,7 +169,7 @@ export const ENCHANTMENT_BUFFS = {
               magicArmor: target.stats.magicArmor * 0.5,
               magicPower: target.stats.magicPower,
               damageTaken: 1
-            }
+            };
             fox.buffs = [{
               id: 'baby_fire_fox',
               data: {
@@ -196,7 +196,7 @@ export const ENCHANTMENT_BUFFS = {
               magicArmor: target.stats.magicArmor,
               magicPower: target.stats.magicPower * 0.5,
               damageTaken: 1
-            }
+            };
             fox.buffs = [{
               id: 'baby_earth_fox',
               data: {
@@ -223,7 +223,7 @@ export const ENCHANTMENT_BUFFS = {
               magicArmor: target.stats.magicArmor * 0.6,
               magicPower: target.stats.magicPower * 0.6,
               damageTaken: 1
-            }
+            };
             fox.buffs = [];
           } else if (foxToSpawn === 'water') {
             fox.icon = 'babyWaterFox.svg';
@@ -241,7 +241,7 @@ export const ENCHANTMENT_BUFFS = {
               magicPower: target.stats.magicPower,
               healingPower: target.stats.healingPower,
               damageTaken: 1
-            }
+            };
             fox.buffs = [{
               id: 'baby_water_fox',
               data: {
@@ -422,7 +422,7 @@ export const ENCHANTMENT_BUFFS = {
           target.stats.attack -= buff.data.totalDamage;
           target.stats.attackMax -= buff.data.totalDamage;
           // Extra damage
-          const roundedTime = Math.ceil(buff.data.totalTime / 7)
+          const roundedTime = Math.ceil(buff.data.totalTime / 7);
           const extraDamagePercentage = roundedTime < 35 ? roundedTime : 35;
           buff.data.totalDamage = target.stats.attackMax * (extraDamagePercentage / 100);
           target.stats.attackMax += buff.data.totalDamage;
@@ -472,7 +472,7 @@ export const ENCHANTMENT_BUFFS = {
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
             }
-          }
+          };
 
           // Add bleed debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -675,7 +675,7 @@ export const ENCHANTMENT_BUFFS = {
           if (!target && enemy.id !== defender.id) {
             target = enemy;
           }
-        })
+        });
 
         if (target) {
          actualBattle.utils.dealDamage(totalDamage, {
@@ -840,7 +840,7 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'magicArmorReduction.svg',
               description: `Reduces your magic armor by ${armorReduction}%`
             }
-          }
+          };
 
           // Add magic armor debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -891,7 +891,7 @@ export const ENCHANTMENT_BUFFS = {
               description: ''
             },
             constants: BUFFS['ignite']
-          }
+          };
 
           // cast ignite
           addBuff({ buff: newBuff, target: targetEnemy, caster: target, actualBattle });

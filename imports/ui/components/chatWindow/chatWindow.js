@@ -17,7 +17,7 @@ SimpleChat.scrollToEnd = function () {
     $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
     $('.direct-chat-messages').trigger('scroll');
   }
-}
+};
 
 const AVAILABLE_CHATS = {
   'General': {
@@ -56,7 +56,7 @@ const AVAILABLE_CHATS = {
     class: 'chat-Offtopic',
     show: false
   }
-}
+};
 
 Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -64,7 +64,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state.set('currentChat', 'General');
   this.state.set('availableChats', AVAILABLE_CHATS);
 
-  this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
+  this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit);
 
   Tracker.autorun(() => {
     let minimized = true;
@@ -149,7 +149,7 @@ Template.chatWindow.rendered = function () {
     // To do: add some kind of notification logic for Tab Heading?
   });
 
-}
+};
 
 Template.chatWindow.events({
   'click .maximize-icon'(event, instance) {
@@ -203,9 +203,9 @@ Template.chatWindow.events({
   },
 
   'keydown #simple-chat-message': function (event) {
-    var $message = $(event.currentTarget)
-    if (event.which == 13 && $message.val() != '') { // 13 is the enter key event
-      event.preventDefault()
+    const $message = $(event.currentTarget);
+    if (event.which === 13 && $message.val() !== '') { // 13 is the enter key event
+      event.preventDefault();
       Template.instance().$('button#message-send').click()
     }
   },
@@ -261,14 +261,14 @@ Template.chatWindow.events({
   },
 
   'click #simple-chat-load-more': function () {
-    let template = Template.instance()
+    let template = Template.instance();
     template.subscribing = true;
-    template.limit.set(template.limit.get() + 20)
-    template.scroll = template.$('.scroll-height')[0].scrollHeight
+    template.limit.set(template.limit.get() + 20);
+    template.scroll = template.$('.scroll-height')[0].scrollHeight;
     template.$(".direct-chat-messages").animate({scrollTop: 0}, 0);
     template.$('.direct-chat-messages').trigger('scroll')
   }
-})
+});
 
 Template.chatWindow.helpers({
   minimized() {
@@ -307,7 +307,7 @@ Template.chatWindow.helpers({
 
   simpleChats: function () {
     const instance = Template.instance();
-    var chats = Chats.find({}, {sort: {date: 1}})
+    const chats = Chats.find({}, {sort: {date: 1}});
     let handleChanges = chats.observeChanges({
       added: (id, doc) => {
         const username = Meteor.user().username;

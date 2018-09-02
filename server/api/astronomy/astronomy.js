@@ -32,7 +32,6 @@ Meteor.methods({
 
     if (!requirementsUtility(requirements, 1)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
-      return;
     }
 
     if (mainMage.stats[stat] == null) {
@@ -127,7 +126,6 @@ Meteor.methods({
 
     if (!requirementsUtility(requirements, 1)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
-      return;
     }
 
     // Add mage to our list
@@ -237,7 +235,7 @@ Meteor.methods({
 
     // Determine time since last update
     const now = moment();
-    let hoursElapsed = moment.duration(now.diff(astronomy.lastGameUpdated)).asHours()
+    let hoursElapsed = moment.duration(now.diff(astronomy.lastGameUpdated)).asHours();
 
     // Cap offline gains to 8 hours
     if (hoursElapsed > 8) {
@@ -437,10 +435,10 @@ Meteor.methods({
 Meteor.publish('astronomy', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
 
     const userDoc = Meteor.user();
-    
+
     let maxMages = ASTRONOMY.baseMaxMages;
     const hasAstronomyUpgrade = userDoc.astronomyUpgradeTo && moment().isBefore(userDoc.astronomyUpgradeTo);
     if (hasAstronomyUpgrade) {
@@ -460,14 +458,14 @@ Meteor.publish('astronomy', function() {
       return mage;
     });
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Astronomy.find({
+  const observer = Astronomy.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('astronomy', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

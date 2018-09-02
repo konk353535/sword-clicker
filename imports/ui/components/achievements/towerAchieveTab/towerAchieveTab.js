@@ -9,7 +9,7 @@ Template.towerAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.towerAchieveTab.events({
-})
+});
 
 Template.towerAchieveTab.helpers({
-})
+});

@@ -314,4 +314,4 @@ export const ATTACK_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   }
-}
+};

@@ -122,4 +122,4 @@ export const CRAFTING_CRAFTS = Object.assign(ESSENCE_CRAFTS, FURNACE_CRAFTS, MIS
     maxToCraft: 1
   },
 
-})
+});

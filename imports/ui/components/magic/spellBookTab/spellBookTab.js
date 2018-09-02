@@ -91,7 +91,7 @@ Template.spellBookTab.events({
       instance.$('.craft-amount-input').focus();
     }
   },
-})
+});
 
 Template.spellBookTab.helpers({
   spellCrafting() {
@@ -143,4 +143,4 @@ Template.spellBookTab.helpers({
   maxCraftableAmount() {
     return Template.instance().state.get('maxCraftableAmount');
   },
-})
+});

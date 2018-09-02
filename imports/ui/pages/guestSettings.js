@@ -57,7 +57,7 @@ Template.guestSettingsPage.events({
       Router.go('/');
     })
   }
-})
+});
 
 Template.guestSettingsPage.helpers({
 
@@ -73,4 +73,4 @@ Template.guestSettingsPage.helpers({
   updating() {
     return Template.instance().state.get('updating');    
   }
-})
+});

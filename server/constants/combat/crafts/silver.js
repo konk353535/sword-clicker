@@ -414,4 +414,4 @@ export const SILVER_CRAFTS = {
       level: 20
     }]
   }
-}
+};

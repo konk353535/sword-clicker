@@ -106,7 +106,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   });
   */
 
-  if (adventurePlayers != "") {
+  if (adventurePlayers !== "") {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while ' + adventurePlayers + ' in your group is in an adventure');
   }
 
@@ -141,7 +141,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     units: [],
     useStreamy,
     enemies: []
-  }
+  };
 
   // Battle participants combat stats
   const usersCombatStats = Combat.find({
@@ -160,9 +160,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Ensure users have energy requirements + havent already fought boss
   usersCombatStats.forEach((userCombat) => {
     if (userCombat.stats.energy < battleEnergyCost) {
+      hasEnergy = false;
       const requirementString = `${userCombat.username} does not have enough energy to start this battle`;
       throw new Meteor.Error("not-enough-energy", requirementString);
-      hasEnergy = false;
     }
 
     if (userCombat.meditatingStartDate) {
@@ -170,8 +170,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
 
     if (health && !isOldBoss && userCombat.foughtBoss) {
-      throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
       hasEnergy = false;
+      throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
     }
   });
 
@@ -227,7 +227,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
       icon: userCombat.characterIcon || 'character.svg'
-    }
+    };
 
     if (userCombat.enchantments) {
       userCombat.enchantments.forEach((buffId) => {
@@ -243,7 +243,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
               description: enchantConstants.description(),
               name: clonedConstants.name
             }
-          }
+          };
 
           addBuff({ buff: newBuff, target: newUnit, caster: newUnit, actualBattle: null});
         }
@@ -363,4 +363,4 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   const battleIntervalId = Meteor.setInterval(() => {
     progressBattle(actualBattle, battleIntervalId);
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
-}
+};

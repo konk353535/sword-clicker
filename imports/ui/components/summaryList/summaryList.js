@@ -36,7 +36,7 @@ Template.summaryList.events({
       }
     });
   },
-})
+});
 
 Template.summaryList.helpers({
 

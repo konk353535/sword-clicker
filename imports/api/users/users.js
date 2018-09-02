@@ -104,6 +104,6 @@ UserSchema = new SimpleSchema({
 
   stats: { type: Object },
   'stats.spellsCast' : { type: Number, defaultValue: 1 }
-})
+});
 
 Meteor.users.attachSchema(UserSchema);

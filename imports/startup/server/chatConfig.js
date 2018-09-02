@@ -30,7 +30,7 @@ const createNewServer = function (name, iteration) {
     points: 0,
     pointsMax: FLOORS.getNewPointCount(1, 10)
   });
-}
+};
 
 SimpleChat.configure ({
   texts:{

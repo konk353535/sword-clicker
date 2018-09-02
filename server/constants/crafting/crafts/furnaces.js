@@ -614,4 +614,4 @@ export const FURNACE_CRAFTS = {
     xp: 2000,
     maxToCraft: 1
   }
-}
+};

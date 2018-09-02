@@ -20,7 +20,7 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
     }
     return true;
   });
-}
+};
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
   if (!buff.data.allowDuplicates) {
@@ -36,7 +36,7 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   } else {
     target.buffs.push(buff);
   }
-}
+};
 
 export const finishAllBattles = function() {
   import { BattlesList } from "/imports/api/battles/battles";

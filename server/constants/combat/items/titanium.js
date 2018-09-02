@@ -321,4 +321,4 @@ export const TITANIUM_ITEMS = {
       level: 45
     }]
   }
-}
+};

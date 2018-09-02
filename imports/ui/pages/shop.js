@@ -29,7 +29,7 @@ Template.shopPage.events({
       damage_t2: 300,
       tank_t1: 150,
       tank_t2: 300
-    }
+    };
 
     if (Meteor.user().gems + Meteor.user().fakeGems < costs[iconId]) {
       // return;
@@ -207,17 +207,17 @@ Template.shopPage.events({
       toastr.success('Successfully purchased.')
     });
   }
-})
+});
 
 Template.shopPage.rendered = function () {
   const instance = Template.instance();
-  var handler = StripeCheckout.configure({
+  const handler = StripeCheckout.configure({
     key: Meteor.settings.public.stripe,
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
-    token: function(token) {
+    token: function (token) {
       const currentPack = instance.state.get('currentPack');
-      Meteor.call('shop.purchase', { token: token.id, currentPack }, (err, res) => {
+      Meteor.call('shop.purchase', {token: token.id, currentPack}, (err, res) => {
         if (err) {
           toastr.error('An error occured while purchasing gems.');
         } else {
@@ -242,7 +242,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 499
     });
-    instance.state.set('currentPack', 'bunch')
+    instance.state.set('currentPack', 'bunch');
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -256,7 +256,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 1999
     });
-    instance.state.set('currentPack', 'bag')
+    instance.state.set('currentPack', 'bag');
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -270,7 +270,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 4999
     });
-    instance.state.set('currentPack', 'box')
+    instance.state.set('currentPack', 'box');
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -279,7 +279,7 @@ Template.shopPage.rendered = function () {
   window.addEventListener('popstate', function() {
     handler.close();
   });
-}
+};
 
 Template.shopPage.helpers({
   processing() {
@@ -388,4 +388,4 @@ Template.shopPage.helpers({
       return upgrade;
     });
   }
-})
+});

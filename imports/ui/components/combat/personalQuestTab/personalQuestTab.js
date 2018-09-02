@@ -59,7 +59,7 @@ Template.personalQuestTab.events({
       }
     });
   }
-})
+});
 
 Template.personalQuestTab.helpers({
 

@@ -9,7 +9,7 @@ Template.craftingAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.craftingAchieveTab.events({
-})
+});
 
 Template.craftingAchieveTab.helpers({
-})
+});

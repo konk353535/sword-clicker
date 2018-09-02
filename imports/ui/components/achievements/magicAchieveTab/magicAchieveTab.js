@@ -9,7 +9,7 @@ Template.magicAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.magicAchieveTab.events({
-})
+});
 
 Template.magicAchieveTab.helpers({
-})
+});

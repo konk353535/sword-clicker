@@ -41,7 +41,7 @@ Template.serverSelector.helpers({
       return server;
     });
   }
-})
+});
 
 Template.serverSelector.events({
   'click .select-name'(event, instance) {
@@ -60,7 +60,7 @@ Template.playAsGuestBtn.helpers({
   creatingGuest() {
     return Template.instance().state.get('creatingGuest');
   }
-})
+});
 
 Template.playAsGuestBtn.events({
   'click .play-as-guest-btn'(event, instance) {

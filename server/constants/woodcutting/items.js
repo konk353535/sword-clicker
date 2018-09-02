@@ -654,4 +654,4 @@ export const WOODCUTTING_ITEMS = {
     name: 'magic log',
     sellPrice: 190
   }
-}
+};

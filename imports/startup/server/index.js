@@ -365,7 +365,7 @@ Accounts.onCreateUser((options, user) => {
     showChat: true,
     showSummaryList: false,
     craftingFilter: 'mining'
-  }
+  };
 
   let targetServer;
   if (options.server) {
@@ -430,7 +430,7 @@ Accounts.onCreateUser((options, user) => {
     hideMiningProspectors: true,
     highlightMiningProspectors: false,
     currentStep: 1
-  }
+  };
 
   if (options.isGuest) {
     user.isGuest = options.isGuest;

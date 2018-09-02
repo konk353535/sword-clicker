@@ -124,8 +124,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 .icon-box.equipped-icon {
-  border-color: $brand-primary;
-  border-width: 2px;
+  border: 2px $brand-primary;
 }
 
 .user-ready .icon-box {

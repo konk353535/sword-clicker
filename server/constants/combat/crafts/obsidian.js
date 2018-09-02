@@ -414,4 +414,4 @@ export const OBSIDIAN_CRAFTS = {
       level: 55
     }]
   }
-}
+};

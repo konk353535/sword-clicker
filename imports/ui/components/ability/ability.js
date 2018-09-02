@@ -62,7 +62,7 @@ const castAbility = function(instance) {
       targets: [targetId], caster: casterId
     });
   }
-}
+};
 
 Template.ability.onCreated(function bodyOnCreated() {
 
@@ -83,19 +83,19 @@ Template.ability.rendered = function () {
     'chest': 3,
     'legs': 4,
     'changeTarget': 35 // t
-  }
+  };
   $(document).on(`keyup.${slot}`, (e) => {
-    if (keyCodes[slot] != null && e.which == 49 + keyCodes[slot]) {
+    if (keyCodes[slot] != null && e.which === 49 + keyCodes[slot]) {
       castAbility(this);
     }
   });
-}
+};
 
 Template.ability.events({
   'click'(event, instance) {
     castAbility(instance);
   }
-})
+});
 
 Template.ability.helpers({
 

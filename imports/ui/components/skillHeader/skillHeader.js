@@ -40,4 +40,4 @@ Template.skillHeader.helpers({
       return 0;
     }
   }
-})
+});

@@ -1538,4 +1538,4 @@ export const MINING = {
       chance: 0.0000004
     }
   }
-}
+};

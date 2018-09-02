@@ -410,4 +410,4 @@ export const PIGMENT_CRAFTS = {
     }]
   }
 
-}
+};

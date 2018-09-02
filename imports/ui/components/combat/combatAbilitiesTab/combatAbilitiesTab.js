@@ -46,7 +46,7 @@ Template.combatAbilitiesTab.helpers({
             }
           });
         }
-      }
+      };
       return item;
     });
   },
@@ -114,4 +114,4 @@ Template.combatAbilitiesTab.helpers({
       return ability;
     });
   }
-})
+});

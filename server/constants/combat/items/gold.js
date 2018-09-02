@@ -321,4 +321,4 @@ export const GOLD_ITEMS = {
       level: 25
     }]
   }
-}
+};

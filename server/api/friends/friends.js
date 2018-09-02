@@ -98,7 +98,7 @@ Meteor.methods({
 Meteor.publish('friends', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     // Transfer invite id to invite names
     const invitesObjects = Combat.find({
       owner: {
@@ -116,14 +116,14 @@ Meteor.publish('friends', function() {
     doc.friends = invitesObjects;
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Friends.find({
+  const observer = Friends.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('friend', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

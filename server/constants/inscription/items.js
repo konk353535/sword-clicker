@@ -2524,4 +2524,4 @@ export const INSCRIPTION_ITEMS = {
       target: 'item'
     }
   }
-}
+};

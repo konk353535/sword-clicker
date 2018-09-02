@@ -16,7 +16,7 @@ let astronomyPageTimer;
 const descriptions = {
   attackSpeed: 'Shards per hour',
   criticalChance: '% chance to get 2x shards'
-}
+};
 
 Template.astronomyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -76,7 +76,7 @@ Template.astronomyPage.events({
   'submit .deposit-form'(event, instance) {
     event.preventDefault();
     const mage = instance.state.get('selectedMage');
-    const amount = parseInt($('.deposit-amount-input').val())
+    const amount = parseInt($('.deposit-amount-input').val());
     Meteor.call('astronomy.depositMageGold', mage.index, amount);
     instance.$('.depositMageModal').modal('hide');
   },
@@ -84,7 +84,7 @@ Template.astronomyPage.events({
   'submit .withdraw-form'(event, instance) {
     event.preventDefault();
     const mage = instance.state.get('selectedMage');
-    const amount = parseInt($('.withdraw-amount-input').val())
+    const amount = parseInt($('.withdraw-amount-input').val());
     Meteor.call('astronomy.withdrawMageGold', mage.index, amount);
     instance.$('.depositMageModal').modal('hide');
   },
@@ -112,7 +112,7 @@ Template.astronomyPage.helpers({
     }
 
     astronomy.mages.forEach((mage, mageIndex) => {
-      mage.index = mageIndex
+      mage.index = mageIndex;
       mage.amount = mage.gold;
       console.log(mage);
       mage.icon += '.svg';

@@ -61,7 +61,7 @@ const itemModifier = function (item) {
   }
 
   return item;
-}
+};
 
 
 
@@ -119,7 +119,7 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         this.state.set('recipeListMap', resultsMap);
 
         const userDoc = Meteor.user();
-        const hasInscriptionUpgrade = userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo)
+        const hasInscriptionUpgrade = userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo);
 
         // Store recipes
         this.state.set('recipes', results.map((result) => {
@@ -168,7 +168,7 @@ Template.inscriptionPage.events({
     const filter = instance.$(event.target).closest('.level-filter').data('filter');
     Meteor.call('users.setUiState', 'inscriptionLevelFilter', filter);
   }
-})
+});
 
 Template.inscriptionPage.helpers({
   inscriptionSkill() {

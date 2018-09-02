@@ -171,4 +171,4 @@ export const CRAFTING = {
       color: 'red-1'
     }
   }
-}
+};

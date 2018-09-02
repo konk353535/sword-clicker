@@ -62,7 +62,7 @@ const itemModifier = function (item) {
   }
 
   return item;
-}
+};
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -135,7 +135,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
           tiers,
           level: craftingSkill.level,
           date: moment().toDate()
-        }
+        };
 
         Session.set('recipeCache', {
           data: results,
@@ -192,7 +192,7 @@ Template.craftingPage.events({
 
   'click .tier-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.tier-filter').data('tier-filter');
-    const craftingTierFilter = instance.state.get('craftingTierFilter')
+    const craftingTierFilter = instance.state.get('craftingTierFilter');
     const existingFilter = craftingTierFilter[filter];
 
     if (existingFilter) {
@@ -279,7 +279,7 @@ Template.craftingPage.helpers({
 
     if (recipes && recipes.tiers) {
       return recipes.tiers.map((tier) => {
-        tier.empty = !!craftingTierFilter[tier.name]
+        tier.empty = !!craftingTierFilter[tier.name];
         return tier;
       });
     }
@@ -353,7 +353,7 @@ Template.craftingPage.helpers({
       highestFurnaceTier = allFurnaces[0].tier;
     }
 
-    let hidden = Template.instance().state.get('itemFilter') == 'hidden-items' ? true : false;
+    let hidden = Template.instance().state.get('itemFilter') === 'hidden-items' ? true : false;
 
 
     if (itemViewLimit !== 0) {
@@ -397,7 +397,7 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
       quality: -1
     }
   }).map((itemModifier));
-}
+};
 
 
 const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
@@ -449,7 +449,7 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
       quality: -1
     }
   }).map((itemModifier));
-}
+};
 
 
 const FetchAllVisibleItems = function (highestFurnaceTier) {

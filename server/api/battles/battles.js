@@ -66,7 +66,7 @@ export const resumeBattle = function(id) {
   const battleIntervalId = Meteor.setInterval(() => {
     progressBattle(actualBattle, battleIntervalId);
   }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
-}
+};
 
 Meteor.methods({
 
@@ -211,7 +211,7 @@ Meteor.methods({
 
     const specifiedFloorConstants = FLOORS[floorNumber];
 
-    if (currentFloor.floor == floorNumber) {
+    if (currentFloor.floor === floorNumber) {
       return {
         waveDetails: {
           health: currentFloor.health,
@@ -338,7 +338,7 @@ Meteor.methods({
       caster: options.caster,
       target: options.target,
       targets: options.targets
-    }
+    };
 
     check(obj, BattleActionsSchema);
 

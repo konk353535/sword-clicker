@@ -1338,4 +1338,4 @@ export const FARMING_ITEMS = {
     name: 'Rubia Flower',
     sellPrice: 10
   }
-}
+};

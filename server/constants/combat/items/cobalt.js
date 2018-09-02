@@ -321,4 +321,4 @@ export const COBALT_ITEMS = {
       level: 60
     }]
   }
-}
+};

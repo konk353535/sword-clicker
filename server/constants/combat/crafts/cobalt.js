@@ -414,4 +414,4 @@ export const COBALT_CRAFTS = {
       level: 60
     }]
   }
-}
+};

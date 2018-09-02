@@ -40,10 +40,10 @@ AccountsTemplates.configure({
   positiveValidation: true,
   positiveFeedback: true,
   showValidating: true
-})
+});
 
-var pwd = AccountsTemplates.removeField('password');
-var email = AccountsTemplates.removeField('email');
+const pwd = AccountsTemplates.removeField('password');
+const email = AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
     _id: "username",
@@ -82,7 +82,7 @@ AccountsTemplates.configureRoute('verifyEmail', {
   path: '/verify-email',
 });
 
-AccountsTemplates.configureRoute('changePwd')
+AccountsTemplates.configureRoute('changePwd');
 
 Router.plugin('ensureSignedIn', {
   except: ['signin', 'join', 'changePwd', 'resetPwd', 'verifyEmail', 'home']

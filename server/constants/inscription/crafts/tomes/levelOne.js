@@ -456,4 +456,4 @@ export const LEVEL_ONE_CRAFTS = {
     requiredInscriptionLevel: 3,
     required: [UTIL.GREEN_200, UTIL.RED_255, UTIL.BEECH_PAPER, UTIL.LEVEL_3]
   }
-}
+};

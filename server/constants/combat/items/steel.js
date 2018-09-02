@@ -321,4 +321,4 @@ export const STEEL_ITEMS = {
       level: 35
     }]
   }
-}
+};

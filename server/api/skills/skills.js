@@ -20,7 +20,7 @@ import _ from 'underscore';
 
 const redis = new Meteor.RedisCollection('redis');
 
-let globalXpBuffs = {}
+let globalXpBuffs = {};
 
 const updateGlobalBuffs = () => {
   const rawGlobalBuffs = redis.get('global-buffs-xpq');
@@ -150,7 +150,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
     });
     */
   }
-}
+};
 
 Meteor.methods({
   'skills.learnSkill'(skillName) {
@@ -422,17 +422,17 @@ const MINUTE = 60 * 1000;
 Meteor.publish('skills', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     doc.xpToLevel = SKILLS[doc.type].xpToLevel(doc.level);
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Skills.find({
+  const observer = Skills.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('skills', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

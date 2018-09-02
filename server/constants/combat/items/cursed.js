@@ -321,4 +321,4 @@ export const CURSED_ITEMS = {
       level: 95
     }]
   }
-}
+};

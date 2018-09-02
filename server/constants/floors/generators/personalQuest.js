@@ -111,7 +111,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
       damageTaken: 1
     },
     rewards: TABLE_LIST[rewardLevel]
-  }
+  };
 
   if (selectedMonster.statBuffs) {
     selectedMonster.statBuffs.forEach((statBuff) => {
@@ -147,4 +147,4 @@ export const personalQuestMonsterGenerator = function(level, wave) {
   }
 
   return [monster];
-}
+};

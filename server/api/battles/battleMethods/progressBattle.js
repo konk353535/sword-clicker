@@ -131,7 +131,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       }
 
       return damage;
-    }
+    };
 
     const healTarget = function(healAmount, {
       target,
@@ -168,7 +168,7 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
           customIcon: 'health'
         });
       }
-    }
+    };
 
     const autoAttack = function({ attacker, defender, tickEvents, historyStats, originalAutoAttack = true }) {
       // Do we hit?
@@ -243,13 +243,13 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
       } else {
         dealDamage(0, { attacker, defender, tickEvents, historyStats });
       }
-    }
+    };
 
     actualBattle.utils = {
       autoAttack,
       dealDamage,
       healTarget
-    }
+    };
 
     const secondsElapsed = (BATTLES.tickDuration / 1000);
 
@@ -565,4 +565,4 @@ export const progressBattle = function (actualBattle, battleIntervalId) {
     delete actualBattle;
     throw e;
   }
-}
+};

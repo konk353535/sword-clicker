@@ -414,4 +414,4 @@ export const TITANIUM_CRAFTS = {
       level: 45
     }]
   }
-}
+};

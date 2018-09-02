@@ -1527,7 +1527,7 @@ export const MAGIC_BUFFS = {
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
-          }
+          };
 
           addBuff({ buff: newBuff, target, caster });
 
@@ -1608,7 +1608,7 @@ export const MAGIC_BUFFS = {
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
-          }
+          };
 
           addBuff({ buff: newBuff, target, caster });
 
@@ -2166,4 +2166,4 @@ export const MAGIC_BUFFS = {
     }
   },
 
-}
+};

@@ -321,4 +321,4 @@ export const MITHRIL_ITEMS = {
       level: 65
     }]
   }
-}
+};

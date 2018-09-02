@@ -106,7 +106,7 @@ Template.nav.events({
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
     instance.$('.guestSignOffConfirmModal').modal('hide');
   }
-})
+});
 
 Template.nav.helpers({
   currentRoute() {

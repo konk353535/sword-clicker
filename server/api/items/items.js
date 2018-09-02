@@ -33,7 +33,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   const itemConstants = ITEMS[itemId];  
 
   if (!itemConstants) {
-    console.log(`Failed - ${itemId}`)
+    console.log(`Failed - ${itemId}`);
     return;
   }
 
@@ -112,7 +112,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       Items.insert(newItem);
     });
   }
-}
+};
 
 export const addFakeGems = function (amount, userId) {
   // Ensure amount is valid
@@ -131,7 +131,7 @@ export const addFakeGems = function (amount, userId) {
       fakeGems: amount
     }
   });
-}
+};
 
 export const hasGems = function (count, userObject) {
   if (userObject.fakeGems == null || userObject.fakeGemsToday == null) {
@@ -141,7 +141,7 @@ export const hasGems = function (count, userObject) {
   const totalGems = userObject.gems + userObject.fakeGems;
 
   return totalGems >= count;
-}
+};
 
 export const consumeGems = function (count, userObject) {
   let fakeConsumed = 0;
@@ -171,7 +171,7 @@ export const consumeGems = function (count, userObject) {
   });
 
   return true;
-}
+};
 
 export const consumeItem = function (itemObject, amount) {
   // Use up item
@@ -188,7 +188,7 @@ export const consumeItem = function (itemObject, amount) {
       $inc: { amount: (-1 * amount) }
     });
   }
-}
+};
 
 Meteor.methods({
 
@@ -273,7 +273,7 @@ Meteor.methods({
     const baseItemConstants = ITEMS[baseItem.itemId];
 
 
-    if (baseItem.category == "magic_book") {
+    if (baseItem.category === "magic_book") {
       UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
@@ -333,11 +333,11 @@ Meteor.methods({
       
 
         // Get the current quality
-        const originalQuality = targetItem.quality
+        const originalQuality = targetItem.quality;
         const targetItemClone = JSON.parse(JSON.stringify(targetItem));
 
         // Mutate the targetItems stats until we get to target quality
-        const increaseOptions = []
+        const increaseOptions = [];
         const extraStatKeys = Object.keys(targetItemConstants.extraStats);
         extraStatKeys.forEach((extraStatKey) => {
           const maxStat = targetItemConstants.extraStats[extraStatKey];
@@ -739,7 +739,7 @@ const MINUTE = 60 * 1000;
 Meteor.publish('items', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
     if (!itemConstants) {
       return;
@@ -788,11 +788,11 @@ Meteor.publish('items', function() {
     }
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Items.find({
+  const observer = Items.find({
     owner: this.userId
   }).observe({
       added: function (document) {
@@ -833,7 +833,7 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
 
   // Post Logic & Cleanup
   ConsumeItem(baseItem);
-}
+};
 
 export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -881,7 +881,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -932,7 +932,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -979,7 +979,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1026,7 +1026,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1078,7 +1078,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1149,7 +1149,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 
 export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
@@ -1160,7 +1160,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   }
 
   if (!COMBAT_CRAFTS[targetItem.itemId] ) {
-    if (targetItem.itemId.indexOf('_wizard') == -1 ) {
+    if (targetItem.itemId.indexOf('_wizard') === -1 ) {
       console.log('Not a recipe');
       throw new Meteor.Error("invalid-target", 'Not a recipe.');
     }
@@ -1176,7 +1176,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
     throw new Meteor.Error("invalid-target", 'Target item slot not defined.');
   }
 
-  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
+  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) === -1) {
     console.log('Enchantment slot doesn\'t match target slot');
     throw new Meteor.Error("invalid-target", 'Item is not crafted.');
   }
@@ -1192,7 +1192,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1200,7 +1200,7 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
-  if (targetItem.enchantmentId && targetItem.enchantmentId == false) {
+  if (targetItem.enchantmentId && targetItem.enchantmentId === false) {
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
@@ -1216,7 +1216,7 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 
 export const ConsumeItem = function (baseItem) {
@@ -1243,22 +1243,22 @@ export const ConsumeItem = function (baseItem) {
         }
       });
     }
-}
+};
 
 export const IsJewelAmulet = function (targetItem) {
 
-  if(  targetItem.itemId == "jade_amulet"
-    || targetItem.itemId == "lapislazuli_amulet"
-    || targetItem.itemId == "sapphire_amulet"
-    || targetItem.itemId == "emerald_amulet"
-    || targetItem.itemId == "ruby_amulet"
-    || targetItem.itemId == "tanzanite_amulet"
+  if(  targetItem.itemId === "jade_amulet"
+    || targetItem.itemId === "lapislazuli_amulet"
+    || targetItem.itemId === "sapphire_amulet"
+    || targetItem.itemId === "emerald_amulet"
+    || targetItem.itemId === "ruby_amulet"
+    || targetItem.itemId === "tanzanite_amulet"
     ) {
       return true;
   }
 
   return false;
-}
+};
 
 export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1302,4 +1302,4 @@ export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem,
       enhanced: true
     }
   });
-}
+};

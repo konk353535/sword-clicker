@@ -1131,4 +1131,4 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['winged_shield']
   }
-}
+};

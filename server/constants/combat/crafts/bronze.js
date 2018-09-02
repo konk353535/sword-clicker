@@ -351,4 +351,4 @@ export const BRONZE_CRAFTS = {
       level: 10
     }]
   }
-}
+};

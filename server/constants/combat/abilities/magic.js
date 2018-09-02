@@ -593,4 +593,4 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
-}
+};

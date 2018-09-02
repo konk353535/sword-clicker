@@ -169,15 +169,15 @@ Meteor.methods({
       'currentStep'
     ];
 
-    const setObject = {}
+    const setObject = {};
 
     let exitEarly = false;
     allKeys.forEach((key) => {
       if (!_.contains(validIds, key)) {
-        console.log(`rejecting - ${key}`)
+        console.log(`rejecting - ${key}`);
         exitEarly = true;
       } else if (!_.isBoolean(updateObject[key] && !_.isFinite((updateObject[key])))) {
-        console.log(`rejecting - ${key}`)
+        console.log(`rejecting - ${key}`);
         exitEarly = true;
       } else {
         if (key === 'currentStep' && updateObject[key] <= userDoc.tutorial.currentStep) {
@@ -305,7 +305,7 @@ Meteor.methods({
 
       const setObject = {
         username
-      }
+      };
       setObject[`uiState.${id}`] = value;
 
       Users.update({
@@ -315,12 +315,12 @@ Meteor.methods({
       });
     }
   }
-})
+});
 
 const MINUTE = 60 * 1000;
 const clientAddress = function clientAddress(clientAddress) {
   return true;
-}
+};
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', clientAddress }, 3, 24 * 60 * MINUTE);

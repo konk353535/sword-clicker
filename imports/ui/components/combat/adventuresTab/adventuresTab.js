@@ -34,7 +34,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
         // Seconds since start
         const secondsSinceStart = moment.duration(moment().diff(adventure.startDate)).asSeconds();
         // Seconds till end
-        const secondsLeft = moment.duration(moment(adventure.endDate).diff(new Date())).asSeconds()
+        const secondsLeft = moment.duration(moment(adventure.endDate).diff(new Date())).asSeconds();
         // Total seconds for this adventure
         const totalSeconds = moment.duration(moment(adventure.endDate).diff(adventure.startDate)).asSeconds();
         // Formatted seconds left
@@ -53,7 +53,7 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
 
       return adventure;
     }));
-  }
+  };
 
   this.autorun(() => {
     if (Adventures.findOne()) {
@@ -102,7 +102,7 @@ Template.adventuresTab.events({
       }
     });
   }
-})
+});
 
 Template.adventuresTab.helpers({
 

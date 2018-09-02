@@ -192,7 +192,7 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
       $inc: { health: (-1 * damage) },
     });    
   }
-}
+};
 
 Meteor.methods({
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
@@ -387,7 +387,7 @@ Meteor.methods({
       }
 
       return newOre;
-    }
+    };
 
     // Modifies the miningSpaces array
     // gainedItems is added to if a mine space is cleared of an ore
@@ -430,7 +430,7 @@ Meteor.methods({
       }
 
       return gainedXp;
-    }
+    };
 
     // Tick count = How many ticks to step through
     // Tick strength = How strong to make each tick, 1 = seconds
@@ -633,7 +633,7 @@ Meteor.methods({
         }
       });
 
-    }
+    };
 
     // Less then 5 minutes, use second based ticks
     simulateMining(secondsElapsed, 1);
@@ -666,7 +666,7 @@ Meteor.methods({
     });
 
     const oresArray = Object.keys(MINING.ores).map((key) => {
-      const constants = MINING.ores[key]
+      const constants = MINING.ores[key];
       return {
         icon: constants.icon,
         name: constants.name,
@@ -703,7 +703,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-}
+};
 
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace', userId }, 100, 0.5 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector', userId }, 15, 0.5 * MINUTE);
@@ -717,7 +717,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners', userId }, 1
 Meteor.publish('miningSpace', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     if (doc.oreId) {
       const currentOreConstants = MINING.ores[doc.oreId];
       doc.requiredLevel = currentOreConstants.requiredLevel;
@@ -732,11 +732,11 @@ Meteor.publish('miningSpace', function() {
       }
     }
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = MiningSpace.find({
+  const observer = MiningSpace.find({
     owner: this.userId
   }).observe({
     added: function (document) {
@@ -761,20 +761,20 @@ Meteor.publish('miningSpace', function() {
 Meteor.publish('mining', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     doc.miners.map((miner) => {
       miner.xpToLevel = MINING.miners.xpToLevel(miner.level || 1);
       return miner;
     });
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Mining.find({
+  const observer = Mining.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('mining', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

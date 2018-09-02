@@ -530,4 +530,4 @@ export const GOLD_CRAFTS = {
     maxToCraft: 5
   },
 
-}
+};

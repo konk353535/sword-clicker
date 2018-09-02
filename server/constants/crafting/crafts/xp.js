@@ -560,4 +560,4 @@ export const XP_CRAFTS = {
     maxToCraft: 5
   },
   
-}
+};

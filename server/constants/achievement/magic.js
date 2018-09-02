@@ -12,4 +12,4 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 5000
     }]
   }*/
-}
+};

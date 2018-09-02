@@ -2237,4 +2237,4 @@ export const PICKAXE_ITEMS = {
       energyRegen: 3
     }
   },  
-}
+};

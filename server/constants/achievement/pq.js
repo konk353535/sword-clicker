@@ -304,4 +304,4 @@ export const PQ_ACHIEVEMENTS = {
       amount: 1
     }]
   }
-}
+};

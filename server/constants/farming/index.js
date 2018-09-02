@@ -914,4 +914,4 @@ export const FARMING = {
       }]
     },
   }
-}
+};

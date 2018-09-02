@@ -18,7 +18,7 @@ Template.tutorial.onCreated(function bodyOnCreated() {
 });
 
 Template.tutorial.events({
-})
+});
 
 Template.tutorial.helpers({
 
@@ -121,7 +121,7 @@ Template.tutorial.helpers({
             if (woodcutter.deathTime) {
               isSuiciding = true;
             }
-          })
+          });
           if (isSuiciding) {
             Meteor.call('users.tutorialUpdate', {
               currentStep: 9,
@@ -193,7 +193,7 @@ Template.tutorial.helpers({
               currentStep: 13
             });
           }
-        })
+        });
 
         return 'Battle in personal quest';
       } else if (currentStep === 13) {

@@ -20,7 +20,7 @@ const updateTooltips = function (instance, tooltipNames) {
       });
     });
   }, 100);
-}
+};
 
 Template.equipmentTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -28,7 +28,7 @@ Template.equipmentTab.onCreated(function bodyOnCreated() {
 
 Template.equipmentTab.rendered = function () {
   updateTooltips(Template.instance(), ['attackSkill', 'defenseSkill', 'healthSkill', 'magicSkill']);
-}
+};
 
 Template.equipmentTab.helpers({
   unequippedCombatItems() {
@@ -43,7 +43,7 @@ Template.equipmentTab.helpers({
             }
           });
         }
-      }
+      };
       return item;
     });
   },
@@ -56,7 +56,7 @@ Template.equipmentTab.helpers({
         method() {
           Meteor.call('items.eat', this.item._id, this.item.itemId);
         }
-      }
+      };
       return item;
     });
   },
@@ -89,7 +89,7 @@ Template.equipmentTab.helpers({
             }
           } 
         }
-      }
+      };
       return item;
     });
   },
@@ -107,7 +107,7 @@ Template.equipmentTab.helpers({
         method() {
           Meteor.call('items.unequip', this.item._id, this.item.itemId);
         }
-      }
+      };
       return item;
     });
 

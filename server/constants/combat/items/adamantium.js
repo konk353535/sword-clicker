@@ -321,4 +321,4 @@ export const ADAMANTIUM_ITEMS = {
       level: 70
     }]
   }
-}
+};

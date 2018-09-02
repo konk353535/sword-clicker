@@ -116,7 +116,7 @@ Meteor.startup(() => {
   })*/
 
 
-  if (process.env['CLUSTER_WORKER_ID'] == 1) {
+  if (process.env['CLUSTER_WORKER_ID'] === 1) {
     // Start processing abandoned battles
     BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
       Meteor.setTimeout(() => {

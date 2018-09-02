@@ -37,7 +37,7 @@ const updateFarmSpaceUI = function (self) {
       const currentDiff = moment(farmSpace.plantDate).diff(moment());
       self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
     }
-}
+};
 
 Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(farmSpaceInterval);
@@ -78,13 +78,13 @@ Template.farmSpace.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.farmSpace.onDestroyed(function () {
   if (tooltip && tooltip.target) {
     tooltip.destroy();
   }
-})
+});
 
 Template.farmSpace.helpers({
   isEmpty() {

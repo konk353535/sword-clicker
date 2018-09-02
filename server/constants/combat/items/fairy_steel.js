@@ -321,4 +321,4 @@ export const FAIRY_STEEL_ITEMS = {
       level: 85
     }]
   }
-}
+};

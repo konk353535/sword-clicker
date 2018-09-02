@@ -785,4 +785,4 @@ export const WIZARD_ITEMS = {
       level: 55
     }]
   }
-}
+};

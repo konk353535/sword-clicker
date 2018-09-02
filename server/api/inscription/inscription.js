@@ -27,7 +27,6 @@ const craftItem = function (recipeId, amountToCraft) {
   // Are we already crafting?
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length >= maxConcurrentCrafts) {
     throw new Meteor.Error("already-crafting", "Already crafting too many items.");
-    return;
   }
 
   // Is this a valid recipe?
@@ -78,7 +77,7 @@ const craftItem = function (recipeId, amountToCraft) {
       }
     }
   });
-}
+};
 
 Meteor.methods({
   'inscription.craftItem'(recipeId, amount) {
@@ -237,7 +236,7 @@ Meteor.methods({
     // Add new items to user
     newItems.forEach((item) => {
       addItem(item.itemId, item.amount);
-    })
+    });
 
     // Add inscription exp
     if (_.isNumber(inscriptionXp)) {
@@ -256,7 +255,7 @@ const MINUTE = 60 * 1000;
 Meteor.publish('inscription', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     if (doc.currentlyCrafting) {
       doc.currentlyCrafting.forEach((item) => {
         const itemConstants = ITEMS[item.itemId];
@@ -265,14 +264,14 @@ Meteor.publish('inscription', function() {
       });
     }
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Inscription.find({
+  const observer = Inscription.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('inscription', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

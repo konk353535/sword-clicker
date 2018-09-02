@@ -29,12 +29,12 @@ const updateCraftable = function (instance) {
 
   instance.state.set('craftAmount', Math.ceil(maxCraftableAtOnce / 2));
   instance.state.set('maxCraftableAtOnce', maxCraftableAtOnce);
-}
+};
 
 Template.recipeIcon.rendered = function () {
   const instance = Template.instance();
   updateCraftable(instance);
-}
+};
 
 Template.recipeIcon.events({
 
@@ -156,4 +156,4 @@ Template.recipeIcon.helpers({
 });
 
 Template.recipeIcon.onDestroyed(function () {
-})
+});

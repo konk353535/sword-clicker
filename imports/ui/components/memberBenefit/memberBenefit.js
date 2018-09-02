@@ -29,7 +29,7 @@ Template.memberBenefit.helpers({
 
     return '?';
   }
-})
+});
 
 Template.memberBenefit.rendered = function () {
   const iconTooltip = new Drop({
@@ -39,5 +39,5 @@ Template.memberBenefit.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 

@@ -155,4 +155,4 @@ export const ENCHANTMENT_CRAFTS = {
       level: 1
     }]
   }
-}
+};

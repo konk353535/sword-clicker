@@ -16,4 +16,4 @@ Template.helpIcon.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};

@@ -85,7 +85,7 @@ export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
       }
     }, { multi: true });
   }
-}
+};
 
 Meteor.methods({
 
@@ -432,7 +432,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-}
+};
 
 DDPRateLimiter.addRule({ type: 'method', name: 'farming.gameUpdate', userId }, 5, 15000);
 DDPRateLimiter.addRule({ type: 'method', name: 'farming.water', userId }, 20, 10000);
@@ -445,7 +445,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells', use
 Meteor.publish('farmingSpace', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     if (doc.plantId) {
       const currentPlantConstants = FARMING.plants[doc.plantId];
       doc.icon = currentPlantConstants.icon;
@@ -454,14 +454,14 @@ Meteor.publish('farmingSpace', function() {
     }
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = FarmingSpace.find({
+  const observer = FarmingSpace.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('farmingSpace', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

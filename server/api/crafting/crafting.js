@@ -56,7 +56,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
 
   const myUser = {
     gold: Meteor.user().gold
-  }
+  };
 
   const myItemsMap = {};
   myItems.forEach((item) => {
@@ -130,7 +130,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   }
 
   return true;
-}
+};
 
 const craftItem = function (recipeId, amountToCraft = 1) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
@@ -153,7 +153,6 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
     throw new Meteor.Error("already-crafting", "Already crafting too many items.");
-    return;
   }
 
   // Is this a valid recipe?
@@ -210,7 +209,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
       }
     }
   });
-}
+};
 
 Meteor.methods({
   'crafting.craftItem'(recipeId, amount) {
@@ -406,7 +405,7 @@ Meteor.methods({
     // Add new items to user
     newItems.forEach((item) => {
       addItem(item.itemId, item.amount);
-    })
+    });
 
     // Add crafting exp
     if (_.isNumber(craftingXp)) {
@@ -418,7 +417,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-}
+};
 
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 10, 20000);
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes', userId }, 5, 10000);
@@ -428,7 +427,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 
 Meteor.publish('crafting', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     if (doc.currentlyCrafting) {
       doc.currentlyCrafting.forEach((item) => {
         const itemConstants = ITEMS[item.itemId];
@@ -437,14 +436,14 @@ Meteor.publish('crafting', function() {
       });
     }
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Crafting.find({
+  const observer = Crafting.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('crafting', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

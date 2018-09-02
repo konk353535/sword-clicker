@@ -9,7 +9,7 @@ Template.pqAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.pqAchieveTab.events({
-})
+});
 
 Template.pqAchieveTab.helpers({
-})
+});

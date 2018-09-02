@@ -1,14 +1,12 @@
 .tutorial-container {
   padding: 10px 10px 10px 10px;
   border: 1px solid #CDCDCD;
-  border-radius: 4px;
   border-top: none;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  border-radius: 0 0 4px 4px;
 }
 
 .tutorial-outer-container {
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 16px;
 }

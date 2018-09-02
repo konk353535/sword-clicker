@@ -2441,4 +2441,4 @@ export const MINING_CRAFTS = {
       level: 110
     }]
   },  
-}
+};

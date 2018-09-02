@@ -273,4 +273,4 @@ export const COPPER_ITEMS = {
       armor: 3
     }
   }
-}
+};

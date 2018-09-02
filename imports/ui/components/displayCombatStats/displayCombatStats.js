@@ -117,4 +117,4 @@ Template.displayCombatStats.helpers({
 
     return statsArr;
   }
-})
+});

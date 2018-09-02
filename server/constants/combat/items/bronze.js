@@ -321,4 +321,4 @@ export const BRONZE_ITEMS = {
       level: 10
     }]
   }
-}
+};

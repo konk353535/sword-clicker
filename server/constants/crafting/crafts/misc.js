@@ -426,4 +426,4 @@ export const MISC_CRAFTS = {
     xp: 100,
     maxToCraft: 100
   },
-}
+};

@@ -351,4 +351,4 @@ export const TIN_CRAFTS = {
       level: 6
     }]
   }
-}
+};

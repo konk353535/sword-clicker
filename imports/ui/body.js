@@ -146,7 +146,7 @@ Template.body.onCreated(function () {
         cachedAdventures[adventure.id] = true;
       }
     });
-  })
+  });
 
   // Track exp and level drops
   Tracker.autorun(() => {
@@ -211,8 +211,8 @@ Template.body.onCreated(function () {
 
   $.fn.extend({
     animateCss: function (animationName) {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animationName).one(animationEnd, function() {
+      const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      this.addClass('animated ' + animationName).one(animationEnd, function() {
             $(this).remove();
         });
     }
@@ -327,7 +327,7 @@ Template.body.rendered = function() {
     "positionClass": "toast-top-right",
     "preventDuplicates": true,
     "onclick": null,
-  }
+  };
 
   if ($(window).width() < 768) {
     baseOptions.positionClass = "toast-bottom-center";
@@ -337,17 +337,17 @@ Template.body.rendered = function() {
   }
 
   $(document).on('click','.navbar-collapse.show',function(e) {
-    if( $(e.target).is('a') && ( $(e.target).attr('class') != 'dropdown-toggle' ) ) {
+    if( $(e.target).is('a') && ( $(e.target).attr('class') !== 'dropdown-toggle' ) ) {
       $(this).collapse('hide');
     }
   });
-}
+};
 
 Template.myLayout.helpers({
   currentRoute() {
     return Router.current().route.getName();
   },
-})
+});
 
 Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);

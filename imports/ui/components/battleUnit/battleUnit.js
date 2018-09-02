@@ -8,7 +8,7 @@ Template.battleUnit.events({
   'click .icon-box'(event, instance) {
     instance.data.unitClicked(instance.data.unit.id);
   }
-})
+});
 
 Template.battleUnit.helpers({
   healthPercentage() {

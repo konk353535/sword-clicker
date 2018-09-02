@@ -321,4 +321,4 @@ export const ELVEN_STEEL_ITEMS = {
       level: 90
     }]
   }
-}
+};

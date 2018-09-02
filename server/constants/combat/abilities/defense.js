@@ -236,4 +236,4 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   }
-}
+};

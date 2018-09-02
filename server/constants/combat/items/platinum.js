@@ -321,4 +321,4 @@ export const PLATINUM_ITEMS = {
       level: 40
     }]
   }
-}
+};

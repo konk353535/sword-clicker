@@ -321,4 +321,4 @@ export const ORICHALCUM_ITEMS = {
       level: 75
     }]
   }
-}
+};

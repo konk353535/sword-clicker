@@ -443,7 +443,7 @@ export const ATTACK_BUFFS = {
         const targetIndex = actualBattle.enemies.indexOf(defender);
 
         if (targetIndex >= 0) {
-          const adjacentTargets = []
+          const adjacentTargets = [];
           
           const leftTarget = actualBattle.enemies[targetIndex - 1];
           const rightTarget = actualBattle.enemies[targetIndex + 1];
@@ -523,7 +523,7 @@ export const ATTACK_BUFFS = {
         const constants = buff.constants.constants;
         const baseDamage = attacker.stats.attack;
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level))
+        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level));
         const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
         const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
@@ -991,7 +991,7 @@ export const ATTACK_BUFFS = {
               description: 'reduces accuracy',
               accuracyReduction: target.stats.accuracy * 0.25
             }
-          }
+          };
           addBuff({ buff: newBuff, target, caster, actualBattle });
         }
 
@@ -1143,4 +1143,4 @@ export const ATTACK_BUFFS = {
       }
     }
   },
-}
+};

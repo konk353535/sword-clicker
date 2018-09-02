@@ -42,7 +42,7 @@ const startBattle = (currentBattle, self) => {
           let color;
           let fontSize = 'asdf';
 
-          if (tickEvent.label == 0) {
+          if (tickEvent.label === 0) {
             color = 'blue';
             fontSize = '10px';
           } else if (tickEvent.customColor) {
@@ -75,7 +75,7 @@ const startBattle = (currentBattle, self) => {
       });
     }
   }
-}
+};
 
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -153,7 +153,7 @@ Template.currentBattleUi.helpers({
       'head': 2,
       'chest': 3,
       'legs': 4
-    }
+    };
 
     const currentBattle = Template.instance().state.get('currentBattle');
 

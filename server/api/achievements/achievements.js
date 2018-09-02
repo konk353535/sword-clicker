@@ -30,7 +30,7 @@ Meteor.methods({
 
     const modifier = {
       lastGameUpdated: new Date()
-    }
+    };
     modifier[`collected.${id}`] = true;
 
     // Set as collected
@@ -119,7 +119,7 @@ Meteor.methods({
     });
   }
 
-})
+});
 
 const MINUTE = 60 * 1000;
 /*

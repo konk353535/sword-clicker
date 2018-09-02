@@ -321,4 +321,4 @@ export const METEORITE_ITEMS = {
       level: 80
     }]
   }
-}
+};

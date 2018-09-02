@@ -321,4 +321,4 @@ export const SILVER_ITEMS = {
       level: 20
     }]
   }
-}
+};

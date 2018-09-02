@@ -916,4 +916,4 @@ export const STAFF_ITEMS = {
       level: 25
     }]
   }
-}
+};

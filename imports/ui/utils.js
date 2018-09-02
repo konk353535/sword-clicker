@@ -80,4 +80,4 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
     maxCraftable,
     notMet
   }
-}
+};

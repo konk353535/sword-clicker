@@ -197,7 +197,7 @@ Template.combatPage.events({
   'click .btn-close-finishedBattle'(event, instance) {
     instance.state.set('finishedBattle', null);
   }
-})
+});
 
 Template.combatPage.helpers({
   attackSkill() {

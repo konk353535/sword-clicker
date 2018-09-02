@@ -148,7 +148,7 @@ Template.combatGroupTab.events({
     const inviteId = $target.data('invite-id');
     Meteor.call('groups.acceptInvite', inviteId, false);
   }
-})
+});
 
 Template.combatGroupTab.helpers({
 
@@ -180,7 +180,7 @@ Template.combatGroupTab.helpers({
         healthMax: userCombat.stats.healthMax,
         energy: userCombat.stats.energy,
         energyMax: userCombat.stats.energyMax
-      }
+      };
       userCombat.name = userCombat.username;
       userCombat.icon = userCombat.characterIcon || 'character.svg';
       return userCombat;

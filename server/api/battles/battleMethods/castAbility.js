@@ -122,4 +122,4 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
   });
 
   return false;
-}
+};

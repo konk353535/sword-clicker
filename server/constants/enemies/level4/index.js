@@ -12,7 +12,7 @@ const baseStats = {
   armor: 25,
   attackSpeed: 1,
   damageTaken: 1
-}
+};
 
 const enhancedStats = {
   healthMax: 300,
@@ -24,7 +24,7 @@ const enhancedStats = {
   armor: 30,
   attackSpeed: 1,
   damageTaken: 1
-}
+};
 
 export const LEVEL_FOUR_ENEMIES = {
 
@@ -117,7 +117,7 @@ export const LEVEL_FOUR_ENEMIES = {
     },
     rewards: LOOT_TABLE
   }
-}
+};
 
 enemyStatSetter(LEVEL_FOUR_ENEMIES, baseStats, enhancedStats);
 

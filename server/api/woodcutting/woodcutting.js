@@ -227,7 +227,7 @@ Meteor.methods({
     });
   }
 
-})
+});
 
 const MINUTE = 60 * 1000;
 
@@ -243,17 +243,17 @@ DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
 
 Meteor.publish('woodcutting', function() {
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     doc.maxWoodcutters = WOODCUTTING.baseMaxWoodcutters;
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Woodcutting.find({
+  const observer = Woodcutting.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('woodcutting', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

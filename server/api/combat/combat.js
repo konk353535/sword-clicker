@@ -10,7 +10,6 @@ import moment from 'moment';
 import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
-import { attackSpeedTicks } from '/server/api/battles/battles';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -103,8 +102,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
       }
     }
-  };
-
+  }
   // Fetch all users skill levels
   const combatSkills = Skills.find({
     owner: userId,
@@ -283,7 +281,7 @@ Meteor.methods({
       let baseEnergyRegen = COMBAT.baseEnergyRegenPerMinute * minutesElapsed;
 
       // Apply membership benefits
-      const userDoc = Meteor.user()
+      const userDoc = Meteor.user();
       if (userDoc.combatUpgradeTo && moment().isBefore(userDoc.combatUpgradeTo)) {
         baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
       }

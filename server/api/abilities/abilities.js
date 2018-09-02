@@ -93,7 +93,6 @@ Meteor.methods({
 
     if (!requirementsUtility(spellConstants.required, amount)) {
       throw new Meteor.Error("missed-requirmeents", "dont meet requirements");
-      return;
     }
 
     // Update existing level
@@ -268,7 +267,7 @@ Meteor.methods({
         learntLevel,
         level: abilityLevel,
         id: abilityConstant.id
-      }
+      };
 
       return abilityData;
     }).filter((ability) => {
@@ -306,7 +305,7 @@ const MINUTE = 60 * 1000;
 Meteor.publish('abilities', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     doc.learntAbilities.forEach((ability) => {
       const abilityConstant = ABILITIES[ability.abilityId];
 
@@ -323,14 +322,14 @@ Meteor.publish('abilities', function() {
       return ability;
     });
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Abilities.find({
+  const observer = Abilities.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('abilities', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

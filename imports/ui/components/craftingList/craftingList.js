@@ -12,7 +12,7 @@ Template.craftingList.onCreated(function bodyOnCreated() {
 });
 
 Template.craftingList.events({
-})
+});
 
 Template.craftingList.helpers({
 

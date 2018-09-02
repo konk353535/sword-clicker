@@ -189,7 +189,7 @@ Template.farmingPage.helpers({
               }
             });
           }
-        }
+        };
         item.shiftAction = {
           description: 'plant all',
           item,
@@ -258,4 +258,4 @@ const updateTooltips = function (instance, tooltipNames) {
       });
     });
   }, 100);
-}
+};

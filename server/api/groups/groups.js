@@ -72,7 +72,7 @@ Meteor.methods({
     }
 
     // If leader kicks himself, trigger a group.leave instead so leader status tranfers
-    if (ownerId == this.userId ) {
+    if (ownerId === this.userId ) {
       Meteor.call('groups.leave');
       return;
     }
@@ -83,7 +83,7 @@ Meteor.methods({
       } else {
         return member !== ownerId;
       }
-    }
+    };
 
     // Remove from current group (invites + users)
     currentGroup.members = currentGroup.members.filter(memberFilter);
@@ -128,7 +128,7 @@ Meteor.methods({
               leaderName: targetGroup.leaderName
             }
           });
-          return;
+
         }
       } else {
         // If no created group yet, make one.
@@ -218,7 +218,7 @@ Meteor.methods({
         notReady: false,
         ready: false
       };
-    })
+    });
 
     // Set ready checks
     Groups.update({
@@ -306,7 +306,7 @@ Meteor.methods({
     }
 
     // Cannot invite self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id === this.userId) {
       return;
     }
 
@@ -374,7 +374,7 @@ Meteor.methods({
 
 
     // Cannot transfer to self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id === this.userId) {
       return;
     }
 
@@ -408,7 +408,7 @@ Meteor.publish('groupFinder', function() {
 Meteor.publish('groups', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     // Transfer invite id to invite names
     const invitesObjects = Combat.find({
       owner: {
@@ -433,26 +433,26 @@ Meteor.publish('groups', function() {
       member.stats = {
         health: orginalStats.health,
         healthMax: orginalStats.healthMax
-      }
+      };
       return member;
-    }
+    };
 
     // Modify members and invites objects as fake 'battle units for display'?
     doc.invitesDetails = invitesObjects.map(memberTransform);
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Groups.find({
+  const observer = Groups.find({
     $or: [{
       members: this.userId
     }, {
       invites: this.userId
     }]
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('groups', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

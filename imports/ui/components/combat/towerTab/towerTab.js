@@ -56,7 +56,7 @@ const findBattleHandler = function (err, res) {
   if (err) {
     toastr.warning(err.reason);
   }
-}
+};
 
 Template.towerTab.events({
 
@@ -119,7 +119,7 @@ Template.towerTab.events({
   'change .official-attempt input'(event, instance) {
      Meteor.call('combat.updateIsTowerContribution', event.target.checked);
   }
-})
+});
 
 Template.towerTab.helpers({
 
@@ -248,7 +248,7 @@ Template.towerTab.helpers({
 
   currentCommunityFloor() {
     const instance = Template.instance();
-    return instance.state.get('maxFloor') == instance.state.get('usersCurrentFloor');
+    return instance.state.get('maxFloor') === instance.state.get('usersCurrentFloor');
   },
 
   floorsList() {
@@ -266,4 +266,4 @@ Template.towerTab.helpers({
     const instance = Template.instance();
     return instance.state.get('battleAgain') !== undefined;
   }
-})
+});

@@ -696,4 +696,4 @@ export const AMULET_ITEMS = {
       level: 60
     }]
   }
-}
+};

@@ -321,4 +321,4 @@ export const CARBON_ITEMS = {
       level: 30
     }]
   }
-}
+};

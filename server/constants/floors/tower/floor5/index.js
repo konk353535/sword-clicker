@@ -22,7 +22,7 @@ export const TOWER_FLOOR_5 = {
     }]))
   },
   3: {
-    name: 'Dark Ally',
+    name: 'Dark Alley',
     enemies: ['cut_purse'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 16,

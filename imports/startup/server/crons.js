@@ -116,6 +116,13 @@ SyncedCron.add({
               health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
               healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
             });
+
+            // Enable users to fight bosses again
+            Combat.update({foughtBoss: true}, {
+              $set: {
+                foughtBoss: false
+              }
+            }, {multi: true});
           }
         } else {
           // reset the boss

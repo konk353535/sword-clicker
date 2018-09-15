@@ -142,17 +142,15 @@ SyncedCron.add({
           console.log(`Server: ${server.name}: active tower users ${activeTowerUsers}`);
           console.log(`boss enemy constants`);
           console.log(bossEnemyConstants);
-          const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
           const resetDate = moment(currentFloor.bossResetAt).add(24, 'hours').toDate();
-          console.log(`new health max is ${newHealthMax}`);
+          console.log(`new health max is ${currentFloor.healthMax}`);
           Floors.update({
             server: server._id,
             floor: currentFloor.floor,
             floorComplete: false
           }, {
             $set: {
-              health: newHealthMax,
-              healthMax: newHealthMax,
+              health: currentFloor.healthMax,
               bossResetAt: resetDate
             }
           });

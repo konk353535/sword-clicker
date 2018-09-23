@@ -20,6 +20,9 @@ const proxy = httpProxy.createProxyServer({
 const proxyServer = http.createServer(function(req, res) {
   const url = req.url.split('?')[1];
   const balancer = parse(url).balancer;
+  if (!balancer) {
+    return false;
+  }
   const targetServerId = consistentHash.getNode(balancer);
   const targetServerUrl = SERVERS[targetServerId];
 
@@ -30,6 +33,9 @@ const proxyServer = http.createServer(function(req, res) {
 proxyServer.on('upgrade', function (req, socket, head) {
   const url = req.url.split('?')[1];
   const balancer = parse(url).balancer;
+  if (!balancer) {
+    return false;
+  }
   const targetServerId = consistentHash.getNode(balancer);
   const targetServerUrl = SERVERS[targetServerId];
 

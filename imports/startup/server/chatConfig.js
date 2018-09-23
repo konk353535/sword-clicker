@@ -46,24 +46,7 @@ SimpleChat.configure ({
   },
   limit: 25,
   publishChats: function(roomId, limit){ // server
-    if (PUBLIC_ROOMS.find(room => room === roomId)) {
-      return this.userId;
-    }
-
-    if (roomId === `Game-${this.userId}`) {
-      return this.userId;
-    }
-
-    const targetGroup = Groups.findOne({
-      _id: roomId,
-      members: this.userId
-    });
-
-    if (targetGroup) {
-      return this.userId;
-    }
-
-    return false;
+    return this.userId;
   },
   onNewMessage: function () {
 

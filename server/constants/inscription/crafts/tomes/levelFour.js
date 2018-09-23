@@ -130,4 +130,4 @@ export const LEVEL_FOUR_CRAFTS = {
     requiredInscriptionLevel: 20,
     required: [UTIL.MANY_WHITE_128, UTIL.GREEN_140, UTIL.OAK_PAPER, UTIL.LEVEL_20]
   }
-}
+};

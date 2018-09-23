@@ -810,4 +810,4 @@ export const SCROLL_ITEMS = {
       description: 'Learn hidden recipe'
     }
   }, 
-}
+};

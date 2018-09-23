@@ -678,4 +678,4 @@ export const RADIANT_CRAFTS = {
       level: 105
     }]
   }
-}
+};

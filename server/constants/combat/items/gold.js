@@ -1,7 +1,7 @@
 export const GOLD_ITEMS = {
   "gold_dagger": {
     "id": "gold_dagger",
-    "icon": "goldDagger.svg",
+    "icon": "goldDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const GOLD_ITEMS = {
   },
   "gold_spear": {
     "id": "gold_spear",
-    "icon": "goldSpear.svg",
+    "icon": "goldSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const GOLD_ITEMS = {
   },
   "gold_short_sword": {
     "id": "gold_short_sword",
-    "icon": "goldShortSword.svg",
+    "icon": "goldShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const GOLD_ITEMS = {
   },
   "gold_scimitar": {
     "id": "gold_scimitar",
-    "icon": "goldScimitar.svg",
+    "icon": "goldScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const GOLD_ITEMS = {
   },
   "gold_long_sword": {
     "id": "gold_long_sword",
-    "icon": "goldLongSword.svg",
+    "icon": "goldLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const GOLD_ITEMS = {
   },
   "gold_broad_sword": {
     "id": "gold_broad_sword",
-    "icon": "goldBroadSword.svg",
+    "icon": "goldBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const GOLD_ITEMS = {
   },
   "gold_battle_axe": {
     "id": "gold_battle_axe",
-    "icon": "goldBattleAxe.svg",
+    "icon": "goldBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const GOLD_ITEMS = {
   },
   "gold_helmet": {
     "id": "gold_helmet",
-    "icon": "goldHelmet.svg",
+    "icon": "goldHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "gold helmet",
@@ -247,7 +247,7 @@ export const GOLD_ITEMS = {
   },
   "gold_chest_plate": {
     "id": "gold_chest_plate",
-    "icon": "goldChestPlate.svg",
+    "icon": "goldChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "gold chestplate",
@@ -272,7 +272,7 @@ export const GOLD_ITEMS = {
   },
   "gold_plate_legs": {
     "id": "gold_plate_legs",
-    "icon": "goldPlateLegs.svg",
+    "icon": "goldPlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "gold platelegs",
@@ -297,7 +297,7 @@ export const GOLD_ITEMS = {
   },
   "gold_shield": {
     "id": "gold_shield",
-    "icon": "goldShield.svg",
+    "icon": "goldShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const GOLD_ITEMS = {
       level: 25
     }]
   }
-}
+};

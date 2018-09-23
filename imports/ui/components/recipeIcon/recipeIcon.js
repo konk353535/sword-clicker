@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from "meteor/session";
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
@@ -13,10 +14,13 @@ Template.recipeIcon.onCreated(function bodyOnCreated() {
 
 const updateCraftable = function (instance) {
   const recipe = instance.data.recipe;
-  let { maxCraftable, notMet } = determineRequiredItems(recipe);
+  let { recipeItems, hasConsumeItemRequirements, consumeItemRequirements, maxCraftable, notMet } = determineRequiredItems(recipe);
 
   instance.state.set('maxCraftableAmount', maxCraftable);
   instance.state.set('maxCraftAmount', recipe.maxToCraft);
+  instance.state.set('hasConsumeItemRequirements', hasConsumeItemRequirements);
+  instance.state.set('consumeItemRequirements', consumeItemRequirements);
+  instance.state.set('recipeItems', recipeItems);
 
   let maxCraftableAtOnce = maxCraftable;
   if (maxCraftable > recipe.maxToCraft) {
@@ -25,12 +29,12 @@ const updateCraftable = function (instance) {
 
   instance.state.set('craftAmount', Math.ceil(maxCraftableAtOnce / 2));
   instance.state.set('maxCraftableAtOnce', maxCraftableAtOnce);
-}
+};
 
 Template.recipeIcon.rendered = function () {
   const instance = Template.instance();
   updateCraftable(instance);
-}
+};
 
 Template.recipeIcon.events({
 
@@ -132,8 +136,24 @@ Template.recipeIcon.helpers({
 
   maxCraftableAtOnce() {
     return Template.instance().state.get('maxCraftableAtOnce');
-  }
+  },
+
+  hasConsumeItemRequirements() {
+    return Template.instance().state.get('hasConsumeItemRequirements');
+  },
+
+  consumeItemRequirements() {
+    return Template.instance().state.get('consumeItemRequirements');
+  },
+
+  recipeItems() {
+    return Template.instance().state.get('recipeItems');
+  },
+
+  recipeTileConsumablesDisabled() {
+    return Session.get('recipeTileConsumablesDisabled')
+  },
 });
 
 Template.recipeIcon.onDestroyed(function () {
-})
+});

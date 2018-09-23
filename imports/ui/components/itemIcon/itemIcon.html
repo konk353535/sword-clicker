@@ -1,5 +1,9 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}}" style="position: relative" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}}" style="position: relative" data-id="{{item._id}}">
+    {{#if multiSelling}}
+      <i class="material-icons icon-success item-multisell">check_circle</i>
+    {{/if}}
+
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
@@ -73,39 +77,41 @@
           {{/if}}
         {{/if}}
 
-        {{#if item.primaryAction}}
-          {{#if item.primaryAction.description}}
-            <div>
-              <b>Left Click</b> to {{item.primaryAction.description}}
-            </div>
-          {{/if}}
-        {{else}}
-          {{#if item.shiftAction}}
-            {{#if item.shiftAction.description}}
+        {{#unless readOnly}}
+          {{#if item.primaryAction}}
+            {{#if item.primaryAction.description}}
               <div>
-                <b>Left Click</b> to use or sell for {{item.sellPrice}}
+                <b>Left Click</b> to {{item.primaryAction.description}}
               </div>
             {{/if}}
           {{else}}
-            <b>Left Click</b> to sell for {{item.sellPrice}}
+            {{#if item.shiftAction}}
+              {{#if item.shiftAction.description}}
+                <div>
+                  <b>Left Click</b> to use or sell for {{item.sellPrice}}
+                </div>
+              {{/if}}
+            {{else}}
+              <b>Left Click</b> to sell for {{item.sellPrice}}
+            {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#if item.shiftAction}}
-          {{#if item.shiftAction.description}}
-            <div>
-              <b>Shift Click</b> to {{item.shiftAction.description}}
-            </div>
+          {{#if item.shiftAction}}
+            {{#if item.shiftAction.description}}
+              <div>
+                <b>Shift Click</b> to {{item.shiftAction.description}}
+              </div>
+            {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#if item.ctrlAction}}
-          {{#if item.ctrlAction.description}}
-            <div>
-              <b>Ctrl Click</b> to {{item.ctrlAction.description}}
-            </div>
+          {{#if item.ctrlAction}}
+            {{#if item.ctrlAction.description}}
+              <div>
+                <b>Ctrl Click</b> to {{item.ctrlAction.description}}
+              </div>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        {{/unless}}
       </div>
     </div>
   {{/unless}}
@@ -135,10 +141,6 @@
               </div>
 
               <br /><br />
-              <label>
-                Allow selling without confirmation for the next 10 seconds.
-              </label>
-              <input type="checkbox" class="toggle-quick-selling" checked={{enableQuickSelling}}>
             </div>
             <div class="modal-footer">
               <!--
@@ -184,10 +186,6 @@
                 </form>
                   +{{ totalPrice sellAmount item.sellPrice }} Gold
                 <br /><br />
-                <label>
-                  Allow selling without confirmation for the next 10 seconds.
-                </label>
-                <input type="checkbox" class="toggle-quick-selling" checked={{enableQuickSelling}}>
               </div>
             </div>
           </div>

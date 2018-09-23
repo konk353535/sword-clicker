@@ -351,4 +351,4 @@ export const COPPER_CRAFTS = {
       level: 3
     }]
   }
-}
+};

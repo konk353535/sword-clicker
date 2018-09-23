@@ -14,10 +14,11 @@ import './chatWindow.html';
 SimpleChat.scrollToEnd = function () {
   if ($(window).width() > 500) {
     Template.chatWindow.endScroll = true;
-    $('.direct-chat-messages').animate({scrollTop: 10000}, 300);
-    $('.direct-chat-messages').trigger('scroll');
+    const messages = $('.direct-chat-messages');
+    messages.animate({scrollTop: 10000}, 300);
+    messages.trigger('scroll');
   }
-}
+};
 
 const AVAILABLE_CHATS = {
   'General': {
@@ -56,7 +57,7 @@ const AVAILABLE_CHATS = {
     class: 'chat-Offtopic',
     show: false
   }
-}
+};
 
 Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -64,7 +65,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   this.state.set('currentChat', 'General');
   this.state.set('availableChats', AVAILABLE_CHATS);
 
-  this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
+  this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit);
 
   Tracker.autorun(() => {
     let minimized = true;
@@ -84,10 +85,15 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
     });
+    const myUserDoc = Users.findOne({ _id: Meteor.userId() });
     const availableChats = this.state.get('availableChats');
 
+    if (!myUserDoc) {
+      return;
+    }
+
     if (availableChats.General.show) {
-      Meteor.subscribe("simpleChats", 'General', this.limit.get());
+      Meteor.subscribe("simpleChats", `General-${myUserDoc.server}`, this.limit.get());
     }
 
     if (currentGroup && availableChats.Party.show) {
@@ -97,7 +103,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
     if (availableChats.LFG.show) {
       // People looking for group
-      Meteor.subscribe("simpleChats", 'LFG', this.limit.get());
+      Meteor.subscribe("simpleChats", `LFG-${myUserDoc.server}`, this.limit.get());
     }
 
     if (availableChats.Game.show) {
@@ -107,12 +113,12 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
     if (availableChats.Offtopic.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Offtopic`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Offtopic-${myUserDoc.server}`, this.limit.get());
     }
 
     if (availableChats.Help.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Help-${myUserDoc.server}`, this.limit.get());
     }
 
     this.subscribing = true;
@@ -124,11 +130,7 @@ Template.chatWindow.rendered = function () {
   SimpleChat.scrollToEnd();
 
   this.$('.direct-chat-messages').scroll(function (event) {
-    if (event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350) {
-      Template.chatWindow.endScroll = true;
-    } else {
-      Template.chatWindow.endScroll = false;
-    }
+    Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350;
   });
 
   this.autorun(() => {
@@ -146,7 +148,7 @@ Template.chatWindow.rendered = function () {
     // To do: add some kind of notification logic for Tab Heading?
   });
 
-}
+};
 
 Template.chatWindow.events({
   'click .maximize-icon'(event, instance) {
@@ -200,9 +202,9 @@ Template.chatWindow.events({
   },
 
   'keydown #simple-chat-message': function (event) {
-    var $message = $(event.currentTarget)
-    if (event.which == 13 && $message.val() != '') { // 13 is the enter key event
-      event.preventDefault()
+    const $message = $(event.currentTarget);
+    if (event.which === 13 && $message.val() !== '') { // 13 is the enter key event
+      event.preventDefault();
       Template.instance().$('button#message-send').click()
     }
   },
@@ -246,7 +248,7 @@ Template.chatWindow.events({
       if (currentChatId === 'Party') {
         roomId = Groups.findOne({ members: Meteor.userId() })._id;
       } else {
-        roomId = currentChatId;
+        roomId = `${currentChatId}-${Meteor.user().server}`;
       }
 
       Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {
@@ -258,14 +260,14 @@ Template.chatWindow.events({
   },
 
   'click #simple-chat-load-more': function () {
-    let template = Template.instance()
+    let template = Template.instance();
     template.subscribing = true;
-    template.limit.set(template.limit.get() + 20)
-    template.scroll = template.$('.scroll-height')[0].scrollHeight
+    template.limit.set(template.limit.get() + 20);
+    template.scroll = template.$('.scroll-height')[0].scrollHeight;
     template.$(".direct-chat-messages").animate({scrollTop: 0}, 0);
     template.$('.direct-chat-messages').trigger('scroll')
   }
-})
+});
 
 Template.chatWindow.helpers({
   minimized() {
@@ -304,7 +306,7 @@ Template.chatWindow.helpers({
 
   simpleChats: function () {
     const instance = Template.instance();
-    var chats = Chats.find({}, {sort: {date: 1}})
+    const chats = Chats.find({}, {sort: {date: 1}});
     let handleChanges = chats.observeChanges({
       added: (id, doc) => {
         const username = Meteor.user().username;

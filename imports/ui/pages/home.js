@@ -17,17 +17,17 @@ Template.homePage.helpers({
 
 Template.homePage.events({
   'click .play-as-guest-btn'(event, instance) {
-    const username = `guest_${parseInt(Math.random() * 1000000000)}`;
+    const username = `guest_${Math.floor(Math.random() * 1000000000)}`;
     const password = Random.id();
     instance.state.set('creatingGuest', true);
 
     Meteor.call('users.createGuest', { username, password }, (err, res) => {
-      if (!err) {
+      if (err) {
+        instance.state.get('creatingGuest', false);
+      } else {
         Meteor.loginWithPassword(username, password, (err, res) => {
           instance.state.get('creatingGuest', false);
         });
-      } else {
-        instance.state.get('creatingGuest', false);
       }
     });
   }

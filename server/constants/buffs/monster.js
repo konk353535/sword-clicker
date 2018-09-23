@@ -1,4 +1,3 @@
-import moment from 'moment';
 import _ from 'underscore';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
@@ -46,8 +45,7 @@ export const MONSTER_BUFFS = {
     icon: 'goblin.svg',
     name: 'stat stealer',
     description({ buff, level }) {
-      const c = buff.constants;
-      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permenantly`;
+      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permanently`;
     },
     constants: {
     },
@@ -79,7 +77,7 @@ export const MONSTER_BUFFS = {
               icon: 'goblin.svg',
               allowDuplicates: true
             }
-          }
+          };
 
           const statToSteal = _.sample(statsToSteal);
           let amount = targetToSteal.stats[statToSteal] * 0.2;
@@ -134,7 +132,7 @@ export const MONSTER_BUFFS = {
               level: 1,
               icon: 'invulnerable.svg'
             }
-          }
+          };
 
           buff.data.timeTillBlink = 6 + (Math.random() * 7);
 
@@ -181,7 +179,7 @@ export const MONSTER_BUFFS = {
                 level: 1,
                 icon: 'evasiveManeuvers.svg'
               }
-            }
+            };
 
             addBuff({ buff: newBuff, target: defender, caster: defender });
           }
@@ -255,7 +253,7 @@ export const MONSTER_BUFFS = {
               icon: 'dwarfsRage.svg',
               description: 'Massively increased offensive stats. More vulnerable to magic.'
             }
-          }
+          };
 
           // Add berserk buff
           addBuff({ buff: newBuff, target: defender, caster: defender });
@@ -325,7 +323,7 @@ export const MONSTER_BUFFS = {
     name: 'healing reduction',
     description({ buff, level }) {
       const c = buff.constants;
-      return `Reduces healing recieved`;
+      return `Reduces healing received`;
     },
     constants: {
     },
@@ -382,7 +380,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['mud_armor']
-          }
+          };
 
           // cast mud armor
           addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
@@ -399,7 +397,7 @@ export const MONSTER_BUFFS = {
             description: ''
           },
           constants: BUFFS['earth_dart']
-        }
+        };
 
         // cast earth dart
         addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -438,7 +436,7 @@ export const MONSTER_BUFFS = {
               description: 'Reduces your attack speed by 25%',
               name: 'Frosted Attacks'
             }
-          }
+          };
 
           // cast frost attack
           addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
@@ -456,7 +454,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['water_dart']
-          }
+          };
 
           const target = _.sample(actualBattle.enemies);
 
@@ -497,7 +495,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['ignite']
-          }
+          };
 
           // cast ignite
           addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
@@ -515,7 +513,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['fire_dart']
-          }
+          };
 
           // cast fire dart
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -678,9 +676,9 @@ export const MONSTER_BUFFS = {
             totalDuration: 20,
             healingReduction,
             icon: 'healingReduction.svg',
-            description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
+            description: `Reduces healing received by ${Math.round((1 - healingReduction) * 100)}%`
           }
-        }
+        };
 
         // Add healing reduction buff
         addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -729,7 +727,7 @@ export const MONSTER_BUFFS = {
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
-          }
+          };
 
           // Add bleed debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -778,7 +776,7 @@ export const MONSTER_BUFFS = {
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
             }
-          }
+          };
 
           const accuracyBuff = {
             id: 'accuracy_up',
@@ -790,7 +788,7 @@ export const MONSTER_BUFFS = {
               icon: 'accuracy.svg',
               name: 'accuracy'
             }
-          }
+          };
 
           // Add bleed debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -1011,7 +1009,7 @@ export const MONSTER_BUFFS = {
               icon: 'armorReduction.svg',
               description: `Reduces your armor by ${Math.round((1 - armorReduction) * 100)}%`
             }
-          }
+          };
 
           // Add healing reduction buff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -1083,4 +1081,4 @@ export const MONSTER_BUFFS = {
       }
     }
   }
-}
+};

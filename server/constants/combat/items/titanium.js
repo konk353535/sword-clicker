@@ -1,7 +1,7 @@
 export const TITANIUM_ITEMS = {
   "titanium_dagger": {
     "id": "titanium_dagger",
-    "icon": "titaniumDagger.svg",
+    "icon": "titaniumDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_spear": {
     "id": "titanium_spear",
-    "icon": "titaniumSpear.svg",
+    "icon": "titaniumSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_short_sword": {
     "id": "titanium_short_sword",
-    "icon": "titaniumShortSword.svg",
+    "icon": "titaniumShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_scimitar": {
     "id": "titanium_scimitar",
-    "icon": "titaniumScimitar.svg",
+    "icon": "titaniumScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_long_sword": {
     "id": "titanium_long_sword",
-    "icon": "titaniumLongSword.svg",
+    "icon": "titaniumLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_broad_sword": {
     "id": "titanium_broad_sword",
-    "icon": "titaniumBroadSword.svg",
+    "icon": "titaniumBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_battle_axe": {
     "id": "titanium_battle_axe",
-    "icon": "titaniumBattleAxe.svg",
+    "icon": "titaniumBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_helmet": {
     "id": "titanium_helmet",
-    "icon": "titaniumHelmet.svg",
+    "icon": "titaniumHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "titanium helmet",
@@ -247,7 +247,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_chest_plate": {
     "id": "titanium_chest_plate",
-    "icon": "titaniumChestPlate.svg",
+    "icon": "titaniumChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "titanium chestplate",
@@ -272,7 +272,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_plate_legs": {
     "id": "titanium_plate_legs",
-    "icon": "titaniumPlateLegs.svg",
+    "icon": "titaniumPlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "titanium platelegs",
@@ -297,7 +297,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_shield": {
     "id": "titanium_shield",
-    "icon": "titaniumShield.svg",
+    "icon": "titaniumShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const TITANIUM_ITEMS = {
       level: 45
     }]
   }
-}
+};

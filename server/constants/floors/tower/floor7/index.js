@@ -96,16 +96,11 @@ export const TOWER_FLOOR_7 = {
   },
 
   boss: {
-    enemy: { id: 'boss_ogre', amount: 1 },
+    enemy: { id: 'boss_phoenix', amount: 1 },
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
-      chance: 1 / 5,
-      rewards: [
-        { type: 'icon', iconId: 'valla_t1' }
-      ]
-    }, {
       chance: 1 / 2,
       rewards: [
-        { type: 'item', itemId: 'oversized_club', amount: 1 }
+        { type: 'item', itemId: 'phoenix_hat', amount: 1 }
       ]
     }]))
   },
@@ -132,4 +127,4 @@ export const TOWER_FLOOR_7 = {
       amount: 100000
     }
   ]
-}
+};

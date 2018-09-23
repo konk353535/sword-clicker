@@ -760,4 +760,4 @@ export const BAR_CRAFTS = {
       level: 95
     }]
   }
-}
+};

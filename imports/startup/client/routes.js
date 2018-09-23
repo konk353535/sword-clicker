@@ -232,6 +232,6 @@ Router.onAfterAction(() => {
   if (name) {
     document.title = `Eternity Tower - ${name.charAt(0).toUpperCase() + name.slice(1)}`;
   }
-})
+});
 
 

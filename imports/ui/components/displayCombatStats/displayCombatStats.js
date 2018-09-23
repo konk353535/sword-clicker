@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import './displayCombatStats.html';
@@ -117,4 +116,4 @@ Template.displayCombatStats.helpers({
 
     return statsArr;
   }
-})
+});

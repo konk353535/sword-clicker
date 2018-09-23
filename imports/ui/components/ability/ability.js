@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 
 import './ability.html';
 
@@ -11,11 +11,12 @@ const castAbility = function(instance) {
 
   if (instance.data.ability.targettable) {
     if (instance.data.ability.target === 'singleEnemy') {
-      if (!$('body').hasClass('targetting-enemies')) {
-        $('body').addClass('targetting-enemies');
+      const body = $('body');
+      if (!body.hasClass('targetting-enemies')) {
+        body.addClass('targetting-enemies');
         Meteor.setTimeout(() => {
           // Add body listener for when you want to click out
-          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+          body.on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('enemy-icon')) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
@@ -31,18 +32,19 @@ const castAbility = function(instance) {
                 });                
               }
             }
-            
-            $('body').removeClass('targetting-enemies');
-            $('body').off(`click.${instance.data.ability.id}`);
+
+            body.removeClass('targetting-enemies');
+            body.off(`click.${instance.data.ability.id}`);
           });
         }, 1);
       }
     } else if (instance.data.ability.target === 'singleFriendly') {
-      if (!$('body').hasClass('targetting-friendlies')) {
-        $('body').addClass('targetting-friendlies');
+      const body = $('body'); 
+      if (!body.hasClass('targetting-friendlies')) {
+        body.addClass('targetting-friendlies');
         Meteor.setTimeout(() => {
           // Add body listener for when you want to click out
-          $('body').on(`click.${instance.data.ability.id}`, function (event) {
+          body.on(`click.${instance.data.ability.id}`, function (event) {
             if ($(event.target).hasClass('friendly-icon')) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
@@ -58,9 +60,9 @@ const castAbility = function(instance) {
                 });                
               }
             }
-            
-            $('body').removeClass('targetting-friendlies');
-            $('body').off(`click.${instance.data.ability.id}`);
+
+            body.removeClass('targetting-friendlies');
+            body.off(`click.${instance.data.ability.id}`);
           });
         }, 1);
       }
@@ -81,7 +83,7 @@ const castAbility = function(instance) {
       });                
     }
   }
-}
+};
 
 Template.ability.onCreated(function bodyOnCreated() {
 
@@ -100,13 +102,13 @@ Template.ability.rendered = function () {
     'chest': 3,
     'legs': 4,
     'changeTarget': 35 // t
-  }
+  };
   $(document).on(`keyup.${slot}`, (e) => {
-    if (keyCodes[slot] != null && e.which == 49 + keyCodes[slot]) {
+    if (keyCodes[slot] != null && e.which === 49 + keyCodes[slot]) {
       castAbility(this);
     }
   });
-}
+};
 
 Template.ability.events({
   'click'(event, instance) {

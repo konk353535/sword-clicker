@@ -57,11 +57,13 @@
         </div>
       </div>
       <div class="d-flex align-items-center">
-        {{#if miningMultihit}}
-          <button class='btn btn-secondary multihit-disable ml-4'>Disable Multihit</button>
-        {{else}}
-          <button class='btn btn-secondary multihit-enable ml-4'>Enable Multihit</button>
-        {{/if}}
+        <button class='btn btn-secondary multihit-btn ml-4'>
+          {{#if $eq miningMultihit true }}
+            Disable Multihit
+          {{else}}
+            Enable Multihit
+          {{/if}}
+        </button>
       </div>
     </div>
 
@@ -137,10 +139,10 @@
         </div>
         <div class="d-flex align-items-center">
           {{#if hasMiningUpgrade}}
-            ({{mining.stats.miner}}
+            ({{> formatNumber number=mining.stats.miner decimal=1}}
             {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
           {{else}}
-            {{mining.stats.miner}}%
+            {{> formatNumber number=mining.stats.miner decimal=1}}%
           {{/if}}
           <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
         </div>
@@ -163,7 +165,7 @@
 
     <div class="mb-3">
       <b>Miners gain xp when their associated ore is mined.</b><br />
-      Bonus XP awarded for last hitting ores.
+      Bonus XP is awarded for the player last hitting ores.
     </div>
 
     <div class="d-flex flex-wrap">

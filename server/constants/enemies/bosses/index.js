@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../../combat/attackSpeeds.js';  
+import { VERY_FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
 
 export const BOSS_ENEMIES = {
 
@@ -37,7 +37,7 @@ export const BOSS_ENEMIES = {
   },
 
 
-  // Every 60s the cobra will spawn 2 adds (seperated by 5s)
+  // Every 60s the cobra will spawn 2 adds (separated by 5s)
   // The adds are easy to kill, but can poison people so must be killed quickly
   boss_cobra: {
     id: 'boss_cobra',
@@ -241,9 +241,9 @@ export const BOSS_ENEMIES = {
 
   // Spawns with two eggs. Eggs have decent hp.
   // Choose between killing eggs then fighting boss. Or ignoring eggs
-  // Once eggs timer hits 0, two phenoixes spawn
-  // Killing the eggs spawns the phenoixes at 10% hp
-  // Killing these little phenoixes spawns eggs with a longer cooldown then initially
+  // Once eggs timer hits 0, two phoenixes spawn
+  // Killing the eggs spawns the phoenixes at 10% hp
+  // Killing these little phoenixes spawns eggs with a longer cooldown then initially
   boss_phoenix: {
     id: 'boss_phoenix',
     icon: 'phoenix.svg',
@@ -266,8 +266,8 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        icon: 'phenoix.svg',        
-        name: 'boss phenoix',
+        icon: 'phoenix.svg',
+        name: 'boss phoenix',
         hideBuff: true
       }
     }],

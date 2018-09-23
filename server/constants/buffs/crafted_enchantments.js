@@ -34,6 +34,7 @@ LEG
 
 */
 	/* Degrading armor */
+  /*
 	enchantment_barkskin: {
     duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
     icon: 'barkskin.svg',
@@ -155,6 +156,7 @@ LEG
   },
 
   /* Degrading armor */
+  /*
   enchantment_intimidate: {
     duplicateTag: 'enchantment_intimidate', // Used to stop duplicate buffs
     icon: 'intimidate.svg',
@@ -281,5 +283,9 @@ LEG
         target.stats.healthMax -= buff.data.healthMax;
       }
     }
+<<<<<<< HEAD
   }
 }
+=======
+  }*/
+};

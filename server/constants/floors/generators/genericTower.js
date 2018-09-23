@@ -36,7 +36,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
         damageTaken: 1
       },
       rewards: []
-    }
+    };
 
     if (selectedMonster.statBuffs) {
       selectedMonster.statBuffs.forEach((statBuff) => {
@@ -68,7 +68,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
     } else {
       newMonsters.push(monster);
     }
-  })
+  });
 
   return newMonsters;
-}
+};

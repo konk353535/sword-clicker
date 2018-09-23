@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import lodash from 'lodash';
 import _ from 'underscore';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Groups } from '/imports/api/groups/groups.js';
 
@@ -26,16 +26,8 @@ const startBattle = (currentBattle, self) => {
 
   // Find enemies that are targetting my unit
   currentBattle.enemies.forEach((enemy) => {
-    if (myUnit && enemy.target === myUnit.id) {
-      enemy.targettingPlayer = true;
-    } else {
-      enemy.targettingPlayer = false;
-    }
-
-    if (myUnit) {
-      enemy.myTarget = myUnit.target === enemy.id;
-    }
-  });
+    enemy.targettingPlayer = !!(myUnit && enemy.target === myUnit.id);
+  });   
 
   self.state.set('currentBattle', currentBattle);
 
@@ -55,7 +47,7 @@ const startBattle = (currentBattle, self) => {
           let color;
           let fontSize = 'asdf';
 
-          if (tickEvent.label == 0) {
+          if (tickEvent.label === 0) {
             color = 'blue';
             fontSize = '10px';
           } else if (tickEvent.customColor) {
@@ -88,7 +80,7 @@ const startBattle = (currentBattle, self) => {
       });
     }
   }
-}
+};
 
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -278,7 +270,7 @@ Template.currentBattleUi.helpers({
       'head': 2,
       'chest': 3,
       'legs': 4
-    }
+    };
 
     const currentBattle = Template.instance().state.get('currentBattle');
 

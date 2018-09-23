@@ -365,7 +365,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'elk_paper',
     icon: 'elkPaper.png',
     category: 'paper',
-    name: 'elk paper',
+    name: 'elm paper',
     sellPrice: 470,
     description: 'Used in inscription with pigments to make ability books'
   },
@@ -374,7 +374,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'elk_book',
     icon: 'elkBook.png',
     category: 'paper',
-    name: 'elk book',
+    name: 'elm book',
     sellPrice: 2350,
     description: 'Gives decent xp'
   },
@@ -2503,7 +2503,7 @@ export const INSCRIPTION_ITEMS = {
     sellPrice: 0,
     enchantSlot: ['legs'],
     description: `
-      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additinal damage.`,
+      Increase health by 30% of armor. Every 10 seconds, next auto-attack does 250% additional damage.`,
     shiftActionData: {
       description: 'Apply enchantment to Leg Item',
       target: 'item'
@@ -2524,4 +2524,4 @@ export const INSCRIPTION_ITEMS = {
       target: 'item'
     }
   }
-}
+};

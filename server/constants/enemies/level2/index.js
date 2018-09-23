@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../../combat/attackSpeeds.js';  
+import { VERY_FAST_SPEED, MEDIUM_SPEED} from '/server/constants/combat/attackSpeeds.js';  
 import { LOOT_TABLE } from './lootTable';
 import { enemyStatSetter } from '/server/utils';
 
@@ -12,7 +12,7 @@ const baseStats = {
   armor: 20,
   attackSpeed: 1,
   damageTaken: 1
-}
+};
 
 const enhancedStats = {
   healthMax: 150,
@@ -24,7 +24,7 @@ const enhancedStats = {
   armor: 40,
   attackSpeed: 1,
   damageTaken: 1
-}
+};
 
 export const LEVEL_TWO_ENEMIES = {
 
@@ -118,7 +118,7 @@ export const LEVEL_TWO_ENEMIES = {
     },
     rewards: LOOT_TABLE
   }
-}
+};
 
 enemyStatSetter(LEVEL_TWO_ENEMIES, baseStats, enhancedStats);
 

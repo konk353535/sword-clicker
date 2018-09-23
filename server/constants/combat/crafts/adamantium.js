@@ -414,4 +414,4 @@ export const ADAMANTIUM_CRAFTS = {
       level: 70
     }]
   }
-}
+};

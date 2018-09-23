@@ -97,4 +97,4 @@ export const TOWER_FLOOR_22 = {
       amount: 600000
     }
   ]
-}
+};

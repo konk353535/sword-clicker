@@ -7,6 +7,7 @@ import './farmSpace.html';
 
 let farmSpaceInterval;
 let tooltip;
+
 Template.farmSpace.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('finishedGrowing', false);
@@ -36,7 +37,7 @@ const updateFarmSpaceUI = function (self) {
       const currentDiff = moment(farmSpace.plantDate).diff(moment());
       self.state.set('growthPercentage', (currentDiff / totalDiff) * 100);
     }
-}
+};
 
 Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(farmSpaceInterval);
@@ -44,21 +45,27 @@ Template.farmSpace.onDestroyed(function bodyOnDestroyed() {
 
 Template.farmSpace.events({
   'click'(event, instance) {
-    if (instance.state.get('finishedGrowing')) {
-      Meteor.call('farming.pick', instance.data.farmSpace.index, (err, res) => {
-        if (err) {
-          TimeSync.resync();
-        } else {
-          instance.state.set('finishedGrowing', false);
-        }
-      });
-    }
-
     const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
 
-    if (shiftKey) {
-      // Send kill event for this plant
-      Meteor.call('farming.killPlant', instance.data.farmSpace.index);
+    if (instance.state.get('finishedGrowing')) {
+      if (shiftKey) {
+        Meteor.call('farming.pickAll', (err, res) => {
+          TimeSync.resync();
+        })
+      } else {
+        Meteor.call('farming.pick', instance.data.farmSpace.index, (err, res) => {
+          if (err) {
+            TimeSync.resync();
+          } else {
+            instance.state.set('finishedGrowing', false);
+          }
+        });
+      }
+    } else {
+      if (shiftKey) {
+        // Send kill event for this plant
+        Meteor.call('farming.killPlant', instance.data.farmSpace.index);
+      }
     }
   }
 });
@@ -71,13 +78,13 @@ Template.farmSpace.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.farmSpace.onDestroyed(function () {
   if (tooltip && tooltip.target) {
     tooltip.destroy();
   }
-})
+});
 
 Template.farmSpace.helpers({
   isEmpty() {

@@ -1,7 +1,7 @@
 export const CARBON_ITEMS = {
   "carbon_dagger": {
     "id": "carbon_dagger",
-    "icon": "carbonDagger.svg",
+    "icon": "carbonDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_spear": {
     "id": "carbon_spear",
-    "icon": "carbonSpear.svg",
+    "icon": "carbonSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_short_sword": {
     "id": "carbon_short_sword",
-    "icon": "carbonShortSword.svg",
+    "icon": "carbonShortSword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_scimitar": {
     "id": "carbon_scimitar",
-    "icon": "carbonScimitar.svg",
+    "icon": "carbonScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_long_sword": {
     "id": "carbon_long_sword",
-    "icon": "carbonLongSword.svg",
+    "icon": "carbonLongSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_broad_sword": {
     "id": "carbon_broad_sword",
-    "icon": "carbonBroadSword.svg",
+    "icon": "carbonBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_battle_axe": {
     "id": "carbon_battle_axe",
-    "icon": "carbonBattleAxe.svg",
+    "icon": "carbonBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_helmet": {
     "id": "carbon_helmet",
-    "icon": "carbonHelmet.svg",
+    "icon": "carbonHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "carbon helmet",
@@ -247,7 +247,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_chest_plate": {
     "id": "carbon_chest_plate",
-    "icon": "carbonChestPlate.svg",
+    "icon": "carbonChestPlate.png",
     "category": "combat",
     "slot": "chest",
     "name": "carbon chestplate",
@@ -272,7 +272,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_plate_legs": {
     "id": "carbon_plate_legs",
-    "icon": "carbonPlateLegs.svg",
+    "icon": "carbonPlateLegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "carbon platelegs",
@@ -297,7 +297,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_shield": {
     "id": "carbon_shield",
-    "icon": "carbonShield.svg",
+    "icon": "carbonShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const CARBON_ITEMS = {
       level: 30
     }]
   }
-}
+};

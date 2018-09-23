@@ -28,6 +28,11 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('currentTab', 'shop');
       }
+      if (myUser.uiState && myUser.uiState.seedsFilter !== undefined) {
+        this.state.set('seedsFilter', myUser.uiState.seedsFilter);
+      } else {
+        this.state.set('seedsFilter', 'food');
+      }
     }
   });
 
@@ -86,31 +91,52 @@ Template.farmingPage.events({
   },
 
   'click .allLink'(event, instance) {
-    instance.state.set('seedsFilter', 'all');
+    if(instance.state.get('seedsFilter') !== 'all') {
+      instance.state.set('seedsFilter', 'all');
+      Meteor.call('users.setUiState', 'seedsFilter', 'all');
+    }
   },
 
   'click .foodLink'(event, instance) {
-    instance.state.set('seedsFilter', 'food');
+    if(instance.state.get('seedsFilter') !== 'food') {
+      instance.state.set('seedsFilter', 'food');
+      Meteor.call('users.setUiState', 'seedsFilter', 'food');
+    }
   },
 
   'click .miscLink'(event, instance) {
-    instance.state.set('seedsFilter', 'misc');
+    if(instance.state.get('seedsFilter') !== 'misc') {
+      instance.state.set('seedsFilter', 'misc');
+      Meteor.call('users.setUiState', 'seedsFilter', 'misc');
+    }
   },
 
   'click .xpLink'(event, instance) {
-    instance.state.set('seedsFilter', 'xp');
+    if(instance.state.get('seedsFilter') !== 'xp') {
+      instance.state.set('seedsFilter', 'xp');
+      Meteor.call('users.setUiState', 'seedsFilter', 'xp');
+    }
   },
 
   'click .goldLink'(event, instance) {
-    instance.state.set('seedsFilter', 'gold');
+    if(instance.state.get('seedsFilter') !== 'gold') {
+      instance.state.set('seedsFilter', 'gold');
+      Meteor.call('users.setUiState', 'seedsFilter', 'gold');
+    }
   },
 
   'click .herbLink'(event, instance) {
-    instance.state.set('seedsFilter', 'herb');
+    if(instance.state.get('seedsFilter') !== 'herb') {
+      instance.state.set('seedsFilter', 'herb');
+      Meteor.call('users.setUiState', 'seedsFilter', 'herb');
+    }
   },
 
   'click .treeLink'(event, instance) {
-    instance.state.set('seedsFilter', 'tree');
+    if(instance.state.get('seedsFilter') !== 'tree') {
+      instance.state.set('seedsFilter', 'tree');
+      Meteor.call('users.setUiState', 'seedsFilter', 'tree');
+    }
   },
 
   'click .buy-1'(event, instance) {
@@ -163,7 +189,7 @@ Template.farmingPage.helpers({
               }
             });
           }
-        }
+        };
         item.shiftAction = {
           description: 'plant all',
           item,
@@ -187,11 +213,7 @@ Template.farmingPage.helpers({
     
     return FarmingSpace.find().map((farmingSpace) => {
       if (farmingSpace.index === 4 || farmingSpace.index === 5) {
-        if (hasFarmingUpgrade) {
-          farmingSpace.active = true;
-        } else {
-          farmingSpace.active = false;
-        }
+        farmingSpace.active = !!hasFarmingUpgrade;
       }
       return farmingSpace;
     });
@@ -232,4 +254,4 @@ const updateTooltips = function (instance, tooltipNames) {
       });
     });
   }, 100);
-}
+};

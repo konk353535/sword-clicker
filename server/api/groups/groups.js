@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Combat } from '/imports/api/combat/combat';
@@ -70,7 +69,7 @@ Meteor.methods({
     }
 
     // If leader kicks himself, trigger a group.leave instead so leader status tranfers
-    if (ownerId == this.userId) {
+    if (ownerId === this.userId ) {
       Meteor.call('groups.leave');
       return;
     }
@@ -161,7 +160,7 @@ Meteor.methods({
         notReady: false,
         ready: false
       };
-    })
+    });
 
     // Set ready checks
     Groups.update({
@@ -266,10 +265,7 @@ Meteor.methods({
 
     // Remove from invites list
     targetGroup.invites = targetGroup.invites.filter((userId) => {
-      if (userId === userDoc._id) {
-        return false;
-      }
-      return true;
+      return userId !== Meteor.userId();
     });
 
     // Add user to members if accepting
@@ -300,6 +296,7 @@ Meteor.methods({
 
     // Does the specified username exist
     const targetUser = Users.findOne({
+      server: Meteor.user().server,
       $or: [{
         username: username.toLowerCase().replace(/ /g,'')
       }, {
@@ -322,7 +319,7 @@ Meteor.methods({
     }
 
     // Cannot invite self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id === this.userId) {
       return;
     }
 
@@ -349,6 +346,7 @@ Meteor.methods({
       // Create group with myself and the target user
       Groups.insert({
         balancer: uuid.v4(),
+        server: Meteor.user().server,
         leaderName: Meteor.user().username,
         leader: this.userId,
         members: [this.userId],
@@ -362,7 +360,7 @@ Meteor.methods({
     }
   },
 
-  // Transfer leaderhip role to another party member
+    // Transfer leadership role to another party member
   'groups.transfer'({ ownerId }) {
     const isMutedExpiry = Meteor.user().isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
@@ -392,7 +390,7 @@ Meteor.methods({
 
 
     // Cannot transfer to self into group
-    if (targetUser._id == this.userId) {
+    if (targetUser._id === this.userId) {
       return;
     }
 
@@ -437,7 +435,7 @@ Meteor.publish('otherBattlers', function(limit) {
 Meteor.publish('groups', function() {
 
   //Transform function
-  var transform = function(doc) {
+  const transform = function (doc) {
     // Transfer invite id to invite names
     const invitesObjects = Combat.find({
       owner: {
@@ -454,34 +452,33 @@ Meteor.publish('groups', function() {
     }).fetch();
 
     const memberTransform = function (member) {
-      const orginalStats = JSON.parse(JSON.stringify(member.stats));
+      const originalStats = JSON.parse(JSON.stringify(member.stats));
       delete member.stats;
       member.name = member.username;
-      member.owner = member.owner;
       member.icon = member.characterIcon || "character.svg";
       member.stats = {
-        health: orginalStats.health,
-        healthMax: orginalStats.healthMax
-      }
+        health: originalStats.health,
+        healthMax: originalStats.healthMax
+      };
       return member;
-    }
+    };
 
     // Modify members and invites objects as fake 'battle units for display'?
     doc.invitesDetails = invitesObjects.map(memberTransform);
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Groups.find({
+  const observer = Groups.find({
     $or: [{
       members: this.userId
     }, {
       invites: this.userId
     }]
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('groups', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

@@ -15,7 +15,7 @@ UserSchema = new SimpleSchema({
   fakeGemsToday: { type: Number, defaultValue: 0 },
 
   battleSecret: { type: String },
-
+  server: { type: String },
   banned: { type: Boolean, optional: true },
 
   membershipTo: { type: Date, optional: true },
@@ -105,6 +105,6 @@ UserSchema = new SimpleSchema({
 
   stats: { type: Object },
   'stats.spellsCast' : { type: Number, defaultValue: 1 }
-})
+});
 
 Meteor.users.attachSchema(UserSchema);

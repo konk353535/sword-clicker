@@ -69,7 +69,7 @@ export const easyTowerMonsterGenerator = function(floor) {
         damageTaken: 1
       },
       rewards: TABLE_LIST[rewardLevel]
-    }
+    };
 
     if (selectedMonster.heavilyArmored) {
       monster.stats.armor *= 1.5;
@@ -80,4 +80,4 @@ export const easyTowerMonsterGenerator = function(floor) {
     }
 
     return monster;
-  }
+  };

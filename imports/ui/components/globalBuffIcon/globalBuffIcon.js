@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
@@ -9,7 +8,7 @@ Template.globalBuffIcon.onCreated(function bodyOnCreated() {
 });
 
 Template.globalBuffIcon.helpers({
-})
+});
 
 Template.globalBuffIcon.rendered = function () {
   const buffTooltip = new Drop({
@@ -19,7 +18,7 @@ Template.globalBuffIcon.rendered = function () {
     position: 'top left',
     remove: true
   });
-}
+};
 
 Template.globalBuffIcon.events({
-})
+});

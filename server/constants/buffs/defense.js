@@ -1,6 +1,7 @@
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
 import { BATTLES } from '../battles/index.js'; // List of encounters
+import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const DEFENSE_BUFFS = {
 
@@ -78,7 +79,7 @@ export const DEFENSE_BUFFS = {
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
     icon: 'frostedAttacks.svg',
-    name: 'forsted attacks',
+    name: 'frosted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
     },
@@ -216,7 +217,7 @@ export const DEFENSE_BUFFS = {
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
-          }
+          };
 
           addBuff({ buff: newBuff, target: attacker, caster: defender });
         }
@@ -642,8 +643,8 @@ export const DEFENSE_BUFFS = {
         buff.data.damageDecrease = damageDecrease;
         buff.data.damageReduction = damageReduction;
 
-        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100)
-        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100)
+        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100);
+        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100);
         target.stats.attackMax -= buff.data.attackMax;
         target.stats.attack -= buff.data.attack;
         target.stats.damageTaken *= (1 - (buff.data.damageReduction / 100));
@@ -729,7 +730,7 @@ export const DEFENSE_BUFFS = {
     name: 'armor up',
     description({ buff, level }) {
       const armorPerLevel = buff.constants.armorPerLevel;
-      const totalArmor = buff.constants.baseArmor + (armorPerLevel * level)
+      const totalArmor = buff.constants.baseArmor + (armorPerLevel * level);
       return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.
        (+${armorPerLevel} per lvl)`;
     },
@@ -745,7 +746,7 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
-        const totalArmor = buff.constants.constants.baseArmor + (buff.constants.constants.armorPerLevel * buff.data.level)
+        const totalArmor = buff.constants.constants.baseArmor + (buff.constants.constants.armorPerLevel * buff.data.level);
 
         buff.data.totalArmor = totalArmor;
         target.stats.armor += totalArmor;
@@ -826,4 +827,4 @@ export const DEFENSE_BUFFS = {
       }
     }
   },
-}
+};

@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
@@ -8,7 +7,7 @@ Template.battleUnit.events({
   'click .icon-box'(event, instance) {
     instance.data.unitClicked(instance.data.unit.id);
   }
-})
+});
 
 Template.battleUnit.helpers({
   healthPercentage() {

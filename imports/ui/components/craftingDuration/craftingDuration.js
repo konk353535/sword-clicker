@@ -65,10 +65,10 @@ Template.craftingDuration.events({
       Meteor.call('inscription.cancelCraft', instance.data.craftingProcess.endDate);      
     }
   },
-})
+});
 
 Template.craftingDuration.helpers({
   computedCraftingProcess() {
     return Template.instance().state.get('computedCraftingProcess');
   }
-})
+});

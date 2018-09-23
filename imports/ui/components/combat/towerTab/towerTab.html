@@ -15,20 +15,6 @@
         </div>
         {{> helpIcon title='The Tower' content=theTowerHelpContent}}
 
-        {{#unless currentGroup}}
-          <div>
-            {{#if groupFinder}}
-              <button class="btn btn-danger ml-3 stop-finding-group">
-                Finding...
-              </button>
-            {{else}}
-              <button class="btn btn-primary find-group ml-3">
-                Find Group
-              </button>
-            {{/if}}
-          </div>
-        {{/unless}}
-
         {{#unless currentCommunityFloor}}
           <div class="ml-3">
             <button class="btn btn-primary battle-deeper">
@@ -63,22 +49,36 @@
               </label>
               <input type="checkbox" checked={{combat.isTowerContribution}}>
             </div>
-            {{#unless cantBossBattle}}
-              <button class="btn btn-danger battle-boss-btn my-1 {{#if cantBossBattle}}disabled{{/if}}">
-                Battle
-              </button>
-              <div>
-                Boss {{> formatNumber number=waveDetails.health}} / {{> formatNumber number=waveDetails.healthMax}}
-              </div>
-            {{/unless}}
-            <span>
+            <div>
+              {{#if $gte (moDiff floorResetDate moNow 'minutes') 60}}
+                Resets in {{moDiff floorResetDate moNow 'hours'}} hours
+              {{else}}
+                Resets in {{moDiff floorResetDate moNow 'minutes'}} minutes
+              {{/if}}
+            </div>
+            <span class="mb-3">
               Earn 50 x points earned in official attempt as XP in a random skill.
             </span>
-            {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
-              Resets in {{moDiff bossResetDate moNow 'hours'}} hours
-            {{else}}
-              Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
-            {{/if}}
+            {{#unless cantBossBattle}}
+              <button class="btn btn-danger battle-boss-btn my-1 {{#if cantBossBattle}}disabled{{/if}}">
+                Battle Boss
+              </button>
+              <div class="mt-3">
+                Boss {{> formatNumber number=waveDetails.health}} / {{> formatNumber number=waveDetails.healthMax}} HP
+              </div>
+              <div>
+                {{#if bossOverkill gt 0}}
+                  Overkill: {{math.mul bossOverkill 25}}%
+                {{/if}}
+              </div>
+              <div>
+                {{#if $gte (moDiff bossResetDate moNow 'minutes') 60}}
+                  Resets in {{moDiff bossResetDate moNow 'hours'}} hours
+                {{else}}
+                  Resets in {{moDiff bossResetDate moNow 'minutes'}} minutes
+                {{/if}}
+              </div>
+            {{/unless}}
           </div>
         </div>
       {{else}}
@@ -184,7 +184,7 @@
 
     </div>
     {{#if currentCommunityFloor}}
-      <div class="flex-grow">
+      <div class="flex-grow" style="max-width: 50%;">
         <h1>Stats</h1>
         <h2 class="my-3">Progress</h2>
         <div>{{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
@@ -197,15 +197,14 @@
             No contributions
           {{/if}}
         </div>
-        <h2 class="my-3">Your estimated rewards</h2>
-        <div class="d-flex align-items-center">
-          <img src="/icons/treasureChest.svg" class="large-icon">
+        <h2 class="my-3">Floor unlock rewards</h2>
+        <div class="d-flex flex-wrap align-items-center">
+          <img src="/icons/treasureChest.svg" class="large-icon mr-3">
           {{#each estimatedRewards}}
             {{#if $eq this.type 'item'}}
-              {{ > itemIcon item=this classes="small" hideTooltip=true}}
-              {{this.chance}}% chance
+              {{ > itemIcon item=this classes="small" readOnly=true }}
             {{else}}
-              <img src="/icons/goldCoin.svg" class="small-icon"> {{this.goldAmount}}
+              <img src="/icons/goldCoin.svg" class="small-icon"> {{this.amount}}
             {{/if}}
           {{/each}}
         </div>

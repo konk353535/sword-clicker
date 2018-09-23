@@ -244,4 +244,4 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   }
-}
+};

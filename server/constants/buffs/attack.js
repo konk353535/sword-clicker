@@ -431,7 +431,7 @@ export const ATTACK_BUFFS = {
         const targetIndex = actualBattle.enemies.indexOf(defender);
 
         if (targetIndex >= 0) {
-          const adjacentTargets = []
+          const adjacentTargets = [];
           
           const leftTarget = actualBattle.enemies[targetIndex - 1];
           const rightTarget = actualBattle.enemies[targetIndex + 1];
@@ -511,7 +511,7 @@ export const ATTACK_BUFFS = {
         const constants = buff.constants.constants;
         const baseDamage = attacker.stats.attack;
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level))
+        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level));
         const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
         const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
@@ -702,7 +702,7 @@ export const ATTACK_BUFFS = {
       const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
       return `
         Attack for <b>${damageIncreasePerPercentage * 100}%</b> of your max damage. (+${damagePerLevel * 100}% per lvl)<br />
-        Deal half of this damage to yourself.`;
+        Deal 10% of this damage to yourself as true damage.`;
     },
     constants: {
       damageBase: 1.25, // 200, 275, 350, 425, 500
@@ -728,11 +728,12 @@ export const ATTACK_BUFFS = {
           historyStats: actualBattle.historyStats,
         });
 
-        actualBattle.dealDamage(totalDamage / 2, {
+        actualBattle.dealDamage(totalDamage / 10, {
           attacker: caster,
           defender: caster,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          isTrueDamage: true
         });
       },
 
@@ -964,7 +965,7 @@ export const ATTACK_BUFFS = {
               description: 'reduces accuracy',
               accuracyReduction: target.stats.accuracy * 0.25
             }
-          }
+          };
           addBuff({ buff: newBuff, target, caster, actualBattle });
         }
 
@@ -1107,4 +1108,4 @@ export const ATTACK_BUFFS = {
       }
     }
   },
-}
+};

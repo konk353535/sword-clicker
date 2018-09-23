@@ -45,7 +45,7 @@ Template.abilityLibraryIcon.onDestroyed(function () {
       tooltipInstance._tippy.destroy();
     }
   }
-})
+});
 
 Template.abilityLibraryIcon.events({
   'click .icon-box'(event, instance) {

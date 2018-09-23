@@ -388,7 +388,7 @@ export const PAPER_CRAFTS = {
   elk_paper: {
     recipeFor: 'inscription',
     produces: 'elk_paper',
-    name: 'elk paper',
+    name: 'elm paper',
     id: 'elk_paper',
     category: 'paper',
     timeToCraft: 120,
@@ -412,7 +412,7 @@ export const PAPER_CRAFTS = {
   elk_book: {
     recipeFor: 'inscription',
     produces: 'elk_book',
-    name: 'elk book',
+    name: 'elm book',
     id: 'elk_book',
     category: 'book',
     timeToCraft: 900,

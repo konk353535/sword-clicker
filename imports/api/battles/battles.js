@@ -1,6 +1,4 @@
-import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Battles = new Mongo.Collection('battles');
@@ -97,7 +95,7 @@ BattlesSchema = new SimpleSchema({
   'deadEnemies.$.name': { type: String },
   'deadEnemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
-  tickEvents: { type: [Object], optional: true }, // List of things that occured in the most recent tick
+  tickEvents: { type: [Object], optional: true }, // List of things that occurred in the most recent tick
   'tickEvents.$.eventType': { type: String }, // Eg: Damage
   'tickEvents.$.from': { type: String }, // Who is dealing damage Eg: Player
   'tickEvents.$.to': { type: String }, // Who is taking damage Eg: Enemy

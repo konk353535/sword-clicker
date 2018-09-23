@@ -101,8 +101,31 @@
                     Disable summary list
                   </a>
                 {{/if}}
+                {{#if recipeTileConsumablesDisabled}}
+                  <a class="dropdown-item enable-recipe-consumables" style="cursor: pointer">
+                    Show recipe consumables
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-recipe-consumables" style="cursor: pointer">
+                    Hide recipe consumables
+                  </a>
+                {{/if}}
+                {{#if numberShorthandDisabled}}
+                  <a class="dropdown-item enable-number-shorthand" style="cursor: pointer">
+                    Enable number shorthand
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-number-shorthand" style="cursor: pointer">
+                    Disable number shorthand
+                  </a>
+                {{/if}}
+
+                <a class="dropdown-item">
+                  Server: {{ getServerName }}
+                </a>
+
                 {{#if currentUser.isGuest}}
-                  <label class="text-danger">Danger, your a guest</label>
+                  <label class="text-danger">Danger, you're a guest</label>
                   <a class="dropdown-item" href="/guestSettings">
                     Set name and password now
                   </a>
@@ -122,6 +145,16 @@
       </div>
     </div>
   </nav>
+
+  {{#if currentUser}}
+    {{#if beforeAugust}}
+      <div class="alert alert-info">
+        <div class="text-center">
+          Eternity Tower seasonal will start on the 22nd of July 1PM (GMT +10).
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
 
   <!-- Modal -->
   <div class="modal guestSignOffConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

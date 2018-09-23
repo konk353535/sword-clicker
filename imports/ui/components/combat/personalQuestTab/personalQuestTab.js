@@ -4,7 +4,6 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Users } from '/imports/api/users/users';
-import { Battles } from '/imports/api/battles/battles';
 
 import './personalQuestTab.html';
 
@@ -59,7 +58,7 @@ Template.personalQuestTab.events({
       }
     });
   }
-})
+});
 
 Template.personalQuestTab.helpers({
 

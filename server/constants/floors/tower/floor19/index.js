@@ -124,4 +124,4 @@ export const TOWER_FLOOR_19 = {
       amount: 150000
     }
   ]
-}
+};

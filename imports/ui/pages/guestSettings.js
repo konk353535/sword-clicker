@@ -1,11 +1,14 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Servers } from '/imports/api/servers/servers';
 
 import './guestSettings.html';
 
 Template.guestSettingsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('error', '');
+
+  Meteor.subscribe('servers');
 });
 
 Template.guestSettingsPage.events({
@@ -27,7 +30,7 @@ Template.guestSettingsPage.events({
     } else if (password === '') {
       return instance.state.set('error', 'You must specify a password');
     } else if (password.length < 6) {
-      return instance.state.set('error', 'Password must be atleast 6 characters');
+      return instance.state.set('error', 'Password must be at least 6 characters');
     } else if (!email || email === '') {
       return instance.state.set('error', 'You must enter an email address');
     } else {
@@ -54,9 +57,15 @@ Template.guestSettingsPage.events({
       Router.go('/');
     })
   }
-})
+});
 
 Template.guestSettingsPage.helpers({
+
+  allServers() {
+    console.log(Servers.find({}).fetch());
+    return Servers.find({});
+  },
+
   error() {
     return Template.instance().state.get('error');
   },
@@ -64,4 +73,4 @@ Template.guestSettingsPage.helpers({
   updating() {
     return Template.instance().state.get('updating');    
   }
-})
+});

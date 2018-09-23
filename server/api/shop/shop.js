@@ -12,8 +12,6 @@ import _ from 'underscore';
 
 const stripe = require("stripe")(Meteor.settings.private.stripe);
 
-import { unlockFarmingSpaces } from '/server/api/farming/farming';
-
 Meteor.methods({
 
   'shop.fetchGlobalBuffs'() {
@@ -71,7 +69,7 @@ Meteor.methods({
         custom: {
           roomType: 'Game'
         },
-        roomId: 'General'
+        roomId: `General-${userDoc.server}`
       });
 
       /* TODO in mongo db
@@ -125,7 +123,7 @@ Meteor.methods({
 
     types.forEach((type) => {
 
-      // Add X days to specified typemembership
+      // Add X days to specified type of membership
       let membershipTo = Meteor.user()[`${type}UpgradeTo`];
       if (!membershipTo || moment().isAfter(membershipTo)) {
         membershipTo = moment().add(days, 'days').toDate();
@@ -168,7 +166,7 @@ Meteor.methods({
       throw new Meteor.Error("no-gems", "Not enough gems");
     }
 
-    // Add X days to specified typemembership
+    // Add X days to specified type of membership
     let membershipTo = Meteor.user()[`${type}UpgradeTo`];
     if (!membershipTo || moment().isAfter(membershipTo)) {
       membershipTo = moment().add(days, 'days').toDate();
@@ -176,7 +174,7 @@ Meteor.methods({
       membershipTo = moment(membershipTo).add(days, 'days').toDate();
     }
 
-    const setModifier = {}
+    const setModifier = {};
     setModifier[`${type}UpgradeTo`] = membershipTo;
 
     if (consumeGems(requiredGems, Meteor.user())) {
@@ -299,7 +297,7 @@ Meteor.methods({
         price: 499,
         gems: 500
       }
-    }
+    };
 
     if (!ITEMS[item_id]) {
       throw new Meteor.Error("Invalid item id given");
@@ -394,7 +392,7 @@ Meteor.methods({
         })
       }
     } catch(err) {
-      throw new Meteor.Error("unknown-error", "Unknown error occured when attempting to purchase gems");
+      throw new Meteor.Error("unknown-error", "Unknown error occurred when attempting to purchase gems");
     }
 
     return payment;

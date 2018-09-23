@@ -1,6 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import moment from 'moment';
-import _ from 'underscore';
 
 import { ACHIEVEMENTS } from '/server/constants/achievement/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -30,7 +28,7 @@ Meteor.methods({
 
     const modifier = {
       lastGameUpdated: new Date()
-    }
+    };
     modifier[`collected.${id}`] = true;
 
     // Set as collected
@@ -56,7 +54,7 @@ Meteor.methods({
           }
         });
       } else if (reward.type === 'xp') {
-        addXp(reward.skill, reward.amount);
+        addXp(reward.skill, reward.amount, userDoc._id, true);
       }
     });
 
@@ -119,7 +117,7 @@ Meteor.methods({
     });
   }
 
-})
+});
 
 const MINUTE = 60 * 1000;
 /*

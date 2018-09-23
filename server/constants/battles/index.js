@@ -44,7 +44,7 @@ export const BATTLES = {
         health: 0.5,
         defense: 0
       }
-    }
+    };
 
     return weaponDistributions[weaponType]
   },
@@ -94,4 +94,4 @@ export const BATTLES = {
   maxBossPartySize: 5,
 
   maxTowerPartySize: 5
-}
+};

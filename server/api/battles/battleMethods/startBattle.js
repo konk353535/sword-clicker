@@ -3,7 +3,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
 import { BUFFS } from '/server/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { addBuff} from '/server/battleUtils';
 
 import uuid from 'node-uuid';
 import { Random } from 'meteor/random'
@@ -12,12 +12,12 @@ import _ from 'underscore';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Adventures } from '/imports/api/adventures/adventures';
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';
 
-export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
@@ -105,7 +105,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   });
   */
 
-  if (adventurePlayers != "") {
+  if (adventurePlayers !== "") {
     throw new Meteor.Error('in-battle', 'You cannot start a battle while ' + adventurePlayers + ' in your group is in an adventure');
   }
 
@@ -140,7 +140,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     units: [],
     useStreamy,
     enemies: []
-  }
+  };
 
   // Battle participants combat stats
   const usersCombatStats = Combat.find({
@@ -156,12 +156,12 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     battleEnergyCost = 5;
   }
 
-  // Ensure users have energy requirements + havent already fought boss
+  // Ensure users have energy requirements + haven't already fought boss
   usersCombatStats.forEach((userCombat) => {
     if (userCombat.stats.energy < battleEnergyCost) {
+      hasEnergy = false;
       const requirementString = `${userCombat.username} does not have enough energy to start this battle`;
       throw new Meteor.Error("not-enough-energy", requirementString);
-      hasEnergy = false;
     }
 
     if (userCombat.meditatingStartDate) {
@@ -169,8 +169,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
 
     if (health && !isOldBoss && userCombat.foughtBoss) {
-      throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
       hasEnergy = false;
+      throw new Meteor.Error("already-fought-boss", 'You can only fight the boss once a day');
     }
   });
 
@@ -233,7 +233,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
       icon: userCombat.characterIcon || 'character.svg'
-    }
+    };
 
     if (userCombat.enchantments) {
       userCombat.enchantments.forEach((buffId) => {
@@ -249,7 +249,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
               description: enchantConstants.description(),
               name: clonedConstants.name
             }
-          }
+          };
 
           newUnit.buffs.push(newBuff);
         }
@@ -359,6 +359,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
   newBattle.tick = 0;
   newBattle._id = actualBattleId;
+  newBattle.server = server;
 
   const actualBattle = newBattle;
   actualBattle.enemies.forEach((enemy) => {

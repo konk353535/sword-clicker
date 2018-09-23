@@ -15,14 +15,14 @@ export const MISC_CRAFTS = {
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 75,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'cactus',
       icon: ITEMS['cactus'].icon,
       name: ITEMS['cactus'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -46,14 +46,14 @@ export const MISC_CRAFTS = {
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 10000,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'jade',
       icon: ITEMS['jade'].icon,
       name: ITEMS['jade'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -78,21 +78,21 @@ export const MISC_CRAFTS = {
       icon: ITEMS['tamarind_honey'].icon,
       name: ITEMS['tamarind_honey'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'lettice',
       icon: ITEMS['lettice'].icon,
       name: ITEMS['lettice'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'silver_wall',
       icon: ITEMS['silver_wall'].icon,
       name: ITEMS['silver_wall'].name,
       amount: 200,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -117,21 +117,21 @@ export const MISC_CRAFTS = {
       icon: ITEMS['lemon_honey'].icon,
       name: ITEMS['lemon_honey'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'dragonfruit',
       icon: ITEMS['dragonfruit'].icon,
       name: ITEMS['dragonfruit'].name,
       amount: 50,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'silver_essence_wall',
       icon: ITEMS['silver_essence_wall'].icon,
       name: ITEMS['silver_essence_wall'].name,
       amount: 20,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -155,14 +155,14 @@ export const MISC_CRAFTS = {
       icon: ITEMS['bamboo'].icon,
       name: ITEMS['bamboo'].name,
       amount: 12,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'steel_pylon',
       icon: ITEMS['steel_pylon'].icon,
       name: ITEMS['steel_pylon'].name,
       amount: 20,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -186,14 +186,14 @@ export const MISC_CRAFTS = {
       icon: ITEMS['bamboo'].icon,
       name: ITEMS['bamboo'].name,
       amount: 12,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'carbon_wall',
       icon: ITEMS['carbon_wall'].icon,
       name: ITEMS['carbon_wall'].name,
       amount: 60,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -217,14 +217,14 @@ export const MISC_CRAFTS = {
       icon: ITEMS['bamboo_roof'].icon,
       name: ITEMS['bamboo_roof'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'bamboo_wall',
       icon: ITEMS['bamboo_wall'].icon,
       name: ITEMS['bamboo_wall'].name,
       amount: 1,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -248,7 +248,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['earth_shard_fragment'].icon,
       name: ITEMS['earth_shard_fragment'].name,
       amount: 1000,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -272,7 +272,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['fire_shard_fragment'].icon,
       name: ITEMS['fire_shard_fragment'].name,
       amount: 1000,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -296,7 +296,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['air_shard_fragment'].icon,
       name: ITEMS['air_shard_fragment'].name,
       amount: 1000,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -320,7 +320,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['water_shard_fragment'].icon,
       name: ITEMS['water_shard_fragment'].name,
       amount: 1000,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -344,7 +344,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['earth_shard_fragment'].icon,
       name: ITEMS['earth_shard_fragment'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -368,7 +368,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['fire_shard_fragment'].icon,
       name: ITEMS['fire_shard_fragment'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -392,7 +392,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['air_shard_fragment'].icon,
       name: ITEMS['air_shard_fragment'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -416,7 +416,7 @@ export const MISC_CRAFTS = {
       icon: ITEMS['water_shard_fragment'].icon,
       name: ITEMS['water_shard_fragment'].name,
       amount: 100,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -426,4 +426,4 @@ export const MISC_CRAFTS = {
     xp: 100,
     maxToCraft: 100
   },
-}
+};

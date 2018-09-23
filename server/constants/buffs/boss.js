@@ -1,10 +1,10 @@
-import moment from 'moment';
 import _ from 'underscore';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
-import { FLOORS } from '../floors/index';
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../combat/attackSpeeds.js';
+import { Random } from 'meteor/random'
+import { FLOORS } from '/server/constants/floors/index';
+import { FAST_SPEED } from '/server/constants/combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -96,7 +96,7 @@ export const BOSS_BUFFS = {
               icon: 'deepWounds.svg',
               description: ''
             }
-          }
+          };
 
           // cast earth dart
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -155,7 +155,7 @@ export const BOSS_BUFFS = {
                 level: 25
               }
             }]
-          }
+          };
 
           actualBattle.addUnit(littleSnake);
 
@@ -207,7 +207,7 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['blade_spin']
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: unit, caster: defender, actualBattle });
@@ -264,7 +264,7 @@ export const BOSS_BUFFS = {
                   name: 'phalanx'
                 }
               }]
-            }
+            };
 
             actualBattle.addUnit(littleSpartan);
           }
@@ -327,7 +327,7 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: birdStats
-          }
+          };
 
           actualBattle.addUnit(littlebird);
 
@@ -375,7 +375,7 @@ export const BOSS_BUFFS = {
                 icon: 'ignite.svg',
                 description: 'Burns you each second'
               }
-            }
+            };
 
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             target.stats.health = 0;
@@ -437,7 +437,7 @@ export const BOSS_BUFFS = {
                   name: 'goblin stat stealer'
                 }
               }]
-            }
+            };
 
             actualBattle.addUnit(littleGoblin);
           }
@@ -483,9 +483,8 @@ export const BOSS_BUFFS = {
   boss_phoenix: {
     duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
     icon: 'spartan.svg',
-    name: 'boss phenoix',
+    name: 'boss phoenix',
     description({ buff, level }) {
-      const c = buff.constants;
       return `Eternal`;
     },
     constants: {
@@ -527,7 +526,7 @@ export const BOSS_BUFFS = {
                   name: 'baby phoenix'
                 }
               }]
-            }
+            };
 
             actualBattle.addUnit(phoenixEgg);
           }
@@ -589,7 +588,7 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
           actualBattle.addUnit(littlePhoenix);
 
@@ -628,7 +627,7 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
           actualBattle.addUnit(littlePhoenix);
         }
@@ -684,7 +683,7 @@ export const BOSS_BUFFS = {
               name: 'baby phoenix'
             }
           }]
-        }
+        };
 
         actualBattle.addUnit(phoenixEgg);
 
@@ -751,7 +750,7 @@ export const BOSS_BUFFS = {
                 icon: 'gorillaLearning.svg',
                 description: 'Increases damage taken, and decrease damage dealt by 1% per stack'
               }
-            }
+            };
 
             // cast learning buff
             addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -859,7 +858,7 @@ export const BOSS_BUFFS = {
                   name: 'power lap'
                 }
               }]
-            }
+            };
 
             const wisdomLamp = {
               id: uuid.v4(),
@@ -889,7 +888,7 @@ export const BOSS_BUFFS = {
                   name: 'wisdom lamp'
                 }
               }]
-            }
+            };
 
             const healthLamp = {
               id: uuid.v4(),
@@ -919,7 +918,7 @@ export const BOSS_BUFFS = {
                   name: 'health lamp'
                 }
               }]
-            }
+            };
 
             actualBattle.addUnit(powerLamp);
             actualBattle.addUnit(wisdomLamp);
@@ -968,7 +967,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGeniePowerLamp.svg',        
               name: 'power up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1017,7 +1016,7 @@ export const BOSS_BUFFS = {
               description: 'Increases magic power by 20%',      
               name: 'wisdom up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1066,7 +1065,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGenieHealthLamp.svg',        
               name: 'health up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1226,7 +1225,7 @@ export const BOSS_BUFFS = {
             name: 'bird',
             stats: birdStats,
             buffs: []
-          }
+          };
 
           actualBattle.addUnit(bird);
         }
@@ -1270,7 +1269,7 @@ export const BOSS_BUFFS = {
               totalDuration: 10,
               duration: 10
             }
-          }
+          };
 
           buff.data.timeTillBlood = 150;
           addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
@@ -1329,7 +1328,7 @@ export const BOSS_BUFFS = {
                   hideBuff: true
                 }
               }]
-            }
+            };
 
             actualBattle.addUnit(bird);
           }
@@ -1350,7 +1349,7 @@ export const BOSS_BUFFS = {
             name: 'stone wall',
             stats: birdStats,
             buffs: []
-          }
+          };
 
           actualBattle.addUnit(wall);
 
@@ -1439,7 +1438,7 @@ export const BOSS_BUFFS = {
             name: 'tentacle',
             buffs: [],
             stats: birdStats
-          }
+          };
 
           actualBattle.addUnit(littlebird);
 
@@ -1557,7 +1556,7 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: poodleStats
-          }
+          };
 
           actualBattle.addUnit(poodle);
 
@@ -1581,7 +1580,7 @@ export const BOSS_BUFFS = {
 
             if (poodleBuff.data.damageMap) {
               Object.keys(poodleBuff.data.damageMap).forEach((key) => {
-                const damageDone = poodleBuff.data.damageMap[key]
+                const damageDone = poodleBuff.data.damageMap[key];
                 if (damageDone > max) {
                   max = damageDone;
                   unitToKill = key;
@@ -1638,7 +1637,7 @@ export const BOSS_BUFFS = {
               icon: 'attackReduction.svg',
               description: 'Reduces your attack by 25, for 30 seconds'
             }
-          }
+          };
 
           // cast attack reduction
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -1672,7 +1671,7 @@ export const BOSS_BUFFS = {
 
         if (!buff.data.timeTillSwitch || buff.data.timeTillSwitch <= 0) {
           // Target a random unit
-          target.target = _.sample(actualBattle.units).id
+          target.target = _.sample(actualBattle.units).id;
           buff.data.timeTillSwitch = 30;
         }
       },
@@ -1723,7 +1722,7 @@ export const BOSS_BUFFS = {
                 icon: 'spikedArmor.svg',
                 description: 'Reflect damage back at you.'
               }
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
@@ -1775,7 +1774,7 @@ export const BOSS_BUFFS = {
                   }
                 }],
                 stats: fountainStats
-              }
+              };
 
               actualBattle.addUnit(fountain);
             }
@@ -1825,7 +1824,7 @@ export const BOSS_BUFFS = {
                   description: ''
                 },
                 constants: BUFFS['ignite']
-              }
+              };
 
               // cast ignite
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
@@ -1844,7 +1843,7 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['ignite']
-            }
+            };
 
             const unit = _.findWhere(actualBattle.units, { id: target.target });
             // cast ignite
@@ -1901,7 +1900,7 @@ export const BOSS_BUFFS = {
                 name: 'mirage',
                 buffs: [],
                 stats: mirageStats
-              }
+              };
 
               actualBattle.addUnit(mirage);
             }

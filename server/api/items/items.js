@@ -15,8 +15,6 @@ import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
-
-
 import _ from 'underscore';
 
 const math = require('mathjs');
@@ -33,7 +31,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   const itemConstants = ITEMS[itemId];  
 
   if (!itemConstants) {
-    console.log(`Failed - ${itemId}`)
+    console.log(`Failed - ${itemId}`);
     return;
   }
 
@@ -116,7 +114,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       Items.insert(newItem);
     });
   }
-}
+};
 
 export const addFakeGems = function (amount, userId) {
   // Ensure amount is valid
@@ -135,7 +133,7 @@ export const addFakeGems = function (amount, userId) {
       fakeGems: amount
     }
   });
-}
+};
 
 export const hasGems = function (count, userObject) {
   if (userObject.fakeGems == null || userObject.fakeGemsToday == null) {
@@ -145,7 +143,7 @@ export const hasGems = function (count, userObject) {
   const totalGems = userObject.gems + userObject.fakeGems;
 
   return totalGems >= count;
-}
+};
 
 export const consumeGems = function (count, userObject) {
   let fakeConsumed = 0;
@@ -175,7 +173,7 @@ export const consumeGems = function (count, userObject) {
   });
 
   return true;
-}
+};
 
 export const consumeItem = function (itemObject, amount) {
   // Use up item
@@ -192,7 +190,7 @@ export const consumeItem = function (itemObject, amount) {
       $inc: { amount: (-1 * amount) }
     });
   }
-}
+};
 
 Meteor.methods({
 
@@ -222,7 +220,7 @@ Meteor.methods({
     if (itemCategory === 'combat') {
       updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
-      updateMiningStats();
+      updateMiningStats(Meteor.userId(), itemSlot);
     }
   },
 
@@ -277,7 +275,7 @@ Meteor.methods({
     const baseItemConstants = ITEMS[baseItem.itemId];
 
 
-    if (baseItem.category == "magic_book") {
+    if (baseItem.category === "magic_book") {
       UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
@@ -285,6 +283,7 @@ Meteor.methods({
       UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    // noinspection SpellCheckingInspection
     if (baseItem.itemId === "lapislazuli") {
       UseLapislazuli(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
@@ -337,11 +336,11 @@ Meteor.methods({
       
 
         // Get the current quality
-        const originalQuality = targetItem.quality
+        const originalQuality = targetItem.quality;
         const targetItemClone = JSON.parse(JSON.stringify(targetItem));
 
         // Mutate the targetItems stats until we get to target quality
-        const increaseOptions = []
+        const increaseOptions = [];
         const extraStatKeys = Object.keys(targetItemConstants.extraStats);
         extraStatKeys.forEach((extraStatKey) => {
           const maxStat = targetItemConstants.extraStats[extraStatKey];
@@ -671,7 +670,7 @@ Meteor.methods({
     if (itemCategory === 'combat') {
       updateCombatStats(Meteor.userId(), Meteor.user().username, itemSlot === 'neck');
     } else if (itemCategory === 'mining') {
-      updateMiningStats();
+      updateMiningStats(Meteor.userId(), itemSlot);
     }
   },
 
@@ -707,7 +706,7 @@ Meteor.methods({
       if (itemConstants.category === 'combat' && currentItem.equipped) {
         updateCombatStats(Meteor.userId(), Meteor.user().username);
       } else if (itemConstants.category === 'mining' && currentItem.equipped) {
-        updateMiningStats();
+        updateMiningStats(Meteor.userId(), currentItem.slot);
       }
     } else {
       // Update item quantity
@@ -744,10 +743,10 @@ const MINUTE = 60 * 1000;
 
 Meteor.publish('items', function() {
 
-  //Transform function
+  // Transform function
   // TODO: We can move items to local dev, and avoid having to do all this extra processing here
   // Just send raw item to client, then they can do the transforms with the constants locally
-  var transform = function(doc) {
+  const transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
     if (!itemConstants) {
       return;
@@ -797,11 +796,11 @@ Meteor.publish('items', function() {
     }
 
     return doc;
-  }
+  };
 
-  var self = this;
+  const self = this;
 
-  var observer = Items.find({
+  const observer = Items.find({
     owner: this.userId
   }).observe({
       added: function (document) {
@@ -842,7 +841,7 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
 
   // Post Logic & Cleanup
   ConsumeItem(baseItem);
-}
+};
 
 export const UseJade = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -890,7 +889,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -941,7 +940,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseSapphire = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -988,7 +987,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseEmerald = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1035,7 +1034,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseRuby = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1087,7 +1086,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1124,7 +1123,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   const attackRate = 1.30;
   const attackMaxRate = 1.30;
-  const accuracyrRate = 1.30;
+  const accuracyRate = 1.30;
   const defenseRate = 1.30;
   const healthMaxRate = 1.20;
   const magicPowerRate = 1.50;
@@ -1132,7 +1131,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   const attack = Math.round(originalAttack * Math.pow(attackRate, level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate, level));
-  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyrRate, level));
+  const accuracy = Math.round(originalAccuracy * Math.pow(accuracyRate, level));
   const defense = Math.round(originalDefense * Math.pow(defenseRate, level));
   const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
   const magicPower = Math.round(originalMagicPower * Math.pow(magicPowerRate, level));
@@ -1158,7 +1157,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 
 export const UseEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
@@ -1169,7 +1168,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   }
 
   if (!COMBAT_CRAFTS[targetItem.itemId] ) {
-    if (targetItem.itemId.indexOf('_wizard') == -1 ) {
+    if (targetItem.itemId.indexOf('_wizard') === -1 ) {
       console.log('Not a recipe');
       throw new Meteor.Error("invalid-target", 'Not a recipe.');
     }
@@ -1185,7 +1184,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
     throw new Meteor.Error("invalid-target", 'Target item slot not defined.');
   }
 
-  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) == -1) {
+  if (baseItemConstants.enchantSlot.indexOf(targetItemConstants.slot) === -1) {
     console.log('Enchantment slot doesn\'t match target slot');
     throw new Meteor.Error("invalid-target", 'Item is not crafted.');
   }
@@ -1201,7 +1200,7 @@ export const UseEnchantment = function (baseItem, baseItemConstants, targetItem,
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 export const RemoveEnchantment = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1209,7 +1208,7 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
-  if (targetItem.enchantmentId && targetItem.enchantmentId == false) {
+  if (targetItem.enchantmentId && targetItem.enchantmentId === false) {
     throw new Meteor.Error("invalid-target", 'Item not enchanted');
   }
 
@@ -1225,7 +1224,7 @@ export const RemoveEnchantment = function (baseItem, baseItemConstants, targetIt
   });
 
   ConsumeItem(baseItem);
-}
+};
 
 
 export const ConsumeItem = function (baseItem) {
@@ -1252,22 +1251,18 @@ export const ConsumeItem = function (baseItem) {
         }
       });
     }
-}
+};
 
 export const IsJewelAmulet = function (targetItem) {
 
-  if(  targetItem.itemId == "jade_amulet"
-    || targetItem.itemId == "lapislazuli_amulet"
-    || targetItem.itemId == "sapphire_amulet"
-    || targetItem.itemId == "emerald_amulet"
-    || targetItem.itemId == "ruby_amulet"
-    || targetItem.itemId == "tanzanite_amulet"
-    ) {
-      return true;
-  }
+  return targetItem.itemId === "jade_amulet"
+      || targetItem.itemId === "lapislazuli_amulet"
+      || targetItem.itemId === "sapphire_amulet"
+      || targetItem.itemId === "emerald_amulet"
+      || targetItem.itemId === "ruby_amulet"
+      || targetItem.itemId === "tanzanite_amulet";
 
-  return false;
-}
+};
 
 export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
 
@@ -1311,4 +1306,4 @@ export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem,
       enhanced: true
     }
   });
-}
+};

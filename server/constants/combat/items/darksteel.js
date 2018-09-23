@@ -244,4 +244,4 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   }
-}
+};

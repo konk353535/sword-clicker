@@ -244,4 +244,4 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   }
-}
+};

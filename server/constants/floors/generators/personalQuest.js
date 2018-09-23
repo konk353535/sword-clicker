@@ -1,5 +1,5 @@
 import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
-import { ENEMIES } from '../../enemies/index';
+import { ENEMIES } from '/server/constants/enemies/index';
 import _ from 'underscore';
 import uuid from 'node-uuid';
 
@@ -110,7 +110,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
       damageTaken: 1
     },
     rewards: TABLE_LIST[rewardLevel]
-  }
+  };
 
   if (selectedMonster.statBuffs) {
     selectedMonster.statBuffs.forEach((statBuff) => {
@@ -144,4 +144,4 @@ export const personalQuestMonsterGenerator = function(level, wave) {
   }
 
   return [monster];
-}
+};

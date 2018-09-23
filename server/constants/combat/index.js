@@ -41,4 +41,4 @@ export const COMBAT = {
     'armor',
     'magicArmor'
   ]
-}
+};

@@ -209,4 +209,4 @@ export const LEVEL_THREE_CRAFTS = {
     requiredInscriptionLevel: 37,
     required: [UTIL.MANY_YELLOW_255, UTIL.RED_100, UTIL.MAHOGANY_PAPER, UTIL.LEVEL_37]
   }
-}
+};

@@ -63,7 +63,7 @@ SimpleChat.configure ({
     if (userDoc.isMod) {
       if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() });
 
         // Set all users with this ip
         Users.update({
@@ -93,7 +93,7 @@ SimpleChat.configure ({
         return false;  
       } else if (/\/permamute/.test(message)) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() });
 
         // Set isMuted + Expiry
         Users.update(targetUser._id, {
@@ -110,7 +110,7 @@ SimpleChat.configure ({
         return false;
       } else if (/\/hardmute/.test(message)) {
         // Find user
-        const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() })
+        const targetUser = Users.findOne({ username: message.split('/hardmute')[1].trim() });
         
         // Set isMuted + Expiry
         Users.update(targetUser._id, {

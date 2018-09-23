@@ -435,7 +435,7 @@ export const ENCHANTMENT_BUFFS = {
 
   bloody_plate_legs: {
     duplicateTag: 'bloody_plate_legs', // Used to stop duplicate buffs
-    icon: 'bloodyPlateLegs.svg',
+    icon: 'bloodyPlatelegs.svg',
     name: 'bloody plate legs',
     description() {
       return `10% chance on hit to inflict 3s bleed.<br />(10% of max damage / second)`;

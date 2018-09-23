@@ -54,7 +54,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_short_sword": {
     "id": "fairy_steel_short_sword",
-    "icon": "fairySteelShortSword.png",
+    "icon": "fairySteelShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_long_sword": {
     "id": "fairy_steel_long_sword",
-    "icon": "fairySteelLongSword.png",
+    "icon": "fairySteelLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_chest_plate": {
     "id": "fairy_steel_chest_plate",
-    "icon": "fairySteelChestPlate.png",
+    "icon": "fairySteelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "fairy steel chestplate",
+    "name": "fairy steel Chestplate",
     "sellPrice": 2250,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_plate_legs": {
     "id": "fairy_steel_plate_legs",
-    "icon": "fairySteelPlateLegs.png",
+    "icon": "fairySteelPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",

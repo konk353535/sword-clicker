@@ -54,7 +54,7 @@ export const TIN_ITEMS = {
   },
   "tin_short_sword": {
     "id": "tin_short_sword",
-    "icon": "tinShortSword.png",
+    "icon": "tinShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TIN_ITEMS = {
   },
   "tin_long_sword": {
     "id": "tin_long_sword",
-    "icon": "tinLongSword.png",
+    "icon": "tinLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const TIN_ITEMS = {
   },
   "tin_chest_plate": {
     "id": "tin_chest_plate",
-    "icon": "tinChestPlate.png",
+    "icon": "tinChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "tin chestplate",
+    "name": "tin Chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const TIN_ITEMS = {
   },
   "tin_plate_legs": {
     "id": "tin_plate_legs",
-    "icon": "tinPlateLegs.png",
+    "icon": "tinPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "tin platelegs",

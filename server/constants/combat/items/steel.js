@@ -54,7 +54,7 @@ export const STEEL_ITEMS = {
   },
   "steel_short_sword": {
     "id": "steel_short_sword",
-    "icon": "steelShortSword.png",
+    "icon": "steelShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const STEEL_ITEMS = {
   },
   "steel_long_sword": {
     "id": "steel_long_sword",
-    "icon": "steelLongSword.png",
+    "icon": "steelLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const STEEL_ITEMS = {
   },
   "steel_chest_plate": {
     "id": "steel_chest_plate",
-    "icon": "steelChestPlate.png",
+    "icon": "steelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "steel chestplate",
+    "name": "steel Chestplate",
     "sellPrice": 750,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const STEEL_ITEMS = {
   },
   "steel_plate_legs": {
     "id": "steel_plate_legs",
-    "icon": "steelPlateLegs.png",
+    "icon": "steelPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "steel platelegs",

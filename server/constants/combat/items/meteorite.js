@@ -54,7 +54,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_short_sword": {
     "id": "meteorite_short_sword",
-    "icon": "meteoriteShortSword.png",
+    "icon": "meteoriteShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_long_sword": {
     "id": "meteorite_long_sword",
-    "icon": "meteoriteLongSword.png",
+    "icon": "meteoriteLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_chest_plate": {
     "id": "meteorite_chest_plate",
-    "icon": "meteoriteChestPlate.png",
+    "icon": "meteoriteChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "meteorite chestplate",
+    "name": "meteorite Chestplate",
     "sellPrice": 2000,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_plate_legs": {
     "id": "meteorite_plate_legs",
-    "icon": "meteoritePlateLegs.png",
+    "icon": "meteoritePlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "meteorite platelegs",

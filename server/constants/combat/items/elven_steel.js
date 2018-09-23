@@ -54,7 +54,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_short_sword": {
     "id": "elven_steel_short_sword",
-    "icon": "elvenSteelShortSword.png",
+    "icon": "elvenSteelShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_long_sword": {
     "id": "elven_steel_long_sword",
-    "icon": "elvenSteelLongSword.png",
+    "icon": "elvenSteelLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_chest_plate": {
     "id": "elven_steel_chest_plate",
-    "icon": "elvenSteelChestPlate.png",
+    "icon": "elvenSteelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "elven steel chestplate",
+    "name": "elven steel Chestplate",
     "sellPrice": 2500,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_plate_legs": {
     "id": "elven_steel_plate_legs",
-    "icon": "elvenSteelPlateLegs.png",
+    "icon": "elvenSteelPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "elven steel platelegs",

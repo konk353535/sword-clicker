@@ -75,6 +75,7 @@ export default class Battle {
     this.owners = battle.owners;
     this.totalXpGain = battle.totalXpGain;
     this.startingBossHp = battle.startingBossHp;
+    this.server = battle.server;
     // { type, data }
     // types:
     //   abs: absolute change
@@ -193,6 +194,7 @@ export default class Battle {
         startingBossHp: this.startingBossHp,
         room: this.room,
         wave: this.wave,
+        server: this.server,
         historyStats: this.historyStats,
         isExplorationRun: this.isExplorationRun,
         level: this.level,

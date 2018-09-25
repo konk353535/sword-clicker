@@ -28,7 +28,7 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { State } from '/imports/api/state/state';
 import weightedRandom from 'weighted-random';
 
-const distributeRewards = function distributeRewards({ floor }) {
+const distributeRewards = function distributeRewards({ floor, server }) {
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
@@ -821,6 +821,7 @@ export const completeBattle = function (actualBattle) {
     level: actualBattle.level,
     wave: actualBattle.wave,
     floor: actualBattle.floor,
+    server: actualBattle.server,
     room: actualBattle.room,
     isExplorationRun: actualBattle.isExplorationRun,
     win,

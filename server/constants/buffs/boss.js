@@ -2,9 +2,8 @@ import _ from 'underscore';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
-import { Random } from 'meteor/random'
-import { FLOORS } from '/server/constants/floors/index';
-import { FAST_SPEED } from '/server/constants/combat/attackSpeeds.js';
+import { FLOORS } from '../floors/index';
+import { FAST_SPEED } from '../combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -45,6 +44,7 @@ export const BOSS_BUFFS = {
 
         const extraDamage = 0.1 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
+
         actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,

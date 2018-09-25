@@ -41,6 +41,9 @@ export default class Buff {
       this._duration = buff.duration;
     }
     this._stacks = buff.stacks;
+    if (!buff.stacks && buff.data && buff.data.stacks) {
+      this._stacks = buff.data.stacks;
+    }
     this.data = buff.data;
   }
 

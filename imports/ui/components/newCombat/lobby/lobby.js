@@ -11,6 +11,7 @@ const TYPES = {
   afk: 'Adventure',
 }
 
+import { Skills } from '/imports/api/skills/skills.js';
 import { Users } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
@@ -355,6 +356,48 @@ Template.lobbyPage.helpers({
 
   usersCurrentRoom() {
     return Template.instance().state.get('usersCurrentRoom');
+  },
+
+  defenseSkill() {
+    const defenseSkill = Skills.findOne({
+      type: 'defense'
+    });
+
+    defenseSkill.percentage = (defenseSkill.xp / defenseSkill.xpToLevel) * 100;
+
+    return defenseSkill;
+  },
+
+  attackSkill() {
+    const attackSkill = Skills.findOne({
+      type: 'attack'
+    });
+
+    attackSkill.percentage = (attackSkill.xp / attackSkill.xpToLevel) * 100;
+
+    return attackSkill;
+  },
+
+  healthSkill() {
+    const healthSkill = Skills.findOne({
+      type: 'health'
+    });
+
+    healthSkill.percentage = (healthSkill.xp / healthSkill.xpToLevel) * 100;
+
+    return healthSkill;
+  },
+
+  magicSkill() {
+    const magicSkill = Skills.findOne({
+      type: 'magic'
+    });
+
+    if (magicSkill) {
+      magicSkill.percentage = (magicSkill.xp / magicSkill.xpToLevel) * 100;
+    }
+
+    return magicSkill;
   },
 
   otherBattlers() {

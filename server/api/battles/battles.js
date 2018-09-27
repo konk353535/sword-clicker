@@ -171,7 +171,7 @@ Meteor.methods({
     if (currentFloor.floor === floorNumber) {
       return {
         waveDetails: {
-          health: currentFloor.health,
+          health: currentFloor.health.toFixed(0),
           healthMax: currentFloor.healthMax,
           points: Math.floor(currentFloor.points),
           pointsMax: currentFloor.pointsMax,

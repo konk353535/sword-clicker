@@ -192,7 +192,7 @@
         {{/each}}
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
         <div>
           <a href="#" class="mb-1 consumables-btn text-muted">Consumables</a>
         </div>
@@ -210,12 +210,14 @@
     {{/if}}
 
     {{#if $eq typeKey 'group'}}
-      <div>
+      <div class="mb-2">
         <div>
           <a href="#" class="mb-1 other-battlers-btn text-muted">Other Battlers</a>
         </div>
         {{#each otherBattlers}}
           {{> otherBattlersRow row=this}}
+        {{else}}
+          No other battlers
         {{/each}}
       </div>
     {{/if}}
@@ -283,6 +285,35 @@
         {{/if}}
       </div>
     </div>
+
+    {{#if $eq typeKey 'group'}}
+      {{#unless floorDetails.isUnlocked}}
+        <div class="flex-grow" style="max-width: 50%; margin-top: 50px;">
+          <div class="text-muted">Furthest Community Floor</div>
+          <div>Progress {{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
+          <div class="mt-2 text-muted">Your contributions</div>
+          <div>
+            {{#if myFloorContributions.points}}
+              {{myFloorContributions.points}}pts
+              (top {{myFloorContributions.rankingPercentage}} %)
+            {{else}}
+              No contributions
+            {{/if}}
+          </div>
+          <div class="mt-2 text-muted">Floor Rewards</div>
+          <div class="d-flex flex-wrap align-items-center">
+            <img src="/icons/treasureChest.svg" class="large-icon mr-3">
+            {{#each estimatedRewards}}
+              {{#if $eq this.type 'item'}}
+                {{ > itemIcon item=this classes="small" readOnly=true }}
+              {{else}}
+                <img src="/icons/goldCoin.svg" class="small-icon"> {{this.amount}}
+              {{/if}}
+            {{/each}}
+          </div>
+        </div>
+      {{/unless}}
+    {{/if}}
 
     <!--
     <div class="select-battle-container">

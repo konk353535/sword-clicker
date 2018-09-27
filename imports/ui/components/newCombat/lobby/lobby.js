@@ -99,6 +99,10 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
         this.state.set('maxFloor', floorDetailsRaw.maxFloor);
       }
     });
+
+    Meteor.call('battles.myFloorContributions', (err, res) => {
+      this.state.set('myFloorContributions', res);
+    });
   });
 
   this.autorun(() => {
@@ -342,6 +346,16 @@ Template.lobbyPage.helpers({
 
   waveDetails() {
     return Template.instance().state.get('waveDetails');
+  },
+
+  estimatedRewards() {
+    const instance = Template.instance();
+    const floorDetails = instance.state.get('floorDetails');
+    return floorDetails.rewards;
+  },
+
+  myFloorContributions() {
+    return Template.instance().state.get('myFloorContributions');
   },
 
   wavePointsProgress() {

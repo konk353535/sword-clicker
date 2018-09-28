@@ -1,7 +1,7 @@
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
-import { resolveLoot, removeBattle } from '/server/api/battles/battleMethods/completeBattle';
+import { resolveLoot, removeBattle, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 import moment from 'moment/moment';
 
 import { Floors } from '/imports//api/floors/floors';
@@ -89,6 +89,10 @@ SyncedCron.add({
     Servers.find({}).fetch().forEach((server) => {
       // Fetch current active floor
       const currentFloor = Floors.findOne({server: server._id, floorComplete: false});
+
+      if (!currentFloor) {
+        return;
+      }
 
       // reset boss HP
       if(moment().isAfter(currentFloor.bossResetAt)) {

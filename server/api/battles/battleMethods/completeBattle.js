@@ -28,7 +28,7 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { State } from '/imports/api/state/state';
 import weightedRandom from 'weighted-random';
 
-const distributeRewards = function distributeRewards({ floor, server }) {
+export const distributeRewards = function distributeRewards({ floor, server }) {
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
@@ -212,32 +212,29 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
-
   if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
     // Mutate points values / calculate points
-    let pointsEarned = 0;
+    let pointsEarnt = 0;
 
-    if (actualBattle.isTowerContribution) {
-      if (win) {
-        // Count current room
-        pointsEarned += Math.pow(1.7, actualBattle.room);
-      } else {
-        // Get hp of current wave
-        let totalHp = 0;
-        let currentHp = 0;
-        actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
-          totalHp += enemy.stats.healthMax;
-          currentHp += enemy.stats.health;
-        });
+    if (win) {
+      // Count current room
+      pointsEarnt += Math.pow(1.7, actualBattle.room);
+    } else {
+      // Get hp of current wave
+      let totalHp = 0;
+      let currentHp = 0;
+      actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
+        totalHp += enemy.stats.healthMax;
+        currentHp += enemy.stats.health;
+      });
 
-        const decimalCompletion = 1 - (currentHp / totalHp);
-        pointsEarned += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
-      };
+      const decimalCompletion = 1 - (currentHp / totalHp);
+      pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
+    };
 
-      // Add points from previous rooms
-      for (let i = actualBattle.room - 1; i > 0; i--) {
-        pointsEarned += Math.pow(1.7, i);
-      }
+    // Add points from previous rooms
+    for (let i = actualBattle.room - 1; i > 0; i--) {
+      pointsEarnt += Math.pow(1.7, i);
     }
 
     const units = actualBattle.units.filter((unit) => {
@@ -453,7 +450,9 @@ export const completeBattle = function (actualBattle) {
               $inc: {
                 points: actualPointsGained
               },
-              $set: {
+              $setOnInsert: {
+                points: actualPointsGained,
+                server: actualBattle.server,
                 username: ownerObject.name // To do: Make this work when users have multiple units
               }
             };
@@ -481,59 +480,16 @@ export const completeBattle = function (actualBattle) {
               owner
             });
 
-            if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
-              ownerObject.usedTowerContribution = true;
-              countTowerContributors++;
+            finalTickEvents.push({
+              type: 'points',
+              amount: actualPointsGained.toFixed(1),
+              icon: 'tower.svg',
+              owner
+            });
 
-              const updateSelector = { owner, floor: actualBattle.floor };
-
-              const updateModifier = {
-                $inc: {
-                  points: pointsEarned
-                },
-                $setOnInsert: {
-                  server: actualBattle.server,
-                  points: pointsEarned,
-                  username: ownerObject.name // To do: Make this work when users have multiple units
-                }
-              };
-
-              const possibleStats = [
-                'mining',
-                'crafting',
-                'woodcutting',
-                'farming',
-                'inscription',
-                'astronomy'
-              ];
-
-              const targetStat = _.sample(possibleStats);
-              addXp(targetStat, Math.round(pointsEarned * 50), owner);
-
-              if (pointsEarned > 10) {
-                addFakeGems(5, owner);
-              }
-
-              finalTickEvents.push({
-                type: 'xp',
-                amount: Math.round(pointsEarned * 50),
-                skill: targetStat,
-                owner
-              });
-
-              finalTickEvents.push({
-                type: 'points',
-                amount: pointsEarned.toFixed(1),
-                icon: 'tower.svg',
-                owner
-              });
-
-              console.log(updateSelector);
-              console.log(updateModifier);
-              FloorWaveScores.upsert(updateSelector, updateModifier);
-            } else {
-              console.log('Unexpected Failure');
-            }
+            console.log(updateSelector);
+            console.log(updateModifier);
+            FloorWaveScores.upsert(updateSelector, updateModifier);
           }
         });
 
@@ -545,7 +501,7 @@ export const completeBattle = function (actualBattle) {
             floorComplete: false
           }, {
             $inc: {
-              points: pointsEarned * countTowerContributors
+              points: totalPointsForGroup
             }
           });
 
@@ -599,7 +555,7 @@ export const completeBattle = function (actualBattle) {
             let rewards = [];
 
             // Each user = additional 20% chance of loot
-            const extraChance = 1 + (countTowerContributors * 0.2) - 0.2;
+            const extraChance = 1 + (owners.length * 0.2) - 0.2;
             for (let i = 0; i < floorRewards.length; i++) {
               const rewardTable = floorRewards[i];
               const diceRoll = Math.random();
@@ -612,7 +568,7 @@ export const completeBattle = function (actualBattle) {
                 if (reward.type !== 'icon')  {
                   rewards.push(reward);
                 }
-                if (rewards >= countTowerContributors) {
+                if (rewards >= owners.length) {
                   break;
                 }
               } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
@@ -625,7 +581,7 @@ export const completeBattle = function (actualBattle) {
                     affectedGlobalBuff: true
                   }));
                 }
-                if (rewards >= countTowerContributors) {
+                if (rewards >= owners.length) {
                   break;
                 }
               }

@@ -12,8 +12,3 @@ settings-old-2.json
 .DS_Store
 
 mup.js
-
-server/battle-proxy/config.js
-server/battle-node/config.js
-server/battle-node/config.js
-server/battle-node/config.js

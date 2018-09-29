@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
-import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -16,17 +15,19 @@ import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { SKILLS } from '/server/constants/skills/index.js';
-import { STATE_BUFFS } from '/imports/constants/state';
 import { ITEMS } from '/server/constants/items/index.js';
-import moment from "moment/moment";
 import _ from 'underscore';
 
-let globalXpBuffs = {};
+const redis = new Meteor.RedisCollection('redis');
+
+let globalXpBuffs = {}
 
 const updateGlobalBuffs = () => {
-  const hasCraftingGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.crafting, 'value.activeTo': {$gte: moment().toDate()}}));
-  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
-  const hasGatheringGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.gathering, 'value.activeTo': {$gte: moment().toDate()}}));
+  const rawGlobalBuffs = redis.get('global-buffs-xpq');
+  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+  const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
+  const hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+  const hasGatheringGlobalBuff = globalBuffs.gathering && moment().isBefore(globalBuffs.gathering);
 
   globalXpBuffs = {
     astronomy: hasCombatGlobalBuff,
@@ -41,7 +42,7 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs();
 Meteor.setInterval(updateGlobalBuffs, 30000);
 
-export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) {
+export const addXp = function (skillType, xp, specificUserId) {
   let owner;
   if (specificUserId) {
     owner = specificUserId
@@ -57,25 +58,15 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
   const skillConstants = SKILLS[skill.type];
   const originalXp = skill.xp;
 
-
-
-  if (globalXpBuffs[skill.type] && !ignoreBuff) {
+  if (globalXpBuffs[skill.type]) {
     xp *= 1.35;
   }
 
   skill.xp += xp;
 
-  let xpToNextLevel = skillConstants.xpToLevel(skill.level);
+  const xpToNextLevel = skillConstants.xpToLevel(skill.level);
 
   if (skill.xp >= xpToNextLevel) {
-    let levelUps = 0;
-
-    while(skill.xp >= xpToNextLevel) {
-      skill.xp -= xpToNextLevel;
-      levelUps += 1;
-      xpToNextLevel = skillConstants.xpToLevel(skill.level + levelUps);
-    }
-
     // Update Level
     Skills.update({
       _id: skill._id,
@@ -83,14 +74,14 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
       level: skill.level
     }, {
       $set: {
-        level: skill.level + levelUps,
+        level: skill.level + 1,
         totalXp: (skill.totalXp + xp),
-        xp: skill.xp
+        xp: (skill.xp - xpToNextLevel)
       }
     });
 
     Chats.insert({
-      message: `Level Up! You are now level ${skill.level + levelUps} ${skill.type}`,
+      message: `Level Up! You are now level ${skill.level + 1} ${skill.type}`,
       username: 'Game',
       name: 'Game',
       date: new Date(),
@@ -108,7 +99,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
         owner
       }, {
         $set: {
-          craftingLevel: skill.level + levelUps
+          craftingLevel: skill.level + 1
         }
       });
     } else if (skill.type === 'inscription') {
@@ -116,11 +107,11 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
         owner
       }, {
         $set: {
-          inscriptionLevel: skill.level + levelUps
+          inscriptionLevel: skill.level + 1
         }
       });
     } else if (skill.type === 'mining') {
-      updateMiningStats(owner, '', true);
+      updateMiningStats(owner, true);
     }
 
     // Can probably be optimized
@@ -128,7 +119,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
       owner,
       type: 'total'
     }, {
-      $inc: { level: levelUps }
+      $inc: { level: 1 }
     })
   } else {
     // Just update exp
@@ -149,7 +140,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
     });
     */
   }
-};
+}
 
 Meteor.methods({
   'skills.learnSkill'(skillName) {
@@ -195,7 +186,6 @@ Meteor.methods({
 
       Skills.insert({
         type: skillName,
-        server: Meteor.user().server,
         createdAt: new Date(),
         owner: Meteor.userId(),
         level: baseLevel,
@@ -358,11 +348,8 @@ Meteor.methods({
       limit = 200;
     }
 
-    const server = Meteor.user().server;
-
     if (skillName === 'personalQuest') {
       return Users.find({
-        server
         //banned: {
         //  $ne: true
         //}
@@ -379,7 +366,6 @@ Meteor.methods({
       }).fetch();
     } else if (skillName === 'boss') {
       return BossHealthScores.find({
-        server
         //banned: {
         //  $ne: true
         //}
@@ -396,7 +382,6 @@ Meteor.methods({
     } else {
       return Skills.find({
         type: skillName,
-        server
         //banned: {
         //  $ne: true
         //}
@@ -421,17 +406,17 @@ const MINUTE = 60 * 1000;
 Meteor.publish('skills', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     doc.xpToLevel = SKILLS[doc.type].xpToLevel(doc.level);
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Skills.find({
+  var observer = Skills.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('skills', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

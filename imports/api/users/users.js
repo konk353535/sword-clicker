@@ -14,8 +14,6 @@ UserSchema = new SimpleSchema({
   fakeGems: { type: Number, defaultValue: 0 },
   fakeGemsToday: { type: Number, defaultValue: 0 },
 
-  battleSecret: { type: String },
-  server: { type: String },
   banned: { type: Boolean, optional: true },
 
   membershipTo: { type: Date, optional: true },
@@ -35,8 +33,6 @@ UserSchema = new SimpleSchema({
   isMod: { type: Boolean, optional: true },
   isSuperMod: { type: Boolean, optional: true },
   isGuest: { type: Boolean, optional: true },
-
-  averageCombat: { type: Number, optional: true },
 
   logEvents: { type: Boolean, optional: true },
   uiState: { type: Object, blackbox: true, defaultValue: {} }, // used to save ui state, eg: hide / show chat
@@ -87,6 +83,7 @@ UserSchema = new SimpleSchema({
   'tutorial.hideCombatGroup': { type: Boolean },
   'tutorial.hideCombatBattleLog': { type: Boolean },
 
+
   'tutorial.hideMiningEquipment': { type: Boolean },
   'tutorial.highlightMiningEquipment': { type: Boolean },
   'tutorial.hideMiningMiners': { type: Boolean },  
@@ -103,8 +100,9 @@ UserSchema = new SimpleSchema({
   'personalQuest.level': { type: Number, defaultValue: 1 },
   'personalQuest.wave': { type: Number, defaultValue: 1 },
 
+
   stats: { type: Object },
   'stats.spellsCast' : { type: Number, defaultValue: 1 }
-});
+})
 
 Meteor.users.attachSchema(UserSchema);

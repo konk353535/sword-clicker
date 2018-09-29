@@ -355,7 +355,7 @@ export const PLANTS = {
     }, {
       type: 'skill',
       name: 'farming',
-      level: 19
+      level: 25
     }]
   },
 
@@ -1153,7 +1153,7 @@ export const PLANTS = {
 
   elk_log: {
     produces: 'elk_log',
-    name: 'elm tree',
+    name: 'elk tree',
     produceAmount: 20,
     id: 'elk_log',
     category: 'farming',
@@ -1663,4 +1663,4 @@ teak_log: {
       level: 30
     }]
   }
-};
+}

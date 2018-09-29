@@ -11,6 +11,7 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+import { Users } from '/imports/api/users/users';
 
 Meteor.methods({
 
@@ -48,8 +49,8 @@ Meteor.methods({
 
     const userDoc = Meteor.user();
 
-    // Update last updated immediately
-    // in case an error occurs further on in the code, the users updated will not get set
+    // Update last updated immeditely
+    // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
     Woodcutting.update(woodcutting._id, {
       $set: { lastGameUpdated: new Date() }
@@ -96,7 +97,11 @@ Meteor.methods({
       const possibleLogs = Object.keys(WOODCUTTING.woods).map((woodKey) => {
         return WOODCUTTING.woods[woodKey];
       }).filter((log) => {
-        return currentWoodcutter.stats.attack >= log.requiredAttack;
+        if (currentWoodcutter.stats.attack >= log.requiredAttack) {
+          return true;
+        }
+
+        return false;
       });
 
       const sortedLogs = _.sortBy(possibleLogs, 'chance');
@@ -159,7 +164,11 @@ Meteor.methods({
       return WOODCUTTING.woodcutters[key];
     }).filter((recipe) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      return woodcuttingSkill.level + 1 >= recipe.requiredWoodcuttingLevel;
+      if (woodcuttingSkill.level + 1 >= recipe.requiredWoodcuttingLevel) {
+        return true;
+      }
+
+      return false;
     });
 
     return woodcuttersArray;
@@ -179,7 +188,7 @@ Meteor.methods({
       return;
     }
 
-    // Fetch the axe which we will use, as it will disappear when we call requirements util
+    // Fetch the axe which we will use, as it will dissapear when we call requirements util
     const axeToUse = Items.findOne({
       itemId: woodcutterConstants.axeId,
       owner: Meteor.userId()
@@ -218,7 +227,7 @@ Meteor.methods({
     });
   }
 
-});
+})
 
 const MINUTE = 60 * 1000;
 
@@ -234,17 +243,17 @@ DDPRateLimiter.addRule({ type: 'method', name: 'woodcutting.gameUpdate',
 
 Meteor.publish('woodcutting', function() {
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     doc.maxWoodcutters = WOODCUTTING.baseMaxWoodcutters;
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Woodcutting.find({
+  var observer = Woodcutting.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('woodcutting', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

@@ -1,4 +1,4 @@
-import { orderLootTable } from '../../enemies/lootTables/index.js';
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 
 export const LEVEL_NINETEEN_MONSTERS = [{
   id: 'wolf',

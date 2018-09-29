@@ -414,4 +414,4 @@ export const TUNGSTEN_CRAFTS = {
       level: 50
     }]
   }
-};
+}

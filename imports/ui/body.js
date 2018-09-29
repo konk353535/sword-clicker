@@ -110,8 +110,8 @@ Template.body.onCreated(function () {
 
     invitedToGroups.forEach((invitedToGroups) => {
       toastr.info(`
-        <div class="d-flex" style="white-space: nowrap; max-width: 250px; overflow: hidden; text-overflow: ellipsis">
-          Group invite from ${invitedToGroups.leaderName}.
+        <div class="d-flex">
+          You have been invited to a group by ${invitedToGroups.leaderName}.
         </div>
       `)
     });
@@ -146,7 +146,7 @@ Template.body.onCreated(function () {
         cachedAdventures[adventure.id] = true;
       }
     });
-  });
+  })
 
   // Track exp and level drops
   Tracker.autorun(() => {
@@ -211,8 +211,8 @@ Template.body.onCreated(function () {
 
   $.fn.extend({
     animateCss: function (animationName) {
-      const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      this.addClass('animated ' + animationName).one(animationEnd, function() {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
             $(this).remove();
         });
     }
@@ -316,8 +316,6 @@ Template.body.onCreated(function () {
   Meteor.subscribe('adventures');
   // Battle List
   Meteor.subscribe('battlesList');
-  // State
-  Meteor.subscribe('state');
 
   // Only use these if summary list is showing & not mobile
 
@@ -329,7 +327,7 @@ Template.body.rendered = function() {
     "positionClass": "toast-top-right",
     "preventDuplicates": true,
     "onclick": null,
-  };
+  }
 
   if ($(window).width() < 768) {
     baseOptions.positionClass = "toast-bottom-center";
@@ -339,17 +337,17 @@ Template.body.rendered = function() {
   }
 
   $(document).on('click','.navbar-collapse.show',function(e) {
-    if( $(e.target).is('a') && ( $(e.target).attr('class') !== 'dropdown-toggle' ) ) {
+    if( $(e.target).is('a') && ( $(e.target).attr('class') != 'dropdown-toggle' ) ) {
       $(this).collapse('hide');
     }
   });
-};
+}
 
 Template.myLayout.helpers({
   currentRoute() {
     return Router.current().route.getName();
   },
-});
+})
 
 Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(combatTimer);
@@ -360,14 +358,3 @@ Template.body.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(woodcuttingTimer);
   Meteor.clearInterval(floatingTextTimer);
 });
-
-Template.registerHelper('math', function () {
-  let result = ( terms, cb ) => terms.pop() && terms.reduce( cb );
-
-  return {
-    mul ( ...terms ) { return result( terms, ( a, b ) => a * b ); },
-    div ( ...terms ) { return result( terms, ( a, b ) => b ? a / b : 0 ); },
-    sum ( ...terms ) { return result( terms, ( a, b ) => a + b ); },
-    sub ( ...terms ) { return result( terms, ( a, b ) => a - b ); },
-  }
-} );

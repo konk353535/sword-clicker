@@ -117,4 +117,4 @@ export const LEVEL_FIVE_CRAFTS = {
     requiredInscriptionLevel: 18,
     required: [UTIL.PURPLE_200, UTIL.BLUE_255, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
   },
-};
+}

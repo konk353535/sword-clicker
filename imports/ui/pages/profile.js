@@ -28,7 +28,7 @@ Template.profilePage.onCreated(function bodyOnCreated() {
 });
 
 Template.profilePage.events({
-});
+})
 
 Template.profilePage.helpers({
 
@@ -84,4 +84,4 @@ Template.profilePage.helpers({
     return instance.state.get('username');
   }
 
-});
+})

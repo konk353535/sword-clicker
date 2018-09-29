@@ -26,6 +26,26 @@
   <div class="row mb-3">
     <div class="col-md-3">
       <div class="card text-center mt-3 p-3">
+        <h4>Some Gems</h4>
+        <p class="mb-1">5 <img src="/icons/gems.svg" class="extra-small-icon"></p>
+        <div class="d-flex justify-content-center">
+          <img src="/icons/bunchOfGems.svg" class="large-icon my-3">
+        </div>
+        <div>
+          {{> React
+            component=RaiCheckout
+            onPaymentConfirmed=onPaymentConfirmed
+            payment=someGemsPayment
+            public_key=public_key
+            sub_title='Some Gems'
+            title='Eternity Tower'
+            item_id='someGems'
+            text='Pay with RaiBlocks $0.05'}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center mt-3 p-3">
         <h4>Bunch Of Gems</h4>
         <p class="mb-1">500 <img src="/icons/gems.svg" class="extra-small-icon"></p>
         <div class="d-flex justify-content-center">
@@ -38,6 +58,18 @@
             $4.99
           {{/if}}
         </button>
+        <div class="mt-1">
+        {{> React
+          component=RaiCheckout
+          onPaymentConfirmed=onPaymentConfirmed
+          payment=bunchOfGemsPayment
+          buttonClasses='btn-block'
+          public_key=public_key
+          sub_title='Bunch Of Gems'
+          title='Eternity Tower'
+          item_id='bunchOfGems'
+          text='Pay with RaiBlocks $4.99'}}
+        </div>
       </div>
     </div>
     <div class="col-md-3">
@@ -79,8 +111,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.buffCombat}}
-            <span class="my-1" alt="{{globalBuffs.buffCombat}}">{{moFromNow globalBuffs.buffCombat true}}</span>
+          {{#if globalBuffs.combat}}
+            <span class="my-1" alt="{{globalBuffs.combat}}">{{moFromNow globalBuffs.combat true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}
@@ -99,8 +131,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.buffCrafting}}
-            <span class="my-1" alt="{{globalBuffs.buffCrafting}}">{{moFromNow globalBuffs.buffCrafting true}}</span>
+          {{#if globalBuffs.crafting}}
+            <span class="my-1" alt="{{globalBuffs.crafting}}">{{moFromNow globalBuffs.crafting true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}
@@ -119,8 +151,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.buffGathering}}
-            <span class="my-1" alt="{{globalBuffs.buffGathering}}">{{moFromNow globalBuffs.buffGathering true}}</span>
+          {{#if globalBuffs.gathering}}
+            <span class="my-1" alt="{{globalBuffs.gathering}}">{{moFromNow globalBuffs.gathering true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}
@@ -147,7 +179,7 @@
           <li>+20% mining damage</li>
           <li>+20% woodcutting speed</li>
           <li>+20% crafting speed</li>
-          <li>+20% inscription speed</li>
+          <li>+20% inscripting speed</li>
           <li>+2 farming plots</li>
           <li>+20% energy regen</li>
           <li>+1 phantom mage</li>
@@ -295,7 +327,7 @@
           <img src="/icons/tankT2HD.png" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
-          <li>Requires at least level 60 defense to equip</li>
+          <li>Requires atleast level 60 defense to equip</li>
         </div>
         <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="tank_t2">
           300<img src="/icons/gems.svg" class="extra-small-icon">
@@ -309,7 +341,7 @@
           <img src="/icons/damageT2HD.png" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
-          <li>Requires at least level 60 attack to equip</li>
+          <li>Requires atleast level 60 attack to equip</li>
         </div>
         <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="damage_t2">
           300<img src="/icons/gems.svg" class="extra-small-icon">
@@ -323,7 +355,7 @@
           <img src="/icons/mageT2HD.png" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
-          <li>Requires at least level 20 magic to equip</li>
+          <li>Requires atleast level 20 magic to equip</li>
         </div>
         <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="mage_t2">
           300<img src="/icons/gems.svg" class="extra-small-icon">
@@ -337,7 +369,7 @@
           <img src="/icons/crowT2.png" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
-          <li>Requires at least level 60 attack to equip</li>
+          <li>Requires atleast level 60 attack to equip</li>
           <li>Includes T1 crow when bought</li>
         </div>
         <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="crow_t2">
@@ -352,7 +384,7 @@
           <img src="/icons/phoenixT2.png" class="medium-icon my-3">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
-          <li>Requires at least level 20 magic to equip</li>
+          <li>Requires atleast level 20 magic to equip</li>
           <li>Includes T1 Phoenix when bought</li>
         </div>
         <button class="buy-icon btn btn-secondary mt-1 {{#if $gte totalGems 300}}{{else}}disabled{{/if}}" data-icon-id="phoenix_t2">

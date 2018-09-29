@@ -1,7 +1,7 @@
 export const ELVEN_STEEL_ITEMS = {
   "elven_steel_dagger": {
     "id": "elven_steel_dagger",
-    "icon": "elvenSteelDagger.png",
+    "icon": "elvenSteelDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_spear": {
     "id": "elven_steel_spear",
-    "icon": "elvenSteelSpear.png",
+    "icon": "elvenSteelSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_short_sword": {
     "id": "elven_steel_short_sword",
-    "icon": "elvenSteelShortsword.png",
+    "icon": "elvenSteelShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_scimitar": {
     "id": "elven_steel_scimitar",
-    "icon": "elvenSteelScimitar.png",
+    "icon": "elvenSteelScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_long_sword": {
     "id": "elven_steel_long_sword",
-    "icon": "elvenSteelLongsword.png",
+    "icon": "elvenSteelLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_broad_sword": {
     "id": "elven_steel_broad_sword",
-    "icon": "elvenSteelBroadSword.png",
+    "icon": "elvenSteelBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_battle_axe": {
     "id": "elven_steel_battle_axe",
-    "icon": "elvenSteelBattleAxe.png",
+    "icon": "elvenSteelBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_helmet": {
     "id": "elven_steel_helmet",
-    "icon": "elvenSteelHelmet.png",
+    "icon": "elvenSteelHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "elven steel helmet",
@@ -247,10 +247,10 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_chest_plate": {
     "id": "elven_steel_chest_plate",
-    "icon": "elvenSteelChestplate.png",
+    "icon": "elvenSteelChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "elven steel Chestplate",
+    "name": "elven steel chestplate",
     "sellPrice": 2500,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_plate_legs": {
     "id": "elven_steel_plate_legs",
-    "icon": "elvenSteelPlatelegs.png",
+    "icon": "elvenSteelPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "elven steel platelegs",
@@ -297,7 +297,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_shield": {
     "id": "elven_steel_shield",
-    "icon": "elvenSteelShield.png",
+    "icon": "elvenSteelShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const ELVEN_STEEL_ITEMS = {
       level: 90
     }]
   }
-};
+}

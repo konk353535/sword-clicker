@@ -1,10 +1,10 @@
 <template name="buffIcon">
-  <div class="buff-icon-container icon-box {{classes}} {{#if small}}small-icon{{else}}medium-icon{{/if}}" style="position: relative">
+  <div class="buff-icon-container icon-box {{#if small}}small-icon{{else}}medium-icon{{/if}}" style="position: relative">
     <img src="/icons/{{buff.data.icon}}" class="small-icon">
-    {{#if buff.stacks}}
+    {{#if buff.data.stacks}}
       <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
         line-height: 10px;">
-        {{buff.stacks}}
+        {{buff.data.stacks}}
       </span>
     {{else if $lt (moDiff buff.data.endDate moNow 'seconds') 59}}
       {{#if small}}
@@ -17,15 +17,15 @@
           {{moDiff buff.data.endDate moNow 'seconds'}}
         </span>
       {{/if}}
-    {{else if $lte buff.duration 59}}
+    {{else if $lte buff.data.duration 59}}
       {{#if small}}
         <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
           line-height: 10px;">
-          {{> formatNumber number=buff.duration}}
+          {{> formatNumber number=buff.data.duration}}
         </span>
       {{else}}
         <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
-          {{> formatNumber number=buff.duration}}
+          {{> formatNumber number=buff.data.duration}}
         </span>
       {{/if}}
     {{/if}}

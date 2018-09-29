@@ -615,4 +615,4 @@ export const DARKSTEEL_CRAFTS = {
       level: 100
     }]
   }
-};
+}

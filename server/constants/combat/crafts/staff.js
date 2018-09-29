@@ -376,4 +376,4 @@ export const STAFF_CRAFTS = {
     }]
   }
 
-};
+}

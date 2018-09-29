@@ -678,4 +678,4 @@ export const ASTRAL_CRAFTS = {
       level: 110
     }]
   }
-};
+}

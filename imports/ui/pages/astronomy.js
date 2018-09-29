@@ -1,10 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 
 import { Astronomy } from '/imports/api/astronomy/astronomy.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './astronomy.html';
 
@@ -13,7 +16,7 @@ let astronomyPageTimer;
 const descriptions = {
   attackSpeed: 'Shards per hour',
   criticalChance: '% chance to get 2x shards'
-};
+}
 
 Template.astronomyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -73,7 +76,7 @@ Template.astronomyPage.events({
   'submit .deposit-form'(event, instance) {
     event.preventDefault();
     const mage = instance.state.get('selectedMage');
-    const amount = parseInt($('.deposit-amount-input').val());
+    const amount = parseInt($('.deposit-amount-input').val())
     Meteor.call('astronomy.depositMageGold', mage.index, amount);
     instance.$('.depositMageModal').modal('hide');
   },
@@ -81,7 +84,7 @@ Template.astronomyPage.events({
   'submit .withdraw-form'(event, instance) {
     event.preventDefault();
     const mage = instance.state.get('selectedMage');
-    const amount = parseInt($('.withdraw-amount-input').val());
+    const amount = parseInt($('.withdraw-amount-input').val())
     Meteor.call('astronomy.withdrawMageGold', mage.index, amount);
     instance.$('.depositMageModal').modal('hide');
   },
@@ -109,7 +112,7 @@ Template.astronomyPage.helpers({
     }
 
     astronomy.mages.forEach((mage, mageIndex) => {
-      mage.index = mageIndex;
+      mage.index = mageIndex
       mage.amount = mage.gold;
       console.log(mage);
       mage.icon += '.svg';
@@ -118,7 +121,7 @@ Template.astronomyPage.helpers({
         mage.primaryAction = {
           description: 'Upgrade',
           method() {
-            instance.$('.mageUpgradeModal').modal('show');
+            instance.$('.mageUpgadeModal').modal('show');
           }
         }
       } else if (mage) {

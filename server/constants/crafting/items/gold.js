@@ -197,4 +197,4 @@ export const GOLD_ITEMS = {
     sellPrice: 3600,
     description: 'Can be sold for a tidy sum'
   },
-};
+}

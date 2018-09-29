@@ -3,21 +3,24 @@ import moment from 'moment';
 import _ from 'underscore';
 import { Random } from 'meteor/random';
 
+import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
-import { STATE_BUFFS } from '/imports/constants/state';
 
 import { BattlesList } from '/imports/api/battles/battles';
 import { Skills } from '/imports/api/skills/skills';
-import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Floors } from '/imports/api/floors/floors';
 import { Adventures } from '/imports/api/adventures/adventures';
 
+import { requirementsUtility } from '/server/api/crafting/crafting';
+
 import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills';
 import { Users } from '/imports/api/users/users';
+
+const redis = new Meteor.RedisCollection('redis');
 
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
@@ -86,7 +89,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor, forceEp
     length,
     duration
   }
-};
+}
 
 const processCompleteAdventure = function processCompleteAdventure(adventure) {
   // Determine win / loss (To Do, make gear count)
@@ -108,15 +111,17 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     4: 22000,
     5: 33000,
     6: 55000
-  };
+  }
 
   const lengthXpLookup = {
     short: 1,
     long: 0.7,
     epic: 0.5
-  };
+  }
 
-  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
+  const rawGlobalBuffs = redis.get('global-buffs-xpq');
+  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
 
   // Determine xp
   let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);
@@ -183,7 +188,7 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
       }
     }
   }
-};
+}
 
 Meteor.methods({
 
@@ -319,11 +324,8 @@ Meteor.methods({
       combatSkills[combatSkill.type] = combatSkill;
     });
 
-    // get user for server ID
-    const userDoc = Users.findOne(this.userId);
-
     // Get max floor
-    const maxFloor = Floors.findOne({ floorComplete: false, server: userDoc.server }).floor;
+    const maxFloor = Floors.findOne({ floorComplete: false }).floor;
 
     // Add a new adventure entry
     const forceEpic = true;
@@ -441,7 +443,7 @@ Meteor.methods({
       if (moment().isAfter(adventure.endDate) && adventure.win == null) {
         processCompleteAdventure(adventure);
       }
-    });
+    })
 
     // Determine time since last update
     const now = moment();
@@ -466,11 +468,8 @@ Meteor.methods({
         combatSkills[combatSkill.type] = combatSkill;
       });
 
-      // get user for server ID
-      const userDoc = Users.findOne(this.userId);
-
       // Get max floor
-      const maxFloor = Floors.findOne({ floorComplete: false, server: userDoc.server }).floor;
+      const maxFloor = Floors.findOne({ floorComplete: false }).floor;
 
       let newAdventureCount = (Math.floor(Math.abs(myAdventures.timeTillUpdate) / NEW_ADVENTURE_SECONDS) + 1);
       if (newAdventureCount >= MAX_ADVENTURES) {
@@ -512,7 +511,7 @@ Meteor.methods({
     });
   }
 
-});
+})
 
 const MINUTE = 60 * 1000;
 
@@ -526,7 +525,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'adventures.gameUpdate',
 Meteor.publish('adventures', function() {
 
   //Transform function
-  const transform = function(doc) {
+  var transform = function(doc) {
     // Inject icon and name into document based on floor and room
     doc.adventures = doc.adventures.map((adventure) => {
       const floorConstants = FLOORS[adventure.floor][adventure.room];
@@ -537,11 +536,11 @@ Meteor.publish('adventures', function() {
       return adventure;
     });
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Adventures.find({
+  var observer = Adventures.find({
     owner: this.userId
   }).observe({
       added: function (document) {

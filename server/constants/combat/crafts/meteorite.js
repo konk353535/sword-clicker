@@ -414,4 +414,4 @@ export const METEORITE_CRAFTS = {
       level: 80
     }]
   }
-};
+}

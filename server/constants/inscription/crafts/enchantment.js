@@ -1,3 +1,5 @@
+import { ITEMS } from '/server/constants/items/index.js'; 
+
 export const ENCHANTMENT_CRAFTS = {
   
   enchantment_nullify: {
@@ -153,4 +155,4 @@ export const ENCHANTMENT_CRAFTS = {
       level: 1
     }]
   }
-};
+}

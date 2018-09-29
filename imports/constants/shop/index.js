@@ -4,7 +4,7 @@ export const DONATORS_BENEFITS = {
   energyBonus: 20, // Increased energy regen ( combat )
   craftingBonus: 20, // Decreased crafting time ( crafting )
   inscriptionBonus: 20 // Decrease crafting time ( inscription )
-};
+}
 
 export const SHOP_ITEMS = {
   '15_day_membership': {
@@ -16,7 +16,7 @@ export const SHOP_ITEMS = {
     name: 'Membership (30 days)',
     cost: 10
   }
-};
+}
 
 export const PLAYER_ICONS = {
   'mage_t1': {
@@ -97,4 +97,4 @@ export const PLAYER_ICONS = {
       level: 80
     }]
   }
-};
+}

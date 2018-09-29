@@ -33,4 +33,4 @@ export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITE
     sellPrice: 600,
     description: 'Can be sold for a tidy sum'
   }
-});
+})

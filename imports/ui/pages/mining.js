@@ -19,7 +19,6 @@ let hasInitGameUpdate;
 let minersCache;
 let prospectorsCache;
 let oresCache;
-let tooltip;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -43,12 +42,6 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         this.state.set('currentTab', myUser.uiState.miningTab);
       } else {
         this.state.set('currentTab', 'minePit');
-      }
-
-      if (myUser.uiState && myUser.uiState.miningMultihit !== undefined) {
-        this.state.set('miningMultihit', myUser.uiState.miningMultihit);
-      } else {
-        this.state.set('miningMultihit', true);
       }
     }
   });
@@ -84,7 +77,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: minerResults,
         level: miningSkill.level,
         date: moment().toDate(),
-      };
+      }
       Session.set('minersCache', minersCache);
     }
 
@@ -97,7 +90,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: prospectorResults,
         level: miningSkill.level,
         date: moment().toDate()
-      };
+      }
       Session.set('prospectorsCache', prospectorsCache);
     }
 
@@ -110,7 +103,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
         data: oreResults,
         level: miningSkill.level,
         date: moment().toDate()
-      };
+      }
       Session.set('oresCache', oresCache);
     }
 
@@ -131,11 +124,15 @@ Template.miningPage.onCreated(function bodyOnCreated() {
 Template.miningPage.events({
 
   'click .multihit-btn'(event, instance) {
-    if (instance.state.get('miningMultihit')) {
-      Meteor.call('users.setUiState', 'miningMultihit', false);
-    } else {
-      Meteor.call('users.setUiState', 'miningMultihit', true);
-    }
+    
+    // Determine new boolean and label
+    let multihit = Template.instance().$('.multihit-value').val();
+    multihit = multihit == "1" ? 0 : 1;
+    let label = multihit ? "Disable Multihit" : "Enable Multihit";
+
+    // Set visual and hidden values
+    event.target.innerText = label;
+    Template.instance().$('.multihit-value').val(multihit);
   },
 
   'click .minePitLink'(event, instance) {
@@ -210,7 +207,7 @@ Template.hireMinerButton.helpers({
   showModal() {
     return Template.instance().state.get('showModal');
   }
-});
+})
 
 Template.oreListItem.rendered = function () {
   tooltip = new Drop({
@@ -220,17 +217,17 @@ Template.oreListItem.rendered = function () {
     position: 'top left',
     remove: true
   });
-};
+}
 
 Template.buyableMiner.rendered = function () {
-  const dpsBreakdownTooltip = new Drop({
+  const dpsBreakdownTooltio = new Drop({
     target: Template.instance().$('.damage-per-hour-container')[0],
     content: Template.instance().$('.dps-breakdown-tooltip-content')[0],
     openOn: 'hover',
     position: 'top left',
     remove: true
   });
-};
+}
 
 Template.miningPage.rendered = function () {
   const prospectorTooltip = new Drop({
@@ -248,7 +245,7 @@ Template.miningPage.rendered = function () {
     position: 'top left',
     remove: true
   });
-};
+}
 
 Template.miningPage.helpers({
   miningSkill() {
@@ -284,7 +281,11 @@ Template.miningPage.helpers({
 
       return ore;
     }).filter((ore) => {
-      return !(ore.amount === 0 && ore.isGem);
+      if (ore.amount === 0 && ore.isGem) {
+        return false;
+      }
+
+      return true;
     });
   },
 
@@ -479,7 +480,7 @@ Template.miningPage.helpers({
       item.hideCount = true;
       item.primaryAction = {
         method() {}
-      };
+      }
       return item;
     });
 
@@ -489,9 +490,5 @@ Template.miningPage.helpers({
     });
 
     return equippedMap;
-  },
-
-  miningMultihit() {
-    return Template.instance().state.get('miningMultihit');
   },
 });

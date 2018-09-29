@@ -5,6 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
 import './spellBookTab.html';
@@ -90,7 +91,7 @@ Template.spellBookTab.events({
       instance.$('.craft-amount-input').focus();
     }
   },
-});
+})
 
 Template.spellBookTab.helpers({
   spellCrafting() {
@@ -142,4 +143,4 @@ Template.spellBookTab.helpers({
   maxCraftableAmount() {
     return Template.instance().state.get('maxCraftableAmount');
   },
-});
+})

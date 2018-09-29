@@ -116,4 +116,4 @@ export const ASTRONOMY_ITEMS = {
     sellPrice: 750,
     description: 'A magic air shard, a relic from ancient times'
   }
-};
+}

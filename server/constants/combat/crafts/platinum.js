@@ -414,4 +414,4 @@ export const PLATINUM_CRAFTS = {
       level: 40
     }]
   }
-};
+}

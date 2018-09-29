@@ -2,13 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
-import { STATE_BUFFS } from '/imports/constants/state/index';
 
 import moment from 'moment';
 import _ from 'underscore';
 
 import { Skills } from '/imports/api/skills/skills';
-import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Users } from '/imports/api/users/users';
 import { Mining } from '/imports/api/mining/mining';
@@ -17,7 +15,9 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
-export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
+const redis = new Meteor.RedisCollection('redis');
+
+export const updateMiningStats = function (userId, isNewUser = false) {
   let owner;
   if (userId) {
     owner = userId;
@@ -36,7 +36,7 @@ export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = f
     owner,
     slot: 'mining_offhand',
     equipped: true
-  });
+  })
 
   let miningStats = {
   };
@@ -82,14 +82,11 @@ export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = f
   if (!miningStats.energyRegen) { miningStats.energyRegen = 10; }
   if (!miningStats.energyPerHit) { miningStats.energyPerHit = 1; }
 
-  // New users get full energy on their pick instantly.
+  miningStats.energy = 0;
+
+  // New users get full energy on there pick instantly.
   if (isNewUser) {
     miningStats.energy = miningStats.energyStorage;
-  } else if(slot === 'mining_offhand') {
-    let m = Mining.findOne({ owner: owner });
-    miningStats.energy = m.stats.energy;
-  } else {
-    miningStats.energy = 0;
   }
 
   // Set player stats
@@ -192,7 +189,7 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
       $inc: { health: (-1 * damage) },
     });    
   }
-};
+}
 
 Meteor.methods({
   'mining.clickedMineSpace'(mineSpaceId, multiplier = 1) {
@@ -327,8 +324,8 @@ Meteor.methods({
       }
     }
 
-    // Update last updated immediately
-    // in case an error occurs further on in the code, the users updated will not get set
+    // Update last updated immeditely
+    // incase an error occurs further on in the code, the users updated will not get set
     // Giving them a lot of extra XP!
     const newLastGameUpdated = new Date();
     Mining.update(mining._id, {
@@ -350,7 +347,9 @@ Meteor.methods({
       return miningSpace.oreId === 'gem';
     }).length;
 
-    const hasCraftingGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.crafting, 'value.activeTo': {$gte: moment().toDate()}}));
+    const rawGlobalBuffs = redis.get('global-buffs-xpq');
+    const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
+    const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
 
     // Takes a list of possible ores, and returns one based off there chances to spawn
     const spawnOre = function (sortedChanceOres) {
@@ -385,7 +384,7 @@ Meteor.methods({
       }
 
       return newOre;
-    };
+    }
 
     // Modifies the miningSpaces array
     // gainedItems is added to if a mine space is cleared of an ore
@@ -428,7 +427,7 @@ Meteor.methods({
       }
 
       return gainedXp;
-    };
+    }
 
     // Tick count = How many ticks to step through
     // Tick strength = How strong to make each tick, 1 = seconds
@@ -449,15 +448,13 @@ Meteor.methods({
       });
 
       // Increase or decrease chance of finding ore based on owned prospectors
-      // Clone so we don't mutate the constants
+      // Clone so we don't mutatet the constants
       const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
         // Jewel prospectors cover all available jewel types in one prospector
         if(ore.isGem && prospectorsMap['jewel']) {
           ore.chance *= prospectorsMap['jewel'];
         } else if (prospectorsMap[ore.id]) {
           ore.chance *= prospectorsMap[ore.id];
-        } else if (prospectorsMap[ore.id.replace('_essence', '')]) {
-          ore.chance *= prospectorsMap[ore.id.replace('_essence', '')];
         }
 
         if (ore.canCluster && (ore.requiredLevel + 20) <= miningSkill.level) {
@@ -631,7 +628,7 @@ Meteor.methods({
         }
       });
 
-    };
+    }
 
     // Less then 5 minutes, use second based ticks
     simulateMining(secondsElapsed, 1);
@@ -647,7 +644,11 @@ Meteor.methods({
       return MINING.miners[key];
     }).filter((recipe) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      return miningSkill.level + 1 >= recipe.requiredMiningLevel;
+      if (miningSkill.level + 1 >= recipe.requiredMiningLevel) {
+        return true;
+      }
+
+      return false;
     });
 
     return minersArray;
@@ -660,7 +661,7 @@ Meteor.methods({
     });
 
     const oresArray = Object.keys(MINING.ores).map((key) => {
-      const constants = MINING.ores[key];
+      const constants = MINING.ores[key]
       return {
         icon: constants.icon,
         name: constants.name,
@@ -697,7 +698,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-};
+}
 
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.clickedMineSpace', userId }, 100, 0.5 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'mining.buyProspector', userId }, 15, 0.5 * MINUTE);
@@ -711,7 +712,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'mining.fetchMiners', userId }, 1
 Meteor.publish('miningSpace', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     if (doc.oreId) {
       const currentOreConstants = MINING.ores[doc.oreId];
       doc.requiredLevel = currentOreConstants.requiredLevel;
@@ -726,11 +727,11 @@ Meteor.publish('miningSpace', function() {
       }
     }
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = MiningSpace.find({
+  var observer = MiningSpace.find({
     owner: this.userId
   }).observe({
     added: function (document) {
@@ -755,20 +756,20 @@ Meteor.publish('miningSpace', function() {
 Meteor.publish('mining', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     doc.miners.map((miner) => {
       miner.xpToLevel = MINING.miners.xpToLevel(miner.level || 1);
       return miner;
     });
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Mining.find({
+  var observer = Mining.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('mining', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

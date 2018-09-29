@@ -1,3 +1,5 @@
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
+
 export const WIZARD_ITEMS = {
 
   phoenix_hat: {
@@ -21,7 +23,7 @@ export const WIZARD_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 20
+      level: 25
     }],
     enchantments: ['phoenix_hat']
   },
@@ -50,7 +52,7 @@ export const WIZARD_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 10
+      level: 15
     }],
     enchantments: ['druidic_hat'],
   },
@@ -65,22 +67,23 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit healing energy',
     isEquippable: true,
     stats: {
-      healthMax: 30,
-      magicPower: 6,
+      healthMax: 60,
+      magicPower: 8,
       magicArmor: 5,
       healingPower: 10
     },
     extraStats: {
-      healthMax: 30,
+      healthMax: 60,
       magicPower: 2,
       healingPower: 4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 10
+      level: 15
     }]
   },
+
 
   druids_pants: {
     id: 'druids_pants',
@@ -92,26 +95,26 @@ export const WIZARD_ITEMS = {
     description: 'Helps emit healing energy',
     isEquippable: true,
     stats: {
-      healthMax: 30,
-      magicPower: 6,
+      healthMax: 60,
+      magicPower: 8,
       magicArmor: 5,
       healingPower: 10
     },
     extraStats: {
-      healthMax: 30,
+      healthMax: 60,
       magicPower: 2,
       healingPower: 4
     },
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 10
+      level: 15
     }]
   },
 
   brown_wizard_hat: {
     id: 'brown_wizard_hat',
-    icon: 'brownWizardHat.png',
+    icon: 'brownWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'brown wizard hat',
@@ -136,7 +139,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_hat: {
     id: 'blue_wizard_hat',
-    icon: 'blueWizardHat.png',
+    icon: 'blueWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'blue wizard hat',
@@ -161,7 +164,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_hat: {
     id: 'purple_wizard_hat',
-    icon: 'purpleWizardHat.png',
+    icon: 'purpleWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'purple wizard hat',
@@ -186,7 +189,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_hat: {
     id: 'orange_wizard_hat',
-    icon: 'orangeWizardHat.png',
+    icon: 'orangeWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'orange wizard hat',
@@ -211,7 +214,7 @@ export const WIZARD_ITEMS = {
 
   brown_wizard_shirt: {
     id: 'brown_wizard_shirt',
-    icon: 'brownWizardShirt.png',
+    icon: 'brownWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'brown wizard shirt',
@@ -236,7 +239,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_shirt: {
     id: 'blue_wizard_shirt',
-    icon: 'blueWizardShirt.png',
+    icon: 'blueWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'blue wizard shirt',
@@ -261,7 +264,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_shirt: {
     id: 'purple_wizard_shirt',
-    icon: 'purpleWizardShirt.png',
+    icon: 'purpleWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'purple wizard shirt',
@@ -286,7 +289,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_shirt: {
     id: 'orange_wizard_shirt',
-    icon: 'orangeWizardShirt.png',
+    icon: 'orangeWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'orange wizard shirt',
@@ -311,7 +314,7 @@ export const WIZARD_ITEMS = {
 
   brown_wizard_shorts: {
     id: 'brown_wizard_shorts',
-    icon: 'brownWizardShorts.png',
+    icon: 'brownWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'brown wizard shorts',
@@ -336,7 +339,7 @@ export const WIZARD_ITEMS = {
 
   blue_wizard_shorts: {
     id: 'blue_wizard_shorts',
-    icon: 'blueWizardShorts.png',
+    icon: 'blueWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'blue wizard shorts',
@@ -361,7 +364,7 @@ export const WIZARD_ITEMS = {
 
   purple_wizard_shorts: {
     id: 'purple_wizard_shorts',
-    icon: 'purpleWizardShorts.png',
+    icon: 'purpleWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'purple wizard shorts',
@@ -386,7 +389,7 @@ export const WIZARD_ITEMS = {
 
   orange_wizard_shorts: {
     id: 'orange_wizard_shorts',
-    icon: 'orangeWizardShorts.png',
+    icon: 'orangeWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'orange wizard shorts',
@@ -411,7 +414,7 @@ export const WIZARD_ITEMS = {
 
   amber_wizard_hat: {
     id: 'amber_wizard_hat',
-    icon: 'amberWizardHat.png',
+    icon: 'amberWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'amber wizard hat',
@@ -436,7 +439,7 @@ export const WIZARD_ITEMS = {
 
   amber_wizard_shirt: {
     id: 'amber_wizard_shirt',
-    icon: 'amberWizardShirt.png',
+    icon: 'amberWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'amber wizard shirt',
@@ -461,7 +464,7 @@ export const WIZARD_ITEMS = {
 
  amber_wizard_shorts: {
     id: 'amber_wizard_shorts',
-    icon: 'amberWizardShorts.png',
+    icon: 'amberWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'amber wizard shorts',
@@ -486,7 +489,7 @@ export const WIZARD_ITEMS = {
 
   violet_wizard_hat: {
     id: 'violet_wizard_hat',
-    icon: 'violetWizardHat.png',
+    icon: 'violetWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'violet wizard hat',
@@ -511,7 +514,7 @@ export const WIZARD_ITEMS = {
 
   violet_wizard_shirt: {
     id: 'violet_wizard_shirt',
-    icon: 'violetWizardShirt.png',
+    icon: 'violetWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'violet wizard shirt',
@@ -536,7 +539,7 @@ export const WIZARD_ITEMS = {
 
   violet_wizard_shorts: {
     id: 'violet_wizard_shorts',
-    icon: 'violetWizardShorts.png',
+    icon: 'violetWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'violet wizard shorts',
@@ -561,7 +564,7 @@ export const WIZARD_ITEMS = {
 
   crimson_wizard_hat: {
     id: 'crimson_wizard_hat',
-    icon: 'crimsonWizardHat.png',
+    icon: 'crimsonWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'crimson wizard hat',
@@ -586,7 +589,7 @@ export const WIZARD_ITEMS = {
 
   crimson_wizard_shirt: {
     id: 'crimson_wizard_shirt',
-    icon: 'crimsonWizardShirt.png',
+    icon: 'crimsonWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'crimson wizard shirt',
@@ -611,7 +614,7 @@ export const WIZARD_ITEMS = {
 
   crimson_wizard_shorts: {
     id: 'crimson_wizard_shorts',
-    icon: 'crimsonWizardShorts.png',
+    icon: 'crimsonWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'crimson wizard shorts',
@@ -636,7 +639,7 @@ export const WIZARD_ITEMS = {
 
   azure_wizard_hat: {
     id: 'azure_wizard_hat',
-    icon: 'azureWizardHat.png',
+    icon: 'azureWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'azure wizard hat',
@@ -661,7 +664,7 @@ export const WIZARD_ITEMS = {
 
   azure_wizard_shirt: {
     id: 'azure_wizard_shirt',
-    icon: 'azureWizardShirt.png',
+    icon: 'azureWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'azure wizard shirt',
@@ -686,7 +689,7 @@ export const WIZARD_ITEMS = {
 
   azure_wizard_shorts: {
     id: 'azure_wizard_shorts',
-    icon: 'azureWizardShorts.png',
+    icon: 'azureWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'azure wizard shorts',
@@ -711,7 +714,7 @@ export const WIZARD_ITEMS = {
 
   verdant_wizard_hat: {
     id: 'verdantwizard_hat',
-    icon: 'verdantWizardHat.png',
+    icon: 'verdantWizardHat.svg',
     category: 'combat',
     slot: 'head',
     name: 'verdant wizard hat',
@@ -736,7 +739,7 @@ export const WIZARD_ITEMS = {
 
   verdant_wizard_shirt: {
     id: 'verdant_wizard_shirt',
-    icon: 'verdantWizardShirt.png',
+    icon: 'verdantWizardShirt.svg',
     category: 'combat',
     slot: 'chest',
     name: 'verdant wizard shirt',
@@ -761,7 +764,7 @@ export const WIZARD_ITEMS = {
 
   verdant_wizard_shorts: {
     id: 'verdant_wizard_shorts',
-    icon: 'verdantWizardShorts.png',
+    icon: 'verdantWizardShorts.svg',
     category: 'combat',
     slot: 'legs',
     name: 'verdant wizard shorts',
@@ -783,4 +786,4 @@ export const WIZARD_ITEMS = {
       level: 55
     }]
   }
-};
+}

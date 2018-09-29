@@ -569,4 +569,4 @@ export const ESSENCE_CRAFTS = {
       level: 98
     }]
   }
-};
+}

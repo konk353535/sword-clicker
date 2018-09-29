@@ -595,4 +595,4 @@ export const UTIL = {
   LEVEL_58: { type: 'skill', name: 'inscription', level: 58 },
   LEVEL_59: { type: 'skill', name: 'inscription', level: 59 },
   LEVEL_60: { type: 'skill', name: 'inscription', level: 60 }
-};
+}

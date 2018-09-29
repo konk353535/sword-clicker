@@ -6,7 +6,6 @@ import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import './mineSpace.html';
 
 import { Mining } from '/imports/api/mining/mining.js';
-import { Users } from '/imports/api/users/users.js';
 
 let warningShown = false;
 Template.mineSpace.onCreated(function bodyOnCreated() {
@@ -26,13 +25,10 @@ Template.mineSpace.events({
       membershipMultiplier *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
     }
 
-    let multiHit = false;
-    const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser && myUser.uiState && myUser.uiState.miningMultihit) {
-      multiHit = true;
-    }
+    let multihit = $('.multihit-value').val();
+    multihit = multihit == "1" ? true : false;
 
-    if (shiftKey || multiHit) {
+    if (shiftKey || multihit) {
       let perHit = myMining.stats.attack * multiplier * membershipMultiplier;
       let hitsRemaining = Math.ceil(instance.data.mineSpace.health / perHit);
       multiplier = Math.min( hitsRemaining, 10);

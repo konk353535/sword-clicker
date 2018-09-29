@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import moment from 'moment';
 import _ from 'underscore';
 
 import { PLAYER_ICONS } from '/imports/constants/shop/index.js';
@@ -36,7 +37,7 @@ Template.skinLibraryIcon.rendered = function () {
     position: 'top left',
     remove: true
   });
-};
+}
 
 Template.skinLibraryIcon.helpers({
   description() {
@@ -50,10 +51,10 @@ Template.skinLibraryIcon.helpers({
 
     return description;
   }
-});
+})
 
 Template.skinTab.events({
-});
+})
 
 Template.skinTab.helpers({
   skinsLibrary() {
@@ -61,7 +62,7 @@ Template.skinTab.helpers({
       owner: Meteor.userId()
     });
 
-    const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+    const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons)
 
     return Object.keys(PLAYER_ICONS).map((key) => {
       let disabled = true;
@@ -81,4 +82,4 @@ Template.skinTab.helpers({
       });
     });
   }
-});
+})

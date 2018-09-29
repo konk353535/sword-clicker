@@ -29,4 +29,4 @@ export const INSCRIPTION = {
     return maxCrafts;
   }
 
-};
+}

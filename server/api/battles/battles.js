@@ -7,21 +7,64 @@ import { Floors } from '/imports/api/floors/floors';
 import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Battles, RedisBattles, BattlesList } from '/imports/api/battles/battles';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
-import { Servers } from '/imports/api/servers/servers';
 
-import { ITEMS } from '/server/constants/items';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 
 import { startBattle } from './battleMethods/startBattle';
+import { progressBattle } from './battleMethods/progressBattle';
+
+const redis = new Meteor.RedisCollection('redis');
 
 const setBattleAgain = function(floor, room) {
   Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
 };
+
+export const resumeBattle = function(id) {
+  // Find the battle
+  const rawBattle = redis.get(`battles-${id}`);
+  let actualBattle;
+  if (rawBattle) {
+    actualBattle = JSON.parse(rawBattle);
+  }
+
+  let isUpdatedStale;
+  let isCreatedStale;
+
+  if (actualBattle) {
+    isUpdatedStale = moment().isAfter(moment(actualBattle.updatedAt).add(60, 'seconds'));
+    isCreatedStale = moment().isAfter(moment(actualBattle.createdAt).add(15, 'minutes'));
+  }
+
+  // If an unknown error occurs and this battle isn't updated for 30 seconds, end it!
+  if (isUpdatedStale || isCreatedStale || !actualBattle) {
+    console.log('--------- Ending Battle Early!!! -------------');
+    if (isUpdatedStale) {
+      console.log('Reason: Is updated stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Last updated = ${moment(actualBattle.updatedAt).toDate()}`);
+    } else {
+      console.log('Reason: Is created stale');
+      console.log(`Now = ${moment().toDate()}`);
+      console.log(`Created at = ${moment(actualBattle.createdAt).toDate()}`);
+    }
+
+    // Remove from battle list
+    BattlesList.remove(actualBattle._id);
+    // Remove from redis
+    redis.del(`battles-${actualBattle._id}`);
+    return;
+  }
+
+  // Progress battle
+  const battleIntervalId = Meteor.setInterval(() => {
+    progressBattle(actualBattle, battleIntervalId);
+  }, BATTLES.tickDuration); // Tick Duration ( Should be 250 by default )
+}
 
 Meteor.methods({
 
@@ -45,8 +88,6 @@ Meteor.methods({
       throw new Meteor.Error("no-sir", "You are not up to the specified level");
     } else if (level <= 0) {
       throw new Meteor.Error("no-sir", "Cannot select a level below 1");      
-    } else if (!_.isFinite(level)) {
-      throw new Meteor.Error("no-sir", "Level must be a finite number");      
     }
 
     const currentGroup = Groups.findOne({
@@ -63,14 +104,10 @@ Meteor.methods({
       wave = _.random(1, 5);
     }
 
-    const server = userDoc.server;
-
-    startBattle({ level, wave, server });
+    startBattle({ level, wave });
   },
 
   'battles.findTowerBattle'(floor, room) {
-    const userDoc = Meteor.user();
-
     if (Meteor.user().logEvents) {
       Events.insert({
         owner: this.userId,
@@ -81,10 +118,10 @@ Meteor.methods({
     }
 
     // Ensure the floor specified is currently open
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
 
     if (floor > currentCommunityFloor.floor) {
-      throw new Meteor.Error("no-sir", "Don't have access to that floor!");
+      throw new Meteor.Error("no-sir", "Dont have access to that floor!");
     } else if (room > 7 || room < 0) {
       throw new Meteor.Error("no-sir", "Invalid specified room");
     }
@@ -114,20 +151,18 @@ Meteor.methods({
       }      
     }
 
-    const server = userDoc.server;
-
     if (room === 'boss') {
       if (currentCommunityFloor.floor === floor && canBossBattle) {
-        const bossHealth = currentCommunityFloor.healthMax;
+        const bossHealth = currentCommunityFloor.health;
 
-        return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: false });
+        return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) {
         const bossId = FLOORS[floor].boss.enemy.id;
         if (bossId) {
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
-          return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: true });
+          return startBattle({ floor, room, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else {
           return;
         }
@@ -140,15 +175,15 @@ Meteor.methods({
     if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
-      return startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
+      return startBattle({ floor, room, isTowerContribution, isExplorationRun });
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
+    startBattle({ floor, room, isTowerContribution, isExplorationRun });
   },
 
   'battles.getWaveDetails'() {
-    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
+    const currentFloor = Floors.findOne({ floorComplete: false });
 
     return {
       points: Math.floor(currentFloor.points),
@@ -159,7 +194,7 @@ Meteor.methods({
 
   'battles.getFloorDetails'(floorNumber = 1) {
     // Fetch specified floor details ( constants + current floor details )
-    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
+    const currentFloor = Floors.findOne({ floorComplete: false });
 
     // Can't access floors the community hasn't got to yet
     if (currentFloor.floor < floorNumber) {
@@ -168,36 +203,24 @@ Meteor.methods({
 
     const specifiedFloorConstants = FLOORS[floorNumber];
 
-    if (currentFloor.floor === floorNumber) {
+    if (currentFloor.floor == floorNumber) {
       return {
         waveDetails: {
-          health: currentFloor.health.toFixed(0),
+          health: currentFloor.health,
           healthMax: currentFloor.healthMax,
           points: Math.floor(currentFloor.points),
-          pointsMax: currentFloor.pointsMax,
-          bossResetAt: currentFloor.bossResetAt
+          pointsMax: currentFloor.pointsMax
         },
         floorDetails: {
-          rewards: currentFloor.loot.map(function(reward) {
-            if (reward.type === 'item') {
-              reward.icon = ITEMS[reward.itemId].icon;
-              reward.name = ITEMS[reward.itemId].name;
-              reward.extraStats = ITEMS[reward.itemId].extraStats;
-              reward.description = ITEMS[reward.itemId].description;
-            }
-            return reward;
-          }),
+          rewards: specifiedFloorConstants.floorRewards,
           unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
-          isUnlocked: false,
-          rooms: [
-            { room: 1, name: specifiedFloorConstants[1].name },
-            { room: 2, name: specifiedFloorConstants[2].name },
-            { room: 3, name: specifiedFloorConstants[3].name },
-            { room: 4, name: specifiedFloorConstants[4].name },
-            { room: 5, name: specifiedFloorConstants[5].name },
-            { room: 6, name: specifiedFloorConstants[6].name },
-            { room: 7, name: specifiedFloorConstants[7].name }
-          ]
+          1: { name: specifiedFloorConstants[1].name },
+          2: { name: specifiedFloorConstants[2].name },
+          3: { name: specifiedFloorConstants[3].name },
+          4: { name: specifiedFloorConstants[4].name },
+          5: { name: specifiedFloorConstants[5].name },
+          6: { name: specifiedFloorConstants[6].name },
+          7: { name: specifiedFloorConstants[7].name }
         },
         maxFloor: currentFloor.floor
       }
@@ -206,16 +229,13 @@ Meteor.methods({
     return {
       floorDetails: {
         unlocks: specifiedFloorConstants.hasOwnProperty('unlocks') ? specifiedFloorConstants.unlocks : true,
-        isUnlocked: true,
-        rooms: [
-          { room: 1, name: specifiedFloorConstants[1].name },
-          { room: 2, name: specifiedFloorConstants[2].name },
-          { room: 3, name: specifiedFloorConstants[3].name },
-          { room: 4, name: specifiedFloorConstants[4].name },
-          { room: 5, name: specifiedFloorConstants[5].name },
-          { room: 6, name: specifiedFloorConstants[6].name },
-          { room: 7, name: specifiedFloorConstants[7].name }
-        ]
+        1: { name: specifiedFloorConstants[1].name },
+        2: { name: specifiedFloorConstants[2].name },
+        3: { name: specifiedFloorConstants[3].name },
+        4: { name: specifiedFloorConstants[4].name },
+        5: { name: specifiedFloorConstants[5].name },
+        6: { name: specifiedFloorConstants[6].name },
+        7: { name: specifiedFloorConstants[7].name }
       },
       maxFloor: currentFloor.floor
     }
@@ -227,12 +247,11 @@ Meteor.methods({
       limit = 200;
     }
     // Fetch current active floor
-    const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
+    const currentFloor = Floors.findOne({ floorComplete: false });
 
     // Fetch top 10 for each difficulty
     return FloorWaveScores.find({
-      floor: currentFloor.floor,
-      server: Meteor.user().server
+      floor: currentFloor.floor
     }, {
       sort: {
         points: -1
@@ -242,20 +261,17 @@ Meteor.methods({
   },
 
   'battles.myFloorContributions'() {
-    const server = Meteor.user().server;
     // current floor contribution + ranking
-    const currentCommunityFloor = Floors.findOne({ floorComplete: false, server });
+    const currentCommunityFloor = Floors.findOne({ floorComplete: false });
     // Fetch there waveScores
     const userWaveScores = FloorWaveScores.findOne({
       owner: Meteor.userId(),
-      server,
       floor: currentCommunityFloor.floor
     });
 
     if (userWaveScores) {
       // Get ranking
       const userRanking = FloorWaveScores.find({
-        server,
         floor: currentCommunityFloor.floor,
         points: {
           $gte: userWaveScores.points
@@ -264,7 +280,6 @@ Meteor.methods({
 
       // Total Rankings
       const totalRankings = FloorWaveScores.find({
-        server,
         floor: currentCommunityFloor.floor,
         points: {
           $gte: 25
@@ -278,6 +293,35 @@ Meteor.methods({
         rankingPercentage: Math.min(Math.round((userRanking / totalRankings) * 100), 100)
       }
     }
+  },
+
+  'battles.castAbility'(battleId, abilityId, options) {
+    if (options.caster !== Meteor.userId()) {
+      throw new Meteor.Error("battle-not-found", "Thats not you!");      
+    }
+
+    if (options.caster && options.caster !== Meteor.userId()) {
+      throw new Meteor.Error("access-denied", "You do not have control of that caster");
+    }
+
+    let existingActions = [];
+    let rawRedis = redis.get(`battleActions-${battleId}`);
+    if (rawRedis) {
+      existingActions = JSON.parse(rawRedis);
+    }
+
+    const obj = {
+      battleId,
+      abilityId,
+      caster: options.caster,
+      target: options.target,
+      targets: options.targets
+    }
+
+    check(obj, BattleActionsSchema);
+
+    existingActions.push(obj);
+    redis.set(`battleActions-${battleId}`, JSON.stringify(existingActions));
   }
 });
 
@@ -308,6 +352,7 @@ Meteor.publish('battlesList', function () {
   });
 });
 
-Meteor.publish('servers', function () {
-  return Servers.find();
+Meteor.publish("redis-battles", function (currentBattle) {
+  return redis.matching(`battles-${currentBattle._id}`);
 });
+

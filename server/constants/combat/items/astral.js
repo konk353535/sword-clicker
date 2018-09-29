@@ -57,7 +57,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_short_sword": {
     "id": "astral_short_sword",
-    "icon": "astralShortsword.svg",
+    "icon": "astralShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_long_sword": {
     "id": "astral_long_sword",
-    "icon": "astralLongsword.svg",
+    "icon": "astralLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -170,10 +170,10 @@ export const ASTRAL_ITEMS = {
   },
   "astral_chest_plate": {
     "id": "astral_chest_plate",
-    "icon": "astralChestplate.svg",
+    "icon": "astralChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "astral Chestplate",
+    "name": "astral chestplate",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,
@@ -195,7 +195,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_plate_legs": {
     "id": "astral_plate_legs",
-    "icon": "astralPlatelegs.svg",
+    "icon": "astralPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "astral platelegs",
@@ -244,4 +244,4 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   }
-};
+}

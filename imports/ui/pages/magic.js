@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Users } from '/imports/api/users/users.js';
 

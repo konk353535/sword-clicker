@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -28,7 +29,7 @@ Template.memberBenefit.helpers({
 
     return '?';
   }
-});
+})
 
 Template.memberBenefit.rendered = function () {
   const iconTooltip = new Drop({
@@ -38,5 +39,5 @@ Template.memberBenefit.rendered = function () {
     position: 'top left',
     remove: true
   });
-};
+}
 

@@ -10,4 +10,4 @@ Template.chatPage.onCreated(function bodyOnCreated() {
 
 Template.chatPage.helpers({
 
-});
+})

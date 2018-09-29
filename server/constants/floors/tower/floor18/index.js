@@ -1,7 +1,6 @@
-import { orderLootTable } from '../../../enemies/lootTables/index.js';
-import { ITEMS } from '../../../items/index';
-
-import { LEVEL_EIGHTEEN_LOOT_TABLE } from '../../levels/level18';
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
+import { ITEMS } from '/server/constants/items/index';
+import { LEVEL_EIGHTEEN_LOOT_TABLE } from '/server/constants/floors/levels/level18';
 
 export const TOWER_FLOOR_18 = {
   1: {
@@ -144,4 +143,4 @@ export const TOWER_FLOOR_18 = {
       amount: 150000
     }
   ]
-};
+}

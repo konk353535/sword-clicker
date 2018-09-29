@@ -414,4 +414,4 @@ export const MITHRIL_CRAFTS = {
       level: 65
     }]
   }
-};
+}

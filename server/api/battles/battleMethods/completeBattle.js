@@ -421,8 +421,13 @@ export const completeBattle = function (actualBattle) {
     });
 
     if (actualBattle.floor && actualBattle.room) {
-      if (actualBattle.room !== 'boss') {
+      // Latest floor
+      const latestFloor = Floors.findOne({
+        floorComplete: false,
+        server: actualBattle.server
+      });
 
+      if (actualBattle.room !== 'boss' && actualBattle.floor === latestFloor.floor) {
         let totalPointsForGroup = 0;
 
         // Update all participants contributions

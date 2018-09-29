@@ -139,7 +139,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_broad_sword": {
     "id": "mithril_broad_sword",
-    "icon": "mithrilBroadSword.png",
+    "icon": "mithrilBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

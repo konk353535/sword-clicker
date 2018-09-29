@@ -139,7 +139,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_broad_sword": {
     "id": "orichalcum_broad_sword",
-    "icon": "orichalcumBroadSword.png",
+    "icon": "orichalcumBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

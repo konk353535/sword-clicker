@@ -139,7 +139,7 @@ export const SILVER_ITEMS = {
   },
   "silver_broad_sword": {
     "id": "silver_broad_sword",
-    "icon": "silverBroadSword.png",
+    "icon": "silverBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

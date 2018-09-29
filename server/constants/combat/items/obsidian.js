@@ -139,7 +139,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_broad_sword": {
     "id": "obsidian_broad_sword",
-    "icon": "obsidianBroadSword.png",
+    "icon": "obsidianBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

@@ -139,7 +139,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_broad_sword": {
     "id": "adamantium_broad_sword",
-    "icon": "adamantiumBroadSword.png",
+    "icon": "adamantiumBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

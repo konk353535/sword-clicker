@@ -139,7 +139,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_broad_sword": {
     "id": "cobalt_broad_sword",
-    "icon": "cobaltBroadSword.png",
+    "icon": "cobaltBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

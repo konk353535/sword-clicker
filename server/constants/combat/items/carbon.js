@@ -139,7 +139,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_broad_sword": {
     "id": "carbon_broad_sword",
-    "icon": "carbonBroadSword.png",
+    "icon": "carbonBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

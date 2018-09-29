@@ -139,7 +139,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_broad_sword": {
     "id": "titanium_broad_sword",
-    "icon": "titaniumBroadSword.png",
+    "icon": "titaniumBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

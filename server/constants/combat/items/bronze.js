@@ -139,7 +139,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_broad_sword": {
     "id": "bronze_broad_sword",
-    "icon": "bronzeBroadSword.png",
+    "icon": "bronzeBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

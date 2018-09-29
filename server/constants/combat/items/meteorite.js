@@ -139,7 +139,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_broad_sword": {
     "id": "meteorite_broad_sword",
-    "icon": "meteoriteBroadSword.png",
+    "icon": "meteoriteBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

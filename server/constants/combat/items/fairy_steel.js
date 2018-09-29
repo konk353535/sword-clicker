@@ -139,7 +139,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_broad_sword": {
     "id": "fairy_steel_broad_sword",
-    "icon": "fairySteelBroadSword.png",
+    "icon": "fairySteelBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

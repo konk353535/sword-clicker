@@ -139,7 +139,7 @@ export const ELVEN_STEEL_ITEMS = {
   },
   "elven_steel_broad_sword": {
     "id": "elven_steel_broad_sword",
-    "icon": "elvenSteelBroadSword.png",
+    "icon": "elvenSteelBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

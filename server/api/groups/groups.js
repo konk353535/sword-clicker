@@ -13,9 +13,11 @@ function leaveGroup(group, userId) {
     return member !== userId;
   });
 
-  group.membersObject = group.membersObject.filter((member) => {
-    return member.id !== userId;
-  });
+  if (group.membersObject) {
+    group.membersObject = group.membersObject.filter((member) => {
+      return member.id !== userId;
+    });
+  }
 
   if (group.members.length === 0) {
     Groups.remove(group._id);

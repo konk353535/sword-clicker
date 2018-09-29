@@ -119,7 +119,7 @@ export const COPPER_ITEMS = {
 
   copper_broad_sword: {
     id: 'copper_broad_sword',
-    icon: 'copperBroadSword.png',
+    icon: 'copperBroadsword.png',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',

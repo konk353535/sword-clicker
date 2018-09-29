@@ -139,7 +139,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_broad_sword": {
     "id": "platinum_broad_sword",
-    "icon": "platinumBroadSword.png",
+    "icon": "platinumBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

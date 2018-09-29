@@ -59,7 +59,7 @@
           {{#if $lte waveDetails.points waveDetails.pointsMax}}
             <div class="progress" style="min-width: 200px; height: 30px;">
               <div class="progress-bar bg-danger justify-content-center align-items-center d-flex" role="progressbar" style="min-width: 75px; width: {{wavePointsProgress}}%; height: 30px;" aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
-                {{waveDetails.points}} / {{waveDetails.pointsMax}}
+                {{> formatNumber number=waveDetails.points}} / {{> formatNumber number=waveDetails.pointsMax}}
               </div>
             </div>
             {{#each combat.towerContributions}}

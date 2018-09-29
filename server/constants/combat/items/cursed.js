@@ -139,7 +139,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_broad_sword": {
     "id": "cursed_broad_sword",
-    "icon": "cursedBroadSword.png",
+    "icon": "cursedBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

@@ -893,7 +893,7 @@ export const MISC_ITEMS = {
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',
-    icon: 'opalChestplate.svg',
+    icon: 'opalChestPlate.svg',
     category: 'combat',
     slot: 'chest',
     name: 'opal chest plate',

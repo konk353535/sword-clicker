@@ -139,7 +139,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_broad_sword": {
     "id": "tungsten_broad_sword",
-    "icon": "tungstenBroadSword.png",
+    "icon": "tungstenBroadsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",

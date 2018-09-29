@@ -312,7 +312,7 @@
         <div style="flex: 1 1 auto; display: flex; align-items: center; height: 50%">
           <div class="progress" style="height: 16px; flex: 1 1 auto;">
             <div class="progress-bar" role="progressbar" style="width: {{miner.xpPercentage}}%;" aria-valuenow="{{miner.xpPercentage}}" aria-valuemin="0" aria-valuemax="100">
-              {{> formatNumber number=miner.xp decimal=1}} / {{miner.xpToLevel}}
+              {{> formatNumber number=miner.xp decimal=1}} / {{> formatNumber number=miner.xpToLevel decimal=1}}
             </div>
           </div>
         </div>

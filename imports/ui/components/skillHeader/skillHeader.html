@@ -5,7 +5,7 @@
       Level {{skill.level}}
     </h1>
     {{#if skill}}
-      <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
+      <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}} XP</small>
     {{/if}}
     {{#if globalBuffs.buffCombat}}
       {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}

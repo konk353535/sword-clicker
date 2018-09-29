@@ -73,7 +73,9 @@ export default function applyBattleActions() {
 
       const actionTargets = action.targets.map((rawTarget) => {
         return this.allUnitsMap[rawTarget];
-      });
+      }).filter((targetUnit) => {
+        return !!targetUnit;
+      })
 
       const castSuccess = targetAbility.cast(actionTargets);
       if (castSuccess) {

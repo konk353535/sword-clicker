@@ -20,8 +20,6 @@ Template.consumablesPage.helpers({
   foodItems() {
     return Items.find({
       category: 'food'
-    }, {
-      limit: 8
     }).map((item) => {
       item.primaryAction = {
         description: 'eat',

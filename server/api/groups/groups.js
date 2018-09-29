@@ -193,6 +193,9 @@ Meteor.methods({
 
     if (targetGroup.locked) {
       return;
+    } else if (targetGroup.server !== Meteor.user().server) {
+      throw new Meteor.Error('is-another-server');
+      return;
     }
 
     if (targetGroup.members.find(member => member === userDoc._id)) {
@@ -425,7 +428,8 @@ Meteor.publish('otherBattlers', function(limit) {
   return Groups.find({
     lastBattleStarted: {
       $gte: moment().subtract(24, 'hours').toDate()
-    }
+    },
+    server: Meteor.user().server
   }, {
     limit,
     sort: {

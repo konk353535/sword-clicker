@@ -51,6 +51,12 @@ export default class Stats {
     this.magicDamageReduction = this.getDamageReduction(value);
   }
 
+  get healthMax() { return this._healthMax; }
+  set healthMax(value) {
+    this._healthMax = value;
+    this.delta('healthMax');
+  }
+
   get health() { return this._health; }
   set health(value) {
     this._health = value;

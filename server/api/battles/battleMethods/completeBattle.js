@@ -492,9 +492,30 @@ export const completeBattle = function (actualBattle) {
               owner
             });
 
-            console.log(updateSelector);
-            console.log(updateModifier);
-            FloorWaveScores.upsert(updateSelector, updateModifier);
+            const existingScores = FloorWaveScores.findOne({
+              owner,
+              server: actualBattle.server,
+              floor: actualBattle.floor
+            });
+
+            if (existingScores) {
+              FloorWaveScores.update({
+                _id: existingScores._id
+              }, {
+                $inc: {
+                  points: actualPointsGained
+                }
+              });
+            } else {
+              FloorWaveScores.insert({
+                owner,
+                server: actualBattle.server,
+                username: ownerObject.name,
+                points: actualPointsGained,
+                floor: actualBattle.floor
+              })
+            }
+
           }
         });
 

@@ -64,6 +64,9 @@ export default function({ ability, caster, targets }) {
       const buffObj = {};
       // Store constants
       buffObj.constants = BUFFS[buffId];
+      if (!buffObj.constants) {
+        console.log('Missing buff', buffId);
+      }
       buffObj.duration = buffObj.constants.data.duration;
 
       // Save things we actually want to store in the data property

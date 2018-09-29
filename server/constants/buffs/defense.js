@@ -706,20 +706,15 @@ export const DEFENSE_BUFFS = {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
-          if (localSecondsElapsed < 0) {
-            localSecondsElapsed = 0;
-          }
-        }
-
-        if (buff.duration < 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.damageTaken += buff.data.damageReduction;
+        if (buff.data.damageReduction) {
+          target.stats.damageTaken += buff.data.damageReduction;
+        }
       }
     }
   },

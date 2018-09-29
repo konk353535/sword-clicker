@@ -223,7 +223,7 @@ export const completeBattle = function (actualBattle) {
       // Get hp of current wave
       let totalHp = 0;
       let currentHp = 0;
-      actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
+      actualBattle.enemies.forEach((enemy) => {
         totalHp += enemy.stats.healthMax;
         currentHp += enemy.stats.health;
       });
@@ -247,7 +247,7 @@ export const completeBattle = function (actualBattle) {
 
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
-      const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
+      const allEnemies = actualBattle.enemies;
       const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
       let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
 
@@ -750,7 +750,7 @@ export const completeBattle = function (actualBattle) {
   // Is this a current boss battle?
   console.log(actualBattle.startingBossHp);
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
-    const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
+    const allEnemies = actualBattle.enemies;
     const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
     let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
     console.log(`damage dealt = ${damageDealt}`);

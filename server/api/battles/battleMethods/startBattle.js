@@ -21,7 +21,6 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
-
   if (level) {
     // Is personalQuest (To Do)
     battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave);

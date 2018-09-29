@@ -82,6 +82,7 @@ const startBattle = (currentBattle, self) => {
   }
 };
 
+let tickerId;
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('currentBattle', false);
@@ -89,10 +90,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state.set('fullState', false);
   this.state.set('ticker', 0);
 
-  setInterval(() => {
+  // Todo, clean this up after leaving it
+  tickerId = setInterval(() => {
     if (!this.state.get('currentBattle')) {
       // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
       battleSocket.emit('getFullState');
+      console.log('I shouldnt be here')
       this.state.set('ticker', this.state.get('ticker') + 1);
     }
   }, 2500);
@@ -130,9 +133,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       });
     }
 
-    console.log(0);
     if (!this.state.get('fullState')) {
-      console.log(1);
       this.state.set('fullState', true);
       battleSocket.on('fullState', (data) => {
         console.log('Got full state');
@@ -200,6 +201,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
 Template.currentBattleUi.onDestroyed(function () {
   battleSocket.removeListener('tick');
   battleSocket.removeListener('fullState');
+  clearInterval(tickerId);
 })
 
 Template.currentBattleUi.events({

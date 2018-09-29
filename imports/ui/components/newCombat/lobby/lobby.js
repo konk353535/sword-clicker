@@ -210,6 +210,8 @@ Template.lobbyPage.events({
     const selectedRoom = $(event.target).closest('.select-room')[0].getAttribute('data-room');
     if (selectedRoom === 'All') {
       instance.state.set('usersCurrentRoom', 'All');
+    } else if (selectedRoom === 'Boss') {
+      instance.state.set('usersCurrentRoom', 'Boss');
     } else {
       instance.state.set('usersCurrentRoom', parseInt(selectedRoom));
     }
@@ -227,7 +229,15 @@ Template.lobbyPage.events({
     if (type === 'group') {
       const floor = instance.state.get('usersCurrentFloor');
       const room = instance.state.get('usersCurrentRoom');
-      if (room === 'All') {
+      if (room === 'Boss') {
+        Meteor.call('battles.findTowerBattle', floor, 'boss', function (err, res) {
+          if (err) {
+            toastr.warning(err.reason);
+          }
+
+          instance.state.set('newBattleLoading', false);
+        });
+      } else if (room === 'All') {
         Meteor.call('battles.findTowerBattle', floor, 0, function (err, res) {
           if (err) {
             toastr.warning(err.reason);

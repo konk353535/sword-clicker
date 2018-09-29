@@ -1,5 +1,6 @@
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
+import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 
 export const ATTACK_BUFFS = {
 
@@ -25,8 +26,8 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
-        if (buff.duration <= 0) {
+        buff.data.duration -= secondsElapsed;
+        if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -37,7 +38,7 @@ export const ATTACK_BUFFS = {
         const defenderAttackMax = defender.stats.attackMax;
         const actualDamage = (defenderAttack + ((defenderAttackMax - defenderAttack) * Math.random())) * constants.damageDecimal;
 
-        actualBattle.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(actualDamage, {
           defender: attacker,
           attacker: defender,
           tickEvents: actualBattle.tickEvents,
@@ -65,7 +66,7 @@ export const ATTACK_BUFFS = {
     events: {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         const constants = buff.constants.constants;
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
         if (buff.data.timeTillDamage !== undefined) {
           buff.data.timeTillDamage -= secondsElapsed;
@@ -76,9 +77,9 @@ export const ATTACK_BUFFS = {
         if (buff.data.timeTillDamage <= 0) {
           buff.data.timeTillDamage = constants.timeTillDamage;
           const poisonDamage = buff.data.damage;
-          actualBattle.dealDamage(poisonDamage, {
+          actualBattle.utils.dealDamage(poisonDamage, {
             defender: target,
-            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
+            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
             customIcon: 'poison.svg',
@@ -87,8 +88,13 @@ export const ATTACK_BUFFS = {
         }
 
         // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            if (targetBuff === buff) {
+              return false;
+            }
+            return true;
+          });
         }
       },
 
@@ -136,7 +142,7 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.duration <= 0) {
+        if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -183,10 +189,10 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
         // Blank
-        if (buff.duration <= 0) {
+        if (buff.data.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -233,7 +239,7 @@ export const ATTACK_BUFFS = {
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         const totalHeal = (damageDealt * buff.data.lifestealTotal);
 
-        actualBattle.healTarget(totalHeal, {
+        actualBattle.utils.healTarget(totalHeal, {
           caster: attacker,
           target: attacker,
           tickEvents: actualBattle.tickEvents,
@@ -242,10 +248,12 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
         // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -297,7 +305,7 @@ export const ATTACK_BUFFS = {
           const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
 
           // Add poisoned debuff to enemy
-          defender.addBuff({
+          defender.buffs.push({
             id: 'basic_poison',
             data: {
               duration: 300,
@@ -314,8 +322,10 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -365,7 +375,7 @@ export const ATTACK_BUFFS = {
 
           const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
 
-          actualBattle.dealDamage(totalDamage, {
+          actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,
             tickEvents: actualBattle.tickEvents,
@@ -376,8 +386,10 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -414,12 +426,12 @@ export const ATTACK_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         // Blank
-        buff.stacks = 1;
+        buff.data.stacks = 1;
         buff.data.timeTillStack = 3;
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, originalAutoAttack }) {
-        if (buff.stacks <= 0 || !originalAutoAttack) {
+        if (buff.data.stacks <= 0 || !originalAutoAttack) {
           return;
         }
 
@@ -431,7 +443,7 @@ export const ATTACK_BUFFS = {
         const targetIndex = actualBattle.enemies.indexOf(defender);
 
         if (targetIndex >= 0) {
-          const adjacentTargets = [];
+          const adjacentTargets = []
           
           const leftTarget = actualBattle.enemies[targetIndex - 1];
           const rightTarget = actualBattle.enemies[targetIndex + 1];
@@ -441,7 +453,7 @@ export const ATTACK_BUFFS = {
           if (adjacentTargets.length > 0) {
             adjacentTargets.forEach((newTarget) => {
               // Call auto attack on them as well
-              actualBattle.autoAttack({
+              actualBattle.utils.autoAttack({
                 attacker,
                 defender: newTarget,
                 tickEvents: actualBattle.tickEvents,
@@ -451,7 +463,7 @@ export const ATTACK_BUFFS = {
             });
 
             // Apply a cooldown to our ability
-            buff.stacks -= 1;
+            buff.data.stacks -= 1;
           }
         }
       },
@@ -461,9 +473,9 @@ export const ATTACK_BUFFS = {
         buff.data.timeTillStack -= secondsElapsed;
         if (buff.data.timeTillStack <= 0) {
           buff.data.timeTillStack = 3;
-          buff.stacks++;
-          if (buff.stacks >= 20) {
-            buff.stacks = 20;
+          buff.data.stacks++;
+          if (buff.data.stacks >= 20) {
+            buff.data.stacks = 20;
           }
         }
       },
@@ -511,18 +523,18 @@ export const ATTACK_BUFFS = {
         const constants = buff.constants.constants;
         const baseDamage = attacker.stats.attack;
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
-        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level));
+        const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level))
         const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
         const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
-        const hasBleed = defender.buffs.find((buff) => buff.id === 'bleed');
+        const hasBleed = _.findWhere(defender.buffs, { id: 'bleed' });
 
         if (hasBleed) {
           // My current hp
           const hpDecimal = attacker.stats.health / attacker.stats.healthMax;
 
           if (hpDecimal <= 0.60) {
-            actualBattle.healTarget(totalHealing, {
+            actualBattle.utils.healTarget(totalHealing, {
               caster: attacker,
               target: attacker,
               tickEvents: actualBattle.tickEvents,
@@ -530,7 +542,7 @@ export const ATTACK_BUFFS = {
             }); 
           }
 
-          actualBattle.dealDamage(totalDamage, {
+          actualBattle.utils.dealDamage(totalDamage, {
             attacker,
             defender,
             tickEvents: actualBattle.tickEvents,
@@ -541,8 +553,10 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration <= 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -579,17 +593,21 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -638,7 +656,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
         // Increases damage and attack speed
         const damageIncrease = buff.constants.constants.damagePercentageIncreaseBase + (buff.constants.constants.damagePercentageIncreasePerLevel * buff.data.level);
         // Damage taken 
@@ -657,30 +675,28 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax += buff.data.extraAttackMax;
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
-      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        const damageToTake = (localSecondsElapsed * buff.data.healthLost);
-        actualBattle.dealDamage(damageToTake, {
-          attacker: caster,
-          defender: caster,
-          tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats,
-          isTrueDamage: true
-        });
+        target.stats.health += (localSecondsElapsed * buff.data.healthLost);
 
-        if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration < 0) {
+          // Call the onremove event
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
@@ -689,6 +705,7 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax -= buff.data.extraAttackMax;
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -702,14 +719,14 @@ export const ATTACK_BUFFS = {
       const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
       return `
         Attack for <b>${damageIncreasePerPercentage * 100}%</b> of your max damage. (+${damagePerLevel * 100}% per lvl)<br />
-        Deal 10% of this damage to yourself as true damage.`;
+        Deal half of this damage to yourself.`;
     },
     constants: {
       damageBase: 1.25, // 200, 275, 350, 425, 500
       damagePerLevel: .75
     },
-    duration: 0,
     data: {
+      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -721,24 +738,25 @@ export const ATTACK_BUFFS = {
         const totalDamage = baseDamage * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.dealDamage(totalDamage, {
+        actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
         });
 
-        actualBattle.dealDamage(totalDamage / 10, {
+        actualBattle.utils.dealDamage(totalDamage / 2, {
           attacker: caster,
           defender: caster,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          isTrueDamage: true
         });
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       }
     }
   },
@@ -758,8 +776,8 @@ export const ATTACK_BUFFS = {
       damageBase: 2, // % Increase of damage for each % of health enemy is missing
       damagePerLevel: 0.5
     },
-    duration: 0,
     data: {
+      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -779,7 +797,7 @@ export const ATTACK_BUFFS = {
         const totalDamage = (baseDamage + extraDamage) * (missingHealthPercentage / 100) * damageIncreasePerPercentage;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.dealDamage(totalDamage, {
+        actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -788,7 +806,9 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       }
     }
   },
@@ -809,8 +829,8 @@ export const ATTACK_BUFFS = {
       damageBase: 0.8,
       damagePerLevel: 0.2
     },
-    duration: 0,
     data: {
+      duration: 0,
       totalDuration: 0,
     },
     events: { // This can be rebuilt from the buff id
@@ -824,7 +844,7 @@ export const ATTACK_BUFFS = {
         const casterAttackMax = caster.stats.attackMax;
         const actualDamage = (casterAttack + ((casterAttackMax - casterAttack) * Math.random())) * damageTotalDecimal;
 
-        actualBattle.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -833,7 +853,9 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       }
     }
   },
@@ -872,7 +894,7 @@ export const ATTACK_BUFFS = {
 
         // Reduce armor by X% before hit
         target.stats.armor *= (1 - constants.armorPenetration);
-        actualBattle.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -882,7 +904,9 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       }
     }
   },
@@ -914,17 +938,18 @@ export const ATTACK_BUFFS = {
         // Targets missing health %
         const actualDamage = caster.stats.defense * damageTotalDecimal;
 
-        actualBattle.dealDamage(actualDamage, {
+        actualBattle.utils.dealDamage(actualDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          actualBattle
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        removeBuff({ target, buff, caster, actualBattle })
+      onTick({ secondsElapsed, buff, target, caster }) {
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       }
     }
   },
@@ -954,7 +979,7 @@ export const ATTACK_BUFFS = {
         const totalDamage = (baseDamage + extraDamage) * (percentDamage / 100);
 
         // Do we have smoke_dagger buff?
-        if (caster.buffs.find((buff) => buff.id === 'smoke_dagger')) {
+        if (_.findWhere(caster.buffs, { id: 'smoke_dagger' })) {
           // Apply smoke_debuff to target
           const newBuff = {
             id: 'smoke_dagger_debuff',
@@ -965,12 +990,12 @@ export const ATTACK_BUFFS = {
               description: 'reduces accuracy',
               accuracyReduction: target.stats.accuracy * 0.25
             }
-          };
+          }
           addBuff({ buff: newBuff, target, caster, actualBattle });
         }
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
-        actualBattle.dealDamage(totalDamage, {
+        actualBattle.utils.dealDamage(totalDamage, {
           attacker: caster,
           defender: target,
           tickEvents: actualBattle.tickEvents,
@@ -980,7 +1005,9 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+        target.buffs = target.buffs.filter((targetBuff) => {
+          return targetBuff.id !== buff.id
+        });
       },
 
       onRemove() {
@@ -1011,33 +1038,38 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
         const attackSpeedGain = buff.constants.constants.attackSpeedBase + (buff.constants.constants.attackSpeedPerLevel * buff.data.level);
 
         buff.data.attackSpeedGain = attackSpeedGain;
 
         target.stats.attackSpeed *= (1 + (buff.data.attackSpeedGain / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           // Call the onremove event
-          removeBuff({ target, buff, caster })
+          buff.constants.events.onRemove({ buff, target, caster });
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id
+          });
         }
       },
 
       onRemove({ buff, target, caster }) {
         target.stats.attackSpeed /= (1 + (buff.data.attackSpeedGain / 100));
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -1062,7 +1094,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         if (buff.constants && buff.constants.constants && !buff.data.dps) {
           buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
@@ -1075,22 +1107,21 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        const caster = actualBattle.allUnitsMap[buff.data.caster];
-
         if (buff.data.timeTillDamage < 0) {
+          const caster = _.findWhere(actualBattle.allUnits, { id: buff.data.caster });
           buff.data.timeTillDamage = 1;
 
-          actualBattle.dealDamage(buff.data.dps, { 
+          actualBattle.utils.dealDamage(buff.data.dps, { 
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -1098,8 +1129,11 @@ export const ATTACK_BUFFS = {
           });
         }
 
-        if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+        if (buff.data.duration < 0) {
+          target.buffs = target.buffs.filter((targetBuff) => {
+
+            return targetBuff !== buff;
+          });
         }
       },
 
@@ -1108,4 +1142,4 @@ export const ATTACK_BUFFS = {
       }
     }
   },
-};
+}

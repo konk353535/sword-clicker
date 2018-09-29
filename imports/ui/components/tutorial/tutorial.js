@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
@@ -8,7 +9,8 @@ import { Mining } from '/imports/api/mining/mining.js';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Battles } from '/imports/api/battles/battles.js';
-import { FarmingSpace } from '/imports/api/farming/farming.js';
+import { Combat } from '/imports/api/combat/combat.js';
+import { Farming, FarmingSpace } from '/imports/api/farming/farming.js';
 
 import './tutorial.html';
 
@@ -16,7 +18,7 @@ Template.tutorial.onCreated(function bodyOnCreated() {
 });
 
 Template.tutorial.events({
-});
+})
 
 Template.tutorial.helpers({
 
@@ -119,7 +121,7 @@ Template.tutorial.helpers({
             if (woodcutter.deathTime) {
               isSuiciding = true;
             }
-          });
+          })
           if (isSuiciding) {
             Meteor.call('users.tutorialUpdate', {
               currentStep: 9,
@@ -191,7 +193,7 @@ Template.tutorial.helpers({
               currentStep: 13
             });
           }
-        });
+        })
 
         return 'Battle in personal quest';
       } else if (currentStep === 13) {

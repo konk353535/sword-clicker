@@ -57,7 +57,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_short_sword": {
     "id": "radiant_short_sword",
-    "icon": "radiantShortsword.svg",
+    "icon": "radiantShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_long_sword": {
     "id": "radiant_long_sword",
-    "icon": "radiantLongsword.svg",
+    "icon": "radiantLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -170,10 +170,10 @@ export const RADIANT_ITEMS = {
   },
   "radiant_chest_plate": {
     "id": "radiant_chest_plate",
-    "icon": "radiantChestplate.svg",
+    "icon": "radiantChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "radiant Chestplate",
+    "name": "radiant chestplate",
     "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,
@@ -195,7 +195,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_plate_legs": {
     "id": "radiant_plate_legs",
-    "icon": "radiantPlatelegs.svg",
+    "icon": "radiantPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "radiant platelegs",
@@ -244,4 +244,4 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   }
-};
+}

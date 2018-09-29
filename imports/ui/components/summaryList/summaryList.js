@@ -36,7 +36,7 @@ Template.summaryList.events({
       }
     });
   },
-});
+})
 
 Template.summaryList.helpers({
 
@@ -62,7 +62,11 @@ Template.summaryList.helpers({
     
     return FarmingSpace.find().map((farmingSpace) => {
       if (farmingSpace.index === 4 || farmingSpace.index === 5) {
-        farmingSpace.active = !!hasFarmingUpgrade;
+        if (hasFarmingUpgrade) {
+          farmingSpace.active = true;
+        } else {
+          farmingSpace.active = false;
+        }
       }
       return farmingSpace;
     });

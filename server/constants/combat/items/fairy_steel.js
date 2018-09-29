@@ -1,7 +1,7 @@
 export const FAIRY_STEEL_ITEMS = {
   "fairy_steel_dagger": {
     "id": "fairy_steel_dagger",
-    "icon": "fairySteelDagger.png",
+    "icon": "fairySteelDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_spear": {
     "id": "fairy_steel_spear",
-    "icon": "fairySteelSpear.png",
+    "icon": "fairySteelSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_short_sword": {
     "id": "fairy_steel_short_sword",
-    "icon": "fairySteelShortsword.png",
+    "icon": "fairySteelShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_scimitar": {
     "id": "fairy_steel_scimitar",
-    "icon": "fairySteelScimitar.png",
+    "icon": "fairySteelScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_long_sword": {
     "id": "fairy_steel_long_sword",
-    "icon": "fairySteelLongsword.png",
+    "icon": "fairySteelLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_broad_sword": {
     "id": "fairy_steel_broad_sword",
-    "icon": "fairySteelBroadSword.png",
+    "icon": "fairySteelBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_battle_axe": {
     "id": "fairy_steel_battle_axe",
-    "icon": "fairySteelBattleAxe.png",
+    "icon": "fairySteelBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_helmet": {
     "id": "fairy_steel_helmet",
-    "icon": "fairySteelHelmet.png",
+    "icon": "fairySteelHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel helmet",
@@ -247,10 +247,10 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_chest_plate": {
     "id": "fairy_steel_chest_plate",
-    "icon": "fairySteelChestplate.png",
+    "icon": "fairySteelChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "fairy steel Chestplate",
+    "name": "fairy steel chestplate",
     "sellPrice": 2250,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_plate_legs": {
     "id": "fairy_steel_plate_legs",
-    "icon": "fairySteelPlatelegs.png",
+    "icon": "fairySteelPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "fairy steel platelegs",
@@ -297,7 +297,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_shield": {
     "id": "fairy_steel_shield",
-    "icon": "fairySteelShield.png",
+    "icon": "fairySteelShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const FAIRY_STEEL_ITEMS = {
       level: 85
     }]
   }
-};
+}

@@ -4,7 +4,6 @@
   },
   "redisConfigureKeyspaceNotifications": 1,
   "public": {
-    "battleUrl": "http://localhost:3100",
     "stripe": "-or-this"
   },
   "galaxy.meteor.com": {

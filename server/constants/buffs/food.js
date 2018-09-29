@@ -15,7 +15,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -25,10 +25,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -36,7 +36,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -74,7 +74,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -84,10 +84,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -96,7 +96,7 @@ export const FOOD_BUFFS = {
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -137,7 +137,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -147,10 +147,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -159,7 +159,7 @@ export const FOOD_BUFFS = {
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -228,15 +228,15 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -244,7 +244,7 @@ export const FOOD_BUFFS = {
 
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -279,7 +279,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -289,10 +289,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -300,7 +300,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -334,7 +334,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -344,10 +344,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -355,7 +355,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -390,7 +390,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -400,10 +400,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -411,7 +411,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -446,7 +446,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
         if (target.stats.health > target.stats.healthMax) {
@@ -456,10 +456,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -467,7 +467,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -501,7 +501,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -511,10 +511,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -522,7 +522,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -556,7 +556,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -566,10 +566,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -577,7 +577,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -611,7 +611,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -621,10 +621,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -632,7 +632,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -666,7 +666,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -676,10 +676,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -687,7 +687,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -721,7 +721,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -731,10 +731,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -742,7 +742,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -776,7 +776,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -786,10 +786,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -797,7 +797,7 @@ export const FOOD_BUFFS = {
 
         target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -831,7 +831,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -841,10 +841,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -852,7 +852,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -886,7 +886,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -896,10 +896,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -907,7 +907,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {
@@ -942,7 +942,7 @@ export const FOOD_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
 
         target.stats.health += 1;
         if (target.stats.health > target.stats.healthMax) {
@@ -952,10 +952,10 @@ export const FOOD_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
-        buff.duration -= localSecondsElapsed;
+        buff.data.duration -= localSecondsElapsed;
 
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
+        if (buff.data.duration < 0) {
+          localSecondsElapsed += buff.data.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
@@ -963,7 +963,7 @@ export const FOOD_BUFFS = {
 
         target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
 
-        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+        if (buff.data.duration < 0 || moment().isAfter(buff.data.endDate)) {
           buff.constants.events.onRemove({ buff, target, caster });
           // Remove buff from the target
           target.buffs = target.buffs.filter((targetBuff) => {

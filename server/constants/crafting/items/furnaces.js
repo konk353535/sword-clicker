@@ -240,4 +240,4 @@ export const FURNACE_ITEMS = {
     tier: 24,
     description: 'Used to combine bars'
   }, 
-};
+}

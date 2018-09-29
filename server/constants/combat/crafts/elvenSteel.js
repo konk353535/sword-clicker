@@ -414,4 +414,4 @@ export const ELVEN_STEEL_CRAFTS = {
       level: 90
     }]
   }
-};
+}

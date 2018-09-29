@@ -1,7 +1,7 @@
 export const OBSIDIAN_ITEMS = {
   "obsidian_dagger": {
     "id": "obsidian_dagger",
-    "icon": "obsidianDagger.png",
+    "icon": "obsidianDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_spear": {
     "id": "obsidian_spear",
-    "icon": "obsidianSpear.png",
+    "icon": "obsidianSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_short_sword": {
     "id": "obsidian_short_sword",
-    "icon": "obsidianShortsword.png",
+    "icon": "obsidianShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_scimitar": {
     "id": "obsidian_scimitar",
-    "icon": "obsidianScimitar.png",
+    "icon": "obsidianScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_long_sword": {
     "id": "obsidian_long_sword",
-    "icon": "obsidianLongsword.png",
+    "icon": "obsidianLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_broad_sword": {
     "id": "obsidian_broad_sword",
-    "icon": "obsidianBroadSword.png",
+    "icon": "obsidianBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_battle_axe": {
     "id": "obsidian_battle_axe",
-    "icon": "obsidianBattleAxe.png",
+    "icon": "obsidianBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_helmet": {
     "id": "obsidian_helmet",
-    "icon": "obsidianHelmet.png",
+    "icon": "obsidianHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "obsidian helmet",
@@ -247,10 +247,10 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_chest_plate": {
     "id": "obsidian_chest_plate",
-    "icon": "obsidianChestplate.png",
+    "icon": "obsidianChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "obsidian Chestplate",
+    "name": "obsidian chestplate",
     "sellPrice": 1350,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_plate_legs": {
     "id": "obsidian_plate_legs",
-    "icon": "obsidianPlatelegs.png",
+    "icon": "obsidianPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "obsidian platelegs",
@@ -297,7 +297,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_shield": {
     "id": "obsidian_shield",
-    "icon": "obsidianShield.png",
+    "icon": "obsidianShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const OBSIDIAN_ITEMS = {
       level: 55
     }]
   }
-};
+}

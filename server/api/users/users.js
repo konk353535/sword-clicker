@@ -27,9 +27,7 @@ Meteor.methods({
   },
 
   'users.activeUsers'() {
-    const user = Users.findOne({_id: Meteor.userId()});
     return Mining.find({
-      server: user.server,
       lastGameUpdated: {
         $gte: moment().subtract(5, 'minutes').toDate()
       }
@@ -54,11 +52,7 @@ Meteor.methods({
   'users.updateGuest'({ username, password, email }) {
     // Make sure this account is actually a guest
     if (!Meteor.user().isGuest) {
-      throw new Meteor.Error('not-guest', 'Cant update details if you are not a guest');
-    }
-
-    if (Users.findOne({'emails.address': email})) {
-      throw new Meteor.Error('email-taken', 'Cant use an already registered email');
+      throw new Meteor.Error('not-guest', 'Cant update details if your not a guest');
     }
 
     // Update username
@@ -169,15 +163,15 @@ Meteor.methods({
       'currentStep'
     ];
 
-    const setObject = {};
+    const setObject = {}
 
     let exitEarly = false;
     allKeys.forEach((key) => {
       if (!_.contains(validIds, key)) {
-        console.log(`rejecting - ${key}`);
+        console.log(`rejecting - ${key}`)
         exitEarly = true;
       } else if (!_.isBoolean(updateObject[key] && !_.isFinite((updateObject[key])))) {
-        console.log(`rejecting - ${key}`);
+        console.log(`rejecting - ${key}`)
         exitEarly = true;
       } else {
         if (key === 'currentStep' && updateObject[key] <= userDoc.tutorial.currentStep) {
@@ -241,24 +235,6 @@ Meteor.methods({
     });
   },
 
-  'users.search'(searchValue) {
-    if (searchValue.length < 3 || !/^\w+$/.test(searchValue)) {
-      return [];
-    }
-
-    return Users.find({
-      username: {
-        $regex: `${searchValue}*`
-      }
-    }, {
-      fields: {
-        'username': true,
-        '_id': false
-      },
-      limit: 5
-    }).fetch();
-  },
-
   'users.skipTutorial'() {
     Users.update({
       _id: Meteor.userId()
@@ -273,14 +249,12 @@ Meteor.methods({
     const validIds = [
       'showChat',
       'showSummaryList',
-      'showNumberShorthand',
       'inscriptionFilter',
       'inscriptionLevelFilter',
       'craftingFilter',
       'combatTab',
       'miningTab',
       'farmingTab',
-      'newCombatType',
       'magicTab',
       'achievementTab',
       'towerFloor',
@@ -308,11 +282,6 @@ Meteor.methods({
       'craftingTierFilter.cursed',
       'battleAgain',
       'itemFilter',
-      'miningMultihit',
-      'seedsFilter',
-      'miningMultihit',
-      'recipeTileConsumables',
-      'craftingShowMore'
     ];
 
     if (_.contains(validIds, id)) {
@@ -325,7 +294,7 @@ Meteor.methods({
 
       const setObject = {
         username
-      };
+      }
       setObject[`uiState.${id}`] = value;
 
       Users.update({
@@ -335,12 +304,12 @@ Meteor.methods({
       });
     }
   }
-});
+})
 
 const MINUTE = 60 * 1000;
 const clientAddress = function clientAddress(clientAddress) {
   return true;
-};
+}
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
 DDPRateLimiter.addRule({ type: 'method', name: 'users.createGuest', clientAddress }, 3, 24 * 60 * MINUTE);
@@ -356,11 +325,9 @@ Meteor.publish("userData", function () {
       _id: this.userId
     }, {
       fields: {
-        'server': 1,
         'gold': 1,
         'uiState': 1,
         'tutorial': 1,
-        'battleSecret': 1,
         'newUpdates': 1,
         'gems': 1,
         'fakeGems': 1,

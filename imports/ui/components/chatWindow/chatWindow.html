@@ -1,15 +1,30 @@
 <template name="chatWindow">
-  {{#if minimized}}
-    <img src="/icons/maximize.svg" class="maximize-icon medium-icon">
+
+  {{#if isChatPage}}
+    <div class="d-flex align-items-center mx-2" style="margin-top: 10px">
+      <h2>Chat</h2>
+    </div>
   {{/if}}
 
-  <div class="chat-container
+  {{#unless isChatPage}}
     {{#if minimized}}
-      minimized
+      <img src="/icons/maximize.svg" class="maximize-icon small-icon">
+    {{/if}}
+  {{/unless}}
+
+  <div class="chat-container
+    {{#if isChatPage}}
+      chat-page
+    {{else}}
+      {{#if minimized}}
+        minimized
+      {{/if}}
     {{/if}} mx-2">
 
-    {{#unless minimized}}
-      <img src="/icons/minimize.svg" class="minimize-icon minimize-btn extra-small-icon hidden-sm-down">
+    {{#unless isChatPage}}
+      {{#unless minimized}}
+        <img src="/icons/minimize.svg" class="minimize-icon extra-small-icon">
+      {{/unless}}
     {{/unless}}
 
     <div class="box-body chat-scroll">
@@ -33,27 +48,27 @@
                       <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                            id="{{_id}}">
                           <div class="direct-chat-info clearfix">
-                            {{#if $eq name 'Game'}}
-                              <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                {{name}}
-                              </span>
-                            {{else if $eq name 'SERVER'}}
-                              <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                {{name}}
-                              </span>
-                            {{else}}
-                              <a href="/profile/{{name}}">
+                            <span class="direct-chat-timestamp pull-right">
+                              [{{moFormat date "hh:mm A"}}]
+                            </span>
+                              {{#if $eq name 'Game'}}
                                 <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
                                   {{name}}
                                 </span>
-                              </a>
-                            {{/if}}
-                            <span class="direct-chat-timestamp">
-                              {{moFormat date "hh:mm A"}}
-                            </span>
+                              {{else if $eq name 'SERVER'}}
+                                <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                  {{name}}
+                                </span>
+                              {{else}}
+                                <a href="/profile/{{name}}">
+                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                    {{name}}
+                                  </span>
+                                </a>
+                              {{/if}}
                           </div>
                           <!-- /.direct-chat-info -->
-                          <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
+                          <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0px{{/unless}}">
                               {{{message}}}
                               {{#if me}}
                                   <div class="direct-chat-checks">
@@ -82,40 +97,9 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-      <div class="dropup">
-        <button type="button" class="btn btn-secondary hidden-sm-down chat-type-dropdown dropdown-toggle {{currentChat.class}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{currentChat.name}}
-        </button>
-        <div class="dropdown-menu">
-          {{#each availableChats}}
-            <div class="d-flex align-items-center">
-            <a class="dropdown-item change-chat {{this.class}}" href="#" data-chat-id="{{this.id}}">
-              {{this.name}}
-            </a>
-            {{#if this.show}}
-              <button class="btn btn-link mx-1 btn-hide-chat" data-id="{{this.id}}">
-                <small>Hide</small>
-              </button>
-            {{else}}
-              <button class="btn btn-link mx-1 btn-show-chat" data-id="{{this.id}}">
-                <small>Show</small>
-              </button>              
-            {{/if}}
-            </div>
-          {{/each}}
-        </div>
-      </div>
-
-      <input
-        type="text"
-        name="message"
-        placeholder="{{placeholder}}"
-        class="form-control"
-        id="simple-chat-message">
-
-      <div class="d-flex flex-grow message-mobile-info">
-        <div class="dropup">
-          <button type="button" class="btn btn-secondary btn-sm hidden-md-up dropdown-toggle {{currentChat.class}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="input-group">
+        <div class="input-group-btn dropup">
+          <button type="button" class="btn btn-secondary dropdown-toggle {{currentChat.class}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{currentChat.name}}
           </button>
           <div class="dropdown-menu">
@@ -137,13 +121,17 @@
             {{/each}}
           </div>
         </div>
-        {{#unless minimized}}
-          <button class="btn btn-sm btn-secondary hidden-md-up ml-3 minimize-btn" id="message-hide">Hide</button>
-        {{/unless}}
-
-        <div class="d-flex flex-grow justify-content-end">
-          <button class="btn btn-sm btn-secondary btn-send" id="message-send">Send</button>
-        </div>
+        <input
+          type="text"
+          name="message"
+          placeholder="{{placeholder}}"
+          class="form-control"
+          id="simple-chat-message">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-primary btn-flat" id="message-send">
+            Send
+          </button>
+        </span>
       </div>
     </div>
     <!-- /.box-footer-->

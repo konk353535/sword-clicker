@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Items } from '/imports/api/items/items.js';
 import { Skills } from '/imports/api/skills/skills.js';
 
@@ -9,7 +8,6 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
   let hasConsumeItemRequirements = false;
   let maxCraftable = Infinity;
   let notMet = false;
-  let consumeItemRequirements = [];
 
   const recipeItems = recipe.required.map((requiredItem) => {
     requiredItem.notMet = false;
@@ -51,7 +49,6 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
 
       if (requiredItem.consumes) {
         hasConsumeItemRequirements = true;
-        consumeItemRequirements.push(requiredItem);
         if (hasItem) {
           const requiredItemMaxCraftable = Math.floor(hasItem.amount / requiredItem.amount);
           if (requiredItemMaxCraftable < maxCraftable) {
@@ -75,9 +72,8 @@ export const determineRequiredItems = function determineRequiredItems(recipe) {
     recipeItems,
     hasSkillRequirements,
     hasConsumeItemRequirements,
-    consumeItemRequirements,
     hasItemRequirements,
     maxCraftable,
     notMet
   }
-};
+}

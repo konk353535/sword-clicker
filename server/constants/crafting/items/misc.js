@@ -23,4 +23,4 @@ export const MISC_ITEMS = {
     sellPrice: 10,
     description: 'Can be traded for new adventures'
   }
-};
+}

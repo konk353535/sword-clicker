@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import _ from 'underscore';
 import './towerAchieveTab.html';
 
 Template.towerAchieveTab.onCreated(function bodyOnCreated() {
@@ -8,7 +9,7 @@ Template.towerAchieveTab.onCreated(function bodyOnCreated() {
 });
 
 Template.towerAchieveTab.events({
-});
+})
 
 Template.towerAchieveTab.helpers({
-});
+})

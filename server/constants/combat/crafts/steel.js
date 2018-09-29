@@ -414,4 +414,4 @@ export const STEEL_CRAFTS = {
       level: 35
     }]
   }
-};
+}

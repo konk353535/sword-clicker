@@ -1,4 +1,5 @@
 console.log('importing inscription/crafts.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
 import { PAPER_CRAFTS } from './crafts/paper';
 import { PIGMENT_CRAFTS } from './crafts/pigment';

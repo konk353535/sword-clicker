@@ -28,13 +28,12 @@
             id={{unit.id}}
             data-unit-id={{unit.id}}
             class="icon-box battle-unit
-              {{#if unit.myTarget}}my-target{{/if}}
               {{#if unit.leader}}leader-icon{{/if}}
               {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
               {{#if small}}item-icon-container small{{/if}}"
         >
       {{/if}}
-      <div class="health-bar d-flex justify-content-center" style="white-space: nowrap;">
+      <div class="health-bar d-flex justify-content-center">
         {{> formatNumber number=unit.stats.health}} / {{> formatNumber number=unit.stats.healthMax}}
       </div>      
       <div class="progress health-bar">

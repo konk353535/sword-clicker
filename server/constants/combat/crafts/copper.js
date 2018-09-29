@@ -238,7 +238,7 @@ export const COPPER_CRAFTS = {
   copper_chest_plate: {
     recipeFor: 'crafting',
     produces: 'copper_chest_plate',
-    name: 'copper Chestplate',
+    name: 'copper chestplate',
     category: 'combat',
     id: 'copper_chest_plate',
     timeToCraft: 120, // 60
@@ -351,4 +351,4 @@ export const COPPER_CRAFTS = {
       level: 3
     }]
   }
-};
+}

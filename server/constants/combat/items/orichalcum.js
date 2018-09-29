@@ -1,7 +1,7 @@
 export const ORICHALCUM_ITEMS = {
   "orichalcum_dagger": {
     "id": "orichalcum_dagger",
-    "icon": "orichalcumDagger.png",
+    "icon": "orichalcumDagger.svg",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_spear": {
     "id": "orichalcum_spear",
-    "icon": "orichalcumSpear.png",
+    "icon": "orichalcumSpear.svg",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_short_sword": {
     "id": "orichalcum_short_sword",
-    "icon": "orichalcumShortsword.png",
+    "icon": "orichalcumShortSword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_scimitar": {
     "id": "orichalcum_scimitar",
-    "icon": "orichalcumScimitar.png",
+    "icon": "orichalcumScimitar.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_long_sword": {
     "id": "orichalcum_long_sword",
-    "icon": "orichalcumLongsword.png",
+    "icon": "orichalcumLongSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_broad_sword": {
     "id": "orichalcum_broad_sword",
-    "icon": "orichalcumBroadSword.png",
+    "icon": "orichalcumBroadSword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_battle_axe": {
     "id": "orichalcum_battle_axe",
-    "icon": "orichalcumBattleAxe.png",
+    "icon": "orichalcumBattleAxe.svg",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_helmet": {
     "id": "orichalcum_helmet",
-    "icon": "orichalcumHelmet.png",
+    "icon": "orichalcumHelmet.svg",
     "category": "combat",
     "slot": "head",
     "name": "orichalcum helmet",
@@ -247,10 +247,10 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_chest_plate": {
     "id": "orichalcum_chest_plate",
-    "icon": "orichalcumChestplate.png",
+    "icon": "orichalcumChestPlate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "orichalcum Chestplate",
+    "name": "orichalcum chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_plate_legs": {
     "id": "orichalcum_plate_legs",
-    "icon": "orichalcumPlatelegs.png",
+    "icon": "orichalcumPlateLegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "orichalcum platelegs",
@@ -297,7 +297,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_shield": {
     "id": "orichalcum_shield",
-    "icon": "orichalcumShield.png",
+    "icon": "orichalcumShield.svg",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const ORICHALCUM_ITEMS = {
       level: 75
     }]
   }
-};
+}

@@ -1,8 +1,9 @@
 console.log('importing floors/generators/genericTower.js FLOORS');
-import { FLOORS } from '../../floors/index';
-import { ENEMIES } from '../../enemies/index';
+import { FLOORS } from '/server/constants/floors/index';
+import { ENEMIES } from '/server/constants/enemies/index';
 import _ from 'underscore';
-import uuid from 'node-uuid';
+import { attackSpeedTicks } from '/server/utils';
+import { Random } from 'meteor/random';
 
 console.log('exporting floors/generators/genericTower.js genericTowerMonsterGenerator');
 export const genericTowerMonsterGenerator = function(floor, room) {
@@ -36,7 +37,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
         damageTaken: 1
       },
       rewards: []
-    };
+    }
 
     if (selectedMonster.statBuffs) {
       selectedMonster.statBuffs.forEach((statBuff) => {
@@ -47,6 +48,8 @@ export const genericTowerMonsterGenerator = function(floor, room) {
         }
       })
     }
+
+    monster.stats.attackSpeedTicks = attackSpeedTicks(monster.stats.attackSpeed);
 
     // Is this a swarm mob?
     if (selectedMonster.swarmRange) {
@@ -62,13 +65,13 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       monster.stats.healthMax = monster.stats.health;
       for (let i = 0;i < unitCount; i++) {
         const monsterClone = JSON.parse(JSON.stringify(monster));
-        monsterClone.id = uuid.v4();
+        monsterClone.id = Random.id();
         newMonsters.push(monsterClone);
       }
     } else {
       newMonsters.push(monster);
     }
-  });
+  })
 
   return newMonsters;
-};
+}

@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Skills } from '/imports/api/skills/skills';
 import moment from 'moment';
 
 import { Friends } from '/imports/api/friends/friends';
@@ -97,7 +98,7 @@ Meteor.methods({
 Meteor.publish('friends', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     // Transfer invite id to invite names
     const invitesObjects = Combat.find({
       owner: {
@@ -115,14 +116,14 @@ Meteor.publish('friends', function() {
     doc.friends = invitesObjects;
 
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Friends.find({
+  var observer = Friends.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('friend', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

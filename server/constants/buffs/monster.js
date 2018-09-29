@@ -1,7 +1,9 @@
+import moment from 'moment';
 import _ from 'underscore';
-import { addBuff, removeBuff } from '../../battleUtils';
+import { attackSpeedTicks } from '/server/utils';
+import { addBuff, removeBuff } from '/server/battleUtils';
 import { BUFFS } from './index.js';
-import uuid from 'node-uuid';
+import { Random } from 'meteor/random'
 
 export const MONSTER_BUFFS = {
 
@@ -25,9 +27,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -45,7 +47,8 @@ export const MONSTER_BUFFS = {
     icon: 'goblin.svg',
     name: 'stat stealer',
     description({ buff, level }) {
-      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permanently`;
+      const c = buff.constants;
+      return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permenantly`;
     },
     constants: {
     },
@@ -60,7 +63,7 @@ export const MONSTER_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
-        buff.stacks = Math.round(buff.data.timeTillSteal);
+        buff.data.stacks = Math.round(buff.data.timeTillSteal);
 
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
@@ -77,7 +80,7 @@ export const MONSTER_BUFFS = {
               icon: 'goblin.svg',
               allowDuplicates: true
             }
-          };
+          }
 
           const statToSteal = _.sample(statsToSteal);
           let amount = targetToSteal.stats[statToSteal] * 0.2;
@@ -132,7 +135,7 @@ export const MONSTER_BUFFS = {
               level: 1,
               icon: 'invulnerable.svg'
             }
-          };
+          }
 
           buff.data.timeTillBlink = 6 + (Math.random() * 7);
 
@@ -179,7 +182,7 @@ export const MONSTER_BUFFS = {
                 level: 1,
                 icon: 'evasiveManeuvers.svg'
               }
-            };
+            }
 
             addBuff({ buff: newBuff, target: defender, caster: defender });
           }
@@ -214,6 +217,7 @@ export const MONSTER_BUFFS = {
         target.stats.attackSpeed *= 3;
         target.stats.magicArmor *= 0.3;
         target.stats.armor *= 0.3;
+        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -253,7 +257,7 @@ export const MONSTER_BUFFS = {
               icon: 'dwarfsRage.svg',
               description: 'Massively increased offensive stats. More vulnerable to magic.'
             }
-          };
+          }
 
           // Add berserk buff
           addBuff({ buff: newBuff, target: defender, caster: defender });
@@ -295,18 +299,15 @@ export const MONSTER_BUFFS = {
           buff.data.timeTillRabbit = 8 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
-          const newStacks = Math.round(buff.data.timeTillRabbit);
-          if (buff.stacks !== newStacks) {
-            buff.stacks = newStacks;
+          if (buff.data.timeTillRabbit <= 1000) {
+            buff.data.stacks = Math.round(buff.data.timeTillRabbit);
           }
-
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
-            const newRabbit = Object.assign({}, target.raw(), {
-              id: uuid.v4()
-            });
-            actualBattle.addUnit(newRabbit);
-            target.removeBuff(buff);
+            const newRabbit = JSON.parse(JSON.stringify(target));
+            newRabbit.id = Random.id();
+            actualBattle.enemies.push(newRabbit);
+            buff.data.timeTillRabbit = 6000;
           }
         }
       },
@@ -323,7 +324,7 @@ export const MONSTER_BUFFS = {
     name: 'healing reduction',
     description({ buff, level }) {
       const c = buff.constants;
-      return `Reduces healing received`;
+      return `Reduces healing recieved`;
     },
     constants: {
     },
@@ -341,9 +342,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -380,7 +381,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['mud_armor']
-          };
+          }
 
           // cast mud armor
           addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
@@ -397,7 +398,7 @@ export const MONSTER_BUFFS = {
             description: ''
           },
           constants: BUFFS['earth_dart']
-        };
+        }
 
         // cast earth dart
         addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -436,7 +437,7 @@ export const MONSTER_BUFFS = {
               description: 'Reduces your attack speed by 25%',
               name: 'Frosted Attacks'
             }
-          };
+          }
 
           // cast frost attack
           addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
@@ -454,7 +455,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['water_dart']
-          };
+          }
 
           const target = _.sample(actualBattle.enemies);
 
@@ -495,7 +496,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['ignite']
-          };
+          }
 
           // cast ignite
           addBuff({ buff: newBuff, target: attacker, caster: defender, actualBattle });
@@ -513,7 +514,7 @@ export const MONSTER_BUFFS = {
               description: ''
             },
             constants: BUFFS['fire_dart']
-          };
+          }
 
           // cast fire dart
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -557,9 +558,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -598,9 +599,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -638,9 +639,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.duration -= secondsElapsed;
+        buff.data.duration -= secondsElapsed;
 
-        if (buff.duration < 0) {
+        if (buff.data.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -676,9 +677,9 @@ export const MONSTER_BUFFS = {
             totalDuration: 20,
             healingReduction,
             icon: 'healingReduction.svg',
-            description: `Reduces healing received by ${Math.round((1 - healingReduction) * 100)}%`
+            description: `Reduces healing recieved by ${Math.round((1 - healingReduction) * 100)}%`
           }
-        };
+        }
 
         // Add healing reduction buff
         addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -719,7 +720,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              dps: attacker.stats.attackMax / 15,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 15)),
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
@@ -727,7 +728,7 @@ export const MONSTER_BUFFS = {
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
-          };
+          }
 
           // Add bleed debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -769,14 +770,14 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 3,
               totalDuration: 3,
-              dps: attacker.stats.attackMax / 6,
+              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 6)),
               caster: attacker.id,
               timeTillDamage: 1,
               icon: 'bleed.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
             }
-          };
+          }
 
           const accuracyBuff = {
             id: 'accuracy_up',
@@ -788,7 +789,7 @@ export const MONSTER_BUFFS = {
               icon: 'accuracy.svg',
               name: 'accuracy'
             }
-          };
+          }
 
           // Add bleed debuff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -832,7 +833,7 @@ export const MONSTER_BUFFS = {
 
         if (poisonedCount >= 1) {
           const totalHeal =  ((defender.stats.defense * poisonedCount) / 2);
-          actualBattle.healTarget(totalHeal, {
+          actualBattle.utils.healTarget(totalHeal, {
             caster: defender,
             target: defender,
             historyStats: actualBattle.historyStats,
@@ -840,8 +841,8 @@ export const MONSTER_BUFFS = {
           });
 
           defender.buffs.forEach((buff) => {
-            if (buff.id === 'basic_poison' && buff.duration > 1) {
-              buff.duration = 0.2;
+            if (buff.id === 'basic_poison' && buff.data.duration > 1) {
+              buff.data.duration = 0.2;
               buff.data.timeTillDamage = 5;
             }
           });
@@ -876,7 +877,7 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, attacker, actualBattle }) {
         defender.stats.attack *= 1.03;
         defender.stats.attackMax *= 1.03;
-        buff.stacks += 1;
+        buff.data.stacks += 1;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -907,7 +908,7 @@ export const MONSTER_BUFFS = {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
-        buff.stacks = buff.data.hitsRequired;
+        buff.data.stacks = buff.data.hitsRequired;
 
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;
@@ -918,7 +919,7 @@ export const MONSTER_BUFFS = {
           if (defender.stats.magicArmor <= 1) {
             defender.stats.magicArmor = 1;
           }
-          removeBuff({ buff, target: defender, caster: defender, actualBattle });
+          removeBuff({ buff, target: defender, caster: defender });
         }
       },
 
@@ -969,6 +970,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1 + (decimal / 1.75);
             buff.data.lastMissingHp = missingHp;
           }
+
+          // Recompute attack speed and damage by missingHp
+          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
 
         buff.data.timeTillUpdate -= secondsElapsed;
@@ -1009,7 +1013,7 @@ export const MONSTER_BUFFS = {
               icon: 'armorReduction.svg',
               description: `Reduces your armor by ${Math.round((1 - armorReduction) * 100)}%`
             }
-          };
+          }
 
           // Add healing reduction buff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
@@ -1046,15 +1050,15 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, actualBattle }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
-        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
-          buff.stacks -= 1;
+        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
+          buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = defender;
+            let newCube = JSON.parse(JSON.stringify(defender));
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = uuid.v4();
+            newCube.id = Random.id();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.addUnit(newCube);
+            actualBattle.enemies.push(newCube);
           }
           buff.data.hasSplit = true;
         }
@@ -1062,15 +1066,15 @@ export const MONSTER_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         // spawn cubes if mob is killed without spawning previously
-        if (!buff.data.hasSplit && buff.stacks > 0) {
-          buff.stacks -= 1;
+        if (!buff.data.hasSplit && buff.data.stacks > 0) {
+          buff.data.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = target;
+            let newCube = JSON.parse(JSON.stringify(target));
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = uuid.v4();
+            newCube.id = Random.id();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.addUnit(newCube);
+            actualBattle.enemies.push(newCube);
           }
           buff.data.hasSplit = true;
         }
@@ -1081,4 +1085,4 @@ export const MONSTER_BUFFS = {
       }
     }
   }
-};
+}

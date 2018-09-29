@@ -1,11 +1,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { STATE_BUFFS } from '/imports/constants/state';
-import { State } from '/imports/api/state/state';
+import RaiCheckout from 'arrowpay-react-checkout';
 
-import lodash from 'lodash';
-
+import 'arrowpay-react-checkout/build/css/index.css';
 import './shop.html';
 
 Template.shopPage.onCreated(function bodyOnCreated() {
@@ -13,11 +11,9 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 
   this.state.set('processing', false);
 
-  this.autorun(() => {
-    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
-    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
-    this.state.set('globalBuffs', globalBuffs);
-  });
+  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+    this.state.set('globalBuffs', res);
+  })
 });
 
 Template.shopPage.events({
@@ -33,7 +29,7 @@ Template.shopPage.events({
       damage_t2: 300,
       tank_t1: 150,
       tank_t2: 300
-    };
+    }
 
     if (Meteor.user().gems + Meteor.user().fakeGems < costs[iconId]) {
       // return;
@@ -78,7 +74,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'mining' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -91,7 +87,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'crafting' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -117,7 +113,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'combat' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -130,7 +126,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'woodcutting' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -143,7 +139,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'farming' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -156,24 +152,33 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'inscription' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
   },
 
   'click .buy-global-crafting'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'buffCrafting', (err, res) => {
+    Meteor.call('shop.buyGlobalBuff', 'crafting', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
     });
   },
 
   'click .buy-global-gathering'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'buffGathering', (err, res) => {
+    Meteor.call('shop.buyGlobalBuff', 'gathering', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
     });
   },
 
   'click .buy-global-combat'(event, instance) {
-    Meteor.call('shop.buyGlobalBuff', 'buffCombat', (err, res) => {
+    Meteor.call('shop.buyGlobalBuff', 'combat', (err, res) => {
+      Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
+        instance.state.set('globalBuffs', res);
+      })
     });
   },
 
@@ -184,7 +189,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'astronomy' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occured when buying membership.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -197,24 +202,24 @@ Template.shopPage.events({
 
     Meteor.call('shop.buyItem', { itemId: 'lemonade' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying item.');
+        return toastr.error('An unexpected error occured when buying item.');
       }
       toastr.success('Successfully purchased.')
     });
   }
-});
+})
 
 Template.shopPage.rendered = function () {
   const instance = Template.instance();
-  const handler = StripeCheckout.configure({
+  var handler = StripeCheckout.configure({
     key: Meteor.settings.public.stripe,
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
-    token: function (token) {
+    token: function(token) {
       const currentPack = instance.state.get('currentPack');
-      Meteor.call('shop.purchase', {token: token.id, currentPack}, (err, res) => {
+      Meteor.call('shop.purchase', { token: token.id, currentPack }, (err, res) => {
         if (err) {
-          toastr.error('An error occurred while purchasing gems.');
+          toastr.error('An error occured while purchasing gems.');
         } else {
           toastr.success('Successfully purchased');
         }
@@ -237,7 +242,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 499
     });
-    instance.state.set('currentPack', 'bunch');
+    instance.state.set('currentPack', 'bunch')
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -251,7 +256,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 1999
     });
-    instance.state.set('currentPack', 'bag');
+    instance.state.set('currentPack', 'bag')
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -265,7 +270,7 @@ Template.shopPage.rendered = function () {
       currency: 'usd',
       amount: 4999
     });
-    instance.state.set('currentPack', 'box');
+    instance.state.set('currentPack', 'box')
     instance.state.set('processing', true);
     e.preventDefault();
   });
@@ -274,11 +279,15 @@ Template.shopPage.rendered = function () {
   window.addEventListener('popstate', function() {
     handler.close();
   });
-};
+}
 
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
+  },
+
+  RaiCheckout() {
+    return RaiCheckout;
   },
 
   onPaymentConfirmed() {
@@ -286,7 +295,7 @@ Template.shopPage.helpers({
     return ({ token, item_id }) => {
       Meteor.call('shop.purchaseWithRaiBlocks', { token, item_id }, (err, res) => {
         if (err) {
-          toastr.error('An error occurred while purchasing gems.');
+          toastr.error('An error occured while purchasing gems.');
         } else {
           toastr.success('Successfully purchased');
         }
@@ -301,7 +310,21 @@ Template.shopPage.helpers({
   },
 
   globalBuffs() {
-    return Template.instance().state.get('globalBuffs');
+    const globalBuffs = Template.instance().state.get('globalBuffs');
+
+    if (moment().isAfter(globalBuffs.combat)) {
+      globalBuffs.combat = null;
+    }
+
+    if (moment().isAfter(globalBuffs.gathering)) {
+      globalBuffs.gathering = null;
+    }
+
+    if (moment().isAfter(globalBuffs.crafting)) {
+      globalBuffs.crafting = null;
+    }
+
+    return globalBuffs;
   },
 
   public_key() {
@@ -365,4 +388,4 @@ Template.shopPage.helpers({
       return upgrade;
     });
   }
-});
+})

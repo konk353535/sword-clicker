@@ -953,4 +953,4 @@ export const WOODCUTTING_CRAFTS = {
       level: 114
     }]
   }, 
-};
+}

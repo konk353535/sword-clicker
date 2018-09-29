@@ -56,7 +56,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
 
   const myUser = {
     gold: Meteor.user().gold
-  };
+  }
 
   const myItemsMap = {};
   myItems.forEach((item) => {
@@ -130,7 +130,7 @@ export const requirementsUtility = function (requirements, amountToCraft = 1) {
   }
 
   return true;
-};
+}
 
 const craftItem = function (recipeId, amountToCraft = 1) {
   const crafting = Crafting.findOne({ owner: Meteor.userId() });
@@ -153,6 +153,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
     throw new Meteor.Error("already-crafting", "Already crafting too many items.");
+    return;
   }
 
   // Is this a valid recipe?
@@ -209,7 +210,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
       }
     }
   });
-};
+}
 
 Meteor.methods({
   'crafting.craftItem'(recipeId, amount) {
@@ -275,11 +276,19 @@ Meteor.methods({
 
       // If it's learnt show regardless of level
       if (recipe.isHidden) {
-        return !(!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]);
+        if (!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]) {
+          return false;
+        } else {
+          return true;
+        }
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
-      return craftingSkill.level + 1 >= recipe.requiredCraftingLevel;
+      if (craftingSkill.level + 1 >= recipe.requiredCraftingLevel) {
+        return true;
+      }
+
+      return false;
     });
 
     return _.sortBy(recipesArray, 'requiredCraftingLevel');
@@ -343,7 +352,7 @@ Meteor.methods({
       return;
     }
 
-    // Refund resources for specified craft
+    // Refund resources for specified crat
     const recipeConstants = CRAFTING.recipes[targetCrafting.itemId];
     recipeConstants.required.forEach((required) => {
       if (required.consumes) {
@@ -397,7 +406,7 @@ Meteor.methods({
     // Add new items to user
     newItems.forEach((item) => {
       addItem(item.itemId, item.amount);
-    });
+    })
 
     // Add crafting exp
     if (_.isNumber(craftingXp)) {
@@ -409,7 +418,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-};
+}
 
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 10, 20000);
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes', userId }, 5, 10000);
@@ -419,7 +428,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 
 Meteor.publish('crafting', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     if (doc.currentlyCrafting) {
       doc.currentlyCrafting.forEach((item) => {
         const itemConstants = ITEMS[item.itemId];
@@ -428,14 +437,14 @@ Meteor.publish('crafting', function() {
       });
     }
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = Crafting.find({
+  var observer = Crafting.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('crafting', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

@@ -17,7 +17,7 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
-    const showAll200 = this.state.get('showAll200');
+    const showAll200 = this.state.get('showAll200')
     const skillName = this.state.get('selectedSkill');
     if (skillName === 'tower') {
       Meteor.call('battles.currentFloorHighscores', showAll200, (err, res) => {

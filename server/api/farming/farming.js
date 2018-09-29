@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 
 import { Skills } from '/imports/api/skills/skills';
+import { Farming } from '/imports/api/farming/farming';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Users } from '/imports/api/users/users';
 import { Events } from '/imports/api/events/events';
@@ -84,7 +85,7 @@ export const unlockFarmingSpaces = function unlockFarmingSpaces(userId) {
       }
     }, { multi: true });
   }
-};
+}
 
 Meteor.methods({
 
@@ -145,6 +146,10 @@ Meteor.methods({
     if (moment().isAfter(targetToPick.maturityDate)) {
       // Good to pick
       const plantConstants = FARMING.plants[targetToPick.plantId];
+      // Fetch Farming
+      const farming = Farming.findOne({
+        owner: Meteor.userId()
+      });
 
       // Update patch
       FarmingSpace.update({
@@ -167,35 +172,6 @@ Meteor.methods({
       // Not ready to pick
       throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
     }
-  },
-
-  'farming.pickAll'() {
-    FarmingSpace.find({
-      owner: Meteor.userId()
-    }).fetch().forEach((target) => {
-      if (moment().isAfter(target.maturityDate)) {
-        // Good to pick
-        const plantConstants = FARMING.plants[target.plantId];
-
-        // Update patch
-        FarmingSpace.update({
-          _id: target._id
-        }, {
-          $set: {
-            plantId: null,
-            water: null,
-            maturityDate: null,
-            plantDate: null,
-            growing: null
-          }
-        });
-
-        // Add item
-        addItem(plantConstants.produces, plantConstants.produceAmount || 1);
-        // Add Xp
-        addXp('farming', plantConstants.xp);
-      }
-    });
   },
 
   'farming.killPlant'(index) {
@@ -404,7 +380,11 @@ Meteor.methods({
       return FARMING.shopItems[key];
     }).filter((shopItem) => {
       // Only show woodcutters we can hire, or close to ( 1 level away )
-      return farmingSkill.level + 1 >= shopItem.requiredFarmingLevel;
+      if (farmingSkill.level + 1 >= shopItem.requiredFarmingLevel) {
+        return true;
+      }
+
+      return false;
     }).map((shopItem) => {
       const itemConstants = ITEMS[shopItem.itemId];
       const producesConstants = ITEMS[itemConstants.produces];
@@ -427,7 +407,7 @@ Meteor.methods({
 const MINUTE = 60 * 1000;
 const userId = function userId(userId) {
   return userId;
-};
+}
 
 DDPRateLimiter.addRule({ type: 'method', name: 'farming.gameUpdate', userId }, 5, 15000);
 DDPRateLimiter.addRule({ type: 'method', name: 'farming.water', userId }, 20, 10000);
@@ -440,7 +420,7 @@ DDPRateLimiter.addRule({ type: 'method', name: 'farming.fetchSeedShopSells', use
 Meteor.publish('farmingSpace', function() {
 
   //Transform function
-  const transform = function (doc) {
+  var transform = function(doc) {
     if (doc.plantId) {
       const currentPlantConstants = FARMING.plants[doc.plantId];
       doc.icon = currentPlantConstants.icon;
@@ -449,14 +429,14 @@ Meteor.publish('farmingSpace', function() {
     }
 
     return doc;
-  };
+  }
 
-  const self = this;
+  var self = this;
 
-  const observer = FarmingSpace.find({
+  var observer = FarmingSpace.find({
     owner: this.userId
   }).observe({
-    added: function (document) {
+      added: function (document) {
       self.added('farmingSpace', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

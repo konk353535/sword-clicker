@@ -1,4 +1,6 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Battles = new Mongo.Collection('battles');
@@ -6,16 +8,8 @@ export const BattlesList = new Mongo.Collection('battlesList');
 
 BattlesListSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
-
-  floor: { type: Number, optional: true },
-  room: { type: String, optional: true },
-  level: { type: Number, optional: true },
-  wave: { type: Number, optional: true },
-  activated: { type: Boolean },
-
-  group: { type: String, optional: true },
-
-  createdAt: { type: Date }
+  createdAt: { type: Date },
+  useStreamy: { type: Boolean, defaultValue: false }
 });
 
 BattlesSchema = new SimpleSchema({
@@ -48,11 +42,7 @@ BattlesSchema = new SimpleSchema({
   'units.$.icon': { type: String },
   'units.$.owner': { type: String, regEx: SimpleSchema.RegEx.Id },
   'units.$.name': { type: String },
-
-  // Deprecated
   'units.$.towerContributionsToday': { type: Number },
-
-  'units.$.towerContributions': { type: [Number] },
   'units.$.tickOffset': { type: Number, defaultValue: 0 },
   'units.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
@@ -95,7 +85,7 @@ BattlesSchema = new SimpleSchema({
   'deadEnemies.$.name': { type: String },
   'deadEnemies.$.id': { type: String, regEx: SimpleSchema.RegEx.Id },
 
-  tickEvents: { type: [Object], optional: true }, // List of things that occurred in the most recent tick
+  tickEvents: { type: [Object], optional: true }, // List of things that occured in the most recent tick
   'tickEvents.$.eventType': { type: String }, // Eg: Damage
   'tickEvents.$.from': { type: String }, // Who is dealing damage Eg: Player
   'tickEvents.$.to': { type: String }, // Who is taking damage Eg: Enemy

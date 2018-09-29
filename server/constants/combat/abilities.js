@@ -5,7 +5,7 @@ import { DEFENSE_ABILITIES } from './abilities/defense';
 
 export const ABILITY = {
   slots: ['mainHand', 'offHand', 'head', 'chest', 'legs']
-};
+}
 
 export const ABILITIES = Object.assign(
   ATTACK_ABILITIES,

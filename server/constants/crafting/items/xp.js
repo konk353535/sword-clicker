@@ -206,4 +206,4 @@ export const XP_ITEMS = {
     sellPrice: 1,
     description: 'Can be crafted for decent xp'
   },
-};
+}

@@ -1,6 +1,7 @@
 console.log('importing crafting/index.js CRAFTING_ITEMS');
 import { CRAFTING_ITEMS as craftingItems } from './items';
 console.log('importing crafting/index.js ITEMS');
+import { ITEMS } from '/server/constants/items/index.js';
 
 console.log('importing crafting/index.js CRAFTING_CRAFTS');
 import { CRAFTING_CRAFTS } from './crafts';
@@ -170,4 +171,4 @@ export const CRAFTING = {
       color: 'red-1'
     }
   }
-};
+}

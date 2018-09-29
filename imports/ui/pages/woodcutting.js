@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Skills } from '/imports/api/skills/skills.js';

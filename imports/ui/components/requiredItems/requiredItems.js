@@ -1,5 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Items } from '/imports/api/items/items.js';
+import { Skills } from '/imports/api/skills/skills.js';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './requiredItems.html';
@@ -25,7 +28,7 @@ const fetchRequiredItems = function (instance) {
   if (instance.data.requirementsMet) {
     instance.data.requirementsMet(!result.notMet);
   }
-};
+}
 
 Template.requiredItems.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -45,13 +48,13 @@ Template.requiredItems.rendered = function () {
       remove: true
     });
   }
-};
+}
 
 Template.requiredItems.onDestroyed(function () {
   if (tooltip && tooltip.target) {
     tooltip.destroy();
   }
-});
+})
 
 Template.requiredItems.helpers({
   computedRequiredItems() {
@@ -69,9 +72,5 @@ Template.requiredItems.helpers({
 
   hasSkillRequirements() {
     return Template.instance().state.get('hasSkillRequirements');
-  },
-
-  hideCurrent() {
-    return Template.instance().data.hideCurrent;
   }
-});
+})

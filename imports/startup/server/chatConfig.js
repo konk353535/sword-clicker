@@ -2,38 +2,10 @@ import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
-import { Groups } from '/imports/api/groups/groups';
-import { Servers } from '/imports/api/servers/servers';
-import { Floors } from '/imports/api/floors/floors';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addItem } from '/server/api/items/items.js';
-import { Events } from '/imports/api/events/events';
 
-import { FLOORS } from '/server/constants/floors/index.js';
-
-import _ from 'underscore';
 import moment from 'moment';
-
-const PUBLIC_ROOMS = ['General', 'LFG', 'Offtopic', 'Help']
-
-const createNewServer = function (name, iteration) {
-  // Create the server
-  const newServer = Servers.insert({
-    membersCount: 0,
-    createdAt: new Date(),
-    name,
-    iteration
-  });
-
-  // Create the floor
-  Floors.insert({
-    floor: 1,
-    server: newServer,
-    createdAt: new Date(),
-    points: 0,
-    pointsMax: FLOORS.getNewPointCount(1, 10)
-  });
-};
 
 SimpleChat.configure ({
   texts:{
@@ -45,7 +17,7 @@ SimpleChat.configure ({
     room: 'room at'
   },
   limit: 25,
-  publishChats: function(roomId, limit){ // server
+  publishChats: function(roomId, limit){ //server
     return this.userId;
   },
   onNewMessage: function () {
@@ -89,56 +61,6 @@ SimpleChat.configure ({
       }
     }
 
-    if (/\/transfergems/.test(message)) {
-      const splitMessage = message.split(' ');
-      const targetUsername = splitMessage[1];
-      const targetAmount = parseInt(splitMessage[2]);
-
-      if (!_.isFinite(targetAmount)) {
-        return;
-      } else if (targetAmount <= 0) {
-        return;
-      }
-
-      let gemsToSend = targetAmount;
-      if (gemsToSend > userDoc.gems) {
-        gemsToSend = userDoc.gems;
-      }
-
-      const targetUser = Users.findOne({
-        username: targetUsername.toLowerCase().trim()
-      });
-
-      if (!targetUser) {
-        return;
-      }
-
-      Events.insert({
-        owner: userDoc._id,
-        event: 'transfergems',
-        date: new Date(),
-        data: {
-          from: userDoc._id,
-          to: targetUser._id,
-          amount: gemsToSend
-        }
-      }, () => {});
-
-      Users.update(userDoc._id, {
-        $inc: {
-          gems: (gemsToSend * -1)
-        }
-      });
-
-      Users.update(targetUser._id, {
-        $inc: {
-          gems: gemsToSend
-        }
-      });
-
-      return false;
-    }
-
     if (userDoc.isMod) {
       if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user
@@ -170,14 +92,6 @@ SimpleChat.configure ({
         });
 
         return false;  
-      } else if (/\/createserver/.test(message)) {
-        const splitMessage = message.split(' ');
-        const name = splitMessage[1];
-        const iteration = parseInt(splitMessage[2]);
-
-        createNewServer(name, iteration);
-
-        return false;
       } else if (/\/permamute/.test(message)) {
         // Find user
         const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() });

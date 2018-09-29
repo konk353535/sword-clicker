@@ -913,4 +913,4 @@ export const MAGIC = {
       }]
     }
   }
-};
+}

@@ -44,19 +44,6 @@ Router.route('/profile/:username', {
   }
 });
 
-
-Router.route('/gameHome', {
-
-  name: 'gameHomePage',
-
-  template: 'gameHomePage',
-
-  yieldRegions: {
-    'nav': { to: 'nav' },
-    'footer': { to: 'footer' }
-  }
-});
-
 Router.route('/updates', {
 
   name: 'updatesPage',
@@ -215,23 +202,11 @@ Router.route('/combat', {
   }
 });
 
-Router.route('/newCombat', {
-
-  name: 'newCombat',
-
-  template: 'newCombatPage',
-
-  yieldRegions: {
-    'nav': { to: 'nav' },
-    'footer': { to: 'footer' }
-  }
-});
-
 Router.onAfterAction(() => {
   const name = Router.current().route.options.name;
   if (name) {
     document.title = `Eternity Tower - ${name.charAt(0).toUpperCase() + name.slice(1)}`;
   }
-});
+})
 
 

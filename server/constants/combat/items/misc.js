@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, MEDIUM_SPEED} from '../attackSpeeds';
+import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
 
 export const MISC_ITEMS = {
   thirsting_saber: {
@@ -35,11 +35,11 @@ export const MISC_ITEMS = {
 
   enchanted_long_sword: {
     id: 'enchanted_long_sword',
-    icon: 'enchantedLongsword.svg',
+    icon: 'enchantedLongSword.svg',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
-    name: 'enchanted long sword',
+    name: 'encahnted long sword',
     sellPrice: 5000,
     description: 'Rumored to be cursed, those who use it perish',
     isTwoHanded: true,
@@ -217,7 +217,7 @@ export const MISC_ITEMS = {
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
   bronze_kite_shield: {
     id: "bronze_kite_shield",
-    icon: "bronzeKiteShield.png",
+    icon: "bronzeKiteShield.svg",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -245,7 +245,7 @@ export const MISC_ITEMS = {
 
   steel_kite_shield: {
     id: "steel_kite_shield",
-    icon: "steelKiteShield.png",
+    icon: "steelKiteShield.svg",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -273,7 +273,7 @@ export const MISC_ITEMS = {
 
   obsidian_kite_shield: {
     id: "obsidian_kite_shield",
-    icon: "obsidianKiteShield.png",
+    icon: "obsidianKiteShield.svg",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -301,7 +301,7 @@ export const MISC_ITEMS = {
 
   meteorite_kite_shield: {
     id: "meteorite_kite_shield",
-    icon: "meteoriteKiteShield.png",
+    icon: "meteoriteKiteShield.svg",
     category: "combat",
     weaponType: "shield",
     slot: "offHand",
@@ -586,7 +586,7 @@ export const MISC_ITEMS = {
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
   iron_rapiers: {
     id: "iron_rapiers",
-    icon: "ironRapiers.png",
+    icon: "ironRapiers.svg",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",
@@ -617,7 +617,7 @@ export const MISC_ITEMS = {
 
   adamantium_rapiers: {
     id: "adamantium_rapiers",
-    icon: "adamantiumRapiers.png",
+    icon: "adamantiumRapiers.svg",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",
@@ -648,7 +648,7 @@ export const MISC_ITEMS = {
 
   fairy_steel_rapiers: {
     id: "fairy_steel_rapiers",
-    icon: "fairySteelRapiers.png",
+    icon: "fairySteelRapiers.svg",
     category: "combat",
     weaponType: "shortSword",
     slot: "mainHand",
@@ -680,7 +680,7 @@ export const MISC_ITEMS = {
   /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',
-    icon: 'spiritShield.png',
+    icon: 'spiritShield.svg',
     category: 'combat',
     slot: 'offHand',
     name: 'spirit shield',
@@ -704,7 +704,7 @@ export const MISC_ITEMS = {
 
   fairy_spirit_shield: {
     id: 'fairy_spirit_shield',
-    icon: 'fairySpiritShield.png',
+    icon: 'fairySpiritShield.svg',
     category: 'combat',
     weaponType: 'shield',
     slot: 'offHand',
@@ -729,7 +729,7 @@ export const MISC_ITEMS = {
 
   cursed_spirit_shield: {
     id: 'cursed_spirit_shield',
-    icon: 'cursedSpiritShield.png',
+    icon: 'cursedSpiritShield.svg',
     category: 'combat',
     slot: 'offHand',
     weaponType: 'shield',
@@ -865,7 +865,7 @@ export const MISC_ITEMS = {
 
   bloody_plate_legs: {
     id: "bloody_plate_legs",
-    icon: "bloodyPlatelegs.svg",
+    icon: "bloodyPlateLegs.svg",
     category: "combat",
     slot: "legs",
     name: "bloody platelegs",
@@ -893,12 +893,12 @@ export const MISC_ITEMS = {
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',
-    icon: 'opalChestplate.svg',
+    icon: 'opalChestPlate.svg',
     category: 'combat',
     slot: 'chest',
     name: 'opal chest plate',
     sellPrice: 1000,
-    description: 'This seems too expensive to wear.',
+    description: 'This seems to expensive to wear.',
     isEquippable: true,
     stats: {
       healthMax: 35,
@@ -1028,7 +1028,7 @@ export const MISC_ITEMS = {
     category: "combat",
     weaponType: "knife",
     slot: "offHand",
-    name: "kraken's tentacle",
+    name: "krakens tentacle",
     sellPrice: 950,
     description: "Provides minor offensive bonuses",
     isEquippable: true,
@@ -1056,7 +1056,7 @@ export const MISC_ITEMS = {
     category: "combat",
     weaponType: "battleAxe",
     slot: "mainHand",
-    name: "Bison's axe",
+    name: "Bisons axe",
     sellPrice: 2250,
     description: "Fix for a bison to wield",
     isTwoHanded: true,
@@ -1131,4 +1131,4 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['winged_shield']
   }
-};
+}

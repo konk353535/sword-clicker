@@ -827,4 +827,4 @@ export const AMULET_CRAFTS = {
     }]
   }
 
-};
+}

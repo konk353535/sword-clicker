@@ -8,3 +8,21 @@
   </div>
 </template>
 
+<template name="skinLibraryIcon">
+  <div class="icon-box p-3
+    {{#if skin.disabled}} cursor-not-allowed{{else}} cursor-pointer{{/if}}
+    {{#if skin.disabled}} disabled{{/if}}
+    {{#if skin.selected}} equipped-icon{{/if}}">
+    <img src="/icons/{{skin.icon}}">
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="skin-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+      {{skin.name}}
+    </h3>
+    <div class='popover-content'>
+      {{{description}}}
+    </div>
+  </div>
+</template>

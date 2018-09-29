@@ -3,16 +3,16 @@
     {{#each computedRequiredItems}}
       {{#if $eq this.type 'gold'}}
         <img src="/icons/goldCoin.svg" class="extra-small-icon">
-        <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
       {{else if $eq this.type 'skill'}}
         <img src="/icons/{{this.name}}.svg" class="extra-small-icon">      
-        <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
       {{else if $eq this.type 'xp'}}
         <img src="/icons/{{this.skill}}.svg" class="extra-small-icon">      
-        <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount noDecimal=true}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount noDecimal=true}}</span>
       {{else}}
         <img src="/icons/{{this.icon}}" class="extra-small-icon">
-        <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}"> {{#unless hideCurrent }}{{this.currentAmount}} / {{/unless}}{{this.amount}}</span>
+        <span class="mx-1 {{#if this.notMet}}text-danger{{/if}}">{{this.currentAmount}} / {{this.amount}}</span>
       {{/if}}
     {{/each}}
   </div>

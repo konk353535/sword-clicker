@@ -1,7 +1,7 @@
-import { orderLootTable } from '../../../enemies/lootTables/index.js';
+import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
 console.log('importing floor4/index.js ITEMS');
-import { ITEMS } from '../../../items/index';
-import { LEVEL_FOUR_LOOT_TABLE } from '../../levels/level4';
+import { ITEMS } from '/server/constants/items/index';
+import { LEVEL_FOUR_LOOT_TABLE } from '/server/constants/floors/levels/level4';
 
 console.log('exporting floor4/index.js TOWER_FLOOR_4');
 export const TOWER_FLOOR_4 = {
@@ -44,15 +44,17 @@ export const TOWER_FLOOR_4 = {
     name: 'Small Water Altar',
     enemies: ['blue_mage'],
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'druids_shirt', amount: 1 },
-        { type: 'item', itemId: 'druids_pants', amount: 1 }
-      ]
-    }, {
       chance: 1 / 128,
       rewards: [ 
         { type: 'item', itemId: 'spirit_shield', amount: 1 },
+        { type: 'item', itemId: 'blue_trident', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'blue_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shorts', amount: 1 }
       ]
     }]))
   },
@@ -97,11 +99,11 @@ export const TOWER_FLOOR_4 = {
   },
 
   boss: {
-    enemy: { id: 'boss_mage', amount: 1 },
+    enemy: { id: 'boss_spartan', amount: 1 },
     rewards: orderLootTable(LEVEL_FOUR_LOOT_TABLE.concat([{
       chance: 1 / 2,
       rewards: [
-        { type: 'item', itemId: 'druids_hat', amount: 1 }
+        { type: 'item', itemId: 'spartan_spear', amount: 1 }
       ]
     }]))
   },
@@ -128,4 +130,4 @@ export const TOWER_FLOOR_4 = {
       amount: 15000
     }
   ]
-};
+}

@@ -19,7 +19,7 @@
           <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{usersCurrentLevel}}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButton">
             {{#each levelsList}}
               <a class="dropdown-item select-level" data-level="{{this}}" href="#">{{this}}</a>
             {{/each}}
@@ -36,7 +36,7 @@
           <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{usersCurrentFloor}}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButton">
             {{#each floorsList}}
               <a class="dropdown-item select-floor" href="#" data-floor="{{this}}">{{this}}</a>
             {{/each}}
@@ -71,29 +71,6 @@
             {{waveDetails.health}} / {{waveDetails.healthMax}} hp
           {{/if}}
         {{/if}}
-      {{else if $eq typeKey 'afk'}}
-        <div class="mr-2 hidden-sm-down">Floor</div>
-        <div class="dropdown">
-          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            1
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">1</a>
-            <a class="dropdown-item" href="#">2</a>
-            <a class="dropdown-item" href="#">3</a>
-          </div>
-        </div>
-        <div class="mr-2 hidden-sm-down">Room</div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            1
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">1 - Eternal Pond</a>
-            <a class="dropdown-item" href="#">2 - Fire Keep</a>
-            <a class="dropdown-item" href="#">3 - Stone Fortress</a>
-          </div>
-        </div>
       {{/if}}
 
       {{#if showInvites}}

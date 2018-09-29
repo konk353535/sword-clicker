@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Session } from 'meteor/session';
 import { Users } from '/imports/api/users/users.js';
+import { Groups } from '/imports/api/groups/groups.js';
 import { Servers } from '/imports/api/servers/servers.js';
 import { Meteor } from "meteor/meteor";
 import { ReactiveDict } from 'meteor/reactive-dict';
@@ -139,6 +140,18 @@ Template.nav.helpers({
     } else {
       return true;
     }
+  },
+
+  showPendingInvites() {
+    const invitedToGroups = Groups.find({
+      invites: Meteor.userId()
+    }).fetch();
+
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    return !currentGroup && invitedToGroups.length > 0
   },
 
   floatingTextDisabled() {

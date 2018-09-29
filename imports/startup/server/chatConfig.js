@@ -2,6 +2,7 @@ import { SimpleChat } from 'meteor/cesarve:simple-chat/config'
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
+import { Groups } from '/imports/api/groups/groups';
 import { Servers } from '/imports/api/servers/servers';
 import { Floors } from '/imports/api/floors/floors';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
@@ -12,6 +13,8 @@ import { FLOORS } from '/server/constants/floors/index.js';
 
 import _ from 'underscore';
 import moment from 'moment';
+
+const PUBLIC_ROOMS = ['General', 'LFG', 'Offtopic', 'Help']
 
 const createNewServer = function (name, iteration) {
   // Create the server
@@ -42,7 +45,7 @@ SimpleChat.configure ({
     room: 'room at'
   },
   limit: 25,
-  publishChats: function(roomId, limit){ //server
+  publishChats: function(roomId, limit){ // server
     return this.userId;
   },
   onNewMessage: function () {

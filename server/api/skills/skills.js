@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
+import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -15,19 +16,17 @@ import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { SKILLS } from '/server/constants/skills/index.js';
+import { STATE_BUFFS } from '/imports/constants/state';
 import { ITEMS } from '/server/constants/items/index.js';
+import moment from "moment/moment";
 import _ from 'underscore';
-
-const redis = new Meteor.RedisCollection('redis');
 
 let globalXpBuffs = {};
 
 const updateGlobalBuffs = () => {
-  const rawGlobalBuffs = redis.get('global-buffs-xpq');
-  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
-  const hasCraftingGlobalBuff = globalBuffs.crafting && moment().isBefore(globalBuffs.crafting);
-  const hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
-  const hasGatheringGlobalBuff = globalBuffs.gathering && moment().isBefore(globalBuffs.gathering);
+  const hasCraftingGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.crafting, 'value.activeTo': {$gte: moment().toDate()}}));
+  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
+  const hasGatheringGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.gathering, 'value.activeTo': {$gte: moment().toDate()}}));
 
   globalXpBuffs = {
     astronomy: hasCombatGlobalBuff,

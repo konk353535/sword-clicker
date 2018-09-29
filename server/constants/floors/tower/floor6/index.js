@@ -1,6 +1,7 @@
-import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
-import { ITEMS } from '/server/constants/items/index';
-import { LEVEL_SIX_LOOT_TABLE } from '/server/constants/floors/levels/level6';
+import { orderLootTable } from '../../../enemies/lootTables/index.js';
+import { ITEMS } from '../../../items/index';
+
+import { LEVEL_SIX_LOOT_TABLE } from '../../levels/level6';
 
 export const TOWER_FLOOR_6 = {
   1: {

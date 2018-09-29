@@ -21,10 +21,16 @@ const castAbility = function(instance) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
               const abilityId = instance.data.ability.id;
-              // Fire this ability from = us, to = 
-              Meteor.call('battles.castAbility', battleId, abilityId, {
-                targets: [targetId], caster: Meteor.userId()
-              });
+
+              if (battleSocket) {
+                // Gonna require the socket here
+                battleSocket.emit('action', {
+                  battleSecret: Meteor.user().battleSecret,
+                  abilityId,
+                  targets: [targetId],
+                  caster: Meteor.userId()
+                });                
+              }
             }
 
             body.removeClass('targetting-enemies');
@@ -43,10 +49,16 @@ const castAbility = function(instance) {
               const targetId = $(event.target).attr('data-unit-id');
               const battleId = currentBattleId;
               const abilityId = instance.data.ability.id;
-              // Fire this ability from = us, to = 
-              Meteor.call('battles.castAbility', battleId, abilityId, {
-                targets: [targetId], caster: Meteor.userId()
-              });
+
+              if (battleSocket) {
+                // Gonna require the socket here
+                battleSocket.emit('action', {
+                  battleSecret: Meteor.user().battleSecret,
+                  abilityId,
+                  targets: [targetId],
+                  caster: Meteor.userId()
+                });                
+              }
             }
 
             body.removeClass('targetting-friendlies');
@@ -60,9 +72,16 @@ const castAbility = function(instance) {
     const abilityId = instance.data.ability.id;
     const targetId = Meteor.userId();
     const casterId = Meteor.userId();
-    Meteor.call('battles.castAbility', battleId, abilityId, {
-      targets: [targetId], caster: casterId
-    });
+
+    if (battleSocket) {
+      // Gonna require the socket here
+      battleSocket.emit('action', {
+        battleSecret: Meteor.user().battleSecret,
+        abilityId,
+        targets: [targetId],
+        caster: Meteor.userId()
+      });                
+    }
   }
 };
 
@@ -71,8 +90,6 @@ Template.ability.onCreated(function bodyOnCreated() {
 });
 
 Template.ability.rendered = function () {
-
-
   const slot = this.data.ability.slot;
 
   $(document).off(`keyup.${slot}`);
@@ -97,6 +114,11 @@ Template.ability.events({
   'click'(event, instance) {
     castAbility(instance);
   }
+});
+
+Template.ability.onDestroyed(function onAbilityDestroyed() {
+  const slot = this.data.ability.slot;
+  $(document).off(`keyup.${slot}`);
 });
 
 Template.ability.helpers({

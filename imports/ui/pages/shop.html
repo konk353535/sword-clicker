@@ -26,26 +26,6 @@
   <div class="row mb-3">
     <div class="col-md-3">
       <div class="card text-center mt-3 p-3">
-        <h4>Some Gems</h4>
-        <p class="mb-1">5 <img src="/icons/gems.svg" class="extra-small-icon"></p>
-        <div class="d-flex justify-content-center">
-          <img src="/icons/bunchOfGems.svg" class="large-icon my-3">
-        </div>
-        <div>
-          {{> React
-            component=RaiCheckout
-            onPaymentConfirmed=onPaymentConfirmed
-            payment=someGemsPayment
-            public_key=public_key
-            sub_title='Some Gems'
-            title='Eternity Tower'
-            item_id='someGems'
-            text='Pay with RaiBlocks $0.05'}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-center mt-3 p-3">
         <h4>Bunch Of Gems</h4>
         <p class="mb-1">500 <img src="/icons/gems.svg" class="extra-small-icon"></p>
         <div class="d-flex justify-content-center">
@@ -58,18 +38,6 @@
             $4.99
           {{/if}}
         </button>
-        <div class="mt-1">
-        {{> React
-          component=RaiCheckout
-          onPaymentConfirmed=onPaymentConfirmed
-          payment=bunchOfGemsPayment
-          buttonClasses='btn-block'
-          public_key=public_key
-          sub_title='Bunch Of Gems'
-          title='Eternity Tower'
-          item_id='bunchOfGems'
-          text='Pay with RaiBlocks $4.99'}}
-        </div>
       </div>
     </div>
     <div class="col-md-3">
@@ -111,8 +79,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.combat}}
-            <span class="my-1" alt="{{globalBuffs.combat}}">{{moFromNow globalBuffs.combat true}}</span>
+          {{#if globalBuffs.buffCombat}}
+            <span class="my-1" alt="{{globalBuffs.buffCombat}}">{{moFromNow globalBuffs.buffCombat true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}
@@ -131,8 +99,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.crafting}}
-            <span class="my-1" alt="{{globalBuffs.crafting}}">{{moFromNow globalBuffs.crafting true}}</span>
+          {{#if globalBuffs.buffCrafting}}
+            <span class="my-1" alt="{{globalBuffs.buffCrafting}}">{{moFromNow globalBuffs.buffCrafting true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}
@@ -151,8 +119,8 @@
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
-          {{#if globalBuffs.gathering}}
-            <span class="my-1" alt="{{globalBuffs.gathering}}">{{moFromNow globalBuffs.gathering true}}</span>
+          {{#if globalBuffs.buffGathering}}
+            <span class="my-1" alt="{{globalBuffs.buffGathering}}">{{moFromNow globalBuffs.buffGathering true}}</span>
           {{else}}
             <span class="my-1">Inactive</span>
           {{/if}}

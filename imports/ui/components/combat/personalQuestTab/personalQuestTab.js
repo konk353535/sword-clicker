@@ -33,7 +33,7 @@ Template.personalQuestTab.onCreated(function bodyOnCreated() {
 Template.personalQuestTab.events({
   'click .find-battle'(event, instance) {
     // Battle the current wave, so we can progress to the next wave
-    const targetLevel = instance.state.get('maxLevel');
+    const targetLevel = instance.state.get('currentLevel');
     const targetWave = instance.state.get('maxLevelCurrentWave');
     Meteor.call('battles.findPersonalBattle', targetLevel, targetWave, (err, res) => {
       if (err) {

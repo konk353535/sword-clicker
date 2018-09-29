@@ -54,7 +54,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_short_sword": {
     "id": "adamantium_short_sword",
-    "icon": "adamantiumShortSword.png",
+    "icon": "adamantiumShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_long_sword": {
     "id": "adamantium_long_sword",
-    "icon": "adamantiumLongSword.png",
+    "icon": "adamantiumLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_chest_plate": {
     "id": "adamantium_chest_plate",
-    "icon": "adamantiumChestPlate.png",
+    "icon": "adamantiumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "adamantium chestplate",
+    "name": "adamantium Chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_plate_legs": {
     "id": "adamantium_plate_legs",
-    "icon": "adamantiumPlateLegs.png",
+    "icon": "adamantiumPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "adamantium platelegs",

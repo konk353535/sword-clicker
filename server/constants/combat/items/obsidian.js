@@ -54,7 +54,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_short_sword": {
     "id": "obsidian_short_sword",
-    "icon": "obsidianShortSword.png",
+    "icon": "obsidianShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_long_sword": {
     "id": "obsidian_long_sword",
-    "icon": "obsidianLongSword.png",
+    "icon": "obsidianLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_chest_plate": {
     "id": "obsidian_chest_plate",
-    "icon": "obsidianChestPlate.png",
+    "icon": "obsidianChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "obsidian chestplate",
+    "name": "obsidian Chestplate",
     "sellPrice": 1350,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_plate_legs": {
     "id": "obsidian_plate_legs",
-    "icon": "obsidianPlateLegs.png",
+    "icon": "obsidianPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "obsidian platelegs",

@@ -1,8 +1,7 @@
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
+import uuid from 'node-uuid';
 
 export const MONSTER_BUFFS = {
 
@@ -26,9 +25,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -61,7 +60,7 @@ export const MONSTER_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
-        buff.data.stacks = Math.round(buff.data.timeTillSteal);
+        buff.stacks = Math.round(buff.data.timeTillSteal);
 
         if (!buff.data.timeTillSteal || buff.data.timeTillSteal <= 0) {
 
@@ -215,7 +214,6 @@ export const MONSTER_BUFFS = {
         target.stats.attackSpeed *= 3;
         target.stats.magicArmor *= 0.3;
         target.stats.armor *= 0.3;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -297,15 +295,18 @@ export const MONSTER_BUFFS = {
           buff.data.timeTillRabbit = 8 + Math.random () * 3;
         } else {
           buff.data.timeTillRabbit -= secondsElapsed;
-          if (buff.data.timeTillRabbit <= 1000) {
-            buff.data.stacks = Math.round(buff.data.timeTillRabbit);
+          const newStacks = Math.round(buff.data.timeTillRabbit);
+          if (buff.stacks !== newStacks) {
+            buff.stacks = newStacks;
           }
+
           if (buff.data.timeTillRabbit <= 0) {
             buff.data.timeTillRabbit = 15 + Math.random () * 5;
-            const newRabbit = JSON.parse(JSON.stringify(target));
-            newRabbit.id = Random.id();
-            actualBattle.enemies.push(newRabbit);
-            buff.data.timeTillRabbit = 6000;
+            const newRabbit = Object.assign({}, target.raw(), {
+              id: uuid.v4()
+            });
+            actualBattle.addUnit(newRabbit);
+            target.removeBuff(buff);
           }
         }
       },
@@ -340,9 +341,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -556,9 +557,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -597,9 +598,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -637,9 +638,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -718,7 +719,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 15,
               totalDuration: 15,
-              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 15)),
+              dps: attacker.stats.attackMax / 15,
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
@@ -768,7 +769,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 3,
               totalDuration: 3,
-              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 6)),
+              dps: attacker.stats.attackMax / 6,
               caster: attacker.id,
               timeTillDamage: 1,
               icon: 'bleed.svg',
@@ -831,7 +832,7 @@ export const MONSTER_BUFFS = {
 
         if (poisonedCount >= 1) {
           const totalHeal =  ((defender.stats.defense * poisonedCount) / 2);
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster: defender,
             target: defender,
             historyStats: actualBattle.historyStats,
@@ -839,8 +840,8 @@ export const MONSTER_BUFFS = {
           });
 
           defender.buffs.forEach((buff) => {
-            if (buff.id === 'basic_poison' && buff.data.duration > 1) {
-              buff.data.duration = 0.2;
+            if (buff.id === 'basic_poison' && buff.duration > 1) {
+              buff.duration = 0.2;
               buff.data.timeTillDamage = 5;
             }
           });
@@ -875,7 +876,7 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, attacker, actualBattle }) {
         defender.stats.attack *= 1.03;
         defender.stats.attackMax *= 1.03;
-        buff.data.stacks += 1;
+        buff.stacks += 1;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -906,7 +907,7 @@ export const MONSTER_BUFFS = {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
-        buff.data.stacks = buff.data.hitsRequired;
+        buff.stacks = buff.data.hitsRequired;
 
         if (buff.data.hitsRequired <= 0) {
           defender.stats.armor -= 2000;
@@ -917,7 +918,7 @@ export const MONSTER_BUFFS = {
           if (defender.stats.magicArmor <= 1) {
             defender.stats.magicArmor = 1;
           }
-          removeBuff({ buff, target: defender, caster: defender });
+          removeBuff({ buff, target: defender, caster: defender, actualBattle });
         }
       },
 
@@ -968,9 +969,6 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1 + (decimal / 1.75);
             buff.data.lastMissingHp = missingHp;
           }
-
-          // Recompute attack speed and damage by missingHp
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
 
         buff.data.timeTillUpdate -= secondsElapsed;
@@ -1048,15 +1046,15 @@ export const MONSTER_BUFFS = {
       onTookDamage({ buff, defender, actualBattle }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
-        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.data.stacks > 0) {
-          buff.data.stacks -= 1;
+        if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
+          buff.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = JSON.parse(JSON.stringify(defender));
+            let newCube = defender;
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = Random.id();
+            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.enemies.push(newCube);
+            actualBattle.addUnit(newCube);
           }
           buff.data.hasSplit = true;
         }
@@ -1064,15 +1062,15 @@ export const MONSTER_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         // spawn cubes if mob is killed without spawning previously
-        if (!buff.data.hasSplit && buff.data.stacks > 0) {
-          buff.data.stacks -= 1;
+        if (!buff.data.hasSplit && buff.stacks > 0) {
+          buff.stacks -= 1;
           for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = JSON.parse(JSON.stringify(target));
+            let newCube = target;
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = Random.id();
+            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.enemies.push(newCube);
+            actualBattle.addUnit(newCube);
           }
           buff.data.hasSplit = true;
         }

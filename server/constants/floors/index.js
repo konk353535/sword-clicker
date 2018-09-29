@@ -1,7 +1,7 @@
 console.log('importing floors/index.js TOWER_FLOORS');
 import { TOWER_FLOORS } from './tower/index';
 console.log('importing floors/index.js GENERATORS');
-import { GENERATORS } from '/server/constants/floors/generators';
+import { GENERATORS } from './generators';
 
 console.log('exporting floors/index.js FLOORS');
 export const FLOORS = Object.assign(

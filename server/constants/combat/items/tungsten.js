@@ -54,7 +54,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_short_sword": {
     "id": "tungsten_short_sword",
-    "icon": "tungstenShortSword.png",
+    "icon": "tungstenShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_long_sword": {
     "id": "tungsten_long_sword",
-    "icon": "tungstenLongSword.png",
+    "icon": "tungstenLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_chest_plate": {
     "id": "tungsten_chest_plate",
-    "icon": "tungstenChestPlate.png",
+    "icon": "tungstenChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "tungsten chestplate",
+    "name": "tungsten Chestplate",
     "sellPrice": 1200,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_plate_legs": {
     "id": "tungsten_plate_legs",
-    "icon": "tungstenPlateLegs.png",
+    "icon": "tungstenPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "tungsten platelegs",

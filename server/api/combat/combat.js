@@ -3,6 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
+import { Users } from '/imports/api/users/users';
 import { Battles } from '/imports/api/battles/battles';
 
 import { flattenObjectForMongo } from '/server/utils';
@@ -111,9 +112,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
   }).fetch();
 
+  let averageCombat = 0;
+
   // Apply user skills
   combatSkills.forEach((combatSkill) => {
     const skillLevel = combatSkill.level;
+    averageCombat += skillLevel;
     combatSkill.constants = SKILLS[combatSkill.type];
     if (combatSkill.constants.statsPerLevel) {
       const skillStatsPerLevel = JSON.parse(JSON.stringify(combatSkill.constants.statsPerLevel));
@@ -139,6 +143,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     playerData.stats.health = playerData.stats.healthMax;
   }
 
+  Users.update({
+    _id: userId
+  }, {
+    $set: {
+      averageCombat: Math.floor(averageCombat / 4)
+    }
+  });
+
   // Set player stats
   Combat.update({
     owner: userId
@@ -148,16 +160,6 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 };
 
 Meteor.methods({
-
-  'combat.startMeditation'() {
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: moment().toDate()
-      }
-    });
-  },
 
   'combat.updateIsTowerContribution'(newValue) {
     Combat.update({
@@ -224,44 +226,6 @@ Meteor.methods({
         characterIcon: targetIcon.icon
       }
     })
-  },
-
-  'combat.stopMeditation'() {
-    // Time since meditation
-    const combat = Combat.findOne({
-      owner: Meteor.userId()
-    });
-
-    if (!combat.meditatingStartDate) {
-      throw new Meteor.Error("no-meditation", "you're not meditating");
-    }
-
-    const now = moment();
-    let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
-
-    if (hoursElapsed > 24) {
-      hoursElapsed = 24; 
-    }
-
-    // Skills level x 10xp / hour
-    const combatSkills = Skills.find({
-      owner: Meteor.userId(),
-      type: {
-        $in: ['attack', 'defense', 'health']
-      }
-    }).fetch();
-
-    combatSkills.forEach((skill) => {
-      addXp(skill.type, hoursElapsed * 15 * skill.level)
-    });
-
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: null
-      }
-    });
   },
 
   'combat.gameUpdate'() {

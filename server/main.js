@@ -2,7 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import '/imports/startup/both';
 import '/imports/startup/server';
 
-import { resumeBattle } from '/server/api/battles/battles';
+import { ITEMS } from '/server/constants/items/index';
+import { ABILITIES } from '/server/constants/combat/abilities';
 
 import { Users } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups.js';
@@ -21,7 +22,11 @@ import { BattleActions } from '/imports/api/battles/battleActions';
 import { Items } from '/imports/api/items/items';
 import { Mining, MiningSpace } from '/imports/api/mining/mining';
 import { Skills } from '/imports/api/skills/skills';
+
+import { State } from '/imports/api/state/state';
+import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
+import { addItem } from '/server/api/items/items';
 
 Meteor.startup(() => {
 
@@ -109,22 +114,13 @@ Meteor.startup(() => {
     }
   })*/
 
-
-  if (process.env['CLUSTER_WORKER_ID'] === 1) {
-    // Start processing abandoned battles
-    BattlesList.find({}).fetch().forEach((existingBattle, battleIndex) => {
-      Meteor.setTimeout(() => {
-        resumeBattle(existingBattle._id);
-      }, Math.random() * 1000);
-    });
-  }
-
   // Ensure indexes on key databases
   Combat._ensureIndex({ owner: 1 });
   Combat._ensureIndex({ foughtBoss: 1 });
   Abilities._ensureIndex({ owner: 1 });
   Woodcutting._ensureIndex({ owner: 1 });
   Crafting._ensureIndex({ owner: 1 });
+  Groups._ensureIndex({ lastBattleStarted: -1 });
   Events._ensureIndex({ owner: 1, date: -1 });
   Skills._ensureIndex({ owner: 1 });
   Skills._ensureIndex({ type: 1 });
@@ -140,5 +136,5 @@ Meteor.startup(() => {
   FarmingSpace._ensureIndex({ owner: 1 });
   FarmingSpace._ensureIndex({ index: 1 });
   BattleActions._ensureIndex({ battleId: 1 });
-
+  State._ensureIndex({ name: 1 })
 });

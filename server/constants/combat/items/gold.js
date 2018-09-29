@@ -54,7 +54,7 @@ export const GOLD_ITEMS = {
   },
   "gold_short_sword": {
     "id": "gold_short_sword",
-    "icon": "goldShortSword.png",
+    "icon": "goldShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const GOLD_ITEMS = {
   },
   "gold_long_sword": {
     "id": "gold_long_sword",
-    "icon": "goldLongSword.png",
+    "icon": "goldLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const GOLD_ITEMS = {
   },
   "gold_chest_plate": {
     "id": "gold_chest_plate",
-    "icon": "goldChestPlate.png",
+    "icon": "goldChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "gold chestplate",
+    "name": "gold Chestplate",
     "sellPrice": 500,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const GOLD_ITEMS = {
   },
   "gold_plate_legs": {
     "id": "gold_plate_legs",
-    "icon": "goldPlateLegs.png",
+    "icon": "goldPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "gold platelegs",

@@ -54,7 +54,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_short_sword": {
     "id": "mithril_short_sword",
-    "icon": "mithrilShortSword.png",
+    "icon": "mithrilShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_long_sword": {
     "id": "mithril_long_sword",
-    "icon": "mithrilLongSword.png",
+    "icon": "mithrilLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_chest_plate": {
     "id": "mithril_chest_plate",
-    "icon": "mithrilChestPlate.png",
+    "icon": "mithrilChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "mithril chestplate",
+    "name": "mithril Chestplate",
     "sellPrice": 1600,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_plate_legs": {
     "id": "mithril_plate_legs",
-    "icon": "mithrilPlateLegs.png",
+    "icon": "mithrilPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "mithril platelegs",

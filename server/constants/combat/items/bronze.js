@@ -54,7 +54,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_short_sword": {
     "id": "bronze_short_sword",
-    "icon": "bronzeShortSword.png",
+    "icon": "bronzeShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_long_sword": {
     "id": "bronze_long_sword",
-    "icon": "bronzeLongSword.png",
+    "icon": "bronzeLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const BRONZE_ITEMS = {
   },
   "bronze_chest_plate": {
     "id": "bronze_chest_plate",
-    "icon": "bronzeChestPlate.png",
+    "icon": "bronzeChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "bronze chestplate",
+    "name": "bronze Chestplate",
     "sellPrice": 175,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_plate_legs": {
     "id": "bronze_plate_legs",
-    "icon": "bronzePlateLegs.png",
+    "icon": "bronzePlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "bronze platelegs",

@@ -1,9 +1,8 @@
 console.log('importing floors/generators/genericTower.js FLOORS');
-import { FLOORS } from '/server/constants/floors/index';
-import { ENEMIES } from '/server/constants/enemies/index';
+import { FLOORS } from '../../floors/index';
+import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { Random } from 'meteor/random';
+import uuid from 'node-uuid';
 
 console.log('exporting floors/generators/genericTower.js genericTowerMonsterGenerator');
 export const genericTowerMonsterGenerator = function(floor, room) {
@@ -49,8 +48,6 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       })
     }
 
-    monster.stats.attackSpeedTicks = attackSpeedTicks(monster.stats.attackSpeed);
-
     // Is this a swarm mob?
     if (selectedMonster.swarmRange) {
       const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);
@@ -65,7 +62,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       monster.stats.healthMax = monster.stats.health;
       for (let i = 0;i < unitCount; i++) {
         const monsterClone = JSON.parse(JSON.stringify(monster));
-        monsterClone.id = Random.id();
+        monsterClone.id = uuid.v4();
         newMonsters.push(monsterClone);
       }
     } else {

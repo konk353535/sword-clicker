@@ -54,7 +54,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_short_sword": {
     "id": "titanium_short_sword",
-    "icon": "titaniumShortSword.png",
+    "icon": "titaniumShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_long_sword": {
     "id": "titanium_long_sword",
-    "icon": "titaniumLongSword.png",
+    "icon": "titaniumLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_chest_plate": {
     "id": "titanium_chest_plate",
-    "icon": "titaniumChestPlate.png",
+    "icon": "titaniumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "titanium chestplate",
+    "name": "titanium Chestplate",
     "sellPrice": 1000,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_plate_legs": {
     "id": "titanium_plate_legs",
-    "icon": "titaniumPlateLegs.png",
+    "icon": "titaniumPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "titanium platelegs",

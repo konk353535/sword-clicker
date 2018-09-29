@@ -1,7 +1,8 @@
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import moment from 'moment';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
+import uuid from 'node-uuid';
 
 export const ENCHANTMENT_BUFFS = {
 
@@ -37,7 +38,7 @@ export const ENCHANTMENT_BUFFS = {
           }
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -69,7 +70,7 @@ export const ENCHANTMENT_BUFFS = {
         } else {
           buff.data.timeTillCharge = 5;
           const targetToHeal = _.sample(actualBattle.units);
-          actualBattle.utils.healTarget(target.stats.magicPower * 0.5, {
+          actualBattle.healTarget(target.stats.magicPower * 0.5, {
             caster: target,
             target: targetToHeal,
             tickEvents: actualBattle.tickEvents,
@@ -77,7 +78,7 @@ export const ENCHANTMENT_BUFFS = {
           });
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -109,7 +110,7 @@ export const ENCHANTMENT_BUFFS = {
         } else {
           buff.data.timeTillCharge = 5;
           const targetToAttack = _.sample(actualBattle.enemies);
-          actualBattle.utils.dealDamage(target.stats.magicPower * 0.5, {
+          actualBattle.dealDamage(target.stats.magicPower * 0.5, {
             attacker: target,
             defender: targetToAttack,
             isMagic: true,
@@ -118,7 +119,7 @@ export const ENCHANTMENT_BUFFS = {
           });
         }
 
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onRemove({ buff, target, caster }) {
@@ -149,7 +150,7 @@ export const ENCHANTMENT_BUFFS = {
           // Spawn our fox
           const foxToSpawn = _.sample(['fire', 'water', 'air', 'earth']);
           let fox = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
           };
 
@@ -186,7 +187,6 @@ export const ENCHANTMENT_BUFFS = {
               attack: target.stats.attackMax * 0.05,
               attackMax: target.stats.attackMax * 0.05,
               attackSpeed: 0.5,
-              attackSpeedTicks: attackSpeedTicks(0.5),
               accuracy: target.stats.accuracy * 0.5,
               health: target.stats.healthMax * 0.25,
               healthMax: target.stats.healthMax * 0.25,
@@ -213,7 +213,6 @@ export const ENCHANTMENT_BUFFS = {
               attack: target.stats.attackMax * 0.1,
               attackMax: target.stats.attackMax * 0.1,
               attackSpeed: 1,
-              attackSpeedTicks: attackSpeedTicks(1),
               accuracy: target.stats.accuracy,
               health: target.stats.healthMax * 0.15,
               healthMax: target.stats.healthMax * 0.15,
@@ -278,13 +277,13 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.timeTillCharge = 5;
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ secondsElapsed, buff }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
-          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+          buff.stacks = Math.round(buff.data.timeTillCharge);
         }
       },
 
@@ -293,7 +292,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeTillCharge = 5;
           actualBattle.enemies.forEach((enemy) => {
             if (enemy.id !== defender.id) {
-              actualBattle.utils.dealDamage(damageDealt, {
+              actualBattle.dealDamage(damageDealt, {
                 attacker: attacker,
                 defender: enemy,
                 // Need to make sure this is required
@@ -333,15 +332,14 @@ export const ENCHANTMENT_BUFFS = {
       onDidDamage({ buff, attacker }) {
         if (!buff.data.isActive) {
           buff.data.charges += 1;
-          buff.data.stacks = buff.data.charges;
+          buff.stacks = buff.data.charges;
         }
 
         if (buff.data.charges >= 20 && !buff.data.isActive) {
           attacker.stats.attackSpeed *= 1.5;
-          attacker.stats.attackSpeedTicks = attackSpeedTicks(attacker.stats.attackSpeed);
           buff.data.timeTillEnd = 3;
           buff.data.isActive = true;
-          buff.data.stacks = undefined;
+          buff.stacks = undefined;
           buff.data.icon = 'tentacleRed.svg';
         }
       },
@@ -353,7 +351,6 @@ export const ENCHANTMENT_BUFFS = {
             buff.data.isActive = false;
             buff.data.charges = 0;
             target.stats.attackSpeed /= 1.5;
-            target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
             buff.data.icon = 'tentacle.svg';
           }
         }
@@ -383,7 +380,7 @@ export const ENCHANTMENT_BUFFS = {
         const amountToAdd = target.stats.armor * 0.1;
         buff.data.defense = amountToAdd;
         target.stats.defense += buff.data.defense;
-        buff.data.stacks = Math.round(buff.data.defense);
+        buff.stacks = Math.round(buff.data.defense);
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -426,7 +423,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.totalDamage = target.stats.attackMax * (extraDamagePercentage / 100);
           target.stats.attackMax += buff.data.totalDamage;
           target.stats.attack += buff.data.totalDamage;
-          buff.data.stacks = Math.round(buff.data.totalDamage);
+          buff.stacks = Math.round(buff.data.totalDamage);
         }
       },
 
@@ -438,7 +435,7 @@ export const ENCHANTMENT_BUFFS = {
 
   bloody_plate_legs: {
     duplicateTag: 'bloody_plate_legs', // Used to stop duplicate buffs
-    icon: 'bloodyPlateLegs.svg',
+    icon: 'bloodyPlatelegs.svg',
     name: 'bloody plate legs',
     description() {
       return `10% chance on hit to inflict 3s bleed.<br />(10% of max damage / second)`;
@@ -512,7 +509,7 @@ export const ENCHANTMENT_BUFFS = {
         if (buff.data.isActive) {
           actualBattle.units.forEach((unit) => {
             if (unit.id !== defender.id) {
-              actualBattle.utils.healTarget(5, {
+              actualBattle.healTarget(5, {
                 caster: defender,
                 target: unit,
                 tickEvents: actualBattle.tickEvents,
@@ -632,8 +629,8 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.data.duration -= secondsElapsed;
-        if (buff.data.duration <= 0) {
+        buff.duration -= secondsElapsed;
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -677,7 +674,7 @@ export const ENCHANTMENT_BUFFS = {
         });
 
         if (target) {
-         actualBattle.utils.dealDamage(totalDamage, {
+         actualBattle.dealDamage(totalDamage, {
             attacker,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -720,7 +717,7 @@ export const ENCHANTMENT_BUFFS = {
         const baseDamage = attacker.stats.attack;
         const totalDamage = rawDamage * constants.damageDecimal;
 
-        actualBattle.utils.dealDamage(totalDamage, {
+        actualBattle.dealDamage(totalDamage, {
           attacker,
           defender,
           isMagic: true,
@@ -731,7 +728,7 @@ export const ENCHANTMENT_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
             return targetBuff.id !== buff.id
           });
@@ -784,7 +781,7 @@ export const ENCHANTMENT_BUFFS = {
 
           if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
             const totalHeal = target.stats.magicPower * 2.5;
-            actualBattle.utils.healTarget(totalHeal, {
+            actualBattle.healTarget(totalHeal, {
               caster: target,
               target: targetUnit,
               tickEvents: actualBattle.tickEvents,
@@ -875,8 +872,8 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.stacks) {
-          buff.data.stacks = 5;
+        if (!buff.stacks) {
+          buff.stacks = 5;
         }
 
         if (Math.random() <= 0.02) {
@@ -894,9 +891,9 @@ export const ENCHANTMENT_BUFFS = {
 
           // cast ignite
           addBuff({ buff: newBuff, target: targetEnemy, caster: target, actualBattle });
-          buff.data.stacks -= 1;
+          buff.stacks -= 1;
 
-          if (buff.data.stacks <= 0) {
+          if (buff.stacks <= 0) {
             removeBuff({ buff, target, caster: target });
           }
         }
@@ -980,7 +977,7 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         buff.data.timeTillDodge = 15;
-        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.stacks = Math.round(buff.data.timeTillDodge);
         buff.data.dodge = false;
       },
 
@@ -995,7 +992,7 @@ export const ENCHANTMENT_BUFFS = {
         if (buff.data.timeTillDodge < 0) {
           buff.data.timeTillDodge = 0;
         }
-        buff.data.stacks = Math.round(buff.data.timeTillDodge);
+        buff.stacks = Math.round(buff.data.timeTillDodge);
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1075,11 +1072,11 @@ export const ENCHANTMENT_BUFFS = {
           if(!_.isUndefined(sourceAlly)) {
             // redirect damage from self to sourceAlly
             const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
-            actualBattle.utils.healTarget(redirectDamage, {
+            actualBattle.healTarget(redirectDamage, {
               caster: sourceAlly,
               target: defender,
             });
-            actualBattle.utils.dealDamage(redirectDamage, {
+            actualBattle.dealDamage(redirectDamage, {
               attacker: defender,
               defender: sourceAlly,
               tickEvents: actualBattle.tickEvents
@@ -1127,7 +1124,7 @@ export const ENCHANTMENT_BUFFS = {
           // transfer HP from self to allies
           if ((ally.stats.health + actualHealthTransferred) < ally.stats.healthMax) {
             healthTransferred = true;
-            actualBattle.utils.healTarget(actualHealthTransferred, {
+            actualBattle.healTarget(actualHealthTransferred, {
               caster: target,
               target: ally,
               tickEvents: actualBattle.tickEvents

@@ -1,7 +1,5 @@
-console.log('importing enemies/index.js BOSS_ENEMIES');
-import { BOSS_ENEMIES } from '/server/constants/enemies/bosses/index.js'
+import { BOSS_ENEMIES } from './bosses/index.js'
 
-console.log('exporting enemies/index.js ENEMIES');
 export const ENEMIES = Object.assign({
 
   grasshopper: {
@@ -47,8 +45,8 @@ export const ENEMIES = Object.assign({
     name: 'goblin',
     buffs: [{
       id: 'goblin_stat_stealer',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         icon: 'goblin.svg',
         name: 'stat stealer'
@@ -62,8 +60,8 @@ export const ENEMIES = Object.assign({
     name: 'vampire',
     buffs: [{
       id: 'thirsty_fangs',
+      duration: 1,
       data: {
-        duration: 1,
         totalDuration: 1,
         icon: 'thirstyFangs.svg',
         name: 'thirsty fangs'
@@ -92,8 +90,8 @@ export const ENEMIES = Object.assign({
     name: 'young ninja',
     buffs: [{
       id: 'ninja_reflexes',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         icon: 'youngNinja.svg',
         name: 'Ninja Reflexes'
@@ -108,10 +106,10 @@ export const ENEMIES = Object.assign({
     name: 'monk ninja',
     buffs: [{
       id: 'monk',
+      duration: Infinity,
+      stacks: 0,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
-        stacks: 0,
         icon: 'monk.svg',
         name: 'monk'
       }
@@ -137,8 +135,8 @@ export const ENEMIES = Object.assign({
     name: 'unicorn',
     buffs: [{
       id: 'ninja_reflexes',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         icon: 'youngNinja.svg',
         name: 'Ninja Reflexes'
@@ -153,8 +151,8 @@ export const ENEMIES = Object.assign({
     name: 'dwarf',
     buffs: [{
       id: 'dwarfs_pre_rage',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         hideBuff: true
       }
@@ -920,8 +918,8 @@ export const ENEMIES = Object.assign({
     name: 'gorilla',
     buffs: [{
       id: 'boss_gorilla',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         icon: 'gorilla.svg',        
         name: 'gorilla',
@@ -949,10 +947,10 @@ export const ENEMIES = Object.assign({
     name: 'gelatinous cube',
     buffs: [{
       id: 'gelatinous_cube_monster',
+      duration: Infinity,
+      stacks: 2,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
-        stacks: 2,
         icon: 'cubeSplit.svg',
         name: 'gelatinous cube',
         splitHealthPercentage: 15,
@@ -985,8 +983,8 @@ export const ENEMIES = Object.assign({
     name: 'warden',
     buffs: [{
       id: 'warden_shield',
+      duration: Infinity,
       data: {
-        duration: Infinity,
         totalDuration: Infinity,
         level: 10, // 80% damage redirection
         icon: 'warden_shield.svg',

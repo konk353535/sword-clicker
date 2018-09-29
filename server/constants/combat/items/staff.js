@@ -1,4 +1,4 @@
-import { MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
+import { SLOW_SPEED, MEDIUM_SPEED} from '../attackSpeeds';
 
 export const STAFF_ITEMS = {
   /* Wands - Same as staffs but 1h, less magic power */

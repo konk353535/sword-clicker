@@ -1,26 +1,16 @@
 import _ from 'underscore';
-import { BUFFS } from '/server/constants/buffs/index';
+import { BUFFS } from './constants/buffs/index';
 
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
   const buffConstants = BUFFS[buff.id];
-  let hasRemoved = false;
-
-  if (!_.isArray(target.buffs)) {
-    target.buffs = [];
-  }
 
   // Quick sort of buffs to ascending by duration
-  target.buffs = _.sortBy(target.buffs, 'data.duration');
-
-  target.buffs = target.buffs.filter((ownerBuff) => {
-    if (ownerBuff.id === buff.id && !hasRemoved) {
-      buffConstants.events.onRemove({ buff, target, caster, actualBattle });
-      hasRemoved = true;
-      return false;
-    }
-    return true;
-  });
-};
+  // target.buffs = _.sortBy(target.buffs, 'duration');
+  if (buffConstants.events.onRemove) {
+    buffConstants.events.onRemove({ buff, target, caster, actualBattle });
+  }
+  target.removeBuff(buff);
+}
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
   if (!buff.data.allowDuplicates) {
@@ -30,20 +20,8 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
 
   const buffConstants = BUFFS[buff.id];
   buff.constants = buffConstants;
-  buffConstants.events.onApply({ buff, target, caster, actualBattle });
-  if (!target.buffs) {
-    target.buffs = [buff];
-  } else {
-    target.buffs.push(buff);
+  if (buffConstants.events.onApply) {
+    buffConstants.events.onApply({ buff, target, caster, actualBattle });
   }
-};
-
-export const finishAllBattles = function() {
-  import { BattlesList } from "/imports/api/battles/battles";
-  const redis = new Meteor.RedisCollection('redis');
-  BattlesList.find({}).fetch().forEach((battleList) => {
-    BattlesList.remove(battleList._id);
-    redis.del(`battles-${battleList._id}`);
-    redis.del(`battleActions-${battleList._id}`);
-  });
-};
+  target.addBuff(buff);
+}

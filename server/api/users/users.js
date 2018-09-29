@@ -241,6 +241,24 @@ Meteor.methods({
     });
   },
 
+  'users.search'(searchValue) {
+    if (searchValue.length < 3 || !/^\w+$/.test(searchValue)) {
+      return [];
+    }
+
+    return Users.find({
+      username: {
+        $regex: `${searchValue}*`
+      }
+    }, {
+      fields: {
+        'username': true,
+        '_id': false
+      },
+      limit: 5
+    }).fetch();
+  },
+
   'users.skipTutorial'() {
     Users.update({
       _id: Meteor.userId()
@@ -262,6 +280,7 @@ Meteor.methods({
       'combatTab',
       'miningTab',
       'farmingTab',
+      'newCombatType',
       'magicTab',
       'achievementTab',
       'towerFloor',
@@ -289,6 +308,7 @@ Meteor.methods({
       'craftingTierFilter.cursed',
       'battleAgain',
       'itemFilter',
+      'miningMultihit',
       'seedsFilter',
       'miningMultihit',
       'recipeTileConsumables',
@@ -340,6 +360,7 @@ Meteor.publish("userData", function () {
         'gold': 1,
         'uiState': 1,
         'tutorial': 1,
+        'battleSecret': 1,
         'newUpdates': 1,
         'gems': 1,
         'fakeGems': 1,

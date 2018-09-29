@@ -6,9 +6,11 @@ import { Random } from 'meteor/random';
 import { ITEMS } from '/server/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import { BattlesList } from '/imports/api/battles/battles';
 import { Skills } from '/imports/api/skills/skills';
+import { State } from '/imports/api/state/state';
 import { Items } from '/imports/api/items/items';
 import { Floors } from '/imports/api/floors/floors';
 import { Adventures } from '/imports/api/adventures/adventures';
@@ -16,8 +18,6 @@ import { Adventures } from '/imports/api/adventures/adventures';
 import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills';
 import { Users } from '/imports/api/users/users';
-
-const redis = new Meteor.RedisCollection('redis');
 
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
@@ -116,9 +116,7 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
     epic: 0.5
   };
 
-  const rawGlobalBuffs = redis.get('global-buffs-xpq');
-  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
-  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
 
   // Determine xp
   let xpPerHour = adventure.level <= 6 ? xpLookup[adventure.level] :(adventure.level * 10000);

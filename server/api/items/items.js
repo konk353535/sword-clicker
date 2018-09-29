@@ -91,18 +91,22 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         Items.insert(newItemsList[0]);
       }
     } else {
-      Items.upsert({ owner, itemId }, {
-        $inc: {
-          amount
-        },
-        $setOnInsert: {
+      const updatedCount = Items.update({
+        owner,
+        itemId
+      }, {
+        $inc: { amount: amount }
+      });
+
+      if (!updatedCount) {
+        Items.insert({
           itemId,
+          amount,
           owner,
           category: itemConstants.category,
-          amount,
           equipped: false
-        }
-      })
+        });
+      }
     }
   } else {
     newItemsList.forEach((newItem) => {
@@ -524,6 +528,7 @@ Meteor.methods({
         duplicateTag: buff.constants.duplicateTag
       }, buff.constants.data);
 
+      buff.duration = buff.constants.data.duration;
       buff.data.description = buff.constants.description({ buff: buff, level: 1 });
     });
 
@@ -538,7 +543,7 @@ Meteor.methods({
         if (currentCombat.buffs && currentCombat.buffs.length > 0) {
           let existingBuff = _.findWhere(currentCombat.buffs, { id: buff.id });
           if (existingBuff) {
-            existingBuff.data.duration = -1;
+            existingBuff.duration = -1;
             existingBuff.constants = buff.constants;
             buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target: currentCombat });
           }
@@ -565,7 +570,8 @@ Meteor.methods({
     Combat.update(currentCombat._id, {
       $set: flattenObjectForMongo({
         stats: currentCombat.stats,
-        buffs: currentCombat.buffs
+        buffs: currentCombat.buffs,
+        lastGameUpdated: new Date()
       })
     });
 
@@ -737,7 +743,9 @@ const MINUTE = 60 * 1000;
 
 Meteor.publish('items', function() {
 
-  //Transform function
+  // Transform function
+  // TODO: We can move items to local dev, and avoid having to do all this extra processing here
+  // Just send raw item to client, then they can do the transforms with the constants locally
   const transform = function(doc) {
     const itemConstants = ITEMS[doc.itemId];
     if (!itemConstants) {
@@ -748,6 +756,7 @@ Meteor.publish('items', function() {
     doc.name = itemConstants.name;
     doc.isTwoHanded = itemConstants.isTwoHanded;
     doc.sellPrice = itemConstants.sellPrice;
+    doc.slot = itemConstants.slot;
     if (itemConstants.stats) {
       doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
       doc.isWeapon = itemConstants.isWeapon;

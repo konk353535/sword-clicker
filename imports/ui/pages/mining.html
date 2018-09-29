@@ -65,14 +65,13 @@
           {{/if}}
         </button>
       </div>
-
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <div class="d-flex flex-row flex-wrap" style="max-width: 420px">
           {{#each miningSpaces}}
-            {{> mineSpace mineSpace=this}}
+            {{> mineSpace mineSpace=this multihit=miningMultihit}}
           {{/each}}
         </div>
       </div>

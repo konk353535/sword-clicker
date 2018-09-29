@@ -1,9 +1,9 @@
-import { BUFFS } from '/server/constants/buffs/index.js';
+import { ABILITIES } from '../../constants/combat/index.js';
+import { BUFFS } from '../../constants/buffs/index.js';
 
 import _ from 'underscore';
 
-export const castAbility = function({ ability, caster, targets, actualBattle }) {
-
+export default function({ ability, caster, targets }) {
   // Does user have appropriate gear to cast this ability?
   let canCast = true;
   if (ability.requires) {
@@ -29,50 +29,34 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
 
 
   if (!canCast) {
-    return true;
+    return false;
   }
 
   if (ability.target === 'currentEnemy') {
     // Is current target alive
-    const currentEnemy = _.find(actualBattle.allAliveUnits, (unit) => {
-      return unit.id === caster.target
-    });
-    if (currentEnemy) {
-      targets = [currentEnemy];
-    } else {
-      const firstEnemy = actualBattle.enemies[0];
-      if (firstEnemy) {
-        targets = [firstEnemy];
-      } else {
-        targets = [];
-      }
-    }
+    const currentEnemy = this.allUnitsMap[caster.target];
+    targets = currentEnemy ? [currentEnemy] : [this.enemies[0]];
   } else if (ability.target === 'allEnemies') {
-    targets = actualBattle.enemies;
+    targets = this.enemies;
   } else if (ability.target === 'allAllies') {
-    targets = actualBattle.units;
+    targets = this.units;
   } else if (ability.target === 'self') {
     targets = [caster];
   } else if (ability.target === 'singleEnemy') {
-    // Make sure specified target is an enemy
-    if (targets[0] && targets.length === 1) {
-      if (!_.findWhere(actualBattle.enemies, { id: targets[0].id })) {
-        targets = [];
-      }
+    const singleTarget = targets[0];
+    if (singleTarget && this.enemiesMap[singleTarget.id]) {
+      targets = [singleTarget]
     } else {
       targets = [];
     }
   } else if (ability.target === 'singleFriendly') {
-    // Make sure specified target is an ally
-    if (targets[0] && targets.length === 1) {
-      if (!_.findWhere(actualBattle.units, { id: targets[0].id })) {
-        targets = [];
-      }
+    const singleTarget = targets[0];
+    if (singleTarget && this.unitsMap[singleTarget.id]) {
+      targets = [singleTarget]
     } else {
       targets = [];
     }
   }
-
 
   // Apply ability buffs to targets
   targets.forEach((target) => {
@@ -80,6 +64,7 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
       const buffObj = {};
       // Store constants
       buffObj.constants = BUFFS[buffId];
+      buffObj.duration = buffObj.constants.data.duration;
 
       // Save things we actually want to store in the data property
       buffObj.data = Object.assign({
@@ -102,23 +87,18 @@ export const castAbility = function({ ability, caster, targets, actualBattle }) 
         if (target.buffs && target.buffs.length > 0) {
           let existingBuff = _.findWhere(target.buffs, { id: buff.id });
           if (existingBuff) {
-            existingBuff.data.duration = -1;
-            buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle });
+            existingBuff.duration = -1;
+            buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle: this });
           }
         }
 
-        buff.constants.events.onApply({ buff, target, caster, actualBattle });
+        buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
       }
     });
 
-    // Add buffs to target ( Need to unique this ? )
-    if (target.buffs) {
-      target.buffs.push(...newBuffs);
-    } else {
-      target.buffs = newBuffs;
-    }
-
+    // Add buffs to target ( Need to unique this ?)
+    target.addBuffs(newBuffs);
   });
 
-  return false;
-};
+  return true;
+}

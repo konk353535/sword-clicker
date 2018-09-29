@@ -1,8 +1,7 @@
-import { TABLE_LIST } from '../levels/index.js'; 
-import { ENEMIES } from '/server/constants/enemies/index';
+import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
+import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { Random } from 'meteor/random';
+import uuid from 'node-uuid';
 
 export const personalQuestMonsterGenerator = function(level, wave) {
 
@@ -123,8 +122,6 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     })
   }
 
-  monster.stats.attackSpeedTicks = attackSpeedTicks(monster.stats.attackSpeed);
-
   // Is this a swarm mob?
   if (selectedMonster.swarmRange) {
     const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);
@@ -139,7 +136,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {
       const monsterClone = JSON.parse(JSON.stringify(monster));
-      monsterClone.id = Random.id();
+      monsterClone.id = uuid.v4();
       allMonsters.push(monsterClone);
     }
 

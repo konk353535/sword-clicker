@@ -1,5 +1,6 @@
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import moment from 'moment';
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 
 export const MAGIC_BUFFS = {
 
@@ -87,9 +88,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -140,10 +141,9 @@ export const MAGIC_BUFFS = {
           buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
-          buff.data.stacks = constants.attacksCount + 0;
+          buff.stacks = constants.attacksCount + 0;
         } else {
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
       },
 
@@ -151,9 +151,9 @@ export const MAGIC_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        buff.data.stacks -= 1;
+        buff.stacks -= 1;
 
-        if (buff.data.stacks <= 0) {
+        if (buff.stacks <= 0) {
           removeBuff({ buff, target: attacker, caster: attacker, actualBattle });
         }
       },
@@ -161,7 +161,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -208,16 +207,14 @@ export const MAGIC_BUFFS = {
           buff.data.originalCaster = caster.id;
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           caster.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          caster.stats.attackSpeedTicks = attackSpeedTicks(caster.stats.attackSpeed);
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -225,18 +222,13 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
 
         // Find original caster
-        let originalCaster = _.findWhere(actualBattle.units, { id: buff.data.originalCaster });
-        if (!originalCaster) {
-          originalCaster = _.findWhere(actualBattle.deadUnits, { id: buff.data.originalCaster });
-        }
+        let originalCaster = actualBattle.allUnitsMap[buff.data.originalCaster];
 
         if (originalCaster) {
           originalCaster.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          originalCaster.stats.attackSpeedTicks = attackSpeedTicks(originalCaster.stats.attackSpeed);
         }
       }
     }
@@ -281,14 +273,13 @@ export const MAGIC_BUFFS = {
           buff.data.totalAttackSpeedDecimal = 1 + (totalAttackSpeed / 100);
 
           target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -296,7 +287,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalAttackSpeedDecimal) {
           target.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -344,9 +334,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -541,7 +531,6 @@ export const MAGIC_BUFFS = {
 
           buff.data.increaseDecimal = (totalIncrease / 100);
           target.stats.attackSpeed *= (1 + buff.data.increaseDecimal);
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.attack = target.stats.attack * buff.data.increaseDecimal;
           buff.data.attackMax = target.stats.attack * buff.data.increaseDecimal;
           target.stats.attack += buff.data.attack;
@@ -550,9 +539,9 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -560,7 +549,6 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster }) {
         if (buff.data.increaseDecimal) {
           target.stats.attackSpeed /= (1 + buff.data.increaseDecimal);
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           target.stats.attack -= buff.data.attack;
           target.stats.attackMax -= buff.data.attackMax;
         }
@@ -605,7 +593,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -661,7 +649,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -672,15 +660,15 @@ export const MAGIC_BUFFS = {
           const totalArmor = constants.armorBase + (constants.armorMPRatio * caster.stats.magicPower);
           target.stats.armor += totalArmor;
           buff.data.totalArmor = totalArmor;
-          buff.data.duration = constants.duration + 0;
+          buff.duration = constants.duration + 0;
           buff.data.totalDuration = constants.duration + 0;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -728,7 +716,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -780,7 +768,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -832,7 +820,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.healTarget(totalHeal, {
+          actualBattle.healTarget(totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -888,7 +876,7 @@ export const MAGIC_BUFFS = {
           buff.data.totalHeal = totalHeal;
           buff.data.healingPower = caster.stats.healingPower;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.healTarget(buff.data.totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -899,12 +887,12 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
-            caster: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+          actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
+            caster: actualBattle.allUnitsMap[buff.data.sourceId],
             target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -912,7 +900,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillHeal = 4;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -960,7 +948,7 @@ export const MAGIC_BUFFS = {
           buff.data.totalHeal = totalHeal;
           buff.data.healingPower = caster.stats.healingPower;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.healTarget(buff.data.totalHeal, {
+          actualBattle.healTarget(buff.data.totalHeal, {
             caster,
             target,
             tickEvents: actualBattle.tickEvents,
@@ -971,12 +959,12 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
         if (buff.data.timeTillHeal <= 0) {
-          actualBattle.utils.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
-            caster: _.findWhere(actualBattle.allUnits, { id: buff.dat.asourceId }),
+          actualBattle.healTarget(buff.data.totalHeal * (1 + (buff.data.healingPower / 100)), {
+            caster: actualBattle.allUnitsMap[buff.data.sourceId],
             target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats
@@ -984,7 +972,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillHeal = 4;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1078,7 +1066,7 @@ export const MAGIC_BUFFS = {
           caster.stats.healthMax -= totalHealth;
   
           // Add poisoned debuff to enemy
-          target.buffs.push({
+          target.addBuff({
             id: 'basic_poison',
             data: {
               duration: 180,
@@ -1089,13 +1077,13 @@ export const MAGIC_BUFFS = {
             }
           });
         }
-        buff.data.duration = 0;
+        buff.duration = 0;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -1103,7 +1091,7 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalMagicArmorReduction) {
           target.stats.magicArmor += buff.data.totalMagicArmorReduction;
-          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
+          actualBattle.dealDamage(buff.data.magicDamageTotal, {
             attacker: target,
             defender: target,
             isMagic: true,
@@ -1161,7 +1149,7 @@ export const MAGIC_BUFFS = {
           buff.data.sourceId = caster.id;
           target.stats.magicArmor -= totalMagicArmorReduction;
 
-          actualBattle.utils.dealDamage(magicDamageTotal, {
+          actualBattle.dealDamage(magicDamageTotal, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1170,14 +1158,14 @@ export const MAGIC_BUFFS = {
           });
         } else {
           buff.data.totalMagicArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -1185,8 +1173,8 @@ export const MAGIC_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalMagicArmorReduction) {
           target.stats.magicArmor += buff.data.totalMagicArmorReduction;
-          actualBattle.utils.dealDamage(buff.data.magicDamageTotal, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+          actualBattle.dealDamage(buff.data.magicDamageTotal, {
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
@@ -1239,14 +1227,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1300,7 +1288,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1312,14 +1300,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1373,7 +1361,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1385,14 +1373,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1447,14 +1435,14 @@ export const MAGIC_BUFFS = {
           target.stats.armor -= totalArmorReduction;
         } else {
           buff.data.totalArmorReduction = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1505,7 +1493,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1532,13 +1520,13 @@ export const MAGIC_BUFFS = {
 
         }
 
-        buff.data.duration = -1;
+        buff.duration = -1;
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1586,7 +1574,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1613,13 +1601,13 @@ export const MAGIC_BUFFS = {
 
         }
 
-        buff.data.duration = -1;
+        buff.duration = -1;
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1667,7 +1655,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -1719,7 +1707,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
@@ -1772,7 +1760,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
 
-          actualBattle.utils.dealDamage(damage, {
+          actualBattle.dealDamage(damage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1782,17 +1770,16 @@ export const MAGIC_BUFFS = {
 
           buff.data.attackSpeedDecrease = 99;
           target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         } else {
           buff.data.attackSpeedDecrease = 0;
-          buff.data.duration = -1;
+          buff.duration = -1;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1801,7 +1788,6 @@ export const MAGIC_BUFFS = {
         if (buff.data.attackSpeedDecrease) {
           // Mutate targets attack speed
           target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
         }
       }
     }
@@ -1845,7 +1831,7 @@ export const MAGIC_BUFFS = {
         
           buff.data.sourceId = caster.id;
           buff.data.totalDamage = totalDamage;
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1857,12 +1843,12 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+          actualBattle.dealDamage(buff.data.totalDamage, {
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
@@ -1871,7 +1857,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillDamage = 1;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1918,7 +1904,7 @@ export const MAGIC_BUFFS = {
         
           buff.data.totalDamage = totalDamage;
           buff.data.sourceId = caster.id;
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
+          actualBattle.dealDamage(buff.data.totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -1930,12 +1916,12 @@ export const MAGIC_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
         if (buff.data.timeTillDamage <= 0) {
-          actualBattle.utils.dealDamage(buff.data.totalDamage, {
-            attacker: _.findWhere(actualBattle.allUnits, { id: buff.data.sourceId }),
+          actualBattle.dealDamage(buff.data.totalDamage, {
+            attacker: actualBattle.allUnitsMap[buff.data.sourceId],
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
@@ -1944,7 +1930,7 @@ export const MAGIC_BUFFS = {
           buff.data.timeTillDamage = 0.5;
         }
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -1988,7 +1974,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2041,7 +2027,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2094,7 +2080,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,
@@ -2147,7 +2133,7 @@ export const MAGIC_BUFFS = {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
         
-          actualBattle.utils.dealDamage(totalDamage, {
+          actualBattle.dealDamage(totalDamage, {
             attacker: caster,
             defender: target,
             isMagic: true,

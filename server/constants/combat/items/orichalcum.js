@@ -54,7 +54,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_short_sword": {
     "id": "orichalcum_short_sword",
-    "icon": "orichalcumShortSword.png",
+    "icon": "orichalcumShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_long_sword": {
     "id": "orichalcum_long_sword",
-    "icon": "orichalcumLongSword.png",
+    "icon": "orichalcumLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_chest_plate": {
     "id": "orichalcum_chest_plate",
-    "icon": "orichalcumChestPlate.png",
+    "icon": "orichalcumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "orichalcum chestplate",
+    "name": "orichalcum Chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_plate_legs": {
     "id": "orichalcum_plate_legs",
-    "icon": "orichalcumPlateLegs.png",
+    "icon": "orichalcumPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "orichalcum platelegs",

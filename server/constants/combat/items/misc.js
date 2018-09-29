@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, MEDIUM_SPEED} from '/server/constants/combat/attackSpeeds';
+import { VERY_FAST_SPEED, MEDIUM_SPEED} from '../attackSpeeds';
 
 export const MISC_ITEMS = {
   thirsting_saber: {
@@ -35,7 +35,7 @@ export const MISC_ITEMS = {
 
   enchanted_long_sword: {
     id: 'enchanted_long_sword',
-    icon: 'enchantedLongSword.svg',
+    icon: 'enchantedLongsword.svg',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
@@ -865,7 +865,7 @@ export const MISC_ITEMS = {
 
   bloody_plate_legs: {
     id: "bloody_plate_legs",
-    icon: "bloodyPlateLegs.svg",
+    icon: "bloodyPlatelegs.svg",
     category: "combat",
     slot: "legs",
     name: "bloody platelegs",
@@ -893,7 +893,7 @@ export const MISC_ITEMS = {
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',
-    icon: 'opalChestPlate.svg',
+    icon: 'opalChestplate.svg',
     category: 'combat',
     slot: 'chest',
     name: 'opal chest plate',

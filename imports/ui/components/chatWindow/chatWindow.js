@@ -82,7 +82,9 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
   });
 
   this.autorun(() => {
-    const currentGroup = Groups.findOne();
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
     const myUserDoc = Users.findOne({ _id: Meteor.userId() });
     const availableChats = this.state.get('availableChats');
 
@@ -175,7 +177,7 @@ Template.chatWindow.events({
     instance.state.set('currentChat', chatId);
   },
 
-  'click .minimize-icon'(event, instance) {
+  'click .minimize-btn'(event, instance) {
     instance.state.set('minimized', true); // Do instantly in UI to avoid delay
     Meteor.call('users.setUiState', 'showChat', false)
   },

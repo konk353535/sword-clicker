@@ -54,7 +54,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_short_sword": {
     "id": "cursed_short_sword",
-    "icon": "cursedShortSword.png",
+    "icon": "cursedShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_long_sword": {
     "id": "cursed_long_sword",
-    "icon": "cursedLongSword.png",
+    "icon": "cursedLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const CURSED_ITEMS = {
   },
   "cursed_chest_plate": {
     "id": "cursed_chest_plate",
-    "icon": "cursedChestPlate.png",
+    "icon": "cursedChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "cursed chestplate",
+    "name": "cursed Chestplate",
     "sellPrice": 3000,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_plate_legs": {
     "id": "cursed_plate_legs",
-    "icon": "cursedPlateLegs.png",
+    "icon": "cursedPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "cursed platelegs",

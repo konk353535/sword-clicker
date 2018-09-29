@@ -1,0 +1,148 @@
+<template name="selectGearPage">
+  <div class="container mt-2">
+    <h4 class="d-flex align-items-center">
+      Equipped Gear
+    </h4>
+    <div class="d-flex flex-wrap mb-1">
+      <!-- Main Hand -->
+      {{#if equippedItemsMap.mainHand}}
+        {{> itemIcon item=equippedItemsMap.mainHand}}
+      {{else}}
+        <div class="icon-box">
+          Main Hand
+        </div>
+      {{/if}}
+      <!-- Off Hand -->
+      {{#if equippedItemsMap.offHand}}
+        {{> itemIcon item=equippedItemsMap.offHand}}
+      {{else}}
+        <div class="icon-box">
+          Off Hand
+        </div>
+      {{/if}}
+      <!-- Head -->
+      {{#if equippedItemsMap.head}}
+        {{> itemIcon item=equippedItemsMap.head}}
+      {{else}}
+        <div class="icon-box">
+          Head
+        </div>
+      {{/if}}
+      <!-- Neck -->
+      {{#if equippedItemsMap.neck}}
+        {{> itemIcon item=equippedItemsMap.neck}}
+      {{else}}
+        <div class="icon-box">
+          Neck
+        </div>
+      {{/if}}
+      <!-- Chest -->
+      {{#if equippedItemsMap.chest}}
+        {{> itemIcon item=equippedItemsMap.chest}}
+      {{else}}
+        <div class="icon-box">
+          Chest
+        </div>
+      {{/if}}
+      <!-- Legs -->
+      {{#if equippedItemsMap.legs}}
+        {{> itemIcon item=equippedItemsMap.legs}}
+      {{else}}
+        <div class="icon-box">
+          Legs
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="mb-3">
+      <div class="d-flex mb-2">
+        {{#each offenseStats}}
+          <div class="d-flex flex-row mr-1">
+            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+            </div>
+            <div class="d-flex align-items-center ml-1" style="min-width: 100px">
+              {{> formatNumber number=this.value decimal=1}}
+              {{#if this.maxValue}}
+                - {{> formatNumber number=this.maxValue decimal=1}}
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="d-flex">
+        {{#each defenseStats}}
+          <div class="d-flex flex-row mr-1">
+            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+            </div>
+            <div class="d-flex align-items-center ml-1" style="min-width: 100px">
+              {{> formatNumber number=this.value decimal=1}}
+              {{#if this.maxValue}}
+                / {{> formatNumber number=this.maxValue decimal=0}}
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <h4>Weapons</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.mainHand}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No main hand gear
+      {{/each}}
+    </div>
+
+    <h4>Off Hand</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.offHand}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No off hand gear
+      {{/each}}
+    </div>
+
+    <h4>Helmets</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.head}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No head gear
+      {{/each}}
+    </div>
+
+    <h4>Necklaces</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.neck}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No neck gear
+      {{/each}}
+    </div>
+
+    <h4>Chestplates</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.chest}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No chest gear
+      {{/each}}
+    </div>
+
+    <h4>Leggings</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each slotsMap.legs}}
+        {{> itemIcon item=this classes="small"}}
+      {{else}}
+        No leg gear
+      {{/each}}
+    </div>
+
+    <div class="select-battle-container">
+      <button class="btn btn-primary back-to-loadout-btn">Back to loadout</button>
+    </div>
+  </div>
+</template>

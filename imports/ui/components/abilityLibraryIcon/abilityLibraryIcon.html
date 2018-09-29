@@ -30,6 +30,7 @@
     <img src="/icons/{{item.icon}}" class="item-icon">
 
     <!-- Icon Tooltip -->
+    {{#unless hideTooltip}}
     <div class="item-tooltip-content my-tooltip-inner">
       <h3 class='popover-title text-capitalize'>
         {{item.name}}
@@ -56,6 +57,7 @@
         {{/if}}
       </div>
     </div>
+    {{/unless}}
   </div>
 
 </template>

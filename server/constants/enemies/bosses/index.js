@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';  
+import { VERY_FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../../combat/attackSpeeds.js';  
 
 export const BOSS_ENEMIES = {
 

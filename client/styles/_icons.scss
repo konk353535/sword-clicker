@@ -90,7 +90,8 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   user-select: none;
   width: 96px;
   height: 96px;
-  border: 1px solid black;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -112,9 +113,19 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 @media screen and (max-width: 768px) {
+  
   .icon-box.battle-unit {
     width: 48px;
     height: 48px;
+  }
+
+  .lobby-container .icon-box.battle-unit {
+    width: 80px;
+    height: 80px;
+  }
+
+  .lobby-container .icon-box.battle-unit {
+    margin: 0.25rem 0;
   }
 
   .buff-icon-container {
@@ -137,6 +148,9 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 
 .leader-icon.icon-box {
   border-color: $brand-warning;
+}
+.my-target.icon-box {
+  border-color: $brand-danger;
 }
 
 // Used in inscription to stop icon box having a border
@@ -179,6 +193,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   height: 48px;
   font-size: 48px;
   line-height: 48px;
+
+  .ore-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .large-icon {
@@ -282,6 +301,20 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
       font-size: 10px;
       color: $gray-light;
     }
+
+    .cooldown-text {
+      position: absolute;
+      opacity: 1.0;
+      color: white;
+      top: 0px;
+      left: 0px;
+      width: 64px;
+      height: 64px;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &.tiny {
@@ -378,6 +411,19 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     img {
       opacity: 0.5;
     }
+  }
+}
+
+.food-icon {
+  opacity: 0.9;
+}
+
+.food-icon-container.disabled {
+  background-color: #FAFAFA;
+  font-size: 18px;
+
+  & .cooldown-text {
+    color: $gray;
   }
 }
 

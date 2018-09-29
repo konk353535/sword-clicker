@@ -1,10 +1,4 @@
 <template name="skillHeader"> 
-
-  {{#unless flipped}}
-    <div class="progress">
-      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-  {{/unless}}
   <div class="d-flex my-3 align-items-center">
     <i class="lilIcon-{{skill.type}} medium-icon"></i>
     <h1 class="ml-1 mb-0">
@@ -13,19 +7,14 @@
     {{#if skill}}
       <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}}XP</small>
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.combat moNow 'seconds') 0}}
-      {{> globalBuffIcon type='combat' date=globalBuffs.combat}}
+    {{#if globalBuffs.buffCombat}}
+      {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.gathering moNow 'seconds') 0}}
-      {{> globalBuffIcon type='gathering' date=globalBuffs.gathering}}
+    {{#if globalBuffs.buffGathering}}
+      {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
     {{/if}}
-    {{#if $gte (moDiff globalBuffs.crafting moNow 'seconds') 0}}
-      {{> globalBuffIcon type='crafting' date=globalBuffs.crafting}}
+    {{#if globalBuffs.buffCrafting}}
+      {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
     {{/if}}
   </div>
-  {{#if flipped}}
-    <div class="progress">
-      <div class="progress-bar {{color}}" role="progressbar" style="width: {{xpPercentage}}%; height: 1px;" aria-valuenow="{{xpPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-  {{/if}}
 </template>

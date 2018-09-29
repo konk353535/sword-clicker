@@ -1,8 +1,8 @@
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
+import { resolveLoot, removeBattle, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 import moment from 'moment/moment';
-import { resolveLoot, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 
 import { Floors } from '/imports//api/floors/floors';
 import { Combat } from '/imports/api/combat/combat';
@@ -14,19 +14,59 @@ import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Servers } from '/imports/api/servers/servers';
 
-const redis = new Meteor.RedisCollection('redis');
-
 // Reset tower things (daily)
 SyncedCron.add({
   name: 'Reset Offs',
   schedule: function (parser) {
     return parser.cron('0 0 * * * * *');
   },
-  job: function () {
-    // Reset tower contributions for all
+  job: function() {
+    // Fetch current active floor
+    const currentFloor = Floors.findOne({ floorComplete: false });
+    const floorConstants = FLOORS[currentFloor.floor];
+
+    // Get bosses hp
+    const bossEnemyId = floorConstants.boss.enemy.id;
+    const bossEnemyConstants = ENEMIES[bossEnemyId];
+
+    const activeTowerUsers = FloorWaveScores.find({
+      floor: currentFloor.floor,
+      points: {
+        $gte: 25
+      }
+    }).count();
+    console.log(`active tower users ${activeTowerUsers}`);
+    console.log(`boss enemy constants`);
+    console.log(bossEnemyConstants);
+    const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
+    console.log(`new health max is ${newHealthMax}`)
+    Floors.update({ floorComplete: false }, {
+      $set: {
+        health: newHealthMax,
+        healthMax: newHealthMax
+      }
+    });
+
+    console.log('Have finally reset boss health');
+
+    // Clear hp dealt on leaderboards
+    BossHealthScores.remove({});
+
+    console.log('Boss hp score reset');
+
+    // Enable users to fight bosses again
+    Combat.update({ foughtBoss: true }, {
+      $set: {
+        foughtBoss: false
+      }
+    }, { multi: true });
+
+    console.log('Fought boss is done now');
+
+    // Enable users to fight waves again
     Combat.update({}, {
       $set: {
-        towerContributionsToday: 0
+        towerContributions: []
       }
     }, { multi: true });
 
@@ -49,6 +89,10 @@ SyncedCron.add({
     Servers.find({}).fetch().forEach((server) => {
       // Fetch current active floor
       const currentFloor = Floors.findOne({server: server._id, floorComplete: false});
+
+      if (!currentFloor) {
+        return;
+      }
 
       // reset boss HP
       if(moment().isAfter(currentFloor.bossResetAt)) {
@@ -204,32 +248,19 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Remove dead battles',
   schedule: function(parser) {
-    return parser.cron('* * * * * * *');
+    return parser.text('every 30 seconds');
   },
   job: function() {
     BattlesList.find({
       createdAt: {    
-        $lte: moment().subtract(1, 'minutes').toDate()   
+        $lte: moment().subtract(10, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
-      let currentBattle = redis.get(`battles-${battleList._id}`);
-      currentBattle = currentBattle ? JSON.parse(currentBattle) : currentBattle;
-
-      let isUpdatedStale = false;
-
-      if (battleList.useStreamy) {
-        isUpdatedStale = moment().isAfter(moment(battleList.createdAt).add(15, 'minutes'));
-      } else if (currentBattle) {
-        isUpdatedStale = moment().isAfter(moment(currentBattle.updatedAt).add(60, 'seconds'));
-      }
-
-
-      if (isUpdatedStale || (!currentBattle && !battleList.useStreamy)) {
-        BattlesList.remove(battleList._id);
-        redis.del(`battles-${battleList._id}`);
-        redis.del(`battleActions-${battleList._id}`);
-      }
+      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}`, (error, result) => {
+        removeBattle(battleList._id);
+      });
     });
+
     return true;
   }
 });
@@ -328,4 +359,4 @@ SyncedCron.config({
 
 Meteor.setTimeout(() => {
   SyncedCron.start();
-}, 60000);
+}, Meteor.settings.is_dev ? 0 : 60000);

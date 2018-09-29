@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Servers } from '/imports/api/servers/servers';
 
 import { Skills } from '../../api/skills/skills.js';
+import { State } from '/imports/api/state/state.js';
 import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
@@ -16,11 +17,13 @@ import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
+import uuid from 'node-uuid';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
@@ -361,6 +364,7 @@ Accounts.onCreateUser((options, user) => {
 
   user._id = Random.id();
   const userId = user._id;
+  user.battleSecret = uuid.v4();
   user.uiState = {
     showChat: true,
     showSummaryList: false,
@@ -540,6 +544,7 @@ Accounts.onCreateUser((options, user) => {
     });
 
     Combat.insert({
+      towerContributions: [],
       server: targetServer._id,
       owner: userId,
       stats: {
@@ -592,6 +597,20 @@ if (!currentFloor) {
     pointsMax
   });
 }
+
+// Guarantee buffs exist
+Object.values(STATE_BUFFS).forEach((name) => {
+  const buff = State.findOne({name: name});
+
+  if (!buff) {
+    State.insert({
+      name: name,
+      value: {
+        activeTo: moment().subtract(1, 'hour').toDate()
+      }
+    })
+  }
+});
 
 const MINUTE = 60 * 1000;
 DDPRateLimiter.addRule({ type: 'method', name: 'SimpleChat.newMessage' }, 15, 1 * MINUTE);

@@ -44,6 +44,19 @@ Router.route('/profile/:username', {
   }
 });
 
+
+Router.route('/gameHome', {
+
+  name: 'gameHomePage',
+
+  template: 'gameHomePage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
 Router.route('/updates', {
 
   name: 'updatesPage',
@@ -195,6 +208,18 @@ Router.route('/combat', {
   name: 'combat',
 
   template: 'combatPage',
+
+  yieldRegions: {
+    'nav': { to: 'nav' },
+    'footer': { to: 'footer' }
+  }
+});
+
+Router.route('/newCombat', {
+
+  name: 'newCombat',
+
+  template: 'newCombatPage',
 
   yieldRegions: {
     'nav': { to: 'nav' },

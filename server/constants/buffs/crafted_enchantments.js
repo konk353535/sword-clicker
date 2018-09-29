@@ -1,4 +1,7 @@
-import { Random } from 'meteor/random'
+import moment from 'moment';
+import { addBuff, removeBuff } from '../../battleUtils';
+import { BUFFS } from './index.js';
+import uuid from 'node-uuid';
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
@@ -44,26 +47,26 @@ LEG
       armorPerHit: 3,
       totalHits: 10
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { 
 
       onApply({ buff, target, caster }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         caster.stats.armor += constants.armorPerHit * constants.totalHits;
-        buff.data.stacks = constants.armorPerHit * constants.totalHits;
+        buff.stacks = constants.armorPerHit * constants.totalHits;
       },
 
       // Remove Armor as player gets hit.
       onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
-        buff.data.stacks -= constants.armorPerHit;
+        buff.stacks -= constants.armorPerHit;
 
-        if ( buff.data.stacks > 0 ) {
+        if ( buff.stacks > 0 ) {
           defender.stats.armor -= constants.armorPerHit;
         } else {
           removeBuff({ buff, target : defender, actualBattle });
@@ -86,8 +89,8 @@ LEG
     constants: {
       damageModifier: 25,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: {
@@ -96,13 +99,12 @@ LEG
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
-        
-        actualBattle.utils.dealDamage(modifiedDamage, {
+
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -125,8 +127,8 @@ LEG
     constants: {
       damageModifier: 75,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: {
@@ -135,14 +137,13 @@ LEG
       }, 
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const baseDamage = 1 + attacker.stats.magicPower;
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(baseDamage * modifier); 
 
-        actualBattle.utils.dealDamage(modifiedDamage, {
+        actualBattle.dealDamage(modifiedDamage, {
           attacker: attacker,
           defender: defender,
           isMagic: true,
@@ -166,8 +167,8 @@ LEG
     },
     constants: {
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { 
@@ -191,18 +192,17 @@ LEG
     constants: {
       speedModifier: 20,
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
         const modifier = 1 + (constants.speedModifier / 100);
 
         target.stats.attackSpeed *= modifier;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onRemove({ buff, target, caster }) {
@@ -223,14 +223,14 @@ LEG
       damageModifier : 250,
       charge : 10
     },
+    duration: Infinity,
     data: {
-      duration: Infinity,
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
 
-        const constants = buff.constants.constants;
+        const constants = BUFFS[buff.id].constants;
 
         const modifier = constants.healthModifier / 100;
         const amountToAdd = target.stats.armor * modifier;
@@ -241,30 +241,27 @@ LEG
         target.stats.healthMax += buff.data.healthMax;
 
         buff.data.timeTillCharge = constants.charge;
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
 
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
-          buff.data.stacks = Math.round(buff.data.timeTillCharge);
+          buff.stacks = Math.round(buff.data.timeTillCharge);
         } else {
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
         if (buff.data.timeTillCharge <= 0) {
-
-          
-          
-          const constants = buff.constants.constants;
+          const constants = BUFFS[buff.id].constants;
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
 
-          actualBattle.utils.dealDamage(modifiedDamage, {
+          actualBattle.dealDamage(modifiedDamage, {
             attacker: attacker,
             defender: defender,
             //isTrueDamage: true,
@@ -276,10 +273,19 @@ LEG
         }
       },
 
-      onRemove({ buff, target, caster }) {
-        target.stats.health -= buff.data.health;
+      onRemove({ buff, target, caster, actualBattle }) {
+        actualBattle.dealDamage(buff.data.health, {
+          attacker: target,
+          defender: target,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+        });
         target.stats.healthMax -= buff.data.healthMax;
       }
     }
+<<<<<<< HEAD
+  }
+}
+=======
   }*/
 };

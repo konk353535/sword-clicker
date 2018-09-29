@@ -54,7 +54,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_short_sword": {
     "id": "carbon_short_sword",
-    "icon": "carbonShortSword.png",
+    "icon": "carbonShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_long_sword": {
     "id": "carbon_long_sword",
-    "icon": "carbonLongSword.png",
+    "icon": "carbonLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const CARBON_ITEMS = {
   },
   "carbon_chest_plate": {
     "id": "carbon_chest_plate",
-    "icon": "carbonChestPlate.png",
+    "icon": "carbonChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "carbon chestplate",
+    "name": "carbon Chestplate",
     "sellPrice": 650,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_plate_legs": {
     "id": "carbon_plate_legs",
-    "icon": "carbonPlateLegs.png",
+    "icon": "carbonPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "carbon platelegs",

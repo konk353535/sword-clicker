@@ -54,7 +54,7 @@ export const SILVER_ITEMS = {
   },
   "silver_short_sword": {
     "id": "silver_short_sword",
-    "icon": "silverShortSword.png",
+    "icon": "silverShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const SILVER_ITEMS = {
   },
   "silver_long_sword": {
     "id": "silver_long_sword",
-    "icon": "silverLongSword.png",
+    "icon": "silverLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -247,10 +247,10 @@ export const SILVER_ITEMS = {
   },
   "silver_chest_plate": {
     "id": "silver_chest_plate",
-    "icon": "silverChestPlate.png",
+    "icon": "silverChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "silver chestplate",
+    "name": "silver Chestplate",
     "sellPrice": 400,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const SILVER_ITEMS = {
   },
   "silver_plate_legs": {
     "id": "silver_plate_legs",
-    "icon": "silverPlateLegs.png",
+    "icon": "silverPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "silver platelegs",

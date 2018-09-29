@@ -46,7 +46,7 @@ export const COPPER_ITEMS = {
 
   copper_short_sword: {
     id: 'copper_short_sword',
-    icon: 'copperShortSword.png',
+    icon: 'copperShortsword.png',
     category: 'combat',
     weaponType: 'shortSword',
     slot: 'mainHand',
@@ -94,7 +94,7 @@ export const COPPER_ITEMS = {
 
   copper_long_sword: {
     id: 'copper_long_sword',
-    icon: 'copperLongSword.png',
+    icon: 'copperLongsword.png',
     category: 'combat',
     weaponType: 'longSword',
     slot: 'mainHand',
@@ -212,10 +212,10 @@ export const COPPER_ITEMS = {
 
   copper_chest_plate: {
     id: 'copper_chest_plate',
-    icon: 'copperChestPlate.png',
+    icon: 'copperChestplate.png',
     category: 'combat',
     slot: 'chest',
-    name: 'copper chestplate',
+    name: 'copper Chestplate',
     sellPrice: 75,
     description: 'Protect your heart',
     isEquippable: true,
@@ -233,7 +233,7 @@ export const COPPER_ITEMS = {
 
   copper_plate_legs: {
     id: 'copper_plate_legs',
-    icon: 'copperPlateLegs.png',
+    icon: 'copperPlatelegs.png',
     category: 'combat',
     slot: 'legs',
     name: 'copper platelegs',

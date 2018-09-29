@@ -1,0 +1,23 @@
+{
+  "name": "battle-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/babel-cli/bin/babel-node.js --presets node6 ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node6": "^11.0.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "socket.io": "^2.0.4",
+    "underscore": "^1.8.3"
+  }
+}

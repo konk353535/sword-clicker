@@ -1,0 +1,19 @@
+{
+  "name": "battle-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/babel-cli/bin/babel-node.js --presets node6 ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node6": "^11.0.0",
+    "consistent-hashing": "^0.3.0",
+    "http-proxy": "^1.16.2",
+    "query-string": "^6.0.0"
+  }
+}

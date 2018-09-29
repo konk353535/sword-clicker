@@ -110,8 +110,8 @@ Template.body.onCreated(function () {
 
     invitedToGroups.forEach((invitedToGroups) => {
       toastr.info(`
-        <div class="d-flex">
-          You have been invited to a group by ${invitedToGroups.leaderName}.
+        <div class="d-flex" style="white-space: nowrap; max-width: 250px; overflow: hidden; text-overflow: ellipsis">
+          Group invite from ${invitedToGroups.leaderName}.
         </div>
       `)
     });
@@ -316,6 +316,8 @@ Template.body.onCreated(function () {
   Meteor.subscribe('adventures');
   // Battle List
   Meteor.subscribe('battlesList');
+  // State
+  Meteor.subscribe('state');
 
   // Only use these if summary list is showing & not mobile
 

@@ -1,0 +1,133 @@
+<template name="loadoutPage">
+  <div class="container mt-2">
+    <h4 class="d-flex align-items-center">
+      Gear
+      <a href="#" class="ml-3 edit-gear-btn" style="font-size: 14px">Edit</a>
+    </h4>
+    <div class="d-flex flex-wrap mb-3">
+      <!-- Main Hand -->
+      {{#if equippedItemsMap.mainHand}}
+        {{> itemIcon item=equippedItemsMap.mainHand}}
+      {{else}}
+        <div class="icon-box">
+          Main Hand
+        </div>
+      {{/if}}
+      <!-- Off Hand -->
+      {{#if equippedItemsMap.offHand}}
+        {{> itemIcon item=equippedItemsMap.offHand}}
+      {{else}}
+        <div class="icon-box">
+          Off Hand
+        </div>
+      {{/if}}
+      <!-- Head -->
+      {{#if equippedItemsMap.head}}
+        {{> itemIcon item=equippedItemsMap.head}}
+      {{else}}
+        <div class="icon-box">
+          Head
+        </div>
+      {{/if}}
+      <!-- Neck -->
+      {{#if equippedItemsMap.neck}}
+        {{> itemIcon item=equippedItemsMap.neck}}
+      {{else}}
+        <div class="icon-box">
+          Neck
+        </div>
+      {{/if}}
+      <!-- Chest -->
+      {{#if equippedItemsMap.chest}}
+        {{> itemIcon item=equippedItemsMap.chest}}
+      {{else}}
+        <div class="icon-box">
+          Chest
+        </div>
+      {{/if}}
+      <!-- Legs -->
+      {{#if equippedItemsMap.legs}}
+        {{> itemIcon item=equippedItemsMap.legs}}
+      {{else}}
+        <div class="icon-box">
+          Legs
+        </div>
+      {{/if}}
+    </div>
+    <h4 class="d-flex align-items-center">
+      Abilities
+      <a href="#" class="ml-3 edit-abilities-btn" style="font-size: 14px">Edit</a>
+    </h4>
+    <div class="d-flex flex-wrap mb-3">
+      <!-- Main Hand -->
+      {{#if equippedAbilitiesMap.mainHand}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+      {{else}}
+        <div class="icon-box">
+          1
+        </div>
+      {{/if}}
+      <!-- Off Hand -->
+      {{#if equippedAbilitiesMap.offHand}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+      {{else}}
+        <div class="icon-box">
+          2
+        </div>
+      {{/if}}
+      <!-- Head -->
+      {{#if equippedAbilitiesMap.head}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+      {{else}}
+        <div class="icon-box">
+          3
+        </div>
+      {{/if}}
+      <!-- Chest -->
+      {{#if equippedAbilitiesMap.chest}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+      {{else}}
+        <div class="icon-box">
+          4
+        </div>
+      {{/if}}
+      <!-- Legs -->
+      {{#if equippedAbilitiesMap.legs}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+      {{else}}
+        <div class="icon-box">
+          5
+        </div>
+      {{/if}}
+    </div>
+    <h4>Skins</h4>
+    <div class="d-flex flex-wrap mb-3">
+      {{#each skinsLibrary}}
+        {{> skinLibraryIcon skin=this}}
+      {{/each}}
+    </div>
+
+    <div class="d-flex flex-grow justify-content-center" style="margin-top: 30px">
+      <button class="btn btn-primary continue-btn" style="width: 150px">Continue</button>
+    </div>
+  </div>
+</template>
+
+<template name="skinLibraryIcon">
+  <div class="icon-box p-3
+    {{#if skin.disabled}} cursor-not-allowed{{else}} cursor-pointer{{/if}}
+    {{#if skin.disabled}} disabled{{/if}}
+    {{#if skin.selected}} equipped-icon{{/if}}">
+    <img src="/icons/{{skin.icon}}">
+  </div>
+
+  <!-- Icon Tooltip -->
+  <div class="skin-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+      {{skin.name}}
+    </h3>
+    <div class='popover-content'>
+      {{{description}}}
+    </div>
+  </div>
+</template>

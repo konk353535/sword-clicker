@@ -351,4 +351,4 @@ export const IRON_CRAFTS = {
       level: 15
     }]
   }
-}
+};

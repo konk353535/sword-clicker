@@ -1,19 +1,22 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import lodash from 'lodash';
 
 import { Combat } from '/imports/api/combat/combat.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Users } from '/imports/api/users/users.js';
+import { State } from '/imports/api/state/state';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
+import { STATE_BUFFS } from '/imports/constants/state';
+
 // Component used in the template
+import '/imports/ui/components/combat/foodIcon/foodIcon.js';
 import '/imports/ui/components/combat/buffIcon/buffIcon.js';
 import '/imports/ui/components/combat/combatAbilitiesTab/combatAbilitiesTab.js';
-import '/imports/ui/components/combat/adventuresTab/adventuresTab.js';
 import '/imports/ui/components/combat/battleLogTab/battleLogTab.js';
 import '/imports/ui/components/combat/skinTab/skinTab.js';
 import '/imports/ui/components/combat/currentBattleUi/currentBattleUi.js';
@@ -24,15 +27,16 @@ import '/imports/ui/components/combat/personalQuestTab/personalQuestTab.js';
 
 import './combat.html';
 
-const redis = new Meteor.RedisCollection('redis');
-
 Template.combatPage.onCreated(function bodyOnCreated() {
+
   this.state = new ReactiveDict();
 
   this.state.set('hasLearnRequirements', false);
 
-  Meteor.call('shop.fetchGlobalBuffs', (err, res) => {
-    this.state.set('globalBuffs', res);
+  Tracker.autorun(() => {
+    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
+    this.state.set('globalBuffs', globalBuffs);
   });
 
   Tracker.autorun(() => {
@@ -48,19 +52,6 @@ Template.combatPage.onCreated(function bodyOnCreated() {
 
   Meteor.subscribe('battles');
   Meteor.subscribe('floorWaveScores');
-
-  // When new battle comes up, update our subscribe of redis-battles
-  Tracker.autorun(() => {
-    const currentBattle = BattlesList.findOne({}, {
-      sort: {
-        createdAt: -1
-      }
-    });
-
-    if (currentBattle && !currentBattle.useStreamy) {
-      Meteor.subscribe('redis-battles', currentBattle);
-    }
-  });
 
   this.autorun(() => {
 
@@ -197,7 +188,7 @@ Template.combatPage.events({
   'click .btn-close-finishedBattle'(event, instance) {
     instance.state.set('finishedBattle', null);
   }
-})
+});
 
 Template.combatPage.helpers({
   attackSkill() {

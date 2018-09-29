@@ -504,7 +504,7 @@ export const MINING_CRAFTS = {
   elk_idol: {
     produces: 'elk_idol',
     recipeFor: 'crafting',
-    name: 'elk idol',
+    name: 'elm idol',
     id: 'elk_idol',
     category: 'mining',
     timeToCraft: 7 * MINUTE,
@@ -2441,4 +2441,4 @@ export const MINING_CRAFTS = {
       level: 110
     }]
   },  
-}
+};

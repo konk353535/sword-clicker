@@ -3,6 +3,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
+import { Users } from '/imports/api/users/users';
 import { Battles } from '/imports/api/battles/battles';
 
 import { flattenObjectForMongo } from '/server/utils';
@@ -10,7 +11,6 @@ import moment from 'moment';
 import _ from 'underscore';
 
 import { addXp } from '/server/api/skills/skills';
-import { attackSpeedTicks } from '/server/api/battles/battles';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
@@ -103,8 +103,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
       }
     }
-  };
-
+  }
   // Fetch all users skill levels
   const combatSkills = Skills.find({
     owner: userId,
@@ -113,9 +112,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
   }).fetch();
 
+  let averageCombat = 0;
+
   // Apply user skills
   combatSkills.forEach((combatSkill) => {
     const skillLevel = combatSkill.level;
+    averageCombat += skillLevel;
     combatSkill.constants = SKILLS[combatSkill.type];
     if (combatSkill.constants.statsPerLevel) {
       const skillStatsPerLevel = JSON.parse(JSON.stringify(combatSkill.constants.statsPerLevel));
@@ -141,6 +143,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     playerData.stats.health = playerData.stats.healthMax;
   }
 
+  Users.update({
+    _id: userId
+  }, {
+    $set: {
+      averageCombat: Math.floor(averageCombat / 4)
+    }
+  });
+
   // Set player stats
   Combat.update({
     owner: userId
@@ -150,16 +160,6 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 };
 
 Meteor.methods({
-
-  'combat.startMeditation'() {
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: moment().toDate()
-      }
-    });
-  },
 
   'combat.updateIsTowerContribution'(newValue) {
     Combat.update({
@@ -228,44 +228,6 @@ Meteor.methods({
     })
   },
 
-  'combat.stopMeditation'() {
-    // Time since meditation
-    const combat = Combat.findOne({
-      owner: Meteor.userId()
-    });
-
-    if (!combat.meditatingStartDate) {
-      throw new Meteor.Error("no-meditation", "you're not meditating");
-    }
-
-    const now = moment();
-    let hoursElapsed = moment.duration(now.diff(combat.meditatingStartDate)).asHours();
-
-    if (hoursElapsed > 24) {
-      hoursElapsed = 24; 
-    }
-
-    // Skills level x 10xp / hour
-    const combatSkills = Skills.find({
-      owner: Meteor.userId(),
-      type: {
-        $in: ['attack', 'defense', 'health']
-      }
-    }).fetch();
-
-    combatSkills.forEach((skill) => {
-      addXp(skill.type, hoursElapsed * 15 * skill.level)
-    });
-
-    Combat.update({
-      owner: Meteor.userId()
-    }, {
-      $set: {
-        meditatingStartDate: null
-      }
-    });
-  },
-
   'combat.gameUpdate'() {
     this.unblock();
 
@@ -283,7 +245,7 @@ Meteor.methods({
       let baseEnergyRegen = COMBAT.baseEnergyRegenPerMinute * minutesElapsed;
 
       // Apply membership benefits
-      const userDoc = Meteor.user()
+      const userDoc = Meteor.user();
       if (userDoc.combatUpgradeTo && moment().isBefore(userDoc.combatUpgradeTo)) {
         baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
       }

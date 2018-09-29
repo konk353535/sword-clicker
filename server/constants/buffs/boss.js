@@ -1,11 +1,9 @@
-import moment from 'moment';
 import _ from 'underscore';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
+import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
-import { Random } from 'meteor/random'
-import { FLOORS } from '/server/constants/floors/index';
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds.js';
+import uuid from 'node-uuid';
+import { FLOORS } from '../floors/index';
+import { FAST_SPEED } from '../combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
 const EARTH_PHASE = 1;
@@ -34,9 +32,9 @@ export const BOSS_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -44,9 +42,10 @@ export const BOSS_BUFFS = {
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         const constants = buff.constants.constants;
 
-        const extraDamage = 0.1 * buff.data.stacks;
+        const extraDamage = 0.1 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -85,8 +84,8 @@ export const BOSS_BUFFS = {
         // Does defender already have the buff?
         let targetBuff = _.findWhere(defender.buffs, { id: 'deep_wounds' });
         if (targetBuff) {
-          targetBuff.data.duration = DEEP_WOUNDS_DURATION;
-          targetBuff.data.stacks += 1;
+          targetBuff.duration = DEEP_WOUNDS_DURATION;
+          targetBuff.stacks += 1;
         } else {
           const newBuff = {
             id: 'deep_wounds',
@@ -97,7 +96,7 @@ export const BOSS_BUFFS = {
               icon: 'deepWounds.svg',
               description: ''
             }
-          }
+          };
 
           // cast earth dart
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -129,7 +128,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
@@ -141,7 +140,8 @@ export const BOSS_BUFFS = {
 
           // Spawn little snake
           const littleSnake = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'snake.svg',
             name: 'snake',
@@ -155,9 +155,9 @@ export const BOSS_BUFFS = {
                 level: 25
               }
             }]
-          }
+          };
 
-          actualBattle.enemies.push(littleSnake);
+          actualBattle.addUnit(littleSnake);
 
           if (buff.data.phase === 1) {
             buff.data.timeTillSpawn = 5;
@@ -207,7 +207,7 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['blade_spin']
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: unit, caster: defender, actualBattle });
@@ -249,7 +249,8 @@ export const BOSS_BUFFS = {
 
             // Spawn little snake
             const littleSpartan = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spartan.svg',
               name: 'spartan',
@@ -259,14 +260,13 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'phalanx.svg',        
                   name: 'phalanx'
                 }
               }]
-            }
+            };
 
-            actualBattle.enemies.push(littleSpartan);
+            actualBattle.addUnit(littleSpartan);
           }
 
           buff.data.spartansSpawned = true;
@@ -299,7 +299,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
@@ -315,8 +315,9 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'bird.svg',
             name: 'bird',
             buffs: [{
@@ -326,9 +327,9 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: birdStats
-          }
+          };
 
-          actualBattle.enemies.push(littlebird);
+          actualBattle.addUnit(littlebird);
 
           buff.data.timeTillSpawn = 15;
         }
@@ -374,7 +375,7 @@ export const BOSS_BUFFS = {
                 icon: 'ignite.svg',
                 description: 'Burns you each second'
               }
-            }
+            };
 
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             target.stats.health = 0;
@@ -405,7 +406,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
@@ -420,8 +421,9 @@ export const BOSS_BUFFS = {
 
             // Spawn little goblin
             const littleGoblin = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
+              isEnemy: true,
               icon: 'goblin.svg',
               name: 'goblin',
               stats: goblinStats,
@@ -435,9 +437,9 @@ export const BOSS_BUFFS = {
                   name: 'goblin stat stealer'
                 }
               }]
-            }
+            };
 
-            actualBattle.enemies.push(littleGoblin);
+            actualBattle.addUnit(littleGoblin);
           }
 
           buff.data.timeTillSpawn = 90;
@@ -481,9 +483,8 @@ export const BOSS_BUFFS = {
   boss_phoenix: {
     duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
     icon: 'spartan.svg',
-    name: 'boss phenoix',
+    name: 'boss phoenix',
     description({ buff, level }) {
-      const c = buff.constants;
       return `Eternal`;
     },
     constants: {
@@ -503,15 +504,15 @@ export const BOSS_BUFFS = {
             phoenixStats.health = 500;
             phoenixStats.healthMax = 500;
             phoenixStats.attackSpeed = 0.001;
-            phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
             phoenixStats.attackMax /= 3;
             phoenixStats.attack /= 3;
             phoenixStats.armor /= 3;
 
             // Spawn little snake
             const phoenixEgg = {
-              id: Random.id(),
+              id: uuid.v4(),
               tickOffset: 0,
+              isEnemy: true,
               icon: 'phoenixEgg.svg',
               name: 'phoenix egg',
               stats: phoenixStats,
@@ -521,14 +522,13 @@ export const BOSS_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   timeTillSpawn: 60,
-                  isEnemy: true,
                   icon: 'babyPhoenix.svg',        
                   name: 'baby phoenix'
                 }
               }]
-            }
+            };
 
-            actualBattle.enemies.push(phoenixEgg);
+            actualBattle.addUnit(phoenixEgg);
           }
 
           buff.data.phoenixsSpawned = true;
@@ -561,7 +561,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
@@ -569,13 +569,13 @@ export const BOSS_BUFFS = {
           phoenixStats.health = target.stats.health;
           phoenixStats.healthMax = target.stats.health;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
@@ -588,9 +588,9 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
-          actualBattle.enemies.push(littlePhoenix);
+          actualBattle.addUnit(littlePhoenix);
 
           buff.data.hasSpawned = true;
           target.stats.health = -1;
@@ -608,13 +608,13 @@ export const BOSS_BUFFS = {
           phoenixStats.health = 10;
           phoenixStats.healthMax = 10;
           phoenixStats.attackSpeed = 0.5;
-          phoenixStats.attackSpeedTicks = attackSpeedTicks(0.5);
           phoenixStats.armor *= 3;
 
           // Spawn little goblin
           const littlePhoenix = {
-            id: Random.id(),
+            id: uuid.v4(),
             tickOffset: 0,
+            isEnemy: true,
             icon: 'babyPhoenix.svg',
             name: 'babyPhoenix',
             stats: phoenixStats,
@@ -627,9 +627,9 @@ export const BOSS_BUFFS = {
                 name: 'phoenix egg'
               }
             }]
-          }
+          };
 
-          actualBattle.enemies.push(littlePhoenix);
+          actualBattle.addUnit(littlePhoenix);
         }
       }
     }
@@ -663,12 +663,12 @@ export const BOSS_BUFFS = {
         phoenixStats.health = 500;
         phoenixStats.healthMax = 500;
         phoenixStats.attackSpeed = 0.001;
-        phoenixStats.attackSpeedTicks = attackSpeedTicks(0.001);
         phoenixStats.armor /= 3;
 
         // Spawn little snake
         const phoenixEgg = {
-          id: Random.id(),
+          id: uuid.v4(),
+          isEnemy: true,
           tickOffset: 0,
           icon: 'phoenixEgg.svg',
           name: 'phoenix egg',
@@ -679,14 +679,13 @@ export const BOSS_BUFFS = {
               duration: Infinity,
               totalDuration: Infinity,
               timeTillSpawn: 120,
-              isEnemy: true,
               icon: 'babyPhoenix.svg',  
               name: 'baby phoenix'
             }
           }]
-        }
+        };
 
-        actualBattle.enemies.push(phoenixEgg);
+        actualBattle.addUnit(phoenixEgg);
 
       }
     }
@@ -710,10 +709,10 @@ export const BOSS_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillLearn -= secondsElapsed;
-        buff.data.stacks = Math.round(buff.data.timeTillLearn);
+        buff.stacks = Math.round(buff.data.timeTillLearn);
 
-        if (buff.data.stacks <= 0) {
-          buff.data.stacks = 0;
+        if (buff.stacks <= 0) {
+          buff.stacks = 0;
         }
       },
 
@@ -725,10 +724,10 @@ export const BOSS_BUFFS = {
           // Does defender already have the buff?
           let targetBuff = _.findWhere(defender.buffs, { id: 'gorilla_learning' });
           if (targetBuff) {
-            targetBuff.data.duration = LEARNT_DURATION;
-            defender.stats.attackMax *= (1 - ((targetBuff.data.stacks * 2) / 100));
-            defender.stats.attack *= (1 - ((targetBuff.data.stacks * 2) / 100));
-            defender.stats.magicPower *= (1 - ((targetBuff.data.stacks * 2) / 100));
+            targetBuff.duration = LEARNT_DURATION;
+            defender.stats.attackMax *= (1 - ((targetBuff.stacks * 2) / 100));
+            defender.stats.attack *= (1 - ((targetBuff.stacks * 2) / 100));
+            defender.stats.magicPower *= (1 - ((targetBuff.stacks * 2) / 100));
 
             if (defender.stats.attackMax <= 0) {
               defender.stats.attackMax = 1;
@@ -740,7 +739,7 @@ export const BOSS_BUFFS = {
               defender.stats.magicPower = 1;
             }
 
-            targetBuff.data.stacks *= 3;
+            targetBuff.stacks *= 3;
           } else {
             const newBuff = {
               id: 'gorilla_learning',
@@ -751,7 +750,7 @@ export const BOSS_BUFFS = {
                 icon: 'gorillaLearning.svg',
                 description: 'Increases damage taken, and decrease damage dealt by 1% per stack'
               }
-            }
+            };
 
             // cast learning buff
             addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -786,9 +785,9 @@ export const BOSS_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -796,9 +795,9 @@ export const BOSS_BUFFS = {
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         const constants = buff.constants.constants;
 
-        const extraDamage = 0.01 * buff.data.stacks;
+        const extraDamage = 0.01 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
-        actualBattle.utils.dealDamage(extraDamage * attackerDamage, {
+        actualBattle.dealDamage(extraDamage * attackerDamage, {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
@@ -832,7 +831,8 @@ export const BOSS_BUFFS = {
         if (!buff.data.lampsSpawned) {
 
             const powerLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGeniePowerLamp.svg',
               name: 'power',
@@ -854,15 +854,15 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGeniePowerLamp.svg',        
                   name: 'power lap'
                 }
               }]
-            }
+            };
 
             const wisdomLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGenieWisdomLamp.svg',
               name: 'wisdom',
@@ -884,15 +884,15 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGenieWisdomLamp.svg',        
                   name: 'wisdom lamp'
                 }
               }]
-            }
+            };
 
             const healthLamp = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'bossGenieHealthLamp.svg',
               name: 'Vitality',
@@ -914,16 +914,15 @@ export const BOSS_BUFFS = {
                 data: {
                   duration: Infinity,
                   totalDuration: Infinity,
-                  isEnemy: true,
                   icon: 'bossGenieHealthLamp.svg',        
                   name: 'health lamp'
                 }
               }]
-            }
+            };
 
-            actualBattle.enemies.push(powerLamp);
-            actualBattle.enemies.push(wisdomLamp);
-            actualBattle.enemies.push(healthLamp);
+            actualBattle.addUnit(powerLamp);
+            actualBattle.addUnit(wisdomLamp);
+            actualBattle.addUnit(healthLamp);
 
           buff.data.lampsSpawned = true;
         }
@@ -968,7 +967,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGeniePowerLamp.svg',        
               name: 'power up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1017,7 +1016,7 @@ export const BOSS_BUFFS = {
               description: 'Increases magic power by 20%',      
               name: 'wisdom up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1066,7 +1065,7 @@ export const BOSS_BUFFS = {
               icon: 'bossGenieHealthLamp.svg',        
               name: 'health up'
             }
-          }
+          };
           addBuff({ buff: newBuff, target: targetUnit, caster: targetUnit, actualBattle });
         });
 
@@ -1102,7 +1101,7 @@ export const BOSS_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -1136,7 +1135,7 @@ export const BOSS_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -1169,7 +1168,7 @@ export const BOSS_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -1204,7 +1203,7 @@ export const BOSS_BUFFS = {
           const healthLost = buff.data.lastKnownHealth - target.stats.health;
           buff.data.lastKnownHealth = target.stats.health;
           buff.data.damageTillSpawn -= healthLost;
-          buff.data.stacks = Math.round(buff.data.damageTillSpawn);
+          buff.stacks = Math.round(buff.data.damageTillSpawn);
         }
 
         if (buff.data.damageTillSpawn <= 0) {
@@ -1213,22 +1212,22 @@ export const BOSS_BUFFS = {
           birdStats.health = 250;
           birdStats.healthMax = 250;
           birdStats.attackSpeed = 1;
-          birdStats.attackSpeedTicks = attackSpeedTicks(1);
           birdStats.attackMax = 100;
           birdStats.attack = 100;
           birdStats.armor /= 2.5;
 
           // Spawn bird
           const bird = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: actualBattle.tick + 4,
             icon: 'bird.svg',
             name: 'bird',
             stats: birdStats,
             buffs: []
-          }
+          };
 
-          actualBattle.enemies.push(bird);
+          actualBattle.addUnit(bird);
         }
 
       },
@@ -1258,7 +1257,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillBlood -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillBlood);
+        buff.stacks = Math.round(buff.data.timeTillBlood);
 
         if (buff.data.timeTillBlood <= 0) {
           const newBuff = {
@@ -1270,7 +1269,7 @@ export const BOSS_BUFFS = {
               totalDuration: 10,
               duration: 10
             }
-          }
+          };
 
           buff.data.timeTillBlood = 150;
           addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
@@ -1307,7 +1306,6 @@ export const BOSS_BUFFS = {
             birdStats.health = 1000;
             birdStats.healthMax = 1000;
             birdStats.attackSpeed = 0.7;
-            birdStats.attackSpeedTicks = attackSpeedTicks(0.7);
             birdStats.attackMax = 50;
             birdStats.attack = 50;
             birdStats.accuracy *= 1.5;
@@ -1318,7 +1316,8 @@ export const BOSS_BUFFS = {
 
             // Spawn bird
             const bird = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'waterMage.svg',
               name: 'water mage',
@@ -1329,64 +1328,62 @@ export const BOSS_BUFFS = {
                   hideBuff: true
                 }
               }]
-            }
+            };
 
-            actualBattle.enemies.push(bird);
+            actualBattle.addUnit(bird);
           }
 
           const birdStats = JSON.parse(JSON.stringify(target.stats));
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
           birdStats.attackSpeed = 0.01;
-          birdStats.attackSpeedTicks = attackSpeedTicks(0.01);
           birdStats.attackMax = 1;
           birdStats.attack = 1;
 
           // Spawn wall
           const wall = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'stoneWall.svg',
             name: 'stone wall',
             stats: birdStats,
             buffs: []
-          }
+          };
 
-          actualBattle.enemies.push(wall);
+          actualBattle.addUnit(wall);
 
           buff.data.healersSpawned = true;
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
 
-        if (buff.data.stacks >= 0) {
+        if (buff.stacks >= 0) {
           let ratio = 1;
           if (buff.data.enraged) { 
             ratio = 0.3;
           }
-          buff.data.stacks -= secondsElapsed * 66 * ratio;
-          buff.data.stacks = Math.round(buff.data.stacks);
+          buff.stacks -= secondsElapsed * 66 * ratio;
+          buff.stacks = Math.round(buff.stacks);
         } else {
-          buff.data.stacks = 0;
+          buff.stacks = 0;
         }
 
-        if (buff.data.stacks < 333 && buff.data.enraged) {
+        if (buff.stacks < 333 && buff.data.enraged) {
           buff.data.enraged = false;
           target.stats.attackSpeed /= 2;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           buff.data.icon = 'oldTortoise';
         }
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        if (buff.data.stacks != null) {
-          buff.data.stacks += damageDealt;
-          buff.data.stacks = Math.round(buff.data.stacks);
+        if (buff.stacks != null) {
+          buff.stacks += damageDealt;
+          buff.stacks = Math.round(buff.stacks);
         }
 
-        if (buff.data.stacks >= 350 && !buff.data.enraged) {
+        if (buff.stacks >= 350 && !buff.data.enraged) {
           buff.data.enraged = true;
           defender.stats.attackSpeed *= 2;
-          defender.stats.attackSpeedTicks = attackSpeedTicks(defender.stats.attackSpeed);
           buff.data.icon = 'enragedTortoise.svg';
         }
       },
@@ -1417,7 +1414,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSpawn);
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
@@ -1434,15 +1431,16 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const littlebird = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'tentacle.svg',
             name: 'tentacle',
             buffs: [],
             stats: birdStats
-          }
+          };
 
-          actualBattle.enemies.push(littlebird);
+          actualBattle.addUnit(littlebird);
 
           buff.data.timeTillSpawn = 180;
         }
@@ -1474,7 +1472,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillCharge -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillCharge);
+        buff.stacks = Math.round(buff.data.timeTillCharge);
 
         if (!buff.data.timeTillCharge || buff.data.timeTillCharge <= 0) {
 
@@ -1482,7 +1480,7 @@ export const BOSS_BUFFS = {
 
           const attackMax = target.stats.attackMax;
           const damageToDeal = buff.data.magic ? attackMax * 5 : attackMax * 6
-          actualBattle.utils.dealDamage(damageToDeal, {
+          actualBattle.dealDamage(damageToDeal, {
             attacker: target,
             defender: unitToAttack,
             tickEvents: actualBattle.tickEvents,
@@ -1542,7 +1540,8 @@ export const BOSS_BUFFS = {
 
           // Spawn little bird
           const poodle = {
-            id: Random.id(),
+            id: uuid.v4(),
+            isEnemy: true,
             tickOffset: 0,
             icon: 'bossPoodle.svg',
             name: 'poodle',
@@ -1557,9 +1556,9 @@ export const BOSS_BUFFS = {
               }
             }],
             stats: poodleStats
-          }
+          };
 
-          actualBattle.enemies.push(poodle);
+          actualBattle.addUnit(poodle);
 
           buff.data.poodleSpawned = true;
         }
@@ -1567,7 +1566,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillDefensive -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillDefensive);
+        buff.stacks = Math.round(buff.data.timeTillDefensive);
 
         if (!buff.data.timeTillDefensive || buff.data.timeTillDefensive <= 0) {
           // Find poodle
@@ -1581,7 +1580,7 @@ export const BOSS_BUFFS = {
 
             if (poodleBuff.data.damageMap) {
               Object.keys(poodleBuff.data.damageMap).forEach((key) => {
-                const damageDone = poodleBuff.data.damageMap[key]
+                const damageDone = poodleBuff.data.damageMap[key];
                 if (damageDone > max) {
                   max = damageDone;
                   unitToKill = key;
@@ -1638,7 +1637,7 @@ export const BOSS_BUFFS = {
               icon: 'attackReduction.svg',
               description: 'Reduces your attack by 25, for 30 seconds'
             }
-          }
+          };
 
           // cast attack reduction
           addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle });
@@ -1646,7 +1645,7 @@ export const BOSS_BUFFS = {
           // Refresh existing attack_duration buffs
           defender.buffs.forEach((buff) => {
             if (buff.id === 'attack_duration') {
-              buff.data.duration = 10;
+              buff.duration = 10;
             }
           });
         }
@@ -1668,11 +1667,11 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSwitch -= secondsElapsed;
 
         // So user can see how far away spawn is
-        buff.data.stacks = Math.round(buff.data.timeTillSwitch);
+        buff.stacks = Math.round(buff.data.timeTillSwitch);
 
         if (!buff.data.timeTillSwitch || buff.data.timeTillSwitch <= 0) {
           // Target a random unit
-          target.target = _.sample(actualBattle.units).id
+          target.target = _.sample(actualBattle.units).id;
           buff.data.timeTillSwitch = 30;
         }
       },
@@ -1700,11 +1699,11 @@ export const BOSS_BUFFS = {
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
         if (buff.data.phase === EARTH_PHASE) {
-          buff.data.stacks -= 1;
-          if (buff.data.stacks < 0) {
+          buff.stacks -= 1;
+          if (buff.stacks < 0) {
             if (buff.data.refreshes > 0) {
               buff.data.refreshes -= 1;
-              buff.data.stacks = 35;
+              buff.stacks = 35;
             } else if (buff.data.initPhase) {
               // End EARTH phase
               buff.data.phase += 1;
@@ -1723,14 +1722,14 @@ export const BOSS_BUFFS = {
                 icon: 'spikedArmor.svg',
                 description: 'Reflect damage back at you.'
               }
-            }
+            };
 
             // cast earth dart
             addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
           }
         } else if (buff.data.phase === AIR_PHASE) {
-          buff.data.stacks -= Math.round(damageDealt);
-          if (buff.data.stacks <= 0 && buff.data.initPhase) {
+          buff.stacks -= Math.round(damageDealt);
+          if (buff.stacks <= 0 && buff.data.initPhase) {
             // Next phase
             buff.data.phase = 0;
             buff.data.initPhase = false;
@@ -1757,11 +1756,11 @@ export const BOSS_BUFFS = {
               fountainStats.magicArmor *= 0.5;
               fountainStats.attack = 1;
               fountainStats.attackMax = 1;
-              fountainStats.attackSpeedTicks = 100;
 
               // Spawn little bird
               const fountain = {
-                id: Random.id(),
+                id: uuid.v4(),
+                isEnemy: true,
                 tickOffset: 0,
                 icon: 'fountain.svg',
                 name: 'fountain',
@@ -1775,9 +1774,9 @@ export const BOSS_BUFFS = {
                   }
                 }],
                 stats: fountainStats
-              }
+              };
 
-              actualBattle.enemies.push(fountain);
+              actualBattle.addUnit(fountain);
             }
           }
 
@@ -1794,7 +1793,7 @@ export const BOSS_BUFFS = {
           if (!buff.data.initPhase) {
             buff.data.initPhase = true;
             // Earth phase ends with an earth blast at 0 stacks
-            buff.data.stacks = 35;
+            buff.stacks = 35;
             // 2 refreshes of shield
             buff.data.refreshes = 2;
             // Casts earth shield every 35 stacks (reflects damage at target for 3 seconds)
@@ -1803,14 +1802,14 @@ export const BOSS_BUFFS = {
           if (!buff.data.initPhase) {
             buff.data.initPhase = true;
             // Start timer till phase ends
-            buff.data.stacks = 65;
+            buff.stacks = 65;
             buff.data.timeTillNextPhase = 65;
           }
 
           buff.data.timeTillNextPhase -= secondsElapsed;
-          buff.data.stacks = Math.floor(buff.data.timeTillNextPhase);
+          buff.stacks = Math.floor(buff.data.timeTillNextPhase);
 
-          if (buff.data.stacks === 60 || buff.data.stacks === 30) {
+          if (buff.stacks === 60 || buff.stacks === 30) {
             actualBattle.units.forEach((unit) => {
               // Fire wave
               const newBuff = {
@@ -1825,12 +1824,12 @@ export const BOSS_BUFFS = {
                   description: ''
                 },
                 constants: BUFFS['ignite']
-              }
+              };
 
               // cast ignite
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             })
-          } else if (buff.data.stacks <= 0) {
+          } else if (buff.stacks <= 0) {
             // Fire blast
             const newBuff = {
               id: 'ignite',
@@ -1844,13 +1843,13 @@ export const BOSS_BUFFS = {
                 description: ''
               },
               constants: BUFFS['ignite']
-            }
+            };
 
             const unit = _.findWhere(actualBattle.units, { id: target.target });
             // cast ignite
             addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
 
-            actualBattle.utils.dealDamage(500, {
+            actualBattle.dealDamage(500, {
               attacker: target,
               defender: unit,
               isMagic: true,
@@ -1870,7 +1869,7 @@ export const BOSS_BUFFS = {
           if (!buff.data.initPhase) {
             buff.data.initPhase = true;
             // Damage to take until phase ends
-            buff.data.stacks = 2000;
+            buff.stacks = 2000;
             buff.data.mirages = 9;
             buff.data.timeTillMirage = Math.random() * 5;
           }
@@ -1894,15 +1893,16 @@ export const BOSS_BUFFS = {
 
               // Spawn little bird
               const mirage = {
-                id: Random.id(),
+                id: uuid.v4(),
+                isEnemy: true,
                 tickOffset: 0,
                 icon: 'airFox.svg',
                 name: 'mirage',
                 buffs: [],
                 stats: mirageStats
-              }
+              };
 
-              actualBattle.enemies.push(mirage);
+              actualBattle.addUnit(mirage);
             }
           }
         }
@@ -1938,7 +1938,7 @@ export const BOSS_BUFFS = {
 
         // Heal Fox, reduce health by healed amount
         target.stats.health -= 50;
-        actualBattle.utils.healTarget(50, {
+        actualBattle.healTarget(50, {
           caster: target,
           target: fox,
           tickEvents: actualBattle.tickEvents,
@@ -1971,11 +1971,11 @@ export const BOSS_BUFFS = {
         buff.data.stackTimer += secondsElapsed;
         if (buff.data.stackTimer > 1) {
           buff.data.stackTimer = 0;
-          buff.data.stacks += 1;
+          buff.stacks += 1;
         }
 
-        if (Math.random() < (buff.data.attackChance + buff.data.stacks / 100)) {
-          buff.data.stacks = 0;
+        if (Math.random() < (buff.data.attackChance + buff.stacks / 100)) {
+          buff.stacks = 0;
           // alternate attack types every time
           if (buff.data.lastAttack === 'flamebreath')
           {
@@ -2038,14 +2038,13 @@ export const BOSS_BUFFS = {
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (buff.data.timeTillResurrection > 0) {
           buff.data.timeTillResurrection -= secondsElapsed;
-          buff.data.stacks = Math.round(buff.data.timeTillResurrection);
+          buff.stacks = Math.round(buff.data.timeTillResurrection);
         } else {
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
           const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
-          enemy.attackSpeedTicks = attackSpeedTicks(enemy.attackSpeed);
-          actualBattle.enemies.push(enemy);
+          actualBattle.addUnit(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
-          buff.data.stacks = Math.round(buff.data.timeTillResurrection);
+          buff.stacks = Math.round(buff.data.timeTillResurrection);
         }
       },
 
@@ -2090,7 +2089,6 @@ export const BOSS_BUFFS = {
               attack: 650,
               attackMax: 900,
               attackSpeed: FAST_SPEED,
-              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
               accuracy: 350,
               health: 5000,
               healthMax: 5000,
@@ -2102,7 +2100,8 @@ export const BOSS_BUFFS = {
             };
 
             const queen = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Queen Spiderbee',
@@ -2123,7 +2122,6 @@ export const BOSS_BUFFS = {
               attack: 250,
               attackMax: 300,
               attackSpeed: FAST_SPEED,
-              attackSpeedTicks: attackSpeedTicks(FAST_SPEED),
               accuracy: 450,
               health: 2500,
               healthMax: 2500,
@@ -2136,7 +2134,8 @@ export const BOSS_BUFFS = {
             };
 
             const drone1 = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',
@@ -2150,7 +2149,8 @@ export const BOSS_BUFFS = {
             };
 
             const drone2 = {
-              id: Random.id(),
+              id: uuid.v4(),
+              isEnemy: true,
               tickOffset: 0,
               icon: 'spiderbee.svg',
               name: 'Spiderbee Drone',
@@ -2163,11 +2163,11 @@ export const BOSS_BUFFS = {
               }]
             };
 
-            actualBattle.enemies.push(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
+            actualBattle.addUnit(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
           }
         }
 
-        buff.data.stacks = Math.round((1 - ((buff.data.damageLimit - buff.data.damageTaken) / buff.data.damageLimit)) * 100);
+        buff.stacks = Math.round((1 - ((buff.data.damageLimit - buff.data.damageTaken) / buff.data.damageLimit)) * 100);
       },
 
       onRemove({buff, target}) {

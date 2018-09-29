@@ -1,11 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Session } from 'meteor/session';
 import moment from 'moment';
 
-import { determineRequiredItems } from '/imports/ui/utils.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import { Inscription } from '/imports/api/inscription/inscription.js';
@@ -30,11 +28,12 @@ const itemModifier = function (item) {
       method() {
         if (this.item.shiftActionData.target) {
           const targetClass = `targetting-${this.item.shiftActionData.target}`;
-          if (!$('body').hasClass(targetClass)) {
-            $('body').addClass(targetClass);
+          const body = $('body');
+          if (!body.hasClass(targetClass)) {
+            body.addClass(targetClass);
             Meteor.setTimeout(() => {
               // Add body listener for when you want to click out
-              $('body').on(`click.${this.item._id}`, (event) => {
+              body.on(`click.${this.item._id}`, (event) => {
                 const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
                 if (closestTarget) {
                   const targetId = closestTarget.data('id');
@@ -42,9 +41,9 @@ const itemModifier = function (item) {
                     Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
                   }
                 }
-                
-                $('body').removeClass(targetClass);
-                $('body').off(`click.${this.item._id}`);
+
+                body.removeClass(targetClass);
+                body.off(`click.${this.item._id}`);
               });
             }, 1);
           }
@@ -61,7 +60,7 @@ const itemModifier = function (item) {
   }
 
   return item;
-}
+};
 
 
 
@@ -109,16 +108,30 @@ Template.inscriptionPage.onCreated(function bodyOnCreated() {
         const resultsMap = {};
         results.forEach((result) => {
           resultsMap[result.id] = result;
+          if(result.hasOwnProperty('required') && result.name.includes('pigment')) {
+            let herb = result.required.filter((item) => item.type === 'item');
+            if (herb.length) {
+              result.herb_icon = herb[0].icon;
+            }
+          }
         });
         this.state.set('recipeListMap', resultsMap);
 
         const userDoc = Meteor.user();
-        const hasInscriptionUpgrade = userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo)
+        const hasInscriptionUpgrade = userDoc.inscriptionUpgradeTo && moment().isBefore(userDoc.inscriptionUpgradeTo);
 
         // Store recipes
         this.state.set('recipes', results.map((result) => {
           if (inscriptionSkill.level < result.inscriptionSkill) {
             result.notMetLevelReq = true;
+          }
+
+          if(result.required) {
+            result.required.map((item) => {
+              if (item.name.includes('pigment') && resultsMap && resultsMap.hasOwnProperty(item.itemId) && resultsMap[item.itemId].hasOwnProperty('required')) {
+                item.herb_icon = resultsMap[item.itemId].required.filter((item) => item.type === 'item')[0].icon;
+              }
+            });
           }
 
           if (hasInscriptionUpgrade) {
@@ -154,7 +167,7 @@ Template.inscriptionPage.events({
     const filter = instance.$(event.target).closest('.level-filter').data('filter');
     Meteor.call('users.setUiState', 'inscriptionLevelFilter', filter);
   }
-})
+});
 
 Template.inscriptionPage.helpers({
   inscriptionSkill() {
@@ -209,7 +222,7 @@ Template.inscriptionPage.helpers({
       const abilityRecipes = instance.state.get('recipes').filter((item) => {
         return item.category === 'tome' && item.teaches.level === parseInt(levelFilter);
       }).map((recipe) => {
-
+        recipe._id = Meteor.uuid();    // don't do this at home. Or do, since it fixes the levelFilter rendering on abilities
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {

@@ -1,7 +1,7 @@
 export const SILVER_ITEMS = {
   "silver_dagger": {
     "id": "silver_dagger",
-    "icon": "silverDagger.svg",
+    "icon": "silverDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const SILVER_ITEMS = {
   },
   "silver_spear": {
     "id": "silver_spear",
-    "icon": "silverSpear.svg",
+    "icon": "silverSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const SILVER_ITEMS = {
   },
   "silver_short_sword": {
     "id": "silver_short_sword",
-    "icon": "silverShortSword.svg",
+    "icon": "silverShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const SILVER_ITEMS = {
   },
   "silver_scimitar": {
     "id": "silver_scimitar",
-    "icon": "silverScimitar.svg",
+    "icon": "silverScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const SILVER_ITEMS = {
   },
   "silver_long_sword": {
     "id": "silver_long_sword",
-    "icon": "silverLongSword.svg",
+    "icon": "silverLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const SILVER_ITEMS = {
   },
   "silver_broad_sword": {
     "id": "silver_broad_sword",
-    "icon": "silverBroadSword.svg",
+    "icon": "silverBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const SILVER_ITEMS = {
   },
   "silver_battle_axe": {
     "id": "silver_battle_axe",
-    "icon": "silverBattleAxe.svg",
+    "icon": "silverBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const SILVER_ITEMS = {
   },
   "silver_helmet": {
     "id": "silver_helmet",
-    "icon": "silverHelmet.svg",
+    "icon": "silverHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "silver helmet",
@@ -247,10 +247,10 @@ export const SILVER_ITEMS = {
   },
   "silver_chest_plate": {
     "id": "silver_chest_plate",
-    "icon": "silverChestPlate.svg",
+    "icon": "silverChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "silver chestplate",
+    "name": "silver Chestplate",
     "sellPrice": 400,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const SILVER_ITEMS = {
   },
   "silver_plate_legs": {
     "id": "silver_plate_legs",
-    "icon": "silverPlateLegs.svg",
+    "icon": "silverPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "silver platelegs",
@@ -297,7 +297,7 @@ export const SILVER_ITEMS = {
   },
   "silver_shield": {
     "id": "silver_shield",
-    "icon": "silverShield.svg",
+    "icon": "silverShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const SILVER_ITEMS = {
       level: 20
     }]
   }
-}
+};

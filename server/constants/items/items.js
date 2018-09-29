@@ -153,4 +153,4 @@ export const MISC_ITEMS = {
     description: 'Required to bond cursed together.'
   },
 
-}
+};

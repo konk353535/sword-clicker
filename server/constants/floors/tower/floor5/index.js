@@ -1,6 +1,7 @@
-import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
-import { ITEMS } from '/server/constants/items/index';
-import { LEVEL_FIVE_LOOT_TABLE } from '/server/constants/floors/levels/level5';
+import { orderLootTable } from '../../../enemies/lootTables/index.js';
+import { ITEMS } from '../../../items/index';
+
+import { LEVEL_FIVE_LOOT_TABLE } from '../../levels/level5';
 
 export const TOWER_FLOOR_5 = {
   1: {
@@ -22,7 +23,7 @@ export const TOWER_FLOOR_5 = {
     }]))
   },
   3: {
-    name: 'Dark Ally',
+    name: 'Dark Alley',
     enemies: ['cut_purse'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 16,
@@ -60,6 +61,18 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'beech_seed', amount: 3 },
         { type: 'item', itemId: 'beech_log', amount: 20 },
         { type: 'item', itemId: 'beech_staff', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'blue_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'blue_wizard_shorts', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'blue_trident', amount: 1 }
       ]
     }]))
   },
@@ -110,11 +123,11 @@ export const TOWER_FLOOR_5 = {
   },
 
   boss: {
-    enemy: { id: 'boss_mage', amount: 1 },
+    enemy: { id: 'boss_spartan', amount: 1 },
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 2,
       rewards: [
-        { type: 'item', itemId: 'druids_hat', amount: 1 }
+        { type: 'item', itemId: 'spartan_spear', amount: 1 }
       ]
     }]))
   },
@@ -141,4 +154,4 @@ export const TOWER_FLOOR_5 = {
       amount: 30000
     }
   ]
-}
+};

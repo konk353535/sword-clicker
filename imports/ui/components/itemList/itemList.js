@@ -3,9 +3,6 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 
-import moment from 'moment';
-import _ from 'underscore';
-
 import './itemList.html';
 
 Template.itemList.onCreated(function bodyOnCreated() {

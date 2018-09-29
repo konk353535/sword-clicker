@@ -1,5 +1,10 @@
 // Custom badges for crafting tab
 
+.badge-invisible {
+  background-color: transparent;
+  color: $text-muted;
+}
+
 .badge-red-1 {
   background-color: $color-red-1;
 }

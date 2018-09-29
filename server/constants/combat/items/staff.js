@@ -1,11 +1,11 @@
-import { VERY_FAST_SPEED, FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/server/constants/combat/attackSpeeds';
+import { SLOW_SPEED, MEDIUM_SPEED} from '../attackSpeeds';
 
 export const STAFF_ITEMS = {
   /* Wands - Same as staffs but 1h, less magic power */
 
   copper_wand: {
     id: 'copper_wand',
-    icon: 'copperWand.svg',
+    icon: 'copperWand.png',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -36,7 +36,7 @@ export const STAFF_ITEMS = {
 
   copper_hammer: {
     id: 'copper_hammer',
-    icon: 'copperHammer.svg',
+    icon: 'copperHammer.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -69,7 +69,7 @@ export const STAFF_ITEMS = {
 
   beech_staff: {
     id: 'beech_staff',
-    icon: 'beechStaff.svg',
+    icon: 'beechStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -101,7 +101,7 @@ export const STAFF_ITEMS = {
 
   oak_staff: {
     id: 'oak_staff',
-    icon: 'oakStaff.svg',
+    icon: 'oakStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -134,7 +134,7 @@ export const STAFF_ITEMS = {
 
   brown_trident: {
     id: 'brown_trident',
-    icon: 'brownTrident.svg',
+    icon: 'brownTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -167,7 +167,7 @@ export const STAFF_ITEMS = {
 
   gold_wand: {
     id: 'gold_wand',
-    icon: 'goldWand.svg',
+    icon: 'goldWand.png',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -199,7 +199,7 @@ export const STAFF_ITEMS = {
 
   gold_hammer: {
     id: 'gold_hammer',
-    icon: 'goldHammer.svg',
+    icon: 'goldHammer.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -233,7 +233,7 @@ export const STAFF_ITEMS = {
 
   walnut_staff: {
     id: 'walnut_staff',
-    icon: 'walnutStaff.svg',
+    icon: 'walnutStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -265,7 +265,7 @@ export const STAFF_ITEMS = {
 
   blue_trident: {
     id: 'blue_trident',
-    icon: 'blueTrident.svg',
+    icon: 'blueTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -298,7 +298,7 @@ export const STAFF_ITEMS = {
 
   obsidian_wand: {
     id: 'obsidian_wand',
-    icon: 'obsidianWand.svg',
+    icon: 'obsidianWand.png',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -330,7 +330,7 @@ export const STAFF_ITEMS = {
 
   obsidian_hammer: {
     id: 'obsidian_hammer',
-    icon: 'obsidianHammer.svg',
+    icon: 'obsidianHammer.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -363,7 +363,7 @@ export const STAFF_ITEMS = {
 
   mahogany_staff: {
     id: 'mahogany_staff',
-    icon: 'mahoganyStaff.svg',
+    icon: 'mahoganyStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -396,7 +396,7 @@ export const STAFF_ITEMS = {
 
   black_staff: {
     id: 'black_staff',
-    icon: 'blackStaff.svg',
+    icon: 'blackStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -428,7 +428,7 @@ export const STAFF_ITEMS = {
 
   blue_gum_staff: {
     id: 'blue_gum_staff',
-    icon: 'blueGumStaff.svg',
+    icon: 'blueGumStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -461,7 +461,7 @@ export const STAFF_ITEMS = {
 
   cedar_staff: {
     id: 'cedar_staff',
-    icon: 'cedarStaff.svg',
+    icon: 'cedarStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -493,7 +493,7 @@ export const STAFF_ITEMS = {
 
   denya_staff: {
     id: 'denya_staff',
-    icon: 'denyaStaff.svg',
+    icon: 'denyaStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -526,7 +526,7 @@ export const STAFF_ITEMS = {
 
   gombe_staff: {
     id: 'gombe_staff',
-    icon: 'gombeStaff.svg',
+    icon: 'gombeStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -559,7 +559,7 @@ export const STAFF_ITEMS = {
 
   hickory_staff: {
     id: 'hickory_staff',
-    icon: 'hickoryStaff.svg',
+    icon: 'hickoryStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -591,7 +591,7 @@ export const STAFF_ITEMS = {
 
   larch_staff: {
     id: 'larch_staff',
-    icon: 'larchStaff.svg',
+    icon: 'larchStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -624,7 +624,7 @@ export const STAFF_ITEMS = {
 
   poplar_staff: {
     id: 'poplar_staff',
-    icon: 'poplarStaff.svg',
+    icon: 'poplarStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -656,7 +656,7 @@ export const STAFF_ITEMS = {
 
   tali_staff: {
     id: 'tali_staff',
-    icon: 'taliStaff.svg',
+    icon: 'taliStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -689,7 +689,7 @@ export const STAFF_ITEMS = {
 
   willow_staff: {
     id: 'willow_staff',
-    icon: 'willowStaff.svg',
+    icon: 'willowStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -721,7 +721,7 @@ export const STAFF_ITEMS = {
 
   teak_staff: {
     id: 'teak_staff',
-    icon: 'teakStaff.svg',
+    icon: 'teakStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -754,7 +754,7 @@ export const STAFF_ITEMS = {
 
   mithril_wand: {
     id: 'mithril_wand',
-    icon: 'mithrilWand.svg',
+    icon: 'mithrilWand.png',
     category: 'combat',
     weaponType: 'wand',
     slot: 'mainHand',
@@ -785,7 +785,7 @@ export const STAFF_ITEMS = {
 
   mithril_hammer: {
     id: 'mithril_hammer',
-    icon: 'mithrilHammer.svg',
+    icon: 'mithrilHammer.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -818,7 +818,7 @@ export const STAFF_ITEMS = {
 
   purple_trident: {
     id: 'purple_trident',
-    icon: 'purpleTrident.svg',
+    icon: 'purpleTrident.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',
@@ -916,4 +916,4 @@ export const STAFF_ITEMS = {
       level: 25
     }]
   }
-}
+};

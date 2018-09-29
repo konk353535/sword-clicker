@@ -323,7 +323,7 @@ export const SCROLL_ITEMS = {
 
   darksteel_chest_plate_scroll: {
     id: 'darksteel_chest_plate_scroll',
-    icon: 'darksteelChestPlateScroll.svg',
+    icon: 'darksteelChestplateScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'darksteel chest plate scroll',
@@ -379,7 +379,7 @@ export const SCROLL_ITEMS = {
 
   darksteel_long_sword_scroll: {
     id: 'darksteel_long_sword_scroll',
-    icon: 'darksteelLongSwordScroll.svg',
+    icon: 'darksteelLongswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'darksteel long sword scroll',
@@ -393,7 +393,7 @@ export const SCROLL_ITEMS = {
 
   darksteel_plate_legs_scroll: {
     id: 'darksteel_plate_legs_scroll',
-    icon: 'darksteelPlateLegsScroll.svg',
+    icon: 'darksteelPlatelegsScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'darksteel plate legs scroll',
@@ -421,7 +421,7 @@ export const SCROLL_ITEMS = {
 
   darksteel_short_sword_scroll: {
     id: 'darksteel_short_sword_scroll',
-    icon: 'darksteelShortSwordScroll.svg',
+    icon: 'darksteelShortswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'darksteel short sword scroll',
@@ -505,7 +505,7 @@ export const SCROLL_ITEMS = {
 
   radiant_chest_plate_scroll: {
     id: 'radiant_chest_plate_scroll',
-    icon: 'radiantChestPlateScroll.svg',
+    icon: 'radiantChestplateScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'radiant chest plate scroll',
@@ -561,7 +561,7 @@ export const SCROLL_ITEMS = {
 
   radiant_long_sword_scroll: {
     id: 'radiant_long_sword_scroll',
-    icon: 'radiantLongSwordScroll.svg',
+    icon: 'radiantLongswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'radiant long sword scroll',
@@ -575,7 +575,7 @@ export const SCROLL_ITEMS = {
 
   radiant_plate_legs_scroll: {
     id: 'radiant_plate_legs_scroll',
-    icon: 'radiantPlateLegsScroll.svg',
+    icon: 'radiantPlatelegsScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'radiant plate legs scroll',
@@ -603,7 +603,7 @@ export const SCROLL_ITEMS = {
 
   radiant_short_sword_scroll: {
     id: 'radiant_short_sword_scroll',
-    icon: 'radiantShortSwordScroll.svg',
+    icon: 'radiantShortswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'radiant short sword scroll',
@@ -687,7 +687,7 @@ export const SCROLL_ITEMS = {
 
   astral_chest_plate_scroll: {
     id: 'astral_chest_plate_scroll',
-    icon: 'astralChestPlateScroll.svg',
+    icon: 'astralChestplateScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'astral chest plate scroll',
@@ -743,7 +743,7 @@ export const SCROLL_ITEMS = {
 
   astral_long_sword_scroll: {
     id: 'astral_long_sword_scroll',
-    icon: 'astralLongSwordScroll.svg',
+    icon: 'astralLongswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'astral long sword scroll',
@@ -757,7 +757,7 @@ export const SCROLL_ITEMS = {
 
   astral_plate_legs_scroll: {
     id: 'astral_plate_legs_scroll',
-    icon: 'astralPlateLegsScroll.svg',
+    icon: 'astralPlatelegsScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'astral plate legs scroll',
@@ -785,7 +785,7 @@ export const SCROLL_ITEMS = {
 
   astral_short_sword_scroll: {
     id: 'astral_short_sword_scroll',
-    icon: 'astralShortSwordScroll.svg',
+    icon: 'astralShortswordScroll.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'astral short sword scroll',
@@ -810,4 +810,4 @@ export const SCROLL_ITEMS = {
       description: 'Learn hidden recipe'
     }
   }, 
-}
+};

@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { attackSpeedTicks } from '/server/utils';
-import { addBuff, removeBuff } from '/server/battleUtils';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
+import { BATTLES } from '../battles/index.js'; // List of encounters
+import { attackSpeedTicks } from '../../utils';
+import { addBuff, removeBuff } from '../../battleUtils';
 
 export const DEFENSE_BUFFS = {
 
@@ -39,13 +39,13 @@ export const DEFENSE_BUFFS = {
         // Increase armor & magic armor by 100
         target.stats.armor += armorBuff;
         target.stats.magicArmor += armorBuff;
-        buff.data.duration = 10;
+        buff.duration = 10;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -65,7 +65,7 @@ export const DEFENSE_BUFFS = {
         const actualDamage = (attack + ((attackMax - attack) * Math.random())) * damageBuff;
 
         actualBattle.enemies.forEach((enemy) => {
-          actualBattle.utils.dealDamage(actualDamage, {
+          actualBattle.dealDamage(actualDamage, {
             attacker: target,
             defender: enemy,
             tickEvents: actualBattle.tickEvents,
@@ -79,7 +79,7 @@ export const DEFENSE_BUFFS = {
   frosted_attacks: {
     duplicateTag: 'frosted_attacks', // Used to stop duplicate buffs
     icon: 'frostedAttacks.svg',
-    name: 'forsted attacks',
+    name: 'frosted attacks',
     description({ buff, level }) {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
     },
@@ -87,13 +87,12 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster });
         }
       },
@@ -101,7 +100,6 @@ export const DEFENSE_BUFFS = {
       onRemove({ buff, target, caster }) {
         // Mutate targets attack speed
         target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },
@@ -133,12 +131,12 @@ export const DEFENSE_BUFFS = {
           if (buff.data.isEnemy) {
             // Check for other enemies with buff
             phalanxCount = actualBattle.enemies.filter((enemy) => {
-              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+              return enemy.buffs.find(buff => buff.id === 'phalanx');
             }).length;
           } else {
             // Check for other allies with buff
             phalanxCount = actualBattle.enemies.filter((enemy) => {
-              return _.findWhere(enemy.buffs, { id: 'phalanx' });
+              return enemy.buffs.find(buff => buff.id === 'phalanx');
             }).length;
           }
 
@@ -148,7 +146,7 @@ export const DEFENSE_BUFFS = {
 
           if (phalanxCount > 1) {
             buff.data.hideBuff = false;
-            buff.data.stacks = phalanxCount;
+            buff.stacks = phalanxCount;
             buff.data.extraArmor = phalanxCount * constants.armorPerAlly;
             target.stats.armor += buff.data.extraArmor;
           } else {
@@ -219,7 +217,7 @@ export const DEFENSE_BUFFS = {
               description: `Reduces your attack speed by ${attackSpeedDecrease}%`,
               name: 'Frosted Attacks'
             }
-          }
+          };
 
           addBuff({ buff: newBuff, target: attacker, caster: defender });
         }
@@ -227,7 +225,7 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
@@ -279,15 +277,15 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
 
-      onRemove({ buff, target, caster }) {
-        // Blank
+      onRemove({ buff, target, caster, actualBattle }) {
         caster.stats.health /= (1 + buff.data.healthIncrease);
         caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+        actualBattle.checkDeath(caster);
       }
     }
   },
@@ -355,7 +353,7 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
@@ -403,7 +401,7 @@ export const DEFENSE_BUFFS = {
 
         const totalDamage = damageDealt;
 
-        actualBattle.utils.dealDamage((totalDamage * damageReflection) + 10, {
+        actualBattle.dealDamage((totalDamage * damageReflection) + 10, {
           attacker: defender,
           defender: attacker,
           isMagic: true,
@@ -413,9 +411,9 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
         // Blank
-        if (buff.data.duration <= 0) {
+        if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
@@ -444,10 +442,10 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.magicPower * 2;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -457,15 +455,15 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           isMagic: true,
@@ -494,10 +492,10 @@ export const DEFENSE_BUFFS = {
         target.target = caster.id;
         buff.data.damage = caster.stats.attackMax * 0.75;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -507,15 +505,15 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
       onRemove({ buff, target, actualBattle }) {
-        actualBattle.utils.dealDamage(buff.data.damage, {
+        actualBattle.dealDamage(buff.data.damage, {
           defender: target,
           attacker: target,
           tickEvents: actualBattle.tickEvents,
@@ -545,10 +543,10 @@ export const DEFENSE_BUFFS = {
         target.stats.attack -= buff.data.attack;
         target.stats.attackMax -= buff.data.attack;
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -558,9 +556,9 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.data.duration -= secondsElapsed;
+        buff.duration -= secondsElapsed;
 
-        if (buff.data.duration < 0) {
+        if (buff.duration < 0) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },
@@ -591,10 +589,10 @@ export const DEFENSE_BUFFS = {
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();
 
-        const hasIntimidate = _.findWhere(caster.buffs, { id: 'enchantment_intimidate' });
+        const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
 
         if (hasIntimidate) {
-          actualBattle.utils.dealDamage(caster.stats.attack * 2, {
+          actualBattle.dealDamage(caster.stats.attack * 2, {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
@@ -604,9 +602,7 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        target.buffs = target.buffs.filter((targetBuff) => {
-          return targetBuff.id !== buff.id;
-        });
+        removeBuff({ target, buff, caster })
       }
     }
   },
@@ -638,7 +634,7 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         // Reduce damage dealt
         const damageDecrease = buff.constants.constants.damageDealtPercentageBase + (buff.constants.constants.damageDealtPercentagePerLevel * buff.data.level);
         // Reduce damage taken 
@@ -647,8 +643,8 @@ export const DEFENSE_BUFFS = {
         buff.data.damageDecrease = damageDecrease;
         buff.data.damageReduction = damageReduction;
 
-        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100)
-        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100)
+        buff.data.attackMax = target.stats.attackMax * (buff.data.damageDecrease / 100);
+        buff.data.attack = target.stats.attack * (buff.data.damageDecrease / 100);
         target.stats.attackMax -= buff.data.attackMax;
         target.stats.attack -= buff.data.attack;
         target.stats.damageTaken *= (1 - (buff.data.damageReduction / 100));
@@ -656,21 +652,17 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.data.duration -= localSecondsElapsed;
+        buff.duration -= localSecondsElapsed;
 
-        if (buff.data.duration < 0) {
-          localSecondsElapsed += buff.data.duration;
+        if (buff.duration < 0) {
+          localSecondsElapsed += buff.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+        if (buff.duration < 0) {
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -702,9 +694,9 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         if (buff.constants && buff.constants.constants) {
-          buff.data.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
+          buff.duration += (buff.data.level * buff.constants.constants.durationPerLevel)
         }
         buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
         target.stats.damageTaken -= buff.data.damageReduction;
@@ -712,21 +704,17 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.data.duration -= localSecondsElapsed;
+        buff.duration -= localSecondsElapsed;
 
-        if (buff.data.duration < 0) {
-          localSecondsElapsed += buff.data.duration;
+        if (buff.duration < 0) {
+          localSecondsElapsed += buff.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+        if (buff.duration < 0) {
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -742,7 +730,7 @@ export const DEFENSE_BUFFS = {
     name: 'armor up',
     description({ buff, level }) {
       const armorPerLevel = buff.constants.armorPerLevel;
-      const totalArmor = buff.constants.baseArmor + (armorPerLevel * level)
+      const totalArmor = buff.constants.baseArmor + (armorPerLevel * level);
       return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.
        (+${armorPerLevel} per lvl)`;
     },
@@ -756,9 +744,9 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
-        const totalArmor = buff.constants.constants.baseArmor + (buff.constants.constants.armorPerLevel * buff.data.level)
+        const totalArmor = buff.constants.constants.baseArmor + (buff.constants.constants.armorPerLevel * buff.data.level);
 
         buff.data.totalArmor = totalArmor;
         target.stats.armor += totalArmor;
@@ -766,21 +754,17 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.data.duration -= localSecondsElapsed;
+        buff.duration -= localSecondsElapsed;
 
-        if (buff.data.duration < 0) {
-          localSecondsElapsed += buff.data.duration;
+        if (buff.duration < 0) {
+          localSecondsElapsed += buff.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+        if (buff.duration < 0) {
+          removeBuff({ target, buff, caster })
         }
       },
 
@@ -811,7 +795,7 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.endDate = moment().add(buff.data.duration, 'seconds').toDate();
+        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         const maxDefense = buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level);
 
@@ -824,21 +808,17 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.data.duration -= localSecondsElapsed;
+        buff.duration -= localSecondsElapsed;
 
-        if (buff.data.duration < 0) {
-          localSecondsElapsed += buff.data.duration;
+        if (buff.duration < 0) {
+          localSecondsElapsed += buff.duration;
           if (localSecondsElapsed < 0) {
             localSecondsElapsed = 0;
           }
         }
 
-        if (buff.data.duration < 0) {
-          // Call the onremove event
-          buff.constants.events.onRemove({ buff, target, caster });
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id;
-          });
+        if (buff.duration < 0) {
+          removeBuff({ target, buff, caster });
         }
       },
 
@@ -847,4 +827,4 @@ export const DEFENSE_BUFFS = {
       }
     }
   },
-}
+};

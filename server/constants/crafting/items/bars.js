@@ -179,4 +179,4 @@ export const BAR_ITEMS = {
     sellPrice: 120,
     description: 'Used to craft cursed tools and weapons'
   }
-}
+};

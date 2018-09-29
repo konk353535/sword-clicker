@@ -20,7 +20,7 @@ const updateTooltips = function (instance, tooltipNames) {
       });
     });
   }, 100);
-}
+};
 
 Template.equipmentTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -28,7 +28,7 @@ Template.equipmentTab.onCreated(function bodyOnCreated() {
 
 Template.equipmentTab.rendered = function () {
   updateTooltips(Template.instance(), ['attackSkill', 'defenseSkill', 'healthSkill', 'magicSkill']);
-}
+};
 
 Template.equipmentTab.helpers({
   unequippedCombatItems() {
@@ -43,7 +43,7 @@ Template.equipmentTab.helpers({
             }
           });
         }
-      }
+      };
       return item;
     });
   },
@@ -56,7 +56,7 @@ Template.equipmentTab.helpers({
         method() {
           Meteor.call('items.eat', this.item._id, this.item.itemId);
         }
-      }
+      };
       return item;
     });
   },
@@ -69,11 +69,12 @@ Template.equipmentTab.helpers({
         method() {
           if (this.item.shiftActionData.target) {
             const targetClass = `targetting-${this.item.shiftActionData.target}`;
-            if (!$('body').hasClass(targetClass)) {
-              $('body').addClass(targetClass);
+            const body = $('body');
+            if (!body.hasClass(targetClass)) {
+              body.addClass(targetClass);
               Meteor.setTimeout(() => {
                 // Add body listener for when you want to click out
-                $('body').on(`click.${this.item._id}`, (event) => {
+                body.on(`click.${this.item._id}`, (event) => {
                   const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
                   if (closestTarget) {
                     const targetId = closestTarget.data('id');
@@ -81,19 +82,18 @@ Template.equipmentTab.helpers({
                       Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
                     }
                   }
-                  
-                  $('body').removeClass(targetClass);
-                  $('body').off(`click.${this.item._id}`);
+
+                  body.removeClass(targetClass);
+                  body.off(`click.${this.item._id}`);
                 });
               }, 1);
             }
           } 
         }
-      }
+      };
       return item;
     });
   },
-
 
   equippedItemsMap() {
     const equippedItems = Items.find({
@@ -107,7 +107,7 @@ Template.equipmentTab.helpers({
         method() {
           Meteor.call('items.unequip', this.item._id, this.item.itemId);
         }
-      }
+      };
       return item;
     });
 
@@ -173,12 +173,6 @@ Template.equipmentTab.helpers({
     return Template.instance().state.get('defenseStats');
   },
 
-  characterIcon() {
-    return Combat.findOne({
-      owner: Meteor.userId()
-    }).characterIcon || 'character.svg';
-  },
-
   offenseStats() {
     const combat = Combat.findOne({
       owner: Meteor.userId()
@@ -207,5 +201,11 @@ Template.equipmentTab.helpers({
     }
 
     return Template.instance().state.get('offenseStats');
+  },
+
+  characterIcon() {
+    return Combat.findOne({
+      owner: Meteor.userId()
+    }).characterIcon || 'character.svg';
   }
 });

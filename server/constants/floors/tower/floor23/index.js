@@ -1,6 +1,7 @@
-import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
-import { ITEMS } from '/server/constants/items/index';
-import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '/server/constants/floors/levels/level21';
+import { orderLootTable } from '../../../enemies/lootTables/index.js';
+import { ITEMS } from '../../../items/index';
+
+import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '../../levels/level21';
 
 export const TOWER_FLOOR_23 = {
   unlocks: false,
@@ -96,4 +97,4 @@ export const TOWER_FLOOR_23 = {
       amount: 700000
     }
   ]
-}
+};

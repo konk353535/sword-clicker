@@ -414,4 +414,4 @@ export const ORICHALCUM_CRAFTS = {
       level: 75
     }]
   }
-}
+};

@@ -9,7 +9,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     }
   },
 
@@ -19,7 +19,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     statsPerLevel: {
@@ -40,7 +40,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     requirementsToLearn: [{
@@ -58,7 +58,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     requirementsToLearn: [{
@@ -76,7 +76,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     }
   },
 
@@ -86,7 +86,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     }
   },
 
@@ -96,7 +96,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     requirementsToLearn: [{
@@ -114,7 +114,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     requirementsToLearn: [{
@@ -127,6 +127,7 @@ export const SKILLS = {
 
     statsPerLevel: {
       accuracy: 1,
+      attack: 0.15,
       attackMax: 0.5
     }
   },
@@ -137,7 +138,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     statsPerLevel: {
@@ -153,7 +154,7 @@ export const SKILLS = {
       if (level > 65) {
         extra = 25000 * (Math.pow(1.16, (level - 65)));
       }
-      return 30 * level + ((level / 2) * (level / 2) * level * 10) + extra;
+      return Math.floor(30 * level + ((level / 2) * (level / 2) * level * 10) + extra);
     },
 
     baseLevel: 5,
@@ -163,4 +164,4 @@ export const SKILLS = {
       healthMax: 10
     }
   }
-}
+};

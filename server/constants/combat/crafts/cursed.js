@@ -414,4 +414,4 @@ export const CURSED_CRAFTS = {
       level: 95
     }]
   }
-}
+};

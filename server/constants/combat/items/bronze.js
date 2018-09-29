@@ -1,7 +1,7 @@
 export const BRONZE_ITEMS = {
   "bronze_dagger": {
     "id": "bronze_dagger",
-    "icon": "bronzeDagger.svg",
+    "icon": "bronzeDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_spear": {
     "id": "bronze_spear",
-    "icon": "bronzeSpear.svg",
+    "icon": "bronzeSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_short_sword": {
     "id": "bronze_short_sword",
-    "icon": "bronzeShortSword.svg",
+    "icon": "bronzeShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_scimitar": {
     "id": "bronze_scimitar",
-    "icon": "bronzeScimitar.svg",
+    "icon": "bronzeScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_long_sword": {
     "id": "bronze_long_sword",
-    "icon": "bronzeLongSword.svg",
+    "icon": "bronzeLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_broad_sword": {
     "id": "bronze_broad_sword",
-    "icon": "bronzeBroadSword.svg",
+    "icon": "bronzeBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_battle_axe": {
     "id": "bronze_battle_axe",
-    "icon": "bronzeBattleAxe.svg",
+    "icon": "bronzeBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_helmet": {
     "id": "bronze_helmet",
-    "icon": "bronzeHelmet.svg",
+    "icon": "bronzeHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "bronze helmet",
@@ -247,10 +247,10 @@ export const BRONZE_ITEMS = {
   },
   "bronze_chest_plate": {
     "id": "bronze_chest_plate",
-    "icon": "bronzeChestPlate.svg",
+    "icon": "bronzeChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "bronze chestplate",
+    "name": "bronze Chestplate",
     "sellPrice": 175,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_plate_legs": {
     "id": "bronze_plate_legs",
-    "icon": "bronzePlateLegs.svg",
+    "icon": "bronzePlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "bronze platelegs",
@@ -297,7 +297,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_shield": {
     "id": "bronze_shield",
-    "icon": "bronzeShield.svg",
+    "icon": "bronzeShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const BRONZE_ITEMS = {
       level: 10
     }]
   }
-}
+};

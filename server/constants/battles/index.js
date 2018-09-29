@@ -44,7 +44,7 @@ export const BATTLES = {
         health: 0.5,
         defense: 0
       }
-    }
+    };
 
     return weaponDistributions[weaponType]
   },
@@ -91,9 +91,7 @@ export const BATTLES = {
     return armor / (armor + 100);
   },
 
-  tickDuration: 250, // How long each tick lasts
-
   maxBossPartySize: 5,
 
   maxTowerPartySize: 5
-}
+};

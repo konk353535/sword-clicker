@@ -1,7 +1,7 @@
 export const ADAMANTIUM_ITEMS = {
   "adamantium_dagger": {
     "id": "adamantium_dagger",
-    "icon": "adamantiumDagger.svg",
+    "icon": "adamantiumDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_spear": {
     "id": "adamantium_spear",
-    "icon": "adamantiumSpear.svg",
+    "icon": "adamantiumSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_short_sword": {
     "id": "adamantium_short_sword",
-    "icon": "adamantiumShortSword.svg",
+    "icon": "adamantiumShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_scimitar": {
     "id": "adamantium_scimitar",
-    "icon": "adamantiumScimitar.svg",
+    "icon": "adamantiumScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_long_sword": {
     "id": "adamantium_long_sword",
-    "icon": "adamantiumLongSword.svg",
+    "icon": "adamantiumLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_broad_sword": {
     "id": "adamantium_broad_sword",
-    "icon": "adamantiumBroadSword.svg",
+    "icon": "adamantiumBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_battle_axe": {
     "id": "adamantium_battle_axe",
-    "icon": "adamantiumBattleAxe.svg",
+    "icon": "adamantiumBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_helmet": {
     "id": "adamantium_helmet",
-    "icon": "adamantiumHelmet.svg",
+    "icon": "adamantiumHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "adamantium helmet",
@@ -247,10 +247,10 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_chest_plate": {
     "id": "adamantium_chest_plate",
-    "icon": "adamantiumChestPlate.svg",
+    "icon": "adamantiumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "adamantium chestplate",
+    "name": "adamantium Chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_plate_legs": {
     "id": "adamantium_plate_legs",
-    "icon": "adamantiumPlateLegs.svg",
+    "icon": "adamantiumPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "adamantium platelegs",
@@ -297,7 +297,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_shield": {
     "id": "adamantium_shield",
-    "icon": "adamantiumShield.svg",
+    "icon": "adamantiumShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const ADAMANTIUM_ITEMS = {
       level: 70
     }]
   }
-}
+};

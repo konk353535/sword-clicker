@@ -2,8 +2,8 @@
   <div class="icon-box mine-space-container">
     {{#unless isEmpty}}
       <img src="/icons/{{mineSpace.icon}}" class="ore-icon">
-      <span style="font-size: 12px; white-space: nowrap">
-        {{> formatNumber number=ceiledNumber}} / {{> formatNumber number=mineSpace.healthMax}}
+      <span style="font-size: 12px;white-space: nowrap;">
+        {{> formatNumber number=ceiledNumber forceShorthand=true}} / {{> formatNumber number=mineSpace.healthMax forceShorthand=true}}
       </span>
       <div>
         {{mineSpace.id}}

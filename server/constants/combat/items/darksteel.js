@@ -57,7 +57,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_short_sword": {
     "id": "darksteel_short_sword",
-    "icon": "darksteelShortSword.svg",
+    "icon": "darksteelShortsword.svg",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_long_sword": {
     "id": "darksteel_long_sword",
-    "icon": "darksteelLongSword.svg",
+    "icon": "darksteelLongsword.svg",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -170,10 +170,10 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_chest_plate": {
     "id": "darksteel_chest_plate",
-    "icon": "darksteelChestPlate.svg",
+    "icon": "darksteelChestplate.svg",
     "category": "combat",
     "slot": "chest",
-    "name": "darksteel chestplate",
+    "name": "darksteel Chestplate",
     "sellPrice": Math.round(3000 * DARKSTEEL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,
@@ -195,7 +195,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_plate_legs": {
     "id": "darksteel_plate_legs",
-    "icon": "darksteelPlateLegs.svg",
+    "icon": "darksteelPlatelegs.svg",
     "category": "combat",
     "slot": "legs",
     "name": "darksteel platelegs",
@@ -244,4 +244,4 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   }
-}
+};

@@ -1,31 +1,34 @@
+import moment from "moment/moment";
 import _ from 'underscore';
 
-import { ENEMIES } from '/server/constants/enemies/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
-import { FLOORS } from '/server/constants/floors/index.js';
-import { MAGIC } from '/server/constants/magic/index.js';
-import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
-import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { ITEMS } from '/server/constants/items/index';
+import { FLOORS } from '/server/constants/floors/index';
+import { MAGIC } from '/server/constants/magic/index';
+import { BATTLES } from '/server/constants/battles/index'; // List of encounters
+import { PLAYER_ICONS } from '/imports/constants/shop/index';
 import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
+import { normalizedLootTable } from '/server/constants/enemies/lootTables/index';
+import { cleanRewards } from '/server/utils';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
 import { Users } from '/imports/api/users/users';
+import { Groups } from '/imports/api/groups/groups';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
+
+import { State } from '/imports/api/state/state';
 import weightedRandom from 'weighted-random';
 
-const redis = new Meteor.RedisCollection('redis');
-
-const distributeRewards = function distributeRewards({ floor }) {
-  console.log('Distributing rewards');
+export const distributeRewards = function distributeRewards({ floor, server }) {
 
   // Fetch the rewards
   const rawFloorRewards = FLOORS[floor].floorRewards;
@@ -41,7 +44,6 @@ const distributeRewards = function distributeRewards({ floor }) {
   sortedBossHealthScores.forEach((bossHealthScore) => {
     rawFloorRewards.forEach((reward) => {
       if (reward.type === 'item') {
-        console.log(`Adding item - ${reward.itemId}`);
         addItem(reward.itemId, 1, bossHealthScore.owner);
       }
     })
@@ -49,49 +51,76 @@ const distributeRewards = function distributeRewards({ floor }) {
 
   // Fetch all users by tower points
   const sortedFloorWaveScores = FloorWaveScores.find({
+    server,
     floor,
     points: {
       $gte: 25
     }
-  }, {
-    sort: [
-      ['points', 'desc']
-    ]
   }).fetch();
 
   const totalContributors = sortedFloorWaveScores.length;
 
-  sortedFloorWaveScores.forEach((waveScore, index) => {
-    const percentRank = ((index + 1) / totalContributors) * 100;
-    let chance = 0;
-    if (percentRank <= 10 || index <= 9) {
-      chance = 100;
-    } else if (percentRank <= 25) {
-      chance = 50;
-    } else if (percentRank <= 50) {
-      chance = 25;
-    } else if (percentRank <= 75) {
-      chance = 5;
-    } else {
-      chance = 1;
-    }
+  console.log('floor', floor, 'server', server);
+  let rewards = Floors.findOne({floor: floor, server: server}).loot;
+  // get gold out first
+  let gold = _.findWhere(rewards, {type: 'gold'});
 
-    console.log(`Rank = ${percentRank}`);
-    rawFloorRewards.forEach((reward) => {
-      if (reward.type === 'item' && Math.random() <= (chance / 100)) {
-        addItem(reward.itemId, 1, waveScore.owner);
-        console.log(`Adding item - ${reward.itemId} - 1`);
-      } else if (reward.type === 'gold') {
-        const goldAmount = (1 - (percentRank / 100)) * reward.amount;
-        console.log(`Adding gold - ${goldAmount}`);
-        Users.update(waveScore.owner, {
-          $inc: {
-            gold: Math.round(goldAmount)
-          }
+  let playerList = {};
+  sortedFloorWaveScores.forEach((waveScore) => {
+    playerList[waveScore.owner] = [{
+      type: 'gold',
+      amount: Math.floor(gold.amount / totalContributors)
+    }];
+  });
+
+  // remove gold
+  rewards = _.reject(rewards, function(r) {
+    return r.type === 'gold';
+  });
+
+  while(rewards.length > 0) {
+    Object.keys(playerList).map((player) => {
+      if(rewards.length <= 0) {
+        return;
+      }
+      const reward = _.sample(rewards);
+      playerList[player].push({
+        type: reward.type,
+        itemId: reward.itemId,
+        amount: 1
+      });
+      // find reward and decrement by 1 or remove from list
+      rewards = rewards.map((cur) => {
+        if (cur.itemId === reward.itemId) {
+          cur.amount -= 1;
+        }
+        return cur;
+      });
+      rewards = _.reject(rewards, (r) => {
+        return r.amount <= 0;
+      });
+    });
+  }
+
+  Object.keys(playerList).map((player) => {
+    playerList[player] = cleanRewards(playerList[player]);
+    playerList[player].map((item) => {
+      if (item.itemId) {
+        console.log(`awarding ${item.amount} ${item.itemId} to ${player}`);
+        addItem(item.itemId, item.amount, player);
+        Chats.insert({
+          message: `You have been awarded ${item.amount} ${ITEMS[item.itemId].name}.`,
+          username: 'Game',
+          name: 'Game',
+          date: new Date(),
+          custom: {
+            roomType: 'Game'
+          },
+          roomId: `Game-${player}`
         });
       }
     });
-  })
+  });
 };
 
 export const resolveLoot = function(battle) {
@@ -135,19 +164,40 @@ export const resolveLoot = function(battle) {
   });
 };
 
+export const removeBattle = function (battleId) {
+  const targetBattle = BattlesList.findOne({
+    _id: battleId
+  });
+
+  if (!targetBattle) {
+    return 0;
+  }
+
+  if (targetBattle.group) {
+    Groups.update({
+      _id: targetBattle.group
+    }, {
+      $set: {
+        inBattle: false
+      }
+    });
+  }
+
+  return BattlesList.remove(battleId);
+}
+
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
-  let win = actualBattle.units.length > 0;
+
+  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0);
+
+  let win = aliveUnits.length > 0;
   let ngRewards = [];
 
-  const rawGlobalBuffs = redis.get('global-buffs-xpq');
-  const globalBuffs = rawGlobalBuffs ? JSON.parse(rawGlobalBuffs) : {};
-  let hasCombatGlobalBuff = globalBuffs.combat && moment().isBefore(globalBuffs.combat);
+  const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
 
   // Remove from battle list
-  const battlesDeleted = BattlesList.remove(actualBattle._id);
-  // Remove from redis
-  redis.del(`battles-${actualBattle._id}`);
+  const battlesDeleted = removeBattle(actualBattle.id)
 
   if (battlesDeleted <= 0) {
     return;
@@ -166,45 +216,44 @@ export const completeBattle = function (actualBattle) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
 
-    if (actualBattle.isTowerContribution) {
-      if (win) {
-        // Count current room
-        pointsEarnt += Math.pow(1.7, actualBattle.room);
-      } else {
-        // Get hp of current wave
-        let totalHp = 0;
-        let currentHp = 0;
-        actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
-          totalHp += enemy.stats.healthMax;
-          currentHp += enemy.stats.health;
-        });
+    if (win) {
+      // Count current room
+      pointsEarnt += Math.pow(1.7, actualBattle.room);
+    } else {
+      // Get hp of current wave
+      let totalHp = 0;
+      let currentHp = 0;
+      actualBattle.enemies.concat(actualBattle.deadEnemies).forEach((enemy) => {
+        totalHp += enemy.stats.healthMax;
+        currentHp += enemy.stats.health;
+      });
 
-        const decimalCompletion = 1 - (currentHp / totalHp);
+      const decimalCompletion = 1 - (currentHp / totalHp);
+      pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
+    };
 
-        pointsEarnt += (Math.pow(1.7, actualBattle.room) * decimalCompletion);
-      }
-
-      // Add points from previous rooms
-      for (let i = actualBattle.room - 1; i > 0; i--) {
-        pointsEarnt += Math.pow(1.7, i);
-      }
+    // Add points from previous rooms
+    for (let i = actualBattle.room - 1; i > 0; i--) {
+      pointsEarnt += Math.pow(1.7, i);
     }
 
-    const units = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
+    const units = actualBattle.units.filter((unit) => {
       return !!unit.owner;
     });
 
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
+
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-      const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
-      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
+      const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
 
       totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
     }
+
 
     units.forEach((unit) => {
       // Distribute xp gained evenly across units
@@ -241,12 +290,12 @@ export const completeBattle = function (actualBattle) {
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
-    const deadEnemy = actualBattle.deadEnemies[0];
     
     let rewards = [];
     if (actualBattle.level) {
       rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
     }
+
 
     for (let i = 0; i < rewards.length; i++) {
       const rewardTable = rewards[i];
@@ -258,10 +307,11 @@ export const completeBattle = function (actualBattle) {
       }
     }
 
+
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
     if (actualBattle.floor) {
-      if (win) {
+      if (win && !actualBattle.isExplorationRun) {
         floorRewards.push(...FLOORS[actualBattle.floor][actualBattle.room].rewards);
       }
 
@@ -272,6 +322,7 @@ export const completeBattle = function (actualBattle) {
         }
       }
     }
+
 
     // Each user = additional 20% chance of loot
     const extraChance = 1 + (units.length * 0.2) - 0.2;
@@ -369,83 +420,191 @@ export const completeBattle = function (actualBattle) {
       }
     });
 
-    if (actualBattle.floor && actualBattle.room && actualBattle.isTowerContribution) {
+    if (actualBattle.floor && actualBattle.room) {
       if (actualBattle.room !== 'boss') {
 
-        let countTowerContributors = 0;
+        let totalPointsForGroup = 0;
 
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
 
-          if (ownerObject.isTowerContribution && ownerObject.towerContributionsToday < 3) {
-            // Double confirm that this is a contribution
-            const combatDoc = Combat.findOne({
+          if (ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
+            ownerObject.newContribution = pointsEarnt;
+            let actualPointsGained = pointsEarnt;
+            if (ownerObject.towerContributions.length >= 3) {
+              actualPointsGained -= ownerObject.towerContributions[0];
+              ownerObject.towerContributions[0] = pointsEarnt;
+              ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+            } else {
+              ownerObject.towerContributions.push(pointsEarnt);
+              ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+            }
+
+            totalPointsForGroup += actualPointsGained;
+
+            const updateSelector = { owner, floor: actualBattle.floor };
+
+            const updateModifier = {
+              $inc: {
+                points: actualPointsGained
+              },
+              $setOnInsert: {
+                points: actualPointsGained,
+                server: actualBattle.server,
+                username: ownerObject.name // To do: Make this work when users have multiple units
+              }
+            };
+
+            const possibleStats = [
+              'mining',
+              'crafting',
+              'woodcutting',
+              'farming',
+              'inscription',
+              'astronomy'
+            ];
+
+            const targetStat = _.sample(possibleStats);
+            addXp(targetStat, Math.round(actualPointsGained * 50), owner);
+
+            if (actualPointsGained > 10) {
+              addFakeGems(5, owner);
+            }
+
+            finalTickEvents.push({
+              type: 'xp',
+              amount: Math.round(actualPointsGained * 50),
+              skill: targetStat,
               owner
             });
 
-            if (combatDoc.isTowerContribution && combatDoc.towerContributionsToday < 3) {
-              ownerObject.usedTowerContribution = true;
-              countTowerContributors++;
+            finalTickEvents.push({
+              type: 'points',
+              amount: actualPointsGained.toFixed(1),
+              icon: 'tower.svg',
+              owner
+            });
 
-              const updateSelector = { owner, floor: actualBattle.floor };
-
-              const updateModifier = {
-                $inc: {
-                  points: pointsEarnt
-                },
-                $setOnInsert: {
-                  points: pointsEarnt,
-                  username: ownerObject.name // To do: Make this work when users have multiple units
-                }
-              };
-
-              const possibleStats = [
-                'mining',
-                'crafting',
-                'woodcutting',
-                'farming',
-                'inscription',
-                'astronomy'
-              ];
-
-              const targetStat = _.sample(possibleStats);
-              addXp(targetStat, Math.round(pointsEarnt * 50), owner);
-
-              if (pointsEarnt > 10) {
-                addFakeGems(5, owner);
-              }
-
-              finalTickEvents.push({
-                type: 'xp',
-                amount: Math.round(pointsEarnt * 50),
-                skill: targetStat,
-                owner
-              });
-
-              finalTickEvents.push({
-                type: 'points',
-                amount: pointsEarnt.toFixed(1),
-                icon: 'tower.svg',
-                owner
-              });
-
-              FloorWaveScores.upsert(updateSelector, updateModifier);
-            } else {
-              console.log('Unexpected Failure');
-            }
+            console.log(updateSelector);
+            console.log(updateModifier);
+            FloorWaveScores.upsert(updateSelector, updateModifier);
           }
         });
 
-        if (countTowerContributors > 0) {
+        if (totalPointsForGroup > 0) {
           // Increment total points data
           Floors.update({
             floor: actualBattle.floor,
+            server: actualBattle.server,
             floorComplete: false
           }, {
             $inc: {
-              points: pointsEarnt * countTowerContributors
+              points: totalPointsForGroup
+            }
+          });
+
+          // if boss should be unlocked, begin 24h timer
+          const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+
+          if (currentFloor.points > currentFloor.pointsMax && !currentFloor.bossResetAt) {
+            const resetDate = moment().add(24, 'hours').toDate();
+            Floors.update({
+              floor: actualBattle.floor,
+              server: actualBattle.server,
+              floorComplete: false
+            }, {
+              $set: {
+                bossResetAt: resetDate
+              }
+            });
+          }
+
+          // add additional loot to community pot for every contributor
+
+          let floors = [];
+          if (actualBattle.floor === 1) {
+            floors = [{
+              floor: 1,
+              minChance: 1 / 32
+            }]
+          } else if (actualBattle.floor === 2) {
+            floors = [{
+              floor: 1,
+              minChance: 1 / 32
+            }, {
+              floor: 2,
+              minChance: 1 / 48
+            }]
+          } else {
+            const floorNumbers = _.range(Math.max(1, actualBattle.floor - FLOORS.floorRewardRange - 1), actualBattle.floor);
+            floors = floorNumbers.map((num, idx) => { return { floor: num,  minChance: 1 / (16 * (idx + 2)) } });
+          }
+
+          let rewardsGained = _.flatten(floors.map((floor) => {
+            let floorRewards = [];
+
+            // Add rewards from previous rooms
+            for (let i = actualBattle.room - 1; i > 0; i--) {
+              floorRewards.push(...FLOORS[floor.floor][i].rewards);
+            }
+
+            floorRewards = normalizedLootTable(floorRewards, floor.minChance);
+            floorRewards.push({chance: 1 / 64, rewards: [{type: 'item', itemId: 'enhancer_key', amount: 1}]});
+            let rewards = [];
+
+            // Each user = additional 20% chance of loot
+            const extraChance = 1 + (owners.length * 0.2) - 0.2;
+            for (let i = 0; i < floorRewards.length; i++) {
+              const rewardTable = floorRewards[i];
+              const diceRoll = Math.random();
+
+              if ((rewardTable.chance * extraChance) >= diceRoll) {
+                let reward = _.sample(rewardTable.rewards);
+                if (reward.type === 'gold') {
+                  reward.amount *= 12;
+                }
+                if (reward.type !== 'icon')  {
+                  rewards.push(reward);
+                }
+                if (rewards >= owners.length) {
+                  break;
+                }
+              } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
+                let reward = _.sample(rewardTable.rewards);
+                if (reward.type === 'gold') {
+                  reward.amount *= 15;
+                }
+                if (reward.type !== 'icon')  {
+                  rewards.push(Object.assign({}, reward, {
+                    affectedGlobalBuff: true
+                  }));
+                }
+                if (rewards >= owners.length) {
+                  break;
+                }
+              }
+            }
+
+            return rewards;
+
+          }));
+
+          let floorRewards = [];
+          if (currentFloor.loot) {
+            floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained));
+          } else {
+            floorRewards = cleanRewards(rewardsGained);
+          }
+
+          Floors.update({
+            floor: actualBattle.floor,
+            server: actualBattle.server,
+            floorComplete: false
+          }, {
+            $set: {
+              loot: floorRewards
             }
           });
         }
@@ -475,19 +634,22 @@ export const completeBattle = function (actualBattle) {
   }
 
   // Update all player units healths
-  const allFriendlyUnits = actualBattle.units.concat(actualBattle.deadUnits).filter((unit) => {
-    return !!unit.owner;
+  const allFriendlyUnits = actualBattle.units.filter((unit) => {
+    return !unit.isEnemy;
   });
+
   allFriendlyUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
         'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
         lastGameUpdated: new Date(),
-      },
-      $inc: {
-        'towerContributionsToday': unit.usedTowerContribution ? 1 : 0
       }
     };
+
+    if (unit.newContribution) {
+      combatModifier['$set'].towerContributions = unit.towerContributions;      
+    }
+
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
       combatModifier['$set'].foughtBoss = true;
     }
@@ -552,7 +714,7 @@ export const completeBattle = function (actualBattle) {
         });
 
         if (userAbilities) {
-          // Modify relevant abiltiy id cooldowns and update
+          // Modify relevant ability id cooldowns and update
           userAbilities.learntAbilities.forEach((ability) => {
             const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId });
             if (abilityToUpdate) {
@@ -577,19 +739,20 @@ export const completeBattle = function (actualBattle) {
 
 
   // Is this a current boss battle?
+  console.log(actualBattle.startingBossHp);
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies.concat(actualBattle.deadEnemies);
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
-    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { enemyId: bossId }).stats.health;
-
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
+    console.log(`damage dealt = ${damageDealt}`);
     if (!damageDealt || damageDealt < 0) {
       damageDealt = 0;
     }
-    console.log(`Damage dealt to boss ${damageDealt}`);
 
     // Update players contributions
     allFriendlyUnits.forEach((unit) => {
       BossHealthScores.insert({
+        server: actualBattle.server,
         owner: unit.owner,
         username: unit.name,
         bossDamage: damageDealt
@@ -597,80 +760,14 @@ export const completeBattle = function (actualBattle) {
     });
 
     // Update bosses hp
-    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor });
+    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
     if (currentFloor) {
-      currentFloor.health -= damageDealt;
-
-      if (currentFloor.health <= 0) {
-        console.log('Health is below 0');
-        // Complete the floor!
-        let updatedCount = Floors.update({
-          floor: actualBattle.floor,
-          floorComplete: false
-        }, {
-          $set: {
-            floorComplete: true
-          }
-        });
-
-        console.log(`Updated count is ${updatedCount}`);
-        if (updatedCount === 1) {
-          // Distribute rewards
-          distributeRewards({ floor: actualBattle.floor });
-
-          // Notify general chat
-          Chats.insert({
-            message: `The boss on floor ${actualBattle.floor} has been defeated!
-              Floor ${actualBattle.floor + 1} is now unlocked.`,
-            username: 'SERVER',
-            name: 'SERVER',
-            date: new Date(),
-            custom: {
-              roomType: 'Game'
-            },
-            roomId: 'General'
-          });
-
-          // Insert the next floor (To do, make this pass a valid active tower users number)
-          const activeTowerUsers = FloorWaveScores.find({
-            floor: actualBattle.floor,
-            points: {
-              $gte: 25
-            }
-          }).count();
-          const newPointMax = FLOORS.getNewPointCount(actualBattle.floor + 1, activeTowerUsers);
-
-          // Get bosses hp
-          const bossEnemyId = FLOORS[actualBattle.floor + 1].boss.enemy.id;
-          const bossEnemyConstants = ENEMIES[bossEnemyId];
-
-          // Reset tower contributions for all
-          Combat.update({}, {
-            $set: {
-              towerContributionsToday: 0
-            }
-          }, { multi: true });
-
-          BossHealthScores.remove({});
-
-          // Create our next floor
-          Floors.insert({
-            floor: actualBattle.floor + 1,
-            createdAt: new Date(),
-            points: 0,
-            pointsMax: newPointMax, // Need some kind of
-            health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-            healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
-          });
+      // Just update the bosses hp
+      Floors.update(currentFloor._id, {
+        $set: {
+          health: currentFloor.health - damageDealt
         }
-      } else {
-        // Just update the bosses hp
-        Floors.update(currentFloor._id, {
-          $inc: {
-            health: damageDealt * -1
-          }
-        });
-      }
+      });
     }
   }
 
@@ -680,6 +777,7 @@ export const completeBattle = function (actualBattle) {
     level: actualBattle.level,
     wave: actualBattle.wave,
     floor: actualBattle.floor,
+    server: actualBattle.server,
     room: actualBattle.room,
     isExplorationRun: actualBattle.isExplorationRun,
     win,
@@ -699,3 +797,12 @@ export const completeBattle = function (actualBattle) {
 
   delete actualBattle;
 };
+
+JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {
+  const [battle, passphrase] = req.body;
+  if (passphrase !== 'dqv$dYT65YrU%s') {
+    return;
+  }
+
+  completeBattle(battle);
+});

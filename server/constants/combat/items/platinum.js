@@ -1,7 +1,7 @@
 export const PLATINUM_ITEMS = {
   "platinum_dagger": {
     "id": "platinum_dagger",
-    "icon": "platinumDagger.svg",
+    "icon": "platinumDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_spear": {
     "id": "platinum_spear",
-    "icon": "platinumSpear.svg",
+    "icon": "platinumSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_short_sword": {
     "id": "platinum_short_sword",
-    "icon": "platinumShortSword.svg",
+    "icon": "platinumShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_scimitar": {
     "id": "platinum_scimitar",
-    "icon": "platinumScimitar.svg",
+    "icon": "platinumScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_long_sword": {
     "id": "platinum_long_sword",
-    "icon": "platinumLongSword.svg",
+    "icon": "platinumLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_broad_sword": {
     "id": "platinum_broad_sword",
-    "icon": "platinumBroadSword.svg",
+    "icon": "platinumBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_battle_axe": {
     "id": "platinum_battle_axe",
-    "icon": "platinumBattleAxe.svg",
+    "icon": "platinumBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_helmet": {
     "id": "platinum_helmet",
-    "icon": "platinumHelmet.svg",
+    "icon": "platinumHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "platinum helmet",
@@ -247,10 +247,10 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_chest_plate": {
     "id": "platinum_chest_plate",
-    "icon": "platinumChestPlate.svg",
+    "icon": "platinumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "platinum chestplate",
+    "name": "platinum Chestplate",
     "sellPrice": 900,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_plate_legs": {
     "id": "platinum_plate_legs",
-    "icon": "platinumPlateLegs.svg",
+    "icon": "platinumPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "platinum platelegs",
@@ -297,7 +297,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_shield": {
     "id": "platinum_shield",
-    "icon": "platinumShield.svg",
+    "icon": "platinumShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const PLATINUM_ITEMS = {
       level: 40
     }]
   }
-}
+};

@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { determineRequiredItems } from '/imports/ui/utils.js';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
@@ -31,11 +30,12 @@ const itemModifier = function (item) {
       method() {
         if (this.item.shiftActionData.target) {
           const targetClass = `targetting-${this.item.shiftActionData.target}`;
-          if (!$('body').hasClass(targetClass)) {
-            $('body').addClass(targetClass);
+          const body = $('body');
+          if (!body.hasClass(targetClass)) {
+            body.addClass(targetClass);
             Meteor.setTimeout(() => {
               // Add body listener for when you want to click out
-              $('body').on(`click.${this.item._id}`, (event) => {
+              body.on(`click.${this.item._id}`, (event) => {
                 const closestTarget = $(event.target).closest(`.${this.item.shiftActionData.target}`);
                 if (closestTarget) {
                   const targetId = closestTarget.data('id');
@@ -43,9 +43,9 @@ const itemModifier = function (item) {
                     Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
                   }
                 }
-                
-                $('body').removeClass(targetClass);
-                $('body').off(`click.${this.item._id}`);
+
+                body.removeClass(targetClass);
+                body.off(`click.${this.item._id}`);
               });
             }, 1);
           }
@@ -62,7 +62,7 @@ const itemModifier = function (item) {
   }
 
   return item;
-}
+};
 
 Template.craftingPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -70,11 +70,11 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
   // Show currently crafting items
   Meteor.subscribe('crafting');
 
-  if (Session.get('itemViewLimit') !== undefined) {
-    this.state.set('itemViewLimit', Session.get('itemViewLimit'));
-  } else {
-    this.state.set('itemViewLimit', 10);
-  }
+  // if (Session.get('itemViewLimit') !== undefined) {
+  //   this.state.set('itemViewLimit', Session.get('itemViewLimit'));
+  // } else {
+  //   this.state.set('itemViewLimit', 10);
+  // }
 
   if (Session.get('recipeCache')) {
     recipeCache = Session.get('recipeCache');
@@ -102,6 +102,18 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       } else {
         this.state.set('itemFilter', 'visible-items');
       }
+
+      if (myUser.uiState && myUser.uiState.craftingShowMore !== undefined) {
+        this.state.set('craftingShowMore', myUser.uiState.craftingShowMore);
+        if (myUser.uiState.craftingShowMore) {
+          this.state.set('itemViewLimit', 0);
+        } else {
+          this.state.set('itemViewLimit', 10);
+        }
+      } else {
+        this.state.set('craftingShowMore', false);
+        this.state.set('itemViewLimit', 10);
+      }
     }
   });
 
@@ -123,7 +135,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
           tiers,
           level: craftingSkill.level,
           date: moment().toDate()
-        }
+        };
 
         Session.set('recipeCache', {
           data: results,
@@ -180,7 +192,7 @@ Template.craftingPage.events({
 
   'click .tier-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.tier-filter').data('tier-filter');
-    const craftingTierFilter = instance.state.get('craftingTierFilter')
+    const craftingTierFilter = instance.state.get('craftingTierFilter');
     const existingFilter = craftingTierFilter[filter];
 
     if (existingFilter) {
@@ -211,13 +223,15 @@ Template.craftingPage.events({
   'click .show-all-items'(event, instance) {
     Session.set('itemViewLimit', 0);
     instance.state.set('itemViewLimit', 0);
+    Meteor.call('users.setUiState', 'craftingShowMore', true);
   },
 
   'click .show-less-items'(event, instance) {
     Session.set('itemViewLimit', 10);
     instance.state.set('itemViewLimit', 10);
+    Meteor.call('users.setUiState', 'craftingShowMore', false);
   }
-})
+});
 
 Template.craftingPage.helpers({
   craftingSkill() {
@@ -265,7 +279,7 @@ Template.craftingPage.helpers({
 
     if (recipes && recipes.tiers) {
       return recipes.tiers.map((tier) => {
-        tier.empty = !!craftingTierFilter[tier.name]
+        tier.empty = !!craftingTierFilter[tier.name];
         return tier;
       });
     }
@@ -339,7 +353,7 @@ Template.craftingPage.helpers({
       highestFurnaceTier = allFurnaces[0].tier;
     }
 
-    let hidden = Template.instance().state.get('itemFilter') == 'hidden-items' ? true : false;
+    let hidden = Template.instance().state.get('itemFilter') === 'hidden-items';
 
 
     if (itemViewLimit !== 0) {
@@ -383,7 +397,7 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
       quality: -1
     }
   }).map((itemModifier));
-}
+};
 
 
 const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
@@ -435,7 +449,7 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
       quality: -1
     }
   }).map((itemModifier));
-}
+};
 
 
 const FetchAllVisibleItems = function (highestFurnaceTier) {

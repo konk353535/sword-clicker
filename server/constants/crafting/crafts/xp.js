@@ -14,7 +14,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -38,7 +38,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_stone'].icon,
       name: ITEMS['ore_stone'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -62,7 +62,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_copper'].icon,
       name: ITEMS['ore_copper'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -86,7 +86,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_tin'].icon,
       name: ITEMS['ore_tin'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -110,7 +110,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_bronze'].icon,
       name: ITEMS['ore_bronze'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -134,7 +134,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_iron'].icon,
       name: ITEMS['ore_iron'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -158,7 +158,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_silver'].icon,
       name: ITEMS['ore_silver'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -182,14 +182,14 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_silver'].icon,
       name: ITEMS['ore_silver'].name,
       amount: 15,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'item',
       itemId: 'silver_essence',
       icon: ITEMS['silver_essence'].icon,
       name: ITEMS['silver_essence'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -213,7 +213,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_gold'].icon,
       name: ITEMS['ore_gold'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -237,7 +237,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_carbon'].icon,
       name: ITEMS['ore_carbon'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -261,7 +261,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_steel'].icon,
       name: ITEMS['ore_steel'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -285,7 +285,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_platinum'].icon,
       name: ITEMS['ore_platinum'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -309,7 +309,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_titanium'].icon,
       name: ITEMS['ore_titanium'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -333,7 +333,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_tungsten'].icon,
       name: ITEMS['ore_tungsten'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -357,7 +357,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_obsidian'].icon,
       name: ITEMS['ore_obsidian'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -381,7 +381,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_cobalt'].icon,
       name: ITEMS['ore_cobalt'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -405,7 +405,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_mithril'].icon,
       name: ITEMS['ore_mithril'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -429,7 +429,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_adamantium'].icon,
       name: ITEMS['ore_adamantium'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -453,7 +453,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_orichalcum'].icon,
       name: ITEMS['ore_orichalcum'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -477,7 +477,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_meteorite'].icon,
       name: ITEMS['ore_meteorite'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -501,7 +501,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_fairy_steel'].icon,
       name: ITEMS['ore_fairy_steel'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -525,7 +525,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_elven_steel'].icon,
       name: ITEMS['ore_elven_steel'].name,
       amount: 3,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -549,7 +549,7 @@ export const XP_CRAFTS = {
       icon: ITEMS['ore_cursed'].icon,
       name: ITEMS['ore_cursed'].name,
       amount: 10,
-      consumes: true // If true, this required item will dissapear once the item is crafted
+      consumes: true // If true, this required item will disappear once the item is crafted
     }, {
       type: 'skill',
       name: 'crafting',
@@ -560,4 +560,4 @@ export const XP_CRAFTS = {
     maxToCraft: 5
   },
   
-}
+};

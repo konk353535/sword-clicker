@@ -1,6 +1,7 @@
-import { orderLootTable } from '/server/constants/enemies/lootTables/index.js';
-import { ITEMS } from '/server/constants/items/index';
-import { LEVEL_EIGHT_LOOT_TABLE } from '/server/constants/floors/levels/level8';
+import { orderLootTable } from '../../../enemies/lootTables/index.js';
+import { ITEMS } from '../../../items/index';
+
+import { LEVEL_EIGHT_LOOT_TABLE } from '../../levels/level8';
 
 export const TOWER_FLOOR_8 = {
   1: {
@@ -114,11 +115,16 @@ export const TOWER_FLOOR_8 = {
   },
 
   boss: {
-    enemy: { id: 'boss_phoenix', amount: 1 },
+    enemy: { id: 'boss_ogre', amount: 1 },
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+      chance: 1 / 5,
+      rewards: [
+        { type: 'icon', iconId: 'valla_t1' }
+      ]
+    }, {
       chance: 1 / 2,
       rewards: [
-        { type: 'item', itemId: 'phoenix_hat', amount: 1 }
+        { type: 'item', itemId: 'oversized_club', amount: 1 }
       ]
     }]))
   },
@@ -145,4 +151,4 @@ export const TOWER_FLOOR_8 = {
       amount: 150000
     }
   ]
-}
+};

@@ -1,0 +1,21 @@
+<template name="newCombatPage">
+  {{#if inCurrentBattle}}
+    {{> currentBattleUi}}  
+  {{else if $eq page 'loadout'}}
+    {{> loadoutPage setPage=setPage}}
+  {{else if $eq page 'lobby'}}
+    {{> lobbyPage setPage=setPage}}
+  {{else if $eq page 'selectGear'}}
+    {{> selectGearPage setPage=setPage}}
+  {{else if $eq page 'consumables'}}
+    {{> consumablesPage setPage=setPage}}
+  {{else if $eq page 'selectAbilities'}}
+    {{> selectAbilitiesPage setPage=setPage}}
+  {{else if $eq page 'recentBattles'}}
+    {{> recentBattlesPage setPage=setPage}}
+  {{else if $eq page 'otherBattlers'}}
+    {{> otherBattlersPage setPage=setPage}}
+  {{else}}
+    Here
+  {{/if}}
+</template>

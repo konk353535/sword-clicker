@@ -414,4 +414,4 @@ export const GOLD_CRAFTS = {
       level: 25
     }]
   }
-}
+};

@@ -16,6 +16,17 @@ Template.abilityLibraryIcon.rendered = function () {
     vm.state.set('tooltipOpen', false);
     tooltip = tippy(Template.instance().$('.item-icon-container')[0],
         {
+          appendTo: Template.instance().$('.item-icon-container')[0].parentNode,
+          popperOptions: {
+            modifiers: {
+              preventOverflow: {
+                enabled: false
+              },
+              hide: {
+                enabled: false
+              }
+            }
+          },
           html: Template.instance().$('.item-tooltip-content')[0],
           performance: true,
           animateFill: false,
@@ -34,7 +45,7 @@ Template.abilityLibraryIcon.onDestroyed(function () {
       tooltipInstance._tippy.destroy();
     }
   }
-})
+});
 
 Template.abilityLibraryIcon.events({
   'click .icon-box'(event, instance) {

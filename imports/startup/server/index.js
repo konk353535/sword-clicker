@@ -2,7 +2,10 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Random } from 'meteor/random';
 import moment from 'moment';
 
+import { Servers } from '/imports/api/servers/servers';
+
 import { Skills } from '../../api/skills/skills.js';
+import { State } from '/imports/api/state/state.js';
 import { BlackList } from '../../api/blacklist/blacklist.js';
 import { Floors } from '../../api/floors/floors.js';
 import { Mining, MiningSpace } from '../../api/mining/mining.js';
@@ -14,11 +17,13 @@ import { addItem } from '/server/api/items/items.js';
 import { Items } from '/imports/api/items/items.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
+import uuid from 'node-uuid';
 
 import { MINING } from '/server/constants/mining/index.js';
 import { ITEMS } from '/server/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
+import { STATE_BUFFS } from '/imports/constants/state';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
@@ -129,29 +134,29 @@ Accounts.emailTemplates.resetPassword = {
           </style>
         </head>
         <body class="" style="background-color:#f6f6f6;font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
-          <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background-color:#f6f6f6;width:100%;">
+          <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;background-color:#f6f6f6;width:100%;">
             <tr>
               <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
               <td class="container" style="font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;">
                 <div class="content" style="box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;">
                   <!-- START CENTERED WHITE CONTAINER -->
                   <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;">Welcome to Eternity Tower! Confirm your email</span>
-                  <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;">
+                  <table class="main" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;background:#fff;border-radius:3px;width:100%;">
                     <!-- START MAIN CONTENT AREA -->
                     <tr>
                       <td class="wrapper" style="font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;">
-                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;width:100%;">
                           <tr>
                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
                             <img src="http://eternitytower.net/images/tower.png" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
                             <br /><br />
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Hi there ${user.username},</p>
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Click the button below to reset your password</p>
-                              <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;">
+                              <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;box-sizing:border-box;width:100%;">
                                 <tbody>
                                   <tr>
                                     <td align="left" style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">
-                                      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;">
+                                      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;width:100%;width:auto;">
                                         <tbody>
                                           <tr>
                                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;"> <a href="${url}" target="_blank" style="text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#3498db;border-color:#3498db;color:#ffffff;">Reset Password</a> </td>
@@ -285,29 +290,29 @@ Accounts.emailTemplates.verifyEmail = {
           </style>
         </head>
         <body class="" style="background-color:#f6f6f6;font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
-          <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background-color:#f6f6f6;width:100%;">
+          <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;background-color:#f6f6f6;width:100%;">
             <tr>
               <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">&nbsp;</td>
               <td class="container" style="font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;">
                 <div class="content" style="box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;">
                   <!-- START CENTERED WHITE CONTAINER -->
                   <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;">Welcome to Eternity Tower! Confirm your email</span>
-                  <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;">
+                  <table class="main" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;background:#fff;border-radius:3px;width:100%;">
                     <!-- START MAIN CONTENT AREA -->
                     <tr>
                       <td class="wrapper" style="font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;">
-                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;width:100%;">
                           <tr>
                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
                             <img src="http://eternitytower.net/images/tower.png" style="width: 40px; height: 40px"><h1 style="display: inline; margin-left: 10px; height: 40px;">Eternity Tower</h1>
                             <br /><br />
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Hi there ${user.username},</p>
                               <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">Welcome to Eternity Tower! <br /> Confirm your account and get started by clicking the confirm button below.</p>
-                              <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;">
+                              <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;box-sizing:border-box;width:100%;">
                                 <tbody>
                                   <tr>
                                     <td align="left" style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">
-                                      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;">
+                                      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0;mso-table-rspace:0;width:100%;width:auto;">
                                         <tbody>
                                           <tr>
                                             <td style="font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;"> <a href="${url}" target="_blank" style="text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#3498db;border-color:#3498db;color:#ffffff;">Confirm Account</a> </td>
@@ -359,11 +364,32 @@ Accounts.onCreateUser((options, user) => {
 
   user._id = Random.id();
   const userId = user._id;
+  user.battleSecret = uuid.v4();
   user.uiState = {
     showChat: true,
     showSummaryList: false,
     craftingFilter: 'mining'
+  };
+
+  let targetServer;
+  if (options.server) {
+    targetServer = Servers.findOne({
+      _id: options.server
+    });
+  } else {
+    targetServer = Servers.findOne({
+      name: 'Seasonal'
+    });    
   }
+
+  if (!targetServer) {
+    targetServer = Servers.findOne({
+      name: 'Classic'
+    });
+  }
+
+  user.server = targetServer._id;
+
   user.tutorial = {
     hideCombat: true,
   
@@ -408,7 +434,7 @@ Accounts.onCreateUser((options, user) => {
     hideMiningProspectors: true,
     highlightMiningProspectors: false,
     currentStep: 1
-  }
+  };
 
   if (options.isGuest) {
     user.isGuest = options.isGuest;
@@ -417,6 +443,7 @@ Accounts.onCreateUser((options, user) => {
   // Mining stuff
   Skills.insert({
     type: 'mining',
+    server: targetServer._id,
     createdAt: new Date(),
     owner: userId,
     xp: 0,
@@ -426,6 +453,7 @@ Accounts.onCreateUser((options, user) => {
   Mining.insert({
     owner: userId,
     lastGameUpdated: new Date(),
+    server: targetServer._id,
     miners: [{
       id: MINING.miners.primitive_miner.id,
       amount: 1
@@ -467,19 +495,21 @@ Accounts.onCreateUser((options, user) => {
   });
 
   // Update mining stats
-  updateMiningStats(userId, true);
+  updateMiningStats(userId, '', true);
 
   // Non mining stuff
   Skills.insert({
     type: 'defense',
     createdAt: new Date(),
     owner: userId,
+    server: targetServer._id,
     username: user.username
   }, (err, res) => {
     Skills.insert({
       type: 'attack',
       createdAt: new Date(),
       owner: userId,
+      server: targetServer._id,
       username: user.username
     });
 
@@ -488,6 +518,7 @@ Accounts.onCreateUser((options, user) => {
       createdAt: new Date(),
       owner: userId,
       level: SKILLS.health.baseLevel,
+      server: targetServer._id,
       username: user.username
     });
 
@@ -495,11 +526,13 @@ Accounts.onCreateUser((options, user) => {
       type: 'crafting',
       createdAt: new Date(),
       owner: userId,
+      server: targetServer._id,
       username: user.username
     });
 
     Skills.insert({
       type: 'total',
+      server: targetServer._id,
       createdAt: new Date(),
       owner: userId,
       username: user.username
@@ -511,6 +544,8 @@ Accounts.onCreateUser((options, user) => {
     });
 
     Combat.insert({
+      towerContributions: [],
+      server: targetServer._id,
       owner: userId,
       stats: {
         health: 50,
@@ -548,16 +583,34 @@ Accounts.onCreateUser((options, user) => {
 const currentFloor = Floors.findOne();
 
 if (!currentFloor) {
+  const targetServer = Servers.findOne({
+    name: 'Classic'
+  });
   const pointsMax = FLOORS.getNewPointCount(1, 10);
 
   // Create our first floor
   Floors.insert({
     floor: 1,
+    server: targetServer._id,
     createdAt: new Date(),
     points: 0,
     pointsMax
   });
 }
+
+// Guarantee buffs exist
+Object.values(STATE_BUFFS).forEach((name) => {
+  const buff = State.findOne({name: name});
+
+  if (!buff) {
+    State.insert({
+      name: name,
+      value: {
+        activeTo: moment().subtract(1, 'hour').toDate()
+      }
+    })
+  }
+});
 
 const MINUTE = 60 * 1000;
 DDPRateLimiter.addRule({ type: 'method', name: 'SimpleChat.newMessage' }, 15, 1 * MINUTE);

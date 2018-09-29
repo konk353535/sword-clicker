@@ -414,4 +414,4 @@ export const CARBON_CRAFTS = {
       level: 30
     }]
   }
-}
+};

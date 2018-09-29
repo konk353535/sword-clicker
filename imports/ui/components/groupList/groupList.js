@@ -67,7 +67,7 @@ Template.groupList.events({
   'click .not-ready-btn'(event) {
     Meteor.call('groups.notReady');
   }
-})
+});
 
 Template.groupList.helpers({
 
@@ -113,12 +113,8 @@ Template.groupList.helpers({
         healthMax: userCombat.stats.healthMax,
         energy: userCombat.stats.energy,
         energyMax: userCombat.stats.energyMax
-      }
-      if (userCombat.owner === currentGroup.leader) {
-        userCombat.leader = true;
-      } else {
-        userCombat.leader = false;
-      }
+      };
+      userCombat.leader = userCombat.owner === currentGroup.leader;
 
       userCombat.name = userCombat.username;
       userCombat.icon = userCombat.characterIcon || 'character.svg';

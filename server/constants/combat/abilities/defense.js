@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { BUFFS } from '/server/constants/buffs/index';
+import { BUFFS } from '../../buffs/index';
 
 export const DEFENSE_ABILITIES = {
 
@@ -13,8 +13,8 @@ export const DEFENSE_ABILITIES = {
     target: 'allEnemies',
     isHidden: false,
     description(level) {
-      const BUFF = BUFFS.taunt;
-      return BUFF.description({ buff: BUFF, level });
+      // const BUFF = BUFFS.taunt;
+      return 'Forces all enemies to attack you';
     }
   },
 
@@ -26,7 +26,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.eel_taunt;
       return BUFF.description({ buff: BUFF, level });
@@ -41,7 +41,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.lion_taunt;
       return BUFF.description({ buff: BUFF, level });
@@ -56,7 +56,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.bear_taunt;
       return BUFF.description({ buff: BUFF, level });
@@ -215,7 +215,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 180,
     slot: 'any',
     isHidden: false,
-    target: 'self', // The curreny enemy who we are auto attacking
+    target: 'self', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.armor_up;
       return BUFF.description({ buff: BUFF, level });
@@ -230,10 +230,10 @@ export const DEFENSE_ABILITIES = {
     cooldown: 90,
     slot: 'any',
     isHidden: false,
-    target: 'self', // The curreny enemy who we are auto attacking
+    target: 'self', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.iron_will;
       return BUFF.description({ buff: BUFF, level });
     }
   }
-}
+};

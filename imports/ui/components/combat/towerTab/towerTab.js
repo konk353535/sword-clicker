@@ -3,10 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import moment from 'moment';
-import _ from 'underscore';
 
 import { Battles } from '/imports/api/battles/battles.js';
-import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 import { Combat } from '/imports/api/combat/combat.js';
@@ -56,7 +54,7 @@ const findBattleHandler = function (err, res) {
   if (err) {
     toastr.warning(err.reason);
   }
-}
+};
 
 Template.towerTab.events({
 
@@ -119,7 +117,7 @@ Template.towerTab.events({
   'change .official-attempt input'(event, instance) {
      Meteor.call('combat.updateIsTowerContribution', event.target.checked);
   }
-})
+});
 
 Template.towerTab.helpers({
 
@@ -143,7 +141,7 @@ Template.towerTab.helpers({
       </p>
       <p>
         <b>Why</b><br />
-        The top players in point contributions will recieve a powerful reward (see bottom of page)
+        The top players in point contributions will receive a powerful reward (see bottom of page)
       </p>
       <p>
         <b>How</b><br />
@@ -154,30 +152,8 @@ Template.towerTab.helpers({
 
   estimatedRewards() {
     const instance = Template.instance();
-    const myContributions = instance.state.get('myFloorContributions') || {};
     const floorDetails = instance.state.get('floorDetails');
-    const percentRank = myContributions.rankingPercentage || 100;
-    return floorDetails.rewards.map((reward) => {
-      if (reward.type === 'item') {
-        if (percentRank <= 10) {
-          reward.chance = 100;
-        } else if (percentRank <= 25) {
-          reward.chance = 50;
-        } else if (percentRank <= 50) {
-          reward.chance = 25;
-        } else if (percentRank <= 75) {
-          reward.chance = 5;
-        } else if (percentRank <= 99) {
-          reward.chance = 1;
-        } else {
-          reward.chance = 0;
-        }
-      } else if (reward.type === 'gold') {
-        reward.goldAmount = Math.max(Math.round((1 - (percentRank / 100)) * reward.amount), 0);
-      }
-
-      return reward;
-    })
+    return floorDetails.rewards;
   },
 
   myFloorContributions() {
@@ -192,11 +168,7 @@ Template.towerTab.helpers({
       return false;
     }
 
-    if (waveDetails && waveDetails.points > waveDetails.pointsMax) {
-      return false;
-    }
-
-    return true;
+    return !(waveDetails && waveDetails.points > waveDetails.pointsMax);
   },
 
   combat() {
@@ -247,17 +219,30 @@ Template.towerTab.helpers({
     return Template.instance().state.get('usersCurrentFloor');
   },
 
-  bossResetDate() {
+  floorResetDate() {
     return moment().utc().hours(23).minutes(59).seconds(59);
+  },
+
+  bossResetDate() {
+    return Template.instance().state.get('waveDetails').bossResetAt;
   },
 
   maxFloor() {
     return Template.instance().state.get('maxFloor');
   },
 
+  bossOverkill() {
+    let currentFloor = Template.instance().state.get('waveDetails');
+    let overkillLevel = 0;
+    if (currentFloor.health < 0) {
+      overkillLevel = Math.min(Math.floor(Math.abs(currentFloor.health * 4) / currentFloor.healthMax), 12);
+    }
+    return overkillLevel;
+  },
+
   currentCommunityFloor() {
     const instance = Template.instance();
-    return instance.state.get('maxFloor') == instance.state.get('usersCurrentFloor');
+    return instance.state.get('maxFloor') === instance.state.get('usersCurrentFloor');
   },
 
   floorsList() {
@@ -275,4 +260,4 @@ Template.towerTab.helpers({
     const instance = Template.instance();
     return instance.state.get('battleAgain') !== undefined;
   }
-})
+});

@@ -1,7 +1,7 @@
 export const COBALT_ITEMS = {
   "cobalt_dagger": {
     "id": "cobalt_dagger",
-    "icon": "cobaltDagger.svg",
+    "icon": "cobaltDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -24,7 +24,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_spear": {
     "id": "cobalt_spear",
-    "icon": "cobaltSpear.svg",
+    "icon": "cobaltSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -54,7 +54,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_short_sword": {
     "id": "cobalt_short_sword",
-    "icon": "cobaltShortSword.svg",
+    "icon": "cobaltShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -82,7 +82,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_scimitar": {
     "id": "cobalt_scimitar",
-    "icon": "cobaltScimitar.svg",
+    "icon": "cobaltScimitar.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -110,7 +110,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_long_sword": {
     "id": "cobalt_long_sword",
-    "icon": "cobaltLongSword.svg",
+    "icon": "cobaltLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -139,7 +139,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_broad_sword": {
     "id": "cobalt_broad_sword",
-    "icon": "cobaltBroadSword.svg",
+    "icon": "cobaltBroadSword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -168,7 +168,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_battle_axe": {
     "id": "cobalt_battle_axe",
-    "icon": "cobaltBattleAxe.svg",
+    "icon": "cobaltBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -222,7 +222,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_helmet": {
     "id": "cobalt_helmet",
-    "icon": "cobaltHelmet.svg",
+    "icon": "cobaltHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "cobalt helmet",
@@ -247,10 +247,10 @@ export const COBALT_ITEMS = {
   },
   "cobalt_chest_plate": {
     "id": "cobalt_chest_plate",
-    "icon": "cobaltChestPlate.svg",
+    "icon": "cobaltChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "cobalt chestplate",
+    "name": "cobalt Chestplate",
     "sellPrice": 1500,
     "description": "Protect your heart",
     "isEquippable": true,
@@ -272,7 +272,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_plate_legs": {
     "id": "cobalt_plate_legs",
-    "icon": "cobaltPlateLegs.svg",
+    "icon": "cobaltPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "cobalt platelegs",
@@ -297,7 +297,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_shield": {
     "id": "cobalt_shield",
-    "icon": "cobaltShield.svg",
+    "icon": "cobaltShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",
@@ -321,4 +321,4 @@ export const COBALT_ITEMS = {
       level: 60
     }]
   }
-}
+};

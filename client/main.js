@@ -1,11 +1,10 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 import 'bootstrap';
 
 import './main.html';
 
 // Components
 import '/imports/ui/components/groupList/groupList.js';
+import '/imports/ui/components/readableDuration/readableDuration.js';
 import '/imports/ui/components/chatWindow/chatWindow.js';
 import '/imports/ui/components/ability/ability.js';
 import '/imports/ui/components/helpIcon/helpIcon.js';
@@ -33,10 +32,12 @@ import '../imports/ui/pages/updates.js';
 import '../imports/ui/pages/guestSettings.js';
 import '../imports/ui/pages/profile.js';
 import '../imports/ui/pages/home.js';
+import '../imports/ui/pages/gameHome.js';
 import '../imports/ui/pages/chat.js';
 import '../imports/ui/pages/achievements.js';
 import '../imports/ui/pages/magic.js';
 import '../imports/ui/pages/mining.js';
+import '../imports/ui/pages/newCombat.js';
 import '../imports/ui/pages/crafting.js';
 import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';

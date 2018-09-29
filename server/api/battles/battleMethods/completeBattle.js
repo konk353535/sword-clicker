@@ -506,8 +506,12 @@ export const completeBattle = function (actualBattle) {
           });
 
           // if boss should be unlocked, begin 24h timer
+          console.log('Params to find current floor');
+          console.log(actualBattle.floor);
+          console.log(actualBattle.server);
           const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
-
+          console.log('CurrentFloor');
+          console.log(currentFloor);
           if (currentFloor.points > currentFloor.pointsMax && !currentFloor.bossResetAt) {
             const resetDate = moment().add(24, 'hours').toDate();
             Floors.update({

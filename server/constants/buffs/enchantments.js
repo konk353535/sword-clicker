@@ -2,6 +2,7 @@ import moment from 'moment';
 import { attackSpeedTicks } from '../../utils';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
+import _ from 'lodash';
 import uuid from 'node-uuid';
 
 export const ENCHANTMENT_BUFFS = {

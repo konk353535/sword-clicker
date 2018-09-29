@@ -33,9 +33,7 @@ export class Balancer {
         }
       });
       socket.on('getFullState', () => {
-        console.log('Start of gett full state');
         if (this.battleRef) {
-          console.log('Hey this has a battle');
           this.battleRef.sendFullState();
         }
       });

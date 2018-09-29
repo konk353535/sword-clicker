@@ -349,7 +349,9 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target }) {
-        target.stats.healingReduction /= buff.data.healingReduction;
+        if (buff.data.healingReduction) {
+          target.stats.healingReduction /= buff.data.healingReduction;
+        }
       }
     }
   },

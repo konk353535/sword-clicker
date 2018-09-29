@@ -22,7 +22,7 @@ export class Balancer {
     this.id = id;
     this.io = io;
 
-    if (this.battleRef) {
+    if (battleRef) {
       this.battleRef = battleRef;
     }
 
@@ -33,7 +33,9 @@ export class Balancer {
         }
       });
       socket.on('getFullState', () => {
+        console.log('Start of gett full state');
         if (this.battleRef) {
+          console.log('Hey this has a battle');
           this.battleRef.sendFullState();
         }
       });

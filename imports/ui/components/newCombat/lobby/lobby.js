@@ -64,7 +64,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       }).done(function() {
         window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
           transports: ['websocket'],
-          forceNew: true,
+          forceNew: true
         });
       });
     }

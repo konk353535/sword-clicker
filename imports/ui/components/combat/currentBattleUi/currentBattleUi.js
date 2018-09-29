@@ -87,15 +87,18 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state.set('currentBattle', false);
   this.state.set('onTick', false);
   this.state.set('fullState', false);
+  this.state.set('ticker', 0);
 
   setInterval(() => {
-    // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
     if (!this.state.get('currentBattle')) {
+      // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
       battleSocket.emit('getFullState');
+      this.state.set('ticker', this.state.get('ticker') + 1);
     }
   }, 2500);
 
   Tracker.autorun(() => {
+    console.log(this.state.get('ticker'));
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({
       owners: Meteor.userId()
@@ -121,11 +124,18 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         transports: ['websocket'],
         forceNew: true
       });
+      window.battleSocket.on('disconnect', () => {
+        window.battleSocket = undefined;
+        window.balancer = undefined;
+      });
     }
 
+    console.log(0);
     if (!this.state.get('fullState')) {
+      console.log(1);
       this.state.set('fullState', true);
       battleSocket.on('fullState', (data) => {
+        console.log('Got full state');
         const rawBattle = data.battle;
         if (!rawBattle) return;
         const currentBattle = rawBattle;

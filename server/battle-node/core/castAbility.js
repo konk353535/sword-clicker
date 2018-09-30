@@ -4,6 +4,7 @@ import { BUFFS } from '../../constants/buffs/index.js';
 import _ from 'underscore';
 
 export default function({ ability, caster, targets }) {
+
   // Does user have appropriate gear to cast this ability?
   let canCast = true;
   if (ability.requires) {
@@ -26,7 +27,6 @@ export default function({ ability, caster, targets }) {
   if (caster.silenced) {
     canCast = false;
   }
-
 
   if (!canCast) {
     return false;
@@ -84,6 +84,7 @@ export default function({ ability, caster, targets }) {
       }, buffObj.constants.data);
 
       buffObj.id = buffId;
+
 
       return buffObj;
     });

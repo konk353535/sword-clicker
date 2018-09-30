@@ -380,8 +380,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 15,
               icon: 'mudArmor.svg',
               description: ''
-            },
-            constants: BUFFS['mud_armor']
+            }
           };
 
           // cast mud armor
@@ -397,8 +396,7 @@ export const MONSTER_BUFFS = {
             totalDuration: 0,
             icon: 'earthDart.svg',
             description: ''
-          },
-          constants: BUFFS['earth_dart']
+          }
         };
 
         // cast earth dart
@@ -495,8 +493,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 15,
               icon: 'ignite.svg',
               description: ''
-            },
-            constants: BUFFS['ignite']
+            }
           };
 
           // cast ignite
@@ -513,8 +510,7 @@ export const MONSTER_BUFFS = {
               totalDuration: 0,
               icon: 'fireDart.svg',
               description: ''
-            },
-            constants: BUFFS['fire_dart']
+            }
           };
 
           // cast fire dart

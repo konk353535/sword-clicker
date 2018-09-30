@@ -6,6 +6,13 @@ export default class Buff {
     return BUFFS[this.id].events;
   }
 
+  get constants() {
+    return BUFFS[this.id]
+  }
+  set constants(value) {
+    return;
+  }
+
   get stacks() { return this._stacks; }
   set stacks(value) {
     this._stacks = value;

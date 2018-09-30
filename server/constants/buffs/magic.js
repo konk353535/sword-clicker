@@ -1817,6 +1817,7 @@ export const MAGIC_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
         const constants = buff.constants.constants;
+
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;

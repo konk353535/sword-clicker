@@ -104,6 +104,7 @@ export default class Unit {
       path: `unitsMap.${this.id}.buffs`,
       value: newBuff.raw()
     });
+    return newBuff;
   }
 
   removeBuff(buffToRemove) {

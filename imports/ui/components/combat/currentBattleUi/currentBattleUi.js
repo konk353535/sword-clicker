@@ -101,7 +101,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     if (!this.state.get('currentBattle')) {
       // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
       battleSocket.emit('getFullState');
-      console.log('I shouldnt be here')
       this.state.set('ticker', this.state.get('ticker') + 1);
     }
   }, 2500);
@@ -128,7 +127,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
 
     if (!window.battleSocket || localBalancer !== window.balancer) {
-      console.log('Reattching');
       window.balancer = localBalancer;
       window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
         transports: ['websocket'],
@@ -143,7 +141,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     if (!this.state.get('fullState')) {
       this.state.set('fullState', true);
       battleSocket.on('fullState', (data) => {
-        console.log('Got full state');
         const rawBattle = data.battle;
         if (!rawBattle) return;
         const currentBattle = rawBattle;

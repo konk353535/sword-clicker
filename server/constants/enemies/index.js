@@ -63,6 +63,7 @@ export const ENEMIES = Object.assign({
       duration: 1,
       data: {
         totalDuration: 1,
+        level: 1,
         icon: 'thirstyFangs.svg',
         name: 'thirsty fangs'
       }

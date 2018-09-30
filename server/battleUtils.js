@@ -2,7 +2,6 @@ import _ from 'underscore';
 import { BUFFS } from './constants/buffs/index';
 
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
-  console.log('Battle Utils remove buff');
   const buffConstants = BUFFS[buff.id];
   // Quick sort of buffs to ascending by duration
   // target.buffs = _.sortBy(target.buffs, 'duration');
@@ -16,8 +15,9 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
     // Check if buff already exists
-    if (target.buffs.find((b) => b.id === buff.id)) {
-      return removeBuff({ target, buff, caster });
+    const existingBuff = target.buffs.find((b) => b.id === buff.id)
+    if (existingBuff) {
+      removeBuff({ target, buff: existingBuff, caster });
     }
   }
 

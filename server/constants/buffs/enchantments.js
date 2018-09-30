@@ -936,7 +936,6 @@ export const ENCHANTMENT_BUFFS = {
           target.stats.armor += 50;
           target.stats.magicArmor += 50;
           target.stats.attackSpeed *= 1.5;
-          target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
           target.icon = 'demon.svg';
           buff.data.active = true;
           buff.data.secondsElapsed = 0; 
@@ -948,6 +947,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.secondsElapsed += secondsElapsed;
           const percentDamage = (buff.data.secondsElapsed / 12) * 100;
           target.stats.health -= ((target.stats.healthMax / 100) * percentDamage) * secondsElapsed;
+          actualBattle.checkDeath(target)
         }
       },
 

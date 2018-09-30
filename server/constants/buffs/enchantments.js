@@ -957,7 +957,6 @@ export const ENCHANTMENT_BUFFS = {
         target.stats.armor -= 50;
         target.stats.magicArmor -= 50;
         target.stats.attackSpeed /= 1.5;
-        target.stats.attackSpeedTicks = attackSpeedTicks(target.stats.attackSpeed);
       }
     }
   },

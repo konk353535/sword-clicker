@@ -254,7 +254,12 @@ Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
       let defender = unit.target ? this.allUnitsMap[unit.target] : false;
 
       if (!defender || defender.stats.health <= 0) {
-        defender = _.sample(unit.isEnemy ? this.units : this.enemies);
+        if (unit.isEnemy) {
+          defender = _.sample(this.units);
+        } else {
+          defender = this.enemies[0];
+        }
+
         if (!defender) {
           return;
         }

@@ -27,7 +27,13 @@ const startBattle = (currentBattle, self) => {
   // Find enemies that are targetting my unit
   currentBattle.enemies.forEach((enemy) => {
     enemy.targettingPlayer = !!(myUnit && enemy.target === myUnit.id);
-  });   
+  });
+
+  // Find enemies that i'm targetting
+  currentBattle.enemies.forEach((enemy) => {
+    enemy.myTarget = !!(myUnit && myUnit.target === enemy.id);
+  });
+
 
   self.state.set('currentBattle', currentBattle);
 

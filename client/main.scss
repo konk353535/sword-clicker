@@ -115,6 +115,10 @@ body { padding-right: 0 !important }
   }
 }
 
+.battle-unit-border-red {
+  border-color: $brand-danger;
+}
+
 .battle-unit-container {
   max-width: 120px;
   overflow: hidden;

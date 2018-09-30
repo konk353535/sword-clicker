@@ -270,8 +270,16 @@ Template.gameHomePage.helpers({
   },
 
   farmingSpaces() {
-    return FarmingSpace.find({});
-  },
+    const userDoc = Meteor.user();
+    const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+    
+    return FarmingSpace.find().map((farmingSpace) => {
+      if (farmingSpace.index === 4 || farmingSpace.index === 5) {
+        farmingSpace.active = !!hasFarmingUpgrade;
+      }
+      return farmingSpace;
+    });
+  }
 });
 
 Template.gameHomePage.events({
@@ -311,7 +319,7 @@ Template.gameHomePage.events({
   },
 
   'click .collect-plants'(event, instance) {
-    Meteor.call('farming.pick', 'all');
+    Meteor.call('farming.pickAll');
   },
 
   'click .play-as-guest-btn'(event, instance) {

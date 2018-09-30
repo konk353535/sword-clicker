@@ -246,6 +246,8 @@ export const completeBattle = function (actualBattle) {
 
 
     if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
+      console.log('startingBossHp', actualBattle.startingBossHp, actualBattle.isOldBoss);
+      console.log('floor is', actualBattle.floor);
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies;
       const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;

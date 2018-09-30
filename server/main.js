@@ -89,7 +89,7 @@ Meteor.startup(() => {
   /*
   Object.keys(ITEMS).forEach((itemId) => {
     console.log(itemId);
-    addItem(itemId, 1, 'dwh6m5aWF5bT8bDyq');
+    addItem(itemId, 1, '6eueqPknexnS5jMtF');
   });
   */
   // Process combat items with extra stats beyond normal values

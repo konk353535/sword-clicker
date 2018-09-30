@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import './lobby.html';
 import '../lobbyUnit/lobbyUnit.js';
 import io from 'socket.io-client';
+import { Session } from 'meteor/session';
 
 const TYPES = {
   solo: 'Solo',
@@ -26,7 +27,11 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state.set('type', 'group');
 
   this.state.set('currentLevel', 1);
-  this.state.set('usersCurrentRoom', 'All');
+  if (Session.get('usersCurrentRoom')) {
+    this.state.set('usersCurrentRoom', Session.get('usersCurrentRoom'));
+  } else {
+    this.state.set('usersCurrentRoom', 'All');
+  }
   this.state.set('usersCurrentFloor', 1);
   this.state.set('floorDetails', {});
   this.state.set('waveDetails', {});
@@ -215,6 +220,7 @@ Template.lobbyPage.events({
     } else {
       instance.state.set('usersCurrentRoom', parseInt(selectedRoom));
     }
+    Session.set('usersCurrentRoom', instance.state.get('usersCurrentRoom'));
   },
 
   'click .select-level'(event, instance) {

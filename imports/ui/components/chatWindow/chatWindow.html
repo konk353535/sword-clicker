@@ -3,9 +3,14 @@
     <img src="/icons/maximize.svg" class="maximize-icon medium-icon">
   {{/if}}
   <div class="chat-container
-    {{#if minimized}}
-      minimized
-    {{/if}} mx-2">
+    {{#if isChatPage}}
+      is-chat-page
+    {{else}}
+      {{#if minimized}}
+        minimized
+      {{/if}}
+    {{/if}}
+    mx-2">
 
     {{#unless minimized}}
       <img src="/icons/minimize.svg" class="minimize-icon minimize-btn extra-small-icon hidden-sm-down">

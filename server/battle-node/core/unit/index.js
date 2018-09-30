@@ -41,6 +41,7 @@ export default class Unit {
     this.offHandType = unit.offHandType;
     this.towerContributions = unit.towerContributions;
     this.monsterType = unit.monsterType;
+    this.isLamp = unit.isLamp;
 
     if (unit.abilities) {
       this.abilitiesMap = {};

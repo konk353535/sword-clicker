@@ -333,14 +333,16 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+        console.log('On Apply');
         if (target.stats.healingReduction != null) {
-          target.stats.healingReduction *= buff.data.healingReduction;
+          // target.stats.healingReduction *= buff.data.healingReduction;
         } else {
-          target.stats.healingReduction = buff.data.healingReduction;
+          // target.stats.healingReduction = buff.data.healingReduction;
         }
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        console.log('On Tick');
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -349,8 +351,10 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target }) {
+        console.log('On Remove');
+        console.log(buff);
         if (buff.data.healingReduction) {
-          target.stats.healingReduction /= buff.data.healingReduction;
+          // target.stats.healingReduction /= buff.data.healingReduction;
         }
       }
     }

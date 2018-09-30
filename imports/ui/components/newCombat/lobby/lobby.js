@@ -71,6 +71,10 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
           transports: ['websocket'],
           forceNew: true
         });
+        window.battleSocket.on('disconnect', () => {
+          window.battleSocket = undefined;
+          window.balancer = undefined;
+        });
       });
     }
 

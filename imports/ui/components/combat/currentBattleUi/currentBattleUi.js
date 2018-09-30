@@ -128,6 +128,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
 
     if (!window.battleSocket || localBalancer !== window.balancer) {
+      console.log('Reattching');
       window.balancer = localBalancer;
       window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
         transports: ['websocket'],

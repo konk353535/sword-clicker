@@ -212,6 +212,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 .mine-space-container {
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 }
 
 @media screen and (max-width: 468px) {

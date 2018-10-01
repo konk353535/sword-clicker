@@ -21,6 +21,10 @@ html, body {
   background-color: $gray-lightest;
 }
 
+.mine-pit-container {
+  touch-action: manipulation;
+}
+
 .bg-purple {
   background-color: $color-purple-1;
 }

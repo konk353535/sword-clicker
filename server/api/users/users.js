@@ -58,7 +58,7 @@ Meteor.methods({
       $set: {
         isPreFabbedGuest: false
       }
-    });
+    }, (err, res) => {});
 
     // Update mining to now
     Mining.update({
@@ -67,7 +67,7 @@ Meteor.methods({
       $set: {
         lastGameUpdated: new Date()
       }
-    });
+    }, (err, res) => {});
 
     // Update password
     const tempPassword = uuid.v4();
@@ -100,6 +100,7 @@ Meteor.methods({
     Users.update(Meteor.userId(), {
       $set: {
         isGuest: false,
+        isPreFabbedGuest: false,
         emails: [{
           address: email,
           verified: false

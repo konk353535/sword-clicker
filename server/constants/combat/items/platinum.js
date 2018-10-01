@@ -197,7 +197,7 @@ export const PLATINUM_ITEMS = {
   },
   "platinum_horned_helmet": {
     "id": "platinum_horned_helmet",
-    "icon": "platinumHornedHelmet.svg",
+    "icon": "horned_helmet_t9.png",
     "category": "combat",
     "slot": "head",
     "name": "platinum horned helmet",

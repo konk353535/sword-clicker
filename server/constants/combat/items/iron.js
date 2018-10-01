@@ -197,7 +197,7 @@ export const IRON_ITEMS = {
   },
   "iron_horned_helmet": {
     "id": "iron_horned_helmet",
-    "icon": "ironHornedHelmet.svg",
+    "icon": "horned_helmet_t4.png",
     "category": "combat",
     "slot": "head",
     "name": "iron horned helmet",

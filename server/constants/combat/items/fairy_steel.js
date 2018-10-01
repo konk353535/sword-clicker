@@ -197,7 +197,7 @@ export const FAIRY_STEEL_ITEMS = {
   },
   "fairy_steel_horned_helmet": {
     "id": "fairy_steel_horned_helmet",
-    "icon": "fairySteelHornedHelmet.svg",
+    "icon": "horned_helmet_t18.png",
     "category": "combat",
     "slot": "head",
     "name": "fairy steel horned helmet",

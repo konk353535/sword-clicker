@@ -197,7 +197,7 @@ export const BRONZE_ITEMS = {
   },
   "bronze_horned_helmet": {
     "id": "bronze_horned_helmet",
-    "icon": "bronzeHornedHelmet.svg",
+    "icon": "horned_helmet_t3.png",
     "category": "combat",
     "slot": "head",
     "name": "bronze horned helmet",

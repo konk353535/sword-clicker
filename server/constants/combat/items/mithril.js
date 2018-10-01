@@ -197,7 +197,7 @@ export const MITHRIL_ITEMS = {
   },
   "mithril_horned_helmet": {
     "id": "mithril_horned_helmet",
-    "icon": "mithrilHornedHelmet.svg",
+    "icon": "horned_helmet_t14.png",
     "category": "combat",
     "slot": "head",
     "name": "mithril horned helmet",

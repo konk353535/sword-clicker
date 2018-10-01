@@ -197,7 +197,7 @@ export const STEEL_ITEMS = {
   },
   "steel_horned_helmet": {
     "id": "steel_horned_helmet",
-    "icon": "steelHornedHelmet.svg",
+    "icon": "horned_helmet_t8.png",
     "category": "combat",
     "slot": "head",
     "name": "steel horned helmet",

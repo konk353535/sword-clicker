@@ -197,7 +197,7 @@ export const ADAMANTIUM_ITEMS = {
   },
   "adamantium_horned_helmet": {
     "id": "adamantium_horned_helmet",
-    "icon": "adamantiumHornedHelmet.svg",
+    "icon": "horned_helmet_t15.png",
     "category": "combat",
     "slot": "head",
     "name": "adamantium horned helmet",

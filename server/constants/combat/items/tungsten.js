@@ -197,7 +197,7 @@ export const TUNGSTEN_ITEMS = {
   },
   "tungsten_horned_helmet": {
     "id": "tungsten_horned_helmet",
-    "icon": "tungstenHornedHelmet.svg",
+    "icon": "horned_helmet_t11.png",
     "category": "combat",
     "slot": "head",
     "name": "tungsten horned helmet",

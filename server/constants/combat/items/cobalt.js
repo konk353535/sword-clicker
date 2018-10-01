@@ -197,7 +197,7 @@ export const COBALT_ITEMS = {
   },
   "cobalt_horned_helmet": {
     "id": "cobalt_horned_helmet",
-    "icon": "cobaltHornedHelmet.svg",
+    "icon": "horned_helmet_t13.png",
     "category": "combat",
     "slot": "head",
     "name": "cobalt horned helmet",

@@ -197,7 +197,7 @@ export const CARBON_ITEMS = {
   },
   "carbon_horned_helmet": {
     "id": "carbon_horned_helmet",
-    "icon": "carbonHornedHelmet.svg",
+    "icon": "horned_helmet_t7.png",
     "category": "combat",
     "slot": "head",
     "name": "carbon horned helmet",

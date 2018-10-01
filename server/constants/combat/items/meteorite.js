@@ -197,7 +197,7 @@ export const METEORITE_ITEMS = {
   },
   "meteorite_horned_helmet": {
     "id": "meteorite_horned_helmet",
-    "icon": "meteoriteHornedHelmet.svg",
+    "icon": "horned_helmet_t17.png",
     "category": "combat",
     "slot": "head",
     "name": "meteorite horned helmet",

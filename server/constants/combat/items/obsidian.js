@@ -197,7 +197,7 @@ export const OBSIDIAN_ITEMS = {
   },
   "obsidian_horned_helmet": {
     "id": "obsidian_horned_helmet",
-    "icon": "obsidianHornedHelmet.svg",
+    "icon": "horned_helmet_t12.png",
     "category": "combat",
     "slot": "head",
     "name": "obsidian horned helmet",

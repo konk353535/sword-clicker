@@ -197,7 +197,7 @@ export const ORICHALCUM_ITEMS = {
   },
   "orichalcum_horned_helmet": {
     "id": "orichalcum_horned_helmet",
-    "icon": "orichalcumHornedHelmet.svg",
+    "icon": "horned_helmet_t16.png",
     "category": "combat",
     "slot": "head",
     "name": "orichalcum horned helmet",

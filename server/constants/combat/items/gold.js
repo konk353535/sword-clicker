@@ -197,7 +197,7 @@ export const GOLD_ITEMS = {
   },
   "gold_horned_helmet": {
     "id": "gold_horned_helmet",
-    "icon": "goldHornedHelmet.svg",
+    "icon": "horned_helmet_t6.png",
     "category": "combat",
     "slot": "head",
     "name": "gold horned helmet",

@@ -197,7 +197,7 @@ export const CURSED_ITEMS = {
   },
   "cursed_horned_helmet": {
     "id": "cursed_horned_helmet",
-    "icon": "cursedHornedHelmet.svg",
+    "icon": "horned_helmet_t20.png",
     "category": "combat",
     "slot": "head",
     "name": "cursed horned helmet",

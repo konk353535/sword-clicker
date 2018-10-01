@@ -197,7 +197,7 @@ export const TITANIUM_ITEMS = {
   },
   "titanium_horned_helmet": {
     "id": "titanium_horned_helmet",
-    "icon": "titaniumHornedHelmet.svg",
+    "icon": "horned_helmet_t10.png",
     "category": "combat",
     "slot": "head",
     "name": "titanium horned helmet",

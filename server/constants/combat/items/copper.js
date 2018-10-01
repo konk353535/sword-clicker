@@ -170,7 +170,7 @@ export const COPPER_ITEMS = {
 
   copper_horned_helmet: {
     id: 'copper_horned_helmet',
-    icon: 'copperHornedHelmet.svg',
+    icon: 'horned_helmet_t1.png',
     category: 'combat',
     slot: 'head',
     name: 'copper horned helmet',

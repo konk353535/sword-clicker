@@ -197,7 +197,7 @@ export const TIN_ITEMS = {
   },
   "tin_horned_helmet": {
     "id": "tin_horned_helmet",
-    "icon": "tinHornedHelmet.svg",
+    "icon": "horned_helmet_t2.png",
     "category": "combat",
     "slot": "head",
     "name": "tin horned helmet",

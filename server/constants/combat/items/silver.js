@@ -197,7 +197,7 @@ export const SILVER_ITEMS = {
   },
   "silver_horned_helmet": {
     "id": "silver_horned_helmet",
-    "icon": "silverHornedHelmet.svg",
+    "icon": "horned_helmet_t5.png",
     "category": "combat",
     "slot": "head",
     "name": "silver horned helmet",

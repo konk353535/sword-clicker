@@ -91,6 +91,7 @@ const startBattle = (currentBattle, self) => {
 let tickerId;
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  this.state.set('loading', true);
   this.state.set('currentBattle', false);
   this.state.set('onTick', false);
   this.state.set('fullState', false);
@@ -102,6 +103,10 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
       battleSocket.emit('getFullState');
       this.state.set('ticker', this.state.get('ticker') + 1);
+    }
+
+    if (this.state.get('ticker') > 10) {
+      this.state.set('loading', false);
     }
   }, 2500);
 
@@ -210,11 +215,8 @@ Template.currentBattleUi.onDestroyed(function () {
 
 Template.currentBattleUi.events({
   'click .forfeit-battle'(event, instance) {
-    battleSocket.emit('action', {
-      battleSecret: Meteor.user().battleSecret,
-      abilityId: 'forfeit',
-      caster: Meteor.userId()
-    });
+    // Mark battle as stale.
+    Meteor.call('battles.killBattle', Meteor.userId());
   }
 })
 

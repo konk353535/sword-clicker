@@ -18,12 +18,29 @@ import { FLOORS } from '/server/constants/floors/index.js'; // List of floor det
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 
 import { startBattle } from './battleMethods/startBattle';
+import { removeBattle } from './battleMethods/completeBattle';
 
 const setBattleAgain = function(floor, room) {
   Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
 };
 
 Meteor.methods({
+
+  'battles.killBattle'() {
+    // Find existing battle
+    const existingBattle = BattlesList.findOne({
+      owners: Meteor.userId(),
+      activated: true
+    });
+
+    if (!existingBattle) {
+      return;
+    }
+
+    HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${existingBattle._id}?balancer=${existingBattle.balancer}`, (error, result) => {
+      removeBattle(existingBattle._id);
+    });
+  },
 
   'battles.findPersonalBattle'(level) {
     const userDoc = Meteor.user();

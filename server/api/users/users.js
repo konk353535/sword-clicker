@@ -29,8 +29,17 @@ Meteor.methods({
 
   'users.activeUsers'() {
     const user = Users.findOne({_id: Meteor.userId()});
+
+    if (user) {
+      return Mining.find({
+        server: user.server,
+        lastGameUpdated: {
+          $gte: moment().subtract(5, 'minutes').toDate()
+        }
+      }).count();      
+    }
+
     return Mining.find({
-      server: user.server,
       lastGameUpdated: {
         $gte: moment().subtract(5, 'minutes').toDate()
       }

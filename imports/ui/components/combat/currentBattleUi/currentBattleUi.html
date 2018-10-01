@@ -62,7 +62,7 @@
         Forfeit
       </button>
     </div>
-  {{else}}
+  {{else if loading}}
     <div style="height: calc(100vh - 54px); display: flex; align-items: center; flex: 1 1; justify-content: center">
       <div>
         <div class="real-spinner real-spinner-blue">
@@ -71,6 +71,12 @@
           <div class="bounce3"></div>
         </div>
       </div>
+    </div>
+  {{else}}
+    <div class="d-flex align-items-end justify-content-center flex-grow">
+      <button class="btn btn-danger forfeit-battle mt-3">
+        Forfeit
+      </button>
     </div>
   {{/if}}
 </template>

@@ -3,9 +3,12 @@
     <!-- Main CTA -->
     <div class="container">
       <div class="col-12 text-center">
-        <h1 class="heading" style="margin-top: 100px; margin-bottom: 50px">
+        <h1 class="heading" style="margin-top: 100px; margin-bottom: 10px">
           Gather, Craft, Battle and Progress
         </h1>
+        {{#if activeUsers}}
+          <div style="margin-bottom: 50px">{{activeUsers}} players online now</div>
+        {{/if}}
         <div>
           <button class="btn btn-secondary play-as-guest-btn {{#if creatingGuest}}disabled{{/if}}">
             {{#if creatingGuest}}
@@ -28,25 +31,25 @@
       <div class="row">
         <div class="col-md-4">
           <h1>Gather</h1>
-          <a data-fancybox="gallery" href="/images/fullScreenMiningScreenshot.png">
+          <a data-fancybox="gallery" href="/images/newMiningScreenshot.png">
             <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
-              <img class="img-fluid" src="/images/fullScreenMiningScreenshot.png">
+              <img class="img-fluid" src="/images/newMiningScreenshot.png">
             </div>
           </a>
         </div>
         <div class="col-md-4">
           <h1>Craft</h1>
-          <a data-fancybox="gallery" href="/images/fullScreenCraftingScreenshot.png">
+          <a data-fancybox="gallery" href="/images/newCraftingScreenshot.png">
             <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
-              <img class="img-fluid" src="/images/fullScreenCraftingScreenshot.png">
+              <img class="img-fluid" src="/images/newCraftingScreenshot.png">
             </div>
           </a>
         </div>
         <div class="col-md-4">
           <h1>Battle</h1>
-          <a data-fancybox="gallery" href="/images/fullScreenCombatScreenshot.png">
+          <a data-fancybox="gallery" href="/images/newCombatScreenshot.png">
             <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
-              <img class="img-fluid" src="/images/fullScreenCombatScreenshot.png">
+              <img class="img-fluid" src="/images/newCombatScreenshot.png">
             </div>
           </a>
         </div>

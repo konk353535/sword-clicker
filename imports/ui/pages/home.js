@@ -7,12 +7,21 @@ import './home.html';
 Template.homePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
+  // Fetch active users count
+  Meteor.call('users.activeUsers', (err, res) => {
+    this.state.set('activeUsers', res);
+  });
 });
 
 Template.homePage.helpers({
   creatingGuest() {
     return Template.instance().state.get('creatingGuest');
+  },
+
+  activeUsers() {
+    return Template.instance().state.get('activeUsers');
   }
+
 });
 
 Template.homePage.events({

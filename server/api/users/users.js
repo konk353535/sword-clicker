@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
 import moment from 'moment';
+import uuid from 'node-uuid';
 
 import { Users } from '/imports/api/users/users';
 import { BlackList } from '/imports/api/blacklist/blacklist';
@@ -36,19 +37,47 @@ Meteor.methods({
     }).count();
   },
 
-  'users.createGuest'({ username, password }) {
-
+  'users.createGuest'() {
     const clientIp = this.connection.clientAddress;
 
     if (BlackList.findOne({ clientIp })) {
       throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
     }
 
-    return Accounts.createUser({
-      username,
-      password,
-      isGuest: true
+    // Fetch a prefabbed guest
+    const existingGuest = Users.findOne({
+      isPreFabbedGuest: true
     });
+
+    if (!existingGuest) {
+      return;
+    }
+
+    // Set prefabbed guest to false
+    Users.update(existingGuest._id, {
+      $set: {
+        isPreFabbedGuest: false
+      }
+    });
+
+    // Update mining to now
+    Mining.update({
+      owner: existingGuest._id
+    }, {
+      $set: {
+        lastGameUpdated: new Date()
+      }
+    });
+
+    // Update password
+    const tempPassword = uuid.v4();
+    Accounts.setPassword(existingGuest._id, tempPassword, { logout: false });
+
+    // Return guests username and password (Might need to set the password again)
+    return {
+      password: tempPassword,
+      username: existingGuest.username
+    }
   },
 
   'users.updateGuest'({ username, password, email }) {

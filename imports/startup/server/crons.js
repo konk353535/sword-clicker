@@ -3,6 +3,8 @@ import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
 import { resolveLoot, removeBattle, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 import moment from 'moment/moment';
+import uuid from 'node-uuid';
+import faker from 'faker';
 
 import { Floors } from '/imports//api/floors/floors';
 import { Combat } from '/imports/api/combat/combat';
@@ -13,6 +15,38 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Servers } from '/imports/api/servers/servers';
+
+// Prefab some guest account
+SyncedCron.add({
+  name: 'Prefab Guests',
+  schedule: function (parser) {
+    return parser.text('every 30 seconds');
+  },
+  job: function () {
+    // Check for existing frefab accounts
+    const existingCount = Users.find({
+      isPreFabbedGuest: true
+    }).count();
+
+    const amountToCreate = 5 - existingCount;
+
+    if (amountToCreate > 0) {
+      for (let i = 0; i < amountToCreate; i++) {
+        const username = `guest_${faker.internet.userName()}`;
+        console.log(username);
+        const password = uuid.v4();
+
+        Accounts.createUser({
+          username,
+          password,
+          isGuest: true,
+          isPreFabbedGuest: true
+        });
+      }
+      console.log(`Created ${amountToCreate} pre fabbed accounts`);
+    }
+  }
+});
 
 // Reset tower things (daily)
 SyncedCron.add({

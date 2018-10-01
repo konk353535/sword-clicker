@@ -34,7 +34,9 @@ UserSchema = new SimpleSchema({
   isMutedExpiry: { type: Date, optional: true },
   isMod: { type: Boolean, optional: true },
   isSuperMod: { type: Boolean, optional: true },
+
   isGuest: { type: Boolean, optional: true },
+  isPreFabbedGuest: { type: Boolean, optional: true },
 
   averageCombat: { type: Number, optional: true },
 

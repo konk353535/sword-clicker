@@ -439,6 +439,9 @@ Accounts.onCreateUser((options, user) => {
   if (options.isGuest) {
     user.isGuest = options.isGuest;
   }
+  if (options.isPreFabbedGuest) {
+    user.isPreFabbedGuest = options.isPreFabbedGuest;
+  }
 
   // Mining stuff
   Skills.insert({

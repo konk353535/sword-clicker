@@ -64,18 +64,20 @@ Template.playAsGuestBtn.helpers({
 
 Template.playAsGuestBtn.events({
   'click .play-as-guest-btn'(event, instance) {
-    const username = `guest_${parseInt(Math.random() * 1000000000)}`;
-    const password = Random.id();
     instance.state.set('creatingGuest', true);
 
-    Meteor.call('users.createGuest', { username, password }, (err, res) => {
-      if (!err) {
-        Meteor.loginWithPassword(username, password, (err, res) => {
-          instance.state.get('creatingGuest', false);
-        });
-      } else {
-        instance.state.get('creatingGuest', false);
+    // This will instead return a username and password
+    Meteor.call('users.createGuest', (err, res) => {
+      console.log(err, res);
+      if (err) {
+        return instance.state.get('creatingGuest', false);
       }
+
+      const {username, password} = res;
+      console.log(username, password);
+      Meteor.loginWithPassword(username, password, (err, res) => {
+        instance.state.get('creatingGuest', false);
+      });
     });
   }
 });

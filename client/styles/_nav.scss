@@ -1,5 +1,6 @@
 .nav-link {
   position: relative;
+  white-space: nowrap;
 
   & > .red-dot {
     border-radius: 50%;

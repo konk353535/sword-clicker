@@ -20,7 +20,7 @@ Template.abilityLibraryIcon.rendered = function () {
           popperOptions: {
             modifiers: {
               preventOverflow: {
-                enabled: false
+                enabled: true
               },
               hide: {
                 enabled: false

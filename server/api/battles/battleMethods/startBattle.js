@@ -18,6 +18,7 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Users } from '/imports/api/users/users';
 
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
+  console.log('method - startBattle - start', moment().format('LLL hh:mm:ss SSS'));
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
   let battleData = { enemies: [] };
@@ -381,12 +382,16 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     balancer = currentGroup.balancer;
   }
 
+  console.log('method - startBattle - end', moment().format('LLL hh:mm:ss SSS'));
+
   // Send battle to socket server
   // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
   // Otherwise MIM attack compromises the security of the system
   HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle?balancer=${balancer}`, {
     data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s', balancer }
   }, (error, result) => {
+    console.log('method - startBattle - made to battle node', moment().format('LLL hh:mm:ss SSS'));
+
     BattlesList.update({
       _id: actualBattle._id
     }, {

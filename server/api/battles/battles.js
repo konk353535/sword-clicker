@@ -43,6 +43,7 @@ Meteor.methods({
   },
 
   'battles.findPersonalBattle'(level) {
+    console.log('battles.findPersonalBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
 
     // Ensure user has access to specified wave
@@ -86,6 +87,7 @@ Meteor.methods({
   },
 
   'battles.findTowerBattle'(floor, room) {
+    console.log('battles.findTowerBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
 
     if (Meteor.user().logEvents) {

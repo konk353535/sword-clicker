@@ -8,8 +8,10 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
+
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -17,9 +19,7 @@ import './mining.html';
 
 let miningPageTimer;
 let hasInitGameUpdate;
-let minersCache;
-let prospectorsCache;
-let oresCache;
+
 let tooltip;
 
 Template.miningPage.onCreated(function bodyOnCreated() {
@@ -54,73 +54,8 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  if (Session.get('minersCache')) {
-    minersCache = Session.get('minersCache')
-  }
-
-  if (Session.get('oresCache')) {
-    oresCache = Session.get('oresCache');
-  }
-
-  if (Session.get('prospectorsCache')) {
-    prospectorsCache = Session.get('prospectorsCache')
-  }
-
-  Tracker.autorun(() => {
-    const miningSkill = Skills.findOne({ type: 'mining' });
-    if (!miningSkill) {
-      return;
-    }
-
-    let minerResults;
-    let prospectorResults;
-    let oreResults;
-
-    if (minersCache && minersCache.data && minersCache.level === miningSkill.level &&
-      moment().isBefore(moment(minersCache.date).add(30, 'minutes'))) {
-      minerResults = minersCache.data;
-    } else {
-      minerResults = ReactiveMethod.call('mining.fetchMiners', miningSkill.level);
-      minersCache = {
-        data: minerResults,
-        level: miningSkill.level,
-        date: moment().toDate(),
-      };
-      Session.set('minersCache', minersCache);
-    }
-
-    if (prospectorsCache && prospectorsCache.data && prospectorsCache.level === miningSkill.level &&
-      moment().isBefore(moment(prospectorsCache.date).add(30, 'minutes'))) {
-      prospectorResults = prospectorsCache.data;
-    } else {
-      prospectorResults = ReactiveMethod.call('mining.fetchProspectors', miningSkill.level);
-      prospectorsCache = {
-        data: prospectorResults,
-        level: miningSkill.level,
-        date: moment().toDate()
-      };
-      Session.set('prospectorsCache', prospectorsCache);
-    }
-
-    if (oresCache && oresCache.data && oresCache.level === miningSkill.level &&
-      moment().isBefore(moment(oresCache.date).add(30, 'minutes'))) {
-      oreResults = oresCache.data;
-    } else {
-      oreResults = ReactiveMethod.call('mining.fetchOres', miningSkill.level);
-      oresCache = {
-        data: oreResults,
-        level: miningSkill.level,
-        date: moment().toDate()
-      };
-      Session.set('oresCache', oresCache);
-    }
-
-    this.state.set('rawOres', oreResults);
-    this.state.set('rawBuyableMiners', minerResults);
-    this.state.set('rawBuyableProspectors', prospectorResults);
-  });
-
   Meteor.call('mining.gameUpdate');
+
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
@@ -263,7 +198,19 @@ Template.miningPage.helpers({
 
   oresList() {
     const instance = Template.instance();
-    const rawOres = Template.instance().state.get('rawOres');
+
+    const miningSkill = Skills.findOne({ type: 'mining' });
+
+    if (!miningSkill) return;
+
+    const rawOres = Object.keys(MINING.ores).map((oreKey) => {
+      return MINING.ores[oreKey];
+    }).filter((recipe) => {
+      return miningSkill.level >= recipe.requiredLevel;
+    }).sort((a, b) => {
+      return b.requiredLevel - a.requiredLevel;
+    });
+
     const gems = rawOres.filter((ore) => {
       return ore.isGem;
     });
@@ -329,7 +276,16 @@ Template.miningPage.helpers({
 
   summaryMiners() {
     const mining = Mining.findOne({});
-    const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
+    const miningSkill = Skills.findOne({ type: 'mining' });
+
+    if (!miningSkill) return;
+
+    const rawBuyableMiners = Object.keys(MINING.miners).map((key) => {
+      return MINING.miners[key];
+    }).filter((recipe) => {
+      // Only show woodcutters we can hire, or close to ( 1 level away )
+      return miningSkill.level + 1 >= recipe.requiredMiningLevel;
+    });
 
     if (!mining || !rawBuyableMiners) {
       return 0;
@@ -357,12 +313,21 @@ Template.miningPage.helpers({
 
   miningEnergyPercentage() {
     const mining = Mining.findOne({});
+
     return (mining.stats.energy / mining.stats.energyStorage) * 100;
   },
 
   summaryProspectors() {
     const mining = Mining.findOne({});
-    const rawBuyableProspectors = Template.instance().state.get('rawBuyableProspectors');
+    const miningSkill = Skills.findOne({ type: 'mining' });
+
+    if (!miningSkill) return;
+
+    const rawBuyableProspectors = Object.keys(MINING.prospectors).map((key) => {
+      return MINING.prospectors[key];
+    }).filter((recipe) => {
+      return miningSkill.level >= recipe.requiredMiningLevel;
+    });
 
     if (!mining || !rawBuyableProspectors) {
       return 0;
@@ -392,8 +357,18 @@ Template.miningPage.helpers({
 
   buyableMiners() {
     const mining = Mining.findOne({});
-    const rawBuyableMiners = Template.instance().state.get('rawBuyableMiners');
     const userDoc = Meteor.user();
+
+    const miningSkill = Skills.findOne({ type: 'mining' });
+
+    if (!miningSkill) return;
+
+    const rawBuyableMiners = Object.keys(MINING.miners).map((key) => {
+      return MINING.miners[key];
+    }).filter((recipe) => {
+      // Only show woodcutters we can hire, or close to ( 1 level away )
+      return miningSkill.level + 1 >= recipe.requiredMiningLevel;
+    });
 
     if (!mining || !rawBuyableMiners) {
       return;
@@ -428,6 +403,10 @@ Template.miningPage.helpers({
         possibleMiner.damagePerHour = possibleMiner.damagePerSecond * 3600;
       }
 
+      if (localMiner) {
+        localMiner.xpToLevel = MINING.miners.xpToLevel(localMiner.level);
+      }
+
       possibleMiner.level = localMiner ? localMiner.level : 1;
       possibleMiner.xp = localMiner ? localMiner.xp : 0;
       possibleMiner.xpToLevel = localMiner ? localMiner.xpToLevel : 10;
@@ -445,7 +424,15 @@ Template.miningPage.helpers({
 
   buyableProspectors() {
     const mining = Mining.findOne({});
-    const rawBuyableProspectors = Template.instance().state.get('rawBuyableProspectors');
+    const miningSkill = Skills.findOne({ type: 'mining' });
+
+    if (!miningSkill) return;
+
+    const rawBuyableProspectors = Object.keys(MINING.prospectors).map((key) => {
+      return MINING.prospectors[key];
+    }).filter((recipe) => {
+      return miningSkill.level >= recipe.requiredMiningLevel;
+    });
 
     if (!mining || !rawBuyableProspectors) {
       return;

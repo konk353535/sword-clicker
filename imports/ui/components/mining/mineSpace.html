@@ -1,9 +1,13 @@
 <template name="mineSpace">
   <div class="icon-box mine-space-container">
     {{#unless isEmpty}}
-      <img src="/icons/{{mineSpace.icon}}" class="ore-icon">
+      {{#if mineSpace.isCluster}}
+        <img src="/icons/{{constants.clusterIcon}}" class="ore-icon">
+      {{else}}
+        <img src="/icons/{{constants.icon}}" class="ore-icon">
+      {{/if}}
       <span style="font-size: 12px;white-space: nowrap;">
-        {{> formatNumber number=ceiledNumber forceShorthand=true}} / {{> formatNumber number=mineSpace.healthMax forceShorthand=true}}
+        {{> formatNumber number=ceiledNumber forceShorthand=true}} / {{> formatNumber number=healthMax forceShorthand=true}}
       </span>
       <div>
         {{mineSpace.id}}

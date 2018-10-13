@@ -10,6 +10,10 @@ import { Groups } from '/imports/api/groups/groups.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+import { FARMING } from '/imports/constants/farming/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
+
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
 
@@ -32,6 +36,12 @@ let abilityTimer;
 
 let cachedSkills = {};
 let cachedAdventures = {};
+
+window.gameConstants = {
+  ITEMS,
+  FARMING,
+  MINING
+};
 
 // track user's input type for tooltip wrangling
 Session.set('tooltipInput', 'mouse');

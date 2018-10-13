@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
 
 import './mineSpace.html';
 
@@ -85,6 +86,30 @@ Template.mineSpace.events({
 Template.mineSpace.helpers({
   isEmpty() {
     return !this.mineSpace.oreId;
+  },
+
+  healthMax() {
+    const oreId = this.mineSpace.oreId;
+    if (!oreId) {
+      return 0;
+    }
+
+    const constants = MINING.ores[oreId];
+
+    if (Template.instance().data.mineSpace.isCluster) {
+      return constants.healthMax * 10;
+    }
+
+    return constants.healthMax;
+  },
+
+  constants() {
+    const oreId = this.mineSpace.oreId;
+    if (!oreId) {
+      return {};
+    }
+
+    return MINING.ores[oreId];
   },
 
   ceiledNumber() {

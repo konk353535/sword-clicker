@@ -712,19 +712,6 @@ Meteor.publish('miningSpace', function() {
 
   //Transform function
   const transform = function (doc) {
-    if (doc.oreId) {
-      const currentOreConstants = MINING.ores[doc.oreId];
-      doc.requiredLevel = currentOreConstants.requiredLevel;
-      doc.healthMax = currentOreConstants.healthMax;
-      doc.name = currentOreConstants.name;
-      doc.xp = currentOreConstants.xp;
-      if (doc.isCluster) {
-        doc.healthMax *= 10;
-        doc.icon = currentOreConstants.clusterIcon;
-      } else {
-        doc.icon = currentOreConstants.icon;
-      }
-    }
     return doc;
   };
 
@@ -756,10 +743,6 @@ Meteor.publish('mining', function() {
 
   //Transform function
   const transform = function (doc) {
-    doc.miners.map((miner) => {
-      miner.xpToLevel = MINING.miners.xpToLevel(miner.level || 1);
-      return miner;
-    });
     return doc;
   };
 

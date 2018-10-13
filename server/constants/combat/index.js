@@ -1,5 +1,5 @@
 console.log('importing combat/index.js COMBAT_ITEMS');
-import { COMBAT_ITEMS as combatItems} from '/imports/constants/combat/items';
+import { COMBAT_ITEMS as combatItems} from '../../../imports/constants/combat/items';
 console.log('importing combat/index.js ABILITIES, ABILITY');
 import { ABILITIES as abilities, ABILITY as ability } from './abilities';
 

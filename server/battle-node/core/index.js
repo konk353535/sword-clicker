@@ -1,7 +1,7 @@
 import { ABILITIES } from '../../constants/combat/index.js';
 import { BATTLES } from '../../constants/battles/index.js';
 import { FLOORS } from '../../constants/floors/index.js';
-import { BUFFS } from '.././imports/constants/buffs/index.js';
+import { BUFFS } from '../../../imports/constants/buffs/index.js';
 
 import uuid from 'node-uuid';
 import _ from 'underscore';

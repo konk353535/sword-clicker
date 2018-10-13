@@ -1,6 +1,6 @@
 import { orderLootTable } from '../../../enemies/lootTables/index.js';
 import { LEVEL_TWENTY_FOUR_LOOT_TABLE } from '../../levels/level24';
-import { ITEMS } from '/imports/constants/items/index';
+import { ITEMS } from '../../../../../imports/constants/items/index';
 
 export const TOWER_FLOOR_24 = {
   unlocks: false,

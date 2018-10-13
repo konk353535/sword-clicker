@@ -1,5 +1,5 @@
 import { orderLootTable } from '../../../enemies/lootTables/index.js';
-import { ITEMS } from '/imports/constants/items/index';
+import { ITEMS } from '../../../../../imports/constants/items/index';
 
 import { LEVEL_TWELVE_LOOT_TABLE } from '../../levels/level12';
 

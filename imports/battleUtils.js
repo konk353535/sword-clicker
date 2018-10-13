@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { BUFFS } from '/imports/constants/buffs/index';
+import { BUFFS } from './constants/buffs/index';
 
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
   const buffConstants = BUFFS[buff.id];

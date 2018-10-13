@@ -1,4 +1,4 @@
-import { BUFFS } from '../.././imports/constants/buffs/index.js';
+import { BUFFS } from '../../../../imports/constants/buffs/index.js';
 
 export default class Buff {
 

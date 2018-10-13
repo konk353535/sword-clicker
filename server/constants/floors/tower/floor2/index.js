@@ -1,6 +1,6 @@
 import { orderLootTable } from '../../../enemies/lootTables/index.js';
 console.log('importing floor2/index.js ITEMS');
-import { ITEMS } from '/imports/constants/items/index';
+import { ITEMS } from '../../../../../imports/constants/items/index';
 import { LEVEL_TWO_LOOT_TABLE } from '../../levels/level2';
 
 console.log('exporting floor2/index.js TOWER_FLOOR_2');

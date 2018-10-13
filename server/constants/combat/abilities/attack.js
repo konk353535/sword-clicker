@@ -1,5 +1,6 @@
 import moment from 'moment';
-import { BUFFS } from '/imports/constants/buffs/index';
+
+import { BUFFS } from '../../../../imports/constants/buffs/index';
 
 export const ATTACK_ABILITIES = {
 

@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import '/imports/startup/both';
 import '/imports/startup/server';
 
-import { ITEMS } from '/server/constants/items/index';
+import { ITEMS } from '/imports/constants/items/index';
 import { ABILITIES } from '/server/constants/combat/abilities';
 
 import { Users } from '/imports/api/users/users';

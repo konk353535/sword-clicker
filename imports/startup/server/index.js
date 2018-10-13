@@ -19,8 +19,8 @@ import { updateMiningStats } from '/server/api/mining/mining.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import uuid from 'node-uuid';
 
-import { MINING } from '/server/constants/mining/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { MINING } from '/imports/constants/mining/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';

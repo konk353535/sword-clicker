@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import { ACHIEVEMENTS } from '/server/constants/achievement/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { Users } from '/imports/api/users/users';
 import { Achievements } from '/imports/api/achievements/achievements';
 import { addItem } from '/server/api/items/items.js';

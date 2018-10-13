@@ -8,8 +8,8 @@ import moment from 'moment';
 import _ from 'underscore';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
-import { CRAFTING } from '/server/constants/crafting/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { CRAFTING } from '/imports/constants/crafting/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 

@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Skills } from '/imports/api/skills/skills.js';
@@ -21,6 +22,8 @@ let gameUpdateTimer;
 
 
 const itemModifier = function (item) {
+  const itemConstants = ITEMS[item.itemId];
+  item.shiftActionData = itemConstants.shiftActionData;
   if (item.shiftActionData) {
     item.shiftAction = {
       description: item.shiftActionData.description,

@@ -12,7 +12,7 @@ import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleA
 import { Groups } from '/imports/api/groups/groups';
 import { Servers } from '/imports/api/servers/servers';
 
-import { ITEMS } from '/server/constants/items';
+import { ITEMS } from '/imports/constants/items';
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies

@@ -1,5 +1,5 @@
 console.log('importing magic/index.js ITEMS');
-import { ITEMS } from '/server/constants/items/index';
+import { ITEMS } from '/imports/constants/items/index';
 
 console.log('exporting magic/index.js MAGIC');
 export const MAGIC = {

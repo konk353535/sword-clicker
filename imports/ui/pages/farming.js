@@ -7,6 +7,9 @@ import { Items } from '/imports/api/items/items.js';
 import { FarmingSpace } from '/imports/api/farming/farming.js';
 import { Users } from '/imports/api/users/users.js';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+import { FARMING } from '/imports/constants/farming/index.js';
+
 import '../components/farming/farmSpace.js';
 import './farming.html';
 
@@ -176,6 +179,8 @@ Template.farmingPage.helpers({
       }
     }).map((item) => {
       if (item.category === 'seed') {
+        const itemConstants = ITEMS[item.itemId];
+        item.plantingDetails = FARMING.plants[itemConstants.produces];
         item.required = item.plantingDetails.required;
         item.description = `Growth time is ${moment.duration(item.plantingDetails.growthTime, 'seconds').humanize()}`;
         item.primaryAction = {

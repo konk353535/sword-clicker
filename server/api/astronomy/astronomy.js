@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import _ from 'underscore';
 
-import { ASTRONOMY } from '/server/constants/astronomy/index.js';
+import { ASTRONOMY } from '/imports/constants/astronomy/index.js';
 
 import { Users } from '/imports/api/users/users';
 import { Astronomy } from '/imports/api/astronomy/astronomy';

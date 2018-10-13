@@ -3,7 +3,7 @@ import moment from 'moment';
 import _ from 'underscore';
 import { Random } from 'meteor/random';
 
-import { ITEMS } from '/server/constants/items/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { ENEMIES } from '/server/constants/enemies/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';

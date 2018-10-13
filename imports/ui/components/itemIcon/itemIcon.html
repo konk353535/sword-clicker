@@ -13,7 +13,8 @@
       <img src="/icons/{{item.requiredItem}}" class="small-icon">
     {{/if}}
 
-    <img src="/icons/{{item.icon}}" class="item-icon">
+    <img src="/icons/{{icon}}" class="item-icon">
+
     {{#unless item.hideCount}}
       {{#if $gt item.amount 1}}
         <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
@@ -25,7 +26,7 @@
   {{#unless hideTooltip}}
     <div class="item-tooltip-content my-tooltip-inner" id="tooltip-{{item._id}}">
       <h3 class='popover-title text-capitalize'>
-        {{item.name}}
+        {{constants.name}}
         {{#if item.enhanced}}
           (E)
         {{/if}}
@@ -36,8 +37,8 @@
           {{/if}}
       </h3>
       <div class='popover-content'>
-        {{#if item.description}}
-          {{{item.description}}}<br />
+        {{#if description}}
+          {{{description}}}<br />
         {{/if}}
 
         {{#if item.cooldown}}
@@ -49,8 +50,8 @@
         {{/if}}
 
         {{#unless item.hideStats}}
-          {{#if item.stats}}
-            {{> displayCombatStats stats=item.stats}}
+          {{#if stats}}
+            {{> displayCombatStats stats=stats}}
           {{/if}}
         {{/unless}}
 
@@ -59,12 +60,12 @@
           {{> requiredItems requiredItems=item.required}}
         {{/if}}
 
-        {{#if item.isTwoHanded}}
+        {{#if constants.isTwoHanded}}
           <b>Two Handed</b><br />
         {{/if}}
 
-        {{#if item.enchantments}}
-          {{#each enchantment in item.enchantments}}
+        {{#if enchantments}}
+          {{#each enchantment in enchantments}}
             {{{enchantment}}}<br />
           {{/each}}
         {{/if}}
@@ -88,11 +89,11 @@
             {{#if item.shiftAction}}
               {{#if item.shiftAction.description}}
                 <div>
-                  <b>Left Click</b> to use or sell for {{item.sellPrice}}
+                  <b>Left Click</b> to use or sell for {{constants.sellPrice}}
                 </div>
               {{/if}}
             {{else}}
-              <b>Left Click</b> to sell for {{item.sellPrice}}
+              <b>Left Click</b> to sell for {{constants.sellPrice}}
             {{/if}}
           {{/if}}
 
@@ -136,7 +137,7 @@
                   </form>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
-                  +{{ totalPrice sellAmount item.sellPrice }} Gold
+                  +{{ totalPrice sellAmount constants.sellPrice }} Gold
                 </div>
               </div>
 
@@ -184,7 +185,7 @@
                 <form class="sell-form">
                   <input class="form-control sell-amount-input" value={{sellAmount}}>
                 </form>
-                  +{{ totalPrice sellAmount item.sellPrice }} Gold
+                  +{{ totalPrice sellAmount constants.sellPrice }} Gold
                 <br /><br />
               </div>
             </div>

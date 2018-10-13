@@ -1,5 +1,5 @@
 import { BATTLES } from '../../constants/battles/index.js'; // List of available combat stats
-import { BUFFS } from '../../constants/buffs/index.js';
+import { BUFFS } from '.././imports/constants/buffs/index.js';
 
 export default function(rawDamage, {
   attacker,

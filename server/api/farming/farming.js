@@ -10,8 +10,8 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 
-import { FARMING } from '/server/constants/farming';
-import { ITEMS } from '/server/constants/items';
+import { FARMING } from '/imports/constants/farming';
+import { ITEMS } from '/imports/constants/items';
 
 // Given a farm space, will return it modified based on
 /*

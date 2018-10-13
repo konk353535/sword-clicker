@@ -3,6 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import _ from 'underscore';
+import { ITEMS } from '/imports/constants/items/index.js';
+import { BUFFS } from '/imports/constants/buffs/index.js';
 
 import './itemIcon.html';
 
@@ -15,6 +17,69 @@ Template.itemIcon.onCreated(function bodyOnCreated() {
 Template.itemIcon.helpers({
   totalPrice(amount, price) {
     return amount * price;
+  },
+
+  icon() {
+    const instance = Template.instance();
+    const constants = ITEMS[instance.data.item.itemId];
+
+    if (instance.data.item.icon) {
+      return instance.data.item.icon;
+    }
+
+    return constants.icon;
+  },
+
+  description() {
+    const instance = Template.instance();
+    const constants = ITEMS[instance.data.item.itemId];
+
+    if (_.isFunction(constants.description)) {
+      return constants.description();
+    }
+
+    return false;
+  },
+
+  enchantments() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    const constants = ITEMS[instance.data.item.itemId];
+
+    if (!constants.enchantments) {
+      return false
+    }
+
+    return constants.enchantments.map((buffId) => {
+      return BUFFS[buffId].description();
+    });
+  },
+
+  stats() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    const constants = ITEMS[instance.data.item.itemId];
+
+    if (!constants.stats) {
+      return false
+    }
+
+    const statsObj = Object.assign({}, constants.stats);
+
+    if (item.extraStats) {
+      Object.keys(item.extraStats).forEach((statName) => {
+        if (statsObj[statName]) {
+          statsObj[statName] += item.extraStats[statName];
+        }
+      });
+    }
+
+    return statsObj;
+  },
+
+  constants() {
+    const instance = Template.instance();
+    return ITEMS[instance.data.item.itemId];
   },
 
   sellAmount() {

@@ -13,11 +13,11 @@ import _ from 'underscore';
 import { addXp } from '/server/api/skills/skills';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
-import { ITEMS } from '/server/constants/items/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
 import { COMBAT } from '/server/constants/combat/index.js';
-import { BUFFS } from '/server/constants/buffs/index.js';
+import { BUFFS } from '/imports/constants/buffs/index.js';
 
 export const updateCombatStats = function (userId, username, amuletChanged = false) {
   // Build up our object of skills

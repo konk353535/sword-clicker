@@ -17,7 +17,7 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
-import { ITEMS } from '/server/constants/items/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 import moment from "moment/moment";
 import _ from 'underscore';
 

@@ -1,4 +1,4 @@
-import { BUFFS } from '../../constants/buffs/index.js';
+import { BUFFS } from '.././imports/constants/buffs/index.js';
 
 export const TICK_DURATION = 200;
 export const secondsElapsed = TICK_DURATION / 1000;

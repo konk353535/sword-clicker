@@ -270,38 +270,6 @@ Template.body.onCreated(function () {
     }
   }, 60 * 1000 + (Math.random() * 1000));
 
-  /*
-  floatingTextTimer = Meteor.setInterval(() => {
-    let viewWidth = $(window).width();
-    let count = 0;
-    // Increase height and decrease opacity
-    $(".floating-text").each(function(i) {      
-      count++;
-      if (count > 50) {
-        $(this).remove();
-        return;
-      }
-      var y = $(this).position().top;
-      var count = $(this).data('count');
-
-      if(viewWidth <= 768) {
-        count += 1;
-        $(this).css('opacity', $(this).css('opacity') - 0.01);
-      }
-
-      if (count > 15) {
-        $(this).css('opacity', $(this).css('opacity') - 0.01);
-      }
-
-      $(this).css('top', y - 1.0);
-      if(count > 60){
-        $(this).remove();
-      } else {
-        $(this).data('count', count + 1);
-      }
-    });
-  }, 20);*/
-
   // Show items
   Meteor.subscribe('items');
   // Show skills

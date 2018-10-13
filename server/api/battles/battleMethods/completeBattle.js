@@ -1,12 +1,12 @@
 import moment from "moment/moment";
 import _ from 'underscore';
 
-import { ITEMS } from '/server/constants/items/index';
+import { ITEMS } from '/imports/constants/items/index';
 import { FLOORS } from '/server/constants/floors/index';
 import { MAGIC } from '/server/constants/magic/index';
 import { BATTLES } from '/server/constants/battles/index'; // List of encounters
 import { PLAYER_ICONS } from '/imports/constants/shop/index';
-import { NEED_GREED_ITEMS } from '/server/constants/items/needgreed';
+import { NEED_GREED_ITEMS } from '/imports/constants/items/needgreed';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';

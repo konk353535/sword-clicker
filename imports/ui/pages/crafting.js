@@ -5,6 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
@@ -22,6 +23,8 @@ let gameUpdateTimer;
 let recipeCache;
 
 const itemModifier = function (item) {
+  const itemConstants = ITEMS[item.itemId];
+  item.shiftActionData = itemConstants.shiftActionData;
 
   if (item.shiftActionData) {
     item.shiftAction = {
@@ -350,7 +353,8 @@ Template.craftingPage.helpers({
 
     let highestFurnaceTier = 'stone_furnace';
     if (allFurnaces.length > 0) {
-      highestFurnaceTier = allFurnaces[0].tier;
+      highestFurnaceTier = ITEMS[allFurnaces[0].itemId].tier;
+      console.log(highestFurnaceTier);
     }
 
     let hidden = Template.instance().state.get('itemFilter') === 'hidden-items';

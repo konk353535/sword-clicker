@@ -7,10 +7,10 @@ import { Crafting } from '/imports/api/crafting/crafting';
 import { Events } from '/imports/api/events/events';
 
 import { addXp } from '/server/api/skills/skills.js';
-import { ITEMS } from '/server/constants/items/index.js';
-import { FARMING } from '/server/constants/farming/index.js';
-import { BUFFS } from '/server/constants/buffs/index.js';
-import { COMBAT_CRAFTS } from '/server/constants/combat/crafts.js';
+import { ITEMS } from '/imports/constants/items/index.js';
+import { FARMING } from '/imports/constants/farming/index.js';
+import { BUFFS } from '/imports/constants/buffs/index.js';
+import { COMBAT_CRAFTS } from '/imports/constants/combat/crafts.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
@@ -752,48 +752,10 @@ Meteor.publish('items', function() {
       return;
     }
 
-    doc.icon = itemConstants.icon;
+    // This is gonna be hard to undo
     doc.name = itemConstants.name;
-    doc.isTwoHanded = itemConstants.isTwoHanded;
-    doc.sellPrice = itemConstants.sellPrice;
+    // So is this :(
     doc.slot = itemConstants.slot;
-    if (itemConstants.stats) {
-      doc.stats = JSON.parse(JSON.stringify(itemConstants.stats));
-      doc.isWeapon = itemConstants.isWeapon;
-      doc.isEquippable = itemConstants.isEquippable;
-      if (doc.extraStats) {
-        Object.keys(doc.extraStats).forEach((statName) => {
-          if (doc.stats[statName]) {
-            doc.stats[statName] += doc.extraStats[statName];
-          }
-        });
-      }
-    }
-
-    if (itemConstants.enchantments) {
-      doc.enchantments = [];
-      itemConstants.enchantments.forEach((buffId) => {
-        if (BUFFS[buffId]) {
-          doc.enchantments.push(BUFFS[buffId].description());
-        }
-      });
-    }
-
-    if (itemConstants.tier) {
-      doc.tier = itemConstants.tier;
-    }
-
-    if (itemConstants.category === 'seed') {
-      doc.plantingDetails = FARMING.plants[itemConstants.produces];
-    }
-
-    if (_.isFunction(itemConstants.description)) {
-      doc.description = itemConstants.description();
-    }
-
-    if (itemConstants.shiftActionData) {
-      doc.shiftActionData = itemConstants.shiftActionData;
-    }
 
     return doc;
   };
@@ -803,7 +765,7 @@ Meteor.publish('items', function() {
   const observer = Items.find({
     owner: this.userId
   }).observe({
-      added: function (document) {
+    added: function (document) {
       self.added('items', document._id, transform(document));
     },
     changed: function (newDocument, oldDocument) {

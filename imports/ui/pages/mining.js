@@ -9,6 +9,7 @@ import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { ITEMS } from '/imports/constants/items/index.js';
 
 // Component used in the template
 import '../components/mining/mineSpace.js';
@@ -307,7 +308,7 @@ Template.miningPage.helpers({
 
   miningPickaxes() {
     return Items.find({ category: 'mining', equipped: false }).map((item) => {
-      if (item.isEquippable) {
+      if (ITEMS[item.itemId].isEquippable) {
         item.primaryAction = {
           description: 'equip',
           item,
@@ -322,7 +323,7 @@ Template.miningPage.helpers({
       }
       return item;
     }).filter((item) => {
-      return item.isEquippable;
+      return ITEMS[item.itemId].isEquippable
     });
   },
 

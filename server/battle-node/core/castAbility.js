@@ -1,5 +1,5 @@
 import { ABILITIES } from '../../constants/combat/index.js';
-import { BUFFS } from '../../constants/buffs/index.js';
+import { BUFFS } from '.././imports/constants/buffs/index.js';
 
 import _ from 'underscore';
 

@@ -9,7 +9,7 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { BattlesList } from '/imports/api/battles/battles';
 
 import { ABILITIES, ABILITY } from '/server/constants/combat/index';
-import { ITEMS } from '/server/constants/items/index';
+import { ITEMS } from '/imports/constants/items/index';
 import { MAGIC } from '/server/constants/magic/index';
 
 import { consumeItem } from '/server/api/items/items';

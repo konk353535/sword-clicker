@@ -62,8 +62,6 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       owners: Meteor.userId()
     });
 
-Meteor.settings.public.battleUrl = `https://battle.eternitytower.net/`;
-    
     if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
       window.balancer = localBalancer;
       $.ajax({

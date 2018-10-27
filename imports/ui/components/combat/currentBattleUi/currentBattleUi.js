@@ -131,8 +131,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       localBalancer = currentGroup.balancer;
     }
 
-Meteor.settings.public.battleUrl = `https://battle.eternitytower.net/`;
-    
     if (!window.battleSocket || localBalancer !== window.balancer) {
       window.balancer = localBalancer;
       window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {

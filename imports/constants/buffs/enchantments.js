@@ -266,7 +266,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'bisonAxe.svg',
     name: 'bison axe',
     description() {
-      return `Every 5 seconds an auto attacks becomes charged. Dealing it's damage to all enemies.`;
+      return `Every 5 seconds an auto attacks becomes charged. Dealing its damage to all enemies.`;
     },
     constants: {
     },

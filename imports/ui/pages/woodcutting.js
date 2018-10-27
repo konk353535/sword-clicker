@@ -162,8 +162,8 @@ Template.woodcuttingPage.helpers({
         <div class="d-flex align-items-center">
           <i class="lilIcon-accuracy extra-small-icon mr-1"></i><b>Accuracy</b>
         </div>
-        Accuracy increases the chance of getting rarer logs. <br />
-        As well as getting more basic logs.
+        Accuracy increases the chance of getting rarer logs <br />
+        as well as increasing the quantity of more basic logs.
       </p>
     `;
   },

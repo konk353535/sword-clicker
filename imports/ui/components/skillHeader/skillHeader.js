@@ -24,6 +24,11 @@ Template.skillHeader.helpers({
 
   globalBuffs() {
     const instance = Template.instance();
+    
+    if ((instance.data === undefined) || (instance.data.skill === undefined)) {
+        return false;
+    }
+    
     const type = instance.data.skill.type;
     if (type === 'magic' || type === 'defense' || type === 'attack' || type === 'health') {
       return false;

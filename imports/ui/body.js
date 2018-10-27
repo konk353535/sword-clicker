@@ -13,6 +13,7 @@ import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { ITEMS } from '/imports/constants/items/index.js';
 import { FARMING } from '/imports/constants/farming/index.js';
 import { MINING } from '/imports/constants/mining/index.js';
+import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -40,7 +41,8 @@ let cachedAdventures = {};
 window.gameConstants = {
   ITEMS,
   FARMING,
-  MINING
+  MINING,
+  WOODCUTTING
 };
 
 // track user's input type for tooltip wrangling

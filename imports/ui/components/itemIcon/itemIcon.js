@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import _ from 'underscore';
 import { ITEMS } from '/imports/constants/items/index.js';
+import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
 
 import './itemIcon.html';
@@ -27,17 +28,21 @@ Template.itemIcon.helpers({
       return instance.data.item.icon;
     }
 
-    return constants.icon;
+    if (constants && constants.icon)
+        return constants.icon;
+        
+    return false;
   },
 
   description() {
     const instance = Template.instance();
     const constants = ITEMS[instance.data.item.itemId];
-
-    if (_.isFunction(constants.description)) {
-      return constants.description();
+    
+    if (constants) {
+      if (_.isFunction(constants.description)) {
+        return constants.description();
+      }
     }
-
     return false;
   },
 
@@ -46,8 +51,8 @@ Template.itemIcon.helpers({
     const item = instance.data.item;
     const constants = ITEMS[instance.data.item.itemId];
 
-    if (!constants.enchantments) {
-      return false
+    if (!constants || !constants.enchantments) {
+      return false;
     }
 
     return constants.enchantments.map((buffId) => {
@@ -60,8 +65,8 @@ Template.itemIcon.helpers({
     const item = instance.data.item;
     const constants = ITEMS[instance.data.item.itemId];
 
-    if (!constants.stats) {
-      return false
+    if (!constants || !constants.stats) {
+      return { ...item.stats, ...item.extraStats };
     }
 
     const statsObj = Object.assign({}, constants.stats);
@@ -79,7 +84,28 @@ Template.itemIcon.helpers({
 
   constants() {
     const instance = Template.instance();
-    return ITEMS[instance.data.item.itemId];
+    let consts;
+    
+    if (instance.data.item.woodcutterId !== undefined)
+        if (WOODCUTTING.woodcutters[instance.data.item.woodcutterId] !== undefined)
+            consts = WOODCUTTING.woodcutters[instance.data.item.woodcutterId];
+
+    if (consts === undefined)
+        consts = ITEMS[instance.data.item.itemId];
+    
+    if (consts === undefined)
+        return instance.data.item;
+    
+    if (consts.name === undefined) 
+        consts.name = '';
+    if (consts.description === undefined) 
+        consts.description = '';
+    if (consts.stats === undefined) 
+        consts.stats = {};
+    if (consts.enchantments === undefined) 
+        consts.enchantments = [];
+    
+    return consts;
   },
 
   sellAmount() {

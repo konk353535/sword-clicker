@@ -15,6 +15,8 @@ import { Combat } from '/imports/api/combat/combat';
 
 import './gameHome.html';
 
+let updatingAdventures = false;
+
 Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('showPickAll', false);
@@ -23,6 +25,43 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state.set('updatingWoodcutting', false);
   this.state.set('updatingMining', false);
 
+  const updateAdventures = function (self) {
+    self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
+      if (adventure.duration) {
+        adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');
+      }
+
+      if (adventure.win != null) {
+        adventure.isComplete = true;
+      }
+
+      adventure.inactive = !adventure.startDate;
+
+      if (!adventure.isComplete && moment().isAfter(adventure.startDate) && moment().isBefore(adventure.endDate)) {
+        // Seconds since start
+        const secondsSinceStart = moment.duration(moment().diff(adventure.startDate)).asSeconds();
+        // Seconds till end
+        const secondsLeft = moment.duration(moment(adventure.endDate).diff(new Date())).asSeconds();
+        // Total seconds for this adventure
+        const totalSeconds = moment.duration(moment(adventure.endDate).diff(adventure.startDate)).asSeconds();
+        // Formatted seconds left
+        adventure.durationLeft = moment("2015-01-01").startOf('day').seconds(secondsLeft).format('H:mm:ss');
+        adventure.percentageComplete = Math.ceil((secondsSinceStart / totalSeconds) * 100);
+      }
+
+      if (moment().isAfter(adventure.endDate) && !updatingAdventures && adventure.win == null) {
+        updatingAdventures = true;
+        Meteor.call('adventures.gameUpdate', (err, res) => {
+          Meteor.setTimeout(() => {
+            updatingAdventures = false;
+          }, 20000)
+        });
+      }
+
+      return adventure;
+    }));
+  };
+  
   this.autorun(() => {
     const nowTimeStamp = TimeSync.serverTime();
     const now = moment(nowTimeStamp);
@@ -56,15 +95,24 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     }
 
     this.state.set('showPickAll', !!showPickAll);
+    
+    if (Adventures.findOne()) {
+      this.state.set('rawAdventures', Adventures.findOne().adventures);
+      updateAdventures(this);
+    }
   });
 
   Tracker.autorun(() => {
     const friendsObject = Friends.findOne({});
-    if (friendsObject) {
+    if (friendsObject && friendsObject.friends) {
       Meteor.subscribe('friendsFeed', friendsObject.friends.join(','));
     }
   });
 
+  Meteor.setInterval(() => {
+    updateAdventures(this);
+  }, 1000);
+  
   Meteor.subscribe('otherBattlers', 3);
   Meteor.subscribe('friends');
   Meteor.subscribe('mining');
@@ -157,7 +205,6 @@ Template.gameHomePage.helpers({
       }).fetch();
     }
 
-
     return combats.map((userCombat) => {
       // Map stuff we want to read into stats
       userCombat.stats = {
@@ -180,18 +227,22 @@ Template.gameHomePage.helpers({
   },
 
   activeAdventures() {
-    return Adventures.findOne({}).adventures.filter((adventure) => {
+    const instance = Template.instance();
+    if (!instance.state.get('adventures')) {
+      return;
+    }
+    return instance.state.get('adventures').filter((adventure) => {
       return adventure.startDate;
     });
   },
-
+  
   lastAdventure() {
     const adventures = Adventures.findOne({}).adventures.filter((adventure) => {
       return !!adventure.startDate;
     });
     return adventures.pop();
   },
-
+  
   lastGrownThing() {
     const growingThings = FarmingSpace.find({
       plantId: {
@@ -380,7 +431,25 @@ Template.gameHomePage.events({
         toastr.warning(err.reason);
       }
     });
-  }
+  },
+  
+  'click .cancel-adventure-btn'(event, instance) {
+    const id = instance.$(event.target).closest('.cancel-adventure-btn').attr('data-id');
+    Meteor.call('adventures.cancelAdventure', id, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+  
+  'click .collect-adventure-btn'(event, instance) {
+    const id = instance.$(event.target).closest('.collect-adventure-btn').attr('data-id');
+    Meteor.call('adventures.collectAdventure', id, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
 });
 
 Template.firstCraftingUI.events({

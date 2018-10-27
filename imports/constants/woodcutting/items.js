@@ -290,7 +290,7 @@ export const WOODCUTTING_ITEMS = {
     isAxe: true,
     stats: {
       attack: 70,
-      attackSpeed: 1,
+      attackSpeed: 2,
       accuracy: 25
     },
     extraStats: {

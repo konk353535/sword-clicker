@@ -169,21 +169,25 @@ Template.buyableMiner.rendered = function () {
 };
 
 Template.miningPage.rendered = function () {
-  const prospectorTooltip = new Drop({
-    target: Template.instance().$('.buy-prospector')[0],
-    content: Template.instance().$('.prospectors-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+  if (Template.instance().$('.prospector-hire').length > 0) {
+    const prospectorTooltip = new Drop({
+      target: Template.instance().$('.prospector-hire')[0],
+      content: Template.instance().$('.prospectors-tooltip-content')[0],
+      openOn: 'hover',
+      position: 'top left',
+      remove: true
+    });
+  }
 
-  const minerTooltip = new Drop({
-    target: Template.instance().$('.buy-miner')[0],
-    content: Template.instance().$('.miners-tooltip-content')[0],
-    openOn: 'hover',
-    position: 'top left',
-    remove: true
-  });
+  if (Template.instance().$('.hire-miner').length > 0) {
+    const minerTooltip = new Drop({
+      target: Template.instance().$('.hire-miner')[0],
+      content: Template.instance().$('.miners-tooltip-content')[0],
+      openOn: 'hover',
+      position: 'top left',
+      remove: true
+    });
+  }
 };
 
 Template.miningPage.helpers({
@@ -314,7 +318,9 @@ Template.miningPage.helpers({
   miningEnergyPercentage() {
     const mining = Mining.findOne({});
 
-    return (mining.stats.energy / mining.stats.energyStorage) * 100;
+    if (mining)
+        return (mining.stats.energy / mining.stats.energyStorage) * 100;
+    return 0;
   },
 
   summaryProspectors() {

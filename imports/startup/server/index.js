@@ -583,6 +583,26 @@ Accounts.onCreateUser((options, user) => {
   return user;
 });
 
+const anyServer = Servers.findOne();
+if (!anyServer) {
+  // Create the server
+  const newServer = Servers.insert({
+    membersCount: 0,
+    createdAt: new Date(),
+    name: 'Classic',
+    iteration: 0
+  });
+
+  // Create the floor
+  Floors.insert({
+    floor: 1,
+    server: newServer,
+    createdAt: new Date(),
+    points: 0,
+    pointsMax: FLOORS.getNewPointCount(1, 10)
+  });
+}
+
 const currentFloor = Floors.findOne();
 
 if (!currentFloor) {

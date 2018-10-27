@@ -238,25 +238,30 @@ Template.farmingPage.helpers({
 
   seedsToShow() {
     const instance = Template.instance();
-    return instance.state.get('seeds').filter((seed) => {
-      if (instance.state.get('seedsFilter') === 'all') {
-        return true;
-      }
-      return seed.seedType === instance.state.get('seedsFilter');
-    });
+    if (instance.state.get('seeds') !== undefined) {
+      return instance.state.get('seeds').filter((seed) => {
+        if (instance.state.get('seedsFilter') === 'all') {
+          return true;
+        }
+        return seed.seedType === instance.state.get('seedsFilter');
+      });
+    }
+    return true;
   }
 });
 
 const updateTooltips = function (instance, tooltipNames) {
   setTimeout(() => {
     tooltipNames.forEach((tooltipName) => {
-      new Drop({
-        target: instance.$(`.${tooltipName}-tooltip-container`)[0],
-        content: instance.$(`.${tooltipName}-tooltip-content`)[0],
-        openOn: 'hover',
-        position: 'top left',
-        remove: true
-      });
+      if (instance.$(`.${tooltipName}-tooltip-container`).length > 0) {
+        new Drop({
+          target: instance.$(`.${tooltipName}-tooltip-container`)[0],
+          content: instance.$(`.${tooltipName}-tooltip-content`)[0],
+          openOn: 'hover',
+          position: 'top left',
+          remove: true
+        });
+      }
     });
   }, 100);
 };

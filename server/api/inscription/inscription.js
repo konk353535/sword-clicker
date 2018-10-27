@@ -201,6 +201,10 @@ Meteor.methods({
     const newItems = [];
     const popValues = []; // Store array of currentCrafting endDates
 
+    if (!inscription.currentlyCrafting) {
+        return;
+    }
+    
     inscription.currentlyCrafting.forEach((currentCraft) => {
       if (moment().isAfter(currentCraft.endDate)) {
         popValues.push(currentCraft.endDate);

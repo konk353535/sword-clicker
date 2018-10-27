@@ -354,7 +354,7 @@ Template.craftingPage.helpers({
     let highestFurnaceTier = 'stone_furnace';
     if (allFurnaces.length > 0) {
       highestFurnaceTier = ITEMS[allFurnaces[0].itemId].tier;
-      console.log(highestFurnaceTier);
+      //console.log(highestFurnaceTier); // konk left this debug in, disabling it for now (psouza4: 2018-10-27)
     }
 
     let hidden = Template.instance().state.get('itemFilter') === 'hidden-items';

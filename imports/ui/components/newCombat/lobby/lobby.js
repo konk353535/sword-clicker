@@ -62,6 +62,8 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       owners: Meteor.userId()
     });
 
+Meteor.settings.public.battleUrl = `https://battle.eternitytower.net/`;
+    
     if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
       window.balancer = localBalancer;
       $.ajax({
@@ -397,7 +399,8 @@ Template.lobbyPage.helpers({
       type: 'defense'
     });
 
-    defenseSkill.percentage = (defenseSkill.xp / defenseSkill.xpToLevel) * 100;
+    if (defenseSkill !== undefined)
+        defenseSkill.percentage = (defenseSkill.xp / defenseSkill.xpToLevel) * 100;
 
     return defenseSkill;
   },
@@ -407,7 +410,8 @@ Template.lobbyPage.helpers({
       type: 'attack'
     });
 
-    attackSkill.percentage = (attackSkill.xp / attackSkill.xpToLevel) * 100;
+    if (attackSkill !== undefined)
+        attackSkill.percentage = (attackSkill.xp / attackSkill.xpToLevel) * 100;
 
     return attackSkill;
   },
@@ -417,7 +421,8 @@ Template.lobbyPage.helpers({
       type: 'health'
     });
 
-    healthSkill.percentage = (healthSkill.xp / healthSkill.xpToLevel) * 100;
+    if (healthSkill !== undefined)
+        healthSkill.percentage = (healthSkill.xp / healthSkill.xpToLevel) * 100;
 
     return healthSkill;
   },
@@ -427,9 +432,8 @@ Template.lobbyPage.helpers({
       type: 'magic'
     });
 
-    if (magicSkill) {
+    if (magicSkill !== undefined)
       magicSkill.percentage = (magicSkill.xp / magicSkill.xpToLevel) * 100;
-    }
 
     return magicSkill;
   },

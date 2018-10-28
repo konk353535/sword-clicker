@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import lodash from 'lodash';
 import './lobby.html';
 import '../lobbyUnit/lobbyUnit.js';
 import io from 'socket.io-client';
@@ -14,10 +15,13 @@ const TYPES = {
 
 import { Skills } from '/imports/api/skills/skills.js';
 import { Users } from '/imports/api/users/users.js';
+import { State } from '/imports/api/state/state';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+
+import { STATE_BUFFS } from '/imports/constants/state';
 
 // TODO: All this logic will fire after every battle, very ineffective though
 Template.lobbyPage.onCreated(function bodyOnCreated() {
@@ -46,6 +50,12 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   Meteor.call('battles.myFloorContributions', (err, res) => {
     this.state.set('myFloorContributions', res);
   });*/
+
+  Tracker.autorun(() => {
+    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
+    this.state.set('globalBuffs', globalBuffs);
+  });
 
   Tracker.autorun(() => {
     const currentGroup = Groups.findOne({
@@ -404,6 +414,11 @@ Template.lobbyPage.helpers({
     return moment().utc().hours(23).minutes(59).seconds(59);
   },
 
+  globalBuffs() {
+    let globalBuffState = Template.instance().state.get('globalBuffs');
+    return  { ...(globalBuffState), ...({ anyActive: (globalBuffState.buffCombat || globalBuffState.buffGathering || globalBuffState.buffCrafting) }) };
+  },
+  
   defenseSkill() {
     const defenseSkill = Skills.findOne({
       type: 'defense'

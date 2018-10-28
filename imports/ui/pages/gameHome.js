@@ -5,6 +5,7 @@ import { Random } from 'meteor/random';
 import { Groups } from '/imports/api/groups/groups';
 import { FarmingSpace } from '/imports/api/farming/farming';
 import { Crafting } from '/imports/api/crafting/crafting';
+import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { Mining } from '/imports/api/mining/mining.js';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
@@ -119,6 +120,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('combat');
   Meteor.subscribe('woodcutting');
   Meteor.subscribe('crafting');
+  Meteor.subscribe('inscription');
   Meteor.subscribe('friendRequests');
   Meteor.subscribe('farmingSpace');
 });
@@ -305,6 +307,35 @@ Template.gameHomePage.helpers({
     }
 
     return crafting.currentlyCrafting.slice(1);
+  },
+
+  firstInscription() {
+    const inscription = Inscription.findOne({});
+
+    if (!inscription || inscription.currentlyCrafting.length === 0) {
+      return false;
+    }
+
+    return inscription.currentlyCrafting[0];
+  },
+
+  lastInscription() {
+    const inscription = Inscription.findOne({});
+    if (!inscription || inscription.currentlyCrafting.length === 0) {
+      return;
+    }
+
+    return inscription.currentlyCrafting[inscription.currentlyCrafting.length - 1];
+  },
+
+  otherInscription() {
+    const inscription = Inscription.findOne({});
+
+    if (!inscription || inscription.currentlyCrafting.length <= 1) {
+      return false;
+    }
+
+    return inscription.currentlyCrafting.slice(1);
   },
 
   updatingMining() {
@@ -516,6 +547,64 @@ Template.firstCraftingUI.helpers({
   computedCraftingProcess() {
     const instance = Template.instance();
     return instance.state.get('computedCraftingProcess');
+  }
+});
+
+Template.firstInscriptionUI.events({
+  'click .cancel-inscription'(event, instance) {
+    const endDate = instance.$(event.target).closest('.cancel-inscription').attr('data-enddate');
+    Meteor.call('inscription.cancelCraft', moment(endDate).toDate());
+  }
+})
+
+Template.firstInscriptionUI.onCreated(function bodyOnCreated() {
+  this.state = new ReactiveDict();
+  this.state.set('percentage', 0);
+  this.state.set('updatingGame', false);
+
+  this.autorun(() => {
+    const inscriptionProcess = this.data.data;
+    const startDate = moment(inscriptionProcess.startDate);
+
+    const endDate = moment(inscriptionProcess.endDate).add(150, 'milliseconds');
+    const nowTimeStamp = TimeSync.serverTime();
+    const now = moment(nowTimeStamp);
+
+    // Generate time remaining
+    const secondsRemaining = moment.duration(endDate.diff(now)).asSeconds();
+    const totalTime = moment.duration(endDate.diff(startDate)).asSeconds();
+
+    // Generate % remaining
+    const percentage = ((totalTime - secondsRemaining) / totalTime) * 100;
+
+    inscriptionProcess.percentage = percentage;
+
+    if (inscriptionProcess.percentage < 0) {
+      inscriptionProcess.percentage = 0;
+    }
+
+    if (inscriptionProcess.percentage > 100 && !this.state.get('updatingGame')) {
+      this.state.set('updatingGame', true);
+      Meteor.call('inscription.updateGame', (err, res) => {
+        // Incase we are out of sync, backoff
+        setTimeout(() => {
+          this.state.set('updateGame', false);
+        }, 5000);
+      });
+    } else if (inscriptionProcess.percentage < 100) {
+      this.state.set('updatingGame', false);
+    }
+
+    inscriptionProcess.humanReadable = moment.duration(endDate.diff(now)).humanize(true);
+
+    this.state.set('computedInscriptionProcess', inscriptionProcess);
+  });
+});
+
+Template.firstInscriptionUI.helpers({
+  computedInscriptionProcess() {
+    const instance = Template.instance();
+    return instance.state.get('computedInscriptionProcess');
   }
 });
 

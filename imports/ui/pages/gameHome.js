@@ -143,6 +143,12 @@ Template.gameHomePage.helpers({
   friendsList() {
     const friendsObject = Friends.findOne({});
 
+    // psouza4 2018-10-28: the 'Users' collection in this context only refers to
+    //                     users we know about (the originating player) and won't
+    //                     return other users from the database.  We would need
+    //                     to write a server API to return a user document
+    //                     collection based on a list of IDs instead.
+    /*
     return Users.find({
       _id: {
         $in: friendsObject.friends
@@ -152,6 +158,9 @@ Template.gameHomePage.helpers({
         lastActionDate: -1
       }
     });
+    */
+    
+    return friendsObject.friends;
   },
 
   firstClanInvite() {

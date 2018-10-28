@@ -36,6 +36,10 @@ Template.itemIcon.helpers({
 
   description() {
     const instance = Template.instance();
+    
+    if (instance.data.item.description !== undefined)
+        return instance.data.item.description;
+    
     const constants = ITEMS[instance.data.item.itemId];
     
     if (constants) {

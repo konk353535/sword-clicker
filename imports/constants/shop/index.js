@@ -19,6 +19,10 @@ export const SHOP_ITEMS = {
 };
 
 export const PLAYER_ICONS = {
+  'default': {
+    name: 'default',
+    icon: 'character.svg'
+  },
   'mage_t1': {
     name: 'mage T1',
     icon: 'mageT1HD.png'

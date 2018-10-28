@@ -176,7 +176,7 @@ Meteor.methods({
       owner: Meteor.userId()
     });
 
-    const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
 
     // Check if we own it
     if (!_.contains(availableIcons, id)) {

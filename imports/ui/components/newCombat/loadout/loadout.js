@@ -90,7 +90,7 @@ Template.loadoutPage.helpers({
       return [];
     }
 
-    const availableIcons = ['mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
 
     return Object.keys(PLAYER_ICONS).map((key) => {
       let disabled = true;

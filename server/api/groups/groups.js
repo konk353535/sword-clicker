@@ -364,6 +364,40 @@ Meteor.methods({
       });
     }
   },
+  
+  // Create a new group
+  'groups.create'() {
+    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
+      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+    }
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+    
+    // Must not be in a group to create a new one
+    if (currentGroup) {
+      throw new Meteor.Error('group-exists',
+        `You are already in a group!`);
+    }
+
+    // Create group with just myself in it
+    Groups.insert({
+      balancer: uuid.v4(),
+      server: Meteor.user().server,
+      leaderName: Meteor.user().username,
+      leader: this.userId,
+      members: [this.userId],
+      membersObject: [{
+        name: Meteor.user().username,
+        averageCombat: Meteor.user().averageCombat,
+        id: this.userId
+      }],
+      invites: []
+    });
+  },
 
     // Transfer leadership role to another party member
   'groups.transfer'({ ownerId }) {

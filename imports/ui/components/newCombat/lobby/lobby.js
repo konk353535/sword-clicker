@@ -155,6 +155,14 @@ Template.lobbyPage.events({
 
   'click .other-battlers-btn'(event, instance) {
     instance.data.setPage('otherBattlers');
+  },  
+  
+  'click .btn-create-group'(event, instance) {
+    Meteor.call('groups.create', (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
   },
 
   'keydown #name'(event, instance) {

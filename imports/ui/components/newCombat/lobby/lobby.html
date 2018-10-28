@@ -92,6 +92,12 @@
         </div>
       {{else if $eq typeKey 'group'}}
         <form class="group-invite d-flex flex-grow align-items-center justify-content-end">
+          {{#unless currentGroup}}
+            <button
+              class="btn btn-success mr-1 btn-create-group">
+              Create
+            </button>
+          {{/unless}}
           <div class="col-auto">
             <label class="sr-only" for="name">Name</label>
             <input class="form-control typeahead" name="team" id="name" type="text"

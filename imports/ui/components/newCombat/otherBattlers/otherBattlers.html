@@ -18,21 +18,25 @@
     <span class="mr-3">Floor {{row.floor}}</span>
     
     <span class="badge {{#if row.inBattle}}badge-success{{else}}badge-info{{/if}} mr-3" style="width: 120px;">
-      {{#if row.inBattle}}
-        Battling for
-      {{else}}
-        Fought
-      {{/if}}
+      {{#if row.lastBattleStarted}}
+        {{#if row.inBattle}}
+          Battling for
+        {{else}}
+          Fought
+        {{/if}}
 
-      {{#if $lte (moDiff moNow row.lastBattleStarted 'seconds') 60}}          
-        {{moDiff moNow row.lastBattleStarted 'seconds'}}s
-      {{else}}
-        {{moDiff moNow row.lastBattleStarted 'minutes'}}m
-      {{/if}}
+        {{#if $lte (moDiff moNow row.lastBattleStarted 'seconds') 60}}          
+          {{moDiff moNow row.lastBattleStarted 'seconds'}}s
+        {{else}}
+          {{moDiff moNow row.lastBattleStarted 'minutes'}}m
+        {{/if}}
 
-      {{#unless row.inBattle}}
-        ago
-      {{/unless}}
+        {{#unless row.inBattle}}
+          ago
+        {{/unless}}
+      {{else}}
+        Assembling
+      {{/if}}
     </span>
     <span class="mr-3 d-flex users-row">
       {{#each row.membersObject}}

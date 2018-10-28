@@ -438,9 +438,6 @@ Template.lobbyPage.helpers({
 
   otherBattlers() {
     const otherBattlers = Groups.find({
-      lastBattleStarted: {
-        $gte: moment().subtract(24, 'hours').toDate()
-      }
     }, {
       limit: 3,
       sort: {

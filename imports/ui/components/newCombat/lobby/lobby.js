@@ -400,6 +400,10 @@ Template.lobbyPage.helpers({
     return Template.instance().state.get('usersCurrentRoom');
   },
 
+  floorResetDate() {
+    return moment().utc().hours(23).minutes(59).seconds(59);
+  },
+
   defenseSkill() {
     const defenseSkill = Skills.findOne({
       type: 'defense'

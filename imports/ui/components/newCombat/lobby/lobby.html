@@ -109,6 +109,18 @@
         </form>
       {{/if}}
     </div>
+    
+    {{#if $eq typeKey 'group'}}
+      {{#unless floorDetails.isUnlocked}}
+        <div>
+          {{#if $gte (moDiff floorResetDate moNow 'minutes') 60}}
+            Resets in {{moDiff floorResetDate moNow 'hours'}} hours
+          {{else}}
+            Resets in {{moDiff floorResetDate moNow 'minutes'}} minutes
+          {{/if}}
+        </div>
+      {{/unless}}
+    {{/if}}
 
     {{#unless $eq typeKey 'afk'}}
       <div class="d-flex align-items-center justify-content-center flex-wrap lobby-units-container">

@@ -33,49 +33,93 @@
               <!-- Message. Default to the left -->
               {{#each simpleChats}}
                   {{#if message}}
-                      <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
-                           id="{{_id}}">
-                          <div class="direct-chat-info clearfix">
-                            {{#if $eq name 'Game'}}
-                              <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                {{name}}
-                              </span>
-                            {{else if $eq name 'SERVER'}}
-                              <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                {{name}}
-                              </span>
-                            {{else}}
-                              <a href="/profile/{{name}}">
-                                <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                  {{name}}
-                                </span>
-                              </a>
-                            {{/if}}
-                            <span class="direct-chat-timestamp">
-                              {{moFormat date "hh:mm A"}}
-                            </span>
-                          </div>
-                          <!-- /.direct-chat-info -->
-                          <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
-                              {{{message}}}
-                              {{#if me}}
-                                  <div class="direct-chat-checks">
-                                      {{#if sent}}
-                                          {{#if showReceived }}
-                                              <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
-                                              {{#if receivedAll}}
+                      {{#if wantCondensedChat}}
+                          <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
+                               id="{{_id}}">
+                              <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
+                                  <span class="direct-chat-timestamp" style="margin-left: 0px;">
+                                    {{moFormat date "hh:mm A"}}
+                                  </span>
+                                  {{#if $eq name 'Game'}}
+                                    <span class="direct-chat-name chat-{{this.custom.roomType}}">
+                                      {{name}}
+                                    </span>
+                                  {{else if $eq name 'SERVER'}}
+                                    <span class="direct-chat-name chat-{{this.custom.roomType}}">
+                                      {{name}}
+                                    </span>
+                                  {{else}}
+                                    <a href="/profile/{{name}}">
+                                      <span class="direct-chat-name chat-{{this.custom.roomType}}">
+                                        {{name}}
+                                      </span>
+                                    </a>
+                                  {{/if}}
+                                  <!-- /.direct-chat-info -->
+                                  {{{message}}}
+                                  {{#if me}}
+                                      <div class="direct-chat-checks">
+                                          {{#if sent}}
+                                              {{#if showReceived }}
                                                   <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                  {{#if receivedAll}}
+                                                      <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                  {{/if}}
                                               {{/if}}
+                                          {{else}}
+                                              <i class="icon-clock"></i>
                                           {{/if}}
-                                      {{else}}
-                                          <i class="icon-clock"></i>
-                                      {{/if}}
 
-                                  </div>
-                              {{/if}}
+                                      </div>
+                                  {{/if}}
+                              </div>
+                              <!-- /.direct-chat-text -->
                           </div>
-                          <!-- /.direct-chat-text -->
-                      </div>
+                      {{else}}
+                          <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
+                               id="{{_id}}">
+                              <div class="direct-chat-info clearfix">
+                                {{#if $eq name 'Game'}}
+                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                    {{name}}
+                                  </span>
+                                {{else if $eq name 'SERVER'}}
+                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                    {{name}}
+                                  </span>
+                                {{else}}
+                                  <a href="/profile/{{name}}">
+                                    <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                      {{name}}
+                                    </span>
+                                  </a>
+                                {{/if}}
+                                <span class="direct-chat-timestamp">
+                                  {{moFormat date "hh:mm A"}}
+                                </span>
+                              </div>
+                              <!-- /.direct-chat-info -->
+                              <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
+                                  {{{message}}}
+                                  {{#if me}}
+                                      <div class="direct-chat-checks">
+                                          {{#if sent}}
+                                              {{#if showReceived }}
+                                                  <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                  {{#if receivedAll}}
+                                                      <i class="icon-check {{#if viewedAll}}chat-viewed{{/if}}"></i>
+                                                  {{/if}}
+                                              {{/if}}
+                                          {{else}}
+                                              <i class="icon-clock"></i>
+                                          {{/if}}
+
+                                      </div>
+                                  {{/if}}
+                              </div>
+                              <!-- /.direct-chat-text -->
+                          </div>
+                      {{/if}}
                   {{/if}}
                   <!-- /.dir-->
               {{/each}}

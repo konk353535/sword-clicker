@@ -105,6 +105,15 @@
                 <a class="dropdown-item" href="/chat" style="cursor: pointer">
                   Chat
                 </a>
+                {{#if wantCondensedChat}}
+                  <a class="dropdown-item disable-condensed-chat" style="cursor: pointer">
+                    Disable condensed chat
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-condensed-chat" style="cursor: pointer">
+                    Enable condensed chat
+                  </a>
+                {{/if}}
                 {{#if summaryListDisabled}}
                   <a class="dropdown-item enable-summary-list" style="cursor: pointer">
                     Enable summary list

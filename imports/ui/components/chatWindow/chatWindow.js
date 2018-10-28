@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 import { SimpleChat } from 'meteor/cesarve:simple-chat/config';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
@@ -274,6 +275,10 @@ Template.chatWindow.helpers({
     return Template.instance().state.get('minimized');
   },
 
+  wantCondensedChat() {
+    return Session.get('wantCondensedChat');
+  },
+  
   currentRoom() {
     return Template.instance().state.get('currentRoom');
   },

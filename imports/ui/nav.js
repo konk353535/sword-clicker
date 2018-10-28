@@ -33,6 +33,11 @@ Template.nav.onCreated(function bodyOnCreated() {
       } else {
         Session.set('numberShorthandDisabled', false);
       }
+      if (myUser.uiState && myUser.uiState.wantCondensedChat !== undefined) {
+        Session.set('wantCondensedChat', myUser.uiState.wantCondensedChat);
+      } else {
+        Session.set('wantCondensedChat', true);
+      }
     }
   });
 
@@ -82,6 +87,16 @@ Template.nav.events({
   'click .enable-summary-list'(event, instance) {
     Session.set('summaryListDisabled', false);
     Meteor.call('users.setUiState', 'showSummaryList', true);
+  },
+  
+  'click .disable-condensed-chat'(event, instance) {
+    Session.set('wantCondensedChat', false);
+    Meteor.call('users.setUiState', 'wantCondensedChat', false);
+  },
+
+  'click .enable-condensed-chat'(event, instance) {
+    Session.set('wantCondensedChat', true);
+    Meteor.call('users.setUiState', 'wantCondensedChat', true);
   },
 
   'click .disable-recipe-consumables'(event, instance) {
@@ -160,6 +175,10 @@ Template.nav.helpers({
 
   summaryListDisabled() {
     return Session.get('summaryListDisabled');
+  },
+
+  wantCondensedChat() {
+    return Session.get('wantCondensedChat');
   },
 
   numberShorthandDisabled() {

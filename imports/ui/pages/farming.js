@@ -246,7 +246,7 @@ Template.farmingPage.helpers({
         return seed.seedType === instance.state.get('seedsFilter');
       });
     }
-    return true;
+    return false;
   }
 });
 

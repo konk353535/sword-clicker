@@ -375,7 +375,7 @@ export const MITHRIL_CRAFTS = {
     name: 'mithril shield',
     category: 'combat',
     id: 'mithril_shield',
-    timeToCraft: 60 * 60, // 60
+    timeToCraft: 60 * 60 * 2, // 60
     xp: 100000,
     maxToCraft: 1,
     tags: ['weapon'],

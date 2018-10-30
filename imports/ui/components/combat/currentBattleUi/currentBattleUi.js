@@ -111,7 +111,8 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   }, 2500);
 
   Tracker.autorun(() => {
-    console.log(this.state.get('ticker'));
+    //console.log(this.state.get('ticker')); // konk left this debug in, disabling it for now (psouza4: 2018-10-30)
+    
     // Lots of hacks follow, I'm so sorry
     const currentBattleList = BattlesList.findOne({
       owners: Meteor.userId()

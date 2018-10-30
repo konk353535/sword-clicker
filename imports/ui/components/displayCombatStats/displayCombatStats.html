@@ -10,7 +10,11 @@
     {{#each stats}}
       <div class="d-flex align-items-center">
         <i class="lilIcon-{{this.key}} extra-small-icon mr-1"></i>
-        {{this.label}}
+        {{#if this.requiresFormatting}}
+          {{> formatNumber number=this.rawValue decimal=0}} {{this.label}}
+        {{else}}
+          {{this.label}}
+        {{/if}}
       </div>
     {{/each}}
   {{/if}}

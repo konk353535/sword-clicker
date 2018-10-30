@@ -17,7 +17,9 @@ function descriptors(str) {
     'energyStorage': 'energy storage',
     'energyPerHit': 'energy per hit',
     'energyRegen': 'energy regen',
-    'miner': 'passive miner damage'
+    'miner': 'passive miner damage',
+    'completeShard': '% bonus complete shards',
+    'ancientShard': '% bonus ancient shards'
   };
   if (terms.hasOwnProperty(str)) {
     return terms[str];
@@ -102,9 +104,18 @@ Template.displayCombatStats.helpers({
         });
       }
     }
+    
+    if (statsMap.gold) {
+      statsArr.push({
+          label:  `${descriptors('gold')}`,
+          key: 'gold',
+          rawValue: statsMap.gold.toFixed(0),
+          requiresFormatting: true
+        });
+    }
 
     Object.keys(statsMap).forEach((key) => {
-      if (key === 'attack' || key === 'attackMax') {
+      if (key === 'attack' || key === 'attackMax' || key === 'gold') {
         return;
       }
 

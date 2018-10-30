@@ -19,7 +19,8 @@ function descriptors(str) {
     'energyRegen': 'energy regen',
     'miner': 'passive miner damage',
     'completeShard': '% bonus complete shards',
-    'ancientShard': '% bonus ancient shards'
+    'ancientShard': '% bonus ancient shards',
+    'gold': 'deposited gold'
   };
   if (terms.hasOwnProperty(str)) {
     return terms[str];

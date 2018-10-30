@@ -20,7 +20,8 @@ function descriptors(str) {
     'miner': 'passive miner damage',
     'completeShard': '% bonus complete shards',
     'ancientShard': '% bonus ancient shards',
-    'gold': 'deposited gold'
+    'gold': 'deposited gold',
+    'damage': 'click damage',
   };
   if (terms.hasOwnProperty(str)) {
     return terms[str];

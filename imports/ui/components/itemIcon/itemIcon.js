@@ -69,8 +69,8 @@ Template.itemIcon.helpers({
     const item = instance.data.item;
     
     if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet'], item.itemId)) {
-      if (item.extrastats && item.extrastats.level) {
-        return ` (L.${item.extrastats.level})`;
+      if (item.extraStats && item.extraStats.level) {
+        return ` (L.${item.extraStats.level+1})`;
       }
       return " (L.1)";
     }

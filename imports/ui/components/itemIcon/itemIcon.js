@@ -64,6 +64,20 @@ Template.itemIcon.helpers({
     });
   },
 
+  amuletLevel() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet'], item.itemId)) {
+      if (item.extrastats && item.extrastats.level) {
+        return ` (L.${item.extrastats.level})`;
+      }
+      return " (L.1)";
+    }
+    
+    return "";
+  },
+  
   stats() {
     const instance = Template.instance();
     const item = instance.data.item;

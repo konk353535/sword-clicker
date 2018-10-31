@@ -754,7 +754,7 @@ export const MISC_ITEMS = {
 
   demons_heart: {
     id: 'demons_heart',
-    icon: 'demonsHeart.svg',
+    icon: 'demonsHeart.png',
     category: 'combat',
     slot: 'chest',
     name: 'demons heart',

@@ -514,7 +514,6 @@ Template.lobbyPage.helpers({
     return Items.find({
       category: 'food'
     }).fetch().filter((item) => {
-      console.log(item);
       if (item.hidden) return false;
       return true;
     }).map((item) => {

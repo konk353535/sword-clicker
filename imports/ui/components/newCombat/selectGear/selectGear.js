@@ -85,7 +85,10 @@ Template.selectGearPage.helpers({
     const slotsMap = {};
 
     slots.forEach((slot) => {
-      slotsMap[slot] = Items.find({ category: 'combat', slot, equipped: false }).map((item) => {
+      slotsMap[slot] = Items.find({ category: 'combat', slot, equipped: false }).fetch().filter((item) => {
+        if (item.hidden) return false;
+        return true;
+      }).map((item) => {
         item.primaryAction = {
           description: 'equip',
           item,

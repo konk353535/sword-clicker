@@ -506,7 +506,7 @@ Meteor.methods({
 
     // If there already consuming food, return
     if (currentCombat.buffs.length > 0) {
-      throw new Meteor.Error("already-eating", 'Your already eating food');
+      throw new Meteor.Error("already-eating", 'You\'re already eating food');
     }
 
     // Remove the nom
@@ -809,6 +809,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
 
   // Validation
   if (targetItem.itemId !== "jade_amulet") {
+    throw new Meteor.Error("invalid-target", 'Jade can only be used on a jade amulet.');
     return;
   }
 
@@ -822,6 +823,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 
@@ -857,6 +859,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
 
   // Validation
   if (targetItem.itemId !== "lapislazuli_amulet") {
+    throw new Meteor.Error("invalid-target", 'Lapis lazuli can only be used on a lapis lazuli amulet.');
     return;
   }
 
@@ -870,6 +873,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 
@@ -908,6 +912,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
 
   // Validation
   if (targetItem.itemId !== "sapphire_amulet") {
+    throw new Meteor.Error("invalid-target", 'Sapphire can only be used on a sapphire amulet.');
     return;
   }
 
@@ -921,6 +926,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 
@@ -955,6 +961,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
 
   // Validation
   if (targetItem.itemId !== "emerald_amulet") {
+    throw new Meteor.Error("invalid-target", 'Emerald can only be used on an emerald amulet.');
     return;
   }
 
@@ -968,6 +975,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 
@@ -1002,6 +1010,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
 
   // Validation
   if (targetItem.itemId !== "ruby_amulet") {
+    throw new Meteor.Error("invalid-target", 'Ruby can only be used on a ruby amulet.');
     return;
   }
 
@@ -1015,6 +1024,7 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 
@@ -1054,6 +1064,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   // Validation
   if (targetItem.itemId !== "tanzanite_amulet") {
+    throw new Meteor.Error("invalid-target", 'Tanzanite can only be used on a tanzanite amulet.');
     return;
   }
 
@@ -1067,6 +1078,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
 
   // Amulet can be upgraded 4 times.
   if (targetItem.extraStats.level >= 4) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
 

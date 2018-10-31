@@ -4,7 +4,7 @@ const RADIANT_MULTIPLIER = 1.2;
 export const RADIANT_ITEMS = {
   "radiant_dagger": {
     "id": "radiant_dagger",
-    "icon": "radiantDagger.svg",
+    "icon": "radiantDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -27,7 +27,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_spear": {
     "id": "radiant_spear",
-    "icon": "radiantSpear.svg",
+    "icon": "radiantSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -57,7 +57,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_short_sword": {
     "id": "radiant_short_sword",
-    "icon": "radiantShortsword.svg",
+    "icon": "radiantShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_long_sword": {
     "id": "radiant_long_sword",
-    "icon": "radiantLongsword.svg",
+    "icon": "radiantLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -115,7 +115,7 @@ export const RADIANT_ITEMS = {
   
   "radiant_battle_axe": {
     "id": "radiant_battle_axe",
-    "icon": "radiantBattleAxe.svg",
+    "icon": "radiantBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -145,7 +145,7 @@ export const RADIANT_ITEMS = {
 
   "radiant_helmet": {
     "id": "radiant_helmet",
-    "icon": "radiantHelmet.svg",
+    "icon": "radiantHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "radiant helmet",
@@ -170,7 +170,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_chest_plate": {
     "id": "radiant_chest_plate",
-    "icon": "radiantChestplate.svg",
+    "icon": "radiantChestplate.png",
     "category": "combat",
     "slot": "chest",
     "name": "radiant Chestplate",
@@ -195,7 +195,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_plate_legs": {
     "id": "radiant_plate_legs",
-    "icon": "radiantPlatelegs.svg",
+    "icon": "radiantPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "radiant platelegs",
@@ -220,7 +220,7 @@ export const RADIANT_ITEMS = {
   },
   "radiant_shield": {
     "id": "radiant_shield",
-    "icon": "radiantShield.svg",
+    "icon": "radiantShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

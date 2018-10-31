@@ -4,7 +4,7 @@ const ASTRAL_MULTIPLIER = 1.3;
 export const ASTRAL_ITEMS = {
   "astral_dagger": {
     "id": "astral_dagger",
-    "icon": "astralDagger.svg",
+    "icon": "astralDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -27,7 +27,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_spear": {
     "id": "astral_spear",
-    "icon": "astralSpear.svg",
+    "icon": "astralSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -57,7 +57,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_short_sword": {
     "id": "astral_short_sword",
-    "icon": "astralShortsword.svg",
+    "icon": "astralShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_long_sword": {
     "id": "astral_long_sword",
-    "icon": "astralLongsword.svg",
+    "icon": "astralLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -115,7 +115,7 @@ export const ASTRAL_ITEMS = {
   
   "astral_battle_axe": {
     "id": "astral_battle_axe",
-    "icon": "astralBattleAxe.svg",
+    "icon": "astralBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -145,7 +145,7 @@ export const ASTRAL_ITEMS = {
 
   "astral_helmet": {
     "id": "astral_helmet",
-    "icon": "astralHelmet.svg",
+    "icon": "astralHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "astral helmet",
@@ -170,7 +170,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_chest_plate": {
     "id": "astral_chest_plate",
-    "icon": "astralChestplate.svg",
+    "icon": "astralChestplate.png",
     "category": "combat",
     "slot": "chest",
     "name": "astral Chestplate",
@@ -195,7 +195,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_plate_legs": {
     "id": "astral_plate_legs",
-    "icon": "astralPlatelegs.svg",
+    "icon": "astralPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "astral platelegs",
@@ -220,7 +220,7 @@ export const ASTRAL_ITEMS = {
   },
   "astral_shield": {
     "id": "astral_shield",
-    "icon": "astralShield.svg",
+    "icon": "astralShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

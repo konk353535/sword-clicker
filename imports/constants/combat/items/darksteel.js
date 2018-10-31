@@ -4,7 +4,7 @@ const DARKSTEEL_MULTIPLIER = 1.1;
 export const DARKSTEEL_ITEMS = {
   "darksteel_dagger": {
     "id": "darksteel_dagger",
-    "icon": "darksteelDagger.svg",
+    "icon": "darksteelDagger.png",
     "category": "combat",
     "weaponType": "dagger",
     "slot": "mainHand",
@@ -27,7 +27,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_spear": {
     "id": "darksteel_spear",
-    "icon": "darksteelSpear.svg",
+    "icon": "darksteelSpear.png",
     "category": "combat",
     "weaponType": "spear",
     "slot": "mainHand",
@@ -57,7 +57,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_short_sword": {
     "id": "darksteel_short_sword",
-    "icon": "darksteelShortsword.svg",
+    "icon": "darksteelShortsword.png",
     "category": "combat",
     "weaponType": "shortSword",
     "slot": "mainHand",
@@ -85,7 +85,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_long_sword": {
     "id": "darksteel_long_sword",
-    "icon": "darksteelLongsword.svg",
+    "icon": "darksteelLongsword.png",
     "category": "combat",
     "weaponType": "longSword",
     "slot": "mainHand",
@@ -115,7 +115,7 @@ export const DARKSTEEL_ITEMS = {
   
   "darksteel_battle_axe": {
     "id": "darksteel_battle_axe",
-    "icon": "darksteelBattleAxe.svg",
+    "icon": "darksteelBattleAxe.png",
     "category": "combat",
     "weaponType": "battleAxe",
     "slot": "mainHand",
@@ -145,7 +145,7 @@ export const DARKSTEEL_ITEMS = {
 
   "darksteel_helmet": {
     "id": "darksteel_helmet",
-    "icon": "darksteelHelmet.svg",
+    "icon": "darksteelHelmet.png",
     "category": "combat",
     "slot": "head",
     "name": "darksteel helmet",
@@ -170,7 +170,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_chest_plate": {
     "id": "darksteel_chest_plate",
-    "icon": "darksteelChestplate.svg",
+    "icon": "darksteelChestplate.png",
     "category": "combat",
     "slot": "chest",
     "name": "darksteel Chestplate",
@@ -195,7 +195,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_plate_legs": {
     "id": "darksteel_plate_legs",
-    "icon": "darksteelPlatelegs.svg",
+    "icon": "darksteelPlatelegs.png",
     "category": "combat",
     "slot": "legs",
     "name": "darksteel platelegs",
@@ -220,7 +220,7 @@ export const DARKSTEEL_ITEMS = {
   },
   "darksteel_shield": {
     "id": "darksteel_shield",
-    "icon": "darksteelShield.svg",
+    "icon": "darksteelShield.png",
     "category": "combat",
     "weaponType": "shield",
     "slot": "offHand",

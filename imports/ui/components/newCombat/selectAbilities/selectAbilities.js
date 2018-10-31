@@ -7,6 +7,8 @@ import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+
 import './selectAbilities.html';
 
 Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
@@ -36,8 +38,32 @@ Template.selectAbilitiesPage.events({
 })
 
 Template.selectAbilitiesPage.helpers({
-  availableTomes() {
-    return Items.find({ category: 'tome' }).map((item) => {
+  availableTomes() {    
+    const myAbilities = Abilities.findOne();
+    
+    return Items.find({ category: 'tome' }).fetch().filter((item) => {
+      // find what ability this tome teaches
+      let abilityTaught = ITEMS[item.itemId].teaches.abilityId;
+      let abilityTaughtLevel = ITEMS[item.itemId].teaches.level;
+      
+      // match against the ability in the player's learnt ability list if the player knows this level (or better)
+      let matchingAbility = myAbilities.learntAbilities.filter((ability) => {
+        if (ability.abilityId === abilityTaught) {
+          if (ability.level >= abilityTaughtLevel) {
+            return true;
+          }
+        }
+        return false;
+      });
+      
+      // if there's a match, filter this tome out -- we don't want to show it in the loadout -> abilities tab
+      if (matchingAbility.length > 0) {
+        return false;
+      }
+        
+      // no match?  then allow the tome to be visible
+      return true;
+    }).map((item) => {
       item.primaryAction = {
         description: 'learn',
         item,

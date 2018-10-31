@@ -435,7 +435,7 @@ export const ENCHANTMENT_BUFFS = {
 
   bloody_plate_legs: {
     duplicateTag: 'bloody_plate_legs', // Used to stop duplicate buffs
-    icon: 'bloodyPlatelegs.svg',
+    icon: 'bloodyPlatelegs.png',
     name: 'bloody plate legs',
     description() {
       return `10% chance on hit to inflict 3s bleed.<br />(10% of max damage / second)`;
@@ -486,7 +486,7 @@ export const ENCHANTMENT_BUFFS = {
 
   living_helmet: {
     duplicateTag: 'living_helmet', // Used to stop duplicate buffs
-    icon: 'livingHelmet.svg',
+    icon: 'livingHelmet.png',
     name: 'living helmet',
     description() {
       return `When above 75% hp living helmet takes over. <br />

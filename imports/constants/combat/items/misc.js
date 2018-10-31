@@ -477,7 +477,7 @@ export const MISC_ITEMS = {
   /* Knife - Off handed weapon, minor accuracy and damage increases */
   silver_knife: {
     id: "silver_knife",
-    icon: "silverKnife.svg",
+    icon: "silverKnife.png",
     category: "combat",
     weaponType: "knife",
     slot: "offHand",
@@ -504,7 +504,7 @@ export const MISC_ITEMS = {
 
   titanium_knife: {
     id: "titanium_knife",
-    icon: "titaniumKnife.svg",
+    icon: "titaniumKnife.png",
     category: "combat",
     weaponType: "knife",
     slot: "offHand",
@@ -531,7 +531,7 @@ export const MISC_ITEMS = {
 
   cobalt_knife: {
     id: "cobalt_knife",
-    icon: "cobaltKnife.svg",
+    icon: "cobaltKnife.png",
     category: "combat",
     weaponType: "knife",
     slot: "offHand",
@@ -558,7 +558,7 @@ export const MISC_ITEMS = {
 
   cursed_knife: {
     id: "cursed_knife",
-    icon: "cursedKnife.svg",
+    icon: "cursedKnife.png",
     category: "combat",
     weaponType: "knife",
     slot: "offHand",
@@ -836,7 +836,7 @@ export const MISC_ITEMS = {
 
   living_helmet: {
     id: "living_helmet",
-    icon: "livingHelmet.svg",
+    icon: "livingHelmet.png",
     category: "combat",
     slot: "head",
     name: "living helmet",
@@ -865,7 +865,7 @@ export const MISC_ITEMS = {
 
   bloody_plate_legs: {
     id: "bloody_plate_legs",
-    icon: "bloodyPlatelegs.svg",
+    icon: "bloodyPlatelegs.png",
     category: "combat",
     slot: "legs",
     name: "bloody platelegs",
@@ -893,7 +893,7 @@ export const MISC_ITEMS = {
   /* Defensive Magic Armor */
   opal_chest_plate: {
     id: 'opal_chest_plate',
-    icon: 'opalChestPlate.svg',
+    icon: 'opalChestPlate.png',
     category: 'combat',
     slot: 'chest',
     name: 'opal chest plate',

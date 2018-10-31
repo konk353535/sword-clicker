@@ -25,7 +25,10 @@ Template.consumablesPage.helpers({
         description: 'eat',
         item,
         method() {
-          Meteor.call('items.eat', this.item._id, this.item.itemId);
+          Meteor.call('items.eat', this.item._id, this.item.itemId, (err, res) => {
+            if (err)
+              toastr.warning(err.reason);
+          });
         }
       }
       return item;

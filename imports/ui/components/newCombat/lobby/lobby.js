@@ -513,14 +513,19 @@ Template.lobbyPage.helpers({
   foodItems() {
     return Items.find({
       category: 'food'
-    }, {
-      limit: 8
+    }).fetch().filter((item) => {
+      console.log(item);
+      if (item.hidden) return false;
+      return true;
     }).map((item) => {
       item.primaryAction = {
         description: 'eat',
         item,
         method() {
-          Meteor.call('items.eat', this.item._id, this.item.itemId);
+          Meteor.call('items.eat', this.item._id, this.item.itemId, (err, res) => {
+            if (err)
+              toastr.warning(err.reason);
+          });
         }
       }
       return item;

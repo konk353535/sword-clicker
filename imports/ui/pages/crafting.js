@@ -43,7 +43,10 @@ const itemModifier = function (item) {
                 if (closestTarget) {
                   const targetId = closestTarget.data('id');
                   if (targetId) {
-                    Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId })
+                    Meteor.call('items.use', { baseItemId: this.item._id, targetItemId: targetId }, (err, res) => {
+                      if (err)
+                        toastr.warning(err.reason);
+                    });
                   }
                 }
 

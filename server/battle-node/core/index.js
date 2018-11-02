@@ -123,13 +123,29 @@ export default class Battle {
     if (this.tickCount === 0) {
       this.initPassives();
     }
+    
+    // first 1s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
+    if (this.tickCount < 7) // ticks 0-6 = 1.4s of no combat for every new combat and ticks 2-6 = 1.0s of no combat for new room change (exploration)
+    {
+      this.tickCount++;
+      return;
+    }
+    
+    if (this.tickCount === 7)
+    {
+      // first tick where action occurs, let's do things out of sequence by allowing battleActions to occur
+      // this allows target changes, taunting, heals, etc. for a few ticks at the start of combat and each new room 
+      
+      this.applyBattleActions(); 
+    }
 
     this.tickUnitsAndBuffs();
 
     this.unitAutoAttacks(this.enemies);
     this.unitAutoAttacks(this.units);
 
-    this.applyBattleActions();
+    if (this.tickCount !== 7)
+      this.applyBattleActions();
 
     this.updateAbilityCooldowns();
 
@@ -174,13 +190,16 @@ export default class Battle {
   }
 
   sendFullState() {
-    this.io.of(`/${this.balancer}`).emit('fullState', {
-      battle: {
-        units: this.units.map(unit => unit.raw()),
-        enemies: this.enemies.map(unit => unit.raw()),
-        tickEvents: this.tickEvents
-      }
-    });
+    try {
+      this.io.of(`/${this.balancer}`).emit('fullState', {
+        battle: {
+          units: this.units.map(unit => unit.raw()),
+          enemies: this.enemies.map(unit => unit.raw()),
+          tickEvents: this.tickEvents
+        }
+      });
+    } catch (err) {
+    }
   }
 
   end() {
@@ -295,6 +314,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
     // Before we end the battle, make sure it shouldn't continue
     if (this.isExplorationRun && this.units.length > 0) {
       if (this.room !== 'boss' && this.room < 7) {
+        this.tickCount = 2; // give us back a delay
         this.room += 1;
         // Strip out old dead enemies
         this.deadEnemies = [];
@@ -333,11 +353,14 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 // Tick method #7
 Battle.prototype.postTick = function postTick() {
   if (this.tickEvents.length > 0 || this.deltaEvents.length > 0) {
-    this.io.of(`/${this.balancer}`).emit('tick', {
-      tickEvents: this.tickEvents,
-      deltaEvents: this.deltaEvents,
-      tickCount: this.tickCount
-    });    
+    try {
+      this.io.of(`/${this.balancer}`).emit('tick', {
+        tickEvents: this.tickEvents,
+        deltaEvents: this.deltaEvents,
+        tickCount: this.tickCount
+      });    
+    } catch (err) {
+    }
   }
 
   this.deltaEvents = [];

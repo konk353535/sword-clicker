@@ -74,9 +74,13 @@ Template.displayCombatStats.helpers({
         return;
       }
 
-      let statLabel = statsMap[key].toFixed(1);
+      let fixedDigits = 1;
+      if (key === 'attackSpeed')
+        fixedDigits = 2;
+      
+      let statLabel = statsMap[key].toFixed(fixedDigits);
       if (extraStatsMap[key]) {
-        statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(1)}`;
+        statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(fixedDigits)}`;
       }
 
       statsArr.push({
@@ -121,8 +125,12 @@ Template.displayCombatStats.helpers({
         return;
       }
 
+      let fixedDigits = 1;
+      if (key === 'attackSpeed')
+        fixedDigits = 2;
+      
       statsArr.push({
-        label: statsMap[key].toFixed(1) + ` ${descriptors(key)}`,
+        label: statsMap[key].toFixed(fixedDigits) + ` ${descriptors(key)}`,
         key
       });
     });

@@ -65,7 +65,7 @@ export default function({ ability, caster, targets }) {
   
   if ((ability.target === 'currentEnemy') || (ability.target === 'singleEnemy'))
   {
-    if (!targets || targets.length === 0)
+    if (!targets || (targets.length === 0))
       return; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)
     
     if (!targets[0].stats || !targets[0].stats.health || (targets[0].stats.health <= 0))

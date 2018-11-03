@@ -127,6 +127,8 @@ export default class Battle {
     // first 1s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
     if (this.tickCount < 7) // ticks 0-6 = 1.4s of no combat for every new combat and ticks 2-6 = 1.0s of no combat for new room change (exploration)
     {
+      this.tickUnitsAndBuffs();
+
       this.tickCount++;
       this.postTick();
       return;
@@ -237,19 +239,16 @@ export default class Battle {
 
 // Tick method #1
 Battle.prototype.initPassives = function initPassives() {
-  // a bit of a hack, but we're trying to convince passive buffs not to cast multiple times
-  if ((this.allAliveUnits) && (this.allAliveUnits.length > 0) && (!this.allAliveUnits[0].buffs || !this.allAliveUnits[0].buffs.length === 0)) {
-    this.allAliveUnits.forEach((unit) => {
-      if (unit.abilities) {
-        unit.abilities.forEach((ability) => {
-          if (ability.isPassive) {
-            const targets = [unit.id];
-            ability.cast(targets);
-          }
-        });
-      }
-    });
-  }
+  this.allAliveUnits.forEach((unit) => {
+    if (unit.abilities) {
+      unit.abilities.forEach((ability) => {
+        if (ability.isPassive) {
+          const targets = [unit.id];
+          ability.cast(targets);
+        }
+      });
+    }
+  });
 }
 // Tick method #2
 Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {

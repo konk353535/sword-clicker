@@ -124,31 +124,30 @@ export default class Battle {
       this.initPassives();
     }
     
-    // first 1s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
-    if (this.tickCount < 7) // ticks 0-6 = 1.4s of no combat for every new combat and ticks 2-6 = 1.0s of no combat for new room change (exploration)
+    // first 0.8s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
+    if (this.tickCount < 4) // ticks 0-3 = 0.8s of no combat for every new combat and ticks 2-3 = 0.4s of no combat for new room change (exploration)
     {
       this.tickUnitsAndBuffs();
 
+      // no auto-attacks
+      
+      this.applyBattleActions(); 
+      
+      this.updateAbilityCooldowns();
+      
+      // no game-over conditions
+      
       this.tickCount++;
       this.postTick();
       return;
     }
     
-    if (this.tickCount === 7)
-    {
-      // First tick where action occurs, let's do things out of sequence by allowing battleActions to resolve first.
-      // This allows target changes, taunting, heals, etc. for a few ticks at the start of combat and each new room.
-      
-      this.applyBattleActions(); 
-    }
-
     this.tickUnitsAndBuffs();
 
     this.unitAutoAttacks(this.enemies);
     this.unitAutoAttacks(this.units);
 
-    if (this.tickCount !== 7)
-      this.applyBattleActions();
+    this.applyBattleActions();
 
     this.updateAbilityCooldowns();
 
@@ -322,7 +321,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
     // Before we end the battle, make sure it shouldn't continue
     if (this.isExplorationRun && this.units.length > 0) {
       if (this.room !== 'boss' && this.room < 7) {
-        this.tickCount = 2; // give us back a delay
+        this.tickCount = 3; // give us back a delay
         this.room += 1;
         this.deltaEvents.push({
           path: 'room',

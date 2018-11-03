@@ -35,10 +35,10 @@ export default function({ ability, caster, targets }) {
   if (ability.target === 'currentEnemy') {
     // Is current target alive
     let currentEnemy = this.allUnitsMap[caster.target];
-    if (!currentEnemy || (currentEnemy.stats && currentEnemy.stats.health && currentEnemy.stats.health <= 0))
+    if (!currentEnemy || !currentEnemy.stats || !currentEnemy.stats.health || (currentEnemy.stats.health <= 0))
       if (this.enemies.length > 0)
         currentEnemy = this.enemies[0];
-    if (!currentEnemy || (currentEnemy.stats && currentEnemy.stats.health && currentEnemy.stats.health <= 0))
+    if (!currentEnemy || !currentEnemy.stats || !currentEnemy.stats.health || (currentEnemy.stats.health <= 0))
       return false; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)
     targets = [currentEnemy];
   } else if (ability.target === 'allEnemies') {
@@ -61,6 +61,15 @@ export default function({ ability, caster, targets }) {
     } else {
       targets = [];
     }
+  }
+  
+  if ((ability.target === 'currentEnemy') || (ability.target === 'singleEnemy'))
+  {
+    if (!targets || targets.length === 0)
+      return; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)
+    
+    if (!targets[0].stats || !targets[0].stats.health || !targets[0].stats.health <= 0)
+      return; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)    
   }
 
   // Apply ability buffs to targets

@@ -124,34 +124,22 @@ export default class Battle {
       this.initPassives();
     }
     
-    // first 0.8s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
-    if (this.tickCount < 4) // ticks 0-3 = 0.8s of no combat for every new combat and ticks 2-3 = 0.4s of no combat for new room change (exploration)
-    {
-      this.tickUnitsAndBuffs();
+    // First 4 ticks (~800ms) of every new combat and 2 ticks (~400ms) of new room transitions for full-floor explorations
+    // will deny auto-attacks and losses, giving players a chance to assess the combat and use taunts and heals.
 
-      // no auto-attacks
-      
-      this.applyBattleActions(); 
-      
-      this.updateAbilityCooldowns();
-      
-      // no game-over conditions
-      
-      this.tickCount++;
-      this.postTick();
-      return;
-    }
-    
     this.tickUnitsAndBuffs();
 
-    this.unitAutoAttacks(this.enemies);
-    this.unitAutoAttacks(this.units);
+    if (this.tickCount >= 4) {
+      this.unitAutoAttacks(this.enemies);
+      this.unitAutoAttacks(this.units);
+    }
 
     this.applyBattleActions();
 
     this.updateAbilityCooldowns();
 
-    this.checkGameOverConditions();
+    if (this.tickCount >= 4) 
+      this.checkGameOverConditions();
 
     this.tickCount++;
     this.postTick();

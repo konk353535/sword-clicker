@@ -35,11 +35,11 @@ export default function({ ability, caster, targets }) {
   if (ability.target === 'currentEnemy') {
     // Is current target alive
     let currentEnemy = this.allUnitsMap[caster.target];
-    if (!currentEnemy)
+    if (!currentEnemy || (currentEnemy.stats && currentEnemy.stats.health && currentEnemy.stats.health <= 0))
       if (this.enemies.length > 0)
         currentEnemy = this.enemies[0];
-    if (!currentEnemy)
-      return false; // can't on a target enemy cast without a target enemy (returning false will prevent cooldown, resource expenditure, etc.)
+    if (!currentEnemy || (currentEnemy.stats && currentEnemy.stats.health && currentEnemy.stats.health <= 0))
+      return false; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)
     targets = [currentEnemy];
   } else if (ability.target === 'allEnemies') {
     targets = this.enemies;

@@ -33,7 +33,7 @@ export default function applyBattleActions() {
       }
     } else if (abilityId === 'clickAttack') {
       // sorry, but dead players can't use their amulets
-      if (casterUnit.stats.health <= 0 || !casterUnit.stats.health)
+      if (!casterUnit.stats.health || casterUnit.stats.health <= 0)
         return;
       
       const targetId = action.targets[0];

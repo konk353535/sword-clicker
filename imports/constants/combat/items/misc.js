@@ -215,6 +215,59 @@ export const MISC_ITEMS = {
   },
 
   /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
+  copper_kite_shield: {
+    id: 'copper_kite_shield',
+    icon: 'copperKiteShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'copper kite shield',
+    sellPrice: 75,
+    description: 'Provides high defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 2,
+      defense: 3.5,
+      armor: 17,
+      attackSpeed: -0.15,
+      accuracy: -2.8
+    },
+    extraStats: {
+      healthMax: 1,
+      defense: 1.2,
+      armor: 5.1,
+      accuracy: 0.6
+    }
+  },
+  "tin_kite_shield": {
+    "id": "tin_kite_shield",
+    "icon": "tinKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "tin kite shield",
+    "sellPrice": 75,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 2.8,
+      "defense": 4.2 * 1.15,
+      "armor": 14 * 1.7,
+      attackSpeed: -0.15,
+      accuracy: -4.2 * 1.15 * 0.5
+    },
+    "extraStats": {
+      "healthMax": 0.8,
+      "defense": 1.3 * 1.15,
+      "armor": 4.2 * 1.7,
+      accuracy: 1.3 * 1.15 * 0.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
+  },
   bronze_kite_shield: {
     id: "bronze_kite_shield",
     icon: "bronzeKiteShield.png",
@@ -227,14 +280,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 3.6,
-      defense: 6.2,
-      armor: 30.6,
-      attackSpeed: -0.15
+      defense: 6.3,
+      armor: 30.9,
+      attackSpeed: -0.15,
+      accuracy: -4.1
     },
     extraStats: {
       healthMax: 1.1,
-      defense: 1.3,
-      armor: 5.0
+      defense: 2.0,
+      armor: 9.4,
+      accuracy: 1.0
     },
     requiredEquip: [{
       type: 'skill',
@@ -242,27 +297,144 @@ export const MISC_ITEMS = {
       level: 10
     }]
   },
-
-  steel_kite_shield: {
-    id: "steel_kite_shield",
-    icon: "steelKiteShield.png",
-    category: "combat",
-    weaponType: "shield",
-    slot: "offHand",
-    name: "steel kite shield",
-    sellPrice: 500,
-    description: "Provides high defense bonuses",
-    isEquippable: true,
-    stats: {
-      healthMax: 8.6,
-      defense: 14.9,
-      armor: 73.5,
-      attackSpeed: -0.15
+  "iron_kite_shield": {
+    "id": "iron_kite_shield",
+    "icon": "ironKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "iron kite shield",
+    "sellPrice": 275,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 4.5,
+      "defense": 6.9 * 1.15,
+      "armor": 22.8 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -3.5 * 1.15
     },
-    extraStats: {
-      healthMax: 2.6,
-      defense: 4,
-      armor: 10
+    "extraStats": {
+      "healthMax": 1.3,
+      "defense": 2.1 * 1.15,
+      "armor": 6.8 * 1.70,
+      accuracy: 1.1 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
+  },
+  "silver_kite_shield": {
+    "id": "silver_kite_shield",
+    "icon": "silverKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "silver kite shield",
+    "sellPrice": 400,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 5.4,
+      "defense": 8.3 * 1.15,
+      "armor": 27.4 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -4.2 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 1.6,
+      "defense": 2.5 * 1.15,
+      "armor": 8.2 * 1.70,
+      accuracy: 1.3 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+  "gold_kite_shield": {
+    "id": "gold_kite_shield",
+    "icon": "goldKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "gold kite shield",
+    "sellPrice": 500,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 6.5,
+      "defense": 10 * 1.15,
+      "armor": 32.9 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -5 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 2,
+      "defense": 3 * 1.15,
+      "armor": 9.9 * 1.70,
+      accuracy: 1.5 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
+  },
+  "carbon_kite_shield": {
+    "id": "carbon_kite_shield",
+    "icon": "carbonKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "carbon kite shield",
+    "sellPrice": 650,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 7.6,
+      "defense": 11.7 * 1.15,
+      "armor": 38.5 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -5.9 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 2.3,
+      "defense": 3.5 * 1.15,
+      "armor": 11.5 * 1.70,
+      accuracy: 1.8 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
+  },
+  "steel_kite_shield": {
+    "id": "steel_kite_shield",
+    "icon": "steelKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "steel kite shield",
+    "sellPrice": 750,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 8.6,
+      "defense": 13.2 * 1.15,
+      "armor": 43.5 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -6.6 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 2.6,
+      "defense": 4 * 1.15,
+      "armor": 13 * 1.70,
+      accuracy: 2 * 1.15
     },
     requiredEquip: [{
       type: 'skill',
@@ -270,27 +442,115 @@ export const MISC_ITEMS = {
       level: 35
     }]
   },
-
-  obsidian_kite_shield: {
-    id: "obsidian_kite_shield",
-    icon: "obsidianKiteShield.png",
-    category: "combat",
-    weaponType: "shield",
-    slot: "offHand",
-    name: "obsidian kite shield",
-    sellPrice: 950,
-    description: "Provides high defense bonuses",
-    isEquippable: true,
-    stats: {
-      healthMax: 14.8,
-      defense: 26,
-      armor: 128.4,
-      attackSpeed: -0.15
+  "platinum_kite_shield": {
+    "id": "platinum_kite_shield",
+    "icon": "platinumKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "platinum kite shield",
+    "sellPrice": 900,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 10.2,
+      "defense": 7.9 * 1.15,
+      "armor": 51.8 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -15.7 * 1.15
     },
-    extraStats: {
-      healthMax: 4.4,
-      defense: 6.9,
-      armor: 15.6
+    "extraStats": {
+      "healthMax": 3.1,
+      "defense": 4.7 * 1.15,
+      "armor": 15.5 * 1.70,
+      accuracy: 2.4 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
+  },
+  "titanium_kite_shield": {
+    "id": "titanium_kite_shield",
+    "icon": "titaniumKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "titanium kite shield",
+    "sellPrice": 1000,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 11.7,
+      "defense": 18.1 * 1.15,
+      "armor": 59.6 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -9.1 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 3.5,
+      "defense": 5.4 * 1.15,
+      "armor": 17.9 * 1.70,
+      accuracy: 2.7 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
+  },
+  "tungsten_kite_shield": {
+    "id": "tungsten_kite_shield",
+    "icon": "tungstenKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "tungsten kite shield",
+    "sellPrice": 1200,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 13.2,
+      "defense": 20.5 * 1.15,
+      "armor": 67.3 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -10.3 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 4,
+      "defense": 6.1 * 1.15,
+      "armor": 20.2 * 1.70,
+      accuracy: 3.1 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
+  },
+  "obsidian_kite_shield": {
+    "id": "obsidian_kite_shield",
+    "icon": "obsidianKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "obsidian kite shield",
+    "sellPrice": 1350,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 14.8,
+      "defense": 23 * 1.15,
+      "armor": 75.4 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -11.5 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 4.4,
+      "defense": 6.9 * 1.15,
+      "armor": 22.6 * 1.70,
+      accuracy: 3.5 * 1.15
     },
     requiredEquip: [{
       type: 'skill',
@@ -298,27 +558,144 @@ export const MISC_ITEMS = {
       level: 55
     }]
   },
-
-  meteorite_kite_shield: {
-    id: "meteorite_kite_shield",
-    icon: "meteoriteKiteShield.png",
-    category: "combat",
-    weaponType: "shield",
-    slot: "offHand",
-    name: "meteorite kite shield",
-    sellPrice: 1250,
-    description: "Provides large defense bonuses",
-    isEquippable: true,
-    stats: {
-      healthMax: 24.4,
-      defense: 43.1,
-      armor: 210.8,
-      attackSpeed: -0.15
+  "cobalt_kite_shield": {
+    "id": "cobalt_kite_shield",
+    "icon": "cobaltKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "cobalt kite shield",
+    "sellPrice": 1500,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 16.6,
+      "defense": 25.8 * 1.15,
+      "armor": 84.4 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -12.9 * 1.15
     },
-    extraStats: {
-      healthMax: 7.3,
-      defense: 11.4,
-      armor: 37.4
+    "extraStats": {
+      "healthMax": 5,
+      "defense": 7.7 * 1.15,
+      "armor": 25.3 * 1.70,
+      accuracy: 3.9 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
+  },
+  "mithril_kite_shield": {
+    "id": "mithril_kite_shield",
+    "icon": "mithrilKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "mithril kite shield",
+    "sellPrice": 1600,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 18.4,
+      "defense": 28.6 * 1.15,
+      "armor": 93.7 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -14.3 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 5.5,
+      "defense": 8.6 * 1.15,
+      "armor": 28.1 * 1.70,
+      accuracy: 4.3 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
+  },
+  "adamantium_kite_shield": {
+    "id": "adamantium_kite_shield",
+    "icon": "adamantiumKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "adamantium kite shield",
+    "sellPrice": 1800,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 20.2,
+      "defense": 31.5 * 1.15,
+      "armor": 103.1 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -15.8 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 6.1,
+      "defense": 9.5 * 1.15,
+      "armor": 30.9 * 1.70,
+      accuracy: 4.8 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
+  },
+  "orichalcum_kite_shield": {
+    "id": "orichalcum_kite_shield",
+    "icon": "orichalcumKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "orichalcum kite shield",
+    "sellPrice": 1800,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 22,
+      "defense": 34.3 * 1.15,
+      "armor": 112.4 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -17.2 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 6.6,
+      "defense": 10.3 * 1.15,
+      "armor": 33.7 * 1.70,
+      accuracy: 5.2 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
+  },
+  "meteorite_kite_shield": {
+    "id": "meteorite_kite_shield",
+    "icon": "meteoriteKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "meteorite kite shield",
+    "sellPrice": 2000,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 24.4,
+      "defense": 38.1 * 1.15,
+      "armor": 124.8 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -19.1 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 7.3,
+      "defense": 11.4 * 1.15,
+      "armor": 37.4 * 1.70,
+      accuracy: 5.7 * 1.15
     },
     requiredEquip: [{
       type: 'skill',
@@ -326,6 +703,184 @@ export const MISC_ITEMS = {
       level: 80
     }]
   },
+  "fairy_steel_kite_shield": {
+    "id": "fairy_steel_kite_shield",
+    "icon": "fairySteelKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "fairy steel kite shield",
+    "sellPrice": 2250,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 26.8,
+      "defense": 41.9 * 1.15,
+      "armor": 137.3 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -21.0 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 8,
+      "defense": 12.6 * 1.15,
+      "armor": 41.2 * 1.70,
+      accuracy: 6.3 * 1.15,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
+  },
+  "elven_steel_kite_shield": {
+    "id": "elven_steel_kite_shield",
+    "icon": "elvenSteelKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "elven steel kite shield",
+    "sellPrice": 2500,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 30,
+      "defense": 46.9 * 1.15,
+      "armor": 153.8 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -23.5 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 9,
+      "defense": 14.1 * 1.15,
+      "armor": 46.1 * 1.70,
+      accuracy: 7.1 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
+  },
+  "cursed_kite_shield": {
+    "id": "cursed_kite_shield",
+    "icon": "cursedKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "cursed kite shield",
+    "sellPrice": 3000,
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7,
+      "defense": 51.1 * 1.15,
+      "armor": 167.6 * 1.70,
+      attackSpeed: -0.15,
+      accuracy: -25.6 * 1.15
+    },
+    "extraStats": {
+      "healthMax": 9.8,
+      "defense": 15.3 * 1.15,
+      "armor": 50.3 * 1.70,
+      accuracy: 6.7 * 1.15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
+  },
+  "darksteel_kite_shield": {
+    "id": "darksteel_kite_shield",
+    "icon": "darksteelKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "darksteel kite shield",
+    "sellPrice": Math.round(3000 * 1.1),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.1,
+      "defense": 51.1 * 1.15 * 1.1,
+      "armor": 167.6 * 1.70 * 1.1,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.1
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.1,
+      "defense": 15.3 * 1.15 * 1.1,
+      "armor": 50.3 * 1.70 * 1.1,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },  
+  "radiant_kite_shield": {
+    "id": "radiant_kite_shield",
+    "icon": "radiantKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "radiant kite shield",
+    "sellPrice": Math.round(3000 * 1.2),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.2,
+      "defense": 51.1 * 1.15 * 1.2,
+      "armor": 167.6 * 1.70 * 1.2,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.2
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.2,
+      "defense": 15.3 * 1.15 * 1.2,
+      "armor": 50.3 * 1.70 * 1.2,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },  
+  "astral_kite_shield": {
+    "id": "astral_kite_shield",
+    "icon": "astralKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "astral kite shield",
+    "sellPrice": Math.round(3000 * 1.3),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.3,
+      "defense": 51.1 * 1.15 * 1.3,
+      "armor": 167.6 * 1.70 * 1.3,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.3
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.3,
+      "defense": 15.3 * 1.15 * 1.3,
+      "armor": 50.3 * 1.70 * 1.3,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },
+  
 
   /* Buckler -30% armor, -10% defense, + small accuracy */
 
@@ -1130,5 +1685,50 @@ export const MISC_ITEMS = {
       level: 75
     }],
     enchantments: ['winged_shield']
+  },
+  
+  orb_blue: {
+    id: 'orb_blue',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'blue orb',
+    sellPrice: 1000,
+    description: 'A mystical device of wisdom and knowledge',
+    isEquippable: true,
+    stats: {
+      magicPower: 3,
+      healingPower: 0.1,
+      magicArmor: 4
+    },
+    extraStats: {
+      magicPower: 2,
+      healingPower: 1.9,
+      magicArmor: 1
+    }
+  },
+  
+  orb_green: {
+    id: 'orb_green',
+    icon: 'orbGreen.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'green orb',
+    sellPrice: 1000,
+    description: 'A mystical device of wisdom and knowledge',
+    isEquippable: true,
+    stats: {
+      magicPower: 9,
+      healingPower: 0.1,
+      magicArmor: 12
+    },
+    extraStats: {
+      magicPower: 4,
+      healingPower: 3.9,
+      magicArmor: 2
+    }
   }
+  
 };

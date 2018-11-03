@@ -127,8 +127,6 @@ export default class Battle {
     // first 1s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
     if (this.tickCount < 7) // ticks 0-6 = 1.4s of no combat for every new combat and ticks 2-6 = 1.0s of no combat for new room change (exploration)
     {
-      this.tickUnitsAndBuffs();
-      
       this.tickCount++;
       this.postTick();
       return;

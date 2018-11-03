@@ -127,14 +127,17 @@ export default class Battle {
     // first 1s worth of ticks of every new combat are 'paused', giving players a chance to assess the combat
     if (this.tickCount < 7) // ticks 0-6 = 1.4s of no combat for every new combat and ticks 2-6 = 1.0s of no combat for new room change (exploration)
     {
+      this.tickUnitsAndBuffs();
+      
       this.tickCount++;
+      this.postTick();
       return;
     }
     
     if (this.tickCount === 7)
     {
-      // first tick where action occurs, let's do things out of sequence by allowing battleActions to occur
-      // this allows target changes, taunting, heals, etc. for a few ticks at the start of combat and each new room 
+      // First tick where action occurs, let's do things out of sequence by allowing battleActions to resolve first.
+      // This allows target changes, taunting, heals, etc. for a few ticks at the start of combat and each new room.
       
       this.applyBattleActions(); 
     }
@@ -195,7 +198,12 @@ export default class Battle {
         battle: {
           units: this.units.map(unit => unit.raw()),
           enemies: this.enemies.map(unit => unit.raw()),
-          tickEvents: this.tickEvents
+          tickEvents: this.tickEvents,
+          floor: this.floor,
+          room: this.room,
+          level: this.level,
+          wave: this.wave,
+          id: this.id
         }
       });
     } catch (err) {
@@ -231,16 +239,19 @@ export default class Battle {
 
 // Tick method #1
 Battle.prototype.initPassives = function initPassives() {
-  this.allAliveUnits.forEach((unit) => {
-    if (unit.abilities) {
-      unit.abilities.forEach((ability) => {
-        if (ability.isPassive) {
-          const targets = [unit.id];
-          ability.cast(targets);
-        }
-      });
-    }
-  });
+  // a bit of a hack, but we're trying to convince passive buffs not to cast multiple times
+  if ((this.allAliveUnits) && (this.allAliveUnits.length > 0) && (!this.allAliveUnits[0].buffs || !this.allAliveUnits[0].buffs.length === 0)) {
+    this.allAliveUnits.forEach((unit) => {
+      if (unit.abilities) {
+        unit.abilities.forEach((ability) => {
+          if (ability.isPassive) {
+            const targets = [unit.id];
+            ability.cast(targets);
+          }
+        });
+      }
+    });
+  }
 }
 // Tick method #2
 Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
@@ -316,6 +327,11 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
       if (this.room !== 'boss' && this.room < 7) {
         this.tickCount = 2; // give us back a delay
         this.room += 1;
+        this.deltaEvents.push({
+          path: 'room',
+          type: 'abs',
+          value: this.room
+        });
         // Strip out old dead enemies
         this.deadEnemies = [];
         // Populate battle with next room

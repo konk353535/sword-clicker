@@ -994,7 +994,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        if (Math.random() <= 0.5) {
+        if (Math.random() <= 0.25) {
           const constants = buff.constants.constants;
           const armorReduction = 0.66;
           const newBuff = {
@@ -1002,6 +1002,7 @@ export const MONSTER_BUFFS = {
             data: {
               duration: 10,
               allowDuplicates: true,
+              duplicateCap: 2,
               totalDuration: 10,
               armorReduction,
               icon: 'armorReduction.svg',
@@ -1009,7 +1010,7 @@ export const MONSTER_BUFFS = {
             }
           };
 
-          // Add healing reduction buff
+          // Add armor reduction buff
           addBuff({ buff: newBuff, target: defender, caster: attacker });
         }
       },

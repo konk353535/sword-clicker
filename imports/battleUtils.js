@@ -12,12 +12,31 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
 }
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
+  let existingBuff;
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
     // Check if buff already exists
-    const existingBuff = target.buffs.find((b) => b.id === buff.id)
+    existingBuff = target.buffs.find((b) => b.id === buff.id)
     if (existingBuff) {
       removeBuff({ target, buff: existingBuff, caster });
+    }
+  } else if (buff.data.duplicateCap && buff.data.duplicateCap > 0) {
+    // Some buffs can only be applied X number of times
+    // Check if buff already exists
+    let iCountHowMany = 0;
+    target.buffs.forEach((b) => {
+      if (b.id === buff.id) {
+        iCountHowMany++
+      }
+    });    
+    if (iCountHowMany > buff.data.duplicateCap) {
+      while (iCountHowMany > buff.data.duplicateCap) {
+        iCountHowMany--;
+        existingBuff = target.buffs.find((b) => b.id === buff.id)
+        if (existingBuff) {
+          removeBuff({ target, buff: existingBuff, caster });
+        }
+      }
     }
   }
 

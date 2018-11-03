@@ -42,6 +42,11 @@ export const TOWER_FLOOR_2 = {
     name: 'Hidden Cove',
     enemies: ['echidna'],
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tin_kite_shield', amount: 1 },
+      ]
+    }, {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }

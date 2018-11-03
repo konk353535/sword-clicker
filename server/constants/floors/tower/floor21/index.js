@@ -47,6 +47,11 @@ export const TOWER_FLOOR_21 = {
     name: 'Old Tree',
     enemies: ['bird', 'cut_purse'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_kite_shield', amount: 1 }
+      ]
+    },{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'darksteel_axe_scroll', amount: 1 },

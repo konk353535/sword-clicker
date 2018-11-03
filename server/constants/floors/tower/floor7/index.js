@@ -44,6 +44,11 @@ export const TOWER_FLOOR_7 = {
     name: 'Frozen Peak',
     enemies: ['ice_giant'],
     rewards: orderLootTable(LEVEL_SEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'carbon_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }

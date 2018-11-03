@@ -45,6 +45,11 @@ export const TOWER_FLOOR_14 = {
         { type: 'item', itemId: 'mithril_wand', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'mithril_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'violet_wizard_hat', amount: 1 },

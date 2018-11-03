@@ -72,6 +72,7 @@ export const TOWER_FLOOR_5 = {
     }, {
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'silver_kite_shield', amount: 1 },
         { type: 'item', itemId: 'blue_trident', amount: 1 }
       ]
     }]))

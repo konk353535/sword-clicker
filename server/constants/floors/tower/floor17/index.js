@@ -39,7 +39,7 @@ export const TOWER_FLOOR_17 = {
     name: 'Rocky Beach',
     enemies: ['crab', 'crab', 'crab'],
     rewards: orderLootTable(LEVEL_SEVENTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'meteorite_kite_shield', amount: 1 }
       ]

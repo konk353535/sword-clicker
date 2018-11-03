@@ -44,6 +44,11 @@ export const TOWER_FLOOR_13 = {
     name: 'Hell',
     enemies: ['demon', 'demon', 'worm'],
     rewards: orderLootTable(LEVEL_THIRTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'cobalt_knife', amount: 1 }

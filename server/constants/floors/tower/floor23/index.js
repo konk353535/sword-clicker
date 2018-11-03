@@ -47,6 +47,11 @@ export const TOWER_FLOOR_23 = {
     name: 'Mining Cave',
     enemies: ['angry_miner', 'earth_mage'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'astral_kite_shield', amount: 1 }
+      ]
+    },{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_axe_scroll', amount: 1 },

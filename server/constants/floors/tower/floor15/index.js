@@ -44,6 +44,11 @@ export const TOWER_FLOOR_15 = {
     name: 'Dark Chasm',
     enemies: ['crab'],
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'adamantium_rapiers', amount: 1 }

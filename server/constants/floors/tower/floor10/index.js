@@ -41,6 +41,7 @@ export const TOWER_FLOOR_10 = {
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'titanium_kite_shield', amount: 1 },
         { type: 'item', itemId: 'titanium_knife', amount: 1 }
       ]
     }, {

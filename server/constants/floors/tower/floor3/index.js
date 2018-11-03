@@ -41,7 +41,7 @@ export const TOWER_FLOOR_3 = {
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'bronze_kite_shield', amount: 1 }
+        { type: 'item', itemId: 'bronze_kite_shield', amount: 1 } // intentionally put in here twice since this room has no loot :(
       ]
     }]))
   },
@@ -49,6 +49,11 @@ export const TOWER_FLOOR_3 = {
     name: 'Abandoned Dojo',
     enemies: ['young_ninja'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }

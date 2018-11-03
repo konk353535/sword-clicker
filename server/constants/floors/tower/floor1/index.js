@@ -43,6 +43,11 @@ export const TOWER_FLOOR_1 = {
     name: 'Abandoned Mine',
     enemies: ['angry_miner'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_stone', amount: 5 },

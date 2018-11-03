@@ -49,6 +49,11 @@ export const TOWER_FLOOR_18 = {
     name: 'Eternal Struggle',
     enemies: ['demon', 'angel'],
     rewards: orderLootTable(LEVEL_EIGHTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'fairy_steel_kite_shield', amount: 1 }
+      ]
+    },{
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'fairy_steel_rapiers', amount: 1 }

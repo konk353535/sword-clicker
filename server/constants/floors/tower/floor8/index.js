@@ -52,6 +52,7 @@ export const TOWER_FLOOR_8 = {
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'steel_kite_shield', amount: 1 },
         { type: 'item', itemId: 'purple_trident', amount: 1 }
       ]
     }, {

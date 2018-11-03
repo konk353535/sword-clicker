@@ -47,6 +47,11 @@ export const TOWER_FLOOR_22 = {
     name: 'Mage\'s Caravan',
     enemies: ['warden', 'fire_mage'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'radiant_kite_shield', amount: 1 }
+      ]
+    },{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_axe_scroll', amount: 1 },

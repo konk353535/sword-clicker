@@ -52,7 +52,6 @@ export const TOWER_FLOOR_12 = {
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'obsidian_kite_shield', amount: 1 },
         { type: 'item', itemId: 'obsidian_hammer', amount: 1 },
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
@@ -69,6 +68,11 @@ export const TOWER_FLOOR_12 = {
     name: 'Beach Pit',
     enemies: ['monk', 'crab'],
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'obsidian_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'ore_obsidian', amount: 1 },

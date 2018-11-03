@@ -39,6 +39,11 @@ export const TOWER_FLOOR_11 = {
     name: 'Warlock\'s Palace',
     enemies: ['demon', 'fire_mage'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_kite_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'tungsten_buckler', amount: 1 }

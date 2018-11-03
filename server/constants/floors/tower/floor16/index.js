@@ -45,6 +45,7 @@ export const TOWER_FLOOR_16 = {
     rewards: orderLootTable(LEVEL_SIXTEEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'orichalcum_kite_shield', amount: 1 },
         { type: 'item', itemId: 'meteor_tome', amount: 1 }
       ]
     }, {

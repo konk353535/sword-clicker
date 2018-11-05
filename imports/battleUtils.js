@@ -22,15 +22,15 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
     }
   } else if (buff.data.duplicateCap && buff.data.duplicateCap > 0) {
     // Some buffs can only be applied X number of times
-    // Check if buff already exists
+    // Check if buff already exists X number of times (or more, somehow)
     let iCountHowMany = 0;
     target.buffs.forEach((b) => {
       if (b.id === buff.id) {
         iCountHowMany++
       }
     });    
-    if (iCountHowMany > buff.data.duplicateCap) {
-      while (iCountHowMany > buff.data.duplicateCap) {
+    if (iCountHowMany >= buff.data.duplicateCap) {
+      while (iCountHowMany >= buff.data.duplicateCap) {
         iCountHowMany--;
         existingBuff = target.buffs.find((b) => b.id === buff.id)
         if (existingBuff) {

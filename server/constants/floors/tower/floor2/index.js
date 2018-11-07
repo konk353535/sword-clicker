@@ -18,7 +18,12 @@ export const TOWER_FLOOR_2 = {
   3: {
     name: 'Mossy Garden',
     enemies: ['snail'],
-    rewards: LEVEL_TWO_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tin_knife', amount: 1 }
+      ]
+    }
   },
   4: {
     name: 'Minor Earth Altar',

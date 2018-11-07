@@ -23,6 +23,11 @@ export const TOWER_FLOOR_11 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_knife', amount: 1 }
+      ]
     }]))
   },
   4: {

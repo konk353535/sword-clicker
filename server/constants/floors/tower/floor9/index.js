@@ -27,6 +27,11 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'catnip', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'platinum_knife', amount: 1 }
+      ]
     }]))
   },
   4: {

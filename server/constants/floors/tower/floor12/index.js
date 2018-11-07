@@ -28,6 +28,11 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'nasturtium', amount: 1 },
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'obsidian_knife', amount: 1 }
+      ]
     }]))
   },
   4: {

@@ -22,7 +22,12 @@ export const TOWER_FLOOR_1 = {
   3: {
     name: 'Under Garden',
     enemies: ['worm'],
-    rewards: LEVEL_ONE_LOOT_TABLE
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_knife', amount: 1 }
+      ]
+    }    
   },
   4: {
     name: 'Flower Field',

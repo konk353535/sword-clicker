@@ -34,6 +34,11 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'oak_log', amount: 20 },
         { type: 'item', itemId: 'oak_staff', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'steel_knife', amount: 1 }
+      ]
     }]))
   },
   4: {

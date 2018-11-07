@@ -28,6 +28,11 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'ash_seed', amount: 3 },
         { type: 'item', itemId: 'ash_log', amount: 20 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'carbon_knife', amount: 1 }
+      ]
     }]))
   },
   4: {

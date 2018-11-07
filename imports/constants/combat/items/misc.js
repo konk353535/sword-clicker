@@ -1729,6 +1729,1115 @@ export const MISC_ITEMS = {
       healingPower: 3.9,
       magicArmor: 2
     }
-  }
+  },
+    
+  diminished_orb: {
+    id: 'diminished_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'diminished orb',
+    sellPrice: 285,
+    description: 'A mysterious and diminished device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 0,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 2,
+      magicArmor: 3,
+      healingPower: 1
+    }
+  },
+
+  cracked_orb: {
+    id: 'cracked_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'cracked orb',
+    sellPrice: 570,
+    description: 'A mysterious and cracked device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 1,
+      magicPower: 6,
+      magicArmor: 9,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 2,
+      magicArmor: 3,
+      healingPower: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 1
+    }]
+  },
+
+  dim_orb: {
+    id: 'dim_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'dim orb',
+    sellPrice: 855,
+    description: 'A mysterious and dim device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 1,
+      magicPower: 7,
+      magicArmor: 10,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 3,
+      magicArmor: 5,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 3
+    }]
+  },
+
+  malformed_orb: {
+    id: 'malformed_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'malformed orb',
+    sellPrice: 1140,
+    description: 'A mysterious and malformed device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 2,
+      magicPower: 8,
+      magicArmor: 11,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 3,
+      magicArmor: 5,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 3
+    }]
+  },
+
+  pale_orb: {
+    id: 'pale_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'pale orb',
+    sellPrice: 1425,
+    description: 'A mysterious and pale device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 2,
+      magicPower: 9,
+      magicArmor: 13,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 3,
+      magicArmor: 5,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 6
+    }]
+  },
+
+  magic_touched_orb: {
+    id: 'magic_touched_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'magic-touched orb',
+    sellPrice: 1710,
+    description: 'A mysterious and magic-touched device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 3,
+      magicPower: 10,
+      magicArmor: 14,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 4,
+      magicArmor: 6,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 9
+    }]
+  },
+
+  weak_orb: {
+    id: 'weak_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'weak orb',
+    sellPrice: 1995,
+    description: 'A mysterious and weak device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 3,
+      magicPower: 11,
+      magicArmor: 15,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 4,
+      magicArmor: 6,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 12
+    }]
+  },
+
+  tainted_orb: {
+    id: 'tainted_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'tainted orb',
+    sellPrice: 2280,
+    description: 'A mysterious and tainted device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 4,
+      magicPower: 12,
+      magicArmor: 17,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 4,
+      magicArmor: 6,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
+  shimmering_orb: {
+    id: 'shimmering_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'shimmering orb',
+    sellPrice: 2565,
+    description: 'A mysterious and shimmering device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 4,
+      magicPower: 13,
+      magicArmor: 18,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 4,
+      magicArmor: 6,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 18
+    }]
+  },
+
+  glittering_orb: {
+    id: 'glittering_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'glittering orb',
+    sellPrice: 2850,
+    description: 'A mysterious and glittering device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      magicPower: 14,
+      magicArmor: 19,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 4,
+      magicArmor: 6,
+      healingPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 21
+    }]
+  },
+
+  glowing_orb: {
+    id: 'glowing_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'glowing orb',
+    sellPrice: 3135,
+    description: 'A mysterious and glowing device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      magicPower: 15.5,
+      magicArmor: 21,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 24
+    }]
+  },
+
+  pulsating_orb: {
+    id: 'pulsating_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'pulsating orb',
+    sellPrice: 3420,
+    description: 'A mysterious and pulsating device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 6,
+      magicPower: 17,
+      magicArmor: 23,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 27
+    }]
+  },
+
+  runed_orb: {
+    id: 'runed_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'runed orb',
+    sellPrice: 3705,
+    description: 'A mysterious and runed device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 6,
+      magicPower: 18.5,
+      magicArmor: 25,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  billowing_orb: {
+    id: 'billowing_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'billowing orb',
+    sellPrice: 3990,
+    description: 'A mysterious and billowing device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 7,
+      magicPower: 20,
+      magicArmor: 27,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 33
+    }]
+  },
+
+  pristine_orb: {
+    id: 'pristine_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'pristine orb',
+    sellPrice: 4275,
+    description: 'A mysterious and pristine device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 7,
+      magicPower: 21.5,
+      magicArmor: 30,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 36
+    }]
+  },
+
+  arcane_orb: {
+    id: 'arcane_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'arcane orb',
+    sellPrice: 4560,
+    description: 'A mysterious and arcane device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 8,
+      magicPower: 23,
+      magicArmor: 32,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 39
+    }]
+  },
+
+  powerful_orb: {
+    id: 'powerful_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'powerful orb',
+    sellPrice: 4845,
+    description: 'A mysterious and powerful device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 8,
+      magicPower: 24.5,
+      magicArmor: 34,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 42
+    }]
+  },
+
+  dangerous_orb: {
+    id: 'dangerous_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'dangerous orb',
+    sellPrice: 5130,
+    description: 'A mysterious and dangerous device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 9,
+      magicPower: 26,
+      magicArmor: 36,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 45
+    }]
+  },
+
+  prismatic_orb: {
+    id: 'prismatic_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'prismatic orb',
+    sellPrice: 5415,
+    description: 'A mysterious and prismatic device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 9,
+      magicPower: 27.5,
+      magicArmor: 38,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 48
+    }]
+  },
+
+  cataclysmic_orb: {
+    id: 'cataclysmic_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'cataclysmic orb',
+    sellPrice: 5700,
+    description: 'A mysterious and cataclysmic device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 10,
+      magicPower: 29,
+      magicArmor: 40,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 5,
+      magicArmor: 7,
+      healingPower: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 51
+    }]
+  },
   
+  ripped_tome: {
+    id: 'ripped_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'ripped tome',
+    sellPrice: 315,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 4,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 2,
+      healingPower: 2
+    }
+  },
+
+  dusty_tome: {
+    id: 'dusty_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'dusty tome',
+    sellPrice: 630,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 2,
+      healingPower: 3.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 1
+    }]
+  },
+
+  poor_tome: {
+    id: 'poor_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'poor tome',
+    sellPrice: 945,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 6,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 2.5,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 3
+    }]
+  },
+
+  worn_tome: {
+    id: 'worn_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'worn tome',
+    sellPrice: 1260,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 7,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 2.5,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 3
+    }]
+  },
+
+  dull_tome: {
+    id: 'dull_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'dull tome',
+    sellPrice: 1575,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 8,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 2.5,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 6
+    }]
+  },
+
+  simple_tome: {
+    id: 'simple_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'simple tome',
+    sellPrice: 1890,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 9,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 9
+    }]
+  },
+
+  basic_tome: {
+    id: 'basic_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'basic tome',
+    sellPrice: 2205,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 10,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 12
+    }]
+  },
+
+  studius_tome: {
+    id: 'studius_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'studius tome',
+    sellPrice: 2520,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 11,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 15
+    }]
+  },
+
+  paradoxical_tome: {
+    id: 'paradoxical_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'paradoxical tome',
+    sellPrice: 2835,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 12,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 18
+    }]
+  },
+
+  leather_bound_tome: {
+    id: 'leather_bound_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'leather-bound tome',
+    sellPrice: 3150,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 13,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 21
+    }]
+  },
+
+  prestigious_tome: {
+    id: 'prestigious_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'prestigious tome',
+    sellPrice: 3465,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 14.5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 24
+    }]
+  },
+
+  spellbound_tome: {
+    id: 'spellbound_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'spellbound tome',
+    sellPrice: 3780,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 16,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 27
+    }]
+  },
+
+  scholars_tome: {
+    id: 'scholars_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'scholar\'s tome',
+    sellPrice: 4095,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 17.5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  rich_tome: {
+    id: 'rich_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'rich tome',
+    sellPrice: 4410,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 19,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 33
+    }]
+  },
+
+  bewildering_tome: {
+    id: 'bewildering_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'bewildering tome',
+    sellPrice: 4725,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 20.5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 36
+    }]
+  },
+
+  perplexing_tome: {
+    id: 'perplexing_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'perplexing tome',
+    sellPrice: 5040,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 22,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 39
+    }]
+  },
+
+  breathtaking_tome: {
+    id: 'breathtaking_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'breathtaking tome',
+    sellPrice: 5355,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 23.5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 42
+    }]
+  },
+
+  ancient_tome: {
+    id: 'ancient_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'ancient tome',
+    sellPrice: 5670,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 25,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 45
+    }]
+  },
+
+  stellar_tome: {
+    id: 'stellar_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'stellar tome',
+    sellPrice: 5985,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 26.5,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 48
+    }]
+  },
+
+  legendary_tome: {
+    id: 'legendary_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'legendary tome',
+    sellPrice: 6300,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 28,
+      healingPower: 8
+    },
+    extraStats: {
+      magicPower: 3.5,
+      healingPower: 6.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 51
+    }]
+  }  
 };

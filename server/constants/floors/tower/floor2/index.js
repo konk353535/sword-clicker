@@ -23,7 +23,7 @@ export const TOWER_FLOOR_2 = {
       rewards: [
         { type: 'item', itemId: 'tin_knife', amount: 1 }
       ]
-    }
+    }]))
   },
   4: {
     name: 'Minor Earth Altar',

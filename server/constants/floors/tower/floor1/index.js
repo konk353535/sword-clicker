@@ -27,7 +27,7 @@ export const TOWER_FLOOR_1 = {
       rewards: [
         { type: 'item', itemId: 'copper_knife', amount: 1 }
       ]
-    }    
+    }]))
   },
   4: {
     name: 'Flower Field',

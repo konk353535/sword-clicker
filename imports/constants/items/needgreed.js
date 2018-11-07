@@ -37,6 +37,9 @@ export const NEED_GREED_ITEMS = {
   hammer: (str) => {
     return RegExp('(?!mining_)hammer', 'g').test(str)
   },
+  orb: (str) => {
+    return RegExp('orb', 'g').test(str)
+  },
   wand: (str) => {
     return RegExp('wand', 'g').test(str)
   },

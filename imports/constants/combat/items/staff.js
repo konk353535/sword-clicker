@@ -258,7 +258,7 @@ export const STAFF_ITEMS = {
 
   elm_staff: {
     id: 'elm_staff',
-    icon: 'elmStaff.png',
+    icon: 'elkStaff.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',

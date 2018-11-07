@@ -32,6 +32,11 @@ export const TOWER_FLOOR_14 = {
       rewards: [
         { type: 'item', itemId: 'mithril_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'mithril_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -41,8 +46,7 @@ export const TOWER_FLOOR_14 = {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'mithril_buckler', amount: 1 },
-        { type: 'item', itemId: 'mithril_hammer', amount: 1 },
-        { type: 'item', itemId: 'mithril_wand', amount: 1 }
+        { type: 'item', itemId: 'mithril_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 128,
@@ -77,6 +81,12 @@ export const TOWER_FLOOR_14 = {
       rewards: [
         { type: 'item', itemId: 'mithril_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'mithril_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'billowing_orb', amount: 1 },
+        { type: 'item', itemId: 'rich_tome', amount: 1 }
       ]
     }]))
   },

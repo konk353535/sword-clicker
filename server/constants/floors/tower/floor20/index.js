@@ -38,6 +38,11 @@ export const TOWER_FLOOR_20 = {
       rewards: [
         { type: 'item', itemId: 'cursed_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cursed_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -81,6 +86,12 @@ export const TOWER_FLOOR_20 = {
       rewards: [
         { type: 'item', itemId: 'cursed_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cursed_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cataclysmic_orb', amount: 1 },
+        { type: 'item', itemId: 'legendary_tome', amount: 1 }
       ]
     }]))
   },

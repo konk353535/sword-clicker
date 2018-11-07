@@ -43,6 +43,11 @@ export const TOWER_FLOOR_3 = {
       rewards: [
         { type: 'item', itemId: 'bronze_kite_shield', amount: 1 } // intentionally put in here twice since this room has no loot :(
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'bronze_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -85,6 +90,12 @@ export const TOWER_FLOOR_3 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'lightning_dart_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'dim_orb', amount: 1 },
+        { type: 'item', itemId: 'poor_tome', amount: 1 }
       ]
     }]))
   },

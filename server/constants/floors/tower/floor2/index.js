@@ -26,7 +26,6 @@ export const TOWER_FLOOR_2 = {
     rewards: orderLootTable(LEVEL_TWO_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'copper_wand', amount: 1 },
         { type: 'item', itemId: 'brown_trident', amount: 1 }
       ]
     }, {
@@ -35,6 +34,11 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'brown_wizard_hat', amount: 1 },
         { type: 'item', itemId: 'brown_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'tin_wand', amount: 1 }
       ]
     }]))
   },
@@ -78,6 +82,12 @@ export const TOWER_FLOOR_2 = {
       rewards: [
         { type: 'item', itemId: 'tin_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'tin_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cracked_orb', amount: 1 },
+        { type: 'item', itemId: 'dusty_tome', amount: 1 }
       ]
     }]))
   },

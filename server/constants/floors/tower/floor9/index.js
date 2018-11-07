@@ -37,6 +37,11 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'platinum_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'platinum_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -74,6 +79,12 @@ export const TOWER_FLOOR_9 = {
       rewards: [
         { type: 'item', itemId: 'platinum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'platinum_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'shimmering_orb', amount: 1 },
+        { type: 'item', itemId: 'paradoxical_tome', amount: 1 }
       ]
     }]))
   },

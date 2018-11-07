@@ -37,6 +37,11 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'orichalcum_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'orichalcum_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -76,6 +81,12 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'orichalcum_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'orichalcum_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'arcane_orb', amount: 1 },
+        { type: 'item', itemId: 'perplexing_tome', amount: 1 }
       ]
     }]))
   },

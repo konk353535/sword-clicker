@@ -38,6 +38,11 @@ export const TOWER_FLOOR_7 = {
       rewards: [
         { type: 'item', itemId: 'carbon_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'carbon_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -74,6 +79,12 @@ export const TOWER_FLOOR_7 = {
       rewards: [
         { type: 'item', itemId: 'carbon_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'carbon_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'weak_orb', amount: 1 },
+        { type: 'item', itemId: 'basic_tome', amount: 1 }
       ]
     }]))
   },

@@ -43,7 +43,13 @@ export const TOWER_FLOOR_18 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_essence', amount: 1 }
       ]
-    }]))
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'fairy_steel_wand', amount: 1 }
+      ]
+    }
+]))
   },
   5: {
     name: 'Eternal Struggle',
@@ -91,6 +97,12 @@ export const TOWER_FLOOR_18 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'fairy_steel_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'dangerous_orb', amount: 1 },
+        { type: 'item', itemId: 'powerful_tome', amount: 1 }
       ]
     }]))
   },

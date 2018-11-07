@@ -37,6 +37,11 @@ export const TOWER_FLOOR_1 = {
       rewards: [
         { type: 'item', itemId: 'rubia_flower_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'copper_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -74,6 +79,12 @@ export const TOWER_FLOOR_1 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'copper_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'diminished_orb', amount: 1 },
+        { type: 'item', itemId: 'ripped_tome', amount: 1 }
       ]
     }])
   },

@@ -50,6 +50,11 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'silver_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'silver_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -96,6 +101,12 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'silver_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'silver_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'pale_orb', amount: 1 },
+        { type: 'item', itemId: 'dull_tome', amount: 1 }
       ]
     }]))
   },

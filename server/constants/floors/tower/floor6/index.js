@@ -70,6 +70,11 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'gold_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'gold_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -83,8 +88,7 @@ export const TOWER_FLOOR_6 = {
     }, {
       chance: 1 / 64,
       rewards: [
-        { type: 'item', itemId: 'angels_touch_tome', amount: 1 },
-        { type: 'item', itemId: 'gold_wand', amount: 1 }
+        { type: 'item', itemId: 'angels_touch_tome', amount: 1 }
       ]
     }]))
   },
@@ -107,6 +111,12 @@ export const TOWER_FLOOR_6 = {
       rewards: [
         { type: 'item', itemId: 'gold_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'gold_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'magic_touched_orb', amount: 1 },
+        { type: 'item', itemId: 'simple_tome', amount: 1 }
       ]
     }]))
   },

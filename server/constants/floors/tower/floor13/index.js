@@ -38,6 +38,11 @@ export const TOWER_FLOOR_13 = {
       rewards: [
         { type: 'item', itemId: 'cobalt_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -74,6 +79,12 @@ export const TOWER_FLOOR_13 = {
       rewards: [
         { type: 'item', itemId: 'cobalt_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'cobalt_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'runed_orb', amount: 1 },
+        { type: 'item', itemId: 'scholars_tome', amount: 1 }
       ]
     }]))
   },

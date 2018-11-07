@@ -38,6 +38,11 @@ export const TOWER_FLOOR_15 = {
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -79,6 +84,12 @@ export const TOWER_FLOOR_15 = {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'adamantium_rapiers', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'pristine_orb', amount: 1 },
+        { type: 'item', itemId: 'bewildering_tome', amount: 1 }
       ]
     }]))
   },

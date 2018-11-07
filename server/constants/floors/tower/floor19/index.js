@@ -33,6 +33,11 @@ export const TOWER_FLOOR_19 = {
       rewards: [
         { type: 'item', itemId: 'elven_steel_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'elven_steel_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -69,6 +74,12 @@ export const TOWER_FLOOR_19 = {
       rewards: [
         { type: 'item', itemId: 'elven_steel_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'elven_steel_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'prismatic_orb', amount: 1 },
+        { type: 'item', itemId: 'stellar_tome', amount: 1 }
       ]
     }]))
   },

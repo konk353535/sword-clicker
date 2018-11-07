@@ -33,6 +33,11 @@ export const TOWER_FLOOR_17 = {
       rewards: [
         { type: 'item', itemId: 'meteorite_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'meteorite_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -64,6 +69,12 @@ export const TOWER_FLOOR_17 = {
       rewards: [
         { type: 'item', itemId: 'meteorite_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'meteorite_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'powerful_orb', amount: 1 },
+        { type: 'item', itemId: 'breathtaking_tome', amount: 1 }
       ]
     }]))
   },

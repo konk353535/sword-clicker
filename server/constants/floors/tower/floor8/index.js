@@ -44,6 +44,11 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'steel_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'steel_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -93,6 +98,12 @@ export const TOWER_FLOOR_8 = {
       chance: 1 / 96,
       rewards: [
         { type: 'item', itemId: 'steel_kite_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'tainted_orb', amount: 1 },
+        { type: 'item', itemId: 'studius_tome', amount: 1 }
       ]
     }]))
   },

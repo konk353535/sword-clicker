@@ -44,6 +44,11 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'obsidian_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'obisidian_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -52,8 +57,7 @@ export const TOWER_FLOOR_12 = {
     rewards: orderLootTable(LEVEL_TWELVE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'obsidian_hammer', amount: 1 },
-        { type: 'item', itemId: 'obsidian_wand', amount: 1 }
+        { type: 'item', itemId: 'obsidian_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
@@ -88,6 +92,12 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'obsidian_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'obsidian_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'pulsating_orb', amount: 1 },
+        { type: 'item', itemId: 'spellbound_tome', amount: 1 }
       ]
     }]))
   },

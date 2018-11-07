@@ -33,6 +33,11 @@ export const TOWER_FLOOR_11 = {
       rewards: [
         { type: 'item', itemId: 'tungsten_essence', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -69,6 +74,12 @@ export const TOWER_FLOOR_11 = {
       rewards: [
         { type: 'item', itemId: 'tungsten_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'tungsten_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'glowing_orb', amount: 1 },
+        { type: 'item', itemId: 'prestigious_tome', amount: 1 }
       ]
     }]))
   },

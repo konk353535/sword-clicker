@@ -38,6 +38,11 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'gold', amount: 750 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'iron_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -76,6 +81,12 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'item', itemId: 'iron_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'iron_mining_hammer', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'malformed_orb', amount: 1 },
+        { type: 'item', itemId: 'worn_tome', amount: 1 }
       ]
     }]))
   },

@@ -305,7 +305,7 @@ export const completeBattle = function (actualBattle) {
 
       if (rewardTable.chance >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
-        break;          
+        //break; // changed by psouza4 2018-07-11: why block more rewards with their own drop rate/chance?
       }
     }
 
@@ -334,16 +334,16 @@ export const completeBattle = function (actualBattle) {
 
       if ((rewardTable.chance * extraChance) >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
-        if (rewardsGained >= units.length) {
-          break;
-        }
+        //if (rewardsGained >= units.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+        //  break;
+        //}
       } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
         rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
           affectedGlobalBuff: true
         }));
-        if (rewardsGained >= units.length) {
-          break;
-        }
+        //if (rewardsGained >= units.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+        //  break;
+        //}
       }
     }
 
@@ -600,9 +600,9 @@ export const completeBattle = function (actualBattle) {
                 if (reward.type !== 'icon')  {
                   rewards.push(reward);
                 }
-                if (rewards >= owners.length) {
-                  break;
-                }
+                //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
+                //  break;
+                //}
               } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
                 let reward = _.sample(rewardTable.rewards);
                 if (reward.type === 'gold') {
@@ -613,9 +613,9 @@ export const completeBattle = function (actualBattle) {
                     affectedGlobalBuff: true
                   }));
                 }
-                if (rewards >= owners.length) {
-                  break;
-                }
+                //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
+                //  break;
+                //}
               }
             }
 

@@ -50,7 +50,11 @@ export const TOWER_FLOOR_9 = {
     rewards: orderLootTable(LEVEL_NINE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'platinum_kite_shield', amount: 1 },
+        { type: 'item', itemId: 'platinum_kite_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 }
       ]
     }, {

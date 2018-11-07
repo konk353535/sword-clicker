@@ -28,6 +28,11 @@ export const TOWER_FLOOR_13 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'dragonfruit_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -52,11 +57,6 @@ export const TOWER_FLOOR_13 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'cobalt_kite_shield', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 256,
-      rewards: [
-        { type: 'item', itemId: 'cobalt_knife', amount: 1 }
       ]
     }]))
   },

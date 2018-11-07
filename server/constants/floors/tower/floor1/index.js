@@ -54,7 +54,7 @@ export const TOWER_FLOOR_1 = {
       ]
     }, {
       chance: 1 / 4,
-      rewards: [
+      rewards: [ // grouping these together means that only 1 of them will drop... 25% chance to drop x 33% chance = 8.25% chance for any specific item here (x quantity)
         { type: 'item', itemId: 'ore_stone', amount: 5 },
         { type: 'item', itemId: 'ore_copper', amount: 3 },
         { type: 'item', itemId: 'pine_log', amount: 3 }

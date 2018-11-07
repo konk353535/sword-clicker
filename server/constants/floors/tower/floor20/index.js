@@ -28,6 +28,11 @@ export const TOWER_FLOOR_20 = {
       rewards: [
         { type: 'item', itemId: 'sorrell', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cursed_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -52,11 +57,6 @@ export const TOWER_FLOOR_20 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'cursed_kite_shield', amount: 1 }
-      ]
-    },{
-      chance: 1 / 256,
-      rewards: [
-        { type: 'item', itemId: 'cursed_knife', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

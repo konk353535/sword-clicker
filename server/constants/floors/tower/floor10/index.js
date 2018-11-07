@@ -23,6 +23,11 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'lettice', amount: 50 },
         { type: 'item', itemId: 'feverfew_seed', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanium_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -46,8 +51,7 @@ export const TOWER_FLOOR_10 = {
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'titanium_kite_shield', amount: 1 },
-        { type: 'item', itemId: 'titanium_knife', amount: 1 }
+        { type: 'item', itemId: 'titanium_kite_shield', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

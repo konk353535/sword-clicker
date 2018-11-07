@@ -1,6 +1,31 @@
 import { ITEMS } from '/imports/constants/items/index.js'; 
 
 export const STAFF_CRAFTS = {
+  pine_staff: {
+    produces: 'pine_staff',
+    name: 'pine staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'pine_staff',
+    timeToCraft: 60, // 60
+    xp: 5,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 2,
+    required: [{
+      type: 'item',
+      itemId: 'pine_log',
+      icon: ITEMS['pine_log'].icon,
+      name: ITEMS['pine_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 2
+    }]
+  },
+
   beech_staff: {
     produces: 'beech_staff',
     name: 'beech staff',
@@ -11,7 +36,7 @@ export const STAFF_CRAFTS = {
     xp: 10,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 5,
+    requiredCraftingLevel: 4,
     required: [{
       type: 'item',
       itemId: 'beech_log',
@@ -22,7 +47,32 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 5
+      level: 4
+    }]
+  },
+
+  ash_staff: {
+    produces: 'ash_staff',
+    name: 'ash staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'ash_staff',
+    timeToCraft: 60, // 60
+    xp: 25,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 7,
+    required: [{
+      type: 'item',
+      itemId: 'ash_log',
+      icon: ITEMS['ash_log'].icon,
+      name: ITEMS['ash_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 7
     }]
   },
 
@@ -51,6 +101,31 @@ export const STAFF_CRAFTS = {
     }]
   },
 
+  maple_staff: {
+    produces: 'maple_staff',
+    name: 'maple staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'maple_staff',
+    timeToCraft: 180, // 60
+    xp: 100,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 15,
+    required: [{
+      type: 'item',
+      itemId: 'maple_log',
+      icon: ITEMS['maple_log'].icon,
+      name: ITEMS['maple_log'].name,
+      amount: 30,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 15
+    }]
+  },
+
   walnut_staff: {
     produces: 'walnut_staff',
     name: 'walnut staff',
@@ -76,6 +151,31 @@ export const STAFF_CRAFTS = {
     }]
   },
 
+  cherry_staff: {
+    produces: 'cherry_staff',
+    name: 'cherry staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'cherry_staff',
+    timeToCraft: 60 * 30, // 60
+    xp: 250,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 25,
+    required: [{
+      type: 'item',
+      itemId: 'cherry_log',
+      icon: ITEMS['cherry_log'].icon,
+      name: ITEMS['cherry_log'].name,
+      amount: 30,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 25
+    }]
+  },
+
   mahogany_staff: {
     produces: 'mahogany_staff',
     name: 'mahogany staff',
@@ -98,6 +198,31 @@ export const STAFF_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 30
+    }]
+  },
+
+  elm_staff: {
+    produces: 'elm_staff',
+    name: 'elm staff',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'elm_staff',
+    timeToCraft: 5400, // 60
+    xp: 450,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'elk_log',
+      icon: ITEMS['elk_log'].icon,
+      name: ITEMS['elk_log'].name,
+      amount: 15,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 35
     }]
   },
 

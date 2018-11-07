@@ -1030,25 +1030,133 @@ export const MISC_ITEMS = {
   },
 
   /* Knife - Off handed weapon, minor accuracy and damage increases */
-  silver_knife: {
-    id: "silver_knife",
-    icon: "silverKnife.png",
-    category: "combat",
-    weaponType: "knife",
-    slot: "offHand",
-    name: "silver knife",
-    sellPrice: 250,
-    description: "Provides minor offensive bonuses",
+  copper_knife: {
+    id: 'copper_knife',
+    icon: 'copperKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'copper knife',
+    sellPrice: 75,
+    description: 'Provides minor offensive bonuses',
     isEquippable: true,
     stats: {
-      accuracy: 3,
-      attack: 2,
-      attackMax: 3
+      attack: 1,
+      attackMax: 1.7,
+      accuracy: 1
     },
     extraStats: {
-      accuracy: 2,
+      attack: 1,
+      attackMax: 3,
+      accuracy: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 0
+    }]
+  },
+
+  tin_knife: {
+    id: 'tin_knife',
+    icon: 'tinKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'tin knife',
+    sellPrice: 150,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 1.3,
+      attackMax: 2.3,
+      accuracy: 1.5
+    },
+    extraStats: {
+      attack: 1,
+      attackMax: 3,
+      accuracy: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
+  },
+
+  bronze_knife: {
+    id: 'bronze_knife',
+    icon: 'bronzeKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'bronze knife',
+    sellPrice: 225,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 1.6,
+      attackMax: 2.9,
+      accuracy: 2
+    },
+    extraStats: {
       attack: 2,
-      attackMax: 2
+      attackMax: 4,
+      accuracy: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
+  },
+
+  iron_knife: {
+    id: 'iron_knife',
+    icon: 'ironKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'iron knife',
+    sellPrice: 300,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 1.9,
+      attackMax: 3.5,
+      accuracy: 2.5
+    },
+    extraStats: {
+      attack: 2,
+      attackMax: 4,
+      accuracy: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
+  },
+
+  silver_knife: {
+    id: 'silver_knife',
+    icon: 'silverKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'silver knife',
+    sellPrice: 375,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 2.2,
+      attackMax: 4.1,
+      accuracy: 3
+    },
+    extraStats: {
+      attack: 2,
+      attackMax: 4,
+      accuracy: 2
     },
     requiredEquip: [{
       type: 'skill',
@@ -1057,25 +1165,133 @@ export const MISC_ITEMS = {
     }]
   },
 
-  titanium_knife: {
-    id: "titanium_knife",
-    icon: "titaniumKnife.png",
-    category: "combat",
-    weaponType: "knife",
-    slot: "offHand",
-    name: "titanium knife",
-    sellPrice: 850,
-    description: "Provides minor offensive bonuses",
+  gold_knife: {
+    id: 'gold_knife',
+    icon: 'goldKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'gold knife',
+    sellPrice: 450,
+    description: 'Provides minor offensive bonuses',
     isEquippable: true,
     stats: {
-      accuracy: 5,
-      attack: 4,
-      attackMax: 5
+      attack: 2.5,
+      attackMax: 4.7,
+      accuracy: 3.5
     },
     extraStats: {
-      accuracy: 2,
-      attack: 2,
-      attackMax: 3
+      attack: 3,
+      attackMax: 5,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
+  },
+
+  carbon_knife: {
+    id: 'carbon_knife',
+    icon: 'carbonKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'carbon knife',
+    sellPrice: 525,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 2.8,
+      attackMax: 5.3,
+      accuracy: 4
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 5,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
+  },
+
+  steel_knife: {
+    id: 'steel_knife',
+    icon: 'steelKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'steel knife',
+    sellPrice: 600,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 3.1,
+      attackMax: 5.9,
+      accuracy: 4.5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 5,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
+  },
+
+  platinum_knife: {
+    id: 'platinum_knife',
+    icon: 'platinumKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'platinum knife',
+    sellPrice: 675,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 3.4,
+      attackMax: 6.5,
+      accuracy: 5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 5,
+      accuracy: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
+  },
+
+  titanium_knife: {
+    id: 'titanium_knife',
+    icon: 'titaniumKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'titanium knife',
+    sellPrice: 750,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 3.7,
+      attackMax: 7.1,
+      accuracy: 5.5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 5,
+      accuracy: 3
     },
     requiredEquip: [{
       type: 'skill',
@@ -1084,25 +1300,79 @@ export const MISC_ITEMS = {
     }]
   },
 
-  cobalt_knife: {
-    id: "cobalt_knife",
-    icon: "cobaltKnife.png",
-    category: "combat",
-    weaponType: "knife",
-    slot: "offHand",
-    name: "cobalt knife",
-    sellPrice: 950,
-    description: "Provides minor offensive bonuses",
+  tungsten_knife: {
+    id: 'tungsten_knife',
+    icon: 'tungstenKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'tungsten knife',
+    sellPrice: 825,
+    description: 'Provides minor offensive bonuses',
     isEquippable: true,
     stats: {
-      accuracy: 7,
-      attack: 6,
-      attackMax: 8
+      attack: 4,
+      attackMax: 7.7,
+      accuracy: 6
     },
     extraStats: {
-      accuracy: 3,
-      attack: 3,
-      attackMax: 4
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
+  },
+
+  obsidian_knife: {
+    id: 'obsidian_knife',
+    icon: 'obsidianKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'obsidian knife',
+    sellPrice: 900,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 4.3,
+      attackMax: 8.3,
+      accuracy: 6.5
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
+  },
+
+  cobalt_knife: {
+    id: 'cobalt_knife',
+    icon: 'cobaltKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'cobalt knife',
+    sellPrice: 975,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 4.6,
+      attackMax: 8.9,
+      accuracy: 7
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
     },
     requiredEquip: [{
       type: 'skill',
@@ -1111,25 +1381,187 @@ export const MISC_ITEMS = {
     }]
   },
 
-  cursed_knife: {
-    id: "cursed_knife",
-    icon: "cursedKnife.png",
-    category: "combat",
-    weaponType: "knife",
-    slot: "offHand",
-    name: "cursed knife",
-    sellPrice: 1650,
-    description: "Provides minor offensive bonuses",
+  mithril_knife: {
+    id: 'mithril_knife',
+    icon: 'mithrilKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'mithril knife',
+    sellPrice: 1050,
+    description: 'Provides minor offensive bonuses',
     isEquippable: true,
     stats: {
-      accuracy: 10,
-      attack: 8,
-      attackMax: 10
+      attack: 4.9,
+      attackMax: 9.5,
+      accuracy: 7.5
     },
     extraStats: {
-      accuracy: 4,
       attack: 4,
-      attackMax: 6
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
+  },
+
+  adamantium_knife: {
+    id: 'adamantium_knife',
+    icon: 'adamantiumKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'adamantium knife',
+    sellPrice: 1125,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 5.2,
+      attackMax: 10.1,
+      accuracy: 8
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
+  },
+
+  orichalcum_knife: {
+    id: 'orichalcum_knife',
+    icon: 'orichalcumKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'orichalcum knife',
+    sellPrice: 1200,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 5.5,
+      attackMax: 10.7,
+      accuracy: 8.5
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
+  },
+
+  meteorite_knife: {
+    id: 'meteorite_knife',
+    icon: 'meteoriteKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'meteorite knife',
+    sellPrice: 1275,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 5.8,
+      attackMax: 11.3,
+      accuracy: 9
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
+  },
+
+  fairy_steel_knife: {
+    id: 'fairy_steel_knife',
+    icon: 'fairySteelKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'fairy steel knife',
+    sellPrice: 1350,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 6.1,
+      attackMax: 11.9,
+      accuracy: 9.5
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
+  },
+
+  elven_steel_knife: {
+    id: 'elven_steel_knife',
+    icon: 'elvenSteelKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'elven steel knife',
+    sellPrice: 1425,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 6.4,
+      attackMax: 12.5,
+      accuracy: 10
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
+  },
+
+  cursed_knife: {
+    id: 'cursed_knife',
+    icon: 'cursedKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'cursed knife',
+    sellPrice: 1500,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 6.7,
+      attackMax: 13.1,
+      accuracy: 10.5
+    },
+    extraStats: {
+      attack: 4,
+      attackMax: 6,
+      accuracy: 4
     },
     requiredEquip: [{
       type: 'skill',

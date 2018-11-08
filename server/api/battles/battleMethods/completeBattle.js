@@ -289,6 +289,10 @@ export const completeBattle = function (actualBattle) {
         }
       });
     });
+    
+    // Added a new bonus: in full exploration runs at the tower, loot drop chance is doubled as an incentive to take on tougher challenges as a team.
+    // This bonus is not applied to the community pot of boss loot.
+    const bonusLootFromExploration = ((actualBattle.isExplorationRun) ? 2.0 : 1.0);
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
@@ -303,7 +307,7 @@ export const completeBattle = function (actualBattle) {
       const rewardTable = rewards[i];
       const diceRoll = Math.random();
 
-      if (rewardTable.chance >= diceRoll) {
+      if (rewardTable.chance * bonusLootFromExploration >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
         //break; // changed by psouza4 2018-07-11: why block more rewards with their own drop rate/chance?
       }
@@ -332,12 +336,12 @@ export const completeBattle = function (actualBattle) {
       const rewardTable = floorRewards[i];
       const diceRoll = Math.random();
 
-      if ((rewardTable.chance * extraChance) >= diceRoll) {
+      if ((rewardTable.chance * extraChance * bonusLootFromExploration) >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
         //if (rewardsGained >= units.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
         //  break;
         //}
-      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
+      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * bonusLootFromExploration * 1.5) >= diceRoll) {
         rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
           affectedGlobalBuff: true
         }));

@@ -113,11 +113,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   if (currentGroup) {
     if (room === 'boss') {
       if (currentGroup.members.length > BATTLES.maxBossPartySize) {
-        throw new Meteor.Error('to-large', `Your party is too large, maximum party size for boss fights is ${BATTLES.maxBossPartySize}`);
+        throw new Meteor.Error('too-large', `Your party is too large, maximum party size for boss fights is ${BATTLES.maxBossPartySize}`);
       }
     } else {
       if (currentGroup.members.length > BATTLES.maxTowerPartySize) {
-        throw new Meteor.Error('to-large', `Your party is too large, maximum party size for tower fights is ${BATTLES.maxTowerPartySize}`);
+        throw new Meteor.Error('too-large', `Your party is too large, maximum party size for tower fights is ${BATTLES.maxTowerPartySize}`);
       }
     }
   }
@@ -164,9 +164,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       throw new Meteor.Error("not-enough-energy", requirementString);
     }
 
-    if (userCombat.meditatingStartDate) {
-      throw new Meteor.Error("is-meditating", `${userCombat.username} is meditating. You cannot battle while meditating`);      
-    }
+    //if (userCombat.meditatingStartDate) {
+    //  throw new Meteor.Error("is-meditating", `${userCombat.username} is meditating. You cannot battle while meditating`);      
+    //}
 
     if (health && !isOldBoss && userCombat.foughtBoss) {
       hasEnergy = false;

@@ -36,7 +36,7 @@ export const STAFF_CRAFTS = {
     xp: 10,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 4,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'beech_log',
@@ -47,7 +47,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 4
+      level: 5
     }]
   },
 
@@ -61,7 +61,7 @@ export const STAFF_CRAFTS = {
     xp: 25,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 7,
+    requiredCraftingLevel: 10,
     required: [{
       type: 'item',
       itemId: 'ash_log',
@@ -72,7 +72,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 7
+      level: 10
     }]
   },
 
@@ -86,7 +86,7 @@ export const STAFF_CRAFTS = {
     xp: 50,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 10,
+    requiredCraftingLevel: 15,
     required: [{
       type: 'item',
       itemId: 'oak_log',
@@ -97,7 +97,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 10
+      level: 15
     }]
   },
 
@@ -111,7 +111,7 @@ export const STAFF_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 20,
     required: [{
       type: 'item',
       itemId: 'maple_log',
@@ -122,7 +122,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 15
+      level: 20
     }]
   },
 
@@ -136,7 +136,7 @@ export const STAFF_CRAFTS = {
     xp: 200,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 25,
     required: [{
       type: 'item',
       itemId: 'walnut_log',
@@ -147,7 +147,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 20
+      level: 25
     }]
   },
 
@@ -161,7 +161,7 @@ export const STAFF_CRAFTS = {
     xp: 250,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 25,
+    requiredCraftingLevel: 30,
     required: [{
       type: 'item',
       itemId: 'cherry_log',
@@ -172,7 +172,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 25
+      level: 30
     }]
   },
 
@@ -186,7 +186,7 @@ export const STAFF_CRAFTS = {
     xp: 300,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
       itemId: 'mahogany_log',
@@ -197,7 +197,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 35
     }]
   },
 
@@ -211,7 +211,7 @@ export const STAFF_CRAFTS = {
     xp: 450,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 40,
     required: [{
       type: 'item',
       itemId: 'elk_log',
@@ -222,7 +222,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 35
+      level: 40
     }]
   },
 
@@ -236,7 +236,7 @@ export const STAFF_CRAFTS = {
     xp: 600,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 45,
     required: [{
       type: 'item',
       itemId: 'black_log',
@@ -247,7 +247,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 40
+      level: 45
     }]
   },
 
@@ -261,7 +261,7 @@ export const STAFF_CRAFTS = {
     xp: 800,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 45,
+    requiredCraftingLevel: 50,
     required: [{
       type: 'item',
       itemId: 'blue_gum_log',
@@ -272,7 +272,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 45
+      level: 50
     }]
   },
 
@@ -286,7 +286,7 @@ export const STAFF_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 55,
     required: [{
       type: 'item',
       itemId: 'cedar_log',
@@ -297,7 +297,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 50
+      level: 55
     }]
   },
 
@@ -311,7 +311,7 @@ export const STAFF_CRAFTS = {
     xp: 1200,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 55,
+    requiredCraftingLevel: 60,
     required: [{
       type: 'item',
       itemId: 'denya_log',
@@ -322,7 +322,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 55
+      level: 60
     }]
   },
 
@@ -336,7 +336,7 @@ export const STAFF_CRAFTS = {
     xp: 2000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
       itemId: 'gombe_log',
@@ -347,7 +347,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 60
+      level: 65
     }]
   },
 
@@ -361,7 +361,7 @@ export const STAFF_CRAFTS = {
     xp: 5000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 65,
+    requiredCraftingLevel: 70,
     required: [{
       type: 'item',
       itemId: 'hickory_log',
@@ -372,7 +372,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 65
+      level: 70
     }]
   },
 
@@ -386,7 +386,7 @@ export const STAFF_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 75,
     required: [{
       type: 'item',
       itemId: 'larch_log',
@@ -397,7 +397,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 70
+      level: 75
     }]
   },
 
@@ -411,7 +411,7 @@ export const STAFF_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 80,
     required: [{
       type: 'item',
       itemId: 'poplar_log',
@@ -422,7 +422,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 75
+      level: 80
     }]
   },
 
@@ -436,7 +436,7 @@ export const STAFF_CRAFTS = {
     xp: 50000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 80,
+    requiredCraftingLevel: 85,
     required: [{
       type: 'item',
       itemId: 'tali_log',
@@ -447,7 +447,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 80
+      level: 85
     }]
   },
 
@@ -461,7 +461,7 @@ export const STAFF_CRAFTS = {
     xp: 75000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 85,
+    requiredCraftingLevel: 90,
     required: [{
       type: 'item',
       itemId: 'willow_log',
@@ -472,7 +472,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 85
+      level: 90
     }]
   },
 
@@ -486,7 +486,7 @@ export const STAFF_CRAFTS = {
     xp: 100000,
     maxToCraft: 1,
     tags: ['staff'],
-    requiredCraftingLevel: 90,
+    requiredCraftingLevel: 95,
     required: [{
       type: 'item',
       itemId: 'teak_log',
@@ -497,7 +497,7 @@ export const STAFF_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 90
+      level: 95
     }]
   }
 

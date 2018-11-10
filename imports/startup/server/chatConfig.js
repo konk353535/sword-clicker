@@ -52,7 +52,7 @@ SimpleChat.configure ({
 
   },
   allow: function(message, roomId, username, avatar, name){
-    if (message.length > 140) {
+    if (message.length > 280) {
       return;
     }
 

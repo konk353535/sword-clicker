@@ -179,7 +179,7 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
             amount: rewardTarget.amount
           });
         }
-        break;
+        //break; // changed by psouza4 2018-11-09: why block more rewards with their own drop rate/chance?
       }
     }
   }

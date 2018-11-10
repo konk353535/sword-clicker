@@ -309,7 +309,7 @@ export const completeBattle = function (actualBattle) {
 
       if (rewardTable.chance * bonusLootFromExploration >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
-        //break; // changed by psouza4 2018-07-11: why block more rewards with their own drop rate/chance?
+        //break; // changed by psouza4 2018-11-07: why block more rewards with their own drop rate/chance?
       }
     }
 

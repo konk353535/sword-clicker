@@ -1,0 +1,37 @@
+<template name="abilityIconOther">
+  <div class="item-icon-container item {{classes}} icon-box" style="position: relative" data-id="{{ability.abilityId}}">
+    {{#each ability.requires}}
+      {{#if $eq this.type 'weaponType'}}
+        <div style="position: absolute; left: 2px; top: 0" class="required-weapon">
+          {{#each this.weaponTypes}}
+            <img
+              src="/icons/{{this}}.svg"
+              style="height: 20px; width: 20px;">
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/each}}
+
+    <!-- Abilities can have required items -->
+    {{#if ability.requiredItem}}
+      <img src="/icons/{{ability.requiredItem}}" class="small-icon">
+    {{/if}}
+
+    <img src="/icons/{{ability.icon}}" class="item-icon">
+
+    <!-- Icon Tooltip -->
+    {{#unless hideTooltip}}
+    <div class="item-tooltip-content my-tooltip-inner">
+      <h3 class='popover-title text-capitalize'>
+        {{name}}
+      </h3>
+      <div class='popover-content'>
+        {{#if description}}
+          {{{description}}}<br />
+        {{/if}}
+      </div>
+    </div>
+    {{/unless}}
+  </div>
+
+</template>

@@ -294,6 +294,7 @@ Meteor.methods({
     // Search for the user
     const targetUser = Users.findOne({ username });
 
+    // Find equipment
     const equipment = Items.find({
       equipped: true,
       owner: targetUser._id
@@ -328,6 +329,23 @@ Meteor.methods({
 
       return item;
     });
+    
+    // Find abilities
+    let abilities_map = {};
+
+    const raw_abilities_data = Abilities.findOne({
+      owner: targetUser._id
+    });
+    
+    if (raw_abilities_data) {
+      const all_abilities = raw_abilities_data.learntAbilities.filter((ability) => {
+        return ability.equipped;
+      });
+
+      all_abilities.forEach((ability) => {
+        abilities_map[ability.slot] = ability;
+      });
+    }
 
     // Fetch icon from combat
     const targetUserCombat = Combat.findOne({ owner: targetUser._id });
@@ -347,6 +365,8 @@ Meteor.methods({
       }),
 
       equipment,
+      
+      abilities: abilities_map,
 
       characterIcon: targetUserCombat.characterIcon || 'character.svg'
     }

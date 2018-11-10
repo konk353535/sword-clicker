@@ -356,9 +356,22 @@ export const ATTACK_BUFFS = {
         // Blank
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle }) {
+      onDidDamage({ originalAutoAttack, buff, defender, attacker, actualBattle }) {
         const constants = buff.constants.constants;
-        if (Math.random() <= constants.extraAttackChance) {
+        if (originalAutoAttack && Math.random() <= constants.extraAttackChance) {
+          // 2018-11-10 psouza4:  updated phantom strikes to actually call auto-attack routine and prevent it from recursively
+          //                      calling itself (in case the phantom strikes chance tries to proc itself), allowing phantom
+          //                      strikes to apply on-hit effects as it should
+        
+          actualBattle.autoAttack({
+                attacker,
+                defender,
+                tickEvents: actualBattle.tickEvents,
+                historyStats: actualBattle.historyStats,
+                originalAutoAttack: false
+              });
+              
+          /*        
           const baseDamage = attacker.stats.attack;
           const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
           const abilityDamagePercentage = constants.extraAttackDamageBase + constants.extraAttackDamagePerLevel * buff.data.level;
@@ -371,6 +384,7 @@ export const ATTACK_BUFFS = {
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
           });
+          */
         }
       },
 

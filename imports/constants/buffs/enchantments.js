@@ -545,7 +545,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'shadowKnife.svg',
     name: 'shadow knife',
     description() {
-      return `Reduce cd of blade spin by 0.5s for each successful auto attack.`;
+      return `Reduce cooldown of blade spin by 0.5s for each successful auto attack.`;
     },
     constants: {
       accuracyDecimal: 0.85,

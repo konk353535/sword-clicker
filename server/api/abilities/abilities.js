@@ -30,11 +30,14 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
   const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
 
   myAbilities.learntAbilities.forEach((ability) => {
-    if (ability.currentCooldown > 0) {
+    /* if (ability.currentCooldown > 0) {
       ability.currentCooldown -= secondsElapsed * 2;
     } else if (ability.cooldown < 0) {
       ability.currentCooldown = 0;
-    }
+    } */
+    
+    ability.currentCooldown = 0; // 2018-11-10 psouza4: ability cooldowns reset after combat now, why make people wait when there's an energy limit anyway?
+                                 //                     players are simply chosing abilities with very short CD's and not using more interesting abilities as a result
   });
 
   Abilities.update(myAbilities._id, {

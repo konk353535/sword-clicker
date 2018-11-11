@@ -6,6 +6,8 @@ import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Items } from '/imports/api/items/items.js';
 import _ from 'underscore';
 
+import { BUFFS } from '/imports/constants/buffs/index.js';
+
 import './combatAbilitiesTab.html';
 
 Template.combatAbilitiesTab.onCreated(function bodyOnCreated() {
@@ -99,6 +101,7 @@ Template.combatAbilitiesTab.helpers({
       const learntAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id });
       if (learntAbility) {
         ability.notLearnt = false;
+        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
         ability.currentCooldown = learntAbility.currentCooldown;
         ability.primaryAction = {
           description: 'equip',

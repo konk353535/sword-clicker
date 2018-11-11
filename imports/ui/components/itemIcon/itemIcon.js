@@ -148,6 +148,18 @@ Template.itemIcon.helpers({
       selling = Session.get('multiSellItems').hasOwnProperty(instance.data.item._id);
     }
     return selling;
+  },
+  
+  scaledCooldownVal() {
+    const instance = Template.instance();
+    
+    if (BUFFS[instance.data.item.abilityId] && BUFFS[instance.data.item.abilityId].scaledCooldown) {
+      return BUFFS[instance.data.item.abilityId].scaledCooldown(instance.data.item);
+    } else if (instance.data.item.scaledCooldown) {
+      return instance.data.item.scaledCooldown(instance.data.item);
+    }
+    
+    return false;
   }
 });
 

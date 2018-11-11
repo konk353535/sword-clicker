@@ -44,7 +44,9 @@
           {{{item.description}}}<br />
         {{/if}}
 
-        {{#if item.cooldown}}
+        {{#if scaledCooldownVal}}
+          Cooldown <b>{{scaledCooldownVal}}s</b><br />
+        {{else if item.cooldown}}
           Cooldown <b>{{item.cooldown}}s</b><br />
         {{/if}}
 

@@ -2,12 +2,28 @@ import { Session } from "meteor/session";
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { BUFFS } from '/imports/constants/buffs/index.js';
+
 import './abilityLibraryIcon.html';
 
 
 let tooltip;
 Template.abilityLibraryIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+});
+
+Template.abilityLibraryIcon.helpers({
+  scaledCooldownVal() {
+    const instance = Template.instance();
+    
+    if (BUFFS[instance.data.item.abilityId] && BUFFS[instance.data.item.abilityId].scaledCooldown) {
+      return BUFFS[instance.data.item.abilityId].scaledCooldown(instance.data.item);
+    } else if (instance.data.item.scaledCooldown) {
+      return instance.data.item.scaledCooldown(instance.data.item);
+    }
+    
+    return false;
+  }
 });
 
 Template.abilityLibraryIcon.rendered = function () {

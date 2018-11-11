@@ -7,6 +7,8 @@ import { determineRequiredItems } from '/imports/ui/utils.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import _ from 'underscore';
 
+import { BUFFS } from '/imports/constants/buffs/index.js';
+
 import './spellBookTab.html';
 
 Template.spellBookTab.onCreated(function bodyOnCreated() {
@@ -112,6 +114,7 @@ Template.spellBookTab.helpers({
       const targetAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id }); 
       if (targetAbility) {
         ability.notLearnt = false;
+        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
         ability.isSpell = targetAbility.isSpell;
         ability.casts = targetAbility.casts;
         ability.primaryAction = {

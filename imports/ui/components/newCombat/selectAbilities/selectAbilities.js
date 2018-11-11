@@ -8,6 +8,7 @@ import { Combat } from '/imports/api/combat/combat.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
+import { BUFFS } from '/imports/constants/buffs/index.js';
 
 import './selectAbilities.html';
 
@@ -129,6 +130,7 @@ Template.selectAbilitiesPage.helpers({
       const learntAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id });
       if (learntAbility) {
         ability.notLearnt = false;
+        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
         ability.currentCooldown = learntAbility.currentCooldown;
         ability.primaryAction = {
           description: 'equip',

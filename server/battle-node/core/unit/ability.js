@@ -6,7 +6,12 @@ export default class Ability {
   get requires() { return this.constants.requires; }
   get target() { return this.constants.target; }
   get buffs() { return this.constants.buffs; }
-  get cooldown() { return this.constants.cooldown; }
+  get cooldown() {
+    if (this.scaledCooldown) {
+      return this.scaledCooldown(this);
+    }
+    return this.constants.cooldown;
+  }
 
   get currentCooldown() { return this._currentCooldown; }
   set currentCooldown(value) {

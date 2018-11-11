@@ -47,7 +47,11 @@ export const LEVEL_ELEVEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 24,
   rewards: [
-    { type: 'item', itemId: 'titanium_essence', amount: 1 },
+    { type: 'item', itemId: 'titanium_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 48,
+  rewards: [
     { type: 'item', itemId: 'sixth_sense_tome', amount: 1 }
   ]
 }, {

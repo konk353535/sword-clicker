@@ -50,7 +50,7 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'chrysanthemum_seed', amount: 3 }
   ]  
 }, {
-  chance: 1 / 24,
+  chance: 1 / 48,
   rewards: [
     { type: 'item', itemId: 'carbon_essence_scroll', amount: 1 },
     { type: 'item', itemId: 'sixth_sense_tome', amount: 1 }

@@ -293,7 +293,7 @@ export const DEFENSE_BUFFS = {
     icon: 'sixthSense.svg',
     name: 'sixth sense',
     description({ buff, level }) {
-      return `Dodge rate from defense cannot go below 20%`;
+      return `Dodge rate from defense cannot go below 35%`;
     },
     constants: {
     },
@@ -303,7 +303,7 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        target.stats.minimumHitChance = 0.20;
+        target.stats.minimumHitChance = 0.35;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

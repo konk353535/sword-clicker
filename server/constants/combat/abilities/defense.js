@@ -68,7 +68,15 @@ export const DEFENSE_ABILITIES = {
     name: 'taunt',
     id: 'taunt',
     buffs: ['taunt'],
-    cooldown: 10,
+    scaledCooldown: function(ability) {
+      if (ability) {
+        if ((ability.level >= 1) && (ability.level <= 5)) {
+          return 10 - ((ability.level - 1) * 1.5)
+        }
+      }
+      return 10; // failsafe
+    },
+    cooldown: 10, // overridden by .scaledCooldown in BUFFS for clients and above for server
     slot: 'any',
     target: 'currentEnemy',
     isHidden: false,

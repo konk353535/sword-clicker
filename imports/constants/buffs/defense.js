@@ -575,6 +575,14 @@ export const DEFENSE_BUFFS = {
     description({ buff, level }) {
       return 'Force the target to attack you';
     },
+    scaledCooldown: function(ability) {
+      if (ability) {
+        if ((ability.level >= 1) && (ability.level <= 5)) {
+          return 10 - ((ability.level - 1) * 1.5)
+        }
+      }
+      return 10; // failsafe
+    },
     constants: {
     },
     data: {

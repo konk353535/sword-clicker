@@ -53,6 +53,15 @@ Meteor.methods({
         friends: currentFriends.friends
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'friends.remove'(username) {
@@ -89,6 +98,15 @@ Meteor.methods({
     Friends.update(currentFriends._id, {
       $set: {
         friends: currentFriends.friends
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   }

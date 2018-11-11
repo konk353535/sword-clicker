@@ -222,6 +222,15 @@ Meteor.methods({
     } else if (itemCategory === 'mining') {
       updateMiningStats(Meteor.userId(), itemSlot);
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'items.hide'( baseItemId) {
@@ -241,6 +250,15 @@ Meteor.methods({
     }, {
       $set: {
         hidden: !baseItem.hidden
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -476,6 +494,15 @@ Meteor.methods({
         }
       }
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'items.eat'(_id, itemId) {
@@ -575,6 +602,14 @@ Meteor.methods({
       })
     });
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'items.equip'(_id) {
@@ -672,6 +707,15 @@ Meteor.methods({
     } else if (itemCategory === 'mining') {
       updateMiningStats(Meteor.userId(), itemSlot);
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'items.sellItem'(_id, itemId, amount) {
@@ -729,6 +773,15 @@ Meteor.methods({
       _id: Meteor.userId()
     }, {
       $inc: { gold: amountToSell * itemConstants.sellPrice }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
     });
   }
 });

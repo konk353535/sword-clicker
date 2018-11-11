@@ -36,6 +36,15 @@ Meteor.methods({
         woodcutters: woodcutting.woodcutters
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'woodcutting.gameUpdate'() {
@@ -214,6 +223,15 @@ Meteor.methods({
           woodcutterId: woodcutterConstants.id,
           quality: axeToUse.quality
         }
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   }

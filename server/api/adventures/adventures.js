@@ -231,6 +231,15 @@ Meteor.methods({
         lastGameUpdated: new Date()
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'adventures.collectAdventure'(adventureId) {
@@ -278,6 +287,15 @@ Meteor.methods({
         addXp(reward.skill, reward.amount, Meteor.userId());
       }
     })
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'adventures.cycleAdventure'(isGems = false) {
@@ -363,6 +381,15 @@ Meteor.methods({
         consumeItem(adventureTokens, 1);
       }
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'adventures.startAdventure'(adventureId) {
@@ -408,6 +435,15 @@ Meteor.methods({
       $set: {
         adventures: _.sortBy(myAdventures.adventures, 'startDate'),
         lastGameUpdated: moment(myAdventures.lastGameUpdated).add(1, 'seconds').toDate()
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },

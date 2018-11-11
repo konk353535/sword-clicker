@@ -167,6 +167,15 @@ Meteor.methods({
       // Not ready to pick
       throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'farming.pickAll'() {
@@ -196,6 +205,15 @@ Meteor.methods({
         addXp('farming', plantConstants.xp);
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'farming.killPlant'(index) {
@@ -210,6 +228,15 @@ Meteor.methods({
         maturityDate: null,
         plantDate: null,
         growing: null
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -276,6 +303,15 @@ Meteor.methods({
         maturityDate: moment().add(plantConstants.growthTime, 'seconds').toDate(),
         plantDate: new Date(),
         growing: true
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -371,6 +407,15 @@ Meteor.methods({
         growing: true
       }
     }, { multi: true });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'farming.buyShopItem'(seedId, amountToBuy = 1) {
@@ -392,6 +437,15 @@ Meteor.methods({
 
     // Add specified item
     addItem(shopItemConstants.itemId, amountToBuy);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'farming.fetchSeedShopSells'() {

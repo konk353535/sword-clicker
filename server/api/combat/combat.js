@@ -226,6 +226,15 @@ Meteor.methods({
         characterIcon: targetIcon.icon
       }
     })
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'combat.gameUpdate'() {
@@ -330,6 +339,15 @@ Meteor.methods({
     update.$set[`loot.${lootIdx}.owners.${ownerIdx}.ngChoice`] = choice;
 
     Battles.update(battle._id, update);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   }
 });
 

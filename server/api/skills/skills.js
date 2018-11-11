@@ -272,6 +272,15 @@ Meteor.methods({
         updateCombatStats(Meteor.userId());
       }
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'skills.requirements'(skillName) {
@@ -370,6 +379,15 @@ Meteor.methods({
 
       characterIcon: targetUserCombat.characterIcon || 'character.svg'
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'skills.highscores'(skillName, showAll200) {
@@ -428,6 +446,15 @@ Meteor.methods({
         limit
       }).fetch();
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   }
 });
 

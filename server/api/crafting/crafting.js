@@ -223,6 +223,15 @@ Meteor.methods({
     }
 
     craftItem(recipeId, amount);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'crafting.fetchTiers'() {
@@ -350,6 +359,15 @@ Meteor.methods({
         if (required.type === 'item') {
           addItem(required.itemId, required.amount * targetCrafting.amount);
         }
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },

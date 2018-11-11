@@ -58,6 +58,15 @@ Meteor.methods({
       }
     });
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
+
     return true;
   },
 

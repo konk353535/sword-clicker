@@ -206,6 +206,15 @@ Meteor.methods({
     }
 
     attackMineSpace(mineSpaceId, mining, multiplier);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'mining.buyMiner'(minerId) {
@@ -245,6 +254,15 @@ Meteor.methods({
         lastGameUpdated: new Date()
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'mining.buyProspector'(prospectorId) {
@@ -281,6 +299,15 @@ Meteor.methods({
         prospectors: mining.prospectors
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'mining.fireProspector'(prospectorId) {
@@ -301,6 +328,15 @@ Meteor.methods({
     Mining.update(mining._id, {
       $set: {
         prospectors: mining.prospectors
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },

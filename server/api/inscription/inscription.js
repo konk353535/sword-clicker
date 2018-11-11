@@ -91,6 +91,15 @@ Meteor.methods({
     }
 
     craftItem(recipeId, amount);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'inscription.cancelCraft'(targetEndDate) {
@@ -154,6 +163,15 @@ Meteor.methods({
         if (required.type === 'item') {
           addItem(required.itemId, required.amount * targetCrafting.amount);
         }
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },

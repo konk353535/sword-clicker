@@ -56,6 +56,15 @@ Meteor.methods({
         mages: astronomy.mages
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
   // Fetch main mage upgrade costs
   'astronomy.upgradeCosts'() {
@@ -139,6 +148,15 @@ Meteor.methods({
         mages: astronomy.mages
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
   // Deposit gold to mage
   'astronomy.depositMageGold'(index, amount) {
@@ -173,6 +191,15 @@ Meteor.methods({
     Astronomy.update(astronomy._id, {
       $set: {
         mages: astronomy.mages
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -211,6 +238,15 @@ Meteor.methods({
     Astronomy.update(astronomy._id, {
       $set: {
         mages: astronomy.mages
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },

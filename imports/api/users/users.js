@@ -18,6 +18,8 @@ UserSchema = new SimpleSchema({
   server: { type: String },
   banned: { type: Boolean, optional: true },
 
+  lastActivity: { type: Date, optional: true },
+  
   membershipTo: { type: Date, optional: true },
   miningUpgradeTo: { type: Date, optional: true },
   craftingUpgradeTo: { type: Date, optional: true },

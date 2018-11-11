@@ -49,6 +49,15 @@ Meteor.methods({
     }
 
     leaveGroup(currentGroup, this.userId);
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'groups.kick'({ username, ownerId }) {
@@ -98,6 +107,15 @@ Meteor.methods({
         members: currentGroup.members,
         membersObject: currentGroup.membersObject,
         invites: currentGroup.invites
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -183,6 +201,15 @@ Meteor.methods({
         locked
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'groups.join'(id) {
@@ -238,6 +265,15 @@ Meteor.methods({
         invites: targetGroup.invites
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'groups.acceptInvite'(id, accept) {
@@ -288,6 +324,15 @@ Meteor.methods({
         members: targetGroup.members,
         membersObject: targetGroup.membersObject,
         invites: targetGroup.invites
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   },
@@ -363,6 +408,15 @@ Meteor.methods({
         invites: [targetUser._id]
       });
     }
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
   
   // Create a new group
@@ -396,6 +450,15 @@ Meteor.methods({
         id: this.userId
       }],
       invites: []
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
     });
   },
 
@@ -438,6 +501,15 @@ Meteor.methods({
       $set: {
         leaderName: targetUser.username,
         leader: targetUser._id
+      }
+    });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
       }
     });
   }

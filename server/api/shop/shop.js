@@ -98,6 +98,15 @@ Meteor.methods({
         value: globalBuff.value
       }
     });
+
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.buyMembership'(days) {
@@ -144,6 +153,14 @@ Meteor.methods({
       });
     }
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.buySingle'({ days, type }) {
@@ -186,6 +203,14 @@ Meteor.methods({
       });
     }
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.buyIcon'(iconId) {
@@ -247,6 +272,14 @@ Meteor.methods({
       }
     });
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.buyItem'({ itemId }) {
@@ -269,6 +302,14 @@ Meteor.methods({
       addItem(itemToBuy.id, 1, Meteor.userId());
     }
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.buyEnhancerKey'() {
@@ -284,6 +325,14 @@ Meteor.methods({
       addItem('enhancer_key', 1, Meteor.userId());
     }
 
+    // update user activity
+    Users.update({
+      _id: Meteor.userId()
+    }, {
+      $set: {
+        lastActivity: moment().toDate()
+      }
+    });
   },
 
   'shop.purchaseWithRaiBlocks'({ token, item_id }) {

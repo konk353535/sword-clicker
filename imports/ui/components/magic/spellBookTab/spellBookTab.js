@@ -114,7 +114,9 @@ Template.spellBookTab.helpers({
       const targetAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id }); 
       if (targetAbility) {
         ability.notLearnt = false;
-        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
+        if (BUFFS && BUFFS[ability.id]) {
+          ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
+        }
         ability.isSpell = targetAbility.isSpell;
         ability.casts = targetAbility.casts;
         ability.primaryAction = {

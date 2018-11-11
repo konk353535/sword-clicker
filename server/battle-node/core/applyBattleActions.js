@@ -85,7 +85,7 @@ export default function applyBattleActions() {
       if (castSuccess) {
         targetAbility.casts -= 1;
         targetAbility.totalCasts += 1;
-        if (targetAbility.constants.scaledCooldown) {
+        if (targetAbility.constants && targetAbility.constants.scaledCooldown) {
           targetAbility.currentCooldown = targetAbility.constants.scaledCooldown(targetAbility);
         } else {
           targetAbility.currentCooldown = targetAbility.cooldown;

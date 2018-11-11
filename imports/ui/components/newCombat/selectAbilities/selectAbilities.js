@@ -130,7 +130,9 @@ Template.selectAbilitiesPage.helpers({
       const learntAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id });
       if (learntAbility) {
         ability.notLearnt = false;
-        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
+        if (BUFFS && BUFFS[ability.id]) {
+          ability.scaledCooldown = BUFFS[ability.id].scaledCooldown;
+        }
         ability.currentCooldown = learntAbility.currentCooldown;
         ability.primaryAction = {
           description: 'equip',

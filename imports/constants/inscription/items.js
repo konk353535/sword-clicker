@@ -2316,6 +2316,58 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the taunt ability.'
   },
 
+  taunt_level_2_tome: {
+    id: 'taunt_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'taunt Lv. 2',
+    teaches: {
+      abilityId: 'taunt',
+      level: 2
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the taunt ability.'
+  },
+
+  taunt_level_3_tome: {
+    id: 'taunt_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'taunt Lv. 3',
+    teaches: {
+      abilityId: 'taunt',
+      level: 3
+    },
+    sellPrice: 400,
+    description: 'Can be consumed to upgrade the taunt ability.'
+  },
+
+  taunt_level_4_tome: {
+    id: 'taunt_level_4_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'taunt Lv. 4',
+    teaches: {
+      abilityId: 'taunt',
+      level: 4
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to upgrade the taunt ability.'
+  },
+
+  taunt_level_5_tome: {
+    id: 'taunt_level_5_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'taunt Lv. 5',
+    teaches: {
+      abilityId: 'taunt',
+      level: 5
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the taunt ability.'
+  },
+
   pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'magic_tome_1.svg',

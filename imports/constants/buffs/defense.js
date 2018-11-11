@@ -573,7 +573,7 @@ export const DEFENSE_BUFFS = {
     icon: 'taunt.svg',
     name: 'taunt',
     description({ buff, level }) {
-      return 'Force the target to attack you';
+      return 'Forces the enemy to target you.  Cooldown is reduced by 1.5 seconds per ability level.';
     },
     scaledCooldown: function(ability) {
       if (ability) {

@@ -81,6 +81,11 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'icon', iconId: 'phoenix_t1' }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'taunt_level_3_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

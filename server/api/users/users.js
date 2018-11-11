@@ -292,6 +292,7 @@ Meteor.methods({
     }, {
       fields: {
         'username': true,
+        'lastActivity': true,
         '_id': false
       },
       limit: 5

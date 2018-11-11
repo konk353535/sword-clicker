@@ -125,7 +125,8 @@ Meteor.publish('friends', function() {
       fields: {
         owner: 1,
         username: 1,
-        lastGameUpdated: 1
+        lastGameUpdated: 1,
+        lastActivity: 1
       }
     }).fetch();
 

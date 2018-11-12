@@ -25,7 +25,8 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   this.state.set('userSuggestions', []);
   this.state.set('updatingWoodcutting', false);
   this.state.set('updatingMining', false);
-
+  this.state.set('friendsList', undefined);
+  
   const updateAdventures = function (self) {
     self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
       if (adventure.duration) {
@@ -62,6 +63,12 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
       return adventure;
     }));
   };
+  
+  const updateFriendsList = function (self) {
+    Meteor.call('friends.list', (err, res) => {
+      self.state.set('friendsList', res);
+    });
+  }
   
   this.autorun(() => {
     const nowTimeStamp = TimeSync.serverTime();
@@ -114,6 +121,11 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
     updateAdventures(this);
   }, 1000);
   
+  updateFriendsList(this);
+  Meteor.setInterval(() => {
+    updateFriendsList(this);
+  }, 5000);
+  
   Meteor.subscribe('otherBattlers', 3);
   Meteor.subscribe('friends');
   Meteor.subscribe('mining');
@@ -143,9 +155,20 @@ Template.gameHomePage.helpers({
   },
 
   friendsList() {
+    let friendsListState = Template.instance().state.get('friendsList');
+
+    if (friendsListState && friendsListState.friends) {
+      return friendsListState.friends.sort((a, b) => { return b.lastActivity - a.lastActivity; });
+    }
+    
+    // not using the collection directly anymore since the collection is mutated/transformed and not an actual
+    // collection with observed data that changes the collection correctly
+    
+    /*
     if (Friends && Friends.findOne()) {
       return Friends.findOne().friends;
-    }
+    } */
+    
     return false;
   },
 
@@ -621,7 +644,7 @@ Template.friendRow.onCreated(function bodyOnCreated() {
 
       const lastActionDate = moment(computedFriend.lastActionDate);
 
-      if (now.isAfter(lastActionDate.add(2, 'minutes'))) {
+      if (now.isAfter(lastActionDate.add(3, 'minutes'))) {
         computedFriend.afk = true;
       } else {
         computedFriend.afk = false;
@@ -636,7 +659,7 @@ Template.friendRow.onCreated(function bodyOnCreated() {
 
       const lastActionDate = moment(computedFriend.lastActionDate);
 
-      if (now.isAfter(lastActionDate.add(60, 'minutes'))) {
+      if (now.isAfter(lastActionDate.add(15, 'minutes'))) {
         computedFriend.offline = true;
       } else {
         computedFriend.offline = false;

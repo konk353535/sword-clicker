@@ -109,15 +109,42 @@ Meteor.methods({
         lastActivity: moment().toDate()
       }
     });
+  },
+  
+  'friends.list'() {
+    const doc = Friends.findOne({ owner: Meteor.userId() });
+
+    if (doc) {
+      const friendsDetails = Users.find({
+        _id: {
+          $in: doc.friends
+        }
+      }, {
+        fields: {
+          _id: 1,
+          username: 1,
+          lastActivity: 1
+        }
+      }).fetch();
+
+      doc.friends = friendsDetails;
+      
+      for (let i = 0; i < doc.friends.length; i++) {
+        doc.friends[i].owner = doc.friends[i]._id;
+        doc.friends[i].lastActionDate = (doc.friends[i].lastActivity) ? doc.friends[i].lastActivity : 0;
+      };
+      
+      return doc;
+    }
+    
+    return false;
   }
 });
 
 Meteor.publish('friends', function() {
 
-  //Transform function
   const transform = function (doc) {
-    // Transfer invite id to invite names
-    const invitesObjects = Users.find({
+    const friendsDetails = Users.find({
       _id: {
         $in: doc.friends
       }
@@ -129,14 +156,13 @@ Meteor.publish('friends', function() {
       }
     }).fetch();
 
-    // Modify members and invites objects as fake 'battle units for display'?
-    doc.friends = invitesObjects;
+    doc.friends = friendsDetails;
     
     for (let i = 0; i < doc.friends.length; i++) {
       doc.friends[i].owner = doc.friends[i]._id;
       doc.friends[i].lastActionDate = (doc.friends[i].lastActivity) ? doc.friends[i].lastActivity : 0;
     };
-
+    
     return doc;
   };
 
@@ -155,6 +181,7 @@ Meteor.publish('friends', function() {
       self.removed('friend', oldDocument._id);
     }
   });
+
 
   self.onStop(function () {
     observer.stop();

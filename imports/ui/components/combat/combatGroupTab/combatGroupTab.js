@@ -100,7 +100,7 @@ Template.combatGroupTab.events({
     const text = target.text.value;
  
     // Send invite request
-    Meteor.call('friends.invite', text, (err, res) => {
+    Meteor.call('friends.add', text, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }

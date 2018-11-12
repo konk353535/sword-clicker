@@ -375,7 +375,7 @@ Template.gameHomePage.helpers({
 
 Template.gameHomePage.events({
 
-  'submit .friend-invite'(event) {
+  'submit .friend-add'(event) {
     // Prevent default browser form submit
     event.preventDefault();
  
@@ -383,7 +383,7 @@ Template.gameHomePage.events({
     const text = Template.instance().$('#add-friend-input').val();
  
     // Send invite request
-    Meteor.call('friends.invite', text, (err, res) => {
+    Meteor.call('friends.add', text, (err, res) => {
       if (err) {
         toastr.warning(err.reason);
       }

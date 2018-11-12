@@ -11,7 +11,7 @@ Meteor.methods({
   'friends.add'(username) {
     const isMutedExpiry = Meteor.user().isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
-      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+      throw new Meteor.Error('error', 'You are not logged in.');
     }
 
     // Does the specified username exist
@@ -19,12 +19,16 @@ Meteor.methods({
       $or: [{
         username: username.toLowerCase()
       }, {
+        username: username
+      }, {
         email: username.toLowerCase()
+      }, {
+        email: username
       }]
     });
 
     if (!targetUser) {
-      return;
+      throw new Meteor.Error('error', 'Player name not found.');
     }
 
     // Is targetUser already a friend?
@@ -43,7 +47,7 @@ Meteor.methods({
     }
 
     if (_.find(currentFriends.friends, (friend) => { return friend === targetUser._id })) {
-      return;
+      throw new Meteor.Error('error', 'That player is already on your friend\'s list.');
     }
 
     currentFriends.friends.push(targetUser._id);

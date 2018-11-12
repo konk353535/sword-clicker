@@ -4,10 +4,10 @@
       {{#if unit.name}}
         {{#if viewProfile}}
           <a href="/profile/{{unit.name}}">
-            <span class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
           </a>
         {{else}}
-          <span class="text-capitalize battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+          <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
         {{/if}}
       {{/if}}
       {{#if viewProfile}}

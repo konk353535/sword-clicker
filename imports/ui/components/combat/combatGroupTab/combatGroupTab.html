@@ -82,7 +82,7 @@
       {{#each friends}}
         <div class="d-flex friends-item-container mt-1"
           style="justify-content: space-between;">
-          <div class="text-capitalize {{#if this.isOnline}}text-success{{/if}}">
+          <div class="{{#if this.isOnline}}text-success{{/if}}">
             {{this.username}}
           </div>
           <div>Online {{moFromNow this.lastGameUpdated}}</div>

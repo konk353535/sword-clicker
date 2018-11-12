@@ -97,7 +97,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
 
     this.state.set('showPickAll', !!showPickAll);
     
-    if (Adventures.findOne()) {
+    if (Adventures && Adventures.findOne()) {
       this.state.set('rawAdventures', Adventures.findOne().adventures);
       updateAdventures(this);
     }
@@ -143,38 +143,28 @@ Template.gameHomePage.helpers({
   },
 
   friendsList() {
-    const friendsObject = Friends.findOne({});
-
-    // psouza4 2018-10-28: the 'Users' collection in this context only refers to
-    //                     users we know about (the originating player) and won't
-    //                     return other users from the database.  We would need
-    //                     to write a server API to return a user document
-    //                     collection based on a list of IDs instead.
-    /*
-    return Users.find({
-      _id: {
-        $in: friendsObject.friends
-      }
-    }, {
-      sort: {
-        lastActionDate: -1
-      }
-    });
-    */
-    
-    return friendsObject.friends;
+    if (Friends && Friends.findOne()) {
+      return Friends.findOne().friends;
+    }
+    return false;
   },
 
   firstClanInvite() {
-    return ClanInvites.findOne({
-      invitee: Meteor.userId()
-    });
+    if (ClanInvites) {
+      return ClanInvites.findOne({
+        invitee: Meteor.userId()
+      });
+    }
+    return false;
   },
 
   firstRecievedFriendRequest() {
-    return FriendRequests.findOne({
-      reciever: Meteor.userId()
-    });
+    if (FriendRequests) {
+      return FriendRequests.findOne({
+        reciever: Meteor.userId()
+      });
+    }
+    return false;
   },
 
   showAddFriends() {
@@ -248,10 +238,13 @@ Template.gameHomePage.helpers({
   },
   
   lastAdventure() {
-    const adventures = Adventures.findOne({}).adventures.filter((adventure) => {
-      return !!adventure.startDate;
-    });
-    return adventures.pop();
+    if (Adventures && Adventures.findOne()) {
+      const adventures = Adventures.findOne().adventures.filter((adventure) => {
+        return !!adventure.startDate;
+      });      
+      return adventures.pop();
+    }
+    return false;
   },
   
   lastGrownThing() {
@@ -362,7 +355,7 @@ Template.gameHomePage.helpers({
 
   farmingSpaces() {
     const userDoc = Meteor.user();
-    const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+    const hasFarmingUpgrade = userDoc && userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
     
     return FarmingSpace.find().map((farmingSpace) => {
       if (farmingSpace.index === 4 || farmingSpace.index === 5) {

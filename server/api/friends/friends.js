@@ -7,8 +7,8 @@ import { Combat } from '/imports/api/combat/combat';
 
 Meteor.methods({
 
-  // Invite the user to your current group or create a group if not in one
-  'friends.invite'(username) {
+  // add the friend to your friends list
+  'friends.add'(username) {
     const isMutedExpiry = Meteor.user().isMutedExpiry;
     if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
       throw new Meteor.Error('sorry-sir', 'sorry no can do :(');

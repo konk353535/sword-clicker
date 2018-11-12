@@ -553,7 +553,7 @@ Template.lobbyPage.helpers({
         console.log(err);
         return;
       }
-      callback(res.map(function(v){ return {value: v.username}; }));
+      callback(res.map(function(v){ return {value: v.username, act: v.lastActivity}; }));
     });
   },
 

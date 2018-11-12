@@ -620,15 +620,34 @@ Template.friendRow.onCreated(function bodyOnCreated() {
       invites: computedFriend._id
     });
 
-    const nowTimeStamp = TimeSync.serverTime();
-    const now = moment(nowTimeStamp);
-
-    const lastActionDate = moment(computedFriend.lastActionDate);
-
-    if (now.isAfter(lastActionDate.add(5, 'minutes'))) {
+    if (computedFriend.lastActionDate === 0) {
       computedFriend.afk = true;
     } else {
-      computedFriend.afk = false;
+      const nowTimeStamp = TimeSync.serverTime();
+      const now = moment(nowTimeStamp);
+
+      const lastActionDate = moment(computedFriend.lastActionDate);
+
+      if (now.isAfter(lastActionDate.add(2, 'minutes'))) {
+        computedFriend.afk = true;
+      } else {
+        computedFriend.afk = false;
+      }
+    }
+
+    if (computedFriend.lastActionDate === 0) {
+      computedFriend.offline = true;
+    } else {
+      const nowTimeStamp = TimeSync.serverTime();
+      const now = moment(nowTimeStamp);
+
+      const lastActionDate = moment(computedFriend.lastActionDate);
+
+      if (now.isAfter(lastActionDate.add(60, 'minutes'))) {
+        computedFriend.offline = true;
+      } else {
+        computedFriend.offline = false;
+      }
     }
 
     this.state.set('computedFriend', computedFriend);

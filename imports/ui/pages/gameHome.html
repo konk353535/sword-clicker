@@ -250,12 +250,14 @@
 <template name="friendRow">
   <div class="d-flex align-items-center flex-grow mb-1">
     <div class="badge text-capitalize
-      {{#if computedFriend.afk}}badge-grey-0{{else}}badge-success{{/if}} mr-1
+      {{#if computedFriend.offline}}badge-grey-0{{else if computedFriend.afk}}badge-orange-4{{else}}badge-green-1{{/if}} mr-1
     " style="width: 80px">
-      {{#if computedFriend.afk}}
+      {{#if computedFriend.offline}}
+        {{> readableDuration startDate=computedFriend.lastActionDate}}
+      {{else if computedFriend.afk}}
         {{> readableDuration startDate=computedFriend.lastActionDate}}
       {{else}}
-        {{friend.lastAction}}
+        online
       {{/if}}
     </div>
     <div class="flex-grow text-capitalize"

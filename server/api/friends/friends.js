@@ -117,21 +117,25 @@ Meteor.publish('friends', function() {
   //Transform function
   const transform = function (doc) {
     // Transfer invite id to invite names
-    const invitesObjects = Combat.find({
-      owner: {
+    const invitesObjects = Users.find({
+      _id: {
         $in: doc.friends
       }
     }, {
       fields: {
-        owner: 1,
+        _id: 1,
         username: 1,
-        lastGameUpdated: 1,
         lastActivity: 1
       }
     }).fetch();
 
     // Modify members and invites objects as fake 'battle units for display'?
     doc.friends = invitesObjects;
+    
+    for (let i = 0; i < doc.friends.length; i++) {
+      doc.friends[i].owner = doc.friends[i]._id;
+      doc.friends[i].lastActionDate = (doc.friends[i].lastActivity) ? doc.friends[i].lastActivity : 0;
+    };
 
     return doc;
   };

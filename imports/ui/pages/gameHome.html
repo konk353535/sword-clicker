@@ -268,6 +268,9 @@
       </a>
     </div>
     <div class="d-flex justify-content-end flex-grow">
+      <button class="btn btn-warning btn-sm mr-1 remove-friend">Remove</button>
+    </div>
+    <div class="d-flex justify-content-end">
       {{#if $and myGroup ($eq myGroup._id friend.partyId)}}
         <div class="badge badge-primary">In Group</div>
       {{else}}
@@ -275,7 +278,7 @@
           <button class="btn btn-primary btn-sm mr-1 join-group">Join</button>
         {{/if}}
         {{#if computedFriend.hasInvitedToMyGroup}}
-          <div class="badge badge-info">Invited</div>
+          <button class="btn btn-secondary btn-sm mr-1 badge-info" style="color: white;">Invited</button>
         {{else if canInvite}}
           <button class="btn btn-secondary btn-sm invite-to-group">Invite</button>
         {{/if}}

@@ -655,6 +655,20 @@ Template.friendRow.onCreated(function bodyOnCreated() {
 });
 
 Template.friendRow.events({
+  'click .remove-friend'(event, instance) {
+    $(event.target).addClass('remove-friend-confirm btn-danger');
+    $(event.target).removeClass('remove-friend btn-warning');
+    $(event.target).html('Confirm');
+  },
+
+  'click .remove-friend-confirm'(event, instance) {
+    Meteor.call('friends.remove', instance.data.friend.username, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      }
+    });
+  },
+
   'click .join-group'(event, instance) {
     Meteor.call('groups.join', instance.data.friend.partyId);
   },

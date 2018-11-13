@@ -380,9 +380,9 @@ export const MAGIC = {
       }, {
         type: 'item',
         itemId: 'complete_water_shard',
-        icon: ITEMS['complete_water_shard'].icon,
-        name: ITEMS['complete_water_shard'].name,
-        amount: 1,
+        icon: ITEMS['water_shard_fragment'].icon,
+        name: ITEMS['water_shard_fragment'].name,
+        amount: 25,
         consumes: true
       }, {
         type: 'skill',

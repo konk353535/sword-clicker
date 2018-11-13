@@ -9,8 +9,64 @@ import './ability.html';
 const castAbility = function(instance) {
   const currentBattleId = BattlesList.findOne({})._id;
 
-  if (instance.data.ability.targettable) {
+  // automatically target solo enemies or self if the enemy or
+  let targetType = 'auto';
+  let icons;
+  if (instance && instance.data && instance.data.ability && instance.data.ability.targettable) {
+    targetType = instance.data.ability.target;
+    
     if (instance.data.ability.target === 'singleEnemy') {
+      icons = $('body').find('.enemy-icon');
+      if (icons.length === 1) {
+        targetType = 'autoEnemy';
+      }
+    } else if (instance.data.ability.target === 'singleFriendly') {
+      icons = $('body').find('.friendly-icon');
+      if (icons.length === 1) {
+        targetType = 'autoSelf';
+      }
+    }
+  }
+  
+  // if we have an automatic target mode and a valid target, then use the ability automatically with no further user interaction required
+  if ((targetType === 'autoEnemy') && (icons)) {
+    const targetId = icons[0].attr('data-unit-id');
+    const battleId = currentBattleId;
+    const abilityId = instance.data.ability.id;
+
+    if (battleSocket) {
+      // Gonna require the socket here
+      battleSocket.emit('action', {
+        battleSecret: Meteor.user().battleSecret,
+        abilityId,
+        targets: [targetId],
+        caster: Meteor.userId()
+      });                
+    }
+    
+    return;
+  } else if (targetType === 'autoSelf') {
+    const battleId = currentBattleId;
+    const abilityId = instance.data.ability.id;
+    const targetId = Meteor.userId();
+    const casterId = Meteor.userId();
+
+    if (battleSocket) {
+      // Gonna require the socket here
+      battleSocket.emit('action', {
+        battleSecret: Meteor.user().battleSecret,
+        abilityId,
+        targets: [targetId],
+        caster: Meteor.userId()
+      });                
+    }
+    
+    return;
+  }
+    
+  // otherwise, this is a targetable ability and there are multiple valid targets for the user to select
+  if (instance.data.ability.targettable) {
+    if (targetType === 'singleEnemy') {
       const body = $('body');
       if (!body.hasClass('targetting-enemies')) {
         body.addClass('targetting-enemies');
@@ -38,7 +94,7 @@ const castAbility = function(instance) {
           });
         }, 1);
       }
-    } else if (instance.data.ability.target === 'singleFriendly') {
+    } else if (targetType === 'singleFriendly') {
       const body = $('body'); 
       if (!body.hasClass('targetting-friendlies')) {
         body.addClass('targetting-friendlies');
@@ -67,7 +123,7 @@ const castAbility = function(instance) {
         }, 1);
       }
     }
-  } else {
+  } else { // or the ability simply isn't targetable at all
     const battleId = currentBattleId;
     const abilityId = instance.data.ability.id;
     const targetId = Meteor.userId();

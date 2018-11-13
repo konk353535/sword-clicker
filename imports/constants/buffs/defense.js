@@ -591,6 +591,54 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+        if (target.target === caster.id) { // already being targeted)
+          if (caster) {
+            const targetAbility = caster.abilitiesMap['taunt'];
+            if (targetAbility) {
+              targetAbility.cdAdjust = function(abil) {
+                return 2;
+              };
+            }
+          }
+        } else {
+          target.target = caster.id;
+
+          buff.data.endDate = moment().add(0, 'seconds').toDate();
+
+          const hasIntimidate = caster.buffs.find(buff => buff.id === 'enchantment_intimidate');
+
+          if (hasIntimidate) {
+            actualBattle.dealDamage(caster.stats.attack * 2, {
+              defender: caster,
+              attacker: target,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+          }
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        removeBuff({ target, buff, caster })
+      }
+    }
+  },
+
+  scream: {
+    duplicateTag: 'scream', // Used to stop duplicate buffs
+    icon: 'scream.svg',
+    name: 'scream',
+    description({ buff, level }) {
+      return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
+    },
+    constants: {
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
         target.target = caster.id;
 
         buff.data.endDate = moment().add(0, 'seconds').toDate();

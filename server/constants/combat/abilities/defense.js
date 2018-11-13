@@ -7,14 +7,14 @@ export const DEFENSE_ABILITIES = {
     icon: 'scream.svg',
     name: 'scream',
     id: 'scream',
-    buffs: ['taunt'],
-    cooldown: 60,
+    buffs: ['scream'],
+    cooldown: 5,
     slot: 'any',
     target: 'allEnemies',
     isHidden: false,
     description(level) {
       // const BUFF = BUFFS.taunt;
-      return 'Forces all enemies to attack you';
+      return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
     }
   },
 

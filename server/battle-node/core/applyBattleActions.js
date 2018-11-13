@@ -92,6 +92,15 @@ export default function applyBattleActions() {
         } else {
           targetAbility.currentCooldown = targetAbility.cooldown;
         }
+        
+        if (targetAbility.cdAdjust) {
+          if (_.isFunction(targetAbility.cdAdjust)) {
+            targetAbility.currentCooldown = targetAbility.cdAdjust(targetAbility);
+          } else {
+            targetAbility.currentCooldown += targetAbility.cdAdjust;
+          }
+          targetAbility.cdAdjust = undefined;
+        }
       }
     }
   });

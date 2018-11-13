@@ -193,8 +193,11 @@ Meteor.methods({
 
     // Set data for target adventure
     const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
+    
+    if (!targetAdventure)
+      return;
 
-    if (moment().isAfter(targetAdventure.startDate)) {
+    if (targetAdventure.startDate && moment().isAfter(targetAdventure.startDate)) {
       // Partially complete, give some rewards
       processCompleteAdventure(targetAdventure);
     } else {

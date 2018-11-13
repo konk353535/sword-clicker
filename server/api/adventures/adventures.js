@@ -252,8 +252,8 @@ Meteor.methods({
     // Set data for target adventure
     const targetAdventure = _.findWhere(myAdventures.adventures, { id: adventureId });
 
-    // Can't collect un finished adventure
-    if (targetAdventure.win == null) {
+    // Can't collect unfinished adventure
+    if (!targetAdventure || targetAdventure.win == null) {
       return;
     }
 

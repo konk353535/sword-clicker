@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Users } from '/imports/api/users/users';
 import _ from 'underscore';
 import moment from 'moment';
 import { Random } from 'meteor/random';

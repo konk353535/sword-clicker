@@ -285,7 +285,7 @@ export const MAGIC_BOOK_CRAFTS = {
   elm_magic_book: {
     recipeFor: 'inscription',
     produces: 'elm_magic_book',
-    name: 'codex of prophecy',
+    name: 'codex of aberrations',
     id: 'elm_magic_book',
     category: 'magic_book',
     timeToCraft: 300,
@@ -301,9 +301,9 @@ export const MAGIC_BOOK_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ancient_air_shard',
-      icon: ITEMS['ancient_air_shard'].icon,
-      name: ITEMS['ancient_air_shard'].name,
+      itemId: 'ancient_fire_shard',
+      icon: ITEMS['ancient_fire_shard'].icon,
+      name: ITEMS['ancient_fire_shard'].name,
       amount: 1,
       consumes: true
     }, {
@@ -320,7 +320,7 @@ export const MAGIC_BOOK_CRAFTS = {
   black_magic_book: {
     recipeFor: 'inscription',
     produces: 'black_magic_book',
-    name: 'codex of prophecy',
+    name: 'codex of wisdom',
     id: 'black_magic_book',
     category: 'magic_book',
     timeToCraft: 300,
@@ -336,9 +336,9 @@ export const MAGIC_BOOK_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ancient_air_shard',
-      icon: ITEMS['ancient_air_shard'].icon,
-      name: ITEMS['ancient_air_shard'].name,
+      itemId: 'ancient_earth_shard',
+      icon: ITEMS['ancient_earth_shard'].icon,
+      name: ITEMS['ancient_earth_shard'].name,
       amount: 1,
       consumes: true
     }, {
@@ -355,7 +355,7 @@ export const MAGIC_BOOK_CRAFTS = {
   blue_gum_magic_book: {
     recipeFor: 'inscription',
     produces: 'blue_gum_magic_book',
-    name: 'codex of prophecy',
+    name: 'codex of bliss',
     id: 'blue_gum_magic_book',
     category: 'magic_book',
     timeToCraft: 300,
@@ -371,9 +371,9 @@ export const MAGIC_BOOK_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'ancient_air_shard',
-      icon: ITEMS['ancient_air_shard'].icon,
-      name: ITEMS['ancient_air_shard'].name,
+      itemId: 'ancient_water_shard',
+      icon: ITEMS['ancient_water_shard'].icon,
+      name: ITEMS['ancient_water_shard'].name,
       amount: 1,
       consumes: true
     }, {
@@ -390,7 +390,7 @@ export const MAGIC_BOOK_CRAFTS = {
   cedar_magic_book: {
     recipeFor: 'inscription',
     produces: 'cedar_magic_book',
-    name: 'codex of prophecy',
+    name: 'codex of mastery',
     id: 'cedar_magic_book',
     category: 'magic_book',
     timeToCraft: 300,

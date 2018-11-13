@@ -379,7 +379,7 @@ export const MAGIC = {
         consumes: true
       }, {
         type: 'item',
-        itemId: 'complete_water_shard',
+        itemId: 'water_shard_fragment',
         icon: ITEMS['water_shard_fragment'].icon,
         name: ITEMS['water_shard_fragment'].name,
         amount: 25,

@@ -79,5 +79,16 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
 
   } else {
     this.dealDamage(0, { attacker, defender, tickEvents, historyStats, actualBattle: this });
+    
+    // Tick dodgedDamage event on defender
+    if (defender.buffs) {
+      defender.buffs.forEach((buff) => {
+        buff.constants = BUFFS[buff.id];
+        if (buff.constants.events.onDodgedDamage) {
+          // Dodged Damage
+          buff.constants.events.onDodgedDamage({ secondsElapsed, buff, defender, attacker, actualBattle: this })
+        }
+      });
+    }
   }
 }

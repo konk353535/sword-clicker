@@ -291,9 +291,9 @@ export const DEFENSE_BUFFS = {
   sixth_sense: {
     duplicateTag: 'sixth_sense', // Used to stop duplicate buffs
     icon: 'sixthSense.svg',
-    name: 'sixth sense',
+    name: 'watchful aura',
     description({ buff, level }) {
-      return `Dodge rate from defense cannot go below 35%`;
+      return `Dodge rate from defense skill won't fall below 35%.  Whenever you dodge, you are healed for 1% of your maximum health.  This heal can occur only every 5 seconds.`;
     },
     constants: {
     },
@@ -304,12 +304,43 @@ export const DEFENSE_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
         target.stats.minimumHitChance = 0.35;
+        buff.stats = 0;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
+        if (buff.stacksTimer > 0) {
+          buff.stacksTimer -= secondsElapsed;
+        }
+        if (buff.stacksTimer <= 0) {
+          buff.stacksTimer = undefined;
+          buff.stacks = undefined;
+        } else {
+          buff.stacks = Math.ceil(buff.stacksTimer);
+        }
       },
 
       onRemove({ buff, target, caster }) {
+      },
+      
+      onDodgedDamage({ buff, defender, attacker, actualBattle }) {
+        if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
+          let hpHealAmount = defender.stats.healthMax / 100;
+          if (hpHealAmount + defender.stats.health > defender.stats.healthMax) {
+            hpHealAmount = defender.stats.healthMax - defender.stats.health;
+          }
+          
+          if (hpHealAmount > 0) {
+            actualBattle.healTarget(hpHealAmount, {
+              caster: defender,
+              target: defender,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+            
+            buff.stacksTimer = 5.0;
+            buff.stacks = Math.ceil(buff.stacksTimer);
+          }
+        }
       }
     }
   },

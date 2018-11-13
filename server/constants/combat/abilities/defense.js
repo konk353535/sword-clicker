@@ -153,7 +153,7 @@ export const DEFENSE_ABILITIES = {
 
   sixth_sense: {
     icon: 'sixthSense.svg',
-    name: 'sixth sense',
+    name: 'watchful aura',
     id: 'sixth_sense',
     buffs: ['sixth_sense'],
     cooldown: 0,

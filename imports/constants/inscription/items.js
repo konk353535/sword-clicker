@@ -669,13 +669,13 @@ export const INSCRIPTION_ITEMS = {
     id: 'sixth_sense_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Sixth Sense Lv. 1',
+    name: 'Watchful Aura Lv. 1',
     teaches: {
       abilityId: 'sixth_sense',
       level: 1
     },
     sellPrice: 200,
-    description: 'Can be consumed to learn the sixth sense ability.'
+    description: 'Can be consumed to learn the watchful aura ability.'
   },
 
   furied_defense_tome: {

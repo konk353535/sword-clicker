@@ -34,9 +34,18 @@ export const LEVEL_THREE_MONSTERS = [{
 export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 64,
   rewards: [
+    { type: 'item', itemId: 'ore_coal', amount: 1 },
+  ]
+}, {
+  chance: 1 / 32,
+  rewards: [
     { type: 'item', itemId: 'tin_pickaxe', amount: 1 },
     { type: 'item', itemId: 'tin_axe', amount: 1 },
-    { type: 'item', itemId: 'tin_dagger', amount: 1 },
+    { type: 'item', itemId: 'tin_dagger', amount: 1 }
+  ]
+}, {
+  chance: 1 / 64,
+  rewards: [
     { type: 'item', itemId: 'brown_wizard_hat', amount: 1 },
     { type: 'item', itemId: 'brown_wizard_shirt', amount: 1 },
     { type: 'item', itemId: 'brown_wizard_shorts', amount: 1 },
@@ -45,7 +54,17 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 4,
   rewards: [
     { type: 'item', itemId: 'ore_tin', amount: 1 },
-    { type: 'gold', amount: 75 },
-    { type: 'item', itemId: 'beech_log', amount: 3}
+    { type: 'item', itemId: 'tin_bar', amount: 1 },
+    { type: 'item', itemId: 'beech_log', amount: 1},
+    { type: 'item', itemId: 'beech_log', amount: 2}
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 25 },
+    { type: 'gold', amount: 60 },
+    { type: 'gold', amount: 100 },
+    { type: 'item', itemId: 'polished_tin', amount: 1 },
+    { type: 'item', itemId: 'polished_tin', amount: 2 }
   ]
 }]);

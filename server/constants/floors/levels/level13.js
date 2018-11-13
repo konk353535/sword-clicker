@@ -31,17 +31,17 @@ export const LEVEL_THIRTEEN_MONSTERS = [{
 }];
 
 export const LEVEL_THIRTEEN_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 256,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'obsidian_pickaxe', amount: 1 },
     { type: 'item', itemId: 'obsidian_axe', amount: 1 },
     { type: 'item', itemId: 'obsidian_dagger', amount: 1 },
-    { type: 'item', itemId: 'lavender', amount: 1 }
+    { type: 'item', itemId: 'chilli', amount: 1 }
   ]
 }, {
-  chance: 1 / 64,
+  chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'obsidian_bar', amount: 1 }
+    { type: 'item', itemId: 'obsidian_essence_scroll', amount: 1 }
   ]
 }, {
   chance: 1 / 24,
@@ -49,16 +49,26 @@ export const LEVEL_THIRTEEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'obsidian_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 12,
   rewards: [
-    { type: 'item', itemId: 'obsidian_essence_scroll', amount: 1 }
+    { type: 'item', itemId: 'tungsten_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 1750 },
     { type: 'item', itemId: 'ore_obsidian', amount: 1 },
+    { type: 'item', itemId: 'obsidian_bar', amount: 1 },
+    { type: 'item', itemId: 'cedar_log', amount: 1 },
     { type: 'item', itemId: 'cedar_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'gold', amount: 225 },
+    { type: 'gold', amount: 450 },
+    { type: 'gold', amount: 900 },
+    { type: 'item', itemId: 'polished_obsidian', amount: 1 },
+    { type: 'item', itemId: 'polished_obsidian', amount: 2 }
   ]
 }]);
 

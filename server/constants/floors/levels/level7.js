@@ -31,7 +31,7 @@ export const LEVEL_SEVEN_MONSTERS = [{
 }];
 
 export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 128,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'gold_pickaxe', amount: 1 },
     { type: 'item', itemId: 'gold_axe', amount: 1 },
@@ -41,31 +41,35 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'gold_bar', amount: 1 }
-  ]
-}, {
-  chance: 1 / 48,
-  rewards: [
     { type: 'item', itemId: 'gold_essence_scroll', amount: 1 },
     { type: 'item', itemId: 'thirsty_fangs_1_tome_scroll', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 24,
   rewards: [
     { type: 'item', itemId: 'gold_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 12,
   rewards: [
     { type: 'item', itemId: 'silver_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 400 },
     { type: 'item', itemId: 'ore_gold', amount: 1 },
-    { type: 'item', itemId: 'ore_silver', amount: 1 },
-    { type: 'item', itemId: 'walnut_log', amount: 1 }
+    { type: 'item', itemId: 'gold_bar', amount: 1 },
+    { type: 'item', itemId: 'walnut_log', amount: 1 },
+    { type: 'item', itemId: 'walnut_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 88 },
+    { type: 'gold', amount: 175 },
+    { type: 'gold', amount: 350 },
+    { type: 'item', itemId: 'polished_gold', amount: 1 },
+    { type: 'item', itemId: 'polished_gold', amount: 2 }
   ]
 }]);
 

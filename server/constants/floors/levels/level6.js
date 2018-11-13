@@ -31,7 +31,7 @@ export const LEVEL_SIX_MONSTERS = [{
 }];
 
 export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 96,
+  chance: 1 / 56,
   rewards: [
     { type: 'item', itemId: 'silver_pickaxe', amount: 1 },
     { type: 'item', itemId: 'silver_axe', amount: 1 },
@@ -39,7 +39,7 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'lavender', amount: 1 }
   ]
 }, {
-  chance: 1 / 48,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'silver_essence_scroll', amount: 1 },
     { type: 'item', itemId: 'slash_level_2_tome', amount: 1 }
@@ -50,17 +50,22 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'silver_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
-  rewards: [
-    { type: 'item', itemId: 'silver_bar', amount: 1 },
-    { type: 'item', itemId: 'ore_silver', amount: 1 }
-  ]
-}, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 250 },
     { type: 'item', itemId: 'ore_silver', amount: 1 },
-    { type: 'item', itemId: 'maple_log', amount: 1 }
+    { type: 'item', itemId: 'silver_bar', amount: 1 },
+    { type: 'item', itemId: 'maple_log', amount: 1 },
+    { type: 'item', itemId: 'maple_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 66 },
+    { type: 'gold', amount: 131 },
+    { type: 'gold', amount: 263 },
+    { type: 'item', itemId: 'silver_sculpture', amount: 1 },
+    { type: 'item', itemId: 'silver_sculpture', amount: 2 },
+    { type: 'item', itemId: 'silver_sculpture', amount: 3 }
   ]
 }]);
 

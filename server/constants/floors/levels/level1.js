@@ -29,35 +29,25 @@ export const LEVEL_ONE_LOOT_TABLE = orderLootTable([{
   ]
 }, {
   chance: 1 / 16,
-  rewards: [{
-    type: 'item',
-    itemId: 'primitive_pickaxe',
-    amount: 1
-  }, {
-    type: 'item',
-    itemId: 'primitive_axe',
-    amount: 1
-  }]
+  rewards: [
+    { type: 'item', itemId: 'primitive_pickaxe', amount: 1 },
+    { type: 'item', itemId: 'primitive_axe', amount: 1 }
+  ]
 }, {
   chance: 1 / 4,
-  rewards: [{
-    type: 'item',
-    itemId: 'ore_stone',
-    amount: 1
-  }, {
-    type: 'gold',
-    amount: 25
-  }, {
-    type: 'item',
-    itemId: 'pine_log',
-    amount: 1
-  }, {
-    type: 'item',
-    itemId: 'lettice_seed',
-    amount: 1
-  }, {
-    type: 'item',
-    itemId: 'lettice',
-    amount: 1
-  }]
+  rewards: [
+    { type: 'item', itemId: 'ore_stone', amount: 1 },
+    { type: 'item', itemId: 'pine_log', amount: 1 },
+    { type: 'item', itemId: 'lettice_seed', amount: 1 },
+    { type: 'item', itemId: 'lettice', amount: 1 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 12 },
+    { type: 'gold', amount: 25 },
+    { type: 'gold', amount: 50 },
+    { type: 'item', itemId: 'polished_stone', amount: 1 },
+    { type: 'item', itemId: 'polished_stone', amount: 2 }
+  ]
 }]);

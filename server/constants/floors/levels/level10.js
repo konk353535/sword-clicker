@@ -31,35 +31,50 @@ export const LEVEL_TEN_MONSTERS = [{
 }];
 
 export const LEVEL_TEN_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 256,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'platinum_pickaxe', amount: 1 },
     { type: 'item', itemId: 'platinum_axe', amount: 1 },
     { type: 'item', itemId: 'platinum_dagger', amount: 1 },
-    { type: 'item', itemId: 'lavender', amount: 1 }
+    { type: 'item', itemId: 'chilli', amount: 1 }
   ]
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'platinum_bar', amount: 1 },
     { type: 'item', itemId: 'shield_bash_level_2_tome', amount: 1 }
   ]
 }, {
-  chance: 1 / 24,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'platinum_essence_scroll', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 24,
   rewards: [
     { type: 'item', itemId: 'platinum_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 8,
+  chance: 1 / 12,
   rewards: [
-    { type: 'gold', amount: 1000 },
-    { type: 'item', itemId: 'ore_platinum', amount: 2 },
+    { type: 'item', itemId: 'steel_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'item', itemId: 'ore_platinum', amount: 1 },
+    { type: 'item', itemId: 'platinum_bar', amount: 1 },
+    { type: 'item', itemId: 'elk_log', amount: 1 },
     { type: 'item', itemId: 'elk_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'gold', amount: 141 },
+    { type: 'gold', amount: 281 },
+    { type: 'gold', amount: 563 },
+    { type: 'item', itemId: 'platinum_sculpture', amount: 1 },
+    { type: 'item', itemId: 'platinum_sculpture', amount: 2 },
+    { type: 'item', itemId: 'platinum_sculpture', amount: 3 }
   ]
 }]);
 

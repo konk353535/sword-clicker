@@ -24,28 +24,34 @@ export const LEVEL_FOUR_MONSTERS = [{
 }];
 
 export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 256,
+  chance: 1 / 40,
   rewards: [
     { type: 'item', itemId: 'bronze_pickaxe', amount: 1 },
     { type: 'item', itemId: 'bronze_axe', amount: 1 },
     { type: 'item', itemId: 'bronze_dagger', amount: 1 }
   ]
 }, {
-  chance: 1 / 128,
+  chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'bronze_bar', amount: 1 },
-    { type: 'item', itemId: 'health_up_1_tome', amount: 1 },
-  ]
-}, {
-  chance: 1 / 32,
-  rewards: [
-    { type: 'item', itemId: 'ore_bronze', amount: 1 },
+    { type: 'item', itemId: 'health_up_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
+    { type: 'item', itemId: 'ore_bronze', amount: 1 },
+    { type: 'item', itemId: 'bronze_bar', amount: 1 },
     { type: 'item', itemId: 'ash_log', amount: 1 },
-    { type: 'gold', amount: 100 }
+    { type: 'item', itemId: 'ash_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 33 },
+    { type: 'gold', amount: 66 },
+    { type: 'gold', amount: 131 },
+    { type: 'item', itemId: 'bronze_sculpture', amount: 1 },
+    { type: 'item', itemId: 'bronze_sculpture', amount: 2 },
+    { type: 'item', itemId: 'bronze_sculpture', amount: 3 }
   ]
 }]);
 

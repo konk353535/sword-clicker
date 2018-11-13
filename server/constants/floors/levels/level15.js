@@ -31,16 +31,17 @@ export const LEVEL_FIFTEEN_MONSTERS = [{
 }];
 
 export const LEVEL_FIFTEEN_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 256,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'mithril_pickaxe', amount: 1 },
     { type: 'item', itemId: 'mithril_axe', amount: 1 },
     { type: 'item', itemId: 'mithril_dagger', amount: 1 },
+    { type: 'item', itemId: 'chilli', amount: 1 }
   ]
 }, {
-  chance: 1 / 64,
+  chance: 1 / 48,
   rewards: [
-    { type: 'item', itemId: 'mithril_bar', amount: 1 }
+    { type: 'item', itemId: 'mithril_essence_scroll', amount: 1 }
   ]
 }, {
   chance: 1 / 24,
@@ -48,16 +49,26 @@ export const LEVEL_FIFTEEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'mithril_essence', amount: 1 }
   ]
 }, {
-  chance: 1 / 16,
+  chance: 1 / 12,
   rewards: [
-    { type: 'item', itemId: 'mithril_essence_scroll', amount: 1 }
+    { type: 'item', itemId: 'cobalt_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 2250 },
     { type: 'item', itemId: 'ore_mithril', amount: 1 },
+    { type: 'item', itemId: 'mithril_bar', amount: 1 },
+    { type: 'item', itemId: 'gombe_log', amount: 1 },
     { type: 'item', itemId: 'gombe_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'gold', amount: 275 },
+    { type: 'gold', amount: 550 },
+    { type: 'gold', amount: 1100 },
+    { type: 'item', itemId: 'polished_mithril', amount: 1 },
+    { type: 'item', itemId: 'polished_mithril', amount: 2 }
   ]
 }]);
 

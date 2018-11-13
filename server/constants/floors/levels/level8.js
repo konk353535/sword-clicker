@@ -31,7 +31,7 @@ export const LEVEL_EIGHT_MONSTERS = [{
 }];
 
 export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 128,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'carbon_pickaxe', amount: 1 },
     { type: 'item', itemId: 'carbon_axe', amount: 1 },
@@ -41,24 +41,27 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
+    { type: 'item', itemId: 'carbon_essence_scroll', amount: 1 }
+  ]
+}, {
+  chance: 1 / 24,
+  rewards: [
+    { type: 'item', itemId: 'carbon_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 12,
+  rewards: [
+    { type: 'item', itemId: 'gold_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 64,
+  rewards: [
     { type: 'item', itemId: 'affliction_tome', amount: 1 }
   ]
 }, {
-  chance: 1 / 48,
+  chance: 1 / 128,
   rewards: [
-    { type: 'item', itemId: 'carbon_bar', amount: 1 },
-    { type: 'item', itemId: 'chrysanthemum_seed', amount: 3 }
-  ]  
-}, {
-  chance: 1 / 48,
-  rewards: [
-    { type: 'item', itemId: 'carbon_essence_scroll', amount: 1 },
     { type: 'item', itemId: 'sixth_sense_tome', amount: 1 }
-  ]
-}, {
-  chance: 1 / 16,
-  rewards: [
-    { type: 'item', itemId: 'carbon_essence', amount: 1 }
   ]
 }, {
   chance: 1 / 4,
@@ -66,6 +69,24 @@ export const LEVEL_EIGHT_LOOT_TABLE = orderLootTable([{
     { type: 'gold', amount: 600 },
     { type: 'item', itemId: 'ore_carbon', amount: 1 },
     { type: 'item', itemId: 'cherry_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'item', itemId: 'ore_carbon', amount: 1 },
+    { type: 'item', itemId: 'carbon_bar', amount: 1 },
+    { type: 'item', itemId: 'cherry_log', amount: 1 },
+    { type: 'item', itemId: 'cherry_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 103 },
+    { type: 'gold', amount: 206 },
+    { type: 'gold', amount: 413 },
+    { type: 'item', itemId: 'carbon_sculpture', amount: 1 },
+    { type: 'item', itemId: 'carbon_sculpture', amount: 2 },
+    { type: 'item', itemId: 'carbon_sculpture', amount: 3 }
   ]
 }]);
 

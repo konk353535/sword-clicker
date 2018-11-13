@@ -31,7 +31,7 @@ export const LEVEL_NINE_MONSTERS = [{
 }];
 
 export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 256,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'steel_pickaxe', amount: 1 },
     { type: 'item', itemId: 'steel_axe', amount: 1 },
@@ -41,11 +41,10 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'celery_seed', amount: 1 },
-    { type: 'item', itemId: 'steel_bar', amount: 1 }
+    { type: 'item', itemId: 'celery_seed', amount: 1 }
   ]
 }, {
-  chance: 1 / 32,
+  chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'steel_essence_scroll', amount: 1 }
   ]
@@ -55,12 +54,26 @@ export const LEVEL_NINE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'steel_essence', amount: 1 }
   ]
 }, {
+  chance: 1 / 12,
+  rewards: [
+    { type: 'item', itemId: 'carbon_essence', amount: 1 }
+  ]
+}, {
   chance: 1 / 4,
   rewards: [
-    { type: 'gold', amount: 800 },
-    { type: 'item', itemId: 'acai_berry_seed', amount: 6 },
     { type: 'item', itemId: 'ore_steel', amount: 1 },
+    { type: 'item', itemId: 'steel_bar', amount: 1 },
+    { type: 'item', itemId: 'mahogany_log', amount: 1 },
     { type: 'item', itemId: 'mahogany_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 6,
+  rewards: [
+    { type: 'gold', amount: 138 },
+    { type: 'gold', amount: 275 },
+    { type: 'gold', amount: 550 },
+    { type: 'item', itemId: 'polished_steel', amount: 1 },
+    { type: 'item', itemId: 'polished_steel', amount: 2 }
   ]
 }]);
 

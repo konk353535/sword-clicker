@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-
 import { Inscription } from '/imports/api/inscription/inscription';
+import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Events } from '/imports/api/events/events';
 import moment from 'moment';
@@ -19,33 +19,31 @@ const craftItem = function (recipeId, amountToCraft) {
 
   // Are we crafting at least one item
   if (amountToCraft <= 0) {
-    return;
+    throw new Meteor.Error("cant-inscribe", "Choose a positive quantity of items to inscribe.");
   }
 
   const maxConcurrentCrafts = INSCRIPTION.getMaxCrafts(inscription.inscriptionLevel);
 
   // Are we already crafting?
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length >= maxConcurrentCrafts) {
-    throw new Meteor.Error("already-crafting", "Already crafting too many items.");
+    throw new Meteor.Error("cant-inscribe", "Already inscribing too many items.");
   }
 
   // Is this a valid recipe?
   const recipeConstants = CRAFTING.recipes[recipeId];
   if (!recipeConstants || recipeConstants.recipeFor !== 'inscription') {
-    console.log('Invalid recipe');
-    return;
+    throw new Meteor.Error("cant-inscribe", "Recipe details for that inscription recipe couldn't be found.");
   }
 
   // Make sure amountToCraft doesn't exceed recipe limit
   if (amountToCraft > recipeConstants.maxToCraft) {
-    return;
+    throw new Meteor.Error("cant-inscribe", "Can't inscribe that many at once.");
   }
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
-    console.log("doesn't meet requirements");
-    return;
+    throw new Meteor.Error("cant-inscribe", "You don't know how to inscribe that, yet.");
   }
 
   let startDate = new Date();

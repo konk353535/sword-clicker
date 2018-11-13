@@ -7,7 +7,14 @@ export const TOWER_FLOOR_8 = {
   1: {
     name: 'Long Grass',
     enemies: ['snake'],
-    rewards: []
+    rewards: orderLootTable([{
+      chance: 1 / 3,
+      rewards: [
+        { type: 'item', itemId: 'poison_shard_fragment', amount: 1 },
+        { type: 'item', itemId: 'poison_shard_fragment', amount: 2 },
+        { type: 'item', itemId: 'poison_shard_fragment', amount: 3 }
+      ]
+    }])
   },
   2: {
     name: 'White Beach',

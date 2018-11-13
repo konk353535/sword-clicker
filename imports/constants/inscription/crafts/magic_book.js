@@ -280,5 +280,145 @@ export const MAGIC_BOOK_CRAFTS = {
       name: 'astronomy',
       level: 35
     }]
+  },
+
+  elm_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'elm_magic_book',
+    name: 'codex of prophecy',
+    id: 'elm_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 2000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'elk_book',
+      icon: ITEMS['elk_book'].icon,
+      name: ITEMS['elk_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 40
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 40
+    }]
+  },
+
+  black_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'black_magic_book',
+    name: 'codex of prophecy',
+    id: 'black_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 3000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'black_book',
+      icon: ITEMS['black_book'].icon,
+      name: ITEMS['black_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 45
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 45
+    }]
+  },
+
+  blue_gum_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'blue_gum_magic_book',
+    name: 'codex of prophecy',
+    id: 'blue_gum_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 4000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'blue_gum_book',
+      icon: ITEMS['blue_gum_book'].icon,
+      name: ITEMS['blue_gum_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 50
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 50
+    }]
+  },
+
+  cedar_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'cedar_magic_book',
+    name: 'codex of prophecy',
+    id: 'cedar_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 5000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 35,
+    required: [{
+      type: 'item',
+      itemId: 'cedar_book',
+      icon: ITEMS['cedar_book'].icon,
+      name: ITEMS['cedar_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 55
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 55
+    }]
   }
 };

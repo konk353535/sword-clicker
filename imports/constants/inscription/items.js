@@ -2472,6 +2472,58 @@ export const INSCRIPTION_ITEMS = {
     }
   },
 
+  elm_magic_book: {
+    id: 'elm_magic_book',
+    icon: 'magic_tome_9.svg',
+    category: 'magic_book',
+    name: 'Codex of Aberrations',
+    sellPrice: 900,
+    magicXp: 17500,
+    description: 'Can be consumed for 17,500 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 17,500 Magic XP.'
+    }
+  },
+
+  black_magic_book: {
+    id: 'black_magic_book',
+    icon: 'magic_tome_10.svg',
+    category: 'magic_book',
+    name: 'Codex of Wisdom',
+    sellPrice: 1000,
+    magicXp: 25000,
+    description: 'Can be consumed for 25,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 25,000 Magic XP.'
+    }
+  },
+
+  blue_gum_magic_book: {
+    id: 'blue_gum_magic_book',
+    icon: 'magic_tome_11.svg',
+    category: 'magic_book',
+    name: 'Codex of Bliss',
+    sellPrice: 1250,
+    magicXp: 35000,
+    description: 'Can be consumed for 35,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 35,000 Magic XP.'
+    }
+  },
+
+  cedar_magic_book: {
+    id: 'cedar_magic_book',
+    icon: 'magic_tome_12.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 1500,
+    magicXp: 50000,
+    description: 'Can be consumed for 50,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 50,000 Magic XP.'
+    }
+  },
+
   enchantment_nullify: {
     id: 'enchantment_nullify',
     icon: 'nullify.svg',

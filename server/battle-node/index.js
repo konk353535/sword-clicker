@@ -22,8 +22,28 @@ if (isDev) {
 
 app.use(cors(corsOptions));
 
+let allConnections = [];
+
 io.on('connection', (socket) => {
-  console.log('connected');
+  //console.log(socket);
+  
+  try {
+    allConnections.push(socket);
+    
+    console.log(`-->  connected to ${socket.conn.remoteAddress}, connections = ${allConnections.length}`);    
+  } catch (err) {
+    console.log('-->  connected');
+  }
+  
+  socket.on('disconnect', function() {
+    try {
+      allConnections.pop(socket);
+      
+      console.log(`<--  disconnected from ${socket.conn.remoteAddress}, connections = ${allConnections.length}`);
+    } catch (err) {
+      console.log('<--  disconnected');
+    }
+  });
 });
 
 app.use(bodyParser.urlencoded({ extended: true }) );

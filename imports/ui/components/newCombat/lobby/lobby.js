@@ -23,6 +23,59 @@ import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
+window.isReconnecting = false;
+function reconnectBattleSocket(localBalancer, currentBattleList) {
+  if (window.isReconnecting) {
+    return;
+  }
+  
+  // block parallel reconnections
+  window.isReconnecting = true;
+  
+  // debugging
+  /* console.log("Creating new battleSocket from lobby");  
+  if (!window.battleSocket) {
+    console.log("--- no window.battleSocket at all");
+  } else if (localBalancer !== window.balancer && !currentBattleList) {
+    console.log("--- just need a new balancer (group vs. user ID)");
+  } */
+  
+  // be kind and close any existing battleSocket
+  if (window.battleSocket) {
+    try {
+      //console.log("--- closing existing battleSocket")
+      window.battleSocket.close();
+      //console.log("------ success!");
+    } catch (err) {
+      //console.log("------ error!");
+      //console.log(err);
+    }
+  }
+  
+  // swap to new balancer (ID is player user ID for solo or their associated group ID)
+  window.balancer = localBalancer;
+  
+  // connect to the balancer and request a battle node server transport for our balancer ID
+  $.ajax({
+    url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
+  }).done(function() {
+    // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
+    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
+      transports: ['websocket'],
+      forceNew: true
+    });
+    
+    // trigger an event when we disconnect from the battleSocket (cleanup)
+    window.battleSocket.on('disconnect', () => {
+      window.battleSocket = undefined;
+      window.balancer = undefined;
+    });
+    
+    // stop blocking reconnect
+    window.isReconnecting = false;
+  });
+}
+
 // TODO: All this logic will fire after every battle, very ineffective though
 Template.lobbyPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -73,19 +126,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
     });
 
     if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
-      window.balancer = localBalancer;
-      $.ajax({
-        url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
-      }).done(function() {
-        window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
-          transports: ['websocket'],
-          forceNew: true
-        });
-        window.battleSocket.on('disconnect', () => {
-          window.battleSocket = undefined;
-          window.balancer = undefined;
-        });
-      });
+      reconnectBattleSocket(localBalancer, currentBattleList);      
     }
 
     if (!currentGroup) {

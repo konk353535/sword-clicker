@@ -70,6 +70,25 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
 });
 
 Template.farmingPage.events({
+  'click .collect-plants'(event, instance) {
+    Meteor.call('farming.pickAll');
+  },
+
+  'click .destroy-plants'(event, instance) {
+    $(event.target).addClass('destroy-plants-confirm btn-danger');
+    $(event.target).removeClass('remove-friend btn-warning');
+    $(event.target).html('Really Destroy All Plants?');
+  },
+
+  'click .destroy-plants-confirm'(event, instance) {
+    for (let idx = 0; idx < 6; idx++) {
+      Meteor.call('farming.killPlant', idx);
+    }
+    $(event.target).addClass('destroy-plants btn-danger');
+    $(event.target).removeClass('destroy-plants-confirm btn-warning');
+    $(event.target).html('Destroy All');
+  },
+  
   'click .learn-now'(event, instance) {
     Meteor.call('skills.learnSkill', 'farming');
   },

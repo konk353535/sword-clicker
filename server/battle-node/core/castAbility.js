@@ -126,7 +126,7 @@ export default function({ ability, caster, targets }) {
         // Remove existing buffs that match
         if (target.buffs && target.buffs.length > 0) {
           let existingBuff = _.findWhere(target.buffs, { id: buff.id });
-          if (existingBuff) {
+          if (existingBuff && !existingBuff.allowDuplicates && !buff.data.allowDuplicates) {
             existingBuff.duration = -1;
             buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle: this });
           }

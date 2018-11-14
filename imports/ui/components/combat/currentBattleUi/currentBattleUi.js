@@ -197,6 +197,11 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
                 return unit.id !== value;
               }));
             }
+          } else if (type === 'splice') {
+            const arrayToMutate = lodash.get(currentBattle, path);
+            if (arrayToMutate) {
+              arrayToMutate.splice(value, 1);
+            }
           }
         });
 

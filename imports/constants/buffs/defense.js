@@ -295,7 +295,7 @@ export const DEFENSE_BUFFS = {
     name: 'watchful aura',
     description({ buff, level }) {
       return `Dodge rate from defense skill won't fall below 35%. <br />
-        Whenever you dodge, you are healed for 1% of your maximum health. <br />
+        Whenever you dodge, you are healed for 1% of your original maximum health. <br />
         This heal can occur only every 5 seconds.`;
     },
     constants: {
@@ -329,7 +329,6 @@ export const DEFENSE_BUFFS = {
         if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
           let hpMaxHealth = defender.stats.healthMax;
           if (defender.stats.healthMaxOrig) {
-            //todo: test
             hpMaxHealth = defender.stats.healthMaxOrig;
           }
           let hpHealAmount = hpMaxHealth / 100;

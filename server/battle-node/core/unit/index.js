@@ -109,12 +109,32 @@ export default class Unit {
   }
 
   removeBuff(buffToRemove) {
-    this.battleRef.deltaEvents.push({
-      type: 'pop',
-      path: `unitsMap.${this.id}.buffs`,
-      value: buffToRemove.id
-    });
-    this.buffs = this.buffs.filter(buff => buff.id !== buffToRemove.id);
+    if (!buffToRemove.data.allowDuplicates) {
+      this.battleRef.deltaEvents.push({
+        type: 'pop',
+        path: `unitsMap.${this.id}.buffs`,
+        value: buffToRemove.id
+      });
+      this.buffs = this.buffs.filter(buff => buff.id !== buffToRemove.id);
+    } else {
+      let idx = -1;
+      for (let i = 0; i < this.buffs.length; i++) {
+        if (this.buffs[i].id === buffToRemove.id) {
+          if ((idx === -1) || ((idx !== -1) && (this.buffs[idx].duration > this.buffs[i].duration))) {
+            idx = i;
+          }
+        }
+      }
+      if (idx !== -1) {
+        this.battleRef.deltaEvents.push({
+          type: 'splice',
+          path: `unitsMap.${this.id}.buffs`,
+          value: idx
+        });
+        
+        this.buffs.splice(idx, 1);
+      }      
+    }
   }
 
   raw() {

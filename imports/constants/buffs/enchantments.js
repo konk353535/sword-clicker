@@ -879,7 +879,7 @@ export const ENCHANTMENT_BUFFS = {
         if (Math.random() <= 0.02) {
           const targetEnemy = _.sample(actualBattle.enemies);
           const newBuff = {
-            id: 'ignite_proper_phoenix_hat',
+            id: 'ignite_phoenix_hat',
             data: {
               allowDuplicates: true,
               duration: 15,
@@ -887,7 +887,7 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'ignite.svg',
               description: ''
             },
-            constants: BUFFS['ignite_proper_phoenix_hat']
+            constants: BUFFS['ignite_phoenix_hat']
           };
 
           // cast ignite

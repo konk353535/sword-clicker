@@ -1996,6 +1996,87 @@ export const MAGIC_BUFFS = {
   // this seems peculiar as they can have their own durations individually and dynamically set, but when a new
   // effect is applied, the combat node is resetting the duration to the max duration of the new buff if it's
   // exceeded... I don't see where this is happening, so I'm creating a separate buff for phoenix hat ignite... for now
+  ignite_phoenix_hat: {
+    duplicateTag: 'ignite_phoenix_hat', // Used to stop duplicate buffs
+    icon: 'ignite.svg',
+    name: 'ignite',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `
+        Damages target for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) every second. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        Lasts for ${buff.data.totalDuration}s`;
+    },
+    constants: {
+      damageBase: 1,
+      damageMPRatio: 0.4,
+      healthCost: 5,
+      healthCostMPRatio: 0.1
+    },
+    data: {
+      allowDuplicates: true,
+      duration: 25,
+      totalDuration: 25,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.endDate = moment().toDate();
+        buff.data.timeTillDamage = 0;
+        buff.data.caster = caster.id;
+        buff.data.totalDuration = 0;
+        buff.data.duration = -1;
+
+        const constants = buff.constants.constants;
+
+        const damageBase = constants.damageBase;
+        const damageMP = constants.damageMPRatio * caster.stats.magicPower;
+        const totalDamage = damageBase + damageMP;
+        const healthBase = constants.healthCost;
+        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
+        const totalHealth = healthBase + healthMP;
+
+        // Make sure we have target health
+        if (caster.stats.health >= totalHealth) {
+          caster.stats.health -= totalHealth;
+          caster.stats.healthMax -= totalHealth;
+        
+          const newBuff = {
+            id: 'ignite_proper_phoenix_hat',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              totalDamage: totalDamage,
+              sourceId: caster.id,
+              caster: caster.id,
+              timeTillDamage: 0,
+              allowDuplicates: true,
+              icon: 'ignite.svg',
+              name: 'ignite',
+              duplicateTag: 'ignite_proper_phoenix_hat'
+            }
+          };
+          
+          // Add ignite debuff
+          addBuff({ buff: newBuff, target: target, caster: caster });
+        }
+        
+        // remove stub debuff
+        removeBuff({ target, buff, caster })
+      },
+
+      onTick({ secondsElapsed, buff, target, actualBattle }) {
+        // remove stub debuff
+        const caster = actualBattle.allUnitsMap[buff.data.caster];
+
+        removeBuff({ target, buff, caster })
+      },
+
+      onRemove() {
+      }
+    }
+  },
+  
+
   ignite_proper_phoenix_hat: {
     duplicateTag: 'ignite_proper_phoenix_hat', // Used to stop duplicate buffs
     icon: 'ignite.svg',

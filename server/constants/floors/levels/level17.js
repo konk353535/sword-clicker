@@ -63,8 +63,8 @@ export const LEVEL_SEVENTEEN_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'ore_orichalcum', amount: 1 },
     { type: 'item', itemId: 'orichalcum_bar', amount: 1 },
-    { type: 'item', itemId: 'gombe_log', amount: 1 },
-    { type: 'item', itemId: 'gombe_log', amount: 2 }
+    { type: 'item', itemId: 'larch_log', amount: 1 },
+    { type: 'item', itemId: 'larch_log', amount: 2 }
   ]
 }, {
   chance: 1 / 4,

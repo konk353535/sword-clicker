@@ -1073,8 +1073,8 @@ export const ATTACK_BUFFS = {
       damagePerSecondPerLevel: 0.03
     },
     data: {
-      duration: 0,
-      totalDuration: 0,
+      duration: 12,
+      totalDuration: 12,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

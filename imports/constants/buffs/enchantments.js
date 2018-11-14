@@ -456,7 +456,7 @@ export const ENCHANTMENT_BUFFS = {
 
         if (Math.random() <= bleedChance) {
           const newBuff = {
-            id: 'bleed',
+            id: 'bleed_proper',
             data: {
               duration: 3,
               totalDuration: 3,

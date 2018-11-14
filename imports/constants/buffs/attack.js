@@ -531,7 +531,7 @@ export const ATTACK_BUFFS = {
         const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal;
         const totalDamage = (baseDamage + extraDamage) * damageBoost;
 
-        const hasBleed = defender.buffs.find((buff) => buff.id === 'bleed');
+        const hasBleed = defender.buffs.find((buff) => buff.id === 'bleed' || buff.id === 'bleed_proper');
 
         if (hasBleed) {
           // My current hp

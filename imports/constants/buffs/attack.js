@@ -193,7 +193,7 @@ export const ATTACK_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         // Blank
-        console.log(`${caster.stats.accuracy} -= ${buff.data.accuracyIncrease}`);
+        //console.log(`${caster.stats.accuracy} -= ${buff.data.accuracyIncrease}`);
         if (buff.data.accuracyIncrease) {
           caster.stats.accuracy -= buff.data.accuracyIncrease;
         }

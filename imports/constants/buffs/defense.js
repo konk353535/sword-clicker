@@ -20,7 +20,8 @@ export const DEFENSE_BUFFS = {
       let damageBuff = (constants.damageBase + (constants.damagePerLevel * localLevel)) * 100;
       
       return `Increase armor & magic armor by ${armorBuff}. (+${constants.armorPerLevel } per lvl)<br />
-        After 10 seconds, erupts dealing ${damageBuff}% (+${constants.damagePerLevel * 100}% per lvl) weapon damage to all enemies`;
+        After 10 seconds, erupts dealing ${damageBuff}% (+${constants.damagePerLevel * 100}% per lvl) <br />
+        weapon damage to all enemies`;
     },
     constants: {
       armorBase: 75,
@@ -181,7 +182,7 @@ export const DEFENSE_BUFFS = {
       const durationTotal = buff.constants.durationBase + (durationPerLevel * localLevel);
 
       return `${chance}% chance to freeze your attacker.<br />
-        Lowers enemy attack speed by ${attackSpeedDecrease}% for ${durationTotal}s. (+${durationPerLevel}s per lvl).<br />`;
+        Lowers enemy attack speed by ${attackSpeedDecrease}% for ${durationTotal}s. (+${durationPerLevel}s per lvl).`;
     },
     constants: {
       frostChance: 0.2,
@@ -246,7 +247,7 @@ export const DEFENSE_BUFFS = {
 
       return `
         Increase health by ${Math.round(healthIncrease * 100)}%. <br />
-        (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)<br />`;
+        (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)`;
     },
     constants: {
       healthBase: 0.04,
@@ -288,12 +289,14 @@ export const DEFENSE_BUFFS = {
     }
   },
 
-  sixth_sense: {
+  sixth_sense: { // watchful_aura
     duplicateTag: 'sixth_sense', // Used to stop duplicate buffs
     icon: 'sixthSense.svg',
     name: 'watchful aura',
     description({ buff, level }) {
-      return `Dodge rate from defense skill won't fall below 35%.  Whenever you dodge, you are healed for 1% of your maximum health.  This heal can occur only every 5 seconds.`;
+      return `Dodge rate from defense skill won't fall below 35%. <br />
+        Whenever you dodge, you are healed for 1% of your maximum health. <br />
+        This heal can occur only every 5 seconds.`;
     },
     constants: {
     },
@@ -324,7 +327,12 @@ export const DEFENSE_BUFFS = {
       
       onDodgedDamage({ buff, defender, attacker, actualBattle }) {
         if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
-          let hpHealAmount = defender.stats.healthMax / 100;
+          let hpMaxHealth = defender.stats.healthMax;
+          if (defender.stats.healthMaxOrig) {
+            //todo: test
+            hpMaxHealth = defender.stats.healthMaxOrig;
+          }
+          let hpHealAmount = hpMaxHealth / 100;
           if (hpHealAmount + defender.stats.health > defender.stats.healthMax) {
             hpHealAmount = defender.stats.healthMax - defender.stats.health;
           }
@@ -357,7 +365,7 @@ export const DEFENSE_BUFFS = {
 
       return `
         Increase defense by ${defenseIncrease}. <br />
-        (+${buff.constants.defensePerLevel} defense per lvl)<br />`;
+        (+${buff.constants.defensePerLevel} defense per lvl)`;
     },
     constants: {
       defenseBase: 2,
@@ -406,7 +414,7 @@ export const DEFENSE_BUFFS = {
 
       return `
         Reflect (${Math.round(damageReflection * 100)}% of attack damage taken) + 10 as magic damage. <br />
-        (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />`;
+        (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)`;
     },
     constants: {
       damageReflectionBase: 0.30,
@@ -604,7 +612,8 @@ export const DEFENSE_BUFFS = {
     icon: 'taunt.svg',
     name: 'taunt',
     description({ buff, level }) {
-      return 'Forces the enemy to target you.  Cooldown is reduced by 1.5 seconds per ability level.';
+      return `Forces the enemy to target you. <br />
+        Cooldown is reduced by 1.5 seconds per ability level.`;
     },
     scaledCooldown: function(ability) {
       if (ability) {
@@ -660,7 +669,8 @@ export const DEFENSE_BUFFS = {
     icon: 'scream.svg',
     name: 'scream',
     description({ buff, level }) {
-      return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
+      return `Forces all enemies to target you. <br />
+        Cooldown increases by 10 seconds for each taunted enemy.`;
     },
     constants: {
     },
@@ -864,7 +874,7 @@ export const DEFENSE_BUFFS = {
       const maxDefense = buff.constants.baseDefense + (defensePerLevel * level);
       return `
         Increase defense by 10 - ${maxDefense}. (+${defensePerLevel} per lvl)<br />
-        Based on your missing health. Lasts for ${buff.data.totalDuration}s. <br />`;
+        Based on your missing health. Lasts for ${buff.data.totalDuration}s. `;
     },
     constants: {
       baseDefense: 35,

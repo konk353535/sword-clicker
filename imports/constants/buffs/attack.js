@@ -10,7 +10,7 @@ export const ATTACK_BUFFS = {
     description({ buff, level }) {
       const c = buff.constants;
       return `Counter attack for 100% attack damage. <br />
-        Lasts for 25 seconds. <br />`;
+        Lasts for 25 seconds.`;
     },
     constants: {
       damageDecimal: 1
@@ -110,7 +110,7 @@ export const ATTACK_BUFFS = {
 
       return `
         Increases attack by ${Math.round(attackIncrease * 100)}%. <br />
-        (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)<br />`;
+        (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)`;
     },
     constants: {
       attackBase: 0.05,
@@ -161,7 +161,7 @@ export const ATTACK_BUFFS = {
 
       return `
         Increases accuracy by ${accuracyIncrease}. <br />
-        (+${buff.constants.accuracyPerLevel} accuracy per lvl)<br />`;
+        (+${buff.constants.accuracyPerLevel} accuracy per lvl)`;
     },
     constants: {
       accuracyBase: 2,
@@ -340,7 +340,7 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
       return `${chance}% chance to attack twice.<br />
-        Extra attack deals ${damage.toFixed(0)}% damage (+${damagePerLevel}% per lvl) <br />`;
+        Extra attack deals ${damage.toFixed(0)}% damage (+${damagePerLevel}% per lvl) `;
     },
     constants: {
       extraAttackChance: 0.2,
@@ -417,8 +417,9 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
       return `
-        Auto attacks hit enemies adjacent to your target (applies on hit effects).<br />
-        Consumes one stack when triggered. Stacks generate every 3 seconds, maximum of 20. <br />`;
+        Auto attacks hit enemies adjacent to your target (applies <br />
+        on-hit effects). Consumes one stack when triggered. Stacks <br />
+        generate every 3 seconds, maximum of 20. `;
     },
     constants: {
     },
@@ -577,7 +578,7 @@ export const ATTACK_BUFFS = {
         localLevel = 1;
       }
 
-      return `Increases max attack by 150% for 10 seconds<br />`;
+      return `Increases max attack by 150% for 10 seconds.`;
     },
     constants: {
     },
@@ -637,7 +638,7 @@ export const ATTACK_BUFFS = {
         <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
         <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
         You lose <b>${healthLostPerSecond.toFixed(1)}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
-        Duration <b>${duration}s</b><br />`;
+        Duration <b>${duration}s</b>`;
     },
     constants: {
       damagePercentageIncreaseBase: 45,

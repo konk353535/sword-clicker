@@ -109,7 +109,7 @@ export const MAGIC_BUFFS = {
       return `
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
         For ${c.attacksCount} auto attacks. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. `;
     },
     constants: {
       attacksCount: 10,
@@ -357,7 +357,7 @@ export const MAGIC_BUFFS = {
       return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
         Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. `;
     },
     constants: {
       damageBase: 25,
@@ -429,7 +429,7 @@ export const MAGIC_BUFFS = {
       return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
         Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. `;
     },
     constants: {
       damageBase: 25,

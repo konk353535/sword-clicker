@@ -2007,7 +2007,7 @@ export const MAGIC_BUFFS = {
     },
     data: {
       duration: 15,
-      totalDuration: 15
+      totalDuration: 15,
       allowDuplicates: true,
     },
     events: { // This can be rebuilt from the buff id

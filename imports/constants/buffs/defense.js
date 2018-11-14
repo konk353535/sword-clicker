@@ -793,7 +793,7 @@ export const DEFENSE_BUFFS = {
           buff.duration += (buff.data.level * constants.durationPerLevel)
         }
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
-        buff.data.damageReduction = target.stats.damageTaken * (99.9 / 100);
+        buff.data.damageReduction = target.stats.damageTaken * (99.9999 / 100);
         target.stats.damageTaken -= buff.data.damageReduction;
       },
 

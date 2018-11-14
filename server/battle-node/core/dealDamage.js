@@ -17,14 +17,12 @@ export default function(rawDamage, {
 
   let damage = rawDamage;
   if (damage > 0 && damage) {
-    let dmgReduction;
-    if (isTrueDamage) {
-      dmgReduction = 0;
-    } else {
-      dmgReduction = isMagic ? defender.stats.magicDamageReduction : defender.stats.damageReduction;
+    // true damage penetrates armor and all abilities that allow damage reduction (or fake-dodging like evasive manuevers)
+    if (!isTrueDamage) {
+      let dmgReduction = isMagic ? defender.stats.magicDamageReduction : defender.stats.damageReduction;
+      
+      damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
     }
-
-    damage = (rawDamage * (1 - dmgReduction)) * defender.stats.damageTaken;
 
     defender.stats.health -= damage;
 

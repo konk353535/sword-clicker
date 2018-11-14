@@ -291,7 +291,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 2000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 35,
+    requiredInscriptionLevel: 40,
     required: [{
       type: 'item',
       itemId: 'elk_book',
@@ -326,7 +326,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 3000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 35,
+    requiredInscriptionLevel: 45,
     required: [{
       type: 'item',
       itemId: 'black_book',
@@ -361,7 +361,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 4000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 35,
+    requiredInscriptionLevel: 50,
     required: [{
       type: 'item',
       itemId: 'blue_gum_book',
@@ -396,7 +396,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 5000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 35,
+    requiredInscriptionLevel: 55,
     required: [{
       type: 'item',
       itemId: 'cedar_book',

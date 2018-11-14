@@ -8,6 +8,13 @@ Template.globalBuffIcon.onCreated(function bodyOnCreated() {
 });
 
 Template.globalBuffIcon.helpers({
+  cappedMinutes(minutes) {
+    return (minutes % 60).toFixed(0);
+  },
+
+  cappedSeconds(minutes) {
+    return (minutes % 60).toFixed(0);
+  },
 });
 
 Template.globalBuffIcon.rendered = function () {

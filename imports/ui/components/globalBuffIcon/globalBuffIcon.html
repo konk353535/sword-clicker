@@ -1,12 +1,14 @@
 <template name="globalBuffIcon">
   <div class="buff-icon-container icon-box medium-icon" style="position: relative">
     <img src="/icons/{{type}}.svg" class="small-icon">
-    <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
-      line-height: 10px;">
+    <span style="position: absolute; top: 0px; right: 1px; font-size: 10px;
+      line-height: 10px; color: blue;">
       {{#if $gte (moDiff date moNow 'minutes') 60}}
         {{moDiff date moNow 'hours'}}h
+        {{cappedMinutes (moDiff date moNow 'minutes')}}m
       {{else}}
         {{moDiff date moNow 'minutes'}}m
+        {{cappedSeconds (moDiff date moNow 'seconds')}}s
       {{/if}}
     </span>
   </div>
@@ -15,13 +17,20 @@
   <div class="buff-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>
       Global {{type}} buff
-      {{#if $gte (moDiff date moNow 'minutes') 60}}
-        <small>({{moDiff date moNow 'hours'}} hours remaining)</small>
-      {{else}}
-        <small>({{moDiff date moNow 'minutes'}} minutes remaining)</small>
-      {{/if}}
     </h3>
     <div class='popover-content'>
+      <span style="color: blue;">
+        {{#if $gte (moDiff date moNow 'minutes') 60}}
+          {{moDiff date moNow 'hours'}} hours,
+          {{cappedMinutes (moDiff date moNow 'minutes')}} minutes
+        {{else}}
+          ({{moDiff date moNow 'minutes'}} minutes,
+          ({{cappedSeconds (moDiff date moNow 'seconds')}} seconds
+        {{/if}}
+        remaining<br />
+      </span>
+      <br />
+      
       {{#if $eq type 'crafting'}}
         <p class="mb-1">+35% Crafting XP</p>
         <p class="mb-1">+35% Inscription XP</p>

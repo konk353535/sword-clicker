@@ -713,7 +713,7 @@ export const MONSTER_BUFFS = {
 
         if (Math.random() <= bleedChance) {
           const newBuff = {
-            id: 'bleed',
+            id: 'bleed_proper',
             data: {
               duration: 15,
               totalDuration: 15,
@@ -721,7 +721,7 @@ export const MONSTER_BUFFS = {
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
-              icon: 'bleed.svg',
+              icon: 'bleeding.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
@@ -763,14 +763,14 @@ export const MONSTER_BUFFS = {
 
         if (Math.random() <= bleedChance) {
           const newBuff = {
-            id: 'bleed',
+            id: 'bleed_proper',
             data: {
               duration: 3,
               totalDuration: 3,
               dps: attacker.stats.attackMax / 6,
               caster: attacker.id,
               timeTillDamage: 1,
-              icon: 'bleed.svg',
+              icon: 'bleeding.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
             }

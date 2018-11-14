@@ -1073,6 +1073,71 @@ export const ATTACK_BUFFS = {
       damagePerSecondPerLevel: 0.03
     },
     data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().toDate();
+
+        if (buff.constants && buff.constants.constants && !buff.data.dps) {
+          buff.data.dps = buff.constants.constants.damagePerSecondBase + (buff.constants.constants.damagePerSecondPerLevel * buff.data.level);
+          buff.data.dps *= caster.stats.accuracy;
+        }
+
+        buff.data.timeTillDamage = 1;
+        buff.data.caster = caster.id;        
+        
+        const newBuff = {
+          id: 'bleed_proper',
+          data: {
+            duration: 12,
+            totalDuration: 12,
+            dps: buff.data.dps,
+            caster: caster.id,
+            timeTillDamage: 1,
+            allowDuplicates: true,
+            icon: 'bleeding.svg',
+            name: 'bleed',
+            duplicateTag: 'bleed_proper',
+            description: `Bleed every second for ${buff.data.dps.toFixed(0)} damage`
+          }
+        };
+        
+        // Add bleed debuff
+        addBuff({ buff: newBuff, target: target, caster: caster });
+        
+        // remove stub debuff
+        removeBuff({ target, buff, caster })
+      },
+
+      onTick({ secondsElapsed, buff, target, actualBattle }) {
+        // remove stub debuff
+        const caster = actualBattle.allUnitsMap[buff.data.caster];
+
+        removeBuff({ target, buff, caster })
+      },
+
+      onRemove() {
+      }
+    }
+  },
+  
+  bleed_proper: {
+    duplicateTag: 'bleed_proper', // Used to stop duplicate buffs
+    icon: 'bleeding.svg',
+    name: 'bleed',
+    description({ buff, level }) {
+      const damagePerSecondPerLevel = buff.constants.damagePerSecondPerLevel;
+      const dps = buff.constants.damagePerSecondBase + (damagePerSecondPerLevel * level);
+      return `Deals ${dps * 100}% of your accuracy as physical damage every second. (+3% per lvl) <br />
+      For ${buff.data.totalDuration}s.`;
+    },
+    constants: {
+      damagePerSecondBase: 0.07,
+      damagePerSecondPerLevel: 0.03
+    },
+    data: {
       duration: 12,
       totalDuration: 12,
     },

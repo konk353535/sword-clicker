@@ -57,6 +57,12 @@ export default class Stats {
     this.delta('healthMax');
   }
 
+  get healthMaxOrig() { return this._healthMaxOrig; }
+  set healthMaxOrig(value) {
+    this._healthMaxOrig = value;
+    this.delta('healthMaxOrig');
+  }
+
   get health() { return this._health; }
   set health(value) {
     this._health = value;
@@ -79,18 +85,19 @@ export default class Stats {
 
     this.attack = stats.attack;
     this.attackMax = stats.attackMax;
-    this.attackSpeed = stats.attackSpeed
-    this.criticalChance = stats.criticalChance
+    this.attackSpeed = stats.attackSpeed;
+    this.criticalChance = stats.criticalChance;
     this.healingPower = stats.healingPower;
     this.criticalDamage = stats.criticalDamage;
     this.accuracy = stats.accuracy;
     this.defense = stats.defense;
     this.health = stats.health;
-    this.healthMax = stats.healthMax
-    this.damageTaken = stats.damageTaken
-    this.magicPower = stats.magicPower
+    this.healthMax = stats.healthMax;
+    this.healthMaxOrig = stats.healthMax;
+    this.damageTaken = stats.damageTaken;
+    this.magicPower = stats.magicPower;
     this.armor = stats.armor;
-    this.magicArmor = stats.magicArmor
+    this.magicArmor = stats.magicArmor;
     this.healingReduction = stats.healingReduction || 1;
   }
 
@@ -106,6 +113,7 @@ export default class Stats {
       defense: this.defense,
       health: this.health,
       healthMax: this.healthMax,
+      healthMaxOrig: this.healthMaxOrig,
       damageTaken: this.damageTaken,
       magicPower: this.magicPower,
       armor: this.armor,

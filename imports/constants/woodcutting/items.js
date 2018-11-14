@@ -271,7 +271,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 65,
       attackSpeed: 2,
-      accuracy: 25
+      accuracy: 75
     },
     extraStats: {
       accuracy: 50,
@@ -291,7 +291,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 70,
       attackSpeed: 2,
-      accuracy: 25
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,
@@ -311,7 +311,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 75,
       attackSpeed: 2,
-      accuracy: 50
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,
@@ -371,7 +371,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 90,
       attackSpeed: 2,
-      accuracy: 50
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,
@@ -391,7 +391,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 95,
       attackSpeed: 2,
-      accuracy: 50
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,
@@ -411,7 +411,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 100,
       attackSpeed: 2,
-      accuracy: 50
+      accuracy: 75
     },
     extraStats: {
       accuracy: 75,
@@ -431,10 +431,10 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 105,
       attackSpeed: 2,
-      accuracy: 80
+      accuracy: 85
     },
     extraStats: {
-      accuracy: 70,
+      accuracy: 75,
       attackSpeed: 1
     }
   },
@@ -454,7 +454,7 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 95
     },
     extraStats: {
-      accuracy: 55,
+      accuracy: 75,
       attackSpeed: 1
     }
   },
@@ -474,7 +474,7 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 110
     },
     extraStats: {
-      accuracy: 65,
+      accuracy: 75,
       attackSpeed: 1
     }
   },   

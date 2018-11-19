@@ -194,6 +194,25 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
 
     if (!window.battleSocket || localBalancer !== window.balancer) {
+      let userData = {};
+      try {
+        let userId = Meteor.userId();
+        if (userId) {
+          userId = userId.toString();
+        } else {
+          userId = Meteor.userId;
+        }
+        let foundUser = Users.findOne({ _id: userId });
+        if (foundUser) {
+          extraUri += `&userName=${foundUser.username}`;
+        }
+        if (foundUser && foundUser.username) {
+          userData.id = userId;
+          userData.name = foundUser.username;
+        }
+      } catch (err) {
+      }
+
       reconnectBattleSocket(localBalancer, currentBattleList, userData);
     }
 

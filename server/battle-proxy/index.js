@@ -27,8 +27,23 @@ const proxyServer = http.createServer(function(req, res) {
   const targetServerUrl = SERVERS[targetServerId];
 
   console.log(`Balancer - ${balancer} | Proxying to ${targetServerId}`);
-  console.log(req);
-  console.log(res);
+  
+  try {
+    let ipAddr = req.headers['x-forwarded-for'];
+    if (ipAddr === undefined || ipAddr.length === 0) {
+      ipAddr = req.headers['cf-connecting-ip'];
+    }
+    if (ipAddr === undefined || ipAddr.length === 0) {
+      ipAddr = 'unknown';
+    }
+    let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
+    let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
+    
+    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay}`);
+  }
+  catch (err) {
+  }
+  
   proxy.web(req, res, { target: targetServerUrl });
 });
 
@@ -42,8 +57,22 @@ proxyServer.on('upgrade', function (req, socket, head) {
   const targetServerUrl = SERVERS[targetServerId];
 
   console.log(`Balancer - ${balancer} | Proxying WS to ${targetServerId}`);
-  console.log(req);
-  console.log(socket);
+
+  try {
+    let ipAddr = req.headers['x-forwarded-for'];
+    if (ipAddr === undefined || ipAddr.length === 0) {
+      ipAddr = req.headers['cf-connecting-ip'];
+    }
+    if (ipAddr === undefined || ipAddr.length === 0) {
+      ipAddr = 'unknown';
+    }
+    let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
+    let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
+    
+    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay}`);
+  }
+  catch (err) {
+  }
 
   proxy.ws(req, socket, head, { target: targetServerUrl.replace('https', 'http') });
 });

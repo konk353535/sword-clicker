@@ -9,6 +9,7 @@ import _ from 'underscore';
 import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Groups } from '/imports/api/groups/groups.js';
+import { Users } from '/imports/api/users/users';
 
 import './currentBattleUi.html';
 
@@ -120,12 +121,36 @@ function reconnectBattleSocket(localBalancer, currentBattleList) {
   // swap to new balancer (ID is player user ID for solo or their associated group ID)
   window.balancer = localBalancer;
   
+  // for convenience, pass along user ID and user name
+  let extraUri = '';
+  try {
+    let userId = Meteor.userId();
+    if (userId) {
+      userId = userId.toString();
+    } else {
+      userId = Meteor.userId;
+    }
+    extraUri += `&userId=${userId}`;
+    let foundUser = Users.findOne({ _id: userId });
+    if (foundUser) {
+      extraUri += `&userName=${foundUser.username}`;
+    }
+    if (!foundUser || !foundUser.username) {
+      window.setTimeout(function() { window.isReconnecting = false; reconnectBattleSocket(localBalancer, currentBattleList); }, 1000);
+      return; // don't establish connections without a username
+    }
+  } catch (err) {
+    //todo: maybe display an error
+    window.isReconnecting = false;
+    return;
+  }
+  
   // connect to the balancer and request a battle node server transport for our balancer ID
   $.ajax({
-    url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}`
+    url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
   }).done(function() {
     // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
-    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}`, {
+    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
       transports: ['websocket'],
       forceNew: true
     });

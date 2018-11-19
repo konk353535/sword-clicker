@@ -25,12 +25,31 @@ app.use(cors(corsOptions));
 let allConnections = [];
 
 io.on('connection', (socket) => {
-  //console.log(socket);
-  
   try {
     allConnections.push(socket);
     
-    console.log(`-->  connected to ${socket.conn.remoteAddress}, connections = ${allConnections.length}`);    
+    let userName = 'unknown';
+    try {
+      userName = socket.handshake.query['userName'];
+    } catch (err) {
+    }
+    
+    let userId = 'unknown';
+    try {
+      userId = socket.handshake.query['userId'];
+    } catch (err) {
+    }    
+     
+    let ipAddr = 'unknown';
+    try {
+      ipAddr = socket.handshake.query['ipAddr'];
+    } catch (err) {
+    }
+    if (!ipAddr || ipAddr === 'unknown') {
+      ipAddr = socket.conn.remoteAddress;
+    }
+    
+    console.log(`-->  connected to ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);    
   } catch (err) {
     console.log('-->  connected');
   }
@@ -39,7 +58,27 @@ io.on('connection', (socket) => {
     try {
       allConnections.pop(socket);
       
-      console.log(`<--  disconnected from ${socket.conn.remoteAddress}, connections = ${allConnections.length}`);
+      let userName = 'unknown';
+      try {
+        userName = socket.handshake.query.userName;
+      } catch (err) {
+      }
+      
+      let userId = 'unknown';
+      try {
+        userName = socket.handshake.query.userId;
+      } catch (err) {
+      }    
+       
+      let ipAddr = 'unknown';
+      try {
+        userName = socket.handshake.query.ipAddr;
+      } catch (err) {
+      }
+      if (!ipAddr || ipAddr === 'unknown') {
+        ipAddr = socket.conn.remoteAddress;
+      }
+      console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
     } catch (err) {
       console.log('<--  disconnected');
     }

@@ -19,7 +19,8 @@ const proxy = httpProxy.createProxyServer({
 //
 const proxyServer = http.createServer(function(req, res) {
   const url = req.url.split('?')[1];
-  const balancer = parse(url).balancer;
+  const queryData = parse(url);
+  const balancer = queryData.balancer;
   if (!balancer) {
     return false;
   }
@@ -28,8 +29,10 @@ const proxyServer = http.createServer(function(req, res) {
 
   console.log(`Balancer - ${balancer} | Proxying to ${targetServerId}`);
   
+  let ipAddr = 'unknown';
+  
   try {
-    let ipAddr = req.headers['x-forwarded-for'];
+    ipAddr = req.headers['x-forwarded-for'];
     if (ipAddr === undefined || ipAddr.length === 0) {
       ipAddr = req.headers['cf-connecting-ip'];
     }
@@ -39,17 +42,21 @@ const proxyServer = http.createServer(function(req, res) {
     let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
     let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
     
-    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay}`);
+    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay} (${queryData.userName}/${queryData.userId})`);
   }
   catch (err) {
   }
   
+  // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to what users
+  req.url = `${req.url}&ipAddr=${ipAddr}`;
+
   proxy.web(req, res, { target: targetServerUrl });
 });
 
 proxyServer.on('upgrade', function (req, socket, head) {
   const url = req.url.split('?')[1];
-  const balancer = parse(url).balancer;
+  const queryData = parse(url);
+  const balancer = queryData.balancer;
   if (!balancer) {
     return false;
   }
@@ -58,8 +65,10 @@ proxyServer.on('upgrade', function (req, socket, head) {
 
   console.log(`Balancer - ${balancer} | Proxying WS to ${targetServerId}`);
 
+  let ipAddr = 'unknown';
+  
   try {
-    let ipAddr = req.headers['x-forwarded-for'];
+    ipAddr = req.headers['x-forwarded-for'];
     if (ipAddr === undefined || ipAddr.length === 0) {
       ipAddr = req.headers['cf-connecting-ip'];
     }
@@ -69,12 +78,15 @@ proxyServer.on('upgrade', function (req, socket, head) {
     let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
     let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
     
-    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay}`);
+    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay} (${queryData.userName}/${queryData.userId})`);
   }
   catch (err) {
   }
 
-  proxy.ws(req, socket, head, { target: targetServerUrl.replace('https', 'http') });
+  // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to what users
+  req.url = `${req.url}&ipAddr=${ipAddr}`;
+  
+  proxy.ws(req, socket, head, { target: targetServerUrl.replace('https','http') });
 });
 
 proxyServer.listen(PORT);

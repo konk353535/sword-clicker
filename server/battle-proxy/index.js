@@ -27,6 +27,8 @@ const proxyServer = http.createServer(function(req, res) {
   const targetServerUrl = SERVERS[targetServerId];
 
   console.log(`Balancer - ${balancer} | Proxying to ${targetServerId}`);
+  console.log(req);
+  console.log(res);
   proxy.web(req, res, { target: targetServerUrl });
 });
 
@@ -40,6 +42,9 @@ proxyServer.on('upgrade', function (req, socket, head) {
   const targetServerUrl = SERVERS[targetServerId];
 
   console.log(`Balancer - ${balancer} | Proxying WS to ${targetServerId}`);
+  console.log(req);
+  console.log(socket);
+
   proxy.ws(req, socket, head, { target: targetServerUrl.replace('https', 'http') });
 });
 

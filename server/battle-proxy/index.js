@@ -47,6 +47,11 @@ const proxyServer = http.createServer(function(req, res) {
   catch (err) {
   }
   
+  if (!queryData.userName || queryData.userName === 'undefined' || queryData.userName === '' || queryData.userName === 'unknown') {
+    console.log(`    !!  DENIED: no user !!`);
+    return false;
+  }
+  
   // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to what users
   req.url = `${req.url}&ipAddr=${ipAddr}`;
 
@@ -83,10 +88,15 @@ proxyServer.on('upgrade', function (req, socket, head) {
   catch (err) {
   }
 
+  if (!queryData.userName || queryData.userName === 'undefined' || queryData.userName === '' || queryData.userName === 'unknown') {
+    console.log(`    !!  DENIED: no user !!`);
+    return false;
+  }
+  
   // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to what users
   req.url = `${req.url}&ipAddr=${ipAddr}`;
   
-  proxy.ws(req, socket, head, { target: targetServerUrl.replace('https', 'http') });
+  proxy.ws(req, socket, head, { target: targetServerUrl.replace('https','http') });
 });
 
 proxyServer.listen(PORT);

@@ -25,10 +25,43 @@ app.use(cors(corsOptions));
 let allConnections = [];
 
 io.on('connection', (socket) => {
+
+  socket.on('disconnect', function() {
+    try {
+      allConnections.pop(socket);
+      
+      let userName = 'unknown';
+      try {
+        userName = socket.handshake.query.userName;
+      } catch (err) {
+      }
+      
+      let userId = 'unknown';
+      try {
+        userId = socket.handshake.query.userId;
+      } catch (err) {
+      }    
+       
+      let ipAddr = 'unknown';
+      try {
+        ipAddr = socket.handshake.query.ipAddr;
+      } catch (err) {
+      }
+      if (!ipAddr || ipAddr === 'unknown') {
+        ipAddr = socket.conn.remoteAddress;
+      }
+      console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
+    } catch (err) {
+      console.log('<--  disconnected');
+    }
+  });
+  
+  let userName = '';
+  
   try {
     allConnections.push(socket);
     
-    let userName = 'unknown';
+    userName = 'unknown';
     try {
       userName = socket.handshake.query['userName'];
     } catch (err) {
@@ -54,35 +87,14 @@ io.on('connection', (socket) => {
     console.log('-->  connected');
   }
   
-  socket.on('disconnect', function() {
+  if (!userName || userName === 'undefined' || userName === '' || userName === 'unknown') {
+    console.log(`    !!  DENIED: no user !!`);
     try {
-      allConnections.pop(socket);
-      
-      let userName = 'unknown';
-      try {
-        userName = socket.handshake.query.userName;
-      } catch (err) {
-      }
-      
-      let userId = 'unknown';
-      try {
-        userName = socket.handshake.query.userId;
-      } catch (err) {
-      }    
-       
-      let ipAddr = 'unknown';
-      try {
-        userName = socket.handshake.query.ipAddr;
-      } catch (err) {
-      }
-      if (!ipAddr || ipAddr === 'unknown') {
-        ipAddr = socket.conn.remoteAddress;
-      }
-      console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
+      socket.close();
     } catch (err) {
-      console.log('<--  disconnected');
+      console.log(`        !!  also, can't socket.close()  !!`);
     }
-  });
+  }
 });
 
 app.use(bodyParser.urlencoded({ extended: true }) );

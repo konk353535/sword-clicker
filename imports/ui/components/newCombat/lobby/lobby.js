@@ -24,7 +24,7 @@ import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 window.isReconnecting = false;
-function reconnectBattleSocket(localBalancer, currentBattleList) {
+function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   if (window.isReconnecting) {
     return;
   }
@@ -58,25 +58,9 @@ function reconnectBattleSocket(localBalancer, currentBattleList) {
   // for convenience, pass along user ID and user name
   let extraUri = '';
   try {
-    let userId = Meteor.userId();
-    if (userId) {
-      userId = userId.toString();
-    } else {
-      userId = Meteor.userId;
-    }
-    extraUri += `&userId=${userId}`;
-    let foundUser = Users.findOne({ _id: userId });
-    if (foundUser) {
-      extraUri += `&userName=${foundUser.username}`;
-    }
-    if (!foundUser || !foundUser.username) {
-      window.setTimeout(function() { window.isReconnecting = false; reconnectBattleSocket(localBalancer, currentBattleList); }, 1000);
-      return; // don't establish connections without a username
-    }
+    extraUri += `&userId=${user.id}`;
+    extraUri += `&userName=${user.name}`;
   } catch (err) {
-    //todo: maybe display an error
-    window.isReconnecting = false;
-    return;
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
@@ -150,7 +134,26 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
     });
 
     if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
-      reconnectBattleSocket(localBalancer, currentBattleList);      
+      let userData = {};
+      try {
+        let userId = Meteor.userId();
+        if (userId) {
+          userId = userId.toString();
+        } else {
+          userId = Meteor.userId;
+        }
+        let foundUser = Users.findOne({ _id: userId });
+        if (foundUser) {
+          extraUri += `&userName=${foundUser.username}`;
+        }
+        if (foundUser && foundUser.username) {
+          userData.id = userId;
+          userData.name = foundUser.username;
+        }
+      } catch (err) {
+      }
+      
+      reconnectBattleSocket(localBalancer, currentBattleList, userData);      
     }
 
     if (!currentGroup) {

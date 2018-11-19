@@ -9,7 +9,6 @@ import _ from 'underscore';
 import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Groups } from '/imports/api/groups/groups.js';
-import { Users } from '/imports/api/users/users';
 
 import './currentBattleUi.html';
 
@@ -90,7 +89,7 @@ const startBattle = (currentBattle, self) => {
 };
 
 window.isReconnecting = false;
-function reconnectBattleSocket(localBalancer, currentBattleList) {
+function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   if (window.isReconnecting) {
     return;
   }
@@ -124,25 +123,9 @@ function reconnectBattleSocket(localBalancer, currentBattleList) {
   // for convenience, pass along user ID and user name
   let extraUri = '';
   try {
-    let userId = Meteor.userId();
-    if (userId) {
-      userId = userId.toString();
-    } else {
-      userId = Meteor.userId;
-    }
-    extraUri += `&userId=${userId}`;
-    let foundUser = Users.findOne({ _id: userId });
-    if (foundUser) {
-      extraUri += `&userName=${foundUser.username}`;
-    }
-    if (!foundUser || !foundUser.username) {
-      window.setTimeout(function() { window.isReconnecting = false; reconnectBattleSocket(localBalancer, currentBattleList); }, 1000);
-      return; // don't establish connections without a username
-    }
+    extraUri += `&userId=${user.id}`;
+    extraUri += `&userName=${user.name}`;
   } catch (err) {
-    //todo: maybe display an error
-    window.isReconnecting = false;
-    return;
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
@@ -211,7 +194,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
     }
 
     if (!window.battleSocket || localBalancer !== window.balancer) {
-      reconnectBattleSocket(localBalancer, currentBattleList);
+      reconnectBattleSocket(localBalancer, currentBattleList, userData);
     }
 
     if (!this.state.get('fullState')) {

@@ -47,7 +47,7 @@ const proxyServer = http.createServer(function(req, res) {
   catch (err) {
   }
   
-  if (!queryData.userName || queryData.userName === 'undefined' || queryData.userName === '' || queryData.userName === 'unknown') {
+  if (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown') {
     console.log(`    !!  DENIED: no user !!`);
     return false;
   }
@@ -88,7 +88,7 @@ proxyServer.on('upgrade', function (req, socket, head) {
   catch (err) {
   }
 
-  if (!queryData.userName || queryData.userName === 'undefined' || queryData.userName === '' || queryData.userName === 'unknown') {
+  if (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown') {
     console.log(`    !!  DENIED: no user !!`);
     return false;
   }

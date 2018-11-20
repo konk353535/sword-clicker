@@ -57,6 +57,7 @@ io.on('connection', (socket) => {
   });
   
   let userName = '';
+  let userId = '';
   
   try {
     allConnections.push(socket);
@@ -67,7 +68,7 @@ io.on('connection', (socket) => {
     } catch (err) {
     }
     
-    let userId = 'unknown';
+    userId = 'unknown';
     try {
       userId = socket.handshake.query['userId'];
     } catch (err) {
@@ -87,7 +88,7 @@ io.on('connection', (socket) => {
     console.log('-->  connected');
   }
   
-  if (!userName || userName === 'undefined' || userName === '' || userName === 'unknown') {
+  if (!userId || userId === 'undefined' || userId === '' || userId === 'unknown') {
     console.log(`    !!  DENIED: no user !!`);
     try {
       socket.close();

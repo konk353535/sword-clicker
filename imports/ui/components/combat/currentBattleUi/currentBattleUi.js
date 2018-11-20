@@ -88,32 +88,22 @@ const startBattle = (currentBattle, self) => {
   }
 };
 
+window.reconnectQueue = [];
 window.isReconnecting = false;
 function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   if (window.isReconnecting) {
+    window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
     return;
   }
   
   // block parallel reconnections
   window.isReconnecting = true;
   
-  // debugging
-  /* console.log("Creating new battleSocket from currentBattleUi");  
-  if (!window.battleSocket) {
-    console.log("--- no window.battleSocket at all");
-  } else if (localBalancer !== window.balancer && !currentBattleList) {
-    console.log("--- just need a new balancer (group vs. user ID)");
-  } */
-  
   // be kind and close any existing battleSocket
   if (window.battleSocket) {
     try {
-      //console.log("--- closing existing battleSocket")
       window.battleSocket.close();
-      //console.log("------ success!");
     } catch (err) {
-      //console.log("------ error!");
-      //console.log(err);
     }
   }
   
@@ -129,24 +119,38 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
-  $.ajax({
-    url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
-  }).done(function() {
-    // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
-    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
-      transports: ['websocket'],
-      forceNew: true
+  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+    $.ajax({
+      url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
+    }).done(function() {
+      // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
+      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
+        transports: ['websocket'],
+        forceNew: true
+      });
+      
+      window.battleSocket.hasUser = true;
+      
+      // trigger an event when we disconnect from the battleSocket (cleanup)
+      window.battleSocket.on('disconnect', () => {
+        window.battleSocket = undefined;
+        window.balancer = undefined;
+      });
+      
+      // stop blocking reconnects
+      window.reconnectQueue = [];
+      window.isReconnecting = false;
     });
+  } else {
+    window.battleSocket = { hasUser: false };
     
-    // trigger an event when we disconnect from the battleSocket (cleanup)
-    window.battleSocket.on('disconnect', () => {
-      window.battleSocket = undefined;
-      window.balancer = undefined;
-    });
-    
-    // stop blocking reconnect
     window.isReconnecting = false;
-  });
+    
+    if (window.reconnectQueue.length > 0) {
+      let reconnectThis = window.reconnectQueue.shift();
+      reconnectThis();
+    }
+  }
 }
 
 let tickerId;
@@ -193,21 +197,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       localBalancer = currentGroup.balancer;
     }
 
-    if (!window.battleSocket || localBalancer !== window.balancer) {
+    if (!window.battleSocket || !window.battleSocket.hasUser || localBalancer !== window.balancer) {
       let userData = {};
       try {
-        let userId = Meteor.userId();
-        if (userId) {
-          userId = userId.toString();
-        } else {
-          userId = Meteor.userId;
-        }
-        let foundUser = Users.findOne({ _id: userId });
-        if (foundUser) {
-          extraUri += `&userName=${foundUser.username}`;
-        }
+        userData.id = Meteor.userId().toString();
+        let foundUser = Users.findOne({ _id: userData.id });
         if (foundUser && foundUser.username) {
-          userData.id = userId;
           userData.name = foundUser.username;
         }
       } catch (err) {

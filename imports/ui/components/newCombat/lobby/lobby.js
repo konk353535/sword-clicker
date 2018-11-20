@@ -23,32 +23,22 @@ import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
+window.reconnectQueue = [];
 window.isReconnecting = false;
 function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   if (window.isReconnecting) {
+    window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
     return;
   }
   
   // block parallel reconnections
   window.isReconnecting = true;
   
-  // debugging
-  /* console.log("Creating new battleSocket from lobby");  
-  if (!window.battleSocket) {
-    console.log("--- no window.battleSocket at all");
-  } else if (localBalancer !== window.balancer && !currentBattleList) {
-    console.log("--- just need a new balancer (group vs. user ID)");
-  } */
-  
   // be kind and close any existing battleSocket
   if (window.battleSocket) {
     try {
-      //console.log("--- closing existing battleSocket")
       window.battleSocket.close();
-      //console.log("------ success!");
     } catch (err) {
-      //console.log("------ error!");
-      //console.log(err);
     }
   }
   
@@ -64,24 +54,38 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
-  $.ajax({
-    url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
-  }).done(function() {
-    // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
-    window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
-      transports: ['websocket'],
-      forceNew: true
+  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+    $.ajax({
+      url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
+    }).done(function() {
+      // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
+      window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
+        transports: ['websocket'],
+        forceNew: true
+      });
+      
+      window.battleSocket.hasUser = true;
+      
+      // trigger an event when we disconnect from the battleSocket (cleanup)
+      window.battleSocket.on('disconnect', () => {
+        window.battleSocket = undefined;
+        window.balancer = undefined;
+      });
+      
+      // stop blocking reconnects
+      window.reconnectQueue = [];
+      window.isReconnecting = false;
     });
+  } else {
+    window.battleSocket = { hasUser: false };
     
-    // trigger an event when we disconnect from the battleSocket (cleanup)
-    window.battleSocket.on('disconnect', () => {
-      window.battleSocket = undefined;
-      window.balancer = undefined;
-    });
-    
-    // stop blocking reconnect
     window.isReconnecting = false;
-  });
+    
+    if (window.reconnectQueue.length > 0) {
+      let reconnectThis = window.reconnectQueue.shift();
+      reconnectThis();
+    }
+  }
 }
 
 // TODO: All this logic will fire after every battle, very ineffective though
@@ -105,6 +109,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   // Resubscribe
   Meteor.subscribe('otherBattlers', 3);
   Meteor.subscribe('battles');
+  Meteor.subscribe('users');
 
   // Api Call
   /*
@@ -133,21 +138,12 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
       owners: Meteor.userId()
     });
 
-    if (!window.battleSocket || (localBalancer !== window.balancer && !currentBattleList)) {
+    if (!window.battleSocket || !window.battleSocket.hasUser || (localBalancer !== window.balancer && !currentBattleList)) {
       let userData = {};
       try {
-        let userId = Meteor.userId();
-        if (userId) {
-          userId = userId.toString();
-        } else {
-          userId = Meteor.userId;
-        }
-        let foundUser = Users.findOne({ _id: userId });
+        userData.id = Meteor.userId().toString();
+        let foundUser = Users.findOne({ _id: userData.id });
         if (foundUser) {
-          extraUri += `&userName=${foundUser.username}`;
-        }
-        if (foundUser && foundUser.username) {
-          userData.id = userId;
           userData.name = foundUser.username;
         }
       } catch (err) {

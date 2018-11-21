@@ -26,8 +26,14 @@ import { STATE_BUFFS } from '/imports/constants/state';
 window.reconnectQueue = [];
 window.isReconnecting = false;
 function reconnectBattleSocket(localBalancer, currentBattleList, user) {
+  if (!window.connectionSeed) {
+    window.connectionSeed = Math.ceil(Math.random() * 100000000) + 100000000;
+  }
+  
   if (window.isReconnecting) {
-    window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
+    if (window.reconnectQueue.length < 3) {
+      window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
+    }
     return;
   }
   
@@ -40,6 +46,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
       window.battleSocket.close();
     } catch (err) {
     }
+    window.battleSocket = undefined;
   }
   
   // swap to new balancer (ID is player user ID for solo or their associated group ID)
@@ -48,8 +55,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   // for convenience, pass along user ID and user name
   let extraUri = '';
   try {
-    extraUri += `&userId=${user.id}`;
-    extraUri += `&userName=${user.name}`;
+    extraUri = `&userId=${user.id}&userName=${user.name}&conSeed=${window.connectionSeed}`;
   } catch (err) {
   }
   

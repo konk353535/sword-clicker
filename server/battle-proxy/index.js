@@ -26,29 +26,45 @@ const proxyServer = http.createServer(function(req, res) {
   }
   const targetServerId = consistentHash.getNode(balancer);
   const targetServerUrl = SERVERS[targetServerId];
+  const missingUser = (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown');
+  const connectionText = ((missingUser) ? '  BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
 
-  console.log(`Balancer - ${balancer} | Proxying to ${targetServerId}`);
+  console.log(`Balancer - ${balancer} | Proxying HTTP to ${targetServerId}`);
   
   let ipAddr = 'unknown';
   
   try {
-    ipAddr = req.headers['x-forwarded-for'];
-    if (ipAddr === undefined || ipAddr.length === 0) {
-      ipAddr = req.headers['cf-connecting-ip'];
+    ipAddr = req.connection.remoteAddress;
+    let proxiedAddr = req.headers['x-forwarded-for'];
+    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+      proxiedAddr = req.headers['cf-connecting-ip'];
     }
-    if (ipAddr === undefined || ipAddr.length === 0) {
-      ipAddr = 'unknown';
+    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+      proxiedAddr = 'unknown';
+    }
+    if (proxiedAddr !== 'unknown') {
+      ipAddr = `${proxiedAddr} via ${ipAddr}`;
     }
     let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
     let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
     
-    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay} (${queryData.userName}/${queryData.userId})`);
+    if (cloudflareRay === 'unknown') {
+      console.log(`    ${connectionText}${ipAddr}`);
+    } else {
+      console.log(`    ${connectionText}${ipAddr} routed @ ${cloudflareCountry}@${cloudflareRay}`);
+    }
   }
   catch (err) {
+    console.log(`    ${connectionText}${ipAddr}`);
   }
   
   if (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown') {
-    console.log(`    !!  DENIED: no user !!`);
+    try {
+      res.writeHead(403, {'Content-Type': 'text/plain'});
+      res.write("Unauthorized.");
+      res.end();
+    } catch (err) {
+    }
     return false;
   }
   
@@ -67,29 +83,43 @@ proxyServer.on('upgrade', function (req, socket, head) {
   }
   const targetServerId = consistentHash.getNode(balancer);
   const targetServerUrl = SERVERS[targetServerId];
+  const missingUser = (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown');
+  const connectionText = ((missingUser) ? '  BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
 
-  console.log(`Balancer - ${balancer} | Proxying WS to ${targetServerId}`);
+  console.log(`Balancer - ${balancer} | Proxying WebS to ${targetServerId}`);
 
   let ipAddr = 'unknown';
   
   try {
-    ipAddr = req.headers['x-forwarded-for'];
-    if (ipAddr === undefined || ipAddr.length === 0) {
-      ipAddr = req.headers['cf-connecting-ip'];
+    ipAddr = req.connection.remoteAddress;
+    let proxiedAddr = req.headers['x-forwarded-for'];
+    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+      proxiedAddr = req.headers['cf-connecting-ip'];
     }
-    if (ipAddr === undefined || ipAddr.length === 0) {
-      ipAddr = 'unknown';
+    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+      proxiedAddr = 'unknown';
+    }
+    if (proxiedAddr !== 'unknown') {
+      ipAddr = `${proxiedAddr} via ${ipAddr}`;
     }
     let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
     let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
     
-    console.log(`    ${ipAddr} IP via @ ${cloudflareCountry}@${cloudflareRay} (${queryData.userName}/${queryData.userId})`);
+    if (cloudflareRay === 'unknown') {
+      console.log(`    ${connectionText}${ipAddr}`);
+    } else {
+      console.log(`    ${connectionText}${ipAddr} routed @ ${cloudflareCountry}@${cloudflareRay}`);
+    }
   }
   catch (err) {
+      console.log(`    ${connectionText}${ipAddr}`);
   }
 
   if (!queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown') {
-    console.log(`    !!  DENIED: no user !!`);
+    try {
+      socket.close()
+    } catch (err) {
+    }
     return false;
   }
   

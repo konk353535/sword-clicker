@@ -24,8 +24,8 @@
           {{moDiff date moNow 'hours'}} hours,
           {{cappedMinutes (moDiff date moNow 'minutes')}} minutes
         {{else}}
-          ({{moDiff date moNow 'minutes'}} minutes,
-          ({{cappedSeconds (moDiff date moNow 'seconds')}} seconds
+          {{moDiff date moNow 'minutes'}} minutes,
+          {{cappedSeconds (moDiff date moNow 'seconds')}} seconds
         {{/if}}
         remaining<br />
       </span>

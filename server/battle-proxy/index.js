@@ -23,7 +23,7 @@ const proxyServer = http.createServer(function(req, res) {
   const targetServerId = ((queryData.balancer) ? consistentHash.getNode(queryData.balancer) : undefined);
   const targetServerUrl = ((targetServerId) ? SERVERS[targetServerId] : undefined);
   const denyConnection = (!queryData.balancer || !queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown');
-  const connectionText = ((denyConnection) ? '  BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
+  const connectionText = ((denyConnection) ? 'BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
   const wantLog = !denyConnection; // change this to just 'true' if we want to display blocked connections
   
   if (wantLog) {
@@ -32,29 +32,31 @@ const proxyServer = http.createServer(function(req, res) {
   
   let ipAddr = 'unknown';
   
-  try {
-    ipAddr = req.connection.remoteAddress;
-    let proxiedAddr = req.headers['x-forwarded-for'];
-    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
-      proxiedAddr = req.headers['cf-connecting-ip'];
+  if (!denyConnection && wantLog) {
+    try {
+      ipAddr = req.connection.remoteAddress;
+      let proxiedAddr = req.headers['x-forwarded-for'];
+      if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+        proxiedAddr = req.headers['cf-connecting-ip'];
+      }
+      if (proxiedAddr === undefined || proxiedAddr.length === 0) {
+        proxiedAddr = 'unknown';
+      }
+      if (proxiedAddr !== 'unknown') {
+        ipAddr = `${proxiedAddr} via ${ipAddr}`;
+      }
+      let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
+      let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
+      
+      if (cloudflareRay === 'unknown') {
+        console.log(`    ${connectionText}${ipAddr}`);
+      } else {
+        console.log(`    ${connectionText}${ipAddr} routed @ ${cloudflareCountry}@${cloudflareRay}`);
+      }
     }
-    if (proxiedAddr === undefined || proxiedAddr.length === 0) {
-      proxiedAddr = 'unknown';
-    }
-    if (proxiedAddr !== 'unknown') {
-      ipAddr = `${proxiedAddr} via ${ipAddr}`;
-    }
-    let cloudflareRay = req.headers['cf-ray'] ? req.headers['cf-ray'] : 'unknown';
-    let cloudflareCountry = req.headers['cf-ipcountry'] ? req.headers['cf-ipcountry'] : 'unknown';
-    
-    if (cloudflareRay === 'unknown') {
+    catch (err) {
       console.log(`    ${connectionText}${ipAddr}`);
-    } else {
-      console.log(`    ${connectionText}${ipAddr} routed @ ${cloudflareCountry}@${cloudflareRay}`);
     }
-  }
-  catch (err) {
-    console.log(`    ${connectionText}${ipAddr}`);
   }
   
   if (denyConnection) {
@@ -79,7 +81,7 @@ proxyServer.on('upgrade', function (req, socket, head) {
   const targetServerId = ((queryData.balancer) ? consistentHash.getNode(queryData.balancer) : undefined);
   const targetServerUrl = ((targetServerId) ? SERVERS[targetServerId] : undefined);
   const denyConnection = (!queryData.balancer || !queryData.userId || queryData.userId === 'undefined' || queryData.userId === '' || queryData.userId === 'unknown');
-  const connectionText = ((denyConnection) ? '  BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
+  const connectionText = ((denyConnection) ? 'BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
   const wantLog = !denyConnection; // change this to just 'true' if we want to display blocked connections
   
   if (wantLog) {

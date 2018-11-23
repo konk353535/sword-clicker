@@ -181,6 +181,11 @@ export default class Battle {
 
   sendFullState() {
     try {
+      const data = this;
+      const connections = data.io.of(`/${this.balancer}`);
+      
+      // Disabled: don't emit to disconnected sockets
+      /*
       this.io.of(`/${this.balancer}`).emit('fullState', {
         battle: {
           units: this.units.map(unit => unit.raw()),
@@ -193,7 +198,30 @@ export default class Battle {
           id: this.id
         }
       });
+      */
+      
+      Object.entries(connections.connected).map( ([k, v]) => ({ [k]: v}) ).forEach(function(connectedSocket_raw) {
+        try {
+          const connectedSocket = connectedSocket_raw[Object.keys(connectedSocket_raw)[0]];
+          
+          connectedSocket.emit('fullState', {
+            battle: {
+              units: data.units.map(unit => unit.raw()),
+              enemies: data.enemies.map(unit => unit.raw()),
+              tickEvents: data.tickEvents,
+              floor: data.floor,
+              room: data.room,
+              level: data.level,
+              wave: data.wave,
+              id: data.id
+            }
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      });
     } catch (err) {
+      console.log(err);
     }
   }
 
@@ -354,12 +382,33 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
 Battle.prototype.postTick = function postTick() {
   if (this.tickEvents.length > 0 || this.deltaEvents.length > 0) {
     try {
+      const data = this;
+      const connections = data.io.of(`/${this.balancer}`);
+      
+      // Disabled: don't emit to disconnected sockets
+      /*      
       this.io.of(`/${this.balancer}`).emit('tick', {
         tickEvents: this.tickEvents,
         deltaEvents: this.deltaEvents,
         tickCount: this.tickCount
-      });    
+      });
+      */
+      
+      Object.entries(connections.connected).map( ([k, v]) => ({ [k]: v}) ).forEach(function(connectedSocket_raw) {
+        try {
+          const connectedSocket = connectedSocket_raw[Object.keys(connectedSocket_raw)[0]];
+          
+          connectedSocket.emit('tick', {
+            tickEvents: data.tickEvents,
+            deltaEvents: data.deltaEvents,
+            tickCount: data.tickCount
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      });
     } catch (err) {
+      console.log(err);
     }
   }
 

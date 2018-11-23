@@ -290,7 +290,7 @@ SyncedCron.add({
         $lte: moment().subtract(10, 'minutes').toDate()   
       } 
     }).fetch().forEach((battleList) => {
-      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}&userId=SERVERCRON&userName=SERVERCRON`, (error, result) => {
+      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}&userId=SERVER&userName=cron.deleteBattle`, (error, result) => {
         removeBattle(battleList._id);
       });
     });

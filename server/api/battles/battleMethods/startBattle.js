@@ -387,24 +387,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   // Send battle to socket server
   // TODO: Make sure this call is encrypted in some way. Encrypt the battle?
   // Otherwise MIM attack compromises the security of the system
+
   
-  let userData = {};
-  try {
-    userData.id = Meteor.userId().toString();
-    let foundUser = Users.findOne({ _id: userData.id });
-    if (foundUser && foundUser.username) {
-      userData.name = foundUser.username;
-    }
-  } catch (err) {
-  }
-  let extraUri = '';
-  try {
-    extraUri += `&userId=${userData.id}`;
-    extraUri += `&userName=${userData.name}`;
-  } catch (err) {
-  }
-  
-  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle?balancer=${balancer}${extraUri}`, {
+  HTTP.call('POST', `${Meteor.settings.public.battleUrl}/battle?balancer=${balancer}&userId=SERVER&userName=manual.startBattle`, {
     data: { battle: actualBattle, passphrase: 'dqv$dYT65YrU%s', balancer }
   }, (error, result) => {
     console.log('method - startBattle - made to battle node', moment().format('LLL hh:mm:ss SSS'));

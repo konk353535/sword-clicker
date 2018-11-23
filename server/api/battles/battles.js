@@ -38,23 +38,7 @@ Meteor.methods({
       return;
     }
 
-    let userData = {};
-    try {
-      userData.id = Meteor.userId().toString();
-      let foundUser = Users.findOne({ _id: userData.id });
-      if (foundUser && foundUser.username) {
-        userData.name = foundUser.username;
-      }
-    } catch (err) {
-    }
-    let extraUri = '';
-    try {
-      extraUri += `&userId=${userData.id}`;
-      extraUri += `&userName=${userData.name}`;
-    } catch (err) {
-    }
-        
-    HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${existingBattle._id}?balancer=${existingBattle.balancer}${extraUri}`, (error, result) => {
+    HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${existingBattle._id}?balancer=${existingBattle.balancer}&userId=SERVER&userName=manual.deleteBattle`, (error, result) => {
       removeBattle(existingBattle._id);
     });
 

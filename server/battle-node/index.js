@@ -6,6 +6,32 @@ import { isDev, serverUrl, port } from './config';
 import { ENEMIES } from '../constants/enemies';
 import { balancers, Balancer } from './core';
 
+// Utility for determining if an object exists and is set
+function validObject (data) {
+  try {
+    if ((data) && (data !== undefined) && (data !== null)) {
+      return true;
+    }
+  } catch (err) {
+  }  
+  return false;
+}
+
+// Utility for disconnecting a Socket
+function dropWebsocketConnection (oSocket) {
+    try {
+      if (validObject(oSocket) && validObject(oSocket._handle)) {
+        if (validObject(oSocket.destroy)) {
+          oSocket.destroy();
+        } else if (validObject(oSocket.close)) {
+          oSocket.close();
+        }
+      }
+    } catch (err) {
+    }
+    return;
+}
+
 const app = express();
 
 var server = require('http').Server(app);
@@ -44,11 +70,11 @@ io.on('connection', (socket) => {
        
       let ipAddr = 'unknown';
       try {
-        ipAddr = socket.handshake.query.ipAddr;
+        ipAddr = socket.handshake.query.ipAddr; // trust the remote connection (our balancer/proxy) to report the correct (and probably forwarded from Cloudflare) IP
       } catch (err) {
       }
-      if (!ipAddr || ipAddr === 'unknown') {
-        ipAddr = socket.conn.remoteAddress;
+      if (!ipAddr || ipAddr === '' || ipAddr === 'undefined' || ipAddr === 'unknown') {
+        ipAddr = socket.conn.remoteAddress; // use Cloudflare's or whatever other raw IP we have as a backup
       }
       console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
     } catch (err) {
@@ -56,13 +82,12 @@ io.on('connection', (socket) => {
     }
   });
   
-  let userName = '';
   let userId = '';
   
   try {
     allConnections.push(socket);
     
-    userName = 'unknown';
+    let userName = 'unknown';
     try {
       userName = socket.handshake.query['userName'];
     } catch (err) {
@@ -88,12 +113,11 @@ io.on('connection', (socket) => {
     console.log('-->  connected');
   }
   
-  if (!userId || userId === 'undefined' || userId === '' || userId === 'unknown') {
+  if (!userId || userId === '' || userId === 'undefined' || userId === 'unknown') {
     console.log(`    !!  DENIED: no user !!`);
     try {
-      socket.close();
+      dropWebsocketConnection(socket);
     } catch (err) {
-      console.log(`        !!  also, can't socket.close()  !!`);
     }
   }
 });
@@ -103,17 +127,16 @@ app.use(bodyParser.json());
 
 app.post('/battle', (req, res) => {
   const { battle, passphrase, balancer } = req.body;
-  if (passphrase !== 'dqv$dYT65YrU%s') {
-    return res.send(battle._id);
+
+  if (passphrase === 'dqv$dYT65YrU%s') {
+    battles[battle._id] = new Battle(battle, balancer, io, (id, intervalId) => {
+      clearInterval(intervalId);
+      delete battles[id];
+    });
   }
 
-  battles[battle._id] = new Battle(battle, balancer, io, (id, intervalId) => {
-    clearInterval(intervalId);
-    delete battles[id];
-  });
-
   // Creates a battle
-  res.send(battle._id);
+  return res.send(battle._id);
 });
 
 app.get('/balancer/:balancerId', (req, res) => {
@@ -124,7 +147,7 @@ app.get('/balancer/:balancerId', (req, res) => {
   }
 
   balancers[balancerId] = new Balancer(balancerId, io);
-  res.sendStatus(200);
+  return res.sendStatus(200);
 });
 
 app.delete('/battle/:battleId', (req, res) => {
@@ -141,7 +164,39 @@ app.delete('/battle/:battleId', (req, res) => {
     return res.sendStatus(500);
   }
 
-  res.sendStatus(201);
+  return res.sendStatus(201);
+});
+
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_timeout
+server.on('timeout', function (socket) {
+  // Emitted if the socket times out from inactivity. This is only to notify that the
+  // socket has been idle. The user must manually close the connection.
+
+  dropWebsocketConnection(socket)
+});
+
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_error_1
+server.on('error', function (err) {
+  // Emitted when an error occurs. The 'close' event will be called directly following this event.
+
+  console.log('Battle server error emitted:');
+  console.log(err);
+  
+  // Note: since the socket is automatically closed, no further logic here.
+});
+
+// `httpServer` event
+// https://nodejs.org/api/http.html#http_event_clienterror
+server.on('clientError', function (err, socket) {
+  // If a client connection emits an 'error' event, it will be forwarded here.  Listener of this
+  // event is responsible for closing/destroying the underlying socket.
+  
+  console.log('Battle server clientError emitted:');
+  console.log(err);
+  
+  dropWebsocketConnection(socket)
 });
 
 server.listen(port);

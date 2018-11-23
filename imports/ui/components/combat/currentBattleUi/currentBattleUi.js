@@ -9,6 +9,7 @@ import _ from 'underscore';
 import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Groups } from '/imports/api/groups/groups.js';
+import { Users } from '/imports/api/users/users';
 
 import './currentBattleUi.html';
 
@@ -90,14 +91,19 @@ const startBattle = (currentBattle, self) => {
 
 window.reconnectQueue = [];
 window.isReconnecting = false;
-function reconnectBattleSocket(localBalancer, currentBattleList, user) {
+function reconnectBattleSocket(localBalancer, currentBattleList, user, cb) {
   if (!window.connectionSeed) {
     window.connectionSeed = Math.ceil(Math.random() * 100000000) + 100000000;
   }
 
+  let userIsValid = false;
+  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+    userIsValid = true;
+  }
+  
   if (window.isReconnecting) {
-    if (window.reconnectQueue.length < 3) {
-      window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
+    if (userIsValid && window.reconnectQueue.length < 3) {
+      window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user, cb); });
     }
     return;
   }
@@ -125,7 +131,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
-  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+  if (userIsValid) {
     $.ajax({
       url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
     }).done(function() {
@@ -135,7 +141,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
         forceNew: true
       });
       
-      window.battleSocket.hasUser = true;
+      window.battleSocket.hasUser = userIsValid;
       
       // trigger an event when we disconnect from the battleSocket (cleanup)
       window.battleSocket.on('disconnect', () => {
@@ -146,9 +152,11 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
       // stop blocking reconnects
       window.reconnectQueue = [];
       window.isReconnecting = false;
+      
+      cb();
     });
   } else {
-    window.battleSocket = { hasUser: false };
+    window.battleSocket = { hasUser: userIsValid };
     
     window.isReconnecting = false;
     
@@ -156,6 +164,75 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
       let reconnectThis = window.reconnectQueue.shift();
       reconnectThis();
     }
+  }
+}
+
+window.reconnectionTrigger = function(this_template) {
+  if (!this_template.state.get('fullState')) {
+    this_template.state.set('fullState', true);
+    window.battleSocket && window.battleSocket.on && window.battleSocket.on('fullState', (data) => {
+      const rawBattle = data.battle;
+      if (!rawBattle) return;
+      const currentBattle = rawBattle;
+      if (!currentBattle) return;
+
+      startBattle(currentBattle, this_template);
+    });
+  }
+
+  if (!this_template.state.get('onTick')) {
+    this_template.state.set('onTick', true);
+    window.battleSocket && window.battleSocket.on && window.battleSocket.on('tick', (data) => {
+      const { tickEvents, deltaEvents } = data;
+      const currentBattle = this_template.state.get('currentBattle');
+      if (!currentBattle) return;
+      currentBattle.tickEvents = tickEvents;
+      currentBattle.unitsMap = {};
+      currentBattle.units.concat(currentBattle.enemies, currentBattle.deadEnemies, currentBattle.deadUnits).forEach((unit) => {
+        if (unit) {
+          currentBattle.unitsMap[unit.id] = unit;
+          if (unit.abilities) {
+            unit.abilitiesMap = {};
+            unit.abilities.forEach((ability) => {
+              unit.abilitiesMap[ability.id] = ability;
+            });
+          }
+          if (unit.buffs) {
+            unit.buffsMap = {};
+            unit.buffs.forEach((buff) => {
+              unit.buffsMap[buff.id] = buff;
+            });
+          }
+        }
+      });
+
+      deltaEvents.forEach(({ type, path, value }) => {
+        if (type === 'abs') {
+          lodash.set(currentBattle, path, value);
+        } else if (type === 'push') {
+          const arrayToMutate = lodash.get(currentBattle, path);
+          if (arrayToMutate) {
+            arrayToMutate.push(value);
+          }
+        } else if (type === 'pop') {
+          const arrayToMutate = lodash.get(currentBattle, path);
+          if (arrayToMutate) {
+            lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
+              return unit.id !== value;
+            }));
+          }
+        } else if (type === 'splice') {
+          const arrayToMutate = lodash.get(currentBattle, path);
+          if (arrayToMutate) {
+            arrayToMutate.splice(value, 1);
+          }
+        }
+      });
+
+      startBattle(currentBattle, this_template);
+    });
+
+    window.battleSocket && window.battleSocket.connected && window.battleSocket.emit && window.battleSocket.emit('getFullState')
   }
 }
 
@@ -168,41 +245,46 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
   this.state.set('fullState', false);
   this.state.set('ticker', 0);
 
+  // Resubscribe
+  Meteor.subscribe('otherBattlers', 3);
+  Meteor.subscribe('battles');
+  Meteor.subscribe('users');
+  
   // Todo, clean this up after leaving it
   tickerId = setInterval(() => {
     if (!this.state.get('currentBattle')) {
-      // Attempts to fix an issue where u don't get initial state so see a blank battle until next battle
-      battleSocket.emit('getFullState');
-      this.state.set('ticker', this.state.get('ticker') + 1);
+      // Attempts to fix an issue where you don't get initial state so see a blank battle until next battle
+      if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
+        window.battleSocket.emit('getFullState');
+        this.state.set('ticker', this.state.get('ticker') + 1);
+      }
     }
 
     if (this.state.get('ticker') > 10) {
       this.state.set('loading', false);
     }
-  }, 2500);
+  }, 1000);
 
   Tracker.autorun(() => {
     //console.log(this.state.get('ticker')); // konk left this debug in, disabling it for now (psouza4: 2018-10-30)
     
     // Lots of hacks follow, I'm so sorry
+    
+    // code segment to reconnect to battle socket
     const currentBattleList = BattlesList.findOne({
       owners: Meteor.userId()
     });
-
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
     });
-
     if (!currentBattleList) {
       this.state.set('currentBattle', false);
       return;
     }
-
     let localBalancer = Meteor.userId();
     if (currentGroup) {
       localBalancer = currentGroup.balancer;
     }
-
     if (!window.battleSocket || !window.battleSocket.hasUser || localBalancer !== window.balancer) {
       let userData = {};
       try {
@@ -214,81 +296,20 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
       } catch (err) {
       }
 
-      reconnectBattleSocket(localBalancer, currentBattleList, userData);
+      const template_ref = this;
+      
+      reconnectBattleSocket(localBalancer, currentBattleList, userData, function() { window.reconnectionTrigger && window.reconnectionTrigger(template_ref); });
     }
-
-    if (!this.state.get('fullState')) {
-      this.state.set('fullState', true);
-      battleSocket.on('fullState', (data) => {
-        const rawBattle = data.battle;
-        if (!rawBattle) return;
-        const currentBattle = rawBattle;
-        if (!currentBattle) return;
-
-        startBattle(currentBattle, this);
-      });
+    else if (window.reconnectionTrigger) {
+      window.reconnectionTrigger(this);
     }
-
-    if (!this.state.get('onTick')) {
-      this.state.set('onTick', true);
-      battleSocket.on('tick', (data) => {
-        const { tickEvents, deltaEvents } = data;
-        const currentBattle = this.state.get('currentBattle');
-        if (!currentBattle) return;
-        currentBattle.tickEvents = tickEvents;
-        currentBattle.unitsMap = {};
-        currentBattle.units.concat(currentBattle.enemies, currentBattle.deadEnemies, currentBattle.deadUnits).forEach((unit) => {
-          if (unit) {
-            currentBattle.unitsMap[unit.id] = unit;
-            if (unit.abilities) {
-              unit.abilitiesMap = {};
-              unit.abilities.forEach((ability) => {
-                unit.abilitiesMap[ability.id] = ability;
-              });
-            }
-            if (unit.buffs) {
-              unit.buffsMap = {};
-              unit.buffs.forEach((buff) => {
-                unit.buffsMap[buff.id] = buff;
-              });
-            }
-          }
-        });
-
-        deltaEvents.forEach(({ type, path, value }) => {
-          if (type === 'abs') {
-            lodash.set(currentBattle, path, value);
-          } else if (type === 'push') {
-            const arrayToMutate = lodash.get(currentBattle, path);
-            if (arrayToMutate) {
-              arrayToMutate.push(value);
-            }
-          } else if (type === 'pop') {
-            const arrayToMutate = lodash.get(currentBattle, path);
-            if (arrayToMutate) {
-              lodash.set(currentBattle, path, arrayToMutate.filter((unit) => {
-                return unit.id !== value;
-              }));
-            }
-          } else if (type === 'splice') {
-            const arrayToMutate = lodash.get(currentBattle, path);
-            if (arrayToMutate) {
-              arrayToMutate.splice(value, 1);
-            }
-          }
-        });
-
-        startBattle(currentBattle, this);
-      });
-
-      battleSocket.emit('getFullState')
-    }
+    // end code segment to reconnect to battle socket
   });
 });
 
 Template.currentBattleUi.onDestroyed(function () {
-  battleSocket.removeListener('tick');
-  battleSocket.removeListener('fullState');
+  window.battleSocket && window.battleSocket.removeListener && window.battleSocket.removeListener('tick');
+  window.battleSocket && window.battleSocket.removeListener && window.battleSocket.removeListener('fullState');
   clearInterval(tickerId);
 })
 
@@ -327,9 +348,9 @@ Template.currentBattleUi.helpers({
           const battleId = currentBattle._id;
           const casterId = Meteor.userId();
 
-          if (battleSocket) {
+          if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
             // Gonna require the socket here
-            battleSocket.emit('action', {
+            window.battleSocket.emit('action', {
               battleSecret: Meteor.user().battleSecret,
               abilityId: 'clickAttack',
               targets: [unitId],

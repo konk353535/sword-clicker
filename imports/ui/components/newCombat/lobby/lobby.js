@@ -29,9 +29,14 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   if (!window.connectionSeed) {
     window.connectionSeed = Math.ceil(Math.random() * 100000000) + 100000000;
   }
+
+  let userIsValid = false;
+  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+    userIsValid = true;
+  }
   
   if (window.isReconnecting) {
-    if (window.reconnectQueue.length < 3) {
+    if (userIsValid && window.reconnectQueue.length < 3) {
       window.reconnectQueue.push(function() { reconnectBattleSocket(localBalancer, currentBattleList, user); });
     }
     return;
@@ -60,7 +65,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
   }
   
   // connect to the balancer and request a battle node server transport for our balancer ID
-  if (user.name && user.name !== 'undefined' && user.name !== '' && user.name !== 'unknown') {
+  if (userIsValid) {
     $.ajax({
       url: `${Meteor.settings.public.battleUrl}/balancer/${window.balancer}?balancer=${window.balancer}${extraUri}`
     }).done(function() {
@@ -70,7 +75,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
         forceNew: true
       });
       
-      window.battleSocket.hasUser = true;
+      window.battleSocket.hasUser = userIsValid;
       
       // trigger an event when we disconnect from the battleSocket (cleanup)
       window.battleSocket.on('disconnect', () => {
@@ -83,7 +88,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user) {
       window.isReconnecting = false;
     });
   } else {
-    window.battleSocket = { hasUser: false };
+    window.battleSocket = { hasUser: userIsValid };
     
     window.isReconnecting = false;
     

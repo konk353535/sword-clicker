@@ -5,9 +5,9 @@ import { parse } from 'query-string';
 import { SERVERS, PORT } from './config';
 
 const displayBlockedConnections = false;
-
 const consistentHash = new ConsistentHashing(Object.keys(SERVERS));
 
+// Utility for determining if an object exists and is set
 function validObject (data) {
   try {
     if ((data) && (data !== undefined) && (data !== null)) {
@@ -18,6 +18,7 @@ function validObject (data) {
   return false;
 }
 
+// Utility for determining if an object exists and is set with data that can be described as non-empty text
 function validData (data) {
   try {
     if (validObject(data)) {
@@ -32,6 +33,7 @@ function validData (data) {
   return false;
 }
 
+// Utility for getting operational values (shared between both httpServer and httpProxyServer)
 function getConnectionValues (req) {
   const url = req.url.split('?')[1];
   const queryData = parse(url);
@@ -44,6 +46,7 @@ function getConnectionValues (req) {
   return [ queryData, targetServerId, targetServerUrl, denyConnection, connectionText, wantLog ];
 }
 
+// Utility for getting some IP information and optional logging to screen
 function getIPandLog (req, wantLog, connectionText ) {
   let ipAddr = 'unknown';
     
@@ -93,6 +96,7 @@ const proxy = httpProxy.createProxyServer({
   ws: true
 });
 
+// Utility for disconnecting a web request
 function dropHttpConnection (oResponse, iStatus = 403, sStatusReason = "Unauthorized") {
     try {
       oResponse.writeHead(iStatus, {'Content-Type': 'text/plain'});
@@ -119,7 +123,8 @@ const proxyServer = http.createServer(function(req, res) {
     if (!denyConnection) {
       const ipAddr = getIPandLog(req, wantLog, connectionText);
 
-      // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to which user
+      // Note: slip the non-proxied original IP address of the player into the request
+      // URL so the battle node understands what IPs belong to which user.
       req.url = `${req.url}&ipAddr=${ipAddr}`;
 
       proxy.web(req, res, { target: targetServerUrl });      
@@ -133,15 +138,22 @@ const proxyServer = http.createServer(function(req, res) {
   return false;
 });
 
-
+// Utility for disconnecting a Socket
 function dropWebsocketConnection (oSocket) {
     try {
-      oSocket.close();
+      if (validObject(oSocket) && validObject(oSocket._handle)) {
+        if (validObject(oSocket.destroy)) {
+          oSocket.destroy();
+        } else if (validObject(oSocket.close)) {
+          oSocket.close();
+        }
+      }
     } catch (err) {
     }
     return;
 }
 
+// Listen for the web request event to upgrade a socket to a webSocket
 proxyServer.on('upgrade', function (req, socket, head) {
   try {
     const [ queryData, targetServerId, targetServerUrl, denyConnection, connectionText, wantLog ] = getConnectionValues(req);
@@ -153,7 +165,8 @@ proxyServer.on('upgrade', function (req, socket, head) {
     if (!denyConnection) {
       const ipAddr = getIPandLog(req, wantLog, connectionText);
     
-      // slip the non-proxied original IP address of the player into the request URL so the battle node understands what IPs belong to which user
+      // Note: slip the non-proxied original IP address of the player into the request
+      // URL so the battle node understands what IPs belong to which user.
       req.url = `${req.url}&ipAddr=${ipAddr}`;
       
       proxy.ws(req, socket, head, { target: targetServerUrl.replace('https','http') });
@@ -167,4 +180,66 @@ proxyServer.on('upgrade', function (req, socket, head) {
   return false;
 });
 
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_timeout
+proxyServer.on('timeout', function (socket) {
+  // Emitted if the socket times out from inactivity. This is only to notify that the
+  // socket has been idle. The user must manually close the connection.
+
+  // Note: can occur from timeout attempting to connect to battle-node or just the
+  // client timing out.
+  
+  dropWebsocketConnection(socket)
+});
+
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_error_1
+proxyServer.on('error', function (err) {
+  // Emitted when an error occurs. The 'close' event will be called directly following this event.
+
+  console.log('Proxy server error emitted:');
+  console.log(err);
+  
+  // Note: since the socket is automatically closed, no further logic here.
+});
+
+// `httpServer` event
+// https://nodejs.org/api/http.html#http_event_clienterror
+proxyServer.on('clientError', function (err, socket) {
+  // If a client connection emits an 'error' event, it will be forwarded here.  Listener of this
+  // event is responsible for closing/destroying the underlying socket.
+  console.log('Proxy server clientError emitted:');
+  console.log(err);
+  
+  dropWebsocketConnection(socket)
+});
+
+// `httpProxy` event
+// https://github.com/nodejitsu/node-http-proxy
+proxy.on('error', function (err, req, res) {
+  // The error event is emitted if the request to the target fail.  We do not do any error handling
+  // of messages passed between client and proxy, and messages passed between proxy and target,
+  // so it is recommended that you listen on errors and handle them.
+  
+  try {
+    if (err.code === 'ECONNREFUSED') {
+
+      // this means battle-node is offline
+      dropHttpConnection(res, 502, 'Combat server is offline.');
+
+    } else {
+      
+      // unhandled, so log it
+      console.log(err);
+      console.log(`Unknown proxy error code: ${err.code}:`);
+      
+      dropHttpConnection(res, 500, 'Unknown error occurred.');
+      
+    }
+  } catch (e) {
+    dropHttpConnection(res, 500, 'Unknown error occurred.');
+  }  
+});
+
+// Begin listening for basic web requests to upgrade to webSockets
 proxyServer.listen(PORT);

@@ -37,13 +37,20 @@ function validData (data) {
 function getConnectionValues (req) {
   const url = req.url.split('?')[1];
   const queryData = parse(url);
-  const targetServerId = ((validData(queryData.balancer)) ? consistentHash.getNode(queryData.balancer) : undefined);
-  const targetServerUrl = ((validData(targetServerId)) ? SERVERS[targetServerId] : undefined);
-  const denyConnection = ((!validData(queryData.balancer)) || (!validData(queryData.userId)));
+  const targetServerId = ((validData(queryData.balancer)) ? consistentHash.getNode(queryData.balancer) : 1);
+  const targetServerUrl = ((validData(targetServerId)) ? SERVERS[targetServerId] : SERVERS[1]);
+  const denyConnection = ((!validData(targetServerUrl)) || (!validData(queryData.userId)));
   const connectionText = ((denyConnection) ? 'BLOCKED: no user' : `ACCEPTED ${queryData.userName} (#${queryData.userId})`) + ' :: ';
   const wantLog = !denyConnection || displayBlockedConnections;
   
   return [ queryData, targetServerId, targetServerUrl, denyConnection, connectionText, wantLog ];
+}
+
+function getUniqueId (req) {
+  const url = req.url.split('?')[1];
+  const queryData = parse(url);
+
+  return `${queryData.userId}#${queryData.conSeed}`;
 }
 
 // Utility for getting some IP information and optional logging to screen
@@ -119,15 +126,15 @@ const proxyServer = http.createServer(function(req, res) {
     if (wantLog) {
       console.log(`Balancer - ${queryData.balancer} | Proxying HTTP to ${targetServerId}`);
     }
+
+    const ipAddr = getIPandLog(req, wantLog, connectionText);
     
     if (!denyConnection) {
-      const ipAddr = getIPandLog(req, wantLog, connectionText);
-
       // Note: slip the non-proxied original IP address of the player into the request
       // URL so the battle node understands what IPs belong to which user.
       req.url = `${req.url}&ipAddr=${ipAddr}`;
 
-      proxy.web(req, res, { target: targetServerUrl });      
+      proxy.web(req, res, { target: targetServerUrl });
       return;
     }
   } catch (err) {
@@ -153,6 +160,8 @@ function dropWebsocketConnection (oSocket) {
     return;
 }
 
+var allConnections = [];
+
 // Listen for the web request event to upgrade a socket to a webSocket
 proxyServer.on('upgrade', function (req, socket, head) {
   try {
@@ -162,14 +171,38 @@ proxyServer.on('upgrade', function (req, socket, head) {
       console.log(`Balancer - ${queryData.balancer} | Proxying WebS to ${targetServerId}`);
     }
 
-    if (!denyConnection) {
-      const ipAddr = getIPandLog(req, wantLog, connectionText);
+    const ipAddr = getIPandLog(req, wantLog, connectionText);
     
+    if (!denyConnection) {    
       // Note: slip the non-proxied original IP address of the player into the request
       // URL so the battle node understands what IPs belong to which user.
       req.url = `${req.url}&ipAddr=${ipAddr}`;
       
       proxy.ws(req, socket, head, { target: targetServerUrl.replace('https','http') });
+
+      const thisId = getUniqueId(req);
+      
+      for (let i = 0; i < allConnections.length; i++) {
+        if (i < allConnections.length) {
+          if (getUniqueId(allConnections[i].req) === thisId) {
+            if (validObject(allConnections[i].socket)) {
+              dropWebsocketConnection(allConnections[i].socket);
+            }
+            if (validObject(allConnections[i].req) && validObject(allConnections[i].req.connection)) {
+              dropWebsocketConnection(allConnections[i].req.connection);
+            }
+            if (validObject(allConnections[i].req) && validObject(allConnections[i].req.client)) {
+              dropWebsocketConnection(allConnections[i].req.client);
+            }
+            allConnections.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      
+      allConnections.push({ req, socket });
+      
+      //todo: remove connection when closed
       return;
     }
   } catch (err) {

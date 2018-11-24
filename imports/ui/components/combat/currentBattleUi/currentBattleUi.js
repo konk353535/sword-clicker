@@ -107,7 +107,7 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user, cb) {
     }
     return;
   }
-  
+
   // block parallel reconnections
   window.isReconnecting = true;
   
@@ -138,7 +138,8 @@ function reconnectBattleSocket(localBalancer, currentBattleList, user, cb) {
       // when connected to the balancer, open a new socket to the proxied battle node transport -- this is our new battleSocket
       window.battleSocket = io(`${Meteor.settings.public.battleUrl}/${window.balancer}?balancer=${window.balancer}${extraUri}`, {
         transports: ['websocket'],
-        forceNew: true
+        forceNew: false,
+        reconnection: false
       });
       
       window.battleSocket.hasUser = userIsValid;

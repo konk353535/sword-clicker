@@ -50,68 +50,81 @@ app.use(cors(corsOptions));
 
 let allConnections = [];
 
+function getUniqueId (socket) {
+  try {
+    return `${socket.handshake.query.userId}#${socket.handshake.query.conSeed}`;
+  } catch (err) {
+  }
+  return "?";
+}
+
+io.on('error', (x, y, z) => {
+  console.log('x');
+  console.log(x);
+  console.log('y');
+  console.log(y);
+  console.log('z');
+  console.log(z);
+});
+
+function getInfoFromSocket (socket) {
+  let userName = 'unknown';
+  try {
+    userName = socket.handshake.query.userName;
+  } catch (err) {
+  }
+  
+  let userId = 'unknown';
+  try {
+    userId = socket.handshake.query.userId;
+  } catch (err) {
+  }    
+   
+  let ipAddr = 'unknown';
+  try {
+    ipAddr = socket.handshake.query.ipAddr; // trust the remote connection (our balancer/proxy) to report the correct (and probably forwarded from Cloudflare) IP
+  } catch (err) {
+  }
+  if (!ipAddr || ipAddr === '' || ipAddr === 'undefined' || ipAddr === 'unknown') {
+    ipAddr = socket.conn.remoteAddress; // use Cloudflare's or whatever other raw IP we have as a backup
+  }
+  
+  return { userName, userId, ipAddr };
+};
+
 io.on('connection', (socket) => {
 
+  let { userName, userId, ipAddr } = getInfoFromSocket(socket);
+
   socket.on('disconnect', function() {
-    try {
-      allConnections.pop(socket);
-      
-      let userName = 'unknown';
-      try {
-        userName = socket.handshake.query.userName;
-      } catch (err) {
-      }
-      
-      let userId = 'unknown';
-      try {
-        userId = socket.handshake.query.userId;
-      } catch (err) {
-      }    
-       
-      let ipAddr = 'unknown';
-      try {
-        ipAddr = socket.handshake.query.ipAddr; // trust the remote connection (our balancer/proxy) to report the correct (and probably forwarded from Cloudflare) IP
-      } catch (err) {
-      }
-      if (!ipAddr || ipAddr === '' || ipAddr === 'undefined' || ipAddr === 'unknown') {
-        ipAddr = socket.conn.remoteAddress; // use Cloudflare's or whatever other raw IP we have as a backup
-      }
-      console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
-    } catch (err) {
-      console.log('<--  disconnected');
-    }
+    allConnections.pop(socket);
+    
+    let { userName, userId, ipAddr } = getInfoFromSocket(socket);
+    
+    console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
   });
   
-  let userId = '';
-  
-  try {
-    allConnections.push(socket);
-    
-    let userName = 'unknown';
-    try {
-      userName = socket.handshake.query['userName'];
-    } catch (err) {
+  try {    
+    const thisId = getUniqueId(socket);
+
+    for (let i = 0; i < allConnections.length; i++) {
+      if (i < allConnections.length) {
+        if (getUniqueId(allConnections[i]) === thisId) {
+          dropWebsocketConnection(allConnections[i]);
+          allConnections.splice(i, 1);
+          console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}) [DUPLICATE], connections = ${allConnections.length}`);
+          i--;
+        }
+      }
     }
-    
-    userId = 'unknown';
-    try {
-      userId = socket.handshake.query['userId'];
-    } catch (err) {
-    }    
-     
-    let ipAddr = 'unknown';
-    try {
-      ipAddr = socket.handshake.query['ipAddr'];
-    } catch (err) {
-    }
-    if (!ipAddr || ipAddr === 'unknown') {
-      ipAddr = socket.conn.remoteAddress;
-    }
-    
-    console.log(`-->  connected to ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);    
   } catch (err) {
-    console.log('-->  connected');
+    console.log(err);
   }
+  
+  allConnections.push(socket);
+  
+  
+  console.log(`-->  connected to ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);    
   
   if (!userId || userId === '' || userId === 'undefined' || userId === 'unknown') {
     console.log(`    !!  DENIED: no user !!`);

@@ -1,3 +1,5 @@
+import { CDbl } from '../../utils.js';
+
 export const FOOD_BUFFS = {
   food_lettice: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
@@ -24,7 +26,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -83,7 +85,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -146,7 +148,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -232,7 +234,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -288,7 +290,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -343,7 +345,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -399,7 +401,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -455,7 +457,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -510,7 +512,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -565,7 +567,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -620,7 +622,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -675,7 +677,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -730,7 +732,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -785,7 +787,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -840,7 +842,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -895,7 +897,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -951,7 +953,7 @@ export const FOOD_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = JSON.parse(JSON.stringify(secondsElapsed));
+        let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
         if (buff.duration < 0) {

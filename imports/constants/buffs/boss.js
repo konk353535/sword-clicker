@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import lodash from 'lodash';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
@@ -131,7 +132,7 @@ export const BOSS_BUFFS = {
         buff.stacks = Math.round(buff.data.timeTillSpawn);
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
-          const snakeStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const snakeStats = lodash.cloneDeep(target.stats.raw());
           snakeStats.health = 100;
           snakeStats.healthMax = 100;
           snakeStats.attack *= 0.3;
@@ -240,7 +241,7 @@ export const BOSS_BUFFS = {
         if (!buff.data.spartansSpawned) {
 
           for (let i = 0; i < 2; i++) {
-            const spartanStats = JSON.parse(JSON.stringify(target.stats.raw()));
+            const spartanStats = lodash.cloneDeep(target.stats.raw());
             spartanStats.health = 200;
             spartanStats.healthMax = 200;
             spartanStats.attack *= 0.3;
@@ -302,7 +303,7 @@ export const BOSS_BUFFS = {
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
-          const birdStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const birdStats = lodash.cloneDeep(target.stats.raw());
           birdStats.health = 150;
           birdStats.healthMax = 150;
           birdStats.defense *= 0.6;
@@ -410,7 +411,7 @@ export const BOSS_BUFFS = {
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
           for (let i = 0; i < 3; i++) {
-            const goblinStats = JSON.parse(JSON.stringify(target.stats.raw()));
+            const goblinStats = lodash.cloneDeep(target.stats.raw());
             goblinStats.health = 150;
             goblinStats.healthMax = 150;
             goblinStats.defense *= 0.6;
@@ -499,7 +500,7 @@ export const BOSS_BUFFS = {
         if (!buff.data.phoenixsSpawned) {
 
           for (let i = 0; i < 2; i++) {
-            const phoenixStats = JSON.parse(JSON.stringify(target.stats.raw()));
+            const phoenixStats = lodash.cloneDeep(target.stats.raw());
             phoenixStats.health = 500;
             phoenixStats.healthMax = 500;
             phoenixStats.attackSpeed = 0.001;
@@ -564,7 +565,7 @@ export const BOSS_BUFFS = {
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
-          const phoenixStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const phoenixStats = lodash.cloneDeep(target.stats.raw());
           phoenixStats.health = target.stats.health;
           phoenixStats.healthMax = target.stats.health;
           phoenixStats.attackSpeed = 0.5;
@@ -603,7 +604,7 @@ export const BOSS_BUFFS = {
         // Only respawn if boss phoenix exists
         if (!buff.data.hasSpawned && _.findWhere(actualBattle.enemies, { id: 'boss_phoenix' })) {
 
-          const phoenixStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const phoenixStats = lodash.cloneDeep(target.stats.raw());
           phoenixStats.health = 10;
           phoenixStats.healthMax = 10;
           phoenixStats.attackSpeed = 0.5;
@@ -658,7 +659,7 @@ export const BOSS_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         // cast ignite on all units
-        const phoenixStats = JSON.parse(JSON.stringify(target.stats.raw()));
+        const phoenixStats = lodash.cloneDeep(target.stats.raw());
         phoenixStats.health = 500;
         phoenixStats.healthMax = 500;
         phoenixStats.attackSpeed = 0.001;
@@ -1207,7 +1208,7 @@ export const BOSS_BUFFS = {
 
         if (buff.data.damageTillSpawn <= 0) {
           buff.data.damageTillSpawn = 250;
-          const birdStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const birdStats = lodash.cloneDeep(target.stats.raw());
           birdStats.health = 250;
           birdStats.healthMax = 250;
           birdStats.attackSpeed = 1;
@@ -1301,7 +1302,7 @@ export const BOSS_BUFFS = {
         // Healers spawned?
         if (!buff.data.healersSpawned) {
           for (let i = 0; i < 2; i++) {
-            const birdStats = JSON.parse(JSON.stringify(target.stats.raw()));
+            const birdStats = lodash.cloneDeep(target.stats.raw());
             birdStats.health = 1000;
             birdStats.healthMax = 1000;
             birdStats.attackSpeed = 0.7;
@@ -1332,7 +1333,7 @@ export const BOSS_BUFFS = {
             actualBattle.addUnit(bird);
           }
 
-          const birdStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const birdStats = lodash.cloneDeep(target.stats.raw());
           birdStats.health = 5000;
           birdStats.healthMax = 5000;
           birdStats.attackSpeed = 0.01;
@@ -1417,7 +1418,7 @@ export const BOSS_BUFFS = {
 
         if (!buff.data.timeTillSpawn || buff.data.timeTillSpawn <= 0) {
 
-          const birdStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const birdStats = lodash.cloneDeep(target.stats.raw());
           birdStats.health = 1500;
           birdStats.healthMax = 1500;
           birdStats.defense *= 0.6;
@@ -1526,7 +1527,7 @@ export const BOSS_BUFFS = {
         if (!buff.data.poodleSpawned) {
           // Add poodle to the game
 
-          const poodleStats = JSON.parse(JSON.stringify(target.stats.raw()));
+          const poodleStats = lodash.cloneDeep(target.stats.raw());
           poodleStats.health *= 0.33;
           poodleStats.healthMax *= 0.33;
           poodleStats.defense *= 0.5;
@@ -1747,7 +1748,7 @@ export const BOSS_BUFFS = {
 
             for (let i = 0; i < 3; i++) {
               // Create two fountains that heal fox rather quickly
-              const fountainStats = JSON.parse(JSON.stringify(target.stats.raw()));
+              const fountainStats = lodash.cloneDeep(target.stats.raw());
               fountainStats.health = 750;
               fountainStats.healthMax = 750;
               fountainStats.defense = 150;
@@ -1881,7 +1882,7 @@ export const BOSS_BUFFS = {
 
             for (let i = 0; i < 1; i++) {
               // Create two fountains that heal fox rather quickly
-              const mirageStats = JSON.parse(JSON.stringify(target.stats.raw()));
+              const mirageStats = lodash.cloneDeep(target.stats.raw());
               mirageStats.health = 250;
               mirageStats.healthMax = 250;
               mirageStats.defense = 150;
@@ -2164,7 +2165,7 @@ export const BOSS_BUFFS = {
               }]
             };
 
-            actualBattle.addUnit(...[queen, JSON.parse(JSON.stringify(drone1)), JSON.parse(JSON.stringify(drone2))]);
+            actualBattle.addUnit(...[queen, lodash.cloneDeep(drone1), lodash.cloneDeep(drone2)]);
           }
         }
 

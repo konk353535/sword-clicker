@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import _ from 'underscore';
+import lodash from 'lodash';
 import moment from 'moment';
 
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -138,7 +139,7 @@ Meteor.methods({
 
     if (targetEquipConstants.slot === 'any') {
       // Look for first empty slot
-      let availableSlots = JSON.parse(JSON.stringify(ABILITY.slots));
+      let availableSlots = lodash.cloneDeep(ABILITY.slots);
 
       // Remove from available slots any equipped abilities
       myAbilities.learntAbilities.forEach((ability) => {
@@ -252,7 +253,7 @@ Meteor.methods({
     });
 
     const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
-      const abilityConstant = JSON.parse(JSON.stringify(ABILITIES[abilityKey]));
+      const abilityConstant = lodash.cloneDeep(ABILITIES[abilityKey]);
       let abilityLevel = 1;
       let learntLevel = 0;
       if (abilitiesMap[abilityKey]) {

@@ -9,6 +9,7 @@ import { Battles } from '/imports/api/battles/battles';
 import { flattenObjectForMongo } from '/server/utils';
 import moment from 'moment';
 import _ from 'underscore';
+import lodash from 'lodash';
 
 import { addXp } from '/server/api/skills/skills';
 
@@ -78,14 +79,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
     if (combatItem.constants.isAttackAmulet) {
       // Fetch existing energy
-      playerData.amulet = JSON.parse(JSON.stringify(combatItem.constants.stats));
+      playerData.amulet = lodash.cloneDeep(combatItem.constants.stats);
       if (playerData.amulet.energy == null && amuletChanged) {
         playerData.amulet.energy = 0;
       }
     }
 
     if (combatItem.constants.stats) {
-      const itemStats = JSON.parse(JSON.stringify(combatItem.constants.stats));
+      const itemStats = lodash.cloneDeep(combatItem.constants.stats);
       if (combatItem.extraStats) {
         Object.keys(combatItem.extraStats).forEach((extraStatName) => {
           if (itemStats[extraStatName]) {
@@ -120,7 +121,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     averageCombat += skillLevel;
     combatSkill.constants = SKILLS[combatSkill.type];
     if (combatSkill.constants.statsPerLevel) {
-      const skillStatsPerLevel = JSON.parse(JSON.stringify(combatSkill.constants.statsPerLevel));
+      const skillStatsPerLevel = lodash.cloneDeep(combatSkill.constants.statsPerLevel);
       Object.keys(skillStatsPerLevel).forEach((statKey) => {
         if (playerData.stats[statKey] !== undefined) {
           playerData.stats[statKey] += (skillStatsPerLevel[statKey] * skillLevel);

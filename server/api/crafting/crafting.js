@@ -6,12 +6,14 @@ import { Items } from '/imports/api/items/items';
 import { Events } from '/imports/api/events/events';
 import moment from 'moment';
 import _ from 'underscore';
+import lodash from 'lodash';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { CRAFTING } from '/imports/constants/crafting/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
+import { CInt } from '/imports/utils.js';
 
 // Take a list of requirements
 // If met will return true and take items
@@ -260,7 +262,7 @@ Meteor.methods({
     });
 
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
-      const recipeConstant = JSON.parse(JSON.stringify(CRAFTING.recipes[craftingKey]));
+      const recipeConstant = lodash.cloneDeep(CRAFTING.recipes[craftingKey]);
       const itemConstant = ITEMS[recipeConstant.produces];
 
       recipeConstant.icon = itemConstant.icon;
@@ -303,7 +305,7 @@ Meteor.methods({
       return;
     }
 
-    const newCrafting = JSON.parse(JSON.stringify(crafting.currentlyCrafting));
+    const newCrafting = lodash.cloneDeep(crafting.currentlyCrafting);
 
     // Target Crafting Item
     let targetCrafting;
@@ -388,8 +390,8 @@ Meteor.methods({
       if (moment().isAfter(currentCraft.endDate)) {
         popValues.push(currentCraft.endDate);
         newItems.push({
-          itemId: JSON.parse(JSON.stringify(currentCraft.itemId)),
-          amount: JSON.parse(JSON.stringify(currentCraft.amount))
+          itemId: `${currentCraft.itemId}`,
+          amount: CInt(currentCraft.amount)
         });
         craftingXp += (CRAFTING.recipes[currentCraft.recipeId].xp * currentCraft.amount);
       }

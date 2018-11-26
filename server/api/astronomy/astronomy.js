@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import _ from 'underscore';
+import lodash from 'lodash';
 
 import { ASTRONOMY } from '/imports/constants/astronomy/index.js';
 
@@ -263,7 +264,7 @@ Meteor.methods({
 
     const userDoc = Meteor.user();
 
-    const originalMages = JSON.parse(JSON.stringify(astronomy.mages));
+    const originalMages = lodash.cloneDeep(astronomy.mages);
 
     // Determine time since last update
     const now = moment();

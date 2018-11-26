@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
+import lodash from 'lodash';
 
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
@@ -564,7 +565,7 @@ Meteor.publish('groups', function() {
     }).fetch();
 
     const memberTransform = function (member) {
-      const originalStats = JSON.parse(JSON.stringify(member.stats));
+      const originalStats = lodash.cloneDeep(member.stats);
       delete member.stats;
       member.name = member.username;
       member.icon = member.characterIcon || "character.svg";

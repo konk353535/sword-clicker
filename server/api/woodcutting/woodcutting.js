@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
+import lodash from 'lodash';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
@@ -203,7 +204,7 @@ Meteor.methods({
       return;
     }
 
-    const stats = JSON.parse(JSON.stringify(ITEMS[axeToUse.itemId].stats));
+    const stats = lodash.cloneDeep(ITEMS[axeToUse.itemId].stats);
 
     if (axeToUse.extraStats) {
       Object.keys(axeToUse.extraStats).forEach((stat) => {

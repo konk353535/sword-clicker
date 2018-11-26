@@ -1,6 +1,7 @@
 import { MONSTER_LIST, TABLE_LIST } from '../levels/index.js'; 
 import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
+import lodash from 'lodash';
 import uuid from 'node-uuid';
 
 export const personalQuestMonsterGenerator = function(level, wave) {
@@ -93,7 +94,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     id: selectedMonster.id,
     icon: selectedMonster.icon,
     name: selectedMonster.name,
-    buffs: JSON.parse(JSON.stringify(selectedMonster.buffs || [])),
+    buffs: lodash.cloneDeep(selectedMonster.buffs || []),
     stats: {
       health: 10 + (level * 7) + (extraStats * 26),
       healthMax: 10 + (level * 7) + (extraStats * 26),
@@ -135,7 +136,7 @@ export const personalQuestMonsterGenerator = function(level, wave) {
     monster.stats.healthMax = monster.stats.health;
     const allMonsters = [];
     for (let i = 0;i < unitCount; i++) {
-      const monsterClone = JSON.parse(JSON.stringify(monster));
+      const monsterClone = lodash.cloneDeep(monster);
       monsterClone.id = uuid.v4();
       allMonsters.push(monsterClone);
     }

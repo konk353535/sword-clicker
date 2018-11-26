@@ -16,6 +16,7 @@ import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
 
 import _ from 'underscore';
+import lodash from 'lodash';
 
 const math = require('mathjs');
 
@@ -355,7 +356,7 @@ Meteor.methods({
 
         // Get the current quality
         const originalQuality = targetItem.quality;
-        const targetItemClone = JSON.parse(JSON.stringify(targetItem));
+        const targetItemClone = lodash.cloneDeep(targetItem);
 
         // Mutate the targetItems stats until we get to target quality
         const increaseOptions = [];
@@ -540,7 +541,7 @@ Meteor.methods({
     consumeItem(targetItem, 1);
 
     // Apply nom specific properties
-    const buffs = JSON.parse(JSON.stringify(itemConstants.buffs));
+    const buffs = lodash.cloneDeep(itemConstants.buffs);
 
     // Builds up the buffs, we store basic info and persistent info in the data
     // All other info such as events can be loaded using the buff.id when required

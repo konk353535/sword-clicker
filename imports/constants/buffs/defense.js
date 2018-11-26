@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { addBuff, removeBuff } from '../../battleUtils';
+import { CInt } from '../../utils.js';
 
 export const DEFENSE_BUFFS = {
 
@@ -9,7 +10,7 @@ export const DEFENSE_BUFFS = {
     name: 'volcanic shield',
     description({ buff, level }) {
 
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -171,7 +172,7 @@ export const DEFENSE_BUFFS = {
     icon: 'frostArmor.svg',
     name: 'frost armor',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }

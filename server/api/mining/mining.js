@@ -6,6 +6,7 @@ import { STATE_BUFFS } from '/imports/constants/state/index';
 
 import moment from 'moment';
 import _ from 'underscore';
+import lodash from 'lodash';
 
 import { Skills } from '/imports/api/skills/skills';
 import { State } from '/imports/api/state/state';
@@ -16,6 +17,7 @@ import { MiningSpace } from '/imports/api/mining/mining';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+import { CDbl } from '/imports/utils.js';
 
 export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
   let owner;
@@ -486,7 +488,7 @@ Meteor.methods({
 
       // Increase or decrease chance of finding ore based on owned prospectors
       // Clone so we don't mutate the constants
-      const computedOres = JSON.parse(JSON.stringify(availableOres)).map((ore) => {
+      const computedOres = lodash.cloneDeep(availableOres).map((ore) => {
         // Jewel prospectors cover all available jewel types in one prospector
         if(ore.isGem && prospectorsMap['jewel']) {
           ore.chance *= prospectorsMap['jewel'];
@@ -565,7 +567,7 @@ Meteor.methods({
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
             if (newOre) {
-              miningSpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
+              miningSpace.health = CDbl(newOre.healthMax);
               miningSpace.oreId = newOre.id;
               miningSpace.isCluster = newOre.isCluster;
               miningSpace.isDirty = true; // So we know to save this later
@@ -595,7 +597,7 @@ Meteor.methods({
             // Spawn ore
             const newOre = spawnOre(sortedChanceOres);
             if (newOre) {
-              emptySpace.health = JSON.parse(JSON.stringify(newOre.healthMax));
+              emptySpace.health = CDbl(newOre.healthMax);
               emptySpace.oreId = newOre.id;
               emptySpace.isCluster = newOre.isCluster;
               emptySpace.isDirty = true; // So we know to save this later

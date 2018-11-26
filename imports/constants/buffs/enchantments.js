@@ -1,7 +1,8 @@
 import moment from 'moment';
 import { addBuff, removeBuff } from '../../battleUtils';
+import { CDbl } from '../../utils.js';
 import { BUFFS } from './index.js';
-import _ from 'lodash';
+import lodash from 'lodash';
 import uuid from 'node-uuid';
 
 export const ENCHANTMENT_BUFFS = {
@@ -33,7 +34,7 @@ export const ENCHANTMENT_BUFFS = {
           });
 
           if (targetsToTaunt.length > 0) {
-            const targetToTaunt = _.sample(targetsToTaunt);
+            const targetToTaunt = lodash.sample(targetsToTaunt);
             targetToTaunt.target = target.id;
           }
         }
@@ -69,7 +70,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
           buff.data.timeTillCharge = 5;
-          const targetToHeal = _.sample(actualBattle.units);
+          const targetToHeal = lodash.sample(actualBattle.units);
           actualBattle.healTarget(target.stats.magicPower * 0.5, {
             caster: target,
             target: targetToHeal,
@@ -109,7 +110,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
           buff.data.timeTillCharge = 5;
-          const targetToAttack = _.sample(actualBattle.enemies);
+          const targetToAttack = lodash.sample(actualBattle.enemies);
           actualBattle.dealDamage(target.stats.magicPower * 0.5, {
             attacker: target,
             defender: targetToAttack,
@@ -148,7 +149,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
           // Spawn our fox
-          const foxToSpawn = _.sample(['fire', 'water', 'air', 'earth']);
+          const foxToSpawn = lodash.sample(['fire', 'water', 'air', 'earth']);
           let fox = {
             id: uuid.v4(),
             tickOffset: 0,
@@ -460,7 +461,7 @@ export const ENCHANTMENT_BUFFS = {
             data: {
               duration: 3,
               totalDuration: 3,
-              dps: JSON.parse(JSON.stringify(attacker.stats.attackMax / 10)),
+              dps: CDbl(attacker.stats.attackMax) / 10,
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
@@ -560,7 +561,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
-        const bladeSpin = _.findWhere(attacker.abilities, { id: 'blade_spin' });
+        const bladeSpin = lodash.findWhere(attacker.abilities, { id: 'blade_spin' });
         if (bladeSpin && bladeSpin.currentCooldown > 0) {
           bladeSpin.currentCooldown -= 0.5;
         }
@@ -877,7 +878,7 @@ export const ENCHANTMENT_BUFFS = {
         }
 
         if (Math.random() <= 0.02) {
-          const targetEnemy = _.sample(actualBattle.enemies);
+          const targetEnemy = lodash.sample(actualBattle.enemies);
           const newBuff = {
             id: 'ignite_phoenix_hat',
             data: {
@@ -1069,7 +1070,7 @@ export const ENCHANTMENT_BUFFS = {
         if (buff.data.sourceAlly !== null) {
           // try fo find ally
           const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
-          if(!_.isUndefined(sourceAlly)) {
+          if(!lodash.isUndefined(sourceAlly)) {
             // redirect damage from self to sourceAlly
             const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
             actualBattle.healTarget(redirectDamage, {

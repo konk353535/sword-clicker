@@ -9,6 +9,7 @@ import uuid from 'node-uuid';
 import { Random } from 'meteor/random'
 import moment from 'moment';
 import _ from 'underscore';
+import lodash from 'lodash';
 
 import { Groups } from '/imports/api/groups/groups';
 import { Adventures } from '/imports/api/adventures/adventures';
@@ -123,7 +124,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   // Create clone of battle objects
-  let battleConstants = JSON.parse(JSON.stringify(battleData));
+  let battleConstants = lodash.assignIn(battleData);
 
   const newBattle = {
     createdAt: new Date(),
@@ -279,7 +280,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     if (enemy.stats) {
       enemyConstants = enemy;
     } else {
-      enemyConstants = JSON.parse(JSON.stringify(ENEMIES[enemy.id]));
+      enemyConstants = lodash.assignIn(ENEMIES[enemy.id]);
     }
 
     const enemyStats = enemyConstants.stats;

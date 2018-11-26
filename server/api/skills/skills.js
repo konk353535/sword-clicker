@@ -20,6 +20,7 @@ import { STATE_BUFFS } from '/imports/constants/state';
 import { ITEMS } from '/imports/constants/items/index.js';
 import moment from "moment/moment";
 import _ from 'underscore';
+import lodash from 'lodash';
 
 let globalXpBuffs = {};
 
@@ -324,7 +325,7 @@ Meteor.methods({
       item.name = itemConstants.name;
       delete item._id;
       if (itemConstants.stats) {
-        item.stats = JSON.parse(JSON.stringify(itemConstants.stats));
+        item.stats = lodash.cloneDeep(itemConstants.stats);
         item.isWeapon = itemConstants.isWeapon;
         item.isEquippable = itemConstants.isEquippable;
         if (item.extraStats) {

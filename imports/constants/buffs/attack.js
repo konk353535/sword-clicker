@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { addBuff, removeBuff } from '../../battleUtils';
+import { CInt } from '../../utils';
 
 export const ATTACK_BUFFS = {
 
@@ -260,7 +261,7 @@ export const ATTACK_BUFFS = {
     icon: 'poisonedBlade.svg',
     name: 'poisoned blade',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -330,7 +331,7 @@ export const ATTACK_BUFFS = {
     icon: 'phantomStrikes.svg',
     name: 'phantom strikes',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -407,7 +408,7 @@ export const ATTACK_BUFFS = {
     icon: 'twinBlades.svg',
     name: 'twin blades',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -495,7 +496,7 @@ export const ATTACK_BUFFS = {
     icon: 'thirstyFangs.svg',
     name: 'thirsty fangs',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -573,7 +574,7 @@ export const ATTACK_BUFFS = {
     icon: 'warCry.svg',
     name: 'war cry',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }
@@ -620,7 +621,7 @@ export const ATTACK_BUFFS = {
     icon: 'berserk.svg',
     name: 'berserk',
     description({ buff, level }) {
-      let localLevel = JSON.parse(JSON.stringify(level));
+      let localLevel = CInt(level);
       if (!localLevel) {
         localLevel = 1;
       }

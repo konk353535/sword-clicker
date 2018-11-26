@@ -2,6 +2,7 @@ console.log('importing floors/generators/genericTower.js FLOORS');
 import { FLOORS } from '../../floors/index';
 import { ENEMIES } from '../../enemies/index';
 import _ from 'underscore';
+import lodash from 'lodash';
 import uuid from 'node-uuid';
 
 console.log('exporting floors/generators/genericTower.js genericTowerMonsterGenerator');
@@ -19,7 +20,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
       id: selectedMonster.id,
       icon: selectedMonster.icon,
       name: selectedMonster.name,
-      buffs: JSON.parse(JSON.stringify(selectedMonster.buffs || [])),
+      buffs: lodash.cloneDeep(selectedMonster.buffs || []),
       stats: {
         health: (room / 1.2) * 25 * floor * (1 + (floor / 3.3)) * (1 / totalUnits),
         healthMax: (room / 1.2) * 25 * floor * (1 + (floor / 3.3)) * (1 / totalUnits),
@@ -61,7 +62,7 @@ export const genericTowerMonsterGenerator = function(floor, room) {
 
       monster.stats.healthMax = monster.stats.health;
       for (let i = 0;i < unitCount; i++) {
-        const monsterClone = JSON.parse(JSON.stringify(monster));
+        const monsterClone = lodash.cloneDeep(monster);
         monsterClone.id = uuid.v4();
         newMonsters.push(monsterClone);
       }

@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import lodash from 'lodash';
 import { BATTLES } from './constants/battles/index.js'; // List of encounters
 
 export const flattenObjectForMongo = function(ob) {
@@ -28,7 +29,7 @@ export const flattenObjectForMongo = function(ob) {
 export const enemyStatSetter = function(constants, baseStats, enhancedStats) {
   Object.keys(constants).forEach((enemyKey) => {
 
-    const enhancedEnemy = JSON.parse(JSON.stringify(constants[enemyKey]));
+    const enhancedEnemy = lodash.cloneDeep(constants[enemyKey]);
     enhancedEnemy.id = `e_${enemyKey}`;
     enhancedEnemy.name = `En. ${enhancedEnemy.name}`;
     // Store enhanced enemy
@@ -66,7 +67,7 @@ export const attackSpeedTicks = function(attackSpeed) {
 };
 
 export const cleanRewards = function(rewards) {
-  const r = JSON.parse(JSON.stringify(rewards));
+  const r = lodash.cloneDeep(rewards);
   let items = r.reduce((acc, cur) => {
     let exists = false;
     acc.forEach((item) => {
@@ -87,4 +88,57 @@ export const cleanRewards = function(rewards) {
     return acc;
   }, []);
   return _.sortBy(items, 'type');
+};
+
+// Object sanity checker
+export const IsValid = function IsValid( oObject ) {
+  try {
+    if (typeof oObject === 'undefined') return false;
+    if (oObject === undefined) return false;
+    if (oObject === null) return false;
+    return true;
+  } catch (err) {
+  }
+  return false;
+};
+
+// Converts a value to integer 'int' or returns 0 on error
+export const CInt = function CInt( v ) {
+	try {
+    if (!IsValid(v)) return parseInt(0);
+		if (!isNaN(v)) return Math.floor(v);
+		if (typeof v === 'undefined') return parseInt(0);
+		if (v === null) return parseInt(0);
+		let t = parseInt(v);
+		if (isNaN(t)) return parseInt(0);
+		return Math.floor(t);
+	} catch (err) {
+  }
+	return parseInt(0);
+};
+
+// Converts a value to floating point 'double' or returns 0.0 on error
+export const CDbl = function CDbl( v ) {
+	try {
+    if (!IsValid(v)) return parseFloat(0);
+		if (!isNaN(v)) return parseFloat(v);
+		if (typeof v === 'undefined') return parseFloat(0.0);
+		if (v === null) return parseFloat(0.0);
+		let t = parseFloat(v);
+		if (isNaN(t)) return parseFloat(0.0);
+		return t;
+	} catch (err) {
+  }
+	return parseFloat(0.0);
+};
+
+// Performs a quick, shallow copy of an object... much faster than JSON.parse(JSON.stringify(o))... but not a true deep copy.
+// For a deep copy, use lodash's .cloneDeep() instead
+export const CopyObject = function CopyObject( obj ) {
+  if (typeof obj === 'object') {
+    return lodash.clone(obj);
+  } else if (Array.isArray(obj)) {
+    return [ ...(obj) ];
+  }
+  return obj;
 };

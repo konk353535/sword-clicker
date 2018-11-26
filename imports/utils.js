@@ -1,17 +1,19 @@
+import lodash from 'lodash';
+
 // Object sanity checker
-export const IsValid = function IsValid(oObject) {
+export const IsValid = function IsValid( oObject ) {
   try {
     if (typeof oObject === 'undefined') return false;
     if (oObject === undefined) return false;
     if (oObject === null) return false;
     return true;
-  } catch {
+  } catch (err) {
   }
   return false;
 };
 
 // Converts a value to integer 'int' or returns 0 on error
-export const CInt = function CInt(v) {
+export const CInt = function CInt( v ) {
 	try {
     if (!IsValid(v)) return parseInt(0);
 		if (!isNaN(v)) return Math.floor(v);
@@ -26,7 +28,7 @@ export const CInt = function CInt(v) {
 };
 
 // Converts a value to floating point 'double' or returns 0.0 on error
-export const CDbl = function CDbl(v) {
+export const CDbl = function CDbl( v ) {
 	try {
     if (!IsValid(v)) return parseFloat(0);
 		if (!isNaN(v)) return parseFloat(v);
@@ -38,6 +40,17 @@ export const CDbl = function CDbl(v) {
 	} catch (err) {
   }
 	return parseFloat(0.0);
+};
+
+// Performs a quick, shallow copy of an object... much faster than JSON.parse(JSON.stringify(o))... but not a true deep copy.
+// For a deep copy, use lodash's .cloneDeep() instead
+export const CopyObject = function CopyObject( obj ) {
+  if (typeof obj === 'object') {
+    return lodash.clone(obj);
+  } else if (Array.isArray(obj)) {
+    return [ ...(obj) ];
+  }
+  return obj;
 };
 
 // Prevents multiple subscriptions to the same collection -- note: sometimes we want multiple subscriptions, don't blindly use this everywhere!

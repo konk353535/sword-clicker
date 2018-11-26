@@ -365,8 +365,6 @@ SyncedCron.add({
 });
 
 // Resolve Need Greed loot
-// temporarily disabled
-/*
 SyncedCron.add({
   name: 'Resolve Need Greed loot',
   schedule: function(parser) {
@@ -388,7 +386,6 @@ SyncedCron.add({
     return true;
   }
 });
-*/
 
 SyncedCron.config({
   utc: true

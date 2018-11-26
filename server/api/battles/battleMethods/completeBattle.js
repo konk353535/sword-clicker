@@ -356,8 +356,7 @@ export const completeBattle = function (actualBattle) {
     rewardsGained.forEach((rewardGained) => {
       if (rewardGained.type === 'item') {
         // special reward handling for need/greed flagged items
-        
-        /*const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
+        const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
           return matcher(rewardGained.itemId);
         });
         if (owners.length > 1 && (rewardGained.ng || ng)) {
@@ -371,7 +370,7 @@ export const completeBattle = function (actualBattle) {
             affectedGlobalBuff: rewardGained.affectedGlobalBuff,
             owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
           });
-        } else { */
+        } else {
           const luckyOwner = _.sample(owners);
           addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
           finalTickEvents.push({
@@ -383,7 +382,7 @@ export const completeBattle = function (actualBattle) {
             icon: ITEMS[rewardGained.itemId].icon,
             owner: luckyOwner
           });
-        //}
+        }
       } else if (rewardGained.type === 'gold') {
         const luckyOwner = _.sample(owners);
         Users.update(luckyOwner, {
@@ -822,7 +821,8 @@ export const completeBattle = function (actualBattle) {
     finalTickEvents,
     loot: ngRewards,
     updatedAt: new Date(),
-    createdAt: new Date()
+    createdAt: new Date(),
+    lootResolved: false
   });
 
   if (ngRewards.length > 0) {
@@ -832,7 +832,8 @@ export const completeBattle = function (actualBattle) {
     }, 30000);
   }
 
-  delete actualBattle;
+  //delete actualBattle; // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
+                         // see https://www.w3schools.com/js/js_object_properties.asp
 };
 
 JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {

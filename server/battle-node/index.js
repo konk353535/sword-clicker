@@ -97,11 +97,14 @@ io.on('connection', (socket) => {
   let { userName, userId, ipAddr } = getInfoFromSocket(socket);
 
   socket.on('disconnect', function() {
-    allConnections.pop(socket);
+    var idx = allConnections.indexOf(socket);
+    if (idx !== -1) {
+      allConnections.splice(idx, 1);
     
-    let { userName, userId, ipAddr } = getInfoFromSocket(socket);
-    
-    console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
+      let { userName, userId, ipAddr } = getInfoFromSocket(socket);
+      
+      console.log(`<--  disconnected from ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);
+    }
   });
   
   try {    
@@ -122,7 +125,6 @@ io.on('connection', (socket) => {
   }
   
   allConnections.push(socket);
-  
   
   console.log(`-->  connected to ${ipAddr} (${userName}/${userId}), connections = ${allConnections.length}`);    
   

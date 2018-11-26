@@ -356,7 +356,8 @@ export const completeBattle = function (actualBattle) {
     rewardsGained.forEach((rewardGained) => {
       if (rewardGained.type === 'item') {
         // special reward handling for need/greed flagged items
-        const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
+        
+        /*const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
           return matcher(rewardGained.itemId);
         });
         if (owners.length > 1 && (rewardGained.ng || ng)) {
@@ -370,7 +371,7 @@ export const completeBattle = function (actualBattle) {
             affectedGlobalBuff: rewardGained.affectedGlobalBuff,
             owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
           });
-        } else {
+        } else { */
           const luckyOwner = _.sample(owners);
           addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
           finalTickEvents.push({
@@ -382,7 +383,7 @@ export const completeBattle = function (actualBattle) {
             icon: ITEMS[rewardGained.itemId].icon,
             owner: luckyOwner
           });
-        }
+        //}
       } else if (rewardGained.type === 'gold') {
         const luckyOwner = _.sample(owners);
         Users.update(luckyOwner, {

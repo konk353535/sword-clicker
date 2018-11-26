@@ -124,7 +124,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   // Create clone of battle objects
-  let battleConstants = lodash.assignIn(battleData);
+  let battleConstants = lodash.cloneDeep(battleData);
 
   const newBattle = {
     createdAt: new Date(),
@@ -280,7 +280,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     if (enemy.stats) {
       enemyConstants = enemy;
     } else {
-      enemyConstants = lodash.assignIn(ENEMIES[enemy.id]);
+      enemyConstants = lodash.cloneDeep(ENEMIES[enemy.id]);
     }
 
     const enemyStats = enemyConstants.stats;

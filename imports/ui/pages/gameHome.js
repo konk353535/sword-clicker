@@ -124,7 +124,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   updateFriendsList(this);
   Meteor.setInterval(() => {
     updateFriendsList(this);
-  }, 5000);
+  }, 15000);
   
   Meteor.subscribe('otherBattlers', 3);
   Meteor.subscribe('friends');

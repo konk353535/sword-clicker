@@ -21,6 +21,8 @@ SimpleChat.scrollToEnd = function () {
   }
 };
 
+SimpleChat.handleObserver = undefined;
+
 const AVAILABLE_CHATS = {
   'General': {
     name: 'General',
@@ -150,6 +152,17 @@ Template.chatWindow.rendered = function () {
   });
 
 };
+
+Template.chatWindow.onDestroyed(function templateDestroyedFromDom() {
+  // Have to stop this observer manually or we can leak memory!  
+  if (SimpleChat.handleObserver) {
+    try {
+      SimpleChat.handleObserver.stop();
+      SimpleChat.handleObserver = undefined;
+    } catch (err) {
+    }
+  }
+});
 
 Template.chatWindow.events({
   'click .maximize-icon'(event, instance) {
@@ -312,7 +325,15 @@ Template.chatWindow.helpers({
   simpleChats: function () {
     const instance = Template.instance();
     const chats = Chats.find({}, {sort: {date: 1}});
-    let handleChanges = chats.observeChanges({
+    // Have to stop this observer manually or we can leak memory!  https://docs.meteor.com/api/collections.html
+    if (SimpleChat.handleObserver) {
+      try {
+        SimpleChat.handleObserver.stop();
+        SimpleChat.handleObserver = undefined;
+      } catch (err) {
+      }
+    }
+    SimpleChat.handleObserver = chats.observeChanges({
       added: (id, doc) => {
         const username = Meteor.user().username;
         $(window).trigger('SimpleChat.newMessage', [id, doc])

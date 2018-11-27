@@ -122,6 +122,7 @@ Meteor.methods({
   },
 
   'groups.ready'() {
+    throw new Meteor.Error('error', 'Group \'ready\' function disabled.');
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
@@ -142,6 +143,7 @@ Meteor.methods({
   },
 
   'groups.notReady'() {
+    throw new Meteor.Error('error', 'Group \'not ready\' function disabled.');
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({
@@ -162,6 +164,7 @@ Meteor.methods({
   },
 
   'groups.readyCheck'() {
+    throw new Meteor.Error('error', 'Group \'ready check\' function disabled.');
 
     // Are we currently in a group?
     let currentGroup = Groups.findOne({

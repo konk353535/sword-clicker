@@ -63,8 +63,6 @@ const AVAILABLE_CHATS = {
 };
 
 Template.chatWindow.onCreated(function bodyOnCreated() {
-  return false; // temp debug to test CPU usage
-  
   this.state = new ReactiveDict();
   this.state.set('minimized', true);
   this.state.set('currentChat', 'General');
@@ -132,8 +130,6 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
 // This could probably be better :|
 Template.chatWindow.rendered = function () {
-  return false; // temp debug to test CPU usage
-  
   SimpleChat.scrollToEnd();
 
   this.$('.direct-chat-messages').scroll(function (event) {
@@ -168,7 +164,6 @@ Template.chatWindow.onDestroyed(function templateDestroyedFromDom() {
   }
 });
 
-/*
 Template.chatWindow.events({
   'click .maximize-icon'(event, instance) {
     instance.state.set('minimized', false); // Do instantly in UI to avoid delay
@@ -287,32 +282,26 @@ Template.chatWindow.events({
     template.$('.direct-chat-messages').trigger('scroll')
   }
 });
-*/
 
 Template.chatWindow.helpers({
   minimized() {
-    return false; // temp debug to test CPU usage
     return Template.instance().state.get('minimized');
   },
 
   wantCondensedChat() {
-    return false; // temp debug to test CPU usage
     return Session.get('wantCondensedChat');
   },
   
   currentRoom() {
-    return false; // temp debug to test CPU usage
     return Template.instance().state.get('currentRoom');
   },
 
   currentChat() {
-    return false; // temp debug to test CPU usage
     const instance = Template.instance();
     return instance.state.get('availableChats')[instance.state.get('currentChat')];
   },
 
   availableChats() {
-    return false; // temp debug to test CPU usage
     const instance = Template.instance();
     return Object.keys(instance.state.get('availableChats')).map((chatId) => {
       return instance.state.get('availableChats')[chatId];
@@ -320,14 +309,12 @@ Template.chatWindow.helpers({
   },
 
   currentGroup() {
-    return false; // temp debug to test CPU usage
     return Groups.findOne({
       members: Meteor.userId()
     });
   },
 
   isChatPage() {
-    return false; // temp debug to test CPU usage
     if (Template.instance().data) {
       return Template.instance().data.isChatPage;
     }
@@ -336,7 +323,6 @@ Template.chatWindow.helpers({
   },
 
   simpleChats: function () {
-    return false; // temp debug to test CPU usage
     const instance = Template.instance();
     const chats = Chats.find({}, {sort: {date: 1}});
     // Have to stop this observer manually or we can leak memory!  https://docs.meteor.com/api/collections.html
@@ -358,7 +344,6 @@ Template.chatWindow.helpers({
   },
 
   hasMore: function () {
-    return false; // temp debug to test CPU usage
     return Chats.find({}, {
       sort: { date: 1 },
       limit: Template.instance().limit.get()

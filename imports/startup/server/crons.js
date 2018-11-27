@@ -74,12 +74,10 @@ SyncedCron.add({
     console.log(bossEnemyConstants);
     const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax;
     console.log(`new health max is ${newHealthMax}`)
-    Floors.update({ floorComplete: false }, {
-      $set: {
-        health: newHealthMax,
-        healthMax: newHealthMax
-      }
-    });
+    Floors.update(
+      { floorComplete: false },
+      { $set: { health: newHealthMax, healthMax: newHealthMax } }
+    );
 
     console.log('Have finally reset boss health');
 
@@ -89,27 +87,27 @@ SyncedCron.add({
     console.log('Boss hp score reset');
 
     // Enable users to fight bosses again
-    Combat.update({ foughtBoss: true }, {
-      $set: {
-        foughtBoss: false
-      }
-    }, { multi: true });
+    Combat.update(
+      { foughtBoss: true },
+      { $set: { foughtBoss: false } },
+      { multi: true }
+    );
 
     console.log('Fought boss is done now');
 
     // Enable users to fight waves again
-    Combat.update({}, {
-      $set: {
-        towerContributions: []
-      }
-    }, { multi: true });
+    Combat.update(
+      { towerContributions: { $ne: [] } }, // always use an index to avoid blindly setting data for the whole database
+      { $set: { towerContributions: [] } },
+      { multi: true }
+    );
 
     // Reset gems today
-    Users.update({}, {
-      $set: {
-        fakeGemsToday: 0
-      }
-    }, {multi: true});
+    Users.update(
+      { fakeGemsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+      { $set: { fakeGemsToday: 0 } },
+      { multi: true }
+    );
   }
 });
 
@@ -176,11 +174,11 @@ SyncedCron.add({
             const bossEnemyConstants = ENEMIES[bossEnemyId];
 
             // Reset tower contributions for all
-            Combat.update({}, {
-              $set: {
-                towerContributionsToday: 0
-              }
-            }, { multi: true });
+            Combat.update(
+              { towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+              { $set: { towerContributionsToday: 0 } },
+              { multi: true }
+            );
 
             BossHealthScores.remove({});
 
@@ -196,11 +194,11 @@ SyncedCron.add({
             });
 
             // Enable users to fight bosses again
-            Combat.update({foughtBoss: true}, {
-              $set: {
-                foughtBoss: false
-              }
-            }, {multi: true});
+            Combat.update(
+              { foughtBoss: true},
+              { $set: { foughtBoss: false } },
+              { multi: true }
+            );
           }
         } else {
           // reset the boss
@@ -241,11 +239,11 @@ SyncedCron.add({
           console.log('Boss hp score reset');
 
           // Enable users to fight bosses again
-          Combat.update({foughtBoss: true}, {
-            $set: {
-              foughtBoss: false
-            }
-          }, {multi: true});
+          Combat.update(
+            { foughtBoss: true },
+            { $set: { foughtBoss: false } },
+            { multi: true }
+          );
 
           console.log('Fought boss is done now');
 
@@ -331,32 +329,26 @@ SyncedCron.add({
           } else {
             playersTotalXp[skill.owner] = skill.totalXp;
           }
-          Skills.update(skill._id, {
-            $set: {
-              rank: skillIndex + 1
-            }
+          Skills.update(
+            skill._id,
+            { $set: { rank: skillIndex + 1 }
           });
         });
       });
 
       Object.keys(playersTotalXp).forEach((playerId) => {
-        Skills.update({
-          owner: playerId,
-          type: 'total'
-        }, {
-          $set: {
-            totalXp: playersTotalXp[playerId]
-          }
-        })
+        Skills.update(
+          { owner: playerId, type: 'total' },
+          { $set: { totalXp: playersTotalXp[playerId] } }
+        )
       });
 
       // Fetch total
       Skills.find({ type: 'total', server: server._id }, { sort: { totalXp: -1 }}).fetch().forEach((skill, skillIndex) => {
-        Skills.update(skill._id, {
-          $set: {
-            rank: skillIndex + 1
-          }
-        });
+        Skills.update(
+          skill._id,
+          { $set: { rank: skillIndex + 1 } }
+        );
       });
     });
 

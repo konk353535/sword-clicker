@@ -16,7 +16,6 @@ import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Servers } from '/imports/api/servers/servers';
 
-/*
 // Prefab some guest account
 SyncedCron.add({
   name: 'Prefab Guests',
@@ -387,4 +386,3 @@ SyncedCron.config({
 Meteor.setTimeout(() => {
   SyncedCron.start();
 }, Meteor.settings.is_dev ? 0 : 60000);
-*/

@@ -116,6 +116,8 @@ Meteor.methods({
   },
   
   'friends.list'() {
+    throw new Meteor.Error('error', 'Friends list function is disabled.');
+    
     const doc = Friends.findOne({ owner: Meteor.userId() });
 
     if (doc) {

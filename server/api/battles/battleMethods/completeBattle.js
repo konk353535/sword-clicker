@@ -440,20 +440,30 @@ export const completeBattle = function (actualBattle) {
         owners.forEach((owner) => {
           // Find owner object
           const ownerObject = _.findWhere(units, { owner });
+          
+          // added to allow more tower attempts (only 3 official, still -- the rest only apply toward unlock and leaderboard at a reduced rate)
+          const allowOverDaily = true;
+          const dailyOverageMultiplier = 0.2;
 
-          if (ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
+          if (allowOverDaily || ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
             ownerObject.newContribution = pointsEarnt;
             let actualPointsGained = pointsEarnt;
+            let overDailyPoints = 0;
             if (ownerObject.towerContributions.length >= 3) {
-              actualPointsGained -= ownerObject.towerContributions[0];
-              ownerObject.towerContributions[0] = pointsEarnt;
-              ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+              if (pointsEarnt > ownerObject.towerContributions[0]) {
+                actualPointsGained -= ownerObject.towerContributions[0];
+                ownerObject.towerContributions[0] = pointsEarnt;
+                ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
+              } else {
+                actualPointsGained = 0;
+                overDailyPoints = pointsEarnt * dailyOverageMultiplier;
+              }
             } else {
               ownerObject.towerContributions.push(pointsEarnt);
               ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b);
             }
 
-            totalPointsForGroup += actualPointsGained;
+            totalPointsForGroup += actualPointsGained + overDailyPoints;
 
             const updateSelector = { owner, floor: actualBattle.floor };
 
@@ -509,7 +519,7 @@ export const completeBattle = function (actualBattle) {
                 _id: existingScores._id
               }, {
                 $inc: {
-                  points: actualPointsGained
+                  points: actualPointsGained + overDailyPoints
                 }
               });
             } else {

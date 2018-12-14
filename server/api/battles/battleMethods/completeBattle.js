@@ -469,41 +469,43 @@ export const completeBattle = function (actualBattle) {
 
             const updateModifier = {
               $inc: {
-                points: actualPointsGained
+                points: actualPointsGained + overDailyPoints
               },
               $setOnInsert: {
-                points: actualPointsGained,
+                points: actualPointsGained + overDailyPoints,
                 server: actualBattle.server,
                 username: ownerObject.name // To do: Make this work when users have multiple units
               }
             };
 
-            const possibleStats = [
-              'mining',
-              'crafting',
-              'woodcutting',
-              'farming',
-              'inscription',
-              'astronomy'
-            ];
+            if (overDailyPoints === 0) {
+              const possibleStats = [
+                'mining',
+                'crafting',
+                'woodcutting',
+                'farming',
+                'inscription',
+                'astronomy'
+              ];
 
-            const targetStat = _.sample(possibleStats);
-            addXp(targetStat, Math.round(actualPointsGained * 50), owner);
+              const targetStat = _.sample(possibleStats);
+              addXp(targetStat, Math.round(actualPointsGained * 50), owner);
 
-            if (actualPointsGained > 10) {
-              addFakeGems(5, owner);
+              if (actualPointsGained > 10) {
+                addFakeGems(5, owner);
+              }
+
+              finalTickEvents.push({
+                type: 'xp',
+                amount: Math.round(actualPointsGained * 50),
+                skill: targetStat,
+                owner
+              });
             }
 
             finalTickEvents.push({
-              type: 'xp',
-              amount: Math.round(actualPointsGained * 50),
-              skill: targetStat,
-              owner
-            });
-
-            finalTickEvents.push({
               type: 'points',
-              amount: actualPointsGained.toFixed(1),
+              amount: (actualPointsGained + overDailyPoints).toFixed(1),
               icon: 'tower.svg',
               owner
             });

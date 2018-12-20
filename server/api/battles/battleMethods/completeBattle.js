@@ -367,75 +367,79 @@ export const completeBattle = function (actualBattle) {
     // Process rewards to peeps
     const owners = _.uniq(units.map((unit) => unit.owner));
     rewardsGained.forEach((rewardGained) => {
-      if (rewardGained.type === 'item') {
-        // special reward handling for need/greed flagged items
-        const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
-          return matcher(rewardGained.itemId);
-        });
-        if (owners.length > 1 && (rewardGained.ng || ng)) {
-          ngRewards.push({
-            lootId: new Meteor.Collection.ObjectID()._str,
-            type: 'item',
-            itemId: rewardGained.itemId,
-            amount: rewardGained.amount,
-            name: ITEMS[rewardGained.itemId].name,
-            icon: ITEMS[rewardGained.itemId].icon,
-            affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-            owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
+      try {
+        if (rewardGained.type === 'item') {
+          // special reward handling for need/greed flagged items
+          const ng = Object.values(NEED_GREED_ITEMS).some((matcher) => {
+            return matcher(rewardGained.itemId);
           });
-        } else {
-          const luckyOwner = _.sample(owners);
-          addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
-          finalTickEvents.push({
-            type: 'item',
-            amount: rewardGained.amount,
-            itemId: rewardGained.itemId,
-            affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-            name: ITEMS[rewardGained.itemId].name,
-            icon: ITEMS[rewardGained.itemId].icon,
-            owner: luckyOwner
-          });
-        }
-      } else if (rewardGained.type === 'gold') {
-        const luckyOwner = _.sample(owners);
-        Users.update(luckyOwner, {
-          $inc: {
-            gold: rewardGained.amount
+          if (owners.length > 1 && (rewardGained.ng || ng)) {
+            ngRewards.push({
+              lootId: new Meteor.Collection.ObjectID()._str,
+              type: 'item',
+              itemId: rewardGained.itemId,
+              amount: rewardGained.amount,
+              name: ITEMS[rewardGained.itemId].name,
+              icon: ITEMS[rewardGained.itemId].icon,
+              affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+              owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
+            });
+          } else {
+            const luckyOwner = _.sample(owners);
+            addItem(rewardGained.itemId, rewardGained.amount, luckyOwner);
+            finalTickEvents.push({
+              type: 'item',
+              amount: rewardGained.amount,
+              itemId: rewardGained.itemId,
+              affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+              name: ITEMS[rewardGained.itemId].name,
+              icon: ITEMS[rewardGained.itemId].icon,
+              owner: luckyOwner
+            });
           }
-        });
-        finalTickEvents.push({
-          type: 'gold',
-          amount: rewardGained.amount,
-          itemId: rewardGained.itemId,
-          affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-          icon: 'gold.svg',
-          owner: luckyOwner
-        });
-      } else if (rewardGained.type === 'icon') {
-        const luckyOwner = _.sample(owners);
-        const luckyOwnerCombat = Combat.findOne({
-          owner: luckyOwner
-        });
-
-        if (luckyOwnerCombat && luckyOwnerCombat.boughtIcons == null) {
-          luckyOwnerCombat.boughtIcons = [];
-        }
-
-        if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
-          finalTickEvents.push({
-            type: 'icon',
-            iconId: rewardGained.iconId,
-            icon: PLAYER_ICONS[rewardGained.iconId].icon,
-            owner: luckyOwner
-          });
-          Combat.update({
-            owner: luckyOwner
-          }, {
-            $set: {
-              boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+        } else if (rewardGained.type === 'gold') {
+          const luckyOwner = _.sample(owners);
+          Users.update(luckyOwner, {
+            $inc: {
+              gold: rewardGained.amount
             }
           });
+          finalTickEvents.push({
+            type: 'gold',
+            amount: rewardGained.amount,
+            itemId: rewardGained.itemId,
+            affectedGlobalBuff: rewardGained.affectedGlobalBuff,
+            icon: 'gold.svg',
+            owner: luckyOwner
+          });
+        } else if (rewardGained.type === 'icon') {
+          const luckyOwner = _.sample(owners);
+          const luckyOwnerCombat = Combat.findOne({
+            owner: luckyOwner
+          });
+
+          if (luckyOwnerCombat && luckyOwnerCombat.boughtIcons == null) {
+            luckyOwnerCombat.boughtIcons = [];
+          }
+
+          if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
+            finalTickEvents.push({
+              type: 'icon',
+              iconId: rewardGained.iconId,
+              icon: PLAYER_ICONS[rewardGained.iconId].icon,
+              owner: luckyOwner
+            });
+            Combat.update({
+              owner: luckyOwner
+            }, {
+              $set: {
+                boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+              }
+            });
+          }
         }
+      } catch (err) {
+        console.log("Exception in completeBattle with 'rewardGained'", err, rewardGained);
       }
     });
 

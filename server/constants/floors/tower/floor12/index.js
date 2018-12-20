@@ -52,7 +52,7 @@ export const TOWER_FLOOR_12 = {
     }, {
       chance: 1 / 64,
       rewards: [
-        { type: 'item', itemId: 'obisidian_wand', amount: 1 }
+        { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
     }]))
   },

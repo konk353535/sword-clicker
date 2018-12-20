@@ -330,11 +330,11 @@ export const completeBattle = function (actualBattle) {
     // Apply rewards for complete wave ( if this is a tower battle )
     let floorRewards = [];
     if (actualBattle.floor) {
-      if (win && !actualBattle.isExplorationRun) {
+      if (win) {
         floorRewards.push(...FLOORS[actualBattle.floor][actualBattle.room].rewards);
       }
 
-      if (actualBattle.isExplorationRun) {
+      if (actualBattle.isExplorationRun && actualBattle.room > 1) {
         // Add rewards from previous rooms
         for (let i = actualBattle.room - 1; i > 0; i--) {
           floorRewards.push(...FLOORS[actualBattle.floor][i].rewards);

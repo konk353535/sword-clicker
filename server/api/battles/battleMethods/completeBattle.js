@@ -250,12 +250,25 @@ export const completeBattle = function (actualBattle) {
       console.log('floor is', actualBattle.floor);
       // XP is determine by damage dealt
       const allEnemies = actualBattle.enemies;
+      console.log('number of enemies', ((allEnemies) ? (allEnemies.length.toFixed(0)) : 'null'));
       const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
-      let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
+      console.log('bossId', bossId);
+      
+      try {
+        let liveBossStats = _.findWhere(allEnemies, { monsterType: bossId });
+        let damageDealt = 0;
+        if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
+          damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+        } else {
+          damageDealt = actualBattle.startingBossHp
+        }
 
-      totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+        totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+      } catch (err) {
+        console.log('Error calcuating post-battle boss health:');
+        console.log(err);
+      }
     }
-
 
     units.forEach((unit) => {
       // Distribute xp gained evenly across units
@@ -791,7 +804,20 @@ export const completeBattle = function (actualBattle) {
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies;
     const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
-    let damageDealt = actualBattle.startingBossHp - _.findWhere(allEnemies, { monsterType: bossId }).stats.health;
+    
+    let liveBossStats = _.findWhere(allEnemies, { monsterType: bossId });
+    let damageDealt = 0;
+    try {
+      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
+        damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+      } else {
+        damageDealt = actualBattle.startingBossHp
+      }
+    } catch (err) {
+      console.log('Error calcuating post-battle boss health:');
+      console.log(err);
+    }
+    
     console.log(`damage dealt = ${damageDealt}`);
     if (!damageDealt || damageDealt < 0) {
       damageDealt = 0;

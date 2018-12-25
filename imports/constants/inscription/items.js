@@ -617,7 +617,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'eel_taunt_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Eel taunt',
+    name: 'Eel taunt tome',
     teaches: {
       abilityId: 'eel_taunt',
       level: 1
@@ -630,7 +630,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'lion_taunt_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Lion taunt',
+    name: 'Lion taunt tome',
     teaches: {
       abilityId: 'lion_taunt',
       level: 1
@@ -656,7 +656,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'twin_blades_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Twin Blades',
+    name: 'Twin Blades tome',
     teaches: {
       abilityId: 'twin_blades',
       level: 1
@@ -669,7 +669,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'sixth_sense_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Watchful Aura Lv. 1',
+    name: 'Watchful Aura tome',
     teaches: {
       abilityId: 'sixth_sense',
       level: 1
@@ -682,7 +682,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'furied_defense_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Furied defense Lv. 1',
+    name: 'Furied defense tome Lv. 1',
     teaches: {
       abilityId: 'furied_defense',
       level: 1
@@ -695,7 +695,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'volcanic_shield_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Volcanic Shield Lv. 1',
+    name: 'Volcanic Shield tome Lv. 1',
     teaches: {
       abilityId: 'volcanic_shield',
       level: 1
@@ -708,7 +708,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'volcanic_shield_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Volcanic Shield Lv. 2',
+    name: 'Volcanic Shield tome Lv. 2',
     teaches: {
       abilityId: 'volcanic_shield',
       level: 2
@@ -721,7 +721,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'volcanic_shield_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Volcanic Shield Lv. 3',
+    name: 'Volcanic Shield tome Lv. 3',
     teaches: {
       abilityId: 'volcanic_shield',
       level: 3
@@ -734,7 +734,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'thirsty_fangs_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Thirsty Fangs Lv. 1',
+    name: 'Thirsty Fangs tome Lv. 1',
     teaches: {
       abilityId: 'thirsty_fangs',
       level: 1
@@ -747,7 +747,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'thirsty_fangs_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Thirsty Fangs Lv. 2',
+    name: 'Thirsty Fangs tome Lv. 2',
     teaches: {
       abilityId: 'thirsty_fangs',
       level: 2
@@ -760,7 +760,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'slash_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Slash Lv. 1',
+    name: 'Slash tome Lv. 1',
     teaches: {
       abilityId: 'slash',
       level: 1
@@ -773,7 +773,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'slash_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Slash Lv. 2',
+    name: 'Slash tome Lv. 2',
     teaches: {
       abilityId: 'slash',
       level: 2
@@ -786,7 +786,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'slash_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Slash Lv. 3',
+    name: 'Slash tome Lv. 3',
     teaches: {
       abilityId: 'slash',
       level: 3
@@ -799,7 +799,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'frost_armor_1_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Frost armor Lv. 1',
+    name: 'Frost armor tome Lv. 1',
     teaches: {
       abilityId: 'frost_armor',
       level: 1
@@ -812,7 +812,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'frost_armor_2_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Frost armor Lv. 2',
+    name: 'Frost armor tome Lv. 2',
     teaches: {
       abilityId: 'frost_armor',
       level: 2
@@ -825,7 +825,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'frost_armor_3_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Frost armor Lv. 3',
+    name: 'Frost armor tome Lv. 3',
     teaches: {
       abilityId: 'frost_armor',
       level: 3
@@ -838,7 +838,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'water_wave_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Water wave',
+    name: 'Water wave tome',
     teaches: {
       abilityId: 'water_wave',
       level: 1
@@ -851,7 +851,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'mending_spring_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Mending spring',
+    name: 'Mending spring tome',
     teaches: {
       abilityId: 'mending_spring',
       level: 1
@@ -864,7 +864,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'affliction_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Affliction',
+    name: 'Affliction tome',
     teaches: {
       abilityId: 'affliction',
       level: 1
@@ -877,7 +877,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'wisdom_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'wisdom',
+    name: 'wisdom tome',
     teaches: {
       abilityId: 'magic_wisdom',
       level: 1
@@ -1189,7 +1189,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'spiked_armor_1_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Spiked armor Lv. 1',
+    name: 'Spiked armor tome Lv. 1',
     teaches: {
       abilityId: 'spiked_armor',
       level: 1
@@ -1202,7 +1202,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'poisoned_blade_1_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Poisoned blade Lv. 1',
+    name: 'Poisoned blade tome Lv. 1',
     teaches: {
       abilityId: 'poisoned_blade',
       level: 1
@@ -1215,7 +1215,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'poisoned_blade_2_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Poisoned blade Lv. 2',
+    name: 'Poisoned blade tome Lv. 2',
     teaches: {
       abilityId: 'poisoned_blade',
       level: 2
@@ -1228,7 +1228,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'poisoned_blade_3_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'Poisoned blade Lv. 3',
+    name: 'Poisoned blade tome Lv. 3',
     teaches: {
       abilityId: 'poisoned_blade',
       level: 3
@@ -1241,7 +1241,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'earth_dart_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Earth Dart',
+    name: 'Earth Dart tome',
     teaches: {
       abilityId: 'earth_dart',
       level: 1
@@ -1254,7 +1254,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'mud_armor_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'mud armor',
+    name: 'mud armor tome',
     teaches: {
       abilityId: 'mud_armor',
       level: 1
@@ -1267,7 +1267,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'mending_water_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'mending water',
+    name: 'mending water tome',
     teaches: {
       abilityId: 'mending_water',
       level: 1
@@ -1280,7 +1280,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'ignite_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'ignite',
+    name: 'ignite tome',
     teaches: {
       abilityId: 'ignite',
       level: 1
@@ -1293,7 +1293,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'angels_touch_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'angel\'s touch',
+    name: 'angel\'s touch tome',
     teaches: {
       abilityId: 'angels_touch',
       level: 1
@@ -1306,7 +1306,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'feeding_frenzy_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'feeding frenzy',
+    name: 'feeding frenzy tome',
     teaches: {
       abilityId: 'feeding_frenzy',
       level: 1
@@ -1319,7 +1319,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'elemental_shield_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'elemental shield',
+    name: 'elemental shield tome',
     teaches: {
       abilityId: 'elemental_shield',
       level: 1
@@ -1332,7 +1332,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'heavens_descent_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'heavens descent',
+    name: 'heavens descent tome',
     teaches: {
       abilityId: 'heavens_descent',
       level: 1
@@ -1345,7 +1345,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'inferno_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'inferno',
+    name: 'inferno tome',
     teaches: {
       abilityId: 'inferno',
       level: 1
@@ -1358,7 +1358,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'lightning_speed_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'lightning speed',
+    name: 'lightning speed tome',
     teaches: {
       abilityId: 'lightning_speed',
       level: 1
@@ -1371,7 +1371,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'diamond_skin_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'diamond skin',
+    name: 'diamond skin tome',
     teaches: {
       abilityId: 'diamond_skin',
       level: 1
@@ -1384,7 +1384,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'frenzied_winds_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'frenzied winds',
+    name: 'frenzied winds tome',
     teaches: {
       abilityId: 'frenzied_winds',
       level: 1
@@ -1397,7 +1397,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'ice_dart_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'ice Dart',
+    name: 'ice Dart tome',
     teaches: {
       abilityId: 'ice_dart',
       level: 1
@@ -1410,7 +1410,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'fire_dart_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'fire Dart',
+    name: 'fire Dart tome',
     teaches: {
       abilityId: 'fire_dart',
       level: 1
@@ -1423,7 +1423,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'water_dart_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'water Dart',
+    name: 'water Dart tome',
     teaches: {
       abilityId: 'water_dart',
       level: 1
@@ -1436,7 +1436,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'air_dart_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'air Dart',
+    name: 'air Dart tome',
     teaches: {
       abilityId: 'air_dart',
       level: 1
@@ -1449,7 +1449,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'fire_ball_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'fire ball',
+    name: 'fire ball tome',
     teaches: {
       abilityId: 'fire_ball',
       level: 1
@@ -1462,7 +1462,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'water_ball_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'water ball',
+    name: 'water ball tome',
     teaches: {
       abilityId: 'water_ball',
       level: 1
@@ -1475,7 +1475,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'healing_shield_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'healing shield',
+    name: 'healing shield tome',
     teaches: {
       abilityId: 'healing_shield',
       level: 1
@@ -1488,7 +1488,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'earthen_fist_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'earthen fist',
+    name: 'earthen fist tome',
     teaches: {
       abilityId: 'earthen_fist',
       level: 1
@@ -1527,7 +1527,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'air_ball_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'air ball',
+    name: 'air ball tome',
     teaches: {
       abilityId: 'air_ball',
       level: 1
@@ -1540,7 +1540,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'earth_ball_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'earth ball',
+    name: 'earth ball tome',
     teaches: {
       abilityId: 'earth_ball',
       level: 1
@@ -1553,7 +1553,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'meteor_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'meteor',
+    name: 'meteor tome',
     teaches: {
       abilityId: 'meteor_strike',
       level: 1
@@ -1566,20 +1566,20 @@ export const INSCRIPTION_ITEMS = {
     id: 'scream_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'scream',
+    name: 'scream tome Lv. 1',
     teaches: {
       abilityId: 'scream',
       level: 1
     },
     sellPrice: 1000,
-    description: 'Can be consumed to learn the scream spell.'
+    description: 'Can be consumed to learn the scream ability.'
   },
 
   berserk_level_1_tome: {
     id: 'berserk_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Berserk Lv. 1',
+    name: 'Berserk tome Lv. 1',
     teaches: {
       abilityId: 'berserk',
       level: 1
@@ -1592,7 +1592,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'berserk_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Berserk Lv. 2',
+    name: 'Berserk tome Lv. 2',
     teaches: {
       abilityId: 'berserk',
       level: 2
@@ -1605,7 +1605,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'berserk_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Berserk Lv. 3',
+    name: 'Berserk tome Lv. 3',
     teaches: {
       abilityId: 'berserk',
       level: 3
@@ -1618,7 +1618,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'berserk_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Berserk Lv. 4',
+    name: 'Berserk tome Lv. 4',
     teaches: {
       abilityId: 'berserk',
       level: 4
@@ -1631,7 +1631,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'berserk_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'Berserk Lv. 5',
+    name: 'Berserk tome Lv. 5',
     teaches: {
       abilityId: 'berserk',
       level: 5
@@ -1644,7 +1644,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'execute_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'execute Lv. 1',
+    name: 'execute tome Lv. 1',
     teaches: {
       abilityId: 'execute',
       level: 1
@@ -1657,7 +1657,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'execute_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'execute Lv. 2',
+    name: 'execute tome Lv. 2',
     teaches: {
       abilityId: 'execute',
       level: 2
@@ -1670,7 +1670,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'execute_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'execute Lv. 3',
+    name: 'execute tome Lv. 3',
     teaches: {
       abilityId: 'execute',
       level: 3
@@ -1683,7 +1683,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'execute_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'execute Lv. 4',
+    name: 'execute tome Lv. 4',
     teaches: {
       abilityId: 'execute',
       level: 4
@@ -1696,7 +1696,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'execute_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'execute Lv. 5',
+    name: 'execute tome Lv. 5',
     teaches: {
       abilityId: 'execute',
       level: 5
@@ -1709,7 +1709,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'penetrating_slash_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'penetrating slash Lv. 1',
+    name: 'penetrating slash tome Lv. 1',
     teaches: {
       abilityId: 'penetrating_slash',
       level: 1
@@ -1722,7 +1722,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'penetrating_slash_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'penetrating slash Lv. 2',
+    name: 'penetrating slash tome Lv. 2',
     teaches: {
       abilityId: 'penetrating_slash',
       level: 2
@@ -1735,7 +1735,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'penetrating_slash_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'penetrating slash Lv. 3',
+    name: 'penetrating slash tome Lv. 3',
     teaches: {
       abilityId: 'penetrating_slash',
       level: 3
@@ -1748,7 +1748,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'vampirism_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'vampirism Lv. 1',
+    name: 'vampirism tome Lv. 1',
     teaches: {
       abilityId: 'vampirism',
       level: 1
@@ -1761,7 +1761,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'vampirism_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'vampirism Lv. 2',
+    name: 'vampirism tome Lv. 2',
     teaches: {
       abilityId: 'vampirism',
       level: 2
@@ -1774,7 +1774,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'bleed_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'bleed Lv. 1',
+    name: 'bleed tome Lv. 1',
     teaches: {
       abilityId: 'bleed',
       level: 1
@@ -1787,7 +1787,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'bleed_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'bleed Lv. 2',
+    name: 'bleed tome Lv. 2',
     teaches: {
       abilityId: 'bleed',
       level: 2
@@ -1800,7 +1800,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'bleed_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'bleed Lv. 3',
+    name: 'bleed tome Lv. 3',
     teaches: {
       abilityId: 'bleed',
       level: 3
@@ -1813,7 +1813,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'bleed_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'bleed Lv. 4',
+    name: 'bleed tome Lv. 4',
     teaches: {
       abilityId: 'bleed',
       level: 4
@@ -1826,7 +1826,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'bleed_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'bleed Lv. 5',
+    name: 'bleed tome Lv. 5',
     teaches: {
       abilityId: 'bleed',
       level: 5
@@ -1839,7 +1839,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'phantom_strikes_level_1_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'phantom strikes Lv. 1',
+    name: 'phantom strikes tome Lv. 1',
     teaches: {
       abilityId: 'phantom_strikes',
       level: 1
@@ -1852,7 +1852,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'phantom_strikes_level_2_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'phantom strikes Lv. 2',
+    name: 'phantom strikes tome Lv. 2',
     teaches: {
       abilityId: 'phantom_strikes',
       level: 2
@@ -1865,7 +1865,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'phantom_strikes_level_3_tome',
     icon: 'tomeUncommon.svg',
     category: 'tome',
-    name: 'phantom strikes Lv. 3',
+    name: 'phantom strikes tome Lv. 3',
     teaches: {
       abilityId: 'phantom_strikes',
       level: 3
@@ -1878,7 +1878,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_spin_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade spin Lv. 1',
+    name: 'blade spin tome Lv. 1',
     teaches: {
       abilityId: 'blade_spin',
       level: 1
@@ -1891,7 +1891,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_spin_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade spin Lv. 2',
+    name: 'blade spin tome Lv. 2',
     teaches: {
       abilityId: 'blade_spin',
       level: 2
@@ -1904,7 +1904,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_spin_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade spin Lv. 3',
+    name: 'blade spin tome Lv. 3',
     teaches: {
       abilityId: 'blade_spin',
       level: 3
@@ -1917,7 +1917,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_spin_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade spin Lv. 4',
+    name: 'blade spin tome Lv. 4',
     teaches: {
       abilityId: 'blade_spin',
       level: 4
@@ -1930,7 +1930,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_spin_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade spin Lv. 5',
+    name: 'blade spin tome Lv. 5',
     teaches: {
       abilityId: 'blade_spin',
       level: 5
@@ -1943,7 +1943,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'shield_bash_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'shield bash Lv. 1',
+    name: 'shield bash tome Lv. 1',
     teaches: {
       abilityId: 'shield_bash',
       level: 1
@@ -1956,7 +1956,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'shield_bash_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'shield bash Lv. 2',
+    name: 'shield bash tome Lv. 2',
     teaches: {
       abilityId: 'shield_bash',
       level: 2
@@ -1969,7 +1969,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'shield_bash_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'shield bash Lv. 3',
+    name: 'shield bash tome Lv. 3',
     teaches: {
       abilityId: 'shield_bash',
       level: 3
@@ -1982,7 +1982,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_frenzy_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade frenzy Lv. 1',
+    name: 'blade frenzy tome Lv. 1',
     teaches: {
       abilityId: 'blade_frenzy',
       level: 1
@@ -1995,7 +1995,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_frenzy_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade frenzy Lv. 2',
+    name: 'blade frenzy tome Lv. 2',
     teaches: {
       abilityId: 'blade_frenzy',
       level: 2
@@ -2008,7 +2008,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_frenzy_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade frenzy Lv. 3',
+    name: 'blade frenzy tome Lv. 3',
     teaches: {
       abilityId: 'blade_frenzy',
       level: 3
@@ -2021,7 +2021,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_frenzy_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade frenzy Lv. 4',
+    name: 'blade frenzy tome Lv. 4',
     teaches: {
       abilityId: 'blade_frenzy',
       level: 4
@@ -2034,7 +2034,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'blade_frenzy_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'blade frenzy Lv. 5',
+    name: 'blade frenzy tome Lv. 5',
     teaches: {
       abilityId: 'blade_frenzy',
       level: 5
@@ -2047,7 +2047,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'defensive_stance_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'defensive stance Lv. 1',
+    name: 'defensive stance tome Lv. 1',
     teaches: {
       abilityId: 'defensive_stance',
       level: 1
@@ -2060,7 +2060,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'defensive_stance_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'defensive stance Lv. 2',
+    name: 'defensive stance tome Lv. 2',
     teaches: {
       abilityId: 'defensive_stance',
       level: 2
@@ -2073,7 +2073,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'defensive_stance_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'defensive stance Lv. 3',
+    name: 'defensive stance tome Lv. 3',
     teaches: {
       abilityId: 'defensive_stance',
       level: 3
@@ -2086,7 +2086,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'defensive_stance_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'defensive stance Lv. 4',
+    name: 'defensive stance tome Lv. 4',
     teaches: {
       abilityId: 'defensive_stance',
       level: 4
@@ -2099,7 +2099,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'defensive_stance_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'defensive stance Lv. 5',
+    name: 'defensive stance tome Lv. 5',
     teaches: {
       abilityId: 'defensive_stance',
       level: 5
@@ -2112,7 +2112,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'evasive_maneuvers_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'evasive maneuvers Lv. 1',
+    name: 'evasive maneuvers tome Lv. 1',
     teaches: {
       abilityId: 'evasive_maneuvers',
       level: 1
@@ -2125,7 +2125,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'evasive_maneuvers_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'evasive maneuvers Lv. 2',
+    name: 'evasive maneuvers tome Lv. 2',
     teaches: {
       abilityId: 'evasive_maneuvers',
       level: 2
@@ -2138,7 +2138,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'evasive_maneuvers_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'evasive maneuvers Lv. 3',
+    name: 'evasive maneuvers tome Lv. 3',
     teaches: {
       abilityId: 'evasive_maneuvers',
       level: 3
@@ -2151,7 +2151,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'evasive_maneuvers_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'evasive maneuvers Lv. 4',
+    name: 'evasive maneuvers tome Lv. 4',
     teaches: {
       abilityId: 'evasive_maneuvers',
       level: 4
@@ -2164,7 +2164,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'evasive_maneuvers_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'evasive maneuvers Lv. 5',
+    name: 'evasive maneuvers tome Lv. 5',
     teaches: {
       abilityId: 'evasive_maneuvers',
       level: 5
@@ -2177,7 +2177,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up Lv. 1',
+    name: 'armor up tome Lv. 1',
     teaches: {
       abilityId: 'armor_up',
       level: 1
@@ -2190,7 +2190,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up Lv. 2',
+    name: 'armor up tome Lv. 2',
     teaches: {
       abilityId: 'armor_up',
       level: 2
@@ -2203,7 +2203,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up Lv. 3',
+    name: 'armor up tome Lv. 3',
     teaches: {
       abilityId: 'armor_up',
       level: 3
@@ -2216,7 +2216,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up Lv. 4',
+    name: 'armor up tome Lv. 4',
     teaches: {
       abilityId: 'armor_up',
       level: 4
@@ -2229,7 +2229,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up Lv. 5',
+    name: 'armor up tome Lv. 5',
     teaches: {
       abilityId: 'armor_up',
       level: 5
@@ -2242,7 +2242,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'iron_will_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'iron will Lv. 1',
+    name: 'iron will tome Lv. 1',
     teaches: {
       abilityId: 'iron_will',
       level: 1
@@ -2255,7 +2255,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'iron_will_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'iron will Lv. 2',
+    name: 'iron will tome Lv. 2',
     teaches: {
       abilityId: 'iron_will',
       level: 2
@@ -2268,7 +2268,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'iron_will_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'iron will Lv. 3',
+    name: 'iron will tome Lv. 3',
     teaches: {
       abilityId: 'iron_will',
       level: 3
@@ -2281,7 +2281,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'iron_will_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'iron will Lv. 4',
+    name: 'iron will tome Lv. 4',
     teaches: {
       abilityId: 'iron_will',
       level: 4
@@ -2294,7 +2294,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'iron_will_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'iron will Lv. 5',
+    name: 'iron will tome Lv. 5',
     teaches: {
       abilityId: 'iron_will',
       level: 5
@@ -2307,7 +2307,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'taunt_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'taunt Lv. 1',
+    name: 'taunt tome Lv. 1',
     teaches: {
       abilityId: 'taunt',
       level: 1
@@ -2320,7 +2320,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'taunt_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'taunt Lv. 2',
+    name: 'taunt tome Lv. 2',
     teaches: {
       abilityId: 'taunt',
       level: 2
@@ -2333,7 +2333,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'taunt_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'taunt Lv. 3',
+    name: 'taunt tome Lv. 3',
     teaches: {
       abilityId: 'taunt',
       level: 3
@@ -2346,7 +2346,7 @@ export const INSCRIPTION_ITEMS = {
     id: 'taunt_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'taunt Lv. 4',
+    name: 'taunt tome Lv. 4',
     teaches: {
       abilityId: 'taunt',
       level: 4
@@ -2359,13 +2359,26 @@ export const INSCRIPTION_ITEMS = {
     id: 'taunt_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'taunt Lv. 5',
+    name: 'taunt tome Lv. 5',
     teaches: {
       abilityId: 'taunt',
       level: 5
     },
     sellPrice: 2500,
     description: 'Can be consumed to upgrade the taunt ability.'
+  },
+
+  holiday_cheer_tome: {
+    id: 'holiday_cheer_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'holiday cheer tome',
+    teaches: {
+      abilityId: 'holiday_cheer',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the holiday cheer ability.'
   },
 
   pine_magic_book: {

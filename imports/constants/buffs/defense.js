@@ -918,4 +918,47 @@ export const DEFENSE_BUFFS = {
       }
     }
   },
+  
+  holiday_cheer: {
+    duplicateTag: 'holiday_cheer', // Used to stop duplicate buffs
+    icon: 'holidayCheer.svg',
+    name: 'holiday cheer',
+    description({ buff, level }) {
+      return `Heals your entire party with inspiring holiday cheer.`;
+    },
+    constants: {
+      healBase: 3,
+      healMPRatio: 0.33,
+    },
+    data: {
+      duration: 0,
+      totalDuration: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = buff.constants.constants;
+        const healBase = constants.healBase;
+        const healMP = constants.healMPRatio * caster.stats.magicPower;
+        const totalHeal = healBase + healMP;
+
+        actualBattle.units.forEach((unit) => {
+          if (unit.stats.health > 0.0) {
+            actualBattle.healTarget(totalHeal, {
+              caster,
+              target: unit,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+          }
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        removeBuff({ target, buff, caster })
+      },
+
+      onRemove() {}
+    }
+  },
+
 };

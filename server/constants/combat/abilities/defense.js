@@ -17,6 +17,20 @@ export const DEFENSE_ABILITIES = {
       return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
     }
   },
+  
+  holiday_cheer: {
+    icon: 'holidayCheer.svg',
+    name: 'holiday cheer',
+    id: 'holiday_cheer',
+    buffs: ['holiday_cheer'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'allAllies',
+    isHidden: false,
+    description(level) {
+      return 'Heals your entire party with inspiring holiday cheer.';
+    }
+  },
 
   eel_taunt: {
     icon: 'eelTaunt.svg',

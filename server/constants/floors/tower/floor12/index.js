@@ -9,9 +9,14 @@ export const TOWER_FLOOR_12 = {
     enemies: ['brown_mage'],
     //rewards: []
     rewards: orderLootTable([{
-      chance: 1 / 16,
+      chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'festive_hat', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 24,
+      rewards: [
+        { type: 'item', itemId: 'holiday_cheer_tome', amount: 1 }
       ]
     }])
   },

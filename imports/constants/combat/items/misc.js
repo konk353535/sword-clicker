@@ -3271,5 +3271,31 @@ export const MISC_ITEMS = {
       name: 'magic',
       level: 51
     }]
-  }  
+  },
+  
+  festive_hat: {
+    id: 'festive_hat',
+    icon: 'festiveHat.png',
+    category: 'combat',
+    slot: 'head',
+    name: 'festive hat',
+    sellPrice: 250,
+    description: 'Seems to spread holiday cheer',
+    isEquippable: true,
+    stats: {
+      attackSpeed: -0.1,
+      magicPower: 20,
+      healingPower: 1
+    },
+    extraStats: {
+      magicPower: 10,
+      healingPower: 7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 35
+    }],
+    enchantments: ['phoenix_hat']
+  }
 };

@@ -7,7 +7,13 @@ export const TOWER_FLOOR_12 = {
   1: {
     name: 'Old Mage',
     enemies: ['brown_mage'],
-    rewards: []
+    //rewards: []
+    rewards: orderLootTable([{
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'festive_hat', amount: 1 }
+      ]
+    }])
   },
   2: {
     name: 'Old Log',

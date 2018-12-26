@@ -22,5 +22,19 @@ export const MISC_ITEMS = {
     name: 'adventure token',
     sellPrice: 10,
     description: 'Can be traded for new adventures'
-  }
+  },
+  
+  gift_box_holiday: {
+    id: 'gift_box_holiday',
+    icon: 'giftBoxHoliday.svg',
+    category: 'item_box',
+    name: 'holiday gift box',
+    sellPrice: 1,
+    description: `
+      Can be opened (consumed) to open and reveal a prize.`,
+    shiftActionData: {
+      description: 'open to reveal a prize'
+    },
+    contentsList: ['candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'tanzanite', 'sapphire', 'ruby', 'jade', 'emerald', 'lapislazuli', 'festive_hat', 'festive_hat', 'festive_hat', 'holiday_cheer_tome', 'holiday_cheer_tome'],
+  },
 };

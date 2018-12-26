@@ -297,6 +297,10 @@ Meteor.methods({
     if (baseItem.category === "magic_book") {
       UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
+    
+    if (baseItem.category === "item_box") {
+      UseItemBox(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
 
     if (baseItem.itemId === "jade") {
       UseJade(baseItem, baseItemConstants, targetItem, targetItemConstants);
@@ -853,6 +857,26 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
 
   // Logic 
   addXp('magic', baseItemConstants.magicXp);
+
+
+  // Post Logic & Cleanup
+  ConsumeItem(baseItem);
+};
+
+export const UseItemBox = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (baseItem.category !== 'item_box') {
+    return;
+  }
+
+  if (!baseItemConstants.contentsList) {
+    return;
+  }
+
+
+  // Logic 
+  addItem(_.sample(baseItemConstants.contentsList), 1, Meteor.userId());
 
 
   // Post Logic & Cleanup

@@ -848,6 +848,21 @@ export const FARMING_ITEMS = {
     sellPrice: 200
   },
 
+  candy_cane: {
+    id: 'candy_cane',
+    icon: 'candyCane.svg',
+    category: 'food',
+    name: 'candy cane',
+    description() {
+      const buff = BUFFS.food_candycane;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_candycane'
+    }],
+    sellPrice: 1
+  },
+
   basil_seed: {
     id: 'basil_seed',
     icon: 'basilSeed.svg',

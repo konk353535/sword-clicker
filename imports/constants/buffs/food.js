@@ -120,6 +120,69 @@ export const FOOD_BUFFS = {
     }
   },
 
+  food_candycane: {
+    duplicateTag: 'eatingFood', // Used to stop duplicate buffs
+    icon: 'candyCane.svg',
+    name: 'eating candy cane',
+    description({ buff, level }) {
+      const totalEnergy = Math.round(buff.data.totalDuration * buff.data.energyPerSecond);
+      const totalHeal = Math.round(buff.data.totalDuration * buff.data.healthPerSecond);
+      const instantHeal = buff.data.instantHeal;
+      return `Heals for ${instantHeal}hp instantly. <br /> Regenerates ${totalEnergy} energy and ${totalHeal} health <br /> over a ${buff.data.totalDuration}s digestion period.`;
+    },
+    data: { // Data we require to persist
+      duration: 20, // How long the buff will last
+      totalDuration: 20,
+      instantHeal: 1000,
+      energyPerSecond: 0.25, // energy it will do per second
+      healthPerSecond: 50
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+
+        target.stats.health += buff.data.instantHeal;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        let localSecondsElapsed = CDbl(secondsElapsed);
+        buff.duration -= localSecondsElapsed;
+
+        if (buff.duration < 0) {
+          localSecondsElapsed += buff.duration;
+          if (localSecondsElapsed < 0) {
+            localSecondsElapsed = 0;
+          }
+        }
+
+        target.stats.energy += (localSecondsElapsed * buff.data.energyPerSecond);
+        target.stats.health += (localSecondsElapsed * buff.data.healthPerSecond);
+
+        if (buff.duration < 0 || moment().isAfter(buff.data.endDate)) {
+          buff.constants.events.onRemove({ buff, target, caster });
+          // Remove buff from the target
+          target.buffs = target.buffs.filter((targetBuff) => {
+            return targetBuff.id !== buff.id;
+          });
+        }
+
+        if (target.stats.energy > target.stats.energyMax) {
+          target.stats.energy = target.stats.energyMax;
+        }
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }        
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.energy += 0.5;
+      }
+    }
+  },
+
   food_dragonfruit: {
     duplicateTag: 'eatingFood', // Used to stop duplicate buffs
     icon: 'dragonfruit.svg',

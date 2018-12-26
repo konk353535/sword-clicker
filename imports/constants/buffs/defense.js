@@ -921,18 +921,21 @@ export const DEFENSE_BUFFS = {
   
   holiday_cheer: {
     duplicateTag: 'holiday_cheer', // Used to stop duplicate buffs
-    icon: 'holidayCheer.svg',
+    icon: 'holidayCheerHeal.svg',
     name: 'holiday cheer',
     description({ buff, level }) {
-      return `Heals your entire party with inspiring holiday cheer.`;
+      const c = buff.constants;
+      return `
+        Heals your entire party with inspiring holiday cheer <br />
+        for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP).`;
     },
     constants: {
       healBase: 3,
-      healMPRatio: 0.33,
+      healMPRatio: 0.30,
     },
     data: {
-      duration: 0,
-      totalDuration: 0,
+      duration: 10,
+      totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -953,8 +956,12 @@ export const DEFENSE_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.duration -= secondsElapsed;
+
+        if (buff.duration < 0) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
       },
 
       onRemove() {}

@@ -568,8 +568,8 @@ export const MAGIC_BUFFS = {
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per ally`;
     },
     constants: {
-      healBase: 5,
-      healMPRatio: 0.7,
+      healBase: 15,
+      healMPRatio: 1.1,
       healthCost: 2,
       healthCostMPRatio: 0.1
     },

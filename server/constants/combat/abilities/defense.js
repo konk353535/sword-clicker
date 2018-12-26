@@ -28,7 +28,8 @@ export const DEFENSE_ABILITIES = {
     target: 'allAllies',
     isHidden: false,
     description(level) {
-      return 'Heals your entire party with inspiring holiday cheer.';
+      const BUFF = BUFFS.holiday_cheer;
+      return BUFF.description({ buff: BUFF, level });
     }
   },
 

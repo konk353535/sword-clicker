@@ -944,6 +944,14 @@ export const DEFENSE_BUFFS = {
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
 
+        actualBattle.healTarget(totalHeal, {
+          caster,
+          target,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats
+        });
+        
+        /*
         actualBattle.units.forEach((unit) => {
           if (unit.stats.health > 0.0) {
             actualBattle.healTarget(totalHeal, {
@@ -954,6 +962,7 @@ export const DEFENSE_BUFFS = {
             });
           }
         });
+        */
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

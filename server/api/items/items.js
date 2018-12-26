@@ -4,6 +4,7 @@ import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { Crafting } from '/imports/api/crafting/crafting';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { Events } from '/imports/api/events/events';
 
 import { addXp } from '/server/api/skills/skills.js';
@@ -876,7 +877,21 @@ export const UseItemBox = function (baseItem, baseItemConstants, targetItem, tar
 
 
   // Logic 
-  addItem(_.sample(baseItemConstants.contentsList), 1, Meteor.userId());
+  const chosenItem = _.sample(baseItemConstants.contentsList);
+  const chosenItemConstants = ITEMS[chosenItem];  
+
+  Chats.insert({
+    message: `Inside the ${baseItemConstants.name}, you discovered:  ${chosenItemConstants.name}`,
+    username: 'Game',
+    name: 'Game',
+    date: new Date(),
+    custom: {
+      roomType: 'Game'
+    },
+    roomId: `Game-${Meteor.userId()}`
+  });
+    
+  addItem(chosenItem, 1, Meteor.userId());
 
 
   // Post Logic & Cleanup

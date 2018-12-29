@@ -65,6 +65,11 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
+    }, {
+      chance: 1 / 36,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -125,6 +130,11 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'pulsating_orb', amount: 1 },
         { type: 'item', itemId: 'spellbound_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 18,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -146,6 +156,11 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'obsidian_scimitar', amount: 1 },
         { type: 'item', itemId: 'obsidian_broad_sword', amount: 1 },
         { type: 'item', itemId: 'obsidian_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 12,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
       ]
     }]))
   },

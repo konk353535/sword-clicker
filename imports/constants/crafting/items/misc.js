@@ -35,6 +35,6 @@ export const MISC_ITEMS = {
     shiftActionData: {
       description: 'open to reveal a prize'
     },
-    contentsList: ['candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'tanzanite', 'sapphire', 'ruby', 'jade', 'emerald', 'lapislazuli', 'festive_hat', 'festive_hat', 'festive_hat', 'holiday_cheer_tome', 'holiday_cheer_tome'],
+    contentsList: ['candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'tanzanite', 'sapphire', 'ruby', 'jade', 'emerald', 'lapislazuli', 'enhancer_key', 'festive_hat', 'festive_hat', 'festive_hat', 'holiday_cheer_tome', 'holiday_cheer_tome'],
   },
 };

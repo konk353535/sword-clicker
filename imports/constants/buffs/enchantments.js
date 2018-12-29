@@ -913,6 +913,89 @@ export const ENCHANTMENT_BUFFS = {
     name: 'demons heart',
     description() {
       return `
+        Periodically drain health from your entire team.<br />
+        Drained health empowers your damage.  The lower your<br />
+        health and the more you drain, the more damage you will do.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // this event does not trigger for equipment-granted buffs
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!buff.data.secondsLastDrain) {
+          // fake way of an 'onApply' event
+          buff.stacks = 5;
+          buff.data.secondsLastDrain = 0;
+          buff.data.currentDamageBonus = 0;
+          buff.data.lastHealthDrained = 0;
+        }
+        
+        buff.data.secondsLastDrain += secondsElapsed;
+        
+        if (buff.data.secondsLastDrain >= 5.0) {
+          buff.data.secondsLastDrain -= 5.0;
+          
+          // debuff old bonus (0 if none)
+          target.stats.attack -= buff.data.currentDamageBonus;
+          target.stats.attackMax -= buff.data.currentDamageBonus;
+          buff.data.currentDamageBonus = 0;
+          
+          // perform party drain (allow dodge/mitigation)
+          const actualDamage = target.stats.accuracy * 0.35; // 35% of accuracy
+          
+          let damageDealt = 0;
+          actualBattle.units.forEach((unit) => {
+            damageDealt += actualBattle.dealDamage(actualDamage, {
+              attacker: target,
+              defender: unit,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+            actualBattle.checkDeath(unit);
+          });
+
+          // calculate new bonus
+          buff.data.lastHealthDrained = damageDealt;
+          buff.data.currentDamageBonus = (1.2 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 20-119% of damage dealt to party
+          
+          // rebuff with new bonus
+          target.stats.attack += buff.data.currentDamageBonus;
+          target.stats.attackMax += buff.data.currentDamageBonus;
+        }        
+
+        buff.stacks = Math.ceil(5.0 - buff.data.secondsLastDrain);
+      },
+
+      onBeforeDeath({ buff, target, actualBattle }) {
+        // debuff old bonus (0 if none)
+        target.stats.attack -= buff.data.currentDamageBonus;
+        target.stats.attackMax -= buff.data.currentDamageBonus;
+        buff.data.currentDamageBonus = 0;
+      },
+
+      onRemove({ buff, target, caster }) {
+        // debuff old bonus (0 if none)
+        target.stats.attack -= buff.data.currentDamageBonus;
+        target.stats.attackMax -= buff.data.currentDamageBonus;
+        buff.data.currentDamageBonus = 0;
+      }
+    }
+  },
+
+  /*
+  demons_heart_old: {
+    duplicateTag: 'demons_heart_old', // Used to stop duplicate buffs
+    icon: 'demonsHeart.svg',
+    name: 'demons heart (old)',
+    description() {
+      return `
         When you die, temporarily heal to full hp and become cursed.<br />
         Cursed: +50% damage, +50% attack speed, +50 hybrid armor<br />
         Take increasing damage each second. You cannot cast abilities while cursed`;
@@ -961,7 +1044,8 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
-
+  */
+  
   winged_shield: {
     duplicateTag: 'winged_shield', // Used to stop duplicate buffs
     icon: 'winged_shield.svg',

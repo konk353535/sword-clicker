@@ -1744,14 +1744,14 @@ export const MISC_ITEMS = {
     icon: 'demonsHeart.png',
     category: 'combat',
     slot: 'chest',
-    name: 'demons heart',
+    name: 'demon\'s heart',
     sellPrice: 1000,
     description: 'Cursed for all eternity.',
     isEquippable: true,
     stats: {
       healthMax: 150,
-      criticalChance: 1,
-      accuracy: 5,
+      criticalChance: 10,
+      accuracy: 10,
       armor: 10
     },
     extraStats: {

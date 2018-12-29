@@ -964,7 +964,9 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.currentDamageBonus = 0;
           
           // perform party drain (allow dodge/mitigation)
-          const actualDamage = target.stats.accuracy * 0.35; // 35% of accuracy
+          const aliveUnits = actualBattle.units.length;
+          // NOTE: can't use BATTLES.maxTowerPartySize here because BATTLES is a server-only constant
+          const actualDamage = target.stats.accuracy * 0.35 * 5 / aliveUnits; // 35% of accuracy
           
           let damageDealt = 0;
           actualBattle.units.forEach((unit) => {
@@ -979,7 +981,7 @@ export const ENCHANTMENT_BUFFS = {
 
           // calculate new bonus
           buff.data.lastHealthDrained = damageDealt;
-          buff.data.currentDamageBonus = (1.4 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 40-139% of damage dealt to party
+          buff.data.currentDamageBonus = (1.2 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 20-119% of damage dealt to party
           
           // update damage buff
           target.buffs.forEach((this_buff) => {

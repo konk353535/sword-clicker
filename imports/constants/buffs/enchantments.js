@@ -910,7 +910,7 @@ export const ENCHANTMENT_BUFFS = {
   demons_heart: {
     duplicateTag: 'demons_heart', // Used to stop duplicate buffs
     icon: 'demonsHeart.svg',
-    name: 'demons heart',
+    name: 'demon\'s heart',
     description() {
       return `
         Periodically drain health from your entire team.<br />
@@ -935,6 +935,22 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.secondsLastDrain = 0;
           buff.data.currentDamageBonus = 0;
           buff.data.lastHealthDrained = 0;
+          
+          const newBuff = {
+            id: 'demons_heart_damage',
+            data: {
+              name: 'demon\'s heart damage',
+              allowDuplicates: false,
+              duration: Infinity,
+              totalDuration: Infinity,
+              icon: 'demonsHeartDamage.svg',
+              description: 'Bonus damage from Demon\'s Heart'
+            },
+            constants: BUFFS['demons_heart_damage'],
+            stacks: 0
+          };
+          
+          addBuff({ buff: newBuff, target: target, caster: caster });
         }
         
         buff.data.secondsLastDrain += secondsElapsed;
@@ -963,7 +979,14 @@ export const ENCHANTMENT_BUFFS = {
 
           // calculate new bonus
           buff.data.lastHealthDrained = damageDealt;
-          buff.data.currentDamageBonus = (1.2 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 20-119% of damage dealt to party
+          buff.data.currentDamageBonus = (1.4 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 40-139% of damage dealt to party
+          
+          // update damage buff
+          target.buffs.forEach((this_buff) => {
+            if (this_buff.id === "demons_heart_damage") {
+              this_buff.stacks = Math.round(buff.data.currentDamageBonus);
+            }
+          });
           
           // rebuff with new bonus
           target.stats.attack += buff.data.currentDamageBonus;
@@ -989,6 +1012,24 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  demons_heart_damage: {
+    duplicateTag: 'demons_heart_damage', // Used to stop duplicate buffs
+    icon: 'demonsHeartDamage.svg',
+    name: 'demon\'s heart damage',
+    description() {
+      return `
+        Bonus damage from Demon's Heart.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+    }
+  },
+  
   /*
   demons_heart_old: {
     duplicateTag: 'demons_heart_old', // Used to stop duplicate buffs

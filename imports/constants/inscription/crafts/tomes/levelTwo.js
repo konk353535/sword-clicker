@@ -93,6 +93,71 @@ export const LEVEL_TWO_CRAFTS = {
     required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
 
+  armor_up_new_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'armor_up_new_level_2_tome',
+    name: 'Armor Up Lv. 2',
+    id: 'armor_up_new_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  magic_armor_up_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'magic_armor_up_level_2_tome',
+    name: 'Magic Armor Up Lv. 2',
+    id: 'magic_armor_up_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  magic_power_up_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'magic_power_up_level_2_tome',
+    name: 'Magic Power Up Lv. 2',
+    id: 'magic_power_up_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.MANY_GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  healing_power_up_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'healing_power_up_level_2_tome',
+    name: 'Healing Power Up Lv. 2',
+    id: 'healing_power_up_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.MANY_GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
+  critical_up_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'critical_up_level_2_tome',
+    name: 'Critical Up Lv. 2',
+    id: 'critical_up_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 100,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_RED_150, UTIL.MANY_GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
+  },
+
   berserk_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_2_tome',

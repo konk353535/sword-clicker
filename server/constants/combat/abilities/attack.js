@@ -237,6 +237,22 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  critical_up: {
+    icon: 'criticalChance2.svg',
+    name: 'critical up',
+    id: 'critical_up',
+    buffs: ['critical_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.critical_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   execute: {
     icon: 'execute.svg',
     name: 'execute',

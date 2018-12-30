@@ -896,13 +896,13 @@ export const DEFENSE_BUFFS = {
           const armorPerLevel = constants.armorPerLevel * buff.data.level;
           const armorIncrease = armorBase + armorPerLevel;
           buff.data.armorIncrease = armorIncrease;
-          caster.stats.armor += buff.data.armorIncrease;
+          target.stats.armor += buff.data.armorIncrease;
         }
       },
 
       onRemove({ buff, target, caster }) {
         if (buff.data.armorIncrease) {
-          caster.stats.armor -= buff.data.armorIncrease;
+          target.stats.armor -= buff.data.armorIncrease;
         }
       }
     }
@@ -939,13 +939,13 @@ export const DEFENSE_BUFFS = {
           const armorPerLevel = constants.armorPerLevel * buff.data.level;
           const armorIncrease = armorBase + armorPerLevel;
           buff.data.armorIncrease = armorIncrease;
-          caster.stats.magicArmor += buff.data.armorIncrease;
+          target.stats.magicArmor += buff.data.armorIncrease;
         }
       },
 
       onRemove({ buff, target, caster }) {
         if (buff.data.armorIncrease) {
-          caster.stats.magicArmor -= buff.data.armorIncrease;
+          target.stats.magicArmor -= buff.data.armorIncrease;
         }
       }
     }

@@ -42,6 +42,7 @@ export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
   chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'attack_up_1_tome', amount: 1 },
+    { type: 'item', itemId: 'critical_up_level_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 96,

@@ -202,6 +202,49 @@ export const ATTACK_BUFFS = {
     }
   },
 
+  critical_up: {
+    duplicateTag: 'critical_up', // Used to stop duplicate buffs
+    icon: 'criticalChance2.svg',
+    name: 'critical up',
+    description({ buff, level }) {
+      const criticalBase = buff.constants.criticalBase;
+      const criticalPerLevel = buff.constants.criticalPerLevel * level;
+      const criticalIncrease = criticalBase + criticalPerLevel;
+      return `
+        Increases critical chance by ${criticalIncrease}%. <br />
+        (+${buff.constants.criticalPerLevel}% critical chance per lvl)`;
+    },
+    constants: {
+      criticalBase: 6,
+      criticalPerLevel: 4
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.criticalIncrease) {
+          const constants = buff.constants.constants;
+          const criticalBase = constants.criticalBase;
+          const criticalPerLevel = constants.criticalPerLevel * buff.data.level;
+          const criticalIncrease = criticalBase + criticalPerLevel;
+          buff.data.criticalIncrease = criticalIncrease;
+          target.stats.criticalChance += buff.data.criticalIncrease;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.criticalIncrease) {
+          target.stats.criticalChance -= buff.data.criticalIncrease;
+        }
+      }
+    }
+  },
+
   vampirism: {
     duplicateTag: 'vampirism', // Used to stop duplicate buffs
     icon: 'vampirism.svg',

@@ -2238,6 +2238,45 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the bolster ability.'
   },
 
+  critical_up_level_1_tome: {
+    id: 'critical_up_level_1_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'critical up tome Lv. 1',
+    teaches: {
+      abilityId: 'critical_up',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the critical up ability.'
+  },
+
+  critical_up_level_2_tome: {
+    id: 'critical_up_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'critical up tome Lv. 2',
+    teaches: {
+      abilityId: 'critical_up',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the critical up ability.'
+  },
+
+  critical_up_level_3_tome: {
+    id: 'critical_up_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'critical up tome Lv. 3',
+    teaches: {
+      abilityId: 'critical_up',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the critical up ability.'
+  },
+
   armor_up_new_level_1_tome: {
     id: 'armor_up_new_level_1_tome',
     icon: 'tomeUncommon.svg',
@@ -2249,6 +2288,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 100,
     description: 'Can be consumed to learn the armor up ability.'
+  },
+
+  armor_up_new_level_2_tome: {
+    id: 'armor_up_new_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'armor up tome Lv. 2',
+    teaches: {
+      abilityId: 'armor_up_new',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the armor up ability.'
+  },
+
+  armor_up_new_level_3_tome: {
+    id: 'armor_up_new_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'armor up tome Lv. 3',
+    teaches: {
+      abilityId: 'armor_up_new',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the armor up ability.'
   },
 
   magic_armor_up_level_1_tome: {
@@ -2264,6 +2329,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the magic armor up ability.'
   },
 
+  magic_armor_up_level_2_tome: {
+    id: 'magic_armor_up_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic armor up tome Lv. 2',
+    teaches: {
+      abilityId: 'magic_armor_up',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic armor up ability.'
+  },
+
+  magic_armor_up_level_3_tome: {
+    id: 'magic_armor_up_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic armor up tome Lv. 3',
+    teaches: {
+      abilityId: 'magic_armor_up',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic armor up ability.'
+  },
+
   magic_power_up_level_1_tome: {
     id: 'magic_power_up_level_1_tome',
     icon: 'tomeUncommon.svg',
@@ -2277,6 +2368,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the magic power up ability.'
   },
 
+  magic_power_up_level_2_tome: {
+    id: 'magic_power_up_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic power up tome Lv. 2',
+    teaches: {
+      abilityId: 'magic_power_up',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic power up ability.'
+  },
+
+  magic_power_up_level_3_tome: {
+    id: 'magic_power_up_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic power up tome Lv. 3',
+    teaches: {
+      abilityId: 'magic_power_up',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic power up ability.'
+  },
+
   healing_power_up_level_1_tome: {
     id: 'healing_power_up_level_1_tome',
     icon: 'tomeUncommon.svg',
@@ -2288,6 +2405,32 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 100,
     description: 'Can be consumed to learn the healing power up ability.'
+  },
+
+  healing_power_up_level_2_tome: {
+    id: 'healing_power_up_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'healing power up tome Lv. 2',
+    teaches: {
+      abilityId: 'healing_power_up',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the healing power up ability.'
+  },
+
+  healing_power_up_level_3_tome: {
+    id: 'healing_power_up_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'healing power up tome Lv. 3',
+    teaches: {
+      abilityId: 'healing_power_up',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the healing power up ability.'
   },
 
   iron_will_level_1_tome: {

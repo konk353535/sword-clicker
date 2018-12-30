@@ -2454,13 +2454,13 @@ export const MAGIC_BUFFS = {
           const powerPerLevel = constants.powerPerLevel * buff.data.level;
           const powerIncrease = powerBase + powerPerLevel;
           buff.data.powerIncrease = powerIncrease;
-          caster.stats.magicPower += buff.data.powerIncrease;
+          target.stats.magicPower += buff.data.powerIncrease;
         }
       },
 
       onRemove({ buff, target, caster }) {
         if (buff.data.powerIncrease) {
-          caster.stats.magicPower -= buff.data.powerIncrease;
+          target.stats.magicPower -= buff.data.powerIncrease;
         }
       }
     }
@@ -2475,8 +2475,8 @@ export const MAGIC_BUFFS = {
       const powerPerLevel = buff.constants.powerPerLevel * level;
       const powerIncrease = powerBase + powerPerLevel;
       return `
-        Increases healing power by ${powerIncrease}. <br />
-        (+${buff.constants.powerPerLevel} healing power per lvl)`;
+        Increases healing power by ${powerIncrease}%. <br />
+        (+${buff.constants.powerPerLevel}% healing power per lvl)`;
     },
     constants: {
       powerBase: 5,
@@ -2497,13 +2497,13 @@ export const MAGIC_BUFFS = {
           const powerPerLevel = constants.powerPerLevel * buff.data.level;
           const powerIncrease = powerBase + powerPerLevel;
           buff.data.powerIncrease = powerIncrease;
-          caster.stats.healingPower += buff.data.powerIncrease;
+          target.stats.healingPower += buff.data.powerIncrease;
         }
       },
 
       onRemove({ buff, target, caster }) {
         if (buff.data.powerIncrease) {
-          caster.stats.healingPower -= buff.data.powerIncrease;
+          target.stats.healingPower -= buff.data.powerIncrease;
         }
       }
     }

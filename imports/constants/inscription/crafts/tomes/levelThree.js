@@ -80,6 +80,71 @@ export const LEVEL_THREE_CRAFTS = {
     required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
 
+  armor_up_new_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'armor_up_new_level_3_tome',
+    name: 'Armor Up Lv. 3',
+    id: 'armor_up_new_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
+  },
+
+  magic_armor_up_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'magic_armor_up_level_3_tome',
+    name: 'Magic Armor Up Lv. 3',
+    id: 'magic_armor_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
+  },
+
+  magic_power_up_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'magic_power_up_level_3_tome',
+    name: 'Magic Power Up Lv. 3',
+    id: 'magic_power_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.MANY_RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
+  },
+
+  healing_power_up_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'healing_power_up_level_3_tome',
+    name: 'Healing Power Up Lv. 3',
+    id: 'healing_power_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.MANY_RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
+  },
+
+  critical_up_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'critical_up_level_3_tome',
+    name: 'Critical Up Lv. 3',
+    id: 'critical_up_3_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 300,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 40,
+    required: [UTIL.YELLOW_255, UTIL.MANY_RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
+  },
+  
   berserk_level_3_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_3_tome',

@@ -100,7 +100,7 @@ export const MONSTER_BUFFS = {
 
   spirit_blink: {
     duplicateTag: 'spirit_blink', // Used to stop duplicate buffs
-    icon: 'spiritBlink.svg',
+    icon: 'spectre.svg',
     name: 'spirit blink',
     description({ buff, level }) {
     },
@@ -130,7 +130,7 @@ export const MONSTER_BUFFS = {
               duration: 4,
               totalDuration: 4,
               level: 1,
-              icon: 'invulnerable.svg'
+              icon: 'vortex.svg'
             }
           };
 

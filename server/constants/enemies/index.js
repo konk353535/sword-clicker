@@ -261,7 +261,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -275,7 +275,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -289,7 +289,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -303,7 +303,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -317,7 +317,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -331,7 +331,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -345,7 +345,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -359,7 +359,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -373,7 +373,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -387,7 +387,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -401,7 +401,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -415,7 +415,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -429,7 +429,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -443,7 +443,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -457,7 +457,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }
@@ -471,7 +471,7 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'spirit_blink',
       data: {
-        icon: 'spiritBlink.svg',
+        icon: 'spectre.svg',
         name: 'Spirit Blink',
         description: 'Will randomly fade into the ether, becoming invulnerable'
       }

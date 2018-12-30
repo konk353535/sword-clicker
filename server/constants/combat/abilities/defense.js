@@ -248,8 +248,8 @@ export const DEFENSE_ABILITIES = {
   armor_up_new: {
     icon: 'armorUpNew.svg',
     name: 'armor up',
-    id: 'armor_up',
-    buffs: ['armor_up'],
+    id: 'armor_up_new',
+    buffs: ['armor_up_new'],
     cooldown: 0,
     isPassive: true,
     slot: 'any',

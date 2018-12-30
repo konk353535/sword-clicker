@@ -36,7 +36,8 @@ export const LEVEL_SEVEN_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'gold_pickaxe', amount: 1 },
     { type: 'item', itemId: 'gold_axe', amount: 1 },
     { type: 'item', itemId: 'gold_dagger', amount: 1 },
-    { type: 'item', itemId: 'lavender', amount: 1 }
+    { type: 'item', itemId: 'lavender', amount: 1 },
+    { type: 'item', itemId: 'healing_power_up_level_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

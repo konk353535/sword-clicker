@@ -865,6 +865,49 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  armor_up_new: {
+    duplicateTag: 'armor_up_new', // Used to stop duplicate buffs
+    icon: 'armorUpNew.svg',
+    name: 'armor up',
+    description({ buff, level }) {
+      const armorBase = buff.constants.armorBase;
+      const armorPerLevel = buff.constants.armorPerLevel * level;
+      const armorIncrease = armorBase + armorPerLevel;
+      return `
+        Increases physical armor by ${armorIncrease}. <br />
+        (+${buff.constants.armorPerLevel} armor per lvl)`;
+    },
+    constants: {
+      armorBase: 10,
+      armorPerLevel: 15
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.armorIncrease) {
+          const constants = buff.constants.constants;
+          const armorBase = constants.armorBase;
+          const armorPerLevel = constants.armorPerLevel * buff.data.level;
+          const armorIncrease = armorBase + armorPerLevel;
+          buff.data.armorIncrease = armorIncrease;
+          caster.stats.armor += buff.data.armorIncrease;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.armorIncrease) {
+          caster.stats.armor -= buff.data.armorIncrease;
+        }
+      }
+    }
+  },
+
   iron_will: {
     duplicateTag: 'ironWill',
     icon: 'ironWill.svg',

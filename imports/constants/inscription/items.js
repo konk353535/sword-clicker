@@ -2238,6 +2238,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the bolster ability.'
   },
 
+  armor_up_new_level_1_tome: {
+    id: 'armor_up_new_level_1_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'armor up tome Lv. 1',
+    teaches: {
+      abilityId: 'armor_up_new',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the armor up ability.'
+  },
+
   iron_will_level_1_tome: {
     id: 'iron_will_level_1_tome',
     icon: 'tome.svg',

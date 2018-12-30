@@ -41,7 +41,8 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([{
   rewards: [
     { type: 'item', itemId: 'tin_pickaxe', amount: 1 },
     { type: 'item', itemId: 'tin_axe', amount: 1 },
-    { type: 'item', itemId: 'tin_dagger', amount: 1 }
+    { type: 'item', itemId: 'tin_dagger', amount: 1 },
+    { type: 'item', itemId: 'armor_up_new_level_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 64,

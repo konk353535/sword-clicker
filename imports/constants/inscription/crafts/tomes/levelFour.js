@@ -43,7 +43,7 @@ export const LEVEL_FOUR_CRAFTS = {
   armor_up_level_4_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_4_tome',
-    name: 'armor up Lv. 4',
+    name: 'bolster Lv. 4',
     id: 'armor_up_level_4_tome',
     category: 'tome',
     timeToCraft: 30 * 60,

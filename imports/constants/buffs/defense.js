@@ -818,7 +818,7 @@ export const DEFENSE_BUFFS = {
   armor_up: {
     duplicateTag: 'armorUp',
     icon: 'armorUp.svg',
-    name: 'armor up',
+    name: 'bolster',
     description({ buff, level }) {
       const armorPerLevel = buff.constants.armorPerLevel;
       const totalArmor = buff.constants.baseArmor + (armorPerLevel * level);

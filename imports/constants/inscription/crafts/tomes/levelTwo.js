@@ -135,7 +135,7 @@ export const LEVEL_TWO_CRAFTS = {
   armor_up_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'armor_up_level_2_tome',
-    name: 'armor up Lv. 2',
+    name: 'bolster Lv. 2',
     id: 'armor_up_level_2_tome',
     category: 'tome',
     timeToCraft: 300,

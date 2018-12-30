@@ -232,7 +232,7 @@ export const DEFENSE_ABILITIES = {
 
   armor_up: {
     icon: 'armorUp.svg',
-    name: 'armor up',
+    name: 'Bolster',
     id: 'armor_up',
     buffs: ['armor_up'],
     cooldown: 180,

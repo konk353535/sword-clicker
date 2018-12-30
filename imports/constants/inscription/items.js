@@ -2177,65 +2177,65 @@ export const INSCRIPTION_ITEMS = {
     id: 'armor_up_level_1_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up tome Lv. 1',
+    name: 'bolster tome Lv. 1',
     teaches: {
       abilityId: 'armor_up',
       level: 1
     },
     sellPrice: 100,
-    description: 'Can be consumed to learn the armor up ability.'
+    description: 'Can be consumed to learn the bolster ability.'
   },
 
   armor_up_level_2_tome: {
     id: 'armor_up_level_2_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up tome Lv. 2',
+    name: 'bolster tome Lv. 2',
     teaches: {
       abilityId: 'armor_up',
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to upgrade the armor up ability.'
+    description: 'Can be consumed to upgrade the bolster ability.'
   },
 
   armor_up_level_3_tome: {
     id: 'armor_up_level_3_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up tome Lv. 3',
+    name: 'bolster tome Lv. 3',
     teaches: {
       abilityId: 'armor_up',
       level: 3
     },
     sellPrice: 250,
-    description: 'Can be consumed to upgrade the armor up ability.'
+    description: 'Can be consumed to upgrade the bolster ability.'
   },
 
   armor_up_level_4_tome: {
     id: 'armor_up_level_4_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up tome Lv. 4',
+    name: 'bolster tome Lv. 4',
     teaches: {
       abilityId: 'armor_up',
       level: 4
     },
     sellPrice: 500,
-    description: 'Can be consumed to upgrade the armor up ability.'
+    description: 'Can be consumed to upgrade the bolster ability.'
   },
 
   armor_up_level_5_tome: {
     id: 'armor_up_level_5_tome',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'armor up tome Lv. 5',
+    name: 'bolster tome Lv. 5',
     teaches: {
       abilityId: 'armor_up',
       level: 5
     },
     sellPrice: 750,
-    description: 'Can be consumed to upgrade the armor up ability.'
+    description: 'Can be consumed to upgrade the bolster ability.'
   },
 
   iron_will_level_1_tome: {

@@ -2465,4 +2465,47 @@ export const MAGIC_BUFFS = {
       }
     }
   },
+
+  healing_power_up: {
+    duplicateTag: 'healing_power_up', // Used to stop duplicate buffs
+    icon: 'healingPowerUp.svg',
+    name: 'healing power up',
+    description({ buff, level }) {
+      const powerBase = buff.constants.powerBase;
+      const powerPerLevel = buff.constants.powerPerLevel * level;
+      const powerIncrease = powerBase + powerPerLevel;
+      return `
+        Increases healing power by ${powerIncrease}. <br />
+        (+${buff.constants.powerPerLevel} healing power per lvl)`;
+    },
+    constants: {
+      powerBase: 5,
+      powerPerLevel: 4
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.powerIncrease) {
+          const constants = buff.constants.constants;
+          const powerBase = constants.powerBase;
+          const powerPerLevel = constants.powerPerLevel * buff.data.level;
+          const powerIncrease = powerBase + powerPerLevel;
+          buff.data.powerIncrease = powerIncrease;
+          caster.stats.healingPower += buff.data.powerIncrease;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.powerIncrease) {
+          caster.stats.healingPower -= buff.data.powerIncrease;
+        }
+      }
+    }
+  },
 };

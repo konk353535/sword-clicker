@@ -2277,6 +2277,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the magic power up ability.'
   },
 
+  healing_power_up_level_1_tome: {
+    id: 'healing_power_up_level_1_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'healing power up tome Lv. 1',
+    teaches: {
+      abilityId: 'healing_power_up',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the healing power up ability.'
+  },
+
   iron_will_level_1_tome: {
     id: 'iron_will_level_1_tome',
     icon: 'tome.svg',

@@ -593,4 +593,20 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+
+  magic_power_up: {
+    icon: 'magicPowerUp.svg',
+    name: 'magic power up',
+    id: 'magic_power_up',
+    buffs: ['magic_power_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.magic_power_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

@@ -264,7 +264,7 @@ export const DEFENSE_ABILITIES = {
   magic_armor_up: {
     icon: 'magicArmorUp.svg',
     name: 'magic armor up',
-    id: 'magic armor_up',
+    id: 'magic_armor_up',
     buffs: ['magic_armor_up'],
     cooldown: 0,
     isPassive: true,

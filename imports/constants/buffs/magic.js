@@ -2423,4 +2423,46 @@ export const MAGIC_BUFFS = {
     }
   },
 
+  magic_power_up: {
+    duplicateTag: 'magic_power_up', // Used to stop duplicate buffs
+    icon: 'magicPowerUp.svg',
+    name: 'magic power up',
+    description({ buff, level }) {
+      const powerBase = buff.constants.powerBase;
+      const powerPerLevel = buff.constants.powerPerLevel * level;
+      const powerIncrease = powerBase + powerPerLevel;
+      return `
+        Increases magic power by ${powerIncrease}. <br />
+        (+${buff.constants.powerPerLevel} magic power per lvl)`;
+    },
+    constants: {
+      powerBase: 8,
+      powerPerLevel: 6
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.powerIncrease) {
+          const constants = buff.constants.constants;
+          const powerBase = constants.powerBase;
+          const powerPerLevel = constants.powerPerLevel * buff.data.level;
+          const powerIncrease = powerBase + powerPerLevel;
+          buff.data.powerIncrease = powerIncrease;
+          caster.stats.magicPower += buff.data.powerIncrease;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.powerIncrease) {
+          caster.stats.magicPower -= buff.data.powerIncrease;
+        }
+      }
+    }
+  },
 };

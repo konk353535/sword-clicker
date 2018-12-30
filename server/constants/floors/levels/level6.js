@@ -42,7 +42,8 @@ export const LEVEL_SIX_LOOT_TABLE = orderLootTable([{
   chance: 1 / 64,
   rewards: [
     { type: 'item', itemId: 'silver_essence_scroll', amount: 1 },
-    { type: 'item', itemId: 'slash_level_2_tome', amount: 1 }
+    { type: 'item', itemId: 'slash_level_2_tome', amount: 1 },
+    { type: 'item', itemId: 'magic_power_up_level_1_tome', amount: 1 }
   ]
 }, {
   chance: 1 / 24,

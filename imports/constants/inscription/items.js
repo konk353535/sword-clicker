@@ -2264,6 +2264,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the magic armor up ability.'
   },
 
+  magic_power_up_level_1_tome: {
+    id: 'magic_power_up_level_1_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic power up tome Lv. 1',
+    teaches: {
+      abilityId: 'magic_power_up',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the magic power up ability.'
+  },
+
   iron_will_level_1_tome: {
     id: 'iron_will_level_1_tome',
     icon: 'tome.svg',

@@ -261,6 +261,22 @@ export const DEFENSE_ABILITIES = {
     }
   },
 
+  magic_armor_up: {
+    icon: 'magicArmorUp.svg',
+    name: 'magic armor up',
+    id: 'magic armor_up',
+    buffs: ['magic_armor_up'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.magic_armor_up;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   iron_will: {
     icon: 'ironWill.svg',
     name: 'iron will',

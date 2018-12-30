@@ -908,6 +908,49 @@ export const DEFENSE_BUFFS = {
     }
   },
 
+  magic_armor_up: {
+    duplicateTag: 'magic_armor_up', // Used to stop duplicate buffs
+    icon: 'magicArmorUp.svg',
+    name: 'magic armor up',
+    description({ buff, level }) {
+      const armorBase = buff.constants.armorBase;
+      const armorPerLevel = buff.constants.armorPerLevel * level;
+      const armorIncrease = armorBase + armorPerLevel;
+      return `
+        Increases magic armor by ${armorIncrease}. <br />
+        (+${buff.constants.armorPerLevel} armor per lvl)`;
+    },
+    constants: {
+      armorBase: 5,
+      armorPerLevel: 10
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (!buff.data.armorIncrease) {
+          const constants = buff.constants.constants;
+          const armorBase = constants.armorBase;
+          const armorPerLevel = constants.armorPerLevel * buff.data.level;
+          const armorIncrease = armorBase + armorPerLevel;
+          buff.data.armorIncrease = armorIncrease;
+          caster.stats.magicArmor += buff.data.armorIncrease;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.armorIncrease) {
+          caster.stats.magicArmor -= buff.data.armorIncrease;
+        }
+      }
+    }
+  },
+
   iron_will: {
     duplicateTag: 'ironWill',
     icon: 'ironWill.svg',

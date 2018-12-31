@@ -273,6 +273,7 @@ export const DEFENSE_BUFFS = {
           caster.stats.health *= (1 + buff.data.healthIncrease);
         }
         caster.stats.healthMax *= (1 + buff.data.healthIncrease);
+        caster.stats.healthMaxOrig *= (1 + buff.data.healthIncrease);
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
@@ -285,6 +286,7 @@ export const DEFENSE_BUFFS = {
       onRemove({ buff, target, caster, actualBattle }) {
         caster.stats.health /= (1 + buff.data.healthIncrease);
         caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+        caster.stats.healthMaxOrig /= (1 + buff.data.healthIncrease);
         actualBattle.checkDeath(caster);
       }
     }

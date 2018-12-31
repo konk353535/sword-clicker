@@ -5,32 +5,32 @@ export const BATTLES = {
     const weaponDistributions = {
       'dagger': {
         attack: 0.5,
-        health: 0.5,
-        defense: 0
+        defense: 0,
+        health: 0.5
       },
 
       'spear': {
+        attack: 0,
         defense: 0.5,
-        health: 0.5,
-        attack: 0
+        health: 0.5
       },
 
       'staff': {
-        health: 1.0,
+        attack: 0,
         defense: 0,
-        attack: 0
+        health: 1.0
       },
 
       'wand': {
-        health: 1.0,
+        attack: 0,
         defense: 0,
-        attack: 0
+        health: 1.0
       },
 
       'longSword': {
         attack: 0.5,
-        health: 0.5,
-        defense: 0
+        defense: 0,
+        health: 0.5
       },
 
       'shortSword': {
@@ -41,8 +41,8 @@ export const BATTLES = {
 
       'battleAxe': {
         attack: 0.5,
-        health: 0.5,
-        defense: 0
+        defense: 0,
+        health: 0.5
       }
     };
 

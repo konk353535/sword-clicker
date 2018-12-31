@@ -183,7 +183,7 @@ export const BRONZE_ITEMS = {
       "attackMax": 32.8,
       "attackSpeed": 0.3,
       "accuracy": 14.6,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 2.7,

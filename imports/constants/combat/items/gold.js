@@ -183,7 +183,7 @@ export const GOLD_ITEMS = {
       "attackMax": 59,
       "attackSpeed": 0.3,
       "accuracy": 26.4,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 4.9,

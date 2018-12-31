@@ -183,7 +183,7 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 184.7,
       "attackSpeed": 0.3,
       "accuracy": 82.5,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 15.4,

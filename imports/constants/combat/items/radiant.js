@@ -130,7 +130,7 @@ export const RADIANT_ITEMS = {
       "attackMax": 300 * RADIANT_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * RADIANT_MULTIPLIER,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 25.1 * RADIANT_MULTIPLIER,

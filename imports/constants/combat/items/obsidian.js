@@ -183,7 +183,7 @@ export const OBSIDIAN_ITEMS = {
       "attackMax": 135.1,
       "attackSpeed": 0.3,
       "accuracy": 60.4,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 11.3,

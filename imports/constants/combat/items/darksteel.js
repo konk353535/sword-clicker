@@ -130,7 +130,7 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 300 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * DARKSTEEL_MULTIPLIER,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 25.1 * DARKSTEEL_MULTIPLIER,

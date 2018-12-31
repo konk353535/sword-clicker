@@ -159,7 +159,7 @@ export const COPPER_ITEMS = {
       attackMax: 18,
       attackSpeed: 0.3,
       accuracy: 8,
-      criticalChance: 5
+      "criticalChance": 25
     },
     extraStats: {
       attack: 1.2,

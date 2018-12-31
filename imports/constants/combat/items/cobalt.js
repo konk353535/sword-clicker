@@ -183,7 +183,7 @@ export const COBALT_ITEMS = {
       "attackMax": 151.3,
       "attackSpeed": 0.3,
       "accuracy": 67.6,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 12.6,

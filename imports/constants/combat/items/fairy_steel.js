@@ -183,7 +183,7 @@ export const FAIRY_STEEL_ITEMS = {
       "attackMax": 245.7,
       "attackSpeed": 0.3,
       "accuracy": 109.8,
-      "criticalChance": 5
+      "criticalChance": 25
     },
     "extraStats": {
       "attack": 20.5,

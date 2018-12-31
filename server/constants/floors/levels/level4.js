@@ -33,7 +33,11 @@ export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([{
 }, {
   chance: 1 / 64,
   rewards: [
-    { type: 'item', itemId: 'health_up_1_tome', amount: 1 },
+    { type: 'item', itemId: 'health_up_1_tome', amount: 1 }
+  ]
+}, {
+  chance: 1 / 64,
+  rewards: [
     { type: 'item', itemId: 'magic_armor_up_1_tome', amount: 1 }
   ]
 }, {

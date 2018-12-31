@@ -23,7 +23,7 @@ export const LEVEL_ONE_MONSTERS = [{
 }];
 
 export const LEVEL_ONE_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 64,
+  chance: 1 / 32,
   rewards: [
     { type: 'item', itemId: 'accuracy_up_1_tome', amount: 1 }
   ]

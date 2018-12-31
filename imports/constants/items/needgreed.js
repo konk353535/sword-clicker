@@ -76,7 +76,7 @@ export const NEED_GREED_ITEMS = {
     return RegExp('dwarven_staff', 'g').test(str)
   },
   event_items: (str) => {
-    // tomes are already need greed (holiday_cheer_tome)
-    return RegExp('festive_hat', 'g').test(str)
+    // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome)
+    return RegExp('festive_hat|ornamental_hat|event_ny_balloons', 'g').test(str)
   }
 };

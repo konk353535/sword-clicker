@@ -2508,4 +2508,33 @@ export const MAGIC_BUFFS = {
       }
     }
   },
+  
+  raise_your_glass: {
+    duplicateTag: 'raise_your_glass', // Used to stop duplicate buffs
+    icon: 'eventNYGlasses.svg',
+    name: 'raise your glass',
+    description({ buff, level }) {
+      return `
+        Used to restore your health in combat. <br />
+        Your health and maximum health will restore to <br />
+        its original amount from the beginning of battle.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.stats.healthMax = target.stats.healthMaxOrig;
+        target.stats.health = target.stats.healthMaxOrig;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+
+      onRemove() {}
+    }
+  },
 };

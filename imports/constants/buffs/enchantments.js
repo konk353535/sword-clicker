@@ -554,7 +554,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'livingHelmet.png',
     name: 'living helmet',
     description() {
-      return `When above 75% hp living helmet takes over. <br />
+      return `When above 75% health living helmet takes over. <br />
         Granting +10 defense, and healing allies for 5hp when you take damage`;
     },
     constants: {
@@ -811,7 +811,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'druidsHat.svg',
     name: 'druids blessing',
     description() {
-      return `Emergency heal an ally below 30% hp for 250% MP`;
+      return `Emergency heal an ally below 30% health for 250% MP`;
     },
     constants: {
       healMagicPower: 2.5
@@ -862,6 +862,65 @@ export const ENCHANTMENT_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         // Blank
+      }
+    }
+  },
+
+  event_ny_balloons: {
+    duplicateTag: 'event_ny_balloons', // Used to stop duplicate buffs
+    icon: 'eventNYBalloons.svg',
+    name: 'decorative balloons',
+    description() {
+      return `
+        Emergency heal an ally below 30% health to full health. <br />
+        Effect works only once per battle.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.timeTillHeal == null) {
+          buff.data.timeTillHeal = 1.5;
+        } else {
+          buff.data.timeTillHeal -= secondsElapsed;
+        }
+
+        if (buff.data.timeTillHeal <= 0) {
+          // Heal a random ally
+          let lowestHp = Infinity;
+          let targetUnit;
+          actualBattle.units.forEach((unit) => {
+            const hpPercentage = unit.stats.health / unit.stats.healthMax;
+            if (hpPercentage < lowestHp) {
+              lowestHp = hpPercentage;
+              targetUnit = unit;
+            }
+          });
+
+          if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
+            const totalHeal = targetUnit.stats.healthMax * 10; // in case they're demon cursed
+            actualBattle.healTarget(totalHeal, {
+              caster: target,
+              target: targetUnit,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats
+            });
+
+            removeBuff({ buff, target, caster: target });
+          }
+
+          buff.data.timeTillHeal = 1.5;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
       }
     }
   },

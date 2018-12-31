@@ -37,4 +37,18 @@ export const MISC_ITEMS = {
     },
     contentsList: ['candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'tanzanite', 'sapphire', 'ruby', 'jade', 'emerald', 'lapislazuli', 'enhancer_key', 'festive_hat', 'festive_hat', 'festive_hat', 'holiday_cheer_tome', 'holiday_cheer_tome'],
   },
+  
+  gift_box_fireworks: {
+    id: 'gift_box_fireworks',
+    icon: 'eventNYFireworks.svg',
+    category: 'item_box',
+    name: 'party firework',
+    sellPrice: 1,
+    description: `
+      Can be ignited (consumed) to explode and reveal a prize.`,
+    shiftActionData: {
+      description: 'ignite to reveal a prize'
+    },
+    contentsList: ['event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'elven_steel_sculpture', 'elven_steel_sculpture', 'elven_steel_sculpture', 'meteorite_sculpture', 'meteorite_sculpture', 'meteorite_sculpture', 'enhancer_key', 'lemonade', 'lemonade'],
+  },
 };

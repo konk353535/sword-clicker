@@ -2836,6 +2836,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the holiday cheer ability.'
   },
 
+  raise_your_glass_tome: {
+    id: 'raise_your_glass_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'raise your glass tome',
+    teaches: {
+      abilityId: 'raise_your_glass',
+      level: 1
+    },
+    sellPrice: 1000,
+    description: 'Can be consumed to learn the raise your glass ability.'
+  },
+
   pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'magic_tome_1.svg',

@@ -625,4 +625,19 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+
+  raise_your_glass: {
+    icon: 'eventNYGlasses.svg',
+    name: 'raise your glass',
+    id: 'raise_your_glass',
+    buffs: ['raise_your_glass'],
+    cooldown: 60 * 60,
+    slot: 'any',
+    target: 'self',
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.raise_your_glass;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

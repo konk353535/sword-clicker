@@ -2519,6 +2519,37 @@ export const MISC_ITEMS = {
     }]
   },
 
+  event_ny_balloons: {
+    id: 'event_ny_balloons',
+    icon: 'eventNYBalloons.svg',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'decorative balloons',
+    sellPrice: 3420,
+    description: 'Some decorative balloons that glow and shimmer with magic.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 15,
+      magicArmor: 15,
+      healingPower: 5,
+      defense: -25,
+      armor: -50,
+    },
+    extraStats: {
+      magicPower: 15,
+      magicArmor: 15,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 27
+    }],
+    enchantments: ['event_ny_balloons']
+  },
+
   runed_orb: {
     id: 'runed_orb',
     icon: 'orbBlue.png',
@@ -3298,5 +3329,32 @@ export const MISC_ITEMS = {
       level: 35
     }],
     enchantments: ['phoenix_hat']
-  }
+  },
+  
+  ornamental_hat: {
+    id: 'ornamental_hat',
+    icon: 'eventNYOrnamentalHat.svg',
+    category: 'combat',
+    slot: 'head',
+    name: 'ornamental hat',
+    sellPrice: 250,
+    description: 'You\'ll be spry and agile in this for certain!',
+    isEquippable: true,
+    stats: {
+      accuracy: 25,
+      attackSpeed: 0.5,
+      attack: -20,
+      attackMax: -25,
+    },
+    extraStats: {
+      accuracy: 15,
+      attack: 15,
+      attackMax: 15
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
+  },
 };

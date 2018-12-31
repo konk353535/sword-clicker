@@ -961,7 +961,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the health up ability.'
+    description: 'Can be consumed to upgrade the health up ability.'
   },
 
   health_up_3_tome: {
@@ -974,7 +974,33 @@ export const INSCRIPTION_ITEMS = {
       level: 3
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the health up ability.'
+    description: 'Can be consumed to upgrade the health up ability.'
+  },
+
+  health_up_4_tome: {
+    id: 'health_up_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'health up tome Lv. 4',
+    teaches: {
+      abilityId: 'health_up',
+      level: 4
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the health up ability.'
+  },
+
+  health_up_5_tome: {
+    id: 'health_up_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'health up tome Lv. 5',
+    teaches: {
+      abilityId: 'health_up',
+      level: 5
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the health up ability.'
   },
 
   attack_up_1_tome: {
@@ -1000,7 +1026,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the attack up ability.'
+    description: 'Can be consumed to upgrade the attack up ability.'
   },
 
   attack_up_3_tome: {
@@ -1013,7 +1039,33 @@ export const INSCRIPTION_ITEMS = {
       level: 3
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the attack up ability.'
+    description: 'Can be consumed to upgrade the attack up ability.'
+  },
+
+  attack_up_4_tome: {
+    id: 'attack_up_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'attack up tome Lv. 4',
+    teaches: {
+      abilityId: 'attack_up',
+      level: 4
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the attack up ability.'
+  },
+
+  attack_up_5_tome: {
+    id: 'attack_up_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'attack up tome Lv. 5',
+    teaches: {
+      abilityId: 'attack_up',
+      level: 5
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the attack up ability.'
   },
 
   accuracy_up_1_tome: {
@@ -1039,7 +1091,46 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the accuracy up ability.'
+    description: 'Can be consumed to upgrade the accuracy up ability.'
+  },
+
+  accuracy_up_3_tome: {
+    id: 'accuracy_up_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'accuracy up tome Lv. 3',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 3
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the accuracy up ability.'
+  },
+
+  accuracy_up_4_tome: {
+    id: 'accuracy_up_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'accuracy up tome Lv. 4',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 4
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the accuracy up ability.'
+  },
+
+  accuracy_up_5_tome: {
+    id: 'accuracy_up_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'accuracy up tome Lv. 5',
+    teaches: {
+      abilityId: 'accuracy_up',
+      level: 5
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the accuracy up ability.'
   },
 
   war_cry_tome: {
@@ -1053,19 +1144,6 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 3000,
     description: 'Can be consumed to learn the war cry ability.'
-  },
-
-  accuracy_up_3_tome: {
-    id: 'accuracy_up_3_tome',
-    icon: 'tomeUncommon.svg',
-    category: 'tome',
-    name: 'accuracy up tome Lv. 3',
-    teaches: {
-      abilityId: 'accuracy_up',
-      level: 3
-    },
-    sellPrice: 250,
-    description: 'Can be consumed to learn the accuracy up ability.'
   },
 
   defense_up_1_tome: {
@@ -1091,7 +1169,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the defense up ability.'
+    description: 'Can be consumed to upgrade the defense up ability.'
   },
 
   defense_up_3_tome: {
@@ -1104,7 +1182,33 @@ export const INSCRIPTION_ITEMS = {
       level: 3
     },
     sellPrice: 250,
-    description: 'Can be consumed to learn the defense up ability.'
+    description: 'Can be consumed to upgrade the defense up ability.'
+  },
+
+  defense_up_4_tome: {
+    id: 'defense_up_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'defense up tome Lv. 4',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 4
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the defense up ability.'
+  },
+
+  defense_up_5_tome: {
+    id: 'defense_up_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'defense up tome Lv. 5',
+    teaches: {
+      abilityId: 'defense_up',
+      level: 5
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the defense up ability.'
   },
 
   bleeding_spin_1_tome: {
@@ -1767,7 +1871,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 100,
-    description: 'Can be consumed to learn the vampirism ability.'
+    description: 'Can be consumed to upgrade the vampirism ability.'
   },
 
   bleed_level_1_tome: {
@@ -1858,7 +1962,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 200,
-    description: 'Can be consumed to learn the phantom strikes ability.'
+    description: 'Can be consumed to upgrade the phantom strikes ability.'
   },
 
   phantom_strikes_level_3_tome: {
@@ -1871,7 +1975,33 @@ export const INSCRIPTION_ITEMS = {
       level: 3
     },
     sellPrice: 300,
-    description: 'Can be consumed to learn the phantom strikes ability.'
+    description: 'Can be consumed to upgrade the phantom strikes ability.'
+  },
+
+  phantom_strikes_level_4_tome: {
+    id: 'phantom_strikes_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'phantom strikes tome Lv. 4',
+    teaches: {
+      abilityId: 'phantom_strikes',
+      level: 4
+    },
+    sellPrice: 300,
+    description: 'Can be consumed to upgrade the phantom strikes ability.'
+  },
+
+  phantom_strikes_level_5_tome: {
+    id: 'phantom_strikes_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'phantom strikes tome Lv. 5',
+    teaches: {
+      abilityId: 'phantom_strikes',
+      level: 5
+    },
+    sellPrice: 300,
+    description: 'Can be consumed to upgrade the phantom strikes ability.'
   },
 
   blade_spin_level_1_tome: {
@@ -1884,7 +2014,7 @@ export const INSCRIPTION_ITEMS = {
       level: 1
     },
     sellPrice: 100,
-    description: 'Can be consumed to learn the bladeSpin ability.'
+    description: 'Can be consumed to upgrade the bladeSpin ability.'
   },
 
   blade_spin_level_2_tome: {
@@ -2277,6 +2407,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the critical up ability.'
   },
 
+  critical_up_level_4_tome: {
+    id: 'critical_up_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'critical up tome Lv. 4',
+    teaches: {
+      abilityId: 'critical_up',
+      level: 4
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the critical up ability.'
+  },
+
+  critical_up_level_5_tome: {
+    id: 'critical_up_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'critical up tome Lv. 5',
+    teaches: {
+      abilityId: 'critical_up',
+      level: 5
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the critical up ability.'
+  },
+
   armor_up_new_level_1_tome: {
     id: 'armor_up_new_level_1_tome',
     icon: 'tomeUncommon.svg',
@@ -2312,7 +2468,33 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'armor_up_new',
       level: 3
     },
-    sellPrice: 100,
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the armor up ability.'
+  },
+
+  armor_up_new_level_4_tome: {
+    id: 'armor_up_new_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'armor up tome Lv. 4',
+    teaches: {
+      abilityId: 'armor_up_new',
+      level: 4
+    },
+    sellPrice: 250,
+    description: 'Can be consumed to upgrade the armor up ability.'
+  },
+
+  armor_up_new_level_5_tome: {
+    id: 'armor_up_new_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'armor up tome Lv. 5',
+    teaches: {
+      abilityId: 'armor_up_new',
+      level: 5
+    },
+    sellPrice: 250,
     description: 'Can be consumed to upgrade the armor up ability.'
   },
 
@@ -2350,6 +2532,32 @@ export const INSCRIPTION_ITEMS = {
     teaches: {
       abilityId: 'magic_armor_up',
       level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic armor up ability.'
+  },
+
+  magic_armor_up_level_4_tome: {
+    id: 'magic_armor_up_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic armor up tome Lv. 4',
+    teaches: {
+      abilityId: 'magic_armor_up',
+      level: 4
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic armor up ability.'
+  },
+
+  magic_armor_up_level_5_tome: {
+    id: 'magic_armor_up_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic armor up tome Lv. 5',
+    teaches: {
+      abilityId: 'magic_armor_up',
+      level: 5
     },
     sellPrice: 100,
     description: 'Can be consumed to upgrade the magic armor up ability.'
@@ -2394,6 +2602,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the magic power up ability.'
   },
 
+  magic_power_up_level_4_tome: {
+    id: 'magic_power_up_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic power up tome Lv. 4',
+    teaches: {
+      abilityId: 'magic_power_up',
+      level: 4
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic power up ability.'
+  },
+
+  magic_power_up_level_5_tome: {
+    id: 'magic_power_up_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'magic power up tome Lv. 5',
+    teaches: {
+      abilityId: 'magic_power_up',
+      level: 5
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the magic power up ability.'
+  },
+
   healing_power_up_level_1_tome: {
     id: 'healing_power_up_level_1_tome',
     icon: 'tomeUncommon.svg',
@@ -2428,6 +2662,32 @@ export const INSCRIPTION_ITEMS = {
     teaches: {
       abilityId: 'healing_power_up',
       level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the healing power up ability.'
+  },
+
+  healing_power_up_level_4_tome: {
+    id: 'healing_power_up_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'healing power up tome Lv. 4',
+    teaches: {
+      abilityId: 'healing_power_up',
+      level: 4
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the healing power up ability.'
+  },
+
+  healing_power_up_level_5_tome: {
+    id: 'healing_power_up_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'healing power up tome Lv. 5',
+    teaches: {
+      abilityId: 'healing_power_up',
+      level: 5
     },
     sellPrice: 100,
     description: 'Can be consumed to upgrade the healing power up ability.'

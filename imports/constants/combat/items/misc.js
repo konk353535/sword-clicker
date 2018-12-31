@@ -1900,7 +1900,8 @@ export const MISC_ITEMS = {
       type: 'skill',
       name: 'defense',
       level: 10
-    }]
+    }],
+    enchantments: ['opal_chest_plate']
   },
 
   opal_pants: {

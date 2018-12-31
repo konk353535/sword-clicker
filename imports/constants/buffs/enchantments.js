@@ -393,6 +393,70 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
+  
+  opal_chest_plate: {
+    duplicateTag: 'opal_chest_plate', // Used to stop duplicate buffs
+    icon: 'opalChestPlate.png',
+    name: 'opal chest plate',
+    description() {
+      return `
+        Converts 250% of magic armor into health. <br />
+        Whenever you take damage, 3% of your original maximum <br />
+        health reduced from spellcasting is restored. <br />
+        This effect can occur once every 5 seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!buff.data.extraStat) {
+          buff.data.extraStat = target.stats.magicArmor * 2.5;
+          target.stats.health += buff.data.extraStat;
+          target.stats.healthMax += buff.data.extraStat;
+          target.stats.healthMaxOrig += buff.data.extraStat;
+        }
+        
+        if (buff.stacksTimer > 0) {
+          buff.stacksTimer -= secondsElapsed;
+        }
+        if (buff.stacksTimer <= 0) {
+          buff.stacksTimer = undefined;
+          buff.stacks = undefined;
+        } else {
+          buff.stacks = Math.ceil(buff.stacksTimer);
+        }
+      },
+      
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
+          let hpMaxHealth = defender.stats.healthMaxOrig;
+          let hpFivePct = 0.03 * hpMaxHealth;
+          
+          if (defender.stats.healthMax + hpFivePct > hpMaxHealth) {
+            defender.stats.healthMax = hpMaxHealth;
+          } else {
+            defender.stats.healthMax += hpFivePct;
+          }
+          
+          buff.stacksTimer = 5.0;
+          buff.stacks = Math.ceil(buff.stacksTimer);
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.stats.health -= buff.data.extraStat;
+        target.stats.healthMax -= buff.data.extraStat;
+        target.stats.healthMaxOrig -= buff.data.extraStat;
+      }
+    }
+  },
 
   frankensteins_heart: {
     duplicateTag: 'frankensteins_heart', // Used to stop duplicate buffs

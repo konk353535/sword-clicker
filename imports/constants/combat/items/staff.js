@@ -688,7 +688,7 @@ export const STAFF_ITEMS = {
       attackMax: 0,
       attackSpeed: SLOW_SPEED,
       accuracy: 4,
-      magicPower: 5
+      magicPower: 6.75
     },
     extraStats: {
       magicPower: 2
@@ -716,7 +716,7 @@ export const STAFF_ITEMS = {
       attackMax: 2,
       attackSpeed: SLOW_SPEED,
       accuracy: 6,
-      magicPower: 6
+      magicPower: 8
     },
     extraStats: {
       magicPower: 2
@@ -744,7 +744,7 @@ export const STAFF_ITEMS = {
       attackMax: 4,
       attackSpeed: SLOW_SPEED,
       accuracy: 8,
-      magicPower: 7
+      magicPower: 9.25
     },
     extraStats: {
       magicPower: 3
@@ -772,7 +772,7 @@ export const STAFF_ITEMS = {
       attackMax: 6,
       attackSpeed: SLOW_SPEED,
       accuracy: 10,
-      magicPower: 8
+      magicPower: 10.5
     },
     extraStats: {
       magicPower: 3
@@ -800,7 +800,7 @@ export const STAFF_ITEMS = {
       attackMax: 8,
       attackSpeed: SLOW_SPEED,
       accuracy: 12,
-      magicPower: 9
+      magicPower: 11.75
     },
     extraStats: {
       magicPower: 3
@@ -828,7 +828,7 @@ export const STAFF_ITEMS = {
       attackMax: 10,
       attackSpeed: SLOW_SPEED,
       accuracy: 14,
-      magicPower: 10
+      magicPower: 13
     },
     extraStats: {
       magicPower: 4
@@ -856,7 +856,7 @@ export const STAFF_ITEMS = {
       attackMax: 12,
       attackSpeed: SLOW_SPEED,
       accuracy: 16,
-      magicPower: 11
+      magicPower: 14.25
     },
     extraStats: {
       magicPower: 4
@@ -884,7 +884,7 @@ export const STAFF_ITEMS = {
       attackMax: 14,
       attackSpeed: SLOW_SPEED,
       accuracy: 18,
-      magicPower: 12
+      magicPower: 15.5
     },
     extraStats: {
       magicPower: 4
@@ -912,7 +912,7 @@ export const STAFF_ITEMS = {
       attackMax: 16,
       attackSpeed: SLOW_SPEED,
       accuracy: 20,
-      magicPower: 13
+      magicPower: 16.75
     },
     extraStats: {
       magicPower: 4
@@ -940,7 +940,7 @@ export const STAFF_ITEMS = {
       attackMax: 18,
       attackSpeed: SLOW_SPEED,
       accuracy: 22,
-      magicPower: 14
+      magicPower: 18
     },
     extraStats: {
       magicPower: 4
@@ -968,7 +968,7 @@ export const STAFF_ITEMS = {
       attackMax: 20,
       attackSpeed: SLOW_SPEED,
       accuracy: 24,
-      magicPower: 15.5
+      magicPower: 19.5
     },
     extraStats: {
       magicPower: 5
@@ -996,7 +996,7 @@ export const STAFF_ITEMS = {
       attackMax: 22,
       attackSpeed: SLOW_SPEED,
       accuracy: 26,
-      magicPower: 17
+      magicPower: 21
     },
     extraStats: {
       magicPower: 5
@@ -1024,7 +1024,7 @@ export const STAFF_ITEMS = {
       attackMax: 24,
       attackSpeed: SLOW_SPEED,
       accuracy: 28,
-      magicPower: 18.5
+      magicPower: 22.5
     },
     extraStats: {
       magicPower: 5
@@ -1052,7 +1052,7 @@ export const STAFF_ITEMS = {
       attackMax: 26,
       attackSpeed: SLOW_SPEED,
       accuracy: 30,
-      magicPower: 20
+      magicPower: 24
     },
     extraStats: {
       magicPower: 5
@@ -1080,7 +1080,7 @@ export const STAFF_ITEMS = {
       attackMax: 28,
       attackSpeed: SLOW_SPEED,
       accuracy: 32,
-      magicPower: 21.5
+      magicPower: 25.5
     },
     extraStats: {
       magicPower: 5
@@ -1108,7 +1108,7 @@ export const STAFF_ITEMS = {
       attackMax: 30,
       attackSpeed: SLOW_SPEED,
       accuracy: 34,
-      magicPower: 23
+      magicPower: 27
     },
     extraStats: {
       magicPower: 5
@@ -1136,7 +1136,7 @@ export const STAFF_ITEMS = {
       attackMax: 32,
       attackSpeed: SLOW_SPEED,
       accuracy: 36,
-      magicPower: 24.5
+      magicPower: 28.5
     },
     extraStats: {
       magicPower: 5
@@ -1164,7 +1164,7 @@ export const STAFF_ITEMS = {
       attackMax: 34,
       attackSpeed: SLOW_SPEED,
       accuracy: 38,
-      magicPower: 26
+      magicPower: 30
     },
     extraStats: {
       magicPower: 5
@@ -1192,7 +1192,7 @@ export const STAFF_ITEMS = {
       attackMax: 36,
       attackSpeed: SLOW_SPEED,
       accuracy: 40,
-      magicPower: 27.5
+      magicPower: 31.5
     },
     extraStats: {
       magicPower: 5
@@ -1220,7 +1220,7 @@ export const STAFF_ITEMS = {
       attackMax: 38,
       attackSpeed: SLOW_SPEED,
       accuracy: 42,
-      magicPower: 29
+      magicPower: 33
     },
     extraStats: {
       magicPower: 5

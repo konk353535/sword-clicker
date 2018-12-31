@@ -7,18 +7,7 @@ export const TOWER_FLOOR_12 = {
   1: {
     name: 'Old Mage',
     enemies: ['brown_mage'],
-    //rewards: []
-    rewards: orderLootTable([{
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'festive_hat', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'holiday_cheer_tome', amount: 1 }
-      ]
-    }])
+    rewards: []
   },
   2: {
     name: 'Old Log',
@@ -65,11 +54,6 @@ export const TOWER_FLOOR_12 = {
       rewards: [
         { type: 'item', itemId: 'obsidian_wand', amount: 1 }
       ]
-    }, {
-      chance: 1 / 36,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
-      ]
     }]))
   },
   5: {
@@ -91,11 +75,6 @@ export const TOWER_FLOOR_12 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'taunt_level_4_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
       ]
     }]))
   },
@@ -130,11 +109,6 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'pulsating_orb', amount: 1 },
         { type: 'item', itemId: 'spellbound_tome', amount: 1 }
       ]
-    }, {
-      chance: 1 / 18,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
-      ]
     }]))
   },
   7: {
@@ -156,11 +130,6 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'obsidian_scimitar', amount: 1 },
         { type: 'item', itemId: 'obsidian_broad_sword', amount: 1 },
         { type: 'item', itemId: 'obsidian_horned_helmet', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 12,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_holiday', amount: 1 }
       ]
     }]))
   },

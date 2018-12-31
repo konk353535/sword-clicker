@@ -26,7 +26,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'allAllies',
-    isHidden: false,
+    isHidden: true,
     description(level) {
       const BUFF = BUFFS.holiday_cheer;
       return BUFF.description({ buff: BUFF, level });

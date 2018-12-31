@@ -86,6 +86,11 @@ export const TOWER_FLOOR_19 = {
         { type: 'item', itemId: 'prismatic_orb', amount: 1 },
         { type: 'item', itemId: 'stellar_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'healing_power_up_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

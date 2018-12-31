@@ -93,6 +93,11 @@ export const TOWER_FLOOR_20 = {
         { type: 'item', itemId: 'cataclysmic_orb', amount: 1 },
         { type: 'item', itemId: 'legendary_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'magic_power_up_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -109,6 +114,11 @@ export const TOWER_FLOOR_20 = {
         { type: 'item', itemId: 'cursed_scimitar', amount: 1 },
         { type: 'item', itemId: 'cursed_broad_sword', amount: 1 },
         { type: 'item', itemId: 'cursed_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'phantom_strikes_level_5_tome', amount: 1 }
       ]
     }]))
   },

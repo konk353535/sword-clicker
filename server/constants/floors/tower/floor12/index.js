@@ -109,6 +109,16 @@ export const TOWER_FLOOR_12 = {
         { type: 'item', itemId: 'pulsating_orb', amount: 1 },
         { type: 'item', itemId: 'spellbound_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'attack_up_4_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'critical_up_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

@@ -81,6 +81,16 @@ export const TOWER_FLOOR_17 = {
         { type: 'item', itemId: 'powerful_orb', amount: 1 },
         { type: 'item', itemId: 'breathtaking_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'health_up_5_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'magic_armor_up_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

@@ -86,6 +86,16 @@ export const TOWER_FLOOR_11 = {
         { type: 'item', itemId: 'glowing_orb', amount: 1 },
         { type: 'item', itemId: 'prestigious_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'health_up_4_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'magic_armor_up_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

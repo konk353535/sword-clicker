@@ -93,6 +93,11 @@ export const TOWER_FLOOR_14 = {
         { type: 'item', itemId: 'billowing_orb', amount: 1 },
         { type: 'item', itemId: 'rich_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'healing_power_up_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -110,6 +115,11 @@ export const TOWER_FLOOR_14 = {
         { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
         { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
         { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'phantom_strikes_level_4_tome', amount: 1 }
       ]
     }]))
   },

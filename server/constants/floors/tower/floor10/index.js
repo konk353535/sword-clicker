@@ -88,6 +88,11 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'glittering_orb', amount: 1 },
         { type: 'item', itemId: 'leather_bound_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'armor_up_new_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   // To do, some kind of herb garden drops

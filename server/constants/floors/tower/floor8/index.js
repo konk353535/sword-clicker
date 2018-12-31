@@ -121,6 +121,11 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'tainted_orb', amount: 1 },
         { type: 'item', itemId: 'studius_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'accuracy_up_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

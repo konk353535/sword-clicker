@@ -95,6 +95,11 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'shimmering_orb', amount: 1 },
         { type: 'item', itemId: 'paradoxical_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'defense_up_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

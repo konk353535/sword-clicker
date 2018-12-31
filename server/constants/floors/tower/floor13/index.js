@@ -86,6 +86,11 @@ export const TOWER_FLOOR_13 = {
         { type: 'item', itemId: 'runed_orb', amount: 1 },
         { type: 'item', itemId: 'scholars_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'magic_power_up_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

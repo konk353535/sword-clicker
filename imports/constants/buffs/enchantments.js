@@ -1092,14 +1092,24 @@ export const ENCHANTMENT_BUFFS = {
           const actualDamage = target.stats.accuracy * 0.35 * 5 / aliveUnits; // 35% of accuracy
           
           let damageDealt = 0;
-          actualBattle.units.forEach((unit) => {
-            damageDealt += actualBattle.dealDamage(actualDamage, {
+          actualBattle.units.forEach((friendly_unit) => {
+            let localDamageDealt = actualBattle.dealDamage(actualDamage, {
               attacker: target,
-              defender: unit,
+              defender: friendly_unit,
               tickEvents: actualBattle.tickEvents,
               historyStats: actualBattle.historyStats
             });
-            actualBattle.checkDeath(unit);
+            damageDealt += localDamageDealt;
+            if (friendly_unit.buffs) {
+              friendly_unit.buffs.forEach((local_buff) => {
+                local_buff.constants = BUFFS[local_buff.id];
+                if (local_buff.constants.events.onTookDamage) {
+                  // .onTookDamage() only triggers on auto-attack normally, so we're cheesing it here
+                  local_buff.constants.events.onTookDamage({ secondsElapsed, local_buff, friendly_unit, target, actualBattle, localDamageDealt });
+                }
+              });
+            }
+            actualBattle.checkDeath(friendly_unit);
           });
 
           // calculate new bonus

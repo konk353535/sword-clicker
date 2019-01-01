@@ -3342,7 +3342,7 @@ export const MISC_ITEMS = {
     isEquippable: true,
     stats: {
       accuracy: 25,
-      attackSpeed: 0.5,
+      attackSpeed: 0.2,
       attack: -20,
       attackMax: -25,
     },

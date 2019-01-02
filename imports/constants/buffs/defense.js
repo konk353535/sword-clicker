@@ -248,11 +248,11 @@ export const DEFENSE_BUFFS = {
 
       return `
         Increase health by ${Math.round(healthIncrease * 100)}%. <br />
-        (+${Math.round(buff.constants.healthPerLevel * 100)}% per lvl)`;
+        (+${(Math.round(buff.constants.healthPerLevel * 1000)/10)}% per lvl)`;
     },
     constants: {
-      healthBase: 0.04,
-      healthPerLevel: 0.02
+      healthBase: 0.05,
+      healthPerLevel: 0.025
     },
     data: {
       duration: Infinity,
@@ -370,8 +370,8 @@ export const DEFENSE_BUFFS = {
         (+${buff.constants.defensePerLevel} defense per lvl)`;
     },
     constants: {
-      defenseBase: 2,
-      defensePerLevel: 4
+      defenseBase: 5,
+      defensePerLevel: 5
     },
     data: {
       duration: Infinity,
@@ -880,8 +880,8 @@ export const DEFENSE_BUFFS = {
         (+${buff.constants.armorPerLevel} armor per lvl)`;
     },
     constants: {
-      armorBase: 10,
-      armorPerLevel: 15
+      armorBase: 20,
+      armorPerLevel: 20
     },
     data: {
       duration: Infinity,
@@ -923,7 +923,7 @@ export const DEFENSE_BUFFS = {
         (+${buff.constants.armorPerLevel} armor per lvl)`;
     },
     constants: {
-      armorBase: 5,
+      armorBase: 10,
       armorPerLevel: 10
     },
     data: {

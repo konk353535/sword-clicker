@@ -165,8 +165,8 @@ export const ATTACK_BUFFS = {
         (+${buff.constants.accuracyPerLevel} accuracy per lvl)`;
     },
     constants: {
-      accuracyBase: 2,
-      accuracyPerLevel: 6
+      accuracyBase: 4,
+      accuracyPerLevel: 8
     },
     data: {
       duration: Infinity,
@@ -215,8 +215,8 @@ export const ATTACK_BUFFS = {
         (+${buff.constants.criticalPerLevel}% critical chance per lvl)`;
     },
     constants: {
-      criticalBase: 6,
-      criticalPerLevel: 4
+      criticalBase: 4,
+      criticalPerLevel: 3
     },
     data: {
       duration: Infinity,
@@ -319,8 +319,8 @@ export const ATTACK_BUFFS = {
     },
     constants: {
       poisonChance: 0.07,
-      poisonDamageBase: 0.17,
-      poisonDamagePerLevel: 0.03
+      poisonDamageBase: 0.20,
+      poisonDamagePerLevel: 0.05
     },
     data: {
       duration: Infinity,

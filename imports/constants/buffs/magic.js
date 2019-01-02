@@ -571,7 +571,7 @@ export const MAGIC_BUFFS = {
       healBase: 15,
       healMPRatio: 1.1,
       healthCost: 2,
-      healthCostMPRatio: 0.1
+      healthCostMPRatio: 0.075
     },
     data: {
       duration: 0,

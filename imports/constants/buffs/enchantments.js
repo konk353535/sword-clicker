@@ -1105,7 +1105,7 @@ export const ENCHANTMENT_BUFFS = {
                 local_buff.constants = BUFFS[local_buff.id];
                 if (local_buff.constants.events.onTookDamage) {
                   // .onTookDamage() only triggers on auto-attack normally, so we're cheesing it here
-                  local_buff.constants.events.onTookDamage({ secondsElapsed, local_buff, friendly_unit, target, actualBattle, localDamageDealt });
+                  local_buff.constants.events.onTookDamage({ secondsElapsed, buff: local_buff, defender: friendly_unit, attacker: target, actualBattle, localDamageDealt });
                 }
               });
             }
@@ -1117,9 +1117,9 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.currentDamageBonus = (1.2 - (target.stats.health / target.stats.healthMax)) * buff.data.lastHealthDrained; // 20-119% of damage dealt to party
           
           // update damage buff
-          target.buffs.forEach((this_buff) => {
-            if (this_buff.id === "demons_heart_damage") {
-              this_buff.stacks = Math.round(buff.data.currentDamageBonus);
+          target.buffs.forEach((local_buff) => {
+            if (local_buff.id === "demons_heart_damage") {
+              local_buff.stacks = Math.round(buff.data.currentDamageBonus);
             }
           });
           

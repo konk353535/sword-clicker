@@ -118,6 +118,20 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
   }
 };
 
+export const addGold = function( userId, amount ) {
+  const userDoc = Users.findOne(userId);
+
+  if (!userDoc) {
+    return false;
+  }
+  
+  Users.update(userId, {
+    $set: { gold: (userDoc.gold + amount) }
+  });
+  
+  return true;
+};
+
 export const addFakeGems = function (amount, userId) {
   // Ensure amount is valid
   if (!_.isFinite(amount) || amount < 0 || amount > 1000) {

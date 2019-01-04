@@ -186,6 +186,22 @@ export const removeBattle = function (battleId) {
   return BattlesList.remove(battleId);
 }
 
+export const currentBossIsAlive = function (actualBattle) {
+  const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+  
+  if (currentFloor) {
+    if (currentFloor.health > 0.0) {
+      return true;
+    }
+  }      
+      
+  return false; // err on the side of caution
+}
+
+export const currentBossIsDead = function (actualBattle) {
+  return (!currentBossIsAlive(actualBattle));
+}
+
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
 
@@ -263,7 +279,9 @@ export const completeBattle = function (actualBattle) {
           damageDealt = actualBattle.startingBossHp
         }
 
-        totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+        if (currentBossIsAlive(actualBattle)) {
+          totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+        }
       } catch (err) {
         console.log('Error calcuating post-battle boss health:');
         console.log(err);

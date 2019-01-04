@@ -135,17 +135,20 @@
               Resets in {{moDiff floorResetDate moNow 'hours'}} hours
             {{else}}
               Resets in {{moDiff floorResetDate moNow 'minutes'}} minutes
+            {{/if}}            
           {{else}}
             {{#if $gt waveDetails.health 0}}
               {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}
                 Resets in {{moDiff bossResetAt moNow 'hours'}} hours
               {{else}}
                 Resets in {{moDiff bossResetAt moNow 'minutes'}} minutes
-            {{#else}}
+              {{/if}}            
+            {{else}}
               {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}
                 Dies in {{moDiff bossResetAt moNow 'hours'}} hours
               {{else}}
                 Dies in {{moDiff bossResetAt moNow 'minutes'}} minutes
+              {{/if}}            
             {{/if}}            
           {{/if}}
         </div>

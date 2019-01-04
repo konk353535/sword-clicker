@@ -34,6 +34,7 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
   const rawFloorRewards = FLOORS[floor].floorRewards;
 
   // Fetch top 10 by damage dealt
+  /*
   const sortedBossHealthScores = BossHealthScores.find({}, {
     sort: [
       ['bossDamage', 'desc']
@@ -48,6 +49,31 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
       }
     })
   })
+  */
+  
+  // Fetch top 10 by tower score
+  try {
+    let topFloorContributors = FloorWaveScores.find({floor: floor, server: server}, {sort: {points: -1}, limit: 10}).fetch();
+    if (topFloorContributors) {
+      topFloorContributors.forEach((floorContributor) => {
+        console.log(`TOP CONTRIBUTOR: awarding 1 enhancer key to ${floorContributor.username}`);
+        addItem('enhancer_key', 1, floorContributor.owner);
+        Chats.insert({
+          message: `For being a TOP CONTRIBUTOR to this tower floor, you have been awarded 1 enhancer key.`,
+          username: 'Game',
+          name: 'Game',
+          date: new Date(),
+          custom: {
+            roomType: 'Game'
+          },
+          roomId: `Game-${floorContributor.owner}`
+        });
+      });
+    }
+  } catch (err) {
+    console.log("Error trying to award enhancer keys to the top contributing players:");
+    console.log(err);
+  }
 
   // Fetch all users by tower points
   const sortedFloorWaveScores = FloorWaveScores.find({
@@ -69,25 +95,30 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
   let playerList = {};
 
   // log and award gold
-  sortedFloorWaveScores.forEach((waveScore) => {
-    let goldAmount = Math.floor(gold.amount / totalContributors);    
-    playerList[waveScore.owner] = [{
-      type: 'gold',
-      amount: goldAmount
-    }];    
-    console.log(`awarding ${goldAmount} gold to ${waveScore.username}`);    
-    addGold(waveScore.owner, goldAmount);    
-    Chats.insert({
-      message: `You have been awarded ${goldAmount} gold.`,
-      username: 'Game',
-      name: 'Game',
-      date: new Date(),
-      custom: {
-        roomType: 'Game'
-      },
-      roomId: `Game-${waveScore.owner}`
+  try {
+    sortedFloorWaveScores.forEach((waveScore) => {
+      let goldAmount = Math.floor(gold.amount / totalContributors);    
+      playerList[waveScore.owner] = [{
+        type: 'gold',
+        amount: goldAmount
+      }];    
+      console.log(`awarding ${goldAmount} gold to ${waveScore.username}`);    
+      addGold(waveScore.owner, goldAmount);    
+      Chats.insert({
+        message: `You have been awarded ${goldAmount} gold.`,
+        username: 'Game',
+        name: 'Game',
+        date: new Date(),
+        custom: {
+          roomType: 'Game'
+        },
+        roomId: `Game-${waveScore.owner}`
+      });
     });
-  });
+  } catch (err) {
+    console.log("Error trying to award gold to players:");
+    console.log(err);
+  }
 
   // remove gold from rewards
   rewards = _.reject(rewards, function(r) {

@@ -7,7 +7,23 @@ export const TOWER_FLOOR_13 = {
   1: {
     name: 'Animal Carcass',
     enemies: ['fly', 'worm'],
-    rewards: []
+    //rewards: []
+    rewards: orderLootTable([{
+      chance: 1 / 64,
+      rewards: [
+          { type: 'item', itemId: 'event_ny_balloons', amount: 1 }
+        ]
+      }, {
+        chance: 1 / 64,
+        rewards: [
+          { type: 'item', itemId: 'ornamental_hat', amount: 1 }
+        ]
+      }, {
+        chance: 1 / 64,
+        rewards: [
+          { type: 'item', itemId: 'raise_your_glass_tome', amount: 1 }
+        ]
+      }])
   },
   2: {
     name: 'Sparta',
@@ -48,6 +64,11 @@ export const TOWER_FLOOR_13 = {
       rewards: [
         { type: 'item', itemId: 'cobalt_wand', amount: 1 }
       ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_fireworks', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -57,6 +78,11 @@ export const TOWER_FLOOR_13 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'cobalt_kite_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 80,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_fireworks', amount: 1 }
       ]
     }]))
   },
@@ -91,6 +117,11 @@ export const TOWER_FLOOR_13 = {
       rewards: [
         { type: 'item', itemId: 'magic_power_up_level_4_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_fireworks', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -113,6 +144,11 @@ export const TOWER_FLOOR_13 = {
         { type: 'item', itemId: 'cobalt_scimitar', amount: 1 },
         { type: 'item', itemId: 'cobalt_broad_sword', amount: 1 },
         { type: 'item', itemId: 'cobalt_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_fireworks', amount: 1 }
       ]
     }]))
   },

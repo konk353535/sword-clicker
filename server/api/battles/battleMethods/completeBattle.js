@@ -10,7 +10,7 @@ import { NEED_GREED_ITEMS } from '/imports/constants/items/needgreed';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import { addXp } from '/server/api/skills/skills';
-import { addItem, addFakeGems } from '/server/api/items/items';
+import { addItem, addFakeGems, addGold } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 import { normalizedLootTable } from '/server/constants/enemies/lootTables/index';
 import { cleanRewards } from '/server/utils';
@@ -65,15 +65,31 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
   // get gold out first
   let gold = _.findWhere(rewards, {type: 'gold'});
 
+  // create a new list of players who got rewards
   let playerList = {};
+
+  // log and award gold
   sortedFloorWaveScores.forEach((waveScore) => {
+    let goldAmount = Math.floor(gold.amount / totalContributors);    
     playerList[waveScore.owner] = [{
       type: 'gold',
-      amount: Math.floor(gold.amount / totalContributors)
-    }];
+      amount: goldAmount
+    }];    
+    console.log(`awarding ${goldAmount} gold to ${waveScore.username}`);    
+    addGold(waveScore.owner, goldAmount);    
+    Chats.insert({
+      message: `You have been awarded ${goldAmount} gold.`,
+      username: 'Game',
+      name: 'Game',
+      date: new Date(),
+      custom: {
+        roomType: 'Game'
+      },
+      roomId: `Game-${waveScore.owner}`
+    });
   });
 
-  // remove gold
+  // remove gold from rewards
   rewards = _.reject(rewards, function(r) {
     return r.type === 'gold';
   });

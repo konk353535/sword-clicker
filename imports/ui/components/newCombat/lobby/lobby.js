@@ -490,6 +490,12 @@ Template.lobbyPage.helpers({
   floorResetDate() {
     return moment().utc().hours(23).minutes(59).seconds(59);
   },
+  
+  bossResetAt() {
+    const waveDetails = Template.instance().state.get('waveDetails');
+    
+    return waveDetails.bossResetAt;
+  },
 
   globalBuffs() {
     let globalBuffState = Template.instance().state.get('globalBuffs');

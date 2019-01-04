@@ -452,6 +452,7 @@ export const completeBattle = function (actualBattle) {
 
       if (actualBattle.room !== 'boss' && actualBattle.floor === latestFloor.floor) {
         let totalPointsForGroup = 0;
+        let wasTotalPointsExtra = false;
 
         // Update all participants contributions
         owners.forEach((owner) => {
@@ -474,6 +475,7 @@ export const completeBattle = function (actualBattle) {
               } else {
                 actualPointsGained = 0;
                 overDailyPoints = pointsEarnt * dailyOverageMultiplier;
+                wasTotalPointsExtra = true;
               }
             } else {
               ownerObject.towerContributions.push(pointsEarnt);
@@ -586,92 +588,93 @@ export const completeBattle = function (actualBattle) {
             });
           }
 
-          // add additional loot to community pot for every contributor
-
-          let floors = [];
-          if (actualBattle.floor === 1) {
-            floors = [{
-              floor: 1,
-              minChance: 1 / 32
-            }]
-          } else if (actualBattle.floor === 2) {
-            floors = [{
-              floor: 1,
-              minChance: 1 / 32
-            }, {
-              floor: 2,
-              minChance: 1 / 48
-            }]
-          } else {
-            const floorNumbers = _.range(Math.max(1, actualBattle.floor - FLOORS.floorRewardRange - 1), actualBattle.floor);
-            floors = floorNumbers.map((num, idx) => { return { floor: num,  minChance: 1 / (16 * (idx + 2)) } });
-          }
-
-          let rewardsGained = _.flatten(floors.map((floor) => {
-            let floorRewards = [];
-
-            // Add rewards from previous rooms
-            for (let i = actualBattle.room - 1; i > 0; i--) {
-              floorRewards.push(...FLOORS[floor.floor][i].rewards);
+          // add additional loot to community pot for every contributor ONLY if nobody got 'bonus' points over their daily limit
+          if (!wasTotalPointsExtra) {
+            let floors = [];
+            if (actualBattle.floor === 1) {
+              floors = [{
+                floor: 1,
+                minChance: 1 / 32
+              }]
+            } else if (actualBattle.floor === 2) {
+              floors = [{
+                floor: 1,
+                minChance: 1 / 32
+              }, {
+                floor: 2,
+                minChance: 1 / 48
+              }]
+            } else {
+              const floorNumbers = _.range(Math.max(1, actualBattle.floor - FLOORS.floorRewardRange - 1), actualBattle.floor);
+              floors = floorNumbers.map((num, idx) => { return { floor: num,  minChance: 1 / (16 * (idx + 2)) } });
             }
 
-            floorRewards = normalizedLootTable(floorRewards, floor.minChance);
-            floorRewards.push({chance: 1 / 64, rewards: [{type: 'item', itemId: 'enhancer_key', amount: 1}]});
-            let rewards = [];
+            let rewardsGained = _.flatten(floors.map((floor) => {
+              let floorRewards = [];
 
-            // Each user = additional 20% chance of loot
-            const extraChance = 1 + (owners.length * 0.2) - 0.2;
-            for (let i = 0; i < floorRewards.length; i++) {
-              const rewardTable = floorRewards[i];
-              const diceRoll = Math.random();
-
-              if ((rewardTable.chance * extraChance) >= diceRoll) {
-                let reward = _.sample(rewardTable.rewards);
-                if (reward.type === 'gold') {
-                  reward.amount *= 12;
-                }
-                if (reward.type !== 'icon')  {
-                  rewards.push(reward);
-                }
-                //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
-                //  break;
-                //}
-              } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
-                let reward = _.sample(rewardTable.rewards);
-                if (reward.type === 'gold') {
-                  reward.amount *= 15;
-                }
-                if (reward.type !== 'icon')  {
-                  rewards.push(Object.assign({}, reward, {
-                    affectedGlobalBuff: true
-                  }));
-                }
-                //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
-                //  break;
-                //}
+              // Add rewards from previous rooms
+              for (let i = actualBattle.room - 1; i > 0; i--) {
+                floorRewards.push(...FLOORS[floor.floor][i].rewards);
               }
+
+              floorRewards = normalizedLootTable(floorRewards, floor.minChance);
+              floorRewards.push({chance: 1 / 64, rewards: [{type: 'item', itemId: 'enhancer_key', amount: 1}]});
+              let rewards = [];
+
+              // Each user = additional 20% chance of loot
+              const extraChance = 1 + (owners.length * 0.2) - 0.2;
+              for (let i = 0; i < floorRewards.length; i++) {
+                const rewardTable = floorRewards[i];
+                const diceRoll = Math.random();
+
+                if ((rewardTable.chance * extraChance) >= diceRoll) {
+                  let reward = _.sample(rewardTable.rewards);
+                  if (reward.type === 'gold') {
+                    reward.amount *= 12;
+                  }
+                  if (reward.type !== 'icon')  {
+                    rewards.push(reward);
+                  }
+                  //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
+                  //  break;
+                  //}
+                } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * 1.5) >= diceRoll) {
+                  let reward = _.sample(rewardTable.rewards);
+                  if (reward.type === 'gold') {
+                    reward.amount *= 15;
+                  }
+                  if (reward.type !== 'icon')  {
+                    rewards.push(Object.assign({}, reward, {
+                      affectedGlobalBuff: true
+                    }));
+                  }
+                  //if (rewards >= owners.length) { // note: psouza4 2018-11-07 faulty logic, should be rewards.length here, but we don't want to restrict this anyway
+                  //  break;
+                  //}
+                }
+              }
+
+              return rewards;
+
+            }));
+
+            let floorRewards = [];
+            if (currentFloor.loot) {
+              floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained));
+            } else {
+              floorRewards = cleanRewards(rewardsGained);
             }
 
-            return rewards;
-
-          }));
-
-          let floorRewards = [];
-          if (currentFloor.loot) {
-            floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained));
-          } else {
-            floorRewards = cleanRewards(rewardsGained);
+            Floors.update({
+              floor: actualBattle.floor,
+              server: actualBattle.server,
+              floorComplete: false
+            }, {
+              $set: {
+                loot: floorRewards
+              }
+            });
           }
-
-          Floors.update({
-            floor: actualBattle.floor,
-            server: actualBattle.server,
-            floorComplete: false
-          }, {
-            $set: {
-              loot: floorRewards
-            }
-          });
         }
       }
     } else if (actualBattle.level && actualBattle.wave) {

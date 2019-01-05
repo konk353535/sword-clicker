@@ -287,6 +287,12 @@ Meteor.methods({
     const validItems = [{
       id: 'lemonade',
       cost: 10
+    }, {
+      id: 'gift_box_holiday',
+      cost: 10
+    }, {
+      id: 'gift_box_fireworks',
+      cost: 10
     }];
 
     const itemToBuy = _.findWhere(validItems, { id: itemId });

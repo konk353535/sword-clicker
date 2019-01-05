@@ -180,7 +180,7 @@ export const ORE_ITEMS = {
     icon: 'jade.png',
     category: 'mining',
     name: 'jade',
-    sellPrice: 500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Jade Amulet',
       target: 'item'
@@ -192,7 +192,7 @@ export const ORE_ITEMS = {
     icon: 'lapislazuli.png',
     category: 'mining',
     name: 'lapis lazuli',
-    sellPrice: 2500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Lapis Lazuli Amulet',
       target: 'item'
@@ -204,7 +204,7 @@ export const ORE_ITEMS = {
     icon: 'sapphire.png',
     category: 'mining',
     name: 'sapphire',
-    sellPrice: 2500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Sapphire Amulet',
       target: 'item'
@@ -216,7 +216,7 @@ export const ORE_ITEMS = {
     icon: 'emerald.png',
     category: 'mining',
     name: 'emerald',
-    sellPrice: 2500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Emerald Amulet',
       target: 'item'
@@ -228,7 +228,7 @@ export const ORE_ITEMS = {
     icon: 'ruby.png',
     category: 'mining',
     name: 'ruby',
-    sellPrice: 2500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Ruby Amulet',
       target: 'item'
@@ -240,7 +240,7 @@ export const ORE_ITEMS = {
     icon: 'tanzanite.png',
     category: 'mining',
     name: 'tanzanite',
-    sellPrice: 2500,
+    sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Tanzanite Amulet',
       target: 'item'

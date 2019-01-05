@@ -2832,7 +2832,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'holiday_cheer',
       level: 1
     },
-    sellPrice: 1000,
+    sellPrice: 1,
     description: 'Can be consumed to learn the holiday cheer ability.'
   },
 
@@ -2845,7 +2845,7 @@ export const INSCRIPTION_ITEMS = {
       abilityId: 'raise_your_glass',
       level: 1
     },
-    sellPrice: 1000,
+    sellPrice: 1,
     description: 'Can be consumed to learn the raise your glass ability.'
   },
 

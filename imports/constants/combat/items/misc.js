@@ -2526,7 +2526,7 @@ export const MISC_ITEMS = {
     weaponType: 'orb',
     slot: 'offHand',
     name: 'decorative balloons',
-    sellPrice: 3420,
+    sellPrice: 1,
     description: 'Some decorative balloons that glow and shimmer with magic.',
     isWeapon: true,
     isEquippable: true,
@@ -3311,7 +3311,7 @@ export const MISC_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'festive hat',
-    sellPrice: 250,
+    sellPrice: 1,
     description: 'Seems to spread holiday cheer',
     isEquippable: true,
     stats: {
@@ -3337,7 +3337,7 @@ export const MISC_ITEMS = {
     category: 'combat',
     slot: 'head',
     name: 'ornamental hat',
-    sellPrice: 250,
+    sellPrice: 1,
     description: 'You\'ll be spry and agile in this for certain!',
     isEquippable: true,
     stats: {

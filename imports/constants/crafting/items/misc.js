@@ -4,7 +4,7 @@ export const MISC_ITEMS = {
     icon: 'enhancerKey.svg',
     category: 'crafting',
     name: 'enhancer key',
-    sellPrice: 250,
+    sellPrice: 1,
     description: `
       Can be consumed to increase an items quality by up to 15%.<br />
       Can only be applied once per item. <br />
@@ -35,6 +35,7 @@ export const MISC_ITEMS = {
     shiftActionData: {
       description: 'open to reveal a prize'
     },
+    // 22 items
     contentsList: ['candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'candy_cane', 'tanzanite', 'sapphire', 'ruby', 'jade', 'emerald', 'lapislazuli', 'enhancer_key', 'festive_hat', 'festive_hat', 'festive_hat', 'holiday_cheer_tome', 'holiday_cheer_tome'],
   },
   
@@ -49,6 +50,7 @@ export const MISC_ITEMS = {
     shiftActionData: {
       description: 'ignite to reveal a prize'
     },
-    contentsList: ['event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'elven_steel_sculpture', 'elven_steel_sculpture', 'elven_steel_sculpture', 'meteorite_sculpture', 'meteorite_sculpture', 'meteorite_sculpture', 'enhancer_key', 'lemonade', 'lemonade'],
+    // 22 items
+    contentsList: ['event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'enhancer_key', 'lemonade', 'lemonade'],
   },
 };

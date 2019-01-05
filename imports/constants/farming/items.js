@@ -1332,7 +1332,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_lemonade'
     }],
-    sellPrice: 100
+    sellPrice: 1
   },
 
   rubia_flower_seed: {

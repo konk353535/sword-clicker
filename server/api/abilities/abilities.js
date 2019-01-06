@@ -241,6 +241,19 @@ Meteor.methods({
 
   },
 
+  'abilities.unlearn'(_id) {  
+    // Fetch existing abilities
+    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+
+    Abilities.update(myAbilities._id, {
+      $pull: {
+        learntAbilities: {
+          abilityId: _id,
+        }
+      }
+    });  
+  },
+  
   'abilities.fetchLibrary'() {
     const userAbilities = Abilities.findOne({
       owner: Meteor.userId()

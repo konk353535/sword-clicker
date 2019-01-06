@@ -388,7 +388,8 @@ Template.currentBattleUi.helpers({
       'offHand': 1,
       'head': 2,
       'chest': 3,
-      'legs': 4
+      'legs': 4,
+      'companion': 5,
     };
 
     const currentBattle = Template.instance().state.get('currentBattle');

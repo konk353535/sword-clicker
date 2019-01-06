@@ -6,6 +6,7 @@ import { MONSTER_BUFFS } from './monster';
 import { BOSS_BUFFS } from './boss';
 import { ENCHANTMENT_BUFFS } from './enchantments';
 import { CRAFTED_ENCHANTMENT_BUFFS } from './crafted_enchantments';
+import { COMPANION_BUFFS } from './companions';
 
 export const BUFFS = Object.assign(
     FOOD_BUFFS,
@@ -15,5 +16,6 @@ export const BUFFS = Object.assign(
     CRAFTED_ENCHANTMENT_BUFFS,
     MAGIC_BUFFS,
     MONSTER_BUFFS,
-    BOSS_BUFFS
+    BOSS_BUFFS,
+    COMPANION_BUFFS
 );

@@ -2849,6 +2849,32 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the raise your glass ability.'
   },
 
+  baby_fox_tome: {
+    id: 'baby_fox_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'baby fox tome',
+    teaches: {
+      abilityId: 'baby_fox',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the baby fox ability.'
+  },
+
+  skeletal_warrior_tome: {
+    id: 'skeletal_warrior_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'skeletal warrior tome',
+    teaches: {
+      abilityId: 'skeletal_warrior',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to bring a skeletal warrior to battle, a companion ability.'
+  },
+
   pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'magic_tome_1.svg',

@@ -145,7 +145,7 @@ Meteor.methods({
       myAbilities.learntAbilities.forEach((ability) => {
         if (ability.equipped) {
           availableSlots = availableSlots.filter((slot) => {
-            return slot !== ability.slot;
+            return slot !== ability.slot && slot !== 'companion'; // 'any' equipped abilities can't fit into companion slots
           });
         }
       });

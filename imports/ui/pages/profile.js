@@ -93,11 +93,12 @@ Template.profilePage.helpers({
     let abilitiesMap = Template.instance().state.get('abilities');
     
     if (abilitiesMap) {
-      abilitiesMap["mainHand"] = abilityDataCombined(abilitiesMap.mainHand);
-      abilitiesMap["offHand"]  = abilityDataCombined(abilitiesMap.offHand);
-      abilitiesMap["head"]     = abilityDataCombined(abilitiesMap.head);
-      abilitiesMap["chest"]    = abilityDataCombined(abilitiesMap.chest);
-      abilitiesMap["legs"]     = abilityDataCombined(abilitiesMap.legs);
+      abilitiesMap["mainHand"]  = abilityDataCombined(abilitiesMap.mainHand);
+      abilitiesMap["offHand"]   = abilityDataCombined(abilitiesMap.offHand);
+      abilitiesMap["head"]      = abilityDataCombined(abilitiesMap.head);
+      abilitiesMap["chest"]     = abilityDataCombined(abilitiesMap.chest);
+      abilitiesMap["legs"]      = abilityDataCombined(abilitiesMap.legs);
+      abilitiesMap["companion"] = abilityDataCombined(abilitiesMap.companion);
     }
     
     return abilitiesMap;

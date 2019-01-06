@@ -4,7 +4,7 @@ import { MAGIC_ABILITIES } from './abilities/magic';
 import { DEFENSE_ABILITIES } from './abilities/defense';
 
 export const ABILITY = {
-  slots: ['mainHand', 'offHand', 'head', 'chest', 'legs']
+  slots: ['mainHand', 'offHand', 'head', 'chest', 'legs', 'companion']
 };
 
 export const ABILITIES = Object.assign(

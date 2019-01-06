@@ -92,6 +92,14 @@
                   5
                 </div>
               {{/if}}
+              <!-- Companion -->
+              {{#if equippedAbilitiesMap.companion}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+              {{else}}
+                <div class="item-icon-container item icon-box tiny">
+                  6
+                </div>
+              {{/if}}
             </div>
           </div>
         </div>

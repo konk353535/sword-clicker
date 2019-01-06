@@ -121,6 +121,14 @@
             5
           </div>
         {{/if}}
+        <!-- Companion -->
+        {{#if equippedAbilitiesMap.companion}}
+          {{> abilityIconOther ability=equippedAbilitiesMap.companion}}
+        {{else}}
+          <div class="icon-box">
+            6
+          </div>
+        {{/if}}
       </div>
     </div>
   </div>

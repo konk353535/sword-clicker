@@ -99,6 +99,14 @@
           5
         </div>
       {{/if}}
+      <!-- Companion -->
+      {{#if equippedAbilitiesMap.companion}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
+      {{else}}
+        <div class="icon-box">
+          6
+        </div>
+      {{/if}}
     </div>
     <h4>Skins</h4>
     <div class="d-flex flex-wrap mb-3">

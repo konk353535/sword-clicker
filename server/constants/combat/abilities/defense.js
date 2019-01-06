@@ -290,5 +290,37 @@ export const DEFENSE_ABILITIES = {
       const BUFF = BUFFS.iron_will;
       return BUFF.description({ buff: BUFF, level });
     }
-  }
+  },
+  
+  baby_fox: {
+    icon: 'babyFox.svg',
+    name: 'baby fox',
+    id: 'baby_fox',
+    buffs: ['baby_fox_ability'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.baby_fox_ability;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+    
+  skeletal_warrior: {
+    icon: 'boneWarrior.svg',
+    name: 'skeletal warrior',
+    id: 'skeletal_warrior',
+    buffs: ['skeletal_warrior'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.skeletal_warrior;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

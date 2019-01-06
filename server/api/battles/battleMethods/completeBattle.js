@@ -252,7 +252,7 @@ export const currentBossIsDead = function (actualBattle) {
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
 
-  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0);
+  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0 && !unit.isNPC);
 
   let win = aliveUnits.length > 0;
   let ngRewards = [];
@@ -301,7 +301,7 @@ export const completeBattle = function (actualBattle) {
     }
 
     const units = actualBattle.units.filter((unit) => {
-      return !!unit.owner;
+      return !!unit.owner && !unit.isNPC && unit.xpDistribution;
     });
 
     // Apply xp gains, only if not a boss battle

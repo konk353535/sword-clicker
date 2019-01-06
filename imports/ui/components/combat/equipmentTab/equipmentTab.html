@@ -74,6 +74,14 @@
             Legs
           </div>
         {{/if}}
+        <!-- Companion -->
+        {{#if equippedItemsMap.companion}}
+          {{> itemIcon item=equippedItemsMap.companion}}
+        {{else}}
+          <div class="icon-box">
+            Companion
+          </div>
+        {{/if}}
       </div>
     </div>
     <div class="stats-row p-0">

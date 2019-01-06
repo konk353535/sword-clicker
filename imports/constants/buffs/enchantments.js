@@ -151,6 +151,7 @@ export const ENCHANTMENT_BUFFS = {
           // Spawn our fox
           const foxToSpawn = lodash.sample(['fire', 'water', 'air', 'earth']);
           let fox = {
+            owner: target.id,
             id: uuid.v4(),
             tickOffset: 0,
           };
@@ -253,7 +254,7 @@ export const ENCHANTMENT_BUFFS = {
             }]
           }
 
-          actualBattle.units.push(fox);
+          actualBattle.addUnit(fox);
         }
       },
 

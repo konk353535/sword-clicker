@@ -267,6 +267,7 @@ SimpleChat.configure ({
         });
 
         addItem(targetItem, targetAmount, targetUser._id);
+        return false;
       }
     }
 

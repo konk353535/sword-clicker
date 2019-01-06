@@ -172,12 +172,12 @@ export const COMPANION_BUFFS = {
             stats: {
               attack: target.stats.attack * 0.25,
               attackMax: target.stats.attackMax * 0.25,
-              attackSpeed: target.stats.attackSpeed,
+              attackSpeed: target.stats.attackSpeed * 0.5,
               accuracy: target.stats.accuracy * 0.8,
-              health: target.stats.healthMax * 0.8,
-              healthMax: target.stats.healthMax * 0.8,
+              health: target.stats.healthMax * 0.6,
+              healthMax: target.stats.healthMax * 0.6,
               defense: target.stats.defense * 0.7,
-              armor: target.stats.armor * 1.1,
+              armor: target.stats.armor * 1.0,
               magicArmor: target.stats.magicArmor * 0.5,
               magicPower: target.stats.magicPower * 0.2,
               damageTaken: 0

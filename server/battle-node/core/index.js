@@ -100,6 +100,139 @@ export default class Battle {
     }, TICK_DURATION);
   }
 
+  isTower() {
+    return (this.floor) && (this.floor > 0);
+  }
+  
+  isPQ() {
+    return (!this.isTower());
+  }
+  
+  towerFloor() {
+    return (this.isTower() ? this.floor : 0);
+  }
+  
+  pqLevel() {
+    return (!this.isTower() ? this.level : 0);
+  }
+  
+  // not the same as 'reward level' exactly (reward level - 1)
+  pqTowerEquivalence() {
+    const currentPqLevel = this.pqLevel();
+    if (currentPqLevel < 5) {
+      return 0;
+    }
+    if (currentPqLevel < 10) {
+      return 1;
+    }
+    if (currentPqLevel < 15) {
+      return 2;
+    }
+    if (currentPqLevel < 20) {
+      return 3;
+    }
+    if (currentPqLevel < 35) {
+      return 4;
+    }
+    if (currentPqLevel < 45) {
+      return 5;
+    }
+    if (currentPqLevel < 55) {
+      return 6;
+    }
+    if (currentPqLevel < 70) {
+      return 7;
+    }
+    if (currentPqLevel < 85) {
+      return 8;
+    }
+    if (currentPqLevel < 95) {
+      return 9;
+    }
+    if (currentPqLevel < 105) {
+      return 10;
+    }
+    if (currentPqLevel < 120) {
+      return 11;
+    }
+    if (currentPqLevel < 130) {
+      return 12;
+    }
+    if (currentPqLevel < 140) {
+      return 13;
+    }
+    if (currentPqLevel < 150) {
+      return 14;
+    }
+    if (currentPqLevel < 160) {
+      return 15;
+    }
+    if (currentPqLevel < 170) {
+      return 16;
+    }
+    if (currentPqLevel < 180) {
+      return 17;
+    }
+    if (currentPqLevel < 190) {
+      return 18;
+    }
+    if (currentPqLevel < 200) {
+      return 19;
+    }
+    return 20;
+  }
+  
+  alliedNPCs() {
+    try {
+      const NPCUnits = this.units.filter((unit) => {
+        return unit.isNPC;
+      });
+      if (NPCUnits) {
+        return NPCUnits;
+      }
+    } catch (err) {
+    }
+    return [];
+  }
+    
+  haveAnyAlliedNPCs() {
+    return this.alliedNPCs().length > 0;
+  }
+    
+  companions() {
+    try {
+      const companionUnits = this.units.filter((unit) => {
+        return unit.isCompanion;
+      });
+      if (companionUnits) {
+        return companionUnits;
+      }
+    } catch (err) {
+    }
+    return [];
+  }
+    
+  haveAnyCompanions() {
+    return this.companions().length > 0;
+  }
+   
+  soloCompanions() {
+    try {
+      const soloCompanionUnits = this.units.filter((unit) => {
+        return unit.isSoloCompanion;
+      });
+      if (soloCompanionUnits) {
+        return soloCompanionUnits;
+      }
+    } catch (err) {
+    }
+    return [];
+  }
+    
+  haveAnySoloCompanions() {
+    return this.soloCompanions().length > 0;
+  }
+  
   initHelpers() {
     this.updateUnitMaps();
   }

@@ -41,7 +41,10 @@ export default class Unit {
     this.offHandType = unit.offHandType;
     this.towerContributions = unit.towerContributions;
     this.monsterType = unit.monsterType;
-    this.isLamp = unit.isLamp;
+    this.isLamp = unit.isLamp || false;
+    this.isNPC = unit.isNPC || false;
+    this.isCompanion = unit.isCompanion || false;
+    this.isSoloCompanion = unit.isSoloCompanion || false;
 
     if (unit.abilities) {
       this.abilitiesMap = {};

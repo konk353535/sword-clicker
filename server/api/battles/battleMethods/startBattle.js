@@ -16,6 +16,7 @@ import { Adventures } from '/imports/api/adventures/adventures';
 import { BattlesList } from '/imports/api/battles/battles';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
+import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
@@ -216,7 +217,20 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         isSpell: ability.isSpell
       }
     });
+    
+    const usersSkills = Skills.find({
+      owner: userCombat.owner
+    }).fetch();
 
+    const usersSkillsArray = usersSkills.map((skill) => {
+      return {
+        id: skill._id,
+        type: skill.type,
+        xp: skill.xp,
+        totalXp: skill.totalXp,
+        level: skill.level,
+      }
+    });
 
     const newUnit = {
       id: userCombat.owner,
@@ -233,7 +247,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       stats: userCombatStats,
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
-      icon: userCombat.characterIcon || 'character.svg'
+      icon: userCombat.characterIcon || 'character.svg',
+      skills: usersSkillsArray
     };
 
     if (userCombat.enchantments) {

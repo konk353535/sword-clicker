@@ -51,6 +51,12 @@ export default class Unit {
         return ability;
       });
     }
+    
+    if (unit.skills) {
+      this.skills = unit.skills;
+    } else {
+      this.skills = [];
+    }
 
     this.buffs = unit.buffs.map(buff => new Buff(buff, this, this.battleRef));
 
@@ -136,6 +142,35 @@ export default class Unit {
       }      
     }
   }
+  
+  skillLevel(skillName) {
+    try {
+      const userSkillLevel = this.skills.filter((skill) => {
+        return (skill.type.toLowerCase() === skillName.toLowerCase())
+      });
+      if ((userSkillLevel) && (userSkillLevel.length === 1) && (userSkillLevel[0].level > 0)) {
+        return userSkillLevel[0].level;
+      }
+    } catch (err) {
+    }
+    return 1;
+  }
+  
+  attackSkill() {
+    return this.skillLevel('attack');
+  }
+
+  defenseSkill() {
+    return this.skillLevel('defense');
+  }
+
+  magicSkill() {
+    return this.skillLevel('magic');
+  }
+
+  healthSkill() {
+    return this.skillLevel('health');
+  }
 
   raw() {
     return {
@@ -154,7 +189,8 @@ export default class Unit {
       tickOffset: this.tickOffset,
       target: this.target,
       owner: this.owner,
-      isEnemy: this.isEnemy
+      isEnemy: this.isEnemy,
+      skills: this.skills ? this.skills : [],
     }
   }
 

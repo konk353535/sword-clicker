@@ -157,6 +157,7 @@ Template.ability.rendered = function () {
     'head': 2,
     'chest': 3,
     'legs': 4,
+    'companion': 5,
     'changeTarget': 35 // t
   };
   $(document).on(`keyup.${slot}`, (e) => {

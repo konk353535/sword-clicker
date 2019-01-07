@@ -32,6 +32,7 @@ export const COMPANION_BUFFS = {
             id: uuid.v4(),
             tickOffset: 0,
             isNPC: true,
+            isCompanion: true,
           };
 
           if (foxToSpawn === 'fire') {
@@ -167,6 +168,8 @@ export const COMPANION_BUFFS = {
             id: uuid.v4(),
             tickOffset: 0,
             isNPC: true,
+            isCompanion: true,
+            isSoloCompanion: true,
             icon: 'boneWarrior.svg',
             name: 'Skeletal Warrior',
             stats: {
@@ -215,39 +218,51 @@ export const COMPANION_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
 
-          let companion = {
-            owner: target.id,
-            id: uuid.v4(),
-            tickOffset: 0,
-            isNPC: true,
-            icon: 'cutePig.svg',
-            name: 'Cute Pig',
-            stats: {
-              attack: target.stats.attack * 0.01,
-              attackMax: target.stats.attackMax * 0.01,
-              attackSpeed: target.stats.attackSpeed * 0.2,
-              accuracy: (target.stats.accuracy * 0.8) + 15,
-              health: target.stats.healthMax * 1.5,
-              healthMax: target.stats.healthMax * 1.5,
-              defense: (target.stats.defense * 0.7) + 25,
-              armor: (target.stats.armor * 0.7) + 50,
-              magicArmor: target.stats.magicArmor * 0.6,
-              magicPower: target.stats.magicPower * 0.2,
-              damageTaken: 1 // damage received (1 = 100% of all incoming damage)
-            },
-            buffs: [{
-              id: 'companion_taunt',
-              data: {
-                duration: Infinity,
-                totalDuration: Infinity,
-                name: 'companion taunt',
-                icon: 'taunt.svg',
-                timeTillCharge: 5                
-              }
-            }],
-          };
-          
-          actualBattle.addUnit(companion);
+          // this companion won't help in personal quests
+          // this companion won't help in battle with other solo companions
+          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+            const attackSkill = target.attackSkill();
+            const defenseSkill = target.defenseSkill();
+            const magicSkill = target.magicSkill();
+            const healthSkill = target.healthSkill();
+            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
+            
+            let companion = {
+              owner: target.id,
+              id: uuid.v4(),
+              tickOffset: 0,
+              isNPC: true,
+              isCompanion: true,
+              isSoloCompanion: true,
+              icon: 'cutePig.svg',
+              name: 'Cute Pig',
+              stats: {
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
+                attackSpeed: 0.3,
+                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + 200,
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + 200,
+                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.45) + 50,
+                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.65) + 100,
+                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + 25,
+                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor / 3),
+                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+              },
+              buffs: [{
+                id: 'companion_taunt',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'companion taunt',
+                  icon: 'taunt.svg',
+                  timeTillCharge: 5                
+                }
+              }],
+            };
+            
+            actualBattle.addUnit(companion);
+          }
         }
       },
 

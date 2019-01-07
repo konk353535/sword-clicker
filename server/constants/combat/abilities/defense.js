@@ -323,4 +323,20 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+  
+  cute_pig: {
+    icon: 'cutePig.svg',
+    name: 'cute pig',
+    id: 'cute_pig',
+    buffs: ['cute_pig'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.cute_pig;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

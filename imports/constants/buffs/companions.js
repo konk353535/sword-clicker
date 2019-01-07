@@ -193,4 +193,103 @@ export const COMPANION_BUFFS = {
       }
     }
   },
+  
+  cute_pig: {
+    duplicateTag: 'cute_pig', // Used to stop duplicate buffs
+    icon: 'cutePig.svg',
+    name: 'cute pig',
+    description() {
+      return `Summons a cute pig`;
+    },
+    constants: {
+    },
+    data: {
+      hideBuff: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.isSpawned) {
+          buff.data.isSpawned = true;
+          buff.data.hideBuff = true;
+
+          let companion = {
+            owner: target.id,
+            id: uuid.v4(),
+            tickOffset: 0,
+            isNPC: true,
+            icon: 'cutePig.svg',
+            name: 'Cute Pig',
+            stats: {
+              attack: target.stats.attack * 0.01,
+              attackMax: target.stats.attackMax * 0.01,
+              attackSpeed: target.stats.attackSpeed * 0.2,
+              accuracy: (target.stats.accuracy * 0.8) + 15,
+              health: target.stats.healthMax * 3.5,
+              healthMax: target.stats.healthMax * 3.5,
+              defense: (target.stats.defense * 0.7) + 25,
+              armor: (target.stats.armor * 1.0) + 50,
+              magicArmor: target.stats.magicArmor * 0.5,
+              magicPower: target.stats.magicPower * 0.2,
+              damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+            },
+            buffs: [{
+              id: 'companion_taunt',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'companion taunt',
+                icon: 'taunt.svg',
+                timeTillCharge: 5                
+              }
+            }],
+          };
+          
+          actualBattle.addUnit(companion);
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },  
+  
+  companion_taunt: {
+    duplicateTag: 'companion_taunt', // Used to stop duplicate buffs
+    icon: 'taunt.svg',
+    name: 'companion taunt',
+    description() {
+      return `Companion will taunt random targets every 5 seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      timeTillCharge: 5,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          const targetToTaunt = lodash.sample(actualBattle.enemies);
+          if (targetToTaunt && targetToTaunt.target !== target.id && targetToTaunt.stats.health > 0) {
+            targetToTaunt.target = target.id
+            buff.data.timeTillCharge = 5;
+          }
+        }
+
+        buff.stacks = Math.round(buff.data.timeTillCharge);
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 };

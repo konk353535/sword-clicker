@@ -2875,6 +2875,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to bring a skeletal warrior to battle, a companion ability.'
   },
 
+  cute_pig_tome: {
+    id: 'cute_pig_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'cute pig tome',
+    teaches: {
+      abilityId: 'cute_pig',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to bring a cute pig to battle, a companion ability.'
+  },
+
   pine_magic_book: {
     id: 'pine_magic_book',
     icon: 'magic_tome_1.svg',

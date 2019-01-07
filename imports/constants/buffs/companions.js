@@ -180,11 +180,11 @@ export const COMPANION_BUFFS = {
               armor: target.stats.armor * 1.0,
               magicArmor: target.stats.magicArmor * 0.5,
               magicPower: target.stats.magicPower * 0.2,
-              damageTaken: 0
+              damageTaken: 1 // damage received (1 = 100% of all incoming damage)
             },
             buffs: [],
           };
-
+          
           actualBattle.addUnit(companion);
         }
       },

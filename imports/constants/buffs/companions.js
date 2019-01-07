@@ -227,11 +227,11 @@ export const COMPANION_BUFFS = {
               attackMax: target.stats.attackMax * 0.01,
               attackSpeed: target.stats.attackSpeed * 0.2,
               accuracy: (target.stats.accuracy * 0.8) + 15,
-              health: target.stats.healthMax * 3.5,
-              healthMax: target.stats.healthMax * 3.5,
+              health: target.stats.healthMax * 1.5,
+              healthMax: target.stats.healthMax * 1.5,
               defense: (target.stats.defense * 0.7) + 25,
-              armor: (target.stats.armor * 1.0) + 50,
-              magicArmor: target.stats.magicArmor * 0.5,
+              armor: (target.stats.armor * 0.7) + 50,
+              magicArmor: target.stats.magicArmor * 0.6,
               magicPower: target.stats.magicPower * 0.2,
               damageTaken: 1 // damage received (1 = 100% of all incoming damage)
             },
@@ -282,6 +282,8 @@ export const COMPANION_BUFFS = {
           if (targetToTaunt && targetToTaunt.target !== target.id && targetToTaunt.stats.health > 0) {
             targetToTaunt.target = target.id
             buff.data.timeTillCharge = 5;
+          } else {
+            buff.data.timeTillCharge = 1;
           }
         }
 

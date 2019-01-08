@@ -171,7 +171,7 @@ export const COMPANION_BUFFS = {
             isCompanion: true,
             isSoloCompanion: true,
             icon: 'boneWarrior.svg',
-            name: 'Skeletal Warrior',
+            name: target.name + '\'s Warrior',
             stats: {
               attack: target.stats.attack * 0.25,
               attackMax: target.stats.attackMax * 0.25,
@@ -235,7 +235,7 @@ export const COMPANION_BUFFS = {
               isCompanion: true,
               isSoloCompanion: true,
               icon: 'cutePig.svg',
-              name: target.name + '\'s Cute Pig',
+              name: target.name + '\'s Pig',
               stats: {
                 attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks

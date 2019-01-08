@@ -282,6 +282,15 @@ export default class Battle {
     if (!unit.isUnitClass) {
       unit = new Unit(unit, this);
     }
+    
+    if (!this.historyStats) {
+      this.historyStats[unit.id] = {
+        damageDone: 0,
+        damageTaken: 0,
+        healingDone: 0,
+        name: unit.name
+      };
+    }
 
     if (unit.isEnemy) {
       const event = { type: 'push', path: 'enemies', value: unit.raw() };

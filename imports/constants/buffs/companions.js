@@ -366,7 +366,7 @@ export const COMPANION_BUFFS = {
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
                 magicPower: (Math.sqrt(magicSkill * 3) * towerFloor) + (5 * buff.data.level),
-                damageTaken: (buff.data.level >= 3 ? 1 - ((buff.data.level - 3) * 0.1): 1, // damage received (1 = 100% of all incoming damage)
+                damageTaken: (buff.data.level >= 3 ? 1 - ((buff.data.level - 3) * 0.1) : 1), // damage received (1 = 100% of all incoming damage)
                 healingPower: 10 + (5 * buff.data.level),
               },
               buffs: [{

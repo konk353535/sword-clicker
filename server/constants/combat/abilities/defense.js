@@ -339,4 +339,20 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+  
+  mystic_fairy: {
+    icon: 'fairy.svg',
+    name: 'mystic fairy',
+    id: 'mystic_fairy',
+    buffs: ['mystic_fairy'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.mystic_fairy;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

@@ -2875,17 +2875,134 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to bring a skeletal warrior to battle, a companion ability.'
   },
 
-  cute_pig_tome: {
-    id: 'cute_pig_tome',
+  cute_pig_tome_level_1: {
+    id: 'cute_pig_tome_level_1',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'cute pig tome',
+    name: 'Cute Pig tome Lv. 1',
     teaches: {
       abilityId: 'cute_pig',
       level: 1
     },
-    sellPrice: 1,
+    sellPrice: 500,
     description: 'Can be consumed to bring a cute pig to battle, a companion ability.'
+  },
+
+  cute_pig_tome_level_2: {
+    id: 'cute_pig_tome_level_2',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Cute Pig tome Lv. 2',
+    teaches: {
+      abilityId: 'cute_pig',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to upgrade the cute pig, improving his taunt cooldown.'
+  },
+
+  cute_pig_tome_level_3: {
+    id: 'cute_pig_tome_level_3',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Cute Pig tome Lv. 3',
+    teaches: {
+      abilityId: 'cute_pig',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to upgrade the cute pig, teaching him how to use Squeal.'
+  },
+
+  cute_pig_tome_level_4: {
+    id: 'cute_pig_tome_level_4',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Cute Pig tome Lv. 4',
+    teaches: {
+      abilityId: 'cute_pig',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to upgrade the cute pig, improving his general stats.'
+  },
+
+  cute_pig_tome_level_5: {
+    id: 'cute_pig_tome_level_5',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Cute Pig tome Lv. 5',
+    teaches: {
+      abilityId: 'cute_pig',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to upgrade the cute pig, further improving his general stats.'
+  },
+
+  mystic_fairy_tome_level_1: {
+    id: 'mystic_fairy_tome_level_1',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Mystic Fairy tome Lv. 1',
+    teaches: {
+      abilityId: 'mystic_fairy',
+      level: 1
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to bring a mystic fairy to battle, a companion ability.'
+  },
+
+  mystic_fairy_tome_level_2: {
+    id: 'mystic_fairy_tome_level_2',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Mystic Fairy tome Lv. 2',
+    teaches: {
+      abilityId: 'mystic_fairy',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to upgrade the mystic fairy, teaching her how to cast Water Ball and Mending Waters.'
+  },
+
+  mystic_fairy_tome_level_3: {
+    id: 'mystic_fairy_tome_level_3',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Mystic Fairy tome Lv. 3',
+    teaches: {
+      abilityId: 'mystic_fairy',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to upgrade the mystic fairy, teaching her how to cast Air Ball.'
+  },
+
+  mystic_fairy_tome_level_4: {
+    id: 'mystic_fairy_tome_level_4',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Mystic Fairy tome Lv. 4',
+    teaches: {
+      abilityId: 'mystic_fairy',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to upgrade the mystic fairy, giving her a base damage reduction of 10%.'
+  },
+
+  mystic_fairy_tome_level_5: {
+    id: 'mystic_fairy_tome_level_5',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'Mystic Fairy tome Lv. 5',
+    teaches: {
+      abilityId: 'mystic_fairy',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to upgrade the mystic fairy, pushing her base damage reduction to 20%.'
   },
 
   pine_magic_book: {

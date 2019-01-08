@@ -360,12 +360,12 @@ export const COMPANION_BUFFS = {
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // fairies don't do much damage, they're supports
                 attackSpeed: 0.3,
                 accuracy: (Math.sqrt(attackSkill * 2) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 10) + (200 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 10) + (200 * buff.data.level),
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6) + (200 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6) + (200 * buff.data.level),
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.75) + 5,
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor) + (5 * buff.data.level),
+                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 1.1) + (5 * buff.data.level),
                 damageTaken: (buff.data.level >= 3 ? 1 - ((buff.data.level - 3) * 0.1) : 1), // damage received (1 = 100% of all incoming damage)
                 healingPower: 10 + (5 * buff.data.level),
               },
@@ -500,7 +500,7 @@ export const COMPANION_BUFFS = {
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.doneInit) {
           buff.data.doneInit = true;
-          buff.data.timeTillAction = 1.0;
+          buff.data.timeTillAction = 0.4;
           buff.data.CDAirBall = 0.0;
           buff.data.CDMend = 0.0;
           buff.data.CDWaterBall = 0.0,
@@ -570,6 +570,7 @@ export const COMPANION_BUFFS = {
               }
               return true;
             });
+            let castAnyHeal = false;
             const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
             const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
             if (lowHealthTest < 0.70) {
@@ -588,6 +589,7 @@ export const COMPANION_BUFFS = {
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
                 buff.data.CDWaterBall = 10.0;
+                castAnyHeal = true;
                 // END: cast Water Ball
               } else if (buff.data.level >= 2 && lowHealthTestNoMending && buff.data.CDMend <= 0.0) {
                 // START: cast Mending Water
@@ -604,9 +606,11 @@ export const COMPANION_BUFFS = {
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: target, actualBattle });
                 buff.data.CDMend = 30.0;
+                castAnyHeal = true;
                 // END: cast Mending Water
               }
-            } else if (lowHealthTest < 0.85) {
+            }
+            if (!castAnyHeal && lowHealthTest < 0.85) {
               // water dart
               if (buff.data.CDWaterDart <= 0.0) {
                 // START: cast Water Dart
@@ -623,6 +627,7 @@ export const COMPANION_BUFFS = {
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
                 buff.data.CDWaterDart = 10.0;
+                castAnyHeal = true;
                 // END: cast Water Dart
               }
             }
@@ -630,7 +635,7 @@ export const COMPANION_BUFFS = {
           }
           // END: logic healing spells
           
-          buff.data.timeTillAction = 1.0;
+          buff.data.timeTillAction = 0.4;
         }
       },
 

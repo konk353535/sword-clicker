@@ -372,7 +372,10 @@ export default class Battle {
       method: 'POST',
       uri: `${serverUrl}/methods/completeBattle`,
       body: [{
-        units: this.units.concat(this.deadUnits).map(unit => unit.raw()),
+        // only players!
+        units: this.units.concat(this.deadUnits).map(unit => unit.raw()).filter((unit) => {
+          return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
+        }),
         enemies: this.enemies.concat(this.deadEnemies).map(unit => unit.raw()),
         floor: this.floor,
         totalXpGain: this.totalXpGain,

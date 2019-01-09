@@ -629,10 +629,11 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
-        const bladeSpin = lodash.findWhere(attacker.abilities, { id: 'blade_spin' });
-        if (bladeSpin && bladeSpin.currentCooldown > 0) {
-          bladeSpin.currentCooldown -= 0.5;
-        }
+        attacker.abilities.forEach((ability) => {
+          if (ability.id === 'blade_spin' && ability.currentCooldown > 0) {
+            ability.currentCooldown -= 0.5;
+          }
+        });
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {

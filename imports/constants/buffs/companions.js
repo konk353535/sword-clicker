@@ -601,15 +601,14 @@ export const COMPANION_BUFFS = {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
           const targetToTaunt = lodash.sample(actualBattle.enemies);
-          if (targetToTaunt && targetToTaunt.target !== target.id && targetToTaunt.stats.health > 0) {
+          if (targetToTaunt && targetToTaunt.target !== target.id) {
             targetToTaunt.target = target.id
             buff.data.timeTillCharge = (buff.data.level > 1) ? 4 : 7;
+          } else {
+          buff.data.timeTillCharge = 0.4;
           }
         }
 
-        if (buff.data.timeTillCharge < 0.4) {
-          buff.data.timeTillCharge = 0.4;
-        }
         buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 

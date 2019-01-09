@@ -181,7 +181,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
+          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -294,7 +294,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
+          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -402,7 +402,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
+          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -428,7 +428,7 @@ export const COMPANION_BUFFS = {
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.75) + 5,
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 1.1) + (5 * buff.data.level),
+                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.75) + (5 * buff.data.level),
                 damageTaken: (buff.data.level >= 5 ? 0.9 : 1), // damage received (1 = 100% of all incoming damage)
                 healingPower: 10 + (5 * buff.data.level),
               },

@@ -181,7 +181,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -294,7 +294,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -402,7 +402,7 @@ export const COMPANION_BUFFS = {
 
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          if ((actualBattle.isTower()) /* && (!actualBattle.haveAnySoloCompanions()) */) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -638,24 +638,30 @@ export const COMPANION_BUFFS = {
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
-        } else if (!actualBattle.isExplorationRun || actualBattle.room >= 3 || actualBattle.room === 'boss') {
-          if (actualBattle.enemies.length > 1) {
-            let neededToScream = false;
-            actualBattle.enemies.forEach((enemy) => {
-              if (enemy.target !== target.id) {
-                neededToScream = true;
-                enemy.target = target.id;
+        }
+        
+        if (buff.data.timeTillCharge <= 0.0) {
+          if (!actualBattle.isExplorationRun || actualBattle.room >= 3 || actualBattle.room === 'boss') {
+            if (actualBattle.enemies.length > 1) {
+              let neededToScream = false;
+              actualBattle.enemies.forEach((enemy) => {
+                if (enemy.target !== target.id) {
+                  neededToScream = true;
+                  enemy.target = target.id;
+                }
+              });
+              if (neededToScream) {
+                buff.data.timeTillCharge = 25;
               }
-            });
-            if (neededToScream) {
-              buff.data.timeTillCharge = 25;
             }
           }
         }
 
-        if (buff.data.timeTillCharge < 0.4) {
+        // tick throttling if there's nothing to do
+        if (buff.data.timeTillCharge < 0.0) {
           buff.data.timeTillCharge = 0.4;
         }
+        
         buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
@@ -777,7 +783,7 @@ export const COMPANION_BUFFS = {
                 }
               };
               // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-              addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
+              addBuff({ buff: newBuff, target: actualBattle.units, caster: target, actualBattle });
               buff.data.CDWaterWave = 20.0;
               castAnyHeal = true;
               // END: cast Water Wave

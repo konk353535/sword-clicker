@@ -29,7 +29,7 @@ export const COMPANION_BUFFS = {
           // Spawn our fox
           const foxToSpawn = lodash.sample(['fire', 'water', 'air', 'earth']);
           let fox = {
-            owner: target.id,
+            owner: target.id + '_companion',
             id: uuid.v4(),
             tickOffset: 0,
             isNPC: true,
@@ -143,12 +143,27 @@ export const COMPANION_BUFFS = {
     }
   },
   
+  // Level 1: can auto-attack (speed 0.7) and can use Slash (with 10s CD) at level 1
+  // Level 2: can Penetrating Slash at level 1 (with 10s CD) and upgrades Slash to level 2
+  // Level 3: can use Bleed at level 1 (with 30s CD) and upgrades Penetrating Slash to level 2
+  // Level 4: has Phantom Strikes 1 passive and upgrades Bleed to level 2 and Slash to level 3
+  // Level 5: has Thirsty Fangs 1 passive and upgrades Phantom Strikes to level 2 and Penetrating slash to level 3
+  // All levels:  gain attack damage, accuracy, and health for each level
   skeletal_warrior: {
     duplicateTag: 'skeletal_warrior',
     icon: 'boneWarrior.svg',
     name: 'skeletal warrior',
-    description() {
-      return `Summons a skeletal warrior`;
+    description({ buff, level }) {
+      if (level >= 5) {
+        return `Summons a skeletal warrior who can use Thirsty Fangs Lv. 1, <br />Phantom Strikes Lv. 2, Bleed Lv. 2, Slash Lv. 3, <br />and Penetrating Slash Lv. 3 in battle.`;
+      } else if (level === 4) {
+        return `Summons a skeletal warrior who can use Phantom Strikes Lv. 1, <br />Bleed Lv. 2, Slash Lv. 3, and Penetrating Slash Lv. 2 in battle.`;
+      } else if (level === 3) {
+        return `Summons a skeletal warrior who can use Bleed Lv. 1, <br />Slash Lv. 2, and Penetrating Slash Lv. 2 in battle.`;
+      } else if (level === 2) {
+        return `Summons a skeletal warrior who can use Slash Lv. 2 and <br />Penetrating Slash Lv. 1 in battle.`;
+      }
+      return `Summons a skeletal warrior who can use Slash Lv. 1 in battle.`;
     },
     constants: {
     },
@@ -164,32 +179,79 @@ export const COMPANION_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
 
-          let companion = {
-            owner: target.id,
-            id: uuid.v4(),
-            tickOffset: 0,
-            isNPC: true,
-            isCompanion: true,
-            isSoloCompanion: true,
-            icon: 'boneWarrior.svg',
-            name: target.name + '\'s Warrior',
-            stats: {
-              attack: target.stats.attack * 0.25,
-              attackMax: target.stats.attackMax * 0.25,
-              attackSpeed: target.stats.attackSpeed * 0.5,
-              accuracy: target.stats.accuracy * 0.8,
-              health: target.stats.healthMax * 0.6,
-              healthMax: target.stats.healthMax * 0.6,
-              defense: target.stats.defense * 0.7,
-              armor: target.stats.armor * 1.0,
-              magicArmor: target.stats.magicArmor * 0.5,
-              magicPower: target.stats.magicPower * 0.2,
-              damageTaken: 1 // damage received (1 = 100% of all incoming damage)
-            },
-            buffs: [],
-          };
-          
-          actualBattle.addUnit(companion);
+          // this companion won't help in personal quests
+          // this companion won't help in battle with other solo companions
+          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+            const attackSkill = target.attackSkill();
+            const defenseSkill = target.defenseSkill();
+            const magicSkill = target.magicSkill();
+            const healthSkill = target.healthSkill();
+            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
+            
+            let companion = {
+              owner: target.id + '_companion',
+              id: uuid.v4(),
+              tickOffset: 0,
+              isNPC: true,
+              isCompanion: true,
+              isSoloCompanion: true,
+              icon: 'boneWarrior.svg',
+              name: target.name + '\'s Warrior',
+              stats: {
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (5 * buff.data.level),
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 1.5) + (20 * buff.data.level),
+                attackSpeed: 0.7,
+                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.7) + (25 * buff.data.level),
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
+                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 3) + 15,
+                armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.5) + 25,
+                magicArmor: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.5),
+                magicPower: magicSkill,
+                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+              },
+              buffs: [],
+            };
+            
+            companion.buffs = companion.buffs.concat([{
+              id: 'companion_skeletal_warrior',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'companion skeletal warrior',
+                icon: 'boneWarrior.svg',
+                level: buff.data.level,
+              }
+            }]);
+            
+            if (buff.data.level >= 4) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'phantom_strikes',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'phantom strikes',
+                  icon: 'phantomStrikes.svg',
+                  level: buff.data.level - 3, // PS will be level 1 at companion level 4 and level 2 at companion level 5
+                }
+              }]);
+            }
+            
+            if (buff.data.level >= 5) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'thirsty_fangs',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'thirsty fangs',
+                  icon: 'thirstyFangs.svg',
+                  level: 1,
+                }
+              }]);
+            }
+            
+            actualBattle.addUnit(companion);
+          }
         }
       },
 
@@ -240,7 +302,7 @@ export const COMPANION_BUFFS = {
             const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
-              owner: target.id,
+              owner: target.id + '_companion',
               id: uuid.v4(),
               tickOffset: 0,
               isNPC: true,
@@ -298,13 +360,14 @@ export const COMPANION_BUFFS = {
     }
   },  
   
-  // Level 1: knows how to cast water dart (10s CD)
-  // Level 2: ALSO knows how to cast water ball (10s CD) and mending waters (30s CD) but will not cast
-  //          mending water at any target that is already affected by a mending water
+  // Level 1: knows how to cast water dart (10s CD) and water ball (10s CD)
+  // Level 2: ALSO knows how to cast mending waters (30s CD) but will not cast at any target that is
+  //          already affected by a mending water or if the target's maximum health is under 500
   // Level 3: ALSO knows how to cast air ball in boss rooms, individual floors, or exploration attempts
   //          at room 4+ at the first enemy target as long as that enemy doesn't already have air ball
-  //          affecting it (10s CD)
-  // Level 4: ALSO gains +10% damage reduction
+  //          affecting it (10s CD) and as long as the fairy has 400+ remaining max health
+  // Level 4: ALSO knows how to cast water wave (20s CD) if the lowest health allies are <= 70%, <= 80%,
+  //          <= 80%
   // Level 5: ALSO gains +10% damage reduction
   // All levels:  gains health, magic power, and healing power for each level
   mystic_fairy: {
@@ -313,15 +376,15 @@ export const COMPANION_BUFFS = {
     name: 'mystic fairy',
     description({ buff, level }) {
       if (level >= 5) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies. <br />She can also cast Air Ball at enemies and <br />has 20% damage reduction from all sources.`;
+        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, Mending Water, and Water Wave <br />at allies.  She can also cast Air Ball at enemies and <br />has 10% damage reduction from all sources.`;
       } else if (level === 4) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies. <br />She can also cast Air Ball at enemies and <br />has 10% damage reduction from all sources.`;
+        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, Mending Water, and Water Wave <br />at allies.  She can also cast Air Ball at enemies.`;
       } else if (level === 3) {
         return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies. <br />She can also cast Air Ball at enemies.`;
       } else if (level === 2) {
         return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies.`;
       }
-      return `Summons a mystic fairy who can cast Water Dart at allies.`;
+      return `Summons a mystic fairy who can cast Water Dart <br />and Water Ball at allies.`;
     },
     constants: {
     },
@@ -347,7 +410,7 @@ export const COMPANION_BUFFS = {
             const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
-              owner: target.id,
+              owner: target.id + '_companion',
               id: uuid.v4(),
               tickOffset: 0,
               isNPC: true,
@@ -366,7 +429,7 @@ export const COMPANION_BUFFS = {
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
                 magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 1.1) + (5 * buff.data.level),
-                damageTaken: (buff.data.level >= 3 ? 1 - ((buff.data.level - 3) * 0.1) : 1), // damage received (1 = 100% of all incoming damage)
+                damageTaken: (buff.data.level >= 5 ? 0.9 : 1), // damage received (1 = 100% of all incoming damage)
                 healingPower: 10 + (5 * buff.data.level),
               },
               buffs: [{
@@ -390,7 +453,130 @@ export const COMPANION_BUFFS = {
       onRemove({ buff, target }) {
       }
     }
-  },  
+  },
+  
+  companion_skeletal_warrior: {
+    duplicateTag: 'companion_skeletal_warrior',
+    icon: 'boneWarrior.svg',
+    name: 'companion skeletal warrior',
+    description() {
+      return `Companion will use combat abilities to deal damage.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      doneInit: false
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.doneInit) {
+          buff.data.doneInit = true;
+          buff.data.timeTillAction = 0.4;
+          buff.data.CDSlash = 0.0;
+          buff.data.CDPSlash = 0.0;
+          buff.data.CDBleed = 0.0;
+        }
+        
+        if (buff.data.CDSlash > 0.0) {
+          buff.data.CDSlash -= secondsElapsed;
+        }
+        if (buff.data.CDPSlash > 0.0) {
+          buff.data.CDPSlash -= secondsElapsed;
+        }
+        if (buff.data.CDBleed > 0.0) {
+          buff.data.CDBleed -= secondsElapsed;
+        }
+        
+        if (buff.data.timeTillAction > 0) {
+          buff.data.timeTillAction -= secondsElapsed;
+        } else {
+          // Note: always accept whatever target we're on automatically, no re-targeting
+          
+          if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
+            return;
+          }
+          
+          try {
+            // START: logic for targets
+            let enemyIsDodging = false;
+            if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
+              const enemyDodgeBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'evasive_maneuvers'); // this covers ninjas evading and spirits blinking
+              enemyIsDodging = (enemyDodgeBuffs && enemyDodgeBuffs.length > 0);
+            }
+            // END: logic for targets
+            
+            if (!enemyIsDodging)
+            {
+              if (buff.data.level >= 3 && buff.data.CDBleed <= 0.0 && actualBattle.enemies[0].stats.health >= 400) {
+                // START: use Bleed
+                const newBuff = {
+                  id: 'bleed',
+                  data: {
+                    duration: 15,
+                    totalDuration: 15,
+                    icon: 'bleed.svg',
+                    description: ``,
+                    name: 'bleed',
+                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 2 : 1
+                  }
+                };
+                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                buff.data.CDBleed = 30.0;
+                // END: use Bleed
+              }
+              
+              if (buff.data.CDSlash <= 0.0) {
+                // START: use Slash
+                const newBuff = {
+                  id: 'slash',
+                  data: {
+                    duration: 0,
+                    totalDuration: 0,
+                    icon: 'slash.svg',
+                    description: ``,
+                    name: 'slash',
+                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 2 : buff.data.level === 3 ? 2 : buff.data.level === 4 ? 3 : buff.data.level === 5 ? 3 : 1
+                  }
+                };
+                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                buff.data.CDSlash = 10.0;
+                // END: use Slash
+              }
+
+              if (buff.data.level >= 2 && buff.data.CDPSlash <= 0.0) {
+                // START: use Penetrating Slash
+                const newBuff = {
+                  id: 'penetrating_slash',
+                  data: {
+                    duration: 0,
+                    totalDuration: 0,
+                    icon: 'penetratingSlash.svg',
+                    description: ``,
+                    name: 'penetrating slash',
+                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 3 : 1
+                  }
+                };
+                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                buff.data.CDPSlash = 10.0;
+                // END: use Penetrating Slash
+              }
+            }
+          } catch (err) {
+          }
+          
+          buff.data.timeTillAction = 0.4;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
     
   companion_taunt: {
     duplicateTag: 'companion_taunt',
@@ -505,7 +691,11 @@ export const COMPANION_BUFFS = {
           buff.data.CDMend = 0.0;
           buff.data.CDWaterBall = 0.0,
           buff.data.CDWaterDart = 0.0;
+          buff.data.CDWaterWave = 0.0;
         }
+        
+        let castAnyHeal = false;
+        const healthMaxAtStart = target.stats.healthMax;
 
         if (buff.data.CDAirBall > 0.0) {
           buff.data.CDAirBall -= secondsElapsed;
@@ -519,6 +709,9 @@ export const COMPANION_BUFFS = {
         if (buff.data.CDWaterDart > 0.0) {
           buff.data.CDWaterDart -= secondsElapsed;
         }
+        if (buff.data.CDWaterWave > 0.0) {
+          buff.data.CDWaterWave -= secondsElapsed;
+        }
         
         if (buff.data.timeTillAction > 0) {
           buff.data.timeTillAction -= secondsElapsed;
@@ -526,10 +719,10 @@ export const COMPANION_BUFFS = {
           
           // START: logic Air Ball
           try {
-            if (buff.data.level >= 3 && buff.data.CDAirBall <= 0.0) {
+            if (buff.data.level >= 3 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {
               if (actualBattle.isTower()) {
                 if (!actualBattle.isExplorationRun || actualBattle.room >= 4 || actualBattle.room === 'boss') {              
-                  if (actualBattle.enemies.length > 0) {
+                  if (actualBattle.enemies.length > 0 && actualBattle.enemies[0].id !== 'crab') {
                     // always air left-to-right
                     let enemyIsAired = false;
                     if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
@@ -570,11 +763,28 @@ export const COMPANION_BUFFS = {
               }
               return true;
             });
-            let castAnyHeal = false;
             const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
             const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
+            if (!castAnyHeal && unitsHealthSorted.length >= 3 && buff.data.level >= 4 && buff.data.CDWaterWave <= 0.0 && (unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax < 0.7) && (unitsHealthSorted[1].stats.health / unitsHealthSorted[1].stats.healthMax < 0.8) && (unitsHealthSorted[2].stats.health / unitsHealthSorted[2].stats.healthMax < 0.8)) {
+              // START: cast Water Wave
+              const newBuff = {
+                id: 'water_wave',
+                data: {
+                  icon: 'waterWave.svg',
+                  description: `Directly heals all allies.`,
+                  name: 'water wave',
+                  duration: 0,
+                  totalDuration: 0,
+                }
+              };
+              // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+              addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
+              buff.data.CDWaterWave = 20.0;
+              castAnyHeal = true;
+              // END: cast Water Wave
+            }
             if (lowHealthTest < 0.70) {
-              if (buff.data.level >= 2 && buff.data.CDWaterBall <= 0.0) {
+              if (!castAnyHeal && buff.data.CDWaterBall <= 0.0) {
                 // START: cast Water Ball
                 const newBuff = {
                   id: 'water_ball',
@@ -591,7 +801,8 @@ export const COMPANION_BUFFS = {
                 buff.data.CDWaterBall = 10.0;
                 castAnyHeal = true;
                 // END: cast Water Ball
-              } else if (buff.data.level >= 2 && lowHealthTestNoMending && buff.data.CDMend <= 0.0) {
+              }
+              if (!castAnyHeal && buff.data.level >= 2 && lowHealthTestNoMending && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
                 // START: cast Mending Water
                 const newBuff = {
                   id: 'mending_water',
@@ -610,9 +821,9 @@ export const COMPANION_BUFFS = {
                 // END: cast Mending Water
               }
             }
-            if (!castAnyHeal && lowHealthTest < 0.85) {
+            if (lowHealthTest < 0.85) {
               // water dart
-              if (buff.data.CDWaterDart <= 0.0) {
+              if (!castAnyHeal && buff.data.CDWaterDart <= 0.0) {
                 // START: cast Water Dart
                 const newBuff = {
                   id: 'water_dart',
@@ -636,6 +847,13 @@ export const COMPANION_BUFFS = {
           // END: logic healing spells
           
           buff.data.timeTillAction = 0.4;
+
+          if (castAnyHeal) {
+            if (healthMaxAtStart === target.stats.healthMax) {
+              // couldn't afford to cast spells
+              buff.data.timeTillAction = 5.0;
+            }
+          }
         }
       },
 

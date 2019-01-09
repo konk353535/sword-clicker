@@ -2862,17 +2862,69 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the baby fox ability.'
   },
 
-  skeletal_warrior_tome: {
-    id: 'skeletal_warrior_tome',
+  skeletal_warrior_tome_level_1: {
+    id: 'skeletal_warrior_tome_level_1',
     icon: 'tome.svg',
     category: 'tome',
-    name: 'skeletal warrior tome',
+    name: 'skeletal warrior tome Lv. 1',
     teaches: {
       abilityId: 'skeletal_warrior',
       level: 1
     },
-    sellPrice: 1,
+    sellPrice: 500,
     description: 'Can be consumed to bring a skeletal warrior to battle, a companion ability.'
+  },
+
+  skeletal_warrior_tome_level_2: {
+    id: 'skeletal_warrior_tome_level_2',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'skeletal warrior tome Lv. 2',
+    teaches: {
+      abilityId: 'skeletal_warrior',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to upgrade the skeletal warrior, improving its Slash to Lv. 2 and teaching it Penetrating Slash Lv. 1.'
+  },
+
+  skeletal_warrior_tome_level_3: {
+    id: 'skeletal_warrior_tome_level_3',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'skeletal warrior tome Lv. 3',
+    teaches: {
+      abilityId: 'skeletal_warrior',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to upgrade the skeletal warrior, improving its Penetrating Slash to Lv. 2 and teaching it Bleed Lv. 1.'
+  },
+
+  skeletal_warrior_tome_level_4: {
+    id: 'skeletal_warrior_tome_level_4',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'skeletal warrior tome Lv. 4',
+    teaches: {
+      abilityId: 'skeletal_warrior',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to upgrade the skeletal warrior, improving its Bleed to Lv. 2, improving its Slash to Lv. 3 and teaching it Phantom Strikes Lv. 1.'
+  },
+
+  skeletal_warrior_tome_level_5: {
+    id: 'skeletal_warrior_tome_level_5',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'skeletal warrior tome Lv. 5',
+    teaches: {
+      abilityId: 'skeletal_warrior',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to upgrade the skeletal warrior, improving its Phantom Strikes to Lv. 2, improving its Penetrating Slash to Lv. 3 and teaching it Thirsty Fangs Lv. 1.'
   },
 
   cute_pig_tome_level_1: {
@@ -2963,7 +3015,7 @@ export const INSCRIPTION_ITEMS = {
       level: 2
     },
     sellPrice: 1500,
-    description: 'Can be consumed to upgrade the mystic fairy, teaching her how to cast Water Ball and Mending Waters.'
+    description: 'Can be consumed to upgrade the mystic fairy, teaching her how to cast Mending Waters.'
   },
 
   mystic_fairy_tome_level_3: {
@@ -2989,7 +3041,7 @@ export const INSCRIPTION_ITEMS = {
       level: 4
     },
     sellPrice: 13500,
-    description: 'Can be consumed to upgrade the mystic fairy, giving her a base damage reduction of 10%.'
+    description: 'Can be consumed to upgrade the mystic fairy, teaching her how to cast Water Wave.'
   },
 
   mystic_fairy_tome_level_5: {
@@ -3002,7 +3054,7 @@ export const INSCRIPTION_ITEMS = {
       level: 5
     },
     sellPrice: 40500,
-    description: 'Can be consumed to upgrade the mystic fairy, pushing her base damage reduction to 20%.'
+    description: 'Can be consumed to upgrade the mystic fairy, giving her a base damage reduction of 10%.'
   },
 
   pine_magic_book: {

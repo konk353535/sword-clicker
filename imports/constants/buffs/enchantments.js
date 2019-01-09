@@ -436,18 +436,21 @@ export const ENCHANTMENT_BUFFS = {
       },
       
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
-          let hpMaxHealth = defender.stats.healthMaxOrig;
-          let hpFivePct = 0.03 * hpMaxHealth;
-          
-          if (defender.stats.healthMax + hpFivePct > hpMaxHealth) {
-            defender.stats.healthMax = hpMaxHealth;
-          } else {
-            defender.stats.healthMax += hpFivePct;
+        try {
+          if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
+            let hpMaxHealth = defender.stats.healthMaxOrig;
+            let hpFivePct = 0.03 * hpMaxHealth;
+            
+            if (defender.stats.healthMax + hpFivePct > hpMaxHealth) {
+              defender.stats.healthMax = hpMaxHealth;
+            } else {
+              defender.stats.healthMax += hpFivePct;
+            }
+            
+            buff.stacksTimer = 5.0;
+            buff.stacks = Math.ceil(buff.stacksTimer);
           }
-          
-          buff.stacksTimer = 5.0;
-          buff.stacks = Math.ceil(buff.stacksTimer);
+        } catch (err) {
         }
       },
 

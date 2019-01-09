@@ -771,22 +771,29 @@ export const COMPANION_BUFFS = {
             const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
             const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
             if (!castAnyHeal && unitsHealthSorted.length >= 3 && buff.data.level >= 4 && buff.data.CDWaterWave <= 0.0 && (unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax < 0.7) && (unitsHealthSorted[1].stats.health / unitsHealthSorted[1].stats.healthMax < 0.8) && (unitsHealthSorted[2].stats.health / unitsHealthSorted[2].stats.healthMax < 0.8)) {
-              // START: cast Water Wave
-              const newBuff = {
-                id: 'water_wave',
-                data: {
-                  icon: 'waterWave.svg',
-                  description: `Directly heals all allies.`,
-                  name: 'water wave',
-                  duration: 0,
-                  totalDuration: 0,
-                }
-              };
-              // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-              addBuff({ buff: newBuff, target: actualBattle.units, caster: target, actualBattle });
-              buff.data.CDWaterWave = 20.0;
-              castAnyHeal = true;
-              // END: cast Water Wave
+              try {
+                // START: cast Water Wave
+                const newBuff = {
+                  id: 'water_wave',
+                  data: {
+                    icon: 'waterWave.svg',
+                    description: `Directly heals all allies.`,
+                    name: 'water wave',
+                    duration: 0,
+                    totalDuration: 0,
+                  }
+                };
+                // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+                actualBattle.units.forEach((unit_to_heal) => {
+                    addBuff({ buff: newBuff, target: unit_to_heal, caster: target, actualBattle });
+                });                
+                buff.data.CDWaterWave = 20.0;
+                castAnyHeal = true;
+                // END: cast Water Wave
+              } catch (err) {
+                console.log("Fairy could not cast water wave");
+                console.log(err);
+              }
             }
             if (lowHealthTest < 0.70) {
               if (!castAnyHeal && buff.data.CDWaterBall <= 0.0) {

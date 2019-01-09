@@ -851,7 +851,10 @@ export const COMPANION_BUFFS = {
           }
           // END: logic healing spells
           
-          buff.data.timeTillAction = 0.4;
+          // tick throttling if there's nothing to do
+          if (buff.data.timeTillAction < 0.0) {
+            buff.data.timeTillAction = 0.4;
+          }
 
           if (castAnyHeal) {
             if (healthMaxAtStart === target.stats.healthMax) {

@@ -535,8 +535,6 @@ export const COMPANION_BUFFS = {
                 const newBuff = {
                   id: 'slash',
                   data: {
-                    duration: 0,
-                    totalDuration: 0,
                     icon: 'slash.svg',
                     description: ``,
                     name: 'slash',
@@ -553,8 +551,6 @@ export const COMPANION_BUFFS = {
                 const newBuff = {
                   id: 'penetrating_slash',
                   data: {
-                    duration: 0,
-                    totalDuration: 0,
                     icon: 'penetratingSlash.svg',
                     description: ``,
                     name: 'penetrating slash',
@@ -778,9 +774,7 @@ export const COMPANION_BUFFS = {
                   data: {
                     icon: 'waterWave.svg',
                     description: `Directly heals all allies.`,
-                    name: 'water wave',
-                    duration: 0,
-                    totalDuration: 0,
+                    name: 'water wave'
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
@@ -803,9 +797,7 @@ export const COMPANION_BUFFS = {
                   data: {
                     icon: 'waterBall.svg',
                     description: `Directly heals target.`,
-                    name: 'water ball',
-                    duration: 0,
-                    totalDuration: 0,
+                    name: 'water ball'
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
@@ -842,9 +834,7 @@ export const COMPANION_BUFFS = {
                   data: {
                     icon: 'waterDart.svg',
                     description: `Directly heals target.`,
-                    name: 'water dart',
-                    duration: 0,
-                    totalDuration: 0,
+                    name: 'water dart'
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.

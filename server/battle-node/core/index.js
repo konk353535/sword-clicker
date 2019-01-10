@@ -285,10 +285,13 @@ export default class Battle {
     
     if (!this.historyStats) {
       this.historyStats[unit.id] = {
+        name: unit.name,
         damageDone: 0,
         damageTaken: 0,
         healingDone: 0,
-        name: unit.name
+        damageDoneCompanion: 0,
+        damageTakenCompanion: 0,
+        healingDoneCompanion: 0
       };
     }
 

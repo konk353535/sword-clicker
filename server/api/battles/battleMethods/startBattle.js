@@ -274,10 +274,13 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
     newBattle.units.push(newUnit);
     newBattle.historyStats[newUnit.id] = {
+      name: newUnit.name,
       damageDone: 0,
       damageTaken: 0,
       healingDone: 0,
-      name: newUnit.name
+      damageDoneCompanion: 0,
+      damageTakenCompanion: 0,
+      healingDoneCompanion: 0
     };
   });
 

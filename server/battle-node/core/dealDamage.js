@@ -1,6 +1,12 @@
 import { BATTLES } from '../../constants/battles/index.js'; // List of available combat stats
 import { BUFFS } from '../../../imports/constants/buffs/index.js';
 
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+  };
+}
+
 export default function(rawDamage, {
   attacker,
   defender,
@@ -29,18 +35,48 @@ export default function(rawDamage, {
     this.checkDeath(defender);
   }
 
-  if (historyStats && historyStats[attacker.id]) {
-    historyStats[attacker.id].damageDone += damage;
+  let attacker__id_to_use = attacker.id;
+    if (attacker.isCompanion) {
+    try {
+      if (attacker.owner.endsWith("_companion")) {
+        attacker__id_to_use = attacker.owner.substring(0, attacker.owner.length - 10);
+      }
+    } catch (err) {
+    }
+  }
+  
+  let defender__id_to_use = defender.id;
+    if (defender.isCompanion) {
+    try {
+      if (defender.owner.endsWith("_companion")) {
+        defender__id_to_use = defender.owner.substring(0, defender.owner.length - 10);
+      }
+    } catch (err) {
+    }
+  }
+  
+  if (historyStats && historyStats[attacker__id_to_use]) {
+    if (!attacker.isCompanion) {
+      historyStats[attacker__id_to_use].damageDone += damage;
+    } else {
+      historyStats[attacker__id_to_use].companionName = attacker.name;
+      historyStats[attacker__id_to_use].damageDoneCompanion += damage;
+    }    
   }
 
-  if (historyStats && historyStats[defender.id]) {
-    historyStats[defender.id].damageTaken += damage;
+  if (historyStats && historyStats[defender__id_to_use]) {
+    if (!defender.isCompanion) {
+      historyStats[defender__id_to_use].damageTaken += damage;
+    } else {
+      historyStats[defender__id_to_use].companionName = defender.name;
+      historyStats[defender__id_to_use].damageTakenCompanion += damage;
+    }
   }
-
+  
   if(tickEvents) {
     tickEvents.push({
-      from: attacker ? attacker.id : '',
-      to: defender.id,
+      from: attacker ? attacker__id_to_use : '',
+      to: defender ? defender__id_to_use : '',
       eventType: 'damage',
       label: damage.toFixed(1),
       customColor: isMagic ? 'blue' : customColor,

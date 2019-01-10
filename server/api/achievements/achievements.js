@@ -109,6 +109,7 @@ Meteor.methods({
         id: key,
         collected,
         canCollect,
+        kind: achieve.kind,
         name: achieve.name,
         description: achieve.description,
         hidden: achieve.hidden,

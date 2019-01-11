@@ -276,7 +276,7 @@ export const COMPANION_BUFFS = {
       if (level >= 5) {
         return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura and can evade attacks when low health.`;
       } else if (level === 4){
-        /return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura.`;
+        return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura.`;
       } else if (level === 3){
         return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.`;
       } else if (level === 2){

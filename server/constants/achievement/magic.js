@@ -118,7 +118,7 @@ export const MAGIC_ACHIEVEMENTS = {
  
   'magic_600': {
     kind: 'magic',
-    name: '2,500 Spellcasts',
+    name: '600 Spellcasts',
     hidden: false,
     description: 'Cast at least 600 spells',
     condition({ user }) {
@@ -180,7 +180,7 @@ export const MAGIC_ACHIEVEMENTS = {
   
   'magic_2500': {
     kind: 'magic',
-    name: '1,000 Spellcasts',
+    name: '2,500 Spellcasts',
     hidden: false,
     description: 'Cast at least 2,500 spells',
     condition({ user }) {

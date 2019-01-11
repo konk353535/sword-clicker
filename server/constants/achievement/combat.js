@@ -215,7 +215,7 @@ export const COMBAT_ACHIEVEMENTS = {
     hidden: false,
     description: 'Took at least 1,000 damage in one fight',
     condition({ user }) {
-      return ((user.stats) && ((user.stats.combatMostDamageTaken || 0) >= 1,000));
+      return ((user.stats) && ((user.stats.combatMostDamageTaken || 0) >= 1000));
     },
     rewards: [{
       type: 'item',

@@ -57,7 +57,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 10000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 10000
     }]
   },
@@ -111,7 +111,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 50000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 50000
     }]
   },
@@ -173,7 +173,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 100000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 100000
     }]
   },
@@ -227,7 +227,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 500000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 500000
     }]
   },
@@ -281,7 +281,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 1000000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 1000000
     }]
   },
@@ -343,7 +343,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 1500000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 1500000
     }]
   },
@@ -397,7 +397,7 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 2000000
     }, {
       type: 'xp',
-      skill: 'astronomy',
+      skill: 'inscription',
       amount: 2000000
     }]
   },

@@ -29,7 +29,7 @@ export const COMBAT_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'iron_knife',
+      itemId: 'iron_scimitar',
       amount: 1
     }, {
       type: 'xp',
@@ -67,7 +67,7 @@ export const COMBAT_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'steel_knife',
+      itemId: 'steel_scimitar',
       amount: 1
     }, {
       type: 'xp',
@@ -105,7 +105,7 @@ export const COMBAT_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'obsidian_knife',
+      itemId: 'obsidian_scimitar',
       amount: 1
     }, {
       type: 'xp',
@@ -143,7 +143,7 @@ export const COMBAT_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'orichalcum_knife',
+      itemId: 'orichalcum_scimitar',
       amount: 1
     }, {
       type: 'xp',

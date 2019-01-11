@@ -238,7 +238,7 @@ export const MAGIC_ACHIEVEMENTS = {
     hidden: false,
     description: 'Cast at least 7,500 spells',
     condition({ user }) {
-      return ((user.stats) && ((user.stats.spellsCast || 0) >= 7,500));
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 7500));
     },
     rewards: [{
       type: 'item',
@@ -354,7 +354,7 @@ export const MAGIC_ACHIEVEMENTS = {
     hidden: false,
     description: 'Cast at least 17,500 spells',
     condition({ user }) {
-      return ((user.stats) && ((user.stats.spellsCast || 0) >= 17,500));
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 17500));
     },
     rewards: [{
       type: 'item',

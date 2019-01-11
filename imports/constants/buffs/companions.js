@@ -265,13 +265,19 @@ export const COMPANION_BUFFS = {
   // Level 3: ALSO knows how to squeal (scream) that will taunt all targets in boss rooms, individual floors,
   //          or exploration attempts at room 3+ as long as there is at least 2 enemies in the room and
   //          at least one of those two enemies aren't targeting the pig (with 25s CD)
+  // Level 4: ALSO has Watchful Aura passive
+  // Level 5: ALSO knows Evasive Maneuvers Lv. 5 and will use it when under 50% health (with 40s CD)
   // All levels:  gains health, defense, armor, and magic armor for each level
   cute_pig: {
     duplicateTag: 'cute_pig',
     icon: 'cutePig.svg',
     name: 'cute pig',
     description({ buff, level }) {
-      if (level >= 3) {
+      if (level >= 5) {
+        return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura and can evade attacks when low health.`;
+      } else if (level === 4){
+        /return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura.`;
+      } else if (level === 3){
         return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.`;
       } else if (level === 2){
         return `Summons a cute pig who taunts random <br />enemies every 4 seconds.`;
@@ -346,6 +352,30 @@ export const COMPANION_BUFFS = {
                   icon: 'scream.svg',
                   timeTillCharge: 25,
                   level: buff.data.level,
+                }
+              }]);
+            }
+
+            if (buff.data.level >= 4) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'sixth_sense',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'watchful aura',
+                  icon: 'sixthSense.svg',
+                }
+              }]);
+            }
+
+            if (buff.data.level >= 5) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'companion_pig_logic',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'piggy oink oink',
+                  icon: 'cutePig.svg',
                 }
               }]);
             }
@@ -574,6 +604,55 @@ export const COMPANION_BUFFS = {
     }
   },
     
+  companion_pig_logic: {
+    duplicateTag: 'companion_pig_logic',
+    icon: 'cutePig.svg',
+    name: 'piggy oink oink',
+    description() {
+      return `Companion will do pig things.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      timeTillCharge: 0.4,
+      hideBuff: true,
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+        buff.data.hideBuff = true;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          if (target.health / target.healthMax < 0.5) {
+            const newBuff = {
+              id: 'evasive_maneuvers',
+              data: {
+                duration: 3.5,
+                totalDuration: 3.5,
+                icon: 'evasiveManeuvers.svg',
+                description: ``,
+                name: 'evasive maneuvers',
+                level: 5
+              }
+            };
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+            buff.data.timeTillCharge = 40;
+          } else {
+          buff.data.timeTillCharge = 0.4;
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },  
+  
   companion_taunt: {
     duplicateTag: 'companion_taunt',
     icon: 'taunt.svg',

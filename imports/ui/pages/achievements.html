@@ -9,9 +9,6 @@
     <li class="nav-item combatTabLink">
       <a class="nav-link {{#if showCombatAchieveTab}}active{{/if}}" href="#">Combat</a>
     </li>
-    <li class="nav-item craftingTabLink">
-      <a class="nav-link {{#if showCraftingAchieveTab}}active{{/if}}" href="#">Crafting</a>
-    </li>
   	<li class="nav-item magicTabLink">
       <a class="nav-link {{#if showMagicAchieveTab}}active{{/if}}" href="#">Magic</a>
     </li>
@@ -20,15 +17,11 @@
     </li>
   </ul>
 
-
   {{#if showPqAchieveTab}}
     {{> pqAchieveTab achievements=achievements}}
   {{/if}}
   {{#if showCombatAchieveTab}}
     {{> combatAchieveTab achievements=achievements}}
-  {{/if}}
-  {{#if showCraftingAchieveTab}}
-    {{> craftingAchieveTab achievements=achievements}}
   {{/if}}
   {{#if showMagicAchieveTab}}
     {{> magicAchieveTab achievements=achievements}}

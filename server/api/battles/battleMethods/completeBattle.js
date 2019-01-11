@@ -28,6 +28,53 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { State } from '/imports/api/state/state';
 import weightedRandom from 'weighted-random';
 
+export const updateUserHighestFloorClear = function updateUserHighestFloorClear({ user, floor }) {
+  const userObject = Users.findOne({ _id: user});
+  
+  if (userObject) {
+    if ((!userObject.stats) || ((userObject.stats.towerHighestClear || 0) < (floor || 0))) {
+      Users.update(user, {
+        $set: {
+          'stats.towerHighestClear': floor || 0
+        }
+      });
+    }
+  }
+};
+
+export const updateCombatHistoryStats = function updateCombatHistoryStats({ user, historyStats }) {
+  const userObject = Users.findOne({ _id: user});
+  
+  try {
+    if (userObject) {
+      if ((!userObject.stats) || ((userObject.stats.combatMostDamageDone || 0) < historyStats.damageDone)) {
+        Users.update(user, {
+          $set: {
+            'stats.combatMostDamageDone': parseInt(Math.round(historyStats.damageDone || 0))
+          }
+        });
+      }
+
+      if ((!userObject.stats) || ((userObject.stats.combatMostHealingDone || 0) < historyStats.healingDone)) {
+        Users.update(user, {
+          $set: {
+            'stats.combatMostHealingDone': parseInt(Math.round(historyStats.healingDone || 0))
+          }
+        });
+      }
+
+      if ((!userObject.stats) || ((userObject.stats.combatMostDamageTaken || 0) < historyStats.damageTaken)) {
+        Users.update(user, {
+          $set: {
+            'stats.combatMostDamageTaken': parseInt(Math.round(historyStats.damageTaken || 0))
+          }
+        });
+      }
+    }
+  } catch (err) {
+  }
+};
+
 export const distributeRewards = function distributeRewards({ floor, server }) {
 
   // Fetch the rewards
@@ -304,6 +351,13 @@ export const completeBattle = function (actualBattle) {
       return !!unit.owner && !unit.isNPC && unit.xpDistribution;
     });
 
+    // Update stats
+    if (win && actualBattle.isExplorationRun) {
+      units.forEach((unit) => {
+        updateUserHighestFloorClear({ user: unit.owner, floor: actualBattle.floor });
+      });
+    }
+    
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
@@ -934,6 +988,14 @@ export const completeBattle = function (actualBattle) {
     createdAt: new Date(),
     lootResolved: false
   });
+  
+  allFriendlyUnits.forEach((unit) => {
+    for (const historyStatId in actualBattle.historyStats) {
+      if (historyStatId === unit.owner && actualBattle.historyStats.hasOwnProperty(historyStatId)) {
+        updateCombatHistoryStats({ user: unit.owner, historyStats: actualBattle.historyStats[historyStatId] });
+      }
+    }
+  });
 
   if (ngRewards.length > 0) {
     Meteor.setTimeout(() => {
@@ -942,8 +1004,8 @@ export const completeBattle = function (actualBattle) {
     }, 30000);
   }
 
-  //delete actualBattle; // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
-                         // see https://www.w3schools.com/js/js_object_properties.asp
+  delete actualBattle; // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
+                       // see https://www.w3schools.com/js/js_object_properties.asp
 };
 
 JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {

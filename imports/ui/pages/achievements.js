@@ -7,7 +7,7 @@ import _ from 'underscore';
 
 // Component used in the template
 import '/imports/ui/components/achievements/combatAchieveTab/combatAchieveTab.js';
-import '/imports/ui/components/achievements/craftingAchieveTab/craftingAchieveTab.js';
+//import '/imports/ui/components/achievements/craftingAchieveTab/craftingAchieveTab.js';
 import '/imports/ui/components/achievements/pqAchieveTab/pqAchieveTab.js';
 import '/imports/ui/components/achievements/magicAchieveTab/magicAchieveTab.js';
 import '/imports/ui/components/achievements/towerAchieveTab/towerAchieveTab.js';
@@ -55,12 +55,14 @@ Template.achievementsPage.events({
     }
   },
 
+  /*
   'click .craftingTabLink'(event, instance) {
     if (instance.state.get('currentTab') !== 'crafting') {
       instance.state.set('currentTab', 'crafting');
       Meteor.call('users.setUiState', 'achievementTab', 'crafting');
     }
   },
+  */
 
   'click .pqTabLink'(event, instance) {
     if (instance.state.get('currentTab') !== 'pq') {
@@ -94,10 +96,12 @@ Template.achievementsPage.helpers({
     return Template.instance().state.get('currentTab') === 'combat';
   },
 
+  /*
   showCraftingAchieveTab() {
     return Template.instance().state.get('currentTab') === 'crafting';
   },
-
+  */
+  
   showMagicAchieveTab() {
     return Template.instance().state.get('currentTab') === 'magic';
   },

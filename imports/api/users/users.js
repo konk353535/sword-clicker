@@ -108,7 +108,11 @@ UserSchema = new SimpleSchema({
   'personalQuest.wave': { type: Number, defaultValue: 1 },
 
   stats: { type: Object },
-  'stats.spellsCast' : { type: Number, defaultValue: 1 }
+  'stats.spellsCast' : { type: Number, defaultValue: 1 },
+  'stats.towerHighestClear': { type: Number, defaultValue: 0 },
+  'stats.combatMostDamageDone': { type: Number, defaultValue: 0 },
+  'stats.combatMostHealingDone': { type: Number, defaultValue: 0 },
+  'stats.combatMostDamageTaken': { type: Number, defaultValue: 0 },
 });
 
 Meteor.users.attachSchema(UserSchema);

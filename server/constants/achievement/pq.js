@@ -1,6 +1,7 @@
 console.log('exporting achievement/pq.js PQ_ACHIEVEMENTS');
 export const PQ_ACHIEVEMENTS = {
   'pq_10': {
+    kind: 'pq',
     name: 'PQ 10',
     hidden: false,
     description: 'Reach level 10 in personal quest',
@@ -14,6 +15,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_20': {
+    kind: 'pq',
     name: 'PQ 20',
     hidden: false,
     description: 'Reach level 20 in personal quest',
@@ -36,6 +38,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_30': {
+    kind: 'pq',
     name: 'PQ 30',
     hidden: false,
     description: 'Reach level 30 in personal quest',
@@ -50,6 +53,7 @@ export const PQ_ACHIEVEMENTS = {
 
   /* Rebalanced, pq70 now pq35 */
   'pq_70': {
+    kind: 'pq',
     name: 'PQ 35',
     hidden: false,
     description: 'Reach level 35 in personal quest',
@@ -65,6 +69,7 @@ export const PQ_ACHIEVEMENTS = {
 
 
   'pq_40': {
+    kind: 'pq',
     name: 'PQ 40',
     hidden: false,
     description: 'Reach level 40 in personal quest',
@@ -87,6 +92,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_50': {
+    kind: 'pq',
     name: 'PQ 50',
     hidden: false,
     description: 'Reach level 50 in personal quest',
@@ -106,6 +112,7 @@ export const PQ_ACHIEVEMENTS = {
 
   /* Rebalanced, Jade from pq70 moved to 35 */
   'pq_70_2': {
+    kind: 'pq',
     name: 'PQ 60',
     hidden: false,
     description: 'Reach level 60 in personal quest',
@@ -119,6 +126,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_110': {
+    kind: 'pq',
     name: 'PQ 65',
     hidden: false,
     description: 'Reach level 65 in personal quest',
@@ -137,6 +145,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_60': {
+    kind: 'pq',
     name: 'PQ 70',
     hidden: false,
     description: 'Reach level 70 in personal quest',
@@ -149,7 +158,8 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
-  'pq_80': {
+  'pq_80_new': {
+    kind: 'pq',
     name: 'PQ 80',
     hidden: false,
     description: 'Reach level 80 in personal quest',
@@ -158,24 +168,29 @@ export const PQ_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'blue_wizard_hat',
+      itemId: 'carbon_knife',
       amount: 1
     }, {
       type: 'item',
-      itemId: 'blue_wizard_shirt',
+      itemId: 'carbon_horned_helmet',
       amount: 1
     }, {
       type: 'item',
-      itemId: 'blue_wizard_shorts',
+      itemId: 'carbon_broad_sword',
       amount: 1
     }, {
       type: 'xp',
-      skill: 'magic',
-      amount: 10000
+      skill: 'attack',
+      amount: 25000
+    }, {
+      type: 'xp',
+      skill: 'health',
+      amount: 25000
     }]
   },
 
   'pq_90': {
+    kind: 'pq',
     name: 'PQ 90',
     hidden: false,
     description: 'Reach level 90 in personal quest',
@@ -189,6 +204,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_95': {
+    kind: 'pq',
     name: 'PQ 95',
     hidden: false,
     description: 'Reach level 95 in personal quest',
@@ -203,6 +219,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_100': {
+    kind: 'pq',
     name: 'PQ 100',
     hidden: false,
     description: 'Reach level 100 in personal quest',
@@ -225,6 +242,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_110_2': {
+    kind: 'pq',
     name: 'PQ 110',
     hidden: false,
     description: 'Reach level 110 in personal quest',
@@ -238,6 +256,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_120': {
+    kind: 'pq',
     name: 'PQ 120',
     hidden: false,
     description: 'Reach level 120 in personal quest',
@@ -251,6 +270,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_125': {
+    kind: 'pq',
     name: 'PQ 125',
     hidden: false,
     description: 'Reach level 125 in personal quest',
@@ -265,6 +285,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_150': {
+    kind: 'pq',
     name: 'PQ 150',
     hidden: false,
     description: 'Reach level 150 in personal quest',
@@ -277,12 +298,13 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
-  'pq_155': {
-    name: 'PQ 155',
+  'pq_155': { // keep the ID the same, move the reward
+    kind: 'pq',
+    name: 'PQ 170',
     hidden: false,
-    description: 'Reach level 155 in personal quest',
+    description: 'Reach level 170 in personal quest',
     condition({ user }) {
-      return user.personalQuest.level >= 155;
+      return user.personalQuest.level >= 170;
     },
     rewards: [{
       type: 'item',
@@ -292,6 +314,7 @@ export const PQ_ACHIEVEMENTS = {
   },
 
   'pq_185': {
+    kind: 'pq',
     name: 'PQ 185',
     hidden: false,
     description: 'Reach level 185 in personal quest',

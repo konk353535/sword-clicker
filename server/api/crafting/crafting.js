@@ -286,6 +286,9 @@ Meteor.methods({
 
       // If it's learnt show regardless of level
       if (recipe.isHidden) {
+        if (!crafting) {
+          return false;
+        }
         return !(!crafting.learntCrafts || !crafting.learntCrafts[recipe.id]);
       }
 

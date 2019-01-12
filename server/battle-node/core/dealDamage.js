@@ -75,8 +75,8 @@ export default function(rawDamage, {
   
   if(tickEvents) {
     tickEvents.push({
-      from: attacker ? attacker__id_to_use : '',
-      to: defender ? defender__id_to_use : '',
+      from: attacker ? attacker.id : '',
+      to: defender ? defender.id : '',
       eventType: 'damage',
       label: damage.toFixed(1),
       customColor: isMagic ? 'blue' : customColor,

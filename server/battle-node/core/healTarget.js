@@ -42,7 +42,7 @@ export default function(healAmount, {
 
   if(tickEvents) {
     tickEvents.push({
-      from: caster ? caster__id_to_use : '',
+      from: caster ? caster.id : '',
       to: target ? target.id : '',
       eventType: 'heal',
       label: (healAmount).toFixed(1),

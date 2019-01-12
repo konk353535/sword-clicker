@@ -951,12 +951,15 @@ export const completeBattle = function (actualBattle) {
 
     // Update players contributions
     allFriendlyUnits.forEach((unit) => {
-      BossHealthScores.insert({
-        server: actualBattle.server,
-        owner: unit.owner,
-        username: unit.name,
-        bossDamage: damageDealt
-      });
+      try {
+        BossHealthScores.insert({
+          server: actualBattle.server,
+          owner: unit.owner,
+          username: unit.name,
+          bossDamage: damageDealt
+        });
+      } catch (err) {
+      }
     });
 
     // Update bosses hp

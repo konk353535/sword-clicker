@@ -6,6 +6,81 @@ import lodash from 'lodash';
 import _ from 'underscore';
 import uuid from 'node-uuid';
 
+// combat node/server doesn't have access to database or schema
+//import { Users } from '/imports/api/users/users';
+//import { Groups } from '/imports/api/groups/groups';
+//import { Chats } from 'meteor/cesarve:simple-chat/collections';
+
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+  };
+}
+
+export const getCompanionOwner = function getCompanionOwner(companion) {
+  let owner_id = companion.id;
+  if (companion.isCompanion) {
+    try {
+      if (companion.owner.endsWith("_companion")) {
+        owner_id = companion.owner.substring(0, companion.owner.length - 10);
+      }
+    } catch (err) {
+    }
+  }
+  return owner_id;
+};
+
+export const companionEvent = function companionEvent({ actualBattle, companion, target, info, color }) {
+  if (actualBattle.tickEvents) {
+    try {
+      target = target || companion;
+      actualBattle.tickEvents.push({from: companion.id, to: target.id, eventType: 'special', label: info, customColor: color, customIcon: 'noicon'});
+    } catch (err) {
+    }
+  }
+};
+
+// combat node/server doesn't have access to database or schema
+/*
+export const companionChat = function companionChat({ companion, message }) {
+  try {
+    const companionOwner = getCompanionOwner(companion);
+    const userDoc = Users.findOne({ _id: companionOwner });
+    
+    if (!userDoc) {
+      return;
+    }
+    
+    const playerGroupDoc = Groups.findOne({ members: companionOwner });
+    
+    if (playerGroupDoc) {    
+      Chats.insert({
+        message,
+        username: companion.name,
+        name: companion.name,
+        date: new Date(),
+        custom: {
+          roomType: 'Party'
+        },
+        roomId: `${playerGroupDoc._id}-${userDoc.server}`
+      });
+    } else {
+      Chats.insert({
+        message,
+        username: companion.name,
+        name: companion.name,
+        date: new Date(),
+        custom: {
+          roomType: 'Game'
+        },
+        roomId: `Game-${companionOwner}`
+      });
+    }
+  } catch (err) {
+  }
+};
+*/
+
 export const COMPANION_BUFFS = {
   baby_fox_ability: {
     duplicateTag: 'baby_fox_ability',
@@ -679,6 +754,10 @@ export const COMPANION_BUFFS = {
           if (targetToTaunt && targetToTaunt.target !== target.id) {
             targetToTaunt.target = target.id
             buff.data.timeTillCharge = (buff.data.level > 1) ? 4 : 7;
+            // combat node/server doesn't have access to database or schema
+            //companionChat({ companion: target, message: 'I taunted the ' + targetToTaunt.name + '!' });
+            companionEvent({ actualBattle, companion: target, info: 'Oink!', color: '#DF4682' });
+            companionEvent({ actualBattle, companion: target, info: '?!?',   color: '#DF8246', target: targetToTaunt });
           } else {
           buff.data.timeTillCharge = 0.4;
           }
@@ -723,9 +802,11 @@ export const COMPANION_BUFFS = {
                 if (enemy.target !== target.id) {
                   neededToScream = true;
                   enemy.target = target.id;
+                  companionEvent({ actualBattle, companion: target, info: '?!?', color: '#DF8246', target: enemy });
                 }
               });
               if (neededToScream) {
+                companionEvent({ actualBattle, companion: target, info: 'Squeal!', color: '#DF4682' });
                 buff.data.timeTillCharge = 25;
               }
             }

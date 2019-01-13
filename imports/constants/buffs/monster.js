@@ -108,7 +108,8 @@ export const MONSTER_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      hideBuff: true,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -117,6 +118,7 @@ export const MONSTER_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         if (!buff.data.timeTillBlink) {
+          buff.data.hideBuff = true;
           buff.data.timeTillBlink = 6 + (Math.random() * 7);
         }
 
@@ -130,7 +132,7 @@ export const MONSTER_BUFFS = {
               duration: 4,
               totalDuration: 4,
               level: 1,
-              icon: 'vortex.svg'
+              icon: 'spectre.svg'
             }
           };
 

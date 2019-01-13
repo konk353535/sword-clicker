@@ -396,10 +396,10 @@ export const COMPANION_BUFFS = {
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
                 attackSpeed: 0.3,
                 accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (150 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (150 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.45) + (25 * buff.data.level),
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.65) + (100 * buff.data.level),
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (125 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (125 * buff.data.level),
+                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.45) + (15 * buff.data.level),
+                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.65) + (75 * buff.data.level),
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + (20 * buff.data.level),
                 magicPower: (Math.sqrt(magicSkill * 3) * towerFloor / 3),
                 damageTaken: 1 // damage received (1 = 100% of all incoming damage)

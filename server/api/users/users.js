@@ -424,7 +424,8 @@ Meteor.publish("userData", function () {
         'farmingUpgradeTo': 1,
         'inscriptionUpgradeTo': 1,
         'isGuest': 1,
-        'isMutedExpiry': 1
+        'isMutedExpiry': 1,
+        'stats': 1
       }
     });
   } else {

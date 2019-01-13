@@ -153,7 +153,8 @@ export const METEORITE_ITEMS = {
       "attack": 124.8,
       "attackMax": 174.4,
       "attackSpeed": 0.5,
-      "accuracy": 99.8
+      "accuracy": 99.8,
+      "criticalChance": 15
     },
     "extraStats": {
       "attack": 37.4,

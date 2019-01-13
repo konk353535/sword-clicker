@@ -153,7 +153,8 @@ export const IRON_ITEMS = {
       "attack": 22.8,
       "attackMax": 31.9,
       "attackSpeed": 0.5,
-      "accuracy": 18.3
+      "accuracy": 18.3,
+      "criticalChance": 15
     },
     "extraStats": {
       "attack": 6.8,

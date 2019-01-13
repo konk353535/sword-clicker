@@ -296,15 +296,15 @@ export const MAGIC_ACHIEVEMENTS = {
     },
     rewards: [{
       type: 'item',
-      itemId: 'verdant_wizard_hat',
+      itemId: 'violet_wizard_hat',
       amount: 1
     }, {
       type: 'item',
-      itemId: 'verdant_wizard_shirt',
+      itemId: 'violet_wizard_shirt',
       amount: 1
     }, {
       type: 'item',
-      itemId: 'verdant_wizard_shorts',
+      itemId: 'violet_wizard_shorts',
       amount: 1
     }, {
       type: 'xp',

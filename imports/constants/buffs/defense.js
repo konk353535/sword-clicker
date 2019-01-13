@@ -371,7 +371,7 @@ export const DEFENSE_BUFFS = {
     },
     constants: {
       defenseBase: 5,
-      defensePerLevel: 5
+      defensePerLevel: 10
     },
     data: {
       duration: Infinity,

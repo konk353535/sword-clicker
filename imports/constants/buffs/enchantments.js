@@ -910,7 +910,8 @@ export const ENCHANTMENT_BUFFS = {
           });
 
           if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
-            const totalHeal = targetUnit.stats.healthMax * 10; // in case they're demon cursed
+            targetUnit.stats.health = targetUnit.stats.healthMax;
+            const totalHeal = 1;
             actualBattle.healTarget(totalHeal, {
               caster: target,
               target: targetUnit,

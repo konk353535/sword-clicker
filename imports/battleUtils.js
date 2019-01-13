@@ -1,6 +1,8 @@
 import _ from 'underscore';
 import { BUFFS } from './constants/buffs/index';
 
+// why is this a duplicate of /server/battleUtils.js ?
+
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
   const buffConstants = BUFFS[buff.id];
   // Quick sort of buffs to ascending by duration
@@ -16,9 +18,13 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
     // Check if buff already exists
-    existingBuff = target.buffs.find((b) => b.id === buff.id)
-    if (existingBuff) {
-      removeBuff({ target, buff: existingBuff, caster });
+    while (true) {
+      existingBuff = target.buffs.find((b) => b.id === buff.id)
+      if (existingBuff) {
+        removeBuff({ target, buff: existingBuff, caster, actualBattle });
+      } else {
+        break;
+      }
     }
   } else if (buff.data.duplicateCap && buff.data.duplicateCap > 0) {
     // Some buffs can only be applied X number of times
@@ -34,7 +40,7 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
         iCountHowMany--;
         existingBuff = target.buffs.find((b) => b.id === buff.id)
         if (existingBuff) {
-          removeBuff({ target, buff: existingBuff, caster });
+          removeBuff({ target, buff: existingBuff, caster, actualBattle });
         }
       }
     }

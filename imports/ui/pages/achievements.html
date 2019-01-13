@@ -2,6 +2,29 @@
 
   <h1>Achievements</h1>
 
+  <div class="d-flex flex-row">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><b>Most Damage Done</b></th>
+            <th><b>Most Healing Done</b></th>
+            <th><b>Most Damage Taken</b></th>
+            <th><b>Spells Cast</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{> formatNumber number=damageDone decimal=0}}</td>
+            <td>{{> formatNumber number=healingDone decimal=0}}</td>
+            <td>{{> formatNumber number=damageTaken decimal=0}}</td>
+            <td>{{> formatNumber number=spellsCast decimal=0}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
   <ul class="nav nav-tabs my-3">
   	<li class="nav-item pqTabLink">
       <a class="nav-link {{#if showPqAchieveTab}}active{{/if}}" href="#">Personal Quest</a>

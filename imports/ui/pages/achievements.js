@@ -22,15 +22,19 @@ Template.achievementsPage.onCreated(function bodyOnCreated() {
   });
 
   Tracker.autorun(() => {
-    const myUser = Users.findOne({ _id: Meteor.userId() });
-    if (myUser) {
-      if (myUser.uiState && myUser.uiState.achievementTab !== undefined) {
-        this.state.set('currentTab', myUser.uiState.achievementTab);
+    const userDoc = Users.findOne({ _id: Meteor.userId() });
+    if (userDoc) {
+      if (userDoc.uiState && userDoc.uiState.achievementTab !== undefined) {
+        this.state.set('currentTab', userDoc.uiState.achievementTab);
       } else {
         this.state.set('currentTab', 'pq');
       }
+      this.state.set('spellsCast',  ((userDoc.stats) && (userDoc.stats.spellsCast))            ? userDoc.stats.spellsCast            : 0);
+      this.state.set('damageTaken', ((userDoc.stats) && (userDoc.stats.combatMostDamageTaken)) ? userDoc.stats.combatMostDamageTaken : 0);
+      this.state.set('damageDone',  ((userDoc.stats) && (userDoc.stats.combatMostDamageDone))  ? userDoc.stats.combatMostDamageDone  : 0);
+      this.state.set('healingDone', ((userDoc.stats) && (userDoc.stats.combatMostHealingDone)) ? userDoc.stats.combatMostHealingDone : 0);
     }
-  });  
+  });
 });
 
 
@@ -112,5 +116,21 @@ Template.achievementsPage.helpers({
 
   showTowerAchieveTab() {
     return Template.instance().state.get('currentTab') === 'tower';
-  }
+  },
+  
+  spellsCast() {
+    return Template.instance().state.get('spellsCast');
+  },
+  
+  damageTaken() {
+    return Template.instance().state.get('damageTaken');
+  },
+  
+  damageDone() {
+    return Template.instance().state.get('damageDone');
+  },
+  
+  healingDone() {
+    return Template.instance().state.get('healingDone');
+  },
 });

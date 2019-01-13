@@ -5,6 +5,8 @@ import Numeral from 'numeral';
 import { Users } from '/imports/api/users/users.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { CInt } from '/imports/utils';
+
 import './formatNumber.html';
 
 Template.formatNumber.onCreated(function bodyOnCreated() {
@@ -28,6 +30,12 @@ Template.formatNumber.helpers({
     const noDecimal = Template.instance().data.noDecimal;
     const decimal = Template.instance().data.decimal || 0;
 
+    if (CInt(number) === 0) {
+      if (Template.instance().data.blankZero) {
+        return '';
+      }
+    }
+    
     if (number < 1000) {
       if (decimal) {
         return number.toFixed(decimal);

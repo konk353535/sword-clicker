@@ -27,6 +27,18 @@ export default class Buff {
     }
   }
 
+  get icon() { return this._icon; }
+  set icon(value) {
+    this._icon = value;
+    this.delta('icon');
+  }
+
+  get customText() { return this._customText; }
+  set customText(value) {
+    this._customText = value;
+    this.delta('customText');
+  }
+
   delta(key) {
     const event = {
       type: 'abs',
@@ -50,6 +62,14 @@ export default class Buff {
     this._stacks = buff.stacks;
     if (!buff.stacks && buff.data && buff.data.stacks) {
       this._stacks = buff.data.stacks;
+    }
+    this._icon = buff.icon;
+    if (!buff.icon && buff.data && buff.data.icon) {
+      this._icon = buff.data.icon;
+    }
+    this._customText = buff.customText;
+    if (!buff.customText && buff.data && buff.data.customText) {
+      this._customText = buff.data.customText;
     }
     this.data = buff.data;
   }
@@ -95,6 +115,8 @@ export default class Buff {
       id: this.id,
       duration: this.duration,
       stacks: this.stacks,
+      icon: this.icon,
+      customText: this.customText,
       data: this.data
     }
   }

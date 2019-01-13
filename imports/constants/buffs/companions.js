@@ -425,7 +425,7 @@ export const COMPANION_BUFFS = {
                   totalDuration: Infinity,
                   name: 'companion squeal',
                   icon: 'scream.svg',
-                  timeTillCharge: 25,
+                  timeTillCharge: 0.4,
                   level: buff.data.level,
                 }
               }]);
@@ -966,7 +966,7 @@ export const COMPANION_BUFFS = {
                 castAnyHeal = true;
                 // END: cast Water Ball
               }
-              if (!castAnyHeal && buff.data.level >= 2 && lowHealthTestNoMending && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
+              if (!castAnyHeal && buff.data.level >= 2 && lowHealthTestNoMending < 0.70 && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
                 // START: cast Mending Water
                 const newBuff = {
                   id: 'mending_water',

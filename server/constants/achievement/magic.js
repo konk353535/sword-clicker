@@ -401,4 +401,97 @@ export const MAGIC_ACHIEVEMENTS = {
       amount: 2000000
     }]
   },
+  
+  'magic_24000': {
+    kind: 'magic',
+    name: '24,000 Spellcasts',
+    hidden: false,
+    description: 'Cast at least 24,000 spells',
+    condition({ user }) {
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 24000));
+    },
+    rewards: [{
+      type: 'item',
+      itemId: 'crimson_wizard_hat',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'crimson_wizard_shirt',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'crimson_wizard_shorts',
+      amount: 1
+    }, {
+      type: 'xp',
+      skill: 'magic',
+      amount: 2400000
+    }, {
+      type: 'xp',
+      skill: 'astronomy',
+      amount: 2400000
+    }]
+  },
+  
+  'magic_30000': {
+    kind: 'magic',
+    name: '30,000 Spellcasts',
+    hidden: false,
+    description: 'Cast at least 30,000 spells',
+    condition({ user }) {
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 30000));
+    },
+    rewards: [{
+      type: 'item',
+      itemId: 'fairy_steel_wand',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'dangerous_orb',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'ancient_tome',
+      amount: 1
+    }, {
+      type: 'xp',
+      skill: 'magic',
+      amount: 2800000
+    }, {
+      type: 'xp',
+      skill: 'inscription',
+      amount: 2800000
+    }]
+  },
+  
+  'magic_40000': {
+    kind: 'magic',
+    name: '40,000 Spellcasts',
+    hidden: false,
+    description: 'Cast at least 30,000 spells',
+    condition({ user }) {
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 30000));
+    },
+    rewards: [{
+      type: 'item',
+      itemId: 'cursed_wand',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'cataclysmic_orb',
+      amount: 1
+    }, {
+      type: 'item',
+      itemId: 'legendary_tome',
+      amount: 1
+    }, {
+      type: 'xp',
+      skill: 'magic',
+      amount: 3500000
+    }, {
+      type: 'xp',
+      skill: 'astronomy',
+      amount: 3500000
+    }]
+  },
 };

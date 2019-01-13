@@ -533,7 +533,7 @@ export const ENCHANTMENT_BUFFS = {
               caster: attacker.id,
               timeTillDamage: 1,
               allowDuplicates: true,
-              icon: 'bleed.svg',
+              icon: 'bleeding.svg',
               name: 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
             }

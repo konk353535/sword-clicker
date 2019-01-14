@@ -274,12 +274,11 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      timeTillCharge: 5,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.timeTillCharge = 5;
-        buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
       onTick({ secondsElapsed, buff }) {
@@ -324,11 +323,11 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.charges = 0;
+        buff.data.charges = 0
       },
 
       onDidDamage({ buff, attacker }) {
@@ -342,7 +341,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeTillEnd = 3;
           buff.data.isActive = true;
           buff.stacks = undefined;
-          buff.data.icon = 'tentacleRed.svg';
+          buff.icon = 'tentacleRed.svg';
         }
       },
 
@@ -353,7 +352,7 @@ export const ENCHANTMENT_BUFFS = {
             buff.data.isActive = false;
             buff.data.charges = 0;
             target.stats.attackSpeed /= 1.5;
-            buff.data.icon = 'tentacle.svg';
+            buff.icon = 'tentacle.svg';
           }
         }
       },
@@ -414,16 +413,13 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
+        buff.data.extraStat = target.stats.magicArmor * 2.5;
+        target.stats.health += buff.data.extraStat;
+        target.stats.healthMax += buff.data.extraStat;
+        target.stats.healthMaxOrig += buff.data.extraStat;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.extraStat) {
-          buff.data.extraStat = target.stats.magicArmor * 2.5;
-          target.stats.health += buff.data.extraStat;
-          target.stats.healthMax += buff.data.extraStat;
-          target.stats.healthMaxOrig += buff.data.extraStat;
-        }
-        
         if (buff.stacksTimer > 0) {
           buff.stacksTimer -= secondsElapsed;
         }
@@ -473,17 +469,17 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      totalTime: 0,
+      totalDamage: 0,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.totalTime = 0;
-        buff.data.totalDamage = 0;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.data.totalTime += secondsElapsed;
-        if (actualBattle.tick % 4 === 0) {
+        if (Math.ceil(buff.data.totalTime) % 7 === 0) {
           target.stats.attack -= buff.data.totalDamage;
           target.stats.attackMax -= buff.data.totalDamage;
           // Extra damage
@@ -565,13 +561,12 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isActive: false,
+      hideBuff: true,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
-        buff.data.isActive = false;
-        buff.data.hideBuff = true;
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -625,7 +620,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
@@ -662,7 +656,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
@@ -678,6 +671,7 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  // todo: does this work?
   smoke_dagger_debuff: {
     duplicateTag: 'smoke', // Used to stop duplicate buffs
     icon: 'smoke.svg',
@@ -694,7 +688,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         target.stats.accuracy -= buff.data.accuracyReduction;
       },
 
@@ -728,7 +721,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
@@ -779,7 +771,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
@@ -827,7 +818,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -948,7 +938,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
@@ -998,14 +987,10 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
+        buff.stacks = 5;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.stacks) {
-          buff.stacks = 5;
-        }
-
         if (Math.random() <= 0.02) {
           const targetEnemy = lodash.sample(actualBattle.enemies);
           const newBuff = {
@@ -1053,35 +1038,30 @@ export const ENCHANTMENT_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
-        // this event does not trigger for equipment-granted buffs
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.stacks = 5;
+        buff.data.secondsLastDrain = 0;
+        buff.data.currentDamageBonus = 0;
+        buff.data.lastHealthDrained = 0;
+        
+        const newBuff = {
+          id: 'demons_heart_damage',
+          data: {
+            name: 'demon\'s heart damage',
+            allowDuplicates: false,
+            duration: Infinity,
+            totalDuration: Infinity,
+            icon: 'demonsHeartDamage.svg',
+            description: 'Bonus damage from Demon\'s Heart'
+          },
+          constants: BUFFS['demons_heart_damage'],
+          stacks: 0
+        };
+        
+        addBuff({ buff: newBuff, target, caster, actualBattle });
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.secondsLastDrain) {
-          // fake way of an 'onApply' event
-          buff.stacks = 5;
-          buff.data.secondsLastDrain = 0;
-          buff.data.currentDamageBonus = 0;
-          buff.data.lastHealthDrained = 0;
-          
-          const newBuff = {
-            id: 'demons_heart_damage',
-            data: {
-              name: 'demon\'s heart damage',
-              allowDuplicates: false,
-              duration: Infinity,
-              totalDuration: Infinity,
-              icon: 'demonsHeartDamage.svg',
-              description: 'Bonus damage from Demon\'s Heart'
-            },
-            constants: BUFFS['demons_heart_damage'],
-            stacks: 0
-          };
-          
-          addBuff({ buff: newBuff, target: target, caster: caster });
-        }
-        
         buff.data.secondsLastDrain += secondsElapsed;
         
         if (buff.data.secondsLastDrain >= 5.0) {
@@ -1094,7 +1074,7 @@ export const ENCHANTMENT_BUFFS = {
           
           // perform party drain (allow dodge/mitigation)
           const aliveUnits = actualBattle.units.length;
-          // NOTE: can't use BATTLES.maxTowerPartySize here because BATTLES is a server-only constant
+          // NOTE: can't use BATTLES.maxTowerPartySize here because BATTLES is a main game server-only constant
           const actualDamage = target.stats.accuracy * 0.35 * 5 / aliveUnits; // 35% of accuracy
           
           let damageDealt = 0;
@@ -1111,7 +1091,7 @@ export const ENCHANTMENT_BUFFS = {
                 local_buff.constants = BUFFS[local_buff.id];
                 if (local_buff.constants.events.onTookDamage) {
                   // .onTookDamage() only triggers on auto-attack normally, so we're cheesing it here
-                  local_buff.constants.events.onTookDamage({ secondsElapsed, buff: local_buff, defender: friendly_unit, attacker: target, actualBattle, localDamageDealt });
+                  local_buff.constants.events.onTookDamage({ secondsElapsed, buff: local_buff, defender: friendly_unit, attacker: target, actualBattle, damageDealt: localDamageDealt });
                 }
               });
             }
@@ -1165,9 +1145,20 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      didApplyYet: false,
     },
     events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        console.log("demons_heart_damage applied!");
+      },
+      
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!buff.data.didApplyYet) {
+          buff.data.didApplyYet = true;
+          console.log("demons_heart_damage first tick!");
+        }
+      }
     }
   },
   
@@ -1239,13 +1230,12 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      timeTillDodge: 15,
+      dodge: false,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        buff.data.timeTillDodge = 15;
-        buff.stacks = Math.round(buff.data.timeTillDodge);
-        buff.data.dodge = false;
       },
 
       onTick({ buff, target, secondsElapsed }) {
@@ -1301,7 +1291,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTick({ buff, target, caster, actualBattle }) {
@@ -1378,7 +1367,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTick({ buff, target, caster, actualBattle }) {

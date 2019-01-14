@@ -22,13 +22,16 @@ export default class Stats {
   getAttackSpeedTicks(attackSpeed) {
     // Convert attack speed seconds to attack speed ticks
     if (attackSpeed !== undefined) {
+      if (attackSpeed <= 0) {
+        attackSpeed = 0.001;
+      }
       // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
       if (attackSpeed >= 8) {
-        return 1;
+        return 7;
       }
       return Math.round(ticksPerSecond / attackSpeed);
     }
-    return 0;
+    return 0.001;
   }
 
   get attackSpeed() {

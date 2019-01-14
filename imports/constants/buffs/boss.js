@@ -1220,7 +1220,7 @@ export const BOSS_BUFFS = {
           const bird = {
             id: uuid.v4(),
             isEnemy: true,
-            tickOffset: actualBattle.tick + 4,
+            tickOffset: _.random(0, 2) + 4,
             icon: 'bird.svg',
             name: 'bird',
             stats: birdStats,

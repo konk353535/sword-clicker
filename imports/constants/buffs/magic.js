@@ -1065,7 +1065,7 @@ export const MAGIC_BUFFS = {
           caster.stats.healthMax -= totalHealth;
   
           // Add poisoned debuff to enemy
-          target.addBuff({
+          let newBuff = target.addBuff({
             id: 'basic_poison',
             data: {
               duration: 180,
@@ -1075,6 +1075,7 @@ export const MAGIC_BUFFS = {
               sourceId: caster.id
             }
           });
+          newBuff.onApply({ buff: newBuff, target, caster, actualBattle });
         }
         buff.duration = 0;
       },

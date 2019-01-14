@@ -60,8 +60,12 @@ Template.recipeIcon.events({
       const isInscription = instance.data.isInscription;
       Meteor.call(`${isInscription ? 'inscription' : 'crafting'}.craftItem`, recipeId, amountToCraft, (err, res) => {
         if (err) {
-          console.log(err);
-          toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}`);
+          if (err.errorType === "Meteor.Error" && err.isClientSafe && err.reason) {
+            toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}. ${err.reason}`);
+          } else {
+            console.log(err);
+            toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}`);
+          }
         } else {
           toastr.success(`${isInscription ? 'Inscribing' : 'Crafting'} ${recipeConstants.name}`);
           updateCraftable(instance);
@@ -104,7 +108,12 @@ Template.recipeIcon.events({
     const isInscription = instance.data.isInscription;
     Meteor.call(`${isInscription ? 'inscription' : 'crafting'}.craftItem`, recipeId, amountToCraft, (err, data) => {
       if (err) {
-        toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}`);
+        if (err.errorType === "Meteor.Error" && err.isClientSafe && err.reason) {
+          toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}. ${err.reason}`);
+        } else {
+          console.log(err);
+          toastr.warning(`Failed to ${isInscription ? 'inscribe' : 'craft'} ${recipeConstants.name}`);
+        }
       } else {
         toastr.success(`${isInscription ? 'Inscribing' : 'Crafting'} ${recipeConstants.name}`);
         updateCraftable(instance);

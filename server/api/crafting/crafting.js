@@ -147,14 +147,14 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 
   // Are we crafting at least one item
   if (amountToCraft <= 0) {
-    return;
+    throw new Meteor.Error("cant-craft", "Choose a positive quantity of items to craft.");
   }
 
   const maxConcurrentCrafts = CRAFTING.getMaxCrafts(crafting.craftingLevel);
 
   // Are we already crafting?
   if (crafting.currentlyCrafting && crafting.currentlyCrafting.length >= maxConcurrentCrafts) {
-    throw new Meteor.Error("already-crafting", "Already crafting too many items.");
+    throw new Meteor.Error("already-crafting", "Your crafting queue is full.");
   }
 
   // Is this a valid recipe?
@@ -163,23 +163,23 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   // If this is a hidden recipe, make sure we have access
   if (recipeConstants.isHidden) {
     if (!crafting.learntCrafts || !crafting.learntCrafts[recipeConstants.id]) {
-      throw new Meteor.Error("not-found", "Invalid recipe");
+      throw new Meteor.Error("not-found", "Invalid recipe.");
     }
   }
 
   if (!recipeConstants || recipeConstants.recipeFor !== 'crafting') {
-    return;
+    throw new Meteor.Error("cant-craft", "Recipe details for that crafting recipe couldn't be found.");
   }
 
   // Make sure amountToCraft doesn't exceed recipe limit
   if (amountToCraft > recipeConstants.maxToCraft) {
-    return;
+    throw new Meteor.Error("cant-craft", "Can't craft that many at once.");
   }
 
   // Do we have the requirements for this craft (items / levels / gold)
   // Note this method will take requirements if they are met
   if (!requirementsUtility(recipeConstants.required, amountToCraft)) {
-    return;
+    throw new Meteor.Error("cant-craft", "You don't know how to craft that, yet.");
   }
 
   let startDate = new Date();

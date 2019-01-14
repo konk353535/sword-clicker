@@ -28,7 +28,7 @@ const craftItem = function (recipeId, amountToCraft) {
 
   // Are we already crafting?
   if (inscription.currentlyCrafting && inscription.currentlyCrafting.length >= maxConcurrentCrafts) {
-    throw new Meteor.Error("cant-inscribe", "Already inscribing too many items.");
+    throw new Meteor.Error("cant-inscribe", "Your inscription queue is full.");
   }
 
   // Is this a valid recipe?

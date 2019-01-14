@@ -6,6 +6,7 @@ import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 
+import { ITEMS } from '/imports/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 
 import './woodcutting.html';
@@ -180,10 +181,33 @@ Template.woodcuttingPage.helpers({
   },
 
   items() {
-    return Items.find({ category: 'woodcutting' }, {
+    let results = Items.find({ category: 'woodcutting' }, {
       sort: {
         quality: -1
       }
-    });
+    }).map((item) => { return item; });
+    
+    if (results) {
+      let anyError = false;
+      
+      results.forEach((item, idx) => {
+        try {
+          if (ITEMS[item.itemId].stats) {
+            results[idx].tier = 1000 - (ITEMS[item.itemId].stats.attack); // axes
+          } else {
+            results[idx].tier = 10000; // logs
+          }
+        } catch (err) {
+          anyError = true;
+        }
+      });
+      
+      if (!anyError) {
+        results = _.sortBy(results, ['quality']);
+        results = _.sortBy(results, ['tier']);
+      }
+    }
+    
+    return results;
   }
 });

@@ -92,6 +92,7 @@ export const COMPANION_BUFFS = {
     constants: {
     },
     data: {
+      hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -134,7 +135,8 @@ export const COMPANION_BUFFS = {
                 totalDuration: Infinity,
                 name: 'baby fire fox',
                 timeTillCharge: 5,
-                icon: 'babyFireFox.svg'
+                icon: 'babyFireFox.svg',
+                hideBuff: true
               }
             }]
           } else if (foxToSpawn === 'earth') {
@@ -160,7 +162,8 @@ export const COMPANION_BUFFS = {
                 totalDuration: Infinity,
                 name: 'baby earth fox',
                 timeTillCharge: 2,
-                icon: 'babyEarthFox.svg'
+                icon: 'babyEarthFox.svg',
+                hideBuff: true
               }
             }]
           } else if (foxToSpawn === 'air') {
@@ -204,7 +207,8 @@ export const COMPANION_BUFFS = {
                 totalDuration: Infinity,
                 name: 'baby water fox',
                 icon: 'babyWaterFox.svg',
-                timeTillCharge: 5                
+                timeTillCharge: 5,
+                hideBuff: true                
               }
             }]
           }
@@ -296,6 +300,7 @@ export const COMPANION_BUFFS = {
                 name: 'companion skeletal warrior',
                 icon: 'boneWarrior.svg',
                 level: buff.data.level,
+                custom: true,
               }
             }]);
             
@@ -545,7 +550,7 @@ export const COMPANION_BUFFS = {
                   name: 'companion healer',
                   icon: 'fairyMagic.svg',
                   doneInit: false,
-                  level: buff.data.level,
+                  level: buff.data.level
                 }
               }],
             };
@@ -572,7 +577,7 @@ export const COMPANION_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      doneInit: false
+      doneInit: false,
     },
     events: {
       onApply({ buff, target, caster }) {
@@ -585,6 +590,14 @@ export const COMPANION_BUFFS = {
           buff.data.CDSlash = 0.0;
           buff.data.CDPSlash = 0.0;
           buff.data.CDBleed = 0.0;
+        }
+        
+        if (target.stats.health / target.stats.healthMax < 0.5) {
+          buff.customText = "!!";
+          buff.icon = "boneWarriorRed.svg";
+        } else {
+          buff.customText = "";
+          buff.icon = "boneWarrior.svg";
         }
         
         if (buff.data.CDSlash > 0.0) {
@@ -740,7 +753,7 @@ export const COMPANION_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      timeTillCharge: 0.4,
+      timeTillCharge: 0.4,      
     },
     events: {
       onApply({ buff, target, caster }) {

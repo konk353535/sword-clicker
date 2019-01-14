@@ -132,7 +132,10 @@ export default function({ ability, caster, targets }) {
           }
         }
 
-        buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
+        if (!buff.data.didApply) {
+          buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
+          buff.data.didApply = true;
+        }
       }
     });
 

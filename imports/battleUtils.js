@@ -47,5 +47,11 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   }
 
   const newBuff = target.addBuff(buff);
-  newBuff.onApply({ buff: newBuff, target, caster, actualBattle });
+  
+  if (newBuff.data.onApply) {
+    if (!newBuff.data.didApply) {
+      newBuff.onApply({ buff: newBuff, target, caster, actualBattle });
+      newBuff.data.didApply = true;
+    }
+  }
 }

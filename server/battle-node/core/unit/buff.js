@@ -72,11 +72,15 @@ export default class Buff {
       this._customText = buff.data.customText;
     }
     this.data = buff.data;
+    this.data.didApply = (buff.data.didApply) ? true: false;
   }
 
   onApply(options) {
-    if (this.events.onApply) {
-      this.events.onApply(options);
+    if (!this.data.didApply) {
+      if (this.events.onApply) {
+        this.events.onApply(options);
+        this.data.didApply = true;
+      }
     }
   }
 

@@ -256,17 +256,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         const enchantConstants = BUFFS[buffId];
         if (enchantConstants) {
           const clonedConstants = enchantConstants;
-          const newBuff = {
+          let newBuff = {
             id: buffId,
             duration: clonedConstants.data.durationTotal,
-            data: {
-              totalDuration: clonedConstants.data.durationTotal,
-              icon: clonedConstants.icon,
-              description: enchantConstants.description(),
-              name: clonedConstants.name
-            }
+            data: enchantConstants.data,
           };
 
+          newBuff.data.icon = clonedConstants.icon;
+          newBuff.data.description = enchantConstants.description();
           newUnit.buffs.push(newBuff);
         }
       });

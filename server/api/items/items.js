@@ -584,7 +584,10 @@ Meteor.methods({
       if (buff.constants.events.onApply) {
         const buffTarget = currentCombat;
         const buffCaster = currentCombat;
-        buff.constants.events.onApply({ buff, caster: buffCaster, target: buffTarget });
+        if (!buff.data.didApply) {
+          buff.constants.events.onApply({ buff, caster: buffCaster, target: buffTarget });
+          buff.data.didApply = true;
+        }
 
         // Remove existing buffs that match
         if (currentCombat.buffs && currentCombat.buffs.length > 0) {

@@ -176,7 +176,7 @@ export const CARBON_CRAFTS = {
       itemId: 'carbon_bar',
       icon: ITEMS['carbon_bar'].icon,
       name: ITEMS['carbon_bar'].name,
-      amount: 25,
+      amount: 20,
       consumes: true
     }, {
       type: 'skill',

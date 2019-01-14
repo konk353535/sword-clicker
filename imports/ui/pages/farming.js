@@ -187,7 +187,7 @@ Template.farmingPage.helpers({
   },
 
   items() {
-    return Items.find({
+    let results = Items.find({
       category: {
         $in: ['seed', 'farming']
       }
@@ -229,6 +229,24 @@ Template.farmingPage.helpers({
       }
       return item;
     });
+    
+    if (results) {
+      let anyError = false;
+      results.forEach((seed, idx) => {
+        try {
+          results[idx].growthTime = FARMING.plants[ITEMS[seed.itemId].produces].growthTime;
+        } catch (err) {
+          anyError = true;
+        }
+      });
+  
+      if (!anyError) {
+        results = _.sortBy(results, ['name']);
+        results = _.sortBy(results, ['growthTime']);
+      }
+    }
+    
+    return results;
   },
 
   farmingSpaces() {

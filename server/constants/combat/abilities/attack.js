@@ -303,7 +303,7 @@ export const ATTACK_ABILITIES = {
     name: 'bleeding spin',
     id: 'bleeding_spin',
     buffs: ['bleed'],
-    cooldown: 60,
+    cooldown: 30,
     slot: 'any',
     isHidden: true,
     requires: [{

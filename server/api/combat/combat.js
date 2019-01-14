@@ -130,9 +130,9 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
   });
 
-  // If no weapon default to 0.5 attackspeed
-  if (playerData.stats.attackSpeed === 0) {
-    playerData.stats.attackSpeed = 0.5;
+  // If no weapon default to 0.25 attackspeed
+  if (playerData.stats.attackSpeed <= 0) {
+    playerData.stats.attackSpeed = 0.25;
   }
 
   const currentCombat = Combat.findOne({

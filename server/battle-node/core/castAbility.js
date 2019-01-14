@@ -5,9 +5,18 @@ import _ from 'underscore';
 
 export default function({ ability, caster, targets }) {
 
+  let canUseAbilityOrSpell = true;
+  
+  if (canUseAbilityOrSpell) {
+    if (caster.stats.health <= 0) {
+      if (!ability.allowedWhileDead) {
+        canUseAbilityOrSpell = false;
+      }
+    }
+  }
+  
   // Does user have appropriate gear to cast this ability?
-  let canCast = true;
-  if (ability.requires) {
+  if (canUseAbilityOrSpell && ability.requires) {
     ability.requires.forEach((required) => {
       let meetsRequirement = false;
       if (required.type === 'weaponType') {
@@ -19,19 +28,22 @@ export default function({ ability, caster, targets }) {
       }
 
       if (!meetsRequirement) {
-        canCast = false;
+        canUseAbilityOrSpell = false;
       }
     });
   }
 
+  // Is the user silenced (can't use any abilities or spells)
   if (caster.silenced) {
-    canCast = false;
+    canUseAbilityOrSpell = false;
   }
 
-  if (!canCast) {
+  // Cancel the ability use attempt if they're not elligible to use the ability right now (no CD, no effect) 
+  if (!canUseAbilityOrSpell) {
     return false;
   }
 
+  // Modify and assign targets as necessary
   if (ability.target === 'currentEnemy') {
     // Is current target alive
     let currentEnemy = this.allUnitsMap[caster.target];
@@ -66,6 +78,7 @@ export default function({ ability, caster, targets }) {
     }
   }
   
+  // Sanity checking on targets
   if ((ability.target === 'currentEnemy') || (ability.target === 'singleEnemy')) {
     if (!targets || (targets.length === 0)) {
       return false; // can't cast on a target enemy without a valid target enemy unit (returning false will prevent cooldown, resource expenditure, etc.)

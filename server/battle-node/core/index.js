@@ -101,7 +101,7 @@ export default class Battle {
   }
 
   isTower() {
-    return (this.floor) && (this.floor > 0);
+    return ((this.floor) && (this.floor > 0)) || (this.room === "boss");
   }
   
   isPQ() {

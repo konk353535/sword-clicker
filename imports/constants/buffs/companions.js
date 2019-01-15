@@ -554,8 +554,6 @@ export const COMPANION_BUFFS = {
               }],
             };
             
-            console.log(companion.name, companion.stats);
-            
             actualBattle.addUnit(companion);
           }
         }
@@ -949,8 +947,6 @@ export const COMPANION_BUFFS = {
                 castAnyHeal = true;
                 // END: cast Water Wave
               } catch (err) {
-                console.log("Fairy could not cast water wave");
-                console.log(err);
               }
             }
             if (lowHealthTest < 0.70) {

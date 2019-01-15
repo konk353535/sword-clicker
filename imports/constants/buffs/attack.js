@@ -341,7 +341,7 @@ export const ATTACK_BUFFS = {
           const totalDamage = (baseDamage + extraDamage) * abilityDamagePercentage;
 
           // Add poisoned debuff to enemy
-          defender.addBuff({
+          const newBuff = defender.addBuff({
             id: 'basic_poison',
             data: {
               duration: 300,
@@ -352,7 +352,9 @@ export const ATTACK_BUFFS = {
               description: `Take ${Math.ceil(totalDamage)} damage every 5 seconds.`,
               sourceId: attacker.id
             }
-          })
+          });
+          
+          newBuff.data.casterUnit = attacker.id;
         }
       },
 

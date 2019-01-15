@@ -8,11 +8,19 @@ export default function(healAmount, {
   customIcon,
   historyStats
 }) {
-  if (caster && caster.stats && caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
+  if ((!caster) || (!caster.stats)) {
+    return; // error
+  }
+  
+  if ((!target) || (!target.stats)) {
+    return; // error
+  }
+  
+  if (caster.stats && caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
     healAmount *= (1 + (caster.stats.healingPower / 100));
   }
 
-  if (target.stats.healingReduction != null) {
+  if (target.stats.healingReduction && target.stats.healingReduction != null) {
     healAmount *= target.stats.healingReduction;
   }
 
@@ -31,7 +39,7 @@ export default function(healAmount, {
     }
   }
  
-  if (caster && historyStats && historyStats[caster__id_to_use]) {
+  if (historyStats && historyStats[caster__id_to_use]) {
     if (!caster.isCompanion) {
       historyStats[caster__id_to_use].healingDone += healAmount;
     } else {
@@ -40,14 +48,14 @@ export default function(healAmount, {
     }    
   }
 
-  if(tickEvents) {
+  if (tickEvents) {
     tickEvents.push({
       from: caster ? caster.id : '',
       to: target ? target.id : '',
       eventType: 'heal',
       label: (healAmount).toFixed(1),
-      customColor: '#f5528b',
-      customIcon: 'health'
+      customColor: customColor || '#f5528b',
+      customIcon: customIcon || 'health'
     });
   }
 }

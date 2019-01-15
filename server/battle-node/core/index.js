@@ -415,30 +415,53 @@ Battle.prototype.initPassives = function initPassives() {
 }
 // Tick method #2
 Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
-  this.allAliveUnits.forEach((unit) => {
-    if (unit.tick) {
-      unit.tick();
+  this.allAliveUnits.forEach((aliveUnit) => {
+    if (aliveUnit.tick) {
+      aliveUnit.tick();
     }
 
-    if (unit.buffs) {
+    if (aliveUnit.buffs) {
       // Buffs can do things on tick, will collect them in the form of combatEvents
-      unit.buffs.forEach((buff) => {
+      aliveUnit.buffs.forEach((buff) => {
         buff.constants = BUFFS[buff.id];
+
+        let caster = aliveUnit;
         
-        if (buff._isBuffClass && buff.constants.events.onApply) { 
-          if (!buff.data.didApply) {
-            buff.onApply({buff, target: unit, caster: unit, actualBattle: this});
-            buff.data.didApply = true;
+        // Find original caster for .onApply() and .onTick()
+        try {
+          if (buff._isBuffClass && buff.data.casterUnit) { 
+            try {
+              this.units.forEach((localUnit) => {
+                if (localUnit.id === buff.data.casterUnit) {
+                  caster = localUnit;
+                }
+              });
+              this.enemies.forEach((localEnemy) => {
+                if (localEnemy.id === buff.data.casterUnit) {
+                  caster = localEnemy;
+                }
+              });
+            } catch (err) {
+            }
           }
+        } catch (err) {
+        }
+
+        try {
+          if (buff._isBuffClass && buff.onApply) { 
+            if (!buff.data.didApply) {
+              buff.onApply({buff, caster: caster, target: aliveUnit, actualBattle: this});
+              buff.data.didApply = true;
+            }
+          }
+        } catch (err) {
         }
         
-        if (buff._isBuffClass && buff.constants.events.onTick) {
-          buff.constants.events.onTick({
-            secondsElapsed,
-            buff,
-            target: unit,
-            actualBattle: this
-          });
+        try {
+          if (buff._isBuffClass && buff.onTick) {
+            buff.onTick({secondsElapsed, buff, caster: caster, target: aliveUnit, actualBattle: this});
+          }
+        } catch (err) {
         }
       });
     }

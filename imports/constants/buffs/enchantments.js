@@ -18,7 +18,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -59,7 +60,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -99,7 +101,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -139,6 +142,7 @@ export const ENCHANTMENT_BUFFS = {
     constants: {
     },
     data: {
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -275,7 +279,8 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      timeTillCharge: 5,
+      isEnchantment: true,
+      timeTillCharge: 5
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -324,6 +329,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -374,7 +380,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -409,7 +416,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -470,6 +478,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true,
       totalTime: 0,
       totalDamage: 0,
     },
@@ -509,7 +518,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -562,6 +572,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true,
       isActive: false,
       hideBuff: true,
     },
@@ -616,7 +627,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -652,7 +664,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -684,7 +697,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: 7,
-      totalDuration: 7
+      totalDuration: 7,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -717,7 +731,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -767,7 +782,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -814,7 +830,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -874,7 +891,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -934,7 +952,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -983,7 +1002,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -1035,7 +1055,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -1171,7 +1192,8 @@ export const ENCHANTMENT_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -1225,6 +1247,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true,
       timeTillDodge: 15,
       dodge: false,
     },
@@ -1278,6 +1301,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true,
       allies: 'units',
       applyToAllies: true,
       appliedToAllies: false,
@@ -1357,6 +1381,7 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
+      isEnchantment: true,
       allies: 'units',
     },
     events: { // This can be rebuilt from the buff id

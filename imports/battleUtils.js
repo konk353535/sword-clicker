@@ -14,6 +14,8 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
 }
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
+  //console.log(`applying ${BUFFS[buff.id].name} from ${caster.name} to ${target.name}`);
+
   let existingBuff;
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
@@ -47,6 +49,8 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   }
 
   const newBuff = target.addBuff(buff);
+
+  newBuff.data.casterUnit = caster.id;
   
   if (newBuff.data.onApply) {
     if (!newBuff.data.didApply) {

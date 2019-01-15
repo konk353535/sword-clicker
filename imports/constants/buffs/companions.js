@@ -277,9 +277,9 @@ export const COMPANION_BUFFS = {
               icon: 'boneWarrior.svg',
               name: target.name + '\'s Warrior',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (5 * buff.data.level),
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 1.5) + (20 * buff.data.level),
-                attackSpeed: 0.7,
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (10 * buff.data.level),
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 1.5) + (30 * buff.data.level),
+                attackSpeed: 0.8,
                 accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.7) + (25 * buff.data.level),
                 health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
                 healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
@@ -533,12 +533,12 @@ export const COMPANION_BUFFS = {
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // fairies don't do much damage, they're supports
                 attackSpeed: 0.3,
                 accuracy: (Math.sqrt(attackSkill * 2) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6) + (200 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6) + (200 * buff.data.level),
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (200 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (200 * buff.data.level),
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.75) + 5,
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.75) + (5 * buff.data.level),
+                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.85) + (10 * buff.data.level),
                 damageTaken: (buff.data.level >= 5 ? 0.9 : 1), // damage received (1 = 100% of all incoming damage)
                 healingPower: 10 + (5 * buff.data.level),
               },
@@ -549,11 +549,12 @@ export const COMPANION_BUFFS = {
                   totalDuration: Infinity,
                   name: 'companion healer',
                   icon: 'fairyMagic.svg',
-                  doneInit: false,
                   level: buff.data.level
                 }
               }],
             };
+            
+            console.log(companion.name, companion.stats);
             
             actualBattle.addUnit(companion);
           }
@@ -577,21 +578,16 @@ export const COMPANION_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      doneInit: false,
     },
     events: {
       onApply({ buff, target, caster }) {
+        buff.data.timeTillAction = 0.4;
+        buff.data.CDSlash = 0.0;
+        buff.data.CDPSlash = 0.0;
+        buff.data.CDBleed = 0.0;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        if (!buff.data.doneInit) {
-          buff.data.doneInit = true;
-          buff.data.timeTillAction = 0.4;
-          buff.data.CDSlash = 0.0;
-          buff.data.CDPSlash = 0.0;
-          buff.data.CDBleed = 0.0;
-        }
-        
         if (target.stats.health / target.stats.healthMax < 0.5) {
           buff.customText = "!!";
           buff.icon = "boneWarriorRed.svg";
@@ -851,23 +847,18 @@ export const COMPANION_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      doneInit: false
     },
     events: {
       onApply({ buff, target, caster }) {
+        buff.data.timeTillAction = 0.4;
+        buff.data.CDAirBall = 0.0;
+        buff.data.CDMend = 0.0;
+        buff.data.CDWaterBall = 0.0,
+        buff.data.CDWaterDart = 0.0;
+        buff.data.CDWaterWave = 0.0;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        if (!buff.data.doneInit) {
-          buff.data.doneInit = true;
-          buff.data.timeTillAction = 0.4;
-          buff.data.CDAirBall = 0.0;
-          buff.data.CDMend = 0.0;
-          buff.data.CDWaterBall = 0.0,
-          buff.data.CDWaterDart = 0.0;
-          buff.data.CDWaterWave = 0.0;
-        }
-        
         let castAnyHeal = false;
         const healthMaxAtStart = target.stats.healthMax;
 
@@ -916,7 +907,7 @@ export const COMPANION_BUFFS = {
                         }
                       };
                       // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                      addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                      addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
                       buff.data.CDAirBall = 10.0;
                       // END: cast Air Ball
                     }
@@ -952,7 +943,7 @@ export const COMPANION_BUFFS = {
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 actualBattle.units.forEach((unit_to_heal) => {
-                    addBuff({ buff: newBuff, target: unit_to_heal, caster: target, actualBattle });
+                    addBuff({ buff: newBuff, target: unit_to_heal, caster: caster, actualBattle });
                 });                
                 buff.data.CDWaterWave = 20.0;
                 castAnyHeal = true;
@@ -974,7 +965,7 @@ export const COMPANION_BUFFS = {
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
+                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
                 buff.data.CDWaterBall = 10.0;
                 castAnyHeal = true;
                 // END: cast Water Ball
@@ -992,7 +983,7 @@ export const COMPANION_BUFFS = {
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: target, actualBattle });
+                addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
                 buff.data.CDMend = 30.0;
                 castAnyHeal = true;
                 // END: cast Mending Water
@@ -1011,7 +1002,7 @@ export const COMPANION_BUFFS = {
                   }
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: target, actualBattle });
+                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
                 buff.data.CDWaterDart = 10.0;
                 castAnyHeal = true;
                 // END: cast Water Dart

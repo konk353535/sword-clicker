@@ -766,12 +766,7 @@ export const MAGIC_BUFFS = {
         if (caster.stats.health >= totalHealth) {
           caster.stats.health -= totalHealth;
           caster.stats.healthMax -= totalHealth;
-          
-          console.log("caster is " + caster.name + ".");
-          console.log("caster MP is " + caster.stats.magicPower.toFixed(0) + ".");
-          console.log("WB MP is " + healMP.toFixed(0) + ".");
-          console.log("WB heal for " + totalHeal.toFixed(0) + ".");
-        
+
           actualBattle.healTarget(totalHeal, {
             caster,
             target,

@@ -1146,18 +1146,12 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      didApplyYet: false,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        console.log("demons_heart_damage applied!");
       },
       
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.didApplyYet) {
-          buff.data.didApplyYet = true;
-          console.log("demons_heart_damage first tick!");
-        }
       }
     }
   },

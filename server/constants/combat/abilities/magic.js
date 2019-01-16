@@ -350,7 +350,7 @@ export const MAGIC_ABILITIES = {
     name: 'affliction',
     id: 'affliction',
     buffs: ['affliction'],
-    cooldown: 5,
+    cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
     isMagic: true,

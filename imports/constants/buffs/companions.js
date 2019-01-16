@@ -586,14 +586,6 @@ export const COMPANION_BUFFS = {
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-        if (target.stats.health / target.stats.healthMax < 0.5) {
-          buff.customText = "!!";
-          buff.icon = "boneWarriorRed.svg";
-        } else {
-          buff.customText = "";
-          buff.icon = "boneWarrior.svg";
-        }
-        
         if (buff.data.CDSlash > 0.0) {
           buff.data.CDSlash -= secondsElapsed;
         }
@@ -607,6 +599,19 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillAction > 0) {
           buff.data.timeTillAction -= secondsElapsed;
         } else {
+          // Do nothing with two-thirds our ticks (except the above CD redux)
+          if (Math.random() < 0.667) {
+            return;
+          }
+
+          if (target.stats.health / target.stats.healthMax < 0.5) {
+            buff.customText = "!!";
+            buff.icon = "boneWarriorRed.svg";
+          } else {
+            buff.customText = "";
+            buff.icon = "boneWarrior.svg";
+          }
+        
           // Note: always accept whatever target we're on automatically, no re-targeting
           
           if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
@@ -710,6 +715,11 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
+          // Do nothing with two-thirds our ticks (except the above CD redux)
+          if (Math.random() < 0.667) {
+            return;
+          }
+          
           if (target.health / target.healthMax < 0.5) {
             const newBuff = {
               id: 'evasive_maneuvers',
@@ -725,7 +735,7 @@ export const COMPANION_BUFFS = {
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             buff.data.timeTillCharge = 40;
           } else {
-          buff.data.timeTillCharge = 0.4;
+          buff.data.timeTillCharge = 1.0;
           }
         }
       },
@@ -757,6 +767,11 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
+          // Do nothing with half our ticks (except the above CD redux)
+          if (Math.random() < 0.5) {
+            return;
+          }
+          
           const targetToTaunt = lodash.sample(actualBattle.enemies);
           if (targetToTaunt && targetToTaunt.target !== target.id) {
             targetToTaunt.target = target.id
@@ -802,6 +817,11 @@ export const COMPANION_BUFFS = {
         }
         
         if (buff.data.timeTillCharge <= 0.0) {
+          // Do nothing with two-thirds our ticks (except the above CD redux)
+          if (Math.random() < 0.667) {
+            return;
+          }
+          
           if (!actualBattle.isExplorationRun || actualBattle.room >= 3 || actualBattle.room === 'boss') {
             if (actualBattle.enemies.length > 1) {
               let neededToScream = false;
@@ -879,7 +899,11 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillAction > 0) {
           buff.data.timeTillAction -= secondsElapsed;
         } else {
-          
+          // Do nothing with two-thirds our ticks (except the above CD redux)
+          if (Math.random() < 0.667) {
+            return;
+          }
+
           // START: logic Air Ball
           try {
             if (buff.data.level >= 3 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {

@@ -274,7 +274,7 @@ Template.miningPage.helpers({
       }
       return item;
     }).filter((item) => {
-      return ITEMS[item.itemId].isEquippable
+      return ITEMS[item.itemId].isEquippable && !item.hidden;
     });
   },
 

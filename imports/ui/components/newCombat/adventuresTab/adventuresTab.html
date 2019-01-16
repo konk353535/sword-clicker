@@ -9,7 +9,17 @@
             <div class="text-capitalize">{{this.length}}</div>
           </div>
           <div class="d-flex flex-column mx-3 flex-grow">
-            <div class="text-capitalize">{{this.type}}</div>
+            {{#if $eq this.type 'magic'}}
+              <div class="text-capitalize" style="display: flex; white-space: nowrap; flex-wrap: nowrap; color: #00f;">
+                <img src="/icons/magic.svg" class="ml-1 extra-small-icon">
+                {{this.type}}
+              </div>
+            {{else}}
+              <div class="text-capitalize" style="display: flex; white-space: nowrap; flex-wrap: nowrap; color: #a00;">
+                <img src="/icons/attack.svg" class="ml-1 extra-small-icon">
+                {{this.type}}
+              </div>
+            {{/if}}
             {{#if this.isComplete}}
               {{#if this.win}}
                 <div class="text-success">Victory</div>

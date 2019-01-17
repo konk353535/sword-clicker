@@ -326,5 +326,20 @@ export const PQ_ACHIEVEMENTS = {
       itemId: 'tanzanite',
       amount: 1
     }]
+  },
+
+  'pq_200': {
+    kind: 'pq',
+    name: 'PQ 200',
+    hidden: false,
+    description: 'Reach level 200 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 200;
+    },
+    rewards: [{
+      type: 'item',
+      itemId: 'fireopal',
+      amount: 1
+    }]
   }
 };

@@ -677,7 +677,7 @@ export const AMULET_CRAFTS = {
     xp: 10,
     tags: ['amulet'],
     maxToCraft: 1,
-    requiredCraftingLevel: 30,
+    requiredCraftingLevel: 25,
     required: [{
       type: 'item',
       itemId: 'ash_log',
@@ -695,7 +695,7 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 30
+      level: 25
     }]
   },
 
@@ -709,7 +709,7 @@ export const AMULET_CRAFTS = {
     xp: 10,
     tags: ['amulet'],
     maxToCraft: 1,
-    requiredCraftingLevel: 45,
+    requiredCraftingLevel: 35,
     required: [{
       type: 'item',
       itemId: 'walnut_log',
@@ -727,7 +727,7 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 45
+      level: 35
     }]
   },
 
@@ -741,7 +741,7 @@ export const AMULET_CRAFTS = {
     xp: 10,
     tags: ['amulet'],
     maxToCraft: 1,
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 45,
     required: [{
       type: 'item',
       itemId: 'mahogany_log',
@@ -759,7 +759,7 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 60
+      level: 45
     }]
   },
 
@@ -773,7 +773,7 @@ export const AMULET_CRAFTS = {
     xp: 10,
     tags: ['amulet'],
     maxToCraft: 1,
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 55,
     required: [{
       type: 'item',
       itemId: 'black_log',
@@ -791,7 +791,7 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 75
+      level: 55
     }]
   },
 
@@ -805,7 +805,7 @@ export const AMULET_CRAFTS = {
     xp: 10,
     tags: ['amulet'],
     maxToCraft: 1,
-    requiredCraftingLevel: 90,
+    requiredCraftingLevel: 65,
     required: [{
       type: 'item',
       itemId: 'cedar_log',
@@ -823,8 +823,40 @@ export const AMULET_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 90
+      level: 65
     }]
-  }
+  },
+
+  fireopal_amulet: {
+    produces: 'fireopal_amulet',
+    name: 'fire opal amulet',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'fireopal_amulet',
+    timeToCraft: 120, // 60
+    xp: 10,
+    tags: ['amulet'],
+    maxToCraft: 1,
+    requiredCraftingLevel: 75,
+    required: [{
+      type: 'item',
+      itemId: 'hickory_log',
+      icon: ITEMS['hickory_log'].icon,
+      name: ITEMS['hickory_log'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fireopal',
+      icon: ITEMS['fireopal'].icon,
+      name: ITEMS['fireopal'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 75
+    }]
+  },
 
 };

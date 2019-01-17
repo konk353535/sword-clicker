@@ -245,6 +245,17 @@ export const ORE_ITEMS = {
       description: 'Upgrade Tanzanite Amulet',
       target: 'item'
     }
-  }
+  },
 
+  fireopal: {
+    id: 'fireopal',
+    icon: 'fireOpal.png',
+    category: 'mining',
+    name: 'fire opal',
+    sellPrice: 1,
+    shiftActionData: {
+      description: 'Upgrade Fire Opal Amulet',
+      target: 'item'
+    }
+  },
 };

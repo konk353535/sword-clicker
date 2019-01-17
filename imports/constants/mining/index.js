@@ -1475,7 +1475,7 @@ export const MINING = {
       name: 'jade',
       isGem: true,
       itemId: 'jade',
-      chance: 0.0000009
+      chance: 0.0000020
     },
 
     lapislazuli: {
@@ -1487,7 +1487,7 @@ export const MINING = {
       name: 'lapis lazuli',
       isGem: true,
       itemId: 'lapislazuli',
-      chance: 0.0000008
+      chance: 0.0000018
     },
 
     sapphire: {
@@ -1499,7 +1499,7 @@ export const MINING = {
       name: 'sapphire',
       itemId: 'sapphire',
       isGem: true,
-      chance: 0.0000007
+      chance: 0.0000016
     },
 
     emerald: {
@@ -1511,7 +1511,7 @@ export const MINING = {
       name: 'emerald',
       itemId: 'emerald',
       isGem: true,
-      chance: 0.0000006
+      chance: 0.0000014
     },
 
     ruby: {
@@ -1523,19 +1523,31 @@ export const MINING = {
       name: 'ruby',
       itemId: 'ruby',
       isGem: true,
-      chance: 0.0000005
+      chance: 0.0000012
     },
 
     tanzanite: {
       requiredLevel: 60,
-      healthMax: 800000,
+      healthMax: 700000,
       xp: 160000,
       id: 'tanzanite',
       icon: 'tanzanite.png',
       name: 'tanzanite',
       isGem: true,
       itemId: 'tanzanite',
-      chance: 0.0000004
+      chance: 0.0000010
+    },
+
+    fireopal: {
+      requiredLevel: 70,
+      healthMax: 1500000,
+      xp: 400000,
+      id: 'fireopal',
+      icon: 'fireOpal.png',
+      name: 'fire opal',
+      isGem: true,
+      itemId: 'fireopal',
+      chance: 0.0000008
     }
   }
 };

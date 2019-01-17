@@ -396,6 +396,17 @@ export const MAGIC_BUFFS = {
           buff.data.shieldHp = 0;
         }
       },
+      
+      onTick() {
+        if (buff.totalDuration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ target, buff, caster: target })
+          } else {
+            buff.stacks = Math.round(buff.duration);
+          }
+        }
+      },
 
       onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt }) {
         if (buff.data.shieldHp >= damageDealt) {

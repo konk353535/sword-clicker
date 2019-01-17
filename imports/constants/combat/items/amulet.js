@@ -565,7 +565,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 20
+      level: 15
     }]
   },
 
@@ -590,7 +590,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 20
+      level: 25
     }]
   },
 
@@ -614,7 +614,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 30
+      level: 35
     }]
   },
 
@@ -663,7 +663,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 50
+      level: 55
     }]
   },
 
@@ -693,7 +693,35 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 60
+      level: 65
     }]
+  },
+
+  // Amulet of absorption
+  fireopal_amulet: {
+    id: 'fireopal_amulet',
+    icon: 'fireOpalAmulet.png',
+    category: 'combat',
+    slot: 'neck',
+    name: 'fire opal amulet',
+    sellPrice: 30000,
+    description: 'A magic amulet. Click monsters to damage in combat.',
+    isEquippable: true,
+    isAttackAmulet: true,
+    stats: {
+      damage: 40,
+      attack: 16,
+      attackMax: 20,
+      healthMax: 160,
+      magicArmor: 30,
+      energyStorage: 30,
+      energyRegen: 2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 1
+    }],
+    enchantments: ['fireopal_amulet']
   }
 };

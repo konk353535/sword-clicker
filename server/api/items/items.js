@@ -342,6 +342,10 @@ Meteor.methods({
       UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
     }
 
+    if (baseItem.itemId === "fireopal") {
+      UseFireOpal(baseItem, baseItemConstants, targetItem, targetItemConstants);
+    }
+
     //
     if (baseItem.category === 'enchantment') {
       if (baseItem.itemId === "enchantment_nullify") {
@@ -360,7 +364,7 @@ Meteor.methods({
         if ( (
             targetItem.extraStats
             && targetItem.extraStats.level
-            && targetItem.extraStats.level >= 4 // Amulet Upgrade Limit
+            && targetItem.extraStats.level >= 9 // Amulet Upgrade Limit
           ) || targetItem.enhanced
         ) {
           throw new Meteor.Error("invalid-target", 'Invalid target item');
@@ -931,8 +935,8 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -941,7 +945,7 @@ export const UseJade = function (baseItem, baseItemConstants, targetItem, target
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalAccuracy = targetItemConstants.stats.accuracy;
 
   const accuracyRate = 1.25;
@@ -981,8 +985,8 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -991,7 +995,7 @@ export const UseLapislazuli = function (baseItem, baseItemConstants, targetItem,
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalHealthMax = targetItemConstants.stats.healthMax;
   const originalDefense = targetItemConstants.stats.defense;
 
@@ -1034,8 +1038,8 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -1044,7 +1048,7 @@ export const UseSapphire = function (baseItem, baseItemConstants, targetItem, ta
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalMagicPower = targetItemConstants.stats.magicPower;
 
   const magicPowerRate = 1.20;
@@ -1083,8 +1087,8 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -1093,7 +1097,7 @@ export const UseEmerald = function (baseItem, baseItemConstants, targetItem, tar
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalHealthMax = targetItemConstants.stats.healthMax;
 
   const healthMaxRate = 1.15;
@@ -1132,8 +1136,8 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -1142,12 +1146,12 @@ export const UseRuby = function (baseItem, baseItemConstants, targetItem, target
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalAttack = targetItemConstants.stats.attack;
   const originalAttackMax = targetItemConstants.stats.attackMax;
 
-  const attackRate = 1.2;
-  const attackMaxRate = 1.15;
+  const attackRate = 1.225;
+  const attackMaxRate = 1.175;
 
   const attack = Math.round(originalAttack * Math.pow(attackRate, level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackMaxRate,level));
@@ -1186,8 +1190,8 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
     targetItem.extraStats.level = 0;
   }
 
-  // Amulet can be upgraded 4 times.
-  if (targetItem.extraStats.level >= 4) {
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
     throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
     return;
   }
@@ -1196,7 +1200,7 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   // Logic 
   targetItem.extraStats.level += 1;
 
-  const level = targetItem.extraStats.level;
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
   const originalAttack = targetItemConstants.stats.attack;
   const originalAttackMax = targetItemConstants.stats.attackMax;
   const originalAccuracy = targetItemConstants.stats.accuracy;
@@ -1228,6 +1232,67 @@ export const UseTanzanite = function (baseItem, baseItemConstants, targetItem, t
   targetItem.extraStats.defense = defense - originalDefense;
   targetItem.extraStats.healthMax = healthMax - originalHealthMax;
   targetItem.extraStats.magicPower = magicPower - originalMagicPower;
+  targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
+
+  // Post Logic & Cleanup
+  Items.update({
+    owner: Meteor.userId(),
+    _id: targetItem._id
+  }, {
+    $set: {
+      extraStats: targetItem.extraStats,
+    }
+  });
+
+  ConsumeItem(baseItem);
+};
+
+export const UseFireOpal = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+
+  // Validation
+  if (targetItem.itemId !== "fireopal_amulet") {
+    throw new Meteor.Error("invalid-target", 'Fire opal can only be used on a fire opal amulet.');
+    return;
+  }
+
+  if (!targetItem.extraStats) {
+    targetItem.extraStats = {};
+  }
+
+  if (!targetItem.extraStats.level) {
+    targetItem.extraStats.level = 0;
+  }
+
+  // Amulet can be upgraded 9 times.
+  if (targetItem.extraStats.level >= 9) {
+    throw new Meteor.Error("invalid-target", 'Amulet has reached maximum level.');
+    return;
+  }
+
+
+  // Logic 
+  targetItem.extraStats.level += 1;
+
+  const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
+  const originalAttack = targetItemConstants.stats.attack;
+  const originalAttackMax = targetItemConstants.stats.attackMax;
+  const originalHealthMax = targetItemConstants.stats.healthMax;
+  const originalMagicArmor = targetItemConstants.stats.magicArmor;
+
+  const attackRate = 1.075;
+  const attackRateMax = 1.150;
+  const healthMaxRate = 1.125;
+  const magicArmorRate = 1.075;
+
+  const attack = Math.round(originalAttack * Math.pow(attackRate, level));
+  const attackMax = Math.round(originalAttackMax * Math.pow(attackRateMax, level));
+  const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
+  const magicArmor = Math.round(originalMagicArmor * Math.pow(magicArmorRate, level));
+
+  // Subtract Original Amount to determine Extra
+  targetItem.extraStats.attack = attack - originalAttack;
+  targetItem.extraStats.attackMax = attackMax - originalAttackMax;
+  targetItem.extraStats.healthMax = healthMax - originalHealthMax;
   targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
 
   // Post Logic & Cleanup
@@ -1344,7 +1409,8 @@ export const IsJewelAmulet = function (targetItem) {
       || targetItem.itemId === "sapphire_amulet"
       || targetItem.itemId === "emerald_amulet"
       || targetItem.itemId === "ruby_amulet"
-      || targetItem.itemId === "tanzanite_amulet";
+      || targetItem.itemId === "tanzanite_amulet"
+      || targetItem.itemId === "fireopal_amulet";
 
 };
 
@@ -1374,6 +1440,10 @@ export const UseKeyOnAmulet = function (baseItem, baseItemConstants, targetItem,
 
     case "tanzanite_amulet":
       UseTanzanite(baseItem, baseItemConstants, targetItem, targetItemConstants);
+      break;
+
+    case "fireopal_amulet":
+      UseFireOpal(baseItem, baseItemConstants, targetItem, targetItemConstants);
       break;
 
     default:

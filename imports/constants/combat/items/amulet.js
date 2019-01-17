@@ -720,7 +720,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 1
+      level: 75
     }],
     enchantments: ['fireopal_amulet']
   }

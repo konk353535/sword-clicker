@@ -301,7 +301,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Update Rankings',
   schedule: function(parser) {
-    return parser.text('every 24 hours');
+    return parser.text('every 8 hours');
   },
   job: function() {
 

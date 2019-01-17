@@ -68,11 +68,11 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet'], item.itemId)) {
+    if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet','fireopal_amulet'], item.itemId)) {
       if (item.extraStats && item.extraStats.level) {
-        return ` (L.${item.extraStats.level+1})`;
+        return ` (Lv.${item.extraStats.level+1})`;
       }
-      return " (L.1)";
+      return " (Lv.1)";
     }
     
     return "";

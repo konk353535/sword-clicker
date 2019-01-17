@@ -1415,4 +1415,68 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
+  
+  fireopal_amulet: {
+    duplicateTag: 'fireopal_amulet', // Used to stop duplicate buffs
+    icon: 'fireOpalAmulet.png',
+    name: 'fire opal amulet',
+    description() {
+      return `
+        Whenever you take damage, a temporary elemental <br />
+        shield will be cast on you, shielding you and <br />
+        increasing your damage.  This effect can only occur <br />
+        once every ten seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      name: 'Fire Opal Amulet',
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      timeToApply: 0.0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.stacks = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.timeToApply > 0.0) {
+          buff.data.timeToApply -= secondsElapsed;
+        }
+        
+        buff.stacks = Math.ceil(buff.data.timeToApply);
+      },
+      
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (buff.data.timeToApply <= 0.0) {
+          // store max health
+          const curHealthMax = defender.stats.healthMax;
+          
+          const newBuff = {
+            id: 'elemental_shield',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              icon: 'elementalShield.svg',
+              description: `Temporary elemental shield.`,
+              name: 'elemental shield'
+            }
+          };
+
+          addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
+          
+          // revert max health
+          defender.stats.healthMax = curHealthMax;
+          
+          buff.data.timeToApply = 10.0;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
 };

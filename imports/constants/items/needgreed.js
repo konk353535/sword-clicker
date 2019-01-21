@@ -66,6 +66,9 @@ export const NEED_GREED_ITEMS = {
   herbs: (str) => {
     return RegExp('garlic|sorrell|lemon_grass', 'g').test(str)
   },
+  food: (str) => {
+    return RegExp('tamarind_honey|lemon_honey', 'g').test(str)
+  },
   mp_shields: (str) => {
     return RegExp('opal_Chestplate|spirit_shield', 'g').test(str)
   },

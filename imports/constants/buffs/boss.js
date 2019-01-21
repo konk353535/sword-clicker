@@ -41,7 +41,7 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const extraDamage = 0.1 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
@@ -793,7 +793,7 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const extraDamage = 0.01 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);

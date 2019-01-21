@@ -166,7 +166,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         if (Math.random() <= 0.1) {
           const hasEvasive = _.find(defender.buffs, (buff) => {
             return buff.id === 'evasive_maneuvers';
@@ -244,7 +244,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         if (defender.stats.health <= (defender.stats.healthMax * 0.2)) {
 
           const newBuff = {
@@ -667,7 +667,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healingReduction = 0.25;
         const newBuff = {
           id: 'healing_reduction',
@@ -710,7 +710,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const bleedChance = 0.2;
 
         if (Math.random() <= bleedChance) {
@@ -760,7 +760,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const bleedChance = 0.66;
 
         if (Math.random() <= bleedChance) {
@@ -823,7 +823,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         // Does this unit have poison? remove poison + heal
         const poisonedCount = defender.buffs.filter((buff) => {
@@ -997,7 +997,7 @@ export const MONSTER_BUFFS = {
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
         if (Math.random() <= 0.25) {
-          const constants = buff.constants.constants;
+          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const armorReduction = 0.66;
           const newBuff = {
             id: 'armor_reduction',

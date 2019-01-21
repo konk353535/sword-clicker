@@ -526,7 +526,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const bleedChance = 0.1;
 
         if (Math.random() <= bleedChance) {
@@ -739,7 +739,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const baseDamage = attacker.stats.attack;
         const totalDamage = rawDamage * constants.damageDecimal;
 
@@ -790,7 +790,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const baseDamage = attacker.stats.attack;
         const totalDamage = rawDamage * constants.damageDecimal;
 
@@ -960,7 +960,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         if (Math.random() <= constants.chance) {
           const armorReduction = constants.shred;
@@ -1345,7 +1345,8 @@ export const ENCHANTMENT_BUFFS = {
           const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
           if(!lodash.isUndefined(sourceAlly)) {
             // redirect damage from self to sourceAlly
-            const redirectDamage = damageDealt * (buff.constants.constants.baseDefense + (buff.constants.constants.defensePerLevel * buff.data.level));
+            const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+            const redirectDamage = damageDealt * (constants.baseDefense + (constants.defensePerLevel * buff.data.level));
             actualBattle.healTarget(redirectDamage, {
               caster: sourceAlly,
               target: defender,
@@ -1389,7 +1390,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         let healthTransferred = false;
         const healthToTransfer = buff.data.level * constants.baseTransferRate;
         const actualHealthTransferred = healthToTransfer * constants.baseTransferEfficiency;

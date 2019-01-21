@@ -24,7 +24,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const magicPowerBase = constants.magicPowerBase;
         const healthBase = constants.healthCost;
         const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
@@ -70,7 +70,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const magicPowerBase = constants.magicPowerBase;
         const healthBase = constants.healthCost;
         const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
@@ -124,7 +124,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const attackSpeedBase = constants.attackSpeedBase;
         const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower;
         const totalAttackSpeed = attackSpeedBase + attackSpeedMP;
@@ -189,7 +189,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const attackSpeedBase = constants.attackSpeedBase;
         const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower;
         const totalAttackSpeed = attackSpeedBase + attackSpeedMP;
@@ -256,7 +256,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const attackSpeedBase = constants.attackSpeedBase;
         const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower;
         const totalAttackSpeed = attackSpeedBase + attackSpeedMP;
@@ -314,7 +314,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const armorBase = constants.armorBase;
         const armorMP = constants.armorMPRatio * caster.stats.magicPower;
         const totalArmor = armorBase + armorMP;
@@ -372,7 +372,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const baseShield = constants.baseShield;
         const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
         const totalShield = baseShield + shieldMP;
@@ -455,7 +455,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const baseShield = constants.baseShield;
         const shieldMP = constants.shieldMPRatio * caster.stats.magicPower;
         const totalShield = baseShield + shieldMP;
@@ -526,7 +526,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const increaseBase = constants.increaseBase;
         const increaseMP = constants.increaseMPRatio * caster.stats.magicPower;
         const totalIncrease = increaseBase + increaseMP;
@@ -590,7 +590,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff && buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS['water_wave'].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -646,7 +646,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -713,7 +713,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -765,7 +765,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -817,7 +817,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -870,7 +870,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -942,7 +942,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healBase = constants.healBase;
         const healMP = constants.healMPRatio * caster.stats.magicPower;
         const totalHeal = healBase + healMP;
@@ -1010,7 +1010,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const healthBase = constants.healthCost;
         const totalHealth = healthBase;
 
@@ -1063,7 +1063,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower;
 
         const healthBase = constants.healthCost;
@@ -1143,7 +1143,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const magicArmorReductionBase = constants.magicArmorReductionBase;
         const magicArmorReductionMP = constants.magicArmorReductionMPRatio * caster.stats.magicPower;
         const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower;
@@ -1223,7 +1223,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const armorReductionBase = constants.armorReductionBase;
         const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
         const totalArmorReduction = armorReductionBase + armorReductionMP;
@@ -1287,7 +1287,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const armorReductionBase = constants.armorReductionBase;
         const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
         const totalArmorReduction = armorReductionBase + armorReductionMP;
@@ -1360,7 +1360,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const armorReductionBase = constants.armorReductionBase;
         const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
         const totalArmorReduction = armorReductionBase + armorReductionMP;
@@ -1431,7 +1431,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const armorReductionBase = constants.armorReductionBase;
         const armorReductionMP = constants.armorReductionMPRatio * caster.stats.magicPower;
         const totalArmorReduction = armorReductionBase + armorReductionMP;
@@ -1495,7 +1495,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damage = constants.damageMPRatio * caster.stats.magicPower;
 
         const healthBase = constants.healthCost;
@@ -1576,7 +1576,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damage = constants.damageMPRatio * caster.stats.magicPower;
 
         const healthBase = constants.healthCost;
@@ -1656,7 +1656,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -1708,7 +1708,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -1762,7 +1762,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damage = constants.damageMPRatio * caster.stats.magicPower;
 
         const healthBase = constants.healthCost;
@@ -1833,7 +1833,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
@@ -1915,7 +1915,7 @@ export const MAGIC_BUFFS = {
         buff.data.totalDuration = 0;
         buff.data.duration = -1;
 
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
@@ -2041,7 +2041,7 @@ export const MAGIC_BUFFS = {
         buff.data.totalDuration = 0;
         buff.data.duration = -1;
 
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
@@ -2176,7 +2176,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -2248,7 +2248,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -2301,7 +2301,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -2354,7 +2354,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -2407,7 +2407,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = buff.constants.constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
@@ -2464,7 +2464,7 @@ export const MAGIC_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         if (!buff.data.powerIncrease) {
-          const constants = buff.constants.constants;
+          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const powerBase = constants.powerBase;
           const powerPerLevel = constants.powerPerLevel * buff.data.level;
           const powerIncrease = powerBase + powerPerLevel;
@@ -2507,7 +2507,7 @@ export const MAGIC_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         if (!buff.data.powerIncrease) {
-          const constants = buff.constants.constants;
+          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const powerBase = constants.powerBase;
           const powerPerLevel = constants.powerPerLevel * buff.data.level;
           const powerIncrease = powerBase + powerPerLevel;

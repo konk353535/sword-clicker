@@ -640,7 +640,8 @@ export const COMPANION_BUFFS = {
                     description: ``,
                     name: 'bleed',
                     level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 2 : 1
-                  }
+                  },
+                  constants: BUFFS['bleed']
                 };
                 addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
                 buff.data.CDBleed = 30.0;
@@ -656,7 +657,8 @@ export const COMPANION_BUFFS = {
                     description: ``,
                     name: 'slash',
                     level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 2 : buff.data.level === 3 ? 2 : buff.data.level === 4 ? 3 : buff.data.level === 5 ? 3 : 1
-                  }
+                  },
+                  constants: BUFFS['slash']
                 };
                 addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
                 buff.data.CDSlash = 10.0;
@@ -672,7 +674,8 @@ export const COMPANION_BUFFS = {
                     description: ``,
                     name: 'penetrating slash',
                     level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 3 : 1
-                  }
+                  },
+                  constants: BUFFS['penetrating_slash']
                 };
                 addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
                 buff.data.CDPSlash = 10.0;
@@ -730,7 +733,8 @@ export const COMPANION_BUFFS = {
                 description: ``,
                 name: 'evasive maneuvers',
                 level: 5
-              }
+              },
+              constants: BUFFS['evasive_maneuvers']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             buff.data.timeTillCharge = 40;
@@ -899,8 +903,8 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillAction > 0) {
           buff.data.timeTillAction -= secondsElapsed;
         } else {
-          // Do nothing with two-thirds our ticks (except the above CD redux)
-          if (Math.random() < 0.667) {
+          // Do nothing with half our ticks (except the above CD redux)
+          if (Math.random() < 0.5) {
             return;
           }
 
@@ -926,7 +930,8 @@ export const COMPANION_BUFFS = {
                           icon: 'airBall.svg',
                           description: `Reduces enemy armor.`,
                           name: 'air ball'
-                        }
+                        },
+                        constants: BUFFS['air_ball']
                       };
                       // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                       addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
@@ -961,7 +966,8 @@ export const COMPANION_BUFFS = {
                     icon: 'waterWave.svg',
                     description: `Directly heals all allies.`,
                     name: 'water wave'
-                  }
+                  },
+                  constants: BUFFS['water_wave']
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 actualBattle.units.forEach((unit_to_heal) => {
@@ -982,7 +988,8 @@ export const COMPANION_BUFFS = {
                     icon: 'waterBall.svg',
                     description: `Directly heals target.`,
                     name: 'water ball'
-                  }
+                  },
+                  constants: BUFFS['water_ball']
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
@@ -1000,7 +1007,8 @@ export const COMPANION_BUFFS = {
                     name: 'mending water',
                     duration: 20,
                     totalDuration: 20,
-                  }
+                  },
+                  constants: BUFFS['mending_water']
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
@@ -1019,7 +1027,8 @@ export const COMPANION_BUFFS = {
                     icon: 'waterDart.svg',
                     description: `Directly heals target.`,
                     name: 'water dart'
-                  }
+                  },
+                  constants: BUFFS['water_dart']
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });

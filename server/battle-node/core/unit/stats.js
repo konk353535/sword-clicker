@@ -102,6 +102,7 @@ export default class Stats {
     this.armor = stats.armor;
     this.magicArmor = stats.magicArmor;
     this.healingReduction = stats.healingReduction || 1;
+    this.damageOutput = 1.0;
   }
 
   raw() {

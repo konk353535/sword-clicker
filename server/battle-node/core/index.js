@@ -13,6 +13,7 @@ import autoAttack, { TICK_DURATION, secondsElapsed } from './autoAttack';
 import castAbility from './castAbility';
 import applyBattleActions from './applyBattleActions';
 import Unit from './unit';
+import { addBuff, removeBuff } from '../../battleUtils.js';
 import { serverUrl } from '../config';
 
 export const balancers = {};
@@ -260,6 +261,8 @@ export default class Battle {
     // First 4 ticks (~800ms) of every new combat and 2 ticks (~400ms) of new room transitions for full-floor explorations
     // will deny auto-attacks and losses, giving players a chance to assess the combat and use taunts and heals.
 
+    this.inactivePlayers();
+    
     this.tickUnitsAndBuffs();
 
     if (this.tickCount >= 4) {
@@ -413,6 +416,41 @@ Battle.prototype.initPassives = function initPassives() {
     }
   });
 }
+// Tick method #1.5 (because I'm not gonna renumber them :P)
+Battle.prototype.inactivePlayers = function inactivePlayers() {
+  // check for inactive players and apply or remove 'idle_player' buffs as appropriate
+  this.units.forEach((unit) => {
+    let hasBuff = false;
+    let buffToRemove;
+    unit.buffs.forEach((buff) => {
+      if (buff.id === 'idle_player') {
+        hasBuff = true;
+        buffToRemove = buff;
+      }
+    });
+    if (unit.inactiveMinutes && unit.inactiveMinutes > 5) {
+      if (!hasBuff) {
+        const newBuff = {
+          id: 'idle_player',
+          data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            icon: 'sleeping.png',
+            description: `You are idle and aren't providing your full combat bonuses.`,
+            name: 'Idle'
+          },
+          constants: BUFFS['idle_player']
+        };
+
+        addBuff({ buff: newBuff, target: unit, caster: unit, actualBattle: this });
+      }
+    } else {
+      if (hasBuff) {
+        removeBuff({ buff: buffToRemove, target: unit, caster: unit, actualBattle: this });
+      }
+    }
+  });
+}
 // Tick method #2
 Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
   this.allAliveUnits.forEach((aliveUnit) => {
@@ -423,7 +461,9 @@ Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
     if (aliveUnit.buffs) {
       // Buffs can do things on tick, will collect them in the form of combatEvents
       aliveUnit.buffs.forEach((buff) => {
-        buff.constants = BUFFS[buff.id];
+        if (!buff.constants) {
+          buff.constants = BUFFS[buff.id];
+        }
 
         let caster = aliveUnit;
         

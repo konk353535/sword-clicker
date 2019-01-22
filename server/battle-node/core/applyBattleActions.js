@@ -17,7 +17,10 @@ export default function applyBattleActions() {
       const targetId = action.targets[0];
       if (this.enemiesMap[targetId]) {
         // Modify casters preferred target
-        casterUnit.target = action.targets[0];        
+        casterUnit.target = action.targets[0];
+        
+        // if this unit is actively targeting another unit, then they're clearly not inactive
+        casterUnit.inactiveMinutes = 0;
       }
     } else if (abilityId === 'forfeit') {
       this.forfitters[casterId] = true;
@@ -50,6 +53,9 @@ export default function applyBattleActions() {
 
         // Ensure caster unit has sufficient energy
         if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
+          // if this unit is actively using their amulet click charges versus another unit, then they're clearly not inactive
+          casterUnit.inactiveMinutes = 0;
+          
           casterUnit.amulet.energy -= 1;
           this.deltaEvents.push({
             type: 'abs',

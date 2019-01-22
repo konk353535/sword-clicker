@@ -42,6 +42,17 @@ export const updateUserHighestFloorClear = function updateUserHighestFloorClear(
   }
 };
 
+export const markUserAsActive = function markUserAsActive(userId) {
+  // update user activity
+  Users.update({
+    _id: userId
+  }, {
+    $set: {
+      lastActivity: moment().toDate()
+    }
+  });
+};
+
 export const updateCombatHistoryStats = function updateCombatHistoryStats({ user, historyStats }) {
   const userObject = Users.findOne({ _id: user});
   
@@ -847,6 +858,7 @@ export const completeBattle = function (actualBattle) {
     let totalMagicXp = 0;
     let spellsCast = [];
     let spellsCastCount = 0;
+    let userUsedAbility = false;
 
     unit.abilities.forEach((ability) => {
       if (ability.isSpell) {
@@ -854,6 +866,10 @@ export const completeBattle = function (actualBattle) {
         totalMagicXp += ability.totalCasts * spellConstants.xp;
         spellsCastCount += ability.totalCasts;
         spellsCast[ability.id] = 1;
+      }
+      if (!ability.isPassive && !ability.isEnchantment) {
+        // if this unit used any non-passive/non-enchantment abilities or spells, then they're clearly not inactive
+        userUsedAbility = true;
       }
     });
 
@@ -887,6 +903,10 @@ export const completeBattle = function (actualBattle) {
       });
 
       addXp('magic', totalMagicXp, unit.owner);
+      
+      if (userUsedAbility) {
+        markUserAsActive(unit.owner);
+      }
     }
 
     // Update relevant stuff, use callback so this is non blocking

@@ -30,6 +30,11 @@ export default function(rawDamage, {
       damage = (rawDamage * (1 - dmgReduction)) * ((defender.stats.damageTaken) ? defender.stats.damageTaken : 1.0);
     }
 
+    // damage weakening effects
+    if (attacker && attacker.stats && attacker.stats.damageOutput) {
+      damage *= attacker.stats.damageOutput;
+    }
+    
     defender.stats.health -= damage;
 
     this.checkDeath(defender);

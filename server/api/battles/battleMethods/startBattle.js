@@ -232,6 +232,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       }
     });
 
+    let inactiveMinutes = 99999;
+    if (targetUser.lastActivity) {
+      inactiveMinutes = Math.round(moment().diff(moment(targetUser.lastActivity), 'minutes'));
+    }
+    
     const newUnit = {
       id: userCombat.owner,
       owner: userCombat.owner,
@@ -248,7 +253,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       xpDistribution: userCombat.xpDistribution,
       tickOffset: _.random(0, 2) + 4,
       icon: userCombat.characterIcon || 'character.svg',
-      skills: usersSkillsArray
+      skills: usersSkillsArray,
+      inactiveMinutes: inactiveMinutes
     };
 
     if (userCombat.enchantments) {

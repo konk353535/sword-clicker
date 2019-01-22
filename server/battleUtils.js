@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { BUFFS } from '/imports/constants/buffs/index';
+import { BUFFS } from '../imports/constants/buffs/index';
 
 // why is this a duplicate of /imports/battleUtils.js ?
 

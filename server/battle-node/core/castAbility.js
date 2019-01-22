@@ -89,6 +89,12 @@ export default function({ ability, caster, targets }) {
     }
   }
   
+  // at this point, the targets are legitimate
+  if (!ability.isPassive && !ability.isEnchantment) {
+    // if this unit is using a non-passive/non-enchantment ability or spell, then they're clearly not inactive
+    caster.inactiveMinutes = 0;
+  }
+  
   // hack -- should bridge a way to add this to the buff proper
   if ((ability.id === 'scream') && (targets.length > 0)) {
     let needToTarget = 0;

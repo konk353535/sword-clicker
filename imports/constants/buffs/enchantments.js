@@ -1466,6 +1466,14 @@ export const ENCHANTMENT_BUFFS = {
             },
             constants: BUFFS['elemental_shield']
           };
+          
+          newBuff.constants.constants = {
+            damageBase: 25,
+            baseShield: 250,
+            shieldMPRatio: 1.0,
+            healthCost: 0, // no health cost
+            healthCostMPRatio: 0 // no health cost
+          };
 
           addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
           

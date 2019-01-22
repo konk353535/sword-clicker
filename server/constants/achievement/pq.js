@@ -271,11 +271,11 @@ export const PQ_ACHIEVEMENTS = {
 
   'pq_125': {
     kind: 'pq',
-    name: 'PQ 125',
+    name: 'PQ 130',
     hidden: false,
-    description: 'Reach level 125 in personal quest',
+    description: 'Reach level 130 in personal quest',
     condition({ user }) {
-      return user.personalQuest.level >= 125;
+      return user.personalQuest.level >= 130;
     },
     rewards: [{
       type: 'item',

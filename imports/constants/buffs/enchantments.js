@@ -708,7 +708,7 @@ export const ENCHANTMENT_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+          removeBuff({ target, buff, caster: target, actualBattle })
         }
       },
 
@@ -838,7 +838,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (buff.data.timeTillHeal == null) {
+        if (!buff.data.timeTillHeal) {
           buff.data.timeTillHeal = 1.5;
         } else {
           buff.data.timeTillHeal -= secondsElapsed;
@@ -865,7 +865,7 @@ export const ENCHANTMENT_BUFFS = {
               historyStats: actualBattle.historyStats
             });
 
-            removeBuff({ buff, target, caster: target });
+            removeBuff({ buff, target, caster: target, actualBattle });
           }
 
           buff.data.timeTillHeal = 1.5;
@@ -899,7 +899,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (buff.data.timeTillHeal == null) {
+        if (!buff.data.timeTillHeal) {
           buff.data.timeTillHeal = 1.5;
         } else {
           buff.data.timeTillHeal -= secondsElapsed;
@@ -927,7 +927,25 @@ export const ENCHANTMENT_BUFFS = {
               historyStats: actualBattle.historyStats
             });
 
-            removeBuff({ buff, target, caster: target });
+            removeBuff({ buff, target, caster: target, actualBattle });
+            
+            // find everyone else with balloons and pop them
+            actualBattle.units.forEach((friendlyUnit) => {
+              if (friendlyUnit.id !== target.id) {
+                let tempBalloonBuff = undefined;
+                friendlyUnit.buffs.forEach((tempBuff) => {
+                  if (tempBuff.id === 'event_ny_balloons') {
+                    tempBalloonBuff = tempBuff;
+                  }
+                });
+                if (tempBalloonBuff) {
+                  removeBuff({ buff: tempBalloonBuff, target: friendlyUnit, caster: target, actualBattle });
+                  if (actualBattle.tickEvents) {
+                    actualBattle.tickEvents.push({from: target.id, to: friendlyUnit.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
+                  }
+                }
+              }
+            });
           }
 
           buff.data.timeTillHeal = 1.5;
@@ -1030,7 +1048,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.stacks -= 1;
 
           if (buff.stacks <= 0) {
-            removeBuff({ buff, target, caster: target });
+            removeBuff({ buff, target, caster: target, actualBattle });
           }
         }
       },

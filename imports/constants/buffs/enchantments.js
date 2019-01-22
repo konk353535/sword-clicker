@@ -1463,7 +1463,8 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'elementalShield.svg',
               description: `Temporary elemental shield.`,
               name: 'elemental shield'
-            }
+            },
+            constants: BUFFS['elemental_shield']
           };
 
           addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });

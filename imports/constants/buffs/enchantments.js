@@ -1495,6 +1495,9 @@ export const ENCHANTMENT_BUFFS = {
             healthCost: 0, // no health cost
             healthCostMPRatio: 0 // no health cost
           };
+          
+          newBuff.duration = 3,
+          newBuff.totalDuration = 3;
 
           addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
           

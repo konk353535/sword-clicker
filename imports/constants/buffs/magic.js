@@ -397,7 +397,7 @@ export const MAGIC_BUFFS = {
         }
       },
       
-      onTick() {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (buff.totalDuration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {

@@ -264,12 +264,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
           const clonedConstants = enchantConstants;
           let newBuff = {
             id: buffId,
-            duration: clonedConstants.data.durationTotal,
-            data: enchantConstants.data,
+            icon: clonedConstants.icon,
+            name: clonedConstants.name,
+            data: clonedConstants.data,
+            duration: clonedConstants.data.durationTotal
           };
 
           newBuff.data.icon = clonedConstants.icon;
-          newBuff.data.description = enchantConstants.description();
+          newBuff.data.description = clonedConstants.description();
           newUnit.buffs.push(newBuff);
         }
       });

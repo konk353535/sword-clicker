@@ -263,7 +263,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -277,7 +278,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -291,7 +293,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -305,7 +308,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -319,7 +323,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -333,7 +338,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -347,7 +353,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -361,7 +368,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -375,7 +383,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -389,7 +398,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -403,7 +413,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -417,7 +428,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -431,7 +443,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -445,7 +458,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -459,7 +473,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },
@@ -473,7 +488,8 @@ export const ENEMIES = Object.assign({
       data: {
         icon: 'spectre.svg',
         name: 'Spirit Blink',
-        description: 'Will randomly fade into the ether, becoming invulnerable'
+        description: 'Will randomly fade into the ether, becoming invulnerable',
+        hideBuff: true
       }
     }]
   },

@@ -113,12 +113,11 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
+        buff.data.hideBuff = true;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
         if (!buff.data.timeTillBlink) {
-          buff.data.hideBuff = true;
           buff.data.timeTillBlink = 6 + (Math.random() * 7);
         }
 

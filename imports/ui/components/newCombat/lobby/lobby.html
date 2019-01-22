@@ -139,9 +139,9 @@
           {{else}}
             {{#if $gt waveDetails.health 0}}
               {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}
-                Resets in {{moDiff bossResetAt moNow 'hours'}} hours
+                Recovers in {{moDiff bossResetAt moNow 'hours'}} hours
               {{else}}
-                Resets in {{moDiff bossResetAt moNow 'minutes'}} minutes
+                Recovers in {{moDiff bossResetAt moNow 'minutes'}} minutes
               {{/if}}            
             {{else}}
               {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}

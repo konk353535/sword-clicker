@@ -31,11 +31,13 @@ Template.readableDuration.onCreated(function bodyOnCreated() {
     const asSeconds = duration.asSeconds();
     const asMinutes = duration.asMinutes();
     const asHours = duration.asHours();
+    const asDays = duration.asDays();
+    const asMonths = duration.asMonths();
 
     if (asSeconds < 0) {
       return '';
     } else if (asSeconds < 60) {
-      return this.state.set('duration', `${Math.round(asSeconds)}s`);
+      return this.state.set('duration', `${Math.ceil(asSeconds)}s`);
     } else if (asMinutes < 60) {
       const seconds = duration.seconds();
       const minutes = duration.minutes();
@@ -44,11 +46,19 @@ Template.readableDuration.onCreated(function bodyOnCreated() {
       const minutes = duration.minutes();
       const hours = duration.hours();
       return this.state.set('duration', `${hours}h ${minutes}m`);  
+    } else if (asDays < 31) {
+      const days = duration.days();
+      const hours = duration.hours();
+      return this.state.set('duration', `${days}d ${hours}h`);
+    } else if (asMonths < 12) {
+      const months = duration.months();
+      const days = duration.days();
+      return this.state.set('duration', `${months}mo ${days}d`);
     }
 
-    const days = duration.days();
-    const hours = duration.hours();
-    return this.state.set('duration', `${days}d ${hours}h`);
+    const years = duration.years();
+    const months = duration.months();
+    return this.state.set('duration', `${years}y ${months}mo`);
   });
 });
 

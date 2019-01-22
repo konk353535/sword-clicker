@@ -989,7 +989,7 @@ export const COMPANION_BUFFS = {
                 };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                 actualBattle.units.forEach((unit_to_heal) => {
-                    addBuff({ buff: newBuff, target: unit_to_heal, caster: caster, actualBattle });
+                  addBuff({ buff: newBuff, target: unit_to_heal, caster: caster, actualBattle });
                 });                
                 buff.data.CDWaterWave = 20.0;
                 castAnyHeal = true;

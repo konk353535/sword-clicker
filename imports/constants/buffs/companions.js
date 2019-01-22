@@ -258,9 +258,15 @@ export const COMPANION_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
 
+          // ** OLD **
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          //if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+
+          // ** NEW **
+          // this companion won't help in personal quests
+          // this companion won't help in battle if the unit roster is full
+          if ((actualBattle.isTower()) && (actualBattle.soloCompanions().length + actualBattle.alliedPlayers().length < 5)) {            
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -275,12 +281,12 @@ export const COMPANION_BUFFS = {
               isCompanion: true,
               isSoloCompanion: true,
               icon: 'boneWarrior.svg',
-              name: target.name + '\'s Warrior',
+              name: target.name + '\'s warrior',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (10 * buff.data.level),
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 1.5) + (30 * buff.data.level),
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 3.5) + (13 * buff.data.level),
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (40 * buff.data.level),
                 attackSpeed: 0.8,
-                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.7) + (25 * buff.data.level),
+                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.85) + (35 * buff.data.level),
                 health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
                 healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 3) + 15,
@@ -378,9 +384,15 @@ export const COMPANION_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
 
+          // ** OLD **
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          //if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+
+          // ** NEW **
+          // this companion won't help in personal quests
+          // this companion won't help in battle if the unit roster is full
+          if ((actualBattle.isTower()) && (actualBattle.soloCompanions().length + actualBattle.alliedPlayers().length < 5)) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -395,14 +407,14 @@ export const COMPANION_BUFFS = {
               isCompanion: true,
               isSoloCompanion: true,
               icon: 'cutePig.svg',
-              name: target.name + '\'s Pig',
+              name: target.name + '\'s pig',
               stats: {
                 attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
                 attackSpeed: 0.3,
                 accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (125 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 12.5) + (125 * buff.data.level),
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 7.5) + (125 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 7.5) + (125 * buff.data.level),
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.45) + (15 * buff.data.level),
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.65) + (75 * buff.data.level),
                 magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + (20 * buff.data.level),
@@ -510,9 +522,15 @@ export const COMPANION_BUFFS = {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
 
+          // ** OLD **
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions
-          if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+          //if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+
+          // ** NEW **
+          // this companion won't help in personal quests
+          // this companion won't help in battle if the unit roster is full
+          if ((actualBattle.isTower()) && (actualBattle.soloCompanions().length + actualBattle.alliedPlayers().length < 5)) {
             const attackSkill = target.attackSkill();
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
@@ -527,7 +545,7 @@ export const COMPANION_BUFFS = {
               isCompanion: true,
               isSoloCompanion: true,
               icon: 'fairy.svg',
-              name: target.name + '\'s Fairy',
+              name: target.name + '\'s fairy',
               stats: {
                 attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // fairies don't do much damage, they're supports
                 attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // fairies don't do much damage, they're supports

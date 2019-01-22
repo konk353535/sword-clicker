@@ -183,6 +183,19 @@ export default class Battle {
     return 20;
   }
   
+  alliedPlayers() {
+    try {
+      const PCUnits = this.units.filter((unit) => {
+        return !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
+      });
+      if (PCUnits) {
+        return PCUnits;
+      }
+    } catch (err) {
+    }
+    return [];
+  }
+      
   alliedNPCs() {
     try {
       const NPCUnits = this.units.filter((unit) => {

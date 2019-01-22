@@ -270,6 +270,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
             duration: clonedConstants.data.durationTotal
           };
 
+          newBuff.data.id = clonedConstants.id;
+          newBuff.data.name = clonedConstants.name;
           newBuff.data.icon = clonedConstants.icon;
           newBuff.data.description = clonedConstants.description();
           newUnit.buffs.push(newBuff);

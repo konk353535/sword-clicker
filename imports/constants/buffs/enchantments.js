@@ -928,6 +928,9 @@ export const ENCHANTMENT_BUFFS = {
             });
 
             removeBuff({ buff, target, caster: target, actualBattle });
+            if (actualBattle.tickEvents) {
+              actualBattle.tickEvents.push({from: target.id, to: target.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
+            }
             
             // find everyone else with balloons and pop them
             actualBattle.units.forEach((friendlyUnit) => {

@@ -24,8 +24,9 @@ export const MISC_BUFFS = {
         const totalInactiveMinutes = Math.floor((buff.data.totalTime / 60) + target.inactiveMinutes);
         
         if (totalInactiveMinutes > 5) {
-          const damageRedux = Math.floor(totalInactiveMinutes / 3) / 100;
-          target.stats.damageOutput = (damageRedux > 0.75) ? 0.25 : 1.00 - damageRedux;
+          let damageRedux = Math.floor(totalInactiveMinutes / 3) / 100;
+          damageRedux = (damageRedux > 0.75) ? 0.75 : damageRedux;
+          target.stats.damageOutput = 1.00 - damageRedux;
           buff.customText = (damageRedux * -100).toFixed(0) + '%';
         } else {
           target.stats.damageOutput = 1.0;

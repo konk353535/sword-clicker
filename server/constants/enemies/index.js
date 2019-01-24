@@ -95,7 +95,8 @@ export const ENEMIES = Object.assign({
       data: {
         totalDuration: Infinity,
         icon: 'youngNinja.svg',
-        name: 'Ninja Reflexes'
+        name: 'Ninja Reflexes',
+        hideBuff: true
       }
     }]
   },
@@ -139,8 +140,9 @@ export const ENEMIES = Object.assign({
       duration: Infinity,
       data: {
         totalDuration: Infinity,
-        icon: 'youngNinja.svg',
-        name: 'Ninja Reflexes'
+        icon: 'unicorn.svg',
+        name: 'Ninja Reflexes',
+        hideBuff: true
       }
     }]
   },

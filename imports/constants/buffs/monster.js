@@ -157,11 +157,12 @@ export const MONSTER_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      hideBuff: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
+        buff.data.hideBuff = true;
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -172,13 +173,15 @@ export const MONSTER_BUFFS = {
           });
 
           if (!hasEvasive) {
+            const iconToUse = ((buff.data.icon) ? buff.data.icon : ((buff.constants) ? buff.constants.icon : 'evasiveManeuvers.svg'));
             const newBuff = {
               id: 'evasive_maneuvers',
+              icon: iconTouse,
               data: {
                 duration: 3,
                 totalDuration: 3,
                 level: 1,
-                icon: 'evasiveManeuvers.svg'
+                icon: iconToUse
               }
             };
 

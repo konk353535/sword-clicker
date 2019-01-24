@@ -659,7 +659,7 @@ Template.friendRow.onCreated(function bodyOnCreated() {
 
       const lastActionDate = moment(computedFriend.lastActionDate);
 
-      if (now.isAfter(lastActionDate.add(15, 'minutes'))) {
+      if (now.isAfter(lastActionDate.add(30, 'minutes'))) {
         computedFriend.offline = true;
       } else {
         computedFriend.offline = false;

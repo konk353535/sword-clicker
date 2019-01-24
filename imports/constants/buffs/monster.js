@@ -176,7 +176,7 @@ export const MONSTER_BUFFS = {
             const iconToUse = ((buff.data.icon) ? buff.data.icon : ((buff.constants) ? buff.constants.icon : 'evasiveManeuvers.svg'));
             const newBuff = {
               id: 'evasive_maneuvers',
-              icon: iconTouse,
+              icon: iconToUse,
               data: {
                 duration: 3,
                 totalDuration: 3,

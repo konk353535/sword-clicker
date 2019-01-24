@@ -57,8 +57,20 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'shop'}}active{{/if}}" href="/shop">
-                Shop
+              <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">
+                Chat
+              </a>
+            </li>
+            {{#unless currentUser.isGuest}}
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/{{currentUser.username}}">
+                Profile
+              </a>
+            </li>
+            {{/unless}}
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
+                Skills
               </a>
             </li>
             {{#if currentUser.newUpdates}}
@@ -76,8 +88,10 @@
                 {{> formatNumber number=currentUser.gold}}
               </span>
               <span>
-                <img src="/icons/gems.svg" class="extra-small-icon">
-                {{combinedGems}}
+                <a style="color: white; text-decoration: none !important;" href="/shop">
+                  <img src="/icons/gems.svg" class="extra-small-icon">
+                  {{combinedGems}}
+                </a>
               </span>
             </div>
             <div class="dropdown ml-2">

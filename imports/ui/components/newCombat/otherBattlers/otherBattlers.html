@@ -48,9 +48,11 @@
       <!--<button class="btn btn-secondary btn-spectate-group btn-sm mr-1" data-id="{{row._id}}" disabled="{{$not row.inBattle}}">
         Spectate
       </button> -->
-      <button class="btn btn-primary btn-join-group btn-sm" data-id="{{row._id}}">
-        Join
-      </button>
+      {{#unless row.locked}}
+        <button class="btn btn-primary btn-join-group btn-sm" data-id="{{row._id}}">
+          Join
+        </button>
+      {{/else}}
     </div>
   </div>
 </template>

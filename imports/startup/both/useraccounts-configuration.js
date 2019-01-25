@@ -1,5 +1,8 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
+import { Users } from '/imports/api/users/users';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
+
 Router.configure({
   layoutTemplate: 'myLayout',
   yieldTemplates: {
@@ -22,6 +25,25 @@ AccountsTemplates.configure({
   preSignUpHook(password, options) {
     if (Meteor.isClient) {
       options.server = $('.server-selector').attr('id');
+    }
+  },
+  
+  // https://github.com/meteor-useraccounts/core/blob/master/Guide.md
+  postSignUpHook(userId, info) {
+    if (Meteor.isServer) {
+      const userDoc = Users.findOne({_id: userId});
+      if (userDoc) {
+        Chats.insert({
+          message: `Welcome new player ${userDoc.username} to the game!`,
+          username: 'SERVER',
+          name: 'SERVER',
+          date: new Date(),
+          custom: {
+            roomType: 'General'
+          },
+          roomId: `General`
+        });
+      }
     }
   },
 

@@ -9,6 +9,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Combat } from '/imports/api/combat/combat';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Mining } from '/imports/api/mining/mining';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items.js';
 
@@ -102,6 +103,17 @@ Meteor.methods({
     // Update username
     Accounts.setUsername(Meteor.userId(), username);
 
+    Chats.insert({
+      message: `Welcome new player ${username} to the game!`,
+      username: 'SERVER',
+      name: 'SERVER',
+      date: new Date(),
+      custom: {
+        roomType: 'General'
+      },
+      roomId: `General`
+    });
+    
     // Update password
     Accounts.setPassword(Meteor.userId(), password, { logout: false });
 

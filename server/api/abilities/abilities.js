@@ -324,7 +324,7 @@ Meteor.methods({
         id: abilityConstant.id,
         slot: (ABILITIES[abilityKey].slot || 'any'),
         buff: ((ABILITIES[abilityKey].buffs && ABILITIES[abilityKey].buffs.length > 0) ? ABILITIES[abilityKey].buffs[0] : ''),
-        isPassive: (ABILITIES[abilityKey].passive || false),
+        isPassive: (ABILITIES[abilityKey].isPassive || false),
       };
 
       return abilityData;

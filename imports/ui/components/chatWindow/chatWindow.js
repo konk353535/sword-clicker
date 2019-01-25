@@ -24,6 +24,12 @@ SimpleChat.scrollToEnd = function () {
 SimpleChat.handleObserver = undefined;
 
 const AVAILABLE_CHATS = {
+  'Server': {
+    name: 'Server',
+    id: 'Server',
+    class: 'chat-Server',
+    show: true
+  },
   'General': {
     name: 'General',
     id: 'General',
@@ -54,11 +60,11 @@ const AVAILABLE_CHATS = {
     class: 'chat-Help',
     show: true
   },
-  'Offtopic': {
-    name: 'Off Topic',
-    id: 'Offtopic',
-    class: 'chat-Offtopic',
-    show: false
+  'Announcements': {
+    name: 'Announcements',
+    id: 'Announcements',
+    class: 'chat-Dev',
+    show: true
   }
 };
 
@@ -96,7 +102,12 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     }
 
     if (availableChats.General.show) {
-      Meteor.subscribe("simpleChats", `General-${myUserDoc.server}`, this.limit.get());
+      Meteor.subscribe("simpleChats", `General`, this.limit.get());
+      //Meteor.subscribe("simpleChats", `General-${myUserDoc.server}`, this.limit.get());
+    }
+
+    if (availableChats.Server.show) {
+      Meteor.subscribe("simpleChats", `Server-${myUserDoc.server}`, this.limit.get());
     }
 
     if (currentGroup && availableChats.Party.show) {
@@ -114,14 +125,15 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
       Meteor.subscribe("simpleChats", `Game-${Meteor.userId()}`, this.limit.get());
     }
 
-    if (availableChats.Offtopic.show) {
+    if (availableChats.Announcements.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Offtopic-${myUserDoc.server}`, this.limit.get());
+      //Meteor.subscribe("simpleChats", `Offtopic-${myUserDoc.server}`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Announcements`, this.limit.get());
     }
 
     if (availableChats.Help.show) {
       // Events relevant to you
-      Meteor.subscribe("simpleChats", `Help-${myUserDoc.server}`, this.limit.get());
+      Meteor.subscribe("simpleChats", `Help`, this.limit.get());
     }
 
     this.subscribing = true;
@@ -237,15 +249,18 @@ Template.chatWindow.events({
     } else if (command === '/general' || command === '/g') {
       $message.val(text);
       template.state.set('currentChat', 'General');
+    } else if (command === '/server' || command === '/s') {
+      $message.val(text);
+      template.state.set('currentChat', 'Server');
     } else if (command === '/lfg') {
       $message.val(text);
       template.state.set('currentChat', 'LFG');
     } else if (command === '/help' || command === '/h') {
       $message.val(text);
       template.state.set('currentChat', 'Help');
-    } else if (command === '/offtopic' || command === '/ot') {
+    } else if (command === '/announce' || command === '/a' || command === '/an' || command === '/ann' || command === '/announcement' || command === '/announcements' || command === '/d' || command === '/dev') {
       $message.val(text);
-      template.state.set('currentChat', 'Offtopic');
+      template.state.set('currentChat', 'Announcements');
     }
 
     if ($message.val() !== '') {
@@ -261,8 +276,10 @@ Template.chatWindow.events({
       let roomId;
       if (currentChatId === 'Party') {
         roomId = Groups.findOne({ members: Meteor.userId() })._id;
-      } else {
+      } else if (currentChatId === 'Server' || currentChatId === 'LFG') {
         roomId = `${currentChatId}-${Meteor.user().server}`;
+      } else {
+        roomId = `${currentChatId}`;
       }
 
       Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {

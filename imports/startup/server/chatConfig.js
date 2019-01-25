@@ -18,7 +18,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import _ from 'underscore';
 import moment from 'moment';
 
-const PUBLIC_ROOMS = ['General', 'LFG', 'Offtopic', 'Help']
+const PUBLIC_ROOMS = ['Server', 'General', 'LFG', 'Help', 'Announcements']
 
 const createNewServer = function (name, iteration) {
   // Create the server
@@ -147,7 +147,7 @@ SimpleChat.configure ({
       sendUserChatMessage({ userId: userDoc._id, message: `Successfully transferred ${gemsToSend} gems to ${targetUser.username}.` });
       return;
     }
-
+  
     if (userDoc.isMod) {
       if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user
@@ -348,6 +348,12 @@ SimpleChat.configure ({
     } catch (err) {
     }
     
+    if (!userDoc.isMod) {
+      if (RegExp('announcements', 'gi').test(roomId)) {
+        sendUserChatMessage({ userId: userDoc._id, message: `Only game staff may send messages to that channel.` });
+      }
+    }
+  
     return true;
   }
 });

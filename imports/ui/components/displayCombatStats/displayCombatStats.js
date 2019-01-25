@@ -75,19 +75,27 @@ Template.displayCombatStats.helpers({
       }
 
       let fixedDigits = 1;
-      if (key === 'attackSpeed')
-        fixedDigits = 2;
-      
-      let statLabel = statsMap[key].toFixed(fixedDigits);
-      if (extraStatsMap[key]) {
-        statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(fixedDigits)}`;
-      }
+      if (key === 'attackSpeed') {
+        //fixedDigits = 2;
 
-      statsArr.push({
-        label: statLabel + ` ${descriptors(key)}`,
-        value: statsMap[key] + extraStatsMap[key],
-        key
-      });
+        statsArr.push({
+          label: (Math.round(statsMap[key] * 10000.0) / 10000.0).toString() + ` ${descriptors(key)}`,
+          value: statsMap[key] + extraStatsMap[key],
+          key
+        });
+        
+      } else {
+        let statLabel = statsMap[key].toFixed(fixedDigits);
+        if (extraStatsMap[key]) {
+          statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(fixedDigits)}`;
+        }
+
+        statsArr.push({
+          label: statLabel + ` ${descriptors(key)}`,
+          value: statsMap[key] + extraStatsMap[key],
+          key
+        });
+      }
     });
 
     return statsArr;
@@ -126,13 +134,20 @@ Template.displayCombatStats.helpers({
       }
 
       let fixedDigits = 1;
-      if (key === 'attackSpeed')
-        fixedDigits = 2;
-      
-      statsArr.push({
-        label: statsMap[key].toFixed(fixedDigits) + ` ${descriptors(key)}`,
-        key
-      });
+
+      if (key === 'attackSpeed') {
+        //fixedDigits = 2;
+        statsArr.push({
+          label: (Math.round(statsMap[key] * 10000.0) / 10000.0).toString() + ` ${descriptors(key)}`,
+          key
+        });
+        
+      } else {
+        statsArr.push({
+          label: statsMap[key].toFixed(fixedDigits) + ` ${descriptors(key)}`,
+          key
+        });
+      }
     });
 
     return statsArr;

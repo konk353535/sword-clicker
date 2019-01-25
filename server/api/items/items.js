@@ -55,7 +55,8 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         // Determine how good this roll was
         maxRoll += 1;
         if (extra > 0) {
-          extraStats[statName] = math.round(extra, 1);
+          extraStats[statName] = extra /* math.round(extra, 1) */ ;
+          
           myRoll += (extraStats[statName] / itemConstants.extraStats[statName]);
         }
       });
@@ -397,7 +398,10 @@ Meteor.methods({
             const statPercent = (currentStat / maxStat) * 100;
             // Smallest increment
             // Divide by 10, as smallest increment of stat is 0.1
-            const smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 10;
+            let smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 10;
+            if (extraStatKey === "attackSpeed") {
+              smallestIncrement = 0.00001;
+            }
 
             if (smallestIncrement <= ENHANCER_KEY_INCREASE) {
               increaseOptions.push({
@@ -405,7 +409,7 @@ Meteor.methods({
                 smallestIncrement,
                 currentStat,
                 maxStat,
-                maxIncrease: math.round(maxStat - currentStat, 1)
+                maxIncrease: maxStat - currentStat /* math.round(maxStat - currentStat, 1) */
               });
             }
           }

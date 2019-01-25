@@ -16,6 +16,18 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
+    // Fetch extra ability details that the server holds
+    const currentInstanceRef = this;
+    Meteor.call('abilities.fetchLibraryExtra', function(err, data) {
+      if (!err) {
+        try {
+          currentInstanceRef.state.set('abilityLibraryExtra', data);
+        } catch (err) {
+          console.log("abilities.fetchLibraryExtra() API error", err);
+        }
+      }
+    });
+
     const anAbility = Abilities.findOne();
     // Pass ability so when a new abilitiy is learnt this is reactive
     const results = ReactiveMethod.call('abilities.fetchLibrary', anAbility);
@@ -113,11 +125,13 @@ Template.selectAbilitiesPage.helpers({
     const instance = Template.instance();
     const myAbilities = Abilities.findOne({});
 
-    if (!instance.state.get('abilityLibrary') || !myAbilities) {
+    const instanceToUse = instance.state.get('abilityLibraryExtra'); // ? instance.state.get('abilityLibraryExtra') : instance.state.get('abilityLibrary');
+    
+    if (!instanceToUse || !myAbilities) {
       return [];
     }
 
-    return _.sortBy(instance.state.get('abilityLibrary').map((ability) => {
+    let tempList = instanceToUse.map((ability) => {
       ability.primaryAction = {};
       if (ability.requires) {
         ability.requires.forEach((require) => {
@@ -146,7 +160,17 @@ Template.selectAbilitiesPage.helpers({
       }
 
       return ability;
-    }), 'notLearnt');
+    });
+    
+    tempList = _.sortBy(tempList, 'name');
+    tempList = _.sortBy(tempList, function(ability) {
+      if (ability.slot === 'companion') return 0;
+      if (ability.isPassive) return 5;
+      return 10;
+    });
+    tempList = _.sortBy(tempList, 'notLearnt');
+    
+    return tempList;
   }
 });
 

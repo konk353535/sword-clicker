@@ -357,6 +357,10 @@ export const completeBattle = function (actualBattle) {
     for (let i = actualBattle.room - 1; i > 0; i--) {
       pointsEarnt += Math.pow(1.7, i);
     }
+    
+    // Normalize points to 0.0 - 100.0
+    // Original = 1.7 + 2.89 + 4.913 + 8.3521 + 14.19857 + 24.137569 + 41.0338673 = 97.2251063
+    pointsEarnt = Math.round((pointsEarnt / 0.972251063) * 10.0) / 10.0;
 
     const units = actualBattle.units.filter((unit) => {
       return !!unit.owner && !unit.isNPC && unit.xpDistribution;

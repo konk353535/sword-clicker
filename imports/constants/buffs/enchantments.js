@@ -1577,7 +1577,7 @@ export const ENCHANTMENT_BUFFS = {
         With the rhythm of a spirited dancer, you dance and <br />
         weave through battle relying on your agility instead <br />
         of tough armor.  Every 8 seconds, you will automatically <br />
-        evade all attacks for a second.`;
+        evade all attacks for 2 seconds.`;
     },
     constants: {
     },
@@ -1607,7 +1607,7 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'eventLNYLionBodyDodge.svg',
               description: `You're dodging all damage while dancing in your costume.`,
               name: 'Lion Costume Dodge',
-              level: 0
+              level: 2
             },
             constants: BUFFS['evasive_maneuvers']
           };
@@ -1687,20 +1687,29 @@ export const ENCHANTMENT_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (actualBattle.enemies) {
-          const minHealth = target.stats.healthMaxOrig * 0.4;
+          const maxHealth = (target.stats.healthMaxOrig && target.stats.healthMaxOrig > 1) ? target.stats.healthMaxOrig : target.stats.healthMax;
+          const minHealth = maxHealth * 0.4;
+          const healthIncrementPerEnemy = maxHealth * 0.15;
+          
           let healthReduxTotal = 0;
+          
           actualBattle.enemies.forEach((enemy) => {
             if (enemy && enemy.target !== target.id) {
-              enemy.target = target.id
-              healthReduxTotal += enemy.stats.health * 0.2;
+              enemy.target = target.id;
+              if (enemy.stats.health * 0.2 > healthIncrementPerEnemy) {
+                healthReduxTotal += healthIncrementPerEnemy;
+              } else {
+                healthReduxTotal += enemy.stats.health * 0.2;
+              }
             }
           });
+          
           if (healthReduxTotal > 0 && target.stats.health > minHealth) {
             let newHealth = target.stats.health - healthReduxTotal;
             if (newHealth < minHealth) {
               newHealth = minHealth;
             }
-            target.stats.health = minHealth;
+            target.stats.health = newHealth;
           }          
         }
       },

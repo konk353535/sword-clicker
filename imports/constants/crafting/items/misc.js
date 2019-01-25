@@ -65,7 +65,22 @@ export const MISC_ITEMS = {
     shiftActionData: {
       description: 'open to reveal a prize'
     },
-    // 22 items
-    contentsList: ['event_lny_lion_body', 'event_lny_lion_body', 'event_lny_lion_head', 'event_lny_lion_head', 'event_lny_lion_claws', 'event_lny_lion_claws', 'lion_dance_tome', 'lion_dance_tome', 'gold:10', 'gold:100', 'gold:250', 'gold:500', 'gold:1000', 'gold:2500', 'gold:10000', 'gems:1', 'gems:2', 'gems:3', 'gems:5', 'enhancer_key', 'lemonade', 'lemonade'],
+    // 50 items
+    contentsList:
+    [
+      /* 10% chance: */ 'event_lny_lion_body', 'event_lny_lion_body', 'event_lny_lion_body', 'event_lny_lion_body', 'event_lny_lion_body',
+      /* 10% chance: */ 'event_lny_lion_head', 'event_lny_lion_head', 'event_lny_lion_head', 'event_lny_lion_head', 'event_lny_lion_head',
+      /* 10% chance: */ 'event_lny_lion_claws', 'event_lny_lion_claws', 'event_lny_lion_claws', 'event_lny_lion_claws', 'event_lny_lion_claws',
+      /*  6% chance: */ 'lion_dance_tome', 'lion_dance_tome', 'lion_dance_tome',
+      /* 10% chance: */ 'lny_pig_tome_level_1', 'lny_pig_tome_level_1', 'lny_pig_tome_level_1', 'lny_pig_tome_level_1', 'lny_pig_tome_level_1',
+      /*  8% chance: */ 'lny_pig_tome_level_2', 'lny_pig_tome_level_2', 'lny_pig_tome_level_2', 'lny_pig_tome_level_2', 
+      /*  6% chance: */ 'lny_pig_tome_level_3', 'lny_pig_tome_level_3', 'lny_pig_tome_level_3', 
+      /*  4% chance: */ 'lny_pig_tome_level_4', 'lny_pig_tome_level_4', 
+      /*  2% chance: */ 'lny_pig_tome_level_5', 
+      /* 16% chance: */ 'gold:10', 'gold:100', 'gold:250', 'gold:500', 'gold:1000', 'gold:2500', 'gold:10000', 'gold:25000',
+      /* 12% chance: */ 'gems:2', 'gems:3', 'gems:5', 'gems:10', 'gems:25', 'gems:50',
+      /*  2% chance: */ 'enhancer_key',
+      /*  4% chance: */ 'lemonade', 'lemonade',
+    ],
   },
 };

@@ -2989,7 +2989,7 @@ export const INSCRIPTION_ITEMS = {
       level: 4
     },
     sellPrice: 13500,
-    description: 'Can be consumed to upgrade the cute pig, improving his general stats.'
+    description: 'Can be consumed to upgrade the cute pig, teaching him how to use Watchful Aura.'
   },
 
   cute_pig_tome_level_5: {
@@ -3002,7 +3002,7 @@ export const INSCRIPTION_ITEMS = {
       level: 5
     },
     sellPrice: 40500,
-    description: 'Can be consumed to upgrade the cute pig, further improving his general stats.'
+    description: 'Can be consumed to upgrade the cute pig, teaching him how to use Evasive Maneuvers.'
   },
 
   mystic_fairy_tome_level_1: {
@@ -3068,6 +3068,71 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 40500,
     description: 'Can be consumed to upgrade the mystic fairy, giving her a base damage reduction of 10%.'
+  },
+
+  lny_pig_tome_level_1: {
+    id: 'lny_pig_tome_level_1',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Year of the Pig tome Lv. 1',
+    teaches: {
+      abilityId: 'lny_pig',
+      level: 1
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to bring a special pig to battle, a companion ability.'
+  },
+
+  lny_pig_tome_level_2: {
+    id: 'lny_pig_tome_level_2',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Year of the Pig tome Lv. 2',
+    teaches: {
+      abilityId: 'lny_pig',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to upgrade the special pig, improving his taunt cooldown.'
+  },
+
+  lny_pig_tome_level_3: {
+    id: 'lny_pig_tome_level_3',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Year of the Pig tome Lv. 3',
+    teaches: {
+      abilityId: 'lny_pig',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to upgrade the special pig, teaching him how to use Squeal.'
+  },
+
+  lny_pig_tome_level_4: {
+    id: 'lny_pig_tome_level_4',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Year of the Pig tome Lv. 4',
+    teaches: {
+      abilityId: 'lny_pig',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to upgrade the special pig, teaching him how to use Evasive Maneuvers.'
+  },
+
+  lny_pig_tome_level_5: {
+    id: 'lny_pig_tome_level_5',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Year of the Pig tome Lv. 5',
+    teaches: {
+      abilityId: 'lny_pig',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to upgrade the special pig, reducing the cooldown on his Evasive Maneuvers to 15 seconds.'
   },
 
   pine_magic_book: {

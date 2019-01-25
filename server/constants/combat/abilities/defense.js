@@ -355,4 +355,21 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+  
+  lny_pig: {
+    icon: 'eventLNYPig.png',
+    name: 'year of the pig',
+    id: 'lny_pig',
+    buffs: ['lny_pig'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.lny_pig;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
 };

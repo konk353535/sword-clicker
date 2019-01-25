@@ -482,6 +482,129 @@ export const COMPANION_BUFFS = {
     }
   },  
   
+  // Level 1: knows how to taunt random targets that aren't targeting the pig (with 7s CD)
+  // Level 2: modifies taunt so that it taunts random targets that aren't targeting the pig (with 4s CD)
+  // Level 3: ALSO knows how to squeal (scream) that will taunt all targets in boss rooms, individual floors,
+  //          or exploration attempts at room 3+ as long as there is at least 2 enemies in the room and
+  //          at least one of those two enemies aren't targeting the pig (with 25s CD)
+  // Level 4: ALSO knows Evasive Maneuvers Lv. 5 and will use it when under 50% health (with 40s CD)
+  // Level 5: reduces the cooldown on Evasive Maneuvers to 15 seconds.
+  // All levels:  gains health, defense, armor, and magic armor for each level
+  lny_pig: {
+    duplicateTag: 'lny_pig',
+    icon: 'eventLNYPig.png',
+    name: 'year of the pig',
+    description({ buff, level }) {
+      if (level >= 4){
+        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He can also <br /> evade attacks when low health.`;
+      } else if (level === 3){
+        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.`;
+      } else if (level === 2){
+        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds.`;
+      }
+      return `Summons a year of the pig who taunts random <br />enemies every 7 seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.isSpawned) {
+          buff.data.isSpawned = true;
+          buff.data.hideBuff = true;
+
+          // ** OLD **
+          // this companion won't help in personal quests
+          // this companion won't help in battle with other solo companions
+          //if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+
+          // ** NEW **
+          // this companion won't help in personal quests
+          // this companion won't help in battle if the unit roster is full
+          if ((actualBattle.isTower()) && (actualBattle.soloCompanions().length + actualBattle.alliedPlayers().length < 5)) {
+            const attackSkill = target.attackSkill();
+            const defenseSkill = target.defenseSkill();
+            const magicSkill = target.magicSkill();
+            const healthSkill = target.healthSkill();
+            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
+            
+            let companion = {
+              owner: target.id + '_companion',
+              id: uuid.v4(),
+              tickOffset: 0,
+              isNPC: true,
+              isCompanion: true,
+              isSoloCompanion: true,
+              icon: 'eventLNYPig.png',
+              name: target.name + '\'s pig',
+              stats: {
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
+                attackSpeed: 0.3,
+                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
+                health: (Math.sqrt(healthSkill * 3) * towerFloor * 9.0) + (125 * buff.data.level),
+                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 9.0) + (125 * buff.data.level),
+                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.55) + (15 * buff.data.level),
+                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.35) + (75 * buff.data.level),
+                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + (25 * buff.data.level),
+                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor / 3),
+                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+              },
+              buffs: [{
+                id: 'companion_taunt',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'companion taunt',
+                  icon: 'taunt.svg',
+                  timeTillCharge: 0.4,
+                  level: buff.data.level,
+                }
+              }],
+            };
+            
+            if (buff.data.level >= 3) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'companion_squeal',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'companion squeal',
+                  icon: 'scream.svg',
+                  timeTillCharge: 0.4,
+                  level: buff.data.level,
+                }
+              }]);
+            }
+
+            if (buff.data.level >= 4) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'companion_pig_logic_lny',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'piggy oink oink',
+                  icon: 'eventLNYPig.png',
+                  level: buff.data.level
+                }
+              }]);
+            }
+            
+            actualBattle.addUnit(companion);
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },  
+  
   // Level 1: knows how to cast water dart (10s CD) and water ball (10s CD)
   // Level 2: ALSO knows how to cast mending waters (30s CD) but will not cast at any target that is
   //          already affected by a mending water or if the target's maximum health is under 500
@@ -757,7 +880,62 @@ export const COMPANION_BUFFS = {
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             buff.data.timeTillCharge = 40;
           } else {
-          buff.data.timeTillCharge = 1.0;
+            buff.data.timeTillCharge = 0.4;
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },  
+  
+  companion_pig_logic_lny: {
+    duplicateTag: 'companion_pig_logic_lny',
+    icon: 'eventLNYPig.png',
+    name: 'piggy oink oink',
+    description() {
+      return `Companion will do pig things.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      timeTillCharge: 0.4,
+      hideBuff: true,
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+        buff.data.hideBuff = true;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillCharge > 0) {
+          buff.data.timeTillCharge -= secondsElapsed;
+        } else {
+          // Do nothing with half our ticks (except the above CD redux)
+          if (Math.random() < 0.5) {
+            return;
+          }
+          
+          if (target.health / target.healthMax < 0.5) {
+            const newBuff = {
+              id: 'evasive_maneuvers',
+              data: {
+                duration: 3.5,
+                totalDuration: 3.5,
+                icon: 'evasiveManeuvers.svg',
+                description: ``,
+                name: 'evasive maneuvers',
+                level: 5
+              },
+              constants: BUFFS['evasive_maneuvers']
+            };
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+            buff.data.timeTillCharge = (buff.data.level === 5) ? 15 : 40;
+          } else {
+            buff.data.timeTillCharge = 0.4;
           }
         }
       },

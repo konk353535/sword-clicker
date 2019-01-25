@@ -1,9 +1,13 @@
 // For Party, as it will be the parties id
 .direct-chat-text, .direct-chat-name, .chat-Party {
-  color: $brand-primary !important;
+  color: #0275ff !important;
 }
 
 .chat-General {
+  color: #005020 !important;
+}
+
+.chat-Server {
   color: black !important;
 }
 
@@ -16,10 +20,10 @@
 }
 
 .chat-LFG {
-  color: $brand-info !important;
+  color: #3FACCC !important;
 }
 
-.chat-Offtopic {
+.chat-Offtopic, .chat-Dev, .chat-Announcements {
   color: $color-purple-1 !important;
 }
 

@@ -349,8 +349,9 @@ SimpleChat.configure ({
     }
     
     if (!userDoc.isMod) {
-      if (RegExp('announcements', 'gi').test(roomId)) {
+      if (roomId === 'Announcements' || RegExp('announcements', 'gi').test(roomId)) {
         sendUserChatMessage({ userId: userDoc._id, message: `Only game staff may send messages to that channel.` });
+        return false;
       }
     }
   

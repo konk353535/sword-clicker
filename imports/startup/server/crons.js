@@ -155,9 +155,9 @@ SyncedCron.add({
               name: 'SERVER',
               date: new Date(),
               custom: {
-                roomType: 'Game'
+                roomType: 'Server'
               },
-              roomId: `General-${currentFloor.server}`
+              roomId: `Server-${currentFloor.server}`
             });
 
             // Insert the next floor (To do, make this pass a valid active tower users number)

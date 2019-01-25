@@ -380,6 +380,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     padding: $spacer * 0.5;
   }
 
+  .ability-icon img {
+    width: 32px;
+    height: 32px;
+  }
+  
   .cooldown-text {
     position: absolute;
     opacity: 1.0;

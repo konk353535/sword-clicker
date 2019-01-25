@@ -2849,6 +2849,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the raise your glass ability.'
   },
 
+  lion_dance_tome: {
+    id: 'lion_dance_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'lion dance tome',
+    teaches: {
+      abilityId: 'lion_dance',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the lion dance ability.'
+  },
+
   baby_fox_tome: {
     id: 'baby_fox_tome',
     icon: 'tome.svg',
@@ -2864,7 +2877,7 @@ export const INSCRIPTION_ITEMS = {
 
   skeletal_warrior_tome_level_1: {
     id: 'skeletal_warrior_tome_level_1',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'skeletal warrior tome Lv. 1',
     teaches: {
@@ -2877,7 +2890,7 @@ export const INSCRIPTION_ITEMS = {
 
   skeletal_warrior_tome_level_2: {
     id: 'skeletal_warrior_tome_level_2',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'skeletal warrior tome Lv. 2',
     teaches: {
@@ -2890,7 +2903,7 @@ export const INSCRIPTION_ITEMS = {
 
   skeletal_warrior_tome_level_3: {
     id: 'skeletal_warrior_tome_level_3',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'skeletal warrior tome Lv. 3',
     teaches: {
@@ -2903,7 +2916,7 @@ export const INSCRIPTION_ITEMS = {
 
   skeletal_warrior_tome_level_4: {
     id: 'skeletal_warrior_tome_level_4',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'skeletal warrior tome Lv. 4',
     teaches: {
@@ -2916,7 +2929,7 @@ export const INSCRIPTION_ITEMS = {
 
   skeletal_warrior_tome_level_5: {
     id: 'skeletal_warrior_tome_level_5',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'skeletal warrior tome Lv. 5',
     teaches: {
@@ -2929,7 +2942,7 @@ export const INSCRIPTION_ITEMS = {
 
   cute_pig_tome_level_1: {
     id: 'cute_pig_tome_level_1',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Cute Pig tome Lv. 1',
     teaches: {
@@ -2942,7 +2955,7 @@ export const INSCRIPTION_ITEMS = {
 
   cute_pig_tome_level_2: {
     id: 'cute_pig_tome_level_2',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Cute Pig tome Lv. 2',
     teaches: {
@@ -2955,7 +2968,7 @@ export const INSCRIPTION_ITEMS = {
 
   cute_pig_tome_level_3: {
     id: 'cute_pig_tome_level_3',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Cute Pig tome Lv. 3',
     teaches: {
@@ -2968,7 +2981,7 @@ export const INSCRIPTION_ITEMS = {
 
   cute_pig_tome_level_4: {
     id: 'cute_pig_tome_level_4',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Cute Pig tome Lv. 4',
     teaches: {
@@ -2981,7 +2994,7 @@ export const INSCRIPTION_ITEMS = {
 
   cute_pig_tome_level_5: {
     id: 'cute_pig_tome_level_5',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Cute Pig tome Lv. 5',
     teaches: {
@@ -2994,7 +3007,7 @@ export const INSCRIPTION_ITEMS = {
 
   mystic_fairy_tome_level_1: {
     id: 'mystic_fairy_tome_level_1',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mystic Fairy tome Lv. 1',
     teaches: {
@@ -3007,7 +3020,7 @@ export const INSCRIPTION_ITEMS = {
 
   mystic_fairy_tome_level_2: {
     id: 'mystic_fairy_tome_level_2',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mystic Fairy tome Lv. 2',
     teaches: {
@@ -3020,7 +3033,7 @@ export const INSCRIPTION_ITEMS = {
 
   mystic_fairy_tome_level_3: {
     id: 'mystic_fairy_tome_level_3',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mystic Fairy tome Lv. 3',
     teaches: {
@@ -3033,7 +3046,7 @@ export const INSCRIPTION_ITEMS = {
 
   mystic_fairy_tome_level_4: {
     id: 'mystic_fairy_tome_level_4',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mystic Fairy tome Lv. 4',
     teaches: {
@@ -3046,7 +3059,7 @@ export const INSCRIPTION_ITEMS = {
 
   mystic_fairy_tome_level_5: {
     id: 'mystic_fairy_tome_level_5',
-    icon: 'tome.svg',
+    icon: 'tomeUncommon.svg',
     category: 'tome',
     name: 'Mystic Fairy tome Lv. 5',
     teaches: {

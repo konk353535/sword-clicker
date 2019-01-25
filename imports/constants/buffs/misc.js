@@ -40,4 +40,27 @@ export const MISC_BUFFS = {
     }
   },
   
+  lion_dance: {
+    duplicateTag: 'lion_dance',
+    icon: 'eventLNYDance.svg',
+    name: 'Lion Dance',
+    description({ buff, level }) {
+      return `You dancing and celebrating for luck.`;
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
 };

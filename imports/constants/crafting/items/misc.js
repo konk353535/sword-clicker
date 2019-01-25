@@ -31,7 +31,7 @@ export const MISC_ITEMS = {
     name: 'holiday gift box',
     sellPrice: 1,
     description: `
-      Can be opened (consumed) to open and reveal a prize.`,
+      Can be opened (consumed) to reveal a prize.`,
     shiftActionData: {
       description: 'open to reveal a prize'
     },
@@ -52,5 +52,20 @@ export const MISC_ITEMS = {
     },
     // 22 items
     contentsList: ['event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'event_ny_balloons', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'ornamental_hat', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'raise_your_glass_tome', 'enhancer_key', 'lemonade', 'lemonade'],
+  },
+    
+  gift_box_red_envelope: {
+    id: 'gift_box_fireworks',
+    icon: 'eventLNYEnvelope.svg',
+    category: 'item_box',
+    name: 'red envelope',
+    sellPrice: 1,
+    description: `
+      Can be opened (consumed) to reveal a prize.`,
+    shiftActionData: {
+      description: 'open to reveal a prize'
+    },
+    // 22 items
+    contentsList: ['event_lny_lion_body', 'event_lny_lion_body', 'event_lny_lion_head', 'event_lny_lion_head', 'event_lny_lion_claws', 'event_lny_lion_claws', 'lion_dance_tome', 'lion_dance_tome', 'gold:10', 'gold:100', 'gold:250', 'gold:500', 'gold:1000', 'gold:2500', 'gold:10000', 'gems:1', 'gems:2', 'gems:3', 'gems:5', 'enhancer_key', 'lemonade', 'lemonade'],
   },
 };

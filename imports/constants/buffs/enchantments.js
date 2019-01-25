@@ -1512,5 +1512,202 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
+  
+  lion_claws: {
+    duplicateTag: 'lion_claws', // Used to stop duplicate buffs
+    icon: 'eventLNYLionClaws.svg',
+    name: 'lion claws',
+    description() {
+      return `
+        Your auto-attacks are especially deadly and can rip <br />
+        flesh easily, leaving bloody wounds on your target.`;
+    },
+    constants: {
+    },
+    data: {
+      name: 'Lion Claws',
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+      
+      onDidDamage({ originalAutoAttack, secondsElapsed, buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
+        if (damageDealt >= 1.0) {
+          const bleedChance = 0.2;
+
+          if (Math.random() <= bleedChance) {
+            const newBuff = {
+              id: 'bleed_proper',
+              data: {
+                duration: 3,
+                totalDuration: 3,
+                dps: CDbl(attacker.stats.attackMax) / 10,
+                caster: attacker.id,
+                timeTillDamage: 1,
+                allowDuplicates: true,
+                icon: 'bleeding.svg',
+                name: 'bleed',
+                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
+              }
+            };
+
+            // Add bleed debuff
+            addBuff({ buff: newBuff, target: defender, caster: attacker });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  lion_body: {
+    duplicateTag: 'lion_body', // Used to stop duplicate buffs
+    icon: 'eventLNYLionBody.svg',
+    name: 'lion costume body',
+    description() {
+      return `
+        With the rhythm of a spirited dancer, you dance and <br />
+        weave through battle relying on your agility instead <br />
+        of tough armor.  Every 8 seconds, you will automatically <br />
+        evade all attacks for a second.`;
+    },
+    constants: {
+    },
+    data: {
+      name: 'Lion Costume Body',
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      timeToEvade: 8,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.timeToEvade = 8.0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.timeToEvade -= secondsElapsed;
+        
+        if (buff.data.timeToEvade <= 0.0) {
+          buff.data.timeToEvade = 8.0;
+          
+          const newBuff = {
+            id: 'evasive_maneuvers',
+            data: {
+              duration: 1,
+              totalDuration: 1,
+              icon: 'eventLNYLionBodyDodge.svg',
+              description: `You're dodging all damage while dancing in your costume.`,
+              name: 'Lion Costume Dodge',
+              level: 0
+            },
+            constants: BUFFS['evasive_maneuvers']
+          };
+          addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+        }
+        
+        buff.stacks = Math.ceil(buff.data.timeToEvade > 0.0 ? buff.data.timeToEvade : 0);
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  lion_head: {
+    duplicateTag: 'lion_head', // Used to stop duplicate buffs
+    icon: 'eventLNYLionHead.svg',
+    name: 'lion costume head',
+    description() {
+      return `
+        With the rhythm of a spirited dancer, you dance and <br />
+        weave through battle relying on your agility instead <br />
+        of tough armor.  Every 8 seconds, you will gain +1% of <br />
+        your base accuracy up to a maximum of +80%.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      totalTime: 0,
+      totalAccuracy: 0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.data.totalTime += secondsElapsed;
+        if (Math.ceil(buff.data.totalTime) % 8 === 0) {
+          target.stats.accuracy -= buff.data.totalAccuracy;
+          // Extra accuracy
+          const roundedTime = Math.ceil(buff.data.totalTime / 8);
+          const extraAccuracyPercentage = roundedTime < 80 ? roundedTime : 80;
+          buff.data.totalAccuracy = target.stats.accuracy * (extraAccuracyPercentage / 100);
+          target.stats.accuracy += buff.data.totalAccuracy;
+          buff.stacks = Math.round(buff.data.totalAccuracy);
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  lunar_shield: {
+    duplicateTag: 'lunar_shield', // Used to stop duplicate buffs
+    icon: 'eventLNYLunarShield.svg',
+    name: 'lunar shield',
+    description() {
+      return `
+        Automatically taunts all enemies every round at <br />
+        the cost of health.  This effect will not reduce <br />
+        your health below 40%.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (actualBattle.enemies) {
+          const minHealth = target.stats.healthMaxOrig * 0.4;
+          let healthReduxTotal = 0;
+          actualBattle.enemies.forEach((enemy) => {
+            if (enemy && enemy.target !== target.id) {
+              enemy.target = target.id
+              healthReduxTotal += enemy.stats.health * 0.2;
+            }
+          });
+          if (healthReduxTotal > 0 && target.stats.health > minHealth) {
+            let newHealth = target.stats.health - healthReduxTotal;
+            if (newHealth < minHealth) {
+              newHealth = minHealth;
+            }
+            target.stats.health = minHealth;
+          }          
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 
 };

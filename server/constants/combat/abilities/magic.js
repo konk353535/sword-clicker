@@ -640,4 +640,20 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+  
+  lion_dance: {
+    icon: 'eventLNYDance.svg',
+    name: 'lion dance',
+    id: 'lion_dance',
+    buffs: ['lion_dance'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.lion_dance;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

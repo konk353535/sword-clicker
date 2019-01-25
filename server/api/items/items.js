@@ -15,6 +15,10 @@ import { COMBAT_CRAFTS } from '/imports/constants/combat/crafts.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
+import { CInt } from '/imports/utils';
+import { sendUserChatMessage } from '/imports/chatUtils.js';
+
+import Numeral from 'numeral';
 
 import _ from 'underscore';
 import lodash from 'lodash';
@@ -899,21 +903,32 @@ export const UseItemBox = function (baseItem, baseItemConstants, targetItem, tar
 
   // Logic 
   const chosenItem = _.sample(baseItemConstants.contentsList);
-  const chosenItemConstants = ITEMS[chosenItem];  
+  
+  if (chosenItem.indexOf("gold:") === 0) {
 
-  Chats.insert({
-    message: `Inside the ${baseItemConstants.name}, you discovered:  ${chosenItemConstants.name}`,
-    username: 'Game',
-    name: 'Game',
-    date: new Date(),
-    custom: {
-      roomType: 'Game'
-    },
-    roomId: `Game-${Meteor.userId()}`
-  });
+    const amountInBox = CInt(chosenItem.substring(5));
+
+    sendUserChatMessage({ userId: Meteor.userId(), message: `Inside the ${baseItemConstants.name}, you discovered:  ${Numeral(amountInBox).format('0,0')} gold` });
+
+    Users.update({ _id: Meteor.userId() }, { $inc: { gold: amountInBox } });
+
+  } else if (chosenItem.indexOf("gems:") === 0) {
+
+    const amountInBox = CInt(chosenItem.substring(5));
+
+    sendUserChatMessage({ userId: Meteor.userId(), message: `Inside the ${baseItemConstants.name}, you discovered:  ${Numeral(amountInBox).format('0,0')} gems` });
     
-  addItem(chosenItem, 1, Meteor.userId());
+    Users.update({ _id: Meteor.userId() }, { $inc: { fakeGems: amountInBox } });
+    
+  } else {
+    
+    const chosenItemConstants = ITEMS[chosenItem];  
 
+    sendUserChatMessage({ userId: Meteor.userId(), message: `Inside the ${baseItemConstants.name}, you discovered:  ${chosenItemConstants.name}` });
+    
+    addItem(chosenItem, 1, Meteor.userId());
+    
+  }
 
   // Post Logic & Cleanup
   ConsumeItem(baseItem);

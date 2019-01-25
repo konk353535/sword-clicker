@@ -3357,4 +3357,137 @@ export const MISC_ITEMS = {
       level: 50
     }]
   },
+  
+  event_lny_lion_claws: {
+    "id": "event_lny_lion_claws",
+    "icon": "eventLNYLionClaws.svg",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "lion claws",
+    "sellPrice": 1800,
+    "description": "A deadly weapon from a lion costume with a balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 40.0,
+      "attackMax": 45.0,
+      "attackSpeed": 1.0,
+      "accuracy": 100.0
+    },
+    "extraStats": {
+      "attack": 20.0,
+      "attackMax": 45.0,
+      "accuracy": 50.0
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    },{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }],
+    enchantments: ['lion_claws']
+  },
+  
+  event_lny_lion_body: {
+    id: "event_lny_lion_body",
+    icon: "eventLNYLionBody.svg",
+    category: "combat",
+    slot: "chest",
+    name: "lion costume body",
+    sellPrice: 1,
+    description: "Protect your heart in style",
+    isEquippable: true,
+    stats: {
+      healthMax: 100,
+      defense: 25,
+      attackSpeed: 0.025,
+      accuracy: 12.5,
+      attack: -15,
+      attackMax: -20,
+    },
+    extraStats: {
+      healthMax: 100,
+      defense: 15,
+      attackSpeed: 0.025,
+      accuracy: 12.5,
+      attack: 7.5,
+      attackMax: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }],
+    enchantments: ['lion_body']
+  },
+  
+  event_lny_lion_head: {
+    id: "event_lny_lion_head",
+    icon: "eventLNYLionHead.svg",
+    category: "combat",
+    slot: "head",
+    name: "lion costume head",
+    sellPrice: 1,
+    description: "No costume would be complete without it",
+    isEquippable: true,
+    stats: {
+      healthMax: 60,
+      defense: 25,
+      attackSpeed: 0.025,
+      accuracy: 12.5,
+      attack: -15,
+      attackMax: -20,
+    },
+    extraStats: {
+      healthMax: 40,
+      defense: 15,
+      attackSpeed: 0.025,
+      accuracy: 12.5,
+      attack: 7.5,
+      attackMax: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }],
+    enchantments: ['lion_head']
+  },
+  
+  event_lny_lunar_shield: {
+    id: "event_lny_lunar_shield",
+    icon: "eventLNYLunarShield.svg",
+    category: "combat",
+    slot: "offHand",
+    name: "lunar shield",
+    sellPrice: 1,
+    description: "A magnificent shield that draws everything's attention, for better or worse.",
+    isEquippable: true,
+    stats: {
+      healthMax: 100,
+      defense: 40,
+      armor: 70,
+      magicArmor: 70,
+    },
+    extraStats: {
+      healthMax: 150,
+      defense: 30,
+      armor: 35,
+      magicArmor: 35,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }, {
+      type: 'skill',
+      name: 'health',
+      level: 75
+    }],
+    enchantments: ['lunar_shield']
+  },
 };

@@ -45,7 +45,7 @@ export const MISC_BUFFS = {
     icon: 'eventLNYDance.svg',
     name: 'Lion Dance',
     description({ buff, level }) {
-      return `You dancing and celebrating for luck.`;
+      return `You are dancing and celebrating for luck.`;
     },
     data: {
       duration: Infinity,

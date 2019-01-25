@@ -282,7 +282,49 @@ Meteor.methods({
         requires: abilityConstant.requires,
         learntLevel,
         level: abilityLevel,
-        id: abilityConstant.id
+        id: abilityConstant.id,
+      };
+
+      return abilityData;
+    }).filter((ability) => {
+      return !(ability.isHidden && !abilitiesMap[ability.id]);
+    });
+
+    return abilitiesArray;
+  },
+
+  'abilities.fetchLibraryExtra'() {
+    const userAbilities = Abilities.findOne({
+      owner: Meteor.userId()
+    });
+
+    // Build up abilities id to level map
+    const abilitiesMap = {};
+    userAbilities.learntAbilities.forEach((ability) => {
+      abilitiesMap[ability.abilityId] = ability.level;
+    });
+
+    const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
+      const abilityConstant = lodash.cloneDeep(ABILITIES[abilityKey]);
+      let abilityLevel = 1;
+      let learntLevel = 0;
+      if (abilitiesMap[abilityKey]) {
+        abilityLevel = abilitiesMap[abilityKey];
+        learntLevel = abilitiesMap[abilityKey];
+      }
+      const abilityData = {
+        description: ABILITIES[abilityKey].description(abilityLevel),
+        name: `${abilityConstant.name} (${abilityLevel})`,
+        icon: abilityConstant.icon,
+        isHidden: abilityConstant.isHidden,
+        cooldown: abilityConstant.cooldown,
+        requires: abilityConstant.requires,
+        learntLevel,
+        level: abilityLevel,
+        id: abilityConstant.id,
+        slot: (ABILITIES[abilityKey].slot || 'any'),
+        buff: ((ABILITIES[abilityKey].buffs && ABILITIES[abilityKey].buffs.length > 0) ? ABILITIES[abilityKey].buffs[0] : ''),
+        isPassive: (ABILITIES[abilityKey].passive || false),
       };
 
       return abilityData;

@@ -2825,7 +2825,7 @@ export const INSCRIPTION_ITEMS = {
 
   holiday_cheer_tome: {
     id: 'holiday_cheer_tome',
-    icon: 'tome.svg',
+    icon: 'tomeEvent.svg',
     category: 'tome',
     name: 'holiday cheer tome',
     teaches: {
@@ -2838,7 +2838,7 @@ export const INSCRIPTION_ITEMS = {
 
   raise_your_glass_tome: {
     id: 'raise_your_glass_tome',
-    icon: 'tome.svg',
+    icon: 'tomeEvent.svg',
     category: 'tome',
     name: 'raise your glass tome',
     teaches: {
@@ -2851,7 +2851,7 @@ export const INSCRIPTION_ITEMS = {
 
   lion_dance_tome: {
     id: 'lion_dance_tome',
-    icon: 'tomeUncommon.svg',
+    icon: 'tomeEvent.svg',
     category: 'tome',
     name: 'lion dance tome',
     teaches: {

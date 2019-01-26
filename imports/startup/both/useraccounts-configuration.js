@@ -35,8 +35,8 @@ AccountsTemplates.configure({
       if (userDoc) {
         Chats.insert({
           message: `Welcome new player ${userDoc.username} to the game!`,
-          username: 'SERVER',
-          name: 'SERVER',
+          username: 'GAME',
+          name: 'GAME',
           date: new Date(),
           custom: {
             roomType: 'General'

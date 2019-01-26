@@ -620,11 +620,13 @@ export const ATTACK_BUFFS = {
     name: 'war cry',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (!localLevel || localLevel <= 0) {
         localLevel = 1;
       }
 
-      return `Increases max attack by 150% for 10 seconds.`;
+      return `
+      Increases your party's maximum damage range <br />
+      by 50% for 10 seconds.`;
     },
     constants: {
     },

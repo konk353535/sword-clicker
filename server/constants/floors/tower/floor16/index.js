@@ -103,6 +103,11 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'defense_up_5_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'armor_up_new_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   7: {

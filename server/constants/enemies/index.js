@@ -650,7 +650,7 @@ export const ENEMIES = Object.assign({
   fish: {
     id: 'fish',
     icon: 'fish.svg',
-    name: 'fish',
+    name: 'piranha',
     swarmRange: [4, 5],
     statBuffs: [{
       type: 'times',

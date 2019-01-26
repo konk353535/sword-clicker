@@ -899,59 +899,49 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!buff.data.timeTillHeal) {
-          buff.data.timeTillHeal = 1.5;
-        } else {
-          buff.data.timeTillHeal -= secondsElapsed;
-        }
+        // Heal a random ally
+        let lowestHp = Infinity;
+        let targetUnit;
+        actualBattle.units.forEach((unit) => {
+          const hpPercentage = unit.stats.health / unit.stats.healthMax;
+          if (hpPercentage < lowestHp) {
+            lowestHp = hpPercentage;
+            targetUnit = unit;
+          }
+        });
 
-        if (buff.data.timeTillHeal <= 0) {
-          // Heal a random ally
-          let lowestHp = Infinity;
-          let targetUnit;
-          actualBattle.units.forEach((unit) => {
-            const hpPercentage = unit.stats.health / unit.stats.healthMax;
-            if (hpPercentage < lowestHp) {
-              lowestHp = hpPercentage;
-              targetUnit = unit;
-            }
+        if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
+          targetUnit.stats.health = targetUnit.stats.healthMax;
+          const totalHeal = 1;
+          actualBattle.healTarget(totalHeal, {
+            caster: target,
+            target: targetUnit,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
           });
 
-          if (targetUnit && lowestHp <= 0.3 && targetUnit !== target) {
-            targetUnit.stats.health = targetUnit.stats.healthMax;
-            const totalHeal = 1;
-            actualBattle.healTarget(totalHeal, {
-              caster: target,
-              target: targetUnit,
-              tickEvents: actualBattle.tickEvents,
-              historyStats: actualBattle.historyStats
-            });
-
-            removeBuff({ buff, target, caster: target, actualBattle });
-            if (actualBattle.tickEvents) {
-              actualBattle.tickEvents.push({from: target.id, to: target.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
-            }
-            
-            // find everyone else with balloons and pop them
-            actualBattle.units.forEach((friendlyUnit) => {
-              if (friendlyUnit.id !== target.id) {
-                let tempBalloonBuff = undefined;
-                friendlyUnit.buffs.forEach((tempBuff) => {
-                  if (tempBuff.id === 'event_ny_balloons') {
-                    tempBalloonBuff = tempBuff;
-                  }
-                });
-                if (tempBalloonBuff) {
-                  removeBuff({ buff: tempBalloonBuff, target: friendlyUnit, caster: target, actualBattle });
-                  if (actualBattle.tickEvents) {
-                    actualBattle.tickEvents.push({from: target.id, to: friendlyUnit.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
-                  }
+          removeBuff({ buff, target, caster: target, actualBattle });
+          if (actualBattle.tickEvents) {
+            actualBattle.tickEvents.push({from: target.id, to: target.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
+          }
+          
+          // find everyone else with balloons and pop them
+          actualBattle.units.forEach((friendlyUnit) => {
+            if (friendlyUnit.id !== target.id) {
+              let tempBalloonBuff = undefined;
+              friendlyUnit.buffs.forEach((tempBuff) => {
+                if (tempBuff.id === 'event_ny_balloons') {
+                  tempBalloonBuff = tempBuff;
+                }
+              });
+              if (tempBalloonBuff) {
+                removeBuff({ buff: tempBalloonBuff, target: friendlyUnit, caster: target, actualBattle });
+                if (actualBattle.tickEvents) {
+                  actualBattle.tickEvents.push({from: target.id, to: friendlyUnit.id, eventType: 'special', label: 'Pop!', customColor: '#FF9933', customIcon: 'noicon'});
                 }
               }
-            });
-          }
-
-          buff.data.timeTillHeal = 1.5;
+            }
+          });
         }
       },
 

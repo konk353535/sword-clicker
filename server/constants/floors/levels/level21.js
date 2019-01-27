@@ -48,6 +48,11 @@ export const LEVEL_TWENTY_ONE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'cursed_essence', amount: 1 }
   ]
 }, {
+  chance: 1 / 24,
+  rewards: [
+    { type: 'item', itemId: 'adamantium_essence', amount: 1 }
+  ]
+}, {
   chance: 1 / 12,
   rewards: [
     { type: 'item', itemId: 'elven_steel_essence', amount: 1 }
@@ -59,6 +64,14 @@ export const LEVEL_TWENTY_ONE_LOOT_TABLE = orderLootTable([{
     { type: 'item', itemId: 'cursed_bar', amount: 1 },
     { type: 'item', itemId: 'teak_log', amount: 1 },
     { type: 'item', itemId: 'teak_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'item', itemId: 'ore_adamantium', amount: 1 },
+    { type: 'item', itemId: 'adamantium_bar', amount: 1 },
+    { type: 'item', itemId: 'hickory_log', amount: 1 },
+    { type: 'item', itemId: 'hickory_log', amount: 2 }
   ]
 }, {
   chance: 1 / 4,

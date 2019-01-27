@@ -30,5 +30,40 @@ export const LEVEL_TWENTY_THREE_MONSTERS = [{
   }]
 }];
 
-export const LEVEL_TWENTY_THREE_LOOT_TABLE = orderLootTable([]);
+export const LEVEL_TWENTY_THREE_LOOT_TABLE = orderLootTable([{}, {}, {
+  chance: 1 / 16,
+  rewards: [
+    { type: 'item', itemId: 'cursed_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 16,
+  rewards: [
+    { type: 'item', itemId: 'meteorite_essence', amount: 1 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'item', itemId: 'ore_cursed', amount: 1 },
+    { type: 'item', itemId: 'cursed_bar', amount: 1 },
+    { type: 'item', itemId: 'teak_log', amount: 1 },
+    { type: 'item', itemId: 'teak_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'item', itemId: 'ore_meteorite', amount: 1 },
+    { type: 'item', itemId: 'meteorite_bar', amount: 1 },
+    { type: 'item', itemId: 'poplar_log', amount: 1 },
+    { type: 'item', itemId: 'poplar_log', amount: 2 }
+  ]
+}, {
+  chance: 1 / 4,
+  rewards: [
+    { type: 'gold', amount: 1500 },
+    { type: 'gold', amount: 3000 },
+    { type: 'gold', amount: 7000 },
+    { type: 'item', itemId: 'polished_cursed', amount: 5 },
+    { type: 'item', itemId: 'polished_cursed', amount: 8 }
+  ]
+}]);
 

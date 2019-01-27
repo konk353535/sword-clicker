@@ -399,8 +399,8 @@ Meteor.methods({
             // Smallest increment
             // Divide by 10, as smallest increment of stat is 0.1
             let smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 10;
-            if (extraStatKey === "attackSpeed") {
-              smallestIncrement = 0.00001;
+            if (extraStatKey === "attackSpeed") { // or 0.001 for attack speed
+              smallestIncrement = (((1 / maxStat) * 10000) / extraStatKeys.length) / 1000;
             }
 
             if (smallestIncrement <= ENHANCER_KEY_INCREASE) {

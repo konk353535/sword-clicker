@@ -1373,14 +1373,15 @@ export const MONSTER_BUFFS = {
             const newCubeUnit = actualBattle.addUnit(newCube);
             const newBuff = {
               id: 'gelatinous_cube_monster',
+              icon: 'cubeSplit.svg',
+              name: 'gelatinous cube',
               stacks: buff.stacks,
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
                 icon: 'cubeSplit.svg',
-                name: 'gelatinous cube',
-                splitHealthPercentage: 15,
-                splitAmount: buff.splitAmount,
+                splitHealthPercentage: buff.data.splitHealthPercentage,
+                splitAmount: buff.data.splitAmount,
                 hasSplit: false
               },
               constants: BUFFS['gelatinous_cube_monster']
@@ -1405,14 +1406,15 @@ export const MONSTER_BUFFS = {
             const newCubeUnit = actualBattle.addUnit(newCube);
             const newBuff = {
               id: 'gelatinous_cube_monster',
+              icon: 'cubeSplit.svg',
+              name: 'gelatinous cube',
               stacks: buff.stacks,
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
                 icon: 'cubeSplit.svg',
-                name: 'gelatinous cube',
-                splitHealthPercentage: 15,
-                splitAmount: buff.splitAmount,
+                splitHealthPercentage: buff.data.splitHealthPercentage,
+                splitAmount: buff.data.splitAmount,
                 hasSplit: false
               },
               constants: BUFFS['gelatinous_cube_monster']

@@ -146,7 +146,7 @@ export const MONSTER_BUFFS = {
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
-        } else if (target.name === 'monk') {
+        } else if (target.name === 'monk ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to wise monk
             target.name = 'wise monk';
             target.stats.attack *= 1.1;
@@ -1363,11 +1363,12 @@ export const MONSTER_BUFFS = {
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
-          for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = defender;
+          for (let i = 0; i < buff.data.splitAmount; i++) {
+            let newCube = Object.assign({}, defender.raw(), {
+              id: uuid.v4()
+            });
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.addUnit(newCube);
           }
@@ -1379,11 +1380,12 @@ export const MONSTER_BUFFS = {
         // spawn cubes if mob is killed without spawning previously
         if (!buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
-          for(let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = target;
+          for (let i = 0; i < buff.data.splitAmount; i++) {
+            let newCube = Object.assign({}, target.raw(), {
+              id: uuid.v4()
+            });
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
-            newCube.id = uuid.v4();
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.addUnit(newCube);
           }

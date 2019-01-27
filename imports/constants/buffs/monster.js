@@ -1371,6 +1371,21 @@ export const MONSTER_BUFFS = {
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.addUnit(newCube);
+            const newBuff = {
+              id: 'gelatinous_cube_monster',
+              stacks: buff.stacks,
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'cubeSplit.svg',
+                name: 'gelatinous cube',
+                splitHealthPercentage: 15,
+                splitAmount: buff.splitAmount,
+                hasSplit: false
+              },
+              constants: BUFFS['gelatinous_cube_monster']
+            };
+            addBuff({ buff: newBuff, target: newCube, caster: newCube, actualBattle });
           }
           buff.data.hasSplit = true;
         }
@@ -1388,6 +1403,21 @@ export const MONSTER_BUFFS = {
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;
             actualBattle.addUnit(newCube);
+            const newBuff = {
+              id: 'gelatinous_cube_monster',
+              stacks: buff.stacks,
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'cubeSplit.svg',
+                name: 'gelatinous cube',
+                splitHealthPercentage: 15,
+                splitAmount: buff.splitAmount,
+                hasSplit: false
+              },
+              constants: BUFFS['gelatinous_cube_monster']
+            };
+            addBuff({ buff: newBuff, target: newCube, caster: newCube, actualBattle });
           }
           buff.data.hasSplit = true;
         }

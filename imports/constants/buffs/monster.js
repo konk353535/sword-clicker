@@ -1397,7 +1397,7 @@ export const MONSTER_BUFFS = {
         if (!buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
           for (let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = Object.assign({}, defender.raw());
+            let newCube = Object.assign({}, target.raw());
             newCube.id = uuid.v4();
             newCube.buffs = [];
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);

@@ -28,7 +28,7 @@ const AVAILABLE_CHATS = {
     name: 'Server',
     id: 'Server',
     class: 'chat-Server',
-    show: true
+    show: false
   },
   'General': {
     name: 'General',

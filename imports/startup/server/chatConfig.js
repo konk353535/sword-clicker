@@ -28,15 +28,22 @@ const createNewServer = function (name, iteration) {
     name,
     iteration
   });
+  
+  const serverDoc = Servers.findOne({name: name});
 
-  // Create the floor
-  Floors.insert({
-    floor: 1,
-    server: newServer,
-    createdAt: new Date(),
-    points: 0,
-    pointsMax: FLOORS.getNewPointCount(1, 10)
-  });
+  if (serverDoc) {
+    // Create the first floor for this new server
+    Floors.insert({
+      floor: 1,
+      server: serverDoc._id,
+      createdAt: new Date(),
+      points: 0,
+      pointsMax: FLOORS.getNewPointCount(1, 10)
+      floorComplete: false,
+      server: currentFloor.server,
+      loot: []
+    });
+  }
 };
 
 SimpleChat.configure ({

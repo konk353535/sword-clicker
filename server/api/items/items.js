@@ -397,11 +397,9 @@ Meteor.methods({
             // Stat percentage
             const statPercent = (currentStat / maxStat) * 100;
             // Smallest increment
-            // Divide by 10, as smallest increment of stat is 0.1
-            let smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 10;
-            if (extraStatKey === "attackSpeed") { // or 0.001 for attack speed
-              smallestIncrement = (((1 / maxStat) * 10000) / extraStatKeys.length) / 1000;
-            }
+            // Divide by 100, as smallest increment of stat is 0.01
+            
+            let smallestIncrement = (((1 / maxStat) * 100) / extraStatKeys.length) / 100;
 
             if (smallestIncrement <= ENHANCER_KEY_INCREASE) {
               increaseOptions.push({
@@ -426,24 +424,24 @@ Meteor.methods({
           if (upgradePercentLeft > (ENHANCER_KEY_INCREASE - currentQualityIncrease)) {
             upgradePercentLeft = ENHANCER_KEY_INCREASE - currentQualityIncrease;
           }
-
+          
           if (option.smallestIncrement <= upgradePercentLeft) {
             // Floor times left to add
-            let timesToAdd = (Math.floor(upgradePercentLeft / option.smallestIncrement) / 10);
+            let timesToAdd = (Math.floor(upgradePercentLeft / option.smallestIncrement) / 100);
             if (timesToAdd > option.maxIncrease) {
               timesToAdd = option.maxIncrease;
             }
 
             // Keep track of current quality increases
-            // * 10 as smallest increment is 0.1
-            currentQualityIncrease += (timesToAdd * option.smallestIncrement * 10);
+            // * 10 as smallest increment is 0.01 (or 0.0001)
+            currentQualityIncrease += (timesToAdd * option.smallestIncrement * 100);
 
             // Handle edge case of this extra stat not existing
             if (!targetItemClone.extraStats[option.key]) {
               targetItemClone.extraStats[option.key] = 0;
             }
 
-            // Each add is 0.1 stat
+            // Each add is 0.01 stat (or 0.0001)
             targetItemClone.extraStats[option.key] += timesToAdd;
           }
         });

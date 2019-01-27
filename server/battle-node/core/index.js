@@ -340,6 +340,8 @@ export default class Battle {
         
       addBuff({ buff: newBuff, target: unit, caster: unit, actualBattle: this });      
     }
+    
+    return unit;
   }
 
   removeUnit(targetUnit) {

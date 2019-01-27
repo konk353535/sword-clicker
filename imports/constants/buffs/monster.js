@@ -1364,14 +1364,13 @@ export const MONSTER_BUFFS = {
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
           for (let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = Object.assign({}, defender.raw(), {
-              id: uuid.v4()
-            });
+            let newCube = Object.assign({}, defender.raw());
+            newCube.id = uuid.v4();
             newCube.buffs = [];
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.addUnit(newCube);
+            const newCubeUnit = actualBattle.addUnit(newCube);
             const newBuff = {
               id: 'gelatinous_cube_monster',
               stacks: buff.stacks,
@@ -1386,7 +1385,7 @@ export const MONSTER_BUFFS = {
               },
               constants: BUFFS['gelatinous_cube_monster']
             };
-            addBuff({ buff: newBuff, target: newCube, caster: newCube, actualBattle });
+            addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
           buff.data.hasSplit = true;
         }
@@ -1397,14 +1396,13 @@ export const MONSTER_BUFFS = {
         if (!buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
           for (let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = Object.assign({}, target.raw(), {
-              id: uuid.v4()
-            });
+            let newCube = Object.assign({}, defender.raw());
+            newCube.id = uuid.v4();
             newCube.buffs = [];
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;
-            actualBattle.addUnit(newCube);
+            const newCubeUnit = actualBattle.addUnit(newCube);
             const newBuff = {
               id: 'gelatinous_cube_monster',
               stacks: buff.stacks,
@@ -1419,7 +1417,7 @@ export const MONSTER_BUFFS = {
               },
               constants: BUFFS['gelatinous_cube_monster']
             };
-            addBuff({ buff: newBuff, target: newCube, caster: newCube, actualBattle });
+            addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
           buff.data.hasSplit = true;
         }

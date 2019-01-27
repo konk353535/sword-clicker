@@ -971,6 +971,7 @@ export const ENEMIES = Object.assign({
       data: {
         totalDuration: Infinity,
         icon: 'cubeSplit.svg',
+        hideBuff: true,
         name: 'gelatinous cube',
         splitHealthPercentage: 15,
         splitAmount: 3,

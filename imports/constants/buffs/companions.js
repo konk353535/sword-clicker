@@ -30,6 +30,19 @@ export const getCompanionOwner = function getCompanionOwner(companion) {
   return owner_id;
 };
 
+export const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({unit, property, actualBattle}) {
+  try {
+    const event = {
+      type: 'abs',
+      path: `unitsMap.${unit.id}.${property}`,
+      value: unit[property]
+    };
+
+    actualBattle.deltaEvents.push(event);
+  } catch (err) {
+  }
+};
+
 export const companionEvent = function companionEvent({ actualBattle, companion, target, info, color }) {
   if (actualBattle.tickEvents) {
     try {
@@ -517,7 +530,7 @@ export const COMPANION_BUFFS = {
         if (!buff.data.isSpawned) {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
-
+          
           // ** OLD **
           // this companion won't help in personal quests
           // this companion won't help in battle with other solo companions

@@ -187,10 +187,12 @@ SyncedCron.add({
               floor: currentFloor.floor + 1,
               createdAt: new Date(),
               points: 0,
-              server: currentFloor.server,
               pointsMax: newPointMax, // Need some kind of
               health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-              healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers
+              healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers,
+              floorComplete: false,
+              server: currentFloor.server,
+              loot: []
             });
 
             // Enable users to fight bosses again

@@ -320,7 +320,26 @@ export default class Battle {
       this.deltaEvents.push(event);
       this.units.push(unit);
     }
+    
     this.updateUnitMaps();
+  
+    // when a new unit is spawned in from an effect such as companion or bosses spawning adds, etc.
+    if (unit.isEnemy) {      
+      const newBuff = {
+        id: 'name_changer_common',
+        data: {
+          duration: Infinity,
+          totalDuration: Infinity,
+          icon: '',
+          description: '',
+          name: '',
+          hideBuff: true
+        },
+        constants: BUFFS['name_changer_common']
+      };
+        
+      addBuff({ buff: newBuff, target: unit, caster: unit, actualBattle: this });      
+    }
   }
 
   removeUnit(targetUnit) {
@@ -427,6 +446,24 @@ Battle.prototype.initPassives = function initPassives() {
         }
       });
     }
+
+    // initial enemy units loaded in (first, possibly only, floor)    
+    if (unit.isEnemy) {
+      const newBuff = {
+        id: 'name_changer_common',
+        data: {
+          duration: Infinity,
+          totalDuration: Infinity,
+          icon: '',
+          description: '',
+          name: '',
+          hideBuff: true
+        },
+        constants: BUFFS['name_changer_common']
+      };
+        
+      addBuff({ buff: newBuff, target: unit, caster: unit, actualBattle: this });      
+    }
   });
 }
 // Tick method #1.5 (because I'm not gonna renumber them :P)
@@ -508,6 +545,8 @@ Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
             }
           }
         } catch (err) {
+          console.log("Couldn't buff.onApply()");
+          console.log(err);
         }
         
         try {
@@ -515,6 +554,8 @@ Battle.prototype.tickUnitsAndBuffs = function tickUnitsAndBuffs() {
             buff.onTick({secondsElapsed, buff, caster: caster, target: aliveUnit, actualBattle: this});
           }
         } catch (err) {
+          console.log("Couldn't buff.onTick()");
+          console.log(err);
         }
       });
     }
@@ -570,16 +611,21 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
     if (this.isExplorationRun && this.units.length > 0) {
       if (this.room !== 'boss' && this.room < 7) {
         this.tickCount = 3; // give us back a delay
+        
         this.room += 1;
+        
         this.deltaEvents.push({
           path: 'room',
           type: 'abs',
           value: this.room
         });
+        
         // Strip out old dead enemies
         this.deadEnemies = [];
+        
         // Populate battle with next room
         const newMonsters = FLOORS.genericTowerMonsterGenerator(this.floor, this.room);
+        
         // Inject into battle
         newMonsters.forEach((monster) => {
           const randomUnitTarget = _.sample(this.units);
@@ -592,6 +638,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
             target: randomUnitTarget.id,
             enemyId: monster.id,
             name: monster.name,
+            isEnemy: true,
             tickOffset: 0
           }, this);
           this.enemies.push(newUnit);
@@ -601,7 +648,26 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
             value: newUnit.raw()
           });
         });
+        
         this.updateUnitMaps();
+
+        this.enemies.forEach((enemy) => {
+          // new enemy units in a new room during exploration
+          const newBuff = {
+            id: 'name_changer_common',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              icon: '',
+              description: '',
+              name: '',
+              hideBuff: true
+            },
+            constants: BUFFS['name_changer_common']
+          };
+            
+          addBuff({ buff: newBuff, target: enemy, caster: enemy, actualBattle: this });      
+        });
 
         return;
       }

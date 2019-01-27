@@ -4,16 +4,23 @@ import { BUFFS } from './constants/buffs/index';
 // why is this a duplicate of /server/battleUtils.js ?
 
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
-  const buffConstants = BUFFS[buff.id];
-  // Quick sort of buffs to ascending by duration
-  // target.buffs = _.sortBy(target.buffs, 'duration');
-  if (buffConstants.events.onRemove) {
-    buffConstants.events.onRemove({ buff, target, caster, actualBattle });
+  if (target) {
+    if (target.removeBuff) {
+      const buffConstants = BUFFS[buff.id];
+      // Quick sort of buffs to ascending by duration
+      // target.buffs = _.sortBy(target.buffs, 'duration');
+      if (buffConstants.events.onRemove) {
+        buffConstants.events.onRemove({ buff, target, caster, actualBattle });
+      }
+      target.removeBuff(buff);
+    }
   }
-  target.removeBuff(buff);
 }
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
+  if (!target || !target.addBuff) {
+    return;
+  }
   //console.log(`applying ${BUFFS[buff.id].name} from ${caster.name} to ${target.name}`);
 
   let existingBuff;

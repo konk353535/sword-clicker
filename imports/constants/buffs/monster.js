@@ -1367,6 +1367,7 @@ export const MONSTER_BUFFS = {
             let newCube = Object.assign({}, defender.raw(), {
               id: uuid.v4()
             });
+            newCube.buffs = [];
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;
@@ -1399,6 +1400,7 @@ export const MONSTER_BUFFS = {
             let newCube = Object.assign({}, target.raw(), {
               id: uuid.v4()
             });
+            newCube.buffs = [];
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.target = _.sample(actualBattle.units).id;

@@ -1351,7 +1351,8 @@ export const MONSTER_BUFFS = {
     },
     data: {
       duration: Infinity,
-      totalDuration: Infinity
+      totalDuration: Infinity,
+      hideBuff: true
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
@@ -1364,8 +1365,9 @@ export const MONSTER_BUFFS = {
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
           for (let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = Object.assign({}, defender.raw());
+            const newCube = Object.assign({}, defender.raw());
             newCube.id = uuid.v4();
+            newCube.icon = `gelatinous_cube${(3 - buff.stacks).toFixed(0)}.svg`;
             newCube.buffs = [];
             newCube.stats.health = defender.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = defender.stats.healthMax / (buff.data.splitAmount + 1);
@@ -1379,6 +1381,7 @@ export const MONSTER_BUFFS = {
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
+                hideBuff: true,
                 icon: 'cubeSplit.svg',
                 splitHealthPercentage: buff.data.splitHealthPercentage,
                 splitAmount: buff.data.splitAmount,
@@ -1397,8 +1400,9 @@ export const MONSTER_BUFFS = {
         if (!buff.data.hasSplit && buff.stacks > 0) {
           buff.stacks -= 1;
           for (let i = 0; i < buff.data.splitAmount; i++) {
-            let newCube = Object.assign({}, target.raw());
+            const newCube = Object.assign({}, target.raw());
             newCube.id = uuid.v4();
+            newCube.icon = `gelatinous_cube${(3 - buff.stacks).toFixed(0)}.svg`;
             newCube.buffs = [];
             newCube.stats.health = target.stats.healthMax / (buff.data.splitAmount + 1);
             newCube.stats.healthMax = target.stats.healthMax / (buff.data.splitAmount + 1);
@@ -1412,6 +1416,7 @@ export const MONSTER_BUFFS = {
               data: {
                 duration: Infinity,
                 totalDuration: Infinity,
+                hideBuff: true,
                 icon: 'cubeSplit.svg',
                 splitHealthPercentage: buff.data.splitHealthPercentage,
                 splitAmount: buff.data.splitAmount,

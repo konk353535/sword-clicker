@@ -650,7 +650,7 @@ export const ENEMIES = Object.assign({
   fish: {
     id: 'fish',
     icon: 'fish.svg',
-    name: 'piranha',
+    name: 'fish',
     swarmRange: [4, 6],
     statBuffs: [{
       type: 'times',
@@ -704,8 +704,8 @@ export const ENEMIES = Object.assign({
   // Gains shit tons of armor, each attack reduces it by one
   crab: {
     id: 'crab',
-    icon: 'citizensnips.png',
-    name: 'citizen snips',
+    icon: 'crab.svg',
+    name: 'crab',
     buffs: [{
       id: 'crab_monster',
       data: {

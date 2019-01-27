@@ -655,7 +655,7 @@ export const completeBattle = function (actualBattle) {
               ];
 
               const targetStat = _.sample(possibleStats);
-              addXp(targetStat, Math.round(actualPointsGained * 50), owner);
+              addXp(targetStat, Math.round(actualPointsGained * 50 * actualBattle.floor), owner);
 
               if (actualPointsGained > 10) {
                 addFakeGems(5, owner);
@@ -663,7 +663,7 @@ export const completeBattle = function (actualBattle) {
 
               finalTickEvents.push({
                 type: 'xp',
-                amount: Math.round(actualPointsGained * 50),
+                amount: Math.round(actualPointsGained * 50 * actualBattle.floor),
                 skill: targetStat,
                 owner
               });

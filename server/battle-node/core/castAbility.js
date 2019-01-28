@@ -147,13 +147,23 @@ export default function({ ability, caster, targets }) {
           let existingBuff = _.findWhere(target.buffs, { id: buff.id });
           if (existingBuff && !existingBuff.allowDuplicates && !buff.data.allowDuplicates) {
             existingBuff.duration = -1;
-            buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle: this });
+            try {
+              buff.constants.events.onTick({ secondsElapsed: 0, buff: existingBuff, target, actualBattle: this });
+            } catch (err) {
+              console.log("Couldn't buff.onTick()");
+              console.log(err);
+            }
           }
         }
 
         if (!buff.data.didApply) {
-          buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
-          buff.data.didApply = true;
+          try {
+            buff.constants.events.onApply({ buff, target, caster, actualBattle: this });
+            buff.data.didApply = true;
+          } catch (err) {
+            console.log("Couldn't buff.onApply()");
+            console.log(err);
+          }
         }
       }
     });

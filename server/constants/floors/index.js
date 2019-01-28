@@ -7,7 +7,7 @@ console.log('exporting floors/index.js FLOORS');
 export const FLOORS = Object.assign(
     { floorRewardRange: 2 },
     { getNewPointCount(floor, activeTowerUsers) {
-        const floorDays = {
+        const floorRooms = {
           1: 1, // Copper
           2: 1, // Iron
           3: 1, // Steel
@@ -41,6 +41,6 @@ export const FLOORS = Object.assign(
           maxPoints += Math.pow(1.7, i);
         }
 
-        return Math.round(activeTowerUsers * maxPoints * floorDays[floor] * 1);
+        return Math.round(activeTowerUsers * maxPoints * floorRooms[floor] * 1);
       },
     }, TOWER_FLOORS, GENERATORS);

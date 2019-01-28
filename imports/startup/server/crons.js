@@ -127,8 +127,8 @@ SyncedCron.add({
       }
 
       // reset boss HP
-      if(moment().isAfter(currentFloor.bossResetAt)) {
-        if(currentFloor.health <= 0) {
+      if (moment().isAfter(currentFloor.bossResetAt)) {
+        if (Math.floor(currentFloor.health) <= 0) {
           // kill the boss
           console.log('Health is below 0');
           // Complete the floor!
@@ -142,7 +142,7 @@ SyncedCron.add({
             }
           });
 
-          console.log(`Updated count is ${updatedCount}`);
+          //console.log(`Updated count is ${updatedCount}`);
           if (updatedCount === 1) {
             // Distribute rewards
             distributeRewards({ floor: currentFloor.floor, server: currentFloor.server });

@@ -18,7 +18,7 @@ export const notifyChangeForUnitProperty = function notifyChangeForUnitProperty(
 
 export const MONSTER_BUFFS = {
 
-  name_changer_common: {
+  name_changer_common: { // renamer | rare spawns
     duplicateTag: 'name_changer_common',
     icon: '',
     name: '',
@@ -36,65 +36,138 @@ export const MONSTER_BUFFS = {
         const rand = Math.random();
         
         if (target.name === 'crab') {
-          if (rand < 0.15) { // 15% chance to upgrade to citizen snips
+          if (rand < 0.10) { // 10% chance to upgrade to citizen snips
             target.name = 'citizen snips';
             target.icon = 'citizensnips.png';
-            target.stats.health *= 1.25;
-            target.stats.healthMax *= 1.25;
-            target.stats.attack *= 1.3;
-            target.stats.attackMax *= 1.3;
+            target.stats.health *= 2.25;
+            target.stats.healthMax *= 2.25;
+            target.stats.attack *= 1.5;
+            target.stats.attackMax *= 2.0;
             target.stats.defense *= 1.15;
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
+        } else if (target.name === 'fly') {
+          if (rand < 0.10) { // 10% chance to upgrade to dire fly
+            target.name = 'dire fly';
+            target.icon = 'flyDire.svg';
+            target.stats.health *= 1.25;
+            target.stats.healthMax *= 1.25;
+            target.stats.attack *= 1.5;
+            target.stats.attackMax *= 2.0;
+            target.stats.defense *= 1.15;
+            target.stats.accuracy *= 1.3;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          }
+        } else if (target.name === 'rat') {
+          if (rand < 0.10) { // 10% chance to upgrade to dire rat
+            target.name = 'dire rat';
+            target.icon = 'ratDire.svg';
+            target.stats.health *= 1.25;
+            target.stats.healthMax *= 1.25;
+            target.stats.attack *= 1.5;
+            target.stats.attackMax *= 2.0;
+            target.stats.defense *= 1.15;
+            target.stats.accuracy *= 1.3;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          }
+        } else if (target.name === 'elephant') {
+          if (rand < 0.10) { // 10% chance to upgrade to mammoth
+            target.name = 'mammoth';
+            target.icon = 'mammoth.svg';
+            target.stats.health *= 5.15;
+            target.stats.healthMax *= 5.15;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          }
+        } else if (target.name === 'bird') {
+          if (rand < 0.10) { // 10% chance to upgrade to falcon
+            target.name = 'falcon';
+            target.icon = 'birdFalcon.svg';
+            target.stats.health *= 1.25;
+            target.stats.healthMax *= 1.25;
+            target.stats.attack *= 1.5;
+            target.stats.attackMax *= 2.0;
+            target.stats.defense *= 1.15;
+            target.stats.accuracy *= 1.3;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          } else if (rand < 0.20) { // 10% chance to upgrade to eagle
+            target.name = 'eagle';
+            target.icon = 'birdEagle.svg';
+            target.stats.health *= 1.35;
+            target.stats.healthMax *= 1.35;
+            target.stats.attack *= 1.7;
+            target.stats.attackMax *= 2.5;
+            target.stats.defense *= 0.85;
+            target.stats.accuracy *= 1.3;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          }
         } else if (target.name === 'farmer') {
-          if (rand < 0.15) {
+          if (rand < 0.20) {
             target.name = 'townsfolk';
             target.stats.health *= 1.15;
             target.stats.healthMax *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-          } else if (rand < 0.30) {
+          } else if (rand < 0.40) {
             target.name = 'pauper';
+            target.icon = 'beggar.svg';
+            target.stats.health *= 1.1;
+            target.stats.healthMax *= 1.1;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-          } else if (rand < 0.45) {
-            target.name = 'rancher';
-            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           } else if (rand < 0.60) {
-            target.name = 'beggar';
+            target.name = 'rancher';
+            target.stats.health *= 1.25;
+            target.stats.healthMax *= 1.25;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+          } else if (rand < 0.80) {
+            target.name = 'beggar';
+            target.icon = 'beggar.svg';
+            target.stats.health *= 0.95;
+            target.stats.healthMax *= 0.95;
+            notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name === 'fish') {
           if (rand < 0.15) { // 15% chance to upgrade to piranha
             target.name = 'piranha';
-            target.stats.health *= 1.15;
-            target.stats.healthMax *= 1.15;
-            target.stats.attack *= 1.1;
-            target.stats.attackMax *= 1.1;
+            target.icon = 'fishPiranha.svg';
+            target.stats.health *= 1.35;
+            target.stats.healthMax *= 1.35;
+            target.stats.attack *= 1.15;
+            target.stats.attackMax *= 1.15;
             target.stats.defense *= 0.9;
             target.stats.armor *= 0.9;
             target.stats.accuracy *= 1.2;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-          } else if (rand < 0.20) { // 5% chance to upgrade to baracuda
-            target.name = 'baracuda';
-            target.stats.health *= 1.3;
-            target.stats.healthMax *= 1.3;
-            target.stats.attack *= 1.2;
-            target.stats.attackMax *= 1.3;
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          } else if (rand < 0.20) { // 5% chance to upgrade to barracuda
+            target.name = 'barracuda';
+            target.icon = 'fishBarracuda.svg';
+            target.stats.health *= 1.7;
+            target.stats.healthMax *= 1.7;
+            target.stats.attack *= 1.3;
+            target.stats.attackMax *= 1.7;
             target.stats.defense *= 0.7;
             target.stats.armor *= 0.8;
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name === 'lizard') {
           if (rand < 0.05) { // 5% chance to upgrade to basilisk
             target.name = 'basilisk';
             target.icon = 'basilisk.svg';
-            target.stats.health *= 1.25;
-            target.stats.healthMax *= 1.25;
+            target.stats.health *= 3.25;
+            target.stats.healthMax *= 3.25;
             target.stats.attack *= 1.5;
-            target.stats.attackMax *= 1.5;
-            target.stats.defense *= 1.2;
+            target.stats.attackMax *= 2.5;
+            target.stats.defense *= 0.8;
             target.stats.armor *= 1.2;
             target.stats.accuracy *= 1.2;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
@@ -103,36 +176,54 @@ export const MONSTER_BUFFS = {
         } else if (target.name === 'goblin') {
           if (rand < 0.15) { // 15% chance to upgrade to goblin warrior
             target.name = 'warrior';
+            target.icon = 'goblinWarrior.svg';
             target.stats.health *= 1.15;
             target.stats.healthMax *= 1.15;
             target.stats.attack *= 1.2;
             target.stats.attackMax *= 1.2;
             target.stats.defense *= 1.2;
             target.stats.armor *= 1.2;
-            target.stats.accuracy *= 1.1;
+            target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-          } else if (rand < 0.05) { // 5% chance to upgrade to goblin chieftain
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+          } else if (rand < 0.20) { // 5% chance to upgrade to goblin chieftain
             target.name = 'chieftain';
+            target.icon = 'goblinChieftain.svg';
             target.stats.health *= 1.65;
             target.stats.healthMax *= 1.65;
             target.stats.attack *= 1.35;
-            target.stats.attackMax *= 1.4;
+            target.stats.attackMax *= 1.75;
             target.stats.defense *= 0.9;
             target.stats.armor *= 0.8;
-            target.stats.accuracy *= 1.2;
+            target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+            const newBuff = {
+              id: 'spiked_armor',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'spikedArmor.svg',
+                name: 'spiked armor',
+                level: 3,
+              },
+              constants: BUFFS['spiked_armor']
+            };
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
         } else if (target.name === 'young ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to adept ninja
             target.name = 'adept ninja';
+            target.icon = 'adeptNinja.svg';
             target.stats.health *= 1.15;
             target.stats.healthMax *= 1.15;
-            target.stats.attack *= 1.1;
-            target.stats.attackMax *= 1.1;
+            target.stats.attack *= 1.5;
+            target.stats.attackMax *= 2.0;
             target.stats.defense *= 1.2;
             target.stats.armor *= 0.9;
-            target.stats.accuracy *= 1.1;
+            target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
             const newBuff = {
               id: 'phantom_strikes',
               data: {
@@ -140,7 +231,7 @@ export const MONSTER_BUFFS = {
                 totalDuration: Infinity,
                 icon: 'phantomStrikes.svg',
                 name: 'phantom strikes',
-                level: 1
+                level: 2,
               },
               constants: BUFFS['phantom_strikes']
             };
@@ -149,12 +240,14 @@ export const MONSTER_BUFFS = {
         } else if (target.name === 'monk ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to wise monk
             target.name = 'wise monk';
+            target.icon = 'monkWise.svg';
             target.stats.attack *= 1.1;
             target.stats.attackMax *= 1.1;
-            target.stats.defense *= 1.2;
+            target.stats.defense *= 1.5;
             target.stats.armor *= 0.9;
             target.stats.accuracy *= 1.1;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
             const newBuff = {
               id: 'phantom_strikes',
               data: {
@@ -162,7 +255,7 @@ export const MONSTER_BUFFS = {
                 totalDuration: Infinity,
                 icon: 'phantomStrikes.svg',
                 name: 'phantom strikes',
-                level: 1
+                level: 2,
               },
               constants: BUFFS['phantom_strikes']
             };
@@ -171,26 +264,30 @@ export const MONSTER_BUFFS = {
         } else if (target.name === 'demon') {
           if (rand < 0.10) { // 10% chance to upgrade to vile demon
             target.name = 'vile demon';
+            target.icon = 'demonVile.svg';
             target.stats.health *= 1.5;
             target.stats.healthMax *= 1.5;
-            target.stats.attack *= 1.2;
+            target.stats.attack *= 1.5;
             target.stats.attackMax *= 2.0;
             target.stats.defense *= 1.2;
             target.stats.armor *= 1.2;
-            target.stats.accuracy *= 1.2;
+            target.stats.accuracy *= 1.5;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name === 'angel') {
           if (rand < 0.10) { // 10% chance to upgrade to high angel
             target.name = 'high angel';
+            target.icon = 'angelHigh.svg';
             target.stats.health *= 1.75;
             target.stats.healthMax *= 1.75;
             target.stats.attack *= 1.2;
             target.stats.attackMax *= 2.0;
-            target.stats.defense *= 1.2;
+            target.stats.defense *= 1.4;
             target.stats.armor *= 1.2;
-            target.stats.accuracy *= 1.2;
+            target.stats.accuracy *= 1.35;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name === 'cut purse') {
           if (rand < 0.10) { // 10% chance to upgrade to thief
@@ -203,69 +300,120 @@ export const MONSTER_BUFFS = {
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
           } else if (rand < 0.15) { // 5% chance to upgrade to mercenary
             target.name = 'mercenary';
-            target.stats.health *= 1.2;
-            target.stats.healthMax *= 1.2;
+            target.stats.health *= 1.35;
+            target.stats.healthMax *= 1.35;
             target.stats.attack *= 1.3;
-            target.stats.attackMax *= 1.3;
+            target.stats.attackMax *= 1.4;
             target.stats.defense *= 1.1;
             target.stats.armor *= 1.1;
-            target.stats.accuracy *= 1.2;
+            target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            const newBuff = {
+              id: 'spiked_armor',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'spikedArmor.svg',
+                name: 'spiked armor',
+                level: 3,
+              },
+              constants: BUFFS['spiked_armor']
+            };
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
         } else if (target.name === 'beaver') {
           if (rand < 0.10) { // 10% chance to upgrade to dire beaver
             target.name = 'dire beaver';
-            target.stats.health *= 1.25;
-            target.stats.healthMax *= 1.25;
+            target.icon = 'beaverDire.svg';
+            target.stats.health *= 3.25;
+            target.stats.healthMax *= 3.25;
             target.stats.attack *= 1.15;
             target.stats.attackMax *= 1.65;
             target.stats.defense *= 0.8;
             target.stats.armor *= 0.5;
             target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name === 'snake') {
           if (rand < 0.20) {
             target.name = 'cobra';
+            target.stats.health *= 1.45;
+            target.stats.healthMax *= 1.45;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
           } else if (rand < 0.40) {
             target.name = 'black mamba';
+            target.stats.attack *= 1.15;
+            target.stats.attackMax *= 1.25;
+            target.stats.health *= 2.15;
+            target.stats.healthMax *= 2.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
           } else if (rand < 0.60) {
             target.name = 'diamondback';
+            target.stats.attack *= 1.35;
+            target.stats.attackMax *= 1.65;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
           } else if (rand < 0.80) {
             target.name = 'coral snake';
+            target.stats.attack *= 1.15;
+            target.stats.attackMax *= 1.35;
+            target.stats.health *= 1.35;
+            target.stats.healthMax *= 1.35;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
           }
         } else if (target.name === 'angry miner') {
           if (rand < 0.10) { // 10% chance to upgrade to furious miner
             target.name = 'furious miner';
+            target.icon = 'furiousMiner.svg';
             target.stats.health *= 0.8;
             target.stats.healthMax *= 0.8;
-            target.stats.attack *= 1.15;
-            target.stats.attackMax *= 1.15;
+            target.stats.attack *= 1.35;
+            target.stats.attackMax *= 1.6;
             target.stats.defense *= 0.8;
             target.stats.armor *= 0.7;
             target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         } else if (target.name.indexOf(' mage') !== -1) {
           if (rand < 0.15) {
-            if (target.name === 'water mage') {
-              target.name = 'water wizard';
-            } else if (target.name === 'earth mage') {
-              target.name = 'earth wizard';
+            if ((target.name === 'water mage') || (target.name === 'blue mage')) {
+              target.name = 'glacial wizard';
+              target.icon = 'whiteMage.svg';
+              notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
+              const newBuff = {
+              id: 'frost_armor',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'frostArmor.svg',
+                name: 'frost armor',
+                level: 2,
+              },
+              constants: BUFFS['frost_armor']
+            };
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });              
+            } else if ((target.name === 'brown mage') || (target.name === 'earth mage')) {
+              target.name = 'stone wizard';
+              const newBuff = {
+              id: 'spiked_armor',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'spikedArmor.svg',
+                name: 'spiked armor',
+                level: 3,
+              },
+              constants: BUFFS['spiked_armor']
+            };
             } else if (target.name === 'fire mage') {
-              target.name = 'fire wizard';
-            } else if (target.name === 'blue mage') {
-              target.name = 'blue wizard';
+              target.name = 'fiery wizard';
+              target.icon = 'fireWizard.svg';
+              notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
             }
-            target.stats.health *= 1.5;
-            target.stats.healthMax *= 1.5;
-            target.stats.defense *= 1.1;
-            target.stats.armor *= 1.1;
-            target.stats.magicPower *= 1.25;
+            target.stats.health *= 1.75;
+            target.stats.healthMax *= 1.75;
+            target.stats.magicPower *= 1.75;
             target.stats.magicArmor *= 1.5;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             const newBuff = {
@@ -274,7 +422,8 @@ export const MONSTER_BUFFS = {
                 duration: Infinity,
                 totalDuration: Infinity,
                 icon: 'sixthSense.svg',
-                name: 'watchful aura'
+                name: 'watchful aura',
+                level: 1,
               },
               constants: BUFFS['sixth_sense']
             };
@@ -284,10 +433,10 @@ export const MONSTER_BUFFS = {
           if (rand < 0.05) { // 5% chance to upgrade to terrorantula
             target.name = 'terrorantula';
             target.icon = 'terrorantula.svg';
-            target.stats.health *= 1.75;
-            target.stats.healthMax *= 1.75;
-            target.stats.attack *= 1.15;
-            target.stats.attackMax *= 1.25;
+            target.stats.health *= 3.75;
+            target.stats.healthMax *= 3.75;
+            target.stats.attack *= 1.35;
+            target.stats.attackMax *= 1.55;
             target.stats.defense *= 0.8;
             target.stats.armor *= 0.7;
             target.stats.accuracy *= 1.15;
@@ -295,10 +444,12 @@ export const MONSTER_BUFFS = {
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           } else if (rand < 0.15) { // 10% chance to upgrade to black widow
             target.name = 'black widow';
-            target.stats.health *= 1.5;
-            target.stats.healthMax *= 1.5;
-            target.stats.accuracy *= 1.15;
+            target.icon = 'blackwidow.svg';
+            target.stats.health *= 1.4;
+            target.stats.healthMax *= 1.4;
+            target.stats.accuracy *= 1.50;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
+            notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
           }
         }
         
@@ -787,7 +938,7 @@ export const MONSTER_BUFFS = {
 
   fire_mage_monster: {
     duplicateTag: 'fire_mage_monster', // Used to stop duplicate buffs
-    icon: '',
+    icon: 'phoenixHat.svg',
     name: 'fire mage',
     description({ buff, level }) {
     },
@@ -801,7 +952,11 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        if (Math.random() <= 0.05 && !_.findWhere(attacker.buffs, { id: 'ignite' })) {
+        let randChance = 0.05;
+        if (defender.name === 'fiery wizard') {
+          randChance = 0.125;
+        }
+        if (Math.random() <= randChance && !_.findWhere(attacker.buffs, { id: 'ignite' })) {
           const newBuff = {
             id: 'ignite',
             data: {

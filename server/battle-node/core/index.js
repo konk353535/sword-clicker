@@ -515,7 +515,7 @@ export default class Battle {
     this.finalCompletedEnemies().forEach((enemy) => {
       bonusLootAmount += (enemy.bonusLoot || 0.0);
     });
-    return this.bonusLoot + bonusLootAmount;
+    return (this.bonusLoot + bonusLootAmount) / 100.0;
   }
   
   finalExtraLootTable() {

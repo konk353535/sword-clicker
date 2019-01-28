@@ -3,7 +3,7 @@ import lodash from 'lodash';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
-// import { FLOORS } from '../floors/index';
+// import { FLOORS } from '../../../server/constants/floors/index.js';
 import { FAST_SPEED } from '../combat/attackSpeeds.js';
 
 const WATER_PHASE = 0;
@@ -1964,6 +1964,10 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+        buff.data.stackTimer = 0;
+        buff.stacks = buff.data.stacks = 0;
+        buff.data.lastAttack = '';
+        buff.data.attackChance = 1 / 50;
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -2027,12 +2031,214 @@ export const BOSS_BUFFS = {
       return `Brings forth fallen allies to aid in battle`;
     },
     constants: {
-      timeTillResurrection: 25,
+      timeTillResurrection: 25, // this isn't used anywhere
     },
     data: {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+        buff.stacks = buff.data.stacks = 0;
+        buff.data.timeTillResurrection = 5;
+        
+        buff.data.internal_genericTowerMonsterGenerator = function(floor, room) {
+          const FLOOR_21_monsters = {
+            1: { enemies: ['bee', 'bee'] },
+            2: { enemies: ['wasp'] },
+            3: { enemies: ['gelatinous_cube'] },
+            4: { enemies: ['vampire'] },
+            5: { enemies: ['bird', 'cut_purse'] },
+          };
+          
+          const FLOOR_21_raw_enemies = {
+            bee: {
+              id: 'bee',
+              icon: 'bee.svg',
+              name: 'bee',
+              swarmRange: [1, 7],
+              statBuffs: [{
+                type: 'plus',
+                key: 'criticalChance',
+                amount: 10
+              }]
+            },
+            wasp: {
+              id: 'wasp',
+              icon: 'wasp.svg',
+              name: 'wasp',
+              statBuffs: [{
+                type: 'plus',
+                key: 'criticalChance',
+                amount: 10
+              }]
+            },
+            gelatinous_cube: {
+              id: 'gelatinous_cube',
+              icon: 'gelatinous_cube.svg',
+              name: 'gelatinous cube',
+              buffs: [{
+                id: 'gelatinous_cube_monster',
+                duration: Infinity,
+                stacks: 2,
+                data: {
+                  totalDuration: Infinity,
+                  icon: 'cubeSplit.svg',
+                  hideBuff: true,
+                  name: 'gelatinous cube',
+                  splitHealthPercentage: 15,
+                  splitAmount: 3,
+                  hasSplit: false
+                }
+              }],
+              statBuffs: [{
+                type: 'times',
+                key: 'attack',
+                amount: 0.35
+              }, {
+                type: 'times',
+                key: 'attackMax',
+                amount: 0.35
+              }, {
+                type: 'times',
+                key: 'health',
+                amount: 1.5
+              }, {
+                type: 'times',
+                key: 'healthMax',
+                amount: 1.5
+              }]
+            },
+            vampire: {
+              id: 'vampire',
+              icon: 'vampire.svg',
+              name: 'vampire',
+              buffs: [{
+                id: 'thirsty_fangs',
+                duration: 1,
+                data: {
+                  totalDuration: 1,
+                  level: 1,
+                  icon: 'thirstyFangs.svg',
+                  name: 'thirsty fangs'
+                }
+              }, {
+                id: 'vampire_monster',
+                data: {
+                  hideBuff: true
+                }
+              }],
+              statBuffs: [{
+                type: 'times',
+                key: 'attack',
+                amount: 0.7
+              }, {
+                type: 'plus',
+                key: 'accuracy',
+                amount: 25
+              }]
+            },
+            bird: {
+              id: 'bird',
+              icon: 'bird.svg',
+              name: 'bird',
+              statBuffs: [{
+                type: 'plus',
+                key: 'criticalChance',
+                amount: 5
+              }, {
+                type: 'plus',
+                key: 'criticalDamage',
+                amount: 2
+              }]
+            },
+            cut_purse: {
+              id: 'cut_purse',
+              icon: 'cutPurse.svg',
+              name: 'cut purse',
+              statBuffs: [{
+                type: 'times',
+                key: 'armor',
+                amount: 0.8
+              }, {
+                type: 'times',
+                key: 'attackSpeed',
+                amount: 1.6
+              }, {
+                type: 'times',
+                key: 'accuracy',
+                amount: 0.8
+              }, {
+                type: 'times',
+                key: 'attack',
+                amount: 0.8
+              }]
+            },
+          };
+          
+          const allMonsters = FLOOR_21_monsters[room].enemies;
+          const totalUnits = allMonsters.length;
+          const newMonsters = [];
+
+          allMonsters.forEach((selectedMonsterId) => {
+            const selectedMonster = FLOOR_21_raw_enemies[selectedMonsterId];
+
+            // 'Good Enough', for now
+            const monster = {
+              id: selectedMonster.id,
+              icon: selectedMonster.icon,
+              name: selectedMonster.name,
+              buffs: lodash.cloneDeep(selectedMonster.buffs || []),
+              stats: {
+                health: (room / 1.2) * 25 * floor * (1 + (floor / 3.3)) * (1 / totalUnits),
+                healthMax: (room / 1.2) * 25 * floor * (1 + (floor / 3.3)) * (1 / totalUnits),
+                attack: (room / 1.8) * 3.80 * floor * (1 + (floor / 3.3)),
+                attackMax: (room / 1.8) * 4.75 * floor * (1 + (floor / 3.3)),
+                magicPower: (room / 1.8) * 2.5 * floor * (1 + (floor / 3.3)),
+                attackSpeed: 0.5 + (room / 30),
+                accuracy: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)),
+                armor: (room / 2.4) * 25 * (floor / 4),
+                defense: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)),
+                magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3.3)),
+                criticalChance: 0,
+                criticalDamage: 2,
+                damageTaken: 1
+              },
+              rewards: []
+            };
+
+            if (selectedMonster.statBuffs) {
+              selectedMonster.statBuffs.forEach((statBuff) => {
+                if (statBuff.type === 'plus') {
+                  monster.stats[statBuff.key] += statBuff.amount;
+                } else if (statBuff.type === "times") {
+                  monster.stats[statBuff.key] *= statBuff.amount;
+                }
+              })
+            }
+
+            // Is this a swarm mob?
+            if (selectedMonster.swarmRange) {
+              const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1]);
+              // Divide monsters health
+              monster.stats.health /= unitCount; // Divide health evenly
+              monster.stats.health *= 1.2; // To account for aoe
+              monster.stats.attack /= unitCount;
+              monster.stats.attackMax /= unitCount;
+              monster.stats.attack *= 1.2;
+              monster.stats.attackMax *= 1.2;
+
+              monster.stats.healthMax = monster.stats.health;
+              for (let i = 0;i < unitCount; i++) {
+                const monsterClone = lodash.cloneDeep(monster);
+                monsterClone.id = uuid.v4();
+                newMonsters.push(monsterClone);
+              }
+            } else {
+              newMonsters.push(monster);
+            }
+          });
+
+          return newMonsters;
+        };
       },
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -2040,13 +2246,11 @@ export const BOSS_BUFFS = {
           buff.data.timeTillResurrection -= secondsElapsed;
           buff.stacks = Math.round(buff.data.timeTillResurrection);
         } else {
-          /*
           const roomToSpawn = _.sample([1, 2, 3, 4, 5]);
-          const enemy = _.sample(FLOORS.genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
+          const enemy = _.sample(buff.data.internal_genericTowerMonsterGenerator(actualBattle.floor, roomToSpawn));
           actualBattle.addUnit(enemy);
           buff.data.timeTillResurrection = Math.round(Math.sqrt(Math.pow(roomToSpawn, 2.5) * 10) * 2);
           buff.stacks = Math.round(buff.data.timeTillResurrection);
-          */
         }
       },
 
@@ -2069,6 +2273,8 @@ export const BOSS_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({buff, target, caster, actualBattle}) {
+        buff.stacks = buff.data.stacks = 0;
+        buff.data.damageLimit = 5000;
       },
 
       onTick({buff, target, caster, secondsElapsed, actualBattle}) {

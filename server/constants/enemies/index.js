@@ -811,7 +811,6 @@ export const ENEMIES = Object.assign({
     buffs: [{
       id: 'fire_mage_monster',
       data: {
-        hideBuff: true
       }
     }],
     statBuffs: [{

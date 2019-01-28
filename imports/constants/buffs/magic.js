@@ -573,7 +573,7 @@ export const MAGIC_BUFFS = {
     icon: 'waterWave.svg',
     name: 'water wave',
     description({ buff, level }) {
-      const c = buff.constants;
+      const c = (buff && buff.constants) ? buff.constants : BUFFS['water_wave'].constants;
       return `
         Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per ally`;
@@ -610,10 +610,14 @@ export const MAGIC_BUFFS = {
             historyStats: actualBattle.historyStats
           });
         }
+        
+        buff.data.didHeal = true;
       },
 
       onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+        if (buff.data.didHeal) {
+          removeBuff({ buff, target, caster });
+        }
       },
 
       onRemove() {}

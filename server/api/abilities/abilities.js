@@ -23,7 +23,6 @@ export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, ca
 
   const myAbilities = Abilities.findOne({ owner });
   if (!myAbilities) {
-    console.log('unlogged in user');
     return;
   }
 

@@ -310,6 +310,20 @@ export const currentBossIsDead = function (actualBattle) {
 export const completeBattle = function (actualBattle) {
   const finalTickEvents = [];
 
+  /*
+  console.log(" ####  completeBattle()  #### ");
+  console.log(`Bonus loot: ${actualBattle.bonusLoot}`);
+  console.log(`Extra loot table:`, actualBattle.extraLootTable);
+  actualBattle.completedEnemies.forEach((enemy) => {
+    try {
+      console.log(`Defeated ${enemy.name} (${enemy.id})`);
+    } catch (err) {
+      console.log(enemy);
+    }
+  });
+  console.log(" ####  completeBattle()  #### ");
+  */
+  
   const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0 && !unit.isNPC);
 
   let win = aliveUnits.length > 0;
@@ -453,6 +467,8 @@ export const completeBattle = function (actualBattle) {
         });
       }
     });
+    
+    bonusLootMultiplier += actualBattle.bonusLoot;
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
@@ -510,6 +526,26 @@ export const completeBattle = function (actualBattle) {
         //}
       }
     }
+    
+    
+    // Add special loot tables
+    actualBattle.extraLootTable.forEach((extraLoot) => {
+      try {
+        if (!extraLoot.type || extraLoot.type === 'item') {
+          if (ITEMS[extraLoot.id] && ITEMS[extraLoot.id].name && ITEMS[extraLoot.id].name.trim().length > 0) {
+            if (extraLoot.chance >= Math.random()) {
+              rewardsGained.push({ type: 'item', itemId: extraLoot.id, amount: (extraLoot.quantity || 1) });
+            }
+          }
+        } else {
+          if (extraLoot.chance >= Math.random()) {
+            rewardsGained.push({ type: extraLoot.type, amount: (extraLoot.quantity || 1) });
+          }
+        }
+      } catch (err) {
+      }
+    });
+
 
     // Process rewards to peeps
     const owners = _.uniq(units.map((unit) => unit.owner));
@@ -965,7 +1001,7 @@ export const completeBattle = function (actualBattle) {
 
 
   // Is this a current boss battle?
-  console.log(actualBattle.startingBossHp);
+  //console.log(actualBattle.startingBossHp);
   if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
     const allEnemies = actualBattle.enemies;
     const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;

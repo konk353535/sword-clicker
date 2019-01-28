@@ -74,6 +74,8 @@ export default class Unit {
     this._target = unit.target;
 
     this.attackIn = this.tickOffset || 1;
+    this.bonusLoot = 0.0;
+    this.extraLootTable = [];
 
     if (unit.owner) {
       this.owner = unit.owner;
@@ -195,6 +197,7 @@ export default class Unit {
       owner: this.owner,
       isEnemy: this.isEnemy,
       skills: this.skills ? this.skills : [],
+      bonusLoot: this.bonusLoot || 0.0
     }
   }
 

@@ -90,6 +90,8 @@ export default class Battle {
     this.tickEvents = [];
     this.deadUnits = [];
     this.deadEnemies = [];
+    this.completedEnemies = [];
+    this.bonusLoot = 0.0;
     this.allAliveUnits = [];
 
     this.units = battle.units.map(unit => new Unit(unit, this));
@@ -115,6 +117,77 @@ export default class Battle {
   
   pqLevel() {
     return (!this.isTower() ? this.level : 0);
+  }
+  
+  lookupOreTier(tier) {
+    if (tier === 2) { return 'tin'; }
+    if (tier === 3) { return 'bronze'; }
+    if (tier === 4) { return 'iron'; }
+    if (tier === 5) { return 'silver'; }
+    if (tier === 6) { return 'gold'; }
+    if (tier === 7) { return 'carbon'; }
+    if (tier === 8) { return 'steel'; }
+    if (tier === 9) { return 'platinum'; }
+    if (tier === 10) { return 'titanium'; }
+    if (tier === 11) { return 'tungsten'; }
+    if (tier === 12) { return 'obsidian'; }
+    if (tier === 13) { return 'cobalt'; }
+    if (tier === 14) { return 'mithril'; }
+    if (tier === 15) { return 'adamantium'; }
+    if (tier === 16) { return 'orichalcum'; }
+    if (tier === 17) { return 'meteorite'; }
+    if (tier === 18) { return 'fairy_steel'; }
+    if (tier === 19) { return 'elvent_steel'; }
+    if (tier >= 20) { return 'cursed'; }
+    return 'copper';
+  }
+   lookupMetalTier(tier) {
+    if (tier === 2) { return 'tin'; }
+    if (tier === 3) { return 'bronze'; }
+    if (tier === 4) { return 'iron'; }
+    if (tier === 5) { return 'silver'; }
+    if (tier === 6) { return 'gold'; }
+    if (tier === 7) { return 'carbon'; }
+    if (tier === 8) { return 'steel'; }
+    if (tier === 9) { return 'platinum'; }
+    if (tier === 10) { return 'titanium'; }
+    if (tier === 11) { return 'tungsten'; }
+    if (tier === 12) { return 'obsidian'; }
+    if (tier === 13) { return 'cobalt'; }
+    if (tier === 14) { return 'mithril'; }
+    if (tier === 15) { return 'adamantium'; }
+    if (tier === 16) { return 'orichalcum'; }
+    if (tier === 17) { return 'meteorite'; }
+    if (tier === 18) { return 'fairy_steel'; }
+    if (tier === 19) { return 'elvent_steel'; }
+    if (tier === 20) { return 'cursed'; }
+    if (tier === 21) { return 'darksteel'; }
+    if (tier === 22) { return 'radiant'; }
+    if (tier === 23) { return 'astral'; }
+    return 'copper';
+  }
+  
+  lookupWoodTier(tier) {
+    if (tier === 2) { return 'beech'; }
+    if (tier === 3) { return 'ash'; }
+    if (tier === 4) { return 'oak'; }
+    if (tier === 5) { return 'maple'; }
+    if (tier === 6) { return 'walnut'; }
+    if (tier === 7) { return 'cherry'; }
+    if (tier === 8) { return 'mahogany'; }
+    if (tier === 9) { return 'elk'; }
+    if (tier === 10) { return 'black'; }
+    if (tier === 11) { return 'blue gum'; }
+    if (tier === 12) { return 'cedar'; }
+    if (tier === 13) { return 'denya'; }
+    if (tier === 14) { return 'gombe'; }
+    if (tier === 15) { return 'hickory'; }
+    if (tier === 16) { return 'larch'; }
+    if (tier === 17) { return 'poplar'; }
+    if (tier === 18) { return 'tali'; }
+    if (tier === 19) { return 'willow'; }
+    if (tier >= 20) { return 'teak'; }
+    return 'pine';
   }
   
   // not the same as 'reward level' exactly (reward level - 1)
@@ -406,6 +479,54 @@ export default class Battle {
       console.log(err);
     }
   }
+  
+  finalCompletedEnemies() {
+    let finalDeadEnemies = [];
+    
+    this.completedEnemies.forEach((this_enemy) => {
+      let theres_a_match = false;
+      finalDeadEnemies.forEach((already_dead_enemy) => {
+        if (!theres_a_match && already_dead_enemy.id === this_enemy.id) {
+          theres_a_match = true;
+        }
+      });
+      if (!theres_a_match) {
+        finalDeadEnemies.push(this_enemy);
+      }
+    });
+    
+    this.deadEnemies.forEach((this_enemy) => {
+      let theres_a_match = false;
+      finalDeadEnemies.forEach((already_dead_enemy) => {
+        if (!theres_a_match && already_dead_enemy.id === this_enemy.id) {
+          theres_a_match = true;
+        }
+      });
+      if (!theres_a_match) {
+        finalDeadEnemies.push(this_enemy);
+      }
+    });
+    
+    return finalDeadEnemies;
+  }
+  
+  finalBonusLoot() {
+    let bonusLootAmount = 0.0;
+    this.finalCompletedEnemies().forEach((enemy) => {
+      bonusLootAmount += (enemy.bonusLoot || 0.0);
+    });
+    return this.bonusLoot + bonusLootAmount;
+  }
+  
+  finalExtraLootTable() {
+    let extraLootTableStuff = [];
+    this.finalCompletedEnemies().forEach((enemy) => {
+      if (enemy.extraLootTable && enemy.extraLootTable.length > 0) {
+        extraLootTableStuff = extraLootTableStuff.concat(enemy.extraLootTable);
+      }
+    });
+    return extraLootTableStuff;
+  }
 
   end() {
     request({
@@ -428,7 +549,10 @@ export default class Battle {
         isExplorationRun: this.isExplorationRun,
         level: this.level,
         id: this.id,
-        owners: this.owners
+        owners: this.owners,
+        completedEnemies: this.finalCompletedEnemies().map(unit => unit.raw()),
+        bonusLoot: this.finalBonusLoot(),
+        extraLootTable: this.finalExtraLootTable(),
       }, 'dqv$dYT65YrU%s'],
       json: true
     })
@@ -623,6 +747,7 @@ Battle.prototype.checkGameOverConditions = function checkGameOverConditions() {
         });
         
         // Strip out old dead enemies
+        this.completedEnemies = this.completedEnemies.concat(this.deadEnemies);
         this.deadEnemies = [];
         
         // Populate battle with next room

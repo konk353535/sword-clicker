@@ -308,6 +308,22 @@ export const DEFENSE_ABILITIES = {
     }
   },
     
+  debug_enemy: {
+    icon: 'cat.svg',
+    name: 'debug enemy',
+    id: 'debug_enemy',
+    buffs: ['debug_enemy'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.debug_enemy;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   skeletal_warrior: {
     icon: 'boneWarrior.svg',
     name: 'skeletal warrior',

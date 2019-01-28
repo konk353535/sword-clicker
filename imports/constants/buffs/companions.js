@@ -235,6 +235,82 @@ export const COMPANION_BUFFS = {
     }
   },
   
+  debug_enemy: {
+    duplicateTag: 'debug_enemy',
+    icon: 'cat.svg',
+    name: 'debug enemy',
+    description({ buff, level }) {
+      return 'Debug ability to spawn enemy units.';
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.isSpawned) {
+          buff.data.isSpawned = true;
+
+          let enemy = {
+            id: uuid.v4(),
+            tickOffset: 0,
+            isEnemy: true,
+            icon: 'high_angel.svg',
+            name: 'Boss High Angel',
+            stats: {
+              attack: 150,
+              attackMax: 250,
+              attackSpeed: 0.5,
+              accuracy: 600,
+              health: 5500,
+              healthMax: 5500,
+              defense: 225,
+              armor: 650,
+              magicArmor: 150,
+              damageTaken: 1
+            },
+            buffs: [],
+          };
+          
+          enemy.buffs = enemy.buffs.concat([{
+            id: 'boss_high_angel',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              name: 'boss high angel',
+              icon: 'resurrection.svg',              
+              stacks: 0,
+              timeTillResurrection: 5,
+            }
+          }, {
+            id: 'angels_heart',
+            data: {
+              duration: Infinity,
+              totalDuration: Infinity,
+              name: 'angels heart',
+              icon: 'angels_heart.svg',              
+              level: 5,
+              allies: 'enemies',
+            }
+          }]);
+          
+          /* enemy.buffs = enemy.buffs.concat([
+            lodash.cloneDeep(BUFFS['boss_high_angel']),
+            lodash.cloneDeep(BUFFS['angels_heart'])
+          ]); */
+            
+          actualBattle.addUnit(enemy);
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+  
   // Level 1: can auto-attack (speed 0.7) and can use Slash (with 10s CD) at level 1
   // Level 2: can Penetrating Slash at level 1 (with 10s CD) and upgrades Slash to level 2
   // Level 3: can use Bleed at level 1 (with 30s CD) and upgrades Penetrating Slash to level 2

@@ -2875,6 +2875,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the baby fox ability.'
   },
 
+  debug_enemy_tome: {
+    id: 'debug_enemy_tome',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'debug enemy tome',
+    teaches: {
+      abilityId: 'debug_enemy',
+      level: 1
+    },
+    sellPrice: 1,
+    description: ''
+  },
+  
   skeletal_warrior_tome_level_1: {
     id: 'skeletal_warrior_tome_level_1',
     icon: 'tomeUncommon.svg',

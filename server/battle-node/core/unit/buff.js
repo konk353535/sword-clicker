@@ -3,11 +3,21 @@ import { BUFFS } from '../../../../imports/constants/buffs/index.js';
 export default class Buff {
 
   get events() {
-    return BUFFS[this.id].events;
+    try {
+      return BUFFS[this.id].events;
+    } catch (err) {
+      console.log("No buff (.events)!", this.id);
+      console.log(err);
+    }
   }
 
   get constants() {
-    return BUFFS[this.id]
+    try {
+      return BUFFS[this.id];
+    } catch (err) {
+      console.log("No buff (constants)!", this.id);
+      console.log(err);
+    }
   }
   set constants(value) {
     return;

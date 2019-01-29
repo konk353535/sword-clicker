@@ -1,7 +1,7 @@
 import { orderLootTable } from '../../../enemies/lootTables/index.js';
 import { ITEMS } from '../../../../../imports/constants/items/index';
 
-import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '../../levels/level21';
+import { LEVEL_TWENTY_TWO_LOOT_TABLE } from '../../levels/level21';
 
 export const TOWER_FLOOR_22 = {
   unlocks: false,
@@ -13,7 +13,7 @@ export const TOWER_FLOOR_22 = {
   2: {
     name: 'Dojo',
     enemies: ['monk'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_dagger_scroll', amount: 1 },
@@ -24,7 +24,7 @@ export const TOWER_FLOOR_22 = {
   3: {
     name: 'Sparta',
     enemies: ['spartan', 'crab'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_shield_scroll', amount: 1 },
@@ -35,7 +35,7 @@ export const TOWER_FLOOR_22 = {
   4: {
     name: 'The Field',
     enemies: ['farmer', 'snake'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_helmet_scroll', amount: 1 },
@@ -46,7 +46,7 @@ export const TOWER_FLOOR_22 = {
   5: {
     name: 'Mage\'s Caravan',
     enemies: ['warden', 'fire_mage'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'radiant_kite_shield', amount: 1 }
@@ -63,7 +63,7 @@ export const TOWER_FLOOR_22 = {
   6: {
     name: 'Abandoned Dojo',
     enemies: ['young_ninja'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_spear_scroll', amount: 1 },
@@ -74,7 +74,7 @@ export const TOWER_FLOOR_22 = {
   7: {
     name: 'Blessed Mine',
     enemies: ['dwarf'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_long_sword_scroll', amount: 1 },

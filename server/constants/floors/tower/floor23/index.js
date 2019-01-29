@@ -1,7 +1,7 @@
 import { orderLootTable } from '../../../enemies/lootTables/index.js';
 import { ITEMS } from '../../../../../imports/constants/items/index';
 
-import { LEVEL_TWENTY_ONE_LOOT_TABLE } from '../../levels/level21';
+import { LEVEL_TWENTY_THREE_LOOT_TABLE } from '../../levels/level21';
 
 export const TOWER_FLOOR_23 = {
   unlocks: false,
@@ -13,7 +13,7 @@ export const TOWER_FLOOR_23 = {
   2: {
     name: 'Sidewalk Path',
     enemies: ['snail', 'wombat'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_dagger_scroll', amount: 1 },
@@ -24,7 +24,7 @@ export const TOWER_FLOOR_23 = {
   3: {
     name: 'Ritual Circle',
     enemies: ['elephant', 'demon', 'demon'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_shield_scroll', amount: 1 },
@@ -35,7 +35,7 @@ export const TOWER_FLOOR_23 = {
   4: {
     name: 'Jungle Treetops',
     enemies: ['gorilla'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_helmet_scroll', amount: 1 },
@@ -46,7 +46,7 @@ export const TOWER_FLOOR_23 = {
   5: {
     name: 'Mining Cave',
     enemies: ['angry_miner', 'earth_mage'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'astral_kite_shield', amount: 1 }
@@ -63,7 +63,7 @@ export const TOWER_FLOOR_23 = {
   6: {
     name: 'Infested Sewer',
     enemies: ['rat', 'rat'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_spear_scroll', amount: 1 },
@@ -74,7 +74,7 @@ export const TOWER_FLOOR_23 = {
   7: {
     name: 'Abandoned Manor',
     enemies: ['vampire'],
-    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_long_sword_scroll', amount: 1 },

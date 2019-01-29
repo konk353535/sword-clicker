@@ -107,7 +107,7 @@ export const TOWER_FLOOR_18 = {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'dangerous_orb', amount: 1 },
-        { type: 'item', itemId: 'powerful_tome', amount: 1 }
+        { type: 'item', itemId: 'ancient_tome', amount: 1 }
       ]
     }, {
       chance: 1 / 64,

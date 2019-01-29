@@ -55,7 +55,7 @@ export const MISC_ITEMS = {
   },
     
   gift_box_red_envelope: {
-    id: 'gift_box_fireworks',
+    id: 'gift_box_red_envelope',
     icon: 'eventLNYEnvelope.svg',
     category: 'item_box',
     name: 'red envelope',

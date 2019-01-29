@@ -1157,7 +1157,7 @@ export const COMPANION_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster }) {
-        buff.data.timeTillAction = 0.2;
+        buff.data.timeTillAction = 0.0;
         buff.data.CDAirBall = 0.0;
         buff.data.CDMend = 0.0;
         buff.data.CDWaterBall = 0.0,
@@ -1185,7 +1185,7 @@ export const COMPANION_BUFFS = {
           buff.data.CDWaterWave -= secondsElapsed;
         }
         
-        if (buff.data.timeTillAction > 0) {
+        if (buff.data.timeTillAction > 0.0) {
           buff.data.timeTillAction -= secondsElapsed;
         } else {
           // Note: using all ticks
@@ -1323,14 +1323,9 @@ export const COMPANION_BUFFS = {
           }
           // END: logic healing spells
           
-          // tick throttling if there's nothing to do
-          if (buff.data.timeTillAction < 0.0) {
-            buff.data.timeTillAction = 0.2;
-          }
-
           if (castAnyHeal) {
             if (healthMaxAtStart === target.stats.healthMax) {
-              // couldn't afford to cast spells
+              // if we tried to cast a heal spell but our health max at the start and end wre the same, then we couldn't afford to cast anything
               buff.data.timeTillAction = 5.0;
             }
           }

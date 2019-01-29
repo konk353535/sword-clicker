@@ -80,7 +80,7 @@ export const NEED_GREED_ITEMS = {
   },
   event_items: (str) => {
     // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome)
-    return RegExp('festive_hat|ornamental_hat|event_ny_balloons', 'g').test(str)
+    return RegExp('festive_hat|ornamental_hat|event_ny_balloons|event_lny_lion_claws|event_lny_lion_body|event_lny_lion_head|event_lny_lunar_shield', 'g').test(str)
   },
   special_items: (str) => {
     return RegExp('enhancer_key|lemonade', 'g').test(str)

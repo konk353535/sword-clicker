@@ -148,17 +148,31 @@ SyncedCron.add({
             distributeRewards({ floor: currentFloor.floor, server: currentFloor.server });
 
             // Notify general chat
-            Chats.insert({
-              message: `The boss on floor ${currentFloor.floor} has been defeated!
-              Floor ${currentFloor.floor + 1} is now unlocked.`,
-              username: 'SERVER',
-              name: 'SERVER',
-              date: new Date(),
-              custom: {
-                roomType: 'Server'
-              },
-              roomId: `Server-${currentFloor.server}`
-            });
+            if (currentFloor.floor === 23) {
+              Chats.insert({
+                message: `The boss on floor ${currentFloor.floor} has been defeated!
+                THE TOWER HAS BEEN COMPLETED!`,
+                username: 'SERVER',
+                name: 'SERVER',
+                date: new Date(),
+                custom: {
+                  roomType: 'Server'
+                },
+                roomId: `Server-${currentFloor.server}`
+              });
+            } else {
+              Chats.insert({
+                message: `The boss on floor ${currentFloor.floor} has been defeated!
+                Floor ${currentFloor.floor + 1} is now unlocked.`,
+                username: 'SERVER',
+                name: 'SERVER',
+                date: new Date(),
+                custom: {
+                  roomType: 'Server'
+                },
+                roomId: `Server-${currentFloor.server}`
+              });
+            }
 
             // Insert the next floor (To do, make this pass a valid active tower users number)
             const activeTowerUsers = FloorWaveScores.find({

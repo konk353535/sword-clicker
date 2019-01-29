@@ -1005,6 +1005,7 @@ export const MONSTER_BUFFS = {
     constants: {
     },
     data: {
+      icon: 'phoenixHat.svg'
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {

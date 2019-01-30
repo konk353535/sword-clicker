@@ -107,7 +107,7 @@ export const MONSTER_BUFFS = {
             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.25);
           }
         } else if (target.name === 'worm') {
-          if (rand < 0.10) { // 10% chance to upgrade to wurm
+          if (rand < 0.10) { // 10% chance to upgrade to wyrm
             for (let i = 0; i < 2; i++) {
               const newWorm = Object.assign({}, target.raw());
               newWorm.id = uuid.v4();
@@ -115,7 +115,7 @@ export const MONSTER_BUFFS = {
               newWorm.target = _.sample(actualBattle.units).id;
               actualBattle.addUnit(newWorm);
             }
-            target.name = 'wurm';
+            target.name = 'wyrm';
             target.icon = 'wurm.svg';
             target.stats.health *= 1.25;
             target.stats.healthMax *= 1.25;

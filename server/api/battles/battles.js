@@ -159,19 +159,19 @@ Meteor.methods({
     const server = userDoc.server;
 
     if (room === 'boss') {
-      if (currentCommunityFloor.floor === floor && canBossBattle) {
-        const bossHealth = currentCommunityFloor.healthMax;
+      if (currentCommunityFloor.floor === floor && canBossBattle) { // fresh boss battle
+        const bossHealth = currentCommunityFloor.health; // fixed: incorrectly set to healthMax
 
         return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: false });
-      } else if (floor < currentCommunityFloor.floor) {
+      } else if (floor < currentCommunityFloor.floor) { // older floor boss battle
         const bossId = FLOORS[floor].boss.enemy.id;
         if (bossId) {
           const bossConstants = ENEMIES[bossId];
           const bossHealth = bossConstants.stats.healthMax * 11;
 
           return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: true });
-        } else {
-          return;
+        } else { // couldn't find boss ID
+          throw new Meteor.Error("no-sir", "Internal error.  Unable to find boss details.");
         }
       } else {
         throw new Meteor.Error("no-sir", "Cannot boss battle before clearing all waves");

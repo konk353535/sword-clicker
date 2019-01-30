@@ -1620,7 +1620,7 @@ export const ENCHANTMENT_BUFFS = {
       return `
         With the rhythm of a spirited dancer, you dance and <br />
         weave through battle relying on your agility instead <br />
-        of tough armor.  Every 8 seconds, you will gain +1% of <br />
+        of force.  Every 8 seconds, you will gain +1% of <br />
         your base accuracy up to a maximum of +80%.`;
     },
     constants: {

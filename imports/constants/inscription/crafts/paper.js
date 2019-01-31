@@ -967,8 +967,8 @@ export const PAPER_CRAFTS = {
     name: 'fiery paper',
     id: 'fiery_paper',
     category: 'paper',
-    timeToCraft: 120,
-    xp: 300,
+    timeToCraft: 160,
+    xp: 350,
     maxToCraft: 100,
     requiredInscriptionLevel: 95,
     required: [{
@@ -991,8 +991,8 @@ export const PAPER_CRAFTS = {
     name: 'fiery book',
     id: 'fiery_book',
     category: 'book',
-    timeToCraft: 900,
-    xp: 5000,
+    timeToCraft: 1200,
+    xp: 6000,
     maxToCraft: 5,
     requiredInscriptionLevel: 100,
     required: [{
@@ -1015,8 +1015,8 @@ export const PAPER_CRAFTS = {
     name: 'magic paper',
     id: 'magic_paper',
     category: 'paper',
-    timeToCraft: 120,
-    xp: 320,
+    timeToCraft: 160,
+    xp: 400,
     maxToCraft: 100,
     requiredInscriptionLevel: 100,
     required: [{
@@ -1039,8 +1039,8 @@ export const PAPER_CRAFTS = {
     name: 'magic book',
     id: 'magic_book',
     category: 'book',
-    timeToCraft: 900,
-    xp: 5000,
+    timeToCraft: 1200,
+    xp: 7500,
     maxToCraft: 5,
     requiredInscriptionLevel: 105,
     required: [{

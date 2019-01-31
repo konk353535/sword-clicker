@@ -7,7 +7,7 @@ export const FARMING_ITEMS = {
     id: 'lettice_seed',
     icon: 'letticeSeed.svg',
     category: 'seed',
-    name: 'Lettuce Seed',
+    name: 'lettuce seed',
     seedType: 'food',
     description() {
       const buff = BUFFS.food_lettice;
@@ -21,7 +21,7 @@ export const FARMING_ITEMS = {
     id: 'lettice',
     icon: 'lettice.svg',
     category: 'food',
-    name: 'Lettuce',
+    name: 'lettuce',
     description() {
       const buff = BUFFS.food_lettice;
       return buff.description({ buff });
@@ -36,7 +36,7 @@ export const FARMING_ITEMS = {
     id: 'marigold_seed',
     icon: 'marigoldSeed.svg',
     category: 'seed',
-    name: 'Marigold Seed',
+    name: 'marigold seed',
     seedType: 'gold',
     description() {
       return 'Sells for $$$'
@@ -49,7 +49,7 @@ export const FARMING_ITEMS = {
     id: 'marigold',
     icon: 'marigold.svg',
     category: 'herb',
-    name: 'Marigold',
+    name: 'marigold',
     description() {
       return 'Sells for $$$'
     },

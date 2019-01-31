@@ -847,7 +847,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 1005
+      level: 105
     }]
   },  
   "astral_kite_shield": {

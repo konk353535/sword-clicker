@@ -12,19 +12,9 @@ Template.serverSelector.onCreated(function bodyOnCreated() {
   Meteor.subscribe('servers');
 
   this.autorun(() => {
-
-    if (Servers.findOne({
-      name: 'Seasonal'
-    })) {
-      this.state.set('selectedServer', Servers.findOne({
-        name: 'Seasonal'
-      }));      
-    } else {
-      this.state.set('selectedServer', Servers.findOne({
-        name: 'Classic'
-      }));
-    }
-
+    this.state.set('selectedServer', Servers.findOne({
+      name: 'Classic'
+    }));
   });
 });
 

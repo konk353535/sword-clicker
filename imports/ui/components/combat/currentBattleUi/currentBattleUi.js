@@ -208,6 +208,10 @@ window.reconnectionTrigger = function(this_template) {
       });
 
       deltaEvents.forEach(({ type, path, value }) => {
+        /* if (path.indexOf('.uid') !== -1) {
+          console.log('received deltaEvent', path, value);
+        } */
+        
         if (type === 'abs') {
           lodash.set(currentBattle, path, value);
         } else if (type === 'push') {

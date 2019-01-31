@@ -1,3 +1,5 @@
+import uuid from 'node-uuid';
+
 import { BUFFS } from '../../../../imports/constants/buffs/index.js';
 
 export default class Buff {
@@ -42,6 +44,12 @@ export default class Buff {
     this._icon = value;
     this.delta('icon');
   }
+  
+  get uid() { return this._uid; }
+  set uid(value) {
+    this._uid = value;
+    this.delta('uid');
+  }
 
   get customText() { return this._customText; }
   set customText(value) {
@@ -83,6 +91,9 @@ export default class Buff {
     }
     this.data = buff.data;
     this.data.didApply = (buff.data.didApply) ? true: false;
+    
+    this._uid = uuid.v4();
+    this.delta('uid');
   }
 
   onApply(options) {
@@ -126,6 +137,7 @@ export default class Buff {
 
   raw() {
     return {
+      uid: this.uid,
       id: this.id,
       duration: this.duration,
       stacks: this.stacks,

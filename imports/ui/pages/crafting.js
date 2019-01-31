@@ -106,7 +106,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
       if (myUser.uiState && myUser.uiState.itemFilter !== undefined) {
         this.state.set('itemFilter', myUser.uiState.itemFilter);
       } else {
-        this.state.set('itemFilter', 'visible-items');
+        this.state.set('itemFilter', 'all-items');
       }
 
       if (myUser.uiState && myUser.uiState.craftingShowMore !== undefined) {
@@ -360,23 +360,27 @@ Template.craftingPage.helpers({
       //console.log(highestFurnaceTier); // konk left this debug in, disabling it for now (psouza4: 2018-10-27)
     }
 
-    let hidden = Template.instance().state.get('itemFilter') === 'hidden-items';
-
+    let filterName = Template.instance().state.get('itemFilter');
+    let bShowHidden = filterName === 'hidden-items' || filterName === 'all-items';
+    let bShowUnhidden = filterName === 'visible-items' || filterName === 'all-items';
 
     if (itemViewLimit !== 0) {
-      if (hidden) {
+      if (bShowHidden && bShowUnhidden) {
+        return FetchSomeVisibleItems(highestFurnaceTier, itemViewLimit).concat(FetchSomeHiddenItems(highestFurnaceTier, itemViewLimit));
+      } else if (bShowHidden) {
         return FetchSomeHiddenItems(highestFurnaceTier, itemViewLimit);
       }
 
       return FetchSomeVisibleItems(highestFurnaceTier, itemViewLimit);
     }
 
-    if (hidden) {
+    if (bShowHidden && bShowUnhidden) {
+      return FetchAllVisibleItems(highestFurnaceTier).concat(FetchAllHiddenItems(highestFurnaceTier));
+    } else if (bShowHidden) {
       return FetchAllHiddenItems(highestFurnaceTier);
     }
 
-    return FetchAllVisibleItems(highestFurnaceTier);
-    
+    return FetchAllVisibleItems(highestFurnaceTier);    
   },
 
   itemFilter() {

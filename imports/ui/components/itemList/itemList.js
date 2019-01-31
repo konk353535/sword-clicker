@@ -45,6 +45,12 @@ Template.itemList.helpers({
     return Session.get('multiSell');
   },
 
+  allItems() {
+    const instance = Template.instance();
+
+    return instance.data.items;
+  },
+
   visibleItems() {
     const instance = Template.instance();
 

@@ -14,8 +14,11 @@
     <h2>Items</h2>
 
     <ul class="nav nav-tabs my-3">
+      <li class="nav-item item-filter" data-filter="all-items">
+        <a class="nav-link {{#if $eq itemFilter 'all-items'}}active{{/if}}" href="#">All</a>
+      </li>
       <li class="nav-item item-filter" data-filter="visible-items">
-        <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">All</a>
+        <a class="nav-link {{#if $eq itemFilter 'visible-items'}}active{{/if}}" href="#">Unhidden</a>
       </li>
       <li class="nav-item item-filter" data-filter="hidden-items">
         <a class="nav-link {{#if $eq itemFilter 'hidden-items'}}active{{/if}}" href="#">Hidden</a>

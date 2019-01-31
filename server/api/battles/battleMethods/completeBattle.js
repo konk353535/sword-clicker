@@ -269,7 +269,7 @@ export const resolveLoot = function(battle) {
   });
 };
 
-export const removeBattle = function (battleId) {
+export const removeBattle = function(battleId) {
   const targetBattle = BattlesList.findOne({
     _id: battleId
   });
@@ -291,23 +291,169 @@ export const removeBattle = function (battleId) {
   return BattlesList.remove(battleId);
 }
 
-export const currentBossIsAlive = function (actualBattle) {
-  const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+export const currentBossIsAlive = function(actualBattle) {
+  return currentFloorDetails(actualBattle).isAlive;
+}
+
+export const currentBossIsDead = function(actualBattle) {
+  return currentFloorDetails(actualBattle).isDead;
+}
+
+export const currentFloorDetails = function(actualBattle) {
+  const currentFloor = Floors.findOne({ floor: actualBattle.floor, server: actualBattle.server });
   
   if (currentFloor) {
-    if (currentFloor.health > 0.0) {
-      return true;
-    }
+    return {
+      id: currentFloor._id,
+      floor: currentFloor.floor,
+      points: currentFloor.points,
+      pointsMax: currentFloor.pointsMax,
+      health: currentFloor.health,
+      healthMax: currentFloor.healthMax,
+      floorComplete: currentFloor.floorcomplete,
+      server: currentFloor.server,
+      loot: currentFloor.loot,
+      bossResetAt: currentFloor.bossResetAt,
+      isAlive: (currentFloor.health > 0),
+      isDead: (currentFloor.health <= 0),
+    };
   }      
       
-  return false; // err on the side of caution
+  return {
+    id: '',
+    floor: 0,
+    points: 1,
+    pointsMax: 1,
+    health: 1,
+    healthMax: 1,
+    floorComplete: false,
+    server: '',
+    loot: [],
+    bossResetAt: undefined,
+    isDead: false,
+    isAlive: true,
+  };
 }
 
-export const currentBossIsDead = function (actualBattle) {
-  return (!currentBossIsAlive(actualBattle));
+const battleHandler_DealBossDamage = function(actualBattle) {
+  const floorDetails = currentFloorDetails(actualBattle);
+  if (floorDetails.floor === 0) {
+    return;
+  }
+  
+  let temp_totalXpGain = 0;
+
+  if (wasThisABossFight(actualBattle)) {
+    const units = actualBattle.units.filter((unit) => {
+      return !!unit.owner && !unit.isNPC && unit.xpDistribution;
+    });
+
+    console.log('startingBossHp', actualBattle.startingBossHp, actualBattle.isOldBoss);
+    console.log('floor is', actualBattle.floor);
+
+    // XP is determine by damage dealt
+    
+    const allAliveEnemies = actualBattle.enemies;
+    const allCompletedEnemies = actualBattle.completedEnemies;
+    console.log('number of alive enemies', ((allAliveEnemies) ? (allAliveEnemies.length.toFixed(0)) : 'null'));
+    console.log('number of dead enemies', ((allCompletedEnemies) ? (allCompletedEnemies.length.toFixed(0)) : 'null'));
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    console.log('bossId', bossId);
+    
+    try {
+      let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId });
+      if (!liveBossStats || !liveBossStats.stats || !liveBossStats.stats.health) {
+        liveBossStats = _.findWhere(allCompletedEnemies, { monsterType: bossId });
+      }
+      
+      let damageDealt = 0;
+      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
+        damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+      } else {
+        damageDealt = actualBattle.startingBossHp;
+      }
+
+      if (floorDetails.isAlive) {
+        temp_totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+      }
+    } catch (err) {
+      console.log('Error calcuating post-battle boss health:');
+      console.log(err);
+    }
+  }
+  
+  return temp_totalXpGain;
 }
 
-export const completeBattle = function (actualBattle) {
+const wasThisABossFight = function(actualBattle) {
+  if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
+    return true;
+  }
+  return false;
+};
+
+const battleHandler_RecordBossDamage = function(actualBattle) {
+  // Is this a current boss battle?
+  //console.log(actualBattle.startingBossHp);
+  if (wasThisABossFight(actualBattle)) {
+    const allAliveEnemies = actualBattle.enemies;
+    const allCompletedEnemies = actualBattle.completedEnemies;
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    
+    let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId });
+    if (!liveBossStats || !liveBossStats.stats || !liveBossStats.stats.health) {
+      liveBossStats = _.findWhere(allCompletedEnemies, { monsterType: bossId });
+    }
+      
+    let damageDealt = 0;
+    try {
+      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
+        if (liveBossStats.stats.health < actualBattle.startingBossHp) {
+          damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+        } // else damageDealt = 0 (ending boss health wasn't less than starting boss health)
+      } // else damageDealt = 0 (we couldn't find the boss anywhere in 'actualBattle')
+    } catch (err) {
+      console.log('Error calcuating post-battle boss health:');
+      console.log(err);
+    }
+    
+    console.log(`damage dealt = ${damageDealt}`);
+    if (!damageDealt || damageDealt < 0) {
+      damageDealt = 0;
+    }
+
+    const allFriendlyUnits = actualBattle.units.filter((unit) => {
+      return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
+    });
+    
+    // Update players contributions
+    allFriendlyUnits.forEach((unit) => {
+      try {
+        BossHealthScores.insert({
+          server: actualBattle.server,
+          owner: unit.owner,
+          username: unit.name,
+          bossDamage: damageDealt
+        });
+      } catch (err) {
+      }
+    });
+
+    // Update bosses hp
+    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
+    if (currentFloor) {
+      // Just update the bosses hp
+      Floors.update(currentFloor._id, {
+        $set: {
+          health: currentFloor.health - damageDealt
+        }
+      });
+    }
+  }
+
+}
+
+export const completeBattle = function(actualBattle) {
   const finalTickEvents = [];
 
   /*
@@ -347,7 +493,7 @@ export const completeBattle = function (actualBattle) {
     });
   }
 
-  if (win || actualBattle.isExplorationRun || (actualBattle.startingBossHp && !actualBattle.isOldBoss)) {
+  if (win || actualBattle.isExplorationRun || wasThisABossFight(actualBattle)) {
     // Mutate points values / calculate points
     let pointsEarnt = 0;
 
@@ -390,33 +536,8 @@ export const completeBattle = function (actualBattle) {
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
 
-
-    if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
-      console.log('startingBossHp', actualBattle.startingBossHp, actualBattle.isOldBoss);
-      console.log('floor is', actualBattle.floor);
-      // XP is determine by damage dealt
-      const allEnemies = actualBattle.enemies;
-      console.log('number of enemies', ((allEnemies) ? (allEnemies.length.toFixed(0)) : 'null'));
-      const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
-      console.log('bossId', bossId);
-      
-      try {
-        let liveBossStats = _.findWhere(allEnemies, { monsterType: bossId });
-        let damageDealt = 0;
-        if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
-          damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
-        } else {
-          damageDealt = actualBattle.startingBossHp
-        }
-
-        if (currentBossIsAlive(actualBattle)) {
-          totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
-        }
-      } catch (err) {
-        console.log('Error calcuating post-battle boss health:');
-        console.log(err);
-      }
-    }
+    // Apply boss battle gains
+    totalXpGain += battleHandler_DealBossDamage(actualBattle);
 
     units.forEach((unit) => {
       // Distribute xp gained evenly across units
@@ -901,7 +1022,7 @@ export const completeBattle = function (actualBattle) {
       combatModifier['$set'].towerContributions = unit.towerContributions;      
     }
 
-    if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
+    if (wasThisABossFight(actualBattle)) {
       combatModifier['$set'].foughtBoss = true;
     }
     if (unit.amulet) {
@@ -994,61 +1115,12 @@ export const completeBattle = function (actualBattle) {
             }
           });
         }
-
       });
     });
   });
 
-
-  // Is this a current boss battle?
-  //console.log(actualBattle.startingBossHp);
-  if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
-    const allEnemies = actualBattle.enemies;
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
-    
-    let liveBossStats = _.findWhere(allEnemies, { monsterType: bossId });
-    let damageDealt = 0;
-    try {
-      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
-        damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
-      } else {
-        damageDealt = actualBattle.startingBossHp
-      }
-    } catch (err) {
-      console.log('Error calcuating post-battle boss health:');
-      console.log(err);
-    }
-    
-    console.log(`damage dealt = ${damageDealt}`);
-    if (!damageDealt || damageDealt < 0) {
-      damageDealt = 0;
-    }
-
-    // Update players contributions
-    allFriendlyUnits.forEach((unit) => {
-      try {
-        BossHealthScores.insert({
-          server: actualBattle.server,
-          owner: unit.owner,
-          username: unit.name,
-          bossDamage: damageDealt
-        });
-      } catch (err) {
-      }
-    });
-
-    // Update bosses hp
-    const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
-    if (currentFloor) {
-      // Just update the bosses hp
-      Floors.update(currentFloor._id, {
-        $set: {
-          health: currentFloor.health - damageDealt
-        }
-      });
-    }
-  }
-
+  battleHandler_RecordBossDamage(actualBattle);
+  
   const battleId = Battles.insert({
     owners: actualBattle.owners,
     finished: true,

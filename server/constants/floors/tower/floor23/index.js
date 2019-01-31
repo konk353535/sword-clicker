@@ -29,6 +29,51 @@ export const TOWER_FLOOR_23 = {
         { type: 'item', itemId: 'astral_shield_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_short_sword_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_claws', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_body', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_head', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lunar_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 72,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_1', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_2', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 120,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_3', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 144,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_4', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 168,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_5', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -39,6 +84,11 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'astral_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_chest_plate_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
     }]))
   },
@@ -57,6 +107,11 @@ export const TOWER_FLOOR_23 = {
         { type: 'item', itemId: 'astral_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_mining_anvil_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -68,6 +123,11 @@ export const TOWER_FLOOR_23 = {
         { type: 'item', itemId: 'astral_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_plate_legs_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -78,6 +138,11 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'astral_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
     }]))
   },

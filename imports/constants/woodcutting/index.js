@@ -608,7 +608,7 @@ export const WOODCUTTING = {
 
     beech_log: { // 2
       requiredAttack: 5,
-      xp: 6,
+      xp: 8,
       id: 'beech_log',
       icon: 'beechLog.png',
       name: 'beech log',
@@ -628,7 +628,7 @@ export const WOODCUTTING = {
 
     oak_log: { // 4
       requiredAttack: 15,
-      xp: 50,
+      xp: 30,
       id: 'oak_log',
       icon: 'oakLog.png',
       name: 'oak log',
@@ -638,7 +638,7 @@ export const WOODCUTTING = {
 
     maple_log: { // 5
       requiredAttack: 20,
-      xp: 70,
+      xp: 55,
       id: 'maple_log',
       icon: 'mapleLog.png',
       name: 'maple log',
@@ -648,7 +648,7 @@ export const WOODCUTTING = {
 
     walnut_log: { // 6
       requiredAttack: 25,
-      xp: 90,
+      xp: 80,
       id: 'walnut_log',
       icon: 'walnutLog.png',
       name: 'walnut log',
@@ -658,7 +658,7 @@ export const WOODCUTTING = {
 
     cherry_log: { // 7
       requiredAttack: 30,
-      xp: 120,
+      xp: 110,
       id: 'cherry_log',
       icon: 'cherryLog.png',
       name: 'cherry log',
@@ -668,7 +668,7 @@ export const WOODCUTTING = {
 
     mahogany_log: { // 8
       requiredAttack: 35,
-      xp: 120,
+      xp: 140,
       id: 'mahogany_log',
       icon: 'mahoganyLog.png',
       name: 'mahogany log',
@@ -788,7 +788,7 @@ export const WOODCUTTING = {
 
     teak_log: { // 20
       requiredAttack: 95,
-      xp: 620,
+      xp: 650,
       id: 'teak_log',
       icon: 'teakLog.png',
       name: 'teak log',
@@ -797,23 +797,23 @@ export const WOODCUTTING = {
     },
 
     fiery_log: { // 21
-      requiredAttack: 200,
-      xp: 640,
+      requiredAttack: 110, // darksteel
+      xp: 725,
       id: 'fiery_log',
       icon: 'fieryLog.png',
       name: 'fiery log',
       itemId: 'fiery_log',
-      chance: 0.01
+      chance: 0.005
     },
 
     magic_log: { // 22
-      requiredAttack: 205,
-      xp: 690,
+      requiredAttack: 115, // radiant
+      xp: 800,
       id: 'magic_log',
       icon: 'magicLog.png',
       name: 'magic log',
       itemId: 'magic_log',
-      chance: 0.01
+      chance: 0.005
     },
 
   }

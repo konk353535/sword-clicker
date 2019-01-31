@@ -1401,6 +1401,11 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ buff, target, caster, actualBattle }) {
+        // ticks are now 5 per second, so eat 4 out of 5 ticks randomly.
+        if (Math.random() < 0.8) {
+          return;
+        }
+        
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         let healthTransferred = false;
         const healthToTransfer = buff.data.level * constants.baseTransferRate;

@@ -148,7 +148,7 @@ SyncedCron.add({
             distributeRewards({ floor: currentFloor.floor, server: currentFloor.server });
 
             // Notify general chat
-            if (currentFloor.floor === 23) {
+            if (currentFloor.floor === 26) {
               Chats.insert({
                 message: `The boss on floor ${currentFloor.floor} has been defeated!
                 THE TOWER HAS BEEN COMPLETED!`,

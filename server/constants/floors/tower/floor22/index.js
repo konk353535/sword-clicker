@@ -4,7 +4,6 @@ import { ITEMS } from '../../../../../imports/constants/items/index';
 import { LEVEL_TWENTY_TWO_LOOT_TABLE } from '../../levels/level22';
 
 export const TOWER_FLOOR_22 = {
-  unlocks: false,
   1: {
     name: 'Frozen Waste',
     enemies: ['ice_giant'],

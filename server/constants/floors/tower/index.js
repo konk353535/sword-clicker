@@ -23,6 +23,8 @@ import { TOWER_FLOOR_22 } from './floor22/index';
 import { TOWER_FLOOR_23 } from './floor23/index';
 import { TOWER_FLOOR_24 } from './floor24/index';
 import { TOWER_FLOOR_25 } from './floor25/index';
+import { TOWER_FLOOR_26 } from './floor26/index';
+import { TOWER_FLOOR_27 } from './floor27/index';
 
 console.log('exporting tower/index.js TOWER_FLOORS');
 
@@ -52,4 +54,6 @@ export const TOWER_FLOORS = {
   23: TOWER_FLOOR_23,
   24: TOWER_FLOOR_24,
   25: TOWER_FLOOR_25,
+  26: TOWER_FLOOR_26,
+  27: TOWER_FLOOR_27,
 };

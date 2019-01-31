@@ -4,7 +4,6 @@ import { ITEMS } from '../../../../../imports/constants/items/index';
 import { LEVEL_TWENTY_THREE_LOOT_TABLE } from '../../levels/level23';
 
 export const TOWER_FLOOR_23 = {
-  unlocks: false,
   1: {
     name: 'Estuary',
     enemies: ['fish'],

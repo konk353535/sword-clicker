@@ -637,7 +637,7 @@ export const SCROLL_ITEMS = {
     name: 'astral pickaxe scroll',
     teaches: 'astral_pickaxe',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -651,7 +651,7 @@ export const SCROLL_ITEMS = {
     name: 'astral mining anvil scroll',
     teaches: 'astral_mining_anvil',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -665,7 +665,7 @@ export const SCROLL_ITEMS = {
     name: 'astral axe scroll',
     teaches: 'astral_axe',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -679,7 +679,7 @@ export const SCROLL_ITEMS = {
     name: 'astral battle axe scroll',
     teaches: 'astral_battle_axe',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -693,7 +693,7 @@ export const SCROLL_ITEMS = {
     name: 'astral chest plate scroll',
     teaches: 'astral_chest_plate',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -707,7 +707,7 @@ export const SCROLL_ITEMS = {
     name: 'astral dagger scroll',
     teaches: 'astral_dagger',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -721,7 +721,7 @@ export const SCROLL_ITEMS = {
     name: 'astral furnace scroll',
     teaches: 'astral_furnace',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -735,7 +735,7 @@ export const SCROLL_ITEMS = {
     name: 'astral helmet scroll',
     teaches: 'astral_helmet',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -749,7 +749,7 @@ export const SCROLL_ITEMS = {
     name: 'astral long sword scroll',
     teaches: 'astral_long_sword',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -763,7 +763,7 @@ export const SCROLL_ITEMS = {
     name: 'astral plate legs scroll',
     teaches: 'astral_plate_legs',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -777,7 +777,7 @@ export const SCROLL_ITEMS = {
     name: 'astral shield scroll',
     teaches: 'astral_shield',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -791,7 +791,7 @@ export const SCROLL_ITEMS = {
     name: 'astral short sword scroll',
     teaches: 'astral_short_sword',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }
@@ -805,7 +805,553 @@ export const SCROLL_ITEMS = {
     name: 'astral spear scroll',
     teaches: 'astral_spear',
     sellPrice: 2000,
-    description: `A astral scroll, made from cursed orichalcum.`,
+    description: `A astral scroll, made from cursed meteorite.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_pickaxe_scroll: {
+    id: 'titanfoil_pickaxe_scroll',
+    icon: 'titanfoilPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil pickaxe scroll',
+    teaches: 'titanfoil_pickaxe',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_mining_anvil_scroll: {
+    id: 'titanfoil_mining_anvil_scroll',
+    icon: 'titanfoilMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil mining anvil scroll',
+    teaches: 'titanfoil_mining_anvil',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_axe_scroll: {
+    id: 'titanfoil_axe_scroll',
+    icon: 'titanfoilAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil axe scroll',
+    teaches: 'titanfoil_axe',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_battle_axe_scroll: {
+    id: 'titanfoil_battle_axe_scroll',
+    icon: 'titanfoilBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil battle axe scroll',
+    teaches: 'titanfoil_battle_axe',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_chest_plate_scroll: {
+    id: 'titanfoil_chest_plate_scroll',
+    icon: 'titanfoilChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil chest plate scroll',
+    teaches: 'titanfoil_chest_plate',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_dagger_scroll: {
+    id: 'titanfoil_dagger_scroll',
+    icon: 'titanfoilDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil dagger scroll',
+    teaches: 'titanfoil_dagger',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_furnace_scroll: {
+    id: 'titanfoil_furnace_scroll',
+    icon: 'titanfoilFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil furnace scroll',
+    teaches: 'titanfoil_furnace',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_helmet_scroll: {
+    id: 'titanfoil_helmet_scroll',
+    icon: 'titanfoilHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil helmet scroll',
+    teaches: 'titanfoil_helmet',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_long_sword_scroll: {
+    id: 'titanfoil_long_sword_scroll',
+    icon: 'titanfoilLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil long sword scroll',
+    teaches: 'titanfoil_long_sword',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_plate_legs_scroll: {
+    id: 'titanfoil_plate_legs_scroll',
+    icon: 'titanfoilPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil plate legs scroll',
+    teaches: 'titanfoil_plate_legs',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_shield_scroll: {
+    id: 'titanfoil_shield_scroll',
+    icon: 'titanfoilShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil shield scroll',
+    teaches: 'titanfoil_shield',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_short_sword_scroll: {
+    id: 'titanfoil_short_sword_scroll',
+    icon: 'titanfoilShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil short sword scroll',
+    teaches: 'titanfoil_short_sword',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  titanfoil_spear_scroll: {
+    id: 'titanfoil_spear_scroll',
+    icon: 'titanfoilSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'titanfoil spear scroll',
+    teaches: 'titanfoil_spear',
+    sellPrice: 2000,
+    description: `A titanfoil scroll, made from cursed fairy steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_pickaxe_scroll: {
+    id: 'relicrock_pickaxe_scroll',
+    icon: 'relicrockPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock pickaxe scroll',
+    teaches: 'relicrock_pickaxe',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_mining_anvil_scroll: {
+    id: 'relicrock_mining_anvil_scroll',
+    icon: 'relicrockMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock mining anvil scroll',
+    teaches: 'relicrock_mining_anvil',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_axe_scroll: {
+    id: 'relicrock_axe_scroll',
+    icon: 'relicrockAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock axe scroll',
+    teaches: 'relicrock_axe',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_battle_axe_scroll: {
+    id: 'relicrock_battle_axe_scroll',
+    icon: 'relicrockBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock battle axe scroll',
+    teaches: 'relicrock_battle_axe',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_chest_plate_scroll: {
+    id: 'relicrock_chest_plate_scroll',
+    icon: 'relicrockChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock chest plate scroll',
+    teaches: 'relicrock_chest_plate',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_dagger_scroll: {
+    id: 'relicrock_dagger_scroll',
+    icon: 'relicrockDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock dagger scroll',
+    teaches: 'relicrock_dagger',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_furnace_scroll: {
+    id: 'relicrock_furnace_scroll',
+    icon: 'relicrockFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock furnace scroll',
+    teaches: 'relicrock_furnace',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_helmet_scroll: {
+    id: 'relicrock_helmet_scroll',
+    icon: 'relicrockHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock helmet scroll',
+    teaches: 'relicrock_helmet',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_long_sword_scroll: {
+    id: 'relicrock_long_sword_scroll',
+    icon: 'relicrockLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock long sword scroll',
+    teaches: 'relicrock_long_sword',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_plate_legs_scroll: {
+    id: 'relicrock_plate_legs_scroll',
+    icon: 'relicrockPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock plate legs scroll',
+    teaches: 'relicrock_plate_legs',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_shield_scroll: {
+    id: 'relicrock_shield_scroll',
+    icon: 'relicrockShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock shield scroll',
+    teaches: 'relicrock_shield',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_short_sword_scroll: {
+    id: 'relicrock_short_sword_scroll',
+    icon: 'relicrockShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock short sword scroll',
+    teaches: 'relicrock_short_sword',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  relicrock_spear_scroll: {
+    id: 'relicrock_spear_scroll',
+    icon: 'relicrockSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'relicrock spear scroll',
+    teaches: 'relicrock_spear',
+    sellPrice: 2000,
+    description: `A relicrock scroll, made from cursed elven steel.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_pickaxe_scroll: {
+    id: 'eternium_pickaxe_scroll',
+    icon: 'eterniumPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium pickaxe scroll',
+    teaches: 'eternium_pickaxe',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_mining_anvil_scroll: {
+    id: 'eternium_mining_anvil_scroll',
+    icon: 'eterniumMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium mining anvil scroll',
+    teaches: 'eternium_mining_anvil',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_axe_scroll: {
+    id: 'eternium_axe_scroll',
+    icon: 'eterniumAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium axe scroll',
+    teaches: 'eternium_axe',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_battle_axe_scroll: {
+    id: 'eternium_battle_axe_scroll',
+    icon: 'eterniumBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium battle axe scroll',
+    teaches: 'eternium_battle_axe',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_chest_plate_scroll: {
+    id: 'eternium_chest_plate_scroll',
+    icon: 'eterniumChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium chest plate scroll',
+    teaches: 'eternium_chest_plate',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_dagger_scroll: {
+    id: 'eternium_dagger_scroll',
+    icon: 'eterniumDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium dagger scroll',
+    teaches: 'eternium_dagger',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_furnace_scroll: {
+    id: 'eternium_furnace_scroll',
+    icon: 'eterniumFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium furnace scroll',
+    teaches: 'eternium_furnace',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_helmet_scroll: {
+    id: 'eternium_helmet_scroll',
+    icon: 'eterniumHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium helmet scroll',
+    teaches: 'eternium_helmet',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_long_sword_scroll: {
+    id: 'eternium_long_sword_scroll',
+    icon: 'eterniumLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium long sword scroll',
+    teaches: 'eternium_long_sword',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_plate_legs_scroll: {
+    id: 'eternium_plate_legs_scroll',
+    icon: 'eterniumPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium plate legs scroll',
+    teaches: 'eternium_plate_legs',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_shield_scroll: {
+    id: 'eternium_shield_scroll',
+    icon: 'eterniumShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium shield scroll',
+    teaches: 'eternium_shield',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_short_sword_scroll: {
+    id: 'eternium_short_sword_scroll',
+    icon: 'eterniumShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium short sword scroll',
+    teaches: 'eternium_short_sword',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  eternium_spear_scroll: {
+    id: 'eternium_spear_scroll',
+    icon: 'eterniumSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'eternium spear scroll',
+    teaches: 'eternium_spear',
+    sellPrice: 2000,
+    description: `A eternium scroll, made from cursed mithril and magical woods.`,
     shiftActionData: {
       description: 'Learn hidden recipe'
     }

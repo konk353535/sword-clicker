@@ -477,6 +477,66 @@ export const WOODCUTTING_ITEMS = {
       accuracy: 75,
       attackSpeed: 1
     }
+  },
+
+  titanfoil_axe: {
+    id: 'titanfoil_axe',
+    icon: 'titanfoilAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'titanfoil axe',
+    sellPrice: 4000,
+    description: 'A titanfoil axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 120,
+      attackSpeed: 2.5,
+      accuracy: 110
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  relicrock_axe: {
+    id: 'relicrock_axe',
+    icon: 'relicrockAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'relicrock axe',
+    sellPrice: 4000,
+    description: 'A relicrock axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 125,
+      attackSpeed: 2.5,
+      accuracy: 120
+    },
+    extraStats: {
+      accuracy: 75,
+      attackSpeed: 1
+    }
+  },
+
+  eternium_axe: {
+    id: 'eternium_axe',
+    icon: 'eterniumAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'eternium axe',
+    sellPrice: 4000,
+    description: 'A eternium axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 130,
+      attackSpeed: 3,
+      accuracy: 130
+    },
+    extraStats: {
+      accuracy: 100,
+      attackSpeed: 1
+    }
   },   
 
   pine_log: {

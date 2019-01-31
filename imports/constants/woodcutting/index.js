@@ -593,6 +593,78 @@ export const WOODCUTTING = {
         level: 115
       }]
     },
+
+    titanfoil_lumberjack: {
+      requiredWoodcuttingLevel: 120,
+      icon: 'cursedLumberJack.png',
+      name: 'titanfoil lumber jack',
+      id: 'titanfoil_lumberjack',
+      axeId: 'titanfoil_axe',
+      required: [{
+        type: 'item',
+        itemId: 'titanfoil_axe',
+        icon: ITEMS['titanfoil_axe'].icon,
+        name: ITEMS['titanfoil_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1750000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 120
+      }]
+    },
+
+    relicrock_lumberjack: {
+      requiredWoodcuttingLevel: 125,
+      icon: 'cursedLumberJack.png',
+      name: 'relicrock lumber jack',
+      id: 'relicrock_lumberjack',
+      axeId: 'relicrock_axe',
+      required: [{
+        type: 'item',
+        itemId: 'relicrock_axe',
+        icon: ITEMS['relicrock_axe'].icon,
+        name: ITEMS['relicrock_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 2150000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 125
+      }]
+    },
+
+    eternium_lumberjack: {
+      requiredWoodcuttingLevel: 130,
+      icon: 'cursedLumberJack.png',
+      name: 'eternium lumber jack',
+      id: 'eternium_lumberjack',
+      axeId: 'eternium_axe',
+      required: [{
+        type: 'item',
+        itemId: 'eternium_axe',
+        icon: ITEMS['eternium_axe'].icon,
+        name: ITEMS['eternium_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 2500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 130
+      }]
+    },
   },
 
   woods: {

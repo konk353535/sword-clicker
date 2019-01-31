@@ -990,6 +990,81 @@ export const MINING = {
       max: 3,
       damagePerSecond: 0.32
     },
+
+    titanfoil_miner: {
+      requiredMiningLevel: 115,
+      icon: 'cursedMiner.png',
+      name: 'titanfoil miner',
+      id: 'titanfoil_miner',
+      required: [{
+        type: 'item',
+        itemId: 'titanfoil_pickaxe',
+        icon: ITEMS['titanfoil_pickaxe'].icon,
+        name: ITEMS['titanfoil_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1800000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 110
+      }],
+      max: 3,
+      damagePerSecond: 0.33
+    },
+
+    relicrock_miner: {
+      requiredMiningLevel: 115,
+      icon: 'cursedMiner.png',
+      name: 'relicrock miner',
+      id: 'relicrock_miner',
+      required: [{
+        type: 'item',
+        itemId: 'relicrock_pickaxe',
+        icon: ITEMS['relicrock_pickaxe'].icon,
+        name: ITEMS['relicrock_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 1900000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 120
+      }],
+      max: 3,
+      damagePerSecond: 0.34
+    },
+
+    eternium_miner: {
+      requiredMiningLevel: 120,
+      icon: 'cursedMiner.png',
+      name: 'eternium miner',
+      id: 'eternium_miner',
+      required: [{
+        type: 'item',
+        itemId: 'eternium_pickaxe',
+        icon: ITEMS['eternium_pickaxe'].icon,
+        name: ITEMS['eternium_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 20800000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 120
+      }],
+      max: 3,
+      damagePerSecond: 0.35
+    },
   },
   ores: {
     stone: {

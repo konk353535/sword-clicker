@@ -817,7 +817,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 110
+      level: 100
     }]
   },  
   "radiant_kite_shield": {
@@ -847,7 +847,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 110
+      level: 1005
     }]
   },  
   "astral_kite_shield": {
@@ -878,6 +878,96 @@ export const MISC_ITEMS = {
       type: 'skill',
       name: 'defense',
       level: 110
+    }]
+  },  
+  "titanfoil_kite_shield": {
+    "id": "titanfoil_kite_shield",
+    "icon": "titanfoilKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "titanfoil kite shield",
+    "sellPrice": Math.round(3000 * 1.4),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.4,
+      "defense": 51.1 * 1.15 * 1.4,
+      "armor": 167.6 * 1.70 * 1.4,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.4
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.4,
+      "defense": 15.3 * 1.15 * 1.4,
+      "armor": 50.3 * 1.70 * 1.4,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 115
+    }]
+  },  
+  "relicrock_kite_shield": {
+    "id": "relicrock_kite_shield",
+    "icon": "relicrockKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "relicrock kite shield",
+    "sellPrice": Math.round(3000 * 1.5),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.5,
+      "defense": 51.1 * 1.15 * 1.5,
+      "armor": 167.6 * 1.70 * 1.5,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.5
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.5,
+      "defense": 15.3 * 1.15 * 1.5,
+      "armor": 50.3 * 1.70 * 1.5,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 120
+    }]
+  },  
+  "eternium_kite_shield": {
+    "id": "eternium_kite_shield",
+    "icon": "eterniumKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "eternium kite shield",
+    "sellPrice": Math.round(3000 * 1.6),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.6,
+      "defense": 51.1 * 1.15 * 1.6,
+      "armor": 167.6 * 1.70 * 1.6,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.6
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.6,
+      "defense": 15.3 * 1.15 * 1.6,
+      "armor": 50.3 * 1.70 * 1.6,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 125
     }]
   },
   

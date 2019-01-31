@@ -952,5 +952,206 @@ export const WOODCUTTING_CRAFTS = {
       name: 'crafting',
       level: 114
     }]
+  },
+
+  titanfoil_axe: {
+    produces: 'titanfoil_axe',
+    recipeFor: 'crafting',
+    name: 'titanfoil axe',
+    id: 'titanfoil_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 1000000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 124,
+    required: [{
+      type: 'item',
+      itemId: 'fairy_steel_essence',
+      icon: ITEMS['fairy_steel_essence'].icon,
+      name: ITEMS['fairy_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fairy_steel_bar',
+      icon: ITEMS['fairy_steel_bar'].icon,
+      name: ITEMS['fairy_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_axe',
+      icon: ITEMS['radiant_axe'].icon,
+      name: ITEMS['radiant_axe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 114
+    }]
+  },
+
+  relicrock_axe: {
+    produces: 'relicrock_axe',
+    recipeFor: 'crafting',
+    name: 'relicrock axe',
+    id: 'relicrock_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 1500000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 134,
+    required: [{
+      type: 'item',
+      itemId: 'elven_steel_essence',
+      icon: ITEMS['elven_steel_essence'].icon,
+      name: ITEMS['elven_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'elven_steel_bar',
+      icon: ITEMS['elven_steel_bar'].icon,
+      name: ITEMS['elven_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_axe',
+      icon: ITEMS['radiant_axe'].icon,
+      name: ITEMS['radiant_axe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 114
+    }]
+  },
+
+  eternium_axe: {
+    produces: 'eternium_axe',
+    recipeFor: 'crafting',
+    name: 'eternium axe',
+    id: 'eternium_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 2500000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 144,
+    required: [{
+      type: 'item',
+      itemId: 'mithril_essence',
+      icon: ITEMS['mithril_essence'].icon,
+      name: ITEMS['mithril_essence'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'magic_log',
+      icon: ITEMS['magic_log'].icon,
+      name: ITEMS['magic_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['fiery_log'].icon,
+      name: ITEMS['fiery_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_axe',
+      icon: ITEMS['radiant_axe'].icon,
+      name: ITEMS['radiant_axe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 114
+    }]
   }, 
 };

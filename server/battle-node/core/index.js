@@ -164,6 +164,9 @@ export default class Battle {
     if (tier === 21) { return 'darksteel'; }
     if (tier === 22) { return 'radiant'; }
     if (tier === 23) { return 'astral'; }
+    if (tier === 24) { return 'titanfoil'; }
+    if (tier === 25) { return 'relicrock'; }
+    if (tier === 26) { return 'eternium'; }
     return 'copper';
   }
   

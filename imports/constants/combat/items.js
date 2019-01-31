@@ -21,6 +21,9 @@ import { CURSED_ITEMS } from './items/cursed';
 import { DARKSTEEL_ITEMS } from './items/darksteel';
 import { RADIANT_ITEMS } from './items/radiant';
 import { ASTRAL_ITEMS } from './items/astral';
+import { TITANFOIL_ITEMS } from './items/titanfoil';
+import { RELICROCK_ITEMS } from './items/relicrock';
+import { ETERNIUM_ITEMS } from './items/eternium';
 
 import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
@@ -52,6 +55,9 @@ export const COMBAT_ITEMS = Object.assign(
   DARKSTEEL_ITEMS,
   RADIANT_ITEMS,
   ASTRAL_ITEMS,
+  TITANFOIL_ITEMS,
+  RELICROCK_ITEMS,
+  ETERNIUM_ITEMS,
   MISC_ITEMS,
   AMULET_ITEMS,
   STAFF_ITEMS,

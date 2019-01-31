@@ -21,6 +21,9 @@ import { CURSED_CRAFTS } from './crafts/cursed';
 import { DARKSTEEL_CRAFTS } from './crafts/darksteel';
 import { RADIANT_CRAFTS } from './crafts/radiant';
 import { ASTRAL_CRAFTS } from './crafts/astral';
+import { TITANFOIL_CRAFTS } from './crafts/titanfoil';
+import { RELICROCK_CRAFTS } from './crafts/relicrock';
+import { ETERNIUM_CRAFTS } from './crafts/eternium';
 
 import { AMULET_CRAFTS } from './crafts/amulet';
 import { STAFF_CRAFTS } from './crafts/staff';
@@ -49,5 +52,8 @@ export const COMBAT_CRAFTS = Object.assign(
   DARKSTEEL_CRAFTS,
   RADIANT_CRAFTS,
   ASTRAL_CRAFTS,
+  TITANFOIL_CRAFTS,
+  RELICROCK_CRAFTS,
+  ETERNIUM_CRAFTS,
   AMULET_CRAFTS,
   STAFF_CRAFTS);

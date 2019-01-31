@@ -240,4 +240,34 @@ export const FURNACE_ITEMS = {
     tier: 24,
     description: 'Used to combine bars'
   }, 
+
+  titanfoil_furnace: {
+    id: 'titanfoil_furnace',
+    icon: 'titanfoilFurnace.svg',
+    category: 'crafting',
+    name: 'titanfoil furnace',
+    sellPrice: 1,
+    tier: 25,
+    description: 'Used to combine bars'
+  }, 
+
+  relicrock_furnace: {
+    id: 'relicrock_furnace',
+    icon: 'relicrockFurnace.svg',
+    category: 'crafting',
+    name: 'relicrock furnace',
+    sellPrice: 1,
+    tier: 26,
+    description: 'Used to combine bars'
+  }, 
+
+  eternium_furnace: {
+    id: 'eternium_furnace',
+    icon: 'eterniumFurnace.svg',
+    category: 'crafting',
+    name: 'eternium furnace',
+    sellPrice: 1,
+    tier: 27,
+    description: 'Used to combine bars'
+  }, 
 };

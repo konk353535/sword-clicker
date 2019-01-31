@@ -1098,7 +1098,7 @@ export const PICKAXE_ITEMS = {
     icon: 'astralMiningAnvil.svg',
     category: 'mining',
     slot: 'pickaxe',
-    name: 'radiant mining anvil',
+    name: 'astral mining anvil',
     sellPrice: 2000,
     description: 'A hammer forged with an anvil. Used for mining',
     isPickaxe: true,
@@ -1114,6 +1114,78 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
+    }
+  },
+
+  titanfoil_mining_anvil: {
+    id: 'titanfoil_mining_anvil',
+    icon: 'titanfoilMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanfoil mining anvil',
+    sellPrice: 2000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 2200, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 100
+    },
+    extraStats: {
+      energyStorage: 225,
+      miner: 3,
+      attack: 100,
+    }
+  },
+
+  relicrock_mining_anvil: {
+    id: 'relicrock_mining_anvil',
+    icon: 'relicrockMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'relicrock mining anvil',
+    sellPrice: 2000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 2300, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 110
+    },
+    extraStats: {
+      energyStorage: 250,
+      miner: 3,
+      attack: 100,
+    }
+  },
+
+  eternium_mining_anvil: {
+    id: 'eternium_mining_anvil',
+    icon: 'eterniumMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'eternium mining anvil',
+    sellPrice: 2000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 500, // Maximum energy stored
+      attack: 2400, // Damage per hit
+      energyPerHit: 30, // Energy used per hit
+      energyRegen: 1,
+      miner: 120
+    },
+    extraStats: {
+      energyStorage: 300,
+      miner: 3,
+      attack: 250,
     }
   },
 
@@ -2235,6 +2307,75 @@ export const PICKAXE_ITEMS = {
       energyStorage: 42,
       attack: 10,
       energyRegen: 3
+    }
+  },  
+
+  titanfoil_pickaxe: {
+    id: 'titanfoil_pickaxe',
+    icon: 'titanfoilPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanfoil pickaxe',
+    sellPrice: 2750,
+    description: 'A titanfoil pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 150,
+      attack: 280,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 50,
+      attack: 20,
+      energyRegen: 3
+    }
+  },  
+
+  relicrock_pickaxe: {
+    id: 'relicrock_pickaxe',
+    icon: 'relicrockPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'relicrock pickaxe',
+    sellPrice: 2750,
+    description: 'A relicrock pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 160,
+      attack: 300,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 55,
+      attack: 25,
+      energyRegen: 3
+    }
+  },  
+
+  eternium_pickaxe: {
+    id: 'eternium_pickaxe',
+    icon: 'eterniumPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'eternium pickaxe',
+    sellPrice: 2750,
+    description: 'A eternium pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 185,
+      attack: 350,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 65,
+      attack: 30,
+      energyRegen: 4
     }
   },  
 };

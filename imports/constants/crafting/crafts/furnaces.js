@@ -613,5 +613,122 @@ export const FURNACE_CRAFTS = {
     timeToCraft: 40 * 60,
     xp: 2000,
     maxToCraft: 1
+  },
+
+  titanfoil_furnace: {
+    produces: 'titanfoil_furnace',
+    recipeFor: 'crafting',
+    name: 'titanfoil furnace',
+    id: 'titanfoil_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 124,
+    required: [{
+      type: 'item',
+      itemId: 'meteorite_bar',
+      icon: ITEMS['fairy_steel_bar'].icon,
+      name: ITEMS['fairy_steel_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'astral_furnace',
+      icon: ITEMS['astral_furnace'].icon,
+      name: ITEMS['astral_furnace'].name,
+      amount: 1,
+      consumes: false // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 124
+    }],
+    timeToCraft: 40 * 60,
+    xp: 2000,
+    maxToCraft: 1
+  },
+
+  relicrock_furnace: {
+    produces: 'relicrock_furnace',
+    recipeFor: 'crafting',
+    name: 'relicrock furnace',
+    id: 'relicrock_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 134,
+    required: [{
+      type: 'item',
+      itemId: 'elven_steel_bar',
+      icon: ITEMS['elven_steel_bar'].icon,
+      name: ITEMS['elven_steel_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'titanfoil_furnace',
+      icon: ITEMS['titanfoil_furnace'].icon,
+      name: ITEMS['titanfoil_furnace'].name,
+      amount: 1,
+      consumes: false // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 134
+    }],
+    timeToCraft: 40 * 60,
+    xp: 2000,
+    maxToCraft: 1
+  },
+
+  eternium_furnace: {
+    produces: 'eternium_furnace',
+    recipeFor: 'crafting',
+    name: 'eternium furnace',
+    id: 'eternium_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 144,
+    required: [{
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 25,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 25,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'relicrock_furnace',
+      icon: ITEMS['relicrock_furnace'].icon,
+      name: ITEMS['relicrock_furnace'].name,
+      amount: 1,
+      consumes: false // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 144
+    }],
+    timeToCraft: 40 * 60,
+    xp: 2000,
+    maxToCraft: 1
   }
 };

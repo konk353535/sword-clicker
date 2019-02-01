@@ -6,6 +6,7 @@ import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
 
+import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting';

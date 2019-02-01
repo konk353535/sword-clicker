@@ -160,7 +160,10 @@ Meteor.methods({
 
     if (room === 'boss') {
       if (currentCommunityFloor.floor === floor && canBossBattle) { // fresh boss battle
-        const bossHealth = currentCommunityFloor.health; // fixed: incorrectly set to healthMax
+        let bossHealth = currentCommunityFloor.health; // fixed: incorrectly set to healthMax
+        if (bossHealth <= 0.0) {
+          bossHealth = currentCommunityFloor.healthMax; // if the active floor boss is dead but we haven't rolled over to the new floor yet, allow players to attack it from full health
+        }
 
         return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: false });
       } else if (floor < currentCommunityFloor.floor) { // older floor boss battle

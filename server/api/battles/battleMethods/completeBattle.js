@@ -14,6 +14,7 @@ import { addItem, addFakeGems, addGold } from '/server/api/items/items';
 import { updateAbilityCooldowns } from '/server/api/abilities/abilities';
 import { normalizedLootTable } from '/server/constants/enemies/lootTables/index';
 import { cleanRewards } from '/server/utils';
+import { CInt, CDbl } from '/imports/utils';
 
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Floors } from '/imports/api/floors/floors';
@@ -335,6 +336,10 @@ export const currentFloorDetails = function(actualBattle) {
   };
 }
 
+const wasThisABossFight = function(actualBattle) {
+  return (actualBattle.startingBossHp && !actualBattle.isOldBoss);
+};
+
 const battleHandler_DealBossDamage = function(actualBattle) {
   const floorDetails = currentFloorDetails(actualBattle);
   if (floorDetails.floor === 0) {
@@ -348,27 +353,26 @@ const battleHandler_DealBossDamage = function(actualBattle) {
       return !!unit.owner && !unit.isNPC && unit.xpDistribution;
     });
 
-    console.log('startingBossHp', actualBattle.startingBossHp, actualBattle.isOldBoss);
-    console.log('floor is', actualBattle.floor);
+    console.log(`Boss fight: floor ${actualBattle.floor}, starting HP ${actualBattle.startingBossHp},`, (actualBattle.isOldBoss ? 'old boss' : 'current boss'));
 
     // XP is determine by damage dealt
     
     const allAliveEnemies = actualBattle.enemies;
     const allCompletedEnemies = actualBattle.completedEnemies;
-    console.log('number of alive enemies', ((allAliveEnemies) ? (allAliveEnemies.length.toFixed(0)) : 'null'));
-    console.log('number of dead enemies', ((allCompletedEnemies) ? (allCompletedEnemies.length.toFixed(0)) : 'null'));
+    //console.log('number of alive enemies', ((allAliveEnemies) ? (allAliveEnemies.length.toFixed(0)) : 'null'));
+    //console.log('number of dead enemies', ((allCompletedEnemies) ? (allCompletedEnemies.length.toFixed(0)) : 'null'));
     const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
-    console.log('bossId', bossId);
+    console.log('... bossId', bossId);
     
     try {
       let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId });
-      if (!liveBossStats || !liveBossStats.stats || !liveBossStats.stats.health) {
+      if (!liveBossStats || !liveBossStats.stats) {
         liveBossStats = _.findWhere(allCompletedEnemies, { monsterType: bossId });
       }
       
       let damageDealt = 0;
-      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
-        damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+      if (liveBossStats && liveBossStats.stats) {
+        damageDealt = actualBattle.startingBossHp - CDbl(liveBossStats.stats.health);
       } else {
         damageDealt = actualBattle.startingBossHp;
       }
@@ -385,13 +389,6 @@ const battleHandler_DealBossDamage = function(actualBattle) {
   return temp_totalXpGain;
 }
 
-const wasThisABossFight = function(actualBattle) {
-  if (actualBattle.startingBossHp && !actualBattle.isOldBoss) {
-    return true;
-  }
-  return false;
-};
-
 const battleHandler_RecordBossDamage = function(actualBattle) {
   // Is this a current boss battle?
   //console.log(actualBattle.startingBossHp);
@@ -401,15 +398,15 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
     const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
     
     let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId });
-    if (!liveBossStats || !liveBossStats.stats || !liveBossStats.stats.health) {
+    if (!liveBossStats || !liveBossStats.stats) {
       liveBossStats = _.findWhere(allCompletedEnemies, { monsterType: bossId });
     }
       
     let damageDealt = 0;
     try {
-      if (liveBossStats && liveBossStats.stats && liveBossStats.stats.health) {
+      if (liveBossStats && liveBossStats.stats) {
         if (liveBossStats.stats.health < actualBattle.startingBossHp) {
-          damageDealt = actualBattle.startingBossHp - liveBossStats.stats.health;
+          damageDealt = actualBattle.startingBossHp - CDbl(liveBossStats.stats.health);
         } // else damageDealt = 0 (ending boss health wasn't less than starting boss health)
       } // else damageDealt = 0 (we couldn't find the boss anywhere in 'actualBattle')
     } catch (err) {
@@ -417,7 +414,7 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
       console.log(err);
     }
     
-    console.log(`damage dealt = ${damageDealt}`);
+    console.log(`... damage dealt:  ${Math.floor(damageDealt)}`);
     if (!damageDealt || damageDealt < 0) {
       damageDealt = 0;
     }
@@ -873,12 +870,12 @@ export const completeBattle = function(actualBattle) {
           });
 
           // if boss should be unlocked, begin 24h timer
-          console.log('Params to find current floor');
-          console.log(actualBattle.floor);
-          console.log(actualBattle.server);
+          //console.log('Params to find current floor');
+          //console.log(actualBattle.floor);
+          //console.log(actualBattle.server);
           const currentFloor = Floors.findOne({ floorComplete: false, floor: actualBattle.floor, server: actualBattle.server });
-          console.log('CurrentFloor');
-          console.log(currentFloor);
+          //console.log('CurrentFloor');
+          //console.log(currentFloor);
           if (currentFloor.points > currentFloor.pointsMax && !currentFloor.bossResetAt) {
             const resetDate = moment().add(24, 'hours').toDate();
             Floors.update({

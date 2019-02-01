@@ -68,6 +68,11 @@ export const TOWER_FLOOR_25 = {
         { type: 'item', itemId: 'relicrock_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_plate_legs_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'relicrock_dwarven_idol', amount: 1 }
+      ]
     }]))
   },
   7: {

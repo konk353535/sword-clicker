@@ -128,6 +128,11 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'astral_dwarven_idol', amount: 1 }
+      ]
     }]))
   },
   7: {

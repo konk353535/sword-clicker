@@ -68,6 +68,11 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_plate_legs_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 }
+      ]
     }]))
   },
   7: {

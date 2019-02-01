@@ -68,6 +68,11 @@ export const TOWER_FLOOR_22 = {
         { type: 'item', itemId: 'radiant_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'radiant_plate_legs_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'radiant_dwarven_idol', amount: 1 }
+      ]
     }]))
   },
   7: {

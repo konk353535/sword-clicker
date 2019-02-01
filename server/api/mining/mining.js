@@ -505,6 +505,29 @@ Meteor.methods({
         } else {
           ore.isCluster = false;
         }
+        
+        // the emptier the mining pit, the greater the chance to spawn
+        //  0 slots free = no bonus
+        //  1 slot  free = no bonus
+        //  2 slots free = +6.1% bonus
+        //  3 slots free = +29.9% bonus
+        //  4 slots free = +50.0% bonus
+        //  5 slots free = +67.7% bonus
+        //  6 slots free = +83.7% bonus
+        //  7 slots free = +98.4% bonus
+        //  8 slots free = +112.1% bonus
+        //  9 slots free = +125.0% bonus
+        // 10 slots free = +137.2% bonus
+        // 11 slots free = +148.7% bonus
+        // 12 slots free = +159.8% bonus
+        // 13 slots free = +170.4% bonus
+        // 14 slots free = +180.6% bonus
+        // 15 slots free = +190.5% bonus
+        // 16 slots free = +200% bonus
+        const emptyPitBonus = Math.sqrt(emptyMiningSpaces.length / 16 * 9);
+        if (emptyPitBonus >= 1.0) {
+          ore.chance *= emptyPitBonus;
+        }
 
         return ore;
       });

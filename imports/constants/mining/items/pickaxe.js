@@ -1692,7 +1692,7 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
-      miner: 215
+      miner: 205
     },
     extraStats: {
       miner: 30
@@ -1728,10 +1728,118 @@ export const PICKAXE_ITEMS = {
     isPickaxe: true,
     isEquippable: true,
     stats: {
+      miner: 215
+    },
+    extraStats: {
+      miner: 33
+    }
+  },
+
+  darksteel_dwarven_idol: {
+    id: 'darksteel_dwarven_idol',
+    icon: 'darksteelDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'darksteel dwarven Idol',
+    sellPrice: 2000,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
       miner: 225
     },
     extraStats: {
       miner: 33
+    }
+  },
+
+  radiant_dwarven_idol: {
+    id: 'radiant_dwarven_idol',
+    icon: 'radiantDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'radiant dwarven Idol',
+    sellPrice: 2200,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 235
+    },
+    extraStats: {
+      miner: 33
+    }
+  },
+
+  astral_dwarven_idol: {
+    id: 'astral_dwarven_idol',
+    icon: 'astralDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'astral dwarven Idol',
+    sellPrice: 2500,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 245
+    },
+    extraStats: {
+      miner: 33
+    }
+  },
+
+  titanfoil_dwarven_idol: {
+    id: 'titanfoil_dwarven_idol',
+    icon: 'titanfoilDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'titanfoil dwarven Idol',
+    sellPrice: 2900,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 255
+    },
+    extraStats: {
+      miner: 33
+    }
+  },
+
+  relicrock_dwarven_idol: {
+    id: 'relicrock_dwarven_idol',
+    icon: 'relicrockDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'relicrock dwarven Idol',
+    sellPrice: 3400,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 265
+    },
+    extraStats: {
+      miner: 35
+    }
+  },
+
+  eternium_dwarven_idol: {
+    id: 'eternium_dwarven_idol',
+    icon: 'eterniumDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'eternium dwarven Idol',
+    sellPrice: 4000,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 275
+    },
+    extraStats: {
+      miner: 50
     }
   },
 

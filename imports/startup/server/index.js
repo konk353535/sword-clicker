@@ -348,13 +348,17 @@ Accounts.emailTemplates.verifyEmail = {
 Accounts.validateLoginAttempt((attempt) => {
   const clientIp = attempt.connection.clientAddress;
 
-  // Is user banned?
-  if (attempt.user.banned) {
-    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');    
+  if (BlackList.findOne({ clientIp })) {
+    throw new Meteor.Error('something-is-wrong', 'Your I.P. address is banned.');
   }
 
-  if (BlackList.findOne({ clientIp })) {
-    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+  if (!attempt.user) {
+    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');    
+  }
+  
+  // Is user banned?
+  if (attempt.user.banned) {
+    throw new Meteor.Error('something-is-wrong', 'Your user account is banned.');    
   }
 
   return true;

@@ -2230,13 +2230,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 131,
-      attack: 220,
+      attack: 230,
       energyPerHit: 1,
       energyRegen: 4,
     },
     extraStats: {
       energyStorage: 31,
-      attack: 6,
+      attack: 10,
       energyRegen: 3
     }
   },
@@ -2253,13 +2253,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 135,
-      attack: 235,
+      attack: 255,
       energyPerHit: 1,
       energyRegen: 4,
     },
     extraStats: {
       energyStorage: 35,
-      attack: 7,
+      attack: 12,
       energyRegen: 3
     }
   },
@@ -2276,13 +2276,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 139,
-      attack: 250,
+      attack: 280,
       energyPerHit: 1,
       energyRegen: 4,
     },
     extraStats: {
       energyStorage: 39,
-      attack: 8,
+      attack: 14,
       energyRegen: 3
     }
   },  
@@ -2299,13 +2299,13 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 145,
-      attack: 265,
+      attack: 305,
       energyPerHit: 1,
       energyRegen: 4,
     },
     extraStats: {
       energyStorage: 42,
-      attack: 10,
+      attack: 16,
       energyRegen: 3
     }
   },  
@@ -2322,7 +2322,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 150,
-      attack: 280,
+      attack: 335,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -2345,7 +2345,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 160,
-      attack: 300,
+      attack: 370,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -2368,7 +2368,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 185,
-      attack: 350,
+      attack: 420,
       energyPerHit: 1,
       energyRegen: 4,
     },

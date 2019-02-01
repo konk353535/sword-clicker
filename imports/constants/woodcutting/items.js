@@ -490,8 +490,8 @@ export const WOODCUTTING_ITEMS = {
     isAxe: true,
     stats: {
       attack: 120,
-      attackSpeed: 2.5,
-      accuracy: 110
+      attackSpeed: 2.75,
+      accuracy: 125
     },
     extraStats: {
       accuracy: 75,
@@ -510,8 +510,8 @@ export const WOODCUTTING_ITEMS = {
     isAxe: true,
     stats: {
       attack: 125,
-      attackSpeed: 2.5,
-      accuracy: 120
+      attackSpeed: 2.75,
+      accuracy: 140
     },
     extraStats: {
       accuracy: 75,
@@ -531,7 +531,7 @@ export const WOODCUTTING_ITEMS = {
     stats: {
       attack: 130,
       attackSpeed: 3,
-      accuracy: 130
+      accuracy: 160
     },
     extraStats: {
       accuracy: 100,

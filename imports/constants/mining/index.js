@@ -918,7 +918,7 @@ export const MINING = {
     
     darksteel_miner: {
       requiredMiningLevel: 100,
-      icon: 'cursedMiner.png',
+      icon: 'darksteelMiner.png',
       name: 'darksteel miner',
       id: 'darksteel_miner',
       required: [{
@@ -943,7 +943,7 @@ export const MINING = {
 
     radiant_miner: {
       requiredMiningLevel: 105,
-      icon: 'cursedMiner.png',
+      icon: 'radiantMiner.png',
       name: 'radiant miner',
       id: 'radiant_miner',
       required: [{
@@ -968,7 +968,7 @@ export const MINING = {
 
     astral_miner: {
       requiredMiningLevel: 110,
-      icon: 'cursedMiner.png',
+      icon: 'astralMiner.png',
       name: 'astral miner',
       id: 'astral_miner',
       required: [{
@@ -993,7 +993,7 @@ export const MINING = {
 
     titanfoil_miner: {
       requiredMiningLevel: 115,
-      icon: 'cursedMiner.png',
+      icon: 'titanfoilMiner.png',
       name: 'titanfoil miner',
       id: 'titanfoil_miner',
       required: [{
@@ -1018,7 +1018,7 @@ export const MINING = {
 
     relicrock_miner: {
       requiredMiningLevel: 115,
-      icon: 'cursedMiner.png',
+      icon: 'relicrockMiner.png',
       name: 'relicrock miner',
       id: 'relicrock_miner',
       required: [{
@@ -1043,7 +1043,7 @@ export const MINING = {
 
     eternium_miner: {
       requiredMiningLevel: 120,
-      icon: 'cursedMiner.png',
+      icon: 'eterniumMiner.png',
       name: 'eternium miner',
       id: 'eternium_miner',
       required: [{

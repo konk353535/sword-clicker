@@ -524,7 +524,7 @@ export const WOODCUTTING = {
 
     darksteel_lumberjack: {
       requiredWoodcuttingLevel: 105,
-      icon: 'cursedLumberJack.png',
+      icon: 'darksteelLumberJack.png',
       name: 'darksteel lumber jack',
       id: 'darksteel_lumberjack',
       axeId: 'darksteel_axe',
@@ -548,7 +548,7 @@ export const WOODCUTTING = {
 
     radiant_lumberjack: {
       requiredWoodcuttingLevel: 110,
-      icon: 'cursedLumberJack.png',
+      icon: 'radiantLumberJack.png',
       name: 'radiant lumber jack',
       id: 'radiant_lumberjack',
       axeId: 'radiant_axe',
@@ -572,7 +572,7 @@ export const WOODCUTTING = {
 
     astral_lumberjack: {
       requiredWoodcuttingLevel: 115,
-      icon: 'cursedLumberJack.png',
+      icon: 'astralLumberJack.png',
       name: 'astral lumber jack',
       id: 'astral_lumberjack',
       axeId: 'astral_axe',
@@ -596,7 +596,7 @@ export const WOODCUTTING = {
 
     titanfoil_lumberjack: {
       requiredWoodcuttingLevel: 120,
-      icon: 'cursedLumberJack.png',
+      icon: 'titanfoilLumberJack.png',
       name: 'titanfoil lumber jack',
       id: 'titanfoil_lumberjack',
       axeId: 'titanfoil_axe',
@@ -620,7 +620,7 @@ export const WOODCUTTING = {
 
     relicrock_lumberjack: {
       requiredWoodcuttingLevel: 125,
-      icon: 'cursedLumberJack.png',
+      icon: 'relicrockLumberJack.png',
       name: 'relicrock lumber jack',
       id: 'relicrock_lumberjack',
       axeId: 'relicrock_axe',
@@ -644,7 +644,7 @@ export const WOODCUTTING = {
 
     eternium_lumberjack: {
       requiredWoodcuttingLevel: 130,
-      icon: 'cursedLumberJack.png',
+      icon: 'eterniumLumberJack.png',
       name: 'eternium lumber jack',
       id: 'eternium_lumberjack',
       axeId: 'eternium_axe',

@@ -361,7 +361,7 @@ const battleHandler_DealBossDamage = function(actualBattle) {
     const allCompletedEnemies = actualBattle.completedEnemies;
     //console.log('number of alive enemies', ((allAliveEnemies) ? (allAliveEnemies.length.toFixed(0)) : 'null'));
     //console.log('number of dead enemies', ((allCompletedEnemies) ? (allCompletedEnemies.length.toFixed(0)) : 'null'));
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
     console.log('... bossId', bossId);
     
     try {
@@ -395,7 +395,7 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
   if (wasThisABossFight(actualBattle)) {
     const allAliveEnemies = actualBattle.enemies;
     const allCompletedEnemies = actualBattle.completedEnemies;
-    const bossId = FLOORS[actualBattle.floor].boss.enemy.monsterType;
+    const bossId = FLOORS[actualBattle.floor].boss.enemy.id;
     
     let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId });
     if (!liveBossStats || !liveBossStats.stats) {

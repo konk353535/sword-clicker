@@ -13,7 +13,7 @@ Router.route('/', {
 
   onBeforeAction: function () {
     if (Meteor.user()) {
-      Router.go('mining');
+      Router.go('gameHomePage');
     } else {
       this.next();
     }

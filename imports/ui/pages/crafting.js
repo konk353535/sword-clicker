@@ -348,17 +348,19 @@ Template.craftingPage.helpers({
       name: {
         $regex: /furnace/gi,
       }
-    }, {
-      sort: {
-        tier: -1
-      }
     }).fetch();
-
-    let highestFurnaceTier = 'stone_furnace';
-    if (allFurnaces.length > 0) {
-      highestFurnaceTier = ITEMS[allFurnaces[0].itemId].tier;
-      //console.log(highestFurnaceTier); // konk left this debug in, disabling it for now (psouza4: 2018-10-27)
-    }
+    
+    let highestFurnaceTier = 0;
+    
+    allFurnaces.forEach((furnace) => {
+      const itemConstants = ITEMS[furnace.itemId];
+      if (itemConstants) {
+        if (itemConstants.tier > highestFurnaceTier) {
+          highestFurnaceTier = itemConstants.tier;
+        }
+      }
+    });
+    //console.log(highestFurnaceTier); // konk left this debug in, disabling it for now (psouza4: 2018-10-27)
 
     let filterName = Template.instance().state.get('itemFilter');
     let bShowHidden = filterName === 'hidden-items' || filterName === 'all-items';
@@ -392,14 +394,7 @@ Template.craftingPage.helpers({
 const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
   return Items.find({
     equipped: false,
-    hidden: true,
-    $or: [{
-      tier: highestFurnaceTier,
-    }, {
-      name: {
-        $regex: /^((?!furnace).)*$/,
-      }
-    }]
+    hidden: true
   }, {
     limit: itemViewLimit,
     sort: {
@@ -407,7 +402,17 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
       name: 1,
       quality: -1
     }
-  }).map((itemModifier));
+  }).map((itemModifier)).filter((item) => {
+    const itemConstants = ITEMS[item.itemId];
+    if (itemConstants) {
+      if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {
+        if (itemConstants.tier < highestFurnaceTier) {
+          return false;
+        }
+      }
+    }
+    return true;
+  });
 };
 
 
@@ -415,19 +420,9 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
   return Items.find(
     {
       equipped: false,
-      $and : [
-        {
-          $or: [
-            { tier: highestFurnaceTier },
-            { name: { $regex: /^((?!furnace).)*$/ } }
-          ]
-        },
-        {
-          $or : [
-            { hidden : false },
-            { hidden : { $exists : false } }
-          ]
-        }
+      $or : [
+        { hidden : false },
+        { hidden : { $exists : false } }
       ]
     }, {
       limit: itemViewLimit,
@@ -437,7 +432,17 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
         quality: -1
       }
     }
-  ).map((itemModifier));
+  ).map((itemModifier)).filter((item) => {
+    const itemConstants = ITEMS[item.itemId];
+    if (itemConstants) {
+      if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {
+        if (itemConstants.tier < highestFurnaceTier) {
+          return false;
+        }
+      }
+    }
+    return true;
+  });
 };
 
 
@@ -445,21 +450,24 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
 const FetchAllHiddenItems = function(highestFurnaceTier) {
   return Items.find({
     equipped: false,
-    hidden: true,
-    $or: [{
-      tier: highestFurnaceTier,
-    }, {
-      name: {
-        $regex: /^((?!furnace).)*$/,
-      }
-    }]
+    hidden: true
   }, {
     sort: {
       category: 1,
       name: 1,
       quality: -1
     }
-  }).map((itemModifier));
+  }).map((itemModifier)).filter((item) => {
+    const itemConstants = ITEMS[item.itemId];
+    if (itemConstants) {
+      if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {
+        if (itemConstants.tier < highestFurnaceTier) {
+          return false;
+        }
+      }
+    }
+    return true;
+  });
 };
 
 
@@ -467,19 +475,9 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
   return Items.find(
     {
       equipped: false,
-      $and : [
-        {
-          $or: [
-            { tier: highestFurnaceTier },
-            { name: { $regex: /^((?!furnace).)*$/ } }
-          ]
-        },
-        {
-          $or : [
-            { hidden : false },
-            { hidden : { $exists : false } }
-          ]
-        }
+      $or : [
+        { hidden : false },
+        { hidden : { $exists : false } }
       ]
     }, {
       sort: {
@@ -488,5 +486,15 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
         quality: -1
       }
     }
-  ).map((itemModifier));
+  ).map((itemModifier)).filter((item) => {
+    const itemConstants = ITEMS[item.itemId];
+    if (itemConstants) {
+      if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {
+        if (itemConstants.tier < highestFurnaceTier) {
+          return false;
+        }
+      }
+    }
+    return true;
+  });
 };

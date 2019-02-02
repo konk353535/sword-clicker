@@ -1331,6 +1331,303 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  orange_trident: {
+    id: 'orange_trident',
+    icon: 'orangeTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'orange trident',
+    sellPrice: 2000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 20,
+      attackMax: 30,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 44,
+      magicPower: 31,
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 5,
+      accuracy: 8,
+      magicPower: 3
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  amber_trident: {
+    id: 'amber_trident',
+    icon: 'amberTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'amber trident',
+    sellPrice: 3250,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 27,
+      attackMax: 40,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 50,
+      magicPower: 34,
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 6,
+      accuracy: 8,
+      magicPower: 4
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 40
+    }]
+  },
+
+  violet_trident: {
+    id: 'violet_trident',
+    icon: 'violetTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'violet trident',
+    sellPrice: 5000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 34,
+      attackMax: 50,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 58,
+      magicPower: 37,
+    },
+    extraStats: {
+      attack: 7,
+      attackMax: 7,
+      accuracy: 8,
+      magicPower: 5
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 45
+    }]
+  },
+
+  crimson_trident: {
+    id: 'crimson_trident',
+    icon: 'crimsonTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'crimson trident',
+    sellPrice: 7500,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 41,
+      attackMax: 60,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 64,
+      magicPower: 40,
+    },
+    extraStats: {
+      attack: 8,
+      attackMax: 8,
+      accuracy: 10,
+      magicPower: 6
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 48
+    }]
+  },
+
+  azure_trident: {
+    id: 'azure_trident',
+    icon: 'azureTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'azure trident',
+    sellPrice: 10000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 48,
+      attackMax: 70,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 72,
+      magicPower: 43,
+    },
+    extraStats: {
+      attack: 9,
+      attackMax: 9,
+      accuracy: 10,
+      magicPower: 7
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 51
+    }]
+  },
+
+  verdant_trident: {
+    id: 'verdant_trident',
+    icon: 'verdantTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'verdant trident',
+    sellPrice: 15000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 55,
+      attackMax: 80,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 80,
+      magicPower: 46,
+    },
+    extraStats: {
+      attack: 10,
+      attackMax: 10,
+      accuracy: 10,
+      magicPower: 8
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 54
+    }]
+  },
+
+  serpent_trident: {
+    id: 'serpent_trident',
+    icon: 'serpentTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'serpent trident',
+    sellPrice: 20000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 65,
+      attackMax: 95,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 92,
+      magicPower: 50,
+    },
+    extraStats: {
+      attack: 12,
+      attackMax: 12,
+      accuracy: 15,
+      magicPower: 10
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 57
+    }]
+  },
+
+  inferno_trident: {
+    id: 'inferno_trident',
+    icon: 'infernoTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'inferno trident',
+    sellPrice: 20000,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 75,
+      attackMax: 120,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 108,
+      magicPower: 56,
+    },
+    extraStats: {
+      attack: 14,
+      attackMax: 14,
+      accuracy: 15,
+      magicPower: 12
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 67
+    }]
+  },
+
+  exalted_trident: {
+    id: 'exalted_trident',
+    icon: 'exaltedTrident.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'exalted trident',
+    sellPrice: 32500,
+    description: 'A sharp trident, beaming with magical energy',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 90,
+      attackMax: 150,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 130,
+      magicPower: 65,
+    },
+    extraStats: {
+      attack: 17,
+      attackMax: 25,
+      accuracy: 25,
+      magicPower: 20
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 77
+    }]
+  },
+
   copper_hammer: {
     id: 'copper_hammer',
     icon: 'copperHammer.png',

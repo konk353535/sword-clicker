@@ -142,6 +142,32 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   },
+  
+  "radiant_horned_helmet": {
+    "id": "radiant_horned_helmet",
+    "icon": "horned_helmet_t22.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "radiant horned helmet",
+    "sellPrice": 5000,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 21.4,
+      "attackMax": 21.4,
+      "accuracy": 21.4
+    },
+    "extraStats": {
+      "attack": 9.2,
+      "attackMax": 9.2,
+      "accuracy": 9.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 105
+    }]
+  },
 
   "radiant_helmet": {
     "id": "radiant_helmet",

@@ -142,6 +142,32 @@ export const RELICROCK_ITEMS = {
       level: 120
     }]
   },
+  
+  "relicrock_horned_helmet": {
+    "id": "relicrock_horned_helmet",
+    "icon": "horned_helmet_t25.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "relicrock horned helmet",
+    "sellPrice": 9000,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 29.4,
+      "attackMax": 29.4,
+      "accuracy": 29.4
+    },
+    "extraStats": {
+      "attack": 17.2,
+      "attackMax": 17.2,
+      "accuracy": 17.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 130
+    }]
+  },
 
   "relicrock_helmet": {
     "id": "relicrock_helmet",

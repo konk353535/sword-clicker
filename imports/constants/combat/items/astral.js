@@ -142,6 +142,32 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
+  
+  "astral_horned_helmet": {
+    "id": "astral_horned_helmet",
+    "icon": "horned_helmet_t23.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "astral horned helmet",
+    "sellPrice": 6000,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 23.4,
+      "attackMax": 23.4,
+      "accuracy": 23.4
+    },
+    "extraStats": {
+      "attack": 11.2,
+      "attackMax": 11.2,
+      "accuracy": 11.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },
 
   "astral_helmet": {
     "id": "astral_helmet",

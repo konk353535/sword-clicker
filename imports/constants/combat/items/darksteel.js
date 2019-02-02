@@ -142,6 +142,32 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   },
+  
+  "darksteel_horned_helmet": {
+    "id": "darksteel_horned_helmet",
+    "icon": "horned_helmet_t21.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "darksteel horned helmet",
+    "sellPrice": 4000,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 19.4,
+      "attackMax": 19.4,
+      "accuracy": 19.4
+    },
+    "extraStats": {
+      "attack": 7.2,
+      "attackMax": 7.2,
+      "accuracy": 7.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 100
+    }]
+  },
 
   "darksteel_helmet": {
     "id": "darksteel_helmet",

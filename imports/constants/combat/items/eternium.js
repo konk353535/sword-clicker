@@ -142,6 +142,32 @@ export const ETERNIUM_ITEMS = {
       level: 125
     }]
   },
+  
+  "eternium_horned_helmet": {
+    "id": "eternium_horned_helmet",
+    "icon": "horned_helmet_t26.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "eternium horned helmet",
+    "sellPrice": 12000,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 35,
+      "attackMax": 35,
+      "accuracy": 40
+    },
+    "extraStats": {
+      "attack": 25,
+      "attackMax": 25,
+      "accuracy": 25
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 140
+    }]
+  },
 
   "eternium_helmet": {
     "id": "eternium_helmet",

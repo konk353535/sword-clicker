@@ -142,6 +142,32 @@ export const TITANFOIL_ITEMS = {
       level: 115
     }]
   },
+  
+  "titanfoil_horned_helmet": {
+    "id": "titanfoil_horned_helmet",
+    "icon": "horned_helmet_t24.png",
+    "category": "combat",
+    "slot": "head",
+    "name": "titanfoil horned helmet",
+    "sellPrice": 7500,
+    "description": "Protect your head",
+    "isEquippable": true,
+    "stats": {
+      "attack": 26.4,
+      "attackMax": 26.4,
+      "accuracy": 26.4
+    },
+    "extraStats": {
+      "attack": 14.2,
+      "attackMax": 14.2,
+      "accuracy": 14.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 120
+    }]
+  },
 
   "titanfoil_helmet": {
     "id": "titanfoil_helmet",

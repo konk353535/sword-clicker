@@ -1934,7 +1934,7 @@ export const MISC_ITEMS = {
       attack: 5.3,
       attackMax: 5.9,
       attackSpeed: 1.0,
-      accuracy: 3.4
+      accuracy: 3.4,
       defense: -1.25
     },
     extraStats: {
@@ -1965,7 +1965,7 @@ export const MISC_ITEMS = {
       attack: 7.2,
       attackMax: 8.4,
       attackSpeed: 1.0,
-      accuracy: 6.8
+      accuracy: 6.8,
       defense: -2.5
     },
     extraStats: {
@@ -1996,7 +1996,7 @@ export const MISC_ITEMS = {
       attack: 9.2,
       attackMax: 11.1,
       attackSpeed: 1.0,
-      accuracy: 10.2
+      accuracy: 10.2,
       defense: -3.75
     },
     extraStats: {
@@ -2027,7 +2027,7 @@ export const MISC_ITEMS = {
       attack: 11.2,
       attackMax: 13.9,
       attackSpeed: 1.0,
-      accuracy: 13.5
+      accuracy: 13.5,
       defense: -5
     },
     extraStats: {
@@ -2058,7 +2058,7 @@ export const MISC_ITEMS = {
       attack: 13.4,
       attackMax: 17.1,
       attackSpeed: 1.0,
-      accuracy: 16.9
+      accuracy: 16.9,
       defense: -6.25
     },
     extraStats: {
@@ -2089,7 +2089,7 @@ export const MISC_ITEMS = {
       attack: 15.7,
       attackMax: 20.5,
       attackSpeed: 1.0,
-      accuracy: 20.3
+      accuracy: 20.3,
       defense: -7.5
     },
     extraStats: {
@@ -2120,7 +2120,7 @@ export const MISC_ITEMS = {
       attack: 18.2,
       attackMax: 24.3,
       attackSpeed: 1.0,
-      accuracy: 23.7
+      accuracy: 23.7,
       defense: -8.75
     },
     extraStats: {
@@ -2151,7 +2151,7 @@ export const MISC_ITEMS = {
       attack: 20.9,
       attackMax: 28.4,
       attackSpeed: 1.0,
-      accuracy: 27.1
+      accuracy: 27.1,
       defense: -10
     },
     extraStats: {
@@ -2182,7 +2182,7 @@ export const MISC_ITEMS = {
       attack: 23.8,
       attackMax: 32.9,
       attackSpeed: 1.0,
-      accuracy: 30.5
+      accuracy: 30.5,
       defense: -11.25
     },
     extraStats: {
@@ -2213,7 +2213,7 @@ export const MISC_ITEMS = {
       attack: 26.8,
       attackMax: 37.8,
       attackSpeed: 1.0,
-      accuracy: 33.9
+      accuracy: 33.9,
       defense: -12.5
     },
     extraStats: {
@@ -2244,7 +2244,7 @@ export const MISC_ITEMS = {
       attack: 30.1,
       attackMax: 43.2,
       attackSpeed: 1.0,
-      accuracy: 37.2
+      accuracy: 37.2,
       defense: -13.75
     },
     extraStats: {
@@ -2275,7 +2275,7 @@ export const MISC_ITEMS = {
       attack: 33.7,
       attackMax: 49,
       attackSpeed: 1.0,
-      accuracy: 40.6
+      accuracy: 40.6,
       defense: -15
     },
     extraStats: {
@@ -2306,7 +2306,7 @@ export const MISC_ITEMS = {
       attack: 37.4,
       attackMax: 55.3,
       attackSpeed: 1.0,
-      accuracy: 44
+      accuracy: 44,
       defense: -16.25
     },
     extraStats: {
@@ -2337,7 +2337,7 @@ export const MISC_ITEMS = {
       attack: 41.5,
       attackMax: 62.2,
       attackSpeed: 1.0,
-      accuracy: 47.4
+      accuracy: 47.4,
       defense: -17.5
     },
     extraStats: {
@@ -2368,7 +2368,7 @@ export const MISC_ITEMS = {
       attack: 45.8,
       attackMax: 69.6,
       attackSpeed: 1.0,
-      accuracy: 50.8
+      accuracy: 50.8,
       defense: -18.75
     },
     extraStats: {
@@ -2399,7 +2399,7 @@ export const MISC_ITEMS = {
       attack: 50.3,
       attackMax: 77.6,
       attackSpeed: 1.0,
-      accuracy: 54.2
+      accuracy: 54.2,
       defense: -20
     },
     extraStats: {
@@ -2430,7 +2430,7 @@ export const MISC_ITEMS = {
       attack: 55.2,
       attackMax: 86.3,
       attackSpeed: 1.0,
-      accuracy: 57.5
+      accuracy: 57.5,
       defense: -21.25
     },
     extraStats: {
@@ -2461,7 +2461,7 @@ export const MISC_ITEMS = {
       attack: 60.4,
       attackMax: 95.6,
       attackSpeed: 1.0,
-      accuracy: 60.9
+      accuracy: 60.9,
       defense: -22.5
     },
     extraStats: {
@@ -2492,7 +2492,7 @@ export const MISC_ITEMS = {
       attack: 65.9,
       attackMax: 105.6,
       attackSpeed: 1.0,
-      accuracy: 64.3
+      accuracy: 64.3,
       defense: -23.75
     },
     extraStats: {
@@ -2523,7 +2523,7 @@ export const MISC_ITEMS = {
       attack: 71.8,
       attackMax: 116.4,
       attackSpeed: 1.0,
-      accuracy: 67.7
+      accuracy: 67.7,
       defense: -25
     },
     extraStats: {
@@ -2554,7 +2554,7 @@ export const MISC_ITEMS = {
       attack: 78,
       attackMax: 128,
       attackSpeed: 1.0,
-      accuracy: 71.1
+      accuracy: 71.1,
       defense: -26.25
     },
     extraStats: {
@@ -2585,7 +2585,7 @@ export const MISC_ITEMS = {
       attack: 84.5,
       attackMax: 140.4,
       attackSpeed: 1.0,
-      accuracy: 74.5
+      accuracy: 74.5,
       defense: -27.5
     },
     extraStats: {
@@ -2616,7 +2616,7 @@ export const MISC_ITEMS = {
       attack: 91.5,
       attackMax: 153.7,
       attackSpeed: 1.0,
-      accuracy: 77.9
+      accuracy: 77.9,
       defense: -28.75
     },
     extraStats: {
@@ -2647,7 +2647,7 @@ export const MISC_ITEMS = {
       attack: 98.9,
       attackMax: 168,
       attackSpeed: 1.0,
-      accuracy: 81.2
+      accuracy: 81.2,
       defense: -30
     },
     extraStats: {
@@ -2678,7 +2678,7 @@ export const MISC_ITEMS = {
       attack: 106.7,
       attackMax: 183.2,
       attackSpeed: 1.0,
-      accuracy: 84.6
+      accuracy: 84.6,
       defense: -31.25
     },
     extraStats: {
@@ -2709,7 +2709,7 @@ export const MISC_ITEMS = {
       attack: 114.9,
       attackMax: 199.4,
       attackSpeed: 1.0,
-      accuracy: 88
+      accuracy: 88,
       defense: -32.5
     },
     extraStats: {

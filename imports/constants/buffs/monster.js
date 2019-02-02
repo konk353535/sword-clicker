@@ -1911,6 +1911,10 @@ export const MONSTER_BUFFS = {
             };
             addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
+          // new: make cube splits 'confuse' players, making them target randomly
+          actualBattle.units.forEach((unit) => {
+            unit.target = _.sample(actualBattle.enemies).id;
+          });
           buff.data.hasSplit = true;
         }
       },
@@ -1946,6 +1950,10 @@ export const MONSTER_BUFFS = {
             };
             addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
+          // new: make cube splits 'confuse' players, making them target randomly
+          actualBattle.units.forEach((unit) => {
+            unit.target = _.sample(actualBattle.enemies).id;
+          });
           buff.data.hasSplit = true;
         }
       },

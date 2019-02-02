@@ -1498,7 +1498,7 @@ export const STAFF_ITEMS = {
 
   verdant_trident: {
     id: 'verdant_trident',
-    icon: 'verdantTrident.png',
+    icon: 'verdantTridant.png',
     category: 'combat',
     weaponType: 'staff',
     slot: 'mainHand',

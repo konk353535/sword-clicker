@@ -469,7 +469,7 @@ export const ENCHANTMENT_BUFFS = {
   frankensteins_heart: {
     duplicateTag: 'frankensteins_heart', // Used to stop duplicate buffs
     icon: 'frankensteinsHeart.svg',
-    name: 'frankenstein's heart',
+    name: 'frankenstein\'s heart',
     description() {
       return `Increases attack by 1% (of max attack) every 7 seconds. <br />Caps at +35% damage.`;
     },

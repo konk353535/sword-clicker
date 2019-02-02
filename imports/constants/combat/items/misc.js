@@ -1660,16 +1660,179 @@ export const MISC_ITEMS = {
     }]
   },
 
+  darksteel_knife: {
+    id: 'darksteel_knife',
+    icon: 'darksteelKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'darksteel knife',
+    sellPrice: 1575,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 7,
+      attackMax: 13.7,
+      accuracy: 11
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 7,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
+  },
+
+  radiant_knife: {
+    id: 'radiant_knife',
+    icon: 'radiantKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'radiant knife',
+    sellPrice: 1650,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 7.3,
+      attackMax: 14.3,
+      accuracy: 11.5
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 7,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 105
+    }]
+  },
+
+  astral_knife: {
+    id: 'astral_knife',
+    icon: 'astralKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'astral knife',
+    sellPrice: 1725,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 7.6,
+      attackMax: 14.9,
+      accuracy: 12
+    },
+    extraStats: {
+      attack: 5,
+      attackMax: 7,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 110
+    }]
+  },
+
+  titanfoil_knife: {
+    id: 'titanfoil_knife',
+    icon: 'titanfoilKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'titanfoil knife',
+    sellPrice: 1800,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 7.9,
+      attackMax: 15.5,
+      accuracy: 12.5
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 8,
+      accuracy: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 115
+    }]
+  },
+
+  relicrock_knife: {
+    id: 'relicrock_knife',
+    icon: 'relicrockKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'relicrock knife',
+    sellPrice: 1875,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 8.2,
+      attackMax: 16.1,
+      accuracy: 13
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 8,
+      accuracy: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 120
+    }]
+  },
+
+  eternium_knife: {
+    id: 'eternium_knife',
+    icon: 'eterniumKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'eternium knife',
+    sellPrice: 1950,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 8.5,
+      attackMax: 16.7,
+      accuracy: 13.5
+    },
+    extraStats: {
+      attack: 6,
+      attackMax: 8,
+      accuracy: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 125
+    }]
+  },
+
   /* Rapiers - Same as scimitar but 2h, attack speed of dagger, less accuracy */
+  /*
   iron_rapiers: {
     id: "iron_rapiers",
     icon: "ironRapiers.png",
     category: "combat",
-    weaponType: "shortSword",
+    weaponType: "rapier",
     slot: "mainHand",
     name: "iron rapiers",
     sellPrice: 150,
-    description: "A good balance between offense and defense",
+    description: "Defensive, elegant, practical.",
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -1696,11 +1859,11 @@ export const MISC_ITEMS = {
     id: "adamantium_rapiers",
     icon: "adamantiumRapiers.png",
     category: "combat",
-    weaponType: "shortSword",
+    weaponType: "rapier",
     slot: "mainHand",
     name: "adamantium rapiers",
     sellPrice: 1050,
-    description: "A good balance between offense and defense",
+    description: "Defensive, elegant, practical.",
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -1727,11 +1890,11 @@ export const MISC_ITEMS = {
     id: "fairy_steel_rapiers",
     icon: "fairySteelRapiers.png",
     category: "combat",
-    weaponType: "shortSword",
+    weaponType: "rapier",
     slot: "mainHand",
     name: "fairy steel rapiers",
     sellPrice: 1250,
-    description: "A good balance between offense and defense",
+    description: "Defensive, elegant, practical.",
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -1751,6 +1914,813 @@ export const MISC_ITEMS = {
       type: 'skill',
       name: 'attack',
       level: 85
+    }]
+  },
+  */
+
+  copper_rapiers: {
+    id: 'copper_rapiers',
+    icon: 'copperRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'copper rapiers',
+    sellPrice: 85,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 5.3,
+      attackMax: 5.9,
+      attackSpeed: 1.0,
+      accuracy: 3.4
+      defense: -1.25
+    },
+    extraStats: {
+      attack: 1.4,
+      attackMax: 2,
+      accuracy: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 0
+    }]
+  },
+
+  tin_rapiers: {
+    id: 'tin_rapiers',
+    icon: 'tinRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'tin rapiers',
+    sellPrice: 170,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 7.2,
+      attackMax: 8.4,
+      attackSpeed: 1.0,
+      accuracy: 6.8
+      defense: -2.5
+    },
+    extraStats: {
+      attack: 1.9,
+      attackMax: 2.9,
+      accuracy: 2.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 5
+    }]
+  },
+
+  bronze_rapiers: {
+    id: 'bronze_rapiers',
+    icon: 'bronzeRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'bronze rapiers',
+    sellPrice: 255,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 9.2,
+      attackMax: 11.1,
+      attackSpeed: 1.0,
+      accuracy: 10.2
+      defense: -3.75
+    },
+    extraStats: {
+      attack: 2.5,
+      attackMax: 3.8,
+      accuracy: 3.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10
+    }]
+  },
+
+  iron_rapiers: {
+    id: 'iron_rapiers',
+    icon: 'ironRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'iron rapiers',
+    sellPrice: 340,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 11.2,
+      attackMax: 13.9,
+      attackSpeed: 1.0,
+      accuracy: 13.5
+      defense: -5
+    },
+    extraStats: {
+      attack: 3,
+      attackMax: 4.8,
+      accuracy: 4.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15
+    }]
+  },
+
+  silver_rapiers: {
+    id: 'silver_rapiers',
+    icon: 'silverRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'silver rapiers',
+    sellPrice: 425,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 13.4,
+      attackMax: 17.1,
+      attackSpeed: 1.0,
+      accuracy: 16.9
+      defense: -6.25
+    },
+    extraStats: {
+      attack: 3.6,
+      attackMax: 5.9,
+      accuracy: 5.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20
+    }]
+  },
+
+  gold_rapiers: {
+    id: 'gold_rapiers',
+    icon: 'goldRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'gold rapiers',
+    sellPrice: 510,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15.7,
+      attackMax: 20.5,
+      attackSpeed: 1.0,
+      accuracy: 20.3
+      defense: -7.5
+    },
+    extraStats: {
+      attack: 4.2,
+      attackMax: 7.1,
+      accuracy: 6.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }]
+  },
+
+  carbon_rapiers: {
+    id: 'carbon_rapiers',
+    icon: 'carbonRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'carbon rapiers',
+    sellPrice: 595,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 18.2,
+      attackMax: 24.3,
+      attackSpeed: 1.0,
+      accuracy: 23.7
+      defense: -8.75
+    },
+    extraStats: {
+      attack: 4.9,
+      attackMax: 8.4,
+      accuracy: 7.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30
+    }]
+  },
+
+  steel_rapiers: {
+    id: 'steel_rapiers',
+    icon: 'steelRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'steel rapiers',
+    sellPrice: 680,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 20.9,
+      attackMax: 28.4,
+      attackSpeed: 1.0,
+      accuracy: 27.1
+      defense: -10
+    },
+    extraStats: {
+      attack: 5.6,
+      attackMax: 9.8,
+      accuracy: 8.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35
+    }]
+  },
+
+  platinum_rapiers: {
+    id: 'platinum_rapiers',
+    icon: 'platinumRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'platinum rapiers',
+    sellPrice: 765,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 23.8,
+      attackMax: 32.9,
+      attackSpeed: 1.0,
+      accuracy: 30.5
+      defense: -11.25
+    },
+    extraStats: {
+      attack: 6.3,
+      attackMax: 11.3,
+      accuracy: 9.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40
+    }]
+  },
+
+  titanium_rapiers: {
+    id: 'titanium_rapiers',
+    icon: 'titaniumRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'titanium rapiers',
+    sellPrice: 850,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 26.8,
+      attackMax: 37.8,
+      attackSpeed: 1.0,
+      accuracy: 33.9
+      defense: -12.5
+    },
+    extraStats: {
+      attack: 7.1,
+      attackMax: 13,
+      accuracy: 10.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45
+    }]
+  },
+
+  tungsten_rapiers: {
+    id: 'tungsten_rapiers',
+    icon: 'tungstenRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'tungsten rapiers',
+    sellPrice: 935,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 30.1,
+      attackMax: 43.2,
+      attackSpeed: 1.0,
+      accuracy: 37.2
+      defense: -13.75
+    },
+    extraStats: {
+      attack: 8,
+      attackMax: 14.9,
+      accuracy: 11.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50
+    }]
+  },
+
+  obsidian_rapiers: {
+    id: 'obsidian_rapiers',
+    icon: 'obsidianRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'obsidian rapiers',
+    sellPrice: 1020,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 33.7,
+      attackMax: 49,
+      attackSpeed: 1.0,
+      accuracy: 40.6
+      defense: -15
+    },
+    extraStats: {
+      attack: 9,
+      attackMax: 16.9,
+      accuracy: 12.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55
+    }]
+  },
+
+  cobalt_rapiers: {
+    id: 'cobalt_rapiers',
+    icon: 'cobaltRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'cobalt rapiers',
+    sellPrice: 1105,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 37.4,
+      attackMax: 55.3,
+      attackSpeed: 1.0,
+      accuracy: 44
+      defense: -16.25
+    },
+    extraStats: {
+      attack: 10,
+      attackMax: 19,
+      accuracy: 13.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60
+    }]
+  },
+
+  mithril_rapiers: {
+    id: 'mithril_rapiers',
+    icon: 'mithrilRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'mithril rapiers',
+    sellPrice: 1190,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 41.5,
+      attackMax: 62.2,
+      attackSpeed: 1.0,
+      accuracy: 47.4
+      defense: -17.5
+    },
+    extraStats: {
+      attack: 11.1,
+      attackMax: 21.4,
+      accuracy: 14.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65
+    }]
+  },
+
+  adamantium_rapiers: {
+    id: 'adamantium_rapiers',
+    icon: 'adamantiumRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'adamantium rapiers',
+    sellPrice: 1275,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 45.8,
+      attackMax: 69.6,
+      attackSpeed: 1.0,
+      accuracy: 50.8
+      defense: -18.75
+    },
+    extraStats: {
+      attack: 12.2,
+      attackMax: 24,
+      accuracy: 15.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70
+    }]
+  },
+
+  orichalcum_rapiers: {
+    id: 'orichalcum_rapiers',
+    icon: 'orichalcumRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'orichalcum rapiers',
+    sellPrice: 1360,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 50.3,
+      attackMax: 77.6,
+      attackSpeed: 1.0,
+      accuracy: 54.2
+      defense: -20
+    },
+    extraStats: {
+      attack: 13.4,
+      attackMax: 26.7,
+      accuracy: 16.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75
+    }]
+  },
+
+  meteorite_rapiers: {
+    id: 'meteorite_rapiers',
+    icon: 'meteoriteRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'meteorite rapiers',
+    sellPrice: 1445,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 55.2,
+      attackMax: 86.3,
+      attackSpeed: 1.0,
+      accuracy: 57.5
+      defense: -21.25
+    },
+    extraStats: {
+      attack: 14.7,
+      attackMax: 29.7,
+      accuracy: 17.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 80
+    }]
+  },
+
+  fairy_steel_rapiers: {
+    id: 'fairy_steel_rapiers',
+    icon: 'fairySteelRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'fairy steel rapiers',
+    sellPrice: 1530,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 60.4,
+      attackMax: 95.6,
+      attackSpeed: 1.0,
+      accuracy: 60.9
+      defense: -22.5
+    },
+    extraStats: {
+      attack: 16.1,
+      attackMax: 32.9,
+      accuracy: 18.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85
+    }]
+  },
+
+  elven_steel_rapiers: {
+    id: 'elven_steel_rapiers',
+    icon: 'elvenSteelRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'elven steel rapiers',
+    sellPrice: 1615,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 65.9,
+      attackMax: 105.6,
+      attackSpeed: 1.0,
+      accuracy: 64.3
+      defense: -23.75
+    },
+    extraStats: {
+      attack: 17.6,
+      attackMax: 36.4,
+      accuracy: 19.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90
+    }]
+  },
+
+  cursed_rapiers: {
+    id: 'cursed_rapiers',
+    icon: 'cursedRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'cursed rapiers',
+    sellPrice: 1700,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 71.8,
+      attackMax: 116.4,
+      attackSpeed: 1.0,
+      accuracy: 67.7
+      defense: -25
+    },
+    extraStats: {
+      attack: 19.1,
+      attackMax: 40.1,
+      accuracy: 20.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
+  },
+
+  darksteel_rapiers: {
+    id: 'darksteel_rapiers',
+    icon: 'darksteelRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'darksteel rapiers',
+    sellPrice: 1785,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 78,
+      attackMax: 128,
+      attackSpeed: 1.0,
+      accuracy: 71.1
+      defense: -26.25
+    },
+    extraStats: {
+      attack: 20.8,
+      attackMax: 44.1,
+      accuracy: 21.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
+  },
+
+  radiant_rapiers: {
+    id: 'radiant_rapiers',
+    icon: 'radiantRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'radiant rapiers',
+    sellPrice: 1870,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 84.5,
+      attackMax: 140.4,
+      attackSpeed: 1.0,
+      accuracy: 74.5
+      defense: -27.5
+    },
+    extraStats: {
+      attack: 22.5,
+      attackMax: 48.3,
+      accuracy: 22.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 105
+    }]
+  },
+
+  astral_rapiers: {
+    id: 'astral_rapiers',
+    icon: 'astralRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'astral rapiers',
+    sellPrice: 1955,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 91.5,
+      attackMax: 153.7,
+      attackSpeed: 1.0,
+      accuracy: 77.9
+      defense: -28.75
+    },
+    extraStats: {
+      attack: 24.4,
+      attackMax: 52.9,
+      accuracy: 24
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 110
+    }]
+  },
+
+  titanfoil_rapiers: {
+    id: 'titanfoil_rapiers',
+    icon: 'titanfoilRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'titanfoil rapiers',
+    sellPrice: 2040,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 98.9,
+      attackMax: 168,
+      attackSpeed: 1.0,
+      accuracy: 81.2
+      defense: -30
+    },
+    extraStats: {
+      attack: 26.4,
+      attackMax: 57.8,
+      accuracy: 25
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 115
+    }]
+  },
+
+  relicrock_rapiers: {
+    id: 'relicrock_rapiers',
+    icon: 'relicrockRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'relicrock rapiers',
+    sellPrice: 2125,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 106.7,
+      attackMax: 183.2,
+      attackSpeed: 1.0,
+      accuracy: 84.6
+      defense: -31.25
+    },
+    extraStats: {
+      attack: 28.5,
+      attackMax: 63.1,
+      accuracy: 26
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 120
+    }]
+  },
+
+  eternium_rapiers: {
+    id: 'eternium_rapiers',
+    icon: 'eterniumRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'eternium rapiers',
+    sellPrice: 2210,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 114.9,
+      attackMax: 199.4,
+      attackSpeed: 1.0,
+      accuracy: 88
+      defense: -32.5
+    },
+    extraStats: {
+      attack: 30.6,
+      attackMax: 68.6,
+      accuracy: 27.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 125
     }]
   },
 
@@ -2051,7 +3021,7 @@ export const MISC_ITEMS = {
     icon: "frankensteinsHeart.svg",
     category: "combat",
     slot: "chest",
-    name: "frankensteins heart",
+    name: "frankenstein's heart",
     sellPrice: 2500,
     description: "Protect your heart",
     isEquippable: true,
@@ -2877,6 +3847,186 @@ export const MISC_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 51
+    }]
+  },
+
+  intense_orb: {
+    id: 'intense_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'intense orb',
+    sellPrice: 5985,
+    description: 'A mysterious and intense device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 10,
+      magicPower: 32.3,
+      magicArmor: 44,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 6.5,
+      magicArmor: 9,
+      healingPower: 5.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 55
+    }]
+  },
+
+  primal_orb: {
+    id: 'primal_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'primal orb',
+    sellPrice: 6270,
+    description: 'A mysterious and primal device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 11,
+      magicPower: 35.1,
+      magicArmor: 48,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 6.5,
+      magicArmor: 9,
+      healingPower: 5.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  overflowing_orb: {
+    id: 'overflowing_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'overflowing orb',
+    sellPrice: 6555,
+    description: 'A mysterious and overflowing device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 11,
+      magicPower: 37.9,
+      magicArmor: 52,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 6.5,
+      magicArmor: 9,
+      healingPower: 5.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 65
+    }]
+  },
+
+  phantasmal_orb: {
+    id: 'phantasmal_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'phantasmal orb',
+    sellPrice: 6840,
+    description: 'A mysterious and phantasmal device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 12,
+      magicPower: 40.7,
+      magicArmor: 55,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 8,
+      magicArmor: 11,
+      healingPower: 7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
+
+  farplane_orb: {
+    id: 'farplane_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'farplane orb',
+    sellPrice: 7125,
+    description: 'A mysterious and farplane device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 12,
+      magicPower: 43.5,
+      magicArmor: 59,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 8,
+      magicArmor: 11,
+      healingPower: 7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 75
+    }]
+  },
+
+  exalted_orb: {
+    id: 'exalted_orb',
+    icon: 'orbBlue.png',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'exalted orb',
+    sellPrice: 7410,
+    description: 'A mysterious and exalted device.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      defense: 13,
+      magicPower: 46.3,
+      magicArmor: 63,
+      healingPower: 2
+    },
+    extraStats: {
+      defense: 1,
+      magicPower: 8,
+      magicArmor: 11,
+      healingPower: 7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 80
     }]
   },
   

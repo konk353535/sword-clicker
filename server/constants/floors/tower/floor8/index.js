@@ -52,6 +52,11 @@ export const TOWER_FLOOR_8 = {
     name: 'Place of Steel',
     enemies: ['monk'],
     rewards: orderLootTable(LEVEL_EIGHT_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'steel_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 3,
       rewards: [
         { type: 'item', itemId: 'steel_essence', amount: 1 }

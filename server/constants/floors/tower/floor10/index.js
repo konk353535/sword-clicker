@@ -34,6 +34,11 @@ export const TOWER_FLOOR_10 = {
     name: 'Place of Titanium',
     enemies: ['titanium_spirit'],
     rewards: orderLootTable(LEVEL_TEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanium_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'titanium_essence', amount: 1 }

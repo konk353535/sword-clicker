@@ -74,12 +74,22 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'lny_pig_tome_level_5', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'astral_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
     name: 'Jungle Treetops',
     enemies: ['gorilla'],
     rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'astral_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_helmet_scroll', amount: 1 },
@@ -137,6 +147,12 @@ export const TOWER_FLOOR_23 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'astral_dwarven_idol', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'overflowing_orb', amount: 1 },
+        /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
       ]
     }]))
   },

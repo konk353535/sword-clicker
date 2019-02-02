@@ -29,12 +29,22 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_shield_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_short_sword_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 144,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
     name: 'Vile Pools',
     enemies: ['gelatinous_cube','gelatinous_cube'],
     rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 144,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'titanfoil_helmet_scroll', amount: 1 },
@@ -79,6 +89,12 @@ export const TOWER_FLOOR_24 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 112,
+      rewards: [
+        { type: 'item', itemId: 'phantasmal_orb', amount: 1 },
+        /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
       ]
     }]))
   },

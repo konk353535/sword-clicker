@@ -29,12 +29,22 @@ export const TOWER_FLOOR_21 = {
         { type: 'item', itemId: 'darksteel_shield_scroll', amount: 1 },
         { type: 'item', itemId: 'darksteel_short_sword_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_knife', amount: 1 }
+      ]
     }]))
   },
   4: {
     name: 'Abandoned Manor',
     enemies: ['vampire'],
     rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'darksteel_helmet_scroll', amount: 1 },
@@ -77,6 +87,12 @@ export const TOWER_FLOOR_21 = {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'darksteel_dwarven_idol', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'intense_orb', amount: 1 },
+        /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
       ]
     }]))
   },

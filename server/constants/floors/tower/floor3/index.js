@@ -44,6 +44,11 @@ export const TOWER_FLOOR_3 = {
     name: 'Shallow Shore',
     enemies: ['crab'],
     rewards: orderLootTable(LEVEL_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'bronze_wand', amount: 1 }

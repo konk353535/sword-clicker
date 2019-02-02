@@ -36,6 +36,11 @@ export const TOWER_FLOOR_15 = {
     rewards: orderLootTable(LEVEL_FIFTEEN_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'adamantium_rapiers', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'cursed_spirit_shield', amount: 1 }
       ]
     }, {

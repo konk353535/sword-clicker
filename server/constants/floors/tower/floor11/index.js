@@ -34,6 +34,11 @@ export const TOWER_FLOOR_11 = {
     name: 'Place of Tungsten',
     enemies: ['tungsten_spirit'],
     rewards: orderLootTable(LEVEL_ELEVEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'tungsten_essence', amount: 1 }

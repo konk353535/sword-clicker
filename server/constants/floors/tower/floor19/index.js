@@ -34,6 +34,11 @@ export const TOWER_FLOOR_19 = {
     name: 'Place of Elven Steel',
     enemies: ['elven_steel_spirit'],
     rewards: orderLootTable(LEVEL_NINETEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'elven_steel_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'elven_steel_essence', amount: 1 }

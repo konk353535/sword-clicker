@@ -33,6 +33,11 @@ export const TOWER_FLOOR_14 = {
     name: 'Place of Mithril',
     enemies: ['mithril_spirit'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'mithril_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'mithril_essence', amount: 1 }

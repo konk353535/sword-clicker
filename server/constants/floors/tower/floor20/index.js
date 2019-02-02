@@ -39,6 +39,11 @@ export const TOWER_FLOOR_20 = {
     name: 'Cursed Place',
     enemies: ['cursed_spirit'],
     rewards: orderLootTable(LEVEL_TWENTY_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cursed_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'cursed_essence', amount: 1 }

@@ -46,6 +46,11 @@ export const TOWER_FLOOR_5 = {
     name: 'Place of Silver',
     enemies: ['vampire'],
     rewards: orderLootTable(LEVEL_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'silver_rapiers', amount: 1 }
+      ]
+    }, {
       chance: 1 / 3,
       rewards: [
         { type: 'item', itemId: 'silver_essence', amount: 1 }

@@ -39,6 +39,12 @@ export const BATTLES = {
         health: 0.5
       },
 
+      'rapier': {
+        attack: 0.17,
+        defense: 0.33,
+        health: 0.5
+      },
+
       'battleAxe': {
         attack: 0.5,
         defense: 0,

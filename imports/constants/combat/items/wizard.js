@@ -710,7 +710,7 @@ export const WIZARD_ITEMS = {
   },
 
   verdant_wizard_hat: {
-    id: 'verdantwizard_hat',
+    id: 'verdant_wizard_hat',
     icon: 'verdantWizardHat.png',
     category: 'combat',
     slot: 'head',
@@ -781,6 +781,231 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 55
+    }]
+  },
+
+  serpent_wizard_hat: {
+    id: 'serpent_wizard_hat',
+    icon: 'serpentWizardHat.png',
+    category: 'combat',
+    slot: 'head',
+    name: 'serpent wizard hat',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      magicPower: 48,
+      magicArmor: 40
+    },
+    extraStats: {
+      healthMax: 75,
+      magicPower: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  serpent_wizard_shirt: {
+    id: 'serpent_wizard_shirt',
+    icon: 'serpentWizardShirt.png',
+    category: 'combat',
+    slot: 'chest',
+    name: 'serpent wizard shirt',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      magicPower: 48,
+      magicArmor: 40
+    },
+    extraStats: {
+      healthMax: 75,
+      magicPower: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  serpent_wizard_shorts: {
+    id: 'serpent_wizard_shorts',
+    icon: 'serpentWizardShorts.png',
+    category: 'combat',
+    slot: 'legs',
+    name: 'serpent wizard shorts',
+    sellPrice: 3500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      magicPower: 48,
+      magicArmor: 40
+    },
+    extraStats: {
+      healthMax: 75,
+      magicPower: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  inferno_wizard_hat: {
+    id: 'infernowizard_hat',
+    icon: 'infernoWizardHat.png',
+    category: 'combat',
+    slot: 'head',
+    name: 'inferno wizard hat',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 180,
+      magicPower: 58,
+      magicArmor: 45
+    },
+    extraStats: {
+      healthMax: 100,
+      magicPower: 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
+
+  inferno_wizard_shirt: {
+    id: 'inferno_wizard_shirt',
+    icon: 'infernoWizardShirt.png',
+    category: 'combat',
+    slot: 'chest',
+    name: 'inferno wizard shirt',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 180,
+      magicPower: 58,
+      magicArmor: 45
+    },
+    extraStats: {
+      healthMax: 100,
+      magicPower: 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
+
+  inferno_wizard_shorts: {
+    id: 'inferno_wizard_shorts',
+    icon: 'infernoWizardShorts.png',
+    category: 'combat',
+    slot: 'legs',
+    name: 'inferno wizard shorts',
+    sellPrice: 3500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 180,
+      magicPower: 58,
+      magicArmor: 45
+    },
+    extraStats: {
+      healthMax: 100,
+      magicPower: 14
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
+
+  exalted_wizard_hat: {
+    id: 'exalted_wizard_hat',
+    icon: 'exaltedWizardHat.png',
+    category: 'combat',
+    slot: 'head',
+    name: 'exalted wizard hat',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 250,
+      magicPower: 70,
+      magicArmor: 50
+    },
+    extraStats: {
+      healthMax: 150,
+      magicPower: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 80
+    }]
+  },
+
+  exalted_wizard_shirt: {
+    id: 'exalted_wizard_shirt',
+    icon: 'exaltedWizardShirt.png',
+    category: 'combat',
+    slot: 'chest',
+    name: 'exalted wizard shirt',
+    sellPrice: 3500,
+    description: 'Helps emit magical energy',
+    isEquippable: true,
+    stats: {
+      healthMax: 250,
+      magicPower: 70,
+      magicArmor: 50
+    },
+    extraStats: {
+      healthMax: 150,
+      magicPower: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 80
+    }]
+  },
+
+  exalted_wizard_shorts: {
+    id: 'exalted_wizard_shorts',
+    icon: 'exaltedWizardShorts.png',
+    category: 'combat',
+    slot: 'legs',
+    name: 'exalted wizard shorts',
+    sellPrice: 3500,
+    description: 'Protect your legs',
+    isEquippable: true,
+    stats: {
+      healthMax: 250,
+      magicPower: 70,
+      magicArmor: 50
+    },
+    extraStats: {
+      healthMax: 150,
+      magicPower: 20
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 80
     }]
   }
 };

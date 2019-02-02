@@ -31,7 +31,7 @@ export const ATTACK_ABILITIES = {
     buffs: ['twin_blades'],
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['dagger']
+      weaponTypes: ['dagger', 'rapier']
     }],
     cooldown: 0,
     isPassive: true,

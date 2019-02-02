@@ -112,6 +112,11 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'inferno_trident', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -148,6 +153,13 @@ export const TOWER_FLOOR_23 = {
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        /* { type: 'item', itemId: 'astral_scimitar', amount: 1 }, */
+        /* { type: 'item', itemId: 'astral_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'astral_horned_helmet', amount: 1 }
       ]
     }]))
   },

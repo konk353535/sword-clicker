@@ -57,6 +57,13 @@ export const TOWER_FLOOR_22 = {
         { type: 'item', itemId: 'radiant_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'radiant_mining_anvil_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'serpent_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'serpent_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'serpent_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -83,6 +90,13 @@ export const TOWER_FLOOR_22 = {
       rewards: [
         { type: 'item', itemId: 'radiant_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'radiant_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        /* { type: 'item', itemId: 'radiant_scimitar', amount: 1 }, */
+        /* { type: 'item', itemId: 'radiant_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'radiant_horned_helmet', amount: 1 }
       ]
     }]))
   },

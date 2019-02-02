@@ -57,6 +57,13 @@ export const TOWER_FLOOR_26 = {
         { type: 'item', itemId: 'eternium_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'eternium_mining_anvil_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'exalted_wizard_hat', amount: 1 },
+        { type: 'item', itemId: 'exalted_wizard_shirt', amount: 1 },
+        { type: 'item', itemId: 'exalted_wizard_shorts', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -83,6 +90,13 @@ export const TOWER_FLOOR_26 = {
       rewards: [
         { type: 'item', itemId: 'eternium_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'eternium_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 80,
+      rewards: [
+        /* { type: 'item', itemId: 'eternium_scimitar', amount: 1 }, */
+        /* { type: 'item', itemId: 'eternium_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'eternium_horned_helmet', amount: 1 }
       ]
     }]))
   },

@@ -58,6 +58,11 @@ export const TOWER_FLOOR_19 = {
       rewards: [
         { type: 'item', itemId: 'elven_steel_buckler', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'verdant_trident', amount: 1 }
+      ]
     }]))
   },
   6: {

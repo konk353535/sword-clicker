@@ -57,6 +57,11 @@ export const TOWER_FLOOR_25 = {
         { type: 'item', itemId: 'relicrock_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_mining_anvil_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'exalted_trident', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -83,6 +88,13 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'relicrock_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        /* { type: 'item', itemId: 'relicrock_scimitar', amount: 1 }, */
+        /* { type: 'item', itemId: 'relicrock_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'relicrock_horned_helmet', amount: 1 }
       ]
     }]))
   },

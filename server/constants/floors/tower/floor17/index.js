@@ -53,6 +53,11 @@ export const TOWER_FLOOR_17 = {
       rewards: [
         { type: 'item', itemId: 'meteorite_kite_shield', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'azure_trident', amount: 1 }
+      ]
     }]))
   },
   6: {

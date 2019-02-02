@@ -57,6 +57,11 @@ export const TOWER_FLOOR_21 = {
         { type: 'item', itemId: 'darksteel_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'darksteel_mining_anvil_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'serpent_trident', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -83,6 +88,13 @@ export const TOWER_FLOOR_21 = {
       rewards: [
         { type: 'item', itemId: 'darksteel_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'darksteel_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        /* { type: 'item', itemId: 'darksteel_scimitar', amount: 1 }, */
+        /* { type: 'item', itemId: 'darksteel_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'darksteel_horned_helmet', amount: 1 }
       ]
     }]))
   },

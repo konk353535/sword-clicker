@@ -1,6 +1,6 @@
 import { BATTLES } from '/server/constants/battles/index.js'; // List of encounters
 import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
-import { COMBAT } from '/server/constants/combat/index.js'; // List of available combat stats
+import { COMBAT, ABILITIES } from '/server/constants/combat/index.js'; // List of available combat stats
 import { BUFFS } from '/imports/constants/buffs/index';
 import { FLOORS } from '/server/constants/floors/index.js'; // List of floor details
 import { addBuff} from '/server/battleUtils';
@@ -257,6 +257,47 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       inactiveMinutes: inactiveMinutes
     };
 
+    // apply passive abilities effects first
+    /*
+    if (newUnit.abilities) {
+      newUnit.abilities.forEach((ability) => {
+        const abilityConstants = ABILITIES[ability.id];
+        if (abilityConstants && abilityConstants.isPassive && abilityConstants.buffs) {
+          abilityConstants.buffs.forEach((buffId) => {
+            const abilityBuffConstants = BUFFS[buffId];
+            if (abilityBuffConstants) {
+              const clonedConstants = abilityBuffConstants;
+              let newBuff = {
+                id: buffId,
+                icon: clonedConstants.icon,
+                name: clonedConstants.name,
+                data: clonedConstants.data,
+                duration: clonedConstants.data.durationTotal || clonedConstants.data.totalDuration
+              };
+
+              newBuff.data.id = clonedConstants.id || buffId;
+              newBuff.data.name = clonedConstants.name;
+              newBuff.data.icon = clonedConstants.icon;
+              newBuff.data.description = "";
+              if (clonedConstants.description) {
+                if (_.isFunction(clonedConstants.description)) {
+                  newBuff.data.description = clonedConstants.description({buff: clonedConstants, level: ability.level});
+                } else {
+                  newBuff.data.description = clonedConstants.description;
+                }
+              }
+              newUnit.buffs.push(newBuff);
+              console.log("Added passive ability:");
+              console.log(newBuff);
+            }
+          });
+        }
+      });
+    }
+    */
+    
+    // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
+    // tried applying passives above first, but they wouldn't function correctly
     if (userCombat.enchantments) {
       userCombat.enchantments.forEach((buffId) => {
         const enchantConstants = BUFFS[buffId];
@@ -267,13 +308,20 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
             icon: clonedConstants.icon,
             name: clonedConstants.name,
             data: clonedConstants.data,
-            duration: clonedConstants.data.durationTotal
+            duration: clonedConstants.data.durationTotal || clonedConstants.data.totalDuration
           };
 
-          newBuff.data.id = clonedConstants.id;
+          newBuff.data.id = clonedConstants.id || buffId;
           newBuff.data.name = clonedConstants.name;
           newBuff.data.icon = clonedConstants.icon;
-          newBuff.data.description = clonedConstants.description();
+          newBuff.data.description = "";
+          if (clonedConstants.description) {
+            if (_.isFunction(clonedConstants.description)) {
+              newBuff.data.description = clonedConstants.description({buff: clonedConstants, level: 1}); // hardcoded -- enchantments don't have levels
+            } else {
+              newBuff.data.description = clonedConstants.description;
+            }
+          }
           newUnit.buffs.push(newBuff);
         }
       });
@@ -296,6 +344,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }
 
   let totalXpGain = 0;
+  let hasBoss = false;
 
   // Inject enemies into the battle
   battleConstants.enemies.forEach((enemy) => {
@@ -310,6 +359,10 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
     const enemyStats = enemyConstants.stats;
 
+    if (enemyConstants.isBoss) {
+      hasBoss = true;
+    }
+    
     // This is the current active boss battle
     if (enemyConstants.isBoss && health) {
       enemyStats.health = health;
@@ -367,7 +420,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     owners: newBattle.owners,
     group: currentGroup ? currentGroup._id : false,
     createdAt: new Date(),
-    activated: false
+    activated: false,
+    isBigBoss: (hasBoss && !newBattle.isOldBoss) ? true : false
   });
 
   if (currentGroup) {

@@ -6,7 +6,7 @@ import moment from 'moment/moment';
 import uuid from 'node-uuid';
 import faker from 'faker';
 
-import { Floors } from '/imports//api/floors/floors';
+import { Floors } from '/imports/api/floors/floors';
 import { Combat } from '/imports/api/combat/combat';
 import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
@@ -327,7 +327,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Update Rankings',
   schedule: function(parser) {
-    return parser.text('every 8 hours');
+    return parser.text('every 12 hours');
   },
   job: function() {
 

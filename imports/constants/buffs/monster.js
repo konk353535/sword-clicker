@@ -37,13 +37,13 @@ export const MONSTER_BUFFS = {
         const curFloor = (actualBattle.floor && actualBattle.floor > 0) ? actualBattle.floor : actualBattle.pqTowerEquivalence();
         const thisOre = actualBattle.lookupOreTier(curFloor);
         const thisMetal = actualBattle.lookupMetalTier(curFloor);
-        const thisMaxMetal = actualBattle.lookupMetalTier((curFloor > 20) ? 20 : curFloor);
+        const thisMetalCapped20 = actualBattle.lookupMetalTier((curFloor > 20) ? 20 : curFloor);
         const thisWood = actualBattle.lookupWoodTier(curFloor);
         
         // debug
         /*
         if (target.name === 'bee') {
-          target.extraLootTable = [{ id: `${thisMaxMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
+          target.extraLootTable = [{ id: `${thisMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
         }
         */
 
@@ -390,8 +390,9 @@ export const MONSTER_BUFFS = {
               },
               constants: BUFFS['spiked_armor']
             };
-            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
-            target.extraLootTable = [{ id: `${thisMaxMetal}_scimitar`, chance: 0.25 }, { id: `${thisMetal}_shield`, chance: 0.25 }];
+            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+            target.extraLootTable = [{ id: `${thisMetalCapped20}_scimitar`, chance: 0.25 }, { id: `${thisMetal}_shield`, chance: 0.25 }];
           } else if (rand < 0.20) { // 5% chance to upgrade to goblin chieftain
             const numInHerd = (Math.ceil(Math.random() * 3) + 1); // 2 - 4;
             for (let i = 0; i < numInHerd; i++) {
@@ -428,7 +429,7 @@ export const MONSTER_BUFFS = {
               addBuff({ buff: newBuff, target: enemyUnit, caster: target, actualBattle });
             });
             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4);
-            target.extraLootTable = [{ id: `${thisMaxMetal}_broad_sword`, chance: 0.25 }, { id: `${thisMetal}_kite_shield`, chance: 0.25 }];
+            target.extraLootTable = [{ id: `${thisMetalCapped20}_broad_sword`, chance: 0.25 }, { id: `${thisMetal}_kite_shield`, chance: 0.25 }];
           }
         } else if (target.name === 'young ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to adept ninja
@@ -565,7 +566,7 @@ export const MONSTER_BUFFS = {
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: `${thisMaxMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
+            target.extraLootTable = [{ id: `${thisMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
           } else if (rand < 0.15) { // 5% chance to upgrade to mercenary
             target.name = 'mercenary';
             target.stats.health *= 1.35;
@@ -589,7 +590,7 @@ export const MONSTER_BUFFS = {
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
-            target.extraLootTable = [{ id: `${thisMaxMetal}_horned_helmet`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }, { id: 'jade', chance: 0.05 }, { id: 'emerald', chance: 0.05 }, { id: 'lapislazuli', chance: 0.05 }, { id: 'sapphire', chance: 0.03 }, { id: 'ruby', chance: 0.02 }, { id: 'tanzanite', chance: 0.01 }, { id: 'fireopal', chance: 0.01 }];
+            target.extraLootTable = [{ id: `${thisMetal}_horned_helmet`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }, { id: 'jade', chance: 0.05 }, { id: 'emerald', chance: 0.05 }, { id: 'lapislazuli', chance: 0.05 }, { id: 'sapphire', chance: 0.03 }, { id: 'ruby', chance: 0.02 }, { id: 'tanzanite', chance: 0.01 }, { id: 'fireopal', chance: 0.01 }];
           }
         } else if (target.name === 'beaver') {
           if (rand < 0.10) { // 10% chance to upgrade to dire beaver
@@ -777,7 +778,7 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['sixth_sense']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.extraLootTable = [{id: `${thisMaxMetal}_wand`, chance: 0.25}];
+            target.extraLootTable = [{id: `${thisMetalCapped20}_wand`, chance: 0.25}];
           }
         } else if (target.name === 'spider') {
           if (rand < 0.05) { // 5% chance to upgrade to terrorantula

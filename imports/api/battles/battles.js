@@ -15,7 +15,9 @@ BattlesListSchema = new SimpleSchema({
 
   group: { type: String, optional: true },
 
-  createdAt: { type: Date }
+  createdAt: { type: Date },
+  
+  isBigBoss: { type: Boolean, optional: true }
 });
 
 BattlesSchema = new SimpleSchema({

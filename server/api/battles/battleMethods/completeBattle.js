@@ -762,7 +762,7 @@ export const completeBattle = function(actualBattle) {
           
           // added to allow more tower attempts (only 3 official, still -- the rest only apply toward unlock and leaderboard at a reduced rate)
           const allowOverDaily = true;
-          const dailyOverageMultiplier = 0.2;
+          const dailyOverageMultiplier = 0.10; // currently 20% (now 10%)
 
           if (allowOverDaily || ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
             ownerObject.newContribution = pointsEarnt;

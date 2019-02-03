@@ -34,6 +34,51 @@ export const TOWER_FLOOR_24 = {
       rewards: [
         { type: 'item', itemId: 'titanfoil_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_claws', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_body', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lion_head', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'event_lny_lunar_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 72,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_1', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_2', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 120,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_3', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 144,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_4', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 168,
+      rewards: [
+        { type: 'item', itemId: 'lny_pig_tome_level_5', amount: 1 }
+      ]
     }]))
   },
   4: {
@@ -49,6 +94,11 @@ export const TOWER_FLOOR_24 = {
       rewards: [
         { type: 'item', itemId: 'titanfoil_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_chest_plate_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
     }]))
   },
@@ -74,6 +124,11 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'inferno_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'inferno_wizard_shorts', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
+      ]
     }]))
   },
   6: {
@@ -96,6 +151,11 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'phantasmal_orb', amount: 1 },
         /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
       ]
+    }, {
+      chance: 1 / 16,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
+      ]
     }]))
   },
   7: {
@@ -113,6 +173,11 @@ export const TOWER_FLOOR_24 = {
         /* { type: 'item', itemId: 'titanfoil_scimitar', amount: 1 }, */
         /* { type: 'item', itemId: 'titanfoil_broad_sword', amount: 1 }, */
         { type: 'item', itemId: 'titanfoil_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 8,
+      rewards: [
+        { type: 'item', itemId: 'gift_box_red_envelope', amount: 1 }
       ]
     }]))
   },

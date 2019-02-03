@@ -141,7 +141,8 @@ export default class Battle {
     if (tier >= 20) { return 'cursed'; }
     return 'copper';
   }
-   lookupMetalTier(tier) {
+  
+  lookupMetalTier(tier) {
     if (tier === 2) { return 'tin'; }
     if (tier === 3) { return 'bronze'; }
     if (tier === 4) { return 'iron'; }

@@ -300,15 +300,25 @@ SyncedCron.add({
   },
   job: function() {
     BattlesList.find({
-      createdAt: {    
-        $lte: moment().subtract(10, 'minutes').toDate()   
-      } 
+      createdAt: { $lte: moment().subtract(10, 'minutes').toDate() },
+      $or: [
+        { isBigBoss: { $exists: false } },
+        { isBigBoss: false }
+      ]      
     }).fetch().forEach((battleList) => {
       HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}&userId=SERVER&userName=cron.deleteBattle`, (error, result) => {
         removeBattle(battleList._id);
       });
     });
 
+    BattlesList.find({
+      createdAt: { $lte: moment().subtract(30, 'minutes').toDate() },
+      isBigBoss: true 
+    }).fetch().forEach((battleList) => {
+      HTTP.call('DELETE', `${Meteor.settings.public.battleUrl}/battle/${battleList._id}?balancer=${battleList.balancer}&userId=SERVER&userName=cron.deleteBattle`, (error, result) => {
+        removeBattle(battleList._id);
+      });
+    });
     return true;
   }
 });

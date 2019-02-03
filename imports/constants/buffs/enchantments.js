@@ -395,7 +395,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         target.stats.defense -= buff.data.defense;
       }
     }
@@ -484,6 +483,7 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
+        buff.data.totalTime = 0;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -502,7 +502,8 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
+        target.stats.attack -= buff.data.totalDamage;
+        target.stats.attackMax -= buff.data.totalDamage;
       }
     }
   },

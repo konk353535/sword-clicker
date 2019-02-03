@@ -33,6 +33,24 @@ export default class Stats {
     }
     return 0.001;
   }
+  
+  revertToOriginal() {
+    this.attack = this.origStats.attack;
+    this.attackMax = this.origStats.attackMax;
+    this.attackSpeed = this.origStats.attackSpeed;
+    this.criticalChance = this.origStats.criticalChance;
+    this.healingPower = this.origStats.healingPower;
+    this.criticalDamage = this.origStats.criticalDamage;
+    this.accuracy = this.origStats.accuracy;
+    this.defense = this.origStats.defense;
+    this.health = this.origStats.health;
+    this.healthMax = this.origStats.healthMax;
+    this.healthMaxOrig = this.origStats.healthMax;
+    this.magicPower = this.origStats.magicPower;
+    this.armor = this.origStats.armor;
+    this.magicArmor = this.origStats.magicArmor;
+    this.healingReduction = this.origStats.healingReduction || 1;
+  };
 
   get attackSpeed() {
     return this._attackSpeed;
@@ -103,6 +121,8 @@ export default class Stats {
     this.magicArmor = stats.magicArmor;
     this.healingReduction = stats.healingReduction || 1;
     this.damageOutput = 1.0;
+    
+    this.origStats = stats;
   }
 
   raw() {

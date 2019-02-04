@@ -1108,6 +1108,7 @@ export const ENEMIES = Object.assign({
         bleedTime: 6,
         bleedIcon: 'parasites.svg',
         bleedName: 'Parasites',
+        bleedDesc: 'Suffer terribly',
       }
     }, {
       id: 'crab_monster',
@@ -1139,6 +1140,7 @@ export const ENEMIES = Object.assign({
         bleedTime: 6,
         bleedIcon: 'parasites.svg',
         bleedName: 'Parasites',
+        bleedDesc: 'Suffer terribly',
       }
     }, {
       id: 'crab_monster',
@@ -1188,6 +1190,7 @@ export const ENEMIES = Object.assign({
         bleedTime: 30,
         bleedIcon: 'drain.svg',
         bleedName: 'Draining Life',
+        bleedDesc: 'Despair',
       }
     }, {
       id: 'poisoned_blade',
@@ -1248,6 +1251,7 @@ export const ENEMIES = Object.assign({
         bleedTime: 15,
         bleedIcon: 'bleeding.svg',
         bleedName: 'Bleeding',
+        bleedDesc: 'Bleed',
       }
     }, {
       id: 'beaver_teeth',

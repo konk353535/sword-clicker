@@ -1681,7 +1681,7 @@ export const MONSTER_BUFFS = {
               allowDuplicates: true,
               icon: buff.data.bleedIcon || 'bleeding.svg',
               name: buff.data.bleedName || 'bleed',
-              description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
+              description: `${buff.data.bleedDesc || 'bleed'} every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
           };
 

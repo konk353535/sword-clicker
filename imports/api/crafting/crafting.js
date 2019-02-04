@@ -12,7 +12,8 @@ CraftingSchema = new SimpleSchema({
   'currentlyCrafting.$.startDate': { type: Date },
   'currentlyCrafting.$.endDate': { type: Date },
   'currentlyCrafting.$.amount': { type: Number },
-  learntCrafts: { type: Object, blackbox: true, optional: true }
+  learntCrafts: { type: Object, blackbox: true, optional: true },
+  expiringCrafts: { type: Object, blackbox: true, optional: true }
 });
 
 Crafting.attachSchema(CraftingSchema);

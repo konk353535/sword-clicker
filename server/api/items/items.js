@@ -498,7 +498,7 @@ Meteor.methods({
         throw new Meteor.Error("invalid-target", 'Invalid target item');
       }
     } else if (baseItemConstants.isCraftingScroll) {
-      // Learn the craft is we don't already have it
+      // Learn the craft if we don't already have it
       const crafting = Crafting.findOne({
         owner: Meteor.userId()
       });
@@ -507,15 +507,23 @@ Meteor.methods({
         crafting.learntCrafts = {};
       }
 
+      if (!crafting.expiringCrafts) {
+        crafting.expiringCrafts = {};
+      }
+
       if (!crafting.learntCrafts[baseItemConstants.teaches]) {
         crafting.learntCrafts[baseItemConstants.teaches] = true;
+        if (baseItemConstants.teachesDuration) {
+          crafting.expiringCrafts[baseItemConstants.teaches] = moment().add(baseItemConstants.teachesDuration, 'days').toDate();
+        }
 
         const updatedCount = Crafting.update({
           _id: crafting._id,
           currentlyCrafting: crafting.currentlyCrafting
         }, {
           $set: {
-            learntCrafts: crafting.learntCrafts
+            learntCrafts: crafting.learntCrafts,
+            expiringCrafts: crafting.expiringCrafts
           }
         });
 

@@ -2600,7 +2600,7 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 625000,
     maxToCraft: 1,
-    requiredCraftingLevel: 105,
+    requiredCraftingLevel: 110,
     required: [{
       type: 'item',
       itemId: 'radiant_furnace',
@@ -2661,6 +2661,228 @@ export const MINING_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 110
+    }]
+  },
+
+  titanfoil_mining_anvil: {
+    produces: 'titanfoil_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'titanfoil mining anvil',
+    id: 'titanfoil_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 1000000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 120,
+    required: [{
+      type: 'item',
+      itemId: 'radiant_furnace',
+      icon: ITEMS['radiant_furnace'].icon,
+      name: ITEMS['radiant_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'fairy_steel_essence',
+      icon: ITEMS['fairy_steel_essence'].icon,
+      name: ITEMS['fairy_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'tali_log',
+      icon: ITEMS['tali_log'].icon,
+      name: ITEMS['tali_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fairy_steel_bar',
+      icon: ITEMS['fairy_steel_bar'].icon,
+      name: ITEMS['fairy_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_mining_anvil',
+      icon: ITEMS['radiant_mining_anvil'].icon,
+      name: ITEMS['radiant_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 120
+    }]
+  },
+
+  relicrock_mining_anvil: {
+    produces: 'relicrock_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'relicrock mining anvil',
+    id: 'relicrock_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 1500000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'radiant_furnace',
+      icon: ITEMS['radiant_furnace'].icon,
+      name: ITEMS['radiant_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'elven_steel_essence',
+      icon: ITEMS['elven_steel_essence'].icon,
+      name: ITEMS['elven_steel_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'willow_log',
+      icon: ITEMS['willow_log'].icon,
+      name: ITEMS['willow_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'teak_log',
+      icon: ITEMS['teak_log'].icon,
+      name: ITEMS['teak_log'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'elven_steel_bar',
+      icon: ITEMS['elven_steel_bar'].icon,
+      name: ITEMS['elven_steel_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_mining_anvil',
+      icon: ITEMS['radiant_mining_anvil'].icon,
+      name: ITEMS['radiant_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
+  },
+
+  eternium_mining_anvil: {
+    produces: 'eternium_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'eternium mining anvil',
+    id: 'eternium_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 2500000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 140,
+    required: [{
+      type: 'item',
+      itemId: 'radiant_furnace',
+      icon: ITEMS['radiant_furnace'].icon,
+      name: ITEMS['radiant_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'mithril_essence',
+      icon: ITEMS['mithril_essence'].icon,
+      name: ITEMS['mithril_essence'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_essence',
+      icon: ITEMS['cursed_essence'].icon,
+      name: ITEMS['cursed_essence'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'magic_log',
+      icon: ITEMS['magic_log'].icon,
+      name: ITEMS['magic_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'fiery_log',
+      icon: ITEMS['fiery_log'].icon,
+      name: ITEMS['fiery_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'mithril_bar',
+      icon: ITEMS['mithril_bar'].icon,
+      name: ITEMS['mithril_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'cursed_bar',
+      icon: ITEMS['cursed_bar'].icon,
+      name: ITEMS['cursed_bar'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'radiant_mining_anvil',
+      icon: ITEMS['radiant_mining_anvil'].icon,
+      name: ITEMS['radiant_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 140
     }]
   },  
 };

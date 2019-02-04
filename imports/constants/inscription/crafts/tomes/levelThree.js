@@ -262,7 +262,7 @@ export const LEVEL_THREE_CRAFTS = {
     required: [UTIL.MANY_PURPLE_255, UTIL.BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_9]
   },
 
-    volcanic_shield_level_3_tome: {
+  volcanic_shield_level_3_tome: {
     recipeFor: 'inscription',
     produces: 'volcanic_shield_level_3_tome',
     name: 'Volcanic shield Lv. 3',

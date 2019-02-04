@@ -320,7 +320,7 @@ export const ENCHANTMENT_BUFFS = {
   krakens_tentacle: {
     duplicateTag: 'krakens_tentacle', // Used to stop duplicate buffs
     icon: 'tentacle.svg',
-    name: 'krakens tentacle',
+    name: 'kraken\'s tentacle',
     description() {
       return `Each auto attack gives 1 charge. <br />At 20 charges increases attack speed by 50% for 3 seconds.`;
     },

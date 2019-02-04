@@ -49,9 +49,11 @@
         Spectate
       </button> -->
       {{#unless row.locked}}
-        <button class="btn btn-primary btn-join-group btn-sm" data-id="{{row._id}}">
-          Join
-        </button>
+        {{#unless $gte row.members.length 5}}
+          <button class="btn btn-primary btn-join-group btn-sm" data-id="{{row._id}}">
+            Join
+          </button>
+        {{/unless}}
       {{/unless}}
     </div>
   </div>

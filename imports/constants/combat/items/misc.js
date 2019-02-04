@@ -1931,15 +1931,15 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 5.4,
-      attackMax: 6.1,
+      attack: 5.1,
+      attackMax: 5.7,
       attackSpeed: 1.0,
-      accuracy: 1.9,
+      accuracy: 2,
       defense: -1.25
     },
     extraStats: {
       attack: 1.4,
-      attackMax: 2.1,
+      attackMax: 2,
       accuracy: 0.6
     },
     requiredEquip: [{
@@ -1962,16 +1962,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 7.5,
-      attackMax: 8.8,
+      attack: 6.9,
+      attackMax: 8.1,
       attackSpeed: 1.0,
-      accuracy: 5.2,
+      accuracy: 5.7,
       defense: -2.5
     },
     extraStats: {
-      attack: 2,
-      attackMax: 3,
-      accuracy: 1.6
+      attack: 1.8,
+      attackMax: 2.8,
+      accuracy: 1.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -1993,16 +1993,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 9.6,
-      attackMax: 11.7,
+      attack: 8.7,
+      attackMax: 10.5,
       attackSpeed: 1.0,
-      accuracy: 9.5,
+      accuracy: 10.4,
       defense: -3.75
     },
     extraStats: {
-      attack: 2.6,
-      attackMax: 4,
-      accuracy: 2.9
+      attack: 2.3,
+      attackMax: 3.6,
+      accuracy: 3.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2024,16 +2024,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 11.8,
-      attackMax: 14.8,
+      attack: 10.5,
+      attackMax: 13.1,
       attackSpeed: 1.0,
-      accuracy: 14.5,
+      accuracy: 16,
       defense: -5
     },
     extraStats: {
-      attack: 3.1,
-      attackMax: 5.1,
-      accuracy: 4.5
+      attack: 2.8,
+      attackMax: 4.5,
+      accuracy: 4.9
     },
     requiredEquip: [{
       type: 'skill',
@@ -2055,16 +2055,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 14.1,
-      attackMax: 18.3,
+      attack: 12.4,
+      attackMax: 16,
       attackSpeed: 1.0,
-      accuracy: 20.3,
+      accuracy: 22.2,
       defense: -6.25
     },
     extraStats: {
-      attack: 3.8,
-      attackMax: 6.3,
-      accuracy: 6.2
+      attack: 3.3,
+      attackMax: 5.5,
+      accuracy: 6.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2086,16 +2086,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 16.7,
-      attackMax: 22.1,
+      attack: 14.5,
+      attackMax: 19.1,
       attackSpeed: 1.0,
-      accuracy: 26.6,
+      accuracy: 29.2,
       defense: -7.5
     },
     extraStats: {
-      attack: 4.5,
-      attackMax: 7.6,
-      accuracy: 8.2
+      attack: 3.9,
+      attackMax: 6.6,
+      accuracy: 9
     },
     requiredEquip: [{
       type: 'skill',
@@ -2117,16 +2117,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 19.4,
-      attackMax: 26.3,
+      attack: 16.7,
+      attackMax: 22.4,
       attackSpeed: 1.0,
-      accuracy: 33.4,
+      accuracy: 36.7,
       defense: -8.75
     },
     extraStats: {
-      attack: 5.2,
-      attackMax: 9.1,
-      accuracy: 10.3
+      attack: 4.5,
+      attackMax: 7.7,
+      accuracy: 11.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -2148,16 +2148,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 22.4,
-      attackMax: 30.9,
+      attack: 19,
+      attackMax: 26.1,
       attackSpeed: 1.0,
-      accuracy: 40.8,
+      accuracy: 44.8,
       defense: -10
     },
     extraStats: {
-      attack: 6,
-      attackMax: 10.6,
-      accuracy: 12.6
+      attack: 5.1,
+      attackMax: 9,
+      accuracy: 13.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2179,16 +2179,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 25.6,
-      attackMax: 36,
+      attack: 21.5,
+      attackMax: 30.1,
       attackSpeed: 1.0,
-      accuracy: 48.6,
+      accuracy: 53.4,
       defense: -11.25
     },
     extraStats: {
-      attack: 6.8,
-      attackMax: 12.4,
-      accuracy: 15
+      attack: 5.7,
+      attackMax: 10.4,
+      accuracy: 16.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -2210,16 +2210,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 29,
-      attackMax: 41.6,
+      attack: 24.2,
+      attackMax: 34.4,
       attackSpeed: 1.0,
-      accuracy: 56.9,
+      accuracy: 62.5,
       defense: -12.5
     },
     extraStats: {
-      attack: 7.7,
-      attackMax: 14.3,
-      accuracy: 17.5
+      attack: 6.5,
+      attackMax: 11.8,
+      accuracy: 19.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2241,16 +2241,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 32.7,
-      attackMax: 47.7,
+      attack: 27,
+      attackMax: 39.2,
       attackSpeed: 1.0,
-      accuracy: 65.6,
+      accuracy: 72,
       defense: -13.75
     },
     extraStats: {
-      attack: 8.7,
-      attackMax: 16.4,
-      accuracy: 20.2
+      attack: 7.2,
+      attackMax: 13.5,
+      accuracy: 22.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2272,16 +2272,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 36.6,
-      attackMax: 54.4,
+      attack: 30,
+      attackMax: 44.2,
       attackSpeed: 1.0,
-      accuracy: 74.7,
+      accuracy: 82,
       defense: -15
     },
     extraStats: {
-      attack: 9.8,
-      attackMax: 18.7,
-      accuracy: 23
+      attack: 8,
+      attackMax: 15.2,
+      accuracy: 25.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2303,16 +2303,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 40.9,
-      attackMax: 61.7,
+      attack: 33.2,
+      attackMax: 49.8,
       attackSpeed: 1.0,
-      accuracy: 84.2,
+      accuracy: 92.4,
       defense: -16.25
     },
     extraStats: {
-      attack: 10.9,
-      attackMax: 21.2,
-      accuracy: 25.9
+      attack: 8.9,
+      attackMax: 17.1,
+      accuracy: 28.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -2334,16 +2334,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 45.4,
-      attackMax: 69.6,
+      attack: 36.6,
+      attackMax: 55.7,
       attackSpeed: 1.0,
-      accuracy: 94,
+      accuracy: 103.3,
       defense: -17.5
     },
     extraStats: {
-      attack: 12.1,
-      attackMax: 24,
-      accuracy: 28.9
+      attack: 9.8,
+      attackMax: 19.2,
+      accuracy: 31.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2365,16 +2365,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 50.3,
-      attackMax: 78.2,
+      attack: 40.3,
+      attackMax: 62.1,
       attackSpeed: 1.0,
-      accuracy: 104.2,
+      accuracy: 114.5,
       defense: -18.75
     },
     extraStats: {
-      attack: 13.4,
-      attackMax: 26.9,
-      accuracy: 32.1
+      attack: 10.7,
+      attackMax: 21.4,
+      accuracy: 35.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2396,16 +2396,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 55.5,
-      attackMax: 87.6,
+      attack: 44.1,
+      attackMax: 69,
       attackSpeed: 1.0,
-      accuracy: 114.7,
+      accuracy: 126.1,
       defense: -20
     },
     extraStats: {
-      attack: 14.8,
-      attackMax: 30.2,
-      accuracy: 35.3
+      attack: 11.8,
+      attackMax: 23.8,
+      accuracy: 38.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2427,16 +2427,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 61,
-      attackMax: 97.7,
+      attack: 48.2,
+      attackMax: 76.4,
       attackSpeed: 1.0,
-      accuracy: 125.6,
+      accuracy: 138,
       defense: -21.25
     },
     extraStats: {
-      attack: 16.3,
-      attackMax: 33.6,
-      accuracy: 38.6
+      attack: 12.9,
+      attackMax: 26.3,
+      accuracy: 42.5
     },
     requiredEquip: [{
       type: 'skill',
@@ -2458,16 +2458,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 67,
-      attackMax: 108.7,
+      attack: 52.5,
+      attackMax: 84.4,
       attackSpeed: 1.0,
-      accuracy: 136.8,
+      accuracy: 150.3,
       defense: -22.5
     },
     extraStats: {
-      attack: 17.9,
-      attackMax: 37.4,
-      accuracy: 42.1
+      attack: 14,
+      attackMax: 29.1,
+      accuracy: 46.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2489,16 +2489,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 73.3,
-      attackMax: 120.5,
+      attack: 57.1,
+      attackMax: 92.9,
       attackSpeed: 1.0,
-      accuracy: 148.3,
+      accuracy: 162.9,
       defense: -23.75
     },
     extraStats: {
-      attack: 19.5,
-      attackMax: 41.5,
-      accuracy: 45.6
+      attack: 15.2,
+      attackMax: 32,
+      accuracy: 50.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2520,16 +2520,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 80,
-      attackMax: 133.3,
+      attack: 61.9,
+      attackMax: 102.1,
       attackSpeed: 1.0,
-      accuracy: 160.1,
+      accuracy: 175.9,
       defense: -25
     },
     extraStats: {
-      attack: 21.3,
-      attackMax: 45.9,
-      accuracy: 49.3
+      attack: 16.5,
+      attackMax: 35.1,
+      accuracy: 54.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2551,16 +2551,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 87.1,
-      attackMax: 147,
+      attack: 67,
+      attackMax: 111.9,
       attackSpeed: 1.0,
-      accuracy: 172.2,
+      accuracy: 189.2,
       defense: -26.25
     },
     extraStats: {
-      attack: 23.2,
-      attackMax: 50.6,
-      accuracy: 53
+      attack: 17.9,
+      attackMax: 38.5,
+      accuracy: 58.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2582,16 +2582,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 94.7,
-      attackMax: 161.8,
+      attack: 72.4,
+      attackMax: 122.4,
       attackSpeed: 1.0,
-      accuracy: 184.6,
+      accuracy: 202.9,
       defense: -27.5
     },
     extraStats: {
-      attack: 25.3,
-      attackMax: 55.7,
-      accuracy: 56.8
+      attack: 19.3,
+      attackMax: 42.1,
+      accuracy: 62.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -2613,16 +2613,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 102.8,
-      attackMax: 177.7,
+      attack: 78.1,
+      attackMax: 133.6,
       attackSpeed: 1.0,
-      accuracy: 197.3,
+      accuracy: 216.8,
       defense: -28.75
     },
     extraStats: {
-      attack: 27.4,
-      attackMax: 61.2,
-      accuracy: 60.7
+      attack: 20.8,
+      attackMax: 46,
+      accuracy: 66.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -2644,16 +2644,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 111.4,
-      attackMax: 194.8,
+      attack: 84.1,
+      attackMax: 145.5,
       attackSpeed: 1.0,
-      accuracy: 210.2,
+      accuracy: 231,
       defense: -30
     },
     extraStats: {
-      attack: 29.7,
-      attackMax: 67.1,
-      accuracy: 64.7
+      attack: 22.4,
+      attackMax: 50.1,
+      accuracy: 71.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2675,16 +2675,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 120.4,
-      attackMax: 213.1,
+      attack: 90.4,
+      attackMax: 158.2,
       attackSpeed: 1.0,
-      accuracy: 223.5,
+      accuracy: 245.6,
       defense: -31.25
     },
     extraStats: {
-      attack: 32.1,
-      attackMax: 73.4,
-      accuracy: 68.8
+      attack: 24.1,
+      attackMax: 54.5,
+      accuracy: 75.6
     },
     requiredEquip: [{
       type: 'skill',
@@ -2706,16 +2706,16 @@ export const MISC_ITEMS = {
     isEquippable: true,
     isTwoHanded: true,
     stats: {
-      attack: 130,
-      attackMax: 232.7,
+      attack: 97.1,
+      attackMax: 171.7,
       attackSpeed: 1.0,
-      accuracy: 237,
+      accuracy: 260.4,
       defense: -32.5
     },
     extraStats: {
-      attack: 34.7,
-      attackMax: 80.1,
-      accuracy: 72.9
+      attack: 25.9,
+      attackMax: 59.1,
+      accuracy: 80.1
     },
     requiredEquip: [{
       type: 'skill',

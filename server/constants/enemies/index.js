@@ -83,7 +83,7 @@ export const ENEMIES = Object.assign({
       amount: 25
     }]
   },
-
+  
   // Chance to activate dodging
   young_ninja: {
     id: 'young_ninja',
@@ -1037,6 +1037,255 @@ export const ENEMIES = Object.assign({
       key: 'healthMax',
       amount: 2
     }]
-  }
+  },
+  
+  abstract_monster: {
+    id: 'abstract_monster',
+    icon: 'abstract.svg',
+    name: 'abstract',
+    buffs: [{
+      id: 'abstract_monster',
+      data: {
+        icon: 'heartDrop.svg',
+        name: 'abstract monster'
+      }
+    }],
+    statBuffs: [{
+      type: 'plus',
+      key: 'defense',
+      amount: 25
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 0.8
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.8
+    }],
+    swarmRange: [3, 6]
+  },
 
+  devourer: {
+    id: 'devourer',
+    icon: 'devourer.svg',
+    name: 'devourer',
+    buffs: [{
+      id: 'thirsty_fangs',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        level: 1,
+        icon: 'thirstyFangs.svg',
+        name: 'thirsty fangs'
+      }
+    }, {
+      id: 'vampire_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 0.9
+    }, {
+      type: 'plus',
+      key: 'accuracy',
+      amount: 50
+    }],
+  },
+
+  grotesque: {
+    id: 'grotesque',
+    icon: 'grotesque.svg',
+    name: 'grotesque',
+    buffs: [{
+      id: 'generic_bleed',
+      data: {
+        hideBuff: true,
+        bleedChance: 0.4,
+        bleedTime: 6,
+        bleedIcon: 'parasites.svg',
+        bleedName: 'Parasites',
+      }
+    }, {
+      id: 'crab_monster',
+      data: {
+        icon: 'armor.svg',
+        name: 'Grotesque Armor'
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 1.3
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.3
+    }],
+  },
+
+  grotesque_giant: {
+    id: 'grotesque_giant',
+    icon: 'grotesqueGiant.svg',
+    name: 'abomination',
+    buffs: [{
+      id: 'generic_bleed',
+      data: {
+        hideBuff: true,
+        bleedChance: 0.6,
+        bleedTime: 6,
+        bleedIcon: 'parasites.svg',
+        bleedName: 'Parasites',
+      }
+    }, {
+      id: 'crab_monster',
+      data: {
+        icon: 'armor.svg',
+        name: 'Grotesque Armor'
+      }
+    }],
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 1.3
+    }, {
+      type: 'plus',
+      key: 'accuracy',
+      amount: 25
+    }],
+  },
+  
+  wither: {
+    id: 'wither',
+    icon: 'wither.svg',
+    name: 'wither',
+    buffs: [{
+      id: 'angry_miner_monster',
+      data: {
+        hideBuff: true
+      }
+    }, {
+      id: 'demon_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+  },
+  
+  tormentor: {
+    id: 'tormentor',
+    icon: 'tormentor.svg',
+    name: 'tormentor',
+    swarmRange: [1, 3],
+    buffs: [{
+      id: 'generic_bleed',
+      data: {
+        hideBuff: true,
+        bleedChance: 0.15,
+        bleedTime: 30,
+        bleedIcon: 'drain.svg',
+        bleedName: 'Draining Life',
+      }
+    }, {
+      id: 'poisoned_blade',
+      data: {
+        level: 5,
+        icon: 'poisonedBlade.svg'
+      }
+    }],
+  },
+
+  seething_hatred: {
+    id: 'seething_hatred',
+    icon: 'seethingHatred.svg',
+    name: 'seething hatred',
+    buffs: [{
+      id: 'ninja_reflexes',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        icon: 'vortex.svg',
+        name: 'Ninja Reflexes',
+        hideBuff: true
+      }
+    }, {
+      id: 'boss_dragon',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        icon: 'seethingHatred.svg',
+        name: 'Hatred Attacks',
+      }
+    }],
+  },
+
+  ripper: {
+    id: 'ripper',
+    icon: 'ripper.svg',
+    name: 'ripper',
+    buffs: [{
+      id: 'phantom_strikes',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        icon: 'phantomStrikes.svg',
+        level: 3,
+      }
+    }, {
+      id: 'spiked_armor',
+      data: {
+        level: 8,
+        icon: 'spikedArmor.svg',
+      }
+    }, {
+      id: 'generic_bleed',
+      data: {
+        hideBuff: true,
+        bleedChance: 0.2,
+        bleedTime: 15,
+        bleedIcon: 'bleeding.svg',
+        bleedName: 'Bleeding',
+      }
+    }, {
+      id: 'beaver_teeth',
+      data: {
+        hideBuff: true
+      }
+    }],
+  },
+  
+  horrible_eye: {
+    id: 'horrible_eye',
+    icon: 'horribleEye.svg',
+    name: 'horrible eye',
+    buffs: [{
+      id: 'boss_ogre_extreme',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        icon: 'spiritBlink.svg'
+      }
+    }],    
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 1.3
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.3
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 3
+    }, {
+      type: 'times',
+      key: 'attackSpeed',
+      amount: 0.7
+    }]
+  },
+  
 }, BOSS_ENEMIES);

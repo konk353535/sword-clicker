@@ -5,13 +5,13 @@ import { LEVEL_TWENTY_FIVE_LOOT_TABLE } from '../../levels/level25';
 
 export const TOWER_FLOOR_25 = {
   1: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'The Farplane',
+    enemies: ['abstract_monster', 'tormentor', 'abstract_monster'],
     rewards: []
   },
   2: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Putrid Horror',
+    enemies: ['grotesque', 'grotesque_giant', 'grotesque'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [
@@ -21,8 +21,8 @@ export const TOWER_FLOOR_25 = {
     }]))
   },
   3: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Soulripped',
+    enemies: ['tormentor', 'wither', 'wither', 'tormentor'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [
@@ -37,8 +37,8 @@ export const TOWER_FLOOR_25 = {
     }]))
   },
   4: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Dust to Dust',
+    enemies: ['tormentor', 'devourer', 'devourer'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 160,
       rewards: [
@@ -53,8 +53,8 @@ export const TOWER_FLOOR_25 = {
     }]))
   },
   5: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Banishment',
+    enemies: ['horrible_eye', 'wither', 'tormentor'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
@@ -75,8 +75,8 @@ export const TOWER_FLOOR_25 = {
     }]))
   },
   6: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Place of Sunder',
+    enemies: ['ripper', 'ripper', 'ripper', 'ripper'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [
@@ -97,8 +97,8 @@ export const TOWER_FLOOR_25 = {
     }]))
   },
   7: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Evil Envelopment',
+    enemies: ['horrible_eye', 'seething_hatred', 'seething_hatred'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 32,
       rewards: [

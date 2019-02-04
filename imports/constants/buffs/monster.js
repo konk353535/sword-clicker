@@ -1507,6 +1507,7 @@ export const MONSTER_BUFFS = {
         const newBuff = {
           id: 'healing_reduction',
           data: {
+            name: 'Healing Reduced',
             duration: 20,
             totalDuration: 20,
             healingReduction,
@@ -1560,6 +1561,56 @@ export const MONSTER_BUFFS = {
               allowDuplicates: true,
               icon: 'bleeding.svg',
               name: 'bleed',
+              description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
+            }
+          };
+
+          // Add bleed debuff
+          addBuff({ buff: newBuff, target: defender, caster: attacker });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  generic_bleed: {
+    duplicateTag: 'generic_bleed', // Used to stop duplicate buffs
+    icon: '',
+    name: 'bleed',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        // Blank
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const bleedChance = buff.data.bleedChance || 0.2;
+
+        if (Math.random() <= bleedChance) {
+          const newBuff = {
+            id: 'bleed_proper',
+            data: {
+              duration: buff.data.bleedTime || 15,
+              totalDuration: buff.data.bleedTime || 15,
+              dps: attacker.stats.attackMax / 15,
+              caster: attacker.id,
+              timeTillDamage: 1,
+              allowDuplicates: true,
+              icon: buff.data.bleedIcon || 'bleeding.svg',
+              name: buff.data.bleedName || 'bleed',
               description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
             }
           };
@@ -1837,6 +1888,7 @@ export const MONSTER_BUFFS = {
           const newBuff = {
             id: 'armor_reduction',
             data: {
+              name: 'Armor Shredded',
               duration: 10,
               allowDuplicates: true,
               duplicateCap: 2,
@@ -1963,5 +2015,55 @@ export const MONSTER_BUFFS = {
         // Blank
       }
     }
-  }
+  },
+  
+  abstract_monster: {
+    duplicateTag: 'abstract_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'abstract monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+
+        // Does this unit have bleed? remove bleed + heal
+        const bleedCount = defender.buffs.filter((buff) => {
+          return buff.id === 'bleed' || buff.id === 'bleed_proper';
+        }).length;
+
+        if (bleedCount >= 1) {
+          const totalHeal =  ((defender.stats.defense * bleedCount) / 2);
+          actualBattle.healTarget(totalHeal, {
+            caster: defender,
+            target: defender,
+            historyStats: actualBattle.historyStats,
+            tickEvents: actualBattle.tickEvents
+          });
+
+          defender.buffs.forEach((buff) => {
+            if (buff.duration > 1) {
+              if (buff.id === 'bleed' || buff.id === 'bleed_proper') {
+                buff.duration = 0.2;
+                buff.data.timeTillDamage = 5;
+              }
+            }
+          });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 };

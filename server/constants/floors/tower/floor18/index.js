@@ -81,6 +81,11 @@ export const TOWER_FLOOR_18 = {
         { type: 'item', itemId: 'azure_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'azure_wizard_shorts', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'scream_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

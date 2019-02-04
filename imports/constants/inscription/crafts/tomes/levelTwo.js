@@ -312,5 +312,18 @@ export const LEVEL_TWO_CRAFTS = {
     maxToCraft: 1,
     requiredInscriptionLevel: 9,
     required: [UTIL.RED_150, UTIL.MANY_BLUE_255, UTIL.MANY_ASH_PAPER, UTIL.LEVEL_9]
+  },
+
+  scream_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'scream_level_2_tome',
+    name: 'scream Lv. 2',
+    id: 'scream_level_2_tome',
+    category: 'tome',
+    timeToCraft: 600,
+    xp: 500,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 29,
+    required: [UTIL.RED_150, UTIL.PURPLE_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_29]
   }
 };

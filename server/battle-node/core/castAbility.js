@@ -104,7 +104,15 @@ export default function({ ability, caster, targets }) {
       }
     });
     ability.cdAdjust = function(abil) {
-      return ((needToTarget + 1) * 10) - 5;
+      let maxCD = 9999;
+      if (ability.level >= 2) {
+        maxCD = (45 - (5 * ability.level));
+      }
+      let CDtoAdd = ((needToTarget + 1) * 10) - 5;
+      if (CDtoAdd + 5 > maxCD) {
+        CDtoAdd = maxCD - 5; // subtract 5 because of the base scream CD
+      }
+      return CDtoAdd;
     };
   }
 

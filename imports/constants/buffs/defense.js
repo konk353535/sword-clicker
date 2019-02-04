@@ -671,8 +671,12 @@ export const DEFENSE_BUFFS = {
     icon: 'scream.svg',
     name: 'scream',
     description({ buff, level }) {
+      let extraInfo = '';
+      if (level >= 2) {
+        extraInfo = `<br />Maximum cooldown is ${(45 - (5 * level)).toFixed(0)}s - (5s per level).`;
+      }
       return `Forces all enemies to target you. <br />
-        Cooldown increases by 10 seconds for each taunted enemy.`;
+        Cooldown increases by 10 seconds for each taunted enemy.${extraInfo}`;
     },
     constants: {
     },

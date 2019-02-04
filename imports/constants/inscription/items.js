@@ -1679,6 +1679,58 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the scream ability.'
   },
 
+  scream_level_2_tome: {
+    id: 'scream_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'scream tome Lv. 2',
+    teaches: {
+      abilityId: 'scream',
+      level: 2
+    },
+    sellPrice: 2500,
+    description: 'Can be consumed to upgrade the scream ability.'
+  },
+
+  scream_level_3_tome: {
+    id: 'scream_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'scream tome Lv. 3',
+    teaches: {
+      abilityId: 'scream',
+      level: 3
+    },
+    sellPrice: 7500,
+    description: 'Can be consumed to upgrade the scream ability.'
+  },
+
+  scream_level_4_tome: {
+    id: 'scream_level_4_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'scream tome Lv. 4',
+    teaches: {
+      abilityId: 'scream',
+      level: 4
+    },
+    sellPrice: 20000,
+    description: 'Can be consumed to upgrade the scream ability.'
+  },
+
+  scream_level_5_tome: {
+    id: 'scream_level_5_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'scream tome Lv. 5',
+    teaches: {
+      abilityId: 'scream',
+      level: 5
+    },
+    sellPrice: 50000,
+    description: 'Can be consumed to upgrade the scream ability.'
+  },
+
   berserk_level_1_tome: {
     id: 'berserk_level_1_tome',
     icon: 'tome.svg',

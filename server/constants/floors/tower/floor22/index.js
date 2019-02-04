@@ -74,6 +74,11 @@ export const TOWER_FLOOR_22 = {
         { type: 'item', itemId: 'serpent_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'serpent_wizard_shorts', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'taunt_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

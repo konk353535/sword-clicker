@@ -572,6 +572,7 @@ Battle.prototype.initPassives = function initPassives() {
     let enchantment_buffs_ids = [];
     
     // track applied enchantments from .startBattle
+    /*
     unit.buffs.forEach((buff) => {
       try {
         if (buff.data.isEnchantment || BUFFS[buff.id].data.isEnchantment) {
@@ -590,6 +591,7 @@ Battle.prototype.initPassives = function initPassives() {
     }
     
     unit.stats.revertToOriginal();
+    */
     
     let abilities_and_enchantments_to_apply = [];
     enchantment_buffs_ids.forEach((enchantment_buff_id) => {

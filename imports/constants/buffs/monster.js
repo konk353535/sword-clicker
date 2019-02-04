@@ -35,10 +35,12 @@ export const MONSTER_BUFFS = {
         
         const rand = Math.random();
         const curFloor = (actualBattle.floor && actualBattle.floor > 0) ? actualBattle.floor : actualBattle.pqTowerEquivalence();
+        const curRoom = (actualBattle.room && actualBattle.room > 0) ? actualBattle.room : 4; // '4' is the average level between 1-7 if we're in PQ or fighting boss
         const thisOre = actualBattle.lookupOreTier(curFloor);
         const thisMetal = actualBattle.lookupMetalTier(curFloor);
         const thisMetalCapped20 = actualBattle.lookupMetalTier((curFloor > 20) ? 20 : curFloor);
         const thisWood = actualBattle.lookupWoodTier(curFloor);
+        const allowBonuses = (curRoom > 3);
         
         // debug
         /*
@@ -90,7 +92,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            }
           }
         } else if (target.name === 'fly') {
           if (rand < 0.10) { // 10% chance to upgrade to hell fly
@@ -104,7 +108,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.25);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.25);
+            }
           }
         } else if (target.name === 'worm') {
           if (rand < 0.10) { // 10% chance to upgrade to wyrm
@@ -125,7 +131,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            }
             const newBuff = {
               id: 'rat_monster',
               data: {
@@ -157,7 +165,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.2;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            }
           }
         } else if (target.name === 'vampire') {
           if (rand < 0.10) { // 10% chance to upgrade to wraith
@@ -183,7 +193,9 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['vampirism']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            }
           }
         } else if (target.name === 'rat') {
           if (rand < 0.10) { // 10% chance to upgrade to dire rat
@@ -197,7 +209,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.75);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.75);
+            }
             const newBuff = {
               id: 'thirsty_fangs',
               data: {
@@ -231,7 +245,9 @@ export const MONSTER_BUFFS = {
             target.stats.healthMax *= 5.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            }
             const newBuff = {
               id: 'berserk',
               data: {
@@ -257,7 +273,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+            }
             const newBuff = {
               id: 'rat_monster',
               data: {
@@ -280,7 +298,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.75);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.75);
+            }
             const newBuff = {
               id: 'ninja_reflexes',
               data: {
@@ -299,7 +319,9 @@ export const MONSTER_BUFFS = {
             target.stats.health *= 1.15;
             target.stats.healthMax *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            }
           } else if (rand < 0.40) {
             target.name = 'pauper';
             target.icon = 'beggar.svg';
@@ -307,14 +329,18 @@ export const MONSTER_BUFFS = {
             target.stats.healthMax *= 1.1;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+            }
           } else if (rand < 0.60) {
             target.name = 'rancher';
             target.stats.health *= 1.25;
             target.stats.healthMax *= 1.25;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
-            target.extraLootTable = [{ id: 'rockmelon', chance: 0.25 }, { id: 'rockmelon', chance: 0.25 }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1);
+              target.extraLootTable = [{ id: 'rockmelon', chance: 0.25 }, { id: 'rockmelon', chance: 0.25 }];
+            }
           } else if (rand < 0.80) {
             target.name = 'beggar';
             target.icon = 'beggar.svg';
@@ -336,7 +362,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.2;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+            }
           } else if (rand < 0.20) { // 5% chance to upgrade to barracuda
             target.name = 'barracuda';
             target.icon = 'fishBarracuda.svg';
@@ -349,7 +377,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.3;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            }
           }
         } else if (target.name === 'lizard') {
           if (rand < 0.05) { // 5% chance to upgrade to basilisk
@@ -364,7 +394,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.2;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4);
+            }
           }
         } else if (target.name === 'goblin') {
           if (rand < 0.15) { // 15% chance to upgrade to goblin warrior
@@ -391,8 +423,10 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['spiked_armor']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
-            target.extraLootTable = [{ id: `${thisMetalCapped20}_scimitar`, chance: 0.25 }, { id: `${thisMetal}_shield`, chance: 0.25 }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+              target.extraLootTable = [{ id: `${thisMetalCapped20}_scimitar`, chance: 0.25 }, { id: `${thisMetal}_shield`, chance: 0.25 }];
+            }
           } else if (rand < 0.20) { // 5% chance to upgrade to goblin chieftain
             const numInHerd = (Math.ceil(Math.random() * 3) + 1); // 2 - 4;
             for (let i = 0; i < numInHerd; i++) {
@@ -428,8 +462,10 @@ export const MONSTER_BUFFS = {
               };
               addBuff({ buff: newBuff, target: enemyUnit, caster: target, actualBattle });
             });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4);
-            target.extraLootTable = [{ id: `${thisMetalCapped20}_broad_sword`, chance: 0.25 }, { id: `${thisMetal}_kite_shield`, chance: 0.25 }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4);
+              target.extraLootTable = [{ id: `${thisMetalCapped20}_broad_sword`, chance: 0.25 }, { id: `${thisMetal}_kite_shield`, chance: 0.25 }];
+            }
           }
         } else if (target.name === 'young ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to adept ninja
@@ -456,7 +492,9 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['phantom_strikes']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+            }
           }
         } else if (target.name === 'monk ninja') {
           if (rand < 0.10) { // 10% chance to upgrade to wise monk
@@ -481,7 +519,9 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['phantom_strikes']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
+            }
           }
         } else if (target.name === 'demon') {
           if (rand < 0.10) { // 10% chance to upgrade to vile demon
@@ -505,7 +545,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.5;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            }
           }
         } else if (target.name === 'angel') {
           if (rand < 0.10) { // 10% chance to upgrade to high angel
@@ -531,7 +573,9 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.35;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3);
+            }
             const newBuff = {
               id: 'demon_monster',
               data: {
@@ -565,8 +609,10 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['twin_blades']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: `${thisMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+              target.extraLootTable = [{ id: `${thisMetal}_knife`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }];
+            }
           } else if (rand < 0.15) { // 5% chance to upgrade to mercenary
             target.name = 'mercenary';
             target.stats.health *= 1.35;
@@ -589,8 +635,10 @@ export const MONSTER_BUFFS = {
               constants: BUFFS['spiked_armor']
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
-            target.extraLootTable = [{ id: `${thisMetal}_horned_helmet`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }, { id: 'jade', chance: 0.05 }, { id: 'emerald', chance: 0.05 }, { id: 'lapislazuli', chance: 0.05 }, { id: 'sapphire', chance: 0.03 }, { id: 'ruby', chance: 0.02 }, { id: 'tanzanite', chance: 0.01 }, { id: 'fireopal', chance: 0.01 }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+              target.extraLootTable = [{ id: `${thisMetal}_horned_helmet`, chance: 0.25 }, { type: 'gold', chance: 0.25, quantity: 1000 * curFloor }, { id: 'jade', chance: 0.05 }, { id: 'emerald', chance: 0.05 }, { id: 'lapislazuli', chance: 0.05 }, { id: 'sapphire', chance: 0.03 }, { id: 'ruby', chance: 0.02 }, { id: 'tanzanite', chance: 0.01 }, { id: 'fireopal', chance: 0.01 }];
+            }
           }
         } else if (target.name === 'beaver') {
           if (rand < 0.10) { // 10% chance to upgrade to dire beaver
@@ -605,8 +653,10 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
-            target.extraLootTable = [{id: `${thisWood}_log`, quantity: 5 * curFloor, chance: 0.50}];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
+              target.extraLootTable = [{id: `${thisWood}_log`, quantity: 5 * curFloor, chance: 0.50}];
+            }
           }
         } else if (target.name === 'snake') {
           if (rand < 0.20) {
@@ -616,8 +666,10 @@ export const MONSTER_BUFFS = {
             target.stats.healthMax *= 1.45;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            }
             target.buffs.forEach((buff) => {
               if (buff.id === 'poisoned_blade') {
                 buff.data.level = 3;
@@ -632,8 +684,10 @@ export const MONSTER_BUFFS = {
             target.stats.healthMax *= 2.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            }
           } else if (rand < 0.60) {
             target.name = 'diamondback';
             target.icon = 'snakeDiamondback.svg';
@@ -641,8 +695,10 @@ export const MONSTER_BUFFS = {
             target.stats.attackMax *= 1.65;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            }
             target.buffs.forEach((buff) => {
               if (buff.id === 'poisoned_blade') {
                 buff.data.level = 3;
@@ -657,8 +713,10 @@ export const MONSTER_BUFFS = {
             target.stats.healthMax *= 1.35;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.25, quantity: 1 * curFloor }];
+            }
             target.buffs.forEach((buff) => {
               if (buff.id === 'poisoned_blade') {
                 buff.data.level = 5;
@@ -678,8 +736,10 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
-            target.extraLootTable = [{id: `ore_${thisOre}`, quantity: 5 * curFloor, chance: 0.50}];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+              target.extraLootTable = [{id: `ore_${thisOre}`, quantity: 5 * curFloor, chance: 0.50}];
+            }
           }
         } else if (target.name.indexOf(' mage') !== -1) {
           if (rand < 0.15) {
@@ -711,8 +771,10 @@ export const MONSTER_BUFFS = {
             if ((target.name === 'water mage') || (target.name === 'blue mage')) {
               target.name = 'glacial wizard';
               target.icon = 'glacialWizard.svg';
-              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
-              target.extraLootTable = [{ id: 'water_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_water_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_water_shard', chance: 0.50, quantity: 1 * curFloor }];
+              if (allowBonuses) {
+                target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5);
+                target.extraLootTable = [{ id: 'water_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_water_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_water_shard', chance: 0.50, quantity: 1 * curFloor }];
+              }
               target.stats.health *= 1.75;
               target.stats.healthMax *= 1.75;
               target.stats.magicPower *= 1.75;
@@ -734,8 +796,10 @@ export const MONSTER_BUFFS = {
             } else if ((target.name === 'brown mage') || (target.name === 'earth mage')) {
               target.name = 'stone wizard';
               target.icon = 'stoneWizard.svg';
-              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
-              target.extraLootTable = [{ id: 'earth_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_earth_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_earth_shard', chance: 0.50, quantity: 1 * curFloor }];
+              if (allowBonuses) {
+                target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5);
+                target.extraLootTable = [{ id: 'earth_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_earth_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_earth_shard', chance: 0.50, quantity: 1 * curFloor }];
+              }
               target.stats.health *= 1.75;
               target.stats.healthMax *= 1.75;
               target.stats.magicPower *= 1.75;
@@ -756,8 +820,10 @@ export const MONSTER_BUFFS = {
             } else if (target.name === 'fire mage') {
               target.name = 'fiery wizard';
               target.icon = 'fieryWizard.svg';
-              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
-              target.extraLootTable = [{ id: 'fire_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_fire_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_fire_shard', chance: 0.50, quantity: 1 * curFloor }];
+              if (allowBonuses) {
+                target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
+                target.extraLootTable = [{ id: 'fire_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'complete_fire_shard', chance: 0.50, quantity: 2 * curFloor }, { id: 'ancient_fire_shard', chance: 0.50, quantity: 1 * curFloor }];
+              }
               target.stats.health *= 1.75;
               target.stats.healthMax *= 1.75;
               target.stats.magicPower *= 1.25;
@@ -793,8 +859,10 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.15;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'poison_shard_fragment', chance: 0.50, quantity: 15 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.50, quantity: 5 * curFloor }, { id: 'poison_shard_fragment', chance: 0.50, quantity: 15 * curFloor }];
+            }
             target.buffs.forEach((buff) => {
               if (buff.id === 'poisoned_blade') {
                 buff.data.level = 10;
@@ -808,8 +876,10 @@ export const MONSTER_BUFFS = {
             target.stats.accuracy *= 1.50;
             notifyChangeForUnitProperty({unit: target, property: 'name', actualBattle});
             notifyChangeForUnitProperty({unit: target, property: 'icon', actualBattle});
-            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
-            target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.50, quantity: 2 * curFloor }, { id: 'poison_shard_fragment', chance: 0.50, quantity: 5 * curFloor }];
+            if (allowBonuses) {
+              target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2);
+              target.extraLootTable = [{ id: 'poison_shard_fragment', chance: 0.50, quantity: 2 * curFloor }, { id: 'poison_shard_fragment', chance: 0.50, quantity: 5 * curFloor }];
+            }
             target.buffs.forEach((buff) => {
               if (buff.id === 'poisoned_blade') {
                 buff.data.level = 5;

@@ -357,7 +357,7 @@ export const DEFENSE_ABILITIES = {
   },
   
   mystic_fairy: {
-    icon: 'fairy.svg',
+    icon: 'fairy2.svg',
     name: 'mystic fairy',
     id: 'mystic_fairy',
     buffs: ['mystic_fairy'],

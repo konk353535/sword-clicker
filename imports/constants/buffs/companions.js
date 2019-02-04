@@ -706,7 +706,7 @@ export const COMPANION_BUFFS = {
   // All levels:  gains health, magic power, and healing power for each level
   mystic_fairy: {
     duplicateTag: 'mystic_fairy',
-    icon: 'fairy.svg',
+    icon: 'fairy2.svg',
     name: 'mystic fairy',
     description({ buff, level }) {
       if (level >= 5) {
@@ -756,7 +756,7 @@ export const COMPANION_BUFFS = {
               isNPC: true,
               isCompanion: true,
               isSoloCompanion: true,
-              icon: 'fairy.svg',
+              icon: 'fairy2.svg',
               name: target.name + '\'s fairy',
               stats: {
                 attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // fairies don't do much damage, they're supports

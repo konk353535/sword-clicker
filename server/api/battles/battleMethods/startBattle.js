@@ -254,7 +254,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       tickOffset: _.random(0, 2) + 4,
       icon: userCombat.characterIcon || 'character.svg',
       skills: usersSkillsArray,
-      inactiveMinutes: inactiveMinutes
+      inactiveMinutes: inactiveMinutes,
+      enchantmentsList: [],
     };
 
     // apply passive abilities effects first
@@ -298,6 +299,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     
     // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
     // tried applying passives above first, but they wouldn't function correctly
+    /*
     if (userCombat.enchantments) {
       userCombat.enchantments.forEach((buffId) => {
         const enchantConstants = BUFFS[buffId];
@@ -326,6 +328,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         }
       });
     }
+    */
+    newUnit.enchantmentsList = Object.assign(newUnit.enchantmentsList, userCombat.enchantments);
 
     newBattle.units.push(newUnit);
     newBattle.historyStats[newUnit.id] = {

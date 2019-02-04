@@ -46,6 +46,7 @@ export default class Unit {
     this.isCompanion = unit.isCompanion || false;
     this.isSoloCompanion = unit.isSoloCompanion || false;
     this.inactiveMinutes = unit.inactiveMinutes || 0;
+    this.enchantmentsList = unit.enchantmentsList;
 
     if (unit.abilities) {
       this.abilitiesMap = {};

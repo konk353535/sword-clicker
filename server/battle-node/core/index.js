@@ -591,9 +591,9 @@ Battle.prototype.initPassives = function initPassives() {
     }
     
     unit.stats.revertToOriginal();
-    */
     
     enchantment_buffs_ids = Object.assign(enchantment_buffs_ids, unit.enchantmentsList);
+    */
     
     let abilities_and_enchantments_to_apply = [];
     enchantment_buffs_ids.forEach((enchantment_buff_id) => {

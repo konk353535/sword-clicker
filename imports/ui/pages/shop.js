@@ -227,7 +227,35 @@ Template.shopPage.events({
       }
       toastr.success('Successfully purchased.')
     });
-  }
+  },
+  
+  /*
+  'click .buy-gift_box_LNY2019'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
+      return;
+    }
+
+    Meteor.call('shop.buyItem', { itemId: 'gift_box_red_envelope' }, (err, res) => {
+      if (err) {
+        return toastr.error('An unexpected error occurred when buying item.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+ 
+  'click .buy-gift_box_VD2019'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
+      return;
+    }
+
+    Meteor.call('shop.buyItem', { itemId: 'gift_box_valentines' }, (err, res) => {
+      if (err) {
+        return toastr.error('An unexpected error occurred when buying item.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  },
+  */
 });
 
 Template.shopPage.rendered = function () {

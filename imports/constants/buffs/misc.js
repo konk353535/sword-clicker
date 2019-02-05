@@ -47,7 +47,12 @@ export const MISC_BUFFS = {
     icon: 'eventLNYDance.svg',
     name: 'Lion Dance',
     description({ buff, level }) {
-      return `You are dancing and celebrating for luck.`;
+      return `
+      You are dancing and celebrating for luck, raising your <br />
+      chance to find valuables in each battle.  When combat <br />
+      ends, each member of your party using Lion Dance will <br />
+      increase the chances of finding loot by <b>5%</b>.  Stacks <br />
+      with global combat buffs and exploration bonuses.`;
     },
     data: {
       duration: Infinity,

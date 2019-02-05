@@ -1017,7 +1017,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 114
+      level: 124
     }]
   },
 
@@ -1084,7 +1084,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 114
+      level: 134
     }]
   },
 
@@ -1151,7 +1151,7 @@ export const WOODCUTTING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 114
+      level: 144
     }]
   }, 
 };

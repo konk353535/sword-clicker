@@ -37,6 +37,11 @@ export const TOWER_FLOOR_24 = {
     }, {
       chance: 1 / 64,
       rewards: [
+        { type: 'item', itemId: 'lion_dance_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
         { type: 'item', itemId: 'event_lny_lion_claws', amount: 1 }
       ]
     }, {

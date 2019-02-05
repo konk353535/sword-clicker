@@ -389,5 +389,21 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+  
+  vd_cupid: {
+    icon: 'eventVDcupid.svg',
+    name: 'cupid',
+    id: 'vd_cupid',
+    buffs: ['vd_cupid'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.vd_cupid;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 
 };

@@ -1483,6 +1483,31 @@ export const COMPANION_BUFFS = {
           if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
             return;
           }
+          
+          try {
+            // attempt mass charm every ~20 seconds (~10 seconds but we eat half our ticks)
+            if (buff.data.level >= 5) {
+              if (Math.random() < 0.02) {
+                actualBattle.enemies.forEach((enemy) => {
+                  const newBuff = {
+                    id: 'charm',
+                    data: {
+                      icon: 'eventVDhearts.svg',
+                      description: ``,
+                      name: 'charm',
+                      level: 1,
+                      duration: 5,
+                      totalDuration: 5,
+                      wasCharmed: false,
+                    },
+                    constants: BUFFS['charm']
+                  };
+                  addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle });                  
+                });
+              }
+            }
+          } catch (err) {
+          }
 
           try {
             // START: logic for targets

@@ -141,11 +141,11 @@ export const TOWER_FLOOR_20 = {
   floorRewards: [
     {
       type: 'item',
-      itemId: 'cursed_dwarven_idol',
-      icon: ITEMS['cursed_dwarven_idol'].icon,
-      name: ITEMS['cursed_dwarven_idol'].name,
-      baseStats: ITEMS['cursed_dwarven_idol'].stats,
-      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
+      itemId: 'darksteel_dwarven_idol',
+      icon: ITEMS['darksteel_dwarven_idol'].icon,
+      name: ITEMS['darksteel_dwarven_idol'].name,
+      baseStats: ITEMS['darksteel_dwarven_idol'].stats,
+      extraStats: ITEMS['darksteel_dwarven_idol'].extraStats
     },
     {
       type: 'item',

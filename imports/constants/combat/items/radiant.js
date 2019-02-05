@@ -219,6 +219,32 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   },
+  "holy_plate": {
+    "id": "holy_plate",
+    "icon": "holyChestplate.png",
+    "category": "combat",
+    "slot": "chest",
+    "name": "holy plate",
+    "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
+    "description": "Protect your heart",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 22.4 * RADIANT_MULTIPLIER,
+      "defense": 18.4 * RADIANT_MULTIPLIER,
+      "armor": 74.5 * RADIANT_MULTIPLIER
+    },
+    "extraStats": {
+      "healthMax": 7.2 * RADIANT_MULTIPLIER,
+      "defense": 7.7 * RADIANT_MULTIPLIER,
+      "armor": 22.1 * RADIANT_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 100
+    }],
+    enchantments: ['holy_plate']
+  },
   "radiant_plate_legs": {
     "id": "radiant_plate_legs",
     "icon": "radiantPlatelegs.png",

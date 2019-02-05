@@ -184,10 +184,23 @@ export const TOWER_FLOOR_24 = {
 
   boss: {
     enemy: { id: 'boss_ruiner', amount: 1 },
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'farplane_resonator', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [
+    {
+      type: 'item',
+      itemId: 'relicrock_dwarven_idol',
+      icon: ITEMS['relicrock_dwarven_idol'].icon,
+      name: ITEMS['relicrock_dwarven_idol'].name,
+      baseStats: ITEMS['relicrock_dwarven_idol'].stats,
+      extraStats: ITEMS['relicrock_dwarven_idol'].extraStats
+    },
     {
       type: 'item',
       itemId: 'enhancer_key',

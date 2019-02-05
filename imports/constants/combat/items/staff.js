@@ -1628,6 +1628,44 @@ export const STAFF_ITEMS = {
     }]
   },
 
+  // hybrid between a cursed scimitar, a cursed wand, and a trident
+  farplane_resonator: {
+    id: 'farplane_resonator',
+    icon: 'farplaneResonator.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'farplane resonator',
+    sellPrice: 72500,
+    description: 'A strange device capable of casting magic and doubling as a weapon.',
+    isWeapon: true,
+    isEquippable: true,
+    xpDistribution: {
+      attack: 0.33,
+      defense: 0.17,
+      health: 0.5
+    },
+    stats: {
+      attack: 73.7,
+      attackMax: 116.7,
+      attackSpeed: 0.7,
+      accuracy: 99.5,
+      magicPower: 33
+    },
+    extraStats: {
+      attack: 22.1 + 5,
+      attackMax: 35 + 5,
+      accuracy: 29.8 + 10,
+      magicPower: 5 + 5
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 65
+    }]
+  },
+  
   copper_hammer: {
     id: 'copper_hammer',
     icon: 'copperHammer.png',

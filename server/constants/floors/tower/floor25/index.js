@@ -123,6 +123,14 @@ export const TOWER_FLOOR_25 = {
   floorRewards: [
     {
       type: 'item',
+      itemId: 'eternium_dwarven_idol',
+      icon: ITEMS['eternium_dwarven_idol'].icon,
+      name: ITEMS['eternium_dwarven_idol'].name,
+      baseStats: ITEMS['eternium_dwarven_idol'].stats,
+      extraStats: ITEMS['eternium_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
       itemId: 'enhancer_key',
       icon: ITEMS['enhancer_key'].icon,
       name: ITEMS['enhancer_key'].name,

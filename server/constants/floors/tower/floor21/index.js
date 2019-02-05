@@ -117,10 +117,23 @@ export const TOWER_FLOOR_21 = {
 
   boss: {
     enemy: { id: 'boss_dragon', amount: 1 },
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_ONE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'eternal_flame', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [
+    {
+      type: 'item',
+      itemId: 'radiant_dwarven_idol',
+      icon: ITEMS['radiant_dwarven_idol'].icon,
+      name: ITEMS['radiant_dwarven_idol'].name,
+      baseStats: ITEMS['radiant_dwarven_idol'].stats,
+      extraStats: ITEMS['radiant_dwarven_idol'].extraStats
+    },
     {
       type: 'item',
       itemId: 'enhancer_key',

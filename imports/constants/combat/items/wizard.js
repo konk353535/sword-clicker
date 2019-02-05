@@ -25,6 +25,32 @@ export const WIZARD_ITEMS = {
     }],
     enchantments: ['phoenix_hat']
   },
+  
+  eternal_flame: {
+    id: 'eternal_flame',
+    icon: 'eternalFlame.svg',
+    category: 'combat',
+    slot: 'head',
+    name: 'eternal flame',
+    sellPrice: 17500,
+    description: 'A wreath of eternal flames.',
+    isEquippable: true,
+    stats: {
+      healthMax: 250,
+      magicPower: 35,
+      healingPower: -5
+    },
+    extraStats: {
+      healthMax: 50,
+      magicPower: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }],
+    enchantments: ['eternal_flame']
+  },
 
   druids_hat: {
     id: 'druids_hat',

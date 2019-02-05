@@ -117,10 +117,23 @@ export const TOWER_FLOOR_23 = {
 
   boss: {
     enemy: { id: 'boss_hive', amount: 1 },
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_THREE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'honeycomb_pants', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [
+    {
+      type: 'item',
+      itemId: 'titanfoil_dwarven_idol',
+      icon: ITEMS['titanfoil_dwarven_idol'].icon,
+      name: ITEMS['titanfoil_dwarven_idol'].name,
+      baseStats: ITEMS['titanfoil_dwarven_idol'].stats,
+      extraStats: ITEMS['titanfoil_dwarven_idol'].extraStats
+    },
     {
       type: 'item',
       itemId: 'enhancer_key',

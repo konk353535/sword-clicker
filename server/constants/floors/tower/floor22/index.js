@@ -124,10 +124,23 @@ export const TOWER_FLOOR_22 = {
 
   boss: {
     enemy: { id: 'boss_high_angel', amount: 1 },
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'holy_plate', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [
+    {
+      type: 'item',
+      itemId: 'astral_dwarven_idol',
+      icon: ITEMS['astral_dwarven_idol'].icon,
+      name: ITEMS['astral_dwarven_idol'].name,
+      baseStats: ITEMS['astral_dwarven_idol'].stats,
+      extraStats: ITEMS['astral_dwarven_idol'].extraStats
+    },
     {
       type: 'item',
       itemId: 'enhancer_key',

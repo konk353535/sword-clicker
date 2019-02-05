@@ -1054,6 +1054,154 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  eternal_flame: {
+    duplicateTag: 'eternal_flame', // Used to stop duplicate buffs
+    icon: 'eternalFlame.svg',
+    name: 'eternal flame',
+    description() {
+      return `Randomly ignites enemies.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (Math.random() <= 0.015) {
+          const targetEnemy = lodash.sample(actualBattle.enemies);
+          const newBuff = {
+            id: 'ignite_phoenix_hat',
+            data: {
+              allowDuplicates: true,
+              duration: 15,
+              totalDuration: 15,
+              icon: 'ignite.svg',
+              description: ''
+            },
+            constants: BUFFS['ignite_phoenix_hat']
+          };
+
+          // cast ignite
+          addBuff({ buff: newBuff, target: targetEnemy, caster: target, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  honeycomb: {
+    duplicateTag: 'honeycomb', // Used to stop duplicate buffs
+    icon: 'honeycombItem.svg',
+    name: 'honeycomb',
+    description() {
+      return `Slowly heals you during combat and can also remove poisons <br />and stop bleeding.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.delay = 1.0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.delay > 0.0) {
+          buff.data.delay -= secondsElapsed;
+          return;
+        }
+        
+        if (Math.random() <= 0.2) { // average once per second, self-heal 5-15 health (plus healingPower % bonus)
+          buff.data.delay = 1.0;
+          actualBattle.healTarget(5 + (Math.random() * 10), {
+            caster: target,
+            target: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
+        
+        if (Math.random() <= 0.02) { // average once per 10 seconds, remove a bleed
+          let tempBleedBuff = undefined;
+          target.buffs.forEach((tempBuff) => {
+            if ((tempBuff.id === 'bleed') || (tempBuff.id === 'bleed_proper')) {
+              tempBleedBuff = tempBuff;
+            }
+          });
+          if (tempBleedBuff) {
+            buff.data.delay = 1.0;
+            removeBuff({ buff: tempBleedBuff, target: target, caster: target, actualBattle });
+          }
+        }
+        
+        if (Math.random() <= 0.01) { // average once per 20 seconds, remove a poison
+          let tempPoisonBuff = undefined;
+          target.buffs.forEach((tempBuff) => {
+            if (tempBuff.id === 'basic_poison') {
+              tempPoisonBuff = tempBuff;
+            }
+          });
+          if (tempPoisonBuff) {
+            buff.data.delay = 1.0;
+            removeBuff({ buff: tempPoisonBuff, target: target, caster: target, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  holy_plate: {
+    duplicateTag: 'holy_plate', // Used to stop duplicate buffs
+    icon: 'holeyChestplate.svg',
+    name: 'holy_plate',
+    description() {
+      return `
+        Brings you back from the brink of death during combat. <br />
+        This effect can only occur once per battle.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      usedUp: false,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.usedUp = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+      
+      onBeforeDeath({ buff, target, actualBattle }) {
+        if (!buff.data.usedUp) {
+          target.stats.health = target.stats.healthMax;
+          buff.data.usedUp = true;
+          removeBuff({ target, buff, caster: target, actualBattle })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
   demons_heart: {
     duplicateTag: 'demons_heart', // Used to stop duplicate buffs
     icon: 'demonsHeart.svg',

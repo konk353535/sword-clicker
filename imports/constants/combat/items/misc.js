@@ -4774,4 +4774,29 @@ export const MISC_ITEMS = {
       level: 20
     }]
   },
+  
+  honeycomb_pants: {
+    id: 'honeycomb_pants',
+    icon: 'honeycombItem.svg',
+    category: 'combat',
+    slot: 'legs',
+    name: 'honeycomb pants',
+    sellPrice: 8500,
+    description: 'Pants with pockets laden with a powerful source of health and recovery.',
+    isEquippable: true,
+    stats: {
+      healthMax: 150,
+      healingPower: 5
+    },
+    extraStats: {
+      healthMax: 50,
+      healingPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'health',
+      level: 75
+    }],
+    enchantments: ['honeycomb']
+  },
 };

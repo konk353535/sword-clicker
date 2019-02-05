@@ -1,3 +1,4 @@
+// keywords for searching: needgreed need greed need/greed need+greed
 // need / greed matchers can be added here
 // keys are used for friendly identification, values are a function that returns true / false given a string input
 export const NEED_GREED_ITEMS = {
@@ -57,7 +58,7 @@ export const NEED_GREED_ITEMS = {
   },
   boss_items: (str) => {
     // tomes are already need greed, as is druid
-    return RegExp('shark_tooth_amulet|snake_skin_chest|bone_kings_axe|spartan_spear|gold_crown_scroll|oversized_club|phoenix_hat|thors_skull|demons_heart|shadow_knife|smoke_dagger|living_helmet|bloody_plate_legs|frankensteins_heart|rich_snake_skin|krakens_tentacle|bison_axe|baby_fox', 'g').test(str)
+    return RegExp('shark_tooth_amulet|snake_skin_chest|bone_kings_axe|spartan_spear|gold_crown_scroll|oversized_club|phoenix_hat|thors_skull|demons_heart|shadow_knife|smoke_dagger|living_helmet|bloody_plate_legs|frankensteins_heart|rich_snake_skin|krakens_tentacle|bison_axe|baby_fox|eternal_flame|holy_plate|honeycomb_pants|farplane_resonator', 'g').test(str)
   },
   crafting_scrolls: (str) => {
     // tomes are already need greed
@@ -79,8 +80,8 @@ export const NEED_GREED_ITEMS = {
     return RegExp('dwarven_staff', 'g').test(str)
   },
   event_items: (str) => {
-    // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome)
-    return RegExp('festive_hat|ornamental_hat|event_ny_balloons|event_lny_lion_claws|event_lny_lion_body|event_lny_lion_head|event_lny_lunar_shield', 'g').test(str)
+    // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome|lny_pig_tome_level_x|cheer_tome|vd_cupid_tome_level_x)
+    return RegExp('festive_hat|ornamental_hat|event_ny_balloons|event_lny_lion_claws|event_lny_lion_body|event_lny_lion_head|event_lny_lunar_shield|event_vd_bear_slippers|event_vd_rose_quartz_amulet', 'g').test(str)
   },
   special_items: (str) => {
     return RegExp('enhancer_key|lemonade', 'g').test(str)

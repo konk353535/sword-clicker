@@ -1442,7 +1442,6 @@ export const COMPANION_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster }) {
-        buff.data.timeTillAction = 0.0;
         buff.data.CDAirBall = 0.0;
         buff.data.CDMend = 0.0;
         buff.data.CDWaterBall = 0.0,
@@ -1470,192 +1469,190 @@ export const COMPANION_BUFFS = {
           buff.data.CDBleed -= secondsElapsed;
         }
         
-        if (buff.data.timeTillAction > 0.0) {
-          buff.data.timeTillAction -= secondsElapsed;
-        } else {
-          // Note: using half of all ticks
-          if (Math.random() < 0.5) {
-            return;
-          }
-          
-          // Note: always accept whatever target we're on automatically, no re-targeting
-          
-          if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
-            return;
-          }
-          
-          try {
-            // attempt mass charm every ~20 seconds (~10 seconds but we eat half our ticks)
-            if (buff.data.level >= 5) {
-              if (Math.random() < 0.02) {
-                actualBattle.enemies.forEach((enemy) => {
-                  const newBuff = {
-                    id: 'charm',
-                    data: {
-                      icon: 'eventVDhearts.svg',
-                      description: ``,
-                      name: 'charm',
-                      level: 1,
-                      duration: 5,
-                      totalDuration: 5,
-                      wasCharmed: false,
-                    },
-                    constants: BUFFS['charm']
-                  };
-                  addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle });                  
-                });
-              }
+        // Note: using half of all ticks
+        if (Math.random() < 0.5) {
+          return;
+        }
+        
+        // Note: always accept whatever target we're on automatically, no re-targeting
+        
+        if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
+          return;
+        }
+        
+        // START: logic mass charm every ~15 seconds
+        try {
+          if (buff.data.level >= 5) {
+            if (Math.random() < 0.01333) {
+              actualBattle.enemies.forEach((enemy) => {
+                const newBuff = {
+                  id: 'charm',
+                  data: {
+                    icon: 'eventVDhearts.svg',
+                    description: ``,
+                    name: 'charm',
+                    level: 1,
+                    duration: 5,
+                    totalDuration: 5,
+                    wasCharmed: false,
+                  },
+                  constants: BUFFS['charm']
+                };
+                addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle });                  
+              });
             }
-          } catch (err) {
           }
+        } catch (err) {
+        }
+        // END: logic mass charm
 
-          try {
-            // START: logic for targets
-            let enemyIsDodging = false;
-            if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-              const enemyDodgeBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'evasive_maneuvers'); // this covers ninjas evading and spirits blinking
-              enemyIsDodging = (enemyDodgeBuffs && enemyDodgeBuffs.length > 0);
+        try {
+          // START: logic for targets
+          let enemyIsDodging = false;
+          if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
+            const enemyDodgeBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'evasive_maneuvers'); // this covers ninjas evading and spirits blinking
+            enemyIsDodging = (enemyDodgeBuffs && enemyDodgeBuffs.length > 0);
+          }
+          // END: logic for targets
+          
+          if (!enemyIsDodging) {
+            if (buff.data.level >= 3 && buff.data.CDPSlash <= 0.0) {
+              // START: use Penetrating Slash
+              const newBuff = {
+                id: 'penetrating_slash',
+                data: {
+                  icon: 'penetratingSlash.svg',
+                  description: ``,
+                  name: 'penetrating slash',
+                  level: buff.data.level === 5 ? 5 : 4
+                },
+                constants: BUFFS['penetrating_slash']
+              };
+              addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+              buff.data.CDPSlash = 10.0;
+            // END: use Penetrating Slash
             }
-            // END: logic for targets
             
-            if (!enemyIsDodging) {
-              if (buff.data.level >= 3 && buff.data.CDPSlash <= 0.0) {
-                // START: use Penetrating Slash
-                const newBuff = {
-                  id: 'penetrating_slash',
-                  data: {
-                    icon: 'penetratingSlash.svg',
-                    description: ``,
-                    name: 'penetrating slash',
-                    level: buff.data.level === 5 ? 5 : 4
-                  },
-                  constants: BUFFS['penetrating_slash']
-                };
-                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
-                buff.data.CDPSlash = 10.0;
-              // END: use Penetrating Slash
-              }
-              
-              if (buff.data.level >= 4 && buff.data.CDBleed <= 0.0 && actualBattle.enemies[0].stats.health >= 400) {
-                // START: use Bleed
-                const newBuff = {
-                  id: 'bleed',
-                  data: {
-                    duration: 15,
-                    totalDuration: 15,
-                    icon: 'bleed.svg',
-                    description: ``,
-                    name: 'bleed',
-                    level: buff.data.level
-                  },
-                  constants: BUFFS['bleed']
-                };
-                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
-                buff.data.CDBleed = 30.0;
-                // END: use Bleed
-              }
+            if (buff.data.level >= 4 && buff.data.CDBleed <= 0.0 && actualBattle.enemies[0].stats.health >= 400) {
+              // START: use Bleed
+              const newBuff = {
+                id: 'bleed',
+                data: {
+                  duration: 15,
+                  totalDuration: 15,
+                  icon: 'bleed.svg',
+                  description: ``,
+                  name: 'bleed',
+                  level: buff.data.level
+                },
+                constants: BUFFS['bleed']
+              };
+              addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+              buff.data.CDBleed = 30.0;
+              // END: use Bleed
             }
-          } catch (err) {
           }
+        } catch (err) {
+        }
 
-          // START: logic Air Ball
-          try {
-            if (buff.data.level >= 1 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {
-              if (actualBattle.isTower()) {
-                if (!actualBattle.isExplorationRun || actualBattle.room >= 4 || actualBattle.room === 'boss') {              
-                  if (actualBattle.enemies.length > 0 && actualBattle.enemies[0].id !== 'crab') {
-                    // always air left-to-right
-                    let enemyIsAired = false;
-                    if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-                      const enemyAirBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'air_ball');
-                      enemyIsAired = enemyAirBuffs && enemyAirBuffs.length > 0;
-                    }
-                    if (!enemyIsAired) {
-                      // START: cast Air Ball
-                      const newBuff = {
-                        id: 'air_ball',
-                        data: {
-                          duration: 7,
-                          totalDuration: 7,
-                          icon: 'airBall.svg',
-                          description: `Reduces enemy armor.`,
-                          name: 'air ball'
-                        },
-                        constants: BUFFS['air_ball']
-                      };
-                      // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                      addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
-                      buff.data.CDAirBall = 10.0;
-                      // END: cast Air Ball
-                    }
+        // START: logic Air Ball
+        try {
+          if (buff.data.level >= 1 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {
+            if (actualBattle.isTower()) {
+              if (!actualBattle.isExplorationRun || actualBattle.room >= 4 || actualBattle.room === 'boss') {              
+                if (actualBattle.enemies.length > 0 && actualBattle.enemies[0].id !== 'crab') {
+                  // always air left-to-right
+                  let enemyIsAired = false;
+                  if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
+                    const enemyAirBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'air_ball');
+                    enemyIsAired = enemyAirBuffs && enemyAirBuffs.length > 0;
+                  }
+                  if (!enemyIsAired) {
+                    // START: cast Air Ball
+                    const newBuff = {
+                      id: 'air_ball',
+                      data: {
+                        duration: 7,
+                        totalDuration: 7,
+                        icon: 'airBall.svg',
+                        description: `Reduces enemy armor.`,
+                        name: 'air ball'
+                      },
+                      constants: BUFFS['air_ball']
+                    };
+                    // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+                    addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
+                    buff.data.CDAirBall = 10.0;
+                    // END: cast Air Ball
                   }
                 }
               }
             }
-          } catch (err) {
           }
-          // END: logic Air Ball
-          
-          // START: logic healing spells
-          try {
-            const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
-            const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
-              if (unit.buffs.find(buff => buff.id === 'mending_water')) {
-                return false;
-              }
-              return true;
-            });
-            const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
-            const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
-            if (lowHealthTest < 0.70) {
-              if (!castAnyHeal && buff.data.level >= 2 && buff.data.CDWaterBall <= 0.0) {
-                // START: cast Water Ball
-                const newBuff = {
-                  id: 'water_ball',
-                  data: {
-                    icon: 'waterBall.svg',
-                    description: `Directly heals target.`,
-                    name: 'water ball'
-                  },
-                  constants: BUFFS['water_ball']
-                };
-                // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
-                buff.data.CDWaterBall = 10.0;
-                castAnyHeal = true;
-                // END: cast Water Ball
-              }
-              if (!castAnyHeal && buff.data.level >= 1 && lowHealthTestNoMending < 0.70 && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
-                // START: cast Mending Water
-                const newBuff = {
-                  id: 'mending_water',
-                  data: {
-                    icon: 'mendingWater.svg',
-                    description: `Heals target over time.`,
-                    name: 'mending water',
-                    duration: 20,
-                    totalDuration: 20,
-                  },
-                  constants: BUFFS['mending_water']
-                };
-                // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
-                buff.data.CDMend = 30.0;
-                castAnyHeal = true;
-                // END: cast Mending Water
-              }
+        } catch (err) {
+        }
+        // END: logic Air Ball
+        
+        // START: logic healing spells
+        try {
+          const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
+          const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
+            if (unit.buffs.find(buff => buff.id === 'mending_water')) {
+              return false;
             }
-          } catch (err) {
+            return true;
+          });
+          const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
+          const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
+          if (lowHealthTest < 0.70) {
+            if (!castAnyHeal && buff.data.level >= 2 && buff.data.CDWaterBall <= 0.0) {
+              // START: cast Water Ball
+              const newBuff = {
+                id: 'water_ball',
+                data: {
+                  icon: 'waterBall.svg',
+                  description: `Directly heals target.`,
+                  name: 'water ball'
+                },
+                constants: BUFFS['water_ball']
+              };
+              // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+              addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
+              buff.data.CDWaterBall = 10.0;
+              castAnyHeal = true;
+              // END: cast Water Ball
+            }
+            if (!castAnyHeal && buff.data.level >= 1 && lowHealthTestNoMending < 0.70 && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
+              // START: cast Mending Water
+              const newBuff = {
+                id: 'mending_water',
+                data: {
+                  icon: 'mendingWater.svg',
+                  description: `Heals target over time.`,
+                  name: 'mending water',
+                  duration: 20,
+                  totalDuration: 20,
+                },
+                constants: BUFFS['mending_water']
+              };
+              // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+              addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
+              buff.data.CDMend = 30.0;
+              castAnyHeal = true;
+              // END: cast Mending Water
+            }
           }
-          // END: logic healing spells
-          
-          if (castAnyHeal) {
-            if (healthMaxAtStart === target.stats.healthMax) {
-              // if we tried to cast a heal spell but our health max at the start and end wre the same, then we couldn't afford to cast anything
-              buff.data.timeTillAction = 0.4;
-            }
+        } catch (err) {
+        }
+        // END: logic healing spells
+        
+        /*
+        if (castAnyHeal) {
+          if (healthMaxAtStart === target.stats.healthMax) {
+            // if we tried to cast a heal spell but our health max at the start and end wre the same, then we couldn't afford to cast anything
           }
         }
+        */
       },
 
       onRemove({ buff, target, caster }) {

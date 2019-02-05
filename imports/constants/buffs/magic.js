@@ -2559,7 +2559,7 @@ export const MAGIC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const hasCantBeCharmedOrCharmed = target.buffs.find((buff) => buff.id === 'charm' || buff.id === 'cant_be_charmed');
+        const hasCantBeCharmedOrCharmed = target.buffs.find((buff) => (buff.id === 'charm' && buff.data.wasCharmed) || buff.id === 'cant_be_charmed');
         if (hasCantBeCharmedOrCharmed) {
           buff.duration = -1.0;
           buff.data.timeCount = 999.9;

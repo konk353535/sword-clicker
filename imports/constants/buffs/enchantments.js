@@ -1166,8 +1166,8 @@ export const ENCHANTMENT_BUFFS = {
 
   holy_plate: {
     duplicateTag: 'holy_plate', // Used to stop duplicate buffs
-    icon: 'holyChestplate.svg',
-    name: 'holy_plate',
+    icon: 'holyChestplate.png',
+    name: 'holy plate',
     description() {
       return `
         Brings you back from the brink of death during combat. <br />

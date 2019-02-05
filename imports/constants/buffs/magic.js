@@ -340,7 +340,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmor) {
           target.stats.armor -= buff.data.totalArmor;
         }
@@ -408,7 +408,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt }) {
+      onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
         if (buff.data.shieldHp >= damageDealt) {
           buff.data.shieldHp -= damageDealt;
           defender.stats.health += damageDealt;
@@ -422,7 +422,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.damageDecimal) {
           target.stats.attack -= buff.data.attack;
           target.stats.attackMax -= buff.data.attackMax;
@@ -480,7 +480,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
+      onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
         if (buff.data.shieldHp >= damageDealt) {
           buff.data.shieldHp -= damageDealt;
           defender.stats.health += damageDealt;
@@ -494,7 +494,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.damageDecimal) {
           target.stats.attack -= buff.data.attack;
           target.stats.attackMax -= buff.data.attackMax;
@@ -556,7 +556,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.increaseDecimal) {
           target.stats.attackSpeed /= (1 + buff.data.increaseDecimal);
           target.stats.attack -= buff.data.attack;
@@ -620,7 +620,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -687,7 +687,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmor) {
           target.stats.armor -= buff.data.totalArmor;
         }
@@ -743,7 +743,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -795,7 +795,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -847,7 +847,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -919,7 +919,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -991,7 +991,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -1036,7 +1036,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -1257,7 +1257,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmorReduction) {
           target.stats.armor += buff.data.totalArmorReduction;
         }
@@ -1330,7 +1330,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmorReduction) {
           target.stats.armor += buff.data.totalArmorReduction;
         }
@@ -1403,7 +1403,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmorReduction) {
           target.stats.armor += buff.data.totalArmorReduction;
         }
@@ -1465,7 +1465,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.totalArmorReduction) {
           target.stats.armor += buff.data.totalArmorReduction;
         }
@@ -1549,7 +1549,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
       }
     }
   },
@@ -1630,7 +1630,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
       }
     }
   },
@@ -1686,7 +1686,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -1738,7 +1738,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -1802,7 +1802,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.attackSpeedDecrease) {
           // Mutate targets attack speed
           target.stats.attackSpeed /= (1 - (buff.data.attackSpeedDecrease / 100));
@@ -1884,7 +1884,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
   */
@@ -1964,7 +1964,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ target, buff, caster })
       },
 
-      onRemove() {
+      onRemove({ buff, target, caster, actualBattle }) {
       }
     }
   },
@@ -2007,7 +2007,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
   
@@ -2090,7 +2090,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ target, buff, caster })
       },
 
-      onRemove() {
+      onRemove({ buff, target, caster, actualBattle }) {
       }
     }
   },
@@ -2135,27 +2135,9 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   inferno: {
     duplicateTag: 'inferno', // Used to stop duplicate buffs
@@ -2226,7 +2208,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -2279,7 +2261,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -2332,7 +2314,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -2385,7 +2367,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -2438,7 +2420,7 @@ export const MAGIC_BUFFS = {
         removeBuff({ buff, target, caster });
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
     }
   },
 
@@ -2477,7 +2459,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.powerIncrease) {
           target.stats.magicPower -= buff.data.powerIncrease;
         }
@@ -2520,7 +2502,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onRemove({ buff, target, caster }) {
+      onRemove({ buff, target, caster, actualBattle }) {
         if (buff.data.powerIncrease) {
           target.stats.healingPower -= buff.data.powerIncrease;
         }
@@ -2553,7 +2535,107 @@ export const MAGIC_BUFFS = {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
       },
 
-      onRemove() {}
+      onRemove({ buff, target, caster, actualBattle }) {}
+    }
+  },
+  
+  charm: {
+    duplicateTag: 'charm', // Used to stop duplicate buffs
+    icon: 'eventVDhearts.svg',
+    name: 'charm',
+    description({ buff, level }) {
+      return `
+        Charms an enemy, preventing it from attacking and performing <br />
+        actions for 5 seconds unless harmed.  Once the charm is over, <br />
+        an enemy can't be charmed again for 15 seconds.`;
+    },
+    constants: {
+      allowTicks: true,
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+      wasCharmed: false
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const hasCantBeCharmedOrCharmed = target.buffs.find((buff) => buff.id === 'charm' || buff.id === 'cant_be_charmed');
+        if (hasCantBeCharmedOrCharmed) {
+          buff.duration = -1.0;
+          buff.data.timeCount = 999.9;
+          buff.data.wasCharmed = false;
+        } else {
+          target.isCharmed = true;
+          buff.data.timeCount = 0.0;
+          buff.data.wasCharmed = true;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.duration -= secondsElapsed;
+        buff.data.timeCount += secondsElapsed;
+        
+        if ((buff.duration <= 0) || (buff.data.timeCount >= buff.data.totalDuration)) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+      
+      onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
+        // give them half a second grace period to swap to another target before their auto-attack hits the thing
+        if (buff.data.timeCount >= 0.5) {
+          removeBuff({ buff, target: defender, caster: defender, actualBattle });
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (buff.data.wasCharmed) {
+          target.isCharmed = false;
+          
+          let newBuff = target.addBuff({
+            id: 'cant_be_charmed',
+            data: {
+              duration: 15,
+              totalDuration: 15,
+              icon: 'angry.svg',
+              sourceId: caster.id
+            }
+          });
+        }
+      }
+    }
+  },
+  
+  cant_be_charmed: {
+    duplicateTag: 'cant_be_charmed', // Used to stop duplicate buffs
+    icon: 'angry.svg',
+    name: 'can\'t be charmed',
+    description({ buff, level }) {
+      return `
+        Recently charmed and can't be charmed again.`;
+    },
+    constants: {
+      allowTicks: true,
+    },
+    data: {
+      duration: 15,
+      totalDuration: 15,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeCount = 0.0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.duration -= secondsElapsed;
+        buff.data.timeCount += secondsElapsed;
+        
+        if ((buff.duration <= 0) || (buff.data.timeCount >= buff.data.totalDuration)) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+      
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
     }
   },
 };

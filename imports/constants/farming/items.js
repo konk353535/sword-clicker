@@ -862,6 +862,22 @@ export const FARMING_ITEMS = {
     }],
     sellPrice: 1
   },
+  
+  chocolates: {
+    id: 'chocolates',
+    icon: 'eventVDchocolate.svg',
+    category: 'food',
+    name: 'chocolates',
+    description() {
+      const buff = BUFFS.food_chocolates;
+      return buff.description({ buff });
+    },
+    buffs: [{
+      id: 'food_chocolates'
+    }],
+    sellPrice: 1
+  },
+
 
   basil_seed: {
     id: 'basil_seed',

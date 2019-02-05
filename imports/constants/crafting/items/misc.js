@@ -83,4 +83,32 @@ export const MISC_ITEMS = {
       /*  4% chance: */ 'lemonade', 'lemonade',
     ],
   },
+    
+  gift_box_valentines: {
+    id: 'gift_box_valentines',
+    icon: 'eventVDgiftbox.svg',
+    category: 'item_box',
+    name: 'box of chocolates',
+    sellPrice: 1,
+    description: `
+      Can be opened (consumed) to reveal a prize.`,
+    shiftActionData: {
+      description: 'open to reveal a prize'
+    },
+    // 50 items
+    contentsList:
+    [
+      /*  8% chance: */ 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet',
+      /*  8% chance: */ 'event_vd_bear_slippers', 'event_vd_bear_slippers', 'event_vd_bear_slippers', 'event_vd_bear_slippers',
+      /*  8% chance: */ 'event_vd_charm_tome', 'event_vd_charm_tome', 'event_vd_charm_tome', 'event_vd_charm_tome',
+      /* 10% chance: */ 'vd_cherub_tome_level_1', 'vd_cherub_tome_level_1', 'vd_cherub_tome_level_1', 'vd_cherub_tome_level_1', 'vd_cherub_tome_level_1',
+      /*  8% chance: */ 'vd_cherub_tome_level_2', 'vd_cherub_tome_level_2', 'vd_cherub_tome_level_2', 'vd_cherub_tome_level_2', 
+      /*  6% chance: */ 'vd_cherub_tome_level_3', 'vd_cherub_tome_level_3', 'vd_cherub_tome_level_3', 
+      /*  4% chance: */ 'vd_cherub_tome_level_4', 'vd_cherub_tome_level_4', 
+      /*  2% chance: */ 'vd_cherub_tome_level_5', 
+      /*  6% chance: */ 'gems:2', 'gems:3', 'gems:5',
+      /*  2% chance: */ 'enhancer_key',
+      /* 38% chance: */ 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates', 'chocolates',
+      ],
+  },
 };

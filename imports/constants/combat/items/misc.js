@@ -4730,4 +4730,48 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['lunar_shield']
   },
+
+  event_vd_bear_slippers: {
+    id: "event_vd_bear_slippers",
+    icon: "eventVDbear.svg",
+    category: "combat",
+    slot: "legs",
+    name: "bear slippers",
+    sellPrice: 1,
+    description: "They're so cute!",
+    isEquippable: true,
+    stats: {
+    },
+    extraStats: {
+    },
+    enchantments: ['bear_slippers'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
+
+  event_vd_rose_quartz_amulet: {
+    id: "event_vd_rose_quartz_amulet",
+    icon: "eventVDnecklace.svg",
+    category: "combat",
+    slot: "neck",
+    name: "rose quartz amulet",
+    sellPrice: 1,
+    description: "Radiating a healing aura.",
+    isEquippable: true,
+    stats: {
+      healingPower: 40
+    },
+    extraStats: {
+      healingPower: 10
+    },
+    enchantments: ['rose_quartz_amulet'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 20
+    }]
+  },
 };

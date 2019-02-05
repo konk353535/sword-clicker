@@ -2914,6 +2914,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the lion dance ability.'
   },
 
+  event_vd_charm_tome: {
+    id: 'event_vd_charm_tome',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'charm tome',
+    teaches: {
+      abilityId: 'charm',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the charm ability.'
+  },
+
   baby_fox_tome: {
     id: 'baby_fox_tome',
     icon: 'tome.svg',

@@ -408,8 +408,9 @@ export const ENCHANTMENT_BUFFS = {
       return `
         Converts 250% of magic armor into health. <br />
         Whenever you take damage, 3% of your original maximum <br />
-        health reduced from spellcasting is restored. <br />
-        This effect can occur once every 5 seconds.`;
+        health reduced from spellcasting is restored. This will <br />
+        not restore any of your current missing health.<br />
+        This effect can only occur once every 5 seconds.`;
     },
     constants: {
     },
@@ -1214,7 +1215,7 @@ export const ENCHANTMENT_BUFFS = {
 
       onBeforeDeath({ buff, target, actualBattle }) {
         if (!buff.data.active) {
-          target.silenced = true;
+          target.isSilenced = true;
           target.stats.health = target.stats.healthMax;
           target.stats.attackMax *= 1.5;
           target.stats.attack *= 1.5;
@@ -1714,5 +1715,81 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
+  
+  bear_slippers: {
+    duplicateTag: 'bear_slippers', // Used to stop duplicate buffs
+    icon: 'eventVDbear.svg',
+    name: 'bear slippers',
+    description() {
+      return `
+        Restores 1% of your original maximum health that has been <br />
+        lowered from combat spellcasting every second.  This will not <br />
+        restore any of your current missing health.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster }) {
+        buff.data.timeCount = 1.00;
+      },
 
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.timeCount > 0) {
+          buff.data.timeCount -= secondsElapsed;
+        }
+        if (buff.data.timeCount <= 0) {
+          buff.data.timeCount = 1.0;
+          
+          try {
+            let hpMaxHealth = defender.stats.healthMaxOrig;
+            let hpAmountToRaise = 0.01 * hpMaxHealth;
+            
+            if (defender.stats.healthMax + hpAmountToRaise > hpMaxHealth) {
+              defender.stats.healthMax = hpMaxHealth;
+            } else {
+              defender.stats.healthMax += hpAmountToRaise;
+            }
+          } catch (err) {
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  rose_quartz_amulet: {
+    duplicateTag: 'rose_quartz_amulet', // Used to stop duplicate buffs
+    icon: 'eventVDnecklace.svg',
+    name: 'rose quartz amulet',
+    description() {
+      return `
+        While wearing this amulet, you are incapable of causing harm.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+        target.isPacifist = true;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.isPacifist = false;
+      }
+    }
+  },
 };

@@ -658,4 +658,20 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+
+  charm: {
+    icon: 'eventVDhearts.svg',
+    name: 'charm',
+    id: 'charm',
+    buffs: ['charm'],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isPacifist: true,
+    isHidden: true,
+    description(level) {
+      const BUFF = BUFFS.charm;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

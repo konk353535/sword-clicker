@@ -1166,7 +1166,7 @@ export const ENCHANTMENT_BUFFS = {
 
   holy_plate: {
     duplicateTag: 'holy_plate', // Used to stop duplicate buffs
-    icon: 'holeyChestplate.svg',
+    icon: 'holyChestplate.svg',
     name: 'holy_plate',
     description() {
       return `

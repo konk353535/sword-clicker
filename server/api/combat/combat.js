@@ -101,7 +101,11 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       });
 
       if (combatItem.constants.slot === 'mainHand') {
-        playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
+        if (combatItem.constants.xpDistribution) {
+          playerData.xpDistribution = combatItem.constants.xpDistribution;
+        } else {
+          playerData.xpDistribution = BATTLES.xpDistribution(combatItem.constants.weaponType);
+        }
       }
     }
   }

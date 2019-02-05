@@ -3148,6 +3148,71 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the mystic fairy, giving her a base damage reduction of 10%.'
   },
 
+  vd_cupid_tome_level_1: {
+    id: 'vd_cupid_tome_level_1',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Cupid tome Lv. 1',
+    teaches: {
+      abilityId: 'vd_cupid',
+      level: 1
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
+  vd_cupid_tome_level_2: {
+    id: 'vd_cupid_tome_level_2',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Cupid tome Lv. 2',
+    teaches: {
+      abilityId: 'vd_cupid',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
+  vd_cupid_tome_level_3: {
+    id: 'vd_cupid_tome_level_3',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Cupid tome Lv. 3',
+    teaches: {
+      abilityId: 'vd_cupid',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
+  vd_cupid_tome_level_4: {
+    id: 'vd_cupid_tome_level_4',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Cupid tome Lv. 4',
+    teaches: {
+      abilityId: 'vd_cupid',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
+  vd_cupid_tome_level_5: {
+    id: 'vd_cupid_tome_level_5',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Cupid tome Lv. 5',
+    teaches: {
+      abilityId: 'vd_cupid',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
   lny_pig_tome_level_1: {
     id: 'lny_pig_tome_level_1',
     icon: 'tomeEvent.svg',

@@ -16,6 +16,13 @@ export const DEFENSE_ABILITIES = {
     description(level) {
       // const BUFF = BUFFS.taunt;
       return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
+      
+      let extraInfo = '';
+      if (level >= 2) {
+        extraInfo = `<br />Maximum cooldown is ${(45 - (5 * level)).toFixed(0)}s - (5s per level).`;
+      }
+      return `Forces all enemies to target you. <br />
+        Cooldown increases by 10 seconds for each taunted enemy.${extraInfo}`;
     }
   },
   

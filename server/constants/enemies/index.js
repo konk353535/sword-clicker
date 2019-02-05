@@ -1292,4 +1292,32 @@ export const ENEMIES = Object.assign({
     }]
   },
   
+  imp: {
+    id: 'imp',
+    icon: 'imp.svg',
+    name: 'imp',
+    buffs: [{
+      id: 'imp_monster',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        hideBuff: true
+      }
+    }],    
+    statBuffs: [{
+      type: 'times',
+      key: 'health',
+      amount: 0.6
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 0.6
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 0.7
+    }],
+    swarmRange: [2, 4]
+  },
+  
 }, BOSS_ENEMIES);

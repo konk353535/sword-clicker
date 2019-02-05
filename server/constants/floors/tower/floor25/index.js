@@ -116,7 +116,7 @@ export const TOWER_FLOOR_25 = {
   },
 
   boss: {
-    enemy: { id: 'boss_hive', amount: 1 },
+    enemy: { id: 'boss_ruiner', amount: 1 },
     rewards: []
   },
 

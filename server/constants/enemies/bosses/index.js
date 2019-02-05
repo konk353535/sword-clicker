@@ -10,7 +10,7 @@ export const BOSS_ENEMIES = {
   boss_cougar: {
     id: 'boss_cougar',
     icon: 'puma.svg',
-    name: 'Boss Cougar',
+    name: 'Cougar',
     isBoss: true,
     stats: {
       attack: 20,
@@ -42,7 +42,7 @@ export const BOSS_ENEMIES = {
   boss_cobra: {
     id: 'boss_cobra',
     icon: 'cobra.svg',
-    name: 'Boss cobra',
+    name: 'cobra',
     isBoss: true,
     stats: {
       attack: 15,
@@ -74,7 +74,7 @@ export const BOSS_ENEMIES = {
   boss_bone_warrior: {
     id: 'boss_bone_warrior',
     icon: 'boneWarrior.svg',
-    name: 'Boss Bone Warrior',
+    name: 'Bone Warrior',
     isBoss: true,
     stats: {
       attack: 30,
@@ -638,7 +638,7 @@ export const BOSS_ENEMIES = {
   boss_dragon: {
     id: 'boss_dragon',
     icon: 'dragon.svg',
-    name: 'Boss Dragon',
+    name: 'Dragon',
     isBoss: true,
     stats: {
       attack: 250,
@@ -671,7 +671,7 @@ export const BOSS_ENEMIES = {
   boss_high_angel: {
     id: 'boss_high_angel',
     icon: 'high_angel.svg',
-    name: 'Boss High Angel',
+    name: 'High Angel',
     isBoss: true,
     stats: {
       attack: 150,
@@ -712,7 +712,7 @@ export const BOSS_ENEMIES = {
   boss_hive: {
     id: 'boss_hive',
     icon: 'hive.svg',
-    name: 'Boss Hive',
+    name: 'Hive',
     isBoss: true,
     stats: {
       attack: 1,
@@ -738,5 +738,44 @@ export const BOSS_ENEMIES = {
       }
     }],
     rewards: []
-  }
+  },
+
+  boss_ruiner: {
+    id: 'boss_ruiner',
+    icon: 'boss24.svg',
+    name: 'The Ruiner',
+    isBoss: true,
+    stats: {
+      attack: 450,
+      attackMax: 650,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 450,
+      health: 6500,
+      healthMax: 6500,
+      defense: 750,
+      armor: 925,
+      magicArmor: 350,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_ruiner',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'boss ruiner',
+        icon: 'boss24.svg',
+        hideBuff: true,
+      }
+    }, {
+      id: 'boss_dragon',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        icon: 'seethingHatred.svg',
+        name: 'Hatred Attacks',
+        hideBuff: true,
+      }
+    }],
+    rewards: []
+  },
 };

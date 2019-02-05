@@ -1187,7 +1187,7 @@ export const BOSS_BUFFS = {
     }
   },
 
- boss_genie_wisdom_up: {
+  boss_genie_wisdom_up: {
     duplicateTag: 'boss_genie_wisdom_up', // Used to stop duplicate buffs
     icon: 'bossGenieWisdomLamp.svg',
     name: 'wisdom up',
@@ -2418,6 +2418,67 @@ export const BOSS_BUFFS = {
       },
 
       onRemove({buff, target}) {
+      }
+    }
+  },
+
+  boss_ruiner: {
+    duplicateTag: 'boss_ruiner', // Used to stop duplicate buffs
+    icon: 'boss24.svg',
+    name: 'The Ruiner',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `Summons imps`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeTillSpawn = 10;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        buff.data.timeTillSpawn -= secondsElapsed;
+
+        // So user can see how far away spawn is
+        buff.stacks = Math.round(buff.data.timeTillSpawn);
+
+        if (buff.data.timeTillSpawn <= 0) {
+          const impStats = lodash.cloneDeep(target.stats.raw());
+          impStats.health = 150;
+          impStats.healthMax = 150;
+          impStats.defense *= 0.6;
+          impStats.armor *= 0.3;
+          impStats.attack *= 0.1;
+          impStats.attackMax *= 0.1;
+          impStats.accuracy *= 0.8;
+          impStats.magicPower = 1;
+
+          // Spawn an imp.. nasty thing
+          const newImp = {
+            id: uuid.v4(),
+            tickOffset: 0,
+            isEnemy: true,
+            icon: 'imp.svg',
+            name: 'Imp',
+            buffs: [{
+              id: 'imp_monster',
+              data: {
+                hideBuff: true
+              }
+            }],
+            stats: impStats
+          };
+
+          actualBattle.addUnit(newImp);
+
+          buff.data.timeTillSpawn = (Math.random() * 5) + 10;
+        }
+      },
+
+      onRemove({ buff, target }) {
       }
     }
   },

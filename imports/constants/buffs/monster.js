@@ -2136,4 +2136,100 @@ export const MONSTER_BUFFS = {
       }
     }
   },
+
+  imp_monster: {
+    duplicateTag: 'imp_monster',
+    icon: '',
+    name: 'imp monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (Math.round(damageDealt) <= 0.0) {
+          return false;
+        }
+        
+        // when we deal damage, choose a target
+        const randomTarget = (Math.random() < 0.50); // if 'true', then we choose a random target instead of defender
+        const impVictim = (randomTarget) ? _.sample(actualBattle.units) : defender;
+        
+        // when we deal damage, cause a random affliction:
+        const randomAffliction = Math.random();
+        let newBuff;
+        
+        if (randomAffliction <= 0.10) {
+          // stun target
+          newBuff = {
+            id: 'stunned',
+            data: {
+              duration: 5,
+              totalDuration: 5,
+              icon: 'stunned.svg',
+              name: 'Stunned',
+              description: `You are stunned and can't take any actions or fight.`
+            }
+          };
+        } else if (randomAffliction <= 0.20) {
+          // force target to re-target
+          
+          const new_target = _.sample(actualBattle.enemies);
+          if (new_target) {
+            impVictim.target = new_target.id;
+          }
+        } else if (randomAffliction <= 0.30) {
+          // bleed target
+          newBuff = {
+            id: 'bleed_proper',
+            data: {
+              name: 'bleed',
+              description: `You are bleeding from infected imp bites.`,
+              icon: 'bleeding.svg',
+              allowDuplicates: true,
+              duration: 8,
+              totalDuration: 8,
+              dps: attacker.stats.attackMax / 15,
+              timeTillDamage: 1,
+              caster: attacker.id,
+            },
+            constants: BUFFS['bleed']
+          };          
+        } else if (randomAffliction <= 0.40) {
+          // break target armor
+            newBuff = {
+              id: 'armor_reduction',
+              data: {
+                name: 'Armor Shredded',
+                duration: 5,
+                allowDuplicates: true,
+                duplicateCap: 2,
+                totalDuration: 5,
+                armorReduction: 0.66,
+                icon: 'armorReduction.svg',
+                description: `Reduces your armor by ${Math.round((1 - 0.66) * 100)}%`
+              }
+            };
+          } else {
+          // no affliction this round
+          return;
+        }
+        
+        if (newBuff) {
+          addBuff({ buff: newBuff, target: impVictim, caster: attacker, actualBattle });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 };

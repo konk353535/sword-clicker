@@ -806,7 +806,7 @@ export const COMPANION_BUFFS = {
     name: 'cupid',
     description({ buff, level }) {
       if (level >= 5) {
-        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 5 <br />and Bleed at level 5.`;
+        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 5 <br />and Bleed at level 5.  Every once in a while, he will lull <br />enemies, charming them for a brief time.`;
       } else if (level === 4) {
         return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 4 <br />and Bleed at level 4.`;
       } else if (level === 3) {
@@ -850,15 +850,15 @@ export const COMPANION_BUFFS = {
               icon: 'eventVDcupid.svg',
               name: target.name + '\'s cupid',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 3.5) + (9 * buff.data.level), // cupids can attack and mage, they're a hybrid
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (33 * buff.data.level),
+                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 3.5) + (11 * buff.data.level), // cupids can attack and mage, they're a hybrid
+                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 2.3) + (35 * buff.data.level),
                 attackSpeed: 0.7,
                 accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.85) + (35 * buff.data.level),
                 health: (Math.sqrt(healthSkill * 3) * towerFloor * 5) + (200 * buff.data.level),
                 healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 5) + (200 * buff.data.level),
                 defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 3.15) + 5,
                 armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
-                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 3) * towerFloor / .5) + 40,
+                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 3) * towerFloor / 2.5) + 40,
                 magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.85) + (10 * buff.data.level),
                 damageTaken: 1, // damage received (1 = 100% of all incoming damage)
                 healingPower: 5 + (3 * buff.data.level),

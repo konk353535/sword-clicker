@@ -211,10 +211,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
       return {
         id: ability.abilityId,
         level: ability.level,
-        currentCooldown: ability.currentCooldown || 0,
+        currentCooldown: 0, // ability.currentCooldown || 0,  /* note: set this to 0 in case they 'go too fast' */
         casts: ability.casts,
         totalCasts: 0,
-        isSpell: ability.isSpell
+        isSpell: ability.isSpell,
+        isPacifist: ability.isPacifist
       }
     });
     

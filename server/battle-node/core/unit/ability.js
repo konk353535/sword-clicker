@@ -45,7 +45,8 @@ export default class Ability {
     this.totalCasts = ability.totalCasts;
     this._currentCooldown = ability.currentCooldown;
     this._casts = ability.casts;
-    this.isSpell = ability.isSpell;
+    this.isSpell = ability.isSpell || this.constants.isSpell;
+    this.isPacifist = ability.isPacifist || this.constants.isPacifist;
   }
 
   cast(targets) {
@@ -71,7 +72,8 @@ export default class Ability {
       currentCooldown: this.currentCooldown,
       casts: this.casts,
       totalCasts: this.totalCasts,
-      isSpell: this.isSpell
+      isSpell: this.isSpell,
+      isPacifist: this.isPacifist,
     }
   }
 }

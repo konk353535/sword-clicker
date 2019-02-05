@@ -273,6 +273,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
+    isPacifist: true,
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.air_dart;
@@ -288,6 +289,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
+    isPacifist: true,
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.air_ball;

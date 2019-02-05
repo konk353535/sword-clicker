@@ -43,10 +43,14 @@ export default class Unit {
     this.monsterType = unit.monsterType;
     this.isLamp = unit.isLamp || false;
     this.isNPC = unit.isNPC || false;
+    this.isSilenced = false;
     this.isCompanion = unit.isCompanion || false;
     this.isSoloCompanion = unit.isSoloCompanion || false;
     this.inactiveMinutes = unit.inactiveMinutes || 0;
     this.enchantmentsList = unit.enchantmentsList;
+    this.isStunned = false;
+    this.isCharmed = false;
+    this.isPacifist = false;
 
     if (unit.abilities) {
       this.abilitiesMap = {};

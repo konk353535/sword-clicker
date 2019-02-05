@@ -807,12 +807,14 @@ Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
         unit.target = defender.id;
       }
 
-      this.autoAttack({
-        attacker: unit,
-        defender,
-        tickEvents: this.tickEvents,
-        historyStats: this.historyStats
-      });
+      if (!unit.isCharmed && !unit.isStunned && !unit.isPacifist) {
+        this.autoAttack({
+          attacker: unit,
+          defender,
+          tickEvents: this.tickEvents,
+          historyStats: this.historyStats
+        });
+      }
     }
   });
 }

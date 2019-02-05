@@ -34,8 +34,23 @@ export default function({ ability, caster, targets }) {
   }
 
   // Is the user silenced (can't use any abilities or spells)
-  if (caster.silenced) {
+  if (caster.isSilenced) {
     canUseAbilityOrSpell = false;
+  }
+  
+  // neither stunned nor charmed players can cast abilities (this includes amulet click damage)
+  if (caster.isStunned || caster.isCharmed) {
+    canUseAbilityOrSpell = false;
+  }
+  
+  // pacifists can only use non-damaging abilities on enemies (or anything for allies)
+  // for enemy targets, this includes taunt, scream, air dart, air ball, and charm
+  if (caster.isPacifist) {
+    if (ability.target === 'currentEnemy' || ability.target === 'allEnemies') {
+      if (!ability.isPacifist) {
+        canUseAbilityOrSpell = false;
+      }
+    }
   }
 
   // Cancel the ability use attempt if they're not elligible to use the ability right now (no CD, no effect) 

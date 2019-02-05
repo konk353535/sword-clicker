@@ -105,6 +105,21 @@ export default class Buff {
     }
   }
 
+  onTick(options) {
+    // players (stunned/charmed or not) or companions/enemies (not stunned/charmed only) can tick their buffs
+    // because most companions/enemies attacks and abilities come from events
+    if (this.events.onTick) {
+      try {
+        if ((this.unit.isCompanion || this.unit.isEnemy) && (this.unit.isStunned || this.unit.isCharmed) && (!this.constants.constants.allowTicks)) {
+          return false;
+        }
+      } catch (err) {
+      }
+
+      this.events.onTick(options);
+    }
+  }
+
   onDidDamage(options) {
     if (this.events.onDidDamage) {
       this.events.onDidDamage(options);
@@ -112,26 +127,29 @@ export default class Buff {
   }
 
   onTookDamage(options) {
+    // players (stunned/charmed or not) or companions/enemies (not stunned/charmed only) can react to damage taken
+    // because most companions/enemies attacks and abilities come from events
     if (this.events.onTookDamage) {
+      try {
+        if ((this.unit.isCompanion || this.unit.isEnemy) && (this.unit.isStunned || this.unit.isCharmed) && (!this.constants.constants.allowTicks)) {
+          return false;
+        }
+      } catch (err) {
+      }
+
       this.events.onTookDamage(options);
-    }
-  }
-
-  onTick(options) {
-    if (this.events.onTick) {
-      this.events.onTick(options);
-    }
-  }
-
-  onRemove(options) {
-    if (this.events.onRemove) {
-      this.events.onRemove(options);
     }
   }
 
   onBeforeDeath(options) {
     if (this.events.onBeforeDeath) {
       this.events.onBeforeDeath(options);
+    }
+  }
+
+  onRemove(options) {
+    if (this.events.onRemove) {
+      this.events.onRemove(options);
     }
   }
 

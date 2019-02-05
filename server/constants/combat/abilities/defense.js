@@ -11,6 +11,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 5,
     slot: 'any',
     target: 'allEnemies',
+    isPacifist: true,
     isHidden: false,
     description(level) {
       // const BUFF = BUFFS.taunt;
@@ -94,6 +95,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10, // overridden by .scaledCooldown in BUFFS for clients and above for server
     slot: 'any',
     target: 'currentEnemy',
+    isPacifist: true,
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.taunt;

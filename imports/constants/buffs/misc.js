@@ -1,3 +1,5 @@
+import { addBuff, removeBuff } from '../../battleUtils';
+
 export const MISC_BUFFS = {
 
   idle_player: {
@@ -59,6 +61,44 @@ export const MISC_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  stunned: {
+    duplicateTag: 'stunned',
+    icon: 'stunned.svg',
+    name: 'stunned',
+    description() {
+      return `
+        You are stunned and can't take any actions.`;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.wasAlreadyStunned = target.isStunned;
+        target.isStunned = true;
+        buff.data.timeCount = 0.0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        buff.duration -= secondsElapsed;
+        buff.data.timeCount += secondsElapsed;
+        if ((buff.duration <= 0) || (buff.data.timeCount >= buff.data.totalDuration)) {
+          removeBuff({ buff, target, caster, actualBattle })
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (!buff.data.wasAlreadyStunned) {
+          target.isStunned = false;
+        }
       }
     }
   },

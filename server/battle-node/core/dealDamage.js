@@ -20,6 +20,10 @@ export default function(rawDamage, {
   if (!attacker) {
     return 0;
   }
+  
+  if (attacker.isPacifist) {
+    return 0;
+  }
 
   let damage = rawDamage;
   if (damage && damage > 0) {

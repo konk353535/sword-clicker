@@ -777,7 +777,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'magicBlade.svg',
     name: 'magic blade',
     description() {
-      return `Deals 25% magic damage on hit`;
+      return `Deals 25% magic damage for each successful auto-attack`;
     },
     constants: {
       damageDecimal: 0.25,
@@ -790,10 +790,10 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
       },
-
-      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
+  
+      onDidDamage({ buff, attacker, defender, actualBattle, rawDamage, damageDealt, originalAutoAttack, secondsElapsed }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
-        const baseDamage = attacker.stats.attack;
+        //const baseDamage = attacker.stats.attack;
         const totalDamage = rawDamage * constants.damageDecimal;
 
         actualBattle.dealDamage(totalDamage, {
@@ -806,16 +806,17 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
+        // wildly inappropriate way to remove this buff from the player and this is an infinate-duration enchantment anyway
+        /*
         if (buff.duration <= 0) {
           target.buffs = target.buffs.filter((targetBuff) => {
             return targetBuff.id !== buff.id
           });
         }
+        */
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },

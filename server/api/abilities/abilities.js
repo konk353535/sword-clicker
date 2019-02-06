@@ -5,6 +5,7 @@ import lodash from 'lodash';
 import moment from 'moment';
 
 import { Abilities } from '/imports/api/abilities/abilities';
+import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { BattlesList } from '/imports/api/battles/battles';
@@ -297,6 +298,20 @@ Meteor.methods({
       owner: Meteor.userId()
     });
 
+    const usersSkills = Skills.find({
+      owner: Meteor.userId()
+    }).fetch();
+
+    const usersSkillsArray = usersSkills.map((skill) => {
+      return {
+        id: skill._id,
+        type: skill.type,
+        xp: skill.xp,
+        totalXp: skill.totalXp,
+        level: skill.level,
+      }
+    });
+    
     // Build up abilities id to level map
     const abilitiesMap = {};
     userAbilities.learntAbilities.forEach((ability) => {
@@ -311,8 +326,9 @@ Meteor.methods({
         abilityLevel = abilitiesMap[abilityKey];
         learntLevel = abilitiesMap[abilityKey];
       }
+      const descToUse = (_.isFunction(ABILITIES[abilityKey].betterDescription)) ? ABILITIES[abilityKey].betterDescription({level: abilityLevel, playerSkills: usersSkillsArray}) : ABILITIES[abilityKey].description(abilityLevel);
       const abilityData = {
-        description: ABILITIES[abilityKey].description(abilityLevel),
+        description: descToUse,
         name: `${abilityConstant.name} (${abilityLevel})`,
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,

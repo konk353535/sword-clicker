@@ -850,8 +850,8 @@ export const COMPANION_BUFFS = {
               icon: 'eventVDcupid.svg',
               name: target.name + '\'s cupid',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 3.5) + (11 * buff.data.level), // cupids can attack and mage, they're a hybrid
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 2.3) + (35 * buff.data.level),
+                attack: (Math.sqrt(attackSkill * 5) * towerFloor / 3.5) + (11 * buff.data.level), // cupids can attack and mage, they're a hybrid
+                attackMax: (Math.sqrt(attackSkill * 5) * towerFloor / 1.5) + (32 * buff.data.level),
                 attackSpeed: 0.7,
                 accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.85) + (35 * buff.data.level),
                 health: (Math.sqrt(healthSkill * 3) * towerFloor * 5) + (200 * buff.data.level),

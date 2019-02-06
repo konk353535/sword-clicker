@@ -622,7 +622,7 @@ export const FURNACE_CRAFTS = {
     id: 'titanfoil_furnace',
     isHidden: true,
     category: 'crafting',
-    requiredCraftingLevel: 124,
+    requiredCraftingLevel: 119,
     required: [{
       type: 'item',
       itemId: 'meteorite_bar',
@@ -647,7 +647,7 @@ export const FURNACE_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 124
+      level: 119
     }],
     timeToCraft: 40 * 60,
     xp: 2000,
@@ -661,7 +661,7 @@ export const FURNACE_CRAFTS = {
     id: 'relicrock_furnace',
     isHidden: true,
     category: 'crafting',
-    requiredCraftingLevel: 134,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'elven_steel_bar',
@@ -686,7 +686,7 @@ export const FURNACE_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 134
+      level: 124
     }],
     timeToCraft: 40 * 60,
     xp: 2000,
@@ -700,7 +700,7 @@ export const FURNACE_CRAFTS = {
     id: 'eternium_furnace',
     isHidden: true,
     category: 'crafting',
-    requiredCraftingLevel: 144,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'mithril_bar',
@@ -725,7 +725,7 @@ export const FURNACE_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 144
+      level: 129
     }],
     timeToCraft: 40 * 60,
     xp: 2000,

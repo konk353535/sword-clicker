@@ -964,7 +964,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 1000000,
     maxToCraft: 1,
-    requiredCraftingLevel: 124,
+    requiredCraftingLevel: 119,
     required: [{
       type: 'item',
       itemId: 'fairy_steel_essence',
@@ -1009,15 +1009,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_axe',
-      icon: ITEMS['radiant_axe'].icon,
-      name: ITEMS['radiant_axe'].name,
+      itemId: 'astral_axe',
+      icon: ITEMS['astral_axe'].icon,
+      name: ITEMS['astral_axe'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 124
+      level: 119
     }]
   },
 
@@ -1031,7 +1031,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 1500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 134,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'elven_steel_essence',
@@ -1076,15 +1076,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_axe',
-      icon: ITEMS['radiant_axe'].icon,
-      name: ITEMS['radiant_axe'].name,
+      itemId: 'titanfoil_axe',
+      icon: ITEMS['titanfoil_axe'].icon,
+      name: ITEMS['titanfoil_axe'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 134
+      level: 124
     }]
   },
 
@@ -1098,7 +1098,7 @@ export const WOODCUTTING_CRAFTS = {
     timeToCraft: 60 * 60 * 1, // 60
     xp: 2500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 144,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'mithril_essence',
@@ -1143,15 +1143,15 @@ export const WOODCUTTING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_axe',
-      icon: ITEMS['radiant_axe'].icon,
-      name: ITEMS['radiant_axe'].name,
+      itemId: 'relicrock_axe',
+      icon: ITEMS['relicrock_axe'].icon,
+      name: ITEMS['relicrock_axe'].name,
       amount: 1,
       consumes: false
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 144
+      level: 129
     }]
   }, 
 };

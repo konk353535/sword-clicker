@@ -1365,7 +1365,7 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 1000000,
     maxToCraft: 1,
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -1425,7 +1425,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 120
+      level: 115
     }]
   },  
 
@@ -1439,7 +1439,7 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 1500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 120,
     required: [{
       type: 'item',
       itemId: 'titanfoil_furnace',
@@ -1499,7 +1499,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 130
+      level: 120
     }]
   },  
 
@@ -1513,7 +1513,7 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 2500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 140,
+    requiredCraftingLevel: 125,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -1573,7 +1573,7 @@ export const MINING_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 140
+      level: 125
     }]
   },  
   
@@ -2674,12 +2674,12 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 1000000,
     maxToCraft: 1,
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
-      itemId: 'radiant_furnace',
-      icon: ITEMS['radiant_furnace'].icon,
-      name: ITEMS['radiant_furnace'].name,
+      itemId: 'astral_furnace',
+      icon: ITEMS['astral_furnace'].icon,
+      name: ITEMS['astral_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -2726,15 +2726,15 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_mining_anvil',
-      icon: ITEMS['radiant_mining_anvil'].icon,
-      name: ITEMS['radiant_mining_anvil'].name,
+      itemId: 'astral_mining_anvil',
+      icon: ITEMS['astral_mining_anvil'].icon,
+      name: ITEMS['astral_mining_anvil'].name,
       amount: 1,
       consumes: false
     },  {
       type: 'skill',
       name: 'crafting',
-      level: 120
+      level: 115
     }]
   },
 
@@ -2748,12 +2748,12 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 1500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 120,
     required: [{
       type: 'item',
-      itemId: 'radiant_furnace',
-      icon: ITEMS['radiant_furnace'].icon,
-      name: ITEMS['radiant_furnace'].name,
+      itemId: 'titanfoil_furnace',
+      icon: ITEMS['titanfoil_furnace'].icon,
+      name: ITEMS['titanfoil_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -2800,15 +2800,15 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_mining_anvil',
-      icon: ITEMS['radiant_mining_anvil'].icon,
-      name: ITEMS['radiant_mining_anvil'].name,
+      itemId: 'titanfoil_mining_anvil',
+      icon: ITEMS['titanfoil_mining_anvil'].icon,
+      name: ITEMS['titanfoil_mining_anvil'].name,
       amount: 1,
       consumes: false
     },  {
       type: 'skill',
       name: 'crafting',
-      level: 130
+      level: 120
     }]
   },
 
@@ -2822,12 +2822,12 @@ export const MINING_CRAFTS = {
     timeToCraft: 60 * MINUTE,
     xp: 2500000,
     maxToCraft: 1,
-    requiredCraftingLevel: 140,
+    requiredCraftingLevel: 125,
     required: [{
       type: 'item',
-      itemId: 'radiant_furnace',
-      icon: ITEMS['radiant_furnace'].icon,
-      name: ITEMS['radiant_furnace'].name,
+      itemId: 'relicrock_furnace',
+      icon: ITEMS['relicrock_furnace'].icon,
+      name: ITEMS['relicrock_furnace'].name,
       amount: 1,
       consumes: false
     }, {
@@ -2874,15 +2874,15 @@ export const MINING_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
-      itemId: 'radiant_mining_anvil',
-      icon: ITEMS['radiant_mining_anvil'].icon,
-      name: ITEMS['radiant_mining_anvil'].name,
+      itemId: 'relicrock_mining_anvil',
+      icon: ITEMS['relicrock_mining_anvil'].icon,
+      name: ITEMS['relicrock_mining_anvil'].name,
       amount: 1,
       consumes: false
     },  {
       type: 'skill',
       name: 'crafting',
-      level: 140
+      level: 125
     }]
   },  
 };

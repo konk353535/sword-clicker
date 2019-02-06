@@ -1017,7 +1017,7 @@ export const MINING = {
     },
 
     relicrock_miner: {
-      requiredMiningLevel: 115,
+      requiredMiningLevel: 120,
       icon: 'relicrockMiner.png',
       name: 'relicrock miner',
       id: 'relicrock_miner',
@@ -1042,7 +1042,7 @@ export const MINING = {
     },
 
     eternium_miner: {
-      requiredMiningLevel: 120,
+      requiredMiningLevel: 125,
       icon: 'eterniumMiner.png',
       name: 'eternium miner',
       id: 'eternium_miner',
@@ -1060,7 +1060,7 @@ export const MINING = {
       }, {
         type: 'skill',
         name: 'mining',
-        level: 120
+        level: 125
       }],
       max: 3,
       damagePerSecond: 0.35

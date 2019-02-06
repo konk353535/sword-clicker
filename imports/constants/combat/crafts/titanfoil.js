@@ -15,7 +15,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 2) + (FS_ESS_XP * 2),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -75,7 +75,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -90,7 +90,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -150,7 +150,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -165,7 +165,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -225,7 +225,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -240,7 +240,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (FS_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -300,7 +300,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -315,7 +315,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (FS_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -375,7 +375,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -390,7 +390,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -450,7 +450,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -465,7 +465,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -525,7 +525,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -540,7 +540,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -600,7 +600,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   },
 
@@ -615,7 +615,7 @@ export const TITANFOIL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 120,
+    requiredCraftingLevel: 115,
     required: [{
       type: 'item',
       itemId: 'astral_furnace',
@@ -675,7 +675,7 @@ export const TITANFOIL_CRAFTS = {
     }, {
       type: 'skill',
       name: 'crafting',
-      level: 110
+      level: 115
     }]
   }
 };

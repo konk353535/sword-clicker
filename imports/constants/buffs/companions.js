@@ -94,6 +94,58 @@ export const companionChat = function companionChat({ companion, message }) {
 };
 */
 
+const maxTableAndGridSize = 550;
+
+const skillLevel = function skillLevel(playerSkills, skillName) {
+  try {
+    const userSkillLevel = playerSkills.filter((skill) => {
+      return (skill.type.toLowerCase() === skillName.toLowerCase())
+    });
+    if ((userSkillLevel) && (userSkillLevel.length === 1) && (userSkillLevel[0].level > 0)) {
+      return userSkillLevel[0].level;
+    }
+  } catch (err) {
+  }
+  return 1;
+};
+
+const companionStatsHTML = function companionStatsHTML({buff, level, floor, playerSkills}) {
+  try {
+    let descText = "<br />";
+    
+    if (floor) {      
+      const flexCellSize = Math.floor(maxTableAndGridSize / 4) - 40;
+      
+      descText += `<div class="mb-3">`;
+      descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center attack.svg-tooltip-container"><img src="/icons/attack.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.attack({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})} - ${buff.constants.attackMax({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center attackSpeed.svg-tooltip-container"><img src="/icons/attackSpeed.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.attackSpeed({level})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicPower.svg-tooltip-container"><img src="/icons/magicPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.magicPower({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic')})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center accuracy.svg-tooltip-container"><img src="/icons/accuracy.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.accuracy({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})}</div></div>`;
+      descText += `</div>`;
+      descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center health.svg-tooltip-container"><img src="/icons/health.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.healthMax({level, towerFloor: floor, healthSkill: skillLevel(playerSkills, 'health')}).toLocaleString()}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center defense.svg-tooltip-container"><img src="/icons/defense.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.defense({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'defense')})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center armor.svg-tooltip-container"><img src="/icons/armor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.armor({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'armor')}).toLocaleString()}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicArmor.svg-tooltip-container"><img src="/icons/magicArmor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.magicArmor({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic'), defenseSkill: skillLevel(playerSkills, 'defense')}).toLocaleString()}</div></div>`;
+      descText += `</div>`;
+      descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center healingPower.svg-tooltip-container"><img src="/icons/healingPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">+${buff.constants.healingPower({level})}%</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center heartDrop.svg-tooltip-container"><img src="/icons/heartDrop.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${100*(1-buff.constants.damageTaken({level}))}%</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center invis.gif-tooltip-container"><img src="/icons/invis.gif" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px"></div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center invis.gif-tooltip-container"><img src="/icons/invis.gif" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px"></div></div>`;
+      descText += `</div>`;
+      descText += `(stats based on your skills, tome level ${level}, and tower floor ${floor})<br />`;
+    } else {
+      descText += "(stats vary on which floor you bring the cupid to)<br />";
+    }
+    return descText;
+  } catch (err) {
+  }
+
+  return "";
+}
+
 export const COMPANION_BUFFS = {
   baby_fox_ability: {
     duplicateTag: 'baby_fox_ability',
@@ -321,22 +373,97 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'skeletal_warrior',
     icon: 'boneWarrior.svg',
     name: 'skeletal warrior',
-    description({ buff, level }) {
-      if (level >= 5) {
-        return `Summons a skeletal warrior who can use Thirsty Fangs Lv. 1, <br />Phantom Strikes Lv. 2, Bleed Lv. 2, Slash Lv. 3, <br />and Penetrating Slash Lv. 3 in battle.`;
-      } else if (level === 4) {
-        return `Summons a skeletal warrior who can use Phantom Strikes Lv. 1, <br />Bleed Lv. 2, Slash Lv. 3, and Penetrating Slash Lv. 2 in battle.`;
-      } else if (level === 3) {
-        return `Summons a skeletal warrior who can use Bleed Lv. 1, <br />Slash Lv. 2, and Penetrating Slash Lv. 2 in battle.`;
+    description({ buff, level, playerSkills, floor }) {
+      let descText = '';
+      
+      descText += 'Summons a skeletal warrior to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>physical damage</b></td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Slash Lv. 1</b></td>`;
+        descText += `  </tr>`;
       } else if (level === 2) {
-        return `Summons a skeletal warrior who can use Slash Lv. 2 and <br />Penetrating Slash Lv. 1 in battle.`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Penetrating Slash Lv. 1</b>, <b>Slash Lv. 2</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 1</b>, <b>Penetrating Slash Lv. 2</b>, <b>Slash Lv. 2</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 2</b>, <b>Penetrating Slash Lv. 2</b>, <b>Phantom Strikes Lv. 1</b>, <b>Slash Lv. 3</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 2</b>, <b>Penetrating Slash Lv. 3</b>, <b>Phantom Strikes Lv. 2</b>, <b>Slash Lv. 3</b>, <b>Thirsty Fangs Lv. 1</b></td>`;
+        descText += `  </tr>`;
       }
-      return `Summons a skeletal warrior who can use Slash Lv. 1 in battle.`;
+      
+      descText += `</table>`
+
+      if (floor && playerSkills) {
+        descText += companionStatsHTML({buff, level, floor, playerSkills});
+      }
+
+      return descText;
     },
     constants: {
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 1.85) + (35 * level));
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 5) * minTowerFloor / 3.5) + (13 * level));
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 5) * minTowerFloor / 2.5) + (40 * level));
+      },
+      attackSpeed: function({level}) {
+        return 0.55 + (0.05 * level);
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 3) * minTowerFloor * 6.5) + (100 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 3) + (3 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 2.5) + (5 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 2) * minTowerFloor / 5) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 5) + (2 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        return magicSkill;
+      },
+      damageTaken: function({level}) {
+        return 1;
+      },
+      healingPower: function({level}) {
+        return 5 + (3 * level);
+      },
     },
     data: {
-      hideBuff: true
+      //hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -344,8 +471,9 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
-          buff.data.hideBuff = true;
+          //buff.data.hideBuff = true;
 
           // ** OLD **
           // this companion won't help in personal quests
@@ -360,7 +488,6 @@ export const COMPANION_BUFFS = {
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
             const healthSkill = target.healthSkill();
-            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
               owner: target.id + '_companion',
@@ -372,17 +499,18 @@ export const COMPANION_BUFFS = {
               icon: 'boneWarrior.svg',
               name: target.name + '\'s warrior',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 3.5) + (13 * buff.data.level),
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + (40 * buff.data.level),
-                attackSpeed: 0.8,
-                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.85) + (35 * buff.data.level),
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (100 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 3) + 15,
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.5) + 25,
-                magicArmor: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.5),
-                magicPower: magicSkill,
-                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
               },
               buffs: [],
             };
@@ -447,22 +575,99 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'cute_pig',
     icon: 'cutePig.svg',
     name: 'cute pig',
-    description({ buff, level }) {
-      if (level >= 5) {
-        return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura and can evade attacks when low health.`;
-      } else if (level === 4){
-        return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He also has <br />Watchful Aura.`;
-      } else if (level === 3){
-        return `Summons a cute pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.`;
-      } else if (level === 2){
-        return `Summons a cute pig who taunts random <br />enemies every 4 seconds.`;
+    description({ buff, level, playerSkills, floor }) {
+      let descText = '';
+      
+      descText += 'Summons a cute pig to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>tank</b></td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 1</b> (taunt)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 2) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 2</b> (taunt)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream), <b>Watchful Aura</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Evasive Maneuvers Lv. 5</b>, <b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream), <b>Watchful Aura</b></td>`;
+        descText += `  </tr>`;
       }
-      return `Summons a cute pig who taunts random <br />enemies every 7 seconds.`;
+      
+      descText += `</table>`
+
+      if (floor && playerSkills) {
+        descText += companionStatsHTML({buff, level, floor, playerSkills});
+      }
+
+      return descText;
     },
     constants: {
+      // pigs don't do much damage, they're tanks
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 2.5) + (1 * level));
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 25) + (1 * level));
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 25) + (2 * level));
+      },
+      attackSpeed: function({level}) {
+        return 0.3;
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 3) * minTowerFloor * 7.5) + (125 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 1.45) + (15 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor * 1.65) + (75 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 2) * minTowerFloor / 5) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 5) + (20 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor / 3));
+      },
+      damageTaken: function({level}) {
+        return 1;
+      },
+      healingPower: function({level}) {
+        return 0;
+      },
     },
     data: {
-      hideBuff: true
+      //hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -470,8 +675,9 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
-          buff.data.hideBuff = true;
+          //buff.data.hideBuff = true;
 
           // ** OLD **
           // this companion won't help in personal quests
@@ -486,7 +692,6 @@ export const COMPANION_BUFFS = {
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
             const healthSkill = target.healthSkill();
-            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
               owner: target.id + '_companion',
@@ -498,17 +703,18 @@ export const COMPANION_BUFFS = {
               icon: 'cutePig.svg',
               name: target.name + '\'s pig',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
-                attackSpeed: 0.3,
-                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 7.5) + (125 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 7.5) + (125 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.45) + (15 * buff.data.level),
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.65) + (75 * buff.data.level),
-                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + (20 * buff.data.level),
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor / 3),
-                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
               },
               buffs: [{
                 id: 'companion_taunt',
@@ -583,20 +789,103 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'lny_pig',
     icon: 'eventLNYPig.png',
     name: 'year of the pig',
-    description({ buff, level }) {
-      if (level >= 4){
-        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.  He can also <br /> evade attacks when low health.`;
-      } else if (level === 3){
-        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds and squeals at <br />all enemies every 25 seconds.`;
-      } else if (level === 2){
-        return `Summons a year of the pig who taunts random <br />enemies every 4 seconds.`;
+    description({ buff, level, playerSkills, floor }) {
+      let descText = '';
+      
+      descText += 'Summons a year of the pig to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>tank</b></td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 1</b> (taunt)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 2) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 2</b> (taunt)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream)</td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top">Evasive Maneuvers Lv. 5</br>, <b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream), <b>Watchful Aura</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Evasive Maneuvers Lv. 5</b>, <b>Oink Lv. 2</b> (taunt), <b>Squeal Lv. 1</b> (scream), <b>Watchful Aura</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Traits&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Fast Evade</b> (reduces <i>Evasive Maneuvers</i> cooldown)</td>`;
+        descText += `  </tr>`;
       }
-      return `Summons a year of the pig who taunts random <br />enemies every 7 seconds.`;
+      
+      descText += `</table>`
+
+      if (floor && playerSkills) {
+        descText += companionStatsHTML({buff, level, floor, playerSkills});
+      }
+
+      return descText;
     },
     constants: {
+      // pigs don't do much damage, they're tanks
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 2.5) + (1 * level));
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 25) + (1 * level));
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 25) + (2 * level));
+      },
+      attackSpeed: function({level}) {
+        return 0.3;
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 3) * minTowerFloor * 9.5) + (125 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 1.55) + (15 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor * 1.35) + (75 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 2) * minTowerFloor / 5) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 5) + (25 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor / 3));
+      },
+      damageTaken: function({level}) {
+        return 1;
+      },
+      healingPower: function({level}) {
+        return 0;
+      },
     },
     data: {
-      hideBuff: true
+      //hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -604,8 +893,9 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
-          buff.data.hideBuff = true;
+          //buff.data.hideBuff = true;
           
           // ** OLD **
           // this companion won't help in personal quests
@@ -620,7 +910,6 @@ export const COMPANION_BUFFS = {
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
             const healthSkill = target.healthSkill();
-            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
               owner: target.id + '_companion',
@@ -632,17 +921,18 @@ export const COMPANION_BUFFS = {
               icon: 'eventLNYPig.png',
               name: target.name + '\'s pig',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // pigs don't do much damage, they're tanks
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // pigs don't do much damage, they're tanks
-                attackSpeed: 0.3,
-                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 9.0) + (125 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 9.0) + (125 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.55) + (15 * buff.data.level),
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor * 1.35) + (75 * buff.data.level),
-                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 2) * towerFloor / 5) + (25 * buff.data.level),
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor / 3),
-                damageTaken: 1 // damage received (1 = 100% of all incoming damage)
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
               },
               buffs: [{
                 id: 'companion_taunt',
@@ -708,22 +998,105 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'mystic_fairy',
     icon: 'fairy2.svg',
     name: 'mystic fairy',
-    description({ buff, level }) {
-      if (level >= 5) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, Mending Water, and Water Wave <br />at allies.  She can also cast Air Ball at enemies and <br />has 10% damage reduction from all sources.`;
-      } else if (level === 4) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, Mending Water, and Water Wave <br />at allies.  She can also cast Air Ball at enemies.`;
-      } else if (level === 3) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies. <br />She can also cast Air Ball at enemies.`;
+    description({ buff, level, floor, playerSkills }) {
+      let descText = '';
+
+      descText += 'Summons a mystic fairy to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>healer</b></td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Water Ball</b>, <b>Water Dart</b></b></td>`;
+        descText += `  </tr>`;
       } else if (level === 2) {
-        return `Summons a mystic fairy who can cast Water Dart, <br />Water Ball, and Mending Water at allies.`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Mending Waters</b>, <b>Water Ball</b>, <b>Water Dart</b></b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b>, <b>Water Dart</b></b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b>, <b>Water Dart</b>, <b>Water Wave</b></b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b>, <b>Water Dart</b>, <b>Water Wave</b></b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Traits&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Protection</b> (25% personal damage shield)</td>`;
+        descText += `  </tr>`;
       }
-      return `Summons a mystic fairy who can cast Water Dart <br />and Water Ball at allies.`;
+      
+      descText += `</table>`
+
+      if (floor && playerSkills) {
+        descText += companionStatsHTML({buff, level, floor, playerSkills});
+      }
+
+      return descText;
     },
     constants: {
+      // fairies don't do much damage, they're purely healers
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 2) * minTowerFloor / 2.5) + 1);
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 25) + 1);
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 5) * minTowerFloor / 25) + 2);
+      },
+      attackSpeed: function({level}) {
+        return 0.3;
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 3) * minTowerFloor * 6.5) + (200 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 2.75) + (5 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 1.25) + (5 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor / 2) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 4) + (10 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor * 0.85) + (10 * level));
+      },
+      damageTaken: function({level}) {
+        return ((level >= 5) ? 0.75 : 1);
+      },
+      healingPower: function({level}) {
+        return 10 + (5 * level);
+      },
+ 
     },
     data: {
-      hideBuff: true
+      //hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -731,8 +1104,9 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
-          buff.data.hideBuff = true;
+          //buff.data.hideBuff = true;
 
           // ** OLD **
           // this companion won't help in personal quests
@@ -747,7 +1121,6 @@ export const COMPANION_BUFFS = {
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
             const healthSkill = target.healthSkill();
-            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
               owner: target.id + '_companion',
@@ -759,18 +1132,18 @@ export const COMPANION_BUFFS = {
               icon: 'fairy2.svg',
               name: target.name + '\'s fairy',
               stats: {
-                attack: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 1, // fairies don't do much damage, they're supports
-                attackMax: (Math.sqrt(attackSkill * 3) * towerFloor / 25) + 2, // fairies don't do much damage, they're supports
-                attackSpeed: 0.3,
-                accuracy: (Math.sqrt(attackSkill * 2) * towerFloor / 2.5) + 1,
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (200 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 6.5) + (200 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 2.75) + 5,
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
-                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 4) + (Math.sqrt(magicSkill * 3) * towerFloor / 2) + 40,
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.85) + (10 * buff.data.level),
-                damageTaken: (buff.data.level >= 5 ? 0.9 : 1), // damage received (1 = 100% of all incoming damage)
-                healingPower: 10 + (5 * buff.data.level),
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
               },
               buffs: [{
                 id: 'companion_healer',
@@ -804,22 +1177,115 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'vd_cupid',
     icon: 'eventVDcupid.svg',
     name: 'cupid',
-    description({ buff, level }) {
-      if (level >= 5) {
-        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 5 <br />and Bleed at level 5.  Every once in a while, he will lull <br />enemies, charming them for a brief time.`;
-      } else if (level === 4) {
-        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 4 <br />and Bleed at level 4.`;
-      } else if (level === 3) {
-        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies. <br />He can also use Penetrating Slash at level 4.`;
+    description({ buff, level, playerSkills, floor }) {
+      let descText = '';
+      
+      descText += 'Summons a cupid to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>hybrid</b> (physical damage &amp; healer)</td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b></td>`;
+        descText += `  </tr>`;
       } else if (level === 2) {
-        return `Summons a cupid who can cast Mending Waters and <br />Water Ball at allies and Air Ball at enemies.`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Penetrating Slash Lv. 4</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 4</b>, <b>Penetrating Slash Lv. 4</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 5</b>, <b>Penetrating Slash Lv. 5</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Spells&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Air Ball</b>, <b>Mending Waters</b>, <b>Water Ball</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Traits&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Lull</b> (mass charm)</td>`;
+        descText += `  </tr>`;
       }
-      return `Summons a cupid who can cast Mending Waters at allies <br />and Air Ball at enemies.`;
+      
+      descText += `</table>`
+
+      if (floor && playerSkills) {
+        descText += companionStatsHTML({buff, level, floor, playerSkills});
+      }
+
+      return descText;
     },
     constants: {
+      // cupids can attack and mage, they're a hybrid
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 1.85) + (35 * level));
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 5) * minTowerFloor / 3.5) + (11 * level));
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 5) * minTowerFloor / 1.5) + (32 * level));
+      },
+      attackSpeed: function({level}) {
+        return 0.55 + (0.05 * level);
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 3) * minTowerFloor * 5) + (200 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 3.15) + (5 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 1.25) + (5 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor / 2.5) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 5) + (10 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 3) * minTowerFloor * 0.85) + (10 * level));
+      },
+      damageTaken: function({level}) {
+        return 1;
+      },
+      healingPower: function({level}) {
+        return 5 + (3 * level);
+      },
     },
     data: {
-      hideBuff: true
+      //hideBuff: true
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -827,8 +1293,9 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
-          buff.data.hideBuff = true;
+          //buff.data.hideBuff = true;
 
           // ** NEW **
           // this companion won't help in personal quests
@@ -838,7 +1305,6 @@ export const COMPANION_BUFFS = {
             const defenseSkill = target.defenseSkill();
             const magicSkill = target.magicSkill();
             const healthSkill = target.healthSkill();
-            const towerFloor = actualBattle.towerFloor() < 5 ? 5 : actualBattle.towerFloor();
             
             let companion = {
               owner: target.id + '_companion',
@@ -850,18 +1316,18 @@ export const COMPANION_BUFFS = {
               icon: 'eventVDcupid.svg',
               name: target.name + '\'s cupid',
               stats: {
-                attack: (Math.sqrt(attackSkill * 5) * towerFloor / 3.5) + (11 * buff.data.level), // cupids can attack and mage, they're a hybrid
-                attackMax: (Math.sqrt(attackSkill * 5) * towerFloor / 1.5) + (32 * buff.data.level),
-                attackSpeed: 0.7,
-                accuracy: (Math.sqrt(attackSkill * 3) * towerFloor / 1.85) + (35 * buff.data.level),
-                health: (Math.sqrt(healthSkill * 3) * towerFloor * 5) + (200 * buff.data.level),
-                healthMax: (Math.sqrt(healthSkill * 3) * towerFloor * 5) + (200 * buff.data.level),
-                defense: (Math.sqrt(defenseSkill * 3) * towerFloor / 3.15) + 5,
-                armor: (Math.sqrt(defenseSkill * 3) * towerFloor / 1.25) + 5,
-                magicArmor: (Math.sqrt(defenseSkill * 2) * towerFloor / 5) + (Math.sqrt(magicSkill * 3) * towerFloor / 2.5) + 40,
-                magicPower: (Math.sqrt(magicSkill * 3) * towerFloor * 0.85) + (10 * buff.data.level),
-                damageTaken: 1, // damage received (1 = 100% of all incoming damage)
-                healingPower: 5 + (3 * buff.data.level),
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
               },
               buffs: [{
                 id: 'vd_cupid_logic',

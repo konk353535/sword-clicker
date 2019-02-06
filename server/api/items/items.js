@@ -683,12 +683,10 @@ Meteor.methods({
 
         if (!mySkill) {
           hasEquipRequirements = false;
-          requirementString = 'You must have at least level ';
-          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+          requirementString = `You must have at least level ${requirement.level} ${requirement.name} to equip your ${itemConstants.name}.`;
         } else if (mySkill.level < requirement.level) {
           hasEquipRequirements = false;
-          requirementString = 'You must have at least level ';
-          requirementString += `${requirement.level} ${requirement.name} to equip this item`;
+          requirementString = `You must have at least level ${requirement.level} ${requirement.name} to equip your ${itemConstants.name}.`;
         }
       });
 

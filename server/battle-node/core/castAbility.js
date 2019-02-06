@@ -149,7 +149,7 @@ export default function({ ability, caster, targets }) {
 
       // Save things we actually want to store in the data property
       buffObj.data = Object.assign({
-        description: buffObj.constants.description({ buff: buffObj.constants, level: ability.level }),
+        description: buffObj.constants.description({ buff: buffObj.constants, level: ability.level, playerSkills: caster.skills, floor: caster.battleRef.floor }),
         name: buffObj.constants.name,
         icon: buffObj.constants.icon,
         duplicateTag: buffObj.constants.duplicateTag,

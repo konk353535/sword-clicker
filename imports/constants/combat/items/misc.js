@@ -4741,14 +4741,16 @@ export const MISC_ITEMS = {
     description: "They're so cute!",
     isEquippable: true,
     stats: {
+      armor: 25,
     },
     extraStats: {
+      armor: 25,
     },
     enchantments: ['bear_slippers'],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 20
+      level: 25,
     }]
   },
 
@@ -4762,16 +4764,24 @@ export const MISC_ITEMS = {
     description: "Radiating a healing aura.",
     isEquippable: true,
     stats: {
-      healingPower: 40
+      healingPower: 40,
+      defense: 30,
+      magicArmor: 30,
     },
     extraStats: {
-      healingPower: 10
+      healingPower: 10,
+      defense: 20,
+      magicArmor: 20,
     },
     enchantments: ['rose_quartz_amulet'],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
-      level: 20
+      level: 25,
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25,
     }]
   },
   

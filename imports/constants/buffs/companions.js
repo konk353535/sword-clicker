@@ -564,13 +564,17 @@ export const COMPANION_BUFFS = {
     }
   },
   
-  // Level 1: knows how to taunt random targets that aren't targeting the pig (with 7s CD)
-  // Level 2: modifies taunt so that it taunts random targets that aren't targeting the pig (with 4s CD)
-  // Level 3: ALSO knows how to squeal (scream) that will taunt all targets in boss rooms, individual floors,
-  //          or exploration attempts at room 3+ as long as there is at least 2 enemies in the room and
-  //          at least one of those two enemies aren't targeting the pig (with 25s CD)
-  // Level 4: ALSO has Watchful Aura passive
-  // Level 5: ALSO knows Evasive Maneuvers Lv. 5 and will use it when under 50% health (with 40s CD)
+  // Level 1: can auto-attack (speed 0.6) and knows how to taunt random targets that aren't
+  //          targeting the pig (with 7s CD)
+  // Level 2: can auto-attack (speed 0.65) and modifies taunt so that it taunts random targets
+  //          that aren't targeting the pig (with 4s CD)
+  // Level 3: can auto-attack (speed 0.7) and knows how to squeal (scream) that will taunt all
+  //          targets in boss rooms, individual floors, or exploration attempts at room 3+ as
+  //          long as there is at least 2 enemies in the room and at least one of those two
+  //          enemies aren't targeting the pig (with 25s CD)
+  // Level 4: can auto-attack (speed 0.75) and has Watchful Aura passive
+  // Level 5: can auto-attack (speed 0.8) and knows Evasive Maneuvers Lv. 5 and will use it
+  //          when under 50% health (with 40s CD)
   // All levels:  gains health, defense, armor, and magic armor for each level
   cute_pig: {
     duplicateTag: 'cute_pig',
@@ -1168,11 +1172,11 @@ export const COMPANION_BUFFS = {
     }
   },
   
-  // Level 1: can auto-attack (speed 0.7) and can cast mending waters (30s CD) and air ball (10s CD)
-  // Level 2: can cast water ball (10s CD)
-  // Level 3: can use penetrating slash level 4
-  // Level 4: can use bleed level 4
-  // Level 5: upgrades penetration slash to level 5 and bleed to level 5
+  // Level 1: can auto-attack (speed 0.6) and can cast mending waters (30s CD) and air ball (10s CD)
+  // Level 2: can auto-attack (speed 0.65) and can cast water ball (10s CD)
+  // Level 3: can auto-attack (speed 0.7) and can use penetrating slash level 4
+  // Level 4: can auto-attack (speed 0.75) and can use bleed level 4
+  // Level 5: can auto-attack (speed 0.8) and upgrades penetration slash to level 5 and bleed to level 5
   // All levels:  gains attack, accuracy, health, magic power, and healing power for each level
   vd_cupid: {
     duplicateTag: 'vd_cupid',

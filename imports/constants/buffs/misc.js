@@ -1,4 +1,4 @@
-import { addBuff, removeBuff } from '../../battleUtils';
+import { addBuff, removeBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
 
 export const MISC_BUFFS = {
 
@@ -104,6 +104,36 @@ export const MISC_BUFFS = {
         if (!buff.data.wasAlreadyStunned) {
           target.isStunned = false;
         }
+      }
+    }
+  },
+
+  pacifist: {
+    duplicateTag: 'pacifist',
+    icon: 'pacifist.svg',
+    name: 'pacifist',
+    description() {
+      return `
+        You are a pacifist. <br />
+        <br />
+        You can't auto-attack, take any actions that would directly <br />
+        harm an enemy, nor use passive abilities or enchantments <br />
+        that could harm an enemy.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
       }
     }
   },

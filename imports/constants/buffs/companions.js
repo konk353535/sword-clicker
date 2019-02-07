@@ -54,6 +54,7 @@ export const companionEvent = function companionEvent({ actualBattle, companion,
 };
 
 // combat node/server doesn't have access to database or schema
+// to make this work, we'd have to throw it into a tickEvent and have the game client handle it, send it to a server.api, etc.
 /*
 export const companionChat = function companionChat({ companion, message }) {
   try {
@@ -1386,11 +1387,49 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillAction > 0) {
           buff.data.timeTillAction -= secondsElapsed;
         } else {
-          // Do nothing with two-thirds our ticks (except the above CD redux)
-          if (Math.random() < 0.667) {
+          // Do nothing with a third of our available ticks (except the above CD redux)
+          if (Math.random() <= 0.333) {
             return;
           }
+          
+          // just some debug stuff
+          /*
+          const myAllies = target.allies;
+          if (myAllies && myAllies.length > 0) {
+            console.log(`My allies unit is '${myAllies[0].name}'.`);
+          } else {
+            console.log("I don't have an allies.");
+          }
 
+          const myOpposition = target.opposition;
+          if (myOpposition && myOpposition.length > 0) {
+            console.log(`My opposition first unit is '${myOpposition[0].name}'.`);
+          } else {
+            console.log("I don't have any opposition.");
+          }
+
+          const myTargetUnit = target.targetUnit;
+          if (myTargetUnit) {
+            console.log(`The unit I'm targeting is '${myTargetUnit.name}'.`);
+          } else {
+            console.log(`I don't have any unit targeted (${target.target}.`);
+          }
+
+          const toMyLeft = target.leftSideAlly;
+          if (toMyLeft) {
+            console.log(`The unit on my left is '${toMyLeft.name}'.`);
+          } else {
+            console.log("I don't have any unit on my left.");
+          }
+
+          const toMyRight = target.rightSideAlly;
+          if (toMyRight) {
+            console.log(`The unit on my right is '${toMyRight.name}'.`);
+          } else {
+            console.log("I don't have any unit on my right.");
+          }
+          */
+          
           if (target.stats.health / target.stats.healthMax < 0.5) {
             buff.customText = "!!";
             buff.icon = "boneWarriorRed.svg";
@@ -1401,74 +1440,66 @@ export const COMPANION_BUFFS = {
         
           // Note: always accept whatever target we're on automatically, no re-targeting
           
-          if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
+          // START: logic for targets
+          const ourTargetUnit = target.targetUnit;
+          if (!ourTargetUnit) {
             return;
           }
+          const targetIsArmored = ourTargetUnit.hasBuff('crab_monster');
+          const targetIsDodging = ourTargetUnit.hasBuff('evasive_maneuvers');      
+          // END: logic for targets
           
           try {
-            // START: logic for targets
-            let enemyIsDodging = false;
-            if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-              const enemyDodgeBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'evasive_maneuvers'); // this covers ninjas evading and spirits blinking
-              enemyIsDodging = (enemyDodgeBuffs && enemyDodgeBuffs.length > 0);
-            }
-            // END: logic for targets
-            
-            if (!enemyIsDodging) {
-              if (buff.data.level >= 3 && buff.data.CDBleed <= 0.0 && actualBattle.enemies[0].stats.health >= 400) {
+            if (!targetIsDodging && !targetIsArmored) {
+              if (buff.data.level >= 3 && buff.data.CDBleed <= 0.0 && ourTargetUnit.stats.health >= 400) {
                 // START: use Bleed
-                const newBuff = {
-                  id: 'bleed',
-                  data: {
-                    duration: 15,
-                    totalDuration: 15,
-                    icon: 'bleed.svg',
-                    description: ``,
-                    name: 'bleed',
-                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 2 : 1
-                  },
-                  constants: BUFFS['bleed']
-                };
-                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'bleed', 
+                    buffData: {
+                      duration: 15,
+                      level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 2 : 1,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
                 buff.data.CDBleed = 30.0;
                 // END: use Bleed
               }
               
               if (buff.data.CDSlash <= 0.0) {
                 // START: use Slash
-                const newBuff = {
-                  id: 'slash',
-                  data: {
-                    icon: 'slash.svg',
-                    description: ``,
-                    name: 'slash',
-                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 2 : buff.data.level === 3 ? 2 : buff.data.level === 4 ? 3 : buff.data.level === 5 ? 3 : 1
-                  },
-                  constants: BUFFS['slash']
-                };
-                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'slash', 
+                    buffData: {
+                      level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 2 : buff.data.level === 3 ? 2 : buff.data.level === 4 ? 3 : buff.data.level === 5 ? 3 : 1,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
                 buff.data.CDSlash = 10.0;
                 // END: use Slash
               }
 
               if (buff.data.level >= 2 && buff.data.CDPSlash <= 0.0) {
                 // START: use Penetrating Slash
-                const newBuff = {
-                  id: 'penetrating_slash',
-                  data: {
-                    icon: 'penetratingSlash.svg',
-                    description: ``,
-                    name: 'penetrating slash',
-                    level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 3 : 1
-                  },
-                  constants: BUFFS['penetrating_slash']
-                };
-                addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'penetrating_slash', 
+                    buffData: {
+                      level: buff.data.level === 1 ? 1 : buff.data.level === 2 ? 1 : buff.data.level === 3 ? 1 : buff.data.level === 4 ? 2 : buff.data.level === 5 ? 3 : 1,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
                 buff.data.CDPSlash = 10.0;
                 // END: use Penetrating Slash
               }
             }
           } catch (err) {
+            console.log("Problem with skeleton logic");
+            console.log(err);
           }
           
           buff.data.timeTillAction = 0.4;
@@ -1504,26 +1535,24 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
-          // Do nothing with two-thirds our ticks (except the above CD redux)
-          if (Math.random() < 0.667) {
+          // Do nothing with a third of our available ticks (except the above CD redux)
+          if (Math.random() <= 0.333) {
             return;
           }
           
           if (target.health / target.healthMax < 0.5) {
-            const newBuff = {
-              id: 'evasive_maneuvers',
-              data: {
-                duration: 3.5,
-                totalDuration: 3.5,
-                icon: 'evasiveManeuvers.svg',
-                description: ``,
-                name: 'evasive maneuvers',
-                level: 5
-              },
-              constants: BUFFS['evasive_maneuvers']
-            };
-            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+            // START: logic Evasive Maneuvers
+            target.applyBuff({
+              buff: target.generateBuff({
+                buffId: 'evasive_maneuvers', 
+                buffData: {
+                  duration: 3.5,
+                  level: 5,
+                },
+              }),
+            });
             buff.data.timeTillCharge = 40;
+            // END: logic Evasive Maneuvers
           } else {
             buff.data.timeTillCharge = 0.4;
           }
@@ -1559,26 +1588,21 @@ export const COMPANION_BUFFS = {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
-          // Do nothing with half our ticks (except the above CD redux)
-          if (Math.random() < 0.5) {
-            return;
-          }
-          
+          // Use all ticks that aren't throttled by timeTillCharge
+
           if (target.health / target.healthMax < 0.5) {
-            const newBuff = {
-              id: 'evasive_maneuvers',
-              data: {
-                duration: 3.5,
-                totalDuration: 3.5,
-                icon: 'evasiveManeuvers.svg',
-                description: ``,
-                name: 'evasive maneuvers',
-                level: 5
-              },
-              constants: BUFFS['evasive_maneuvers']
-            };
-            addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
+            // START: logic Evasive Maneuvers
+            target.applyBuff({
+              buff: target.generateBuff({
+                buffId: 'evasive_maneuvers', 
+                buffData: {
+                  duration: 3.5,
+                  level: 5,
+                },
+              }),
+            });
             buff.data.timeTillCharge = (buff.data.level === 5) ? 15 : 40;
+            // END: logic Evasive Maneuvers
           } else {
             buff.data.timeTillCharge = 0.4;
           }
@@ -1662,8 +1686,8 @@ export const COMPANION_BUFFS = {
         }
         
         if (buff.data.timeTillCharge <= 0.0) {
-          // Do nothing with two-thirds our ticks (except the above CD redux)
-          if (Math.random() < 0.667) {
+          // Do nothing with a third of our available ticks (except the above CD redux)
+          if (Math.random() <= 0.333) {
             return;
           }
           
@@ -1746,36 +1770,37 @@ export const COMPANION_BUFFS = {
         } else {
           // Note: using all ticks
 
+          // Note: always accept whatever target we're on automatically, no re-targeting
+          
+          // START: logic for targets
+          const ourTargetUnit = target.targetUnit;
+          if (!ourTargetUnit) {
+            return;
+          }
+          const targetIsAired   = ourTargetUnit.hasBuff('air_ball');
+          const targetIsArmored = ourTargetUnit.hasBuff('crab_monster');
+          const targetIsDodging = ourTargetUnit.hasBuff('evasive_maneuvers');      
+          // END: logic for targets
+          
           // START: logic Air Ball
           try {
             if (buff.data.level >= 3 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {
               if (actualBattle.isTower()) {
                 if (!actualBattle.isExplorationRun || actualBattle.room >= 4 || actualBattle.room === 'boss') {              
-                  if (actualBattle.enemies.length > 0 && actualBattle.enemies[0].id !== 'crab') {
-                    // always air left-to-right
-                    let enemyIsAired = false;
-                    if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-                      const enemyAirBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'air_ball');
-                      enemyIsAired = enemyAirBuffs && enemyAirBuffs.length > 0;
-                    }
-                    if (!enemyIsAired) {
-                      // START: cast Air Ball
-                      const newBuff = {
-                        id: 'air_ball',
-                        data: {
+                  if (!targetIsArmored && !targetIsDodging && !targetIsAired) {
+                    // START: cast Air Ball
+                    // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+                    target.applyBuffTo({
+                      buff: target.generateBuff({
+                        buffId: 'air_ball', 
+                        buffData: {
                           duration: 7,
-                          totalDuration: 7,
-                          icon: 'airBall.svg',
-                          description: `Reduces enemy armor.`,
-                          name: 'air ball'
                         },
-                        constants: BUFFS['air_ball']
-                      };
-                      // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                      addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
-                      buff.data.CDAirBall = 10.0;
-                      // END: cast Air Ball
-                    }
+                      }),
+                      target: ourTargetUnit,
+                    });
+                    buff.data.CDAirBall = 10.0;
+                    // END: cast Air Ball
                   }
                 }
               }
@@ -1788,29 +1813,22 @@ export const COMPANION_BUFFS = {
           try {
             const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
             const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
-              if (unit.buffs.find(buff => buff.id === 'mending_water')) {
-                return false;
-              }
-              return true;
+              return (!unit.hasBuff('mending_water'));
             });
             const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
             const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
             if (!castAnyHeal && unitsHealthSorted.length >= 3 && buff.data.level >= 4 && buff.data.CDWaterWave <= 0.0 && (unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax < 0.7) && (unitsHealthSorted[1].stats.health / unitsHealthSorted[1].stats.healthMax < 0.8) && (unitsHealthSorted[2].stats.health / unitsHealthSorted[2].stats.healthMax < 0.8)) {
               try {
                 // START: cast Water Wave
-                const newBuff = {
-                  id: 'water_wave',
-                  data: {
-                    icon: 'waterWave.svg',
-                    description: `Directly heals all allies.`,
-                    name: 'water wave'
-                  },
-                  constants: BUFFS['water_wave']
-                };
-                // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                actualBattle.units.forEach((unit_to_heal) => {
-                  addBuff({ buff: newBuff, target: unit_to_heal, caster: caster, actualBattle });
-                });                
+                actualBattle.units.forEach((unitToWaterWave) => {
+                  // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+                  target.applyBuffTo({
+                    buff: target.generateBuff({
+                      buffId: 'water_wave', 
+                    }),
+                    target: unitToWaterWave,
+                  });
+                });
                 buff.data.CDWaterWave = 20.0;
                 castAnyHeal = true;
                 // END: cast Water Wave
@@ -1820,36 +1838,28 @@ export const COMPANION_BUFFS = {
             if (lowHealthTest < 0.70) {
               if (!castAnyHeal && buff.data.CDWaterBall <= 0.0) {
                 // START: cast Water Ball
-                const newBuff = {
-                  id: 'water_ball',
-                  data: {
-                    icon: 'waterBall.svg',
-                    description: `Directly heals target.`,
-                    name: 'water ball'
-                  },
-                  constants: BUFFS['water_ball']
-                };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'water_ball', 
+                  }),
+                  target: unitsHealthSorted[0],
+                });
                 buff.data.CDWaterBall = 10.0;
                 castAnyHeal = true;
                 // END: cast Water Ball
               }
               if (!castAnyHeal && buff.data.level >= 2 && lowHealthTestNoMending < 0.70 && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
                 // START: cast Mending Water
-                const newBuff = {
-                  id: 'mending_water',
-                  data: {
-                    icon: 'mendingWater.svg',
-                    description: `Heals target over time.`,
-                    name: 'mending water',
-                    duration: 20,
-                    totalDuration: 20,
-                  },
-                  constants: BUFFS['mending_water']
-                };
-                // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'mending_water', 
+                    buffData: {
+                      duration: 20,
+                    },
+                  }),
+                  target: unitsHealthSortedNoMending[0],
+                });
                 buff.data.CDMend = 30.0;
                 castAnyHeal = true;
                 // END: cast Mending Water
@@ -1859,17 +1869,13 @@ export const COMPANION_BUFFS = {
               // water dart
               if (!castAnyHeal && buff.data.CDWaterDart <= 0.0) {
                 // START: cast Water Dart
-                const newBuff = {
-                  id: 'water_dart',
-                  data: {
-                    icon: 'waterDart.svg',
-                    description: `Directly heals target.`,
-                    name: 'water dart'
-                  },
-                  constants: BUFFS['water_dart']
-                };
                 // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'water_dart', 
+                  }),
+                  target: unitsHealthSorted[0],
+                });
                 buff.data.CDWaterDart = 10.0;
                 castAnyHeal = true;
                 // END: cast Water Dart
@@ -1935,17 +1941,23 @@ export const COMPANION_BUFFS = {
           buff.data.CDBleed -= secondsElapsed;
         }
         
-        // Note: using half of all ticks
-        if (Math.random() < 0.5) {
+        // Note: using two-thirds of all ticks
+        if (Math.random() <= 0.333) {
           return;
         }
         
         // Note: always accept whatever target we're on automatically, no re-targeting
-        
-        if (!actualBattle.enemies || actualBattle.enemies.length <= 0 || actualBattle.enemies[0].id === 'crab') {
+
+        // START: logic for targets
+        const ourTargetUnit = target.targetUnit;
+        if (!ourTargetUnit) {
           return;
         }
-        
+        const targetIsAired   = ourTargetUnit.hasBuff('air_ball');
+        const targetIsArmored = ourTargetUnit.hasBuff('crab_monster');
+        const targetIsDodging = ourTargetUnit.hasBuff('evasive_maneuvers');      
+        // END: logic for targets
+       
         // START: logic mass charm every ~15 seconds
         try {
           if (buff.data.level >= 5) {
@@ -1973,47 +1985,34 @@ export const COMPANION_BUFFS = {
         // END: logic mass charm
 
         try {
-          // START: logic for targets
-          let enemyIsDodging = false;
-          if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-            const enemyDodgeBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'evasive_maneuvers'); // this covers ninjas evading and spirits blinking
-            enemyIsDodging = (enemyDodgeBuffs && enemyDodgeBuffs.length > 0);
-          }
-          // END: logic for targets
-          
-          if (!enemyIsDodging) {
+          if (!targetIsDodging && !targetIsArmored) {
             if (buff.data.level >= 3 && buff.data.CDPSlash <= 0.0) {
               // START: use Penetrating Slash
-              const newBuff = {
-                id: 'penetrating_slash',
-                data: {
-                  icon: 'penetratingSlash.svg',
-                  description: ``,
-                  name: 'penetrating slash',
-                  level: buff.data.level === 5 ? 5 : 4
-                },
-                constants: BUFFS['penetrating_slash']
-              };
-              addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+              target.applyBuffTo({
+                buff: target.generateBuff({
+                  buffId: 'penetrating_slash', 
+                  buffData: {
+                    level: buff.data.level === 5 ? 5 : 4,
+                  },
+                }),
+                target: ourTargetUnit,
+              });
               buff.data.CDPSlash = 10.0;
             // END: use Penetrating Slash
             }
             
-            if (buff.data.level >= 4 && buff.data.CDBleed <= 0.0 && actualBattle.enemies[0].stats.health >= 400) {
+            if (buff.data.level >= 4 && buff.data.CDBleed <= 0.0 && ourTargetUnit.stats.health >= 400) {
               // START: use Bleed
-              const newBuff = {
-                id: 'bleed',
-                data: {
-                  duration: 15,
-                  totalDuration: 15,
-                  icon: 'bleed.svg',
-                  description: ``,
-                  name: 'bleed',
-                  level: buff.data.level
-                },
-                constants: BUFFS['bleed']
-              };
-              addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: target, actualBattle });
+              target.applyBuffTo({
+                buff: target.generateBuff({
+                  buffId: 'bleed', 
+                  buffData: {
+                    duration: 15,
+                    level: buff.data.level === 5 ? 5 : 4,
+                  },
+                }),
+                target: ourTargetUnit,
+              });
               buff.data.CDBleed = 30.0;
               // END: use Bleed
             }
@@ -2026,31 +2025,17 @@ export const COMPANION_BUFFS = {
           if (buff.data.level >= 1 && buff.data.CDAirBall <= 0.0 && target.stats.healthMax >= 400) {
             if (actualBattle.isTower()) {
               if (!actualBattle.isExplorationRun || actualBattle.room >= 4 || actualBattle.room === 'boss') {              
-                if (actualBattle.enemies.length > 0 && actualBattle.enemies[0].id !== 'crab') {
-                  // always air left-to-right
-                  let enemyIsAired = false;
-                  if (actualBattle.enemies[0].buffs && actualBattle.enemies[0].buffs.length > 0) {
-                    const enemyAirBuffs = actualBattle.enemies[0].buffs.find(buff => buff.id === 'air_ball');
-                    enemyIsAired = enemyAirBuffs && enemyAirBuffs.length > 0;
-                  }
-                  if (!enemyIsAired) {
-                    // START: cast Air Ball
-                    const newBuff = {
-                      id: 'air_ball',
-                      data: {
-                        duration: 7,
-                        totalDuration: 7,
-                        icon: 'airBall.svg',
-                        description: `Reduces enemy armor.`,
-                        name: 'air ball'
-                      },
-                      constants: BUFFS['air_ball']
-                    };
-                    // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-                    addBuff({ buff: newBuff, target: actualBattle.enemies[0], caster: caster, actualBattle });
-                    buff.data.CDAirBall = 10.0;
-                    // END: cast Air Ball
-                  }
+                if (!targetIsArmored && !targetIsDodging && !targetIsAired) {
+                  // START: cast Air Ball
+                  // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
+                  target.applyBuffTo({
+                    buff: target.generateBuff({
+                      buffId: 'air_ball', 
+                    }),
+                    target: ourTargetUnit,
+                  });
+                  buff.data.CDAirBall = 10.0;
+                  // END: cast Air Ball
                 }
               }
             }
@@ -2062,47 +2047,37 @@ export const COMPANION_BUFFS = {
         // START: logic healing spells
         try {
           const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
-          const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
-            if (unit.buffs.find(buff => buff.id === 'mending_water')) {
-              return false;
-            }
-            return true;
-          });
+            const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
+              return (!unit.hasBuff('mending_water'));
+            });
           const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
           const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
           if (lowHealthTest < 0.70) {
             if (!castAnyHeal && buff.data.level >= 2 && buff.data.CDWaterBall <= 0.0) {
               // START: cast Water Ball
-              const newBuff = {
-                id: 'water_ball',
-                data: {
-                  icon: 'waterBall.svg',
-                  description: `Directly heals target.`,
-                  name: 'water ball'
-                },
-                constants: BUFFS['water_ball']
-              };
               // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-              addBuff({ buff: newBuff, target: unitsHealthSorted[0], caster: caster, actualBattle });
+              target.applyBuffTo({
+                buff: target.generateBuff({
+                  buffId: 'water_ball', 
+                }),
+                target: unitsHealthSorted[0],
+              });
               buff.data.CDWaterBall = 10.0;
               castAnyHeal = true;
               // END: cast Water Ball
             }
             if (!castAnyHeal && buff.data.level >= 1 && lowHealthTestNoMending < 0.70 && buff.data.CDMend <= 0.0 && unitsHealthSortedNoMending[0].stats.healthMax >= 500) {
               // START: cast Mending Water
-              const newBuff = {
-                id: 'mending_water',
-                data: {
-                  icon: 'mendingWater.svg',
-                  description: `Heals target over time.`,
-                  name: 'mending water',
-                  duration: 20,
-                  totalDuration: 20,
-                },
-                constants: BUFFS['mending_water']
-              };
               // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
-              addBuff({ buff: newBuff, target: unitsHealthSortedNoMending[0], caster: caster, actualBattle });
+              target.applyBuffTo({
+                buff: target.generateBuff({
+                  buffId: 'mending_water', 
+                  buffData: {
+                    duration: 20,
+                  },
+                }),
+                target: unitsHealthSortedNoMending[0],
+              });
               buff.data.CDMend = 30.0;
               castAnyHeal = true;
               // END: cast Mending Water
@@ -2111,14 +2086,6 @@ export const COMPANION_BUFFS = {
         } catch (err) {
         }
         // END: logic healing spells
-        
-        /*
-        if (castAnyHeal) {
-          if (healthMaxAtStart === target.stats.healthMax) {
-            // if we tried to cast a heal spell but our health max at the start and end wre the same, then we couldn't afford to cast anything
-          }
-        }
-        */
       },
 
       onRemove({ buff, target, caster }) {

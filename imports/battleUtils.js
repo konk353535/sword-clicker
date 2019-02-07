@@ -1,4 +1,5 @@
 import _ from 'underscore';
+
 import { BUFFS } from './constants/buffs/index';
 
 // why is this a duplicate of /server/battleUtils.js ?
@@ -65,4 +66,37 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
       newBuff.data.didApply = true;
     }
   }
+  
+  return newBuff;
 }
+
+export const removeBuffById = function removeBuffById({target, caster, buffId, actualBattle}) {
+  try {
+    let buffToRemove = target.findBuff(buffId);
+    if (buffToRemove) {
+      removeBuff({ buff: buffToRemove, target, caster, actualBattle });
+      return true;
+    }
+  } catch (err) {
+  }
+  return false;
+};
+
+export const removeBuffWithMessage = function removeBuffWithMessage({target, caster, buff, buffId, actualBattle, messageOptions}) {
+  try {
+    if (buff) {
+      removeBuff({target, buff, caster, actualBattle});
+      if (messageOptions) {
+        target.tickMessage(messageOptions.label, messageOptions.color);
+      }
+      return true;
+    } else if (removeBuffById({target, caster, buffId, actualBattle})) {
+      if (messageOptions) {
+        target.tickMessage(messageOptions.label, messageOptions.color);
+      }
+      return true;
+    }
+  } catch (err) {
+  }
+  return false;
+};

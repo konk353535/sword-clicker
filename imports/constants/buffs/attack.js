@@ -305,7 +305,7 @@ export const ATTACK_BUFFS = {
     name: 'poisoned blade',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -377,7 +377,7 @@ export const ATTACK_BUFFS = {
     name: 'phantom strikes',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -449,12 +449,12 @@ export const ATTACK_BUFFS = {
   },
 
   twin_blades: {
-    duplicateTag: 'twin_blades', // Used to stop duplicate buffs
+    duplicateTag: 'twin_blades',
     icon: 'twinBlades.svg',
     name: 'twin blades',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -473,9 +473,8 @@ export const ATTACK_BUFFS = {
       duration: Infinity,
       totalDuration: Infinity
     },
-    events: { // This can be rebuilt from the buff id
+    events: {
       onApply({ buff, target, caster }) {
-        // Blank
         buff.stacks = 1;
         buff.data.timeTillStack = 3;
       },
@@ -489,42 +488,37 @@ export const ATTACK_BUFFS = {
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
         const damage = baseDamage + extraDamage;
 
-        // Get the defender, get enemies both side of him
-        const targetIndex = actualBattle.enemies.indexOf(defender);
+        if (attacker) {
+          // Get the defender
+          const ourTargetUnit = attacker.targetUnit;
+          if (ourTargetUnit) {
+            // Get enemies both side of him
+            const ourTargetsAllies = ourTargetUnit.adjacentAllies;
+            if (ourTargetsAllies && ourTargetsAllies.length > 0) {
+              buff.stacks -= 1;
+              ourTargetUnit.adjacentAllies.forEach((newTarget) => {
+                // Call auto attack on them as well
+                actualBattle.autoAttack({
+                  attacker,
+                  defender: newTarget,
+                  tickEvents: actualBattle.tickEvents,
+                  historyStats: actualBattle.historyStats,
+                  originalAutoAttack: false
+                });
 
-        if (targetIndex >= 0) {
-          const adjacentTargets = [];
-          
-          const leftTarget = actualBattle.enemies[targetIndex - 1];
-          const rightTarget = actualBattle.enemies[targetIndex + 1];
-          if (leftTarget) { adjacentTargets.push(leftTarget); }
-          if (rightTarget) { adjacentTargets.push(rightTarget); }
-
-          if (adjacentTargets.length > 0) {
-            adjacentTargets.forEach((newTarget) => {
-              // Call auto attack on them as well
-              actualBattle.autoAttack({
-                attacker,
-                defender: newTarget,
-                tickEvents: actualBattle.tickEvents,
-                historyStats: actualBattle.historyStats,
-                originalAutoAttack: false
+                // Apply a cooldown to our ability
               });
-            });
-
-            // Apply a cooldown to our ability
-            buff.stacks -= 1;
+            }
           }
         }
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         buff.data.timeTillStack -= secondsElapsed;
         if (buff.data.timeTillStack <= 0) {
           buff.data.timeTillStack = 3;
           buff.stacks++;
-          if (buff.stacks >= 20) {
+          if (buff.stacks > 20) {
             buff.stacks = 20;
           }
         }
@@ -542,7 +536,7 @@ export const ATTACK_BUFFS = {
     name: 'thirsty fangs',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -620,7 +614,7 @@ export const ATTACK_BUFFS = {
     name: 'war cry',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel || localLevel <= 0) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -669,7 +663,7 @@ export const ATTACK_BUFFS = {
     name: 'berserk',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 

@@ -9,9 +9,8 @@ export const DEFENSE_BUFFS = {
     icon: 'volcanicShield.svg',
     name: 'volcanic shield',
     description({ buff, level }) {
-
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 
@@ -173,7 +172,7 @@ export const DEFENSE_BUFFS = {
     name: 'frost armor',
     description({ buff, level }) {
       let localLevel = CInt(level);
-      if (!localLevel) {
+      if (localLevel <= 0) {
         localLevel = 1;
       }
 

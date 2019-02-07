@@ -27,6 +27,9 @@ const createAdventure = function createAdventure(combatSkills, maxFloor, forceEp
   if (maxFloor < 1) {
     maxFloor = 1;
   }
+  if (maxFloor > 20) {
+    maxFloor = 20;
+  }
 
   const magicChance = 0.2;
   let type = Math.random() <= magicChance && combatSkills.magic ? 'magic' : 'physical';
@@ -41,7 +44,7 @@ const createAdventure = function createAdventure(combatSkills, maxFloor, forceEp
   }
 
   // Based on level determine floor
-  const targetFloor = Math.ceil(level / 2);
+  const targetFloor = Math.ceil(level / 1.25); // changed by psouza4 2019-02-07 (the original formula was ÷ 2 and that seemed brutal)
   let floor;
 
   if (targetFloor > maxFloor) {

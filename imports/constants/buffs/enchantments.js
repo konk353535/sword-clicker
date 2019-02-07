@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
+import { addBuff, removeBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
 import { CDbl } from '../../utils.js';
 import { BUFFS } from './index.js';
 import lodash from 'lodash';
@@ -523,7 +523,7 @@ export const ENCHANTMENT_BUFFS = {
       totalDuration: Infinity,
       isEnchantment: true
     },
-    events: { // This can be rebuilt from the buff id
+    events: {
       onApply({ buff, target, caster }) {
       },
 
@@ -532,23 +532,20 @@ export const ENCHANTMENT_BUFFS = {
         const bleedChance = 0.1;
 
         if (Math.random() <= bleedChance) {
-          const newBuff = {
-            id: 'bleed_proper',
-            data: {
-              duration: 3,
-              totalDuration: 3,
-              dps: CDbl(attacker.stats.attackMax) / 10,
-              caster: attacker.id,
-              timeTillDamage: 1,
-              allowDuplicates: true,
-              icon: 'bleeding.svg',
-              name: 'bleed',
-              description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
-            }
-          };
-
           // Add bleed debuff
-          addBuff({ buff: newBuff, target: defender, caster: attacker });
+          attacker.applyBuffTo({
+            buff: attacker.generateBuff({
+              buffId: 'bleed_proper', 
+              buffData: {
+                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`,
+                duration: 3,
+                allowDuplicates: true,
+                dps: CDbl(attacker.stats.attackMax) / 10,
+                timeTillDamage: 1,
+              },
+            }),
+            target: defender, // alternatively can use attacker.targetUnit
+          });
         }
       },
 
@@ -556,7 +553,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1676,7 +1672,7 @@ export const ENCHANTMENT_BUFFS = {
       totalDuration: Infinity,
       isEnchantment: true,
     },
-    events: { // This can be rebuilt from the buff id
+    events: {
       onApply({ buff, target, caster }) {
       },
 
@@ -1688,23 +1684,20 @@ export const ENCHANTMENT_BUFFS = {
           const bleedChance = 0.2;
 
           if (Math.random() <= bleedChance) {
-            const newBuff = {
-              id: 'bleed_proper',
-              data: {
-                duration: 3,
-                totalDuration: 3,
-                dps: CDbl(attacker.stats.attackMax) / 10,
-                caster: attacker.id,
-                timeTillDamage: 1,
-                allowDuplicates: true,
-                icon: 'bleeding.svg',
-                name: 'bleed',
-                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`
-              }
-            };
-
             // Add bleed debuff
-            addBuff({ buff: newBuff, target: defender, caster: attacker });
+            attacker.applyBuffTo({
+              buff: attacker.generateBuff({
+                buffId: 'bleed_proper', 
+                buffData: {
+                  description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`,
+                  duration: 3,
+                  allowDuplicates: true,
+                  dps: CDbl(attacker.stats.attackMax) / 10,
+                  timeTillDamage: 1,
+                },
+              }),
+              target: defender, // alternatively can use attacker.targetUnit
+            });
           }
         }
       },
@@ -1926,18 +1919,49 @@ export const ENCHANTMENT_BUFFS = {
     data: {
       duration: Infinity,
       totalDuration: Infinity,
-      isEnchantment: true
+      isEnchantment: true,
+      hideBuff: true,
+      combatTimer: 0.6, // wait a moment for combat to start
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         target.isPacifist = true;
+        
+        // Add the generic pacifist buff            
+        target.applyBuff({
+          buff: target.generateBuff({
+            buffId: 'pacifist', 
+          }),
+        });
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.combatTimer < 0) {
+          // If we added pacifist, then remove the Rose Quartz Amulet buff (hiding it programmically doesn't work entirely, player would have to tab away and tab back)
+          if (target.hasBuff('pacifist')) {
+            removeBuff({buff, target, caster, actualBattle});
+          }
+          return;
+        }
+        
+        // For the first 0.6s of combat, aggressively try to remove these effects from this player
+        buff.data.combatTimer -= secondsElapsed;
+        
+        // Once we're sure all passive and enchantments have been applied, look for and remove some offensive ones:            
+        removeBuffWithMessage({target, caster, buffId: 'phoenix_hat',         actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        removeBuffWithMessage({target, caster, buffId: 'eternal_flame',       actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        removeBuffWithMessage({target, caster, buffId: 'demons_heart',        actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        removeBuffWithMessage({target, caster, buffId: 'demons_heart_damage', actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        removeBuffWithMessage({target, caster, buffId: 'spiked_armor',        actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        
+        // NOTE: lion_claws and bloody_plate_legs both apply bleed during .onHit() which is impossible when .isPacifist = true because
+        //       auto-attacks can't occur at all.  That said, we're going to remove them here anyway to let the player know.
+        removeBuffWithMessage({target, caster, buffId: 'lion_claws',          actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
+        removeBuffWithMessage({target, caster, buffId: 'bloody_plate_legs',   actualBattle, messageOptions: { label: 'Pacifist', color: '#E825AE' }});
       },
 
       onRemove({ buff, target, caster }) {
-        target.isPacifist = false;
+        //target.isPacifist = false; // intentionally left on if this buff is removed
       }
     }
   },

@@ -1,6 +1,12 @@
+import _ from 'underscore';
+
 import Stats from './stats';
 import Buff from './buff';
 import Ability from './ability';
+
+import { BUFFS } from '../../../../imports/constants/buffs/index.js';
+
+import { addBuff, removeBuff } from '../../../../imports/battleUtils';
 
 export default class Unit {
 
@@ -28,7 +34,105 @@ export default class Unit {
 
     this.battleRef.deltaEvents.push(event);
   }
-
+  
+  get team() {
+    try {
+      if (this.isEnemy) {
+        if (this.battleRef.enemies) {
+          return this.battleRef.enemies;
+        }
+      } else {
+        if (this.battleRef.units) {
+          return this.battleRef.units;
+        }
+      }
+    } catch (err) {
+    }    
+    return [];
+  }
+  
+  get allies() {
+    const currentUnit = this;
+    return currentUnit.team.filter((unit) => {
+      return unit.id !== currentUnit.id;
+    });
+  }
+  
+  get opposition() {
+    try {
+      if (!this.isEnemy) {
+        if (this.battleRef.enemies) {
+          return this.battleRef.enemies;
+        }
+      } else {
+        if (this.battleRef.units) {
+          return this.battleRef.units;
+        }
+      }
+    } catch (err) {
+    }    
+    return [];
+  }
+  
+  get targetUnit() {
+    try {
+      const currentUnit = this;
+      const oppositionList = currentUnit.opposition;
+      if (oppositionList.length > 0) {
+        let targetUnitFound;
+        oppositionList.forEach((potentialTarget) => {
+          if (potentialTarget.id === currentUnit.target) {
+            targetUnitFound = potentialTarget;
+          }
+        });
+        if (targetUnitFound) {
+          return targetUnitFound;
+        }
+        return oppositionList[0];
+      }
+    } catch (err) {
+    }
+    return false;
+  }
+    
+  get leftSideAlly() {
+    let leftSideAlly;    
+    try {
+      leftSideAlly = this.team[this.team.indexOf(this) - 1];
+    } catch (err) {
+    }
+    if (leftSideAlly) {
+      return leftSideAlly;
+    }
+    return false;
+  }
+    
+  get rightSideAlly() {
+    let rightSideAlly;    
+    try {
+      rightSideAlly = this.team[this.team.indexOf(this) + 1];
+    } catch (err) {
+    }
+    if (rightSideAlly) {
+      return rightSideAlly;
+    }
+    return false;
+  }
+  
+  get adjacentAllies() {
+    let leftSideAllyFound = this.leftSideAlly;
+    let rightSideAllyFound = this.rightSideAlly;
+    
+    if (leftSideAllyFound && rightSideAllyFound) {
+      return [leftSideAllyFound, rightSideAllyFound];
+    } else if (leftSideAllyFound) {
+      return [leftSideAllyFound];
+    } else if (rightSideAllyFound) {
+      return [rightSideAllyFound];
+    }
+    return [];
+  }
+  
   constructor(unit, battleRef) {
     this.id = unit.id;
     this.isUnitClass = true;
@@ -151,6 +255,72 @@ export default class Unit {
         
         this.buffs.splice(idx, 1);
       }      
+    }
+  }
+  
+  findBuff(buffId) {
+    try {
+      let buffToFind = undefined;
+      this.buffs.forEach((tempBuff) => {
+        if (tempBuff.id === buffId) {
+          buffToFind = tempBuff;
+        }
+      });
+      return buffToFind;
+    } catch (err) {
+    }
+    return false;
+  }
+  
+  hasBuff(buffId) {
+    const foundBuff = this.findBuff(buffId);
+    return (foundBuff && foundBuff !== undefined && foundBuff !== null && foundBuff !== false && foundBuff.id && foundBuff.id.length > 0);
+  }
+  
+  generateBuff({buffId, buffData}) {
+    try {
+      const buffLevel = (buffData && buffData.level) ? buffData.level : 1
+      const newBuffConstants = BUFFS[buffId];
+      const newBuff = {
+        id: buffId,
+        data: {
+          name: (buffData && buffData.name) ? buffData.name : newBuffConstants.name,
+          description: (buffData && _.isFunction(buffData.description)) ? buffData.description : newBuffConstants.description({buff: newBuffConstants, level: buffLevel}),
+          icon: (buffData && buffData.icon) ? buffData.icon : newBuffConstants.icon,
+          duration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.duration,
+          totalDuration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.totalDuration,
+          caster: this.id,
+          level: buffLevel,
+        },
+        constants: newBuffConstants
+      };    
+      return newBuff;
+    } catch (err) {
+      console.log("Couldn't generate buff!");
+      console.log(err);
+    }
+    return false;
+  }
+  
+  applyBuff({buff, fromUnit}) {
+    return addBuff({
+      buff,
+      target: this,
+      caster: fromUnit || this,
+      actualBattle: this.battleRef
+    });
+  }
+  
+  applyBuffTo({buff, target}) {
+    if (target && target.id) {
+      return target.applyBuff({buff, fromUnit: this});
+    }
+    return false;
+  }
+  
+  tickMessage(label, customColor, customIcon) {
+    if (this.battleRef && this.battleRef.tickEvents) {
+      this.battleRef.tickEvents.push({from: this.id, to: this.id, eventType: 'special', label, customColor, customIcon: customIcon || 'noicon'});
     }
   }
   

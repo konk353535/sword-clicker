@@ -153,39 +153,39 @@ export const MISC_ITEMS = {
     description: 'Required to bond cursed together.'
   },
 
-  farplane_dust: {
-    id: 'farplane_dust',
+  farplane_mysterious_dust: {
+    id: 'farplane_mysterious_dust',
     icon: 'farplaneDust.svg',
     category: 'misc',
-    name: 'farplane dust',
+    name: 'mysterious dust',
     sellPrice: 0,
-    description: 'It\'s impossible to tell what this is used for.'
+    description: 'This is from the Farplane; it\'s impossible to tell what this is used for.'
   },
 
-  twisted_veins: {
-    id: 'twisted_veins',
+  farplane_twisted_veins: {
+    id: 'farplane_twisted_veins',
     icon: 'farplaneTwistedVeins.svg',
     category: 'misc',
     name: 'twisted veins',
     sellPrice: 0,
-    description: 'It\'s impossible to tell what this is used for.'
+    description: 'This is from the Farplane; it\'s impossible to tell what this is used for.'
   },
 
-  organic_rock: {
-    id: 'organic_rock',
+  farplane_organic_rock: {
+    id: 'farplane_organic_rock',
     icon: 'farplaneOrganicRock.png',
     category: 'misc',
     name: 'organic rock',
     sellPrice: 0,
-    description: 'It\'s impossible to tell what this is used for.'
+    description: 'This is from the Farplane; it\'s impossible to tell what this is used for.'
   },
 
-  acidic_fluids: {
-    id: 'acidic_fluids',
+  farplane_acidic_fluid: {
+    id: 'farplane_acidic_fluid',
     icon: 'farplaneAcidicFluids.png',
     category: 'misc',
     name: 'acidic fluids',
     sellPrice: 0,
-    description: 'It\'s impossible to tell what this is used for.'
+    description: 'This is from the Farplane; it\'s impossible to tell what this is used for.'
   },
 };

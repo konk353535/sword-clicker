@@ -1040,7 +1040,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1089,11 +1088,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1140,7 +1137,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1165,11 +1161,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1188,11 +1182,9 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        // Blank
         if (!buff.data.timeTillRabbit) {
           buff.data.timeTillRabbit = 8 + Math.random () * 3;
         } else {
@@ -1214,7 +1206,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1270,7 +1261,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1306,7 +1296,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1323,7 +1312,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1366,7 +1354,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1384,7 +1371,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1426,7 +1412,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1568,7 +1553,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -1591,11 +1575,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1612,7 +1594,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -1641,11 +1622,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1662,7 +1641,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -1691,11 +1669,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1712,7 +1688,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -1747,11 +1722,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1768,7 +1741,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1798,11 +1770,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1819,7 +1789,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1832,7 +1801,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1849,7 +1817,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -1872,7 +1839,6 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.data.hitsRequired == null) {
           buff.data.hitsRequired = 45;
           target.stats.armor += 2000;
@@ -1881,7 +1847,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1898,11 +1863,9 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (!buff.data.timeTillUpdate) {
           buff.data.timeTillUpdate = 5;
         } else if (buff.data.timeTillUpdate <= 0) {
@@ -1924,7 +1887,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1941,7 +1903,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -1968,11 +1929,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1992,7 +1951,6 @@ export const MONSTER_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, actualBattle }) {
@@ -2075,7 +2033,6 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -2331,11 +2288,9 @@ export const MONSTER_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },

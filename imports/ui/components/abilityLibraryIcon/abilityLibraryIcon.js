@@ -95,9 +95,9 @@ Template.abilityLibraryIcon.events({
     const shiftAction = instance.data.item.shiftAction;
     const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
     
-    if (shiftKey) {
+    if (shiftKey && shiftAction && shiftAction.method) {
       shiftAction.method();      
-    } else if (primaryAction) {
+    } else if (primaryAction && primaryAction.method) {
       primaryAction.method();
     }
   }

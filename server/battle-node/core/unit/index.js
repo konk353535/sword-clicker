@@ -283,7 +283,7 @@ export default class Unit {
       const newBuffConstants = BUFFS[buffId];
       const newBuff = {
         id: buffId,
-        data: Object.assign(/*newBuffConstants.data, */ buffData, {
+        data: Object.assign(/*newBuffConstants.data, */ (buffData || {}), {
           name: (buffData && buffData.name) ? buffData.name : newBuffConstants.name,
           description: (buffData && _.isFunction(buffData.description)) ? buffData.description : newBuffConstants.description({buff: newBuffConstants, level: buffLevel}),
           icon: (buffData && buffData.icon) ? buffData.icon : newBuffConstants.icon,
@@ -291,6 +291,8 @@ export default class Unit {
           totalDuration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.totalDuration,
           caster: this.id,
           //level: buffLevel // intentionally omitted (let it be supplied by 'buffData' if we want it, i.e.: no default)
+          allowDuplicates: (buffData && buffData.allowDuplicates) ? buffData.allowDuplicates : false,
+          duplicateCap: (buffData && buffData.duplicateCap) ? buffData.duplicateCap : 1,
         }),
         constants: newBuffConstants
       };

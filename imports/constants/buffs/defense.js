@@ -799,15 +799,13 @@ export const DEFENSE_BUFFS = {
           const constants = buff.constants.constants ? buff.constants.constants : buff.constants;
           buff.duration += (buff.data.level * constants.durationPerLevel)
         }
-        buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+        //buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         buff.data.damageReduction = target.stats.damageTaken * (99.9999 / 100);
         target.stats.damageTaken -= buff.data.damageReduction;
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        let localSecondsElapsed = secondsElapsed;
-        buff.duration -= localSecondsElapsed;
-
+        buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }

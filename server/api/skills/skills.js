@@ -15,6 +15,7 @@ import { Farming, FarmingSpace } from '/imports/api/farming/farming';
 import { updateCombatStats } from '/server/api/combat/combat';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { updateMiningStats } from '/server/api/mining/mining.js';
+import { ABILITIES } from '/server/constants/combat/abilities.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 import { ITEMS } from '/imports/constants/items/index.js';
@@ -353,6 +354,7 @@ Meteor.methods({
       });
 
       all_abilities.forEach((ability) => {
+        ability.requires = ABILITIES[ability.abilityId].requires;
         abilities_map[ability.slot] = ability;
       });
     }

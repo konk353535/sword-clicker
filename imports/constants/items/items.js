@@ -153,4 +153,39 @@ export const MISC_ITEMS = {
     description: 'Required to bond cursed together.'
   },
 
+  farplane_dust: {
+    id: 'farplane_dust',
+    icon: 'farplaneDust.svg',
+    category: 'misc',
+    name: 'farplane dust',
+    sellPrice: 0,
+    description: 'It\'s impossible to tell what this is used for.'
+  },
+
+  twisted_veins: {
+    id: 'twisted_veins',
+    icon: 'farplaneTwistedVeins.svg',
+    category: 'misc',
+    name: 'twisted veins',
+    sellPrice: 0,
+    description: 'It\'s impossible to tell what this is used for.'
+  },
+
+  organic_rock: {
+    id: 'organic_rock',
+    icon: 'farplaneOrganicRock.png',
+    category: 'misc',
+    name: 'organic rock',
+    sellPrice: 0,
+    description: 'It\'s impossible to tell what this is used for.'
+  },
+
+  acidic_fluids: {
+    id: 'acidic_fluids',
+    icon: 'farplaneAcidicFluids.png',
+    category: 'misc',
+    name: 'acidic fluids',
+    sellPrice: 0,
+    description: 'It\'s impossible to tell what this is used for.'
+  },
 };

@@ -193,11 +193,11 @@ export default class Unit {
     }
   }
   
-  get isAbleToUseSpells() {
-    return this._isAbleToUseSpells;
+  get isAbleToCastSpells() {
+    return this._isAbleToCastSpells;
   }
-  set isAbleToUseSpells(value) {
-    this._isAbleToUseSpells = value;
+  set isAbleToCastSpells(value) {
+    this._isAbleToCastSpells = value;
     if (!value) {
       if (!this.hasBuff('cant_use_spells')) {
         this.applyBuff({

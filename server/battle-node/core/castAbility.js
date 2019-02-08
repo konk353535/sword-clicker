@@ -56,7 +56,7 @@ export default function({ ability, caster, targets }) {
   // Certain effects may prevent a player from using spells or abilities but not both -- let's keep them separated
   if (!caster.isAbleToUseAbilities && !ability.isSpell) {
     canUseAbilityOrSpell = false;
-  } else if (!caster.isAbleToUseSpells && ability.isSpell) {
+  } else if (!caster.isAbleToCastSpells && ability.isSpell) {
     canUseAbilityOrSpell = false;
   }
 

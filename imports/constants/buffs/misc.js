@@ -222,7 +222,7 @@ export const MISC_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
-        target.isAbleToUseSpells = false;
+        target.isAbleToCastSpells = false;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -235,7 +235,7 @@ export const MISC_BUFFS = {
       },
 
       onRemove({ buff, target, caster, actualBattle }) {
-        target.isAbleToUseSpells = true;
+        target.isAbleToCastSpells = true;
       }
     }
   },

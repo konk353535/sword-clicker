@@ -2247,31 +2247,47 @@ export const MONSTER_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster }) {
+        target.stats.armor += 500;
+        target.stats.magicArmor += 500;
+        buff.data.hitsRequired = 25;
+        buff.stacks = buff.data.hitsRequired;
+        buff.data.hasBeenApplied = true;
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        buff.data.hitsRequired -= 1;
-        buff.stacks = buff.data.hitsRequired;
-
-        if (buff.data.hitsRequired <= 0) {
-          defender.stats.armor -= 500;
-          defender.stats.magicArmor -= 500;
-          if (defender.stats.armor <= 1) {
-            defender.stats.armor = 1;
+        try {
+          if (buff.data.hasBeenApplied) {
+            if (buff.data.hitsRequired > 0) {
+              buff.data.hitsRequired -= 1;
+              buff.stacks = buff.data.hitsRequired;
+            } else {
+              defender.stats.armor -= 500;
+              defender.stats.magicArmor -= 500;
+              if (defender.stats.armor <= 1) {
+                defender.stats.armor = 1;
+              }
+              if (defender.stats.magicArmor <= 1) {
+                defender.stats.magicArmor = 1;
+              }
+              removeBuff({ buff, target: defender, caster: defender, actualBattle });
+            }
+          } else {
+            defender.stats.health = defender.stats.healthMaxOrig;
           }
-          if (defender.stats.magicArmor <= 1) {
-            defender.stats.magicArmor = 1;
-          }
-          removeBuff({ buff, target: defender, caster: defender, actualBattle });
+        } catch (err) {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        if (buff.data.hitsRequired == null) {
-          buff.data.hitsRequired = 25;
-          target.stats.armor += 500;
-          target.stats.magicArmor += 500;
+      onBeforeDeath({ buff, target, actualBattle }) {
+        try {
+          if (!buff.data.hasBeenApplied) {
+            target.stats.health = target.stats.healthMaxOrig;
+          }
+        } catch (err) {
         }
+      },
+      
+      onTick({ secondsElapsed, buff, target, caster }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -2301,12 +2317,12 @@ export const MONSTER_BUFFS = {
             buffId: 'healing_reduction',
             buffData: {
               name: 'Wither-Touched',
-              description: `Being touched by a wither harms your soul,preventing <br />you from receiving ${Math.round((1 - healingReduction) * 100)}% of incoming healing.`
+              description: `Being touched by a wither harms your soul,preventing <br />you from receiving ${Math.round((1 - healingReduction) * 100)}% of incoming healing.`,
               icon: 'healingReduction.svg',
               duration: 10,
               healingReduction,
             },
-          },
+          }),
           target: defender,
         });
 

@@ -38,6 +38,10 @@
         {{amuletLevel}}
       </h3>
       <div class='popover-content'>
+        {{#if itemDescription}}
+          {{{itemDescription}}}<br />
+        {{/if}}
+
         {{#if description}}
           {{{description}}}<br />
         {{else if item.description}}

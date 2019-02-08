@@ -49,6 +49,18 @@ Template.itemIcon.helpers({
     }
     return false;
   },
+  
+  itemDescription() {
+    const instance = Template.instance();
+    const constants = ITEMS[instance.data.item.itemId];
+    
+    if (constants) {
+      if (constants.description && !_.isFunction(constants.description)) {
+        return constants.description;
+      }
+    }
+    return false;
+  },
 
   enchantments() {
     const instance = Template.instance();

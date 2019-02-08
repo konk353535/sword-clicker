@@ -480,45 +480,6 @@ export const BOSS_BUFFS = {
     }
   },
   
-  boss_ogre_extreme: {
-    duplicateTag: 'boss_ogre_extreme', // Used to stop duplicate buffs
-    icon: 'ogre.svg',
-    name: 'boss ogre',
-    description({ buff, level }) {
-      const c = buff.constants;
-      return ``;
-    },
-    constants: {
-    },
-    data: {
-    },
-    events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster, actualBattle }) {
-      },
-
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-
-      },
-
-      onDidDamage({ buff, defender, attacker, actualBattle }) {
-        try {
-          attacker.target = _.sample(actualBattle.units).id;
-        } catch (err) {
-        }
-      },
-      
-      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        try {
-          attacker.target = _.sample(actualBattle.enemies).id;
-        } catch (err) {
-        }
-      },
-
-      onRemove({ buff, target }) {
-      }
-    }
-  },
-
   boss_phoenix: {
     duplicateTag: 'boss_phoenix', // Used to stop duplicate buffs
     icon: 'spartan.svg',

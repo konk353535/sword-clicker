@@ -11,7 +11,11 @@ export default function applyBattleActions() {
       return;
     }
 
-    // todo: update user activity here, if possible from battle node
+    if (abilityId === 'changeTarget') {
+      if (!casterUnit.isAbleToChangeTargets) {
+        return;
+      }
+    }
     
     if (abilityId === 'changeTarget') {
       const targetId = action.targets[0];

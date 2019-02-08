@@ -118,7 +118,6 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         buff.data.extraArmor = 0;
       },
 
@@ -161,7 +160,6 @@ export const DEFENSE_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -196,7 +194,6 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
@@ -223,14 +220,12 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -259,7 +254,6 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const healthBase = constants.healthBase;
@@ -267,6 +261,7 @@ export const DEFENSE_BUFFS = {
         const healthIncrease = healthBase + healthPerLevel;
 
         buff.data.healthIncrease = healthIncrease;
+
         // Only mutate health if it's full
         if (caster.stats.health === caster.stats.healthMax) {
           caster.stats.health *= (1 + buff.data.healthIncrease);
@@ -276,9 +271,11 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -378,7 +375,6 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const defenseBase = constants.defenseBase;
@@ -390,14 +386,15 @@ export const DEFENSE_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         caster.stats.defense -= buff.data.defenseIncrease;
       }
     }
@@ -427,7 +424,6 @@ export const DEFENSE_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
@@ -450,14 +446,12 @@ export const DEFENSE_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         buff.duration -= secondsElapsed;
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -945,6 +939,13 @@ export const DEFENSE_BUFFS = {
           const armorIncrease = armorBase + armorPerLevel;
           buff.data.armorIncrease = armorIncrease;
           target.stats.magicArmor += buff.data.armorIncrease;
+        }
+
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 

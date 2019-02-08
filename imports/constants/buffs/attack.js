@@ -87,7 +87,6 @@ export const ATTACK_BUFFS = {
           });
         }
 
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
@@ -123,7 +122,6 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const attackBase = constants.attackBase;
@@ -136,14 +134,15 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         caster.stats.attack /= (1 + buff.data.attackIncrease);
         caster.stats.attackMax /= (1 + buff.data.attackIncrease);
       }
@@ -174,7 +173,6 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const accuracyBase = constants.accuracyBase;
         const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
@@ -184,16 +182,15 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        buff.duration -= secondsElapsed;
-
-        // Blank
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         //console.log(`${caster.stats.accuracy} -= ${buff.data.accuracyIncrease}`);
         if (buff.data.accuracyIncrease) {
           caster.stats.accuracy -= buff.data.accuracyIncrease;
@@ -234,6 +231,13 @@ export const ATTACK_BUFFS = {
           const criticalIncrease = criticalBase + criticalPerLevel;
           buff.data.criticalIncrease = criticalIncrease;
           target.stats.criticalChance += buff.data.criticalIncrease;
+        }
+
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -287,14 +291,12 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster }) {
         buff.duration -= secondsElapsed;
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -328,7 +330,6 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -359,14 +360,12 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -399,7 +398,6 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ originalAutoAttack, buff, defender, attacker, actualBattle }) {
@@ -436,14 +434,12 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -525,7 +521,6 @@ export const ATTACK_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -559,7 +554,6 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -596,14 +590,12 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -680,6 +672,7 @@ export const ATTACK_BUFFS = {
         <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
         <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
         You lose <b>${healthLostPerSecond.toFixed(1)}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
+        You can\'t change your active target while berserking<br />
         Duration <b>${duration}s</b>`;
     },
     constants: {
@@ -717,6 +710,8 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax += buff.data.extraAttackMax;
         target.stats.attackSpeed *= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken *= (1 + (buff.data.damageTakenIncrease / 100));
+        
+        target.isAbleToChangeTargets = false;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -749,6 +744,8 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax -= buff.data.extraAttackMax;
         target.stats.attackSpeed /= (1 + (buff.data.damageIncrease / 100));
         target.stats.damageTaken /= (1 + (buff.data.damageTakenIncrease / 100));
+        
+        target.isAbleToChangeTargets = true;
       }
     }
   },

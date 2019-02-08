@@ -44,7 +44,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -85,7 +84,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -127,7 +125,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -312,7 +309,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -364,7 +360,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -594,7 +589,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         const decimal = target.stats.health / target.stats.healthMax;
         if (decimal >= 0.75 && !buff.data.isActive) {
           buff.data.isActive = true;
@@ -608,7 +602,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -641,11 +634,9 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -673,11 +664,9 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -711,7 +700,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         target.stats.accuracy += buff.data.accuracyReduction;
       }
     }
@@ -759,11 +747,9 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -773,10 +759,13 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'magicBlade.svg',
     name: 'magic blade',
     description() {
-      return `Deals 25% magic damage for each successful auto-attack`;
+      return `
+        Deals 25% auto-attack damage as additional magic damage. <br />
+        This amount is increased by twice your magic power.`;
     },
     constants: {
       damageDecimal: 0.25,
+      bonusMPMultiplier: 2.00,
     },
     data: {
       duration: Infinity,
@@ -788,9 +777,8 @@ export const ENCHANTMENT_BUFFS = {
       },
   
       onDidDamage({ buff, attacker, defender, actualBattle, rawDamage, damageDealt, originalAutoAttack, secondsElapsed }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
-        //const baseDamage = attacker.stats.attack;
-        const totalDamage = rawDamage * constants.damageDecimal;
+        const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const totalDamage = (rawDamage * buffConsts.damageDecimal) + (attacker.stats.magicPower * buffConsts.bonusMPMultiplier);
 
         actualBattle.dealDamage(totalDamage, {
           attacker,
@@ -802,14 +790,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // wildly inappropriate way to remove this buff from the player and this is an infinate-duration enchantment anyway
-        /*
-        if (buff.duration <= 0) {
-          target.buffs = target.buffs.filter((targetBuff) => {
-            return targetBuff.id !== buff.id
-          });
-        }
-        */
       },
 
       onRemove({ buff, target, caster }) {
@@ -872,7 +852,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -992,11 +971,9 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1046,7 +1023,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1355,7 +1331,6 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster }) {
-        // Blank
       },
 
       onBeforeDeath({ buff, target, actualBattle }) {
@@ -1437,7 +1412,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1519,7 +1493,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },
@@ -1575,7 +1548,6 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },

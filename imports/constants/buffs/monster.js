@@ -1720,36 +1720,29 @@ export const MONSTER_BUFFS = {
         const bleedChance = 0.66;
 
         if (Math.random() <= bleedChance) {
-          const newBuff = {
-            id: 'bleed_proper',
-            data: {
-              duration: 3,
-              totalDuration: 3,
-              dps: attacker.stats.attackMax / 6,
-              caster: attacker.id,
-              timeTillDamage: 1,
-              icon: 'bleeding.svg',
-              name: 'bleed',
-              description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
-            }
-          };
-
-          const accuracyBuff = {
-            id: 'accuracy_up',
-            data: {
-              duration: 3,
-              totalDuration: 3,
-              allowDuplicates: true,
-              level: 2,
-              icon: 'accuracy.svg',
-              name: 'accuracy'
-            }
-          };
-
-          // Add bleed debuff
-          addBuff({ buff: newBuff, target: defender, caster: attacker });
-          // Add accuracy buff
-          addBuff({ buff: accuracyBuff, target: attacker, caster: attacker });
+          attacker.applyBuffTo({
+            buff: attacker.generateBuff({
+              buffId: 'bleed_proper', 
+              buffData: {
+                duration: 3,
+                dps: attacker.stats.attackMax / 6,
+                timeTillDamage: 1,
+                description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
+              },
+            }),
+            target: defender,
+          });
+          
+          attacker.applyBuff({
+            buff: attacker.generateBuff({
+              buffId: 'accuracy_up', 
+              buffData: {
+                duration: 3,
+                allowDuplicates: true,
+                level: 2,
+              },
+            }),
+          });
         }
       },
 
@@ -2088,7 +2081,7 @@ export const MONSTER_BUFFS = {
   },
   
   abstract_monster: {
-    duplicateTag: 'abstract_monster', // Used to stop duplicate buffs
+    duplicateTag: 'abstract_monster',
     icon: '',
     name: 'abstract monster',
     description({ buff, level }) {
@@ -2097,13 +2090,11 @@ export const MONSTER_BUFFS = {
     },
     data: {
     },
-    events: { // This can be rebuilt from the buff id
+    events: {
       onApply({ buff, target, caster }) {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
-
         // Does this unit have bleed? remove bleed + heal
         const bleedCount = defender.buffs.filter((buff) => {
           return buff.id === 'bleed' || buff.id === 'bleed_proper';
@@ -2133,6 +2124,241 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  devourer_monster: {
+    duplicateTag: 'devourer_monster',
+    icon: '',
+    name: 'devourer monster',
+    description({ buff, level }) { },
+    constants: { },
+    data: {
+      hideBuff: true,
+      dodgeTimer: 0,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.dodgeTimer = 0;
+      
+        target.applyBuff({
+          buff: target.generateBuff({
+            buffId: 'thirsty_fangs', 
+            buffData: {
+              name: 'Devourer',
+              icon: 'devourerMouth.svg',
+              level: 3,
+            },
+          }),
+        });
+        
+        //removeBuff({ buff, target, caster, actualBattle });
+      },
+      
+      onTick({ buff, target, caster, secondsElapsed }) {
+        if (buff.data.dodgeTimer > 0) {
+          buff.data.dodgeTimer -= secondsElapsed;
+        }
+      },
+
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+        if (buff.data.dodgeTimer <= 0) {
+          if (Math.random() <= 0.5) {
+            defender.applyBuff({
+              buff: defender.generateBuff({
+                buffId: 'evasive_maneuvers', 
+                buffData: {
+                  name: 'Impossible to Hit',
+                  icon: 'nullify.svg',
+                  duration: 3,
+                  level: 0, // since it will automatically add duration if we set it higher
+                },
+              }),
+            });
+            buff.data.dodgeTimer = 12;
+          }
+        }
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+        if (Math.random() <= 0.5) {
+          attacker.applyBuffTo({
+            buff: attacker.generateBuff({
+              buffId: 'bleed_proper', 
+              buffData: {
+                duration: 6,
+                dps: attacker.stats.attackMax / 6,
+                timeTillDamage: 1,
+                description: `Bleed every second for ${(attacker.stats.attackMax / 6).toFixed(2)} damage`
+              },
+            }),
+            target: defender,
+          });
+        }
+
+        if (Math.random() <= 0.5) {
+          if (buff.data.dodgeTimer <= 0) {
+            attacker.applyBuff({
+              buff: attacker.generateBuff({
+                buffId: 'evasive_maneuvers', 
+                buffData: {
+                  name: 'Impossible to Hit',
+                  icon: 'nullify.svg',
+                  duration: 3,
+                  level: 0, // since it will automatically add duration if we set it higher
+                },
+              }),
+            });
+            buff.data.dodgeTimer = 12;
+          }
+        }
+          
+        if (Math.random() <= 0.5) {
+          const buffsToAdd = ['attack_up', 'critical_up', 'defense_up'];          
+          buffsToAdd.forEach((buffToAdd) => {
+            attacker.applyBuff({
+              buff: attacker.generateBuff({
+                buffId: buffToAdd, 
+                buffData: {
+                  duration: 4,
+                  level: 3,
+                },
+              }),
+            });
+          });
+        }
+      },    
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
+  
+  grotesque_monster: {
+    duplicateTag: 'grotesque_monster',
+    icon: '',
+    name: 'grotesque armor',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
+        buff.data.hitsRequired -= 1;
+        buff.stacks = buff.data.hitsRequired;
+
+        if (buff.data.hitsRequired <= 0) {
+          defender.stats.armor -= 500;
+          defender.stats.magicArmor -= 500;
+          if (defender.stats.armor <= 1) {
+            defender.stats.armor = 1;
+          }
+          if (defender.stats.magicArmor <= 1) {
+            defender.stats.magicArmor = 1;
+          }
+          removeBuff({ buff, target: defender, caster: defender, actualBattle });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        if (buff.data.hitsRequired == null) {
+          buff.data.hitsRequired = 25;
+          target.stats.armor += 500;
+          target.stats.magicArmor += 500;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  wither_monster: {
+    duplicateTag: 'wither_monster', // Used to stop duplicate buffs
+    icon: '',
+    name: 'wither monster',
+    description({ buff, level }) {
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        const healingReduction = 0.25;
+        
+        attacker.applyBuffTo({
+          buff: attacker.generateBuff({
+            buffId: 'healing_reduction',
+            buffData: {
+              name: 'Wither-Touched',
+              description: `Being touched by a wither harms your soul,preventing <br />you from receiving ${Math.round((1 - healingReduction) * 100)}% of incoming healing.`
+              icon: 'healingReduction.svg',
+              duration: 10,
+              healingReduction,
+            },
+          },
+          target: defender,
+        });
+
+        // Add healing reduction buff
+        addBuff({ buff: newBuff, target: defender, caster: attacker });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster }) {
+        // Blank
+      },
+
+      onRemove({ buff, target, caster }) {
+        // Blank
+      }
+    }
+  },
+
+  horrible_eye_monster: {
+    duplicateTag: 'horrible_eye_monster', // Used to stop duplicate buffs
+    icon: 'spiritBlink.svg',
+    name: 'horrible eye',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle }) {
+        try {
+          defender.target = _.sample(actualBattle.units).id;
+        } catch (err) {
+        }
+      },
+      
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        try {
+          attacker.target = _.sample(actualBattle.enemies).id;
+        } catch (err) {
+        }
+      },
+
+      onRemove({ buff, target }) {
       }
     }
   },

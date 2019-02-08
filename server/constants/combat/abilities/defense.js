@@ -13,6 +13,10 @@ export const DEFENSE_ABILITIES = {
     target: 'allEnemies',
     isPacifist: true,
     isHidden: false,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['spear', 'hammer']
+    }],
     description(level) {
       // const BUFF = BUFFS.taunt;
       return 'Forces all enemies to target you.  Cooldown increases by 10 seconds for each taunted enemy.';
@@ -137,6 +141,10 @@ export const DEFENSE_ABILITIES = {
     cooldown: 180,
     slot: 'any',
     isHidden: false,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['spear', 'hammer']
+    }],
     target: 'self',
     description(level) {
       const BUFF = BUFFS.defensive_stance;

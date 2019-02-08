@@ -1123,6 +1123,7 @@ export const ENEMIES = Object.assign({
     }],
   },
 
+  // called an Abomination
   grotesque_giant: {
     id: 'grotesque_giant',
     icon: 'grotesqueGiant.svg',

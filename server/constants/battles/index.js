@@ -4,8 +4,8 @@ export const BATTLES = {
   xpDistribution(weaponType) {
     const weaponDistributions = {
       'dagger': {
-        attack: 0.5,
-        defense: 0,
+        attack: 0.17,
+        defense: 0.33,
         health: 0.5
       },
 
@@ -23,7 +23,13 @@ export const BATTLES = {
 
       'wand': {
         attack: 0,
-        defense: 0.5,
+        defense: 0.17,
+        health: 0.5
+      },
+
+      'trident': {
+        attack: 0.375,
+        defense: 0.125,
         health: 0.5
       },
 
@@ -49,7 +55,19 @@ export const BATTLES = {
         attack: 0.5,
         defense: 0,
         health: 0.5
-      }
+      },
+      
+      'hammer': {
+        attack: 0.125,
+        defense: 0.375,
+        health: 0.5
+      },
+      
+      'bow': {
+        attack: 0.75,
+        defense: 0.0,
+        health: 0.25
+      },
     };
 
     return weaponDistributions[weaponType]

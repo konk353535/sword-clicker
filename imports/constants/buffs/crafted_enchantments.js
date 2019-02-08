@@ -206,7 +206,6 @@ LEG
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
       }
     }
   },

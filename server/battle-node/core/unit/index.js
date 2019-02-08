@@ -133,6 +133,96 @@ export default class Unit {
     return [];
   }
   
+  get isAbleToChangeTargets() {
+    return this._isAbleToChangeTargets;
+  }
+  set isAbleToChangeTargets(value) {
+    this._isAbleToChangeTargets = value;
+    if (!value) {
+      if (!this.hasBuff('cant_change_targets')) {
+        this.applyBuff({
+          buff: this.generateBuff({
+            buffId: 'cant_change_targets',
+            buffData: {
+              duration: Infinity,
+            },
+          }),
+        });
+      }      
+    } else {
+      const targetBuff = this.findBuff('cant_change_targets');
+      if (targetBuff && !targetBuff.data.beingRemoved) {
+        targetBuff.data.beingRemoved = true;
+        removeBuff({
+          buff: targetBuff,
+          target: this,
+          caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+          actualBattle: this.battleRef
+        });
+      }
+    }
+  }
+  
+  get isAbleToUseAbilities() {
+    return this._isAbleToUseAbilities;
+  }
+  set isAbleToUseAbilities(value) {
+    this._isAbleToUseAbilities = value;
+    if (!value) {
+      if (!this.hasBuff('cast_use_abilities')) {
+        this.applyBuff({
+          buff: this.generateBuff({
+            buffId: 'cast_use_abilities',
+            buffData: {
+              duration: Infinity,
+            },
+          }),
+        });
+      }      
+    } else {
+      const targetBuff = this.findBuff('cast_use_abilities');
+      if (targetBuff && !targetBuff.data.beingRemoved) {
+        targetBuff.data.beingRemoved = true;
+        removeBuff({
+          buff: targetBuff,
+          target: this,
+          caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+          actualBattle: this.battleRef
+        });
+      }
+    }
+  }
+  
+  get isAbleToUseSpells() {
+    return this._isAbleToUseSpells;
+  }
+  set isAbleToUseSpells(value) {
+    this._isAbleToUseSpells = value;
+    if (!value) {
+      if (!this.hasBuff('cant_use_spells')) {
+        this.applyBuff({
+          buff: this.generateBuff({
+            buffId: 'cant_use_spells',
+            buffData: {
+              duration: Infinity,
+            },
+          }),
+        });
+      }      
+    } else {
+      const targetBuff = this.findBuff('cant_use_spells');
+      if (targetBuff && !targetBuff.data.beingRemoved) {
+        targetBuff.data.beingRemoved = true;
+        removeBuff({
+          buff: targetBuff,
+          target: this,
+          caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+          actualBattle: this.battleRef
+        });
+      }
+    }
+  }
+  
   constructor(unit, battleRef) {
     this.id = unit.id;
     this.isUnitClass = true;
@@ -147,14 +237,17 @@ export default class Unit {
     this.monsterType = unit.monsterType;
     this.isLamp = unit.isLamp || false;
     this.isNPC = unit.isNPC || false;
-    this.isSilenced = false;
+    this.isSilenced = false; // can auto-attack, can't use spells or abilities (charmed and silenced are the same effect, basically)
     this.isCompanion = unit.isCompanion || false;
     this.isSoloCompanion = unit.isSoloCompanion || false;
     this.inactiveMinutes = unit.inactiveMinutes || 0;
     this.enchantmentsList = unit.enchantmentsList;
-    this.isStunned = false;
-    this.isCharmed = false;
-    this.isPacifist = false;
+    this.isStunned = false;  // can't perform any actions in combat (not spells, nor abilities, nor auto-attack)
+    this.isCharmed = false;  // can auto-attack, can't use spells or abilities (charmed and silenced are the same effect, basically)
+    this.isPacifist = false; // can only perform non-hostile actions in combat
+    this._isAbleToChangeTargets = true; // can change targets in combat
+    this._isAbleToUseAbilities = true;  // can use abilities in combat (distinct from spells)
+    this._isAbleToCastSpells = true;    // can cast spells in combat (distinct from abilities)
 
     if (unit.abilities) {
       this.abilitiesMap = {};

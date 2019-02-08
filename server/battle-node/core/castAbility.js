@@ -38,7 +38,7 @@ export default function({ ability, caster, targets }) {
     canUseAbilityOrSpell = false;
   }
   
-  // neither stunned nor charmed players can cast abilities (this includes amulet click damage)
+  // neither stunned nor charmed players can cast spells or use abilities (this includes amulet click damage!)
   if (caster.isStunned || caster.isCharmed) {
     canUseAbilityOrSpell = false;
   }
@@ -51,6 +51,13 @@ export default function({ ability, caster, targets }) {
         canUseAbilityOrSpell = false;
       }
     }
+  }
+  
+  // Certain effects may prevent a player from using spells or abilities but not both -- let's keep them separated
+  if (!caster.isAbleToUseAbilities && !ability.isSpell) {
+    canUseAbilityOrSpell = false;
+  } else if (!caster.isAbleToUseSpells && ability.isSpell) {
+    canUseAbilityOrSpell = false;
   }
 
   // Cancel the ability use attempt if they're not elligible to use the ability right now (no CD, no effect) 

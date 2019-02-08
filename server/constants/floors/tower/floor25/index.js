@@ -98,7 +98,7 @@ export const TOWER_FLOOR_25 = {
   },
   7: {
     name: 'Evil Envelopment',
-    enemies: ['horrible_eye', 'seething_hatred', 'seething_hatred'],
+    enemies: ['horrible_eye', 'seething_hatred'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [

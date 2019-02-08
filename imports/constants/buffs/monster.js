@@ -2379,6 +2379,78 @@ export const MONSTER_BUFFS = {
     }
   },
 
+  seething_hatred_monster: {
+    duplicateTag: 'seething_hatred_monster', // Used to stop duplicate buffs
+    icon: 'seethingHatred.svg',
+    name: 'seething hatred',
+    description({ buff, level }) {
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.stackTimer = 0;
+        buff.stacks = buff.data.stacks = 0;
+        buff.data.lastAttack = '';
+        buff.data.attackChance = 1 / 50;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        // stacks build up every tick without an attack and reset after attack
+        buff.data.stackTimer += secondsElapsed;
+        if (buff.data.stackTimer > 1) {
+          buff.data.stackTimer = 0;
+          buff.stacks += 1;
+        }
+
+        if (Math.random() < (buff.data.attackChance + (buff.stacks / 100))) {
+          buff.stacks = 0;
+          // alternate attack types every time
+          if (buff.data.lastAttack === 'flamebreath')
+          {
+            // cast 'swipe' (blade spin)
+            buff.data.lastAttack = 'swipe';
+            actualBattle.units.forEach((unit) => {
+              const newBuff = {
+                id: 'blade_spin',
+                data: {
+                  level: 5,
+                  icon: 'swipe.svg',
+                  description: '',
+                },
+                constants: BUFFS['blade_spin']
+              };
+              addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            });
+          } else {
+            // cast 'flamebreath' (magic blade spin)
+            buff.data.lastAttack = 'flamebreath';
+            actualBattle.units.forEach((unit) => {
+              // Blade Spin
+              const newBuff = {
+                id: 'blade_spin',
+                data: {
+                  level: 3,
+                  icon: 'ignite.svg',
+                  description: '',
+                  isMagic: true
+                },
+                constants: BUFFS['blade_spin']
+              };
+              addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
+            });
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
   imp_monster: {
     duplicateTag: 'imp_monster',
     icon: '',

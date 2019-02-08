@@ -1219,7 +1219,7 @@ export const ENEMIES = Object.assign({
         hideBuff: true
       }
     }, {
-      id: 'boss_dragon',
+      id: 'seething_hatred_monster',
       duration: Infinity,
       data: {
         totalDuration: Infinity,

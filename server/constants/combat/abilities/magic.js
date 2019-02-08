@@ -61,7 +61,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.water_dart;
@@ -81,7 +81,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.water_ball;
@@ -102,7 +102,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.healing_shield;
@@ -171,7 +171,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.water_wave;
@@ -207,7 +207,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.blizzard;
@@ -227,7 +227,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.poison_dart;
@@ -339,7 +339,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.magic_wisdom;
@@ -359,7 +359,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.affliction;
@@ -379,7 +379,7 @@ export const MAGIC_ABILITIES = {
     isMagic: true,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.meteor_strike;
@@ -415,7 +415,7 @@ export const MAGIC_ABILITIES = {
     target: 'allAllies',
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     isMagic: true,
     description(level) {
@@ -485,7 +485,7 @@ export const MAGIC_ABILITIES = {
     target: 'singleFriendly',
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     targettable: true,
     isMagic: true,
@@ -540,7 +540,7 @@ export const MAGIC_ABILITIES = {
     target: 'self',
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['staff', 'wand']
+      weaponTypes: ['staff', 'wand', 'trident']
     }],
     description(level) {
       const BUFF = BUFFS.heavens_descent;

@@ -2050,34 +2050,25 @@ export const MAGIC_BUFFS = {
         const damageBase = constants.damageBase;
         const damageMP = constants.damageMPRatio * caster.stats.magicPower;
         const totalDamage = damageBase + damageMP;
-        const healthBase = constants.healthCost;
-        const healthMP = constants.healthCostMPRatio * caster.stats.magicPower;
-        const totalHealth = healthBase + healthMP;
-
-        // Make sure we have target health
-        if (caster.stats.health >= totalHealth) {
-          caster.stats.health -= totalHealth;
-          caster.stats.healthMax -= totalHealth;
+      
+        const newBuff = {
+          id: 'ignite_proper_phoenix_hat',
+          data: {
+            duration: 15,
+            totalDuration: 15,
+            totalDamage: totalDamage,
+            sourceId: caster.id,
+            caster: caster.id,
+            timeTillDamage: 0,
+            allowDuplicates: true,
+            icon: 'ignite.svg',
+            name: 'ignite',
+            duplicateTag: 'ignite_proper_phoenix_hat'
+          }
+        };
         
-          const newBuff = {
-            id: 'ignite_proper_phoenix_hat',
-            data: {
-              duration: 15,
-              totalDuration: 15,
-              totalDamage: totalDamage,
-              sourceId: caster.id,
-              caster: caster.id,
-              timeTillDamage: 0,
-              allowDuplicates: true,
-              icon: 'ignite.svg',
-              name: 'ignite',
-              duplicateTag: 'ignite_proper_phoenix_hat'
-            }
-          };
-          
-          // Add ignite debuff
-          addBuff({ buff: newBuff, target: target, caster: caster });
-        }
+        // Add ignite debuff
+        addBuff({ buff: newBuff, target: target, caster: caster });
         
         // remove stub debuff
         removeBuff({ target, buff, caster })
@@ -2457,6 +2448,13 @@ export const MAGIC_BUFFS = {
           buff.data.powerIncrease = powerIncrease;
           target.stats.magicPower += buff.data.powerIncrease;
         }
+        
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
       },
 
       onRemove({ buff, target, caster, actualBattle }) {
@@ -2499,6 +2497,13 @@ export const MAGIC_BUFFS = {
           const powerIncrease = powerBase + powerPerLevel;
           buff.data.powerIncrease = powerIncrease;
           target.stats.healingPower += buff.data.powerIncrease;
+        }
+
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 

@@ -76,7 +76,7 @@ export const TOWER_FLOOR_25 = {
   },
   6: {
     name: 'Place of Sunder',
-    enemies: ['ripper', 'ripper', 'ripper', 'ripper'],
+    enemies: ['ripper', 'ripper', 'ripper'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [

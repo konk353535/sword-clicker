@@ -50,10 +50,8 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
 
   newBuff.data.casterUnit = caster.id;
   
-  if (newBuff.data.onApply) {
-    if (!newBuff.data.didApply) {
-      newBuff.onApply({ buff: newBuff, target, caster, actualBattle });
-      newBuff.data.didApply = true;
-    }
+  if (newBuff.onApply && !newBuff.data.didApply) {
+    newBuff.onApply({ buff: newBuff, target, caster, actualBattle });
+    newBuff.data.didApply = true;
   }
 }

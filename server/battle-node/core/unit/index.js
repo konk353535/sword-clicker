@@ -283,7 +283,7 @@ export default class Unit {
       const newBuffConstants = BUFFS[buffId];
       const newBuff = {
         id: buffId,
-        data: {
+        data: Object.assign(newBuffConstants.data, buffData, {
           name: (buffData && buffData.name) ? buffData.name : newBuffConstants.name,
           description: (buffData && _.isFunction(buffData.description)) ? buffData.description : newBuffConstants.description({buff: newBuffConstants, level: buffLevel}),
           icon: (buffData && buffData.icon) ? buffData.icon : newBuffConstants.icon,
@@ -291,9 +291,9 @@ export default class Unit {
           totalDuration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.totalDuration,
           caster: this.id,
           level: buffLevel,
-        },
+        }),
         constants: newBuffConstants
-      };    
+      };
       return newBuff;
     } catch (err) {
       console.log("Couldn't generate buff!");
@@ -303,17 +303,32 @@ export default class Unit {
   }
   
   applyBuff({buff, fromUnit}) {
-    return addBuff({
+    const newBuff = addBuff({
       buff,
       target: this,
       caster: fromUnit || this,
       actualBattle: this.battleRef
     });
+    
+    if (!newBuff) {
+      console.log("Problem in unit.applyBuff()->addBuff()");
+      console.log(buff);
+    }
+    
+    return newBuff;
   }
   
   applyBuffTo({buff, target}) {
+    let newBuff;
     if (target && target.id) {
-      return target.applyBuff({buff, fromUnit: this});
+      newBuff = target.applyBuff({buff, fromUnit: this});
+    } else {
+      console.log("Problem in unit.applyBuffTo->target.applyBuff (missing parameter 1#buff or 2#target");
+      console.log(buff);
+      console.log(target);
+    }
+    if (newBuff) {
+      return newBuff;
     }
     return false;
   }

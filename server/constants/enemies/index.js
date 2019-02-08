@@ -1071,16 +1071,7 @@ export const ENEMIES = Object.assign({
     icon: 'devourer.svg',
     name: 'devourer',
     buffs: [{
-      id: 'thirsty_fangs',
-      duration: Infinity,
-      data: {
-        totalDuration: Infinity,
-        level: 1,
-        icon: 'thirstyFangs.svg',
-        name: 'thirsty fangs'
-      }
-    }, {
-      id: 'vampire_monster',
+      id: 'devourer_monster',
       data: {
         hideBuff: true
       }
@@ -1108,10 +1099,10 @@ export const ENEMIES = Object.assign({
         bleedTime: 6,
         bleedIcon: 'parasites.svg',
         bleedName: 'Parasites',
-        bleedDesc: 'Suffer terribly',
+        bleedDesc: 'You are suffering from flesh-eating parasites.',
       }
     }, {
-      id: 'crab_monster',
+      id: 'grotesque_monster',
       data: {
         icon: 'armor.svg',
         name: 'Grotesque Armor'
@@ -1125,6 +1116,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'healthMax',
       amount: 1.3
+    }, {
+      type: 'plus',
+      key: 'accuracy',
+      amount: 25
     }],
   },
 
@@ -1137,13 +1132,13 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true,
         bleedChance: 0.6,
-        bleedTime: 6,
+        bleedTime: 8,
         bleedIcon: 'parasites.svg',
         bleedName: 'Parasites',
         bleedDesc: 'Suffer terribly',
       }
     }, {
-      id: 'crab_monster',
+      id: 'grotesque_monster',
       data: {
         icon: 'armor.svg',
         name: 'Grotesque Armor'
@@ -1151,12 +1146,20 @@ export const ENEMIES = Object.assign({
     }],
     statBuffs: [{
       type: 'times',
+      key: 'health',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.5
+    }, {
+      type: 'times',
       key: 'attack',
       amount: 1.3
     }, {
       type: 'plus',
       key: 'accuracy',
-      amount: 25
+      amount: 100
     }],
   },
   
@@ -1240,8 +1243,9 @@ export const ENEMIES = Object.assign({
     }, {
       id: 'spiked_armor',
       data: {
+        name: 'Pained',
         level: 8,
-        icon: 'spikedArmor.svg',
+        icon: 'ripperSharp.svg',
       }
     }, {
       id: 'generic_bleed',
@@ -1266,7 +1270,7 @@ export const ENEMIES = Object.assign({
     icon: 'horribleEye.svg',
     name: 'horrible eye',
     buffs: [{
-      id: 'boss_ogre_extreme',
+      id: 'horrible_eye_monster',
       duration: Infinity,
       data: {
         totalDuration: Infinity,

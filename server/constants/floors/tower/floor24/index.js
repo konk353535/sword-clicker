@@ -68,7 +68,7 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_mining_anvil_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'inferno_wizard_hat', amount: 1 },
         { type: 'item', itemId: 'inferno_wizard_shirt', amount: 1 },
@@ -86,12 +86,12 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_plate_legs_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 32,
+      chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 }
       ]
     }, {
-      chance: 1 / 112,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'phantasmal_orb', amount: 1 },
         /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */

@@ -137,5 +137,107 @@ export const MISC_BUFFS = {
       }
     }
   },
+
+  cant_change_targets: {
+    duplicateTag: 'cant_change_targets',
+    icon: 'stunned.svg',
+    name: 'Can\'t Change Targets',
+    description() {
+      return `
+        You are unable to change targets.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        target.isAbleToChangeTargets = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        target.isAbleToChangeTargets = true;
+      }
+    }
+  },
+
+  cast_use_abilities: {
+    duplicateTag: 'cant_use_abilities',
+    icon: 'stunned.svg',
+    name: 'Can\'t Use Abilities',
+    description() {
+      return `
+        You are unable to use abilities.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        target.isAbleToUseAbilities = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        target.isAbleToUseAbilities = true;
+      }
+    }
+  },
+
+  cast_use_spells: {
+    duplicateTag: 'cant_use_spells',
+    icon: 'stunned.svg',
+    name: 'Can\'t Use Spells',
+    description() {
+      return `
+        You are unable to cast spells.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        target.isAbleToUseSpells = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        target.isAbleToUseSpells = true;
+      }
+    }
+  },
   
 };

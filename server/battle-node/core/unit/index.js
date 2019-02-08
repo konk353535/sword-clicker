@@ -283,21 +283,21 @@ export default class Unit {
       const newBuffConstants = BUFFS[buffId];
       const newBuff = {
         id: buffId,
-        data: Object.assign(newBuffConstants.data, buffData, {
+        data: Object.assign(/*newBuffConstants.data, */ buffData, {
           name: (buffData && buffData.name) ? buffData.name : newBuffConstants.name,
           description: (buffData && _.isFunction(buffData.description)) ? buffData.description : newBuffConstants.description({buff: newBuffConstants, level: buffLevel}),
           icon: (buffData && buffData.icon) ? buffData.icon : newBuffConstants.icon,
           duration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.duration,
           totalDuration: (buffData && buffData.duration) ? buffData.duration : newBuffConstants.data.totalDuration,
           caster: this.id,
-          level: buffLevel,
+          //level: buffLevel // intentionally omitted (let it be supplied by 'buffData' if we want it, i.e.: no default)
         }),
         constants: newBuffConstants
       };
       return newBuff;
     } catch (err) {
-      console.log("Couldn't generate buff!");
-      console.log(err);
+      //console.log("Couldn't generate buff!");
+      //console.log(err);
     }
     return false;
   }
@@ -311,8 +311,8 @@ export default class Unit {
     });
     
     if (!newBuff) {
-      console.log("Problem in unit.applyBuff()->addBuff()");
-      console.log(buff);
+      //console.log("Problem in unit.applyBuff()->addBuff()");
+      //console.log(buff);
     }
     
     return newBuff;
@@ -323,9 +323,9 @@ export default class Unit {
     if (target && target.id) {
       newBuff = target.applyBuff({buff, fromUnit: this});
     } else {
-      console.log("Problem in unit.applyBuffTo->target.applyBuff (missing parameter 1#buff or 2#target");
-      console.log(buff);
-      console.log(target);
+      //console.log("Problem in unit.applyBuffTo->target.applyBuff (missing parameter 1#buff or 2#target");
+      //console.log(buff);
+      //console.log(target);
     }
     if (newBuff) {
       return newBuff;

@@ -62,6 +62,17 @@ Template.itemIcon.helpers({
     return false;
   },
 
+  abilityRequires() {
+    const instance = Template.instance();
+    
+    if (instance.data.item.abilityId) {
+      if (instance.data.item.requires) {
+        return instance.data.item.requires;
+      }
+    }
+    return false;
+  },
+
   enchantments() {
     const instance = Template.instance();
     const item = instance.data.item;

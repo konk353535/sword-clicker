@@ -7,6 +7,18 @@
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
     {{/if}}
+    
+    {{#each abilityRequires}}
+      {{#if $eq this.type 'weaponType'}}
+        <div style="position: absolute; left: 2px; top: 0" class="required-weapon">
+          {{#each this.weaponTypes}}
+            <img
+              src="/icons/{{this}}.svg"
+              style="height: 20px; width: 20px;">
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/each}}
 
     <!-- Abilities can have required items -->
     {{#if item.requiredItem}}

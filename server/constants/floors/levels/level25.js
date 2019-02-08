@@ -31,6 +31,26 @@ export const LEVEL_TWENTY_FIVE_MONSTERS = [{
 }];
 
 export const LEVEL_TWENTY_FIVE_LOOT_TABLE = orderLootTable([{}, {}, {
+  chance: 1 / 128,
+  rewards: [
+    { type: 'item', itemId: 'farplane_twisted_veins', amount: 1 }
+  ]
+}, {
+  chance: 1 / 128,
+  rewards: [
+    { type: 'item', itemId: 'farplane_organic_rock', amount: 1 }
+  ]
+}, {
+  chance: 1 / 128,
+  rewards: [
+    { type: 'item', itemId: 'farplane_acidic_fluid', amount: 1 }
+  ]
+}, {
+  chance: 1 / 128,
+  rewards: [
+    { type: 'item', itemId: 'farplane_mysterious_dust', amount: 1 }
+  ]
+}, {
   chance: 1 / 16,
   rewards: [
     { type: 'item', itemId: 'cursed_essence', amount: 1 }

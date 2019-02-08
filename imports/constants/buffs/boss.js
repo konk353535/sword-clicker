@@ -1100,14 +1100,12 @@ export const BOSS_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         caster.stats.health /= 1.5;
         caster.stats.healthMax /= 1.5;
       }
@@ -1134,14 +1132,12 @@ export const BOSS_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
       },
 
       onRemove({ buff, target, caster }) {
-        // Blank
         caster.stats.attack /= 1.1;
         caster.stats.attackMax /= 1.1;
       }
@@ -1167,7 +1163,6 @@ export const BOSS_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster }) {
-        // Blank
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }

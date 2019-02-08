@@ -195,7 +195,7 @@ export const ATTACK_ABILITIES = {
     name: 'Berserk',
     id: 'berserk',
     buffs: ['berserk'],
-    cooldown: 120,
+    cooldown: 60,
     slot: 'any',
     target: 'self',
     isHidden: false,
@@ -261,6 +261,10 @@ export const ATTACK_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     isHidden: false,
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['battleAxe']
+    }],
     target: 'currentEnemy', // The current enemy who we are auto attacking
     description(level) {
       const BUFF = BUFFS.execute;

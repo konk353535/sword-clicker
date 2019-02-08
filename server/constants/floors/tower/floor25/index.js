@@ -38,7 +38,7 @@ export const TOWER_FLOOR_25 = {
   },
   4: {
     name: 'Dust to Dust',
-    enemies: ['devourer', 'abstract', 'devourer'],
+    enemies: ['devourer', 'abstract_monster', 'devourer'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
       chance: 1 / 256,
       rewards: [

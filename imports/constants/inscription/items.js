@@ -2875,6 +2875,201 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the taunt ability.'
   },
 
+  precise_shots_level_1_tome: {
+    id: 'precise_shots_level_1_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'precise shots tome Lv. 1',
+    teaches: {
+      abilityId: 'precise_shots',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the precise shots ability.'
+  },
+
+  precise_shots_level_2_tome: {
+    id: 'precise_shots_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'precise shots tome Lv. 2',
+    teaches: {
+      abilityId: 'precise_shots',
+      level: 2
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the precise shots ability.'
+  },
+
+  precise_shots_level_3_tome: {
+    id: 'precise_shots_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'precise shots tome Lv. 3',
+    teaches: {
+      abilityId: 'precise_shots',
+      level: 3
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the precise shots ability.'
+  },
+
+  precise_shots_level_4_tome: {
+    id: 'precise_shots_level_4_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'precise shots tome Lv. 4',
+    teaches: {
+      abilityId: 'precise_shots',
+      level: 4
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the precise shots ability.'
+  },
+
+  precise_shots_level_5_tome: {
+    id: 'precise_shots_level_5_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'precise shots tome Lv. 5',
+    teaches: {
+      abilityId: 'precise_shots',
+      level: 5
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the precise shots ability.'
+  },
+
+  power_shot_level_1_tome: {
+    id: 'power_shot_level_1_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'power shot tome Lv. 1',
+    teaches: {
+      abilityId: 'power_shot',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the power shot ability.'
+  },
+
+  power_shot_level_2_tome: {
+    id: 'power_shot_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'power shot tome Lv. 2',
+    teaches: {
+      abilityId: 'power_shot',
+      level: 2
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the power shot ability.'
+  },
+
+  power_shot_level_3_tome: {
+    id: 'power_shot_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'power shot tome Lv. 3',
+    teaches: {
+      abilityId: 'power_shot',
+      level: 3
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the power shot ability.'
+  },
+
+  power_shot_level_4_tome: {
+    id: 'power_shot_level_4_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'power shot tome Lv. 4',
+    teaches: {
+      abilityId: 'power_shot',
+      level: 4
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the power shot ability.'
+  },
+
+  power_shot_level_5_tome: {
+    id: 'power_shot_level_5_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'power shot tome Lv. 5',
+    teaches: {
+      abilityId: 'power_shot',
+      level: 5
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the power shot ability.'
+  },
+
+  volley_level_1_tome: {
+    id: 'volley_level_1_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'volley tome Lv. 1',
+    teaches: {
+      abilityId: 'volley',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the volley ability.'
+  },
+
+  volley_level_2_tome: {
+    id: 'volley_level_2_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'volley tome Lv. 2',
+    teaches: {
+      abilityId: 'volley',
+      level: 2
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the volley ability.'
+  },
+
+  volley_level_3_tome: {
+    id: 'volley_level_3_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'volley tome Lv. 3',
+    teaches: {
+      abilityId: 'volley',
+      level: 3
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the volley ability.'
+  },
+
+  volley_level_4_tome: {
+    id: 'volley_level_4_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'volley tome Lv. 4',
+    teaches: {
+      abilityId: 'volley',
+      level: 4
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the volley ability.'
+  },
+
+  volley_level_5_tome: {
+    id: 'volley_level_5_tome',
+    icon: 'tome.svg',
+    category: 'tome',
+    name: 'volley tome Lv. 5',
+    teaches: {
+      abilityId: 'volley',
+      level: 5
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to upgrade the volley ability.'
+  },
+  
   holiday_cheer_tome: {
     id: 'holiday_cheer_tome',
     icon: 'tomeEvent.svg',

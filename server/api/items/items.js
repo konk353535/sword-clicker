@@ -698,7 +698,46 @@ Meteor.methods({
     const affectedSlots = [itemSlot];
     // When equipped 2h weapon, clear offHand slot
     if (itemConstants.isTwoHanded) {
-      affectedSlots.push('offHand');
+      // UNLESS this 2h mainHand is a bow and offHand slot is a quiver
+      if (itemConstants.weaponType === 'bow') {
+        const offHandEquipped = Items.findOne({
+          owner: Meteor.userId(),
+          equipped: true,
+          slot: 'offHand'
+        });
+        if (offHandEquipped) {
+          if (ITEMS[offHandEquipped.itemId].weaponType !== 'quiver') {
+            // offHand slot is not a quiver and this mainHand is a bow, unequip the offHand slot
+            affectedSlots.push('offHand');
+          } else {
+            // offHand slot is a quiver and this mainHand is a bow, no logic
+          }
+        } else {
+          // no offHand slot equipped, no logic
+        }
+      } else {
+        // this mainHand is not a bow, blindly unequip anything in offHand slot
+        affectedSlots.push('offHand');
+      }
+    } else {
+      // When equipping a 1h that is NOT a bow, unequip any quivers
+	
+      const offHandEquipped = Items.findOne({
+        owner: Meteor.userId(),
+        equipped: true,
+        slot: 'offHand'
+      });
+	
+      if (offHandEquipped) {
+        if (ITEMS[offHandEquipped.itemId].weaponType === 'quiver') {
+          // offHand slot is a quiver and this mainHand is not a bow, unequip the offHand slot
+          affectedSlots.push('offHand');
+        } else {
+          // offHand slot is not a quiver and this mainHand is not a bow, no logic
+        }
+      } else {
+        // no offHand slot equipped, no logic
+      }
     }
 
     // When equipping off hand, make sure mainHand isn't a 2h weapon
@@ -711,7 +750,18 @@ Meteor.methods({
 
       if (mainHandEquipped) {
         if (ITEMS[mainHandEquipped.itemId].isTwoHanded) {
-          affectedSlots.push('mainHand');
+          // UNLESS this offHand is a quiver and our mainHand is a bow
+          if (itemConstants.weaponType === 'quiver') {
+            if (ITEMS[mainHandEquipped.itemId].weaponType !== 'bow') {
+              // mainHand slot is not a bow and this offHand is a quiver, unequip the 2H mainHand slot
+              affectedSlots.push('mainHand');
+            } else {
+              // mainHand slot is a bow and this offHand is a quiver, no logic
+            }
+          } else {
+            // this offHand is not a quiver, unequip the 2H mainHand slot
+            affectedSlots.push('mainHand');
+          }
         }
       }
     }

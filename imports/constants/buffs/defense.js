@@ -88,11 +88,11 @@ export const DEFENSE_BUFFS = {
         target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -219,9 +219,9 @@ export const DEFENSE_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -270,7 +270,7 @@ export const DEFENSE_BUFFS = {
         caster.stats.healthMaxOrig *= (1 + buff.data.healthIncrease);
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {
@@ -309,7 +309,7 @@ export const DEFENSE_BUFFS = {
         buff.stats = 0;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.stacksTimer > 0) {
           buff.stacksTimer -= secondsElapsed;
         }
@@ -385,7 +385,7 @@ export const DEFENSE_BUFFS = {
         caster.stats.defense += buff.data.defenseIncrease;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {
@@ -444,10 +444,10 @@ export const DEFENSE_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -653,8 +653,8 @@ export const DEFENSE_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -695,8 +695,8 @@ export const DEFENSE_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -745,7 +745,7 @@ export const DEFENSE_BUFFS = {
         target.stats.damageTaken *= (1 - (buff.data.damageReduction / 100));
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
 
@@ -757,7 +757,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -798,10 +798,10 @@ export const DEFENSE_BUFFS = {
         target.stats.damageTaken -= buff.data.damageReduction;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -842,7 +842,7 @@ export const DEFENSE_BUFFS = {
         target.stats.armor += totalArmor;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
 
@@ -854,7 +854,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -888,7 +888,7 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.armorIncrease) {
           const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const armorBase = constants.armorBase;
@@ -931,7 +931,7 @@ export const DEFENSE_BUFFS = {
       onApply({ buff, target, caster }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.armorIncrease) {
           const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const armorBase = constants.armorBase;
@@ -990,7 +990,7 @@ export const DEFENSE_BUFFS = {
         target.stats.defense += buff.data.extraDefense;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
 
@@ -1002,7 +1002,7 @@ export const DEFENSE_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster });
+          removeBuff({ buff, target, caster, actualBattle });;
         }
       },
 

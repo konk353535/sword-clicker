@@ -11,6 +11,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 180,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isMagic: true,
     isHidden: true,
     description(level) {
@@ -57,6 +58,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     requires: [{
@@ -77,6 +79,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     requires: [{
@@ -98,6 +101,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 25,
     slot: 'any',
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     requires: [{
@@ -151,6 +155,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 90,
     slot: 'any',
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     description(level) {
@@ -167,6 +172,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 20,
     slot: 'any',
     target: 'allAllies',
+    isPacifist: true,
     isHidden: true,
     isMagic: true,
     requires: [{
@@ -335,6 +341,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 60 * 10,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isMagic: true,
     isHidden: true,
     requires: [{
@@ -397,6 +404,7 @@ export const MAGIC_ABILITIES = {
     targettable: true,
     isHidden: false,
     target: 'singleFriendly',
+    isPacifist: true,
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.mud_armor;
@@ -413,6 +421,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'allAllies',
+    isPacifist: true,
     requires: [{
       type: 'weaponType',
       weaponTypes: ['staff', 'wand', 'trident']
@@ -434,6 +443,7 @@ export const MAGIC_ABILITIES = {
     targettable: true,
     isHidden: false,
     target: 'singleFriendly',
+    isPacifist: true,
     isMagic: true,
     description(level) {
       const BUFF = BUFFS.mending_water;
@@ -466,6 +476,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: false,
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     description(level) {
@@ -483,6 +494,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'singleFriendly',
+    isPacifist: true,
     requires: [{
       type: 'weaponType',
       weaponTypes: ['staff', 'wand', 'trident']
@@ -504,6 +516,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'singleFriendly',
+    isPacifist: true,
     targettable: true,
     isMagic: true,
     description(level) {
@@ -522,6 +535,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     isMagic: true,
     target: 'allAllies', // The current enemy who we are auto attacking
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.feeding_frenzy;
       return BUFF.description({ buff: BUFF, level });
@@ -538,6 +552,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     isMagic: true,
     target: 'self',
+    isPacifist: true,
     requires: [{
       type: 'weaponType',
       weaponTypes: ['staff', 'wand', 'trident']
@@ -558,6 +573,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     isMagic: true,
     target: 'allAllies',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.lightning_speed;
       return BUFF.description({ buff: BUFF, level });
@@ -574,6 +590,7 @@ export const MAGIC_ABILITIES = {
     isHidden: true,
     isMagic: true,
     target: 'allAllies',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.diamond_skin;
       return BUFF.description({ buff: BUFF, level });
@@ -606,6 +623,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.magic_power_up;
       return BUFF.description({ buff: BUFF, level });
@@ -622,6 +640,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.healing_power_up;
       return BUFF.description({ buff: BUFF, level });
@@ -636,6 +655,7 @@ export const MAGIC_ABILITIES = {
     cooldown: 60 * 60,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isHidden: true,
     description(level) {
       const BUFF = BUFFS.raise_your_glass;
@@ -653,6 +673,7 @@ export const MAGIC_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.lion_dance;
       return BUFF.description({ buff: BUFF, level });

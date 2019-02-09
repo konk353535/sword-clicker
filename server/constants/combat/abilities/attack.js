@@ -17,6 +17,7 @@ export const ATTACK_ABILITIES = {
     isPassive: false,
     slot: 'any',
     target: 'allAllies',
+    isPacifist: true,
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.war_cry;
@@ -49,6 +50,10 @@ export const ATTACK_ABILITIES = {
     name: 'poisoned blade',
     id: 'poisoned_blade',
     buffs: ['poisoned_blade'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 0,
     isPassive: true,
     slot: 'any',
@@ -65,6 +70,10 @@ export const ATTACK_ABILITIES = {
     name: 'thirsty fangs',
     id: 'thirsty_fangs',
     buffs: ['thirsty_fangs'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 0,
     isPassive: true,
     slot: 'any',
@@ -116,6 +125,10 @@ export const ATTACK_ABILITIES = {
     name: 'doubled edged sword',
     id: 'double_edged_sword',
     buffs: ['double_edged_sword'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 90,
     slot: 'any',
     target: 'currentEnemy',
@@ -131,6 +144,10 @@ export const ATTACK_ABILITIES = {
     name: 'vampirism',
     id: 'vampirism',
     buffs: ['vampirism'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 150,
     slot: 'any',
     target: 'self',
@@ -146,6 +163,10 @@ export const ATTACK_ABILITIES = {
     name: 'slash',
     id: 'slash',
     buffs: ['slash'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
@@ -161,6 +182,10 @@ export const ATTACK_ABILITIES = {
     name: 'penetrating slash',
     id: 'penetrating_slash',
     buffs: ['penetrating_slash'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 10,
     slot: 'any',
     target: 'currentEnemy',
@@ -277,6 +302,10 @@ export const ATTACK_ABILITIES = {
     name: 'blade spin',
     id: 'blade_spin',
     buffs: ['blade_spin'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 15,
     slot: 'any',
     isHidden: false,
@@ -292,6 +321,10 @@ export const ATTACK_ABILITIES = {
     name: 'blade frenzy',
     id: 'blade_frenzy',
     buffs: ['blade_frenzy'],
+    cantUseWith: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
     cooldown: 60,
     slot: 'any',
     isHidden: false,

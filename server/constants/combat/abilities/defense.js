@@ -38,6 +38,7 @@ export const DEFENSE_ABILITIES = {
     cooldown: 10,
     slot: 'any',
     target: 'allAllies',
+    isPacifist: true,
     isHidden: true,
     description(level) {
       const BUFF = BUFFS.holiday_cheer;
@@ -146,6 +147,7 @@ export const DEFENSE_ABILITIES = {
       weaponTypes: ['spear', 'hammer']
     }],
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.defensive_stance;
       return BUFF.description({ buff: BUFF, level });
@@ -161,6 +163,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'any',
     isHidden: false,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.evasive_maneuvers;
       return BUFF.description({ buff: BUFF, level });
@@ -176,6 +179,7 @@ export const DEFENSE_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isHidden: true,
     description(level) {
       const BUFF = BUFFS.health_up;
@@ -192,6 +196,7 @@ export const DEFENSE_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isHidden: false,
     description(level) {
       const BUFF = BUFFS.sixth_sense;
@@ -208,6 +213,7 @@ export const DEFENSE_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isHidden: true,
     description(level) {
       const BUFF = BUFFS.defense_up;
@@ -240,6 +246,7 @@ export const DEFENSE_ABILITIES = {
     isPassive: true,
     slot: 'any',
     target: 'self',
+    isPacifist: true,
     isHidden: true,
     description(level) {
       const BUFF = BUFFS.frost_armor;
@@ -256,6 +263,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'any',
     isHidden: false,
     target: 'self', // The current enemy who we are auto attacking
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.armor_up;
       return BUFF.description({ buff: BUFF, level });
@@ -272,6 +280,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.armor_up_new;
       return BUFF.description({ buff: BUFF, level });
@@ -288,6 +297,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'any',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.magic_armor_up;
       return BUFF.description({ buff: BUFF, level });
@@ -303,6 +313,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'any',
     isHidden: false,
     target: 'self', // The current enemy who we are auto attacking
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.iron_will;
       return BUFF.description({ buff: BUFF, level });
@@ -319,6 +330,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.baby_fox_ability;
       return BUFF.description({ buff: BUFF, level });
@@ -351,6 +363,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.skeletal_warrior;
       return BUFF.description({ buff: BUFF, level });
@@ -370,6 +383,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.cute_pig;
       return BUFF.description({ buff: BUFF, level });
@@ -389,6 +403,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.mystic_fairy;
       return BUFF.description({ buff: BUFF, level });
@@ -408,6 +423,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.lny_pig;
       return BUFF.description({ buff: BUFF, level });
@@ -427,6 +443,7 @@ export const DEFENSE_ABILITIES = {
     slot: 'companion',
     isHidden: true,
     target: 'self',
+    isPacifist: true,
     description(level) {
       const BUFF = BUFFS.vd_cupid;
       return BUFF.description({ buff: BUFF, level });

@@ -40,7 +40,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         removeBuff({ buff, target, caster, actualBattle });
       },
 
@@ -86,7 +86,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -146,7 +146,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -210,7 +210,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -275,7 +275,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -332,11 +332,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -397,7 +397,7 @@ export const MAGIC_BUFFS = {
         }
       },
       
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.totalDuration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {
@@ -548,11 +548,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -614,9 +614,9 @@ export const MAGIC_BUFFS = {
         buff.data.didHeal = true;
       },
 
-      onTick({ buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.data.didHeal) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -679,11 +679,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -739,8 +739,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -791,8 +791,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -843,8 +843,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -900,7 +900,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
@@ -915,7 +915,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -972,7 +972,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillHeal -= secondsElapsed;
 
@@ -987,7 +987,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1032,8 +1032,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -1098,7 +1098,7 @@ export const MAGIC_BUFFS = {
         buff.duration = 0;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1180,7 +1180,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1249,11 +1249,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1322,11 +1322,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1395,11 +1395,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1457,11 +1457,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1541,11 +1541,11 @@ export const MAGIC_BUFFS = {
         buff.duration = -1;
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1622,11 +1622,11 @@ export const MAGIC_BUFFS = {
         buff.duration = -1;
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1682,8 +1682,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -1734,8 +1734,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -1794,11 +1794,11 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1864,7 +1864,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
@@ -1880,7 +1880,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1954,14 +1954,14 @@ export const MAGIC_BUFFS = {
         }
         
         // remove stub debuff
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
-      onTick({ secondsElapsed, buff, target, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // remove stub debuff
-        const caster = actualBattle.allUnitsMap[buff.data.caster];
+        const originalCaster = actualBattle.allUnitsMap[buff.data.caster];
 
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, originalCaster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {
@@ -1987,7 +1987,7 @@ export const MAGIC_BUFFS = {
         //todo: fix 'actualBattle' isn't being passed in for onApply
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
@@ -2003,7 +2003,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -2071,14 +2071,14 @@ export const MAGIC_BUFFS = {
         addBuff({ buff: newBuff, target: target, caster: caster });
         
         // remove stub debuff
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
-      onTick({ secondsElapsed, buff, target, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // remove stub debuff
-        const caster = actualBattle.allUnitsMap[buff.data.caster];
+        const originalCaster = actualBattle.allUnitsMap[buff.data.caster];
 
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, originalCaster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {
@@ -2106,7 +2106,7 @@ export const MAGIC_BUFFS = {
         //todo: fix 'actualBattle' isn't being passed in for onApply
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
@@ -2122,7 +2122,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -2179,7 +2179,7 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         buff.data.timeTillDamage -= secondsElapsed;
 
@@ -2195,7 +2195,7 @@ export const MAGIC_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ buff, target, caster });
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -2248,8 +2248,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -2301,8 +2301,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -2354,8 +2354,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -2407,8 +2407,8 @@ export const MAGIC_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster }) {
-        removeBuff({ buff, target, caster });
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove({ buff, target, caster, actualBattle }) {}
@@ -2439,7 +2439,7 @@ export const MAGIC_BUFFS = {
       onApply({ buff, target, caster }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.powerIncrease) {
           const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const powerBase = constants.powerBase;
@@ -2489,7 +2489,7 @@ export const MAGIC_BUFFS = {
       onApply({ buff, target, caster }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.powerIncrease) {
           const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const powerBase = constants.powerBase;

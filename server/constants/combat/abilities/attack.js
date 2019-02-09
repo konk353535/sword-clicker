@@ -367,5 +367,62 @@ export const ATTACK_ABILITIES = {
       const BUFF = BUFFS.bleed;
       return BUFF.description({ buff: BUFF, level });
     }
-  }
+  },
+
+  precise_shots: {
+    icon: 'preciseShots.svg',
+    name: 'precise shots',
+    id: 'precise_shots',
+    buffs: ['precise_shots'],
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
+    cooldown: 60,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.precise_shots;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  power_shot: {
+    icon: 'powerShot.svg',
+    name: 'power shot',
+    id: 'power_shot',
+    buffs: ['power_shot'],
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
+    cooldown: 10,
+    slot: 'any',
+    target: 'currentEnemy',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.power_shot;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
+  volley: {
+    icon: 'volley.svg',
+    name: 'volley',
+    id: 'volley',
+    buffs: ['volley'],
+    requires: [{
+      type: 'weaponType',
+      weaponTypes: ['bow']
+    }],
+    cooldown: 30,
+    slot: 'any',
+    target: 'self',
+    isHidden: false,
+    description(level) {
+      const BUFF = BUFFS.volley;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

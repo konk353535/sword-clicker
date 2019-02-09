@@ -720,7 +720,7 @@ Meteor.methods({
         affectedSlots.push('offHand');
       }
     } else {
-      // When equipping a 1h that is NOT a bow, unequip any quivers
+      // When equipping a 1h (that is obviously NOT a bow), unequip any quivers
 	
       const offHandEquipped = Items.findOne({
         owner: Meteor.userId(),
@@ -762,7 +762,13 @@ Meteor.methods({
             // this offHand is not a quiver, unequip the 2H mainHand slot
             affectedSlots.push('mainHand');
           }
-        }
+        } else {
+          // When equipping an offhand when the current offhand is not 2h, unequip the 1H mainHand slot if we're equipping a quiver
+          if (itemConstants.weaponType === 'quiver') {
+            // Only unequip the mainHand slot if we're equipping a quiver
+            affectedSlots.push('ofmainHand');
+          }
+        }        
       }
     }
 

@@ -868,24 +868,64 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
+    ebony_log: { // 21
+      requiredAttack: 100, // cursed
+      xp: 725*2,
+      id: 'ebony_log',
+      icon: 'ebonyLog.png',
+      name: 'ebony log',
+      itemId: 'ebony_log',
+      chance: 0.01/2
+    },
+
     fiery_log: { // 22
-      requiredAttack: 110, // radiant
-      xp: 725,
+      requiredAttack: 105, // darksteel
+      xp: 800*2,
       id: 'fiery_log',
       icon: 'fieryLog.png',
       name: 'fiery log',
       itemId: 'fiery_log',
-      chance: 0.005
+      chance: 0.01/2
+    },
+
+    tamarind_log: { // 23
+      requiredAttack: 110, // radiant
+      xp: 900*2,
+      id: 'tamarind_log',
+      icon: 'tamarindLog.png',
+      name: 'tamarind log',
+      itemId: 'tamarind_log',
+      chance: 0.01/2
     },
 
     magic_log: { // 24
-      requiredAttack: 120, // titanfoil
-      xp: 800,
+      requiredAttack: 115, // astral
+      xp: 1000*4,
       id: 'magic_log',
       icon: 'magicLog.png',
       name: 'magic log',
       itemId: 'magic_log',
-      chance: 0.005
+      chance: 0.01/4
+    },
+
+    petrified_log: { // 25
+      requiredAttack: 120, // titanfoil
+      xp: 1225*4,
+      id: 'petrified_log',
+      icon: 'petrifiedLog.png',
+      name: 'petrified log',
+      itemId: 'petrified_log',
+      chance: 0.01/4
+    },
+
+    ancient_log: { // 21
+      requiredAttack: 125, // relicrock
+      xp: 1500*4,
+      id: 'ancient_log',
+      icon: 'ancientLog.png',
+      name: 'ancient log',
+      itemId: 'ancient_log',
+      chance: 0.01/4
     },
 
   }

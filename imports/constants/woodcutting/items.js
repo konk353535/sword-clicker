@@ -699,12 +699,28 @@ export const WOODCUTTING_ITEMS = {
     sellPrice: 170
   },
 
+  ebony_log: {
+    id: 'ebony_log',
+    icon: 'ebonyLog.png',
+    category: 'woodcutting',
+    name: 'ebony log',
+    sellPrice: 180
+  },
+
   fiery_log: {
     id: 'fiery_log',
     icon: 'fieryLog.png',
     category: 'woodcutting',
     name: 'fiery log',
-    sellPrice: 180
+    sellPrice: 190
+  },
+
+  tamarind_log: {
+    id: 'tamarind_log',
+    icon: 'tamarindLog.png',
+    category: 'woodcutting',
+    name: 'tamarind log',
+    sellPrice: 200
   },
 
   magic_log: {
@@ -712,6 +728,22 @@ export const WOODCUTTING_ITEMS = {
     icon: 'magicLog.png',
     category: 'woodcutting',
     name: 'magic log',
-    sellPrice: 190
+    sellPrice: 210
+  },
+
+  petrified_log: {
+    id: 'petrified_log',
+    icon: 'petrifiedLog.png',
+    category: 'woodcutting',
+    name: 'petrified log',
+    sellPrice: 220
+  }
+
+  ancient_log: {
+    id: 'ancient_log',
+    icon: 'ancientLog.png',
+    category: 'woodcutting',
+    name: 'ancient log',
+    sellPrice: 230
   }
 };

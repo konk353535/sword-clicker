@@ -808,12 +808,23 @@ Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
       }
 
       if (!unit.isCharmed && !unit.isStunned && !unit.isPacifist) {
-        this.autoAttack({
-          attacker: unit,
-          defender,
-          tickEvents: this.tickEvents,
-          historyStats: this.historyStats
-        });
+        let canAutoAttack = true;
+        
+        // Check if they're trying to use a bow without a quiver (or vice versa)
+        if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
+          canAutoAttack = false;
+        } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
+          canAutoAttack = false;
+        }
+        
+        if (canAutoAttack) {
+          this.autoAttack({
+            attacker: unit,
+            defender,
+            tickEvents: this.tickEvents,
+            historyStats: this.historyStats
+          });
+        }
       }
     }
   });

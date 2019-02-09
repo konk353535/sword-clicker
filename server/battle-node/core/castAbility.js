@@ -7,11 +7,21 @@ export default function({ ability, caster, targets }) {
 
   let canUseAbilityOrSpell = true;
   
+  // Check for unit death
   if (canUseAbilityOrSpell) {
     if (caster.stats.health <= 0) {
       if (!ability.allowedWhileDead) {
         canUseAbilityOrSpell = false;
       }
+    }
+  }
+  
+  // Check if they're trying to use a bow without a quiver (or vice versa)
+  if (canUseAbilityOrSpell) {
+    if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
+      canUseAbilityOrSpell = false;
+    } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
+      canUseAbilityOrSpell = false;
     }
   }
   

@@ -737,7 +737,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'petrified log',
     sellPrice: 220
-  }
+  },
 
   ancient_log: {
     id: 'ancient_log',
@@ -745,5 +745,5 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     name: 'ancient log',
     sellPrice: 230
-  }
+  },
 };

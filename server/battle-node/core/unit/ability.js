@@ -4,6 +4,8 @@ export default class Ability {
 
   get isPassive() { return this.constants.isPassive; }
   get requires() { return this.constants.requires; }
+  get cantUseWith() { return this.constants.cantUseWith; }
+  get forbids() { return this.constants.forbids; } // duplicate
   get target() { return this.constants.target; }
   get buffs() { return this.constants.buffs; }
   get cooldown() {

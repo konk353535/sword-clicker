@@ -1308,12 +1308,6 @@ export const ATTACK_BUFFS = {
         const armorPenetration = buffConstants.baseArmorPenetrationPerLevel + (buffConstants.extraArmorPenetrationPerLevel * buff.data.level);
         const actualDamage = bonusDamage * (caster.stats.attack + ((caster.stats.attackMax - caster.stats.attack) * Math.random()));
         
-        console.log("POWER SHOT!");
-        console.log(buffConstants);
-        console.log(bonusDamage);
-        console.log(armorPenetration);
-        console.log(actualDamage);
-        
         // Reduce target armor by X% before hit
         target.stats.armor *= (1 - armorPenetration);
         

@@ -15,6 +15,24 @@ export default function({ ability, caster, targets }) {
     }
   }
   
+  // Is this ability locked because they have an opposing weapon?
+  if (canUseAbilityOrSpell && ability.cantUseWith) {
+    ability.cantUseWith.forEach((cantUseWithThis) => {
+      let meetsRequirement = true;
+      if (cantUseWithThis.type === 'weaponType') {
+        cantUseWithThis.weaponTypes.forEach((weaponType) => {
+          if (caster.mainHandType === weaponType || caster.offHandType === weaponType) {
+            meetsRequirement = false;
+          }
+        })
+      }
+
+      if (!meetsRequirement) {
+        canUseAbilityOrSpell = false;
+      }
+    });
+  }
+  
   // Does user have appropriate gear to cast this ability?
   if (canUseAbilityOrSpell && ability.requires) {
     ability.requires.forEach((required) => {
@@ -46,11 +64,11 @@ export default function({ ability, caster, targets }) {
   // pacifists can only use non-damaging abilities on enemies (or anything for allies)
   // for enemy targets, this includes taunt, scream, air dart, air ball, and charm
   if (caster.isPacifist) {
-    if (ability.target === 'currentEnemy' || ability.target === 'allEnemies') {
+    //if (ability.target === 'currentEnemy' || ability.target === 'allEnemies') {
       if (!ability.isPacifist) {
         canUseAbilityOrSpell = false;
       }
-    }
+    //}
   }
   
   // Certain effects may prevent a player from using spells or abilities but not both -- let's keep them separated

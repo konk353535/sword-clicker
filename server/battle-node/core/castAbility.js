@@ -17,12 +17,27 @@ export default function({ ability, caster, targets }) {
   }
   
   // Check if they're trying to use a bow without a quiver (or vice versa)
-  if (canUseAbilityOrSpell) {
-    if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
-      canUseAbilityOrSpell = false;
-    } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
-      canUseAbilityOrSpell = false;
-    }
+  let HasBowOrQuiverButNotTheOther = false;
+  if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
+    HasBowOrQuiverButNotTheOther = true;
+  } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
+    HasBowOrQuiverButNotTheOther = true;
+  }
+  if (HasBowOrQuiverButNotTheOther && ability.requires) {
+    ability.requires.forEach((required) => {
+      let meetsRequirement = true;
+      if (required.type === 'weaponType') {
+        required.weaponTypes.forEach((weaponType) => {
+          if ((weaponType === 'bow') || (weaponType === 'quiver')) {
+            meetsRequirement = false;
+          }
+        })
+      }
+
+      if (!meetsRequirement) {
+        canUseAbilityOrSpell = false;
+      }
+    });
   }
   
   // Is this ability locked because they have an opposing weapon?

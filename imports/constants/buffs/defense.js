@@ -427,6 +427,11 @@ export const DEFENSE_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        // bows dont get damage reflected back from spiked armor
+        if (attacker.mainHandType === 'bow') {
+          return;
+        }
+        
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const damageReflectionBase = constants.damageReflectionBase;

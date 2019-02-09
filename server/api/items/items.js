@@ -766,7 +766,7 @@ Meteor.methods({
           // When equipping an offhand when the current offhand is not 2h, unequip the 1H mainHand slot if we're equipping a quiver
           if (itemConstants.weaponType === 'quiver') {
             // Only unequip the mainHand slot if we're equipping a quiver
-            affectedSlots.push('ofmainHand');
+            affectedSlots.push('mainHand');
           }
         }        
       }

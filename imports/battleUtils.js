@@ -7,6 +7,8 @@ import { BUFFS } from './constants/buffs/index';
 export const removeBuff = function removeBuff({ target, buff, caster, actualBattle }) {
   if (target && buff && buff.id) {
     if (target.removeBuff) {
+      actualBattle = actualBattle || target.battleRef;
+      
       const buffConstants = BUFFS[buff.id];
       // Quick sort of buffs to ascending by duration
       // target.buffs = _.sortBy(target.buffs, 'duration');
@@ -16,7 +18,7 @@ export const removeBuff = function removeBuff({ target, buff, caster, actualBatt
       target.removeBuff(buff);
     }
   }
-}
+};
 
 export const addBuff = function addBuff({ buff, target, caster, actualBattle }) {
   if (!target || !target.addBuff || !buff || !buff.data) {
@@ -24,6 +26,8 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   }
   //console.log(`applying ${BUFFS[buff.id].name} from ${caster.name} to ${target.name}`);
 
+  actualBattle = actualBattle || target.battleRef;
+  
   let existingBuff;
   if (!buff.data.allowDuplicates) {
     // Make sure there is no existing buff like this
@@ -66,10 +70,12 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
   }
   
   return newBuff;
-}
+};
 
 export const removeBuffById = function removeBuffById({target, caster, buffId, actualBattle}) {
   try {
+    actualBattle = actualBattle || target.battleRef;
+    
     let buffToRemove = target.findBuff(buffId);
     if (buffToRemove) {
       removeBuff({ buff: buffToRemove, target, caster, actualBattle });
@@ -82,6 +88,8 @@ export const removeBuffById = function removeBuffById({target, caster, buffId, a
 
 export const removeBuffWithMessage = function removeBuffWithMessage({target, caster, buff, buffId, actualBattle, messageOptions}) {
   try {
+    actualBattle = actualBattle || target.battleRef;
+    
     if (buff) {
       removeBuff({target, buff, caster, actualBattle});
       if (messageOptions) {

@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import moment from 'moment';
 import { addBuff, removeBuff } from '../../battleUtils';
 import { CInt } from '../../utils';
@@ -25,7 +26,7 @@ export const ATTACK_BUFFS = {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
@@ -88,7 +89,7 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -133,7 +134,7 @@ export const ATTACK_BUFFS = {
         caster.stats.attackMax *= (1 + buff.data.attackIncrease);
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {
@@ -181,7 +182,7 @@ export const ATTACK_BUFFS = {
         caster.stats.accuracy += buff.data.accuracyIncrease;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
           buff.duration -= secondsElapsed;
           if (buff.duration <= 0) {
@@ -223,7 +224,7 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.criticalIncrease) {
           const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           const criticalBase = constants.criticalBase;
@@ -289,10 +290,10 @@ export const ATTACK_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -359,9 +360,9 @@ export const ATTACK_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -433,9 +434,9 @@ export const ATTACK_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -509,7 +510,7 @@ export const ATTACK_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         buff.data.timeTillStack -= secondsElapsed;
         if (buff.data.timeTillStack <= 0) {
           buff.data.timeTillStack = 3;
@@ -589,9 +590,9 @@ export const ATTACK_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -627,7 +628,7 @@ export const ATTACK_BUFFS = {
         target.stats.attackMax += extraAttack;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= secondsElapsed;
 
@@ -639,7 +640,7 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -735,7 +736,7 @@ export const ATTACK_BUFFS = {
         });
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -794,8 +795,8 @@ export const ATTACK_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -845,8 +846,8 @@ export const ATTACK_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -890,8 +891,8 @@ export const ATTACK_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -939,8 +940,8 @@ export const ATTACK_BUFFS = {
         target.stats.armor /= (1 - constants.armorPenetration);
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },
@@ -1038,8 +1039,8 @@ export const ATTACK_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
-        removeBuff({ target, buff, caster })
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
       onRemove() {
@@ -1079,7 +1080,7 @@ export const ATTACK_BUFFS = {
         target.stats.attackSpeed *= (1 + (buff.data.attackSpeedGain / 100));
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
 
@@ -1092,7 +1093,7 @@ export const ATTACK_BUFFS = {
 
         if (buff.duration < 0) {
           // Call the onremove event
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1154,14 +1155,14 @@ export const ATTACK_BUFFS = {
         addBuff({ buff: newBuff, target: target, caster: caster });
         
         // remove stub debuff
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, caster, actualBattle });
       },
 
-      onTick({ secondsElapsed, buff, target, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         // remove stub debuff
-        const caster = actualBattle.allUnitsMap[buff.data.caster];
+        const originalCaster = actualBattle.allUnitsMap[buff.data.caster];
 
-        removeBuff({ target, buff, caster })
+        removeBuff({ buff, target, originalCaster, actualBattle });
       },
 
       onRemove() {
@@ -1202,7 +1203,7 @@ export const ATTACK_BUFFS = {
         buff.data.caster = caster.id;
       },
 
-      onTick({ secondsElapsed, buff, target, actualBattle }) {
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
         buff.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;
@@ -1214,13 +1215,13 @@ export const ATTACK_BUFFS = {
           }
         }
 
-        const caster = actualBattle.allUnitsMap[buff.data.caster];
+        const originalCaster = actualBattle.allUnitsMap[buff.data.caster];
 
         if (buff.data.timeTillDamage < 0) {
           buff.data.timeTillDamage = 1;
 
           actualBattle.dealDamage(buff.data.dps, { 
-            attacker: caster,
+            attacker: originalCaster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
@@ -1228,12 +1229,156 @@ export const ATTACK_BUFFS = {
         }
 
         if (buff.duration < 0) {
-          removeBuff({ target, buff, caster })
+          removeBuff({ buff, target, originalCaster, actualBattle });
         }
       },
 
       onRemove() {
 
+      }
+    }
+  },
+  
+  precise_shots: {
+    duplicateTag: 'precise_shots',
+    icon: 'preciseShots.svg',
+    name: 'precise shots',
+    description({ buff, level }) {
+      const totalDuration = buff.constants.baseDuration + (buff.constants.extraTimePerLevel * level);
+      return `
+        Your auto-attacks can't miss for <b>${totalDuration}</b> seconds. <br />
+        (+${buff.constants.extraTimePerLevel} seconds per ability level)`;
+    },
+    constants: {
+      baseDuration: 12.5,
+      extraTimePerLevel: 2.5,
+    },
+    data: {
+      duration: 12.5,
+      totalDuration: 12.5,
+    },
+    events: {
+      onApply({ buff, target, caster }) {
+        if (buff.duration !== Infinity) {
+          const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          buff.duration += (buffConstants.extraTimePerLevel * buff.data.level);
+        }
+        target.cantMiss = true;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        target.cantMiss = false;
+      }
+    }
+  },
+
+  power_shot: {
+    duplicateTag: 'power_shot',
+    icon: 'powerShot.svg',
+    name: 'power shot',
+    description({ buff, level }) {
+      const bonusDamage = buff.constants.baseDamageMultiplierPerLevel + (buff.constants.extraDamageMultiplierPerLevel * level);
+      const armorPenetration = buff.constants.baseArmorPenetrationPerLevel + (buff.constants.extraArmorPenetrationPerLevel * level);
+      return `
+        A strong attack that deals <b>${(100 * bonusDamage)}%</b> damage and <br />
+        ignores <b>${(100 * armorPenetration)}%</b> of target's armor. <br />
+        (+${(100 * buff.constants.extraDamageMultiplierPerLevel)}% damage and +${(100 * buff.constants.extraArmorPenetrationPerLevel)}% armor ignored per ability level)`;
+    },
+    constants: {
+      baseDamageMultiplierPerLevel: 1.75,
+      extraDamageMultiplierPerLevel: 0.25,
+      baseArmorPenetrationPerLevel: 0.5,
+      extraArmorPenetrationPerLevel: 0.1,
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const bonusDamage = buffConstants.baseDamageMultiplierPerLevel + (buffConstants.extraDamageMultiplierPerLevel * buff.data.level);
+        const armorPenetration = buffConstants.baseArmorPenetrationPerLevel + (buffConstants.extraArmorPenetrationPerLevel * buff.data.level);
+        const actualDamage = bonusDamage * (caster.stats.attack + ((caster.stats.attackMax - caster.stats.attack) * Math.random()));
+        
+        console.log("POWER SHOT!");
+        console.log(buffConstants);
+        console.log(bonusDamage);
+        console.log(armorPenetration);
+        console.log(actualDamage);
+        
+        // Reduce target armor by X% before hit
+        target.stats.armor *= (1 - armorPenetration);
+        
+        actualBattle.dealDamage(actualDamage, {
+          attacker: caster,
+          defender: target,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+        });
+        
+        // Restore target armor
+        target.stats.armor /= (1 - armorPenetration);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
+      }
+    }
+  },
+
+  volley: {
+    duplicateTag: 'volley',
+    icon: 'volley.svg',
+    name: 'volley',
+    description({ buff, level }) {
+      const upperRange = buff.constants.extraShotsBase + (buff.constants.extraShotsPerLevel * level);
+      const extraDamage = buff.constants.extraDamagePerLevel * level;
+      return `
+        A succession of <b>${buff.constants.minimumShots}</b> to <b>${upperRange}</b> rapid fire auto-attack shots at random<br />
+        targets. Each shot deals an additional <b>${(100 * extraDamage)}%</b> bonus damage. <br />
+        (+${buff.constants.extraShotsPerLevel} shot and +${(100 * buff.constants.extraDamagePerLevel)}% bonus damage per ability level)`;
+    },
+    constants: {
+      minimumShots: 4,
+      extraShotsBase: 7,
+      extraShotsPerLevel: 1,
+      extraDamagePerLevel: 0.05,
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const lowerRange = buffConstants.minimumShots;
+        const upperRange = buffConstants.extraShotsBase + (buffConstants.extraShotsPerLevel * buff.data.level);
+        const extraDamage = buffConstants.extraDamagePerLevel * buff.data.level;
+
+        const randomAttackCount = Math.ceil((Math.random() * upperRange) + lowerRange);
+        
+        for (let i = 0; i < randomAttackCount; i++) {
+          let randomTargetUnit = _.sample(target.opposition);
+          
+          // possible we transition to another floor and don't have a target yet
+          if (randomTargetUnit) {
+            actualBattle.autoAttack({
+              attacker: target,
+              defender: randomTargetUnit,
+              damageModifier: extraDamage,
+            });
+          }
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        removeBuff({ buff, target, caster, actualBattle });
       }
     }
   },

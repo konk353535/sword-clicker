@@ -355,6 +355,9 @@ Meteor.methods({
 
       all_abilities.forEach((ability) => {
         ability.requires = ABILITIES[ability.abilityId].requires;
+        ability.cantUseWith = ABILITIES[ability.abilityId].cantUseWith;
+        ability.isPassive = (ABILITIES[ability.abilityId].isPassive || false),
+        ability.isPacifist = (ABILITIES[ability.abilityId].isPacifist || false),
         abilities_map[ability.slot] = ability;
       });
     }

@@ -274,12 +274,15 @@ Meteor.methods({
         learntLevel = abilitiesMap[abilityKey];
       }
       const abilityData = {
-        description: ABILITIES[abilityKey].description(abilityLevel),
+        description: abilityConstant.description(abilityLevel),
         name: `${abilityConstant.name} (${abilityLevel})`,
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
         cooldown: abilityConstant.cooldown,
+        isPassive: (abilityConstant.isPassive || false),
+        isPacifist: (abilityConstant.isPacifist || false),
         requires: abilityConstant.requires,
+        cantUseWith: abilityConstant.cantUseWith,        
         learntLevel,
         level: abilityLevel,
         id: abilityConstant.id,
@@ -326,7 +329,7 @@ Meteor.methods({
         abilityLevel = abilitiesMap[abilityKey];
         learntLevel = abilitiesMap[abilityKey];
       }
-      const descToUse = (_.isFunction(ABILITIES[abilityKey].betterDescription)) ? ABILITIES[abilityKey].betterDescription({level: abilityLevel, playerSkills: usersSkillsArray}) : ABILITIES[abilityKey].description(abilityLevel);
+      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray}) : abilityConstant.description(abilityLevel);
       const abilityData = {
         description: descToUse,
         name: `${abilityConstant.name} (${abilityLevel})`,
@@ -337,9 +340,12 @@ Meteor.methods({
         learntLevel,
         level: abilityLevel,
         id: abilityConstant.id,
-        slot: (ABILITIES[abilityKey].slot || 'any'),
-        buff: ((ABILITIES[abilityKey].buffs && ABILITIES[abilityKey].buffs.length > 0) ? ABILITIES[abilityKey].buffs[0] : ''),
-        isPassive: (ABILITIES[abilityKey].isPassive || false),
+        slot: (abilityConstant.slot || 'any'),
+        buff: ((abilityConstant.buffs && abilityConstant.buffs.length > 0) ? abilityConstant.buffs[0] : ''),
+        isPassive: (abilityConstant.isPassive || false),
+        isPacifist: (abilityConstant.isPacifist || false),
+        requires: abilityConstant.requires,
+        cantUseWith: abilityConstant.cantUseWith,
       };
 
       return abilityData;
@@ -387,6 +393,7 @@ Meteor.publish('abilities', function() {
       ability.targettable = abilityConstant.targettable;
       ability.target = abilityConstant.target;
       ability.requires = abilityConstant.requires;
+      ability.cantUseWith = abilityConstant.cantUseWith;
 
       return ability;
     });

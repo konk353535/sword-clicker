@@ -3,7 +3,7 @@ import { BUFFS } from '../../../imports/constants/buffs/index.js';
 export const TICK_DURATION = 200;
 export const secondsElapsed = TICK_DURATION / 1000;
 
-export default function({ attacker, defender, tickEvents, actualBattle, historyStats, originalAutoAttack = true, damageModifier = 0 }) {
+export default function({ attacker, defender, originalAutoAttack = true, damageModifier = 0 }) {
   // Do we hit?
   let hitGap = attacker.stats.accuracy - defender.stats.defense;
   let hitChance = 0.5;
@@ -22,7 +22,7 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
     hitChance = 1 - defender.stats.minimumHitChance;
   }
 
-  if (hitChance >= Math.random()) {
+  if ((attacker.cantMiss || hitChance >= Math.random()) && (!defender.cantBeHit)) {
     // How much do we hit for
     const extraRawDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
     let rawDamage = attacker.stats.attack + extraRawDamage;
@@ -41,9 +41,9 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
     const damageDealt = this.dealDamage(rawDamage, {
       attacker,
       defender,
-      tickEvents,
+      tickEvents: this.tickEvents,
       customIcon,
-      historyStats
+      historyStats: this.historyStats,
     });
 
     // Tick didDamage event on attacker
@@ -78,7 +78,7 @@ export default function({ attacker, defender, tickEvents, actualBattle, historyS
     }
 
   } else {
-    this.dealDamage(0, { attacker, defender, tickEvents, historyStats, actualBattle: this });
+    this.dealDamage(0, { attacker, defender, tickEvents: this.tickEvents, historyStats: this.historyStats, actualBattle: this });
     
     // Tick dodgedDamage event on defender
     if (defender.buffs) {

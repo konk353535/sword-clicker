@@ -18,9 +18,9 @@ export default function({ ability, caster, targets }) {
   
   // Check if they're trying to use a bow without a quiver (or vice versa)
   let HasBowOrQuiverButNotTheOther = false;
-  if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
+  if ((caster.mainHandType === 'bow') && (caster.offHandType !== 'quiver')) {
     HasBowOrQuiverButNotTheOther = true;
-  } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
+  } else if ((caster.mainHandType !== 'bow') && (caster.offHandType === 'quiver')) {
     HasBowOrQuiverButNotTheOther = true;
   }
   if (HasBowOrQuiverButNotTheOther && ability.requires) {

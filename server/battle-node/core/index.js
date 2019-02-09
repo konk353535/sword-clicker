@@ -811,9 +811,9 @@ Battle.prototype.unitAutoAttacks = function unitAutoAttacks(units) {
         let canAutoAttack = true;
         
         // Check if they're trying to use a bow without a quiver (or vice versa)
-        if ((caster.mainHandType === 'bow') && (caster.mainHandType !== 'quiver')) {
+        if ((unit.mainHandType === 'bow') && (unit.mainHandType !== 'quiver')) {
           canAutoAttack = false;
-        } else if ((caster.mainHandType !== 'bow') && (caster.mainHandType === 'quiver')) {
+        } else if ((unit.mainHandType !== 'bow') && (unit.mainHandType === 'quiver')) {
           canAutoAttack = false;
         }
         

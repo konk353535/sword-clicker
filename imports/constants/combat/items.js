@@ -29,6 +29,7 @@ import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
 import { STAFF_ITEMS } from './items/staff';
 import { WIZARD_ITEMS } from './items/wizard';
+import { ARCHER_ITEMS } from './items/archer';
 
 console.log('exporting combat/items.js COMBAT_ITEMS');
 export const COMBAT_ITEMS = Object.assign(
@@ -61,4 +62,5 @@ export const COMBAT_ITEMS = Object.assign(
   MISC_ITEMS,
   AMULET_ITEMS,
   STAFF_ITEMS,
-  WIZARD_ITEMS);
+  WIZARD_ITEMS,
+  ARCHER_ITEMS);

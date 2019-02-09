@@ -868,8 +868,8 @@ export const WOODCUTTING = {
       chance: 0.01
     },
 
-    fiery_log: { // 21
-      requiredAttack: 110, // darksteel
+    fiery_log: { // 22
+      requiredAttack: 110, // radiant
       xp: 725,
       id: 'fiery_log',
       icon: 'fieryLog.png',
@@ -878,8 +878,8 @@ export const WOODCUTTING = {
       chance: 0.005
     },
 
-    magic_log: { // 22
-      requiredAttack: 115, // radiant
+    magic_log: { // 24
+      requiredAttack: 120, // titanfoil
       xp: 800,
       id: 'magic_log',
       icon: 'magicLog.png',

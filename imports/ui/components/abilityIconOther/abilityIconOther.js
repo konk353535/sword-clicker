@@ -31,6 +31,22 @@ Template.abilityIconOther.helpers({
     }
     
     return false;
+  },
+  
+  needsIcons() {
+    const instance = Template.instance();
+    
+    if (instance.data.ability.isPacifist) {
+      return true;
+    }
+    if (instance.data.ability.requires) {
+      return true;
+    }
+    if (instance.data.ability.cantUseWith) {
+      return true;
+    }
+    
+    return false;
   }
 });
 

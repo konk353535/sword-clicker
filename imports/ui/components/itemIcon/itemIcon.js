@@ -62,12 +62,34 @@ Template.itemIcon.helpers({
     return false;
   },
 
+  
+  abilityRequiresOrForbids() {
+    const instance = Template.instance();
+    
+    if (instance.data.item.abilityId) {
+      return (instance.data.item.requires || instance.data.item.cantUseWith);
+    }
+    return false;
+  },
+
+  
   abilityRequires() {
     const instance = Template.instance();
     
     if (instance.data.item.abilityId) {
       if (instance.data.item.requires) {
         return instance.data.item.requires;
+      }
+    }
+    return false;
+  },
+
+  abilityForbids() {
+    const instance = Template.instance();
+    
+    if (instance.data.item.abilityId) {
+      if (instance.data.item.cantUseWith) {
+        return instance.data.item.cantUseWith;
       }
     }
     return false;

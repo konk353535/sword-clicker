@@ -23,6 +23,22 @@ Template.abilityLibraryIcon.helpers({
     }
     
     return false;
+  },
+  
+  needsIcons() {
+    const instance = Template.instance();
+    
+    if (instance.data.item.isPacifist) {
+      return true;
+    }
+    if (instance.data.item.requires) {
+      return true;
+    }
+    if (instance.data.item.cantUseWith) {
+      return true;
+    }
+    
+    return false;
   }
 });
 

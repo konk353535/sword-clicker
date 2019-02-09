@@ -1,20 +1,33 @@
 <template name="abilityIconOther">
   <div class="item-icon-container item {{classes}} icon-box" style="position: relative" data-id="{{ability.abilityId}}">
-    {{#each ability.requires}}
-      {{#if $eq this.type 'weaponType'}}
-        <div style="position: absolute; left: 2px; top: 0" class="required-weapon">
-          {{#each this.weaponTypes}}
-            <img
-              src="/icons/{{this}}.svg"
-              style="height: 20px; width: 20px;">
-          {{/each}}
-        </div>
-      {{/if}}
-    {{/each}}
-
-    <!-- Abilities can have required items -->
-    {{#if ability.requiredItem}}
-      <img src="/icons/{{ability.requiredItem}}" class="small-icon">
+    {{#if needsIcons}}
+      <div style="position: absolute; left: 2px; top: 0" class="required-weapon">
+        {{#if ability.isPacifist}}
+          <img
+            src="/icons/pacifist.svg"
+            style="height: 20px; width: 20px;">
+        {{/if}}
+        
+        {{#each ability.requires}}
+          {{#if $eq this.type 'weaponType'}}
+            {{#each this.weaponTypes}}
+              <img
+                src="/icons/{{this}}.svg"
+                style="height: 20px; width: 20px;">
+            {{/each}}
+          {{/if}}
+        {{/each}}
+        
+        {{#each ability.cantUseWith}}
+          {{#if $eq this.type 'weaponType'}}
+            {{#each this.weaponTypes}}
+              <img
+                src="/icons/forbidden.svg"
+                style="height: 20px; width: 20px; background: url(/icons/{{this}}.svg) center center;">
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </div>
     {{/if}}
 
     <img src="/icons/{{ability.icon}}" class="item-icon">

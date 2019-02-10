@@ -36,7 +36,7 @@ Template.recipeIcon.rendered = function () {
   const instance = Template.instance();
   updateCraftable(instance);
 
-  // Should autorun when it's reagents change
+  // Should autorun when its reagents change
   Tracker.autorun(() => {
     const recipe = instance.data.recipe;
 

@@ -71,6 +71,13 @@
           {{{item.description}}}<br />
         {{/if}}
 
+        <!-- farming description() -->
+        {{#if itemDescription}}
+          {{#if $and (item.plantingDetails) (description)}}
+            {{{description}}}<br />
+          {{/if}}
+        {{/if}}
+
         {{#if scaledCooldownVal}}
           Cooldown <b>{{scaledCooldownVal}}s</b><br />
         {{else if item.cooldown}}

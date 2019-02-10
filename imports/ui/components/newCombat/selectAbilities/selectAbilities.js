@@ -113,9 +113,11 @@ Template.selectAbilitiesPage.helpers({
       return ability.equipped;
     });
 
+    // todo: fill this in with logic from 'abilityLibrary()' helper
+    //const tempAbilities = abilityLibrary();
     const equippedMap = {};
     equippedAbilities.forEach((item) => {
-      equippedMap[item.slot] = item;
+      equippedMap[item.slot] = Object.assign({}, /*tempAbilities[item.abilityId], */ item);
     });
 
     return equippedMap;

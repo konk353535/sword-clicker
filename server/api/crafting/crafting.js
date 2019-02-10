@@ -252,6 +252,11 @@ Meteor.methods({
   },
 
   'crafting.fetchRecipes'() {
+    const user = Meteor.user();
+    if (!user){
+      return false;
+    }
+    
     const craftingSkill = Skills.findOne({
       owner: Meteor.userId(),
       type: 'crafting'
@@ -293,7 +298,7 @@ Meteor.methods({
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
-      return craftingSkill.level + 1 >= recipe.requiredCraftingLevel;
+      return craftingSkill.level + 1 >= (recipe && recipe.requiredCraftingLevel ? recipe.requiredCraftingLevel : 0);
     });
 
     return _.sortBy(recipesArray, 'requiredCraftingLevel');

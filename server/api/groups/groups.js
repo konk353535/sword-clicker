@@ -531,6 +531,11 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'groups' }, 100, 10 * MINUTE);
 
 Meteor.publish('otherBattlers', function(limit) {
+  const user = Meteor.user();
+  if (!user){
+    return false;
+  }
+  
   if (limit > 100) {
     limit = 100;
   }

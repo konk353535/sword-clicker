@@ -177,6 +177,11 @@ Meteor.methods({
   },
 
   'inscription.fetchRecipes'() {
+    const user = Meteor.user();
+    if (!user){
+      return false;
+    }
+
     const inscriptionSkill = Skills.findOne({
       owner: Meteor.userId(),
       type: 'inscription'
@@ -205,7 +210,7 @@ Meteor.methods({
       }
 
       // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
-      return inscriptionSkill.level + 1 >= recipe.requiredInscriptionLevel;
+      return inscriptionSkill.level + 1 >= (recipe && recipe.requiredInscriptionLevel ? recipe.requiredInscriptionLevel : 0);
     });
 
     return _.sortBy(recipesArray, 'requiredInscriptionLevel');

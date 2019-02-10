@@ -8,7 +8,8 @@ ServersSchema = new SimpleSchema({
   name: { type: String },
   createdAt: { type: Date },
   membersCount: { type: Number },
-  disabled: { type: Boolean, optional: true }
+  disabled: { type: Boolean, optional: true },
+  announcement: { type: String, optional: true },
 });
 
 Servers.attachSchema(ServersSchema);

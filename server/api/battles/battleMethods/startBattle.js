@@ -30,6 +30,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   } else if (room === 0) {
     // Is tower explore (To Do)
     // Does this do anything?
+    
+    // Pete's note: this never does anything because isExplorationRun is true and room = 1 for full floor runs
     battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor));
   } else if (room >= 1 && room <= 7) {
     // Is tower room specific

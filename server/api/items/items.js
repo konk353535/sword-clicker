@@ -719,7 +719,7 @@ Meteor.methods({
         // this mainHand is not a bow, blindly unequip anything in offHand slot
         affectedSlots.push('offHand');
       }
-    } else {
+    } else if (itemConstants.isWeapon) {
       // When equipping a 1h (that is obviously NOT a bow), unequip any quivers
 	
       const offHandEquipped = Items.findOne({

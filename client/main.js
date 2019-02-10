@@ -33,7 +33,7 @@ import '../imports/ui/pages/updates.js';
 import '../imports/ui/pages/guestSettings.js';
 import '../imports/ui/pages/profile.js';
 import '../imports/ui/pages/home.js';
-import '../imports/ui/pages/gameHome.js';
+import '../imports/ui/pages/overview.js';
 import '../imports/ui/pages/chat.js';
 import '../imports/ui/pages/achievements.js';
 import '../imports/ui/pages/magic.js';
@@ -42,11 +42,12 @@ import '../imports/ui/pages/newCombat.js';
 import '../imports/ui/pages/crafting.js';
 import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';
-import '../imports/ui/pages/skills.js';
-import '../imports/ui/pages/patchNotes.js';
+import '../imports/ui/pages/rankings.js';
+import '../imports/ui/pages/faq.js';
 import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
 import '../imports/ui/pages/shop.js';
+import '../imports/ui/pages/town.js';
 
 // Start Up
 import '../imports/startup/both';

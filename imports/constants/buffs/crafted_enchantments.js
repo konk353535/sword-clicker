@@ -243,7 +243,7 @@ LEG
         buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
 
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;

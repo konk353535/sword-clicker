@@ -25,7 +25,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -84,7 +84,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -147,7 +147,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -210,7 +210,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -273,7 +273,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -329,7 +329,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         // Remove buff from the target
         target.buffs = target.buffs.filter((targetBuff) => {
           return targetBuff.id !== buff.id;
@@ -359,7 +359,7 @@ export const FOOD_BUFFS = {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -415,7 +415,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -470,7 +470,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -526,7 +526,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -582,7 +582,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -637,7 +637,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -692,7 +692,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -747,7 +747,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -802,7 +802,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -857,7 +857,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -912,7 +912,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -967,7 +967,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -1022,7 +1022,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -1078,7 +1078,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 

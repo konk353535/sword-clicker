@@ -6,7 +6,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'stone pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted simply for the experience.'
   },
 
   stone_wall: {
@@ -15,7 +15,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'stone wall',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   copper_wall: {
@@ -24,7 +24,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'copper wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   tin_pylon: {
@@ -33,7 +33,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'tin pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   bronze_wall: {
@@ -42,7 +42,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'bronze wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   iron_pylon: {
@@ -51,7 +51,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'iron pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   silver_wall: {
@@ -60,7 +60,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'silver wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   silver_essence_wall: {
@@ -69,7 +69,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'silver essence wall',
     sellPrice: 10,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   gold_pylon: {
@@ -78,7 +78,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'gold pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   carbon_wall: {
@@ -87,7 +87,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'carbon wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   steel_pylon: {
@@ -96,7 +96,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'steel pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   platinum_wall: {
@@ -105,7 +105,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'platinum wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   titanium_pylon: {
@@ -114,7 +114,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'titanium pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   tungsten_wall: {
@@ -123,7 +123,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'tungsten wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   obsidian_pylon: {
@@ -132,7 +132,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'obsidian pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   cobalt_wall: {
@@ -141,7 +141,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'cobalt wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   mithril_pylon: {
@@ -150,7 +150,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'mithril pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   adamantium_wall: {
@@ -159,7 +159,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'adamantium wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   orichalcum_pylon: {
@@ -168,7 +168,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'orichalcum pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   meteorite_wall: {
@@ -177,7 +177,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'meteorite wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   fairy_steel_pylon: {
@@ -186,7 +186,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'fairy steel pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   elven_steel_wall: {
@@ -195,7 +195,7 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'elven steel wall',
     sellPrice: 5,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 
   cursed_pylon: {
@@ -204,6 +204,6 @@ export const XP_ITEMS = {
     category: 'crafting',
     name: 'cursed pylon',
     sellPrice: 1,
-    description: 'Can be crafted for decent xp'
+    description: 'Can be crafted for decent simply for the experience.'
   },
 };

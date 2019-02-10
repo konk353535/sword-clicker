@@ -1046,7 +1046,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (Math.random() <= 0.015) {
+        if (Math.random() <= 0.01) {
           const targetEnemy = lodash.sample(actualBattle.enemies);
           const newBuff = {
             id: 'ignite_phoenix_hat',

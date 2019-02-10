@@ -1,4 +1,4 @@
-<template name="skillsPage">
+<template name="rankingsPage">
   <div class="px-3 mt-2">
     <p>Currently online: {{activeUsers}}</p>
   </div>
@@ -24,9 +24,9 @@
       {{/each}}
     </div>
 
-    <!-- Skill Highscores -->
+    <!-- Skill Rankings -->
     <div class="d-flex highscore-skills-container flex-column">
-      <h1>Highscores</h1>
+      <h1>Leaderboard Rankings</h1>
       <div class="d-flex flex-wrap mb-3">
         {{#each possibleSkills}}
           <div
@@ -142,8 +142,8 @@
               <tr>
                 <td>{{this.rank}}</td>
                 <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
-                <td>{{> ceilNumber this.totalXp}}</td>
-                <td>{{this.level}}</td>
+                <td>{{> formatNumber number=this.totalXp}}</td>
+                <td>{{> formatNumber number=this.level}}</td>
               </tr>
             {{/each}}
           </thead>

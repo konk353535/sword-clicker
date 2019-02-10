@@ -4,9 +4,9 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Skills } from '/imports/api/skills/skills.js';
 
-import './skills.html';
+import './rankings.html';
 
-Template.skillsPage.onCreated(function bodyOnCreated() {
+Template.rankingsPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('selectedSkill', 'total');
   this.state.set('showAll200', false);
@@ -38,7 +38,7 @@ Template.skillsPage.onCreated(function bodyOnCreated() {
   });
 });
 
-Template.skillsPage.events({
+Template.rankingsPage.events({
   'click .select-skill'(event, instance) {
     const skillName = $(event.target).closest('.select-skill')[0].getAttribute('data-name');
     instance.state.set('selectedSkill', skillName);
@@ -53,7 +53,7 @@ Template.skillsPage.events({
   },
 });
 
-Template.skillsPage.helpers({
+Template.rankingsPage.helpers({
 
   showAll200() {
     return Template.instance().state.get('showAll200');

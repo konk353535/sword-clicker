@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import './patchNotes.html';
+import './faq.html';
 
-Template.patchNotesPage.onCreated(function bodyOnCreated() {
+Template.faqPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });

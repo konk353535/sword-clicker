@@ -14,11 +14,11 @@ import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 
-import './gameHome.html';
+import './overview.html';
 
 let updatingAdventures = false;
 
-Template.gameHomePage.onCreated(function bodyOnCreated() {
+Template.overviewPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('showPickAll', false);
   this.state.set('showAddFriends', false);
@@ -137,7 +137,7 @@ Template.gameHomePage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('farmingSpace');
 });
 
-Template.gameHomePage.helpers({
+Template.overviewPage.helpers({
 
   otherBattlers() {
     const otherBattlers = Groups.find({
@@ -389,7 +389,7 @@ Template.gameHomePage.helpers({
   }
 });
 
-Template.gameHomePage.events({
+Template.overviewPage.events({
 
   'submit .friend-add'(event) {
     // Prevent default browser form submit

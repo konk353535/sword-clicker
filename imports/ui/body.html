@@ -5,11 +5,13 @@
 
     <div class="d-sm-flex flex-grow">
       <div class="flex-grow">
+        {{#unless inCurrentBattle}}
+          {{#if currentUser.tutorial}}
+            {{> tutorial}}
+          {{/if}}
+        {{/unless}}
         {{> yield}}
       </div>
-      {{#if currentUser.tutorial}}
-        {{> tutorial}}
-      {{/if}}
       {{> summaryList}}
     </div>
 

@@ -32,7 +32,7 @@ SyncedCron.add({
 
     if (amountToCreate > 0) {
       for (let i = 0; i < amountToCreate; i++) {
-        const username = `guest_${faker.internet.userName()}`;
+        const username = `guest_${faker.internet.userName()}`.replace('.', '');
         console.log(username);
         const password = uuid.v4();
 

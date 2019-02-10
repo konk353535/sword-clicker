@@ -58,13 +58,11 @@ Template.playAsGuestBtn.events({
 
     // This will instead return a username and password
     Meteor.call('users.createGuest', (err, res) => {
-      console.log(err, res);
       if (err) {
         return instance.state.get('creatingGuest', false);
       }
 
       const {username, password} = res;
-      console.log(username, password);
       Meteor.loginWithPassword(username, password, (err, res) => {
         instance.state.get('creatingGuest', false);
       });

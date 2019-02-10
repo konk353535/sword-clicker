@@ -34,6 +34,11 @@ html, body {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.navbar-nav > .nav-item {
+  display: flex;
+  align-items: center;
+}
+
 .text-white {
   color: white;
 }

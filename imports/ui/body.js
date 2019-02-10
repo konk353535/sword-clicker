@@ -329,6 +329,10 @@ Template.myLayout.helpers({
   currentRoute() {
     return Router.current().route.getName();
   },
+
+  inCurrentBattle() {
+    return BattlesList.findOne({});
+  }
 });
 
 Template.body.onDestroyed(function bodyOnDestroyed() {

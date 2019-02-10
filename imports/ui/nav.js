@@ -129,6 +129,11 @@ Template.nav.helpers({
     return Router.current().route.getName();
   },
 
+  currentStep() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return myUser.tutorial ? myUser.tutorial.currentStep : 50;
+  },
+
   beforeAugust() {
     const myServer = Servers.findOne({
       _id: Meteor.user().server

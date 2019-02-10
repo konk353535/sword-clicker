@@ -255,7 +255,7 @@ Meteor.methods({
         addItem('pine_paper', 1, Meteor.userId());
         addItem('rubia_flower_seed', 1, Meteor.userId());
       }
-    } else if (setObject['tutorial.currentStep'] === 10) {
+    } else if (setObject['tutorial.currentStep'] === 9) {
       // Check users current farming level
       const woodcuttingSkill = Skills.findOne({
         owner: Meteor.userId(),

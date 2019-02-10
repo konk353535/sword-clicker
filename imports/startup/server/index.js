@@ -603,7 +603,7 @@ if (!anyServer) {
     server: newServer,
     createdAt: new Date(),
     points: 0,
-    pointsMax: FLOORS.getNewPointCount(1, 10)
+    pointsMax: FLOORS.getNewPointCount(1, 30)
   });
 }
 
@@ -613,7 +613,7 @@ if (!currentFloor) {
   const targetServer = Servers.findOne({
     name: 'Classic'
   });
-  const pointsMax = FLOORS.getNewPointCount(1, 10);
+  const pointsMax = FLOORS.getNewPointCount(1, 30);
 
   // Create our first floor
   Floors.insert({

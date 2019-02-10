@@ -38,7 +38,7 @@ const createNewServer = function (name, iteration) {
       server: serverDoc._id,
       createdAt: new Date(),
       points: 0,
-      pointsMax: FLOORS.getNewPointCount(1, 10),
+      pointsMax: FLOORS.getNewPointCount(1, 30),
       floorComplete: false,
       server: currentFloor.server,
       loot: []

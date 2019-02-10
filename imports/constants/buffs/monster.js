@@ -892,7 +892,7 @@ export const MONSTER_BUFFS = {
         removeBuff({buff, target, caster, actualBattle});
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (buff.data.done) {
           removeBuff({buff, target, caster, actualBattle});
         }
@@ -922,7 +922,7 @@ export const MONSTER_BUFFS = {
         });
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -956,7 +956,7 @@ export const MONSTER_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.timeTillSteal -= secondsElapsed;
         buff.stacks = Math.round(buff.data.timeTillSteal);
 
@@ -1014,7 +1014,7 @@ export const MONSTER_BUFFS = {
         buff.data.hideBuff = true;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.timeTillBlink) {
           buff.data.timeTillBlink = 6 + (Math.random() * 7);
         }
@@ -1062,7 +1062,7 @@ export const MONSTER_BUFFS = {
         buff.data.hideBuff = true;
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         if (Math.random() <= 0.1) {
           const hasEvasive = _.find(defender.buffs, (buff) => {
@@ -1087,7 +1087,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1115,7 +1115,7 @@ export const MONSTER_BUFFS = {
         target.stats.armor *= 0.3;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1139,7 +1139,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         if (defender.stats.health <= (defender.stats.healthMax * 0.2)) {
 
@@ -1160,7 +1160,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1233,7 +1233,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1263,7 +1263,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         if (Math.random() <= 0.05 && !_.findWhere(defender.buffs, { id: 'mud_armor' })) {
           const newBuff = {
             id: 'mud_armor',
@@ -1314,7 +1314,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         if (Math.random() <= 0.05 && !_.findWhere(attacker.buffs, { id: 'frosted_attacks' })) {
           const newBuff = {
             id: 'frosted_attacks',
@@ -1373,7 +1373,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         let randChance = 0.05;
         if (defender.name === 'fiery wizard') {
           randChance = 0.125;
@@ -1446,7 +1446,7 @@ export const MONSTER_BUFFS = {
         target.stats.attackMax -= buff.data.attack;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1487,7 +1487,7 @@ export const MONSTER_BUFFS = {
         target.stats.armor -= buff.data.flatArmorReduction;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1527,7 +1527,7 @@ export const MONSTER_BUFFS = {
         target.stats.magicArmor -= buff.data.flatArmorReduction;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -1574,7 +1574,7 @@ export const MONSTER_BUFFS = {
         addBuff({ buff: newBuff, target: defender, caster: attacker });
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1621,7 +1621,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1668,7 +1668,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1721,7 +1721,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1743,7 +1743,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         // Does this unit have poison? remove poison + heal
@@ -1769,7 +1769,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1791,13 +1791,13 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         defender.stats.attack *= 1.03;
         defender.stats.attackMax *= 1.03;
         buff.stacks += 1;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1819,7 +1819,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         defender.stats.armor -= 5;
         defender.stats.magicArmor -= 5;
         buff.data.hitsRequired -= 1;
@@ -1838,7 +1838,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (buff.data.hitsRequired == null) {
           buff.data.hitsRequired = 45;
           target.stats.armor += 2000;
@@ -1865,7 +1865,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.timeTillUpdate) {
           buff.data.timeTillUpdate = 5;
         } else if (buff.data.timeTillUpdate <= 0) {
@@ -1928,7 +1928,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -1953,7 +1953,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, actualBattle }) {
         // spawn three minicubes when HP drops below 15%
         const healthPercentage = defender.stats.health / defender.stats.healthMax * 100;
         if (healthPercentage <= buff.data.splitHealthPercentage && !buff.data.hasSplit && buff.stacks > 0) {
@@ -2051,7 +2051,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         // Does this unit have bleed? remove bleed + heal
         const bleedCount = defender.buffs.filter((buff) => {
           return buff.id === 'bleed' || buff.id === 'bleed_proper';
@@ -2077,7 +2077,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -2211,7 +2211,7 @@ export const MONSTER_BUFFS = {
         buff.data.hasBeenApplied = true;
       },
 
-      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+      onTookDamage({ buff, defender, attacker, actualBattle }) {
         try {
           if (buff.data.hasBeenApplied) {
             if (buff.data.hitsRequired > 0) {
@@ -2244,7 +2244,7 @@ export const MONSTER_BUFFS = {
         }
       },
       
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -2287,7 +2287,7 @@ export const MONSTER_BUFFS = {
         addBuff({ buff: newBuff, target: defender, caster: attacker });
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -2311,7 +2311,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
 
       },
 
@@ -2353,7 +2353,7 @@ export const MONSTER_BUFFS = {
         buff.data.attackChance = 1 / 50;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         // stacks build up every tick without an attack and reset after attack
         buff.data.stackTimer += secondsElapsed;
         if (buff.data.stackTimer > 1) {
@@ -2494,7 +2494,7 @@ export const MONSTER_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {

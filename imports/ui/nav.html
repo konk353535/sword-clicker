@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       {{#if currentUser}}
-        <a class="navbar-brand" href="/gameHome">
+        <a class="navbar-brand" href="/overview">
           <img src="/icons/whiteTower.svg" class="extra-small-icon">
         </a>
       {{else}}
@@ -18,28 +18,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {{#if currentUser}}
+            {{#if $gte currentTutorialStep 10}}
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
-                Mine
-              </a>
-            </li>
-            {{#if $gte currentStep 2}}
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
-                  Craft
-                </a>
-              </li>
-            {{/if}}
-            {{#if $gte currentStep 7}}
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
-                  Woodcut
-                </a>
-              </li>
-            {{/if}}
-            {{#if $gte currentStep 10}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'newCombat'}}active{{/if}}" href="/newCombat">
+              <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}}" href="/battle">
                 Battle
                 {{#if showPendingInvites}}
                   <span class="red-dot"></span>
@@ -47,26 +28,54 @@
               </a>
             </li>
             {{/if}}
-            {{#if $gte currentStep 13}}
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
+                Mine
+              </a>
+            </li>
+            {{#if $gte currentTutorialStep 2}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
+                  Craft
+                </a>
+              </li>
+            {{/if}}
+            {{#if $gte currentTutorialStep 7}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
+                  Woodcut
+                </a>
+              </li>
+            {{/if}}
+            {{#if $gte currentTutorialStep 13}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
                 Farm
               </a>
             </li>
             {{/if}}
-            {{#if $gte currentStep 16}}
+            {{#if $gte currentTutorialStep 16}}
             <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'inscrption'}}active{{/if}}" href="/inscription">
+              <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
                 Inscribe
               </a>
             </li>
             {{/if}}
-            {{#if $gte currentStep 17}}
+            {{#if $gte currentTutorialStep 17}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
                 Magic
               </a>
             </li>
+            {{#if $gte currentTutorialStep 17}}
+              {{#if isAdmin}}
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'town'}}active{{/if}}" href="/town">
+                    Town
+                  </a>
+                </li>
+              {{/if}}
+            {{/if}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">
                 Chat
@@ -74,16 +83,12 @@
             </li>
             {{/if}}
             {{#unless currentUser.isGuest}}
-              <li class="nav-item">
-                <a class="nav-link" href="/profile/{{currentUser.username}}">
-                  Profile
-                </a>
-              </li>
+            <!-- profile was here -->
             {{/unless}}
-            {{#if $gte currentStep 17}}
+            {{#if $gte currentTutorialStep 17}}
               <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
-                  Skills
+                <a class="nav-link {{#if $eq currentRoute 'ranking'}}active{{/if}}" href="/rankings">
+                  Rankings
                 </a>
               </li>
               {{#if currentUser.newUpdates}}
@@ -104,7 +109,7 @@
               <span>
                 <a style="color: white; text-decoration: none !important;" href="/shop">
                   <img src="/icons/gems.svg" class="extra-small-icon">
-                  {{combinedGems}}
+                  {{> formatNumber number=combinedGems}}
                 </a>
               </span>
             </div>
@@ -165,7 +170,7 @@
                 {{/if}}
 
                 <a class="dropdown-item">
-                  Server: {{ getServerName }}
+                  Server: {{ serverName }}
                 </a>
 
                 {{#if currentUser.isGuest}}
@@ -191,12 +196,14 @@
   </nav>
 
   {{#if currentUser}}
-    {{#if beforeAugust}}
-      <div class="alert alert-info">
-        <div class="text-center">
-          Eternity Tower seasonal will start on the 22nd of July 1PM (GMT +10).
+    {{#if isAdmin}}
+      {{#if beforeNextSeasonAlert}}
+        <div class="alert alert-info">
+          <div class="text-center">
+            Eternity Tower season 2 will start on the 14th of March 1PM (GMT +10).<!-- 8pm US/Mountain https://greenwichmeantime.com/gmt-converter/ -->
+          </div>
         </div>
-      </div>
+      {{/if}}
     {{/if}}
   {{/if}}
 

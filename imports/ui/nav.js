@@ -129,37 +129,34 @@ Template.nav.helpers({
     return Router.current().route.getName();
   },
 
-  currentStep() {
+  currentTutorialStep() {
     const myUser = Users.findOne({ _id: Meteor.userId() });
     return myUser.tutorial ? myUser.tutorial.currentStep : 50;
   },
 
-  beforeAugust() {
+  isAdmin() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return myUser && myUser.isSuperMod;
+  },
+
+  beforeNextSeasonAlert() {
     const myServer = Servers.findOne({
       _id: Meteor.user().server
     });
 
     if (myServer && myServer.name === 'Classic') {
-      return moment().isBefore(moment('2018-07-25'));
+      return moment().isBefore(moment('2019-03-15'));
     }
 
     return false;
   },
 
-  getServerName() {
+  serverName() {
     let serverName = 'Classic';
     if (Template.instance().state.get('myServer')) {
       serverName = Template.instance().state.get('myServer').name
     }
     return serverName;
-  },
-
-  hasCraftingSkill() {
-    if (Skills.findOne()) {
-      return Skills.findOne({ type: 'crafting' });
-    } else {
-      return true;
-    }
   },
 
   showPendingInvites() {
@@ -171,7 +168,43 @@ Template.nav.helpers({
       members: Meteor.userId()
     });
 
-    return !currentGroup && invitedToGroups.length > 0
+    return (!currentGroup && invitedToGroups.length > 0);
+  },
+
+  hasAttackSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'attack' });
+    } else {
+      return true;
+    }
+  },
+  
+  hasCraftingSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'crafting' });
+    } else {
+      return true;
+    }
+  },
+
+  hasFarmingSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'farming' });
+    } else {
+      return true;
+    }
+  },
+
+  hasInscriptionSkill() {
+    if (Skills.findOne()) {
+      return Skills.findOne({ type: 'inscription' });
+    } else {
+      return true;
+    }
+  },
+
+  combinedGems() {
+    return (Meteor.user().gems || 0) + (Meteor.user().fakeGems || 0);
   },
 
   floatingTextDisabled() {
@@ -192,33 +225,5 @@ Template.nav.helpers({
 
   recipeTileConsumablesDisabled() {
     return Session.get('recipeTileConsumablesDisabled')
-  },
-
-  hasFarmingSkill() {
-    if (Skills.findOne()) {
-      return Skills.findOne({ type: 'farming' });
-    } else {
-      return true;
-    }
-  },
-
-  hasInscriptionSkill() {
-    if (Skills.findOne()) {
-      return Skills.findOne({ type: 'inscription' });
-    } else {
-      return true;
-    }
-  },
-
-  combinedGems() {
-    return Meteor.user().gems + (Meteor.user().fakeGems || 0);
-  },
-
-  hasAttackSkill() {
-    if (Skills.findOne()) {
-      return Skills.findOne({ type: 'attack' });
-    } else {
-      return true;
-    }
-  }
+  },  
 });

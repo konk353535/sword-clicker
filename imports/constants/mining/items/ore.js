@@ -67,8 +67,8 @@ export const ORE_ITEMS = {
     icon: 'gold.png',
     category: 'mining',
     name: 'gold',
-    sellPrice: 30
     description: 'Some unprocessed gold metal ore, suitable for crafting.',
+    sellPrice: 30
   },
 
   ore_carbon: {

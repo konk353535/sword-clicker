@@ -422,19 +422,19 @@ export const CURSED_CRAFTS = {
     category: 'combat',
     id: 'cursed_quiver',
     isHidden: true,
-    timeToCraft: 60 * 60 * 2, // 60
-    xp: 2000000,
+    timeToCraft: 2, //60 * 60 * 2, // 60
+    xp: 1, //2000000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 1,
-    required: [{
+    required: [/*{
       type: 'item',
       itemId: 'elven_steel_furnace',
       icon: ITEMS['elven_steel_furnace'].icon,
       name: ITEMS['elven_steel_furnace'].name,
       amount: 1,
       consumes: false
-    }, {
+    }, */{
       type: 'item',
       itemId: 'cursed_essence',
       icon: ITEMS['cursed_essence'].icon,

@@ -64,6 +64,9 @@ export const NEED_GREED_ITEMS = {
     // tomes are already need greed
     return RegExp('darksteel|radiant|astral|titanfoil|relicrock|eternium', 'g').test(str)
   },
+  archer: (str) => {
+    return RegExp('_bow|quiver', 'g').test(str)
+  },
   herbs: (str) => {
     return RegExp('garlic|sorrell|lemon_grass', 'g').test(str)
   },

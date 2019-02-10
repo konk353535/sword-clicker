@@ -8,8 +8,8 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'teak_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
-    xp: 100000,
+    timeToCraft: 2, //2 * 60 * 60, // 60
+    xp: 1, //100000,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 1,

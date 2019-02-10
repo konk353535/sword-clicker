@@ -3013,7 +3013,7 @@ export const MISC_ITEMS = {
     category: 'crafting',
     name: 'bamboo shack',
     sellPrice: 400,
-    description: 'Looks cozy (lots of xp)'
+    description: 'Looks cozy'
   },
 
   frankensteins_heart: {

@@ -1,9 +1,19 @@
 export const ORE_ITEMS = {
+  ore_coal: {
+    id: 'ore_coal',
+    icon: 'coal.png',
+    category: 'mining',
+    name: 'coal',
+    description: 'Some unearthed coal, suitable for crafting.',
+    sellPrice: 5
+  },
+
   ore_stone: {
     id: 'ore_stone',
     icon: 'stone.png',
     category: 'mining',
     name: 'stone',
+    description: 'A chiseled stone, suitable for crafting.',
     sellPrice: 1
   },
 
@@ -12,6 +22,7 @@ export const ORE_ITEMS = {
     icon: 'copper.png',
     category: 'mining',
     name: 'copper',
+    description: 'Some unprocessed copper metal ore, suitable for crafting.',
     sellPrice: 2
   },
 
@@ -20,6 +31,7 @@ export const ORE_ITEMS = {
     icon: 'tin.png',
     category: 'mining',
     name: 'tin',
+    description: 'Some unprocessed tin metal ore, suitable for crafting.',
     sellPrice: 3
   },
 
@@ -28,14 +40,7 @@ export const ORE_ITEMS = {
     icon: 'bronze.png',
     category: 'mining',
     name: 'bronze',
-    sellPrice: 5
-  },
-
-  ore_coal: {
-    id: 'ore_coal',
-    icon: 'coal.png',
-    category: 'mining',
-    name: 'coal',
+    description: 'Some unprocessed twisted copper and tin metal ores, suitable for crafting.',
     sellPrice: 5
   },
 
@@ -44,6 +49,7 @@ export const ORE_ITEMS = {
     icon: 'iron.png',
     category: 'mining',
     name: 'iron',
+    description: 'Some unprocessed iron metal ore, suitable for crafting.',
     sellPrice: 10
   },
 
@@ -52,6 +58,7 @@ export const ORE_ITEMS = {
     icon: 'silver.png',
     category: 'mining',
     name: 'silver',
+    description: 'Some unprocessed silver metal ore, suitable for crafting.',
     sellPrice: 20
   },
 
@@ -61,6 +68,7 @@ export const ORE_ITEMS = {
     category: 'mining',
     name: 'gold',
     sellPrice: 30
+    description: 'Some unprocessed gold metal ore, suitable for crafting.',
   },
 
   ore_carbon: {
@@ -68,6 +76,7 @@ export const ORE_ITEMS = {
     icon: 'carbon.png',
     category: 'mining',
     name: 'carbon',
+    description: 'Some unearthed dense carbon material, suitable for crafting.',
     sellPrice: 40
   },
 
@@ -76,6 +85,7 @@ export const ORE_ITEMS = {
     icon: 'steel.png',
     category: 'mining',
     name: 'steel',
+    description: 'Some unprocessed iron metal ore twisted around dense carbon, suitable for crafting.',
     sellPrice: 50
   },
 
@@ -84,6 +94,7 @@ export const ORE_ITEMS = {
     icon: 'platinum.png',
     category: 'mining',
     name: 'platinum',
+    description: 'Some unprocessed platinum metal ore, suitable for crafting.',
     sellPrice: 60
   },
 
@@ -92,6 +103,7 @@ export const ORE_ITEMS = {
     icon: 'titanium.png',
     category: 'mining',
     name: 'titanium',
+    description: 'Some unprocessed titanium metal ore, suitable for crafting.',
     sellPrice: 70
   },
 
@@ -100,6 +112,7 @@ export const ORE_ITEMS = {
     icon: 'tungsten.png',
     category: 'mining',
     name: 'tungsten',
+    description: 'Some unprocessed tungsten metal ore, suitable for crafting.',
     sellPrice: 80
   },
 
@@ -108,6 +121,7 @@ export const ORE_ITEMS = {
     icon: 'obsidian.png',
     category: 'mining',
     name: 'obsidian',
+    description: 'Some unearthed volcanic glass, suitable for crafting.',
     sellPrice: 90
   },
 
@@ -116,6 +130,7 @@ export const ORE_ITEMS = {
     icon: 'cobalt.png',
     category: 'mining',
     name: 'cobalt',
+    description: 'Some unprocessed cobalt metal ore, suitable for crafting.',
     sellPrice: 100
   },
 
@@ -124,6 +139,7 @@ export const ORE_ITEMS = {
     icon: 'mithril.png',
     category: 'mining',
     name: 'mithril',
+    description: 'Some unprocessed mithril metal ore, suitable for crafting.',
     sellPrice: 110
   },
 
@@ -132,6 +148,7 @@ export const ORE_ITEMS = {
     icon: 'adamantium.png',
     category: 'mining',
     name: 'adamantium',
+    description: 'Some unprocessed adamantium metal ore, suitable for crafting.',
     sellPrice: 120
   },
 
@@ -140,6 +157,7 @@ export const ORE_ITEMS = {
     icon: 'orichalcum.png',
     category: 'mining',
     name: 'orichalcum',
+    description: 'Some unprocessed orichalcum metal ore, suitable for crafting.',
     sellPrice: 130
   },
 
@@ -148,6 +166,7 @@ export const ORE_ITEMS = {
     icon: 'meteorite.png',
     category: 'mining',
     name: 'meteorite',
+    description: 'Some unprocessed meteorite metal ore, suitable for crafting.',
     sellPrice: 140
   },
 
@@ -156,6 +175,7 @@ export const ORE_ITEMS = {
     icon: 'fairySteel.png',
     category: 'mining',
     name: 'fairy steel',
+    description: 'Some unprocessed fairy steel metal ore, suitable for crafting.',
     sellPrice: 150
   },
 
@@ -164,6 +184,7 @@ export const ORE_ITEMS = {
     icon: 'elvenSteel.png',
     category: 'mining',
     name: 'elven steel',
+    description: 'Some unprocessed elven steel metal ore, suitable for crafting.',
     sellPrice: 160
   },
 
@@ -172,6 +193,7 @@ export const ORE_ITEMS = {
     icon: 'cursed.png',
     category: 'mining',
     name: 'cursed ore',
+    description: 'Some unprocessed cursed metal ore, suitable for crafting.',
     sellPrice: 175
   },
 
@@ -180,6 +202,7 @@ export const ORE_ITEMS = {
     icon: 'jade.png',
     category: 'mining',
     name: 'jade',
+    description: 'Some natural jade stone, a precious mineral that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Jade Amulet',
@@ -192,6 +215,7 @@ export const ORE_ITEMS = {
     icon: 'lapislazuli.png',
     category: 'mining',
     name: 'lapis lazuli',
+    description: 'Some natural lapis lazuli stone, a precious mineral that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Lapis Lazuli Amulet',
@@ -204,6 +228,7 @@ export const ORE_ITEMS = {
     icon: 'sapphire.png',
     category: 'mining',
     name: 'sapphire',
+    description: 'A brilliant blue sapphire, a precious jewel that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Sapphire Amulet',
@@ -216,6 +241,7 @@ export const ORE_ITEMS = {
     icon: 'emerald.png',
     category: 'mining',
     name: 'emerald',
+    description: 'A brilliant green emerald, a precious jewel that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Emerald Amulet',
@@ -228,6 +254,7 @@ export const ORE_ITEMS = {
     icon: 'ruby.png',
     category: 'mining',
     name: 'ruby',
+    description: 'A brilliant red ruby, a precious jewel that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Ruby Amulet',
@@ -240,6 +267,7 @@ export const ORE_ITEMS = {
     icon: 'tanzanite.png',
     category: 'mining',
     name: 'tanzanite',
+    description: 'A brilliant indigo tanzanite, a precious jewel that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Tanzanite Amulet',
@@ -252,6 +280,7 @@ export const ORE_ITEMS = {
     icon: 'fireOpal.png',
     category: 'mining',
     name: 'fire opal',
+    description: 'A flashy, natural fire opal, a precious jewel that\'s suitable for crafting.',
     sellPrice: 1,
     shiftActionData: {
       description: 'Upgrade Fire Opal Amulet',

@@ -165,7 +165,7 @@ Template.nav.helpers({
     if (Template.instance().state.get('myServer')) {
       serverAnnounceText = Template.instance().state.get('myServer').announcement;
     }
-    return ((serverAnnounceText && (serverAnnounceText.trim().length > 0)) || false);
+    return ((serverAnnounceText && (serverAnnounceText.trim().length > 0)) ? serverAnnounceText : false);
   },
 
   showPendingInvites() {

@@ -28,6 +28,45 @@ export const LEVEL_ONE_CRAFTS = {
     required: [UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_1]
   },
 
+  power_shot_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'power_shot_level_1_tome',
+    name: 'power shot Lv. 1',
+    id: 'power_shot_level_1_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 4,
+    required: [UTIL.GREEN_255, UTIL.PINE_PAPER, UTIL.LEVEL_4]
+  },
+
+  precise_shots_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'precise_shots_level_1_tome',
+    name: 'precise shots Lv. 1',
+    id: 'precise_shots_level_1_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 7,
+    required: [UTIL.MANY_GREEN_255, UTIL.BEECH_PAPER, UTIL.LEVEL_7]
+  },
+
+  volley_level_1_tome: {
+    recipeFor: 'inscription',
+    produces: 'volley_level_1_tome',
+    name: 'volley Lv. 1',
+    id: 'volley_level_1_tome',
+    category: 'tome',
+    timeToCraft: 180,
+    xp: 30,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 10,
+    required: [UTIL.BLUE_255, UTIL.OAK_PAPER, UTIL.LEVEL_10]
+  },
+
   shield_bash_level_1_tome: {
     recipeFor: 'inscription',
     produces: 'shield_bash_level_1_tome',

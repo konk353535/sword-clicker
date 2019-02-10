@@ -325,5 +325,44 @@ export const LEVEL_TWO_CRAFTS = {
     maxToCraft: 1,
     requiredInscriptionLevel: 29,
     required: [UTIL.RED_150, UTIL.PURPLE_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_29]
-  }
+  },
+  
+  power_shot_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'power_shot_level_2_tome',
+    name: 'power shot Lv. 2',
+    id: 'power_shot_level_2_tome',
+    category: 'tome',
+    timeToCraft: 600,
+    xp: 500,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 12,
+    required: [UTIL.RED_150, UTIL.MANY_BLUE_255, UTIL.ASH_PAPER, UTIL.LEVEL_12]
+  },
+
+  precise_shots_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'precise_shots_level_2_tome',
+    name: 'precise shots Lv. 2',
+    id: 'precise_shots_level_2_tome',
+    category: 'tome',
+    timeToCraft: 600,
+    xp: 500,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 16,
+    required: [UTIL.MANY_RED_150, UTIL.GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_16]
+  },
+
+  volley_level_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'volley_level_2_tome',
+    name: 'volley Lv. 2',
+    id: 'volley_level_2_tome',
+    category: 'tome',
+    timeToCraft: 600,
+    xp: 500,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 20,
+    required: [UTIL.MANY_WHITE_128, UTIL.MANY_GREEN_140, UTIL.MANY_OAK_PAPER, UTIL.LEVEL_20]
+  },  
 };

@@ -435,6 +435,8 @@ Meteor.publish("userData", function () {
         'astronomyUpgradeTo': 1,
         'farmingUpgradeTo': 1,
         'inscriptionUpgradeTo': 1,
+        'isMod': 1,
+        'isSuperMod': 1,
         'isGuest': 1,
         'isMutedExpiry': 1,
         'stats': 1

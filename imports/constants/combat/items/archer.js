@@ -58,6 +58,37 @@ export const ARCHER_ITEMS = {
     }],
   },
   
+  teak_bow: {
+    id: 'teak_bow',
+    icon: 'teakBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'teak bow',
+    sellPrice: 3000,
+    description: 'A slow but powerful ranged weapon.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 83.5*1.15,
+      attackMax: 300*1.15,
+      attackSpeed: 0.3,
+      accuracy: 134.1,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 25.1*1.15,
+      attackMax: 90*1.15,
+      accuracy: 40.2,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95,
+    }],
+  },
+  
   copper_quiver: {
     id: 'copper_quiver',
     icon: 'copperQuiver.svg',
@@ -102,6 +133,29 @@ export const ARCHER_ITEMS = {
       name: 'attack',
       level: 80
     }]
-  }
+  },
+
+  cursed_quiver: {
+    id: 'cursed_quiver',
+    icon: 'cursedQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'cursed quiver',
+    sellPrice: 1500,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 10.5*1.5
+    },
+    extraStats: {
+      accuracy: 4*1.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 95
+    }]
+  },
   
 };

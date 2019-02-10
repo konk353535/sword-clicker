@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from "meteor/session";
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Items } from '/imports/api/items/items.js';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import './recipeIcon.html';
@@ -34,6 +35,27 @@ const updateCraftable = function (instance) {
 Template.recipeIcon.rendered = function () {
   const instance = Template.instance();
   updateCraftable(instance);
+
+  // Should autorun when it's reagents change
+  Tracker.autorun(() => {
+    const recipe = instance.data.recipe;
+
+    const allItems = recipe.required.filter(({ type }) => type === 'item');
+    const lookAtGold = recipe.required.find(({ type }) => type === 'gold');
+
+    const watchItemsLength = Items.find({
+      itemId: allItems.map(({ itemId }) => itemId),
+      equipped: false
+    }).fetch().map(({ amount }) => {
+      return amount
+    }).reduce((acc, val) => acc + val, 0);
+
+    if (lookAtGold) {
+      const myGold = Meteor.user().gold;
+    }
+
+    updateCraftable(instance);
+  });
 };
 
 Template.recipeIcon.events({

@@ -1,7 +1,20 @@
 <template name="tutorial">
-  <div class="tutorial-outer-container">
-    <div class="tutorial-container">
-      {{stepText}}
+  <div class="tutorial-container">
+    <div class="alert alert-secondary" style="display: flex">
+      {{#if showTip}}
+        Tip: Visit the {{stepData.tip}}
+      {{else}}
+        {{stepData.text}}
+        <!-- Show a list of filled / not filled dots for each action -->
+        <div style="display: flex; align-items: center; margin-left: 10px;">
+          {{#each stepData.completedStepsArray}}
+            <div style="margin: 5px; background: #0275d8; width: 10px; height: 10px; border-radius: 50%"></div>
+          {{/each}}
+          {{#each stepData.awaitingStepsArray}}
+            <div style="margin: 5px; background: #DDD; width: 10px; height: 10px; border-radius: 50%"></div>
+          {{/each}}
+        </div>
+      {{/if}}
     </div>
   </div>
 </template>

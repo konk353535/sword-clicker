@@ -370,7 +370,7 @@ Accounts.onCreateUser((options, user) => {
   const userId = user._id;
   user.battleSecret = uuid.v4();
   user.uiState = {
-    showChat: true,
+    showChat: false,
     showSummaryList: false,
     craftingFilter: 'mining'
   };

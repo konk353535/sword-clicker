@@ -12,23 +12,49 @@ import { FarmingSpace } from '/imports/api/farming/farming.js';
 
 import './tutorial.html';
 
+let tipInterval;
 Template.tutorial.onCreated(function bodyOnCreated() {
+  this.state = new ReactiveDict();
+  this.state.set('showTip', false);
+  this.state.set('showTipTimer', 25);
+
+  tipInterval = Meteor.setInterval(() => {
+    const showTip = this.state.get('showTip');
+    let showTipTimer = this.state.get('showTipTimer');
+
+    showTipTimer -= 1;
+    if (showTipTimer <= 0) {
+      this.state.set('showTipTimer', showTip ? 25 : 6);
+      this.state.set('showTip', !showTip)
+    } else {
+      this.state.set('showTipTimer', showTipTimer);
+    }
+  }, 1000);
 });
 
 Template.tutorial.events({
 });
 
+Template.tutorial.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(tipInterval);
+});
+
 Template.tutorial.helpers({
 
-  stepText() {
+  showTip() {
+    return Template.instance().state.get('showTip');
+  },
+
+  stepData() {
     const tutorial = Users.findOne({}).tutorial;
     if (tutorial) {
       const currentStep = tutorial.currentStep;
     
       if (currentStep === 1) {
         // Mine some ores!
+        const required = 6;
         const stones = Items.findOne({ itemId: 'ore_stone' });
-        if (stones && stones.amount >= 6) {
+        if (stones && stones.amount >= required) {
           Meteor.call('users.tutorialUpdate', {
             hideCrafting: false,
             highlightCrafting: true,
@@ -36,11 +62,25 @@ Template.tutorial.helpers({
           });
         }
 
-        return `Mined ${stones ? stones.amount : 0} / 6 stones`;
+        const current = stones ? stones.amount : 0;
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
+
+        return {
+          text: `Mined ${current} / 6 stones`,
+          current,
+          required,
+          tip: 'Click stones to damage them',
+          completedStepsArray,
+          awaitingStepsArray
+        }
       } else if (currentStep === 2) {
         // Craft a pickaxe
-        const primitivePickAxeCounts = Items.find({ itemId: 'primitive_pickaxe' }).fetch().length;
-        if (primitivePickAxeCounts >= 2) {
+        const required = 2;
+        const current = Items.find({ itemId: 'primitive_pickaxe' }).fetch().length;
+        if (current >= 2) {
           Meteor.call('users.tutorialUpdate', {
             highlightCrafting: false,
             highlightMiningEquipment: true,
@@ -49,11 +89,24 @@ Template.tutorial.helpers({
           });
         }
 
-        return `Crafted ${primitivePickAxeCounts} / 2 primitive pickaxes`;
-      } else if (currentStep === 3) {
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
+        return {
+          text: `Crafted ${current} / 2 primitive pickaxes`,
+          current,
+          required,
+          tip: 'Crafting page',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 3) {
         const primitivePickAxe = Items.findOne({ itemId: 'primitive_pickaxe', equipped: true });
-        if (primitivePickAxe && primitivePickAxe.amount >= 1) {
+        const current = primitivePickAxe ? primitivePickAxe.amount : 0;
+        const required = 1;
+        if (primitivePickAxe && primitivePickAxe.amount >= required) {
           Meteor.call('users.tutorialUpdate', {
             highlightMiningEquipment: false,
             highlightMiningMiners: true,
@@ -62,8 +115,19 @@ Template.tutorial.helpers({
           });
         }
 
-        // Equip Pickaxe
-        return 'Equip pickaxe';
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
+
+        return {
+          text: `Equip pickaxe`,
+          current,
+          required,
+          tip: 'Mining page > Equipment',
+          completedStepsArray,
+          awaitingStepsArray
+        }
       } else if (currentStep === 4) {
         const mining = Mining.findOne({});
         if (mining && mining.miners && mining.miners[0].amount > 1) {
@@ -75,7 +139,14 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Hire a miner';
+        return {
+          text: 'Hire a miner',
+          current: 0,
+          required: 1,
+          tip: 'Mining page > Miners',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 5) {
         const mining = Mining.findOne({});
         if (mining && mining.prospectors && mining.prospectors[0].amount > 1) {
@@ -87,9 +158,15 @@ Template.tutorial.helpers({
           Meteor.call('users.setUiState', 'craftingFilter', 'woodcutting');
         }
 
-        return 'Hire a prospector';
+        return {
+          text: 'Hire a prospector',
+          current: 0,
+          required: 1,
+          tip: 'Mining page > Prospectors',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 6) {
-
         const primitiveAxe = Items.findOne({ itemId: 'primitive_axe' });
         if (primitiveAxe && primitiveAxe.amount >= 1) {
           Meteor.call('users.tutorialUpdate', {
@@ -100,7 +177,14 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Craft a primitive axe';
+        return {
+          text: 'Craft a primitive axe',
+          current: 0,
+          required: 1,
+          tip: 'Crafting page',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 7) {
         const woodcutting = Woodcutting.findOne({});
         if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
@@ -109,8 +193,14 @@ Template.tutorial.helpers({
           });
         }
 
-
-        return 'Hire a woodcutter';
+        return {
+          text: 'Hire a woodcutter',
+          current: 0,
+          required: 1,
+          tip: 'Woodcutting page',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 8) {
         const woodcutting = Woodcutting.findOne({});
         if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
@@ -130,9 +220,15 @@ Template.tutorial.helpers({
           }
         }
 
-        return 'Suicide a woodcutter';
+        return {
+          text: 'Suicide a woodcutter',
+          current: 0,
+          required: 1,
+          tip: 'Woodcutting page > Click on a woodcutter',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 9) {
-
         const copperDagger = Items.findOne({ itemId: 'copper_dagger' });
         if (copperDagger && copperDagger.amount >= 1) {
           Meteor.call('users.tutorialUpdate', {
@@ -145,9 +241,15 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Craft a copper dagger';
+        return {
+          text: 'Craft a copper dagger',
+          current: 0,
+          required: 1,
+          tip: 'Crafting page > Combat tab',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 10) {
-
         const copperDagger = Items.findOne({ itemId: 'copper_dagger', equipped: true });
         if (copperDagger && copperDagger.amount >= 1) {
           Meteor.call('users.tutorialUpdate', {
@@ -158,7 +260,14 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Equip copper dagger';
+        return {
+          text: 'Equip a copper dagger',
+          current: 0,
+          required: 1,
+          tip: 'Battle page > loadout > edit gear',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 11) {
         const myAbilities = Abilities.findOne({});
 
@@ -173,9 +282,15 @@ Template.tutorial.helpers({
           }
         });
 
-        return 'Equip slash ability';
+        return {
+          text: 'Equip the slash ability',
+          current: 0,
+          required: 1,
+          tip: 'Battle page > loadout > edit abilities',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 12) {
-
         const allBattles = Battles.find({}, { limit: 10 });
         allBattles.forEach((battle) => {
           if (battle.level >= 1) {
@@ -193,11 +308,19 @@ Template.tutorial.helpers({
           }
         });
 
-        return 'Battle in personal quest';
+        return {
+          text: 'Complete a solo battle',
+          current: 0,
+          required: 1,
+          tip: 'Battle page > select solo type',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 13) {
-
         const letticeSeeds = Items.findOne({ itemId: 'lettice_seed' });
-        if (letticeSeeds && letticeSeeds.amount >= 4) {
+        const current = letticeSeeds ? letticeSeeds.amount : 0;
+        const required = 4;
+        if (letticeSeeds && letticeSeeds.amount >= required) {
           Meteor.call('users.tutorialUpdate', {
             highlightFarmingPlots: true,
             hideFarmingPlots: false,
@@ -206,23 +329,48 @@ Template.tutorial.helpers({
           Meteor.call('users.setUiState', 'farmingTab', 'plots');
         }
 
-        return 'Buy 4 lettuce seeds';
-      } else if (currentStep === 14) {
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
+        return {
+          text: 'Buy 4 lettuce seeds',
+          current,
+          required,
+          tip: 'Farming page > shop tab',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 14) {
+        const required = 4;
         const allFarmingSpaces = FarmingSpace.find().fetch();
         const letticesCount = allFarmingSpaces.filter((farmingSpace) => {
           return farmingSpace.plantId === 'lettice';
         }).length;
 
-        if (letticesCount >= 4) {
+        if (letticesCount >= required) {
           Meteor.call('users.tutorialUpdate', {
             currentStep: 15
           });
         }
 
-        return 'Plant 4 lettuces';
-      } else if (currentStep === 15) {
+        const current = letticesCount;
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
+        return {
+          text: 'Plant 4 lettuces',
+          current,
+          required,
+          tip: 'Farming page > plots tab',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 15) {
+        const required = 4;
         const lettices = Items.findOne({ itemId: 'lettice' });
         if (lettices && lettices.amount >= 4) {
           Meteor.call('users.tutorialUpdate', {
@@ -234,9 +382,21 @@ Template.tutorial.helpers({
           });
         }
 
-        return `Picked ${lettices ? lettices.amount : 0} / 4 lettuces`;
-      } else if (currentStep === 16) {
+        const current = lettices ? lettices.amount : 0;
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
+        return {
+          text: 'Pick 4 lettuces',
+          current,
+          required,
+          tip: 'Farming page > plots',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 16) {
         const berserk = Items.findOne({ itemId: 'berserk_level_1_tome' });
         if (berserk && berserk.amount >= 1) {
           Meteor.call('users.tutorialUpdate', {
@@ -247,7 +407,14 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Craft berserk lv 1';
+        return {
+          text: 'Craft berserk lv 1',
+          current: 0,
+          required: 1,
+          tip: 'Inscription page > abilities',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       } else if (currentStep === 17) {
         const myAbilities = Abilities.findOne({});
 
@@ -262,7 +429,14 @@ Template.tutorial.helpers({
           });
         }
 
-        return 'Learn berserk lv 1';
+        return {
+          text: 'Learn berserk lv 1',
+          current: 0,
+          required: 1,
+          tip: 'Battle page > loadout > abilities (edit)',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
       }
     }
   }

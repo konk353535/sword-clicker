@@ -23,11 +23,21 @@
                 Mine
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
-                Craft
-              </a>
-            </li>
+            {{#if $gte currentStep 2}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
+                  Craft
+                </a>
+              </li>
+            {{/if}}
+            {{#if $gte currentStep 7}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
+                  Woodcut
+                </a>
+              </li>
+            {{/if}}
+            {{#if $gte currentStep 10}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'newCombat'}}active{{/if}}" href="/newCombat">
                 Battle
@@ -36,21 +46,22 @@
                 {{/if}}
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
-                Woodcut
-              </a>
-            </li>
+            {{/if}}
+            {{#if $gte currentStep 13}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
                 Farm
               </a>
             </li>
+            {{/if}}
+            {{#if $gte currentStep 16}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'inscrption'}}active{{/if}}" href="/inscription">
                 Inscribe
               </a>
             </li>
+            {{/if}}
+            {{#if $gte currentStep 17}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
                 Magic
@@ -61,22 +72,25 @@
                 Chat
               </a>
             </li>
+            {{/if}}
             {{#unless currentUser.isGuest}}
-            <li class="nav-item">
-              <a class="nav-link" href="/profile/{{currentUser.username}}">
-                Profile
-              </a>
-            </li>
-            {{/unless}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
-                Skills
-              </a>
-            </li>
-            {{#if currentUser.newUpdates}}
               <li class="nav-item">
-                <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+                <a class="nav-link" href="/profile/{{currentUser.username}}">
+                  Profile
+                </a>
               </li>
+            {{/unless}}
+            {{#if $gte currentStep 17}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'skills'}}active{{/if}}" href="/skills">
+                  Skills
+                </a>
+              </li>
+              {{#if currentUser.newUpdates}}
+                <li class="nav-item">
+                  <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+                </li>
+              {{/if}}
             {{/if}}
           {{/if}}
         </ul>

@@ -111,6 +111,31 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     opacity: 0.5;
   }
 }
+.icon-box-tiny {
+  user-select: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $spacer * 0.25;
+  padding: $spacer * 0.25;
+
+  & > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.icon-box-tiny.disabled {
+  background-color: $gray-lighter;
+  img {
+    opacity: 0.5;
+  }
+}
 
 @media screen and (max-width: 768px) {
   
@@ -215,6 +240,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   touch-action: manipulation;
 }
 
+.mine-space-container-tiny {
+  user-select: none;
+  touch-action: manipulation;
+}
+
 @media screen and (max-width: 468px) {
   .mine-space-container {
     width: 22%;
@@ -222,6 +252,19 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     min-width: 70px;
 
     .ore-icon {
+      width: calc(100% - 12px);
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .mine-space-container-tiny {
+    width: 22%;
+    height: auto;
+    min-width: 24px;
+
+    .ore-icon-tiny {
       width: calc(100% - 12px);
       height: auto;
     }
@@ -436,6 +479,13 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 .ore-icon {
   width: 64px;
   height: 64px;
+  pointer-events: none;
+  flex: 0 0 auto;
+}
+
+.ore-icon-tiny {
+  width: 24px;
+  height: 24px;
   pointer-events: none;
   flex: 0 0 auto;
 }

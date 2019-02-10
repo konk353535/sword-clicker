@@ -20,7 +20,7 @@ export const MISC_BUFFS = {
         buff.data.custom = true;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         buff.data.totalTime += secondsElapsed;
         
         const totalInactiveMinutes = Math.floor((buff.data.totalTime / 60) + target.inactiveMinutes);
@@ -62,7 +62,7 @@ export const MISC_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {

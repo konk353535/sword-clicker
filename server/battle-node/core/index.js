@@ -30,6 +30,16 @@ export class Balancer {
     io.of(`/${id}`).on('connection', async (socket) => {
       socket.on('action', (data) => {
         if (this.battleRef) {
+          if (data.abilityId) {
+            const abilityConsts = ABILITIES[data.abilityId];
+            if (abilityConsts) {
+              if (abilityConsts.isPassive) {
+                return; // disallow passive abilities from being actively used
+              } else if (abilityConsts.slot === 'companion') {
+                return; // disallow companion abilities from being actively used
+              }
+            }
+          }
           this.battleRef.battleActions.push(data);
         }
       });

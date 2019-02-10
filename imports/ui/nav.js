@@ -140,6 +140,7 @@ Template.nav.helpers({
   },
 
   beforeNextSeasonAlert() {
+    return false; // disabling this in favor of serverAnnounce() helper instead
     const myServer = Servers.findOne({
       _id: Meteor.user().server
     });
@@ -154,9 +155,17 @@ Template.nav.helpers({
   serverName() {
     let serverName = 'Classic';
     if (Template.instance().state.get('myServer')) {
-      serverName = Template.instance().state.get('myServer').name
+      serverName = Template.instance().state.get('myServer').name;
     }
     return serverName;
+  },
+  
+  serverAnnounce() {
+    let serverAnnounceText;
+    if (Template.instance().state.get('myServer')) {
+      serverAnnounceText = Template.instance().state.get('myServer').announcement;
+    }
+    return ((serverAnnounceText && (serverAnnounceText.trim().length > 0)) || false);
   },
 
   showPendingInvites() {

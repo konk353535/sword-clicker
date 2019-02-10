@@ -40,12 +40,12 @@
                 </a>
               </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 7}}
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
-                  Woodcut
-                </a>
-              </li>
+            {{#if $gte currentTutorialStep 16}}
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
+                Inscribe
+              </a>
+            </li>
             {{/if}}
             {{#if $gte currentTutorialStep 13}}
             <li class="nav-item">
@@ -54,12 +54,12 @@
               </a>
             </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 16}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
-                Inscribe
-              </a>
-            </li>
+            {{#if $gte currentTutorialStep 7}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
+                  Woodcut
+                </a>
+              </li>
             {{/if}}
             {{#if $gte currentTutorialStep 17}}
             <li class="nav-item">
@@ -197,7 +197,13 @@
 
   {{#if currentUser}}
     {{#if isAdmin}}
-      {{#if beforeNextSeasonAlert}}
+      {{#if serverAnnounce}}
+        <div class="alert alert-info">
+          <div class="text-center">
+            {{{serverAnnounce}}}
+          </div>
+        </div>
+      {{else if beforeNextSeasonAlert}}
         <div class="alert alert-info">
           <div class="text-center">
             Eternity Tower season 2 will start on the 14th of March 1PM (GMT +10).<!-- 8pm US/Mountain https://greenwichmeantime.com/gmt-converter/ -->

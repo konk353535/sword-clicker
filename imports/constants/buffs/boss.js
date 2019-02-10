@@ -32,7 +32,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -75,7 +75,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -125,7 +125,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -236,7 +236,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         if (!buff.data.spartansSpawned) {
 
@@ -295,7 +295,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -356,7 +356,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target }) {
@@ -401,7 +401,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         buff.data.timeTillSpawn -= secondsElapsed;
 
@@ -467,7 +467,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
       },
 
@@ -495,7 +495,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         if (!buff.data.phoenixsSpawned) {
 
@@ -556,7 +556,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         buff.data.timeTillSpawn -= secondsElapsed;
 
@@ -651,7 +651,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target }) {
@@ -707,7 +707,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillLearn -= secondsElapsed;
         buff.stacks = Math.round(buff.data.timeTillLearn);
 
@@ -784,7 +784,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -826,103 +826,103 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         if (!buff.data.lampsSpawned) {
 
-            const powerLamp = {
-              id: uuid.v4(),
-              isEnemy: true,
-              tickOffset: 0,
-              icon: 'bossGeniePowerLamp.svg',
-              name: 'power',
-              isLamp: true,
-              stats: {
-                health: 500,
-                healthMax: 500,
-                attackSpeed: 0.01,
-                attackSpeedTicks: 1000,
-                armor: 0,
-                magicArmor: 0,
-                magicPower: 0,
-                defense: 0,
-                accuracy: 0,
-                damageTaken: 1
-              },
-              buffs: [{
-                id: 'boss_genie_power_lamp',
-                data: {
-                  duration: Infinity,
-                  totalDuration: Infinity,
-                  icon: 'bossGeniePowerLamp.svg',        
-                  name: 'power lap'
-                }
-              }]
-            };
+          const powerLamp = {
+            id: uuid.v4(),
+            isEnemy: true,
+            tickOffset: 0,
+            icon: 'bossGeniePowerLamp.svg',
+            name: 'power',
+            isLamp: true,
+            stats: {
+              health: 500,
+              healthMax: 500,
+              attackSpeed: 0.01,
+              attackSpeedTicks: 1000,
+              armor: 0,
+              magicArmor: 0,
+              magicPower: 0,
+              defense: 0,
+              accuracy: 0,
+              damageTaken: 1
+            },
+            buffs: [{
+              id: 'boss_genie_power_lamp',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'bossGeniePowerLamp.svg',        
+                name: 'power lap'
+              }
+            }]
+          };
 
-            const wisdomLamp = {
-              id: uuid.v4(),
-              isEnemy: true,
-              tickOffset: 0,
-              icon: 'bossGenieWisdomLamp.svg',
-              name: 'wisdom',
-              isLamp: true,
-              stats: {
-                health: 500,
-                healthMax: 500,
-                attackSpeed: 0.01,
-                attackSpeedTicks: 1000,
-                armor: 0,
-                magicArmor: 0,
-                magicPower: 0,
-                defense: 0,
-                accuracy: 0,
-                damageTaken: 1
-              },
-              buffs: [{
-                id: 'boss_genie_wisdom_lamp',
-                data: {
-                  duration: Infinity,
-                  totalDuration: Infinity,
-                  icon: 'bossGenieWisdomLamp.svg',        
-                  name: 'wisdom lamp'
-                }
-              }]
-            };
+          const wisdomLamp = {
+            id: uuid.v4(),
+            isEnemy: true,
+            tickOffset: 0,
+            icon: 'bossGenieWisdomLamp.svg',
+            name: 'wisdom',
+            isLamp: true,
+            stats: {
+              health: 500,
+              healthMax: 500,
+              attackSpeed: 0.01,
+              attackSpeedTicks: 1000,
+              armor: 0,
+              magicArmor: 0,
+              magicPower: 0,
+              defense: 0,
+              accuracy: 0,
+              damageTaken: 1
+            },
+            buffs: [{
+              id: 'boss_genie_wisdom_lamp',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'bossGenieWisdomLamp.svg',        
+                name: 'wisdom lamp'
+              }
+            }]
+          };
 
-            const healthLamp = {
-              id: uuid.v4(),
-              isEnemy: true,
-              tickOffset: 0,
-              icon: 'bossGenieHealthLamp.svg',
-              name: 'Vitality',
-              isLamp: true,
-              stats: {
-                health: 500,
-                healthMax: 500,
-                attackSpeed: 0.01,
-                attackSpeedTicks: 1000,
-                armor: 0,
-                magicArmor: 0,
-                magicPower: 0,
-                defense: 0,
-                accuracy: 0,
-                damageTaken: 1
-              },
-              buffs: [{
-                id: 'boss_genie_health_lamp',
-                data: {
-                  duration: Infinity,
-                  totalDuration: Infinity,
-                  icon: 'bossGenieHealthLamp.svg',        
-                  name: 'health lamp'
-                }
-              }]
-            };
+          const healthLamp = {
+            id: uuid.v4(),
+            isEnemy: true,
+            tickOffset: 0,
+            icon: 'bossGenieHealthLamp.svg',
+            name: 'Vitality',
+            isLamp: true,
+            stats: {
+              health: 500,
+              healthMax: 500,
+              attackSpeed: 0.01,
+              attackSpeedTicks: 1000,
+              armor: 0,
+              magicArmor: 0,
+              magicPower: 0,
+              defense: 0,
+              accuracy: 0,
+              damageTaken: 1
+            },
+            buffs: [{
+              id: 'boss_genie_health_lamp',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                icon: 'bossGenieHealthLamp.svg',        
+                name: 'health lamp'
+              }
+            }]
+          };
 
-            actualBattle.addUnit(powerLamp);
-            actualBattle.addUnit(wisdomLamp);
-            actualBattle.addUnit(healthLamp);
+          actualBattle.addUnit(powerLamp);
+          actualBattle.addUnit(wisdomLamp);
+          actualBattle.addUnit(healthLamp);
 
           buff.data.lampsSpawned = true;
         }
@@ -949,7 +949,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target }) {
@@ -998,7 +998,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target }) {
@@ -1047,7 +1047,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target }) {
@@ -1099,7 +1099,7 @@ export const BOSS_BUFFS = {
         caster.stats.healthMax *= 1.5;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1131,7 +1131,7 @@ export const BOSS_BUFFS = {
         caster.stats.attackMax *= 1.1;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1162,7 +1162,7 @@ export const BOSS_BUFFS = {
         caster.stats.magicPower *= 1.2;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1190,7 +1190,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         if (!buff.data.lastKnownHealth) {
           buff.data.lastKnownHealth = target.stats.health;
@@ -1248,7 +1248,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillBlood -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1292,7 +1292,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         // Healers spawned?
         if (!buff.data.healersSpawned) {
@@ -1405,7 +1405,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1463,7 +1463,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillCharge -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1518,7 +1518,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (!buff.data.poodleSpawned) {
           // Add poodle to the game
 
@@ -1658,7 +1658,7 @@ export const BOSS_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillSwitch -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1734,7 +1734,7 @@ export const BOSS_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
 
         if (buff.data.phase === WATER_PHASE) {
           // Init water phase
@@ -1925,7 +1925,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (Math.random() * 100 >= 10) return;
 
         // Find fox
@@ -1965,7 +1965,7 @@ export const BOSS_BUFFS = {
         buff.data.attackChance = 1 / 50;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         // stacks build up every tick without an attack and reset after attack
         buff.data.stackTimer += secondsElapsed;
         if (buff.data.stackTimer > 1) {
@@ -2236,7 +2236,7 @@ export const BOSS_BUFFS = {
         };
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.data.timeTillResurrection > 0) {
           buff.data.timeTillResurrection -= secondsElapsed;
           buff.stacks = Math.round(buff.data.timeTillResurrection);
@@ -2395,7 +2395,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn = 10;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is

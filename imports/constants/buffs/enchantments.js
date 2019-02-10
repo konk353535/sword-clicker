@@ -25,7 +25,7 @@ export const ENCHANTMENT_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -66,7 +66,7 @@ export const ENCHANTMENT_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -106,7 +106,7 @@ export const ENCHANTMENT_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -145,7 +145,7 @@ export const ENCHANTMENT_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         if (!buff.data.isSpawned) {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
@@ -544,7 +544,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -588,7 +588,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         const decimal = target.stats.health / target.stats.healthMax;
         if (decimal >= 0.75 && !buff.data.isActive) {
           buff.data.isActive = true;
@@ -633,7 +633,7 @@ export const ENCHANTMENT_BUFFS = {
         });
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -663,7 +663,7 @@ export const ENCHANTMENT_BUFFS = {
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -692,7 +692,7 @@ export const ENCHANTMENT_BUFFS = {
         target.stats.accuracy -= buff.data.accuracyReduction;
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target, actualBattle })
@@ -746,7 +746,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -789,7 +789,7 @@ export const ENCHANTMENT_BUFFS = {
         });
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -970,7 +970,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
       onRemove({ buff, target, caster }) {

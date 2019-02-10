@@ -12,8 +12,13 @@ Router.route('/', {
   },
 
   onBeforeAction: function () {
-    if (Meteor.user()) {
-      Router.go('mining');
+    const meteorUser = Meteor.user();
+    if (meteorUser) {
+      if (meteorUser.tutorial) {
+        Router.go('mining');
+      } else {
+        Router.go('gameHomePage');
+      }
     } else {
       this.next();
     }

@@ -1,17 +1,29 @@
 <template name="mineSpace">
-  <div class="icon-box mine-space-container">
-    {{#unless isEmpty}}
-      {{#if mineSpace.isCluster}}
-        <img src="/icons/{{constants.clusterIcon}}" class="ore-icon">
-      {{else}}
-        <img src="/icons/{{constants.icon}}" class="ore-icon">
-      {{/if}}
-      <span style="font-size: 12px;white-space: nowrap;">
-        {{> formatNumber number=ceiledNumber forceShorthand=true}} / {{> formatNumber number=healthMax forceShorthand=true}}
-      </span>
-      <div>
-        {{mineSpace.id}}
-      </div>
-    {{/unless}}
-  </div><br />
+  {{#if tiny}}
+    <div class="icon-box-tiny mine-space-container-tiny">
+      {{#unless isEmpty}}
+        {{#if mineSpace.isCluster}}
+          <img src="/icons/{{constants.clusterIcon}}" class="ore-icon-tiny">
+        {{else}}
+          <img src="/icons/{{constants.icon}}" class="ore-icon-tiny">
+        {{/if}}
+      {{/unless}}
+    </div><br />
+  {{else}}
+    <div class="icon-box mine-space-container">
+      {{#unless isEmpty}}
+        {{#if mineSpace.isCluster}}
+          <img src="/icons/{{constants.clusterIcon}}" class="ore-icon">
+        {{else}}
+          <img src="/icons/{{constants.icon}}" class="ore-icon">
+        {{/if}}
+        <span style="font-size: 12px;white-space: nowrap;">
+          {{> formatNumber number=ceiledNumber forceShorthand=true}} / {{> formatNumber number=healthMax forceShorthand=true}}
+        </span>
+        <div>
+          {{mineSpace.id}}
+        </div>
+      {{/unless}}
+    </div><br />
+  {{/if}}
 </template>

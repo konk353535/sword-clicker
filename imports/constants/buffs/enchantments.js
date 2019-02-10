@@ -22,10 +22,10 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -63,10 +63,10 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -103,10 +103,10 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -145,7 +145,7 @@ export const ENCHANTMENT_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
@@ -280,7 +280,7 @@ export const ENCHANTMENT_BUFFS = {
       timeTillCharge: 5
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff }) {
@@ -328,7 +328,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.charges = 0
       },
 
@@ -379,7 +379,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const amountToAdd = target.stats.armor * 0.1;
         buff.data.defense = amountToAdd;
         target.stats.defense += buff.data.defense;
@@ -415,7 +415,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.extraStat = target.stats.magicArmor * 2.5;
         target.stats.health += buff.data.extraStat;
         target.stats.healthMax += buff.data.extraStat;
@@ -434,7 +434,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
       
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         try {
           if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
             let hpMaxHealth = defender.stats.healthMaxOrig;
@@ -478,7 +478,7 @@ export const ENCHANTMENT_BUFFS = {
       totalDamage: 0,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.totalTime = 0;
       },
 
@@ -519,7 +519,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -544,7 +544,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -570,10 +570,10 @@ export const ENCHANTMENT_BUFFS = {
       hideBuff: true,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         if (buff.data.isActive) {
           actualBattle.units.forEach((unit) => {
             if (unit.id !== defender.id) {
@@ -588,7 +588,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         const decimal = target.stats.health / target.stats.healthMax;
         if (decimal >= 0.75 && !buff.data.isActive) {
           buff.data.isActive = true;
@@ -622,7 +622,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
@@ -633,7 +633,7 @@ export const ENCHANTMENT_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -657,13 +657,13 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -688,11 +688,11 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         target.stats.accuracy -= buff.data.accuracyReduction;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.duration -= secondsElapsed;
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target, actualBattle })
@@ -721,7 +721,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
@@ -746,7 +746,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -773,7 +773,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
   
       onDidDamage({ buff, attacker, defender, actualBattle, rawDamage, damageDealt, originalAutoAttack, secondsElapsed }) {
@@ -789,7 +789,7 @@ export const ENCHANTMENT_BUFFS = {
         });
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -813,7 +813,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -873,7 +873,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -945,7 +945,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
@@ -970,7 +970,7 @@ export const ENCHANTMENT_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -993,7 +993,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.stacks = 5;
       },
 
@@ -1042,7 +1042,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1085,7 +1085,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.delay = 1.0;
       },
 
@@ -1155,7 +1155,7 @@ export const ENCHANTMENT_BUFFS = {
       usedUp: false,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.usedUp = false;
       },
 
@@ -1330,7 +1330,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onBeforeDeath({ buff, target, actualBattle }) {
@@ -1385,7 +1385,7 @@ export const ENCHANTMENT_BUFFS = {
       dodge: false,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ buff, target, secondsElapsed }) {
@@ -1402,7 +1402,7 @@ export const ENCHANTMENT_BUFFS = {
         buff.stacks = Math.round(buff.data.timeTillDodge);
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         // re-add DR once a hit has been tanked
         if (buff.data.dodge) {
           defender.stats.damageTaken += buff.data.damageReduction;
@@ -1440,7 +1440,7 @@ export const ENCHANTMENT_BUFFS = {
       sourceAlly: null
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ buff, target, caster, actualBattle }) {
@@ -1517,7 +1517,7 @@ export const ENCHANTMENT_BUFFS = {
       allies: 'units',
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ buff, target, caster, actualBattle }) {
@@ -1573,7 +1573,7 @@ export const ENCHANTMENT_BUFFS = {
       timeToApply: 0.0,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.stacks = 0;
       },
 
@@ -1585,7 +1585,7 @@ export const ENCHANTMENT_BUFFS = {
         buff.stacks = Math.ceil(buff.data.timeToApply);
       },
       
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         if (buff.data.timeToApply <= 0.0) {
           // store max health
           const curHealthMax = defender.stats.healthMax;
@@ -1645,7 +1645,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1700,7 +1700,7 @@ export const ENCHANTMENT_BUFFS = {
       timeToEvade: 8,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.timeToEvade = 8.0;
       },
 
@@ -1754,7 +1754,7 @@ export const ENCHANTMENT_BUFFS = {
       totalAccuracy: 0,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1793,7 +1793,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1848,7 +1848,7 @@ export const ENCHANTMENT_BUFFS = {
       isEnchantment: true
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.timeCount = 1.00;
       },
 

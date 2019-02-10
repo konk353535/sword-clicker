@@ -32,7 +32,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -75,7 +75,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -125,7 +125,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -190,7 +190,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         const SPIN_CHANCE = 0.3;
         if (Math.random() <= SPIN_CHANCE) {
           // Cast Blade Spin
@@ -236,7 +236,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (!buff.data.spartansSpawned) {
 
@@ -295,7 +295,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -356,7 +356,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target }) {
@@ -401,7 +401,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         buff.data.timeTillSpawn -= secondsElapsed;
 
@@ -467,7 +467,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
       },
 
@@ -495,7 +495,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (!buff.data.phoenixsSpawned) {
 
@@ -556,7 +556,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         buff.data.timeTillSpawn -= secondsElapsed;
 
@@ -651,7 +651,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target }) {
@@ -707,7 +707,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillLearn -= secondsElapsed;
         buff.stacks = Math.round(buff.data.timeTillLearn);
 
@@ -784,7 +784,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.duration -= secondsElapsed;
 
         if (buff.duration < 0) {
@@ -826,7 +826,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (!buff.data.lampsSpawned) {
 
@@ -949,7 +949,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target }) {
@@ -998,7 +998,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target }) {
@@ -1047,7 +1047,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
       },
 
       onRemove({ buff, target }) {
@@ -1094,12 +1094,12 @@ export const BOSS_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         caster.stats.health *= 1.5;
         caster.stats.healthMax *= 1.5;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1126,12 +1126,12 @@ export const BOSS_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         caster.stats.attack *= 1.1;
         caster.stats.attackMax *= 1.1;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1158,11 +1158,11 @@ export const BOSS_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         caster.stats.magicPower *= 1.2;
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.duration <= 0) {
           removeBuff({ target, buff, caster: target })
         }
@@ -1190,7 +1190,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (!buff.data.lastKnownHealth) {
           buff.data.lastKnownHealth = target.stats.health;
@@ -1248,7 +1248,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillBlood -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1292,7 +1292,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         // Healers spawned?
         if (!buff.data.healersSpawned) {
@@ -1405,7 +1405,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1463,7 +1463,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillCharge -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1518,7 +1518,7 @@ export const BOSS_BUFFS = {
 
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.poodleSpawned) {
           // Add poodle to the game
 
@@ -1658,7 +1658,7 @@ export const BOSS_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillSwitch -= secondsElapsed;
 
         // So user can see how far away spawn is
@@ -1734,7 +1734,7 @@ export const BOSS_BUFFS = {
         }
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (buff.data.phase === WATER_PHASE) {
           // Init water phase
@@ -1925,7 +1925,7 @@ export const BOSS_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (Math.random() * 100 >= 10) return;
 
         // Find fox
@@ -1965,7 +1965,7 @@ export const BOSS_BUFFS = {
         buff.data.attackChance = 1 / 50;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         // stacks build up every tick without an attack and reset after attack
         buff.data.stackTimer += secondsElapsed;
         if (buff.data.stackTimer > 1) {
@@ -2236,7 +2236,7 @@ export const BOSS_BUFFS = {
         };
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillResurrection > 0) {
           buff.data.timeTillResurrection -= secondsElapsed;
           buff.stacks = Math.round(buff.data.timeTillResurrection);
@@ -2395,7 +2395,7 @@ export const BOSS_BUFFS = {
         buff.data.timeTillSpawn = 10;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         buff.data.timeTillSpawn -= secondsElapsed;
 
         // So user can see how far away spawn is

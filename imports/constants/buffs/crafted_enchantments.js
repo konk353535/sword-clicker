@@ -53,7 +53,7 @@ LEG
     },
     events: { 
 
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = BUFFS[buff.id].constants;
 
         caster.stats.armor += constants.armorPerHit * constants.totalHits;
@@ -95,7 +95,7 @@ LEG
     },
     events: {
 
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
@@ -133,7 +133,7 @@ LEG
     },
     events: {
 
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       }, 
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
@@ -173,7 +173,7 @@ LEG
     },
     events: { 
 
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onRemove({ buff, target, caster }) {
@@ -197,7 +197,7 @@ LEG
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
 
         const constants = BUFFS[buff.id].constants;
         const modifier = 1 + (constants.speedModifier / 100);
@@ -227,7 +227,7 @@ LEG
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
 
         const constants = BUFFS[buff.id].constants;
 
@@ -243,7 +243,7 @@ LEG
         buff.stacks = Math.round(buff.data.timeTillCharge);
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
 
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;

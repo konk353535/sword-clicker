@@ -30,7 +30,7 @@ export const DEFENSE_BUFFS = {
       damagePerLevel: .5
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         let armorBuff = constants.armorBase + (constants.armorPerLevel * buff.data.level);
@@ -83,7 +83,7 @@ export const DEFENSE_BUFFS = {
       return `Lowers units attack speed by ${buff.data.attackSpeedDecrease}%`;
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         // Mutate targets attack speed
         target.stats.attackSpeed *= (1 - (buff.data.attackSpeedDecrease / 100));
       },
@@ -117,7 +117,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.extraArmor = 0;
       },
 
@@ -193,10 +193,10 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         if (Math.random() <= constants.frostChance) {
           const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
@@ -253,7 +253,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const healthBase = constants.healthBase;
@@ -304,7 +304,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         target.stats.minimumHitChance = 0.35;
         buff.stats = 0;
       },
@@ -374,7 +374,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const defenseBase = constants.defenseBase;
@@ -423,7 +423,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
@@ -732,7 +732,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         // Reduce damage dealt
@@ -793,7 +793,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: 1,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         if (buff.constants && buff.constants.constants) {
           const constants = buff.constants.constants ? buff.constants.constants : buff.constants;
           buff.duration += (buff.data.level * constants.durationPerLevel)
@@ -837,7 +837,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
@@ -890,7 +890,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -933,7 +933,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -982,7 +982,7 @@ export const DEFENSE_BUFFS = {
       totalDuration: 15,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;

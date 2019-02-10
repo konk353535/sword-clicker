@@ -2436,7 +2436,7 @@ export const MAGIC_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2486,7 +2486,7 @@ export const MAGIC_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

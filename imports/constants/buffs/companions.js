@@ -164,7 +164,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           buff.data.isSpawned = true;
           buff.data.hideBuff = true;
@@ -303,7 +303,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           buff.data.isSpawned = true;
 
@@ -470,7 +470,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
@@ -678,7 +678,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
@@ -896,7 +896,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
@@ -1107,7 +1107,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
@@ -1296,7 +1296,7 @@ export const COMPANION_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (!buff.data.isSpawned) {
           const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.data.isSpawned = true;
@@ -1370,14 +1370,14 @@ export const COMPANION_BUFFS = {
       totalDuration: Infinity,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.timeTillAction = 0.4;
         buff.data.CDSlash = 0.0;
         buff.data.CDPSlash = 0.0;
         buff.data.CDBleed = 0.0;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.CDSlash > 0.0) {
           buff.data.CDSlash -= secondsElapsed;
         }
@@ -1531,11 +1531,11 @@ export const COMPANION_BUFFS = {
       hideBuff: true,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.hideBuff = true;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -1584,11 +1584,11 @@ export const COMPANION_BUFFS = {
       hideBuff: true,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.hideBuff = true;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -1633,10 +1633,10 @@ export const COMPANION_BUFFS = {
       timeTillCharge: 0.4,      
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         } else {
@@ -1681,10 +1681,10 @@ export const COMPANION_BUFFS = {
       timeTillCharge: 0.4,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         if (buff.data.timeTillCharge > 0) {
           buff.data.timeTillCharge -= secondsElapsed;
         }
@@ -1740,7 +1740,7 @@ export const COMPANION_BUFFS = {
       totalDuration: Infinity,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.timeTillAction = 0.0;
         buff.data.CDAirBall = 0.0;
         buff.data.CDMend = 0.0;
@@ -1749,7 +1749,7 @@ export const COMPANION_BUFFS = {
         buff.data.CDWaterWave = 0.0;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let castAnyHeal = false;
         const healthMaxAtStart = target.stats.healthMax;
 
@@ -1917,7 +1917,7 @@ export const COMPANION_BUFFS = {
       totalDuration: Infinity,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.CDAirBall = 0.0;
         buff.data.CDMend = 0.0;
         buff.data.CDWaterBall = 0.0,
@@ -1925,7 +1925,7 @@ export const COMPANION_BUFFS = {
         buff.data.CDBleed = 0.0;
       },
 
-      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let castAnyHeal = false;
         const healthMaxAtStart = target.stats.healthMax;
 

@@ -16,7 +16,7 @@ export const FOOD_BUFFS = {
       instantHeal: 75 // Healing total
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -25,7 +25,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -75,7 +75,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 3
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -84,7 +84,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -138,7 +138,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 50
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -147,7 +147,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -201,7 +201,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 75
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -210,7 +210,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -264,7 +264,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 2.5
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -273,7 +273,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -322,14 +322,14 @@ export const FOOD_BUFFS = {
       energyPerSecond: 0 // energy it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         target.stats.energy += 20;
         if (target.stats.energy > target.stats.energyMax) {
           target.stats.energy = target.stats.energyMax;
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         // Remove buff from the target
         target.buffs = target.buffs.filter((targetBuff) => {
           return targetBuff.id !== buff.id;
@@ -355,11 +355,11 @@ export const FOOD_BUFFS = {
       energyPerSecond: 0.03 // energy it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -406,7 +406,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 0.1 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -415,7 +415,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -461,7 +461,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 5.28 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -470,7 +470,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -517,7 +517,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 0.1 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -526,7 +526,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -573,7 +573,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 0.1 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += buff.data.instantHeal;
@@ -582,7 +582,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -628,7 +628,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 6 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -637,7 +637,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -683,7 +683,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 12 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -692,7 +692,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -738,7 +738,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 20 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -747,7 +747,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -793,7 +793,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 50 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -802,7 +802,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -848,7 +848,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 35 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -857,7 +857,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -903,7 +903,7 @@ export const FOOD_BUFFS = {
       energyPerSecond: 0.5 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -912,7 +912,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -958,7 +958,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 20 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -967,7 +967,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -1013,7 +1013,7 @@ export const FOOD_BUFFS = {
       healthPerSecond: 3 // Healing it will do per second
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -1022,7 +1022,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 
@@ -1069,7 +1069,7 @@ export const FOOD_BUFFS = {
       energyPerSecond: 0.02
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         target.stats.health += 1;
@@ -1078,7 +1078,7 @@ export const FOOD_BUFFS = {
         }
       },
 
-      onTick({ secondsElapsed, buff, target, caster }) {
+      onDidDamage({ buff, defender, attacker, actualBattle, secondsElapsed, rawDamage, damageDealt, originalAutoAttack }) {
         let localSecondsElapsed = CDbl(secondsElapsed);
         buff.duration -= localSecondsElapsed;
 

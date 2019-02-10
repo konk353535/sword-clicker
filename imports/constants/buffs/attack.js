@@ -33,7 +33,7 @@ export const ATTACK_BUFFS = {
         }
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const defenderAttack = defender.stats.attack;
         const defenderAttackMax = defender.stats.attackMax;
@@ -122,7 +122,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
   
         const attackBase = constants.attackBase;
@@ -173,7 +173,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const accuracyBase = constants.accuracyBase;
         const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
@@ -221,7 +221,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -271,7 +271,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 120
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
 
         const lifestealBase = constants.lifestealBase;
@@ -330,7 +330,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -398,7 +398,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ originalAutoAttack, buff, defender, attacker, actualBattle }) {
@@ -471,7 +471,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.stacks = 1;
         buff.data.timeTillStack = 3;
       },
@@ -554,7 +554,7 @@ export const ATTACK_BUFFS = {
       totalDuration: Infinity
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
@@ -622,7 +622,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const extraAttack = target.stats.attackMax * 1.5;
         buff.data.extraAttack = extraAttack;
         target.stats.attackMax += extraAttack;
@@ -689,7 +689,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 10,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
@@ -1070,7 +1070,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 3,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
         const attackSpeedGain = constants.attackSpeedBase + (constants.attackSpeedPerLevel * buff.data.level);
@@ -1122,7 +1122,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 12,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().toDate();
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
@@ -1189,7 +1189,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 12,
     },
     events: { // This can be rebuilt from the buff id
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
@@ -1258,7 +1258,7 @@ export const ATTACK_BUFFS = {
       totalDuration: 12.5,
     },
     events: {
-      onApply({ buff, target, caster }) {
+      onApply({ buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
           const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
           buff.duration += (buffConstants.extraTimePerLevel * buff.data.level);

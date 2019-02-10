@@ -232,7 +232,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'pine book',
     sellPrice: 250,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   beech_paper: {
@@ -250,7 +250,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'beech book',
     sellPrice: 500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   ash_paper: {
@@ -268,7 +268,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'ash book',
     sellPrice: 1000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   oak_paper: {
@@ -286,7 +286,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'oak book',
     sellPrice: 1250,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
   
   maple_paper: {
@@ -304,7 +304,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'maple book',
     sellPrice: 1500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   walnut_paper: {
@@ -322,7 +322,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'walnut book',
     sellPrice: 1750,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },  
   
   cherry_paper: {
@@ -340,7 +340,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'cherry book',
     sellPrice: 2000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },  
   
   mahogany_paper: {
@@ -358,7 +358,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'mahogany book',
     sellPrice: 2250,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },  
   
   elk_paper: {
@@ -376,7 +376,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'elm book',
     sellPrice: 2350,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   black_paper: {
@@ -394,7 +394,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'black book',
     sellPrice: 2450,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   denya_paper: {
@@ -412,7 +412,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'denya book',
     sellPrice: 2750,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },
 
   cedar_paper: {
@@ -430,7 +430,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'cedar book',
     sellPrice: 2850,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight and can be turned into a magical book.'
   },  
   
   blue_gum_paper: {
@@ -448,7 +448,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'blue gum book',
     sellPrice: 3000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   gombe_paper: {
@@ -466,7 +466,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'gombe book',
     sellPrice: 3250,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   hickory_paper: {
@@ -484,7 +484,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'hickory book',
     sellPrice: 3500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   larch_paper: {
@@ -502,7 +502,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'larch book',
     sellPrice: 4000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   poplar_paper: {
@@ -520,7 +520,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'poplar book',
     sellPrice: 4500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   tali_paper: {
@@ -538,7 +538,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'tali book',
     sellPrice: 5000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   willow_paper: {
@@ -556,7 +556,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'willow book',
     sellPrice: 5500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   teak_paper: {
@@ -574,7 +574,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'teak book',
     sellPrice: 6000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   fiery_paper: {
@@ -592,7 +592,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'fiery book',
     sellPrice: 6500,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   magic_paper: {
@@ -610,7 +610,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'paper',
     name: 'magic book',
     sellPrice: 7000,
-    description: 'Gives decent xp'
+    description: 'Provides inscription insight.'
   },
 
   eel_taunt_tome: {

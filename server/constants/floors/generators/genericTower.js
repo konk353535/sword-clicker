@@ -30,13 +30,16 @@ export const genericTowerMonsterGenerator = function(floor, room) {
         attackSpeed: 0.5 + (room / 30),
         accuracy: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)),
         armor: (room / 2.4) * 25 * (floor / 4),
-        defense: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)),
-        magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3.3)),
-        criticalChance: 0,
+        //defense: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)), // old and fairly weak vs modern accuracy
+        defense: ((floor * 2) + (room / 5) * 8.5 * (floor * 1.4)),
+        // magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3.3)), // old and extremely powerful at high floors
+        magicArmor: (room / 2) * 25 * (floor / 3),
+        //criticalChance: 0, // old, raised difficulty slightly by giving all monsters a 1% chance to crit
+        criticalChance: 1,
         criticalDamage: 2,
-        damageTaken: 1
+        damageTaken: 1,
       },
-      rewards: []
+      rewards: [],
     };
 
     if (selectedMonster.statBuffs) {

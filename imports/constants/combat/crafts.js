@@ -27,6 +27,7 @@ import { ETERNIUM_CRAFTS } from './crafts/eternium';
 
 import { AMULET_CRAFTS } from './crafts/amulet';
 import { STAFF_CRAFTS } from './crafts/staff';
+import { ARCHER_CRAFTS } from './crafts/archer';
 
 export const COMBAT_CRAFTS = Object.assign(
   COPPER_CRAFTS,
@@ -56,4 +57,5 @@ export const COMBAT_CRAFTS = Object.assign(
   RELICROCK_CRAFTS,
   ETERNIUM_CRAFTS,
   AMULET_CRAFTS,
-  STAFF_CRAFTS);
+  STAFF_CRAFTS,
+  ARCHER_CRAFTS);

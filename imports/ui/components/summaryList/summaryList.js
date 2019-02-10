@@ -9,13 +9,45 @@ import { FarmingSpace } from '/imports/api/farming/farming.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
 import { BattlesList } from '/imports/api/battles/battles.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
+import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
+import { Groups } from '/imports/api/groups/groups.js';
+import { Combat } from '/imports/api/combat/combat.js';
 
+// Component used in the template
 import '../farming/farmSpace.js';
 import '../craftingDuration/craftingDuration.js';
+import '../mining/mineSpace.js';
+import '../newCombat/lobbyUnit/lobbyUnit.js';
 import './summaryList.html';
 
+let miningPageTimer;
+let hasInitGameUpdate;
 
 Template.summaryList.onCreated(function bodyOnCreated() {
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+
+  // Listen to group changes
+  Meteor.subscribe('groups');
+  
+  this.autorun(() => {
+    if (!hasInitGameUpdate && Mining.findOne()) {
+      Meteor.call('mining.gameUpdate');
+      hasInitGameUpdate = true;
+    }
+  });
+  
+  Meteor.call('mining.gameUpdate');
+
+  miningPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('mining.gameUpdate');
+    }
+  }, 7000);
+});
+
+Template.summaryList.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(miningPageTimer);
 });
 
 Template.summaryList.events({
@@ -96,4 +128,74 @@ Template.summaryList.helpers({
 
     return equippedMap;
   },
+  
+  currentGroup() {
+    return Groups.findOne({
+      members: Meteor.userId()
+    });
+  },
+  
+  currentGroupSize() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+    
+    if (currentGroup && currentGroup.members) {
+      return currentGroup.members.length;
+    }
+    
+    return 0;
+  },
+  
+  miningSpaces() {
+    return MiningSpace.find();
+  },  
+  
+  currentGroupMembers() {
+    const currentGroup = Groups.findOne({
+      members: Meteor.userId()
+    });
+
+    let combats;
+    if (currentGroup) {
+      combats = Combat.find({
+        owner: {
+          $in: currentGroup.members
+        }
+      }).fetch();
+
+      if (currentGroup.invitesDetails && currentGroup.invitesDetails.length > 0) {
+        combats = combats.concat(currentGroup.invitesDetails.map((invitee) => {
+          invitee.isInvitee = true;
+          return invitee;
+        }));
+      }
+    } else {
+      combats = Combat.find({
+        owner: Meteor.userId()
+      }).fetch();
+    }
+
+
+    return combats.map((userCombat) => {
+      // Map stuff we want to read into stats
+      userCombat.stats = {
+        health: userCombat.stats.health,
+        healthMax: userCombat.stats.healthMax,
+        energy: userCombat.stats.energy,
+        energyMax: userCombat.stats.energyMax
+      }
+
+      userCombat.name = userCombat.username;
+      userCombat.icon = userCombat.characterIcon || 'character.svg';
+      if (currentGroup) {
+        userCombat.isLeader = userCombat.owner === currentGroup.leader;
+      } else {
+        userCombat.isLeader = false;
+      }
+
+      return userCombat;
+    });
+  },
+
 });

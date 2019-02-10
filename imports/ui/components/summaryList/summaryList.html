@@ -4,103 +4,186 @@
       {{#unless inCurrentBattle}}
         <div
           class="hidden-lg-down"
-          style="border-left: 1px solid #DFDFDF; padding: 20px; min-width: 300px; margin-left: 30px;">
+          style="border-left: 1px solid #DFDFDF; padding: 20px; min-width: 300px; margin-left: 30px;">          
           <div style="position: fixed;">
-            <h6>Crafting</h6>
+          
+            {{#if adventures}}
+              <h6><a href="/battle">Adventures</a></h6>
+              <div class="d-flex flex-wrap align-items-center">
+                {{#each adventures}}
+                  {{#if this.rewards}}
+                    <div
+                      class="collect-adventure {{#if this.win}}user-ready{{else}}user-not-ready{{/if}}"
+                      data-id="{{this.id}}"
+                      style="cursor: pointer">
+                      <img src="/icons/{{this.icon}}" class="icon-box small-icon">
+                    </div>
+                  {{else}}
+                    <div class="cancel-adventure" data-id="{{this.id}}">
+                      {{> craftingDuration craftingProcess=this}}
+                    </div>
+                  {{/if}}
+                {{/each}}
+                {{#if $gt currentGroupSize 1}}
+                  <b><span style="color: red;">Warning: you are in an adventure while also in a group.  This prevents the group from entering the tower.</span></b>
+                {{/if}}
+              </div>
+            {{else unless currentGroup}}
+              <h6><a href="/battle">Adventures</a></h6>
+              <div class="d-flex flex-wrap align-items-center">
+                <i>(nothing queued)</i>
+              </div>
+              
+              <h6 class="mt-3"><a href="/battle">Abilities</a></h6>
+              <div class="d-flex flex-wrap align-items-center">
+                {{#if equippedAbilitiesMap.mainHand}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    1
+                  </div>
+                {{/if}}
+                <!-- Off Hand -->
+                {{#if equippedAbilitiesMap.offHand}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    2
+                  </div>
+                {{/if}}
+                <!-- Head -->
+                {{#if equippedAbilitiesMap.head}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.head classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    3
+                  </div>
+                {{/if}}
+                <!-- Chest -->
+                {{#if equippedAbilitiesMap.chest}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.chest classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    4
+                  </div>
+                {{/if}}
+                <!-- Legs -->
+                {{#if equippedAbilitiesMap.legs}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.legs classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    5
+                  </div>
+                {{/if}}
+                <!-- Companion -->
+                {{#if equippedAbilitiesMap.companion}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    6
+                  </div>
+                {{/if}}
+              </div>
+            {{else}}
+              <h6><a href="/battle">Abilities</a></h6>
+              <div class="d-flex flex-wrap align-items-center">
+                {{#if equippedAbilitiesMap.mainHand}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    1
+                  </div>
+                {{/if}}
+                <!-- Off Hand -->
+                {{#if equippedAbilitiesMap.offHand}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    2
+                  </div>
+                {{/if}}
+                <!-- Head -->
+                {{#if equippedAbilitiesMap.head}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.head classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    3
+                  </div>
+                {{/if}}
+                <!-- Chest -->
+                {{#if equippedAbilitiesMap.chest}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.chest classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    4
+                  </div>
+                {{/if}}
+                <!-- Legs -->
+                {{#if equippedAbilitiesMap.legs}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.legs classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    5
+                  </div>
+                {{/if}}
+                <!-- Companion -->
+                {{#if equippedAbilitiesMap.companion}}
+                  {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                {{else}}
+                  <div class="item-icon-container item icon-box tiny">
+                    6
+                  </div>
+                {{/if}}
+              </div>
+            {{/if}}
+            
+            {{#if currentGroup}}
+              <h6 class="mt-3"><a href="/battle">Group</a></h6>
+              <div class="d-flex align-items-center">
+                <div class="d-flex flex-row flex-wrap" style="max-width: 260px">
+                  {{#each currentGroupMembers}}
+                    <div class="flex-column d-flex justify-content-center" style="margin-right: 3px">
+                      {{> lobbyUnit unit=this tiny=true showBuffs=false}}
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            {{/if}}
+            
+            <h6 class="mt-3"><a href="/mining">Mining</a></h6>
+            <div class="d-flex align-items-center">
+              <div class="d-flex flex-row flex-wrap mine-pit-container" style="max-width: 160px;">
+                {{#each miningSpaces}}
+                  {{> mineSpace mineSpace=this tiny=true}}
+                {{/each}}
+              </div>
+            </div>
+            
+            <h6 class="mt-3"><a href="/crafting">Crafting</a></h6>
             <div class="d-flex align-items-center">
               {{#each crafting.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isCrafting=true}}
               {{else}}
-                Nothing to see here.
+                <i>(nothing queued)</i>
               {{/each}}
             </div>
 
-            <h6 class="mt-3">Inscription</h6>
+            <h6 class="mt-3"><a href="/inscription">Inscription</a></h6>
             <div class="d-flex align-items-center">
               {{#each inscription.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isInscription=true}}
               {{else}}
-                Nothing to see here.
+                <i>(nothing queued)</i>
               {{/each}}
             </div>
 
-            <h6 class="mt-3">Farming</h6>
+            <h6 class="mt-3"><a href="/farming">Farming</a></h6>
             <div class="d-flex flex-wrap">
               {{#each farmingSpaces}}
                 {{> farmSpace farmSpace=this classes="small-icon"}}
               {{/each}}
             </div>
 
-            <h6 class="mt-3">Adventures</h6>
-            <div class="d-flex flex-wrap align-items-center">
-              {{#each adventures}}
-                {{#if this.rewards}}
-                  <div
-                    class="collect-adventure {{#if this.win}}user-ready{{else}}user-not-ready{{/if}}"
-                    data-id="{{this.id}}"
-                    style="cursor: pointer">
-                    <img src="/icons/{{this.icon}}" class="icon-box small-icon">
-                  </div>
-                {{else}}
-                  <div class="cancel-adventure" data-id="{{this.id}}">
-                    {{> craftingDuration craftingProcess=this}}
-                  </div>
-                {{/if}}
-              {{else}}
-                Nothing to see here
-              {{/each}}
-            </div>
-
-            <h6 class="mt-3">Abilities</h6>
-            <div class="d-flex flex-wrap align-items-center">
-              {{#if equippedAbilitiesMap.mainHand}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  1
-                </div>
-              {{/if}}
-              <!-- Off Hand -->
-              {{#if equippedAbilitiesMap.offHand}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  2
-                </div>
-              {{/if}}
-              <!-- Head -->
-              {{#if equippedAbilitiesMap.head}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.head classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  3
-                </div>
-              {{/if}}
-              <!-- Chest -->
-              {{#if equippedAbilitiesMap.chest}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.chest classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  4
-                </div>
-              {{/if}}
-              <!-- Legs -->
-              {{#if equippedAbilitiesMap.legs}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.legs classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  5
-                </div>
-              {{/if}}
-              <!-- Companion -->
-              {{#if equippedAbilitiesMap.companion}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
-              {{else}}
-                <div class="item-icon-container item icon-box tiny">
-                  6
-                </div>
-              {{/if}}
-            </div>
           </div>
         </div>
       {{/unless}}

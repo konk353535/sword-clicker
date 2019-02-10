@@ -544,6 +544,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'pineLog.png',
     category: 'woodcutting',
     name: 'pine log',
+    description: 'A chopped log from a pine tree, suitable for crafting.',
     sellPrice: 1
   },
 
@@ -552,6 +553,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'beechLog.png',
     category: 'woodcutting',
     name: 'beech log',
+    description: 'A chopped log from a beech tree, suitable for crafting.',
     sellPrice: 4
   },
 
@@ -560,6 +562,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ashLog.png',
     category: 'woodcutting',
     name: 'ash log',
+    description: 'A chopped log from an ash tree, suitable for crafting.',
     sellPrice: 7
   },
 
@@ -568,6 +571,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'oakLog.png',
     category: 'woodcutting',
     name: 'oak log',
+    description: 'A chopped log from an oak tree, suitable for crafting.',
     sellPrice: 11
   },
 
@@ -576,6 +580,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'mapleLog.png',
     category: 'woodcutting',
     name: 'maple log',
+    description: 'A chopped log from a maple tree, suitable for crafting.',
     sellPrice: 17
   },
 
@@ -584,6 +589,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'walnutLog.png',
     category: 'woodcutting',
     name: 'walnut log',
+    description: 'A chopped log from a walnut tree, suitable for crafting.',
     sellPrice: 30
   },
 
@@ -592,6 +598,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'cherryLog.png',
     category: 'woodcutting',
     name: 'cherry log',
+    description: 'A chopped log from a cherry tree, suitable for crafting.',
     sellPrice: 40
   },
 
@@ -600,6 +607,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'mahoganyLog.png',
     category: 'woodcutting',
     name: 'mahogany log',
+    description: 'A chopped log from a mahogany tree, suitable for crafting.',
     sellPrice: 50
   },
 
@@ -608,6 +616,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'elkLog.png',
     category: 'woodcutting',
     name: 'elm log',
+    description: 'A chopped log from an elm tree, suitable for crafting.',
     sellPrice: 60
   },
 
@@ -616,6 +625,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'blackLog.png',
     category: 'woodcutting',
     name: 'black log',
+    description: 'A chopped log from a black tree, suitable for crafting.',
     sellPrice: 70
   },
 
@@ -624,6 +634,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'blueGumLog.png',
     category: 'woodcutting',
     name: 'blue gum log',
+    description: 'A chopped log from a blue gum tree, suitable for crafting.',
     sellPrice: 80
   },
 
@@ -632,6 +643,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'cedarLog.png',
     category: 'woodcutting',
     name: 'cedar log',
+    description: 'A chopped log from a cedar tree, suitable for crafting.',
     sellPrice: 90
   },
 
@@ -640,6 +652,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'denyaLog.png',
     category: 'woodcutting',
     name: 'denya log',
+    description: 'A chopped log from a denya tree, suitable for crafting.',
     sellPrice: 100
   },
 
@@ -648,6 +661,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'gombeLog.png',
     category: 'woodcutting',
     name: 'gombe log',
+    description: 'A chopped log from a gombe tree, suitable for crafting.',
     sellPrice: 110
   },
 
@@ -656,6 +670,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'hickoryLog.png',
     category: 'woodcutting',
     name: 'hickory log',
+    description: 'A chopped log from a hickory tree, suitable for crafting.',
     sellPrice: 120
   },
 
@@ -664,6 +679,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'larchLog.png',
     category: 'woodcutting',
     name: 'larch log',
+    description: 'A chopped log from a larch tree, suitable for crafting.',
     sellPrice: 130
   },
 
@@ -672,6 +688,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'poplarLog.png',
     category: 'woodcutting',
     name: 'poplar log',
+    description: 'A chopped log from a poplar tree, suitable for crafting.',
     sellPrice: 140
   },
 
@@ -680,6 +697,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'taliLog.png',
     category: 'woodcutting',
     name: 'tali log',
+    description: 'A chopped log from a tali tree, suitable for crafting.',
     sellPrice: 150
   },
 
@@ -688,6 +706,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'willowLog.png',
     category: 'woodcutting',
     name: 'willow log',
+    description: 'A chopped log from a willow tree, suitable for crafting.',
     sellPrice: 160
   },
 
@@ -696,6 +715,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'teakLog.png',
     category: 'woodcutting',
     name: 'teak log',
+    description: 'A chopped log from a teak tree, suitable for crafting.',
     sellPrice: 170
   },
 
@@ -704,6 +724,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ebonyLog.png',
     category: 'woodcutting',
     name: 'ebony log',
+    description: 'A chopped log from an ebony tree, suitable for crafting.',
     sellPrice: 180
   },
 
@@ -712,6 +733,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'fieryLog.png',
     category: 'woodcutting',
     name: 'fiery log',
+    description: 'A chopped log from a mystic and charred tree, suitable for crafting.',
     sellPrice: 190
   },
 
@@ -720,6 +742,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'tamarindLog.png',
     category: 'woodcutting',
     name: 'tamarind log',
+    description: 'A chopped log from a tamarind tree, suitable for crafting.',
     sellPrice: 200
   },
 
@@ -728,6 +751,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'magicLog.png',
     category: 'woodcutting',
     name: 'magic log',
+    description: 'A chopped log from a wild, magic tree, suitable for crafting.',
     sellPrice: 210
   },
 
@@ -736,6 +760,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'petrifiedLog.png',
     category: 'woodcutting',
     name: 'petrified log',
+    description: 'A neatly-chiseled and petrified wooden log from the farplane, suitable for crafting.',
     sellPrice: 220
   },
 
@@ -744,6 +769,7 @@ export const WOODCUTTING_ITEMS = {
     icon: 'ancientLog.png',
     category: 'woodcutting',
     name: 'ancient log',
+    description: 'A chopped log from a mysterious and ancient tree, suitable for crafting.',
     sellPrice: 230
   },
 };

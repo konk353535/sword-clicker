@@ -1356,4 +1356,33 @@ export const SCROLL_ITEMS = {
       description: 'Learn hidden recipe'
     }
   }, 
+  
+  teak_bow_scroll: {
+    id: 'teak_bow_scroll',
+    icon: 'teakBowScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'teak bow scroll',
+    teaches: 'teak_bow',
+    sellPrice: 1500,
+    description: `A teak scroll, made from cursed inks.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+  
+  cursed_quiver_scroll: {
+    id: 'cursed_quiver_scroll',
+    icon: 'cursedQuiverScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'cursed quiver scroll',
+    teaches: 'cursed_quiver',
+    sellPrice: 1500,
+    description: `A teak scroll, made from cursed inks.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
 };

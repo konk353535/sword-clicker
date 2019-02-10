@@ -152,6 +152,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   .lobby-container .icon-box.battle-unit {
     margin: 0.25rem 0;
   }
+  
+  .icon-box.battle-unit-tiny {
+    width: 24px;
+    height: 24px;
+  }
 
   .buff-icon-container {
     width: 24px;

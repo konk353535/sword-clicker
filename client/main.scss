@@ -340,6 +340,14 @@ body { padding-right: 0 !important }
   width: 96px;
 }
 
+.health-bar-tiny {
+  width: 32px;
+}
+
+.energy-bar-tiny {
+  width: 32px;
+}
+
 @media screen and (max-width: 768px) {
   .health-bar {
     width: 80px;

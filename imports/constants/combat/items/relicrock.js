@@ -165,7 +165,7 @@ export const RELICROCK_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 130
+      level: 120
     }]
   },
 

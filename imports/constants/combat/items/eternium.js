@@ -165,7 +165,7 @@ export const ETERNIUM_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 140
+      level: 125
     }]
   },
 

@@ -165,7 +165,7 @@ export const TITANFOIL_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 120
+      level: 115
     }]
   },
 

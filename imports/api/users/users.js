@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import lodash from 'lodash';
 import moment from "moment/moment";
 
 export const Users = Meteor.users;
 
-const getIPFromConnection = function getIPFromConnection(connection) {
+export const getIPFromConnection = function getIPFromConnection(connection) {
   let ipDiscovered = '';
   
   if (connection) {
@@ -15,18 +16,34 @@ const getIPFromConnection = function getIPFromConnection(connection) {
     }
     
     try {
-      if (connection.httpHeaders && connection.httpHeaders['x-forwarded-for']) {
-        ip = connection.httpHeaders['x-forwarded-for']
-          .split(/[ ,]/)
-          .filter(function(a) {
-            return a.trim()
-          })[0];
-      } else {
-        ip = connection.clientAddress;
+      if (connection.httpHeaders) {
+        (['x-forwarded-for', 'X-Forwarded-For']).forEach((httpHeader) => {
+          try {
+            if (connection.httpHeaders[httpHeader]) {
+              let localIP = connection.httpHeaders[httpHeader]
+                .split(/[ ,]/)
+                .filter(function(a) {
+                  return a.trim()
+                })[0];
+                
+              if (localIp && localIP.length > 0) {
+                ipDiscovered = localIP;
+              }
+            }
+          } catch (err) {
+          }
+        });
       }
-
-      ip = _._property((ip || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
     } catch (err) {
+    }
+    
+    try {
+      ipDiscovered = lodash._property((ip || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
+    } catch (err) {
+      try {
+        ipDiscovered = lodash.property((ip || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
+      } catch (err) {
+      }
     }
   }
 

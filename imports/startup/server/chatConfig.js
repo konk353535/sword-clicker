@@ -165,17 +165,27 @@ SimpleChat.configure ({
           userId: targetUser._id
         });
 
+        let clientIpCalculated = '0.0.0.0';
         try {
-          const targetUsers = Users.find({
-            clientIp: targetUser.clientIp
-          }).fetch();
+          if (targetUser.clientIp) {
+            clientIpCalculated = targetUser.clientIp;
+          }
+        } catch (err) {
+        };
+        
+        try {
+          if (clientIpCalculated !== '0.0.0.0') {
+            const targetUsers = Users.find({
+              clientIp: clientIpCalculated
+            }).fetch();
 
-          targetUsers.forEach((user) => {
-            // Remove muted users messages
-            Chats.remove({
-              userId: targetUser._id
-            });        
-          });
+            targetUsers.forEach((user) => {
+              // Remove muted users messages
+              Chats.remove({
+                userId: targetUser._id
+              });        
+            });
+          }
         } catch (err) {
         }
         
@@ -188,22 +198,28 @@ SimpleChat.configure ({
         
         // Set all users with this ip
         try {
-          Users.update({
-            clientIp: targetUser.clientIp
-          }, {
-            $set: {
-              isMutedExpiry: moment().add(10, 'years').toDate()
-            }
-          }, { multi: true });
+          if (clientIpCalculated !== '0.0.0.0') {
+            Users.update({
+              clientIp: clientIpCalculated
+            }, {
+              $set: {
+                isMutedExpiry: moment().add(10, 'years').toDate()
+              }
+            }, { multi: true });
 
-          // Add users ip to black list, to prevent further sign ups
-          BlackList.insert({
-            clientIp: targetUser.clientIp
-          });
+            // Add users ip to black list, to prevent further sign ups
+            BlackList.insert({
+              clientIp: clientIpCalculated
+            });
+          }
         } catch (err) {
         }
 
-        sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.clientIp} for 10 years and removed chat messages from ${targetUser.username} and ${targetUser.clientIp}.` });
+        if (clientIpCalculated !== '0.0.0.0') {
+          sendUserChatMessage({ userId: userDoc._id, message: `Banned ${clientIpCalculated} for 10 years and removed chat messages from ${targetUser.username} and ${targetUser.clientIp}.` });
+        } else {
+          sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.username} for 10 years and removed chat messages from them (IP couldn't be discovered).` });
+        }
         return;
       } else if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user

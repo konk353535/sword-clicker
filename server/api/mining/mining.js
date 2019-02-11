@@ -319,6 +319,9 @@ Meteor.methods({
   'mining.gameUpdate'() {
     // Fetch all db data we need
     const mining = Mining.findOne({ owner: this.userId });
+    if (!mining) {
+      throw new Meteor.Error("no-user", "Log in first.");
+    }
 
     // Determine time since last update
     const now = moment();

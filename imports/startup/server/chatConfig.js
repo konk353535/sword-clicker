@@ -79,6 +79,7 @@ SimpleChat.configure ({
       return;
     }
 
+    /*
     if (this.connection) {
       if ((!userDoc.clientIp) || (userDoc.clientIp != this.connection.clientAddress)) {
         Users.update({
@@ -90,6 +91,7 @@ SimpleChat.configure ({
         })
       }
     }
+    */
 
     if (userDoc.isMutedExpiry) {
       if (moment().isBefore(userDoc.isMutedExpiry)) {

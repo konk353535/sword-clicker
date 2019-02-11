@@ -192,6 +192,10 @@ Meteor.methods({
   },
 
   'battles.getFloorDetails'(floorNumber = 1) {
+    if (!Meteor.user()) {
+      return false;
+    }
+    
     // Fetch specified floor details ( constants + current floor details )
     const currentFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server });
 
@@ -277,6 +281,10 @@ Meteor.methods({
   },
 
   'battles.myFloorContributions'() {
+    if (!Meteor.user()) {
+      return false;
+    }
+
     const server = Meteor.user().server;
     // current floor contribution + ranking
     const currentCommunityFloor = Floors.findOne({ floorComplete: false, server });

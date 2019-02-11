@@ -12,6 +12,7 @@ import { Mining } from '/imports/api/mining/mining';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items.js';
+import { getIPFromConnection } from '/imports/api/users/users.js';
 
 Meteor.methods({
 
@@ -50,7 +51,7 @@ Meteor.methods({
   'users.createGuest'() {
     let clientIp = '';
     try {
-      clientIp = this.connection.clientAddress;
+      clientIp = getIPFromConnection(this.connection);
     } catch (err) {
     }
     
@@ -107,7 +108,7 @@ Meteor.methods({
 
     let clientIp = '';
     try {
-      clientIp = this.connection.clientAddress;
+      clientIp = getIPFromConnection(this.connection);
     } catch (err) {
     }
     

@@ -49,7 +49,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
       if (myUser.uiState && myUser.uiState.miningMultihit !== undefined) {
         this.state.set('miningMultihit', myUser.uiState.miningMultihit);
       } else {
-        this.state.set('miningMultihit', true);
+        this.state.set('miningMultihit', false);
       }
     }
   });

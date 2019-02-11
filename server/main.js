@@ -28,6 +28,24 @@ import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
+Meteor.onConnection((connection) => {
+  //console.log("Meteor.onConnection");
+  //console.log(connection);
+});
+
+Accounts.onLogin((accountConnection) => {
+  //console.log("Accounts.onLogin");
+  //console.log(user);
+  
+  if (accountConnection.user) {
+    if (accountConnection.user.username) {
+      console.log(`Account login from ${accountConnection.user.username} (${accountConnection.user._id}):`);
+      console.log(accountConnection.connection.clientAddress);
+      console.log(accountConnection.connection.httpHeaders);
+    }
+  }
+});
+
 Meteor.startup(() => {
 
   const classicServer = Servers.findOne({

@@ -17,7 +17,7 @@ export const getIPFromConnection = function getIPFromConnection(connection) {
     
     try {
       if (connection.httpHeaders) {
-        (['x-forwarded-for', 'X-Forwarded-For', 'cf-connecting-ip', 'CF-Connecting-IP']).forEach((httpHeader) => {
+        (['x-forwarded-for', 'X-Forwarded-For', 'x-real-ip', 'X-Real-IP', 'cf-connecting-ip', 'CF-Connecting-IP']).forEach((httpHeader) => {
           try {
             if (connection.httpHeaders[httpHeader]) {
               let localIP = connection.httpHeaders[httpHeader]

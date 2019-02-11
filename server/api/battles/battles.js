@@ -234,10 +234,11 @@ Meteor.methods({
         floorDetails: {
           rewards: currentFloor.loot.map(function(reward) {
             if (reward.type === 'item') {
-              reward.icon = ITEMS[reward.itemId].icon;
-              reward.name = ITEMS[reward.itemId].name;
-              reward.extraStats = ITEMS[reward.itemId].extraStats;
-              reward.description = ITEMS[reward.itemId].description;
+              const rewardInfo = ITEMS[reward.itemId];
+              reward.icon = ((rewardInfo && rewardInfo.icon) ? rewardInfo.icon : '');
+              reward.name = ((rewardInfo && rewardInfo.icon) ? rewardInfo.name : 'Unknown');
+              reward.extraStats = ((rewardInfo && rewardInfo.icon) ? rewardInfo.extraStats : {});
+              reward.description = ((rewardInfo && rewardInfo.icon) ? rewardInfo.description : `Item ID: ${reward.itemId}`);
             }
             return reward;
           }),

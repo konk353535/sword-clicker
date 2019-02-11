@@ -60,7 +60,7 @@ Template.miningPage.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 7000);
+  }, 20000);
 
 });
 

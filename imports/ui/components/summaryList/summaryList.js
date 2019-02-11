@@ -43,7 +43,7 @@ Template.summaryList.onCreated(function bodyOnCreated() {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 7000);
+  }, 15000);
 });
 
 Template.summaryList.onDestroyed(function bodyOnDestroyed() {

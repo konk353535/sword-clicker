@@ -187,7 +187,7 @@ SimpleChat.configure ({
 
         sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.clientIp} for 10 years and removed chat messages from ${targetUser.username}.` });
         return;
-      } else if (/\/createserver/.test(message)) {
+      } else if (/\/createserver/.test(message) && userDoc.isSuperMod) {
         const splitMessage = message.split(' ');
         const name = splitMessage[1];
         const iteration = parseInt(splitMessage[2]);

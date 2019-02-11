@@ -1,7 +1,57 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import moment from "moment/moment";
+
 export const Users = Meteor.users;
+
+const getIPFromConnection = function getIPFromConnection(connection) {
+  let ipDiscovered = '';
+  
+  if (connection) {
+    try {
+      ipDiscovered = connection.clientAddress;
+    } catch (err) {
+    }
+    
+    try {
+      if (connection.httpHeaders && connection.httpHeaders['x-forwarded-for']) {
+        ip = connection.httpHeaders['x-forwarded-for']
+          .split(/[ ,]/)
+          .filter(function(a) {
+            return a.trim()
+          })[0];
+      } else {
+        ip = connection.clientAddress;
+      }
+
+      ip = _._property((ip || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
+    } catch (err) {
+    }
+  }
+
+  return ((ipDiscovered && ipDiscovered.length > 0) ? ipDiscovered : '0.0.0.0');
+};
+
+export const updateUserActivity = function updateUserActivity({userId, connectionInfo}) {
+  // Discover user IP, set current time for last active
+  const ipAddress = getIPFromConnection(connectionInfo);
+
+  // Set up mongodb update fields  
+  const userActivityUpdate = {
+    lastActivity: moment().toDate(),
+  };  
+  if (ipAddress && ipAddress.length > 0 && ipAddress !== '0.0.0.0') {
+    userActivityUpdate.clientIp = ipAddress;
+  }
+  
+  // Update user activity
+  Users.update({
+    _id: Meteor.userId()
+  }, {
+    $set: userActivityUpdate
+  });  
+}
 
 UserSchema = new SimpleSchema({
   _id: { type: String },

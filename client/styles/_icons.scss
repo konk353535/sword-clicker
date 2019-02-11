@@ -245,7 +245,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   touch-action: manipulation;
 }
 
-.mine-space-container-tiny {
+.mine-space-container-noclick {
   user-select: none;
   touch-action: manipulation;
 }
@@ -264,7 +264,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 @media screen and (max-width: 468px) {
-  .mine-space-container-tiny {
+  .mine-space-container-noclick {
     width: 22%;
     height: auto;
     min-width: 24px;

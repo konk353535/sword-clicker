@@ -42,13 +42,22 @@ Meteor.methods({
       removeBattle(existingBattle._id);
     });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
 
@@ -95,13 +104,22 @@ Meteor.methods({
 
     startBattle({ level, wave, server });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
 
@@ -191,13 +209,22 @@ Meteor.methods({
     // Eventually select a random battle appropriate to users level
     startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
 

@@ -48,8 +48,12 @@ Meteor.methods({
   },
 
   'users.createGuest'() {
-    const clientIp = this.connection.clientAddress;
-
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+    } catch (err) {
+    }
+    
     if (BlackList.findOne({ clientIp })) {
       throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
     }
@@ -66,7 +70,8 @@ Meteor.methods({
     // Set prefabbed guest to false
     Users.update(existingGuest._id, {
       $set: {
-        isPreFabbedGuest: false
+        isPreFabbedGuest: false,
+        clientIp: clientIp
       }
     }, (err, res) => {});
 
@@ -100,6 +105,12 @@ Meteor.methods({
       throw new Meteor.Error('email-taken', 'Cant use an already registered email');
     }
 
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+    } catch (err) {
+    }
+    
     // Update username
     Accounts.setUsername(Meteor.userId(), username);
 
@@ -125,7 +136,8 @@ Meteor.methods({
         emails: [{
           address: email,
           verified: false
-        }]
+        }],        
+        clientIp: clientIp
       }
     });
 
@@ -386,15 +398,23 @@ Meteor.methods({
         $set: setObject
       });
       
+      // Discover user IP, set current time for last active
+      const userActivityUpdate = {
+        lastActivity: moment().toDate(),
+      };
+      let clientIp = '';
+      try {
+        clientIp = this.connection.clientAddress;
+        userActivityUpdate.clientIp = clientIp;
+      } catch (err) {
+      }
+      
       // update user activity
       Users.update({
         _id: Meteor.userId()
       }, {
-        $set: {
-          lastActivity: moment().toDate()
-        }
+        $set: userActivityUpdate
       });
-      
     }
   }
 });

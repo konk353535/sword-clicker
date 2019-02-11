@@ -58,13 +58,22 @@ Meteor.methods({
       }
     });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
   // Fetch main mage upgrade costs
@@ -150,13 +159,22 @@ Meteor.methods({
       }
     });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
   // Deposit gold to mage
@@ -195,13 +213,22 @@ Meteor.methods({
       }
     });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
   // Withdraw gold from mage
@@ -242,13 +269,22 @@ Meteor.methods({
       }
     });
 
+    // Discover user IP, set current time for last active
+    const userActivityUpdate = {
+      lastActivity: moment().toDate(),
+    };
+    let clientIp = '';
+    try {
+      clientIp = this.connection.clientAddress;
+      userActivityUpdate.clientIp = clientIp;
+    } catch (err) {
+    }
+    
     // update user activity
     Users.update({
       _id: Meteor.userId()
     }, {
-      $set: {
-        lastActivity: moment().toDate()
-      }
+      $set: userActivityUpdate
     });
   },
   // Boost mage

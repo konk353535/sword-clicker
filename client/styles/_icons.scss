@@ -245,6 +245,14 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   touch-action: manipulation;
 }
 
+.mine-space-container-tiny {
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  width: 32px;
+  height: 32px;
+}
+
 .mine-space-container-noclick {
   user-select: none;
   touch-action: manipulation;

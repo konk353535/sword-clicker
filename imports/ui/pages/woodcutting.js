@@ -120,7 +120,7 @@ Template.woodcuttingPage.helpers({
       woodcutter.hideStats = true;
 
       woodcutter.primaryAction = {
-        description: 'activate Suicidal Fury',
+        description: 'activate Retirement Glory',
         method() {
           instance.state.set('firingWoodcutterIndex', woodcutterIndex);
           instance.$('.fireModal').modal('show');

@@ -156,7 +156,50 @@ SimpleChat.configure ({
     }
   
     if (userDoc.isMod) {
-      if (/\/ipban/.test(message) && userDoc.isSuperMod) {
+      if (/\/banhammer/.test(message) && userDoc.isSuperMod) {
+                // Find user
+        const targetUser = Users.findOne({ username: message.split('/banhammer')[1].trim() });
+
+        // Remove muted users messages
+        Chats.remove({
+          userId: targetUser._id
+        });
+
+        const targetUsers = Users.find({
+          clientIp: targetUser.clientIp
+        }).fetch();
+
+        targetUsers.forEach((user) => {
+          // Remove muted users messages
+          Chats.remove({
+            userId: targetUser._id
+          });        
+        });
+        
+        // Set isMuted + Expiry
+        Users.update(targetUser._id, {
+          $set: {
+            isMutedExpiry: moment().add(10, 'years').toDate()
+          }
+        });
+        
+        // Set all users with this ip
+        Users.update({
+          clientIp: targetUser.clientIp
+        }, {
+          $set: {
+            isMutedExpiry: moment().add(10, 'years').toDate()
+          }
+        }, { multi: true });
+
+        // Add users ip to black list, to prevent further sign ups
+        BlackList.insert({
+          clientIp: targetUser.clientIp
+        });
+
+        sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.clientIp} for 10 years and removed chat messages from ${targetUser.username} and ${targetUser.clientIp}.` });
+        return;
+      } else if (/\/ipban/.test(message) && userDoc.isSuperMod) {
         // Find user
         const targetUser = Users.findOne({ username: message.split('/ipban')[1].trim() });
 

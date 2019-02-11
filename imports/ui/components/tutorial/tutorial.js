@@ -72,7 +72,7 @@ Template.tutorial.helpers({
           text: `Mined ${current} / 6 stones`,
           current,
           required,
-          tip: 'Click stones to damage them',
+          tip: 'Click or tap stones to mine them',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -98,7 +98,7 @@ Template.tutorial.helpers({
           text: `Crafted ${current} / 2 primitive pickaxes`,
           current,
           required,
-          tip: 'Crafting page',
+          tip: 'Craft page',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -124,7 +124,7 @@ Template.tutorial.helpers({
           text: `Equip pickaxe`,
           current,
           required,
-          tip: 'Mining page > Equipment',
+          tip: 'Mine page > Equipment tab',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -143,7 +143,7 @@ Template.tutorial.helpers({
           text: 'Hire a miner',
           current: 0,
           required: 1,
-          tip: 'Mining page > Miners',
+          tip: 'Mine page > Miners tab',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -162,7 +162,7 @@ Template.tutorial.helpers({
           text: 'Hire a prospector',
           current: 0,
           required: 1,
-          tip: 'Mining page > Prospectors',
+          tip: 'Mine page > Prospectors tab',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -181,7 +181,7 @@ Template.tutorial.helpers({
           text: 'Craft a primitive axe',
           current: 0,
           required: 1,
-          tip: 'Crafting page',
+          tip: 'Craft page',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -197,7 +197,7 @@ Template.tutorial.helpers({
           text: 'Hire a woodcutter',
           current: 0,
           required: 1,
-          tip: 'Woodcutting page',
+          tip: 'Woodcut page',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -221,10 +221,10 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Suicide a woodcutter',
+          text: 'Retire a woodcutter',
           current: 0,
           required: 1,
-          tip: 'Woodcutting page > Click on a woodcutter',
+          tip: 'Woodcut page > click on a woodcutter',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -245,7 +245,7 @@ Template.tutorial.helpers({
           text: 'Craft a copper dagger',
           current: 0,
           required: 1,
-          tip: 'Crafting page > Combat tab',
+          tip: 'Craft page > Combat tab',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -264,7 +264,7 @@ Template.tutorial.helpers({
           text: 'Equip a copper dagger',
           current: 0,
           required: 1,
-          tip: 'Battle page > loadout > edit gear',
+          tip: 'Battle page > Loadout > Gear Edit',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -283,10 +283,10 @@ Template.tutorial.helpers({
         });
 
         return {
-          text: 'Equip the slash ability',
+          text: 'Equip the Slash ability',
           current: 0,
           required: 1,
-          tip: 'Battle page > loadout > edit abilities',
+          tip: 'Battle page > Loadout > Abilities Edit',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -312,7 +312,7 @@ Template.tutorial.helpers({
           text: 'Complete a solo battle',
           current: 0,
           required: 1,
-          tip: 'Battle page > select solo type',
+          tip: 'Battle page > select Solo type',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -338,7 +338,7 @@ Template.tutorial.helpers({
           text: 'Buy 4 lettuce seeds',
           current,
           required,
-          tip: 'Farming page > shop tab',
+          tip: 'Farm page > Shop tab',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -365,7 +365,7 @@ Template.tutorial.helpers({
           text: 'Plant 4 lettuces',
           current,
           required,
-          tip: 'Farming page > plots tab',
+          tip: 'Farm page > Plots tab',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -392,7 +392,7 @@ Template.tutorial.helpers({
           text: 'Pick 4 lettuces',
           current,
           required,
-          tip: 'Farming page > plots',
+          tip: 'Farm page > Plots tab',
           completedStepsArray,
           awaitingStepsArray
         }
@@ -408,10 +408,10 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Craft berserk lv 1',
+          text: 'Inscribe Berserk (level 1)',
           current: 0,
           required: 1,
-          tip: 'Inscription page > abilities',
+          tip: 'Inscribe page > Abilities tab',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -430,10 +430,10 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Learn berserk lv 1',
+          text: 'Learn Berserk',
           current: 0,
           required: 1,
-          tip: 'Battle page > loadout > abilities (edit)',
+          tip: 'Battle page > Loadout > Abilities Edit',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }

@@ -137,7 +137,7 @@ export const MISC_ITEMS = {
       attackMax: 59,
       attackSpeed: 0.3,
       accuracy: 26.4,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     extraStats: {
       attack: 7.7,
@@ -1918,6 +1918,16 @@ export const MISC_ITEMS = {
   },
   */
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 15.3 @ 50% quality
+  // ... chance to hit: 13.5% @ 50% quality
+  // ... rated DPS: 2.07 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 15.6 @ 100% quality
+  // ... chance to hit: 13.6% @ 100% quality
+  // ... rated DPS: 2.12 @ 100% quality
   copper_rapiers: {
     id: 'copper_rapiers',
     icon: 'copperRapiers.png',
@@ -1934,13 +1944,13 @@ export const MISC_ITEMS = {
       attack: 5.1,
       attackMax: 5.7,
       attackSpeed: 1.0,
-      accuracy: 2,
+      accuracy: 1.6,
       defense: -1.25
     },
     extraStats: {
       attack: 1.4,
       attackMax: 2,
-      accuracy: 0.6
+      accuracy: 0.5
     },
     requiredEquip: [{
       type: 'skill',
@@ -1949,6 +1959,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 16.2 @ 50% quality
+  // ... chance to hit: 13.8% @ 50% quality
+  // ... rated DPS: 2.24 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 16.7 @ 100% quality
+  // ... chance to hit: 13.8% @ 100% quality
+  // ... rated DPS: 2.31 @ 100% quality
   tin_rapiers: {
     id: 'tin_rapiers',
     icon: 'tinRapiers.png',
@@ -1965,13 +1985,13 @@ export const MISC_ITEMS = {
       attack: 6.9,
       attackMax: 8.1,
       attackSpeed: 1.0,
-      accuracy: 5.7,
+      accuracy: 4.4,
       defense: -2.5
     },
     extraStats: {
       attack: 1.8,
       attackMax: 2.8,
-      accuracy: 1.8
+      accuracy: 1.4
     },
     requiredEquip: [{
       type: 'skill',
@@ -1980,6 +2000,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 17.2 @ 50% quality
+  // ... chance to hit: 14.1% @ 50% quality
+  // ... rated DPS: 2.42 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 17.8 @ 100% quality
+  // ... chance to hit: 14.2% @ 100% quality
+  // ... rated DPS: 2.52 @ 100% quality
   bronze_rapiers: {
     id: 'bronze_rapiers',
     icon: 'bronzeRapiers.png',
@@ -1996,13 +2026,13 @@ export const MISC_ITEMS = {
       attack: 8.7,
       attackMax: 10.5,
       attackSpeed: 1.0,
-      accuracy: 10.4,
+      accuracy: 8.1,
       defense: -3.75
     },
     extraStats: {
       attack: 2.3,
       attackMax: 3.6,
-      accuracy: 3.2
+      accuracy: 2.5
     },
     requiredEquip: [{
       type: 'skill',
@@ -2011,6 +2041,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 18.2 @ 50% quality
+  // ... chance to hit: 14.5% @ 50% quality
+  // ... rated DPS: 2.64 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 18.9 @ 100% quality
+  // ... chance to hit: 14.7% @ 100% quality
+  // ... rated DPS: 2.78 @ 100% quality
   iron_rapiers: {
     id: 'iron_rapiers',
     icon: 'ironRapiers.png',
@@ -2027,13 +2067,13 @@ export const MISC_ITEMS = {
       attack: 10.5,
       attackMax: 13.1,
       attackSpeed: 1.0,
-      accuracy: 16,
+      accuracy: 12.4,
       defense: -5
     },
     extraStats: {
       attack: 2.8,
       attackMax: 4.5,
-      accuracy: 4.9
+      accuracy: 3.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2042,6 +2082,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 19.3 @ 50% quality
+  // ... chance to hit: 15.0% @ 50% quality
+  // ... rated DPS: 2.89 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 20.1 @ 100% quality
+  // ... chance to hit: 15.3% @ 100% quality
+  // ... rated DPS: 3.07 @ 100% quality
   silver_rapiers: {
     id: 'silver_rapiers',
     icon: 'silverRapiers.png',
@@ -2058,13 +2108,13 @@ export const MISC_ITEMS = {
       attack: 12.4,
       attackMax: 16,
       attackSpeed: 1.0,
-      accuracy: 22.2,
+      accuracy: 17.3,
       defense: -6.25
     },
     extraStats: {
       attack: 3.3,
       attackMax: 5.5,
-      accuracy: 6.8
+      accuracy: 5.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -2073,6 +2123,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 20.5 @ 50% quality
+  // ... chance to hit: 15.6% @ 50% quality
+  // ... rated DPS: 3.19 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 21.5 @ 100% quality
+  // ... chance to hit: 15.9% @ 100% quality
+  // ... rated DPS: 3.43 @ 100% quality
   gold_rapiers: {
     id: 'gold_rapiers',
     icon: 'goldRapiers.png',
@@ -2089,13 +2149,13 @@ export const MISC_ITEMS = {
       attack: 14.5,
       attackMax: 19.1,
       attackSpeed: 1.0,
-      accuracy: 29.2,
+      accuracy: 22.7,
       defense: -7.5
     },
     extraStats: {
       attack: 3.9,
       attackMax: 6.6,
-      accuracy: 9
+      accuracy: 7
     },
     requiredEquip: [{
       type: 'skill',
@@ -2104,6 +2164,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 21.7 @ 50% quality
+  // ... chance to hit: 16.3% @ 50% quality
+  // ... rated DPS: 3.54 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 22.9 @ 100% quality
+  // ... chance to hit: 16.8% @ 100% quality
+  // ... rated DPS: 3.84 @ 100% quality
   carbon_rapiers: {
     id: 'carbon_rapiers',
     icon: 'carbonRapiers.png',
@@ -2120,13 +2190,13 @@ export const MISC_ITEMS = {
       attack: 16.7,
       attackMax: 22.4,
       attackSpeed: 1.0,
-      accuracy: 36.7,
+      accuracy: 28.5,
       defense: -8.75
     },
     extraStats: {
       attack: 4.5,
       attackMax: 7.7,
-      accuracy: 11.3
+      accuracy: 8.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2135,6 +2205,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 23.1 @ 50% quality
+  // ... chance to hit: 17.1% @ 50% quality
+  // ... rated DPS: 3.95 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 24.5 @ 100% quality
+  // ... chance to hit: 17.7% @ 100% quality
+  // ... rated DPS: 4.34 @ 100% quality
   steel_rapiers: {
     id: 'steel_rapiers',
     icon: 'steelRapiers.png',
@@ -2151,13 +2231,13 @@ export const MISC_ITEMS = {
       attack: 19,
       attackMax: 26.1,
       attackSpeed: 1.0,
-      accuracy: 44.8,
+      accuracy: 34.8,
       defense: -10
     },
     extraStats: {
       attack: 5.1,
       attackMax: 9,
-      accuracy: 13.8
+      accuracy: 10.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -2166,6 +2246,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 24.6 @ 50% quality
+  // ... chance to hit: 18.0% @ 50% quality
+  // ... rated DPS: 4.43 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 26.2 @ 100% quality
+  // ... chance to hit: 18.9% @ 100% quality
+  // ... rated DPS: 4.94 @ 100% quality
   platinum_rapiers: {
     id: 'platinum_rapiers',
     icon: 'platinumRapiers.png',
@@ -2182,13 +2272,13 @@ export const MISC_ITEMS = {
       attack: 21.5,
       attackMax: 30.1,
       attackSpeed: 1.0,
-      accuracy: 53.4,
+      accuracy: 41.4,
       defense: -11.25
     },
     extraStats: {
       attack: 5.7,
       attackMax: 10.4,
-      accuracy: 16.4
+      accuracy: 12.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -2197,6 +2287,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 26.2 @ 50% quality
+  // ... chance to hit: 19.2% @ 50% quality
+  // ... rated DPS: 5.01 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 28.0 @ 100% quality
+  // ... chance to hit: 20.3% @ 100% quality
+  // ... rated DPS: 5.68 @ 100% quality
   titanium_rapiers: {
     id: 'titanium_rapiers',
     icon: 'titaniumRapiers.png',
@@ -2213,13 +2313,13 @@ export const MISC_ITEMS = {
       attack: 24.2,
       attackMax: 34.4,
       attackSpeed: 1.0,
-      accuracy: 62.5,
+      accuracy: 48.5,
       defense: -12.5
     },
     extraStats: {
       attack: 6.5,
       attackMax: 11.8,
-      accuracy: 19.2
+      accuracy: 14.9
     },
     requiredEquip: [{
       type: 'skill',
@@ -2228,6 +2328,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 27.9 @ 50% quality
+  // ... chance to hit: 20.5% @ 50% quality
+  // ... rated DPS: 5.72 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 29.9 @ 100% quality
+  // ... chance to hit: 22.0% @ 100% quality
+  // ... rated DPS: 6.60 @ 100% quality
   tungsten_rapiers: {
     id: 'tungsten_rapiers',
     icon: 'tungstenRapiers.png',
@@ -2244,13 +2354,13 @@ export const MISC_ITEMS = {
       attack: 27,
       attackMax: 39.2,
       attackSpeed: 1.0,
-      accuracy: 72,
+      accuracy: 55.9,
       defense: -13.75
     },
     extraStats: {
       attack: 7.2,
       attackMax: 13.5,
-      accuracy: 22.2
+      accuracy: 17.2
     },
     requiredEquip: [{
       type: 'skill',
@@ -2259,6 +2369,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 29.7 @ 50% quality
+  // ... chance to hit: 22.1% @ 50% quality
+  // ... rated DPS: 6.57 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 32.0 @ 100% quality
+  // ... chance to hit: 24.2% @ 100% quality
+  // ... rated DPS: 7.75 @ 100% quality
   obsidian_rapiers: {
     id: 'obsidian_rapiers',
     icon: 'obsidianRapiers.png',
@@ -2275,13 +2395,13 @@ export const MISC_ITEMS = {
       attack: 30,
       attackMax: 44.2,
       attackSpeed: 1.0,
-      accuracy: 82,
+      accuracy: 63.6,
       defense: -15
     },
     extraStats: {
       attack: 8,
       attackMax: 15.2,
-      accuracy: 25.2
+      accuracy: 19.6
     },
     requiredEquip: [{
       type: 'skill',
@@ -2290,6 +2410,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 31.7 @ 50% quality
+  // ... chance to hit: 24.1% @ 50% quality
+  // ... rated DPS: 7.65 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 34.3 @ 100% quality
+  // ... chance to hit: 27.0% @ 100% quality
+  // ... rated DPS: 9.25 @ 100% quality
   cobalt_rapiers: {
     id: 'cobalt_rapiers',
     icon: 'cobaltRapiers.png',
@@ -2306,13 +2436,13 @@ export const MISC_ITEMS = {
       attack: 33.2,
       attackMax: 49.8,
       attackSpeed: 1.0,
-      accuracy: 92.4,
+      accuracy: 71.7,
       defense: -16.25
     },
     extraStats: {
       attack: 8.9,
       attackMax: 17.1,
-      accuracy: 28.4
+      accuracy: 22.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2321,6 +2451,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 33.9 @ 50% quality
+  // ... chance to hit: 26.5% @ 50% quality
+  // ... rated DPS: 8.99 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 36.7 @ 100% quality
+  // ... chance to hit: 30.5% @ 100% quality
+  // ... rated DPS: 11.21 @ 100% quality
   mithril_rapiers: {
     id: 'mithril_rapiers',
     icon: 'mithrilRapiers.png',
@@ -2337,13 +2477,13 @@ export const MISC_ITEMS = {
       attack: 36.6,
       attackMax: 55.7,
       attackSpeed: 1.0,
-      accuracy: 103.3,
+      accuracy: 80,
       defense: -17.5
     },
     extraStats: {
       attack: 9.8,
       attackMax: 19.2,
-      accuracy: 31.8
+      accuracy: 24.6
     },
     requiredEquip: [{
       type: 'skill',
@@ -2352,6 +2492,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 36.2 @ 50% quality
+  // ... chance to hit: 29.7% @ 50% quality
+  // ... rated DPS: 10.75 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 39.3 @ 100% quality
+  // ... chance to hit: 35.5% @ 100% quality
+  // ... rated DPS: 13.95 @ 100% quality
   adamantium_rapiers: {
     id: 'adamantium_rapiers',
     icon: 'adamantiumRapiers.png',
@@ -2368,13 +2518,13 @@ export const MISC_ITEMS = {
       attack: 40.3,
       attackMax: 62.1,
       attackSpeed: 1.0,
-      accuracy: 114.5,
+      accuracy: 88.7,
       defense: -18.75
     },
     extraStats: {
       attack: 10.7,
       attackMax: 21.4,
-      accuracy: 35.2
+      accuracy: 27.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -2383,6 +2533,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 38.6 @ 50% quality
+  // ... chance to hit: 33.9% @ 50% quality
+  // ... rated DPS: 13.10 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 42.1 @ 100% quality
+  // ... chance to hit: 42.6% @ 100% quality
+  // ... rated DPS: 17.95 @ 100% quality
   orichalcum_rapiers: {
     id: 'orichalcum_rapiers',
     icon: 'orichalcumRapiers.png',
@@ -2399,13 +2559,13 @@ export const MISC_ITEMS = {
       attack: 44.1,
       attackMax: 69,
       attackSpeed: 1.0,
-      accuracy: 126.1,
+      accuracy: 97.7,
       defense: -20
     },
     extraStats: {
       attack: 11.8,
       attackMax: 23.8,
-      accuracy: 38.8
+      accuracy: 30.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2414,6 +2574,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 41.2 @ 50% quality
+  // ... chance to hit: 39.6% @ 50% quality
+  // ... rated DPS: 16.33 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 45.1 @ 100% quality
+  // ... chance to hit: 53.1% @ 100% quality
+  // ... rated DPS: 23.96 @ 100% quality
   meteorite_rapiers: {
     id: 'meteorite_rapiers',
     icon: 'meteoriteRapiers.png',
@@ -2430,13 +2600,13 @@ export const MISC_ITEMS = {
       attack: 48.2,
       attackMax: 76.4,
       attackSpeed: 1.0,
-      accuracy: 138,
+      accuracy: 106.9,
       defense: -21.25
     },
     extraStats: {
       attack: 12.9,
       attackMax: 26.3,
-      accuracy: 42.5
+      accuracy: 32.9
     },
     requiredEquip: [{
       type: 'skill',
@@ -2445,6 +2615,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 44.1 @ 50% quality
+  // ... chance to hit: 48.0% @ 50% quality
+  // ... rated DPS: 21.15 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 48.3 @ 100% quality
+  // ... chance to hit: 62.0% @ 100% quality
+  // ... rated DPS: 29.95 @ 100% quality
   fairy_steel_rapiers: {
     id: 'fairy_steel_rapiers',
     icon: 'fairySteelRapiers.png',
@@ -2461,13 +2641,13 @@ export const MISC_ITEMS = {
       attack: 52.5,
       attackMax: 84.4,
       attackSpeed: 1.0,
-      accuracy: 150.3,
+      accuracy: 116.5,
       defense: -22.5
     },
     extraStats: {
       attack: 14,
       attackMax: 29.1,
-      accuracy: 46.2
+      accuracy: 35.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2476,6 +2656,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 47.0 @ 50% quality
+  // ... chance to hit: 57.7% @ 50% quality
+  // ... rated DPS: 27.15 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 51.7 @ 100% quality
+  // ... chance to hit: 68.2% @ 100% quality
+  // ... rated DPS: 35.23 @ 100% quality
   elven_steel_rapiers: {
     id: 'elven_steel_rapiers',
     icon: 'elvenSteelRapiers.png',
@@ -2492,13 +2682,13 @@ export const MISC_ITEMS = {
       attack: 57.1,
       attackMax: 92.9,
       attackSpeed: 1.0,
-      accuracy: 162.9,
+      accuracy: 126.2,
       defense: -23.75
     },
     extraStats: {
       attack: 15.2,
       attackMax: 32,
-      accuracy: 50.1
+      accuracy: 38.8
     },
     requiredEquip: [{
       type: 'skill',
@@ -2507,6 +2697,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 50.2 @ 50% quality
+  // ... chance to hit: 64.7% @ 50% quality
+  // ... rated DPS: 32.49 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 55.3 @ 100% quality
+  // ... chance to hit: 72.7% @ 100% quality
+  // ... rated DPS: 40.24 @ 100% quality
   cursed_rapiers: {
     id: 'cursed_rapiers',
     icon: 'cursedRapiers.png',
@@ -2523,13 +2723,13 @@ export const MISC_ITEMS = {
       attack: 61.9,
       attackMax: 102.1,
       attackSpeed: 1.0,
-      accuracy: 175.9,
+      accuracy: 136.3,
       defense: -25
     },
     extraStats: {
       attack: 16.5,
       attackMax: 35.1,
-      accuracy: 54.1
+      accuracy: 41.9
     },
     requiredEquip: [{
       type: 'skill',
@@ -2538,6 +2738,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 53.6 @ 50% quality
+  // ... chance to hit: 69.8% @ 50% quality
+  // ... rated DPS: 37.42 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 59.2 @ 100% quality
+  // ... chance to hit: 76.2% @ 100% quality
+  // ... rated DPS: 45.14 @ 100% quality
   darksteel_rapiers: {
     id: 'darksteel_rapiers',
     icon: 'darksteelRapiers.png',
@@ -2554,13 +2764,13 @@ export const MISC_ITEMS = {
       attack: 67,
       attackMax: 111.9,
       attackSpeed: 1.0,
-      accuracy: 189.2,
+      accuracy: 146.6,
       defense: -26.25
     },
     extraStats: {
       attack: 17.9,
       attackMax: 38.5,
-      accuracy: 58.2
+      accuracy: 45.1
     },
     requiredEquip: [{
       type: 'skill',
@@ -2569,6 +2779,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 57.3 @ 50% quality
+  // ... chance to hit: 73.6% @ 50% quality
+  // ... rated DPS: 42.16 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 63.3 @ 100% quality
+  // ... chance to hit: 79.0% @ 100% quality
+  // ... rated DPS: 50.01 @ 100% quality
   radiant_rapiers: {
     id: 'radiant_rapiers',
     icon: 'radiantRapiers.png',
@@ -2585,13 +2805,13 @@ export const MISC_ITEMS = {
       attack: 72.4,
       attackMax: 122.4,
       attackSpeed: 1.0,
-      accuracy: 202.9,
+      accuracy: 157.1,
       defense: -27.5
     },
     extraStats: {
       attack: 19.3,
       attackMax: 42.1,
-      accuracy: 62.4
+      accuracy: 48.3
     },
     requiredEquip: [{
       type: 'skill',
@@ -2600,6 +2820,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 61.1 @ 50% quality
+  // ... chance to hit: 76.7% @ 50% quality
+  // ... rated DPS: 46.89 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 67.7 @ 100% quality
+  // ... chance to hit: 81.2% @ 100% quality
+  // ... rated DPS: 55.00 @ 100% quality
   astral_rapiers: {
     id: 'astral_rapiers',
     icon: 'astralRapiers.png',
@@ -2616,13 +2846,13 @@ export const MISC_ITEMS = {
       attack: 78.1,
       attackMax: 133.6,
       attackSpeed: 1.0,
-      accuracy: 216.8,
+      accuracy: 167.9,
       defense: -28.75
     },
     extraStats: {
       attack: 20.8,
       attackMax: 46,
-      accuracy: 66.7
+      accuracy: 51.7
     },
     requiredEquip: [{
       type: 'skill',
@@ -2631,6 +2861,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 65.2 @ 50% quality
+  // ... chance to hit: 79.2% @ 50% quality
+  // ... rated DPS: 51.63 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 72.4 @ 100% quality
+  // ... chance to hit: 83.0% @ 100% quality
+  // ... rated DPS: 60.10 @ 100% quality
   titanfoil_rapiers: {
     id: 'titanfoil_rapiers',
     icon: 'titanfoilRapiers.png',
@@ -2647,13 +2887,13 @@ export const MISC_ITEMS = {
       attack: 84.1,
       attackMax: 145.5,
       attackSpeed: 1.0,
-      accuracy: 231,
+      accuracy: 178.9,
       defense: -30
     },
     extraStats: {
       attack: 22.4,
       attackMax: 50.1,
-      accuracy: 71.1
+      accuracy: 55
     },
     requiredEquip: [{
       type: 'skill',
@@ -2662,6 +2902,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 69.6 @ 50% quality
+  // ... chance to hit: 81.2% @ 50% quality
+  // ... rated DPS: 56.49 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 77.3 @ 100% quality
+  // ... chance to hit: 84.6% @ 100% quality
+  // ... rated DPS: 65.40 @ 100% quality
   relicrock_rapiers: {
     id: 'relicrock_rapiers',
     icon: 'relicrockRapiers.png',
@@ -2678,13 +2928,13 @@ export const MISC_ITEMS = {
       attack: 90.4,
       attackMax: 158.2,
       attackSpeed: 1.0,
-      accuracy: 245.6,
+      accuracy: 190.2,
       defense: -31.25
     },
     extraStats: {
       attack: 24.1,
       attackMax: 54.5,
-      accuracy: 75.6
+      accuracy: 58.5
     },
     requiredEquip: [{
       type: 'skill',
@@ -2693,6 +2943,16 @@ export const MISC_ITEMS = {
     }]
   },
 
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 74.2 @ 50% quality
+  // ... chance to hit: 82.9% @ 50% quality
+  // ... rated DPS: 61.49 @ 50% quality
+  // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
+  // ... with gear/passives giving an extra 0 attack speed, 0-0 damage, 40 accuracy, and 19% critical chance
+  // ... average hit: 82.6 @ 100% quality
+  // ... chance to hit: 85.9% @ 100% quality
+  // ... rated DPS: 70.91 @ 100% quality
   eternium_rapiers: {
     id: 'eternium_rapiers',
     icon: 'eterniumRapiers.png',
@@ -2709,13 +2969,13 @@ export const MISC_ITEMS = {
       attack: 97.1,
       attackMax: 171.7,
       attackSpeed: 1.0,
-      accuracy: 260.4,
+      accuracy: 201.6,
       defense: -32.5
     },
     extraStats: {
       attack: 25.9,
       attackMax: 59.1,
-      accuracy: 80.1
+      accuracy: 62
     },
     requiredEquip: [{
       type: 'skill',
@@ -2723,7 +2983,7 @@ export const MISC_ITEMS = {
       level: 125
     }]
   },
-
+  
   /* Spirit shields */
   spirit_shield: {
     id: 'spirit_shield',

@@ -95,7 +95,7 @@ Router.route('/achievements', {
 (['combat', 'newCombat', 'battle', 'fight']).forEach((pageAlias) => {
   Router.route(`/${pageAlias}`, {
     name: pageAlias,
-    title: 'Combat',
+    title: 'Battle',
     template: 'newCombatPage',
     yieldRegions: {
       'nav': { to: 'nav' },

@@ -18,7 +18,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'teak_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: 2000000,
     maxToCraft: 1,
     tags: ['weapon'],
@@ -65,7 +65,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'ebony_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -126,7 +126,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'fiery_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -194,7 +194,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'tamarind_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -262,7 +262,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'magic_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -330,7 +330,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'petrified_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (ES_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -398,7 +398,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'ancient_bow',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -466,7 +466,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'cursed_quiver',
     isHidden: true,
-    timeToCraft: 60 * 60 * 2, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: 2000000,
     maxToCraft: 1,
     tags: ['weapon'],
@@ -513,8 +513,8 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'darksteel_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
-    xp: (CURSED_ESS_XP * 2) + (ADA_ESS_XP * 2),
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
+    xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 100,
@@ -574,7 +574,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'radiant_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (ORI_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -642,7 +642,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'astral_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (MET_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -710,7 +710,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'titanfoil_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (FS_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -778,7 +778,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'relicrock_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (ES_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
@@ -846,7 +846,7 @@ export const ARCHER_CRAFTS = {
     category: 'combat',
     id: 'eternium_quiver',
     isHidden: true,
-    timeToCraft: 2 * 60 * 60, // 60
+    timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
     xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],

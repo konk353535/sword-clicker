@@ -16,9 +16,9 @@ Template.mineSpace.onCreated(function bodyOnCreated() {
 
 Template.mineSpace.events({
   'click'(event, instance) {
-    if (instance.data.tiny) {
+    /* if (instance.data.tiny) {
       return false;
-    }
+    } */
     
     const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
     const myMining = Mining.findOne({ owner: Meteor.userId() });

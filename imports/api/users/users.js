@@ -26,7 +26,7 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
                   return a.trim()
                 })[0];
                 
-              if (localIp && (typeof localIp === 'string') && (localIp.length > 0)) {
+              if (localIP && (typeof localIP === 'string') && (localIP.length > 0)) {
                 ipDiscovered = localIP;
               }
             }
@@ -35,15 +35,6 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
         });
       }
     } catch (err) {
-    }
-    
-    try {
-      ipDiscovered = lodash._property((ipDiscovered || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
-    } catch (err) {
-      try {
-        ipDiscovered = lodash.property((ipDiscovered || '').match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/), '0');
-      } catch (err) {
-      }
     }
   }
 

@@ -28,20 +28,27 @@ import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
+import { getIPFromConnection } from '/imports/api/users/users.js';
+
+/*
 Meteor.onConnection((connection) => {
-  //console.log("Meteor.onConnection");
-  //console.log(connection);
+  console.log("Meteor.onConnection");
+  console.log(connection);
 });
+*/
 
 Accounts.onLogin((accountConnection) => {
-  //console.log("Accounts.onLogin");
-  //console.log(user);
-  
   if (accountConnection.user) {
     if (accountConnection.user.username) {
+      const userIPRaw  = accountConnection.connection.clientAddress;
+      const userIPReal = getIPFromConnection(accountConnection.connection);
       console.log(`Account login from ${accountConnection.user.username} (${accountConnection.user._id}):`);
-      console.log(accountConnection.connection.clientAddress);
-      console.log(accountConnection.connection.httpHeaders);
+      if (userIPReal !== userIPRaw) {
+        console.log(`. . . . . IP address: ${userIPReal}  (from gateway/proxy ${userIPRaw})`);
+      } else {
+        console.log(`. . . . . IP address: ${userIPReal}`);
+      }
+      //console.log(accountConnection.connection.httpHeaders);
     }
   }
 });

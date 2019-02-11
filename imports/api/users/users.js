@@ -6,31 +6,27 @@ import moment from "moment/moment";
 
 export const Users = Meteor.users;
 
-export const getIPFromConnection = function getIPFromConnection(connection) {
+export const getIPFromConnection = function getIPFromConnection(connectionInfo) {
   let ipDiscovered = '';
   
-  if (connection) {
+  if (connectionInfo) {
     try {
-      ipDiscovered = connection.clientAddress;
+      ipDiscovered = connectionInfo.clientAddress;
     } catch (err) {
     }
     
     try {
-      if (connection.httpHeaders) {
+      if (connectionInfo.httpHeaders) {
         (['x-forwarded-for', 'X-Forwarded-For', 'x-real-ip', 'X-Real-IP', 'cf-connecting-ip', 'CF-Connecting-IP']).forEach((httpHeader) => {
           try {
-            if (connection.httpHeaders[httpHeader]) {
-              let localIP = connection.httpHeaders[httpHeader]
+            if (connectionInfo.httpHeaders[httpHeader]) {
+              let localIP = connectionInfo.httpHeaders[httpHeader]
                 .split(/[ ,]/)
                 .filter(function(a) {
                   return a.trim()
                 })[0];
                 
               if (localIp && (typeof localIp === 'string') && (localIp.length > 0)) {
-                return ipDiscovered;
-              }
-
-              if (localIp && localIP.length > 0) {
                 ipDiscovered = localIP;
               }
             }

@@ -1,5 +1,5 @@
 <template name="mineSpace">
-  <div class="icon-box{{#if tiny}}-tiny{{/if}} mine-space-container">
+  <div class="icon-box{{#if tiny}}-tiny{{/if}} mine-space-container{{#if tiny}}-tiny{{/if}}">
     {{#unless isEmpty}}
       {{#if mineSpace.isCluster}}
         <img src="/icons/{{constants.clusterIcon}}" class="ore-icon{{#if tiny}}-tiny{{/if}}">

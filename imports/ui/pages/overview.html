@@ -56,7 +56,36 @@
             </div>
           </div>
         {{/if}}
-
+        
+        <!-- Adventures -->
+        <div class="d-flex flex-column mb-3">
+          <div class="d-flex align-items-center">
+            <a href="/newCombat" class="text-muted">Adventures</a>
+            <div class="d-flex justify-content-end flex-grow">
+              <div class="text-muted ml-3">
+                {{> readableDuration endDate=lastAdventure.endDate}}
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            {{> adventuresList adventures=activeAdventures}}
+          </div>
+        </div>
+      
+        <!-- Mining -->
+        <div class="d-flex flex-column mb-3">
+          <div class="d-flex align-items-center">
+            <a href="/mining" class="text-muted">Mining Summary</a>
+          </div>
+          <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
+            <div class="d-flex flex-row flex-wrap mine-pit-container" style="max-width: 160px;">
+              {{#each miningSpaces}}
+                {{> mineSpace mineSpace=this tiny=true}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        
         <!-- Crafting -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
@@ -147,20 +176,6 @@
           </div>
         </div>
         
-        <!-- Adventures -->
-        <div class="d-flex flex-column mb-3">
-          <div class="d-flex align-items-center">
-            <a href="/newCombat" class="text-muted">Adventures</a>
-            <div class="d-flex justify-content-end flex-grow">
-              <div class="text-muted ml-3">
-                {{> readableDuration endDate=lastAdventure.endDate}}
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
-            {{> adventuresList adventures=activeAdventures}}
-          </div>
-        </div>
       </div>
 
       <div class="live-feed-content d-flex flex-column">

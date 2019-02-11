@@ -7,16 +7,19 @@ import { FarmingSpace } from '/imports/api/farming/farming';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Inscription } from '/imports/api/inscription/inscription.js';
 import { Adventures } from '/imports/api/adventures/adventures.js';
-import { Mining } from '/imports/api/mining/mining.js';
 import { Woodcutting } from '/imports/api/woodcutting/woodcutting.js';
 import { Friends, FriendRequests } from '/imports/api/friends/friends.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
 import { Users } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
+import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 
+import '../components/mining/mineSpace.js';
 import './overview.html';
 
 let updatingAdventures = false;
+let miningPageTimer;
+let hasInitGameUpdate;
 
 Template.overviewPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -26,6 +29,24 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
   this.state.set('updatingWoodcutting', false);
   this.state.set('updatingMining', false);
   this.state.set('friendsList', undefined);
+
+  // Show mining spaces
+  Meteor.subscribe('miningSpace');
+
+  this.autorun(() => {
+    if (!hasInitGameUpdate && Mining.findOne()) {
+      Meteor.call('mining.gameUpdate');
+      hasInitGameUpdate = true;
+    }
+  });
+  
+  Meteor.call('mining.gameUpdate');
+
+  miningPageTimer = Meteor.setInterval(function () {
+    if (Meteor.user()) {
+      Meteor.call('mining.gameUpdate');
+    }
+  }, 7000);
   
   const updateAdventures = function (self) {
     self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
@@ -135,6 +156,10 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
   Meteor.subscribe('inscription');
   Meteor.subscribe('friendRequests');
   Meteor.subscribe('farmingSpace');
+});
+
+Template.overviewPage.onDestroyed(function bodyOnDestroyed() {
+  Meteor.clearInterval(miningPageTimer);
 });
 
 Template.overviewPage.helpers({
@@ -386,7 +411,11 @@ Template.overviewPage.helpers({
       }
       return farmingSpace;
     });
-  }
+  },
+  
+  miningSpaces() {
+    return MiningSpace.find();
+  },  
 });
 
 Template.overviewPage.events({

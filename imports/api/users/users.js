@@ -26,6 +26,10 @@ export const getIPFromConnection = function getIPFromConnection(connection) {
                   return a.trim()
                 })[0];
                 
+              if (localIp && (typeof localIp === 'string') && (localIp.length > 0)) {
+                return ipDiscovered;
+              }
+
               if (localIp && localIP.length > 0) {
                 ipDiscovered = localIP;
               }
@@ -47,7 +51,16 @@ export const getIPFromConnection = function getIPFromConnection(connection) {
     }
   }
 
-  return ((ipDiscovered && ipDiscovered.length > 0) ? ipDiscovered : '0.0.0.0');
+  try {
+    ipDiscovered = ((ipDiscovered && ipDiscovered.length > 0) ? ipDiscovered : '0.0.0.0');
+  } catch (err) {
+  }
+  
+  if (typeof ipDiscovered === 'string') {
+    return ipDiscovered;
+  }
+  
+  return '0.0.0.0';
 };
 
 export const updateUserActivity = function updateUserActivity({userId, connectionInfo}) {
@@ -57,9 +70,13 @@ export const updateUserActivity = function updateUserActivity({userId, connectio
   // Set up mongodb update fields  
   const userActivityUpdate = {
     lastActivity: moment().toDate(),
-  };  
-  if (ipAddress && ipAddress.length > 0 && ipAddress !== '0.0.0.0') {
-    userActivityUpdate.clientIp = ipAddress;
+  };
+  try {
+    if (ipAddress && ipAddress.length > 0 && ipAddress !== '0.0.0.0') {
+      userActivityUpdate.clientIp = ipAddress;
+    }
+  }
+  catch (err) {
   }
   
   // Update user activity

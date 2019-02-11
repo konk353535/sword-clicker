@@ -34,6 +34,16 @@ export const TOWER_FLOOR_21 = {
       rewards: [
         { type: 'item', itemId: 'darksteel_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'ebony_bow_scroll', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_quiver_scroll', amount: 1 },
+      ]
     }]))
   },
   4: {

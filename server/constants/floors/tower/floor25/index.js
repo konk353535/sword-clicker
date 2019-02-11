@@ -34,6 +34,16 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'relicrock_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'petrified_bow_scroll', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'relicrock_quiver_scroll', amount: 1 },
+      ]
     }]))
   },
   4: {

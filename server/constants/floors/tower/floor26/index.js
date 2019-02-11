@@ -34,6 +34,16 @@ export const TOWER_FLOOR_26 = {
       rewards: [
         { type: 'item', itemId: 'eternium_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 256,
+      rewards: [
+        { type: 'item', itemId: 'ancient_bow_scroll', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 256,
+      rewards: [
+        { type: 'item', itemId: 'eternium_quiver_scroll', amount: 1 },
+      ]
     }]))
   },
   4: {

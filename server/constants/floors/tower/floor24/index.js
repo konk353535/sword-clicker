@@ -34,6 +34,16 @@ export const TOWER_FLOOR_24 = {
       rewards: [
         { type: 'item', itemId: 'titanfoil_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'magic_bow_scroll', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_quiver_scroll', amount: 1 },
+      ]
     }]))
   },
   4: {

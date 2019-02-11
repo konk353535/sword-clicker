@@ -34,6 +34,16 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'astral_knife', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'tamarind_scroll', amount: 1 },
+      ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'astral_quiver_scroll', amount: 1 },
+      ]
     }]))
   },
   4: {

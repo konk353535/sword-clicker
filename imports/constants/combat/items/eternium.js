@@ -1,4 +1,5 @@
 const ETERNIUM_MULTIPLIER = 1.6;
+const ETERNIUM_DEFENSE_MULTIPLIER = 1.7;
 
 
 export const ETERNIUM_ITEMS = {
@@ -41,13 +42,13 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 83.5 * ETERNIUM_MULTIPLIER,
       "attackSpeed": 0.5,
       "accuracy": 83.5 * ETERNIUM_MULTIPLIER,
-      "defense": 32.7 * ETERNIUM_MULTIPLIER
+      "defense": 32.7 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * ETERNIUM_MULTIPLIER,
       "attackMax": 25.1 * ETERNIUM_MULTIPLIER,
       "accuracy": 25.1 * ETERNIUM_MULTIPLIER,
-      "defense": 9.8 * ETERNIUM_MULTIPLIER
+      "defense": 9.8 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -130,7 +131,7 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 300 * ETERNIUM_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * ETERNIUM_MULTIPLIER,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     "extraStats": {
       "attack": 25.1 * ETERNIUM_MULTIPLIER,
@@ -180,12 +181,12 @@ export const ETERNIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * ETERNIUM_MULTIPLIER,
-      "defense": 17.4 * ETERNIUM_MULTIPLIER,
+      "defense": 17.4 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 83.5 * ETERNIUM_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * ETERNIUM_MULTIPLIER,
-      "defense": 5.2 * ETERNIUM_MULTIPLIER,
+      "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
     requiredEquip: [{
@@ -205,12 +206,12 @@ export const ETERNIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * ETERNIUM_MULTIPLIER,
-      "defense": 17.4 * ETERNIUM_MULTIPLIER,
+      "defense": 17.4 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 83.5 * ETERNIUM_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * ETERNIUM_MULTIPLIER,
-      "defense": 5.2 * ETERNIUM_MULTIPLIER,
+      "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
     requiredEquip: [{
@@ -230,12 +231,12 @@ export const ETERNIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * ETERNIUM_MULTIPLIER,
-      "defense": 17.4 * ETERNIUM_MULTIPLIER,
+      "defense": 17.4 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 83.5 * ETERNIUM_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * ETERNIUM_MULTIPLIER,
-      "defense": 5.2 * ETERNIUM_MULTIPLIER,
+      "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
     requiredEquip: [{
@@ -256,12 +257,12 @@ export const ETERNIUM_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 32.7 * ETERNIUM_MULTIPLIER,
-      "defense": 51.1 * ETERNIUM_MULTIPLIER,
+      "defense": 51.1 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 167.6 * ETERNIUM_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 9.8 * ETERNIUM_MULTIPLIER,
-      "defense": 15.3 * ETERNIUM_MULTIPLIER,
+      "defense": 15.3 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 50.3 * ETERNIUM_MULTIPLIER
     },
     requiredEquip: [{

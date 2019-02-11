@@ -130,7 +130,7 @@ export const ASTRAL_ITEMS = {
       "attackMax": 300 * ASTRAL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * ASTRAL_MULTIPLIER,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     "extraStats": {
       "attack": 25.1 * ASTRAL_MULTIPLIER,

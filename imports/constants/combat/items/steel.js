@@ -184,7 +184,7 @@ export const STEEL_ITEMS = {
       "attackMax": 78,
       "attackSpeed": 0.3,
       "accuracy": 34.9,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     "extraStats": {
       "attack": 6.5,

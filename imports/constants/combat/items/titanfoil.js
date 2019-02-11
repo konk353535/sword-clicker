@@ -1,4 +1,5 @@
 const TITANFOIL_MULTIPLIER = 1.4;
+const TITANFOIL_DEFENSE_MULTIPLIER = 1.3;
 
 
 export const TITANFOIL_ITEMS = {
@@ -41,13 +42,13 @@ export const TITANFOIL_ITEMS = {
       "attackMax": 83.5 * TITANFOIL_MULTIPLIER,
       "attackSpeed": 0.5,
       "accuracy": 83.5 * TITANFOIL_MULTIPLIER,
-      "defense": 32.7 * TITANFOIL_MULTIPLIER
+      "defense": 32.7 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * TITANFOIL_MULTIPLIER,
       "attackMax": 25.1 * TITANFOIL_MULTIPLIER,
       "accuracy": 25.1 * TITANFOIL_MULTIPLIER,
-      "defense": 9.8 * TITANFOIL_MULTIPLIER
+      "defense": 9.8 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -130,7 +131,7 @@ export const TITANFOIL_ITEMS = {
       "attackMax": 300 * TITANFOIL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * TITANFOIL_MULTIPLIER,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     "extraStats": {
       "attack": 25.1 * TITANFOIL_MULTIPLIER,
@@ -180,12 +181,12 @@ export const TITANFOIL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * TITANFOIL_MULTIPLIER,
-      "defense": 17.4 * TITANFOIL_MULTIPLIER,
+      "defense": 17.4 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 83.5 * TITANFOIL_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * TITANFOIL_MULTIPLIER,
-      "defense": 5.2 * TITANFOIL_MULTIPLIER,
+      "defense": 5.2 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 25.1 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{
@@ -205,12 +206,12 @@ export const TITANFOIL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * TITANFOIL_MULTIPLIER,
-      "defense": 17.4 * TITANFOIL_MULTIPLIER,
+      "defense": 17.4 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 83.5 * TITANFOIL_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * TITANFOIL_MULTIPLIER,
-      "defense": 5.2 * TITANFOIL_MULTIPLIER,
+      "defense": 5.2 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 25.1 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{
@@ -230,12 +231,12 @@ export const TITANFOIL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 17.4 * TITANFOIL_MULTIPLIER,
-      "defense": 17.4 * TITANFOIL_MULTIPLIER,
+      "defense": 17.4 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 83.5 * TITANFOIL_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * TITANFOIL_MULTIPLIER,
-      "defense": 5.2 * TITANFOIL_MULTIPLIER,
+      "defense": 5.2 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 25.1 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{
@@ -256,12 +257,12 @@ export const TITANFOIL_ITEMS = {
     "isEquippable": true,
     "stats": {
       "healthMax": 32.7 * TITANFOIL_MULTIPLIER,
-      "defense": 51.1 * TITANFOIL_MULTIPLIER,
+      "defense": 51.1 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 167.6 * TITANFOIL_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 9.8 * TITANFOIL_MULTIPLIER,
-      "defense": 15.3 * TITANFOIL_MULTIPLIER,
+      "defense": 15.3 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER,
       "armor": 50.3 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{

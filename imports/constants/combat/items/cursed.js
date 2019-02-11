@@ -184,7 +184,7 @@ export const CURSED_ITEMS = {
       "attackMax": 300,
       "attackSpeed": 0.3,
       "accuracy": 134.1,
-      "criticalChance": 25
+      "criticalChance": 50
     },
     "extraStats": {
       "attack": 25.1,

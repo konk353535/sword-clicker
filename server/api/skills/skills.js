@@ -23,6 +23,8 @@ import moment from "moment/moment";
 import _ from 'underscore';
 import lodash from 'lodash';
 
+import { updateUserActivity } from '/imports/api/users/users.js';
+
 let globalXpBuffs = {};
 
 const updateGlobalBuffs = () => {
@@ -275,23 +277,7 @@ Meteor.methods({
       }
     }
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'skills.requirements'(skillName) {
@@ -395,23 +381,7 @@ Meteor.methods({
       characterIcon: targetUserCombat.characterIcon || 'character.svg'
     }
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'skills.highscores'(skillName, showAll200) {
@@ -471,23 +441,7 @@ Meteor.methods({
       }).fetch();
     }
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   }
 });
 

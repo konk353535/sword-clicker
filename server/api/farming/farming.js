@@ -9,6 +9,7 @@ import { Events } from '/imports/api/events/events';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 import { FARMING } from '/imports/constants/farming';
 import { ITEMS } from '/imports/constants/items';
@@ -168,23 +169,7 @@ Meteor.methods({
       throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
     }
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.pickAll'() {
@@ -215,23 +200,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.killPlant'(index) {
@@ -249,23 +218,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.plant'(plantId) {
@@ -333,23 +286,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.plantAll'(plantId, specifiedAmount) {
@@ -444,23 +381,7 @@ Meteor.methods({
       }
     }, { multi: true });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.buyShopItem'(seedId, amountToBuy = 1) {
@@ -483,23 +404,7 @@ Meteor.methods({
     // Add specified item
     addItem(shopItemConstants.itemId, amountToBuy);
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'farming.fetchSeedShopSells'() {

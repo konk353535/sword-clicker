@@ -18,6 +18,7 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 import { CDbl } from '/imports/utils.js';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
   let owner;
@@ -209,23 +210,7 @@ Meteor.methods({
 
     attackMineSpace(mineSpaceId, mining, multiplier);
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'mining.buyMiner'(minerId) {
@@ -266,23 +251,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'mining.buyProspector'(prospectorId) {
@@ -320,23 +289,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'mining.fireProspector'(prospectorId) {
@@ -360,23 +313,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'mining.gameUpdate'() {

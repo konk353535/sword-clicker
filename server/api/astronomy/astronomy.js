@@ -11,6 +11,7 @@ import { Astronomy } from '/imports/api/astronomy/astronomy';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 Meteor.methods({
 
@@ -58,23 +59,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
   // Fetch main mage upgrade costs
   'astronomy.upgradeCosts'() {
@@ -159,23 +144,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
   // Deposit gold to mage
   'astronomy.depositMageGold'(index, amount) {
@@ -213,23 +182,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
   // Withdraw gold from mage
   'astronomy.withdrawMageGold'(index, amount) {
@@ -269,23 +222,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
   // Boost mage
   'astronomy.boostMage'(index) { },

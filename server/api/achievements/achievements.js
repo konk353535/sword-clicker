@@ -6,6 +6,7 @@ import { Users } from '/imports/api/users/users';
 import { Achievements } from '/imports/api/achievements/achievements';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 Meteor.methods({
 
@@ -58,24 +59,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
-
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
     return true;
   },
 

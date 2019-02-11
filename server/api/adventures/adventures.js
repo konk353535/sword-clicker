@@ -18,6 +18,7 @@ import { Adventures } from '/imports/api/adventures/adventures';
 import { addItem, hasGems, consumeGems, consumeItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills';
 import { Users } from '/imports/api/users/users';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 const MAX_ADVENTURES = 10;
 const NEW_ADVENTURE_SECONDS = 120;
@@ -238,23 +239,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'adventures.collectAdventure'(adventureId) {
@@ -303,23 +288,7 @@ Meteor.methods({
       }
     })
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'adventures.cycleAdventure'(isGems = false) {
@@ -406,23 +375,7 @@ Meteor.methods({
       }
     }
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'adventures.startAdventure'(adventureId) {
@@ -471,23 +424,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'adventures.gameUpdate'() {

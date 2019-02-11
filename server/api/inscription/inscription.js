@@ -13,7 +13,7 @@ import { ITEMS } from '/imports/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 import { CInt } from '/imports/utils.js';
-
+import { updateUserActivity } from '/imports/api/users/users.js';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 
 const craftItem = function (recipeId, amountToCraft) {
@@ -92,23 +92,7 @@ Meteor.methods({
 
     craftItem(recipeId, amount);
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'inscription.cancelCraft'(targetEndDate) {
@@ -175,23 +159,7 @@ Meteor.methods({
       }
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'inscription.fetchRecipes'() {

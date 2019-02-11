@@ -12,6 +12,7 @@ import _ from 'underscore';
 import lodash from 'lodash';
 
 import { addXp } from '/server/api/skills/skills';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
@@ -232,23 +233,7 @@ Meteor.methods({
       }
     })
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'combat.gameUpdate'() {
@@ -354,23 +339,7 @@ Meteor.methods({
 
     Battles.update(battle._id, update);
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   }
 });
 

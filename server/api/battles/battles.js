@@ -20,6 +20,7 @@ import { ENEMIES } from '/server/constants/enemies/index.js'; // List of enemies
 
 import { startBattle } from './battleMethods/startBattle';
 import { removeBattle } from './battleMethods/completeBattle';
+import { updateUserActivity } from '/imports/api/users/users.js';
 
 const setBattleAgain = function(floor, room) {
   Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
@@ -42,23 +43,7 @@ Meteor.methods({
       removeBattle(existingBattle._id);
     });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'battles.findPersonalBattle'(level) {
@@ -104,23 +89,7 @@ Meteor.methods({
 
     startBattle({ level, wave, server });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'battles.findTowerBattle'(floor, room) {
@@ -209,23 +178,7 @@ Meteor.methods({
     // Eventually select a random battle appropriate to users level
     startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
 
-    // Discover user IP, set current time for last active
-    const userActivityUpdate = {
-      lastActivity: moment().toDate(),
-    };
-    let clientIp = '';
-    try {
-      clientIp = this.connection.clientAddress;
-      userActivityUpdate.clientIp = clientIp;
-    } catch (err) {
-    }
-    
-    // update user activity
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $set: userActivityUpdate
-    });
+    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
   },
 
   'battles.getWaveDetails'() {

@@ -1231,6 +1231,174 @@ export const STAFF_ITEMS = {
       level: 51
     }]
   },
+
+  darksteel_wand: {
+    id: 'darksteel_wand',
+    icon: 'darksteelWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'darksteel wand',
+    sellPrice: 7350,
+    description: 'What seems like a darksteel wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 40,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 44,
+      magicPower: 35
+    },
+    extraStats: {
+      magicPower: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 54
+    }]
+  },
+
+  radiant_wand: {
+    id: 'radiant_wand',
+    icon: 'radiantWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'radiant wand',
+    sellPrice: 7700,
+    description: 'What seems like a radiant wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 42,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 46,
+      magicPower: 37
+    },
+    extraStats: {
+      magicPower: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 57
+    }]
+  },
+
+  astral_wand: {
+    id: 'astral_wand',
+    icon: 'astralWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'astral wand',
+    sellPrice: 8050,
+    description: 'What seems like an astral wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 44,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 48,
+      magicPower: 39
+    },
+    extraStats: {
+      magicPower: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  titanfoil_wand: {
+    id: 'titanfoil_wand',
+    icon: 'titanfoilWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'titanfoil wand',
+    sellPrice: 8400,
+    description: 'What seems like a titanfoil wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 46,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 50,
+      magicPower: 42
+    },
+    extraStats: {
+      magicPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 63
+    }]
+  },
+
+  relicrock_wand: {
+    id: 'relicrock_wand',
+    icon: 'relicrockWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'relicrock wand',
+    sellPrice: 8750,
+    description: 'What seems like a relicrock wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 48,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 52,
+      magicPower: 45
+    },
+    extraStats: {
+      magicPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 66
+    }]
+  },
+
+  eternium_wand: {
+    id: 'eternium_wand',
+    icon: 'eterniumWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'eternium wand',
+    sellPrice: 9100,
+    description: 'What seems like an eternium wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 50,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 54,
+      magicPower: 50
+    },
+    extraStats: {
+      magicPower: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
   
   brown_trident: {
     id: 'brown_trident',

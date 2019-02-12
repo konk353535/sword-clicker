@@ -12,7 +12,7 @@ import { Mining } from '/imports/api/mining/mining';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { addXp } from '/server/api/skills/skills';
 import { addItem } from '/server/api/items/items.js';
-import { getIPFromConnection } from '/imports/api/users/users.js';
+import { getIPFromConnection, updateUserActivity } from '/imports/api/users/users.js';
 
 Meteor.methods({
 
@@ -399,23 +399,7 @@ Meteor.methods({
         $set: setObject
       });
       
-      // Discover user IP, set current time for last active
-      const userActivityUpdate = {
-        lastActivity: moment().toDate(),
-      };
-      let clientIp = '';
-      try {
-        clientIp = this.connection.clientAddress;
-        userActivityUpdate.clientIp = clientIp;
-      } catch (err) {
-      }
-      
-      // update user activity
-      Users.update({
-        _id: Meteor.userId()
-      }, {
-        $set: userActivityUpdate
-      });
+      updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
     }
   }
 });

@@ -11,6 +11,7 @@ import { Events } from '/imports/api/events/events';
 
 import { IsValid, CInt } from '/imports/utils.js';
 import { sendUserChatMessage } from '/imports/chatUtils.js';
+import { getIPFromConnection } from '/imports/api/users/users.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
@@ -79,19 +80,18 @@ SimpleChat.configure ({
       return;
     }
 
-    /*
     if (this.connection) {
-      if ((!userDoc.clientIp) || (userDoc.clientIp != this.connection.clientAddress)) {
+      const currentClientIp = getIPFromConnection(this.connection);
+      if ((!userDoc.clientIp) || (userDoc.clientIp != currentClientIp)) {
         Users.update({
           _id: this.userId
         }, {
           $set: {
-            clientIp: this.connection.clientAddress
+            clientIp: currentClientIp
           }
         })
       }
     }
-    */
 
     if (userDoc.isMutedExpiry) {
       if (moment().isBefore(userDoc.isMutedExpiry)) {

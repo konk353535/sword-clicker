@@ -25,6 +25,8 @@ import { SKILLS } from '/server/constants/skills/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
+import { getIPFromConnection } from '/imports/api/users/users.js';
+
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
 import './crons.js';
@@ -346,12 +348,7 @@ Accounts.emailTemplates.verifyEmail = {
 };
 
 Accounts.validateLoginAttempt((attempt) => {
-  const clientIp = attempt.connection.clientAddress;
-
-  if (BlackList.findOne({ clientIp })) {
-    throw new Meteor.Error('something-is-wrong', 'Your I.P. address is banned.');
-  }
-
+  // If there's no actual user associated with this login attempt, there's an internal error.
   if (!attempt.user) {
     throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');    
   }
@@ -359,6 +356,12 @@ Accounts.validateLoginAttempt((attempt) => {
   // Is user banned?
   if (attempt.user.banned) {
     throw new Meteor.Error('something-is-wrong', 'Your user account is banned.');    
+  }
+
+  // Is IP address banned?
+  const clientIp = getIPFromConnection(attempt.connection);
+  if (BlackList.findOne({ clientIp })) {
+    throw new Meteor.Error('something-is-wrong', 'Your I.P. address is banned.');
   }
 
   return true;

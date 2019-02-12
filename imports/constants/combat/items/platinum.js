@@ -154,7 +154,7 @@ export const PLATINUM_ITEMS = {
       "attackMax": 72.4,
       "attackSpeed": 0.5,
       "accuracy": 41.5,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 15.5,
@@ -184,7 +184,7 @@ export const PLATINUM_ITEMS = {
       "attackMax": 92.8,
       "attackSpeed": 0.3,
       "accuracy": 41.5,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 7.7,

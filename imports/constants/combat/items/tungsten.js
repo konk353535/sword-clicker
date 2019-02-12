@@ -154,7 +154,7 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 94.1,
       "attackSpeed": 0.5,
       "accuracy": 53.9,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 20.2,
@@ -184,7 +184,7 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 120.6,
       "attackSpeed": 0.3,
       "accuracy": 53.9,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 10.1,

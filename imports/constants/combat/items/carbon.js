@@ -154,7 +154,7 @@ export const CARBON_ITEMS = {
       "attackMax": 53.8,
       "attackSpeed": 0.5,
       "accuracy": 30.9,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 11.5,
@@ -184,7 +184,7 @@ export const CARBON_ITEMS = {
       "attackMax": 69,
       "attackSpeed": 0.3,
       "accuracy": 30.9,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 5.8,

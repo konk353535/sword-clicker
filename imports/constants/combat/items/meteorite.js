@@ -154,7 +154,7 @@ export const METEORITE_ITEMS = {
       "attackMax": 174.4,
       "attackSpeed": 0.5,
       "accuracy": 99.8,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 37.4,
@@ -184,7 +184,7 @@ export const METEORITE_ITEMS = {
       "attackMax": 223.4,
       "attackSpeed": 0.3,
       "accuracy": 99.8,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 18.7,

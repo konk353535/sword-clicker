@@ -154,7 +154,7 @@ export const ELVEN_STEEL_ITEMS = {
       "attackMax": 214.8,
       "attackSpeed": 0.5,
       "accuracy": 123,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 46.1,
@@ -184,7 +184,7 @@ export const ELVEN_STEEL_ITEMS = {
       "attackMax": 275.2,
       "attackSpeed": 0.3,
       "accuracy": 123,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 23,

@@ -154,7 +154,7 @@ export const TITANIUM_ITEMS = {
       "attackMax": 83.3,
       "attackSpeed": 0.5,
       "accuracy": 47.7,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 17.9,
@@ -184,7 +184,7 @@ export const TITANIUM_ITEMS = {
       "attackMax": 106.7,
       "attackSpeed": 0.3,
       "accuracy": 47.7,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 8.9,

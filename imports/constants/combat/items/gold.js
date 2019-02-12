@@ -154,7 +154,7 @@ export const GOLD_ITEMS = {
       "attackMax": 46,
       "attackSpeed": 0.5,
       "accuracy": 26.4,
-      "criticalChance": 15
+      "criticalChance": 10
     },
     "extraStats": {
       "attack": 9.9,
@@ -184,7 +184,7 @@ export const GOLD_ITEMS = {
       "attackMax": 59,
       "attackSpeed": 0.3,
       "accuracy": 26.4,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 4.9,

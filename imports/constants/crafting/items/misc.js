@@ -98,8 +98,9 @@ export const MISC_ITEMS = {
     // 50 items
     contentsList:
     [
-      /*  8% chance: */ 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet',
-      /*  8% chance: */ 'event_vd_bear_slippers', 'event_vd_bear_slippers', 'event_vd_bear_slippers', 'event_vd_bear_slippers',
+      /*  6% chance: */ 'cupids_bow', 'cupids_bow', 'cupids_bow',
+      /*  6% chance: */ 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet', 'event_vd_rose_quartz_amulet',,
+      /*  4% chance: */ 'event_vd_bear_slippers', 'event_vd_bear_slippers',
       /*  8% chance: */ 'event_vd_charm_tome', 'event_vd_charm_tome', 'event_vd_charm_tome', 'event_vd_charm_tome',
       /* 10% chance: */ 'vd_cupid_tome_level_1', 'vd_cupid_tome_level_1', 'vd_cupid_tome_level_1', 'vd_cupid_tome_level_1', 'vd_cupid_tome_level_1',
       /*  8% chance: */ 'vd_cupid_tome_level_2', 'vd_cupid_tome_level_2', 'vd_cupid_tome_level_2', 'vd_cupid_tome_level_2', 

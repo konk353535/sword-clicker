@@ -75,6 +75,11 @@ export const TOWER_FLOOR_16 = {
       rewards: [
         { type: 'item', itemId: 'taunt_level_5_tome', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'precise_shots_level_4_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

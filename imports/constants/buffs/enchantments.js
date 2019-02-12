@@ -1937,4 +1937,47 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
+  
+  cupids_bow: {
+    duplicateTag: 'cupids_bow', // Used to stop duplicate buffs
+    icon: 'eventVDcupidbow.svg',
+    name: 'cupid\s bow',
+    description() {
+      return `
+        Your auto-attack damage is tripled against charmed targets. <br />
+        This applies to all auto-attack damage, including any <br />
+        effects that add auto-attacks such as Phantom Strikes and <br />
+        Volley.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      combatTimer: 0.6, // wait a moment for combat to start
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage, originalAutoAttack, secondsElapsed }) {
+        if (defender.hasBuff('charm')) {
+          actualBattle.dealDamage(rawDamage * 3, {
+            attacker,
+            defender,
+            isMagic: false,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+          });
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
 };

@@ -1,4 +1,4 @@
-import { VERY_FAST_SPEED, MEDIUM_SPEED} from '../attackSpeeds';
+import { VERY_FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '../attackSpeeds';
 
 export const MISC_ITEMS = {
   thirsting_saber: {
@@ -137,7 +137,7 @@ export const MISC_ITEMS = {
       attackMax: 59,
       attackSpeed: 0.3,
       accuracy: 26.4,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     extraStats: {
       attack: 7.7,
@@ -5043,6 +5043,39 @@ export const MISC_ITEMS = {
       name: 'defense',
       level: 25,
     }]
+  },
+  
+  // like a fiery_bow (radiant/T22) but more accuracy and 3x damage to charmed enemies during autoattack
+  cupids_bow: {
+    id: 'cupids_bow',
+    icon: 'eventVDcupidbow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'cupid\'s bow',
+    sellPrice: 1,
+    description: 'A slow but powerful ranged weapon of polished eucalyptus.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 83.5 * 1.2 * 1.75,
+      attackMax: 300 * 1.2,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 130,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 25.1 * 1.2 * 1.75,
+      attackMax: 90 * 1.2,
+      accuracy: 35,
+    },
+    enchantments: ['cupids_bow'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 1
+    }],
   },
   
   honeycomb_pants: {

@@ -60,6 +60,11 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_chest_plate_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -120,8 +125,8 @@ export const TOWER_FLOOR_24 = {
     }, {
       chance: 1 / 48,
       rewards: [
-        /* { type: 'item', itemId: 'titanfoil_scimitar', amount: 1 }, */
-        /* { type: 'item', itemId: 'titanfoil_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'titanfoil_scimitar', amount: 1 },
+        { type: 'item', itemId: 'titanfoil_broad_sword', amount: 1 },
         { type: 'item', itemId: 'titanfoil_horned_helmet', amount: 1 }
       ]
     }]))

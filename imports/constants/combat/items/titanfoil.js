@@ -1,5 +1,9 @@
 const TITANFOIL_MULTIPLIER = 1.4;
 const TITANFOIL_DEFENSE_MULTIPLIER = 1.3;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MIN = 1.105;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MAX = 0.85;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MIN = 0.7;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MAX = 0.85;
 
 
 export const TITANFOIL_ITEMS = {
@@ -42,13 +46,13 @@ export const TITANFOIL_ITEMS = {
       "attackMax": 83.5 * TITANFOIL_MULTIPLIER,
       "attackSpeed": 0.5,
       "accuracy": 83.5 * TITANFOIL_MULTIPLIER,
-      "defense": 32.7 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER
+      "defense": 32.7 * TITANFOIL_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * TITANFOIL_MULTIPLIER,
       "attackMax": 25.1 * TITANFOIL_MULTIPLIER,
       "accuracy": 25.1 * TITANFOIL_MULTIPLIER,
-      "defense": 9.8 * TITANFOIL_MULTIPLIER * TITANFOIL_DEFENSE_MULTIPLIER
+      "defense": 9.8 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -76,6 +80,34 @@ export const TITANFOIL_ITEMS = {
     "extraStats": {
       "attack": 20 * TITANFOIL_MULTIPLIER,
       "attackMax": 29.8 * TITANFOIL_MULTIPLIER,
+      "accuracy": 29.8 * TITANFOIL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 115
+    }]
+  },
+  "titanfoil_scimitar": {
+    "id": "titanfoil_scimitar",
+    "icon": "titanfoilScimitar.png",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "titanfoil scimitar",
+    "sellPrice": Math.round(3000 * TITANFOIL_MULTIPLIER),
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * TITANFOIL_MULTIPLIER,
+      "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * TITANFOIL_MULTIPLIER,
+      "attackSpeed": 0.7,
+      "accuracy": 99.5 * TITANFOIL_MULTIPLIER
+    },
+    "extraStats": {
+      "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * TITANFOIL_MULTIPLIER,
+      "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * TITANFOIL_MULTIPLIER,
       "accuracy": 29.8 * TITANFOIL_MULTIPLIER
     },
     requiredEquip: [{
@@ -113,6 +145,36 @@ export const TITANFOIL_ITEMS = {
       level: 115
     }]
   },
+  "titanfoil_broad_sword": {
+    "id": "titanfoil_broad_sword",
+    "icon": "titanfoilBroadsword.png",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "titanfoil broad sword",
+    "sellPrice": Math.round(3000 * TITANFOIL_MULTIPLIER),
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 116.7 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * TITANFOIL_MULTIPLIER,
+      "attackMax": 200.5 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * TITANFOIL_MULTIPLIER,
+      "attackSpeed": 0.5,
+      "accuracy": 134.1 * TITANFOIL_MULTIPLIER,
+      "criticalChance": 10,
+    },
+    "extraStats": {
+      "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * TITANFOIL_MULTIPLIER,
+      "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * TITANFOIL_MULTIPLIER,
+      "accuracy": 40.2 * TITANFOIL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 115
+    }]
+  },
   
   "titanfoil_battle_axe": {
     "id": "titanfoil_battle_axe",
@@ -131,7 +193,7 @@ export const TITANFOIL_ITEMS = {
       "attackMax": 300 * TITANFOIL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * TITANFOIL_MULTIPLIER,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 25.1 * TITANFOIL_MULTIPLIER,

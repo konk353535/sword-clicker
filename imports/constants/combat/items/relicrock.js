@@ -1,5 +1,9 @@
 const RELICROCK_MULTIPLIER = 1.5;
 const RELICROCK_DEFENSE_MULTIPLIER = 1.5;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MIN = 1.105;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MAX = 0.85;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MIN = 0.7;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MAX = 0.85;
 
 
 export const RELICROCK_ITEMS = {
@@ -42,13 +46,13 @@ export const RELICROCK_ITEMS = {
       "attackMax": 83.5 * RELICROCK_MULTIPLIER,
       "attackSpeed": 0.5,
       "accuracy": 83.5 * RELICROCK_MULTIPLIER,
-      "defense": 32.7 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER,
+      "defense": 32.7 * RELICROCK_MULTIPLIER,
     },
     "extraStats": {
       "attack": 20 * RELICROCK_MULTIPLIER,
       "attackMax": 25.1 * RELICROCK_MULTIPLIER,
       "accuracy": 25.1 * RELICROCK_MULTIPLIER,
-      "defense": 9.8 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER
+      "defense": 9.8 * RELICROCK_MULTIPLIER
     },
     requiredEquip: [{
       type: 'skill',
@@ -76,6 +80,34 @@ export const RELICROCK_ITEMS = {
     "extraStats": {
       "attack": 20 * RELICROCK_MULTIPLIER,
       "attackMax": 29.8 * RELICROCK_MULTIPLIER,
+      "accuracy": 29.8 * RELICROCK_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 120
+    }]
+  },
+  "relicrock_scimitar": {
+    "id": "relicrock_scimitar",
+    "icon": "relicrockScimitar.png",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "relicrock scimitar",
+    "sellPrice": Math.round(3000 * RELICROCK_MULTIPLIER),
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * RELICROCK_MULTIPLIER,
+      "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RELICROCK_MULTIPLIER,
+      "attackSpeed": 0.7,
+      "accuracy": 99.5 * RELICROCK_MULTIPLIER
+    },
+    "extraStats": {
+      "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * RELICROCK_MULTIPLIER,
+      "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RELICROCK_MULTIPLIER,
       "accuracy": 29.8 * RELICROCK_MULTIPLIER
     },
     requiredEquip: [{
@@ -113,6 +145,36 @@ export const RELICROCK_ITEMS = {
       level: 120
     }]
   },
+  "relicrock_broad_sword": {
+    "id": "relicrock_broad_sword",
+    "icon": "relicrockBroadsword.png",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "relicrock broad sword",
+    "sellPrice": Math.round(3000 * RELICROCK_MULTIPLIER),
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 116.7 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * RELICROCK_MULTIPLIER,
+      "attackMax": 200.5 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RELICROCK_MULTIPLIER,
+      "attackSpeed": 0.5,
+      "accuracy": 134.1 * RELICROCK_MULTIPLIER,
+      "criticalChance": 10,
+    },
+    "extraStats": {
+      "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * RELICROCK_MULTIPLIER,
+      "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RELICROCK_MULTIPLIER,
+      "accuracy": 40.2 * RELICROCK_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 120
+    }]
+  },
   
   "relicrock_battle_axe": {
     "id": "relicrock_battle_axe",
@@ -131,7 +193,7 @@ export const RELICROCK_ITEMS = {
       "attackMax": 300 * RELICROCK_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * RELICROCK_MULTIPLIER,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 25.1 * RELICROCK_MULTIPLIER,

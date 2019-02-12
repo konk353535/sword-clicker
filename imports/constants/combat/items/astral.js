@@ -1,4 +1,8 @@
 const ASTRAL_MULTIPLIER = 1.3;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MIN = 1.105;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MAX = 0.85;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MIN = 0.7;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MAX = 0.85;
 
 
 export const ASTRAL_ITEMS = {
@@ -83,6 +87,34 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
+  "astral_scimitar": {
+    "id": "astral_scimitar",
+    "icon": "astralScimitar.png",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "astral scimitar",
+    "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * ASTRAL_MULTIPLIER,
+      "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * ASTRAL_MULTIPLIER,
+      "attackSpeed": 0.7,
+      "accuracy": 99.5 * ASTRAL_MULTIPLIER
+    },
+    "extraStats": {
+      "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * ASTRAL_MULTIPLIER,
+      "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * ASTRAL_MULTIPLIER,
+      "accuracy": 29.8 * ASTRAL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 110
+    }]
+  },
   "astral_long_sword": {
     "id": "astral_long_sword",
     "icon": "astralLongsword.png",
@@ -112,6 +144,36 @@ export const ASTRAL_ITEMS = {
       level: 110
     }]
   },
+  "astral_broad_sword": {
+    "id": "astral_broad_sword",
+    "icon": "astralBroadsword.png",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "astral broad sword",
+    "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 116.7 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * ASTRAL_MULTIPLIER,
+      "attackMax": 200.5 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * ASTRAL_MULTIPLIER,
+      "attackSpeed": 0.5,
+      "accuracy": 134.1 * ASTRAL_MULTIPLIER,
+      "criticalChance": 10,
+    },
+    "extraStats": {
+      "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * ASTRAL_MULTIPLIER,
+      "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * ASTRAL_MULTIPLIER,
+      "accuracy": 40.2 * ASTRAL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 110
+    }]
+  },
   
   "astral_battle_axe": {
     "id": "astral_battle_axe",
@@ -130,7 +192,7 @@ export const ASTRAL_ITEMS = {
       "attackMax": 300 * ASTRAL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * ASTRAL_MULTIPLIER,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 25.1 * ASTRAL_MULTIPLIER,

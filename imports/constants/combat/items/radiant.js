@@ -1,4 +1,8 @@
 const RADIANT_MULTIPLIER = 1.2;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MIN = 1.105;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MAX = 0.85;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MIN = 0.7;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MAX = 0.85;
 
 
 export const RADIANT_ITEMS = {
@@ -83,6 +87,34 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   },
+  "radiant_scimitar": {
+    "id": "radiant_scimitar",
+    "icon": "radiantScimitar.png",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "radiant scimitar",
+    "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * RADIANT_MULTIPLIER,
+      "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RADIANT_MULTIPLIER,
+      "attackSpeed": 0.7,
+      "accuracy": 99.5 * RADIANT_MULTIPLIER
+    },
+    "extraStats": {
+      "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * RADIANT_MULTIPLIER,
+      "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RADIANT_MULTIPLIER,
+      "accuracy": 29.8 * RADIANT_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 105
+    }]
+  },
   "radiant_long_sword": {
     "id": "radiant_long_sword",
     "icon": "radiantLongsword.png",
@@ -112,6 +144,36 @@ export const RADIANT_ITEMS = {
       level: 105
     }]
   },
+  "radiant_broad_sword": {
+    "id": "radiant_broad_sword",
+    "icon": "radiantBroadsword.png",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "radiant broad sword",
+    "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 116.7 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * RADIANT_MULTIPLIER,
+      "attackMax": 200.5 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RADIANT_MULTIPLIER,
+      "attackSpeed": 0.5,
+      "accuracy": 134.1 * RADIANT_MULTIPLIER,
+      "criticalChance": 10,
+    },
+    "extraStats": {
+      "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * RADIANT_MULTIPLIER,
+      "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RADIANT_MULTIPLIER,
+      "accuracy": 40.2 * RADIANT_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 105
+    }]
+  },
   
   "radiant_battle_axe": {
     "id": "radiant_battle_axe",
@@ -130,7 +192,7 @@ export const RADIANT_ITEMS = {
       "attackMax": 300 * RADIANT_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * RADIANT_MULTIPLIER,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 25.1 * RADIANT_MULTIPLIER,

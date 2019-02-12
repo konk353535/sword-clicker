@@ -1,5 +1,8 @@
 const DARKSTEEL_MULTIPLIER = 1.1;
-
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MIN = 1.105;
+const SHORTSWORD_TO_SCIMITAR_ATTACK_MAX = 0.85;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MIN = 0.7;
+const LONGSWORD_TO_BROADSWORD_ATTACK_MAX = 0.85;
 
 export const DARKSTEEL_ITEMS = {
   "darksteel_dagger": {
@@ -83,6 +86,34 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   },
+  "darksteel_scimitar": {
+    "id": "darksteel_scimitar",
+    "icon": "darksteelScimitar.png",
+    "category": "combat",
+    "weaponType": "shortSword",
+    "slot": "mainHand",
+    "name": "darksteel scimitar",
+    "sellPrice": Math.round(3000 * DARKSTEEL_MULTIPLIER),
+    "description": "A good balance between offense and defense",
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * DARKSTEEL_MULTIPLIER,
+      "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
+      "attackSpeed": 0.7,
+      "accuracy": 99.5 * DARKSTEEL_MULTIPLIER
+    },
+    "extraStats": {
+      "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * DARKSTEEL_MULTIPLIER,
+      "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
+      "accuracy": 29.8 * DARKSTEEL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
+  },
   "darksteel_long_sword": {
     "id": "darksteel_long_sword",
     "icon": "darksteelLongsword.png",
@@ -112,6 +143,36 @@ export const DARKSTEEL_ITEMS = {
       level: 100
     }]
   },
+  "darksteel_broad_sword": {
+    "id": "darksteel_broad_sword",
+    "icon": "darksteelBroadsword.png",
+    "category": "combat",
+    "weaponType": "longSword",
+    "slot": "mainHand",
+    "name": "darksteel broad sword",
+    "sellPrice": Math.round(3000 * DARKSTEEL_MULTIPLIER),
+    "description": "A pure offensive weapon",
+    "isTwoHanded": true,
+    "isWeapon": true,
+    "isEquippable": true,
+    "stats": {
+      "attack": 116.7 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * DARKSTEEL_MULTIPLIER,
+      "attackMax": 200.5 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
+      "attackSpeed": 0.5,
+      "accuracy": 134.1 * DARKSTEEL_MULTIPLIER,
+      "criticalChance": 10,
+    },
+    "extraStats": {
+      "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * DARKSTEEL_MULTIPLIER,
+      "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
+      "accuracy": 40.2 * DARKSTEEL_MULTIPLIER
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 100
+    }]
+  },
   
   "darksteel_battle_axe": {
     "id": "darksteel_battle_axe",
@@ -130,7 +191,7 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 300 * DARKSTEEL_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * DARKSTEEL_MULTIPLIER,
-      "criticalChance": 50
+      "criticalChance": 35
     },
     "extraStats": {
       "attack": 25.1 * DARKSTEEL_MULTIPLIER,

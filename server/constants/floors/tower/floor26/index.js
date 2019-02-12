@@ -109,7 +109,7 @@ export const TOWER_FLOOR_26 = {
       chance: 1 / 512,
       rewards: [
         { type: 'item', itemId: 'exalted_orb', amount: 1 },
-        /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
+        { type: 'item', itemId: 'exalted_tome', amount: 1 }
       ]
     }]))
   },

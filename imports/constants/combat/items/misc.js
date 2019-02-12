@@ -4804,7 +4804,163 @@ export const MISC_ITEMS = {
       level: 51
     }]
   },
-  
+
+  forgotten_tome: {
+    id: 'forgotten_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'forgotten tome',
+    sellPrice: 6615,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 30.5,
+      healingPower: 10
+    },
+    extraStats: {
+      magicPower: 4,
+      healingPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 54
+    }]
+  },
+
+  charred_tome: {
+    id: 'charred_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'charred tome',
+    sellPrice: 6930,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 33,
+      healingPower: 10
+    },
+    extraStats: {
+      magicPower: 4,
+      healingPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 57
+    }]
+  },
+
+  obscure_tome: {
+    id: 'obscure_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'obscure tome',
+    sellPrice: 7245,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 35.5,
+      healingPower: 10
+    },
+    extraStats: {
+      magicPower: 4,
+      healingPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 60
+    }]
+  },
+
+  sinister_tome: {
+    id: 'sinister_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'sinister tome',
+    sellPrice: 7560,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 38,
+      healingPower: 12
+    },
+    extraStats: {
+      magicPower: 5,
+      healingPower: 11.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 63
+    }]
+  },
+
+  maniacal_tome: {
+    id: 'maniacal_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'maniacal tome',
+    sellPrice: 7875,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 40.5,
+      healingPower: 12
+    },
+    extraStats: {
+      magicPower: 5,
+      healingPower: 11.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 66
+    }]
+  },
+
+  exalted_tome: {
+    id: 'exalted_tome',
+    icon: 'magic_tome_1.svg',
+    category: 'combat',
+    weaponType: 'tome',
+    slot: 'offHand',
+    name: 'exalted tome',
+    sellPrice: 8190,
+    description: 'A font of arcane secrets.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 43,
+      healingPower: 13
+    },
+    extraStats: {
+      magicPower: 7,
+      healingPower: 12
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  },
+
   festive_hat: {
     id: 'festive_hat',
     icon: 'festiveHat.png',

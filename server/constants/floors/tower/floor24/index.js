@@ -109,7 +109,7 @@ export const TOWER_FLOOR_24 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'phantasmal_orb', amount: 1 },
-        /* { type: 'item', itemId: 'xxxxx_tome', amount: 1 } */
+        { type: 'item', itemId: 'sinister_tome', amount: 1 }
       ]
     }]))
   },

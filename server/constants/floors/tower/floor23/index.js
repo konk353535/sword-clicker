@@ -60,6 +60,11 @@ export const TOWER_FLOOR_23 = {
         { type: 'item', itemId: 'astral_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_chest_plate_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'astral_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -81,6 +86,11 @@ export const TOWER_FLOOR_23 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'inferno_trident', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'volley_level_5_tome', amount: 1 }
       ]
     }]))
   },
@@ -118,8 +128,8 @@ export const TOWER_FLOOR_23 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        /* { type: 'item', itemId: 'astral_scimitar', amount: 1 }, */
-        /* { type: 'item', itemId: 'astral_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'astral_scimitar', amount: 1 },
+        { type: 'item', itemId: 'astral_broad_sword', amount: 1 },
         { type: 'item', itemId: 'astral_horned_helmet', amount: 1 }
       ]
     }]))

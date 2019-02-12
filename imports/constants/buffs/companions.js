@@ -1340,7 +1340,7 @@ export const COMPANION_BUFFS = {
                   duration: Infinity,
                   totalDuration: Infinity,
                   name: 'companion healer',
-                  icon: 'eventVDcupidbow.svg',
+                  icon: 'eventVDcupidStuff.svg',
                   level: buff.data.level
                 }
               }],
@@ -1905,7 +1905,7 @@ export const COMPANION_BUFFS = {
 
   vd_cupid_logic: {
     duplicateTag: 'vd_cupid_logic',
-    icon: 'eventVDcupidbow.svg',
+    icon: 'eventVDcupidStuff.svg',
     name: 'companion healer',
     description() {
       return `Companion will use magic to heal and serve.`;

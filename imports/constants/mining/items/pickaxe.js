@@ -1010,7 +1010,7 @@ export const PICKAXE_ITEMS = {
     isEquippable: true,
     stats: {
       energyStorage: 530,
-      attack: 130,
+      attack: 160,
       energyPerHit: 1,
       energyRegen: 4,
     },
@@ -1044,6 +1044,29 @@ export const PICKAXE_ITEMS = {
       attack: 30,
     }
   },
+  
+  darksteel_mining_hammer: {
+    id: 'darksteel_mining_hammer',
+    icon: 'darksteelMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'darksteel mining hammer',
+    sellPrice: 2500,
+    description: 'A darksteel hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 550,
+      attack: 175,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 10,
+      attack: 10,
+      energyRegen: 3
+    }
+  },
 
   darksteel_mining_anvil: {
     id: 'darksteel_mining_anvil',
@@ -1066,6 +1089,29 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
+    }
+  },
+  
+  radiant_mining_hammer: {
+    id: 'radiant_mining_hammer',
+    icon: 'radiantMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'radiant mining hammer',
+    sellPrice: 3000,
+    description: 'A radiant hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 575,
+      attack: 190,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 15,
+      attack: 15,
+      energyRegen: 3
     }
   },
 
@@ -1092,6 +1138,29 @@ export const PICKAXE_ITEMS = {
       attack: 30,
     }
   },
+  
+  astral_mining_hammer: {
+    id: 'astral_mining_hammer',
+    icon: 'astralMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'astral mining hammer',
+    sellPrice: 4000,
+    description: 'A astral hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 600,
+      attack: 205,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 20,
+      attack: 20,
+      energyRegen: 3
+    }
+  },
 
   astral_mining_anvil: {
     id: 'astral_mining_anvil',
@@ -1114,6 +1183,29 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
+    }
+  },
+  
+  titanfoil_mining_hammer: {
+    id: 'titanfoil_mining_hammer',
+    icon: 'titanfoilMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'titanfoil mining hammer',
+    sellPrice: 7500,
+    description: 'A titanfoil hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 650,
+      attack: 225,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 30,
+      attack: 25,
+      energyRegen: 3
     }
   },
 
@@ -1140,6 +1232,29 @@ export const PICKAXE_ITEMS = {
       attack: 100,
     }
   },
+  
+  relicrock_mining_hammer: {
+    id: 'relicrock_mining_hammer',
+    icon: 'relicrockMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'relicrock mining hammer',
+    sellPrice: 7500,
+    description: 'A relicrock hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 700,
+      attack: 250,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 40,
+      attack: 35,
+      energyRegen: 3
+    }
+  },
 
   relicrock_mining_anvil: {
     id: 'relicrock_mining_anvil',
@@ -1162,6 +1277,29 @@ export const PICKAXE_ITEMS = {
       energyStorage: 250,
       miner: 3,
       attack: 100,
+    }
+  },
+  
+  eternium_mining_hammer: {
+    id: 'eternium_mining_hammer',
+    icon: 'eterniumMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'eternium mining hammer',
+    sellPrice: 10000,
+    description: 'A eternium hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 800,
+      attack: 300,
+      energyPerHit: 1,
+      energyRegen: 4,
+    },
+    extraStats: {
+      energyStorage: 50,
+      attack: 50,
+      energyRegen: 3
     }
   },
 

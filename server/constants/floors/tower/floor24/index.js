@@ -103,7 +103,8 @@ export const TOWER_FLOOR_24 = {
     }, {
       chance: 1 / 64,
       rewards: [
-        { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'titanfoil_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 128,

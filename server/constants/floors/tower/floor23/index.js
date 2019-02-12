@@ -106,7 +106,8 @@ export const TOWER_FLOOR_23 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'astral_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'astral_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'astral_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 96,

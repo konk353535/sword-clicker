@@ -103,7 +103,8 @@ export const TOWER_FLOOR_26 = {
     }, {
       chance: 1 / 256,
       rewards: [
-        { type: 'item', itemId: 'eternium_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'eternium_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'eternium_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 512,

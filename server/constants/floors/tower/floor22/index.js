@@ -108,7 +108,8 @@ export const TOWER_FLOOR_22 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'radiant_dwarven_idol', amount: 1 }
+        { type: 'item', itemId: 'radiant_dwarven_idol', amount: 1 },
+        { type: 'item', itemId: 'radiant_mining_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 80,

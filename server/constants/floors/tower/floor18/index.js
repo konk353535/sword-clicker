@@ -58,8 +58,7 @@ export const TOWER_FLOOR_18 = {
       rewards: [
         { type: 'item', itemId: 'fairy_steel_wand', amount: 1 }
       ]
-    }
-]))
+    }]))
   },
   5: {
     name: 'Eternal Struggle',
@@ -85,6 +84,11 @@ export const TOWER_FLOOR_18 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'scream_level_4_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'volley_level_4_tome', amount: 1 }
       ]
     }]))
   },

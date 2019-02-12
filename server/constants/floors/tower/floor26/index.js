@@ -60,6 +60,11 @@ export const TOWER_FLOOR_26 = {
         { type: 'item', itemId: 'eternium_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'eternium_chest_plate_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 216,
+      rewards: [
+        { type: 'item', itemId: 'eternium_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -118,10 +123,10 @@ export const TOWER_FLOOR_26 = {
         { type: 'item', itemId: 'eternium_battle_axe_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 512,
+      chance: 1 / 108,
       rewards: [
-        /* { type: 'item', itemId: 'eternium_scimitar', amount: 1 }, */
-        /* { type: 'item', itemId: 'eternium_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'eternium_scimitar', amount: 1 },
+        { type: 'item', itemId: 'eternium_broad_sword', amount: 1 },
         { type: 'item', itemId: 'eternium_horned_helmet', amount: 1 }
       ]
     }]))

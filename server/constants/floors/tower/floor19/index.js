@@ -68,6 +68,11 @@ export const TOWER_FLOOR_19 = {
       rewards: [
         { type: 'item', itemId: 'verdant_trident', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'power_shot_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

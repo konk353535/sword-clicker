@@ -60,6 +60,11 @@ export const TOWER_FLOOR_22 = {
         { type: 'item', itemId: 'radiant_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'radiant_chest_plate_scroll', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'radiant_wand', amount: 1 }
+      ]
     }]))
   },
   5: {
@@ -125,8 +130,8 @@ export const TOWER_FLOOR_22 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        /* { type: 'item', itemId: 'radiant_scimitar', amount: 1 }, */
-        /* { type: 'item', itemId: 'radiant_broad_sword', amount: 1 }, */
+        { type: 'item', itemId: 'radiant_scimitar', amount: 1 },
+        { type: 'item', itemId: 'radiant_broad_sword', amount: 1 },
         { type: 'item', itemId: 'radiant_horned_helmet', amount: 1 }
       ]
     }]))

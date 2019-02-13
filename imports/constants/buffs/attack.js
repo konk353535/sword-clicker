@@ -27,9 +27,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.duration -= secondsElapsed;
-        if (buff.duration <= 0) {
-          removeBuff({ target, buff, caster: target })
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -67,8 +69,7 @@ export const ATTACK_BUFFS = {
     events: {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
-        buff.duration -= secondsElapsed;
-
+        
         if (buff.data.timeTillDamage !== undefined) {
           buff.data.timeTillDamage -= secondsElapsed;
         } else {
@@ -88,8 +89,11 @@ export const ATTACK_BUFFS = {
           });
         }
 
-        if (buff.duration <= 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -291,9 +295,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        buff.duration -= secondsElapsed;
-        if (buff.duration <= 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -361,8 +367,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (buff.duration <= 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -435,8 +444,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (buff.duration <= 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -591,8 +603,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (buff.duration <= 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -629,18 +644,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        let localSecondsElapsed = secondsElapsed;
-        buff.duration -= secondsElapsed;
-
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
-          if (localSecondsElapsed < 0) {
-            localSecondsElapsed = 0;
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
           }
-        }
-
-        if (buff.duration < 0) {
-          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -717,14 +725,6 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= secondsElapsed;
-
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
-          if (localSecondsElapsed < 0) {
-            localSecondsElapsed = 0;
-          }
-        }
 
         const damageToTake = (localSecondsElapsed * buff.data.healthLost);
         actualBattle.dealDamage(damageToTake, {
@@ -735,8 +735,11 @@ export const ATTACK_BUFFS = {
           isTrueDamage: true
         });
 
-        if (buff.duration < 0) {
-          removeBuff({ buff, target, caster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -1081,19 +1084,11 @@ export const ATTACK_BUFFS = {
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        let localSecondsElapsed = secondsElapsed;
-        buff.duration -= localSecondsElapsed;
-
-        if (buff.duration < 0) {
-          localSecondsElapsed += buff.duration;
-          if (localSecondsElapsed < 0) {
-            localSecondsElapsed = 0;
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
           }
-        }
-
-        if (buff.duration < 0) {
-          // Call the onremove event
-          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 
@@ -1205,7 +1200,6 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         let localSecondsElapsed = secondsElapsed;
-        buff.duration -= localSecondsElapsed;
         buff.data.timeTillDamage -= localSecondsElapsed;
 
         if (buff.duration < 0) {
@@ -1228,8 +1222,11 @@ export const ATTACK_BUFFS = {
           });
         }
 
-        if (buff.duration < 0) {
-          removeBuff({ buff, target, originalCaster, actualBattle });
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
         }
       },
 
@@ -1309,6 +1306,7 @@ export const ATTACK_BUFFS = {
         const actualDamage = bonusDamage * (caster.stats.attack + ((caster.stats.attackMax - caster.stats.attack) * Math.random()));
         
         // Reduce target armor by X% before hit
+        const previousArmor = target.stats.armor;
         target.stats.armor *= (1 - armorPenetration);
         
         actualBattle.dealDamage(actualDamage, {
@@ -1319,7 +1317,7 @@ export const ATTACK_BUFFS = {
         });
         
         // Restore target armor
-        target.stats.armor /= (1 - armorPenetration);
+        target.stats.armor = previousArmor;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

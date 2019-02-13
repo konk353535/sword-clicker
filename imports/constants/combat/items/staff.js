@@ -1834,6 +1834,7 @@ export const STAFF_ITEMS = {
     }]
   },
   
+  /*
   copper_hammer: {
     id: 'copper_hammer',
     icon: 'copperHammer.png',
@@ -1965,5 +1966,942 @@ export const STAFF_ITEMS = {
       level: 20
     }]
   }
+  */
   
+  copper_hammer: {
+    id: 'copper_hammer',
+    icon: 'copperHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'copper hammer',
+    sellPrice: 95,
+    description: 'What seems like a copper hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 5.3,
+      attackMax: 5.9,
+      attackSpeed: 0.5,
+      accuracy: 5.2,
+      defense: 4.6,
+      magicArmor: 10,
+      magicPower: 5
+    },
+    extraStats: {
+      attack: 1.6,
+      attackMax: 1.8,
+      accuracy: 1.6,
+      defense: 1.4,
+      magicArmor: 3,
+      magicPower: 1.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 0
+    }]
+  },
+
+  tin_hammer: {
+    id: 'tin_hammer',
+    icon: 'tinHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'tin hammer',
+    sellPrice: 190,
+    description: 'What seems like a tin hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 7.3,
+      attackMax: 8.4,
+      attackSpeed: 0.5,
+      accuracy: 7.4,
+      defense: 5.9,
+      magicArmor: 12.7,
+      magicPower: 5.6
+    },
+    extraStats: {
+      attack: 2.2,
+      attackMax: 2.5,
+      accuracy: 2.2,
+      defense: 1.8,
+      magicArmor: 3.8,
+      magicPower: 1.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
+  },
+
+  bronze_hammer: {
+    id: 'bronze_hammer',
+    icon: 'bronzeHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'bronze hammer',
+    sellPrice: 285,
+    description: 'What seems like a bronze hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 9.2,
+      attackMax: 11,
+      attackSpeed: 0.5,
+      accuracy: 10.2,
+      defense: 7.2,
+      magicArmor: 15.2,
+      magicPower: 6.3
+    },
+    extraStats: {
+      attack: 2.8,
+      attackMax: 3.3,
+      accuracy: 3.1,
+      defense: 2.2,
+      magicArmor: 4.6,
+      magicPower: 1.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  iron_hammer: {
+    id: 'iron_hammer',
+    icon: 'ironHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'iron hammer',
+    sellPrice: 380,
+    description: 'What seems like an iron hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 11.3,
+      attackMax: 13.8,
+      attackSpeed: 0.5,
+      accuracy: 13.4,
+      defense: 8.5,
+      magicArmor: 18.1,
+      magicPower: 7.1
+    },
+    extraStats: {
+      attack: 3.4,
+      attackMax: 4.1,
+      accuracy: 4,
+      defense: 2.6,
+      magicArmor: 5.4,
+      magicPower: 2.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
+  },
+
+  silver_hammer: {
+    id: 'silver_hammer',
+    icon: 'silverHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'silver hammer',
+    sellPrice: 475,
+    description: 'What seems like a silver hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 13.5,
+      attackMax: 16.9,
+      attackSpeed: 0.5,
+      accuracy: 17.1,
+      defense: 9.8,
+      magicArmor: 21,
+      magicPower: 8
+    },
+    extraStats: {
+      attack: 4.1,
+      attackMax: 5.1,
+      accuracy: 5.1,
+      defense: 2.9,
+      magicArmor: 6.3,
+      magicPower: 2.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+
+  gold_hammer: {
+    id: 'gold_hammer',
+    icon: 'goldHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'gold hammer',
+    sellPrice: 570,
+    description: 'What seems like a gold hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 15.8,
+      attackMax: 20.3,
+      attackSpeed: 0.5,
+      accuracy: 21.1,
+      defense: 11.1,
+      magicArmor: 24.1,
+      magicPower: 9
+    },
+    extraStats: {
+      attack: 4.7,
+      attackMax: 6.1,
+      accuracy: 6.3,
+      defense: 3.3,
+      magicArmor: 7.2,
+      magicPower: 2.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
+  },
+
+  carbon_hammer: {
+    id: 'carbon_hammer',
+    icon: 'carbonHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'carbon hammer',
+    sellPrice: 665,
+    description: 'What seems like a carbon hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 18.4,
+      attackMax: 24.1,
+      attackSpeed: 0.5,
+      accuracy: 25.6,
+      defense: 12.5,
+      magicArmor: 27.6,
+      magicPower: 10.1
+    },
+    extraStats: {
+      attack: 5.5,
+      attackMax: 7.2,
+      accuracy: 7.7,
+      defense: 3.8,
+      magicArmor: 8.3,
+      magicPower: 3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
+  },
+
+  steel_hammer: {
+    id: 'steel_hammer',
+    icon: 'steelHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'steel hammer',
+    sellPrice: 760,
+    description: 'What seems like a steel hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 21.1,
+      attackMax: 28.1,
+      attackSpeed: 0.5,
+      accuracy: 30.3,
+      defense: 14,
+      magicArmor: 31.3,
+      magicPower: 11.3
+    },
+    extraStats: {
+      attack: 6.3,
+      attackMax: 8.4,
+      accuracy: 9.1,
+      defense: 4.2,
+      magicArmor: 9.4,
+      magicPower: 3.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
+  },
+
+  platinum_hammer: {
+    id: 'platinum_hammer',
+    icon: 'platinumHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'platinum hammer',
+    sellPrice: 855,
+    description: 'What seems like a platinum hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 24,
+      attackMax: 32.6,
+      attackSpeed: 0.5,
+      accuracy: 35.3,
+      defense: 15.6,
+      magicArmor: 35.2,
+      magicPower: 12.5
+    },
+    extraStats: {
+      attack: 7.2,
+      attackMax: 9.8,
+      accuracy: 10.6,
+      defense: 4.7,
+      magicArmor: 10.6,
+      magicPower: 3.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
+  },
+
+  titanium_hammer: {
+    id: 'titanium_hammer',
+    icon: 'titaniumHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'titanium hammer',
+    sellPrice: 950,
+    description: 'What seems like a titanium hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 27.1,
+      attackMax: 37.4,
+      attackSpeed: 0.5,
+      accuracy: 40.6,
+      defense: 17.2,
+      magicArmor: 39.4,
+      magicPower: 13.9
+    },
+    extraStats: {
+      attack: 8.1,
+      attackMax: 11.2,
+      accuracy: 12.2,
+      defense: 5.2,
+      magicArmor: 11.8,
+      magicPower: 4.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
+  },
+
+  tungsten_hammer: {
+    id: 'tungsten_hammer',
+    icon: 'tungstenHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'tungsten hammer',
+    sellPrice: 1045,
+    description: 'What seems like a tungsten hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 30.5,
+      attackMax: 42.7,
+      attackSpeed: 0.5,
+      accuracy: 46.2,
+      defense: 18.9,
+      magicArmor: 44,
+      magicPower: 15.3
+    },
+    extraStats: {
+      attack: 9.2,
+      attackMax: 12.8,
+      accuracy: 13.9,
+      defense: 5.7,
+      magicArmor: 13.2,
+      magicPower: 4.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
+  },
+
+  obsidian_hammer: {
+    id: 'obsidian_hammer',
+    icon: 'obsidianHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'obsidian hammer',
+    sellPrice: 1140,
+    description: 'What seems like an obsidian hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 34,
+      attackMax: 48.5,
+      attackSpeed: 0.5,
+      accuracy: 52,
+      defense: 20.7,
+      magicArmor: 48.7,
+      magicPower: 16.7
+    },
+    extraStats: {
+      attack: 10.2,
+      attackMax: 14.6,
+      accuracy: 15.6,
+      defense: 6.2,
+      magicArmor: 14.6,
+      magicPower: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
+  },
+
+  cobalt_hammer: {
+    id: 'cobalt_hammer',
+    icon: 'cobaltHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'cobalt hammer',
+    sellPrice: 1235,
+    description: 'What seems like a cobalt hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 37.9,
+      attackMax: 54.7,
+      attackSpeed: 0.5,
+      accuracy: 58.1,
+      defense: 22.5,
+      magicArmor: 54,
+      magicPower: 18.2
+    },
+    extraStats: {
+      attack: 11.4,
+      attackMax: 16.4,
+      accuracy: 17.4,
+      defense: 6.8,
+      magicArmor: 16.2,
+      magicPower: 5.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
+  },
+
+  mithril_hammer: {
+    id: 'mithril_hammer',
+    icon: 'mithrilHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'mithril hammer',
+    sellPrice: 1330,
+    description: 'What seems like a mithril hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 42,
+      attackMax: 61.5,
+      attackSpeed: 0.5,
+      accuracy: 64.4,
+      defense: 24.5,
+      magicArmor: 59.5,
+      magicPower: 19.8
+    },
+    extraStats: {
+      attack: 12.6,
+      attackMax: 18.5,
+      accuracy: 19.3,
+      defense: 7.4,
+      magicArmor: 17.9,
+      magicPower: 5.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
+  },
+
+  adamantium_hammer: {
+    id: 'adamantium_hammer',
+    icon: 'adamantiumHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'adamantium hammer',
+    sellPrice: 1425,
+    description: 'What seems like an adamantium hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 46.3,
+      attackMax: 68.8,
+      attackSpeed: 0.5,
+      accuracy: 70.9,
+      defense: 26.5,
+      magicArmor: 65.3,
+      magicPower: 21.4
+    },
+    extraStats: {
+      attack: 13.9,
+      attackMax: 20.6,
+      accuracy: 21.3,
+      defense: 8,
+      magicArmor: 19.6,
+      magicPower: 6.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
+  },
+
+  orichalcum_hammer: {
+    id: 'orichalcum_hammer',
+    icon: 'orichalcumHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'orichalcum hammer',
+    sellPrice: 1520,
+    description: 'What seems like an orichalcum hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 51,
+      attackMax: 76.7,
+      attackSpeed: 0.5,
+      accuracy: 77.7,
+      defense: 28.6,
+      magicArmor: 71.7,
+      magicPower: 23.1
+    },
+    extraStats: {
+      attack: 15.3,
+      attackMax: 23,
+      accuracy: 23.3,
+      defense: 8.6,
+      magicArmor: 21.5,
+      magicPower: 6.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
+  },
+
+  meteorite_hammer: {
+    id: 'meteorite_hammer',
+    icon: 'meteoriteHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'meteorite hammer',
+    sellPrice: 1615,
+    description: 'What seems like a meteorite hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 55.9,
+      attackMax: 85.2,
+      attackSpeed: 0.5,
+      accuracy: 84.6,
+      defense: 30.9,
+      magicArmor: 78.3,
+      magicPower: 24.9
+    },
+    extraStats: {
+      attack: 16.8,
+      attackMax: 25.6,
+      accuracy: 25.4,
+      defense: 9.3,
+      magicArmor: 23.5,
+      magicPower: 7.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
+  },
+
+  fairy_steel_hammer: {
+    id: 'fairy_steel_hammer',
+    icon: 'fairySteelHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'fairy steel hammer',
+    sellPrice: 1710,
+    description: 'What seems like a fairy steel hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 61.2,
+      attackMax: 94.4,
+      attackSpeed: 0.5,
+      accuracy: 91.8,
+      defense: 33.2,
+      magicArmor: 85.4,
+      magicPower: 26.7
+    },
+    extraStats: {
+      attack: 18.4,
+      attackMax: 28.3,
+      accuracy: 27.5,
+      defense: 10,
+      magicArmor: 25.6,
+      magicPower: 8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
+  },
+
+  elven_steel_hammer: {
+    id: 'elven_steel_hammer',
+    icon: 'elvenSteelHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'elven steel hammer',
+    sellPrice: 1805,
+    description: 'What seems like an elven steel hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 66.8,
+      attackMax: 104.2,
+      attackSpeed: 0.5,
+      accuracy: 99.2,
+      defense: 35.6,
+      magicArmor: 93,
+      magicPower: 28.5
+    },
+    extraStats: {
+      attack: 20,
+      attackMax: 31.3,
+      accuracy: 29.8,
+      defense: 10.7,
+      magicArmor: 27.9,
+      magicPower: 8.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
+  },
+
+  cursed_hammer: {
+    id: 'cursed_hammer',
+    icon: 'cursedHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'cursed hammer',
+    sellPrice: 1900,
+    description: 'What seems like a cursed hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 72.8,
+      attackMax: 114.9,
+      attackSpeed: 0.5,
+      accuracy: 106.7,
+      defense: 38.2,
+      magicArmor: 101.1,
+      magicPower: 30.4
+    },
+    extraStats: {
+      attack: 21.8,
+      attackMax: 34.5,
+      accuracy: 32,
+      defense: 11.5,
+      magicArmor: 30.3,
+      magicPower: 9.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
+  },
+
+  darksteel_hammer: {
+    id: 'darksteel_hammer',
+    icon: 'darksteelHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'darksteel hammer',
+    sellPrice: 1995,
+    description: 'What seems like a darksteel hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 80.1,
+      attackMax: 126.4,
+      attackSpeed: 0.5,
+      accuracy: 117.4,
+      defense: 42,
+      magicArmor: 80.1,
+      magicPower: 33.4
+    },
+    extraStats: {
+      attack: 24,
+      attackMax: 37.9,
+      accuracy: 35.2,
+      defense: 12.6,
+      magicArmor: 24,
+      magicPower: 10
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 100
+    }]
+  },
+
+  radiant_hammer: {
+    id: 'radiant_hammer',
+    icon: 'radiantHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'radiant hammer',
+    sellPrice: 2090,
+    description: 'What seems like a radiant hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 87.4,
+      attackMax: 137.9,
+      attackSpeed: 0.5,
+      accuracy: 128,
+      defense: 45.8,
+      magicArmor: 87.4,
+      magicPower: 36.5
+    },
+    extraStats: {
+      attack: 26.2,
+      attackMax: 41.4,
+      accuracy: 38.4,
+      defense: 13.7,
+      magicArmor: 26.2,
+      magicPower: 11
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 105
+    }]
+  },
+
+  astral_hammer: {
+    id: 'astral_hammer',
+    icon: 'astralHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'astral hammer',
+    sellPrice: 2185,
+    description: 'What seems like an astral hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 94.6,
+      attackMax: 149.4,
+      attackSpeed: 0.5,
+      accuracy: 138.7,
+      defense: 49.7,
+      magicArmor: 94.6,
+      magicPower: 39.5
+    },
+    extraStats: {
+      attack: 28.4,
+      attackMax: 44.8,
+      accuracy: 41.6,
+      defense: 14.9,
+      magicArmor: 28.4,
+      magicPower: 11.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },
+
+  titanfoil_hammer: {
+    id: 'titanfoil_hammer',
+    icon: 'titanfoilHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'titanfoil hammer',
+    sellPrice: 2280,
+    description: 'What seems like a titanfoil hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 101.9,
+      attackMax: 160.9,
+      attackSpeed: 0.5,
+      accuracy: 149.4,
+      defense: 53.5,
+      magicArmor: 101.9,
+      magicPower: 42.6
+    },
+    extraStats: {
+      attack: 30.6,
+      attackMax: 48.3,
+      accuracy: 44.8,
+      defense: 16.1,
+      magicArmor: 30.6,
+      magicPower: 12.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 115
+    }]
+  },
+
+  relicrock_hammer: {
+    id: 'relicrock_hammer',
+    icon: 'relicrockHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'relicrock hammer',
+    sellPrice: 2375,
+    description: 'What seems like a relicrock hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 109.2,
+      attackMax: 172.4,
+      attackSpeed: 0.5,
+      accuracy: 160.1,
+      defense: 57.3,
+      magicArmor: 109.2,
+      magicPower: 45.6
+    },
+    extraStats: {
+      attack: 32.8,
+      attackMax: 51.7,
+      accuracy: 48,
+      defense: 17.2,
+      magicArmor: 32.8,
+      magicPower: 13.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 120
+    }]
+  },
+
+  eternium_hammer: {
+    id: 'eternium_hammer',
+    icon: 'eterniumHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'eternium hammer',
+    sellPrice: 2470,
+    description: 'What seems like an eternium hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 116.5,
+      attackMax: 183.8,
+      attackSpeed: 0.5,
+      accuracy: 170.7,
+      defense: 61.1,
+      magicArmor: 116.5,
+      magicPower: 48.6
+    },
+    extraStats: {
+      attack: 35,
+      attackMax: 55.1,
+      accuracy: 51.2,
+      defense: 18.3,
+      magicArmor: 35,
+      magicPower: 14.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 125
+    }]
+  },
+
 };

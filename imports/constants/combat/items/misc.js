@@ -973,7 +973,7 @@ export const MISC_ITEMS = {
   
 
   /* Buckler -30% armor, -10% defense, + small accuracy */
-
+  /*
   tin_buckler: {
     id: "tin_buckler",
     icon: "tinBuckler.svg",
@@ -1118,7 +1118,763 @@ export const MISC_ITEMS = {
       level: 90
     }]
   },
+  */
+  
+  copper_buckler: {
+    id: 'copper_buckler',
+    icon: 'copperBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'copper buckler',
+    sellPrice: 50,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 11.3,
+      defense: 3.4,
+      armor: 7.6,
+      accuracy: 2.2
+    },
+    extraStats: {
+      healthMax: 3.4,
+      defense: 1,
+      armor: 3,
+      accuracy: 0.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 0
+    }]
+  },
 
+  tin_buckler: {
+    id: 'tin_buckler',
+    icon: 'tinBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'tin buckler',
+    sellPrice: 125,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 13.7,
+      defense: 4.2,
+      armor: 10.4,
+      accuracy: 2.5
+    },
+    extraStats: {
+      healthMax: 4.1,
+      defense: 1.3,
+      armor: 4.2,
+      accuracy: 1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 5
+    }]
+  },
+
+  bronze_buckler: {
+    id: 'bronze_buckler',
+    icon: 'bronzeBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'bronze buckler',
+    sellPrice: 195,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 16.9,
+      defense: 5.3,
+      armor: 13.9,
+      accuracy: 3
+    },
+    extraStats: {
+      healthMax: 5.1,
+      defense: 1.6,
+      armor: 5.6,
+      accuracy: 1.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 10
+    }]
+  },
+
+  iron_buckler: {
+    id: 'iron_buckler',
+    icon: 'ironBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'iron buckler',
+    sellPrice: 270,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 20.7,
+      defense: 6.5,
+      armor: 18,
+      accuracy: 3.5
+    },
+    extraStats: {
+      healthMax: 6.2,
+      defense: 2,
+      armor: 7.2,
+      accuracy: 1.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 15
+    }]
+  },
+
+  silver_buckler: {
+    id: 'silver_buckler',
+    icon: 'silverBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'silver buckler',
+    sellPrice: 340,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 25.1,
+      defense: 8,
+      armor: 22.6,
+      accuracy: 4.1
+    },
+    extraStats: {
+      healthMax: 7.5,
+      defense: 2.4,
+      armor: 9,
+      accuracy: 1.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 20
+    }]
+  },
+
+  gold_buckler: {
+    id: 'gold_buckler',
+    icon: 'goldBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'gold buckler',
+    sellPrice: 415,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 30.1,
+      defense: 9.6,
+      armor: 27.6,
+      accuracy: 4.8
+    },
+    extraStats: {
+      healthMax: 9,
+      defense: 2.9,
+      armor: 11,
+      accuracy: 1.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }]
+  },
+
+  carbon_buckler: {
+    id: 'carbon_buckler',
+    icon: 'carbonBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'carbon buckler',
+    sellPrice: 485,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 35.5,
+      defense: 11.4,
+      armor: 33.1,
+      accuracy: 5.6
+    },
+    extraStats: {
+      healthMax: 10.7,
+      defense: 3.4,
+      armor: 13.2,
+      accuracy: 2.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }]
+  },
+
+  steel_buckler: {
+    id: 'steel_buckler',
+    icon: 'steelBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'steel buckler',
+    sellPrice: 560,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 41.4,
+      defense: 13.3,
+      armor: 38.8,
+      accuracy: 6.4
+    },
+    extraStats: {
+      healthMax: 12.4,
+      defense: 4,
+      armor: 15.5,
+      accuracy: 2.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 35
+    }]
+  },
+
+  platinum_buckler: {
+    id: 'platinum_buckler',
+    icon: 'platinumBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'platinum buckler',
+    sellPrice: 630,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 47.7,
+      defense: 15.4,
+      armor: 44.9,
+      accuracy: 7.3
+    },
+    extraStats: {
+      healthMax: 14.3,
+      defense: 4.6,
+      armor: 18,
+      accuracy: 2.9
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 40
+    }]
+  },
+
+  titanium_buckler: {
+    id: 'titanium_buckler',
+    icon: 'titaniumBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'titanium buckler',
+    sellPrice: 705,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 54.4,
+      defense: 17.5,
+      armor: 51.4,
+      accuracy: 8.2
+    },
+    extraStats: {
+      healthMax: 16.3,
+      defense: 5.3,
+      armor: 20.6,
+      accuracy: 3.3
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 45
+    }]
+  },
+
+  tungsten_buckler: {
+    id: 'tungsten_buckler',
+    icon: 'tungstenBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'tungsten buckler',
+    sellPrice: 775,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 61.4,
+      defense: 19.9,
+      armor: 58.1,
+      accuracy: 9.2
+    },
+    extraStats: {
+      healthMax: 18.4,
+      defense: 6,
+      armor: 23.2,
+      accuracy: 3.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }]
+  },
+
+  obsidian_buckler: {
+    id: 'obsidian_buckler',
+    icon: 'obsidianBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'obsidian buckler',
+    sellPrice: 850,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 68.8,
+      defense: 22.3,
+      armor: 65.1,
+      accuracy: 10.2
+    },
+    extraStats: {
+      healthMax: 20.6,
+      defense: 6.7,
+      armor: 26,
+      accuracy: 4.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 55
+    }]
+  },
+
+  cobalt_buckler: {
+    id: 'cobalt_buckler',
+    icon: 'cobaltBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'cobalt buckler',
+    sellPrice: 920,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 76.6,
+      defense: 24.8,
+      armor: 72.4,
+      accuracy: 11.3
+    },
+    extraStats: {
+      healthMax: 23,
+      defense: 7.4,
+      armor: 29,
+      accuracy: 4.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 60
+    }]
+  },
+
+  mithril_buckler: {
+    id: 'mithril_buckler',
+    icon: 'mithrilBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'mithril buckler',
+    sellPrice: 995,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 84.7,
+      defense: 27.5,
+      armor: 79.9,
+      accuracy: 12.5
+    },
+    extraStats: {
+      healthMax: 25.4,
+      defense: 8.3,
+      armor: 32,
+      accuracy: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 65
+    }]
+  },
+
+  adamantium_buckler: {
+    id: 'adamantium_buckler',
+    icon: 'adamantiumBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'adamantium buckler',
+    sellPrice: 1065,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 93.1,
+      defense: 30.3,
+      armor: 87.7,
+      accuracy: 13.6
+    },
+    extraStats: {
+      healthMax: 27.9,
+      defense: 9.1,
+      armor: 35.1,
+      accuracy: 5.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 70
+    }]
+  },
+
+  orichalcum_buckler: {
+    id: 'orichalcum_buckler',
+    icon: 'orichalcumBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'orichalcum buckler',
+    sellPrice: 1140,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 101.9,
+      defense: 33.1,
+      armor: 95.7,
+      accuracy: 14.9
+    },
+    extraStats: {
+      healthMax: 30.6,
+      defense: 9.9,
+      armor: 38.3,
+      accuracy: 6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 75
+    }]
+  },
+
+  meteorite_buckler: {
+    id: 'meteorite_buckler',
+    icon: 'meteoriteBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'meteorite buckler',
+    sellPrice: 1210,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 110.9,
+      defense: 36.1,
+      armor: 103.9,
+      accuracy: 16.1
+    },
+    extraStats: {
+      healthMax: 33.3,
+      defense: 10.8,
+      armor: 41.6,
+      accuracy: 6.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 80
+    }]
+  },
+
+  fairy_steel_buckler: {
+    id: 'fairy_steel_buckler',
+    icon: 'fairySteelBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'fairy steel buckler',
+    sellPrice: 1285,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 120.3,
+      defense: 39.2,
+      armor: 112.4,
+      accuracy: 17.4
+    },
+    extraStats: {
+      healthMax: 36.1,
+      defense: 11.8,
+      armor: 45,
+      accuracy: 7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 85
+    }]
+  },
+
+  elven_steel_buckler: {
+    id: 'elven_steel_buckler',
+    icon: 'elvenSteelBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'elven steel buckler',
+    sellPrice: 1355,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 129.9,
+      defense: 42.3,
+      armor: 121.1,
+      accuracy: 18.8
+    },
+    extraStats: {
+      healthMax: 39,
+      defense: 12.7,
+      armor: 48.4,
+      accuracy: 7.5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 90
+    }]
+  },
+
+  cursed_buckler: {
+    id: 'cursed_buckler',
+    icon: 'cursedBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'cursed buckler',
+    sellPrice: 1430,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 139.9,
+      defense: 45.6,
+      armor: 130,
+      accuracy: 20.2
+    },
+    extraStats: {
+      healthMax: 42,
+      defense: 13.7,
+      armor: 52,
+      accuracy: 8.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 95
+    }]
+  },
+
+  darksteel_buckler: {
+    id: 'darksteel_buckler',
+    icon: 'darksteelBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'darksteel buckler',
+    sellPrice: 1500,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 150.1,
+      defense: 48.9,
+      armor: 139.1,
+      accuracy: 21.6
+    },
+    extraStats: {
+      healthMax: 45,
+      defense: 14.7,
+      armor: 55.6,
+      accuracy: 8.6
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 100
+    }]
+  },
+
+  radiant_buckler: {
+    id: 'radiant_buckler',
+    icon: 'radiantBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'radiant buckler',
+    sellPrice: 1575,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 160.5,
+      defense: 52.4,
+      armor: 148.3,
+      accuracy: 23.1
+    },
+    extraStats: {
+      healthMax: 48.2,
+      defense: 15.7,
+      armor: 59.3,
+      accuracy: 9.2
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 105
+    }]
+  },
+
+  astral_buckler: {
+    id: 'astral_buckler',
+    icon: 'astralBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'astral buckler',
+    sellPrice: 1645,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 171.3,
+      defense: 55.9,
+      armor: 157.8,
+      accuracy: 24.6
+    },
+    extraStats: {
+      healthMax: 51.4,
+      defense: 16.8,
+      armor: 63.1,
+      accuracy: 9.8
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 110
+    }]
+  },
+
+  titanfoil_buckler: {
+    id: 'titanfoil_buckler',
+    icon: 'titanfoilBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'titanfoil buckler',
+    sellPrice: 1720,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 182.3,
+      defense: 59.5,
+      armor: 167.5,
+      accuracy: 26.1
+    },
+    extraStats: {
+      healthMax: 54.7,
+      defense: 17.9,
+      armor: 67,
+      accuracy: 10.4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 115
+    }]
+  },
+
+  relicrock_buckler: {
+    id: 'relicrock_buckler',
+    icon: 'relicrockBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'relicrock buckler',
+    sellPrice: 1790,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 193.5,
+      defense: 63.2,
+      armor: 177.3,
+      accuracy: 27.7
+    },
+    extraStats: {
+      healthMax: 58.1,
+      defense: 19,
+      armor: 70.9,
+      accuracy: 11.1
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 120
+    }]
+  },
+
+  eternium_buckler: {
+    id: 'eternium_buckler',
+    icon: 'eterniumBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'eternium buckler',
+    sellPrice: 1865,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 205,
+      defense: 67,
+      armor: 187.4,
+      accuracy: 29.3
+    },
+    extraStats: {
+      healthMax: 61.5,
+      defense: 20.1,
+      armor: 75,
+      accuracy: 11.7
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 125
+    }]
+  },
+
+  
   /* Knife - Off handed weapon, minor accuracy and damage increases */
   copper_knife: {
     id: 'copper_knife',
@@ -2985,6 +3741,7 @@ export const MISC_ITEMS = {
   },
   
   /* Spirit shields */
+  /*
   spirit_shield: {
     id: 'spirit_shield',
     icon: 'spiritShield.png',
@@ -3056,6 +3813,678 @@ export const MISC_ITEMS = {
       type: 'skill',
       name: 'defense',
       level: 30
+    }]
+  },
+  */
+  
+  spirit_shield: {
+    id: 'spirit_shield',
+    icon: 'nullSpiritShield.png',
+    category: 'combat',
+    slot: 'offHand',
+    name: 'spirit shield',
+    weaponType: 'shield',
+    sellPrice: 500,
+    description: 'An odd trinket that once held magic power.',
+    isEquippable: true,
+    stats: {
+    },
+    extraStats: {
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 1000
+    }]
+  },
+  
+  copper_spirit_shield: {
+    id: 'copper_spirit_shield',
+    icon: 'copperSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'copper spirit shield',
+    sellPrice: 50,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 11.3,
+      magicArmor: 7.3,
+    },
+    extraStats: {
+      healthMax: 3.4,
+      magicArmor: 2.9,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 0
+    }]
+  },
+
+  tin_spirit_shield: {
+    id: 'tin_spirit_shield',
+    icon: 'tinSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'tin spirit shield',
+    sellPrice: 125,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 13.5,
+      magicArmor: 9.6,
+    },
+    extraStats: {
+      healthMax: 4.1,
+      magicArmor: 3.8,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 3
+    }]
+  },
+
+  bronze_spirit_shield: {
+    id: 'bronze_spirit_shield',
+    icon: 'bronzeSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'bronze spirit shield',
+    sellPrice: 195,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 16.5,
+      magicArmor: 12.4,
+    },
+    extraStats: {
+      healthMax: 5,
+      magicArmor: 5,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 5
+    }]
+  },
+
+  iron_spirit_shield: {
+    id: 'iron_spirit_shield',
+    icon: 'ironSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'iron spirit shield',
+    sellPrice: 270,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 20,
+      magicArmor: 15.7,
+    },
+    extraStats: {
+      healthMax: 6,
+      magicArmor: 6.3,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 8
+    }]
+  },
+
+  silver_spirit_shield: {
+    id: 'silver_spirit_shield',
+    icon: 'silverSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'silver spirit shield',
+    sellPrice: 340,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 24,
+      magicArmor: 19.4,
+    },
+    extraStats: {
+      healthMax: 7.2,
+      magicArmor: 7.8,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 11
+    }]
+  },
+
+  gold_spirit_shield: {
+    id: 'gold_spirit_shield',
+    icon: 'goldSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'gold spirit shield',
+    sellPrice: 415,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 28.4,
+      magicArmor: 23.5,
+    },
+    extraStats: {
+      healthMax: 8.5,
+      magicArmor: 9.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 14
+    }]
+  },
+
+  carbon_spirit_shield: {
+    id: 'carbon_spirit_shield',
+    icon: 'carbonSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'carbon spirit shield',
+    sellPrice: 485,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 33.2,
+      magicArmor: 27.8,
+    },
+    extraStats: {
+      healthMax: 10,
+      magicArmor: 11.1,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 16
+    }]
+  },
+
+  steel_spirit_shield: {
+    id: 'steel_spirit_shield',
+    icon: 'steelSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'steel spirit shield',
+    sellPrice: 560,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 38.3,
+      magicArmor: 32.5,
+    },
+    extraStats: {
+      healthMax: 11.5,
+      magicArmor: 13,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 19
+    }]
+  },
+
+  platinum_spirit_shield: {
+    id: 'platinum_spirit_shield',
+    icon: 'platinumSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'platinum spirit shield',
+    sellPrice: 630,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 43.8,
+      magicArmor: 37.4,
+    },
+    extraStats: {
+      healthMax: 13.1,
+      magicArmor: 15,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 22
+    }]
+  },
+
+  titanium_spirit_shield: {
+    id: 'titanium_spirit_shield',
+    icon: 'titaniumSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'titanium spirit shield',
+    sellPrice: 705,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 49.5,
+      magicArmor: 42.6,
+    },
+    extraStats: {
+      healthMax: 14.9,
+      magicArmor: 17,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 24
+    }]
+  },
+
+  tungsten_spirit_shield: {
+    id: 'tungsten_spirit_shield',
+    icon: 'tungstenSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'tungsten spirit shield',
+    sellPrice: 775,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 55.6,
+      magicArmor: 48.1,
+    },
+    extraStats: {
+      healthMax: 16.7,
+      magicArmor: 19.2,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 27
+    }]
+  },
+
+  obsidian_spirit_shield: {
+    id: 'obsidian_spirit_shield',
+    icon: 'obsidianSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'obsidian spirit shield',
+    sellPrice: 850,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 62,
+      magicArmor: 53.7,
+    },
+    extraStats: {
+      healthMax: 18.6,
+      magicArmor: 21.5,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 30
+    }]
+  },
+
+  cobalt_spirit_shield: {
+    id: 'cobalt_spirit_shield',
+    icon: 'cobaltSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'cobalt spirit shield',
+    sellPrice: 920,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 68.6,
+      magicArmor: 59.6,
+    },
+    extraStats: {
+      healthMax: 20.6,
+      magicArmor: 23.8,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 32
+    }]
+  },
+
+  mithril_spirit_shield: {
+    id: 'mithril_spirit_shield',
+    icon: 'mithrilSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'mithril spirit shield',
+    sellPrice: 995,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 75.5,
+      magicArmor: 65.7,
+    },
+    extraStats: {
+      healthMax: 22.7,
+      magicArmor: 26.3,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 35
+    }]
+  },
+
+  adamantium_spirit_shield: {
+    id: 'adamantium_spirit_shield',
+    icon: 'adamantiumSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'adamantium spirit shield',
+    sellPrice: 1065,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 82.6,
+      magicArmor: 72,
+    },
+    extraStats: {
+      healthMax: 24.8,
+      magicArmor: 28.8,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 38
+    }]
+  },
+
+  orichalcum_spirit_shield: {
+    id: 'orichalcum_spirit_shield',
+    icon: 'orichalcumSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'orichalcum spirit shield',
+    sellPrice: 1140,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 90,
+      magicArmor: 78.4,
+    },
+    extraStats: {
+      healthMax: 27,
+      magicArmor: 31.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 41
+    }]
+  },
+
+  meteorite_spirit_shield: {
+    id: 'meteorite_spirit_shield',
+    icon: 'meteoriteSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'meteorite spirit shield',
+    sellPrice: 1210,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 97.6,
+      magicArmor: 85.1,
+    },
+    extraStats: {
+      healthMax: 29.3,
+      magicArmor: 34,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 43
+    }]
+  },
+
+  fairy_steel_spirit_shield: {
+    id: 'fairy_steel_spirit_shield',
+    icon: 'fairySteelSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'fairy steel spirit shield',
+    sellPrice: 1285,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 105.5,
+      magicArmor: 91.9,
+    },
+    extraStats: {
+      healthMax: 31.7,
+      magicArmor: 36.8,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 46
+    }]
+  },
+
+  elven_steel_spirit_shield: {
+    id: 'elven_steel_spirit_shield',
+    icon: 'elvenSteelSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'elven steel spirit shield',
+    sellPrice: 1355,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 113.5,
+      magicArmor: 98.9,
+    },
+    extraStats: {
+      healthMax: 34.1,
+      magicArmor: 39.6,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 49
+    }]
+  },
+
+  cursed_spirit_shield: {
+    id: 'cursed_spirit_shield',
+    icon: 'cursedSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'cursed spirit shield',
+    sellPrice: 1430,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 121.8,
+      magicArmor: 106.1,
+    },
+    extraStats: {
+      healthMax: 36.5,
+      magicArmor: 42.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 51
+    }]
+  },
+
+  darksteel_spirit_shield: {
+    id: 'darksteel_spirit_shield',
+    icon: 'darksteelSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'darksteel spirit shield',
+    sellPrice: 1500,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 130.3,
+      magicArmor: 113.4,
+    },
+    extraStats: {
+      healthMax: 39.1,
+      magicArmor: 45.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 54
+    }]
+  },
+
+  radiant_spirit_shield: {
+    id: 'radiant_spirit_shield',
+    icon: 'radiantSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'radiant spirit shield',
+    sellPrice: 1575,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 139,
+      magicArmor: 120.9,
+    },
+    extraStats: {
+      healthMax: 41.7,
+      magicArmor: 48.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 57
+    }]
+  },
+
+  astral_spirit_shield: {
+    id: 'astral_spirit_shield',
+    icon: 'astralSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'astral spirit shield',
+    sellPrice: 1645,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 147.9,
+      magicArmor: 128.6,
+    },
+    extraStats: {
+      healthMax: 44.4,
+      magicArmor: 51.4,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 59
+    }]
+  },
+
+  titanfoil_spirit_shield: {
+    id: 'titanfoil_spirit_shield',
+    icon: 'titanfoilSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'titanfoil spirit shield',
+    sellPrice: 1720,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 157,
+      magicArmor: 136.4,
+    },
+    extraStats: {
+      healthMax: 47.1,
+      magicArmor: 54.6,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 62
+    }]
+  },
+
+  relicrock_spirit_shield: {
+    id: 'relicrock_spirit_shield',
+    icon: 'relicrockSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'relicrock spirit shield',
+    sellPrice: 1790,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 166.3,
+      magicArmor: 144.3,
+    },
+    extraStats: {
+      healthMax: 49.9,
+      magicArmor: 57.7,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 65
+    }]
+  },
+
+  eternium_spirit_shield: {
+    id: 'eternium_spirit_shield',
+    icon: 'eterniumSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'eternium spirit shield',
+    sellPrice: 1865,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 175.7,
+      magicArmor: 152.4,
+    },
+    extraStats: {
+      healthMax: 52.7,
+      magicArmor: 61,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 68
     }]
   },
 
@@ -5177,7 +6606,7 @@ export const MISC_ITEMS = {
     slot: "neck",
     name: "rose quartz amulet",
     sellPrice: 1,
-    description: "Radiating a healing aura.",
+    description: "Glowing with an abundance of healing power.",
     isEquippable: true,
     stats: {
       healingPower: 40,

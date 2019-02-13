@@ -1860,13 +1860,13 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.timeCount = 1.0;
           
           try {
-            let hpMaxHealth = defender.stats.healthMaxOrig;
+            let hpMaxHealth = target.stats.healthMaxOrig;
             let hpAmountToRaise = 0.01 * hpMaxHealth;
             
-            if (defender.stats.healthMax + hpAmountToRaise > hpMaxHealth) {
-              defender.stats.healthMax = hpMaxHealth;
+            if (target.stats.healthMax + hpAmountToRaise > hpMaxHealth) {
+              target.stats.healthMax = hpMaxHealth;
             } else {
-              defender.stats.healthMax += hpAmountToRaise;
+              target.stats.healthMax += hpAmountToRaise;
             }
           } catch (err) {
           }

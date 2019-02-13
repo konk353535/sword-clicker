@@ -210,7 +210,7 @@ Meteor.methods({
 
     attackMineSpace(mineSpaceId, mining, multiplier);
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'mining.buyMiner'(minerId) {
@@ -251,7 +251,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'mining.buyProspector'(prospectorId) {
@@ -289,7 +289,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'mining.fireProspector'(prospectorId) {
@@ -313,7 +313,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'mining.gameUpdate'() {

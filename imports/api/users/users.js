@@ -50,27 +50,26 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
   return '0.0.0.0';
 };
 
-export const updateUserActivity = function updateUserActivity({userId, connectionInfo}) {
-  // Discover user IP, set current time for last active
-  const ipAddress = getIPFromConnection(connectionInfo);
-
-  // Set up mongodb update fields  
-  const userActivityUpdate = {
-    lastActivity: moment().toDate(),
-  };
-  try {
-    if (ipAddress && ipAddress.length > 0 && ipAddress !== '0.0.0.0') {
-      userActivityUpdate.clientIp = ipAddress;
-    }
-  }
-  catch (err) {
-  }
-  
+export const updateUserIP = function updateUserIP({userId, ipAddress}) {
   // Update user activity
   Users.update({
     _id: Meteor.userId()
   }, {
-    $set: userActivityUpdate
+    $set: {
+      lastActivity: moment().toDate(),
+      clientIp: ipAddress
+    }
+  });  
+}
+
+export const updateUserActivity = function updateUserActivity({userId}) {
+  // Update user activity
+  Users.update({
+    _id: Meteor.userId()
+  }, {
+    $set: {
+      lastActivity: moment().toDate()
+    }
   });  
 }
 

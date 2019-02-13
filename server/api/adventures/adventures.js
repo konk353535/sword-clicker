@@ -239,7 +239,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'adventures.collectAdventure'(adventureId) {
@@ -288,7 +288,7 @@ Meteor.methods({
       }
     })
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'adventures.cycleAdventure'(isGems = false) {
@@ -375,7 +375,7 @@ Meteor.methods({
       }
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'adventures.startAdventure'(adventureId) {
@@ -424,7 +424,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'adventures.gameUpdate'() {

@@ -59,7 +59,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
     return true;
   },
 

@@ -245,7 +245,7 @@ Meteor.methods({
       updateMiningStats(Meteor.userId(), itemSlot);
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'items.hide'( baseItemId) {
@@ -268,7 +268,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'items.use'({ baseItemId, targetItemId }) {
@@ -520,7 +520,7 @@ Meteor.methods({
       }
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'items.eat'(_id, itemId) {
@@ -623,7 +623,7 @@ Meteor.methods({
       })
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'items.equip'(_id) {
@@ -776,7 +776,7 @@ Meteor.methods({
       updateMiningStats(Meteor.userId(), itemSlot);
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'items.sellItem'(_id, itemId, amount) {
@@ -836,7 +836,7 @@ Meteor.methods({
       $inc: { gold: amountToSell * itemConstants.sellPrice }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   }
 });
 

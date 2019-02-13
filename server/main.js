@@ -28,7 +28,7 @@ import { Friends } from '/imports/api/friends/friends';
 import { FarmingSpace, Farming } from '/imports/api/farming/farming';
 import { addItem } from '/server/api/items/items';
 
-import { getIPFromConnection } from '/imports/api/users/users.js';
+import { getIPFromConnection, updateUserIP } from '/imports/api/users/users.js';
 
 /*
 Meteor.onConnection((connection) => {
@@ -49,6 +49,8 @@ Accounts.onLogin((accountConnection) => {
         console.log(`. . . . . IP address: ${userIPReal}`);
       }
       //console.log(accountConnection.connection.httpHeaders);
+      
+      updateUserIP({userId: accountConnection.user._id, ipAddress: userIPReal});
     }
   }
 });

@@ -19,7 +19,7 @@ import './overview.html';
 
 let updatingAdventures = false;
 let miningPageTimer;
-let hasInitGameUpdate;
+let hasInitGameUpdate = false;
 
 Template.overviewPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -40,13 +40,11 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
     }
   });
   
-  Meteor.call('mining.gameUpdate');
-
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 7000);
+  }, 60000);
   
   const updateAdventures = function (self) {
     self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {

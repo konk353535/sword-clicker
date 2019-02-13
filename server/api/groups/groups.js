@@ -53,7 +53,7 @@ Meteor.methods({
 
     leaveGroup(currentGroup, this.userId);
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'groups.kick'({ username, ownerId }) {
@@ -106,7 +106,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'groups.ready'() {
@@ -194,7 +194,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'groups.join'(id) {
@@ -251,7 +251,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'groups.acceptInvite'(id, accept) {
@@ -305,7 +305,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   // Invite the user to your current group or create a group if not in one
@@ -380,7 +380,7 @@ Meteor.methods({
       });
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
   
   // Create a new group
@@ -416,7 +416,7 @@ Meteor.methods({
       invites: []
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
     // Transfer leadership role to another party member
@@ -461,7 +461,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   }
 });
 

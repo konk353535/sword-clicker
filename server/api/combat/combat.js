@@ -233,7 +233,7 @@ Meteor.methods({
       }
     })
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'combat.gameUpdate'() {
@@ -339,7 +339,7 @@ Meteor.methods({
 
     Battles.update(battle._id, update);
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   }
 });
 

@@ -59,7 +59,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
   // Fetch main mage upgrade costs
   'astronomy.upgradeCosts'() {
@@ -144,7 +144,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
   // Deposit gold to mage
   'astronomy.depositMageGold'(index, amount) {
@@ -182,7 +182,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
   // Withdraw gold from mage
   'astronomy.withdrawMageGold'(index, amount) {
@@ -222,7 +222,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
   // Boost mage
   'astronomy.boostMage'(index) { },

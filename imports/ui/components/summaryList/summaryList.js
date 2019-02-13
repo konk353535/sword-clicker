@@ -21,7 +21,7 @@ import '../newCombat/lobbyUnit/lobbyUnit.js';
 import './summaryList.html';
 
 let miningPageTimer;
-let hasInitGameUpdate;
+let hasInitGameUpdate = false;
 
 Template.summaryList.onCreated(function bodyOnCreated() {
   // Show mining spaces
@@ -36,14 +36,12 @@ Template.summaryList.onCreated(function bodyOnCreated() {
       hasInitGameUpdate = true;
     }
   });
-  
-  Meteor.call('mining.gameUpdate');
 
   miningPageTimer = Meteor.setInterval(function () {
     if (Meteor.user()) {
       Meteor.call('mining.gameUpdate');
     }
-  }, 15000);
+  }, 60000);
 });
 
 Template.summaryList.onDestroyed(function bodyOnDestroyed() {

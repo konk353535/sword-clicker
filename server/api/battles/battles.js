@@ -43,7 +43,7 @@ Meteor.methods({
       removeBattle(existingBattle._id);
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'battles.findPersonalBattle'(level) {
@@ -89,7 +89,7 @@ Meteor.methods({
 
     startBattle({ level, wave, server });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'battles.findTowerBattle'(floor, room) {
@@ -178,7 +178,7 @@ Meteor.methods({
     // Eventually select a random battle appropriate to users level
     startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'battles.getWaveDetails'() {

@@ -399,7 +399,7 @@ Meteor.methods({
         $set: setObject
       });
       
-      updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+      updateUserActivity({userId: Meteor.userId()});
     }
   }
 });

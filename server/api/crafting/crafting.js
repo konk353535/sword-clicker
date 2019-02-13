@@ -227,7 +227,7 @@ Meteor.methods({
 
     craftItem(recipeId, amount);
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'crafting.fetchTiers'() {
@@ -366,7 +366,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'crafting.updateGame'() {

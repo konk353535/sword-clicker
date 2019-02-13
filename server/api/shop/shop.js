@@ -101,7 +101,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.buyMembership'(days) {
@@ -148,7 +148,7 @@ Meteor.methods({
       });
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.buySingle'({ days, type }) {
@@ -191,7 +191,7 @@ Meteor.methods({
       });
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.buyIcon'(iconId) {
@@ -253,7 +253,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.buyItem'({ itemId }) {
@@ -288,7 +288,7 @@ Meteor.methods({
       addItem(itemToBuy.id, 1, Meteor.userId());
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.buyEnhancerKey'() {
@@ -304,7 +304,7 @@ Meteor.methods({
       addItem('enhancer_key', 1, Meteor.userId());
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'shop.purchaseWithRaiBlocks'({ token, item_id }) {

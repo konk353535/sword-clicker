@@ -169,7 +169,7 @@ Meteor.methods({
       throw new Meteor.Error("cant-pick", "That is not ready to pick yet");
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.pickAll'() {
@@ -200,7 +200,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.killPlant'(index) {
@@ -218,7 +218,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.plant'(plantId) {
@@ -286,7 +286,7 @@ Meteor.methods({
       }
     });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.plantAll'(plantId, specifiedAmount) {
@@ -381,7 +381,7 @@ Meteor.methods({
       }
     }, { multi: true });
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.buyShopItem'(seedId, amountToBuy = 1) {
@@ -404,7 +404,7 @@ Meteor.methods({
     // Add specified item
     addItem(shopItemConstants.itemId, amountToBuy);
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'farming.fetchSeedShopSells'() {

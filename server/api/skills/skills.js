@@ -277,7 +277,7 @@ Meteor.methods({
       }
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'skills.requirements'(skillName) {
@@ -381,7 +381,7 @@ Meteor.methods({
       characterIcon: targetUserCombat.characterIcon || 'character.svg'
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'skills.highscores'(skillName, showAll200) {
@@ -441,7 +441,7 @@ Meteor.methods({
       }).fetch();
     }
 
-    updateUserActivity({userId: Meteor.userId(), connectionInfo: this.connection});
+    updateUserActivity({userId: Meteor.userId()});
   }
 });
 

@@ -79,6 +79,16 @@ export const TOWER_FLOOR_8 = {
     }, {
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'steel_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'steel_buckler', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'purple_trident', amount: 1 }
       ]
     }, {
@@ -141,6 +151,11 @@ export const TOWER_FLOOR_8 = {
       rewards: [
         { type: 'item', itemId: 'feeding_frenzy_tome', amount: 1 },
         { type: 'item', itemId: 'bleeding_spin_1_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'steel_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

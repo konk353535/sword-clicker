@@ -59,7 +59,12 @@ export const TOWER_FLOOR_11 = {
         { type: 'item', itemId: 'tungsten_kite_shield', amount: 1 }
       ]
     }, {
-      chance: 1 / 256,
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'tungsten_buckler', amount: 1 }
       ]
@@ -130,6 +135,11 @@ export const TOWER_FLOOR_11 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'water_shard_fragment', amount: 50 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'tungsten_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

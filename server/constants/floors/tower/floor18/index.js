@@ -69,6 +69,16 @@ export const TOWER_FLOOR_18 = {
         { type: 'item', itemId: 'fairy_steel_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'fairy_steel_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'fairy_steel_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'thirsty_fangs_2_tome_scroll', amount: 1 }
@@ -142,6 +152,11 @@ export const TOWER_FLOOR_18 = {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'complete_earth_shard', amount: 10 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'fairy_steel_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

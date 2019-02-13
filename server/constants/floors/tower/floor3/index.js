@@ -64,6 +64,16 @@ export const TOWER_FLOOR_3 = {
         { type: 'item', itemId: 'bronze_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'bronze_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'phantom_strikes_level_1_tome', amount: 1 }
@@ -111,6 +121,11 @@ export const TOWER_FLOOR_3 = {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'polished_stone', amount: 30 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'bronze_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

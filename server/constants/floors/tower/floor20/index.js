@@ -74,6 +74,16 @@ export const TOWER_FLOOR_20 = {
         { type: 'item', itemId: 'cursed_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cursed_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cursed_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'verdant_wizard_hat', amount: 1 },
@@ -122,6 +132,11 @@ export const TOWER_FLOOR_20 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'diamond_skin_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cursed_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

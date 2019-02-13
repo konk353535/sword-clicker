@@ -64,6 +64,16 @@ export const TOWER_FLOOR_7 = {
         { type: 'item', itemId: 'carbon_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'carbon_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'carbon_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'frost_armor_1_tome', amount: 1 }
@@ -110,6 +120,11 @@ export const TOWER_FLOOR_7 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'double_edged_sword_3_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'carbon_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

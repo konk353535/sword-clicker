@@ -64,6 +64,16 @@ export const TOWER_FLOOR_16 = {
         { type: 'item', itemId: 'meteor_tome', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'orichalcum_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'orichalcum_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'crimson_wizard_hat', amount: 1 },
@@ -127,6 +137,11 @@ export const TOWER_FLOOR_16 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'frost_armor_3_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'orichalcum_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

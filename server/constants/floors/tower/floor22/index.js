@@ -76,6 +76,16 @@ export const TOWER_FLOOR_22 = {
         { type: 'item', itemId: 'radiant_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'radiant_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'radiant_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'radiant_axe_scroll', amount: 1 },
@@ -127,6 +137,11 @@ export const TOWER_FLOOR_22 = {
       rewards: [
         { type: 'item', itemId: 'radiant_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'radiant_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'radiant_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

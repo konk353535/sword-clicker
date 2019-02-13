@@ -58,8 +58,13 @@ export const TOWER_FLOOR_19 = {
       rewards: [
         { type: 'item', itemId: 'elven_steel_kite_shield', amount: 1 }
       ]
-    },{
-      chance: 1 / 256,
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'elven_steel_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'elven_steel_buckler', amount: 1 }
       ]
@@ -120,6 +125,11 @@ export const TOWER_FLOOR_19 = {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'complete_water_shard', amount: 10 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'elven_steel_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

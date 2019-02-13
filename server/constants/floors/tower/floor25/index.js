@@ -125,7 +125,17 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'relicrock_kite_shield', amount: 1 }
       ]
-    },{
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'relicrock_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 256,
+      rewards: [
+        { type: 'item', itemId: 'relicrock_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'relicrock_axe_scroll', amount: 1 },
@@ -200,6 +210,11 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'relicrock_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 144,
+      rewards: [
+        { type: 'item', itemId: 'relicrock_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 72,

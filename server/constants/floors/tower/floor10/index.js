@@ -59,6 +59,16 @@ export const TOWER_FLOOR_10 = {
         { type: 'item', itemId: 'titanium_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanium_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanium_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'orange_wizard_hat', amount: 1 },
@@ -113,6 +123,11 @@ export const TOWER_FLOOR_10 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'catnip', amount: 1 } // Change to herb
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'titanium_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

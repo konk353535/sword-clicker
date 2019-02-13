@@ -61,6 +61,16 @@ export const TOWER_FLOOR_17 = {
     }, {
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'meteorite_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'meteorite_buckler', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'azure_trident', amount: 1 }
       ]
     }]))
@@ -116,6 +126,11 @@ export const TOWER_FLOOR_17 = {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'complete_air_shard', amount: 10 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'meteorite_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

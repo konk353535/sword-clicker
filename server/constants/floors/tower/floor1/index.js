@@ -63,6 +63,16 @@ export const TOWER_FLOOR_1 = {
         { type: 'item', itemId: 'copper_kite_shield', amount: 1 }
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'copper_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 4,
       rewards: [ // grouping these together means that only 1 of them will drop... 25% chance to drop x 33% chance = 8.25% chance for any specific item here (x quantity)
         { type: 'item', itemId: 'ore_stone', amount: 5 },
@@ -86,11 +96,6 @@ export const TOWER_FLOOR_1 = {
     name: 'Honey Mine',
     enemies: ['bee'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'copper_hammer', amount: 1 }
-      ]
-    }, {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'diminished_orb', amount: 1 },
@@ -102,6 +107,11 @@ export const TOWER_FLOOR_1 = {
     name: 'String Fortress',
     enemies: ['wasp'],
     rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'copper_hammer', amount: 1 }
+      ]
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'copper_scimitar', amount: 1 },

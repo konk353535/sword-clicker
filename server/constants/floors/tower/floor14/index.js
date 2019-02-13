@@ -53,15 +53,19 @@ export const TOWER_FLOOR_14 = {
     name: 'Meat Works',
     enemies: ['rabbit', 'farmer'],
     rewards: orderLootTable(LEVEL_FOURTEEN_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'mithril_buckler', amount: 1 },
-        { type: 'item', itemId: 'mithril_hammer', amount: 1 }
+        { type: 'item', itemId: 'mithril_kite_shield', amount: 1 }
       ]
     }, {
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'mithril_kite_shield', amount: 1 }
+        { type: 'item', itemId: 'mithril_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'mithril_buckler', amount: 1 }
       ]
     }, {
       chance: 1 / 32,
@@ -130,6 +134,11 @@ export const TOWER_FLOOR_14 = {
         { type: 'item', itemId: 'mithril_scimitar', amount: 1 },
         { type: 'item', itemId: 'mithril_broad_sword', amount: 1 },
         { type: 'item', itemId: 'mithril_horned_helmet', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'mithril_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 48,

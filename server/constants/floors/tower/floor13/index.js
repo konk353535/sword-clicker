@@ -66,6 +66,16 @@ export const TOWER_FLOOR_13 = {
     }, {
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'cobalt_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_buckler', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'violet_trident', amount: 1 }
       ]
     }, {
@@ -121,6 +131,11 @@ export const TOWER_FLOOR_13 = {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'air_shard_fragment', amount: 50 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'cobalt_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

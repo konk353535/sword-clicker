@@ -75,7 +75,17 @@ export const TOWER_FLOOR_21 = {
       rewards: [
         { type: 'item', itemId: 'darksteel_kite_shield', amount: 1 }
       ]
-    },{
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'darksteel_axe_scroll', amount: 1 },
@@ -125,6 +135,11 @@ export const TOWER_FLOOR_21 = {
       rewards: [
         { type: 'item', itemId: 'darksteel_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'darksteel_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'darksteel_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

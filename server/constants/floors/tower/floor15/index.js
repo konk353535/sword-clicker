@@ -39,11 +39,6 @@ export const TOWER_FLOOR_15 = {
         { type: 'item', itemId: 'adamantium_rapiers', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'cursed_spirit_shield', amount: 1 }
-      ]
-    }, {
       chance: 1 / 4,
       rewards: [
         { type: 'item', itemId: 'adamantium_essence', amount: 1 }
@@ -62,6 +57,16 @@ export const TOWER_FLOOR_15 = {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'adamantium_kite_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_buckler', amount: 1 }
       ]
     }, {
       chance: 1 / 256,
@@ -125,6 +130,11 @@ export const TOWER_FLOOR_15 = {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'complete_fire_shard', amount: 10 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'adamantium_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

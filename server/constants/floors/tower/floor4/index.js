@@ -62,8 +62,17 @@ export const TOWER_FLOOR_4 = {
     }, {
       chance: 1 / 128,
       rewards: [ 
-        { type: 'item', itemId: 'spirit_shield', amount: 1 },
         { type: 'item', itemId: 'iron_kite_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'iron_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'iron_buckler', amount: 1 }
       ]
     }]))
   },
@@ -102,6 +111,11 @@ export const TOWER_FLOOR_4 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'elemental_shield_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'iron_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

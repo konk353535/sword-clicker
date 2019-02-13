@@ -75,7 +75,17 @@ export const TOWER_FLOOR_24 = {
       rewards: [
         { type: 'item', itemId: 'titanfoil_kite_shield', amount: 1 }
       ]
-    },{
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'titanfoil_axe_scroll', amount: 1 },
@@ -122,6 +132,11 @@ export const TOWER_FLOOR_24 = {
       rewards: [
         { type: 'item', itemId: 'titanfoil_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 96,
+      rewards: [
+        { type: 'item', itemId: 'titanfoil_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 48,

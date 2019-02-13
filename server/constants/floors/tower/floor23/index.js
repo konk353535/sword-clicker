@@ -75,7 +75,17 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'astral_kite_shield', amount: 1 }
       ]
-    },{
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'astral_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'astral_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'astral_axe_scroll', amount: 1 },
@@ -125,6 +135,11 @@ export const TOWER_FLOOR_23 = {
       rewards: [
         { type: 'item', itemId: 'astral_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'astral_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'astral_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

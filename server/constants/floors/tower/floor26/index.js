@@ -75,7 +75,17 @@ export const TOWER_FLOOR_26 = {
       rewards: [
         { type: 'item', itemId: 'eternium_kite_shield', amount: 1 }
       ]
-    },{
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'eternium_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 512,
+      rewards: [
+        { type: 'item', itemId: 'eternium_buckler', amount: 1 }
+      ]
+    }, {
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'eternium_axe_scroll', amount: 1 },
@@ -122,6 +132,11 @@ export const TOWER_FLOOR_26 = {
       rewards: [
         { type: 'item', itemId: 'eternium_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'eternium_battle_axe_scroll', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 216,
+      rewards: [
+        { type: 'item', itemId: 'eternium_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 108,

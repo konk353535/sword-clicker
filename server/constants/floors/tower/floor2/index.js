@@ -61,6 +61,11 @@ export const TOWER_FLOOR_2 = {
         { type: 'item', itemId: 'tin_kite_shield', amount: 1 },
       ]
     }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'tin_spirit_shield', amount: 1 }
+      ]
+    }, {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'spiked_armor_1_tome', amount: 1 }
@@ -108,6 +113,11 @@ export const TOWER_FLOOR_2 = {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'carrot', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'tin_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

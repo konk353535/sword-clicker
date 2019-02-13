@@ -65,7 +65,12 @@ export const TOWER_FLOOR_9 = {
     }, {
       chance: 1 / 128,
       rewards: [
-        { type: 'item', itemId: 'fairy_spirit_shield', amount: 1 }
+        { type: 'item', itemId: 'platinum_spirit_shield', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
+        { type: 'item', itemId: 'platinum_buckler', amount: 1 }
       ]
     }, {
       chance: 1 / 4,
@@ -126,6 +131,11 @@ export const TOWER_FLOOR_9 = {
         { type: 'item', itemId: 'celery_seed', amount: 1 },
         { type: 'item', itemId: 'catnip', amount: 1 },
         { type: 'item', itemId: 'dragonfruit', amount: 3 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'platinum_hammer', amount: 1 }
       ]
     }, {
       chance: 1 / 32,

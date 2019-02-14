@@ -99,6 +99,11 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'inferno_wizard_shirt', amount: 1 },
         { type: 'item', itemId: 'inferno_wizard_shorts', amount: 1 }
       ]
+    }, {
+      chance: 1 / 48,
+      rewards: [
+        { type: 'item', itemId: 'scream_level_5_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

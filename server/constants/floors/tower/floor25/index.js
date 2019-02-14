@@ -237,8 +237,13 @@ export const TOWER_FLOOR_25 = {
   },
 
   boss: {
-    enemy: { id: 'boss_ruiner', amount: 1 },
-    rewards: []
+    enemy: { id: 'boss_witch', amount: 1 },
+    rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'witchs_cauldron', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

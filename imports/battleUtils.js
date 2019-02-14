@@ -106,3 +106,12 @@ export const removeBuffWithMessage = function removeBuffWithMessage({target, cas
   }
   return false;
 };
+
+export const lookupBuff = function lookupBuff(buffId) {
+  try {
+    return BUFFS[buffId];
+  } catch (err) {
+  }
+  
+  return undefined;
+}

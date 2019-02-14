@@ -762,7 +762,7 @@ export const BOSS_ENEMIES = {
       data: {
         duration: Infinity,
         totalDuration: Infinity,
-        name: 'boss ruiner',
+        name: 'the ruiner',
         icon: 'boss24.svg',
         hideBuff: true,
       }
@@ -775,6 +775,44 @@ export const BOSS_ENEMIES = {
         name: 'Hatred Attacks',
         hideBuff: true,
       }
+    }],
+    rewards: []
+  },
+
+  boss_witch: {
+    id: 'boss_witch',
+    icon: 'witch.svg',
+    name: 'The Witch',
+    isBoss: true,
+    stats: {
+      attack: 150,
+      attackMax: 250,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 600,
+      health: 6500,
+      healthMax: 6500,
+      defense: 350,
+      armor: 750,
+      magicArmor: 450,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_witch',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'The Witch',
+        icon: 'witch.svg',
+        hideBuff: true,
+      },
+    }, {
+      id: 'boss_witch__deathhex',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'Death Hex',
+        icon: 'graves.svg',
+      },
     }],
     rewards: []
   },

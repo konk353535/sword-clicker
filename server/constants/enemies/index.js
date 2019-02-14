@@ -1324,5 +1324,98 @@ export const ENEMIES = Object.assign({
     }],
     swarmRange: [2, 4]
   },
+
+  troglodyte: {
+    id: 'troglodyte',
+    icon: 'troglodyte.svg',
+    name: 'troglodyte',    
+    buffs: [{
+      id: 'troglodyte_monster',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,
+        hideBuff: true
+      }
+    }],    
+    statBuffs: [{
+      type: 'plus',
+      key: 'defense',
+      amount: 50
+    }, {
+      type: 'times',
+      key: 'armor',
+      amount: 0.5
+    }],
+    swarmRange: [3, 5]
+  },
   
+  eternal_warden: {
+    id: 'eternal_warden',
+    icon: 'eternalWarden.svg',
+    name: 'eternal warden',    
+    buffs: [{
+      id: 'earth_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }, {
+      id: 'fire_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }, {
+      id: 'water_mage_monster',
+      data: {
+        hideBuff: true
+      }
+    }],
+    statBuffs: [{
+      type: 'plus',
+      key: 'defense',
+      amount: 50
+    }, {
+      type: 'times',
+      key: 'health',
+      amount: 1.75
+    }, {
+      type: 'times',
+      key: 'healthMax',
+      amount: 1.75
+    }, {
+      type: 'times',
+      key: 'magicPower',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'armor',
+      amount: 1.3
+    }, {
+      type: 'times',
+      key: 'magicArmor',
+      amount: 1.5
+    }]
+  },
+
+  hydra: {
+    id: 'hydra',
+    icon: 'hydra.svg',
+    name: 'hydra',    
+    buffs: [{
+      id: 'hydra_monster',
+      duration: Infinity,
+      data: {
+        totalDuration: Infinity,        
+        icon: 'hydra.svg'
+      }
+    }],    
+    statBuffs: [{
+      type: 'times',
+      key: 'attack',
+      amount: 2.5
+    }, {
+      type: 'times',
+      key: 'attackMax',
+      amount: 2.5
+    }]
+  },
 }, BOSS_ENEMIES);

@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
-import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
+
+import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
 
 export const CRAFTED_ENCHANTMENT_BUFFS = {
 
@@ -54,7 +54,7 @@ LEG
     events: { 
 
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
 
         caster.stats.armor += constants.armorPerHit * constants.totalHits;
         buff.stacks = constants.armorPerHit * constants.totalHits;
@@ -62,7 +62,7 @@ LEG
 
       // Remove Armor as player gets hit.
       onTookDamage({ buff, defender, attacker, secondsElapsed, damageDealt, actualBattle }) {
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
 
         buff.stacks -= constants.armorPerHit;
 
@@ -99,7 +99,7 @@ LEG
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
 
         const modifier = constants.damageModifier / 100;
         const modifiedDamage = Math.round(rawDamage * modifier); 
@@ -137,7 +137,7 @@ LEG
       }, 
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
 
         const baseDamage = 1 + attacker.stats.magicPower;
         const modifier = constants.damageModifier / 100;
@@ -199,7 +199,7 @@ LEG
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
 
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
         const modifier = 1 + (constants.speedModifier / 100);
 
         target.stats.attackSpeed *= modifier;
@@ -229,7 +229,7 @@ LEG
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
 
-        const constants = BUFFS[buff.id].constants;
+        const constants = lookupBuff(buff.id).constants;
 
         const modifier = constants.healthModifier / 100;
         const amountToAdd = target.stats.armor * modifier;
@@ -256,7 +256,7 @@ LEG
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
 
         if (buff.data.timeTillCharge <= 0) {
-          const constants = BUFFS[buff.id].constants;
+          const constants = lookupBuff(buff.id).constants;
           const modifier = constants.damageModifier / 100;
           const modifiedDamage = Math.round(rawDamage * modifier); 
 

@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
+
+import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
 import { CInt } from '../../utils';
 
 export const ATTACK_BUFFS = {
@@ -23,7 +24,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -36,7 +37,7 @@ export const ATTACK_BUFFS = {
       },
 
       onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const defenderAttack = defender.stats.attack;
         const defenderAttackMax = defender.stats.attackMax;
         const actualDamage = (defenderAttack + ((defenderAttackMax - defenderAttack) * Math.random())) * constants.damageDecimal;
@@ -68,7 +69,7 @@ export const ATTACK_BUFFS = {
     },
     events: {
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         
         if (buff.data.timeTillDamage !== undefined) {
           buff.data.timeTillDamage -= secondsElapsed;
@@ -127,7 +128,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
   
         const attackBase = constants.attackBase;
         const attackPerLevel = constants.attackPerLevel * buff.data.level;
@@ -178,7 +179,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const accuracyBase = constants.accuracyBase;
         const accuracyPerLevel = constants.accuracyPerLevel * buff.data.level;
         const accuracyIncrease = accuracyBase + accuracyPerLevel;
@@ -230,7 +231,7 @@ export const ATTACK_BUFFS = {
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
         if (!buff.data.criticalIncrease) {
-          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           const criticalBase = constants.criticalBase;
           const criticalPerLevel = constants.criticalPerLevel * buff.data.level;
           const criticalIncrease = criticalBase + criticalPerLevel;
@@ -276,7 +277,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
 
         const lifestealBase = constants.lifestealBase;
         const lifestealPerLevel = constants.lifestealPerLevel;
@@ -291,6 +292,7 @@ export const ATTACK_BUFFS = {
           target: attacker,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          healSource: buff
         });
       },
 
@@ -340,7 +342,7 @@ export const ATTACK_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         if (Math.random() <= constants.poisonChance) {
           const baseDamage = attacker.stats.attack;
           const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
@@ -411,7 +413,7 @@ export const ATTACK_BUFFS = {
       },
 
       onDidDamage({ originalAutoAttack, buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         if (originalAutoAttack && Math.random() <= constants.extraAttackChance) {
           // 2018-11-10 psouza4:  updated phantom strikes to actually call auto-attack routine and prevent it from recursively
           //                      calling itself (in case the phantom strikes chance tries to proc itself), allowing phantom
@@ -571,7 +573,7 @@ export const ATTACK_BUFFS = {
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
 
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const baseDamage = attacker.stats.attack;
         const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack));
         const damageBoost = (constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level));
@@ -590,6 +592,7 @@ export const ATTACK_BUFFS = {
               target: attacker,
               tickEvents: actualBattle.tickEvents,
               historyStats: actualBattle.historyStats,
+              healSource: buff
             }); 
           }
 
@@ -698,7 +701,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
         // Increases damage and attack speed
@@ -775,7 +778,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const damageIncreasePerPercentage = constants.damageBase + (constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const baseDamage = caster.stats.attackMax;
@@ -832,7 +835,7 @@ export const ATTACK_BUFFS = {
           return;
         }
 
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;        
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;        
         const damageIncreasePerPercentage = constants.damageBase + (constants.damagePerLevel * buff.data.level);
         // Targets missing health %
         const missingHealthPercentage = 100 - (target.stats.health / target.stats.healthMax * 100);
@@ -877,7 +880,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const damagePerLevel = constants.damagePerLevel;
         const damageBase = constants.damageBase;
         const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
@@ -923,7 +926,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const damagePerLevel = constants.damagePerLevel;
         const damageBase = constants.damageBase;
         const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
@@ -969,7 +972,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const damagePerLevel = constants.damagePerLevel;
         const damageBase = constants.damageBase;
         const damageTotalDecimal = (damageBase + (damagePerLevel * buff.data.level));
@@ -1010,7 +1013,7 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const baseDamage = caster.stats.attack;
         const extraDamage = Math.round(Math.random() * (caster.stats.attackMax - caster.stats.attack));
         const percentDamage = constants.damagePercentage + (buff.data.level * constants.damagePerLevel);
@@ -1075,7 +1078,7 @@ export const ATTACK_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const attackSpeedGain = constants.attackSpeedBase + (constants.attackSpeedPerLevel * buff.data.level);
 
         buff.data.attackSpeedGain = attackSpeedGain;
@@ -1120,7 +1123,7 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().toDate();
 
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         
         if (constants && !buff.data.dps) {
           buff.data.dps = constants.damagePerSecondBase + (constants.damagePerSecondPerLevel * buff.data.level);
@@ -1187,7 +1190,7 @@ export const ATTACK_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         
         if (constants && !buff.data.dps) {
           buff.data.dps = constants.damagePerSecondBase + (constants.damagePerSecondPerLevel * buff.data.level);
@@ -1257,7 +1260,7 @@ export const ATTACK_BUFFS = {
     events: {
       onApply({ buff, target, caster, actualBattle }) {
         if (buff.duration !== Infinity) {
-          const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.duration += (buffConstants.extraTimePerLevel * buff.data.level);
         }
         target.cantMiss = true;
@@ -1300,7 +1303,7 @@ export const ATTACK_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
-        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const bonusDamage = buffConstants.baseDamageMultiplierPerLevel + (buffConstants.extraDamageMultiplierPerLevel * buff.data.level);
         const armorPenetration = buffConstants.baseArmorPenetrationPerLevel + (buffConstants.extraArmorPenetrationPerLevel * buff.data.level);
         const actualDamage = bonusDamage * (caster.stats.attack + ((caster.stats.attackMax - caster.stats.attack) * Math.random()));
@@ -1348,7 +1351,7 @@ export const ATTACK_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
-        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const buffConstants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const lowerRange = buffConstants.minimumShots;
         const upperRange = buffConstants.extraShotsBase + (buffConstants.extraShotsPerLevel * buff.data.level);
         const extraDamage = buffConstants.extraDamagePerLevel * buff.data.level;

@@ -5,13 +5,13 @@ import { LEVEL_TWENTY_SIX_LOOT_TABLE } from '../../levels/level26';
 
 export const TOWER_FLOOR_26 = {
   1: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Through The Filth',
+    enemies: ['snake', 'rat', 'spider', 'rat'],
     rewards: []
   },
   2: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Sewer Scum',
+    enemies: ['fish', 'fish', 'jellyFish', 'jellyFish'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [
@@ -21,8 +21,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   3: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'A Foul Stench',
+    enemies: ['troglodyte'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
@@ -47,8 +47,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   4: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'The Grand Wizard',
+    enemies: ['eternal_warden'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 512,
       rewards: [
@@ -68,8 +68,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   5: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Always Another Way',
+    enemies: ['jellyFish', 'hydra', 'jellyFish'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 512,
       rewards: [
@@ -102,8 +102,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   6: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Vile Filth',
+    enemies: ['troglodyte', 'demon', 'troglodyte'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
@@ -125,8 +125,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   7: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'The Eternal Struggle',
+    enemies: ['eternal_warden', 'hydra', 'eternal_warden'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
@@ -149,7 +149,7 @@ export const TOWER_FLOOR_26 = {
   },
 
   boss: {
-    enemy: { id: 'boss_hive', amount: 1 },
+    enemy: { id: 'boss_witch', amount: 1 }, /* TODO: add floor 27 boss here (this is floor 26 boss) */
     rewards: []
   },
 

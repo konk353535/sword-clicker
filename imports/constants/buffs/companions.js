@@ -1,10 +1,10 @@
 import moment from 'moment';
-import { addBuff, removeBuff } from '../../battleUtils';
-import { CDbl } from '../../utils.js';
-import { BUFFS } from './index.js';
 import lodash from 'lodash';
 import _ from 'underscore';
 import uuid from 'node-uuid';
+
+import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
+import { CDbl } from '../../utils.js';
 
 // combat node/server doesn't have access to database or schema
 //import { Users } from '/imports/api/users/users';
@@ -351,8 +351,8 @@ export const COMPANION_BUFFS = {
           }]);
           
           /* enemy.buffs = enemy.buffs.concat([
-            lodash.cloneDeep(BUFFS['boss_high_angel']),
-            lodash.cloneDeep(BUFFS['angels_heart'])
+            lodash.cloneDeep(lookupBuff('boss_high_angel')),
+            lodash.cloneDeep(lookupBuff('angels_heart'))
           ]); */
             
           actualBattle.addUnit(enemy);
@@ -472,7 +472,7 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
-          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.data.isSpawned = true;
           //buff.data.hideBuff = true;
 
@@ -680,7 +680,7 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
-          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.data.isSpawned = true;
           //buff.data.hideBuff = true;
 
@@ -898,7 +898,7 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
-          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.data.isSpawned = true;
           //buff.data.hideBuff = true;
           
@@ -1109,7 +1109,7 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
-          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.data.isSpawned = true;
           //buff.data.hideBuff = true;
 
@@ -1298,7 +1298,7 @@ export const COMPANION_BUFFS = {
 
       onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
         if (!buff.data.isSpawned) {
-          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           buff.data.isSpawned = true;
           //buff.data.hideBuff = true;
 
@@ -1978,7 +1978,7 @@ export const COMPANION_BUFFS = {
                     totalDuration: 5,
                     wasCharmed: false,
                   },
-                  constants: BUFFS['charm']
+                  constants: lookupBuff('charm')
                 };
                 addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle });                  
               });

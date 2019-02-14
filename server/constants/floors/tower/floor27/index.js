@@ -5,66 +5,50 @@ import { ITEMS } from '../../../../../imports/constants/items/index';
 export const TOWER_FLOOR_27 = {
   unlocks: false,
   1: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   2: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   3: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   4: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   5: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   6: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
   7: {
-    name: 'Do not try.',
-    enemies: ['unicorn','angel','demon','spartan'],
+    name: 'Floor Inaccessible',
+    enemies: ['grotesque_giant','ripper','devourer','wither','seething_hatred','boss_ruiner'],
     rewards: []
   },
 
   boss: {
-    enemy: { id: 'boss_fox', amount: 10 },
+    enemy: { id: 'boss_ruiner', amount: 10 },
     rewards: []
   },
 
   floorRewards: [
     {
-      type: 'item',
-      itemId: 'cursed_dwarven_idol',
-      icon: ITEMS['cursed_dwarven_idol'].icon,
-      name: ITEMS['cursed_dwarven_idol'].name,
-      baseStats: ITEMS['cursed_dwarven_idol'].stats,
-      extraStats: ITEMS['cursed_dwarven_idol'].extraStats
-    },
-    {
-      type: 'item',
-      itemId: 'enhancer_key',
-      icon: ITEMS['enhancer_key'].icon,
-      name: ITEMS['enhancer_key'].name,
-      baseStats: ITEMS['enhancer_key'].stats,
-      extraStats: ITEMS['enhancer_key'].extraStats
-    },
-    {
       type: 'gold',
-      amount: 150000
+      amount: 0
     }
   ]
 };

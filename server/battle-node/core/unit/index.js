@@ -290,6 +290,12 @@ export default class Unit {
     this.attackIn--;
   }
 
+  checkDeath() {
+    if (this.battleRef) {
+      this.battleRef.checkDeath(this);
+    }
+  }
+  
   onDeath() {
     // Get who was targetting this unit, give them a new target
     this.battleRef.allAliveUnits.forEach((unit) => {
@@ -428,9 +434,9 @@ export default class Unit {
     return false;
   }
   
-  tickMessage(label, customColor, customIcon) {
+  tickMessage(label, customColor, customIcon, fromUnit) {
     if (this.battleRef && this.battleRef.tickEvents) {
-      this.battleRef.tickEvents.push({from: this.id, to: this.id, eventType: 'special', label, customColor, customIcon: customIcon || 'noicon'});
+      this.battleRef.tickEvents.push({from: ((fromUnit) ? fromUnit.id : this.id), to: this.id, eventType: 'special', label: label || '', customColor: customColor || '#000000', customIcon: customIcon || 'noicon'});
     }
   }
   

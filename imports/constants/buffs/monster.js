@@ -1,7 +1,7 @@
 import _ from 'underscore';
-import { addBuff, removeBuff } from '../../battleUtils';
-import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
+
+import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
 
 export const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({unit, property, actualBattle}) {
   try {
@@ -78,7 +78,7 @@ export const MONSTER_BUFFS = {
                 totalDuration: Infinity,
                 icon: 'armor.svg',
               },
-              constants: BUFFS['crab_monster']
+              constants: lookupBuff('crab_monster')
             };
             addBuff({ buff: newBuff, target: babySnipsUnit, caster: target, actualBattle });
 
@@ -142,7 +142,7 @@ export const MONSTER_BUFFS = {
                 icon: 'wurmMouth.svg',
                 name: 'Maw'
               },
-              constants: BUFFS['rat_monster']
+              constants: lookupBuff('rat_monster')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });            
           }
@@ -190,7 +190,7 @@ export const MONSTER_BUFFS = {
                 name: 'vampirism',
                 level: 3
               },
-              constants: BUFFS['vampirism']
+              constants: lookupBuff('vampirism')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -221,7 +221,7 @@ export const MONSTER_BUFFS = {
                 name: 'thirsty fangs',
                 level: 1
               },
-              constants: BUFFS['thirsty_fangs']
+              constants: lookupBuff('thirsty_fangs')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
@@ -257,7 +257,7 @@ export const MONSTER_BUFFS = {
                 name: 'berserk',
                 level: 3
               },
-              constants: BUFFS['berserk']
+              constants: lookupBuff('berserk')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
@@ -284,7 +284,7 @@ export const MONSTER_BUFFS = {
                 icon: 'swipe.svg',
                 name: 'Swipe'
               },
-              constants: BUFFS['rat_monster']
+              constants: lookupBuff('rat_monster')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });            
           } else if (rand < 0.20) { // 10% chance to upgrade to eagle
@@ -309,7 +309,7 @@ export const MONSTER_BUFFS = {
                 icon: 'birdEagle.svg',
                 name: 'Flight'
               },
-              constants: BUFFS['ninja_reflexes']
+              constants: lookupBuff('ninja_reflexes')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
@@ -420,7 +420,7 @@ export const MONSTER_BUFFS = {
                 name: 'spiked armor',
                 level: 3,
               },
-              constants: BUFFS['spiked_armor']
+              constants: lookupBuff('spiked_armor')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -458,7 +458,7 @@ export const MONSTER_BUFFS = {
                   name: 'war cry',
                   level: 1
                 },
-                constants: BUFFS['war_cry']
+                constants: lookupBuff('war_cry')
               };
               addBuff({ buff: newBuff, target: enemyUnit, caster: target, actualBattle });
             });
@@ -489,7 +489,7 @@ export const MONSTER_BUFFS = {
                 name: 'phantom strikes',
                 level: 2,
               },
-              constants: BUFFS['phantom_strikes']
+              constants: lookupBuff('phantom_strikes')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -516,7 +516,7 @@ export const MONSTER_BUFFS = {
                 name: 'phantom strikes',
                 level: 2,
               },
-              constants: BUFFS['phantom_strikes']
+              constants: lookupBuff('phantom_strikes')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -584,7 +584,7 @@ export const MONSTER_BUFFS = {
                 icon: 'heartDrop.svg',
                 name: 'Radiance'
               },
-              constants: BUFFS['demon_monster']
+              constants: lookupBuff('demon_monster')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
           }
@@ -606,7 +606,7 @@ export const MONSTER_BUFFS = {
                 name: 'twin blades',
                 level: 1
               },
-              constants: BUFFS['twin_blades']
+              constants: lookupBuff('twin_blades')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -632,7 +632,7 @@ export const MONSTER_BUFFS = {
                 name: 'spiked armor',
                 level: 3,
               },
-              constants: BUFFS['spiked_armor']
+              constants: lookupBuff('spiked_armor')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             if (allowBonuses) {
@@ -764,7 +764,7 @@ export const MONSTER_BUFFS = {
                 hideBuff: (whichMage === 1) ? true : (whichMage === 2) ? true : false,
                 name: 'Apprentice',
               },
-              constants: BUFFS[(whichMage === 1) ? 'earth_mage_monster' : (whichMage === 2) ? 'water_mage_monster' : 'fire_mage_monster']
+              constants: lookupBuff((whichMage === 1) ? 'earth_mage_monster' : (whichMage === 2) ? 'water_mage_monster' : 'fire_mage_monster')
             };
             addBuff({ buff: newBuff, target: apprenticeMageUnit, caster: target, actualBattle });            
             
@@ -790,7 +790,7 @@ export const MONSTER_BUFFS = {
                   name: 'frost armor',
                   level: 2,
                 },
-                constants: BUFFS['frost_armor']
+                constants: lookupBuff('frost_armor')
               };
               addBuff({ buff: newBuff, target: target, caster: target, actualBattle });              
             } else if ((target.name === 'brown mage') || (target.name === 'earth mage')) {
@@ -815,7 +815,7 @@ export const MONSTER_BUFFS = {
                   name: 'spiked armor',
                   level: 3,
                 },
-                constants: BUFFS['spiked_armor']
+                constants: lookupBuff('spiked_armor')
               };
             } else if (target.name === 'fire mage') {
               target.name = 'fiery wizard';
@@ -841,7 +841,7 @@ export const MONSTER_BUFFS = {
                 name: 'watchful aura',
                 level: 1,
               },
-              constants: BUFFS['sixth_sense']
+              constants: lookupBuff('sixth_sense')
             };
             addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
             target.extraLootTable = [{id: `${thisMetalCapped20}_wand`, chance: 0.25}];
@@ -1063,7 +1063,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         if (Math.random() <= 0.1) {
           const hasEvasive = _.find(defender.buffs, (buff) => {
             return buff.id === 'evasive_maneuvers';
@@ -1140,7 +1140,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         if (defender.stats.health <= (defender.stats.healthMax * 0.2)) {
 
           const newBuff = {
@@ -1343,7 +1343,7 @@ export const MONSTER_BUFFS = {
               icon: 'waterDart.svg',
               description: ''
             },
-            constants: BUFFS['water_dart']
+            constants: lookupBuff('water_dart')
           };
 
           const target = _.sample(actualBattle.enemies);
@@ -1556,7 +1556,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const healingReduction = 0.25;
         const newBuff = {
           id: 'healing_reduction',
@@ -1597,7 +1597,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const bleedChance = 0.2;
 
         if (Math.random() <= bleedChance) {
@@ -1644,7 +1644,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const bleedChance = buff.data.bleedChance || 0.2;
 
         if (Math.random() <= bleedChance) {
@@ -1691,7 +1691,7 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const bleedChance = 0.66;
 
         if (Math.random() <= bleedChance) {
@@ -1744,7 +1744,7 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
 
         // Does this unit have poison? remove poison + heal
         const poisonedCount = defender.buffs.filter((buff) => {
@@ -1757,7 +1757,8 @@ export const MONSTER_BUFFS = {
             caster: defender,
             target: defender,
             historyStats: actualBattle.historyStats,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            healSource: buff
           });
 
           defender.buffs.forEach((buff) => {
@@ -1907,7 +1908,7 @@ export const MONSTER_BUFFS = {
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
         if (Math.random() <= 0.25) {
-          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+          const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
           const armorReduction = 0.66;
           const newBuff = {
             id: 'armor_reduction',
@@ -1981,7 +1982,7 @@ export const MONSTER_BUFFS = {
                 splitAmount: buff.data.splitAmount,
                 hasSplit: false
               },
-              constants: BUFFS['gelatinous_cube_monster']
+              constants: lookupBuff('gelatinous_cube_monster')
             };
             addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
@@ -2020,7 +2021,7 @@ export const MONSTER_BUFFS = {
                 splitAmount: buff.data.splitAmount,
                 hasSplit: false
               },
-              constants: BUFFS['gelatinous_cube_monster']
+              constants: lookupBuff('gelatinous_cube_monster')
             };
             addBuff({ buff: newBuff, target: newCubeUnit, caster: newCubeUnit, actualBattle });
           }
@@ -2063,7 +2064,8 @@ export const MONSTER_BUFFS = {
             caster: defender,
             target: defender,
             historyStats: actualBattle.historyStats,
-            tickEvents: actualBattle.tickEvents
+            tickEvents: actualBattle.tickEvents,
+            healSource: buff
           });
 
           defender.buffs.forEach((buff) => {
@@ -2335,7 +2337,7 @@ export const MONSTER_BUFFS = {
   },
 
   seething_hatred_monster: {
-    duplicateTag: 'seething_hatred_monster', // Used to stop duplicate buffs
+    duplicateTag: 'seething_hatred_monster',
     icon: 'seethingHatred.svg',
     name: 'seething hatred',
     description({ buff, level }) {
@@ -2345,7 +2347,7 @@ export const MONSTER_BUFFS = {
     },
     data: {
     },
-    events: { // This can be rebuilt from the buff id
+    events: {
       onApply({ buff, target, caster, actualBattle }) {
         buff.data.stackTimer = 0;
         buff.stacks = buff.data.stacks = 0;
@@ -2376,7 +2378,7 @@ export const MONSTER_BUFFS = {
                   icon: 'swipe.svg',
                   description: '',
                 },
-                constants: BUFFS['blade_spin']
+                constants: lookupBuff('blade_spin')
               };
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             });
@@ -2393,7 +2395,7 @@ export const MONSTER_BUFFS = {
                   description: '',
                   isMagic: true
                 },
-                constants: BUFFS['blade_spin']
+                constants: lookupBuff('blade_spin')
               };
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             });
@@ -2467,7 +2469,7 @@ export const MONSTER_BUFFS = {
               timeTillDamage: 1,
               caster: attacker.id,
             },
-            constants: BUFFS['bleed']
+            constants: lookupBuff('bleed')
           };          
         } else if (randomAffliction <= 0.40) {
           // break target armor
@@ -2498,6 +2500,112 @@ export const MONSTER_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  troglodyte_monster: {
+    duplicateTag: 'troglodyte_monster',
+    icon: '',
+    name: 'troglodyte',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.popped = false;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+      
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        try {
+          // if the troglodyte dies, deal damage back to the person who landed the finishing blow
+          if (defender.stats.health <= 0) {
+            buff.data.popped = true;
+
+            actualBattle.dealDamage((attacker.stats.healthMax / 3) + damageDealt, {
+              attacker: defender,
+              defender: attacker,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats,
+            });
+          }
+        } catch (err) {
+        }
+      },
+      
+      onBeforeDeath({ buff, target, actualBattle }) {
+        if (!buff.data.popped) {
+          buff.data.popped = true;
+          
+          // if the troglodyte dies without onTookDamage (from an ability, spell, or effect), deal damage back to the current target (or at random if we can't find a target)
+          let targetUnit = target.targetUnit;
+          if (!targetUnit) {
+            targetUnit = _.sample(target.opposition);
+          }
+          actualBattle.dealDamage((target.stats.healthMax / 3), {
+            attacker: target.targetUnit,
+            defender: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+          });
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  hydra_monster: {
+    duplicateTag: 'hydra_monster',
+    icon: 'hydra.svg',
+    name: 'hydra',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.headsRemaining = 7;
+        buff.stacks = buff.data.headsRemaining;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+      
+      onBeforeDeath({ buff, target, actualBattle }) {
+        try {
+          // if the hydra 'dies', cut off one of its heads
+          buff.data.headsRemaining--;
+          
+          if (buff.data.headsRemaining > 0) {
+            target.stats.health = target.stats.healthMax / 7 * buff.data.headsRemaining;
+            
+            buff.stacks = buff.data.headsRemaining;
+            
+            // and make it stronger!
+            target.stats.attack *= 1.075;
+            target.stats.attackMax *= 1.100;
+            target.stats.armor *= 1.025;
+          }
+        } catch (err) {
+        }
+      },
+
+      onRemove({ buff, target }) {
       }
     }
   },

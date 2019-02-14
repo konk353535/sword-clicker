@@ -93,6 +93,11 @@ export const TOWER_FLOOR_6 = {
     }, {
       chance: 1 / 128,
       rewards: [
+        { type: 'item', itemId: 'gold_buckler', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 128,
+      rewards: [
         { type: 'item', itemId: 'gold_spirit_shield', amount: 1 }
       ]
     }, {
@@ -137,11 +142,6 @@ export const TOWER_FLOOR_6 = {
       chance: 1 / 256,
       rewards: [
         { type: 'item', itemId: 'dwarven_staff', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'gold_buckler', amount: 1 }
       ]
     }, {
       chance: 1 / 64,

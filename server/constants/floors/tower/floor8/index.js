@@ -99,11 +99,6 @@ export const TOWER_FLOOR_8 = {
         { type: 'item', itemId: 'purple_wizard_shorts', amount: 1 }
       ]
     }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'icon', iconId: 'phoenix_t1' }
-      ]
-    }, {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'taunt_level_3_tome', amount: 1 }
@@ -140,6 +135,11 @@ export const TOWER_FLOOR_8 = {
       chance: 1 / 48,
       rewards: [
         { type: 'item', itemId: 'accuracy_up_4_tome', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 24,
+      rewards: [
+        { type: 'icon', iconId: 'phoenix_t1' }
       ]
     }]))
   },

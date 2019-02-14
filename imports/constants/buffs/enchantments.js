@@ -1,9 +1,10 @@
+import _ from 'underscore';
 import moment from 'moment';
-import { addBuff, removeBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
-import { CDbl } from '../../utils.js';
-import { BUFFS } from './index.js';
 import lodash from 'lodash';
 import uuid from 'node-uuid';
+
+import { addBuff, removeBuff, lookupBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
+import { CDbl } from '../../utils.js';
 
 export const ENCHANTMENT_BUFFS = {
 
@@ -77,6 +78,7 @@ export const ENCHANTMENT_BUFFS = {
             target: targetToHeal,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
+            healSource: buff
           });
         }
 
@@ -523,7 +525,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const bleedChance = 0.1;
 
         if (Math.random() <= bleedChance) {
@@ -581,7 +583,8 @@ export const ENCHANTMENT_BUFFS = {
                 caster: defender,
                 target: unit,
                 tickEvents: actualBattle.tickEvents,
-                historyStats: actualBattle.historyStats
+                historyStats: actualBattle.historyStats,
+                healSource: buff
               });              
             }
           })
@@ -725,7 +728,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const baseDamage = attacker.stats.attack;
         const totalDamage = rawDamage * constants.damageDecimal;
 
@@ -777,7 +780,7 @@ export const ENCHANTMENT_BUFFS = {
       },
   
       onDidDamage({ buff, attacker, defender, actualBattle, rawDamage, damageDealt, originalAutoAttack, secondsElapsed }) {
-        const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         const totalDamage = (rawDamage * buffConsts.damageDecimal) + (attacker.stats.magicPower * buffConsts.bonusMPMultiplier);
 
         actualBattle.dealDamage(totalDamage, {
@@ -841,7 +844,8 @@ export const ENCHANTMENT_BUFFS = {
               caster: target,
               target: targetUnit,
               tickEvents: actualBattle.tickEvents,
-              historyStats: actualBattle.historyStats
+              historyStats: actualBattle.historyStats,
+              healSource: buff
             });
 
             removeBuff({ buff, target, caster: target, actualBattle });
@@ -895,7 +899,8 @@ export const ENCHANTMENT_BUFFS = {
             caster: target,
             target: targetUnit,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            healSource: buff
           });
 
           removeBuff({ buff, target, caster: target, actualBattle });
@@ -949,7 +954,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
 
         if (Math.random() <= constants.chance) {
           const armorReduction = constants.shred;
@@ -1009,7 +1014,7 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'ignite.svg',
               description: ''
             },
-            constants: BUFFS['ignite_phoenix_hat']
+            constants: lookupBuff('ignite_phoenix_hat')
           };
 
           // cast ignite
@@ -1057,7 +1062,7 @@ export const ENCHANTMENT_BUFFS = {
               icon: 'ignite.svg',
               description: ''
             },
-            constants: BUFFS['ignite_phoenix_hat']
+            constants: lookupBuff('ignite_phoenix_hat')
           };
 
           // cast ignite
@@ -1101,7 +1106,8 @@ export const ENCHANTMENT_BUFFS = {
             caster: target,
             target: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            healSource: buff
           });
         }
         
@@ -1209,7 +1215,7 @@ export const ENCHANTMENT_BUFFS = {
             icon: 'demonsHeartDamage.svg',
             description: 'Bonus damage from Demon\'s Heart'
           },
-          constants: BUFFS['demons_heart_damage'],
+          constants: lookupBuff('demons_heart_damage'),
           stacks: 0
         };
         
@@ -1243,7 +1249,7 @@ export const ENCHANTMENT_BUFFS = {
             damageDealt += localDamageDealt;
             if (friendly_unit.buffs) {
               friendly_unit.buffs.forEach((local_buff) => {
-                local_buff.constants = BUFFS[local_buff.id];
+                local_buff.constants = lookupBuff(local_buff.id);
                 if (local_buff.constants.events.onTookDamage) {
                   // .onTookDamage() only triggers on auto-attack normally, so we're cheesing it here
                   local_buff.constants.events.onTookDamage({ secondsElapsed, buff: local_buff, defender: friendly_unit, attacker: target, actualBattle, damageDealt: localDamageDealt });
@@ -1461,7 +1467,7 @@ export const ENCHANTMENT_BUFFS = {
               hideBuff: false,
               level: buff.data.level
             },
-            constants: BUFFS['warden_shield']
+            constants: lookupBuff('warden_shield')
           };
           // apply to all but self
           actualBattle[buff.data.allies].filter((ally) => { return ally.id !== target.id }).forEach((ally) => {
@@ -1477,11 +1483,12 @@ export const ENCHANTMENT_BUFFS = {
           const sourceAlly = actualBattle[buff.data.allies].find((ally) => { return ally.id === buff.data.sourceAlly });
           if(!lodash.isUndefined(sourceAlly)) {
             // redirect damage from self to sourceAlly
-            const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+            const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
             const redirectDamage = damageDealt * (constants.baseDefense + (constants.defensePerLevel * buff.data.level));
             actualBattle.healTarget(redirectDamage, {
               caster: sourceAlly,
               target: defender,
+              healSource: buff
             });
             actualBattle.dealDamage(redirectDamage, {
               attacker: defender,
@@ -1526,7 +1533,7 @@ export const ENCHANTMENT_BUFFS = {
           return;
         }
         
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
         let healthTransferred = false;
         const healthToTransfer = buff.data.level * constants.baseTransferRate;
         const actualHealthTransferred = healthToTransfer * constants.baseTransferEfficiency;
@@ -1538,7 +1545,8 @@ export const ENCHANTMENT_BUFFS = {
             actualBattle.healTarget(actualHealthTransferred, {
               caster: target,
               target: ally,
-              tickEvents: actualBattle.tickEvents
+              tickEvents: actualBattle.tickEvents,
+              healSource: buff
             });
           }
         });
@@ -1599,7 +1607,7 @@ export const ENCHANTMENT_BUFFS = {
               description: `Temporary elemental shield.`,
               name: 'elemental shield'
             },
-            constants: BUFFS['elemental_shield']
+            constants: lookupBuff('elemental_shield')
           };
           
           newBuff.constants.constants = {
@@ -1720,7 +1728,7 @@ export const ENCHANTMENT_BUFFS = {
               name: 'Lion Costume Dodge',
               level: 2
             },
-            constants: BUFFS['evasive_maneuvers']
+            constants: lookupBuff('evasive_maneuvers')
           };
           addBuff({ buff: newBuff, target: target, caster: target, actualBattle });
         }
@@ -1977,6 +1985,93 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  witchs_cauldron: {
+    duplicateTag: 'witchs_cauldron',
+    icon: 'potionMixing.svg',
+    name: 'Mixing Potions',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return `You're mixing some potions like a witch.`;
+    },
+    constants: {
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeToNextMixStart = (Math.random() * 5) + 5;
+        
+        // find everyone else with cauldrons and spill theirs
+        target.allies.forEach((alliedUnit) => {
+          const cauldronBuff = alliedUnit.findBuff('witchs_cauldron');
+          if (cauldronBuff) {
+            alliedUnit.removeBuff(cauldronBuff);
+            alliedUnit.tickMessage('Cauldron Spilled!', '#448822', 'noicon', target);
+          }
+        });
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        if (buff.data.timeToNextMixStart > 0) {
+          buff.stacks = 0;
+          buff.data.timeToNextMixStart -= secondsElapsed;
+          buff.data.timeToUse = 10;
+        } else if (buff.data.timeToUse > 0) {
+          buff.data.timeToUse -= secondsElapsed;
+          // So user can see how far away potion is
+          buff.stacks = Math.ceil(buff.data.timeToUse);
+        }
+        else {
+          buff.stacks = 0;
+
+          if (buff.data.timeToUse <= 0) {
+            const thisPotionEffect = _.sample([
+              'armor_loss_potion',
+              'weapon_loss_potion',
+              'acid_potion',
+            ]);
+            
+            target.opposition.forEach((opponent) => {
+              if (thisPotionEffect === 'acid_potion') {
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'bleed_proper', 
+                    buffData: {
+                      duration: 10,
+                      dps: opponent.stats.healthMax / 10,
+                      timeTillDamage: 1,
+                      name: 'Covered in Acid',
+                      description: `You are covered in horrible acid!`,
+                      icon: 'potionAcid.svg',
+                    },
+                  }),
+                  target: opponent,
+                });            
+              } else if (thisPotionEffect === 'weapon_loss_potion') {
+                target.applyBuffTo({
+                  buff: target.generateBuff({ buffId: thisPotionEffect, buffData: { duration: 5 } }),
+                  target: opponent,
+                });
+                target.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
+              } else {
+                target.applyBuffTo({
+                  buff: target.generateBuff({ buffId: thisPotionEffect, buffData: { duration: 7 } }),
+                  target: opponent,
+                });
+                target.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
+              }
+            });
+            
+            buff.data.timeToNextMixStart = (Math.random() * 10) + 10; // 10-20 seconds to start mixing a potion (then 10 seconds to use the potion) = 20-30s between each potion
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
       }
     }
   },

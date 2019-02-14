@@ -54,7 +54,6 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
           // Did Damage
           buff.constants.events.onDidDamage({
             originalAutoAttack,
-            secondsElapsed,
             buff,
             defender,
             attacker,
@@ -72,7 +71,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTookDamage) {
           // Took Damage
-          buff.constants.events.onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle: this, damageDealt })
+          buff.constants.events.onTookDamage({ buff, defender, attacker, actualBattle: this, damageDealt })
         }
       });
     }
@@ -86,7 +85,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onDodgedDamage) {
           // Dodged Damage
-          buff.constants.events.onDodgedDamage({ secondsElapsed, buff, defender, attacker, actualBattle: this })
+          buff.constants.events.onDodgedDamage({ buff, defender, attacker, actualBattle: this })
         }
       });
     }

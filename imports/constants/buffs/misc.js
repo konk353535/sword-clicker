@@ -1,4 +1,4 @@
-import { addBuff, removeBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
+import { addBuff, removeBuff, lookupBuff, removeBuffById, removeBuffWithMessage } from '../../battleUtils';
 
 export const MISC_BUFFS = {
 
@@ -239,5 +239,170 @@ export const MISC_BUFFS = {
       }
     }
   },
-  
+
+  marked_for_death: {
+    duplicateTag: 'marked_for_death',
+    icon: 'death.svg',
+    name: 'Marked For Death',
+    description() {
+      return `
+        You are hexed by the witch and will soon die.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 15,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+      
+      onTookHealing({ buff, target, caster, actualBattle, healAmount, healSource }) {
+        if (!healSource) {
+          return;
+        }
+        
+        const healSourceConsts = (healSource.constants && healSource.constants.constants) ? healSource.constants.constants : lookupBuff(healSource.id).constants;
+        if (healSourceConsts.removesCurse) {
+          target.applyBuff({
+            buff: target.generateBuff({ buffId: 'marked_for_death__warded' }),
+          });
+
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          buff.stacks = Math.ceil(buff.data.duration);
+          if (buff.data.duration <= 0) {
+            target.stats.health = 0;
+            target.checkDeath();
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
+
+  marked_for_death__warded: {
+    duplicateTag: 'marked_for_death__warded',
+    icon: 'warded.svg',
+    name: 'Warded',
+    description() {
+      return `
+        You are warded from hexes.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 60,
+      totalDuration: 60,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          buff.stacks = Math.ceil(buff.data.duration);
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
+
+  armor_loss_potion: {
+    duplicateTag: 'armor_loss_potion',
+    icon: 'potionArmorLoss.svg',
+    name: 'Armor Has Vanished',
+    description() {
+      return `
+        All of your armor has disappeared! <br /> <br />You are very vulnerable!`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 7,
+      totalDuration: 7,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        // remove any temporary armor-boosting effects
+        (['armor_up', 'mud_armor', 'healing_shield', 'volcanic_shield']).forEach((buffIdToRemove) => {
+          if (target.hasBuff(buffIdToRemove)) {
+            target.removeBuff(target.findBuff(buffIdToRemove));
+          }
+        });
+        
+        buff.data.originalArmor = target.stats.armor;
+        buff.data.originalMagicArmor = target.stats.magicArmor;
+        target.stats.armor = 0;      // yes, we're ignoring the fact that players usually get some armor from the Defense skill
+        target.stats.magicArmor = 0; // yes, we're ignoring the fact that players usually get some magic armor from the Magic skill
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          buff.stacks = Math.ceil(buff.data.duration);
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        target.stats.armor = buff.data.originalArmor;
+        target.stats.magicArmor = buff.data.originalMagicArmor;
+      }
+    }
+  },
+
+  weapon_loss_potion: {
+    duplicateTag: 'weapon_loss_potion',
+    icon: 'potionWeaponLoss.svg',
+    name: 'Weapon Has Vanished',
+    description() {
+      return `
+        Your weapons have disappeared! <br /> <br />You can't fight, cast spells, or use any <br />abilities right now.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: 5,
+      totalDuration: 5,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.wasAlreadyStunned = target.isStunned;
+        target.isStunned = true;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.duration !== Infinity) {
+          buff.data.duration -= secondsElapsed;
+          buff.stacks = Math.ceil(buff.data.duration);
+          if (buff.data.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        if (!buff.data.wasAlreadyStunned) {
+          target.isStunned = false;
+        }
+      }
+    }
+  },
 };

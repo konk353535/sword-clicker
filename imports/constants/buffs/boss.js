@@ -1,8 +1,8 @@
 import _ from 'underscore';
 import lodash from 'lodash';
-import { addBuff, removeBuff } from '../../battleUtils';
-import { BUFFS } from './index.js';
 import uuid from 'node-uuid';
+
+import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
 // import { FLOORS } from '../../../server/constants/floors/index.js';
 import { FAST_SPEED } from '../combat/attackSpeeds.js';
 
@@ -41,7 +41,7 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
 
         const extraDamage = 0.1 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
@@ -206,7 +206,7 @@ export const BOSS_BUFFS = {
                 icon: 'bladeSpin.svg',
                 description: ''
               },
-              constants: BUFFS['blade_spin']
+              constants: lookupBuff('blade_spin')
             };
 
             // cast earth dart
@@ -793,7 +793,7 @@ export const BOSS_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
-        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : BUFFS[buff.id].constants;
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
 
         const extraDamage = 0.01 * buff.stacks;
         const attackerDamage = attacker.stats.attack + ((attacker.stats.attackMax - attacker.stats.attack) / 2);
@@ -1818,7 +1818,7 @@ export const BOSS_BUFFS = {
                   icon: 'ignite.svg',
                   description: ''
                 },
-                constants: BUFFS['ignite']
+                constants: lookupBuff('ignite')
               };
 
               // cast ignite
@@ -1837,7 +1837,7 @@ export const BOSS_BUFFS = {
                 icon: 'ignite.svg',
                 description: ''
               },
-              constants: BUFFS['ignite']
+              constants: lookupBuff('ignite')
             };
 
             const unit = _.findWhere(actualBattle.units, { id: target.target });
@@ -1938,6 +1938,7 @@ export const BOSS_BUFFS = {
           target: fox,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          healSource: buff
         });
       },
 
@@ -1988,7 +1989,7 @@ export const BOSS_BUFFS = {
                   icon: 'swipe.svg',
                   description: '',
                 },
-                constants: BUFFS['blade_spin']
+                constants: lookupBuff('blade_spin')
               };
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             });
@@ -2005,7 +2006,7 @@ export const BOSS_BUFFS = {
                   description: '',
                   isMagic: true
                 },
-                constants: BUFFS['blade_spin']
+                constants: lookupBuff('blade_spin')
               };
               addBuff({ buff: newBuff, target: unit, caster: target, actualBattle });
             });
@@ -2431,6 +2432,161 @@ export const BOSS_BUFFS = {
           actualBattle.addUnit(newImp);
 
           buff.data.timeTillSpawn = (Math.random() * 5) + 10;
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_witch: {
+    duplicateTag: 'boss_witch',
+    icon: 'witch.svg',
+    name: 'The Witch',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+      hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeToNextMixStart = 8;
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        // heal boss to max (used for testing/debugging)
+        //target.stats.health = target.stats.healthMax;
+        
+        buff.data.timeToNextMixStart -= secondsElapsed;
+        if (buff.data.timeToNextMixStart <= 0) {
+          if (!target.hasBuff('boss_witch__mixpotion')) {
+            target.applyBuff({
+              buff: target.generateBuff({ buffId: 'boss_witch__mixpotion' }),
+            });
+            buff.data.timeToNextMixStart = (Math.random() * 10) + 10; // 10-20 seconds to start mixing a potion (then 10 seconds to use the potion) = 20-30s between each potion
+          } else {
+            buff.data.timeToNextMixStart = (Math.random() * 5) + 5;
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_witch__deathhex: {
+    duplicateTag: 'boss_witch__deathhex',
+    icon: 'graves.svg',
+    name: 'Death Hex',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+      hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeToHex = 10; // 10 seconds to first hex
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        buff.data.timeToHex -= secondsElapsed;
+
+        // So user can see how far away hex is
+        buff.stacks = Math.ceil(buff.data.timeToHex);
+
+        if (buff.data.timeToHex <= 0) {
+          target.opposition.forEach((opponent) => {
+            if (!opponent.hasBuff('marked_for_death') && !opponent.hasBuff('marked_for_death__warded')) {
+              target.applyBuffTo({
+                buff: target.generateBuff({ buffId: 'marked_for_death' }),
+                target: opponent,
+              });
+            target.tickMessage('Death Hex!', '#aa0000', 'noicon', target);
+            }
+          });
+          buff.data.timeToHex = (Math.random() * 15) + 45; // 45-60 seconds to next hex
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+
+  boss_witch__mixpotion: {
+    duplicateTag: 'boss_witch__mixpotion',
+    icon: 'potionMixing.svg',
+    name: 'Mixing Potions',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+    },
+    data: {
+      hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeToUse = 10;
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        buff.data.timeToUse -= secondsElapsed;
+
+        // So user can see how far away potion is
+        buff.stacks = Math.ceil(buff.data.timeToUse);
+
+        if (buff.data.timeToUse <= 0) {
+          const thisPotionEffect = _.sample([
+            'armor_loss_potion',
+            'weapon_loss_potion',
+            'acid_potion',
+          ]);
+          
+          target.opposition.forEach((opponent) => {
+            if (thisPotionEffect === 'acid_potion') {
+              target.applyBuffTo({
+                buff: target.generateBuff({
+                  buffId: 'bleed_proper', 
+                  buffData: {
+                    duration: 10,
+                    dps: opponent.stats.healthMax / 10,
+                    timeTillDamage: 1,
+                    name: 'Covered in Acid',
+                    description: `You are covered in horrible acid!`,
+                    icon: 'potionAcid.svg',
+                  },
+                }),
+                target: opponent,
+              });
+          
+            } else if (thisPotionEffect === 'weapon_loss_potion') {
+              target.applyBuffTo({
+                buff: target.generateBuff({ buffId: 'weapon_loss_potion' }),
+                target: opponent,
+              });
+              target.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
+            } else {
+              target.applyBuffTo({
+                buff: target.generateBuff({ buffId: 'armor_loss_potion' }),
+                target: opponent,
+              });
+              target.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
+            }
+          });          
+          
+          removeBuff({ buff, target, caster, actualBattle });
         }
       },
 

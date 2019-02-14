@@ -1,12 +1,15 @@
 import _ from 'underscore';
 
+import { BUFFS } from '../../../imports/constants/buffs/index.js';
+
 export default function(healAmount, {
   target,
   caster,
   tickEvents,
   customColor,
   customIcon,
-  historyStats
+  historyStats,
+  healSource
 }) {
   if ((!caster) || (!caster.stats)) {
     return; // error
@@ -24,6 +27,36 @@ export default function(healAmount, {
     healAmount *= target.stats.healingReduction;
   }
 
+  // Tick didHealing event on caster
+  if (caster.buffs) {
+    caster.buffs.forEach((buff) => {
+      buff.constants = BUFFS[buff.id];
+      if (buff.constants.events.onDidHealing) {
+        // Did Healing
+        try {
+          buff.constants.events.onDidHealing({ buff, target, caster, actualBattle: this, healAmount, healSource })
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  }
+  
+  // Tick tookHealing event on target
+  if (target.buffs) {
+    target.buffs.forEach((buff) => {
+      buff.constants = BUFFS[buff.id];
+      if (buff.constants.events.onTookHealing) {
+        // Took Healing
+        try {
+          buff.constants.events.onTookHealing({ buff, target, caster, actualBattle: this, healAmount, healSource })
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  }
+  
   target.stats.health += healAmount;
   if (target.stats.health > target.stats.healthMax) {
     target.stats.health = target.stats.healthMax;

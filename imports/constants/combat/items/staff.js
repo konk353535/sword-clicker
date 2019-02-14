@@ -1979,7 +1979,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a copper hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 5.3,
       attackMax: 5.9,
@@ -2015,7 +2014,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a tin hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 7.3,
       attackMax: 8.4,
@@ -2051,7 +2049,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a bronze hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 9.2,
       attackMax: 11,
@@ -2087,7 +2084,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an iron hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 11.3,
       attackMax: 13.8,
@@ -2123,7 +2119,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a silver hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 13.5,
       attackMax: 16.9,
@@ -2159,7 +2154,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a gold hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 15.8,
       attackMax: 20.3,
@@ -2195,7 +2189,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a carbon hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 18.4,
       attackMax: 24.1,
@@ -2231,7 +2224,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a steel hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 21.1,
       attackMax: 28.1,
@@ -2267,7 +2259,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a platinum hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 24,
       attackMax: 32.6,
@@ -2303,7 +2294,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a titanium hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 27.1,
       attackMax: 37.4,
@@ -2339,7 +2329,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a tungsten hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 30.5,
       attackMax: 42.7,
@@ -2375,7 +2364,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an obsidian hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 34,
       attackMax: 48.5,
@@ -2411,7 +2399,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a cobalt hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 37.9,
       attackMax: 54.7,
@@ -2447,7 +2434,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a mithril hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 42,
       attackMax: 61.5,
@@ -2483,7 +2469,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an adamantium hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 46.3,
       attackMax: 68.8,
@@ -2519,7 +2504,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an orichalcum hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 51,
       attackMax: 76.7,
@@ -2555,7 +2539,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a meteorite hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 55.9,
       attackMax: 85.2,
@@ -2591,7 +2574,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a fairy steel hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 61.2,
       attackMax: 94.4,
@@ -2627,7 +2609,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an elven steel hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 66.8,
       attackMax: 104.2,
@@ -2663,7 +2644,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a cursed hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 72.8,
       attackMax: 114.9,
@@ -2699,7 +2679,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a darksteel hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 80.1,
       attackMax: 126.4,
@@ -2735,7 +2714,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a radiant hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 87.4,
       attackMax: 137.9,
@@ -2771,7 +2749,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an astral hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 94.6,
       attackMax: 149.4,
@@ -2807,7 +2784,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a titanfoil hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 101.9,
       attackMax: 160.9,
@@ -2843,7 +2819,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like a relicrock hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 109.2,
       attackMax: 172.4,
@@ -2879,7 +2854,6 @@ export const STAFF_ITEMS = {
     description: 'What seems like an eternium hammer.',
     isWeapon: true,
     isEquippable: true,
-    isTwoHanded: true,
     stats: {
       attack: 116.5,
       attackMax: 183.8,

@@ -6687,4 +6687,29 @@ export const MISC_ITEMS = {
     }],
     enchantments: ['honeycomb']
   },
+
+  witchs_cauldron: {
+    id: 'witchs_cauldron',
+    icon: 'witchsCauldron.svg',
+    category: 'combat',
+    weaponType: 'orb',
+    slot: 'offHand',
+    name: 'witch\'s cauldron',
+    sellPrice: 12500,
+    description: 'An ordinarily cauldron with unordinary ingredients.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      magicPower: 35,
+    },
+    extraStats: {
+      magicPower: 15,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 75
+    }],
+    enchantments: ['witchs_cauldron']
+  },
 };

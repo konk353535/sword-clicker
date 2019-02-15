@@ -788,7 +788,8 @@ export const DEFENSE_BUFFS = {
     },
     constants: {
       durationBase: 1,
-      durationPerLevel: 0.5
+      durationPerLevel: 0.5,
+      allowTicks: true
     },
     data: {
       duration: 1,

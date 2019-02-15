@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 
+import { autoPrecisionValue } from '../../../utils.js';
+
 import './displayCombatStats.html';
 
 function descriptors(str) {
@@ -41,15 +43,15 @@ Template.displayCombatStats.helpers({
 
     if (statsMap.attack) {
       if (statsMap.attackMax) {
-        let attackLabel = `(${statsMap.attack.toFixed(1)}`;
+        let attackLabel = `(${autoPrecisionValue(statsMap.attack)}`;
         if (extraStatsMap.attack) {
-          attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
+          attackLabel += ` - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}`;
         }
         attackLabel += ') attack';
 
-        let attackMaxLabel = `(${statsMap.attackMax.toFixed(1)}`;
+        let attackMaxLabel = `(${autoPrecisionValue(statsMap.attackMax)}`;
         if (extraStatsMap.attackMax) {
-          attackMaxLabel += ` - ${(statsMap.attackMax + extraStatsMap.attackMax).toFixed(1)}`;
+          attackMaxLabel += ` - ${autoPrecisionValue(statsMap.attackMax + extraStatsMap.attackMax)}`;
         }
         attackMaxLabel += ')';
 
@@ -60,7 +62,7 @@ Template.displayCombatStats.helpers({
       } else {
         let attackLabel = statsMap.attack;
         if (extraStatsMap.attack) {
-          attackLabel += ` - ${(statsMap.attack + extraStatsMap.attack).toFixed(1)}`;
+          attackLabel += ` - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}`;
         }
         statsArr.push({
           label: attackLabel + ` ${descriptors('attack')}`,
@@ -74,28 +76,11 @@ Template.displayCombatStats.helpers({
         return;
       }
 
-      let fixedDigits = 1;
-      if (key === 'attackSpeed') {
-        //fixedDigits = 2;
-
-        statsArr.push({
-          label: (Math.round(statsMap[key] * 10000.0) / 10000.0).toString() + ` ${descriptors(key)}`,
-          value: statsMap[key] + extraStatsMap[key],
-          key
-        });
-        
-      } else {
-        let statLabel = statsMap[key].toFixed(fixedDigits);
-        if (extraStatsMap[key]) {
-          statLabel += ` - ${(statsMap[key] + extraStatsMap[key]).toFixed(fixedDigits)}`;
-        }
-
-        statsArr.push({
-          label: statLabel + ` ${descriptors(key)}`,
-          value: statsMap[key] + extraStatsMap[key],
-          key
-        });
-      }
+      statsArr.push({
+        label: `${autoPrecisionValue(statsMap[key] + extraStatsMap[key])} ${descriptors(key)}`,
+        value: statsMap[key] + extraStatsMap[key],
+        key
+      });
     });
 
     return statsArr;
@@ -108,12 +93,12 @@ Template.displayCombatStats.helpers({
     if (statsMap.attack) {
       if (statsMap.attackMax) {
         statsArr.push({
-          label: `${statsMap.attack.toFixed(1)} - ${statsMap.attackMax.toFixed(1)} ${descriptors('attack')}`,
+          label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attackMax)} ${descriptors('attack')}`,
           key: 'attack'
         });        
       } else {
         statsArr.push({
-          label: `${statsMap.attack.toFixed(1)} ${descriptors('attack')}`,
+          label: `${autoPrecisionValue(statsMap.attack)} ${descriptors('attack')}`,
           key: 'attack'
         });
       }
@@ -133,21 +118,10 @@ Template.displayCombatStats.helpers({
         return;
       }
 
-      let fixedDigits = 1;
-
-      if (key === 'attackSpeed') {
-        //fixedDigits = 2;
-        statsArr.push({
-          label: (Math.round(statsMap[key] * 10000.0) / 10000.0).toString() + ` ${descriptors(key)}`,
-          key
-        });
-        
-      } else {
-        statsArr.push({
-          label: statsMap[key].toFixed(fixedDigits) + ` ${descriptors(key)}`,
-          key
-        });
-      }
+      statsArr.push({
+        label: `${autoPrecisionValue(statsMap[key])} ${descriptors(key)}`,
+        key
+      });
     });
 
     return statsArr;

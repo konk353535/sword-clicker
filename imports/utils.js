@@ -92,4 +92,52 @@ export const meteorSingleSubscribe = function meteorSingleSubscribe( channel_nam
   } else if (typeof channel_name !== 'undefined') {
     Meteor.subscribe(channel_name);
   }
-}
+};
+
+export const autoPrecisionValue = function autoPrecisionValue(origVal) {
+  try {
+    const origValMeasured = parseFloat(origVal);
+    if (origValMeasured != 0.0) {
+      
+      let decimalDigits = 1;
+      if (Math.abs(origValMeasured) >= 150) {
+        decimalDigits = 0;
+      } else if (Math.abs(origValMeasured) < 0.015) {
+        decimalDigits = 4;
+      } else if (Math.abs(origValMeasured) < 0.15) {
+        decimalDigits = 3;
+      } else if (Math.abs(origValMeasured) < 1.5) {
+        decimalDigits = 2;
+      }
+      
+      if (decimalDigits > 0) {
+        const precMultiplier = parseFloat(Math.pow(10, decimalDigits));
+        return parseFloat((Math.round(origValMeasured * precMultiplier) / precMultiplier).toFixed(decimalDigits));
+      }
+
+      return parseFloat(origValMeasured.toFixed(0));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  
+  return parseFloat(0.0);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

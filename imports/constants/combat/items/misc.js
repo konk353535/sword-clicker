@@ -6236,7 +6236,7 @@ export const MISC_ITEMS = {
 
   forgotten_tome: {
     id: 'forgotten_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',
@@ -6262,7 +6262,7 @@ export const MISC_ITEMS = {
 
   charred_tome: {
     id: 'charred_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',
@@ -6288,7 +6288,7 @@ export const MISC_ITEMS = {
 
   obscure_tome: {
     id: 'obscure_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',
@@ -6314,7 +6314,7 @@ export const MISC_ITEMS = {
 
   sinister_tome: {
     id: 'sinister_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',
@@ -6340,7 +6340,7 @@ export const MISC_ITEMS = {
 
   maniacal_tome: {
     id: 'maniacal_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',
@@ -6366,7 +6366,7 @@ export const MISC_ITEMS = {
 
   exalted_tome: {
     id: 'exalted_tome',
-    icon: 'magic_tome_1.svg',
+    icon: 'magicTomeTx.png',
     category: 'combat',
     weaponType: 'tome',
     slot: 'offHand',

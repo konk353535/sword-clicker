@@ -2511,7 +2511,7 @@ export const BOSS_BUFFS = {
                 buff: target.generateBuff({ buffId: 'marked_for_death' }),
                 target: opponent,
               });
-            target.tickMessage('Death Hex!', '#aa0000', 'noicon', target);
+            opponent.tickMessage('Death Hex!', '#aa0000', 'noicon', target);
             }
           });
           buff.data.timeToHex = (Math.random() * 15) + 45; // 45-60 seconds to next hex
@@ -2576,13 +2576,13 @@ export const BOSS_BUFFS = {
                 buff: target.generateBuff({ buffId: 'weapon_loss_potion' }),
                 target: opponent,
               });
-              target.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
+              opponent.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
             } else {
               target.applyBuffTo({
                 buff: target.generateBuff({ buffId: 'armor_loss_potion' }),
                 target: opponent,
               });
-              target.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
+              opponent.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
             }
           });          
           

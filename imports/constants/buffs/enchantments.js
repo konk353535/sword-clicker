@@ -2052,13 +2052,13 @@ export const ENCHANTMENT_BUFFS = {
                   buff: target.generateBuff({ buffId: thisPotionEffect, buffData: { duration: 5 } }),
                   target: opponent,
                 });
-                target.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
+                opponent.tickMessage('Weapon Vanished!', '#6600aa', 'noicon', target);
               } else {
                 target.applyBuffTo({
                   buff: target.generateBuff({ buffId: thisPotionEffect, buffData: { duration: 7 } }),
                   target: opponent,
                 });
-                target.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
+                opponent.tickMessage('Armor Vanished!', '#6600aa', 'noicon', target);
               }
             });
             

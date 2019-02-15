@@ -140,7 +140,7 @@
             {{#if currentGroup}}
               <h6 class="mt-3"><a href="/battle">Group</a></h6>
               <div class="d-flex align-items-center">
-                <div class="d-flex flex-row flex-wrap" style="max-width: 260px">
+                <div class="d-flex flex-row flex-wrap" style="max-width: 280px;">
                   {{#each currentGroupMembers}}
                     <div class="flex-column d-flex justify-content-center" style="margin-right: 3px">
                       {{> lobbyUnit unit=this tiny=true showBuffs=false}}
@@ -160,7 +160,7 @@
             </div>
             
             <h6 class="mt-3"><a href="/crafting">Crafting</a></h6>
-            <div class="d-flex align-items-center">
+            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
               {{#each crafting.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isCrafting=true}}
               {{else}}
@@ -169,7 +169,7 @@
             </div>
 
             <h6 class="mt-3"><a href="/inscription">Inscription</a></h6>
-            <div class="d-flex align-items-center">
+            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
               {{#each inscription.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isInscription=true}}
               {{else}}
@@ -178,7 +178,7 @@
             </div>
 
             <h6 class="mt-3"><a href="/farming">Farming</a></h6>
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap" style="max-width: 280px;">
               {{#each farmingSpaces}}
                 {{> farmSpace farmSpace=this classes="small-icon"}}
               {{/each}}

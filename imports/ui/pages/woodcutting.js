@@ -8,6 +8,7 @@ import { Items } from '/imports/api/items/items.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
+import { autoPrecisionValue } from '../../utils.js';
 
 import './woodcutting.html';
 
@@ -86,33 +87,34 @@ Template.woodcuttingPage.helpers({
       if (!/.png/.test(woodcutter.icon) && !/.svg/.test(woodcutter.icon)) {
         woodcutter.icon += '.svg';
       }
+
       // Incoming hacks!
       woodcutter.description = `
         <div class="d-flex align-items-center">
           <i class="lilIcon-attack extra-small-icon mr-1"></i>
-          ${woodcutter.stats.attack}
+          ${autoPrecisionValue(woodcutter.stats.attack)}
         </div>
         <div class="d-flex align-items-center">
           <i class="lilIcon-attackSpeed extra-small-icon mr-1"></i>
-          ${woodcutter.stats.attackSpeed}
+          ${autoPrecisionValue(woodcutter.stats.attackSpeed)}
         </div>
       `;
 
       // Append to description based on if the user is currently a member
       if (hasMiningUpgrade) {
-        let computedBonus = Math.floor(20 + ((DONATORS_BENEFITS.woodcuttingBonus / 100) * woodcutter.stats.accuracy));
+        let computedBonus = 20 + ((DONATORS_BENEFITS.woodcuttingBonus / 100) * woodcutter.stats.accuracy);
         woodcutter.description += `
           <div class="d-flex align-items-center">
             <i class="lilIcon-accuracy extra-small-icon mr-1"></i>
-            ${woodcutter.stats.accuracy}&nbsp;+&nbsp;
-            <span class='text-primary'>${computedBonus}</span>
+            ${autoPrecisionValue(woodcutter.stats.accuracy)}&nbsp;+&nbsp;
+            <span class='text-primary'>${autoPrecisionValue(computedBonus)}</span>
           </div>
         `
       } else {
         woodcutter.description += `
           <div class="d-flex align-items-center">
             <i class="lilIcon-accuracy extra-small-icon mr-1"></i>
-            ${woodcutter.stats.accuracy}
+            ${autoPrecisionValue(woodcutter.stats.accuracy)}
           </div>
         `
       }

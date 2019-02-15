@@ -106,11 +106,11 @@ Template.displayCombatStats.helpers({
     
     if (statsMap.gold) {
       statsArr.push({
-          label:  `${descriptors('gold')}`,
-          key: 'gold',
-          rawValue: statsMap.gold.toFixed(0),
-          requiresFormatting: true
-        });
+        label:  `${descriptors('gold')}`,
+        key: 'gold',
+        rawValue: statsMap.gold.toFixed(0),
+        requiresFormatting: true
+      });
     }
 
     Object.keys(statsMap).forEach((key) => {

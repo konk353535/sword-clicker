@@ -2003,7 +2003,7 @@ export const ENCHANTMENT_BUFFS = {
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
-        buff.data.timeToNextMixStart = (Math.random() * 5) + 5;
+        buff.data.timeToUse = (Math.random() * 5) + 10; // 5-15 seconds to mix the first potion
         
         // find everyone else with cauldrons and spill theirs
         target.allies.forEach((alliedUnit) => {
@@ -2016,11 +2016,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTick({buff, target, caster, secondsElapsed, actualBattle}) {
-        if (buff.data.timeToNextMixStart > 0) {
-          buff.stacks = 0;
-          buff.data.timeToNextMixStart -= secondsElapsed;
-          buff.data.timeToUse = 10;
-        } else if (buff.data.timeToUse > 0) {
+        if (buff.data.timeToUse > 0) {
           buff.data.timeToUse -= secondsElapsed;
           // So user can see how far away potion is
           buff.stacks = Math.ceil(buff.data.timeToUse);
@@ -2066,7 +2062,7 @@ export const ENCHANTMENT_BUFFS = {
               }
             });
             
-            buff.data.timeToNextMixStart = (Math.random() * 10) + 10; // 10-20 seconds to start mixing a potion (then 10 seconds to use the potion) = 20-30s between each potion
+            buff.data.timeToUse = (Math.random() * 10) + 15; // 15-25 seconds to mix the next potion
           }
         }
       },

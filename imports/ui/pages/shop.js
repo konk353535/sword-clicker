@@ -242,7 +242,6 @@ Template.shopPage.events({
     });
   },
  
-  /*
   'click .buy-gift_box_VD2019'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
       return;
@@ -255,7 +254,6 @@ Template.shopPage.events({
       toastr.success('Successfully purchased.')
     });
   },
-  */
 });
 
 Template.shopPage.rendered = function () {

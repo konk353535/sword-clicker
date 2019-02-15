@@ -121,6 +121,7 @@ export const MISC_BUFFS = {
         that could harm an enemy.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: Infinity,
@@ -147,6 +148,7 @@ export const MISC_BUFFS = {
         You are unable to change targets.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 5,
@@ -181,6 +183,7 @@ export const MISC_BUFFS = {
         You are unable to use abilities.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 5,
@@ -215,6 +218,7 @@ export const MISC_BUFFS = {
         You are unable to cast spells.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 5,
@@ -249,6 +253,7 @@ export const MISC_BUFFS = {
         You are hexed by the witch and will soon die.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 15,
@@ -298,6 +303,7 @@ export const MISC_BUFFS = {
         You are warded from hexes.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 60,
@@ -331,6 +337,7 @@ export const MISC_BUFFS = {
         All of your armor has disappeared! <br /> <br />You are very vulnerable!`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 7,
@@ -377,6 +384,7 @@ export const MISC_BUFFS = {
         Your weapons have disappeared! <br /> <br />You can't fight, cast spells, or use any <br />abilities right now.`;
     },
     constants: {
+      allowTicks: true
     },
     data: {
       duration: 5,

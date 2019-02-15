@@ -6548,6 +6548,7 @@ export const MISC_ITEMS = {
     icon: "eventLNYLunarShield.svg",
     category: "combat",
     slot: "offHand",
+    weaponType: 'shield',
     name: "lunar shield",
     sellPrice: 1,
     description: "A magnificent shield that draws everything's attention, for better or worse.",

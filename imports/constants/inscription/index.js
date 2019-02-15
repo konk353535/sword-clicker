@@ -18,12 +18,36 @@ export const INSCRIPTION = {
       maxCrafts = 4;
     }
 
-    if (inscriptionLevel >= 35) {
+    if (inscriptionLevel >= 30) {
       maxCrafts = 5;
     }
 
-    if (inscriptionLevel >= 60) {
+    if (inscriptionLevel >= 45) {
       maxCrafts = 6;
+    }
+
+    if (inscriptionLevel >= 60) {
+      maxCrafts = 7;
+    }
+
+    if (inscriptionLevel >= 75) {
+      maxCrafts = 8;
+    }
+
+    if (inscriptionLevel >= 90) {
+      maxCrafts = 9;
+    }
+
+    if (inscriptionLevel >= 105) {
+      maxCrafts = 10;
+    }
+
+    if (inscriptionLevel >= 120) {
+      maxCrafts = 11;
+    }
+
+    if (inscriptionLevel >= 135) {
+      maxCrafts = 12;
     }
 
     return maxCrafts;

@@ -37,12 +37,36 @@ export const CRAFTING = {
       maxCrafts = 4;
     }
 
-    if (craftingLevel >= 35) {
+    if (craftingLevel >= 30) {
       maxCrafts = 5;
     }
 
-    if (craftingLevel >= 60) {
+    if (craftingLevel >= 45) {
       maxCrafts = 6;
+    }
+
+    if (craftingLevel >= 60) {
+      maxCrafts = 7;
+    }
+
+    if (craftingLevel >= 75) {
+      maxCrafts = 8;
+    }
+
+    if (craftingLevel >= 90) {
+      maxCrafts = 9;
+    }
+
+    if (craftingLevel >= 105) {
+      maxCrafts = 10;
+    }
+
+    if (craftingLevel >= 120) {
+      maxCrafts = 11;
+    }
+
+    if (craftingLevel >= 135) {
+      maxCrafts = 12;
     }
 
     return maxCrafts;

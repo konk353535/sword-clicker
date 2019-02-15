@@ -44,41 +44,6 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'relicrock_quiver_scroll', amount: 1 },
       ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_valentines', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'event_vd_bear_slippers', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'event_vd_rose_quartz_amulet', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'cupids_bow', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 24,
-      rewards: [
-        { type: 'item', itemId: 'event_vd_charm_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_1', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_2', amount: 1 }
-      ]
     }]))
   },
   4: {
@@ -99,21 +64,6 @@ export const TOWER_FLOOR_25 = {
       chance: 1 / 144,
       rewards: [
         { type: 'item', itemId: 'relicrock_wand', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 20,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_valentines', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_2', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_3', amount: 1 }
       ]
     }]))
   },
@@ -147,21 +97,6 @@ export const TOWER_FLOOR_25 = {
       rewards: [
         { type: 'item', itemId: 'exalted_trident', amount: 1 }
       ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_valentines', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_3', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_4', amount: 1 }
-      ]
     }]))
   },
   6: {
@@ -185,21 +120,6 @@ export const TOWER_FLOOR_25 = {
         { type: 'item', itemId: 'farplane_orb', amount: 1 },
         { type: 'item', itemId: 'maniacal_tome', amount: 1 }
       ]
-    }, {
-      chance: 1 / 12,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_valentines', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_4', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_5', amount: 1 }
-      ]
     }]))
   },
   7: {
@@ -222,16 +142,6 @@ export const TOWER_FLOOR_25 = {
         { type: 'item', itemId: 'relicrock_scimitar', amount: 1 },
         { type: 'item', itemId: 'relicrock_broad_sword', amount: 1 },
         { type: 'item', itemId: 'relicrock_horned_helmet', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_valentines', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 8,
-      rewards: [
-        { type: 'item', itemId: 'vd_cupid_tome_level_5', amount: 1 }
       ]
     }]))
   },

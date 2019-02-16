@@ -1511,7 +1511,7 @@ export const MINING_CRAFTS = {
     isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,
-    xp: 2500000,
+    xp: 2500000 * 3,
     maxToCraft: 1,
     requiredCraftingLevel: 125,
     required: [{
@@ -2820,7 +2820,7 @@ export const MINING_CRAFTS = {
     isHidden: true,
     category: 'mining',
     timeToCraft: 60 * MINUTE,
-    xp: 2500000,
+    xp: 2500000 * 3,
     maxToCraft: 1,
     requiredCraftingLevel: 125,
     required: [{

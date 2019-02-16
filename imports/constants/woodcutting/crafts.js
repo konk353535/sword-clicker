@@ -1096,7 +1096,7 @@ export const WOODCUTTING_CRAFTS = {
     isHidden: true,
     category: 'woodcutting',
     timeToCraft: 60 * 60 * 1, // 60
-    xp: 2500000,
+    xp: 2500000 * 3,
     maxToCraft: 1,
     requiredCraftingLevel: 129,
     required: [{

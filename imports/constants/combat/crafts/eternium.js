@@ -2,6 +2,7 @@ import { ITEMS } from '/imports/constants/items/index.js';
 
 const CURSED_ESS_XP = 500000;
 const BONUS_XP = 357000;
+const ETERNIUM_BONUS_XP = 5;
 const ETERNIUM_RESOURCE_HOG = 5;
 
 export const ETERNIUM_CRAFTS = {
@@ -13,7 +14,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_dagger',
     isHidden: true,
     timeToCraft: 30 * 60 * 2,
-    xp: (CURSED_ESS_XP * 2) + (BONUS_XP * 2),
+    xp: ((CURSED_ESS_XP * 2) + (BONUS_XP * 2)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -88,7 +89,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_spear',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -163,7 +164,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_short_sword',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -238,7 +239,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_long_sword',
     isHidden: true,
     timeToCraft: 90 * 60,
-    xp: (CURSED_ESS_XP * 8) + (BONUS_XP * 8),
+    xp: ((CURSED_ESS_XP * 8) + (BONUS_XP * 8)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -313,7 +314,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_battle_axe',
     isHidden: true,
     timeToCraft: 90 * 60,
-    xp: (CURSED_ESS_XP * 8) + (BONUS_XP * 8),
+    xp: ((CURSED_ESS_XP * 8) + (BONUS_XP * 8)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -388,7 +389,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_helmet',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 125,
@@ -463,7 +464,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_chest_plate',
     isHidden: true,
     timeToCraft: 60 * 60 * 2,
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 125,
@@ -538,7 +539,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_plate_legs',
     isHidden: true,
     timeToCraft: 60 * 60 * 2, // 60
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
     requiredCraftingLevel: 125,
@@ -613,7 +614,7 @@ export const ETERNIUM_CRAFTS = {
     id: 'eternium_shield',
     isHidden: true,
     timeToCraft: 60 * 60 * 2, // 60
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,

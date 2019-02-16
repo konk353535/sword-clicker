@@ -9,6 +9,7 @@ const ES_ESS_XP = 250000;
 const BONUS_XP = 357000;
 
 const ETERNIUM_RESOURCE_HOG = 5;
+const ETERNIUM_BONUS_XP = 5;
 
 export const ARCHER_CRAFTS = {
   teak_bow: {
@@ -399,7 +400,7 @@ export const ARCHER_CRAFTS = {
     id: 'ancient_bow',
     isHidden: true,
     timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,
@@ -847,7 +848,7 @@ export const ARCHER_CRAFTS = {
     id: 'eternium_quiver',
     isHidden: true,
     timeToCraft: 2 * 60 * 60, // 120 minutes (2 hours)
-    xp: (CURSED_ESS_XP * 4) + (BONUS_XP * 4),
+    xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
     requiredCraftingLevel: 125,

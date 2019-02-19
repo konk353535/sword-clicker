@@ -503,7 +503,7 @@ export const BAR_CRAFTS = {
     category: 'crafting',
     timeToCraft: 17,
     xp: 17,
-    maxToCraft: 150,
+    maxToCraft: 100,
     requiredCraftingLevel: 65,
     required: [{
       type: 'item',

@@ -233,7 +233,7 @@
               <h5 class="modal-title text-capitalize">
                 {{recipe.name}}
               </h5>
-              <small>{{recipe.description}}</small>
+              <small>{{{recipe.description}}}</small>
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -249,15 +249,16 @@
                   {{> displayCombatStats stats=recipe.baseStats extraStats=recipe.extraStats}}
                   {{#if recipe.requiredEquip}}
                     <b>Equip Requirements</b>
-                    <div class="d-flex flex-wrap">
-                      {{#each recipe.requiredEquip}}
-                        <i class="lilIcon-{{this.name}} extra-small-icon mx-1"></i>
-                        {{this.level}}
-                      {{/each}}
-                    </div>
+                    {{#each recipe.requiredEquip}}
+                      <div class="d-flex align-items-center">
+                        <i class="lilIcon-{{this.name}} extra-small-icon mr-1"></i>
+                        {{this.level}} {{this.name}} skill
+                      </div>
+                    {{/each}}
                   {{/if}}
+                  
                   {{#if recipe.isTwoHanded}}
-                    <b>Two Handed</b>
+                    <b>Two Handed</b><br />
                   {{/if}}
                 {{else}}
                   <a href="#" class="show-stats">Show Stat Range</a>

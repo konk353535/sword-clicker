@@ -67,7 +67,7 @@ Template.displayCombatStats.helpers({
           key: 'attack'
         });
       } else {
-        attackLabel += `xx ${descriptors('damageConsistent')}`;
+        attackLabel += `${descriptors('damageConsistent')}`; // todo: check if this is referenced anywhere
 
         statsArr.push({
             label: attackLabel,

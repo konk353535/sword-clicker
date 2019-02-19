@@ -62,7 +62,7 @@ export const NEED_GREED_ITEMS = {
   },
   crafting_scrolls: (str) => {
     // tomes are already need greed
-    return RegExp('darksteel|radiant|astral|titanfoil|relicrock|eternium', 'g').test(str)
+    return RegExp('darksteel|radiant|astral|titanfoil|relicrock|eternium|scepter_of_power_scroll', 'g').test(str)
   },
   archer: (str) => {
     return RegExp('_bow|quiver', 'g').test(str)

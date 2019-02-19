@@ -71,6 +71,11 @@ export const TOWER_FLOOR_26 = {
     name: 'Always Another Way',
     enemies: ['jellyFish', 'hydra', 'jellyFish'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
+      chance: 1 / 1024,
+      rewards: [
+        { type: 'item', itemId: 'scepter_of_power_scroll', amount: 1 }
+      ]
+    }, {
       chance: 1 / 512,
       rewards: [
         { type: 'item', itemId: 'eternium_kite_shield', amount: 1 }

@@ -785,13 +785,13 @@ export const BOSS_ENEMIES = {
     name: 'The Witch',
     isBoss: true,
     stats: {
-      attack: 150,
-      attackMax: 250,
+      attack: 250,
+      attackMax: 350,
       attackSpeed: MEDIUM_SPEED,
       accuracy: 600,
-      health: 6500,
-      healthMax: 6500,
-      defense: 350,
+      health: 8000,
+      healthMax: 8000,
+      defense: 450,
       armor: 750,
       magicArmor: 450,
       damageTaken: 1
@@ -812,6 +812,36 @@ export const BOSS_ENEMIES = {
         totalDuration: Infinity,
         name: 'Death Hex',
         icon: 'graves.svg',
+      },
+    }],
+    rewards: []
+  },
+
+  the_lich: {
+    id: 'the_lich',
+    icon: 'lich.svg',
+    name: 'The Lich',
+    isBoss: true,
+    stats: {
+      attack: 550,
+      attackMax: 750,
+      attackSpeed: MEDIUM_SPEED,
+      accuracy: 750,
+      health: 10000,
+      healthMax: 10000,
+      defense: 800,
+      armor: 10000,
+      magicArmor: 10000,
+      damageTaken: 1
+    },
+    buffs: [{
+      id: 'boss_lich',
+      data: {
+        duration: Infinity,
+        totalDuration: Infinity,
+        name: 'The Lich',
+        icon: 'lich.svg',
+        hideBuff: true,
       },
     }],
     rewards: []

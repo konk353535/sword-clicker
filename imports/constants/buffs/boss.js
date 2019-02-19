@@ -2594,4 +2594,202 @@ export const BOSS_BUFFS = {
       }
     }
   },
+
+  boss_lich: {
+    duplicateTag: 'boss_lich',
+    icon: 'lich.svg',
+    name: 'The Lich',
+    description({ buff, level }) {
+      return ``;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+      hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.everBeenVulnerable = false;
+        buff.data.vulnerableTime = 0;
+        buff.data.cantBeVulnerableTime = 0;
+        target.applyBuff({
+          buff: target.generateBuff({ buffId: 'boss_lich__impervioustodamage' }),
+        });
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        // heal boss to max if the lich has never been vulnerable
+        if (!buff.data.everBeenVulnerable) {
+          target.stats.health = target.stats.healthMax;
+        }
+        
+        if (buff.data.vulnerableTime > 0) {
+          buff.data.vulnerableTime -= secondsElapsed;
+          if (buff.data.vulnerableTime <= 0) {
+            target.opposition.forEach((opponent) => {
+              const lich_is_vulnerable_buff = opponent.findBuff('boss_lich__vulnerable');
+              if (lich_is_vulnerable_buff) {
+                opponent.removeBuff(lich_is_vulnerable_buff);
+              }
+            });
+            target.applyBuff({
+              buff: target.generateBuff({ buffId: 'boss_lich__cantbevulnerable' }),
+            });
+            buff.data.cantBeVulnerableTime = 5;
+          }
+        }
+        
+        if (buff.data.cantBeVulnerableTime > 0) {
+          buff.data.cantBeVulnerableTime -= secondsElapsed;
+          if (buff.data.cantBeVulnerableTime <= 0) {
+            const cant_be_vulnerable_buff = target.findBuff('boss_lich__cantbevulnerable');
+            if (cant_be_vulnerable_buff) {
+              target.removeBuff(cant_be_vulnerable_buff);
+            }
+          }
+        }
+        
+        // todo: randomly summon skeletons (but respect isStunned, etc. because we allow this buff to tick while stunned)
+      },
+      
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (buff.data.vulnerableTime > 0) {
+          // someone else attacking WHILE the lich is vulnerable!
+
+          // lich takes an extra auto-attack from each player while vulnerable damage!
+          actualBattle.autoAttack({
+            attacker,
+            defender,
+            originalAutoAttack: false
+          });
+        } else if (attacker.mainHandWeapon === 'scepter_of_power') {
+          // if we're struck by the scepter of power
+          if (!buff.data.everBeenVulnerable) {
+            // if we've never been vulnerable before
+            const impervious_buff = defender.findBuff('boss_lich__impervioustodamage');
+            if (impervious_buff) {
+              defender.removeBuff(impervious_buff);
+            }
+            buff.data.everBeenVulnerable = true;
+          }
+          
+          if ((buff.data.vulnerableTime <= 0) && (buff.data.cantBeVulnerableTime <= 0)) {
+            // if the lich is vulnerable now
+            defender.opposition.forEach((opponent) => {
+              defender.applyBuffTo({
+                buff: defender.generateBuff({ buffId: 'boss_lich__vulnerable' }),
+                target: opponent,
+              });
+              opponent.tickMessage('Lich Vulnerable!', '#00aaaa', 'noicon', defender);
+            });
+  
+            buff.data.vulnerableTime = 10;
+          }
+        } else if (buff.data.everBeenVulnerable) {
+          // someone else attacking while the lich is not vulnerable!
+          
+          // regular damage received
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+  
+  boss_lich__impervioustodamage: {
+    duplicateTag: 'boss_lich__impervioustodamage',
+    icon: 'lich.svg',
+    name: 'Impervious To Damage',
+    description({ buff, level }) {
+      return ``;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        target.stats.health = target.stats.healthMax;
+        target.stats.damageTaken = 0;
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        defender.tickMessage('Can\t Be Harmed!', '#aa8888', 'noicon', attacker); // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
+      },
+      
+      onRemove({ buff, target }) {
+        target.stats.damageTaken = 1;
+      }
+    }
+  },
+  
+  boss_lich__vulnerable: {
+    duplicateTag: 'boss_lich__vulnerable',
+    icon: 'bladeSlice.svg',
+    name: 'Attack Now!',
+    description({ buff, level }) {
+      return `
+        The lich is vulnerable! <br />
+        Attack now!`;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.duration = 10;
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        if (buff.duration > 0) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            target.removeBuff(buff);
+          }
+        }
+      },
+      
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+  
+  boss_lich__cantbevulnerable: {
+    duplicateTag: 'boss_lich__cantbevulnerable',
+    icon: 'wraith.svg',
+    name: 'Phasing Out of Reality',
+    description({ buff, level }) {
+      const c = buff.constants;
+      return ``;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+      },
+
+      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+        if (attacker.mainHandWeapon === 'scepter_of_power') {
+          defender.tickMessage('Phased!', '#aa0066', 'noicon', attacker); // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
+        }
+      },
+      
+      onRemove({ buff, target }) {
+      }
+    }
+  },
 };

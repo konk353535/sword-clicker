@@ -142,7 +142,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
           level: craftingSkill.level,
           date: moment().toDate()
         };
-
+        
         Session.set('recipeCache', {
           data: results,
           tiers,
@@ -173,7 +173,7 @@ Template.craftingPage.onCreated(function bodyOnCreated() {
           } else {
             result.calculatedTimeToCraft = result.timeToCraft;
           }
-
+          
           return result;
         }));
       }
@@ -486,7 +486,13 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
         quality: -1
       }
     }
-  ).map((itemModifier)).filter((item) => {
+  ).map((item) => {
+      const itemConstants = ITEMS[item.itemId];
+      if (itemConstants) {
+        item.requiredEquip = itemConstants.requiredEquip;
+      }
+      return item;
+    }).filter((item) => {
     const itemConstants = ITEMS[item.itemId];
     if (itemConstants) {
       if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {

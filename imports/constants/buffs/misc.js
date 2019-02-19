@@ -48,11 +48,7 @@ export const MISC_BUFFS = {
     name: 'Lion Dance',
     description({ buff, level }) {
       return `
-      You are dancing and celebrating for luck, raising your <br />
-      chance to find valuables in each battle.  When combat <br />
-      ends, each member of your party using Lion Dance will <br />
-      increase the chances of finding loot by <b>5%</b>.  Stacks <br />
-      with global combat buffs and exploration bonuses.`;
+      You are dancing and celebrating for luck, raising your chance to find valuables in each battle.  When combat ends, each member of your party using Lion Dance will increase the chances of finding loot by <b>5%</b>.  Stacks with global combat buffs and exploration bonuses.`;
     },
     data: {
       duration: Infinity,
@@ -116,9 +112,7 @@ export const MISC_BUFFS = {
       return `
         You are a pacifist. <br />
         <br />
-        You can't auto-attack, take any actions that would directly <br />
-        harm an enemy, nor use passive abilities or enchantments <br />
-        that could harm an enemy.`;
+        You can't auto-attack, take any actions that would directly harm an enemy, nor use passive abilities or enchantments that could harm an enemy.`;
     },
     constants: {
       allowTicks: true
@@ -334,7 +328,9 @@ export const MISC_BUFFS = {
     name: 'Armor Has Vanished',
     description() {
       return `
-        All of your armor has disappeared! <br /> <br />You are very vulnerable!`;
+        All of your armor has disappeared! <br />
+        <br />
+        You are very vulnerable!`;
     },
     constants: {
       allowTicks: true
@@ -381,7 +377,9 @@ export const MISC_BUFFS = {
     name: 'Weapon Has Vanished',
     description() {
       return `
-        Your weapons have disappeared! <br /> <br />You can't fight, cast spells, or use any <br />abilities right now.`;
+        Your weapons have disappeared! <br />
+        <br />
+        You can't fight, cast spells, or use any abilities right now.`;
     },
     constants: {
       allowTicks: true

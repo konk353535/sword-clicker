@@ -320,7 +320,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'tentacle.svg',
     name: 'kraken\'s tentacle',
     description() {
-      return `Each auto attack gives 1 charge. <br />At 20 charges increases attack speed by 50% for 3 seconds.`;
+      return `Each auto attack gives 1 charge.  At 20 charges increases attack speed by 50% for 3 seconds.`;
     },
     constants: {
     },
@@ -403,10 +403,7 @@ export const ENCHANTMENT_BUFFS = {
     name: 'opal chest plate',
     description() {
       return `
-        Converts 250% of magic armor into health. <br />
-        Whenever you take damage, 3% of your original maximum <br />
-        health reduced from spellcasting is restored. This will <br />
-        not restore any of your current missing health.<br />
+        Converts 250% of magic armor into health.  Whenever you take damage, 3% of your original maximum health reduced from spellcasting is restored. This will not restore any of your current missing health.<br />
         This effect can only occur once every 5 seconds.`;
     },
     constants: {
@@ -559,8 +556,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'livingHelmet.png',
     name: 'living helmet',
     description() {
-      return `When above 75% health living helmet takes over. <br />
-        Granting +10 defense, and healing allies for 5hp when you take damage`;
+      return `When above 75% health living helmet takes over: granting +10 defense and healing allies for 5hp when you take damage`;
     },
     constants: {
     },
@@ -762,9 +758,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'magicBlade.svg',
     name: 'magic blade',
     description() {
-      return `
-        Deals 25% auto-attack damage as additional magic damage. <br />
-        This amount is increased by twice your magic power.`;
+      return `Deals 25% auto-attack damage as additional magic damage.  This amount is increased by twice your magic power.`;
     },
     constants: {
       damageDecimal: 0.25,
@@ -865,9 +859,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventNYBalloons.svg',
     name: 'decorative balloons',
     description() {
-      return `
-        Emergency heal an ally below 30% health to full health. <br />
-        Effect works only once per battle.`;
+      return `Emergency heal an ally below 30% health to full health.  Effect works only once per battle.`;
     },
     constants: {
     },
@@ -1080,7 +1072,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'honeycombItem.svg',
     name: 'honeycomb',
     description() {
-      return `Slowly heals you during combat and can also remove poisons <br />and stop bleeding.`;
+      return `Slowly heals you during combat and can also remove poisons and stop bleeding.`;
     },
     constants: {
     },
@@ -1148,9 +1140,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'holyChestplate.png',
     name: 'holy plate',
     description() {
-      return `
-        Brings you back from the brink of death during combat. <br />
-        This effect can only occur once per battle.`;
+      return `Brings you back from the brink of death during combat. This effect can only occur once per battle.`;
     },
     constants: {
     },
@@ -1186,10 +1176,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'demonsHeart.svg',
     name: 'demon\'s heart',
     description() {
-      return `
-        Periodically drain health from your entire team.<br />
-        Drained health empowers your damage.  The lower your<br />
-        health and the more you drain, the more damage you will do.`;
+      return `Periodically drain health from your entire team.  Drained health empowers your damage.  The lower your health and the more you drain, the more damage you will do.`;
     },
     constants: {
     },
@@ -1565,11 +1552,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'fireOpalAmulet.png',
     name: 'fire opal amulet',
     description() {
-      return `
-        Whenever you take damage, a temporary elemental <br />
-        shield will be cast on you, shielding you and <br />
-        increasing your damage.  This effect can only occur <br />
-        once every ten seconds.`;
+      return `Whenever you take damage, a temporary elemental shield will be cast on you, shielding you and increasing your damage.  This effect can only occur once every ten seconds.`;
     },
     constants: {
     },
@@ -1640,9 +1623,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventLNYLionClaws.svg',
     name: 'lion claws',
     description() {
-      return `
-        Your auto-attacks are especially deadly and can rip <br />
-        flesh easily, leaving bloody wounds on your target.`;
+      return `Your auto-attacks are especially deadly and can rip flesh easily, leaving bloody wounds on your target.`;
     },
     constants: {
     },
@@ -1692,11 +1673,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventLNYLionBody.svg',
     name: 'lion costume body',
     description() {
-      return `
-        With the rhythm of a spirited dancer, you dance and <br />
-        weave through battle relying on your agility instead <br />
-        of tough armor.  Every 8 seconds, you will automatically <br />
-        evade all attacks for 2 seconds.`;
+      return `With the rhythm of a spirited dancer, you dance and weave through battle relying on your agility instead of tough armor.  Every 8 seconds, you will automatically evade all attacks for 2 seconds.`;
     },
     constants: {
     },
@@ -1746,11 +1723,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventLNYLionHead.svg',
     name: 'lion costume head',
     description() {
-      return `
-        With the rhythm of a spirited dancer, you dance and <br />
-        weave through battle relying on your agility instead <br />
-        of force.  Every 8 seconds, you will gain +1% of <br />
-        your base accuracy up to a maximum of +80%.`;
+      return `With the rhythm of a spirited dancer, you dance and weave through battle relying on your agility instead of force.  Every 8 seconds, you will gain +1% of your base accuracy up to a maximum of +80%.`;
     },
     constants: {
     },
@@ -1788,10 +1761,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventLNYLunarShield.svg',
     name: 'lunar shield',
     description() {
-      return `
-        Automatically taunts all enemies every round at <br />
-        the cost of health.  This effect will not reduce <br />
-        your health below 40%.`;
+      return `Automatically taunts all enemies every round at the cost of health.  This effect will not reduce your health below 40%.`;
     },
     constants: {
     },
@@ -1843,10 +1813,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventVDbear.svg',
     name: 'bear slippers',
     description() {
-      return `
-        Restores 1% of your original maximum health that has been <br />
-        lowered from combat spellcasting every second.  This will not <br />
-        restore any of your current missing health.`;
+      return `Restores 1% of your original maximum health that has been lowered from combat spellcasting every second.  This will not restore any of your current missing health.`;
     },
     constants: {
     },
@@ -1891,8 +1858,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventVDnecklace.svg',
     name: 'rose quartz amulet',
     description() {
-      return `
-        While wearing this amulet, you are incapable of causing harm.`;
+      return `While wearing this amulet, you are incapable of causing harm.`;
     },
     constants: {
     },
@@ -1951,11 +1917,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'eventVDcupidbow.svg',
     name: 'cupid\s bow',
     description() {
-      return `
-        Your auto-attack damage is tripled against charmed targets. <br />
-        This applies to all auto-attack damage, including any <br />
-        effects that add auto-attacks such as Phantom Strikes and <br />
-        Volley.`;
+      return `Your auto-attack damage is tripled against charmed targets. This applies to all auto-attack damage, including any effects that add auto-attacks such as Phantom Strikes and Volley.`;
     },
     constants: {
     },

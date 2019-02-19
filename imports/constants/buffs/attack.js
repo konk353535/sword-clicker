@@ -473,10 +473,7 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
-      return `
-        Auto attacks hit enemies adjacent to your target (applies <br />
-        on-hit effects). Consumes one stack when triggered. Stacks <br />
-        generate every 3 seconds, maximum of 20. `;
+      return `Auto attacks hit enemies adjacent to your target (applies on-hit effects). Consumes one stack when triggered. Stacks generate every 3 seconds, maximum of 20. `;
     },
     constants: {
     },
@@ -629,9 +626,7 @@ export const ATTACK_BUFFS = {
         localLevel = 1;
       }
 
-      return `
-      Increases your party's maximum damage range <br />
-      by 50% for 10 seconds.`;
+      return `Increases your party's maximum damage range by 50% for 10 seconds.`;
     },
     constants: {
     },
@@ -1289,8 +1284,7 @@ export const ATTACK_BUFFS = {
       const bonusDamage = buff.constants.baseDamageMultiplierPerLevel + (buff.constants.extraDamageMultiplierPerLevel * level);
       const armorPenetration = buff.constants.baseArmorPenetrationPerLevel + (buff.constants.extraArmorPenetrationPerLevel * level);
       return `
-        A strong attack that deals <b>${(100 * bonusDamage)}%</b> damage and <br />
-        ignores <b>${(100 * armorPenetration)}%</b> of target's armor. <br />
+        A strong attack that deals <b>${(100 * bonusDamage)}%</b> damage and ignores <b>${(100 * armorPenetration)}%</b> of target's armor. <br />
         (+${(100 * buff.constants.extraDamageMultiplierPerLevel)}% damage and +${(100 * buff.constants.extraArmorPenetrationPerLevel)}% armor ignored per ability level)`;
     },
     constants: {
@@ -1337,8 +1331,7 @@ export const ATTACK_BUFFS = {
       const upperRange = buff.constants.extraShotsBase + (buff.constants.extraShotsPerLevel * level);
       const extraDamage = buff.constants.extraDamagePerLevel * level;
       return `
-        A succession of <b>${buff.constants.minimumShots}</b> to <b>${upperRange}</b> rapid fire auto-attack shots at random<br />
-        targets. Each shot deals an additional <b>${(100 * extraDamage)}%</b> bonus damage. <br />
+        A succession of <b>${buff.constants.minimumShots}</b> to <b>${upperRange}</b> rapid fire auto-attack shots at random targets. Each shot deals an additional <b>${(100 * extraDamage)}%</b> bonus damage. <br />
         (+${buff.constants.extraShotsPerLevel} shot and +${(100 * buff.constants.extraDamagePerLevel)}% bonus damage per ability level)`;
     },
     constants: {

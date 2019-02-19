@@ -2276,7 +2276,7 @@ export const MONSTER_BUFFS = {
             buffId: 'healing_reduction',
             buffData: {
               name: 'Wither-Touched',
-              description: `Being touched by a wither harms your soul,preventing <br />you from receiving ${Math.round((1 - healingReduction) * 100)}% of incoming healing.`,
+              description: `Being touched by a wither harms your soul,preventing you from receiving ${Math.round((1 - healingReduction) * 100)}% of incoming healing.`,
               icon: 'healingReduction.svg',
               duration: 10,
               healingReduction,

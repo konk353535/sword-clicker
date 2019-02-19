@@ -499,6 +499,67 @@ export const STAFF_CRAFTS = {
       name: 'crafting',
       level: 95
     }]
-  }
+  },
+
+  scepter_of_power: {
+    produces: 'scepter_of_power',
+    name: 'scepter of power',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'scepter_of_power',
+    isHidden: true,
+    timeToCraft: 8 * 60 * 60, // 8 hours
+    xp: 1,
+    maxToCraft: 1,
+    tags: ['staff'],
+    requiredCraftingLevel: 100,
+    required: [{
+      type: 'item',
+      itemId: 'exalted_trident',
+      icon: ITEMS['exalted_trident'].icon,
+      name: ITEMS['exalted_trident'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'farplane_resonator',
+      icon: ITEMS['farplane_resonator'].icon,
+      name: ITEMS['farplane_resonator'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'farplane_mysterious_dust',
+      icon: ITEMS['farplane_mysterious_dust'].icon,
+      name: ITEMS['farplane_mysterious_dust'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'farplane_twisted_veins',
+      icon: ITEMS['farplane_twisted_veins'].icon,
+      name: ITEMS['farplane_twisted_veins'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'farplane_organic_rock',
+      icon: ITEMS['farplane_organic_rock'].icon,
+      name: ITEMS['farplane_organic_rock'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'farplane_acidic_fluid',
+      icon: ITEMS['farplane_acidic_fluid'].icon,
+      name: ITEMS['farplane_acidic_fluid'].name,
+      amount: 10,
+      consumes: true      
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 100
+    }]
+  },
 
 };

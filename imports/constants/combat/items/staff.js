@@ -1762,7 +1762,7 @@ export const STAFF_ITEMS = {
       level: 67
     }]
   },
-
+  
   exalted_trident: {
     id: 'exalted_trident',
     icon: 'exaltedTrident.png',
@@ -1832,7 +1832,72 @@ export const STAFF_ITEMS = {
       name: 'magic',
       level: 65
     }]
+  }, 
+  
+  scepter_of_power_scroll: {
+    id: 'scepter_of_power_scroll',
+    icon: 'scrollScepterOfPower.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'scepter of power scroll',
+    teaches: 'scepter_of_power',
+    sellPrice: 250000,
+    description: `A mysterious scroll.`,
+    shiftActionData: {
+      description: 'Learn a hidden recipe'
+    },
   },
+
+  // the ultimate weapon
+  scepter_of_power: {
+    id: 'scepter_of_power',
+    icon: 'scepterOfPower.png',
+    category: 'combat',
+    weaponType: 'staff',
+    slot: 'mainHand',
+    name: 'scepter of power',
+    sellPrice: 1000000,
+    description: `
+      <span style="color: #cc44cc;"><b>Legendary Weapon</b></span> <br />
+      A powerful weapon capable of dealing exception physical and <br />
+      magical damage with each strike.`,
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    xpDistribution: {
+      attack: 0.225,
+      defense: 0.225,
+      magic: 0.05,
+      health: 0.5
+    },
+    stats: {
+      attackSpeed: 0.7,
+      attack: 185,
+      attackMax: 250,
+      accuracy: 185,
+      magicPower: 93,
+      criticalChance: 10,
+      healingPower: 10,
+    },
+    extraStats: {
+      attack: 65,
+      attackMax: 100,
+      accuracy: 65,
+      magicPower: 27,
+      criticalChance: 5,
+      healingPower: 5,
+    },
+    enchantments: ['magic_blade'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 110
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 70
+    }]
+  }, 
   
   /*
   copper_hammer: {

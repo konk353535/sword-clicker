@@ -63,95 +63,115 @@
         {{amuletLevel}}
       </h3>
       <div class='popover-content'>
-        {{#if itemDescription}}
-          {{{itemDescription}}}<br />
-        {{else if description}}
-          {{{description}}}<br />
-        {{else if item.description}}
-          {{{item.description}}}<br />
-        {{/if}}
-
-        <!-- farming description() -->
-        {{#if itemDescription}}
-          {{#if $and (item.plantingDetails) (description)}}
+        <div style='max-width: 350px;'>
+          {{#if itemDescription}}
+            {{{itemDescription}}}<br />
+          {{else if description}}
             {{{description}}}<br />
+          {{else if item.description}}
+            {{{item.description}}}<br />
           {{/if}}
-        {{/if}}
 
-        {{#if scaledCooldownVal}}
-          Cooldown <b>{{scaledCooldownVal}}s</b><br />
-        {{else if item.cooldown}}
-          Cooldown <b>{{item.cooldown}}s</b><br />
-        {{/if}}
-
-        {{#if item.isSpell}}
-          <b>{{item.casts}}</b> casts remaining.<br /><br />
-        {{/if}}
-
-        {{#unless item.hideStats}}
-          {{#if stats}}
-            {{> displayCombatStats stats=stats}}
-          {{/if}}
-        {{/unless}}
-
-        {{#if item.required}}
-          <b>Requires</b><br />
-          {{> requiredItems requiredItems=item.required}}
-        {{/if}}
-
-        {{#if constants.isTwoHanded}}
-          <b>Two Handed</b><br />
-        {{/if}}
-
-        {{#if enchantments}}
-          {{#each enchantment in enchantments}}
-            {{{enchantment}}}<br />
-          {{/each}}
-        {{/if}}
-
-        {{#if item.enchantmentId}}
-          {{#if $neq item.enchantmentId "undefined"}}
-            {{#if item.enchantmentDescription}}
-              <b>Enchantment</b>: {{{item.enchantmentDescription}}}<br />
+          <!-- farming description() -->
+          {{#if itemDescription}}
+            {{#if $and (item.plantingDetails) (description)}}
+              {{{description}}}<br />
             {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#unless readOnly}}
-          {{#if item.primaryAction}}
-            {{#if item.primaryAction.description}}
-              <div>
-                <b>Left Click</b> to {{item.primaryAction.description}}
+          {{#if scaledCooldownVal}}
+            Cooldown <b>{{scaledCooldownVal}}s</b><br />
+          {{else if item.cooldown}}
+            Cooldown <b>{{item.cooldown}}s</b><br />
+          {{/if}}
+
+          {{#if item.isSpell}}
+            <b>{{item.casts}}</b> casts remaining.<br /><br />
+          {{/if}}
+
+          {{#unless item.hideStats}}
+            {{#if stats}}
+              {{> displayCombatStats stats=stats}}
+            {{/if}}
+          {{/unless}}
+
+          {{#if item.required}}
+            <b>Requires</b><br />
+            {{> requiredItems requiredItems=item.required}}
+          {{/if}}
+          
+          {{#if constants.requiredEquip}}
+            <b>Equip Requirements</b>
+            {{#each constants.requiredEquip}}
+              <div class="d-flex align-items-center">
+                <i class="lilIcon-{{this.name}} extra-small-icon mr-1"></i>
+                {{this.level}} {{this.name}} skill
               </div>
+            {{/each}}
+          {{else if item.requiredEquip}}
+            <b>Equip Requirements</b>
+            {{#each item.requiredEquip}}
+              <div class="d-flex align-items-center">
+                <i class="lilIcon-{{this.name}} extra-small-icon mr-1"></i>
+                {{this.level}} {{this.name}} skill
+              </div>
+            {{/each}}
+          {{/if}}
+                  
+          {{#if constants.isTwoHanded}}
+            <b>Two Handed</b><br />
+          {{/if}}
+
+          {{#if enchantments}}
+            {{#each enchantment in enchantments}}
+              {{{enchantment}}}<br />
+            {{/each}}
+          {{/if}}
+
+          {{#if item.enchantmentId}}
+            {{#if $neq item.enchantmentId "undefined"}}
+              {{#if item.enchantmentDescription}}
+                <b>Enchantment</b>: {{{item.enchantmentDescription}}}<br />
+              {{/if}}
             {{/if}}
-          {{else}}
-            {{#if item.shiftAction}}
-              {{#if item.shiftAction.description}}
+          {{/if}}
+
+          {{#unless readOnly}}
+            {{#if item.primaryAction}}
+              {{#if item.primaryAction.description}}
                 <div>
-                  <b>Left Click</b> to use or sell for {{constants.sellPrice}}
+                  <b>Left Click</b> to {{{item.primaryAction.description}}}
                 </div>
               {{/if}}
             {{else}}
-              <b>Left Click</b> to sell for {{constants.sellPrice}}
+              {{#if item.shiftAction}}
+                {{#if item.shiftAction.description}}
+                  <div>
+                    <b>Left Click</b> to use or sell for {{constants.sellPrice}}
+                  </div>
+                {{/if}}
+              {{else}}
+                <b>Left Click</b> to sell for {{constants.sellPrice}}
+              {{/if}}
             {{/if}}
-          {{/if}}
 
-          {{#if item.shiftAction}}
-            {{#if item.shiftAction.description}}
-              <div>
-                <b>Shift Click</b> to {{item.shiftAction.description}}
-              </div>
+            {{#if item.shiftAction}}
+              {{#if item.shiftAction.description}}
+                <div>
+                  <b>Shift Click</b> to {{{item.shiftAction.description}}}
+                </div>
+              {{/if}}
             {{/if}}
-          {{/if}}
 
-          {{#if item.ctrlAction}}
-            {{#if item.ctrlAction.description}}
-              <div>
-                <b>Ctrl Click</b> to {{item.ctrlAction.description}}
-              </div>
+            {{#if item.ctrlAction}}
+              {{#if item.ctrlAction.description}}
+                <div>
+                  <b>Ctrl Click</b> to {{{item.ctrlAction.description}}}
+                </div>
+              {{/if}}
             {{/if}}
-          {{/if}}
-        {{/unless}}
+          {{/unless}}
+        </div>
       </div>
     </div>
   {{/unless}}

@@ -6,7 +6,9 @@ import './displayCombatStats.html';
 
 function descriptors(str) {
   const terms = {
-    'attack': 'damage',
+    'damageConsistent': 'damage',
+    'attack': 'min. dmg.',
+    'attackMax': 'max. dmg.',
     'accuracy': 'accuracy',
     'healthMax': 'health',
     'defense': 'defense',
@@ -42,31 +44,34 @@ Template.displayCombatStats.helpers({
     const statsArr = [];
 
     if (statsMap.attack) {
+      let attackLabel = '';
+      if (!extraStatsMap.attack) {
+        attackLabel += `${autoPrecisionValue(statsMap.attack)} `;
+      } else {
+        attackLabel += `(${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}) `;
+      }
+        
       if (statsMap.attackMax) {
-        let attackLabel = `(${autoPrecisionValue(statsMap.attack)}`;
-        if (extraStatsMap.attack) {
-          attackLabel += ` - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}`;
+        attackLabel += `${descriptors('attack')}`;
+        
+        let attackMaxLabel = '';
+        if (!extraStatsMap.attackMax) {
+          attackMaxLabel += `${autoPrecisionValue(statsMap.attackMax)} `;
+        } else {
+          attackMaxLabel += `(${autoPrecisionValue(statsMap.attackMax)} - ${autoPrecisionValue(statsMap.attackMax + extraStatsMap.attackMax)}) `;
         }
-        attackLabel += ') attack';
-
-        let attackMaxLabel = `(${autoPrecisionValue(statsMap.attackMax)}`;
-        if (extraStatsMap.attackMax) {
-          attackMaxLabel += ` - ${autoPrecisionValue(statsMap.attackMax + extraStatsMap.attackMax)}`;
-        }
-        attackMaxLabel += ')';
+        attackMaxLabel += `${descriptors('attackMax')}`;
 
         statsArr.push({
-          label: `${attackLabel} - ${attackMaxLabel} ${descriptors('attack')}`,
+          label: `${attackLabel} / ${attackMaxLabel}`,
           key: 'attack'
         });
       } else {
-        let attackLabel = statsMap.attack;
-        if (extraStatsMap.attack) {
-          attackLabel += ` - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}`;
-        }
+        attackLabel += `xx ${descriptors('damageConsistent')}`;
+
         statsArr.push({
-          label: attackLabel + ` ${descriptors('attack')}`,
-          key: 'attack'
+            label: attackLabel,
+            key: 'attack'
         });
       }
     }
@@ -75,12 +80,20 @@ Template.displayCombatStats.helpers({
       if (key === 'attack' || key === 'attackMax') {
         return;
       }
-
-      statsArr.push({
-        label: `${autoPrecisionValue(statsMap[key] + extraStatsMap[key])} ${descriptors(key)}`,
-        value: statsMap[key] + extraStatsMap[key],
-        key
-      });
+      
+      if (extraStatsMap[key]) {
+        statsArr.push({
+          label: `${autoPrecisionValue(statsMap[key])} - ${autoPrecisionValue(statsMap[key] + extraStatsMap[key])} ${descriptors(key)}`,
+          value: statsMap[key] + extraStatsMap[key],
+          key
+        });
+      } else {
+        statsArr.push({
+          label: `${autoPrecisionValue(statsMap[key])} ${descriptors(key)}`,
+          value: statsMap[key],
+          key
+        });
+      }      
     });
 
     return statsArr;
@@ -93,12 +106,12 @@ Template.displayCombatStats.helpers({
     if (statsMap.attack) {
       if (statsMap.attackMax) {
         statsArr.push({
-          label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attackMax)} ${descriptors('attack')}`,
+          label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attackMax)} ${descriptors('damageConsistent')}`,
           key: 'attack'
         });        
       } else {
         statsArr.push({
-          label: `${autoPrecisionValue(statsMap.attack)} ${descriptors('attack')}`,
+          label: `${autoPrecisionValue(statsMap.attack)} ${descriptors('damageConsistent')}`,
           key: 'attack'
         });
       }

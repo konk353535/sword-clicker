@@ -211,7 +211,7 @@ export const DARKSTEEL_ITEMS = {
     "slot": "head",
     "name": "darksteel horned helmet",
     "sellPrice": 4000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 19.4,
@@ -225,7 +225,7 @@ export const DARKSTEEL_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 100
     }]
   },

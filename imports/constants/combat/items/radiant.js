@@ -212,7 +212,7 @@ export const RADIANT_ITEMS = {
     "slot": "head",
     "name": "radiant horned helmet",
     "sellPrice": 5000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 21.4,
@@ -226,7 +226,7 @@ export const RADIANT_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 105
     }]
   },

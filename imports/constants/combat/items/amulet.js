@@ -613,8 +613,8 @@ export const AMULET_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'attack',
-      level: 35
+      name: 'magic',
+      level: 25
     }]
   },
 
@@ -637,8 +637,8 @@ export const AMULET_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'attack',
-      level: 45
+      name: 'health',
+      level: 25
     }]
   },
 
@@ -663,7 +663,7 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 55
+      level: 50
     }]
   },
 
@@ -693,7 +693,19 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 65
+      level: 50
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 50
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'health',
+      level: 50
     }]
   },
 
@@ -720,6 +732,10 @@ export const AMULET_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
+      level: 75
+    }, {
+      type: 'skill',
+      name: 'defense',
       level: 75
     }],
     enchantments: ['fireopal_amulet']

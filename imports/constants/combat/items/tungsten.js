@@ -203,7 +203,7 @@ export const TUNGSTEN_ITEMS = {
     "slot": "head",
     "name": "tungsten horned helmet",
     "sellPrice": 1200,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 7,
@@ -217,7 +217,7 @@ export const TUNGSTEN_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 50
     }]
   },

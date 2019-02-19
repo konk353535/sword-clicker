@@ -203,7 +203,7 @@ export const METEORITE_ITEMS = {
     "slot": "head",
     "name": "meteorite horned helmet",
     "sellPrice": 2000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 13,
@@ -217,7 +217,7 @@ export const METEORITE_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 80
     }]
   },

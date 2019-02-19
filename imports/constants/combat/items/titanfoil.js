@@ -213,7 +213,7 @@ export const TITANFOIL_ITEMS = {
     "slot": "head",
     "name": "titanfoil horned helmet",
     "sellPrice": 7500,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 26.4,
@@ -227,7 +227,7 @@ export const TITANFOIL_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 115
     }]
   },

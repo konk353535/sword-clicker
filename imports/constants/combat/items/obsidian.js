@@ -203,7 +203,7 @@ export const OBSIDIAN_ITEMS = {
     "slot": "head",
     "name": "obsidian horned helmet",
     "sellPrice": 1350,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 7.8,
@@ -217,7 +217,7 @@ export const OBSIDIAN_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 55
     }]
   },

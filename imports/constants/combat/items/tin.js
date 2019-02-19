@@ -203,7 +203,7 @@ export const TIN_ITEMS = {
     "slot": "head",
     "name": "tin horned helmet",
     "sellPrice": 75,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 1.4,
@@ -217,7 +217,7 @@ export const TIN_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 5
     }]
   },

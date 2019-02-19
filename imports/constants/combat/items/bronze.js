@@ -203,7 +203,7 @@ export const BRONZE_ITEMS = {
     "slot": "head",
     "name": "bronze horned helmet",
     "sellPrice": 175,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 1.8,
@@ -217,7 +217,7 @@ export const BRONZE_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 10
     }]
   },

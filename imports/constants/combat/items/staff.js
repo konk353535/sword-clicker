@@ -693,11 +693,6 @@ export const STAFF_ITEMS = {
     extraStats: {
       magicPower: 2
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'magic',
-      level: 0
-    }]
   },
 
   tin_wand: {
@@ -1859,8 +1854,7 @@ export const STAFF_ITEMS = {
     sellPrice: 1000000,
     description: `
       <span style="color: #cc44cc;"><b>Legendary Weapon</b></span> <br />
-      A powerful weapon capable of dealing exception physical and <br />
-      magical damage with each strike.`,
+      A powerful weapon capable of dealing exceptional physical and magical damage with each strike.`,
     isWeapon: true,
     isEquippable: true,
     isTwoHanded: true,
@@ -2061,11 +2055,6 @@ export const STAFF_ITEMS = {
       magicArmor: 3,
       magicPower: 1.5
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 0
-    }]
   },
 
   tin_hammer: {

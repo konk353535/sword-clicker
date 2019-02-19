@@ -203,7 +203,7 @@ export const TITANIUM_ITEMS = {
     "slot": "head",
     "name": "titanium horned helmet",
     "sellPrice": 1000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 6.2,
@@ -217,7 +217,7 @@ export const TITANIUM_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 45
     }]
   },

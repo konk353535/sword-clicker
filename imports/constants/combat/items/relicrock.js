@@ -213,7 +213,7 @@ export const RELICROCK_ITEMS = {
     "slot": "head",
     "name": "relicrock horned helmet",
     "sellPrice": 9000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 29.4,
@@ -227,7 +227,7 @@ export const RELICROCK_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 120
     }]
   },

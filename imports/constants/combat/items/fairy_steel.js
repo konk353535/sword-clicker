@@ -203,7 +203,7 @@ export const FAIRY_STEEL_ITEMS = {
     "slot": "head",
     "name": "fairy steel horned helmet",
     "sellPrice": 2250,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 14.3,
@@ -217,7 +217,7 @@ export const FAIRY_STEEL_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 85
     }]
   },

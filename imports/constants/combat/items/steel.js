@@ -203,7 +203,7 @@ export const STEEL_ITEMS = {
     "slot": "head",
     "name": "steel horned helmet",
     "sellPrice": 750,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 4.5,
@@ -217,7 +217,7 @@ export const STEEL_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 35
     }]
   },

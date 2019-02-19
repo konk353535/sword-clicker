@@ -212,7 +212,7 @@ export const ASTRAL_ITEMS = {
     "slot": "head",
     "name": "astral horned helmet",
     "sellPrice": 6000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 23.4,
@@ -226,7 +226,7 @@ export const ASTRAL_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 110
     }]
   },

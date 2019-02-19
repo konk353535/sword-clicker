@@ -213,7 +213,7 @@ export const ETERNIUM_ITEMS = {
     "slot": "head",
     "name": "eternium horned helmet",
     "sellPrice": 12000,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 35,
@@ -227,7 +227,7 @@ export const ETERNIUM_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 125
     }]
   },

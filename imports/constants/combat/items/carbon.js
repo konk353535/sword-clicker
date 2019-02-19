@@ -203,7 +203,7 @@ export const CARBON_ITEMS = {
     "slot": "head",
     "name": "carbon horned helmet",
     "sellPrice": 650,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 4,
@@ -217,7 +217,7 @@ export const CARBON_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 30
     }]
   },

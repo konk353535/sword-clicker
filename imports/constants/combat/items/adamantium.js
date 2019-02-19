@@ -203,7 +203,7 @@ export const ADAMANTIUM_ITEMS = {
     "slot": "head",
     "name": "adamantium horned helmet",
     "sellPrice": 1800,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 10.7,
@@ -217,7 +217,7 @@ export const ADAMANTIUM_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 70
     }]
   },

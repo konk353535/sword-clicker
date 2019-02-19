@@ -203,7 +203,7 @@ export const PLATINUM_ITEMS = {
     "slot": "head",
     "name": "platinum horned helmet",
     "sellPrice": 900,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 5.4,
@@ -217,7 +217,7 @@ export const PLATINUM_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 40
     }]
   },

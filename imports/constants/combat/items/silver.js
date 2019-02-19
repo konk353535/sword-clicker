@@ -203,7 +203,7 @@ export const SILVER_ITEMS = {
     "slot": "head",
     "name": "silver horned helmet",
     "sellPrice": 400,
-    "description": "Protect your head",
+    "description": "Now that's using your head!",
     "isEquippable": true,
     "stats": {
       "attack": 2.8,
@@ -217,7 +217,7 @@ export const SILVER_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 20
     }]
   },

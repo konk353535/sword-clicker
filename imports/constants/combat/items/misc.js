@@ -1142,11 +1142,6 @@ export const MISC_ITEMS = {
       armor: 3,
       accuracy: 0.9
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 0
-    }]
   },
 
   tin_buckler: {
@@ -1173,8 +1168,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 5
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 2
     }]
   },
 
@@ -1202,8 +1201,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 10
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 5
     }]
   },
 
@@ -1231,8 +1234,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 15
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 10
     }]
   },
 
@@ -1260,8 +1267,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 20
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 15
     }]
   },
 
@@ -1289,8 +1300,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 20
     }]
   },
 
@@ -1318,8 +1333,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 30
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
     }]
   },
 
@@ -1347,8 +1366,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 35
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 30
     }]
   },
 
@@ -1376,8 +1399,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 40
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 35
     }]
   },
 
@@ -1405,8 +1432,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 45
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 40
     }]
   },
 
@@ -1434,8 +1465,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 50
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 45
     }]
   },
 
@@ -1463,8 +1498,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 55
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 50
     }]
   },
 
@@ -1492,8 +1531,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 60
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 55
     }]
   },
 
@@ -1521,8 +1564,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 65
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 60
     }]
   },
 
@@ -1550,8 +1597,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 70
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 65
     }]
   },
 
@@ -1579,8 +1630,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 75
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 70
     }]
   },
 
@@ -1608,8 +1663,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 80
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 75
     }]
   },
 
@@ -1637,8 +1696,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 85
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 80
     }]
   },
 
@@ -1666,8 +1729,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 90
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 85
     }]
   },
 
@@ -1695,8 +1762,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 95
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 90
     }]
   },
 
@@ -1724,8 +1795,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 100
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 95
     }]
   },
 
@@ -1753,8 +1828,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 105
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 100
     }]
   },
 
@@ -1782,8 +1861,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 110
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 105
     }]
   },
 
@@ -1811,8 +1894,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 115
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 110
     }]
   },
 
@@ -1840,8 +1927,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 120
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 115
     }]
   },
 
@@ -1869,8 +1960,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 125
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 120
     }]
   },
 
@@ -1896,11 +1991,6 @@ export const MISC_ITEMS = {
       attackMax: 3,
       accuracy: 1
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 0
-    }]
   },
 
   tin_knife: {
@@ -2708,11 +2798,6 @@ export const MISC_ITEMS = {
       attackMax: 2,
       accuracy: 0.5
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 0
-    }]
   },
 
   // For a player at 100 attack skill fighting an average, single-enemy room from generic F24R4
@@ -3856,11 +3941,6 @@ export const MISC_ITEMS = {
       healthMax: 3.4,
       magicArmor: 2.9,
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'magic',
-      level: 0
-    }]
   },
 
   tin_spirit_shield: {
@@ -4510,7 +4590,7 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
+      name: 'attack',
       level: 60
     }],
     enchantments: ['demons_heart']
@@ -4647,8 +4727,12 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
-      level: 10
+      name: 'magic',
+      level: 20
+    }, {
+      type: 'skill',
+      name: 'health',
+      level: 30
     }],
     enchantments: ['opal_chest_plate']
   },
@@ -4726,8 +4810,8 @@ export const MISC_ITEMS = {
     },
     requiredEquip: [{
       type: 'skill',
-      name: 'defense',
-      level: 65
+      name: 'attack',
+      level: 75
     }],
     enchantments: ['frankensteins_heart']
   },
@@ -4754,7 +4838,7 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
-      level: 70
+      level: 75
     }],
     enchantments: ['rich_snake_skin']
   },
@@ -6660,7 +6744,11 @@ export const MISC_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 1
+      level: 100
+    }, {
+      type: 'skill',
+      name: 'attack',
+      level: 100
     }],
   },
   

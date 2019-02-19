@@ -1645,7 +1645,7 @@ export const COMPANION_BUFFS = {
             return;
           }
           
-          const targetToTaunt = lodash.sample(actualBattle.enemies);
+          const targetToTaunt = lodash.sample(target.opposition);
           if (targetToTaunt && targetToTaunt.target !== target.id) {
             targetToTaunt.target = target.id
             buff.data.timeTillCharge = (buff.data.level > 1) ? 4 : 7;
@@ -1696,9 +1696,9 @@ export const COMPANION_BUFFS = {
           }
           
           if (!actualBattle.isExplorationRun || actualBattle.room >= 3 || actualBattle.room === 'boss') {
-            if (actualBattle.enemies.length > 1) {
+            if (target.opposition.length > 1) {
               let neededToScream = false;
-              actualBattle.enemies.forEach((enemy) => {
+              target.opposition.forEach((enemy) => {
                 if (enemy.target !== target.id) {
                   neededToScream = true;
                   enemy.target = target.id;
@@ -1815,7 +1815,7 @@ export const COMPANION_BUFFS = {
           
           // START: logic healing spells
           try {
-            const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
+            const unitsHealthSorted = _.sortBy(target.team, function(unit) { return unit.stats.health / unit.stats.healthMax; });
             const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
               return (!unit.hasBuff('mending_water'));
             });
@@ -1824,7 +1824,7 @@ export const COMPANION_BUFFS = {
             if (!castAnyHeal && unitsHealthSorted.length >= 3 && buff.data.level >= 4 && buff.data.CDWaterWave <= 0.0 && (unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax < 0.7) && (unitsHealthSorted[1].stats.health / unitsHealthSorted[1].stats.healthMax < 0.8) && (unitsHealthSorted[2].stats.health / unitsHealthSorted[2].stats.healthMax < 0.8)) {
               try {
                 // START: cast Water Wave
-                actualBattle.units.forEach((unitToWaterWave) => {
+                target.team.forEach((unitToWaterWave) => {
                   // this will take care of max health checks, max health reduction, applying the effect on the target, etc.
                   target.applyBuffTo({
                     buff: target.generateBuff({
@@ -1966,7 +1966,7 @@ export const COMPANION_BUFFS = {
         try {
           if (buff.data.level >= 5) {
             if (Math.random() < 0.01333) {
-              actualBattle.enemies.forEach((enemy) => {
+              target.opposition.forEach((enemy) => {
                 const newBuff = {
                   id: 'charm',
                   data: {
@@ -2050,10 +2050,10 @@ export const COMPANION_BUFFS = {
         
         // START: logic healing spells
         try {
-          const unitsHealthSorted = _.sortBy(actualBattle.units, function(unit) { return unit.stats.health / unit.stats.healthMax; });
-            const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
-              return (!unit.hasBuff('mending_water'));
-            });
+          const unitsHealthSorted = _.sortBy(target.team, function(unit) { return unit.stats.health / unit.stats.healthMax; });
+          const unitsHealthSortedNoMending = unitsHealthSorted.filter((unit) => {
+            return (!unit.hasBuff('mending_water'));
+          });
           const lowHealthTest = unitsHealthSorted[0].stats.health / unitsHealthSorted[0].stats.healthMax;
           const lowHealthTestNoMending = unitsHealthSortedNoMending ? unitsHealthSortedNoMending[0].stats.health / unitsHealthSortedNoMending[0].stats.healthMax : 1.0;
           if (lowHealthTest < 0.70) {

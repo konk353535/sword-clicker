@@ -1993,8 +1993,7 @@ export const ENCHANTMENT_BUFFS = {
     duplicateTag: 'witchs_cauldron',
     icon: 'potionMixing.svg',
     name: 'Mixing Potions',
-    description({ buff, level }) {
-      const c = buff.constants;
+    description() {
       return `You're mixing some potions like a witch.`;
     },
     constants: {

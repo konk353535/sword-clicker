@@ -40,6 +40,7 @@ CombatSchema = new SimpleSchema({
   'amulet.energyStorage': { type: Number, optional: true },
   'amulet.energyRegen': { type: Number, optional: true },
   'amulet.damage': { type: Number, decimal: true, optional: true },
+  'mainHandWeapon': { type: String, optional: true },
   'mainHandType': { type: String, optional: true },
   'offHandType': { type: String, optional: true },
   buffs: { type: [Object], optional: true, defaultValue: [] },

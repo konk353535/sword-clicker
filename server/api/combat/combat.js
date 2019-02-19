@@ -41,6 +41,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       magicArmor: 0
     },
     enchantments: [],
+    mainHandWeapon: '',
     mainHandType: '',
     offHandType: '',
     xpDistribution: {}
@@ -63,6 +64,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     combatItem.constants = ITEMS[combatItem.itemId];
 
     if (combatItem.constants.slot === 'mainHand') {
+      playerData.mainHandWeapon = combatItem.itemId;
       playerData.mainHandType = combatItem.constants.weaponType;
     } else if (combatItem.constants.slot === 'offHand') {
       playerData.offHandType = combatItem.constants.weaponType;

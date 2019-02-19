@@ -231,6 +231,7 @@ export default class Unit {
     this.battleRef = battleRef;
     this.battleSecret = unit.battleSecret;
     this.amulet = unit.amulet;
+    this.mainHandWeapon = unit.mainHandWeapon;
     this.mainHandType = unit.mainHandType;
     this.offHandType = unit.offHandType;
     this.towerContributions = unit.towerContributions;

@@ -13,7 +13,7 @@ export const TOWER_FLOOR_24 = {
     name: 'Goblin Menace',
     enemies: ['goblin','goblin','goblin','goblin','goblin','goblin','goblin'],
     rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_dagger_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_furnace_scroll', amount: 1 }
@@ -24,7 +24,7 @@ export const TOWER_FLOOR_24 = {
     name: 'To the Beyond',
     enemies: ['demon','demon','demon','demon','demon'],
     rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_shield_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_short_sword_scroll', amount: 1 }
@@ -35,12 +35,12 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_knife', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 36,
       rewards: [
         { type: 'item', itemId: 'magic_bow_scroll', amount: 1 },
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 36,
       rewards: [
         { type: 'item', itemId: 'titanfoil_quiver_scroll', amount: 1 },
       ]
@@ -55,7 +55,7 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_rapiers', amount: 1 }
       ]
     }, {
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_chest_plate_scroll', amount: 1 }
@@ -86,7 +86,7 @@ export const TOWER_FLOOR_24 = {
         { type: 'item', itemId: 'titanfoil_buckler', amount: 1 }
       ]
     }, {
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_axe_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_pickaxe_scroll', amount: 1 },
@@ -110,13 +110,13 @@ export const TOWER_FLOOR_24 = {
     name: 'Flesh-Eaters',
     enemies: ['worm','worm','worm'],
     rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_plate_legs_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 36,
       rewards: [
         { type: 'item', itemId: 'titanfoil_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'titanfoil_mining_hammer', amount: 1 }
@@ -133,18 +133,18 @@ export const TOWER_FLOOR_24 = {
     name: 'Three Wise Men',
     enemies: ['monk','monk','monk'],
     rewards: orderLootTable(LEVEL_TWENTY_FOUR_LOOT_TABLE.concat([{
-      chance: 1 / 24,
+      chance: 1 / 20,
       rewards: [
         { type: 'item', itemId: 'titanfoil_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'titanfoil_battle_axe_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 96,
+      chance: 1 / 72,
       rewards: [
         { type: 'item', itemId: 'titanfoil_hammer', amount: 1 }
       ]
     }, {
-      chance: 1 / 48,
+      chance: 1 / 36,
       rewards: [
         { type: 'item', itemId: 'titanfoil_scimitar', amount: 1 },
         { type: 'item', itemId: 'titanfoil_broad_sword', amount: 1 },

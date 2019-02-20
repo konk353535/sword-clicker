@@ -13,7 +13,7 @@ export const TOWER_FLOOR_25 = {
     name: 'Putrid Horror',
     enemies: ['grotesque', 'grotesque_giant', 'grotesque'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 32,
+      chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'relicrock_dagger_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_furnace_scroll', amount: 1 }
@@ -24,23 +24,23 @@ export const TOWER_FLOOR_25 = {
     name: 'Soulripped',
     enemies: ['tormentor', 'wither', 'wither', 'tormentor'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'relicrock_shield_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_short_sword_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'relicrock_knife', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'petrified_bow_scroll', amount: 1 },
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'relicrock_quiver_scroll', amount: 1 },
       ]
@@ -50,18 +50,18 @@ export const TOWER_FLOOR_25 = {
     name: 'Dust to Dust',
     enemies: ['devourer', 'abstract_monster', 'devourer'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'relicrock_rapiers', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'relicrock_helmet_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_chest_plate_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 144,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'relicrock_wand', amount: 1 }
       ]
@@ -71,29 +71,29 @@ export const TOWER_FLOOR_25 = {
     name: 'Banishment',
     enemies: ['horrible_eye', 'wither', 'tormentor'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'relicrock_kite_shield', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'relicrock_spirit_shield', amount: 1 }
       ]
     }, {
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'relicrock_buckler', amount: 1 }
       ]
     }, {
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'relicrock_axe_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_pickaxe_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_mining_anvil_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'exalted_trident', amount: 1 }
       ]
@@ -103,19 +103,19 @@ export const TOWER_FLOOR_25 = {
     name: 'Place of Sunder',
     enemies: ['ripper', 'ripper', 'ripper'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'relicrock_spear_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_plate_legs_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 128,
+      chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'relicrock_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'relicrock_mining_hammer', amount: 1 }
       ]
     }, {
-      chance: 1 / 256,
+      chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'farplane_orb', amount: 1 },
         { type: 'item', itemId: 'maniacal_tome', amount: 1 }
@@ -126,18 +126,18 @@ export const TOWER_FLOOR_25 = {
     name: 'Evil Envelopment',
     enemies: ['horrible_eye', 'seething_hatred'],
     rewards: orderLootTable(LEVEL_TWENTY_FIVE_LOOT_TABLE.concat([{
-      chance: 1 / 64,
+      chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'relicrock_long_sword_scroll', amount: 1 },
         { type: 'item', itemId: 'relicrock_battle_axe_scroll', amount: 1 }
       ]
     }, {
-      chance: 1 / 144,
+      chance: 1 / 80,
       rewards: [
         { type: 'item', itemId: 'relicrock_hammer', amount: 1 }
       ]
     }, {
-      chance: 1 / 72,
+      chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'relicrock_scimitar', amount: 1 },
         { type: 'item', itemId: 'relicrock_broad_sword', amount: 1 },

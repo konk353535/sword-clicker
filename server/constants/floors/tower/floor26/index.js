@@ -154,7 +154,7 @@ export const TOWER_FLOOR_26 = {
   },
 
   boss: {
-    enemy: { id: 'boss_witch', amount: 1 }, /* TODO: add floor 27 boss here (this is floor 26 boss) */
+    enemy: { id: 'boss_lich', amount: 1 },
     rewards: []
   },
 

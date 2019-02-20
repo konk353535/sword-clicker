@@ -6747,7 +6747,7 @@ export const MISC_ITEMS = {
       level: 100
     }, {
       type: 'skill',
-      name: 'attack',
+      name: 'health',
       level: 100
     }],
   },

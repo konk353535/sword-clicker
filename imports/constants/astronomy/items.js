@@ -96,7 +96,7 @@ export const ASTRONOMY_ITEMS = {
     category: 'astronomy',
     name: 'air shard fragment',
     sellPrice: 4,
-    description: 'Fragments of a air shard'
+    description: 'Fragments of an air shard'
   },
 
   complete_air_shard: {

@@ -7,7 +7,15 @@
         {{#if sellItems}}
           <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
           <i class="material-icons multiSellCancel">clear</i>
+        {{else if showItems}}
+          <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
+          <i class="material-icons multiShowCancel">clear</i>
+        {{else if hideItems}}
+          <i class="material-icons icon-danger multiHideConfirm">archive</i>
+          <i class="material-icons multiHideCancel">clear</i>
         {{else}}
+          <i class="material-icons multiShowStart">unarchive</i>
+          <i class="material-icons multiHideStart">archive</i>
           <i class="material-icons multiSellStart">shopping_cart</i>
         {{/if}}
       </div>
@@ -25,7 +33,11 @@
           {{#if sellItems}}
             <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
             <i class="material-icons multiSellCancel">clear</i>
+          {{else if hideItems}}
+            <i class="material-icons icon-danger multiHideConfirm">archive</i>
+            <i class="material-icons multiHideCancel">clear</i>
           {{else}}
+            <i class="material-icons multiHideStart">archive</i>
             <i class="material-icons multiSellStart">shopping_cart</i>
           {{/if}}
         </div>
@@ -44,7 +56,11 @@
           {{#if sellItems}}
             <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
             <i class="material-icons multiSellCancel">clear</i>
+          {{else if showItems}}
+            <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
+            <i class="material-icons multiShowCancel">clear</i>
           {{else}}
+            <i class="material-icons multiShowStart">unarchive</i>
             <i class="material-icons multiSellStart">shopping_cart</i>
           {{/if}}
         </div>

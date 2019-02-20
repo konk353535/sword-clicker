@@ -24,8 +24,13 @@ let recipeCache;
 
 const itemModifier = function (item) {
   const itemConstants = ITEMS[item.itemId];
-  item.shiftActionData = itemConstants.shiftActionData;
 
+  if (itemConstants) {
+    item.requiredEquip = itemConstants.requiredEquip;
+  }
+  
+  item.shiftActionData = itemConstants.shiftActionData;
+  
   if (item.shiftActionData) {
     item.shiftAction = {
       description: item.shiftActionData.description,
@@ -486,13 +491,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
         quality: -1
       }
     }
-  ).map((item) => {
-      const itemConstants = ITEMS[item.itemId];
-      if (itemConstants) {
-        item.requiredEquip = itemConstants.requiredEquip;
-      }
-      return item;
-    }).filter((item) => {
+  ).map((itemModifier)).filter((item) => {
     const itemConstants = ITEMS[item.itemId];
     if (itemConstants) {
       if ((item.itemId.indexOf("_furnace") !== -1) && (!itemConstants.isCraftingScroll)) {

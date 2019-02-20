@@ -195,6 +195,24 @@ Template.itemIcon.helpers({
     return selling;
   },
   
+  multiShowing() {
+    const instance = Template.instance();
+    let showing = false;
+    if(!_.isUndefined(Session.get('multiShowItems'))) {
+      showing = Session.get('multiShowItems').hasOwnProperty(instance.data.item._id);
+    }
+    return showing;
+  },
+  
+  multiHiding() {
+    const instance = Template.instance();
+    let hiding = false;
+    if(!_.isUndefined(Session.get('multiHideItems'))) {
+      hiding = Session.get('multiHideItems').hasOwnProperty(instance.data.item._id);
+    }
+    return hiding;
+  },
+  
   scaledCooldownVal() {
     const instance = Template.instance();
     
@@ -287,6 +305,36 @@ Template.itemIcon.events({
         };
       }
       Session.set('multiSellItems', currentItems);
+      return;
+    }
+
+    if(Session.get('multiShow')) {
+      let currentItems = Session.get('multiShowItems');
+      if(currentItems.hasOwnProperty(instance.data.item._id)) {
+        delete currentItems[instance.data.item._id];
+      } else {
+        currentItems[instance.data.item._id] = {
+          id: instance.data.item._id,
+          itemId: instance.data.item.itemId,
+          amount: instance.data.item.amount
+        };
+      }
+      Session.set('multiShowItems', currentItems);
+      return;
+    }
+
+    if(Session.get('multiHide')) {
+      let currentItems = Session.get('multiHideItems');
+      if(currentItems.hasOwnProperty(instance.data.item._id)) {
+        delete currentItems[instance.data.item._id];
+      } else {
+        currentItems[instance.data.item._id] = {
+          id: instance.data.item._id,
+          itemId: instance.data.item.itemId,
+          amount: instance.data.item.amount
+        };
+      }
+      Session.set('multiHideItems', currentItems);
       return;
     }
 

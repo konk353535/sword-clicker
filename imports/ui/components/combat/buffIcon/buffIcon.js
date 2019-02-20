@@ -124,7 +124,9 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
             ${localData.buff.data.name}
           </h3>
           <div class='popover-content'>
-            ${localData.buff.data.description}
+            <div style='max-width: 350px;'>
+              ${localData.buff.data.description}
+            </div>
           </div>
         </div>`);
     }

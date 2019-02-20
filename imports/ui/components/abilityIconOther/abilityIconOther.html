@@ -39,9 +39,11 @@
         {{name}}
       </h3>
       <div class='popover-content'>
-        {{#if description}}
-          {{{description}}}<br />
-        {{/if}}
+        <div style='max-width: 350px;'>
+          {{#if description}}
+            {{{description}}}<br />
+          {{/if}}
+        </div>
       </div>
     </div>
     {{/unless}}

@@ -49,27 +49,29 @@
         {{item.name}}
       </h3>
       <div class='popover-content'>
-        {{#if item.description}}
-          {{{item.description}}}<br />
-        {{/if}}
-
-        {{#if scaledCooldownVal}}
-          Cooldown <b>{{scaledCooldownVal}}s</b><br />
-        {{else if item.cooldown}}
-          Cooldown <b>{{item.cooldown}}s</b><br />
-        {{/if}}
-
-        {{#if item.isSpell}}
-          <b>{{item.casts}}</b> casts remaining.<br /><br />
-        {{/if}}
-
-        {{#if item.shiftAction}}
-          {{#if item.shiftAction.description}}
-            <div>
-              <b>Shift Click</b> to {{{item.shiftAction.description}}}
-            </div>
+        <div style='max-width: 350px;'>
+          {{#if item.description}}
+            {{{item.description}}}<br />
           {{/if}}
-        {{/if}}
+
+          {{#if scaledCooldownVal}}
+            Cooldown <b>{{scaledCooldownVal}}s</b><br />
+          {{else if item.cooldown}}
+            Cooldown <b>{{item.cooldown}}s</b><br />
+          {{/if}}
+
+          {{#if item.isSpell}}
+            <b>{{item.casts}}</b> casts remaining.<br /><br />
+          {{/if}}
+
+          {{#if item.shiftAction}}
+            {{#if item.shiftAction.description}}
+              <div>
+                <b>Shift Click</b> to {{{item.shiftAction.description}}}
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
       </div>
     </div>
     {{/unless}}

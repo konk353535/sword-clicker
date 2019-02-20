@@ -324,12 +324,14 @@
   <div class="dps-breakdown-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>DPS Breakdown</h3>
       <div class='popover-content'>
-        Base DPS: {{> ceilNumber miner.baseDamagePerHour}}<br />
-        Level Bonus: {{> ceilNumber miner.levelDps}}<br />
-        Idol Bonus: {{> ceilNumber miner.minerStatDps}}<br />
-        {{#if miner.donatorDps}}
-          Donator Bonus: {{> ceilNumber miner.donatorDps}}
-        {{/if}}
+        <div style='max-width: 350px;'>
+          Base DPS: {{> ceilNumber miner.baseDamagePerHour}}<br />
+          Level Bonus: {{> ceilNumber miner.levelDps}}<br />
+          Idol Bonus: {{> ceilNumber miner.minerStatDps}}<br />
+          {{#if miner.donatorDps}}
+            Donator Bonus: {{> ceilNumber miner.donatorDps}}
+          {{/if}}
+        </div>
       </div>
     </div>
 </template>

@@ -12,6 +12,7 @@ import { Events } from '/imports/api/events/events';
 import { IsValid, CInt } from '/imports/utils.js';
 import { sendUserChatMessage } from '/imports/chatUtils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { createNewServer, setServerStatus } from '/imports/api/servers/servers';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
@@ -20,32 +21,6 @@ import _ from 'underscore';
 import moment from 'moment';
 
 const PUBLIC_ROOMS = ['Server', 'General', 'LFG', 'Help', 'Announcements']
-
-const createNewServer = function (name, iteration) {
-  // Create the server
-  const newServer = Servers.insert({
-    membersCount: 0,
-    createdAt: new Date(),
-    name,
-    iteration
-  });
-  
-  const serverDoc = Servers.findOne({name: name});
-
-  if (serverDoc) {
-    // Create the first floor for this new server
-    Floors.insert({
-      floor: 1,
-      server: serverDoc._id,
-      createdAt: new Date(),
-      points: 0,
-      pointsMax: FLOORS.getNewPointCount(1, 30),
-      floorComplete: false,
-      server: currentFloor.server,
-      loot: []
-    });
-  }
-};
 
 SimpleChat.configure ({
   texts:{
@@ -243,14 +218,20 @@ SimpleChat.configure ({
 
         sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.clientIp} for 10 years and removed chat messages from ${targetUser.username}.` });
         return;
-      } else if (/\/createserver/.test(message) && userDoc.isSuperMod) {
+      } else if (/\/createserver/i.test(message) && userDoc.isSuperMod) {
         const splitMessage = message.split(' ');
         const name = splitMessage[1];
-        const iteration = parseInt(splitMessage[2]);
+        const iteration = (splitMessage.length === 2) ? -1 : parseInt(splitMessage[2]);
+        const interationText = (iteration < 0) ? '' : ` with iteration ${iteration}`;
 
-        createNewServer(name, iteration);
+        const newServerId = createNewServer(name, iteration);
 
-        sendUserChatMessage({ userId: userDoc._id, message: `Created a new server named ${name} with iteration ${iteration}.` });
+        if (newServerId) {
+          setServerStatus({serverId: newServerId, enabled: false});
+          sendUserChatMessage({ userId: userDoc._id, message: `Created a new, disabled server named ${name}${interationText} (#${newServerId}).` });
+        } else {
+          sendUserChatMessage({ userId: userDoc._id, message: `Failed to create a new server named ${name}${interationText}.` });
+        }
         return;
       } else if (/\/permamute/.test(message)) {
         // Find user

@@ -1,7 +1,4 @@
-import { FLOORS } from '/server/constants/floors/index.js';
-import { ENEMIES } from '/server/constants/enemies/index.js';
 import { Meteor } from 'meteor/meteor';
-import { resolveLoot, removeBattle, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 import moment from 'moment/moment';
 import uuid from 'node-uuid';
 import faker from 'faker';
@@ -15,6 +12,12 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Servers } from '/imports/api/servers/servers';
+
+import { FLOORS } from '/server/constants/floors/index.js';
+import { ENEMIES } from '/server/constants/enemies/index.js';
+
+import { createNewFloor } from '/imports/api/floors/floors';
+import { resolveLoot, removeBattle, distributeRewards } from '/server/api/battles/battleMethods/completeBattle';
 
 // Prefab some guest account
 SyncedCron.add({
@@ -181,11 +184,11 @@ SyncedCron.add({
                 $gte: 25
               }
             }).count();
-            const newPointMax = FLOORS.getNewPointCount(currentFloor.floor + 1, activeTowerUsers);
+            //const newPointMax = FLOORS.getNewPointCount(currentFloor.floor + 1, activeTowerUsers);
 
             // Get bosses hp
-            const bossEnemyId = FLOORS[currentFloor.floor + 1].boss.enemy.id;
-            const bossEnemyConstants = ENEMIES[bossEnemyId];
+            //const bossEnemyId = FLOORS[currentFloor.floor + 1].boss.enemy.id;
+            //const bossEnemyConstants = ENEMIES[bossEnemyId];
 
             // Reset tower contributions for all
             Combat.update(
@@ -196,7 +199,10 @@ SyncedCron.add({
 
             BossHealthScores.remove({});
 
+            createNewFloor(currentFloor.server, currentFloor.floor + 1, activeTowerUsers /*, newPointMax, bossEnemyConstants.stats.healthMax * activeTowerUsers */);
+            
             // Create our next floor
+            /*
             Floors.insert({
               floor: currentFloor.floor + 1,
               createdAt: new Date(),
@@ -208,7 +214,8 @@ SyncedCron.add({
               server: currentFloor.server,
               loot: []
             });
-
+            */
+            
             // Enable users to fight bosses again
             Combat.update(
               { foughtBoss: true},

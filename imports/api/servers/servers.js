@@ -1,8 +1,125 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { CInt } from '/imports/utils.js';
+import { createNewFloor } from '/imports/api/floors/floors';
+import { createTown } from '/imports/api/town/town';
+
 export const Servers = new Mongo.Collection('servers');
-export const Town = new Mongo.Collection('town'); // pseudo-collection that's a sub-collection of Servers
+
+export const createNewServer = function createNewServer(name = 'Classic', iteration = 0) {
+  // default server name
+  if (!name || (typeof name !== 'string')) {
+    name = 'Classic';
+  }
+  name = name.trim();
+  
+  // check if server already exists (by name)
+  if (Servers.findOne({name})) {
+    return false;
+  }
+  
+  // default server iteration
+  iteration = CInt(iteration);
+  if (iteration <= 0) {
+    const highestIterationServerDoc = Servers.find({}, { sort: { iteration: -1 }, limit: 1}).fetch();
+    if (!highestIterationServerDoc || (highestIterationServerDoc.length === 0)) {
+      iteration = 0;
+    } else {
+      iteration = CInt(highestIterationServerDoc[0].iteration) + 1;
+    }
+  }
+
+  // check if server already exists (by iteration)
+  if (Servers.findOne({iteration})) {
+    return false;
+  }
+  
+  // create the new server
+  const newServer = Servers.insert({
+    iteration,
+    name: name,
+    createdAt: new Date(),
+    membersCount: 0,
+    disabled: false,
+    announcement: ''
+  });
+  
+  // get a reference to the new server
+  const serverDoc = Servers.findOne({name});
+
+  if (newServer || serverDoc) {
+    // if we created the server, then create the first floor data
+    createNewFloor((serverDoc._id) ? serverDoc._id : newServer, 1);
+    
+    // and town data
+    createTown((serverDoc._id) ? serverDoc._id : newServer);
+    
+    // and return the server ID
+    return (serverDoc._id) ? serverDoc._id : newServer;
+  }
+
+  return false;
+};
+
+export const setServerStatus = function setServerStatus({serverId, name, enabled, announcement}) {
+  // ensure we're referencing a valid server ID
+  if (!serverId || (typeof serverId !== 'string')) {
+    return false;
+  }
+  
+  // find the server doc matching the ID
+  const serverDoc = Servers.findOne({_id: serverId})
+  if (!serverDoc) {
+    return false;
+  }
+  
+  // count how many fields were updated
+  let updatedFields = 0;
+  
+  // if the 'name' field was supplied, update it
+  if ((name !== undefined) && (typeof name === 'string')) {
+    Servers.update({
+        _id: serverDoc._id
+      }, {
+        $set: {
+          name: name.trim()
+        }
+      }
+    );
+    updatedFields++;
+  }
+  
+  // if the 'enabled' field was supplied, update it
+  if (enabled !== undefined) {
+    Servers.update({
+        _id: serverDoc._id
+      }, {
+        $set: {
+          disabled: !enabled
+        }
+      }
+    );
+    updatedFields++;
+  }
+  
+  // if the 'announcement' field was supplied, update it
+  if ((announcement !== undefined) && (typeof announcement === 'string')) {
+    Servers.update({
+        _id: serverDoc._id
+      }, {
+        $set: {
+          announcement: announcement.trim()
+        }
+      }
+    );
+    updatedFields++;
+  }
+  
+  // return how many fields were updated
+  return updatedFields;
+};
+
 
 ServersSchema = new SimpleSchema({
   iteration: { type: Number },
@@ -64,22 +181,3 @@ ServersSchema = new SimpleSchema({
 });
 
 Servers.attachSchema(ServersSchema);
-
-export const createTown = function createTown({serverId}) {
-  // Update user activity
-  Servers.update({
-    _id: serverId
-  }, {
-    $set: {
-      town: {
-        day1goods: [ ],
-        day2goods: [ ],
-        day3goods: [ ],
-        day4goods: [ ],
-        day5goods: [ ],
-        day6goods: [ ],
-        day7goods: [ ],
-      }
-    }
-  });
-};

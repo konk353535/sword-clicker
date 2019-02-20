@@ -26,6 +26,8 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import { STATE_BUFFS } from '/imports/constants/state';
 
 import { getIPFromConnection } from '/imports/api/users/users.js';
+import { createNewServer } from '/imports/api/servers/servers';
+import { createNewFloor } from '/imports/api/floors/floors';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
@@ -590,42 +592,18 @@ Accounts.onCreateUser((options, user) => {
   return user;
 });
 
-const anyServer = Servers.findOne();
-if (!anyServer) {
-  // Create the server
-  const newServer = Servers.insert({
-    membersCount: 0,
-    createdAt: new Date(),
-    name: 'Classic',
-    iteration: 0
-  });
-
-  // Create the floor
-  Floors.insert({
-    floor: 1,
-    server: newServer,
-    createdAt: new Date(),
-    points: 0,
-    pointsMax: FLOORS.getNewPointCount(1, 30)
-  });
+if (!Servers.findOne()) {
+  createNewServer('Classic', 0);
 }
 
-const currentFloor = Floors.findOne();
-
-if (!currentFloor) {
+if (!Floors.findOne()) {
   const targetServer = Servers.findOne({
     name: 'Classic'
   });
-  const pointsMax = FLOORS.getNewPointCount(1, 30);
 
-  // Create our first floor
-  Floors.insert({
-    floor: 1,
-    server: targetServer._id,
-    createdAt: new Date(),
-    points: 0,
-    pointsMax
-  });
+  if (targetServer) {
+    createNewFloor(targetServer._id, 1);
+  }
 }
 
 // Guarantee buffs exist

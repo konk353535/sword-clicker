@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import lodash from 'lodash';
 
 import { Servers, createTown } from '/imports/api/servers/servers';
+import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items';
 
 import { ITEMS } from '/imports/constants/items/index.js';

@@ -1,9 +1,49 @@
 <template name="townPage">
   {{#if isAdmin}}
-    <div 
-      class="d-flex justify-content-center align-items-center flex-column"
-      style="height: 200px; margin-top: 100px;">
-      <div class="mb-1">Welcome to the town.</div>
+    <h2 style="margin-top: 20px;">Town Locations</h2>
+    <ul class="nav nav-tabs my-3">
+      <li class="nav-item town-filter" data-filter="dwellings">
+        <a class="nav-link {{#if $eq townSection 'dwellings'}}active{{/if}}" href="#">Dwellings</a>
+      </li>
+      <li class="nav-item town-filter" data-filter="quarry">
+        <a class="nav-link {{#if $eq townSection 'quarry'}}active{{/if}}" href="#">Quarry</a>
+      </li>
+      <li class="nav-item town-filter" data-filter="lumberyard">
+        <a class="nav-link {{#if $eq townSection 'lumberyard'}}active{{/if}}" href="#">Lumber Yard</a>
+      </li>
+      <li class="nav-item town-filter" data-filter="armory">
+        <a class="nav-link {{#if $eq townSection 'armory'}}active{{/if}}" href="#">Armory</a>
+      </li>
+      <li class="nav-item town-filter" data-filter="library">
+        <a class="nav-link {{#if $eq townSection 'library'}}active{{/if}}" href="#">Library</a>
+      </li>
+      <li class="nav-item town-filter" data-filter="observatory">
+        <a class="nav-link {{#if $eq townSection 'observatory'}}active{{/if}}" href="#">Observatory</a>
+      </li>
+    </ul>
+
+    <div class="d-flex justify-content-left align-items-left flex-column">
+      <div class="mb-1 flex-grow">
+        <h5>Your Items (You Can Donate These)</h5>
+        <div class="d-flex flex-wrap">
+          {{#each items}}
+            {{> itemIcon item=this classes="small"}}
+          {{else}}
+            You have no items that can be donated here.
+          {{/each}}
+        </div>
+      
+        <h5 style="margin-top: 30px;">Town Items Donated Today (By Everyone)</h5>
+        <div class="d-flex flex-wrap align-items-left">
+          {{#unless (townGoods 1)}}
+            <div class="mt-2 text-muted">Nothing yet.</div>
+          {{else}}
+            {{#each (townGoods 1)}}
+              {{ > itemIcon item=this classes="small" readOnly=true }}
+            {{/each}}
+          {{/unless}}
+        </div>
+      </div>
     </div>
   {{/if}}
 </template>

@@ -180,6 +180,21 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     return instance.state.get('showSellModal');
   },
+  
+  donateAmount() {
+    const instance = Template.instance();
+    return instance.state.get('donateAmount');
+  },
+
+  donateAmountMax() {
+    const instance = Template.instance();
+    return `You have: ${CInt(instance.state.get('donateAmountMax')).toLocaleString()}`;
+  },
+
+  showDonateModal() {
+    const instance = Template.instance();
+    return instance.state.get('showDonateModal');
+  },
 
   showUseModal() {
     const instance = Template.instance();
@@ -272,6 +287,16 @@ const sellItem = function (event, instance) {
   Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
 };
 
+const donateItem = function (event, instance) {
+  if (instance.data.hideTooltip) return;
+
+  Template.instance().$('.donateModal').modal('hide');
+  Template.instance().$('.useModal').modal('hide');
+
+  const itemData = instance.data.item;
+  Meteor.call('town.donateItem', itemData._id, itemData.itemId, instance.state.get('donateAmount'), itemData.donateSection);
+};
+
 const hideItem = function (event, instance) {
 
   Template.instance().$('.sellModal').modal('hide');
@@ -359,30 +384,40 @@ Template.itemIcon.events({
       }
     }
 
-    const primaryAction = instance.data.item.primaryAction;
-    const shiftAction = instance.data.item.shiftAction;
-    const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
-    
-    if (shiftKey) {
-      shiftAction.method();      
-    } else if (primaryAction) {
-      primaryAction.method();
+    if (instance.data.item.donateMode) {
+      instance.state.set('donateAmount', 1 /* instance.data.item.amount */); // allow them to donate as many as they want, but only default to 1 of them
+      instance.state.set('donateAmountMax', instance.data.item.amount);
+      instance.state.set('showDonateModal', true);
+      Meteor.setTimeout(() => {
+        instance.$('.donateModal').modal('show');
+      }, 10);
     } else {
-      instance.state.set('sellAmount', instance.data.item.amount);
-      if (shiftAction) {
-        instance.state.set('showUseModal', true);
-        Meteor.setTimeout(() => {
-          instance.$('.useModal').modal('show');
-        }, 10);
+      const primaryAction = instance.data.item.primaryAction;
+      const shiftAction = instance.data.item.shiftAction;
+      const shiftKey = window.event ? window.event.shiftKey : event.originalEvent.shiftKey;
+      
+      if (shiftKey) {
+        shiftAction.method();      
+      } else if (primaryAction) {
+        primaryAction.method();
       } else {
-        instance.state.set('showSellModal', true);
-        Meteor.setTimeout(() => {
-          instance.$('.sellModal').modal('show');
-        }, 10);
+        instance.state.set('sellAmount', instance.data.item.amount);
+        
+        if (shiftAction) {
+          instance.state.set('showUseModal', true);
+          Meteor.setTimeout(() => {
+            instance.$('.useModal').modal('show');
+          }, 10);
+        } else {
+          instance.state.set('showSellModal', true);
+          Meteor.setTimeout(() => {
+            instance.$('.sellModal').modal('show');
+          }, 10);
+        }
       }
     }
   },
-
+  
   'submit .sell-form'(event, instance) {
     sellItem(event, instance);
   },
@@ -400,7 +435,25 @@ Template.itemIcon.events({
   'click .sell-btn'(event, instance) {
     sellItem(event, instance);
   },
+  
+  'submit .donate-form'(event, instance) {
+    donateItem(event, instance);
+  },
 
+  'keyup .donate-amount-input'(event, instance) {
+    let newValue = parseInt($(event.target).val());
+    if (newValue && !isNaN(newValue)) {
+      if (newValue > instance.data.item.amount) {
+        newValue = instance.data.item.amount;
+      }
+      instance.state.set('donateAmount', parseInt(newValue));
+    }
+  },
+
+  'click .donate-btn'(event, instance) {
+    donateItem(event, instance);
+  },
+  
   'click .use-btn'(event, instance) {
 
     Template.instance().$('.useModal').modal('hide');

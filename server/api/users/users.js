@@ -377,7 +377,8 @@ Meteor.methods({
       'seedsFilter',
       'miningMultihit',
       'recipeTileConsumables',
-      'craftingShowMore'
+      'craftingShowMore',
+      'townSection'
     ];
 
     if (_.contains(validIds, id)) {

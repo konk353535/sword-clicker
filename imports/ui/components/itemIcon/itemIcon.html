@@ -72,7 +72,9 @@
       </h3>
       <div class='popover-content'>
         <div style='max-width: 350px;'>
-          {{#if itemDescription}}
+          {{#if item.customDescription}}
+            {{{item.customDescription}}}<br />
+          {{else if itemDescription}}
             {{{itemDescription}}}<br />
           {{else if description}}
             {{{description}}}<br />
@@ -145,7 +147,11 @@
           {{/if}}
 
           {{#unless readOnly}}
-            {{#if item.primaryAction}}
+            {{#if item.donateMode}}
+              <div>
+                <b>Left Click</b> to donate to the town
+              </div>
+            {{else if item.primaryAction}}
               {{#if item.primaryAction.description}}
                 <div>
                   <b>Left Click</b> to {{{item.primaryAction.description}}}
@@ -225,6 +231,41 @@
               </button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-danger sell-btn">Sell</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  {{/if}}
+
+  {{#if showDonateModal}}
+      <!-- Modal -->
+      <div class="modal donateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Donating Item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              How many to donate?
+              <div class="row">
+                <div class="col-md-6">
+                  <form class="donate-form">
+                    <input class="form-control donate-amount-input" value={{donateAmount}}>
+                  </form>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">   
+                  {{donateAmountMax}}                
+                </div>
+              </div>
+
+              <br /><br />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger donate-btn">Donate</button>
             </div>
           </div>
         </div>

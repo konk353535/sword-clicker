@@ -4,7 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import _ from 'underscore';
 import lodash from 'lodash';
 
-import { Town } from '/imports/api/servers/servers.js';
+import { Town } from '/imports/api/town/town.js';
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 

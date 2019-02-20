@@ -1498,8 +1498,8 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
 
       return `
-        Freezes all enemies, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage <br />
-        And slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
+        Freezes all enemies, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
+        and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
         Lasts for ${c.totalDuration}s. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
@@ -1579,8 +1579,8 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
 
       return `
-        Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage <br />
-        And slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
+        Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage 
+        and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
         Lasts for ${c.totalDuration}s. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
@@ -1767,8 +1767,8 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
 
       return `
-        Strikes the target with earth, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
-        And stunning them for ${c.totalDuration}s. <br />
+        Strikes the target with earth, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
+        and stunning them for ${c.totalDuration}s. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
     },
     constants: {
@@ -2539,8 +2539,7 @@ export const MAGIC_BUFFS = {
     description({ buff, level }) {
       return `
         Used to restore your health in combat. <br />
-        Your health and maximum health will restore to <br />
-        its original amount from the beginning of battle.`;
+        Your health and maximum health will restore to its original amount from the beginning of battle.`;
     },
     constants: {
     },
@@ -2566,10 +2565,7 @@ export const MAGIC_BUFFS = {
     icon: 'eventVDhearts.svg',
     name: 'charm',
     description({ buff, level }) {
-      return `
-        Charms an enemy, preventing it from attacking and performing <br />
-        actions for 5 seconds unless harmed.  Once the charm is over, <br />
-        an enemy can't be charmed again for 15 seconds.`;
+      return `Charms an enemy, preventing it from attacking and performing actions for 5 seconds unless harmed.  Once the charm is over, an enemy can't be charmed again for 15 seconds.`;
     },
     constants: {
       allowTicks: true,

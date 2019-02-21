@@ -12,29 +12,12 @@ Template.skillHeader.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('currentXp');
   this.state.set('currentLevel');
-
-  Tracker.autorun(() => {
-    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
-    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
-    this.state.set('globalBuffs', globalBuffs);
-  });
 });
 
 Template.skillHeader.helpers({
-
-  globalBuffs() {
-    const instance = Template.instance();
-    
-    if ((instance.data === undefined) || (instance.data.skill === undefined)) {
-        return false;
-    }
-    
-    const type = instance.data.skill.type;
-    if (type === 'magic' || type === 'defense' || type === 'attack' || type === 'health') {
-      return false;
-    }
-
-    return Template.instance().state.get('globalBuffs');
+  
+  allGlobalBuffs() {
+    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
   },
 
   xpPercentage() {

@@ -7,14 +7,8 @@
     {{#if skill}}
       <small class="mx-3">{{ > formatNumber number=skill.xp}} / {{ > formatNumber number=skill.xpToLevel}} XP</small>
     {{/if}}
-    {{#if globalBuffs.buffCombat}}
-      {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
-    {{/if}}
-    {{#if globalBuffs.buffGathering}}
-      {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
-    {{/if}}
-    {{#if globalBuffs.buffCrafting}}
-      {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
-    {{/if}}
+    {{#each allGlobalBuffs}}
+      {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+    {{/each}}
   </div>
 </template>

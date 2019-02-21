@@ -131,12 +131,6 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   });*/
 
   Tracker.autorun(() => {
-    let globalBuffs = State.find({name: {$in: Object.values(STATE_BUFFS)}, 'value.activeTo': {$gte: moment().toDate()}}).fetch();
-    globalBuffs = lodash.fromPairs(globalBuffs.map((buff) => [buff.name, buff.value.activeTo]));
-    this.state.set('globalBuffs', globalBuffs);
-  });
-
-  Tracker.autorun(() => {
     const currentGroup = Groups.findOne({
       members: Meteor.userId()
     });
@@ -496,10 +490,9 @@ Template.lobbyPage.helpers({
     
     return waveDetails.bossResetAt;
   },
-
-  globalBuffs() {
-    let globalBuffState = Template.instance().state.get('globalBuffs');
-    return  { ...(globalBuffState), ...({ anyActive: (globalBuffState.buffCombat || globalBuffState.buffGathering || globalBuffState.buffCrafting) }) };
+  
+  allGlobalBuffs() {
+    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
   },
   
   defenseSkill() {

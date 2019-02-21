@@ -12,23 +12,18 @@
           <a class="dropdown-item select-type" data-type="group" href="#">Tower (Group)</a>
           <a class="dropdown-item select-type" data-type="afk" href="#">Adventure (AFK)</a>
         </div>
-      </div>
+      </div>      
       
       {{#if $eq typeKey 'afk'}}
-        {{#if globalBuffs.anyActive}}
+        {{#if allGlobalBuffs}}
           <div class="d-flex flex-grow justify-content-center">
-            {{#if globalBuffs.buffCombat}}
-              {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
-            {{/if}}
-            {{#if globalBuffs.buffGathering}}
-              {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
-            {{/if}}
-            {{#if globalBuffs.buffCrafting}}
-              {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
-            {{/if}}
+            {{#each allGlobalBuffs}}
+              {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+            {{/each}}
           </div>
         {{/if}}
       {{/if}}
+      <br />
       
       {{#if $eq typeKey 'solo'}}
         <div class="mr-2 hidden-sm-down">Level</div>
@@ -156,17 +151,11 @@
     {{/if}}
 
     {{#unless $eq typeKey 'afk'}}
-      {{#if globalBuffs.anyActive}}
+      {{#if allGlobalBuffs}}
         <div class="d-flex flex-grow justify-content-center">
-          {{#if globalBuffs.buffCombat}}
-            {{> globalBuffIcon type='combat' date=globalBuffs.buffCombat}}
-          {{/if}}
-          {{#if globalBuffs.buffGathering}}
-            {{> globalBuffIcon type='gathering' date=globalBuffs.buffGathering}}
-          {{/if}}
-          {{#if globalBuffs.buffCrafting}}
-            {{> globalBuffIcon type='crafting' date=globalBuffs.buffCrafting}}
-          {{/if}}
+          {{#each allGlobalBuffs}}
+            {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+          {{/each}}
         </div>
       {{/if}}
       

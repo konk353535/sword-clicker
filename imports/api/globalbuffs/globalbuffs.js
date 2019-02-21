@@ -5,17 +5,15 @@ import { State } from '/imports/api/state/state';
 import { GLOBALBUFFS } from '/imports/constants/globalbuffs';
 
 export const translateGlobalBuffId = function translateGlobalBuffId(buffType) {
-  let realBuffId = buffType;
-  if (!realBuffId) {
+  if (_.isUndefined(buffType)) {
     return false;
   }
   
-  const globalBuffConstants = GLOBALBUFFS[realBuffId];
-  if (!globalBuffConstants) {
+  if (_.isUndefined(GLOBALBUFFS[buffType])) {
     return false;
   }
   
-  return (globalBuffConstants.dataBuffId) ? globalBuffConstants.dataBuffId : buffType;
+  return ((!_.isUndefined(GLOBALBUFFS[buffType].dataBuffId)) ? GLOBALBUFFS[buffType].dataBuffId : buffType);
 };
 
 export const getGlobalBuffs = function getGlobalBuffs(buffType) {
@@ -26,51 +24,44 @@ export const getGlobalBuffs = function getGlobalBuffs(buffType) {
   return [];
 };
 
+// look up an existing global buff by name (type ID) only if it's active
 export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType) {
-  buffType = translateGlobalBuffId(buffType);
-  if (!buffType) {
+  const realBuffId = translateGlobalBuffId(buffType);
+  if (!realBuffId) {
     return false;
   }
 
-  const buffState = State.findOne({name: buffType, 'value.activeTo': { $gte: moment().toDate() }});
-  const hasBuff = !_.isUndefined(buffState);
+  const buffState = State.findOne({name: realBuffId, 'value.activeTo': { $gte: moment().toDate() }});
   
-  if (!hasBuff) {
-    return false;
-  }
-  
-  return buffState;
+  return ((!_.isUndefined(buffState)) ? buffState : false);
 };
 
+// look up an existing global buff by name (type ID), whether it's active or not
 export const getGlobalBuff = function getGlobalBuff(buffType) {
-  buffType = translateGlobalBuffId(buffType);
-  if (!buffType) {
+  const realBuffId = translateGlobalBuffId(buffType);
+  if (!realBuffId) {
     return false;
   }
 
-  const buffState = State.findOne({name: buffType});
-  const hasBuff = !_.isUndefined(buffState);
-  
-  if (!hasBuff) {
-    return false;
-  }
-  
-  return buffState;
+  const buffState = State.findOne({name: realBuffId});
+
+  return ((!_.isUndefined(buffState)) ? buffState : false);
 };
 
+// add or insert a global buff as necessary, extending or setting time as necessary
 export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt = 1, time = 'hour', level = -1}) {
-  buffType = translateGlobalBuffId(buffType);
-  if (!buffType) {
+  const realBuffId = translateGlobalBuffId(buffType);
+  if (!realBuffId) {
     return false;
   }
   
-  const curBuff = getGlobalBuff(buffType);
+  const curBuff = getGlobalBuff(realBuffId);
   
   if (curBuff) {
     // update existing buff
 
     if (moment().isAfter(curBuff.value.activeTo)) {
-      // if the buff is expired
+      // if the buff is expired (current time is after buff's activeTo time)
       
       curBuff.value.activeTo = moment().add(timeAmt, time).toDate();
     } else {
@@ -88,13 +79,14 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt
       }
     }
     
+    curBuff.value.level = level;
+    
     // update existing doc in mongo
     State.update({
-      name: buffType
+      name: realBuffId
     }, {
       $set: {
-        value: curBuff.value,
-        level
+        value: curBuff.value
       }
     });
     return true;
@@ -109,7 +101,7 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt
   
   // insert new doc into mongo
   State.insert({
-    name: buffType,
+    name: realBuffId,
     value: {
       activeTo: moment().add(timeAmt, time).toDate(),
       level

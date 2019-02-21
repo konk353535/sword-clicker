@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 import { State } from '/imports/api/state/state';
 
 import { PAID_GLOBALBUFFS } from './paid';
@@ -16,8 +18,19 @@ export const GetGlobalBuffs = function GetGlobalBuffs(buffType) {
   return [];
 };
 
-export const GetGlobalBuff = function GetGlobalBuff(buffType) {
+export const GetActiveGlobalBuff = function GetActiveGlobalBuff(buffType) {
   const buffState = State.findOne({name: buffType, 'value.activeTo': { $gte: moment().toDate() }});
+  const hasBuff = !_.isUndefined(buffState);
+  
+  if (!hasBuff) {
+    return false;
+  }
+  
+  return buffState;
+};
+
+export const GetGlobalBuff = function GetGlobalBuff(buffType) {
+  const buffState = State.findOne({name: buffType});
   const hasBuff = !_.isUndefined(buffState);
   
   if (!hasBuff) {
@@ -34,15 +47,16 @@ export const ActivateGlobalBuff = function ActivateGlobalBuff({buffType, timeAmt
     // update existing buff
 
     if (moment().isAfter(curBuff.value.activeTo)) {
-      // if the buff isn't over yet...
-      
-      curBuff.value.activeTo = moment(curBuff.value.activeTo).add(timeAmt, time).toDate();
-    } else {
       // if the buff is expired
       
       curBuff.value.activeTo = moment().add(timeAmt, time).toDate();
+    } else {
+      // if the buff isn't over yet...
+      
+      curBuff.value.activeTo = moment(curBuff.value.activeTo).add(timeAmt, time).toDate();
     }
 
+    // if no level is specified, default it to the current buff level (or to 1 if none exists)
     if (level === -1) {
       if (curBuff.value.level) {
         level = curBuff.value.level;
@@ -64,6 +78,8 @@ export const ActivateGlobalBuff = function ActivateGlobalBuff({buffType, timeAmt
   } 
   
   // create new buff
+
+  // if no level is specified, default it to 1
   if (level === -1) {
     level = 1;
   }

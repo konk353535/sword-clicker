@@ -13,6 +13,7 @@ import { IsValid, CInt } from '/imports/utils.js';
 import { sendUserChatMessage } from '/imports/chatUtils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
 import { createNewServer, setServerStatus } from '/imports/api/servers/servers';
+import { ActivateGlobalBuff } from '/imports/constants/globalbuffs/index.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 import { FLOORS } from '/server/constants/floors/index.js';
@@ -232,6 +233,15 @@ SimpleChat.configure ({
         } else {
           sendUserChatMessage({ userId: userDoc._id, message: `Failed to create a new server named ${name}${interationText}.` });
         }
+        return;
+      } else if (/\/addalltownbuffs/i.test(message) && userDoc.isSuperMod) {
+        ActivateGlobalBuff({buffType: 'town_dwelling'});
+        ActivateGlobalBuff({buffType: 'town_quarry'});
+        ActivateGlobalBuff({buffType: 'town_lumber_yard'});
+        ActivateGlobalBuff({buffType: 'town_armory'});
+        ActivateGlobalBuff({buffType: 'town_library'});
+        ActivateGlobalBuff({buffType: 'town_observatory'});
+        sendUserChatMessage({ userId: userDoc._id, message: `Added all town buffs.` });
         return;
       } else if (/\/permamute/.test(message)) {
         // Find user

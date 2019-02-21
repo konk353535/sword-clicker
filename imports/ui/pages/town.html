@@ -1,6 +1,11 @@
 <template name="townPage">
   {{#if isAdmin}}
-    <h2 style="margin-top: 20px;">Town Locations</h2>
+    <div class="d-flex my-3 align-items-center">
+      <h2 class="ml-1 mb-0" style="margin-right: 40px;">Town Locations</h2>
+      {{#each allGlobalBuffs}}
+        {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+      {{/each}}
+    </div>
     <ul class="nav nav-tabs my-3">
       <li class="nav-item town-filter" data-filter="dwellings">
         <a class="nav-link {{#if $eq townSection 'dwellings'}}active{{/if}}" href="#">Dwellings</a>

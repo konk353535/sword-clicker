@@ -7,6 +7,7 @@ import lodash from 'lodash';
 import { Town } from '/imports/api/town/town.js';
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
+import { State } from '/imports/api/state/state';
 
 import { ITEMS } from '/imports/constants/items';
 
@@ -47,6 +48,10 @@ Template.townPage.helpers({
   isAdmin() {
     const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });
     return myUser && myUser.isSuperMod;
+  },
+
+  allGlobalBuffs() {
+    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
   },
   
   numberOfDays() {

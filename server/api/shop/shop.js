@@ -7,7 +7,8 @@ import moment from 'moment';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
-import { addItem, hasGems, consumeGems } from '/server/api/items/items.js';
+import { addItem, hasGems, consumeGems, consumeOnlyRealGems } from '/server/api/items/items.js';
+import { activateGlobalBuff } from '/imports/api/globalbuffs/globalbuffs';
 import { updateUserActivity } from '/imports/api/users/users.js';
 
 import _ from 'underscore';
@@ -38,7 +39,7 @@ Meteor.methods({
       throw new Meteor.Error("gems-too-low", "You don't have enough gems");
     }
 
-    const globalBuff = State.findOne({name: type});
+    let globalBuff = State.findOne({name: type});
 
     if (!globalBuff) {
       return;
@@ -51,17 +52,26 @@ Meteor.methods({
     };
 
     // Take me gems!
-    Users.update({
-      _id: userDoc._id
-    }, {
-      $inc: {
-        gems: (GEM_COST * -1)
-      }
-    });
+    if (!consumeOnlyRealGems(GEM_COST, Meteor.user())) {
+      throw new Meteor.Error("gems-too-low", "You don't have enough gems");
+    }
 
-    // Increment target buff by 1 hour
-    if (moment().isAfter(globalBuff.value.activeTo)) {
-      globalBuff.value.activeTo = moment().add(1, 'hour').toDate();
+    let newBuff = true;
+    if (!moment().isAfter(globalBuff.value.activeTo)) {
+      newBuff = false;
+    }
+
+    if (type === 'buffCrafting') {
+      activateGlobalBuff({buffType: 'paid_crafting'});
+    } else if (type === 'buffCombat') {
+      activateGlobalBuff({buffType: 'paid_combat'});
+    } else if (type === 'buffGathering') {
+      activateGlobalBuff({buffType: 'paid_gathering'});
+    }
+    
+    globalBuff = State.findOne({name: type});
+    
+    if (newBuff) {
       const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
       Chats.insert({
         message: `${userDoc.username} has activated the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
@@ -73,15 +83,7 @@ Meteor.methods({
         },
         roomId: `General`
       });
-
-      /* TODO in mongo db
-      if (globalBuffs.users[userDoc.username]) {
-        globalBuffs.users[userDoc.username] += 1;
-      } else {
-        globalBuffs.users[userDoc.username] = 1;
-      }*/
     } else {
-      globalBuff.value.activeTo = moment(globalBuff.value.activeTo).add(1, 'hour').toDate();
       const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
       Chats.insert({
         message: `${userDoc.username} has extended the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
@@ -94,12 +96,6 @@ Meteor.methods({
         roomId: 'General'
       });
     }
-
-    State.update({name: type}, {
-      $set: {
-        value: globalBuff.value
-      }
-    });
 
     updateUserActivity({userId: Meteor.userId()});
   },

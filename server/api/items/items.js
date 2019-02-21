@@ -138,13 +138,34 @@ export const addGold = function( userId, amount ) {
   return true;
 };
 
-export const addFakeGems = function (amount, userId) {
+export const addRealGems = function (amount, userId) {
   // Ensure amount is valid
-  if (!_.isFinite(amount) || amount < 0 || amount > 1000) {
+  amount = CInt(amount);
+  if (amount < 0 || amount > 1000000) {
     return;
   }
 
-  // Ensure user already has fakeGems count
+  // Ensure user already has gems count (non-optional in schema, so should always be okay)
+  Users.update({
+    _id: userId,
+    gems: {
+      $exists: true
+    }
+  }, {
+    $inc: {
+      gems: amount
+    }
+  });
+};
+
+export const addFakeGems = function (amount, userId) {
+  // Ensure amount is valid
+  amount = CInt(amount);
+  if (amount < 0 || amount > 1000000) {
+    return;
+  }
+
+  // Ensure user already has fakeGems count (non-optional in schema, so should always be okay)
   Users.update({
     _id: userId,
     fakeGems: {
@@ -158,11 +179,11 @@ export const addFakeGems = function (amount, userId) {
 };
 
 export const hasGems = function (count, userObject) {
-  if (userObject.fakeGems == null || userObject.fakeGemsToday == null) {
+  if (!userObject) {
     return false;
   }
-
-  const totalGems = userObject.gems + userObject.fakeGems;
+  
+  const totalGems = CInt(userObject.gems) + CInt(userObject.fakeGems);
 
   return totalGems >= count;
 };
@@ -171,15 +192,22 @@ export const consumeGems = function (count, userObject) {
   let fakeConsumed = 0;
   let realConsumed = 0;
 
-  if (!userObject || userObject.fakeGems + userObject.gems < count) {
+  if (!userObject) {
+    return false;
+  }
+  
+  let fakeGems = CInt(userObject.fakeGems);
+  let realGems = CInt(userObject.gems);
+  
+  if (fakeGems + realGems < count) {
     return false;
   }
 
   // Remove the fake gems first
-  if (userObject.fakeGems >= count) {
+  if (fakeGems >= count) {
     fakeConsumed = count;
   } else {
-    fakeConsumed = userObject.fakeGems || 0;
+    fakeConsumed = fakeGems;
     realConsumed = count - fakeConsumed;
   }
 
@@ -191,6 +219,28 @@ export const consumeGems = function (count, userObject) {
     $inc: {
       fakeGems: fakeConsumed * -1,
       gems: realConsumed * -1
+    }
+  });
+
+  return true;
+};
+
+export const consumeOnlyRealGems = function (count, userObject) {
+  let realConsumed = 0;
+
+  if (!userObject) {
+    return false;
+  }
+  
+  let realGems = CInt(userObject.gems);
+  
+  if (realGems < count) {
+    return false;
+  }
+
+  Users.update(userObject._id, {
+    $inc: {
+      gems: CInt(count) * -1
     }
   });
 

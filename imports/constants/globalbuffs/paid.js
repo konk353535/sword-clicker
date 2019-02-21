@@ -1,10 +1,12 @@
 export const PAID_GLOBALBUFFS = {
   paid_crafting: {
     globalBuffId: 'paid_crafting',
+    dataBuffId: 'buffCrafting', // legacy ID for this buff
     name: function() {
       return 'Global crafting buff';
     },
     icon: 'crafting',
+    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
     effects: function() {
       return [
         '+35% Crafting XP',
@@ -12,15 +14,16 @@ export const PAID_GLOBALBUFFS = {
         '+100% Gem Drop Rate XP',
       ];
     },
-    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
   },
 
   paid_combat: {
     globalBuffId: 'paid_combat',
+    dataBuffId: 'buffCombat', // legacy ID for this buff
     name: function() {
       return 'Global combat buff';
     },
     icon: 'combat',
+    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
     effects: function() {
       return [
         '+20% Combat XP',
@@ -28,15 +31,16 @@ export const PAID_GLOBALBUFFS = {
         '+35% Astronomy XP',
       ];
     },
-    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
   },
 
   paid_gathering: {
     globalBuffId: 'paid_gathering',
+    dataBuffId: 'buffGathering', // legacy ID for this buff
     name: function() {
       return 'Global gathering buff';
     },
     icon: 'gathering',
+    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
     effects: function() {
       return [
         '+35% Mining XP',
@@ -44,6 +48,5 @@ export const PAID_GLOBALBUFFS = {
         '+35% Farming XP',
       ];
     },
-    extraDescription: 'This global buff can be purchased with bought gems in the shop.',
   },
 };

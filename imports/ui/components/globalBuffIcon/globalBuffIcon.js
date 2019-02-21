@@ -3,6 +3,9 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './globalBuffIcon.html';
 
+import { GLOBALBUFFS } from '/imports/constants/globalbuffs/index.js';
+
+
 Template.globalBuffIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
@@ -15,6 +18,83 @@ Template.globalBuffIcon.helpers({
   cappedSeconds(minutes) {
     return (minutes % 60).toFixed(0);
   },
+  
+  name() {
+    const instance = Template.instance();
+    
+    if (instance.data.type === 'buffCombat') {
+      return GLOBALBUFFS['paid_combat'].name();
+    } else if (instance.data.type === 'buffGathering') {
+      return GLOBALBUFFS['paid_gathering'].name();
+    } else if (instance.data.type === 'buffCrafting') {
+      return GLOBALBUFFS['paid_crafting'].name();
+    } else {
+      const globalBuffData = GLOBALBUFFS[instance.data.type];
+      if (globalBuffData) {
+        return globalBuffData.name(instance.data.level);
+      }
+    }
+    
+    return false;
+  },
+  
+  icon() {
+    const instance = Template.instance();
+    
+    if (instance.data.type === 'buffCombat') {
+      return GLOBALBUFFS['paid_combat'].icon;
+    } else if (instance.data.type === 'buffGathering') {
+      return GLOBALBUFFS['paid_gathering'].icon;
+    } else if (instance.data.type === 'buffCrafting') {
+      return GLOBALBUFFS['paid_crafting'].icon;
+    } else {
+      const globalBuffData = GLOBALBUFFS[instance.data.type];
+      if (globalBuffData) {
+        return globalBuffData.icon;
+      }
+    }
+    
+    return false;
+  },
+  
+  effects() {
+    const instance = Template.instance();
+    
+    if (instance.data.type === 'buffCombat') {
+      return GLOBALBUFFS['paid_combat'].effects();
+    } else if (instance.data.type === 'buffGathering') {
+      return GLOBALBUFFS['paid_gathering'].effects();
+    } else if (instance.data.type === 'buffCrafting') {
+      return GLOBALBUFFS['paid_crafting'].effects();
+    } else {
+      const globalBuffData = GLOBALBUFFS[instance.data.type];
+      if (globalBuffData) {
+        return globalBuffData.effects(instance.data.level);
+      }
+    }
+    
+    return false;
+  },
+   
+  constants() {
+    const instance = Template.instance();
+    
+    if (instance.data.type === 'buffCombat') {
+      return GLOBALBUFFS['paid_combat'];
+    } else if (instance.data.type === 'buffGathering') {
+      return GLOBALBUFFS['paid_gathering'];
+    } else if (instance.data.type === 'buffCrafting') {
+      return GLOBALBUFFS['paid_crafting'];
+    } else {
+      const globalBuffData = GLOBALBUFFS[instance.data.type];
+      if (globalBuffData) {
+        return globalBuffData;
+      }
+    }
+    
+    return false;
+  },
+  
 });
 
 Template.globalBuffIcon.rendered = function () {

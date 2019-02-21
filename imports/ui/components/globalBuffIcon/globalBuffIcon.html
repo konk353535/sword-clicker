@@ -1,6 +1,6 @@
 <template name="globalBuffIcon">
   <div class="buff-icon-container icon-box medium-icon" style="position: relative">
-    <img src="/icons/{{type}}.svg" class="small-icon">
+    <img src="/icons/{{icon}}.svg" class="small-icon">
     <span style="position: absolute; top: 0px; right: 1px; font-size: 10px;
       line-height: 10px; color: blue;">
       {{#if $gte (moDiff date moNow 'minutes') 60}}
@@ -16,7 +16,7 @@
   <!-- Icon Tooltip -->
   <div class="buff-tooltip-content my-tooltip-inner">
     <h3 class='popover-title text-capitalize'>
-      Global {{type}} buff
+      {{{name}}}
     </h3>
     <div class='popover-content'>
       <div style='max-width: 350px;'>
@@ -32,21 +32,17 @@
         </span>
         <br />
         
-        {{#if $eq type 'crafting'}}
-          <p class="mb-1">+35% Crafting XP</p>
-          <p class="mb-1">+35% Inscription XP</p>
-          <p class="mb-1">+100% Gem Drop Rate</p>
-        {{else if $eq type 'combat'}}
-          <p class="mb-1">+20% Combat XP</p>
-          <p class="mb-1">+50% Drop Chance</p>
-          <p class="mb-1">+35% Astronomy XP</p>
-        {{else if $eq type 'gathering'}}
-          <p class="mb-1">+35% Mining XP</p>
-          <p class="mb-1">+35% Woodcutting XP</p>
-          <p class="mb-1">+35% Farming XP</p>
-        {{/if}}
+        {{#each effects}}
+          <p class="mb-1">{{{this}}}</p>
+        {{/each}}
+        
+        <br />
         <small>Global buffs affect all players.</small><br />
-        <small>Buffs can be purchased with bought gems, in the shop</small><br />
+        {{#if constants}}
+          {{#if constants.extraDescription}}
+            <small>{{{constants.extraDescription}}}</small><br />
+          {{/if}}
+        {{/if}}
       </div>
     </div>
   </div>

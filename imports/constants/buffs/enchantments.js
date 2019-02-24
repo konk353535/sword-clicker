@@ -2162,7 +2162,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'redirectDamage.svg',
     name: 'damage reflect',
     description() {
-      return 'Reflect (10% of received damage +25) as magic damage.';
+      return 'Reflect (25% of received damage +50) as magic damage.';
     },
     constants: {
     },
@@ -2180,7 +2180,7 @@ export const ENCHANTMENT_BUFFS = {
           return;
         }
         
-        actualBattle.dealDamage((damageDealt * 0.10) + 25, {
+        actualBattle.dealDamage((damageDealt * 0.25) + 50, {
           attacker: defender,
           defender: attacker,
           isMagic: true,

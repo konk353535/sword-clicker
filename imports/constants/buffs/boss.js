@@ -2657,7 +2657,7 @@ export const BOSS_BUFFS = {
         
         // tick down damage redirecting timer
         if (buff.data.redirectingTimer > -100.0) {
-          if (buff.data.redirectingTimer > 0 && buff.data.redirectingTimer - secondsElapsed <= 0) {
+          if ((buff.data.redirectingTimer > 0) && (buff.data.redirectingTimer - secondsElapsed <= 0)) {
             buff.data.redirectingTo = '';
             // note: victim buff auto-removes
             const redirectBuffOnSelf = target.findBuff('boss_lich__redirect');
@@ -2669,9 +2669,9 @@ export const BOSS_BUFFS = {
         }
         
         // redirect damage (but respect isStunned, etc. because we allow this buff to tick while stunned)
-        if (!target.isStunned && !target.isCharmed && target.isAbleToUseAbilities && target.isAbleToCastSpells) {
+        if (!target.isStunned && !target.isCharmed /* && target.isAbleToUseAbilities && target.isAbleToCastSpells */) {
           if ((buff.data.redirectingTo === '') && (buff.data.redirectingTimer < -10)) {
-            const useChance = (1 / (10 * 20)); // ~10 seconds
+            const useChance = (1 / (10 * 5)); // ~10 seconds (10 seconds x 5 ticks/sec)
             if (Math.random() < useChance) {
               const redirectingToUnit = _.sample(target.opponents);
               if (redirectingToUnit) {                
@@ -2739,10 +2739,13 @@ export const BOSS_BUFFS = {
 
           // lich takes an extra auto-attack from each player while vulnerable damage!
           if (source === 'autoattack') {
-            actualBattle.autoAttack({
+            actualBattle.dealDamage(rawDamage, {
               attacker,
-              defender,
-              originalAutoAttack: false
+              defender,              
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats,
+              originalAutoAttack: false,
+              source: 'vulnerableDamage'
             });
           }
         } else if (attacker.mainHandWeapon === 'scepter_of_power') {

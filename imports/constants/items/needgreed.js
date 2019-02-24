@@ -58,7 +58,7 @@ export const NEED_GREED_ITEMS = {
   },
   boss_items: (str) => {
     // tomes are already need greed, as is druid
-    return RegExp('shark_tooth_amulet|snake_skin_chest|bone_kings_axe|spartan_spear|gold_crown_scroll|oversized_club|phoenix_hat|thors_skull|demons_heart|shadow_knife|smoke_dagger|living_helmet|bloody_plate_legs|frankensteins_heart|rich_snake_skin|krakens_tentacle|bison_axe|baby_fox|eternal_flame|holy_plate|honeycomb_pants|farplane_resonator|witchs_cauldron', 'g').test(str)
+    return RegExp('shark_tooth_amulet|snake_skin_chest|bone_kings_axe|spartan_spear|gold_crown_scroll|oversized_club|phoenix_hat|thors_skull|demons_heart|shadow_knife|smoke_dagger|living_helmet|bloody_plate_legs|frankensteins_heart|rich_snake_skin|krakens_tentacle|bison_axe|baby_fox|eternal_flame|holy_plate|honeycomb_pants|farplane_resonator|witchs_cauldron|lichs_', 'g').test(str)
   },
   crafting_scrolls: (str) => {
     // tomes are already need greed

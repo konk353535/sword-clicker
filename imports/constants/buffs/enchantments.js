@@ -2162,7 +2162,7 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'redirectDamage.svg',
     name: 'damage reflect',
     description() {
-      return 'Reflect (25% of received damage +50) as magic damage.';
+      return 'Reflect (25% of received damage) + 50 as magic damage.';
     },
     constants: {
     },

@@ -5,7 +5,7 @@ import { LEVEL_TWENTY_SIX_LOOT_TABLE } from '../../levels/level26';
 
 export const TOWER_FLOOR_26 = {
   1: {
-    name: 'Through The Filth',
+    name: 'Through The Muck',
     enemies: ['snake', 'rat', 'spider', 'rat'],
     rewards: []
   },
@@ -68,8 +68,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   5: {
-    name: 'Always Another Way',
-    enemies: ['jellyFish', 'hydra', 'jellyFish'],
+    name: 'Dread Mire',
+    enemies: ['jellyFish', 'troglodyte', 'jellyFish'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 192,
       rewards: [
@@ -130,8 +130,8 @@ export const TOWER_FLOOR_26 = {
     }]))
   },
   7: {
-    name: 'The Eternal Struggle',
-    enemies: ['eternal_warden', 'hydra', 'eternal_warden'],
+    name: 'Always Another Way',
+    enemies: ['hydra'],
     rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
       chance: 1 / 48,
       rewards: [

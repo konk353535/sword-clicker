@@ -84,7 +84,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
     }
 
   } else {
-    this.dealDamage(0, { attacker, defender, tickEvents: this.tickEvents, customIcon: 'dodge', historyStats: this.historyStats, actualBattle: this, source: 'autoattack' });
+    this.dealDamage(0, { attacker, defender, tickEvents: this.tickEvents, customIcon: 'dodge', customColor: '#888888', historyStats: this.historyStats, actualBattle: this, source: 'autoattack' });
     
     // Tick dodgedDamage event on defender
     if (defender.buffs) {

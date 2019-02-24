@@ -3,6 +3,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { ITEM_RARITIES } from '/imports/constants/items/index.js';
 
+import { CDbl } from '/imports/utils.js';
+
 export const Items = new Mongo.Collection('items');
 
 ItemsSchema = new SimpleSchema({
@@ -30,7 +32,13 @@ export const applyRarities = function applyRarities(statsObj, rarityId) {
       if ((rarityIdConsts) && (rarityIdConsts.statBonuses)) {
         const newStatsObj = Object.assign({}, statsObj);
         Object.keys(newStatsObj).forEach((statName) => {
-          newStatsObj[statName] = newStatsObj[statName] * ((100.0 + rarityIdConsts.statBonuses) / 100.0);
+          // disallow % bonuses to attack speed
+          if (statName !== 'attackSpeed') {
+            // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+            if (CDbl(newStatsObj[statName]) > 0.0) {
+              newStatsObj[statName] = newStatsObj[statName] * ((100.0 + rarityIdConsts.statBonuses) / 100.0);
+            }
+          }
         });
         return newStatsObj;
       }

@@ -1411,11 +1411,11 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'attack',
-      amount: 2.5
+      amount: 1.5
     }, {
       type: 'times',
       key: 'attackMax',
-      amount: 2.5
+      amount: 1.5
     }]
   },
 }, BOSS_ENEMIES);

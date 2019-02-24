@@ -155,7 +155,22 @@ export const TOWER_FLOOR_26 = {
 
   boss: {
     enemy: { id: 'boss_lich', amount: 1 },
-    rewards: []
+    rewards: orderLootTable(LEVEL_TWENTY_SIX_LOOT_TABLE.concat([{
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'lichs_cowl', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'lichs_robes', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 2,
+      rewards: [
+        { type: 'item', itemId: 'lichs_wraps', amount: 1 }
+      ]
+    }]))
   },
 
   floorRewards: [

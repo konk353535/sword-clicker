@@ -19,6 +19,8 @@ import { Abilities } from '/imports/api/abilities/abilities';
 import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 
+import { IsValid, CInt } from '/imports/utils.js';
+
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
   console.log('method - startBattle - start', moment().format('LLL hh:mm:ss SSS'));
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
@@ -305,16 +307,32 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     // tried applying passives above first, but they wouldn't function correctly
     
     if (userCombat.enchantments) {
+      //console.log("START :: startbattle player enchantments");
+      //console.log(userCombat.enchantments);
       userCombat.enchantments.forEach((buffId) => {
         const enchantConstants = BUFFS[buffId];
         if (enchantConstants) {
+          //console.log("now adding enchantment: " + buffId);
           const clonedConstants = enchantConstants;
+          
+          let durationToUse = Infinity;
+          if (IsValid(clonedConstants.data.durationTotal)) {
+            durationToUse = clonedConstants.data.durationTotal;
+          } else if (IsValid(clonedConstants.data.totalDuration)) {
+            durationToUse = clonedConstants.data.totalDuration;
+          } else if (IsValid(clonedConstants.data.duration)) {
+            durationToUse = clonedConstants.data.duration;
+          }
+          
+          //console.log("duration to use:", durationToUse);
+          
           let newBuff = {
             id: buffId,
             icon: clonedConstants.icon,
             name: clonedConstants.name,
             data: clonedConstants.data,
-            duration: clonedConstants.data.durationTotal || clonedConstants.data.totalDuration
+            duration: durationToUse,
+            totalDuration: durationToUse,
           };
 
           newBuff.data.id = clonedConstants.id || buffId;
@@ -328,12 +346,18 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
               newBuff.data.description = clonedConstants.description;
             }
           }
+          newBuff.data.duration = durationToUse;
+          newBuff.data.totalDuration = durationToUse;
+          newBuff.duration = durationToUse;
+          newBuff.totalDuration = durationToUse;
           newUnit.buffs.push(newBuff);
         }
       });
+      //console.log("END :: startbattle player enchantments");
     }
     
-    newUnit.enchantmentsList = Object.assign(newUnit.enchantmentsList, userCombat.enchantments);
+    newUnit.enchantmentsList = Object.assign({}, newUnit.enchantmentsList, userCombat.enchantments);
+    //console.log("startbattle, all enchants", newUnit.enchantmentsList);
 
     newBattle.units.push(newUnit);
     newBattle.historyStats[newUnit.id] = {

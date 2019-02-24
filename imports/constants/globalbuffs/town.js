@@ -4,7 +4,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town dwelling buff Lv. ${level}`;
     },
-    icon: 'farmer',
+    icon: 'dwelling',
     extraDescription: 'This global buff can be achieved by donating items to the town dwellings.',
     effects: function(level = 1) {
       return [
@@ -19,7 +19,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town quarry buff Lv. ${level}`;
     },
-    icon: 'miner',
+    icon: 'quarry',
     extraDescription: 'This global buff can be achieved by donating items to the town quarry.',
     effects: function(level = 1) {
       return [
@@ -33,7 +33,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town lumber yard buff Lv. ${level}`;
     },
-    icon: 'woodcutter',
+    icon: 'lumberYard',
     extraDescription: 'This global buff can be achieved by donating items to the town lumber yard.',
     effects: function(level = 1) {
       return [
@@ -47,7 +47,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town armory buff Lv. ${level}`;
     },
-    icon: 'defense',
+    icon: 'armory',
     extraDescription: 'This global buff can be achieved by donating items to the town armory.',
     effects: function(level = 1) {
       return [
@@ -61,7 +61,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town library buff Lv. ${level}`;
     },
-    icon: 'inscription',
+    icon: 'library',
     extraDescription: 'This global buff can be achieved by donating items to the town library.',
     effects: function(level = 1) {
       return [
@@ -75,7 +75,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town observatory buff Lv. ${level}`;
     },
-    icon: 'astronomy',
+    icon: 'observatory',
     extraDescription: 'This global buff can be achieved by donating items to the town observatory.',
     effects: function(level = 1) {
       return [

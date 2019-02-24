@@ -422,10 +422,9 @@ export const ATTACK_BUFFS = {
           actualBattle.autoAttack({
                 attacker,
                 defender,
-                tickEvents: actualBattle.tickEvents,
-                historyStats: actualBattle.historyStats,
                 originalAutoAttack: false,
-                damageModifier: 0.20 * buff.data.level // 20% bonus damage x level
+                damageModifier: 0.20 * buff.data.level, // 20% bonus damage x level
+                source: 'phantom_strikes'
               });
               
           /*        

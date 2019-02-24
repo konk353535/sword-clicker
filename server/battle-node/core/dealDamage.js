@@ -15,9 +15,10 @@ export default function(rawDamage, {
   customIcon,
   isMagic,
   isTrueDamage,
-  historyStats 
+  historyStats,
+  source
 }) {
-  if (!attacker) {
+  if (!attacker || !attacker.stats || !defender || !defender.stats) {
     return 0;
   }
   
@@ -35,12 +36,23 @@ export default function(rawDamage, {
     }
 
     // damage weakening effects
-    if (attacker && attacker.stats && attacker.stats.damageOutput) {
+    if (attacker.stats.damageOutput) {
       damage *= attacker.stats.damageOutput;
     }
     
     defender.stats.health -= damage;
 
+    // Tick tookDamage event on defender
+    if (defender.buffs) {
+      defender.buffs.forEach((buff) => {
+        buff.constants = BUFFS[buff.id];
+        if (buff.constants.events.onTookRawDamage) {
+          // Took Damage
+          buff.constants.events.onTookRawDamage({ buff, defender, attacker, actualBattle: this, rawDamage, damageDealt: damage, source: (source ? source : 'other') })
+        }
+      });
+    }
+    
     this.checkDeath(defender);
   }
 

@@ -2613,17 +2613,21 @@ export const BOSS_BUFFS = {
         buff.data.everBeenVulnerable = false;
         buff.data.vulnerableTime = 0;
         buff.data.cantBeVulnerableTime = 0;
+        buff.data.redirectingTo = '';
+        buff.data.redirectingTimer = 0;
         target.applyBuff({
           buff: target.generateBuff({ buffId: 'boss_lich__impervioustodamage' }),
         });
       },
 
       onTick({buff, target, caster, secondsElapsed, actualBattle}) {
-        // heal boss to max if the lich has never been vulnerable
         if (!buff.data.everBeenVulnerable) {
+          // lich isn't vulnerable and has never been vulnerable ... so ...
+          // restore to full health
           target.stats.health = target.stats.healthMax;
         }
         
+        // tick down and remove buffs when the lich is vulerable
         if (buff.data.vulnerableTime > 0) {
           buff.data.vulnerableTime -= secondsElapsed;
           if (buff.data.vulnerableTime <= 0) {
@@ -2640,6 +2644,7 @@ export const BOSS_BUFFS = {
           }
         }
         
+        // tick down and remove buffs when the lich can't be made invulnerable
         if (buff.data.cantBeVulnerableTime > 0) {
           buff.data.cantBeVulnerableTime -= secondsElapsed;
           if (buff.data.cantBeVulnerableTime <= 0) {
@@ -2650,32 +2655,117 @@ export const BOSS_BUFFS = {
           }
         }
         
-        // todo: randomly summon skeletons (but respect isStunned, etc. because we allow this buff to tick while stunned)
+        // tick down damage redirecting timer
+        if (buff.data.redirectingTimer > -100.0) {
+          if (buff.data.redirectingTimer > 0 && buff.data.redirectingTimer - secondsElapsed <= 0) {
+            buff.data.redirectingTo = '';
+            // note: victim buff auto-removes
+            const redirectBuffOnSelf = target.findBuff('boss_lich__redirect');
+            if (redirectBuffOnSelf) {
+              target.removeBuff(redirectBuffOnSelf);
+            }
+          }
+          buff.data.redirectingTimer -= secondsElapsed;
+        }
+        
+        // redirect damage (but respect isStunned, etc. because we allow this buff to tick while stunned)
+        if (!target.isStunned && !target.isCharmed && target.isAbleToUseAbilities && target.isAbleToCastSpells) {
+          if ((buff.data.redirectingTo === '') && (buff.data.redirectingTimer < -10)) {
+            const useChance = (1 / (10 * 20)); // ~10 seconds
+            if (Math.random() < useChance) {
+              const redirectingToUnit = _.sample(target.opponents);
+              if (redirectingToUnit) {                
+                buff.data.redirectingTo = redirectingToUnit.id;
+                buff.data.redirectingTimer = (Math.random() * 3) + 2; // 2-5 seconds
+                target.applyBuffTo({
+                  buff: target.generateBuff({ buffId: 'boss_lich__redirect' }),
+                  target: redirectingToUnit,
+                });
+                const redirectBuffOnVictim = redirectingToUnit.findBuff('boss_lich__redirect');
+                if (redirectBuffOnVictim) {
+                  redirectBuffOnVictim.duration = buff.data.redirectingTimer; // fix duration
+                  redirectingToUnit.tickMessage('Lich Redirection!', '#aa0000', 'confused', defender);
+                } else {
+                  buff.data.redirectingTo = '';
+                  buff.data.redirectingTimer = -10.0;
+                }
+              }
+            }
+          }
+        }
       },
       
-      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+      onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source }) {
+        if ((attacker.mainHandWeapon !== 'scepter_of_power') && (!buff.data.everBeenVulnerable)) {
+          // attacker doesn't have the scepter of power ... and ...
+          // lich isn't vulnerable and has never been vulnerable ... so ...
+          // restore to full health
+          defender.stats.health = defender.stats.healthMax;
+          return;
+        }
+
+        if ((buff.data.redirectingTo !== '') && (buff.data.redirectingTimer > 0)) {
+          let redirectedToUnit;
+          actualBattle.allAliveUnits.forEach((unit) => {
+            if (unit.id === buff.data.redirectingTo) {
+              redirectedToUnit = unit;
+            }
+          });
+          
+          if (redirectedToUnit) {
+            // heal the lich for the amount of damage taken
+            defender.stats.health += damageDealt;
+            
+            // now redirect the original, raw damage and the new defender's stats for mitigation
+            actualBattle.dealDamage(rawDamage, {
+              attacker,
+              defender: redirectedToUnit,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats,
+              source
+            });
+            
+            // tick event to inform the attacker
+            attacker.tickMessage(`You hit ${redirectedToUnit.name}!`, '#aa0000', 'confused', defender);
+            return;
+          }
+          
+          // note: intentionally allow this logic to fall out even if the lich is redirecting
+          //       damage still ... if ... the redirected damage is going to a dead unit
+        }
+
         if (buff.data.vulnerableTime > 0) {
-          // someone else attacking WHILE the lich is vulnerable!
+          // anyone attacking while the lich is vulnerable!
 
           // lich takes an extra auto-attack from each player while vulnerable damage!
-          actualBattle.autoAttack({
-            attacker,
-            defender,
-            originalAutoAttack: false
-          });
+          if (source === 'autoattack') {
+            actualBattle.autoAttack({
+              attacker,
+              defender,
+              originalAutoAttack: false
+            });
+          }
         } else if (attacker.mainHandWeapon === 'scepter_of_power') {
-          // if we're struck by the scepter of power
+          // (else) lich is not vulnerable ... and ...
+          // lich is struck by the scepter of power
+          
           if (!buff.data.everBeenVulnerable) {
-            // if we've never been vulnerable before
+            // lich has never been vulnerable before
+            
+            // remove the impervious-to-damage buff
             const impervious_buff = defender.findBuff('boss_lich__impervioustodamage');
             if (impervious_buff) {
               defender.removeBuff(impervious_buff);
             }
+            
+            // mark boss has been vulnerable before
             buff.data.everBeenVulnerable = true;
           }
           
           if ((buff.data.vulnerableTime <= 0) && (buff.data.cantBeVulnerableTime <= 0)) {
-            // if the lich is vulnerable now
+            // if the lich is not vulnerable right now, but is eligible to become vulnerable
+            
+            // tell all the boss's opponents (all friendly players/companions) that the boss is vulnerable
             defender.opposition.forEach((opponent) => {
               defender.applyBuffTo({
                 buff: defender.generateBuff({ buffId: 'boss_lich__vulnerable' }),
@@ -2684,12 +2774,15 @@ export const BOSS_BUFFS = {
               opponent.tickMessage('Lich Vulnerable!', '#00aaaa', 'noicon', defender);
             });
   
+            // mark boss vulnerable for 10 seconds
             buff.data.vulnerableTime = 10;
           }
         } else if (buff.data.everBeenVulnerable) {
-          // someone else attacking while the lich is not vulnerable!
+          // (else) lich is not vulnerable ... and ...
+          // (else) lich is not struck by the scepter of power ... and ...
+          // lich has been vulnerable before, a.k.a. someone else attacking while the lich is not vulnerable!
           
-          // regular damage received
+          // regular damage received (no logic required)
         }
       },
 
@@ -2719,7 +2812,7 @@ export const BOSS_BUFFS = {
         target.stats.damageTaken = 0;
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+      onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source }) {
         defender.tickMessage('Can\t Be Harmed!', '#aa8888', 'noicon', attacker); // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
       },
       
@@ -2755,6 +2848,7 @@ export const BOSS_BUFFS = {
             target.removeBuff(buff);
           }
         }
+        this.stacks = Math.ceil(buff.duration);
       },
       
       onRemove({ buff, target }) {
@@ -2782,10 +2876,43 @@ export const BOSS_BUFFS = {
       onTick({buff, target, caster, secondsElapsed, actualBattle}) {
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+      onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source }) {
         if (attacker.mainHandWeapon === 'scepter_of_power') {
           defender.tickMessage('Phased!', '#aa0066', 'noicon', attacker); // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
         }
+      },
+      
+      onRemove({ buff, target }) {
+      }
+    }
+  }, 
+  
+  boss_lich__redirect: {
+    duplicateTag: 'boss_lich__redirect',
+    icon: 'redirectDamage.svg',
+    name: 'Damage Reflect',
+    description({ buff, level }) {
+      return `
+        The lich is reflecting all damage to you!`;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.duration = 10;
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+        if (buff.duration > 0) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            target.removeBuff(buff);
+          }
+        }
+        this.stacks = Math.ceil(buff.duration);
       },
       
       onRemove({ buff, target }) {

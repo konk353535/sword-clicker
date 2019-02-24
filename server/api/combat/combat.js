@@ -72,9 +72,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
     if (combatItem.constants.enchantments) {
       playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments);
-    }
-
-    if (combatItem.enchantmentId
+    } else if (combatItem.enchantmentId
       && combatItem.enchantmentId !== 'undefined'
       && combatItem.enchantmentId !== '' ) {
       playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId);
@@ -112,6 +110,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       }
     }
   }
+  
   // Fetch all users skill levels
   const combatSkills = Skills.find({
     owner: userId,

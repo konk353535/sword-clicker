@@ -2,6 +2,17 @@ import uuid from 'node-uuid';
 
 import { BUFFS } from '../../../../imports/constants/buffs/index.js';
 
+const IsValid = function(oObject) {
+  try {
+    if (oObject === undefined) return false;
+    if (oObject === null) return false;
+    if (typeof oObject === 'undefined') return false;
+    return true;
+  } catch (err) {
+  }
+  return false;
+};
+
 export default class Buff {
 
   get events() {
@@ -68,13 +79,17 @@ export default class Buff {
   }
 
   constructor(buff, unit, battleRef) {
+    //if (unit.name === 'psouza4dev') {
+    //  console.log("new Buff(): " + buff.id);
+    //}
     this.id = buff.id;
     this.unit = unit;
     this._isBuffClass = true;
     this.battleRef = battleRef;
-    if (buff.duration == undefined) {
+    this._duration = Infinity;
+    if (IsValid(buff.data.duration)) {
       this._duration = buff.data.duration;
-    } else {
+    } else if (IsValid(buff.duration)) {
       this._duration = buff.duration;
     }
     this._stacks = buff.stacks;
@@ -126,6 +141,7 @@ export default class Buff {
     }
   }
 
+  // only triggered from auto-attack
   onTookDamage(options) {
     // players (stunned/charmed or not) or companions/enemies (not stunned/charmed only) can react to damage taken
     // because most companions/enemies attacks and abilities come from events
@@ -138,6 +154,22 @@ export default class Buff {
       }
 
       this.events.onTookDamage(options);
+    }
+  }
+
+  // triggered from receiving all sources of damage, including auto-attack
+  onTookRawDamage(options) {
+    // players (stunned/charmed or not) or companions/enemies (not stunned/charmed only) can react to raw damage taken
+    // because most companions/enemies attacks and abilities come from events
+    if (this.events.onTookRawDamage) {
+      try {
+        if ((this.unit.isCompanion || this.unit.isEnemy) && (this.unit.isStunned || this.unit.isCharmed) && (!this.constants.constants.allowTicks)) {
+          return false;
+        }
+      } catch (err) {
+      }
+
+      this.events.onTookRawDamage(options);
     }
   }
 

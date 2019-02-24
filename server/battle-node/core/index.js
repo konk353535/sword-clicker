@@ -578,8 +578,21 @@ export default class Battle {
 // Tick method #1
 Battle.prototype.initPassives = function initPassives() {
   this.allAliveUnits.forEach((unit) => {
-    let enchantment_buffs = [];
-    let enchantment_buffs_ids = [];
+    /*
+    unit.buffs.forEach((buff) => {
+      try {
+        if (buff.data.isEnchantment || BUFFS[buff.id].data.isEnchantment) {
+          console.log("ENCHANTMENT ON UNIT: ", buff.id, unit.name);
+        }
+      } catch (err) {
+        console.log("ENCHANTMENT ON UNIT EXCEPTION");
+        console.log(err);
+      }
+    });
+    */
+    
+    //let enchantment_buffs = [];
+    //let enchantment_buffs_ids = [];
     
     // track applied enchantments from .startBattle
     /*
@@ -605,6 +618,7 @@ Battle.prototype.initPassives = function initPassives() {
     enchantment_buffs_ids = Object.assign(enchantment_buffs_ids, unit.enchantmentsList);
     */
     
+    /*
     let abilities_and_enchantments_to_apply = [];
     enchantment_buffs_ids.forEach((enchantment_buff_id) => {
       const buffConstants = BUFFS[enchantment_buff_id];
@@ -651,8 +665,8 @@ Battle.prototype.initPassives = function initPassives() {
         addBuff({ buff: newBuff, target: unit, caster: unit, actualBattle: this });      
       }
     });
+    */
     
-    /*
     // apply passive abilities first
     if (unit.abilities) {
       unit.abilities.forEach((ability) => {
@@ -663,6 +677,7 @@ Battle.prototype.initPassives = function initPassives() {
       });
     }
     
+    /*
     // re-apply enchantments
     if (enchantment_buffs_ids.length > 0) {
       enchantment_buffs_ids.forEach((enchantment_buff_id) => {

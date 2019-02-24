@@ -1961,6 +1961,9 @@ export const ENCHANTMENT_BUFFS = {
     constants: {
     },
     data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
     },
     events: {
       onApply({ buff, target, caster, actualBattle }) {
@@ -2029,6 +2032,174 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target }) {
+      }
+    }
+  },
+    
+  health_up_enchantment: {
+    duplicateTag: 'health_up_enchantment', // Used to stop duplicate buffs
+    icon: 'health.svg',
+    name: 'extra health up',
+    description() {
+      return 'Increase health by 10%.';
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const healthIncrease = 0.1;
+
+        buff.data.healthIncrease = healthIncrease;
+
+        // Only mutate health if it's full
+        if (caster.stats.health === caster.stats.healthMax) {
+          caster.stats.health *= (1 + buff.data.healthIncrease);
+        }
+        caster.stats.healthMax *= (1 + buff.data.healthIncrease);
+        caster.stats.healthMaxOrig *= (1 + buff.data.healthIncrease);
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+        caster.stats.health /= (1 + buff.data.healthIncrease);
+        caster.stats.healthMax /= (1 + buff.data.healthIncrease);
+        caster.stats.healthMaxOrig /= (1 + buff.data.healthIncrease);
+        actualBattle.checkDeath(caster);
+      }
+    }
+  },
+  
+  dark_aura: { // watchful_aura clone
+    duplicateTag: 'dark_aura', // Used to stop duplicate buffs
+    icon: 'darkAura.svg',
+    name: 'dark aura',
+    description() {
+      return `Dodge rate from defense skill won't fall below 35%. <br />
+        Whenever you dodge, you are healed for 2% of your original maximum health. <br />
+        This heal can occur only every 3 seconds. <br />
+        This effect is not compatible with <i>Watchful Aura</i>.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        target.stats.minimumHitChance = 0.35;
+        buff.stats = 0;
+        buff.data.doneTicks = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.stacksTimer > 0) {
+          buff.stacksTimer -= secondsElapsed;
+        }
+        if (buff.stacksTimer <= 0) {
+          buff.stacksTimer = undefined;
+          buff.stacks = undefined;
+        } else {
+          buff.stacks = Math.ceil(buff.stacksTimer);
+        }
+        
+        buff.data.doneTicks++;
+        if (buff.data.doneTicks < 3) {
+          const watchfulAuraBuff = target.findBuff('sixth_sense');
+          if (watchfulAuraBuff) {
+            target.removeBuff(watchfulAuraBuff);
+          }        
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      },
+      
+      onDodgedDamage({ buff, defender, attacker, actualBattle }) {
+        if ((!buff.stacksTimer) || (buff.stacksTimer === 0)) {
+          let hpMaxHealth = defender.stats.healthMax;
+          if (defender.stats.healthMaxOrig) {
+            hpMaxHealth = defender.stats.healthMaxOrig;
+          }
+          let hpHealAmount = 2 * hpMaxHealth / 100;
+          if (hpHealAmount + defender.stats.health > defender.stats.healthMax) {
+            hpHealAmount = defender.stats.healthMax - defender.stats.health;
+          }
+          
+          if (hpHealAmount > 0) {
+            actualBattle.healTarget(hpHealAmount, {
+              caster: defender,
+              target: defender,
+              tickEvents: actualBattle.tickEvents,
+              historyStats: actualBattle.historyStats,
+              healSource: buff
+            });
+            
+            buff.stacksTimer = 3.0;
+            buff.stacks = Math.ceil(buff.stacksTimer);
+          }
+        }
+      }
+    }
+  },  
+
+  damage_reflect: {
+    duplicateTag: 'damage_reflect', // Used to stop duplicate buffs
+    icon: 'redirectDamage.svg',
+    name: 'damage reflect',
+    description() {
+      return 'Reflect (10% of received damage +25) as magic damage.';
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
+        if (source === 'damage_reflect') {
+          return;
+        }
+        
+        actualBattle.dealDamage((damageDealt * 0.10) + 25, {
+          attacker: defender,
+          defender: attacker,
+          isMagic: true,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+          source: 'damage_reflect'
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
       }
     }
   },

@@ -1853,7 +1853,7 @@ export const STAFF_ITEMS = {
     name: 'scepter of power',
     sellPrice: 1000000,
     description: `
-      <span style="color: #cc44cc;"><b>Legendary Weapon</b></span> <br />
+      <span style="color: #cc44cc;"><b>Legendary</b></span> <br />
       A powerful weapon capable of dealing exceptional physical and magical damage with each strike.`,
     isWeapon: true,
     isEquippable: true,

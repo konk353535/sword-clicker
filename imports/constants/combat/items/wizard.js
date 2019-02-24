@@ -342,7 +342,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'brown wizard shorts',
     sellPrice: 100,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 30,
@@ -367,7 +367,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'blue wizard shorts',
     sellPrice: 300,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 60,
@@ -392,7 +392,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'purple wizard shorts',
     sellPrice: 1000,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 70,
@@ -417,7 +417,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'orange wizard shorts',
     sellPrice: 2000,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 80,
@@ -492,7 +492,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'amber wizard shorts',
     sellPrice: 2500,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 90,
@@ -567,7 +567,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'violet wizard shorts',
     sellPrice: 2750,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 100,
@@ -642,7 +642,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'crimson wizard shorts',
     sellPrice: 3000,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 110,
@@ -717,7 +717,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'azure wizard shorts',
     sellPrice: 3250,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 120,
@@ -792,7 +792,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'verdant wizard shorts',
     sellPrice: 3500,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 130,
@@ -867,7 +867,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'serpent wizard shorts',
     sellPrice: 3500,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 150,
@@ -942,7 +942,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'inferno wizard shorts',
     sellPrice: 3500,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 180,
@@ -1017,7 +1017,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'exalted wizard shorts',
     sellPrice: 3500,
-    description: 'Protect your legs',
+    description: 'Helps emit magical energy',
     isEquippable: true,
     stats: {
       healthMax: 250,
@@ -1032,6 +1032,93 @@ export const WIZARD_ITEMS = {
       type: 'skill',
       name: 'magic',
       level: 80
+    }]
+  },
+
+  lichs_cowl: {
+    id: 'lichs_cowl',
+    icon: 'lichsCowl.png',
+    category: 'combat',
+    slot: 'head',
+    name: 'lich\'s cowl',
+    sellPrice: 75000,
+    description: `
+      <span style="color: #4444cc;"><b>Prized</b></span> <br />
+      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    isEquippable: true,
+    stats: {
+      healthMax: 350,
+      magicPower: 80,
+      magicArmor: 60
+    },
+    extraStats: {
+      healthMax: 180,
+      magicPower: 30,
+      magicArmor: 10
+    },
+    enchantments: ['dark_aura'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 85
+    }]
+  },
+
+  lichs_robes: {
+    id: 'lichs_robes',
+    icon: 'lichsRobes.png',
+    category: 'combat',
+    slot: 'chest',
+    name: 'lich\'s robes',
+    sellPrice: 75000,
+    description: `
+      <span style="color: #4444cc;"><b>Prized</b></span> <br />
+      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    isEquippable: true,
+    stats: {
+      healthMax: 350,
+      magicPower: 80,
+      magicArmor: 60
+    },
+    extraStats: {
+      healthMax: 180,
+      magicPower: 30,
+      magicArmor: 10
+    },
+    enchantments: ['damage_reflect'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 85
+    }]
+  },
+
+  lichs_wraps: {
+    id: 'lichs_wraps',
+    icon: 'lichsWraps.png',
+    category: 'combat',
+    slot: 'legs',
+    name: 'lich\'s wraps',
+    sellPrice: 75000,
+    description: `
+      <span style="color: #4444cc;"><b>Prized</b></span> <br />
+      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    isEquippable: true,
+    stats: {
+      healthMax: 350,
+      magicPower: 80,
+      magicArmor: 60
+    },
+    extraStats: {
+      healthMax: 180,
+      magicPower: 30,
+      magicArmor: 10
+    },
+    enchantments: ['health_up_enchantment'],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 85
     }]
   }
 };

@@ -3,7 +3,7 @@ import { BUFFS } from '../../../imports/constants/buffs/index.js';
 export const TICK_DURATION = 200;
 export const secondsElapsed = TICK_DURATION / 1000;
 
-export default function({ attacker, defender, originalAutoAttack = true, damageModifier = 0 }) {
+export default function({ attacker, defender, originalAutoAttack = true, damageModifier = 0, source }) {
   // Do we hit?
   let hitGap = attacker.stats.accuracy - defender.stats.defense;
   let hitChance = 0.5;
@@ -31,8 +31,13 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
       rawDamage *= 1.0 + damageModifier;
     }
 
-    // Is this a crit?
+    // Custom icon undefined by default
     let customIcon;
+    // Adjust icon per source
+    if (source === 'phantom_strikes') {
+      customIcon = 'phantomStrikes';
+    }
+    // Is this a crit?
     if (attacker.stats.criticalChance && Math.random() <= (attacker.stats.criticalChance / 100)) {
       rawDamage *= attacker.stats.criticalDamage;
       customIcon = 'criticalStrike';
@@ -44,6 +49,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
       tickEvents: this.tickEvents,
       customIcon,
       historyStats: this.historyStats,
+      source: 'autoattack'
     });
 
     // Tick didDamage event on attacker
@@ -59,7 +65,8 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
             attacker,
             actualBattle: this,
             damageDealt,
-            rawDamage
+            rawDamage,
+            source: 'autoattack'
           })
         }
       });
@@ -71,13 +78,13 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onTookDamage) {
           // Took Damage
-          buff.constants.events.onTookDamage({ buff, defender, attacker, actualBattle: this, damageDealt })
+          buff.constants.events.onTookDamage({ buff, defender, attacker, actualBattle: this, damageDealt, source: 'autoattack' })
         }
       });
     }
 
   } else {
-    this.dealDamage(0, { attacker, defender, tickEvents: this.tickEvents, historyStats: this.historyStats, actualBattle: this });
+    this.dealDamage(0, { attacker, defender, tickEvents: this.tickEvents, customIcon: 'dodge', historyStats: this.historyStats, actualBattle: this, source: 'autoattack' });
     
     // Tick dodgedDamage event on defender
     if (defender.buffs) {
@@ -85,7 +92,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
         buff.constants = BUFFS[buff.id];
         if (buff.constants.events.onDodgedDamage) {
           // Dodged Damage
-          buff.constants.events.onDodgedDamage({ buff, defender, attacker, actualBattle: this })
+          buff.constants.events.onDodgedDamage({ buff, defender, attacker, actualBattle: this, source: 'autoattack' })
         }
       });
     }

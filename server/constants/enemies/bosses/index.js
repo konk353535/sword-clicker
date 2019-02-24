@@ -817,8 +817,8 @@ export const BOSS_ENEMIES = {
     rewards: []
   },
 
-  the_lich: {
-    id: 'the_lich',
+  boss_lich: {
+    id: 'boss_lich',
     icon: 'lich.svg',
     name: 'The Lich',
     isBoss: true,

@@ -1,14 +1,4 @@
 @font-face {
-  font-family: 'icomoon';
-  src:
-    url('fonts/icomoon.ttf?2hde23') format('truetype'),
-    url('fonts/icomoon.woff?2hde23') format('woff'),
-    url('fonts/icomoon.svg?2hde23#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
@@ -81,6 +71,17 @@
   color: #6c757d;
 }
 
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?j84u2u');
+  src:  url('fonts/icomoon.eot?j84u2u#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?j84u2u') format('truetype'),
+    url('fonts/icomoon.woff?j84u2u') format('woff'),
+    url('fonts/icomoon.svg?j84u2u#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 [class^="lilIcon-"], [class*=" lilIcon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -96,159 +97,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.lilIcon-completeShard:before {
-  content: "\e936";
-}
-.lilIcon-ancientShard:before {
-  content: "\e937";
-}
-.lilIcon-healingPower:before {
-  content: "\e935";
-}
-.lilIcon-damage:before {
-  content: "\e934";
-}
-.lilIcon-magicArmor:before {
-  content: "\e933";
-  color: #5f327c;
-}
-.lilIcon-criticalStrike:before {
-  content: "\e932";
-  color: #861001;
-}
-.lilIcon-poison:before {
-  content: "\e931";
-  color: #0a5d19;
-}
-.lilIcon-magic:before {
-  content: "\e92f";
-}
-.lilIcon-magicPower:before {
-  content: "\e930";
-}
-.lilIcon-criticalChance:before {
-  content: "\e92e";
-}
-.lilIcon-astronomy:before {
-  content: "\e92d";
-}
-.lilIcon-energy:before {
-  content: "\e92c";
-  color: #f5d327;
+.lilIcon-gold:before {
+  content: "\e909";
+  color: #dcbd23;
 }
 .lilIcon-gems:before {
   content: "\e92b";
   color: #b36ae2;
-}
-.lilIcon-healthMax:before {
-  content: "\e92a";
-}
-.lilIcon-inscription:before {
-  content: "\e929";
-}
-.lilIcon-duration:before {
-  content: "\e928";
-}
-.lilIcon-totalHealthRegen:before {
-  content: "\e927";
-  color: #c82606;
-}
-.lilIcon-farming:before {
-  content: "\e926";
-  color: #0365c0;
-}
-.lilIcon-total:before {
-  content: "\e925";
-}
-.lilIcon-ashWood:before {
-  content: "\e90e";
-  color: #ffdea8;
-}
-.lilIcon-beechLog:before {
-  content: "\e90f";
-  color: #a37511;
-}
-.lilIcon-character:before {
-  content: "\e910";
-}
-.lilIcon-coal:before {
-  content: "\e911";
-}
-.lilIcon-copper:before {
-  content: "\e912";
-  color: #c39719;
-}
-.lilIcon-copperAxe:before {
-  content: "\e913";
-  color: #be5b0c;
-}
-.lilIcon-copperBar:before {
-  content: "\e914";
-  color: #be5b0c;
-}
-.lilIcon-copperDagger:before {
-  content: "\e915";
-  color: #be5b0c;
-}
-.lilIcon-copperFurnace:before {
-  content: "\e916";
-  color: #be5b0c;
-}
-.lilIcon-copperPickaxe:before {
-  content: "\e917";
-  color: #be5b0c;
-}
-.lilIcon-farmer:before {
-  content: "\e918";
-}
-.lilIcon-iron:before {
-  content: "\e919";
-  color: #4c4c4c;
-}
-.lilIcon-ironBar:before {
-  content: "\e91a";
-  color: #999;
-}
-.lilIcon-pineLog:before {
-  content: "\e91b";
-  color: #dcbd23;
-}
-.lilIcon-primitiveAxe:before {
-  content: "\e91c";
-}
-.lilIcon-primitivePickaxe:before {
-  content: "\e91d";
-}
-.lilIcon-prospector:before {
-  content: "\e91e";
-}
-.lilIcon-rat:before {
-  content: "\e91f";
-  color: #924607;
-}
-.lilIcon-ratHead:before {
-  content: "\e920";
-}
-.lilIcon-stone:before {
-  content: "\e921";
-  color: #999;
-}
-.lilIcon-stoneFurnace:before {
-  content: "\e922";
-  color: #999;
-}
-.lilIcon-wiseFarmer:before {
-  content: "\e923";
-  color: #be5b0c;
-}
-.lilIcon-woodcutter:before {
-  content: "\e924";
-}
-.lilIcon-accuracy:before {
-  content: "\e900";
-}
-.lilIcon-armor:before {
-  content: "\e901";
 }
 .lilIcon-attack:before {
   content: "\e902";
@@ -256,11 +111,40 @@
 .lilIcon-attackSpeed:before {
   content: "\e903";
 }
-.lilIcon-crafting:before {
-  content: "\e904";
+.lilIcon-accuracy:before {
+  content: "\e900";
+}
+.lilIcon-criticalChance:before {
+  content: "\e90e";
+}
+.lilIcon-health:before {
+  content: "\e90a";
+}
+.lilIcon-healthMax:before {
+  content: "\e92a";
 }
 .lilIcon-defense:before {
   content: "\e905";
+}
+.lilIcon-armor:before {
+  content: "\e901";
+}
+.lilIcon-magicArmor:before {
+  content: "\e933";
+  color: #5f327c;
+}
+.lilIcon-magicPower:before {
+  content: "\e930";
+}
+.lilIcon-healingPower:before {
+  content: "\e935";
+}
+.lilIcon-damage:before {
+  content: "\e934";
+}
+.lilIcon-energyStorage:before {
+  content: "\e908";
+  color: #f5d327;
 }
 .lilIcon-energyPerHit:before {
   content: "\e906";
@@ -270,23 +154,92 @@
   content: "\e907";
   color: #f5d327;
 }
-.lilIcon-energyStorage:before {
-  content: "\e908";
-  color: #f5d327;
-}
-.lilIcon-gold:before {
-  content: "\e909";
-  color: #dcbd23;
-}
-.lilIcon-health:before {
-  content: "\e90a";
-}
-.lilIcon-miner:before {
-  content: "\e90b";
+.lilIcon-crafting:before {
+  content: "\e904";
 }
 .lilIcon-mining:before {
   content: "\e90c";
 }
+.lilIcon-miner:before {
+  content: "\e90b";
+}
+.lilIcon-prospector:before {
+  content: "\e91e";
+}
 .lilIcon-woodcutting:before {
   content: "\e90d";
+}
+.lilIcon-woodcutter:before {
+  content: "\e924";
+}
+.lilIcon-farming:before {
+  content: "\e926";
+  color: #0365c0;
+}
+.lilIcon-farmSpace:before {
+  content: "\e939";
+}
+.lilIcon-farmer:before {
+  content: "\e918";
+}
+.lilIcon-inscription:before {
+  content: "\e929";
+}
+.lilIcon-magic:before {
+  content: "\e92f";
+}
+.lilIcon-astronomy:before {
+  content: "\e92d";
+}
+.lilIcon-completeShard:before {
+  content: "\e936";
+}
+.lilIcon-ancientShard:before {
+  content: "\e937";
+}
+.lilIcon-total:before {
+  content: "\e925";
+}
+.lilIcon-dwelling:before {
+  content: "\e910";
+}
+.lilIcon-quarry:before {
+  content: "\e911";
+}
+.lilIcon-lumberYard:before {
+  content: "\e912";
+}
+.lilIcon-armory:before {
+  content: "\e913";
+}
+.lilIcon-library:before {
+  content: "\e914";
+}
+.lilIcon-observatory:before {
+  content: "\e915";
+}
+.lilIcon-criticalStrike:before {
+  content: "\e932";
+  color: #861001;
+}
+.lilIcon-bleed:before {
+  content: "\e90f";
+}
+.lilIcon-poison:before {
+  content: "\e931";
+  color: #0a5d19;
+}
+.lilIcon-dodge:before {
+  content: "\e942";
+}
+.lilIcon-thirstyFangs:before {
+  content: "\e943";
+}
+.lilIcon-phantomStrikes:before {
+  content: "\e944";
+  color: #999;
+}
+.lilIcon-confused:before {
+  content: "\e946";
+  color: #f00;
 }

@@ -265,8 +265,15 @@ export default class Unit {
       this.skills = [];
     }
 
+    //if (this.name === 'psouza4dev') {
+    //  console.log("new Unit() buffs/before:");
+    //  console.log(unit.buffs);
+    //}
     this.buffs = unit.buffs.map(buff => new Buff(buff, this, this.battleRef));
-
+    //if (this.name === 'psouza4dev') {
+    //  console.log("new Unit() buffs/after:");
+    //  console.log(unit.buffs);
+    //}
     this.stats = new Stats(unit.stats, unit.id, battleRef);
     this.xpDistribution = unit.xpDistribution;
     this.towerContributionsToday = unit.towerContributionsToday;

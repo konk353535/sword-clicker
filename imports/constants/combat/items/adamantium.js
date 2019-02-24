@@ -46,6 +46,10 @@ export const ADAMANTIUM_ITEMS = {
       "accuracy": 15.4,
       "defense": 6.1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -74,6 +78,10 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 18.4,
       "accuracy": 18.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -102,6 +110,12 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 21.5,
       "accuracy": 18.4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -131,6 +145,10 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 37,
       "accuracy": 24.8
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -161,6 +179,12 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 43.2,
       "accuracy": 24.8
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -190,6 +214,10 @@ export const ADAMANTIUM_ITEMS = {
       "attack": 15.4,
       "attackMax": 55.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -215,6 +243,12 @@ export const ADAMANTIUM_ITEMS = {
       "attackMax": 3.2,
       "accuracy": 3.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -240,6 +274,10 @@ export const ADAMANTIUM_ITEMS = {
       "defense": 3.2,
       "armor": 15.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -265,6 +303,10 @@ export const ADAMANTIUM_ITEMS = {
       "defense": 3.2,
       "armor": 15.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -290,6 +332,10 @@ export const ADAMANTIUM_ITEMS = {
       "defense": 3.2,
       "armor": 15.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -316,6 +362,10 @@ export const ADAMANTIUM_ITEMS = {
       "defense": 9.5,
       "armor": 30.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

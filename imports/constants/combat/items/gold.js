@@ -46,6 +46,10 @@ export const GOLD_ITEMS = {
       "accuracy": 4.9,
       "defense": 2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -74,6 +78,10 @@ export const GOLD_ITEMS = {
       "attackMax": 5.9,
       "accuracy": 5.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -102,6 +110,12 @@ export const GOLD_ITEMS = {
       "attackMax": 6.9,
       "accuracy": 5.9
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -131,6 +145,10 @@ export const GOLD_ITEMS = {
       "attackMax": 11.8,
       "accuracy": 7.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -161,6 +179,12 @@ export const GOLD_ITEMS = {
       "attackMax": 13.8,
       "accuracy": 7.9
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -190,6 +214,10 @@ export const GOLD_ITEMS = {
       "attack": 4.9,
       "attackMax": 17.7
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -215,6 +243,12 @@ export const GOLD_ITEMS = {
       "attackMax": 1,
       "accuracy": 1
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -240,6 +274,10 @@ export const GOLD_ITEMS = {
       "defense": 1,
       "armor": 4.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -265,6 +303,10 @@ export const GOLD_ITEMS = {
       "defense": 1,
       "armor": 4.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -290,6 +332,10 @@ export const GOLD_ITEMS = {
       "defense": 1,
       "armor": 4.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -316,6 +362,10 @@ export const GOLD_ITEMS = {
       "defense": 3,
       "armor": 9.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

@@ -53,6 +53,10 @@ export const ASTRAL_ITEMS = {
       "accuracy": 25.1 * ASTRAL_MULTIPLIER,
       "defense": 9.8 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -81,6 +85,10 @@ export const ASTRAL_ITEMS = {
       "attackMax": 29.8 * ASTRAL_MULTIPLIER,
       "accuracy": 29.8 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -109,6 +117,12 @@ export const ASTRAL_ITEMS = {
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * ASTRAL_MULTIPLIER,
       "accuracy": 29.8 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -138,6 +152,10 @@ export const ASTRAL_ITEMS = {
       "attackMax": 60.2 * ASTRAL_MULTIPLIER,
       "accuracy": 40.2 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -168,6 +186,12 @@ export const ASTRAL_ITEMS = {
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * ASTRAL_MULTIPLIER,
       "accuracy": 40.2 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -198,6 +222,10 @@ export const ASTRAL_ITEMS = {
       "attack": 25.1 * ASTRAL_MULTIPLIER,
       "attackMax": 90 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -224,6 +252,12 @@ export const ASTRAL_ITEMS = {
       "attackMax": 11.2,
       "accuracy": 11.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -250,6 +284,10 @@ export const ASTRAL_ITEMS = {
       "defense": 5.2 * ASTRAL_MULTIPLIER,
       "armor": 25.1 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -275,6 +313,10 @@ export const ASTRAL_ITEMS = {
       "defense": 5.2 * ASTRAL_MULTIPLIER,
       "armor": 25.1 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -300,6 +342,10 @@ export const ASTRAL_ITEMS = {
       "defense": 5.2 * ASTRAL_MULTIPLIER,
       "armor": 25.1 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -326,6 +372,10 @@ export const ASTRAL_ITEMS = {
       "defense": 15.3 * ASTRAL_MULTIPLIER,
       "armor": 50.3 * ASTRAL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

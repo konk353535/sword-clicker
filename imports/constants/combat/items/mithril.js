@@ -46,6 +46,10 @@ export const MITHRIL_ITEMS = {
       "accuracy": 14,
       "defense": 5.5
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -74,6 +78,10 @@ export const MITHRIL_ITEMS = {
       "attackMax": 16.7,
       "accuracy": 16.7
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -102,6 +110,12 @@ export const MITHRIL_ITEMS = {
       "attackMax": 19.6,
       "accuracy": 16.7
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -131,6 +145,10 @@ export const MITHRIL_ITEMS = {
       "attackMax": 33.7,
       "accuracy": 22.5
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -161,6 +179,12 @@ export const MITHRIL_ITEMS = {
       "attackMax": 39.3,
       "accuracy": 22.5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -190,6 +214,10 @@ export const MITHRIL_ITEMS = {
       "attack": 14,
       "attackMax": 50.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -215,6 +243,12 @@ export const MITHRIL_ITEMS = {
       "attackMax": 2.9,
       "accuracy": 2.9
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -240,6 +274,10 @@ export const MITHRIL_ITEMS = {
       "defense": 2.9,
       "armor": 14
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -265,6 +303,10 @@ export const MITHRIL_ITEMS = {
       "defense": 2.9,
       "armor": 14
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -290,6 +332,10 @@ export const MITHRIL_ITEMS = {
       "defense": 2.9,
       "armor": 14
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -316,6 +362,10 @@ export const MITHRIL_ITEMS = {
       "defense": 8.6,
       "armor": 28.1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

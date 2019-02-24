@@ -54,6 +54,10 @@ export const RELICROCK_ITEMS = {
       "accuracy": 25.1 * RELICROCK_MULTIPLIER,
       "defense": 9.8 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -82,6 +86,10 @@ export const RELICROCK_ITEMS = {
       "attackMax": 29.8 * RELICROCK_MULTIPLIER,
       "accuracy": 29.8 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -110,6 +118,12 @@ export const RELICROCK_ITEMS = {
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RELICROCK_MULTIPLIER,
       "accuracy": 29.8 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -139,6 +153,10 @@ export const RELICROCK_ITEMS = {
       "attackMax": 60.2 * RELICROCK_MULTIPLIER,
       "accuracy": 40.2 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -169,6 +187,12 @@ export const RELICROCK_ITEMS = {
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RELICROCK_MULTIPLIER,
       "accuracy": 40.2 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -199,6 +223,10 @@ export const RELICROCK_ITEMS = {
       "attack": 25.1 * RELICROCK_MULTIPLIER,
       "attackMax": 90 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -225,6 +253,12 @@ export const RELICROCK_ITEMS = {
       "attackMax": 17.2,
       "accuracy": 17.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -251,6 +285,10 @@ export const RELICROCK_ITEMS = {
       "defense": 5.2 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER,
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -276,6 +314,10 @@ export const RELICROCK_ITEMS = {
       "defense": 5.2 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER,
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -301,6 +343,10 @@ export const RELICROCK_ITEMS = {
       "defense": 5.2 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER,
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -327,6 +373,10 @@ export const RELICROCK_ITEMS = {
       "defense": 15.3 * RELICROCK_MULTIPLIER * RELICROCK_DEFENSE_MULTIPLIER,
       "armor": 50.3 * RELICROCK_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

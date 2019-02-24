@@ -46,6 +46,10 @@ export const METEORITE_ITEMS = {
       "accuracy": 18.7,
       "defense": 7.3
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -74,6 +78,10 @@ export const METEORITE_ITEMS = {
       "attackMax": 22.2,
       "accuracy": 22.2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -102,6 +110,12 @@ export const METEORITE_ITEMS = {
       "attackMax": 26.1,
       "accuracy": 22.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -131,6 +145,10 @@ export const METEORITE_ITEMS = {
       "attackMax": 44.8,
       "accuracy": 29.9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -161,6 +179,12 @@ export const METEORITE_ITEMS = {
       "attackMax": 52.3,
       "accuracy": 29.9
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -190,6 +214,10 @@ export const METEORITE_ITEMS = {
       "attack": 18.7,
       "attackMax": 67
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -215,6 +243,12 @@ export const METEORITE_ITEMS = {
       "attackMax": 3.9,
       "accuracy": 3.9
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -240,6 +274,10 @@ export const METEORITE_ITEMS = {
       "defense": 3.9,
       "armor": 18.7
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -265,6 +303,10 @@ export const METEORITE_ITEMS = {
       "defense": 3.9,
       "armor": 18.7
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -290,6 +332,10 @@ export const METEORITE_ITEMS = {
       "defense": 3.9,
       "armor": 18.7
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -316,6 +362,10 @@ export const METEORITE_ITEMS = {
       "defense": 11.4,
       "armor": 37.4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

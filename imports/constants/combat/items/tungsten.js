@@ -46,6 +46,10 @@ export const TUNGSTEN_ITEMS = {
       "accuracy": 10.1,
       "defense": 4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -74,6 +78,10 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 12,
       "accuracy": 12
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -102,6 +110,12 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 14.1,
       "accuracy": 12
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -131,6 +145,10 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 24.2,
       "accuracy": 16.2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -161,6 +179,12 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 28.2,
       "accuracy": 16.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -190,6 +214,10 @@ export const TUNGSTEN_ITEMS = {
       "attack": 10.1,
       "attackMax": 36.2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -215,6 +243,12 @@ export const TUNGSTEN_ITEMS = {
       "attackMax": 2.1,
       "accuracy": 2.1
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -240,6 +274,10 @@ export const TUNGSTEN_ITEMS = {
       "defense": 2.1,
       "armor": 10.1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -265,6 +303,10 @@ export const TUNGSTEN_ITEMS = {
       "defense": 2.1,
       "armor": 10.1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -290,6 +332,10 @@ export const TUNGSTEN_ITEMS = {
       "defense": 2.1,
       "armor": 10.1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -316,6 +362,10 @@ export const TUNGSTEN_ITEMS = {
       "defense": 6.1,
       "armor": 20.2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

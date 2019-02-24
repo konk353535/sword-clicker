@@ -311,6 +311,7 @@ Meteor.methods({
         quality: 1,
         enhanced: 1,
         extraStats: 1,
+        rarityId: 1,
         enchantmentId: 1,
         enchantmentDescription: 1
       }

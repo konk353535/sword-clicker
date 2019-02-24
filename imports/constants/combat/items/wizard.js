@@ -18,6 +18,9 @@ export const WIZARD_ITEMS = {
       healthMax: 40,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -43,7 +46,10 @@ export const WIZARD_ITEMS = {
     extraStats: {
       healthMax: 50,
       magicPower: 10
-    },
+    },    
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -72,7 +78,10 @@ export const WIZARD_ITEMS = {
       healthMax: 10,
       magicPower: 2,
       healingPower: 5
-    },
+    },    
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -101,6 +110,12 @@ export const WIZARD_ITEMS = {
       magicPower: 2,
       healingPower: 4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -128,6 +143,12 @@ export const WIZARD_ITEMS = {
       magicPower: 2,
       healingPower: 4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -153,6 +174,12 @@ export const WIZARD_ITEMS = {
       healthMax: 10,
       magicPower: 2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -178,6 +205,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -203,6 +236,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -228,6 +267,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 3
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -253,6 +298,12 @@ export const WIZARD_ITEMS = {
       healthMax: 10,
       magicPower: 2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -278,6 +329,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -303,6 +360,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -328,6 +391,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 3
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -353,6 +422,12 @@ export const WIZARD_ITEMS = {
       healthMax: 10,
       magicPower: 2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -378,6 +453,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 4
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -403,6 +484,12 @@ export const WIZARD_ITEMS = {
       healthMax: 20,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -428,6 +515,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 3
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -453,6 +546,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -478,6 +577,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -485,7 +590,7 @@ export const WIZARD_ITEMS = {
     }]
   },
 
- amber_wizard_shorts: {
+  amber_wizard_shorts: {
     id: 'amber_wizard_shorts',
     icon: 'amberWizardShorts.png',
     category: 'combat',
@@ -503,6 +608,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -528,6 +639,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -553,6 +670,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -578,6 +701,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -603,6 +732,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 7
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -628,6 +763,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 7
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -653,6 +794,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 7
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -678,6 +825,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 8
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -703,6 +856,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 8
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -728,6 +887,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 8
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -753,6 +918,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 10
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -778,6 +949,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 10
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -803,6 +980,12 @@ export const WIZARD_ITEMS = {
       healthMax: 50,
       magicPower: 10
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -828,6 +1011,12 @@ export const WIZARD_ITEMS = {
       healthMax: 75,
       magicPower: 12
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -853,6 +1042,12 @@ export const WIZARD_ITEMS = {
       healthMax: 75,
       magicPower: 12
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -878,6 +1073,12 @@ export const WIZARD_ITEMS = {
       healthMax: 75,
       magicPower: 12
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -903,6 +1104,12 @@ export const WIZARD_ITEMS = {
       healthMax: 100,
       magicPower: 14
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -928,6 +1135,12 @@ export const WIZARD_ITEMS = {
       healthMax: 100,
       magicPower: 14
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -953,6 +1166,12 @@ export const WIZARD_ITEMS = {
       healthMax: 100,
       magicPower: 14
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -978,6 +1197,12 @@ export const WIZARD_ITEMS = {
       healthMax: 150,
       magicPower: 20
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -1003,6 +1228,12 @@ export const WIZARD_ITEMS = {
       healthMax: 150,
       magicPower: 20
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -1028,6 +1259,12 @@ export const WIZARD_ITEMS = {
       healthMax: 150,
       magicPower: 20
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -1042,9 +1279,7 @@ export const WIZARD_ITEMS = {
     slot: 'head',
     name: 'lich\'s cowl',
     sellPrice: 75000,
-    description: `
-      <span style="color: #4444cc;"><b>Prized</b></span> <br />
-      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    description: 'Emits dark energy, threatening to corrupt the wearer\'s soul.',
     isEquippable: true,
     stats: {
       healthMax: 350,
@@ -1057,6 +1292,9 @@ export const WIZARD_ITEMS = {
       magicArmor: 10
     },
     enchantments: ['dark_aura'],
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -1071,9 +1309,7 @@ export const WIZARD_ITEMS = {
     slot: 'chest',
     name: 'lich\'s robes',
     sellPrice: 75000,
-    description: `
-      <span style="color: #4444cc;"><b>Prized</b></span> <br />
-      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    description: 'Emits dark energy, threatening to corrupt the wearer\'s soul.',
     isEquippable: true,
     stats: {
       healthMax: 350,
@@ -1086,6 +1322,9 @@ export const WIZARD_ITEMS = {
       magicArmor: 10
     },
     enchantments: ['damage_reflect'],
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -1100,9 +1339,7 @@ export const WIZARD_ITEMS = {
     slot: 'legs',
     name: 'lich\'s wraps',
     sellPrice: 75000,
-    description: `
-      <span style="color: #4444cc;"><b>Prized</b></span> <br />
-      Emits dark energy, threatening to corrupt the wearer's soul.`,
+    description: 'Emits dark energy, threatening to corrupt the wearer\'s soul.',
     isEquippable: true,
     stats: {
       healthMax: 350,
@@ -1115,6 +1352,9 @@ export const WIZARD_ITEMS = {
       magicArmor: 10
     },
     enchantments: ['health_up_enchantment'],
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',

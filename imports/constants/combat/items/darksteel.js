@@ -52,6 +52,10 @@ export const DARKSTEEL_ITEMS = {
       "accuracy": 25.1 * DARKSTEEL_MULTIPLIER,
       "defense": 9.8 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -80,6 +84,10 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 29.8 * DARKSTEEL_MULTIPLIER,
       "accuracy": 29.8 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -108,6 +116,12 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
       "accuracy": 29.8 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -137,6 +151,10 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 60.2 * DARKSTEEL_MULTIPLIER,
       "accuracy": 40.2 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -167,6 +185,12 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * DARKSTEEL_MULTIPLIER,
       "accuracy": 40.2 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -197,6 +221,10 @@ export const DARKSTEEL_ITEMS = {
       "attack": 25.1 * DARKSTEEL_MULTIPLIER,
       "attackMax": 90 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -223,6 +251,12 @@ export const DARKSTEEL_ITEMS = {
       "attackMax": 7.2,
       "accuracy": 7.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -249,6 +283,10 @@ export const DARKSTEEL_ITEMS = {
       "defense": 5.2 * DARKSTEEL_MULTIPLIER,
       "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -274,6 +312,10 @@ export const DARKSTEEL_ITEMS = {
       "defense": 5.2 * DARKSTEEL_MULTIPLIER,
       "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -299,6 +341,10 @@ export const DARKSTEEL_ITEMS = {
       "defense": 5.2 * DARKSTEEL_MULTIPLIER,
       "armor": 25.1 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -325,6 +371,10 @@ export const DARKSTEEL_ITEMS = {
       "defense": 15.3 * DARKSTEEL_MULTIPLIER,
       "armor": 50.3 * DARKSTEEL_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

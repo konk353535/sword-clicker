@@ -14,6 +14,10 @@ export const AMULET_ITEMS = {
       energyStorage: 10, // Max energy stored
       energyRegen: 10 // Per minute
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -37,6 +41,10 @@ export const AMULET_ITEMS = {
       energyRegen: 5, // Per minute
       criticalChance: 3
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -61,6 +69,10 @@ export const AMULET_ITEMS = {
       healthMax: 20,
       defense: 2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -85,6 +97,10 @@ export const AMULET_ITEMS = {
       magicPower: 5,
       magicArmor: 15
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -110,6 +126,10 @@ export const AMULET_ITEMS = {
       attackMax: 2,
       accuracy: 2
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -137,6 +157,10 @@ export const AMULET_ITEMS = {
       attackMax: 1,
       magicPower: 1
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'health',
@@ -164,6 +188,10 @@ export const AMULET_ITEMS = {
       attackMax: 3,
       magicPower: 3
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'health',
@@ -188,6 +216,10 @@ export const AMULET_ITEMS = {
       healthMax: 50,
       defense: 4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -212,6 +244,10 @@ export const AMULET_ITEMS = {
       magicPower: 10,
       magicArmor: 30
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -237,6 +273,10 @@ export const AMULET_ITEMS = {
       attackMax: 5,
       accuracy: 4
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -264,6 +304,10 @@ export const AMULET_ITEMS = {
       attackMax: 5,
       magicPower: 5
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'health',
@@ -288,6 +332,10 @@ export const AMULET_ITEMS = {
       healthMax: 100,
       defense: 6
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -312,6 +360,10 @@ export const AMULET_ITEMS = {
       magicPower: 15,
       magicArmor: 45
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -337,6 +389,10 @@ export const AMULET_ITEMS = {
       attackMax: 10,
       accuracy: 6
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -364,6 +420,10 @@ export const AMULET_ITEMS = {
       magicPower: 7,
       attackMax: 9
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'health',
@@ -388,6 +448,10 @@ export const AMULET_ITEMS = {
       healthMax: 150,
       defense: 8
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -412,6 +476,10 @@ export const AMULET_ITEMS = {
       magicPower: 20,
       magicArmor: 60
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -437,6 +505,10 @@ export const AMULET_ITEMS = {
       attack: 15,
       accuracy: 8
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -465,6 +537,10 @@ export const AMULET_ITEMS = {
       magicPower: 10
 
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'health',
@@ -489,6 +565,10 @@ export const AMULET_ITEMS = {
       healthMax: 400,
       defense: 8
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -513,6 +593,10 @@ export const AMULET_ITEMS = {
       magicPower: 25,
       magicArmor: 75
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'magic',
@@ -538,6 +622,10 @@ export const AMULET_ITEMS = {
       attack: 25,
       accuracy: 10
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',

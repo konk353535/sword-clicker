@@ -260,6 +260,10 @@ export const ARCHER_ITEMS = {
       attackMax: 67 * BATTLEAXE_TO_BOW_ATTACKMAX,
       accuracy: 29.9,
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -291,6 +295,10 @@ export const ARCHER_ITEMS = {
       attackMax: 90 * BATTLEAXE_TO_BOW_ATTACKMAX,
       accuracy: 40.2,
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -320,7 +328,11 @@ export const ARCHER_ITEMS = {
     extraStats: {
       attack: 25.1 * DARKSTEEL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * DARKSTEEL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
-    },
+    },    
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -351,6 +363,10 @@ export const ARCHER_ITEMS = {
       attack: 25.1 * RADIANT_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * RADIANT_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -381,6 +397,10 @@ export const ARCHER_ITEMS = {
       attack: 25.1 * ASTRAL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * ASTRAL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -411,6 +431,10 @@ export const ARCHER_ITEMS = {
       attack: 25.1 * TITANFOIL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * TITANFOIL_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -441,6 +465,10 @@ export const ARCHER_ITEMS = {
       attack: 25.1 * RELICROCK_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * RELICROCK_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -471,6 +499,10 @@ export const ARCHER_ITEMS = {
       attack: 25.1 * ETERNIUM_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * ETERNIUM_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -512,6 +544,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -535,6 +571,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -558,6 +598,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 5 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -581,6 +625,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 6 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -604,6 +652,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 7 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -627,6 +679,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 8 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -650,6 +706,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 9 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -673,6 +733,10 @@ export const ARCHER_ITEMS = {
     extraStats: {
       accuracy: 13 * KNIFE_TO_QUIVER_ACCURACY
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',

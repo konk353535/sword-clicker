@@ -54,6 +54,10 @@ export const ETERNIUM_ITEMS = {
       "accuracy": 25.1 * ETERNIUM_MULTIPLIER,
       "defense": 9.8 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -82,6 +86,10 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 29.8 * ETERNIUM_MULTIPLIER,
       "accuracy": 29.8 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -110,6 +118,12 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * ETERNIUM_MULTIPLIER,
       "accuracy": 29.8 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -139,6 +153,10 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 60.2 * ETERNIUM_MULTIPLIER,
       "accuracy": 40.2 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -169,6 +187,12 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * ETERNIUM_MULTIPLIER,
       "accuracy": 40.2 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -199,6 +223,10 @@ export const ETERNIUM_ITEMS = {
       "attack": 25.1 * ETERNIUM_MULTIPLIER,
       "attackMax": 90 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -225,6 +253,12 @@ export const ETERNIUM_ITEMS = {
       "attackMax": 25,
       "accuracy": 25
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -251,6 +285,10 @@ export const ETERNIUM_ITEMS = {
       "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -276,6 +314,10 @@ export const ETERNIUM_ITEMS = {
       "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -301,6 +343,10 @@ export const ETERNIUM_ITEMS = {
       "defense": 5.2 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 25.1 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -327,6 +373,10 @@ export const ETERNIUM_ITEMS = {
       "defense": 15.3 * ETERNIUM_MULTIPLIER * ETERNIUM_DEFENSE_MULTIPLIER,
       "armor": 50.3 * ETERNIUM_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

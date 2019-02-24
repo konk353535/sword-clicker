@@ -41,7 +41,11 @@ export const COPPER_ITEMS = {
       attackMax: 1.4,
       accuracy: 1.2,
       defense: 0.4
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_short_sword: {
@@ -65,7 +69,11 @@ export const COPPER_ITEMS = {
       attack: 1,
       attackMax: 1.5,
       accuracy: 1.5
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_scimitar: {
@@ -89,7 +97,13 @@ export const COPPER_ITEMS = {
       attack: 1.2,
       attackMax: 2,
       accuracy: 1.5
-    }
+    },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
   },
 
   copper_long_sword: {
@@ -114,7 +128,11 @@ export const COPPER_ITEMS = {
       attack: 2.1,
       attackMax: 3.6,
       accuracy: 2
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_broad_sword: {
@@ -140,7 +158,13 @@ export const COPPER_ITEMS = {
       attack: 2,
       attackMax: 4.2,
       accuracy: 2.4
-    }
+    },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
   },
 
   copper_battle_axe: {
@@ -166,7 +190,11 @@ export const COPPER_ITEMS = {
       attack: 1.2,
       attackMax: 5.4,
       accuracy: 2
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_horned_helmet: {
@@ -187,7 +215,13 @@ export const COPPER_ITEMS = {
       attack: 1,
       attackMax: 1,
       accuracy: 1
-    }
+    },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
   },
 
   copper_helmet: {
@@ -208,7 +242,11 @@ export const COPPER_ITEMS = {
       healthMax: 1,
       defense: 1,
       armor: 1
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_chest_plate: {
@@ -229,7 +267,11 @@ export const COPPER_ITEMS = {
       healthMax: 1,
       defense: 1,
       armor: 1
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_plate_legs: {
@@ -250,7 +292,11 @@ export const COPPER_ITEMS = {
       healthMax: 1,
       defense: 1,
       armor: 1
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   },
 
   copper_shield: {
@@ -272,6 +318,10 @@ export const COPPER_ITEMS = {
       healthMax: 1,
       defense: 1,
       armor: 3
-    }
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
   }
 };

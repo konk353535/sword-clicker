@@ -8,14 +8,14 @@ import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import { Events } from '/imports/api/events/events';
 
 import { addXp } from '/server/api/skills/skills.js';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { FARMING } from '/imports/constants/farming/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
 import { COMBAT_CRAFTS } from '/imports/constants/combat/crafts.js';
 import { updateCombatStats } from '/server/api/combat/combat.js';
 import { updateMiningStats } from '/server/api/mining/mining.js';
 import { flattenObjectForMongo } from '/server/utils';
-import { CInt } from '/imports/utils';
+import { CInt, CDbl } from '/imports/utils';
 import { sendUserChatMessage } from '/imports/chatUtils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
 
@@ -41,10 +41,23 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
     console.log(`Failed - ${itemId}`);
     return;
   }
-
+  
   // Roll for stats if required
   if (itemConstants.extraStats) {
     for (let i = 0; i < amount; i++) {
+      // Handle upgraded rarities
+      let rarityId;
+      if (itemConstants.upgradeRarity) {
+        const upgradedRarityRoll = CDbl(Math.random() * 100.0);
+        itemConstants.upgradeRarity.forEach((thisRarityData) => {
+          if (!rarityId) {
+            if (upgradedRarityRoll <= CDbl(thisRarityData.chance)) {
+              rarityId = thisRarityData.rarityId;
+            }
+          }
+        });
+      }
+
       // Generate unique stats for each item
       const extraStats = {};
       let myRoll = 0;
@@ -70,19 +83,20 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       }
 
       newItemsList.push({
-        category: itemConstants.category,
         itemId,
         owner,
+        category: itemConstants.category,
         extraStats,
-        quality
+        quality,
+        rarityId
       });
     }
   } else {
     newItemsList.push({
-      category: itemConstants.category,
       itemId,
       owner,
-      amount
+      amount,
+      category: itemConstants.category,
     });
   }
 

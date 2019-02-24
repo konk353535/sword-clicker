@@ -53,6 +53,10 @@ export const RADIANT_ITEMS = {
       "accuracy": 25.1 * RADIANT_MULTIPLIER,
       "defense": 9.8 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -81,6 +85,10 @@ export const RADIANT_ITEMS = {
       "attackMax": 29.8 * RADIANT_MULTIPLIER,
       "accuracy": 29.8 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -109,6 +117,12 @@ export const RADIANT_ITEMS = {
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * RADIANT_MULTIPLIER,
       "accuracy": 29.8 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -138,6 +152,10 @@ export const RADIANT_ITEMS = {
       "attackMax": 60.2 * RADIANT_MULTIPLIER,
       "accuracy": 40.2 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -168,6 +186,12 @@ export const RADIANT_ITEMS = {
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * RADIANT_MULTIPLIER,
       "accuracy": 40.2 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -198,6 +222,10 @@ export const RADIANT_ITEMS = {
       "attack": 25.1 * RADIANT_MULTIPLIER,
       "attackMax": 90 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -224,6 +252,12 @@ export const RADIANT_ITEMS = {
       "attackMax": 9.2,
       "accuracy": 9.2
     },
+    upgradeRarity: [
+      { chance: 0.1, rarityId: 'phenomenal', },
+      { chance: 1, rarityId: 'extraordinary', },
+      { chance: 5, rarityId: 'rare', },
+      { chance: 15, rarityId: 'fine', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -250,6 +284,10 @@ export const RADIANT_ITEMS = {
       "defense": 5.2 * RADIANT_MULTIPLIER,
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -275,37 +313,15 @@ export const RADIANT_ITEMS = {
       "defense": 5.2 * RADIANT_MULTIPLIER,
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 105
     }]
-  },
-  "holy_plate": {
-    "id": "holy_plate",
-    "icon": "holyChestplate.png",
-    "category": "combat",
-    "slot": "chest",
-    "name": "holy plate",
-    "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
-    "description": "Protect your heart",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 22.4 * RADIANT_MULTIPLIER,
-      "defense": 18.4 * RADIANT_MULTIPLIER,
-      "armor": 74.5 * RADIANT_MULTIPLIER
-    },
-    "extraStats": {
-      "healthMax": 7.2 * RADIANT_MULTIPLIER,
-      "defense": 7.7 * RADIANT_MULTIPLIER,
-      "armor": 22.1 * RADIANT_MULTIPLIER
-    },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 100
-    }],
-    enchantments: ['holy_plate']
   },
   "radiant_plate_legs": {
     "id": "radiant_plate_legs",
@@ -326,6 +342,10 @@ export const RADIANT_ITEMS = {
       "defense": 5.2 * RADIANT_MULTIPLIER,
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
@@ -352,6 +372,10 @@ export const RADIANT_ITEMS = {
       "defense": 15.3 * RADIANT_MULTIPLIER,
       "armor": 50.3 * RADIANT_MULTIPLIER
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',

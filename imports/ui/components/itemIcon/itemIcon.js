@@ -3,9 +3,11 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import _ from 'underscore';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
+
+import { applyRarities } from '/imports/api/items/items.js';
 
 import './itemIcon.html';
 
@@ -123,21 +125,32 @@ Template.itemIcon.helpers({
     return "";
   },
   
+  rarity() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (item.rarityId) {
+      if (ITEM_RARITIES[item.rarityId]) {
+        return { rare: true, label: ITEM_RARITIES[item.rarityId].label, color: ITEM_RARITIES[item.rarityId].color };
+      }
+    }
+    
+    return { rare: false, label: '', color: '000' };
+  },
+  
   stats() {
     const instance = Template.instance();
     const item = instance.data.item;
     const constants = ITEMS[instance.data.item.itemId];
+    const baseStats = (constants && constants.stats) ? applyRarities(constants.stats, item.rarityId) : applyRarities(item.stats, item.rarityId);
+    const extraStats = (item.extraStats) ? applyRarities(item.extraStats, item.rarityId) : undefined;
 
-    if (!constants || !constants.stats) {
-      return { ...item.stats, ...item.extraStats };
-    }
+    const statsObj = Object.assign({}, baseStats);
 
-    const statsObj = Object.assign({}, constants.stats);
-
-    if (item.extraStats) {
-      Object.keys(item.extraStats).forEach((statName) => {
+    if (extraStats) {
+      Object.keys(extraStats).forEach((statName) => {
         if (statsObj[statName]) {
-          statsObj[statName] += item.extraStats[statName];
+          statsObj[statName] += extraStats[statName];
         }
       });
     }

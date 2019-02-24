@@ -72,6 +72,9 @@
       </h3>
       <div class='popover-content'>
         <div style='max-width: 350px;'>
+          {{#if rarity.rare}}
+            <span style="color: #{{rarity.color}};"><b>{{rarity.label}}</b></span> <br />
+          {{/if}}
           {{#if item.customDescription}}
             {{{item.customDescription}}}<br />
           {{else if itemDescription}}

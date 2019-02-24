@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
-import { Items } from '/imports/api/items/items';
+import { Items, applyRarities } from '/imports/api/items/items';
 import { Combat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
@@ -87,11 +87,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
 
     if (combatItem.constants.stats) {
-      const itemStats = lodash.cloneDeep(combatItem.constants.stats);
-      if (combatItem.extraStats) {
-        Object.keys(combatItem.extraStats).forEach((extraStatName) => {
+      const combatItemBaseStats = applyRarities(combatItem.constants.stats, combatItem.rarityId);
+      const combatItemExtraStats = (combatItem.extraStats) ? applyRarities(combatItem.extraStats, combatItem.rarityId) : undefined;
+
+      const itemStats = lodash.cloneDeep(combatItemBaseStats);
+      if (combatItemExtraStats) {
+        Object.keys(combatItemExtraStats).forEach((extraStatName) => {
           if (itemStats[extraStatName]) {
-            itemStats[extraStatName] += combatItem.extraStats[extraStatName];
+            itemStats[extraStatName] += combatItemExtraStats[extraStatName];
           }
         });
       }

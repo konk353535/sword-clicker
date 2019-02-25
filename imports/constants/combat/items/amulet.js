@@ -645,10 +645,10 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
+      accuracy: 15,
       damage: 6, // Damage per click
       energyStorage: 20, // Max energy stored
       energyRegen: 2, // Per minute
-      accuracy: 15
     },
     requiredEquip: [{
       type: 'skill',
@@ -669,11 +669,11 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
+      healthMax: 100,
+      defense: 10,
       damage: 12,
       energyStorage: 20,
       energyRegen: 2,
-      healthMax: 100,
-      defense: 10
     },
     requiredEquip: [{
       type: 'skill',
@@ -694,10 +694,10 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
+      magicPower: 20,
       damage: 18,
       energyStorage: 20,
-      magicPower: 20,
-      energyRegen: 2
+      energyRegen: 2,
     },
     requiredEquip: [{
       type: 'skill',
@@ -718,10 +718,10 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 24,
       healthMax: 300,
+      damage: 24,
       energyStorage: 20,
-      energyRegen: 2
+      energyRegen: 2,
     },
     requiredEquip: [{
       type: 'skill',
@@ -742,11 +742,11 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 30,
       attack: 20,
       attackMax: 30,
+      damage: 30,
       energyStorage: 20,
-      energyRegen: 2
+      energyRegen: 2,
     },
     requiredEquip: [{
       type: 'skill',
@@ -767,16 +767,16 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 36,
       attack: 10,
       attackMax: 10,
       accuracy: 10,
-      defense: 10,
-      healthMax: 100,
       magicPower: 5,
+      healthMax: 100,
+      defense: 10,
       magicArmor: 20,
+      damage: 36,
       energyStorage: 20,
-      energyRegen: 2
+      energyRegen: 2,
     },
     requiredEquip: [{
       type: 'skill',
@@ -797,7 +797,7 @@ export const AMULET_ITEMS = {
     }]
   },
 
-  // Amulet of absorption
+  // Amulet of ferocity
   fireopal_amulet: {
     id: 'fireopal_amulet',
     icon: 'fireOpalAmulet.png',
@@ -809,13 +809,14 @@ export const AMULET_ITEMS = {
     isEquippable: true,
     isAttackAmulet: true,
     stats: {
-      damage: 40,
       attack: 16,
       attackMax: 20,
+      criticalChance: 2,
+      criticalDamage: 0.05,
       healthMax: 160,
-      magicArmor: 30,
+      damage: 150,
       energyStorage: 30,
-      energyRegen: 2
+      energyRegen: 2,
     },
     requiredEquip: [{
       type: 'skill',

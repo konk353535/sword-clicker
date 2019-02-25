@@ -1371,31 +1371,35 @@ export const UseFireOpal = function (baseItem, baseItemConstants, targetItem, ta
     return;
   }
 
-
-  // Logic 
   targetItem.extraStats.level += 1;
 
   const level = (targetItem.extraStats.level <= 5 ? targetItem.extraStats.level : 4 + Math.sqrt((targetItem.extraStats.level - 5) * 2.5));
-  const originalAttack = targetItemConstants.stats.attack;
-  const originalAttackMax = targetItemConstants.stats.attackMax;
-  const originalHealthMax = targetItemConstants.stats.healthMax;
-  const originalMagicArmor = targetItemConstants.stats.magicArmor;
+  const originalAttack = CDbl(targetItemConstants.stats.attack);
+  const originalAttackMax = CDbl(targetItemConstants.stats.attackMax);
+  const originalHealthMax = CDbl(targetItemConstants.stats.healthMax);
+  //const originalMagicArmor = CDbl(targetItemConstants.stats.magicArmor);
 
   const attackRate = 1.075;
   const attackRateMax = 1.150;
   const healthMaxRate = 1.125;
-  const magicArmorRate = 1.075;
-
+  //const magicArmorRate = 1.075;
+  const criticalChanceRate = 2;
+  const criticalDamageRate = 0.05;
+  
   const attack = Math.round(originalAttack * Math.pow(attackRate, level));
   const attackMax = Math.round(originalAttackMax * Math.pow(attackRateMax, level));
   const healthMax = Math.round(originalHealthMax * Math.pow(healthMaxRate, level));
-  const magicArmor = Math.round(originalMagicArmor * Math.pow(magicArmorRate, level));
+  //const magicArmor = Math.round(originalMagicArmor * Math.pow(magicArmorRate, level));
+  const criticalChance = level * criticalChanceRate;
+  const criticalDamage = level * criticalDamageRate;
 
   // Subtract Original Amount to determine Extra
   targetItem.extraStats.attack = attack - originalAttack;
   targetItem.extraStats.attackMax = attackMax - originalAttackMax;
   targetItem.extraStats.healthMax = healthMax - originalHealthMax;
-  targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
+  //targetItem.extraStats.magicArmor = magicArmor - originalMagicArmor;
+  targetItem.extraStats.criticalChance = criticalChance;
+  targetItem.extraStats.criticalDamage = criticalDamage;
 
   // Post Logic & Cleanup
   Items.update({

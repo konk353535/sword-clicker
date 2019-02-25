@@ -18,6 +18,7 @@ function descriptors(str) {
     'magicArmor': 'magic armor',
     'healingPower': 'healing power',
     'criticalChance': 'critical chance',
+    'criticalDamage': 'critical damage',
     'energyStorage': 'energy storage',
     'energyPerHit': 'energy per hit',
     'energyRegen': 'energy regen',
@@ -75,9 +76,22 @@ Template.displayCombatStats.helpers({
         });
       }
     }
-
+    
     Object.keys(statsMap).forEach((key) => {
       if (key === 'attack' || key === 'attackMax') {
+        return;
+      }
+    
+      if (key === 'criticalDamage' || key === 'criticalChance' || key === 'healingPower') {
+        let val = CDbl(statsMap[key]) + ((extraStatsMap[key]) ? CDbl(extraStatsMap[key]) : 0.0);
+        if (key === 'criticalDamage') {
+          val *= 100.0;
+        }
+        
+        statsArr.push({
+          label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
+          key
+        });
         return;
       }
       
@@ -119,7 +133,7 @@ Template.displayCombatStats.helpers({
     
     if (statsMap.gold) {
       statsArr.push({
-        label:  `${descriptors('gold')}`,
+        label: descriptors('gold'),
         key: 'gold',
         rawValue: statsMap.gold.toFixed(0),
         requiresFormatting: true
@@ -128,6 +142,19 @@ Template.displayCombatStats.helpers({
 
     Object.keys(statsMap).forEach((key) => {
       if (key === 'attack' || key === 'attackMax' || key === 'gold') {
+        return;
+      }
+      
+      if (key === 'criticalDamage' || key === 'criticalChance' || key === 'healingPower') {
+        let val = CDbl(statsMap[key]);
+        if (key === 'criticalDamage') {
+          val *= 100.0;
+        }
+             
+        statsArr.push({
+          label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
+          key
+        });
         return;
       }
 

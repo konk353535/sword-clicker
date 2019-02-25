@@ -73,11 +73,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?j84u2u');
-  src:  url('fonts/icomoon.eot?j84u2u#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?j84u2u') format('truetype'),
-    url('fonts/icomoon.woff?j84u2u') format('woff'),
-    url('fonts/icomoon.svg?j84u2u#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?93suz6');
+  src:  url('fonts/icomoon.eot?93suz6#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?93suz6') format('truetype'),
+    url('fonts/icomoon.woff?93suz6') format('woff'),
+    url('fonts/icomoon.svg?93suz6#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -107,27 +107,39 @@
 }
 .lilIcon-attack:before {
   content: "\e902";
+  color: #492;
 }
 .lilIcon-attackSpeed:before {
   content: "\e903";
+  color: #492;
 }
 .lilIcon-accuracy:before {
   content: "\e900";
+  color: #492;
 }
 .lilIcon-criticalChance:before {
   content: "\e90e";
+  color: #454;
+}
+.lilIcon-criticalDamage:before {
+  content: "\e916";
+  color: #454;
 }
 .lilIcon-health:before {
   content: "\e90a";
+  color: #d00;
 }
 .lilIcon-healthMax:before {
   content: "\e92a";
+  color: #d00;
 }
 .lilIcon-defense:before {
   content: "\e905";
+  color: #998144;
 }
 .lilIcon-armor:before {
   content: "\e901";
+  color: #998144;
 }
 .lilIcon-magicArmor:before {
   content: "\e933";
@@ -135,12 +147,15 @@
 }
 .lilIcon-magicPower:before {
   content: "\e930";
+  color: #00f;
 }
 .lilIcon-healingPower:before {
   content: "\e935";
+  color: #f69;
 }
 .lilIcon-damage:before {
   content: "\e934";
+  color: #f5d327;
 }
 .lilIcon-energyStorage:before {
   content: "\e908";
@@ -178,15 +193,18 @@
 }
 .lilIcon-farmSpace:before {
   content: "\e939";
+  color: #862;
 }
 .lilIcon-farmer:before {
   content: "\e918";
 }
 .lilIcon-inscription:before {
   content: "\e929";
+  color: #307;
 }
 .lilIcon-magic:before {
   content: "\e92f";
+  color: #00f;
 }
 .lilIcon-astronomy:before {
   content: "\e92d";
@@ -220,10 +238,11 @@
 }
 .lilIcon-criticalStrike:before {
   content: "\e932";
-  color: #861001;
+  color: #454;
 }
 .lilIcon-bleed:before {
   content: "\e90f";
+  color: #861001;
 }
 .lilIcon-poison:before {
   content: "\e931";
@@ -241,5 +260,8 @@
 }
 .lilIcon-confused:before {
   content: "\e946";
-  color: #f00;
+  color: #ed0;
+}
+.lilIcon-shop:before {
+  content: "\e938";
 }

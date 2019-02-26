@@ -201,11 +201,20 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
   try {
     const serverInfo = lodash.cloneDeep(Servers.findOne({name: 'Classic'}));
     let townInfo;
-    //townInfo = (townInfo__in) ? townInfo__in : Town.findOne({});
-    if (!serverInfo.town && !townInfo__in) {
+    if ((!serverInfo || !serverInfo.town) && !townInfo__in) {
       townInfo = Meteor.call('town.getGoods', -1);
     }
-    townInfo = (townInfo__in) ? townInfo__in : serverInfo.town;
+    if (!townInfo) {
+      if (townInfo__in) {
+        townInfo = townInfo__in;
+      } else if (serverInfo) {
+        townInfo = serverInfo.town;
+      }
+    }
+    
+    if (!townInfo) {
+      return { townSection: townSection, isError: true, exceptionDetails: 'There are no servers yet.', curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0 };
+    }
     
     const townGoods = [
       townInfo.day1goods,

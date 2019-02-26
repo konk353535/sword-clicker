@@ -253,7 +253,7 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
       targetLevel++;
     }
     
-    return { townSection, isError: false, curVal, nextVal, currentLevel: CInt(targetLevel - 1), targetLevel };
+    return { townSection, isError: false, curVal, nextVal, currentLevel: ((curVal >= nextVal) ? targetLevel : CInt(targetLevel - 1)), targetLevel };
   } catch (err) {
     return { townSection: townSection, isError: true, exceptionDetails: err, curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0 };
   }  

@@ -144,8 +144,9 @@ Template.townPage.helpers({
             newItem.amount = item.count;
             newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count);
             newItem.reverseKarmaValue = 1000000000000 - newItem.karmaValue;
+            const countFormatted = Numeral(item.count).format('0,0');
             const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
-            newItem.customDescription = `<b>${item.count}</b> x donated by <i>${item.username}</i><br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`;
+            newItem.customDescription = `<b>${countFormatted}</b> x donated by <i>${item.username}</i><br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`;
             
             totalKarma += newItem.karmaValue;
             if (item.username === Meteor.user().username) {

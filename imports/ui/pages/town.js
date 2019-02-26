@@ -83,7 +83,7 @@ Template.townPage.helpers({
       }
     } else {
       console.log("Exception looking up karma data:");
-      console.log(karmaData);
+      console.log(karmaData.exceptionDetails);
     }
     
     return '';

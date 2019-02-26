@@ -198,7 +198,8 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
 
 export const karmaLevelValues = function karmaLevelValues(townSection, townInfo__in) {
   try {
-    const townInfo = (townInfo__in) ? townInfo__in : Town.findOne({});
+    //const townInfo = (townInfo__in) ? townInfo__in : Town.findOne({});
+    const townInfo = (townInfo__in) ? townInfo__in : lodash.cloneDeep(Servers.findOne({name: 'Classic'})).town;
     const townGoods = [
       townInfo.day1goods,
       townInfo.day2goods,
